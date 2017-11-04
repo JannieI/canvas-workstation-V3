@@ -44,10 +44,10 @@ export class GetDataComponent {
         this.globalVariableService.xlOpenGetDataWizard = true;  // Set for next time
         this.wizardExtraLarge.close;
         this.router.navigate(['/data']);
-        
     }
 
     ngOnDestroy() {
         console.log('dead')
     }
+
 }

@@ -64,90 +64,63 @@
   <div class="content-container">
 
       
-      <div class="content-area">
+      <div  class="content-area droptarget" 
+            (ondrop)="drop(event)" 
+            (ondragover)="allowDrop(event)"
+            >
 
         <router-outlet></router-outlet>
     </div>
 
 
-    <!-- SIDENAV - Palette -->
+    <!-- Side Nav -->
     <nav class="sidenav" *ngIf="showNavDashboard">
       
-      <section class="sidenav-content">
+        <section class="sidenav-content">
 
-        <section class="nav-group collapsible">
-            <input id="tabexample2" type="checkbox">
-            <label for="tabexample2">Default Nav Element</label>
-            <ul class="nav-list">
-                <li><a class="nav-link">Link 1</a></li>
-                <li><a class="nav-link">Link 2</a></li>
-                <li><a class="nav-link active">Link 3</a></li>
-                <li><a class="nav-link">Link 4</a></li>
-                <li><a class="nav-link">Link 5</a></li>
-                <li><a class="nav-link">Link 6</a></li>
-            </ul>
-        </section>
+            <section class="nav-group collapsible">
+                <input id="Columns" type="checkbox">
+                <label for="Columns">Columns</label>
+                <ul class="nav-list">
+                    <li>
+                        <a 
+                            class="nav-link"
+                            (ondragstart)="dragStart($event)" 
+                            (ondragend)="dragEnd($event)" 
+                            draggable="true" 
+                            id="dragtarget"
+                            >
+                        Trader
+                        </a>
+                    </li>
+                    <li><a class="nav-link">Country</a></li>
+                    <li><a class="nav-link active">Trade Type</a></li>
+                    <li><a class="nav-link">Date</a></li>
+                    <li><a class="nav-link">DateTime</a></li>
+                    <li><a class="nav-link">Stock</a></li>
+                </ul>
+            </section>
 
-        <section class="nav-group collapsible" >
-            <form class="compact">
-            <input id="tabexample3" type="checkbox">
-            <label for="tabexample3">Collapsible Nav Element 2</label>
-            <ul class="nav-list">
-                
-                <clr-tooltip>
-                <button type="button" class="btn btn-icon" clrTooltipTrigger>
-                    <clr-icon shape="home"></clr-icon>
-                </button>
-                <clr-tooltip-content clrPosition="top-right" clrSize="xs" *clrIfOpen>
-                    <span>Yea baby</span>
-                </clr-tooltip-content>
-                </clr-tooltip>
-                    
-                <button type="button" class="btn btn-icon btn-primary">
-                    <clr-icon shape="cog"></clr-icon>
-                </button>
-                <button type="button" class="btn btn-icon btn-warning">
-                    <clr-icon shape="warning-standard"></clr-icon>
-                </button>
-                <button type="button" class="btn btn-icon btn-danger">
-                    <clr-icon shape="error-standard"></clr-icon>
-                </button>
-                <button type="button" class="btn btn-icon btn-success">
-                    <clr-icon shape="check"></clr-icon>
-                </button>
-                <button type="button" class="btn btn-icon" disabled>
-                    <clr-icon shape="home"></clr-icon>
-                </button>
-            </ul>
-            </form>
-        </section>
-
-        <section class="nav-group collapsible">
-            <input id="tabexample1" type="checkbox">
-            <label for="tabexample1">Collapsible Nav Element 2</label>
-            
-            <ul class="nav-list">
-                
-                <button type="button" class="btn btn-icon">
-                    <clr-icon shape="home"></clr-icon>
-                </button>
-                <button type="button" class="btn btn-icon btn-primary">
-                    <clr-icon shape="cog"></clr-icon>
-                </button>
-                <button type="button" class="btn btn-icon btn-warning">
-                    <clr-icon shape="warning-standard"></clr-icon>
-                </button>
-                <button type="button" class="btn btn-icon btn-danger">
-                    <clr-icon shape="error-standard"></clr-icon>
-                </button>
-                <button type="button" class="btn btn-icon btn-success">
-                    <clr-icon shape="check"></clr-icon>
-                </button>
-                <button type="button" class="btn btn-icon" disabled>
-                    <clr-icon shape="home"></clr-icon>
-                </button>
-            </ul>
-        </section>
+            <section class="nav-group collapsible">
+                <input id="Measures" type="checkbox">
+                <label for="Measures">Measures</label>
+                <ul class="nav-list">
+                    <li><a class="nav-link">Volume</a></li>
+                    <li><a class="nav-link">Trades</a></li>
+                    <li><a class="nav-link active">Value</a></li>
+                </ul>
+            </section>
+        
+            <section class="nav-group collapsible">
+                <input id="Format" type="checkbox">
+                <label for="Format">Format</label>
+                <ul class="nav-list">
+                    <li><a class="nav-link">Graph Type</a></li>
+                    <li><a class="nav-link">Header</a></li>
+                    <li><a class="nav-link active">Border</a></li>
+                </ul>
+            </section>
+    
         
         </section>
     </nav>

@@ -17,6 +17,18 @@ interface Idatasource {
     location: string;
 }
 
+interface Idataset {
+    id: number;
+    type: string;
+    name: string;
+    location: string;
+}
+
+interface Itransformaton {
+    id: number;
+    name: string;
+    description: string;
+}
 const datasource: Idatasource[] = [
     {
         id: 1,
@@ -38,6 +50,44 @@ const datasource: Idatasource[] = [
     }
 ]
 
+const dataset: Idataset[] = [
+    {
+        id: 1,
+        type: 'SQL', 
+        name: 'Value by year',
+        location: 'Local'
+    },
+    {
+        id: 2,
+        type: 'Overlay spec', 
+        name: 'CPI tables with calculated fields',
+        location: 'Server'
+    },
+    {
+        id: 3,
+        type: 'SQL', 
+        name: 'Trades with extensive group-by',
+        location: 'Local'
+    }
+]
+
+const transformaton: Itransformaton[] = [
+    {
+        id: 1,
+        name: 'Transpose', 
+        description: 'Transpose Rows and Columns',
+    },
+    {
+        id: 2,
+        name: 'Add Calculated field', 
+        description: 'Calculated field',
+    },
+    {
+        id: 3,
+        name: 'Left Align', 
+        description: 'Left align string values',
+    }
+]
 @Component({
   selector: 'app-help',
   templateUrl: './data.component.html',
@@ -46,6 +96,12 @@ const datasource: Idatasource[] = [
 export class DataComponent implements OnInit {
 
     datasource: Idatasource[] = datasource;
+    dataset: Idataset[] = dataset;
+    transformaton: Itransformaton[] = transformaton;
+    selectedDatasource: any;
+    dataTabDatasource: boolean = false;
+    errorMessage: string = "";
+    isError: boolean = false;
 
 	constructor(
 		private globalFunctionService: GlobalFunctionService
@@ -53,6 +109,22 @@ export class DataComponent implements OnInit {
 
 	ngOnInit() {
 		this.globalFunctionService.hideSecondaryMenus();
-	}
-	
+    }
+    
+    clickRow() {
+        if (this.selectedDatasource == null) {
+            this.errorMessage = "Please select a Dataset and click again"
+            this.isError = true;
+            return;
+        }
+        this.isError = false;
+        this.errorMessage = '';
+        console.log('selectedId', this.selectedDatasource )
+        this.selectedDatasource = true;
+
+        // Reset
+        this.selectedDatasource = null;
+    }
+
+
 }

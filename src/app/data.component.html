@@ -1,24 +1,38 @@
 <clr-tabs>
     <clr-tab>
-        <button clrTabLink id="link1">Define Datasource</button>
+        <button clrTabLink id="link1">Datasources</button>
         <clr-tab-content id="content1" *clrIfActive>
-            Select a Datasource to make it available in your Dashboard.  A Datasource can be
-             a file, for example Excel, or a Database table.  The block of data that is returned
-             is called a Dataset.
+            A Datasource can be a file (for example Excel) or a Database table from which data
+            must be extracted.  The subset (block) of data that is returned from a Datasource
+             is called a Dataset, which is defined in the next tab.  Visualisations (widgets) 
+             are based on Datasets.
 
+             <br>
              <button type="button" class="btn btn-primary" 
                      [routerLink]="['/getdata']" routerLinkActive="active">
-                     Get Data
+                     Add Datasource
             </button>
 
-             Datasources already available to your Dashboard.
-             <clr-datagrid>
+            <br>
+            <div class="alert alert-danger" *ngIf="isError">
+                {{  errorMessage  }}
+            </div>  
+            <br>
+
+             Datasources already available to your Dashboard.  Select one to refine the Dataset.
+             <br>
+             <button type="button" class="btn btn-secondary" 
+                     (click)="clickRow()">
+                     Define Dataset
+            </button>
+
+            <clr-datagrid [(clrDgSingleSelected)]="selectedDatasource">
                 <clr-dg-column>Datasource ID</clr-dg-column>
                 <clr-dg-column>Type</clr-dg-column>
                 <clr-dg-column>Name</clr-dg-column>
                 <clr-dg-column>Location</clr-dg-column>
             
-                <clr-dg-row *ngFor="let ds of datasource">
+                <clr-dg-row *ngFor="let ds of datasource"  [clrDgItem]="ds">
                     <clr-dg-cell>{{ds.id}}</clr-dg-cell>
                     <clr-dg-cell>{{ds.type}}</clr-dg-cell>
                     <clr-dg-cell>{{ds.name}}</clr-dg-cell>
@@ -28,14 +42,40 @@
                 <clr-dg-footer>{{datasource.length}} datasources</clr-dg-footer>
             </clr-datagrid>
 
-            </clr-tab-content>
+        </clr-tab-content>
     </clr-tab>
 
     <clr-tab>
-        <button clrTabLink>Define Query</button>
-        <clr-tab-content *clrIfActive="true">
-            Select a Query to use in the extraction of the data.  If no Query is specified, 
-            then all the data in the Datasource will be returned.  This step is optional for files or small tables.
+        <button clrTabLink>Dataset</button>
+        <clr-tab-content *clrIfActive="false">
+            Refine the Dataset (block of data) to be used in the visualisation (graph or table)
+            on the Dashboard.  Select a Query to use in the extraction of the data.  If no 
+            Query is specified, then all the data in the Datasource will be returned.  This step 
+            is optional for files or small tables, but essential for Datasources with large amounts
+            of data.
+
+            <br>
+            <button type="button" class="btn btn-primary" 
+                    (click)="clickRow()">
+                    Add Dataset
+           </button>
+
+           <clr-datagrid [(clrDgSingleSelected)]="selectedDataset">
+                <clr-dg-column>Dataset ID</clr-dg-column>
+                <clr-dg-column>Type</clr-dg-column>
+                <clr-dg-column>Name</clr-dg-column>
+                <clr-dg-column>Location</clr-dg-column>
+            
+                <clr-dg-row *ngFor="let ds of transformaton"  [clrDgItem]="ds">
+                    <clr-dg-cell>{{ds.id}}</clr-dg-cell>
+                    <clr-dg-cell>{{ds.type}}</clr-dg-cell>
+                    <clr-dg-cell>{{ds.name}}</clr-dg-cell>
+                    <clr-dg-cell>{{ds.location}}</clr-dg-cell>
+                </clr-dg-row>
+           
+               <clr-dg-footer>{{datasource.length}} datasources</clr-dg-footer>
+           </clr-datagrid>
+
         </clr-tab-content>
     </clr-tab>
 
@@ -45,15 +85,114 @@
             Select a list of Transformation to apply to the data returned from the Datasource.  
             For example, add a calculated field.  This step is only necessary if the data is 
             not in the required format.
+
+            <br>
+            <button type="button" class="btn btn-primary" 
+                    (click)="clickRow()">
+                    Add Transformation
+           </button>
+
+           <!-- Two Transformation lists -->
+           <div class="row">
+                <div class="col-xs-5">
+                    <clr-datagrid>
+                            <clr-dg-column>Transformation</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
+                        
+                            <clr-dg-row *ngFor="let ds of transformaton"  [clrDgItem]="ds">
+                                <clr-dg-cell>{{ds.name}}</clr-dg-cell>
+                                <clr-dg-cell>{{ds.description}}</clr-dg-cell>
+                            </clr-dg-row>
+                        
+                        <clr-dg-footer>{{datasource.length}} datasources</clr-dg-footer>
+                    </clr-datagrid>
+                </div>  
+                <div class="col-xs-1">
+                    <br>
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-primary" (click)="clickRow()">
+                        Add
+                    </button>
+                    <button type="button" class="btn btn-primary" (click)="clickRow()">
+                        Remove
+                    </button>
+                    <button type="button" class="btn btn-primary" (click)="clickRow()">
+                        Clear
+                    </button>
+        
+                </div>                          
+                <div class="col-xs-5">
+                    <clr-datagrid>
+                            <clr-dg-column>Transformation</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
+                        
+                            <clr-dg-row *ngFor="let ds of transformaton"  [clrDgItem]="ds">
+                                <clr-dg-cell>{{ds.name}}</clr-dg-cell>
+                                <clr-dg-cell>{{ds.description}}</clr-dg-cell>
+                            </clr-dg-row>
+                        
+                        <clr-dg-footer>{{datasource.length}} datasources</clr-dg-footer>
+                    </clr-datagrid>
+                </div>
+                <div class="col-xs-1">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-secondary" (click)="clickRow()">
+                        Up
+                    </button>
+                    <button type="button" class="btn btn-secondary" (click)="clickRow()">
+                        Down
+                    </button>
+                </div>                          
+    
+            </div>  
+
         </clr-tab-content>
     </clr-tab>
 
     <clr-tab>
-            <button clrTabLink>Summary</button>
-            <clr-tab-content *clrIfActive="false">
-            The summary data provides more insight into the data.  No changes to the selected 
-            data can be made here.
-            </clr-tab-content>
-        </clr-tab>
+        <button clrTabLink>Summary</button>
+        <clr-tab-content *clrIfActive="false">
+        The summary data provides more insight into the data.  No changes to the selected 
+        data can be made here.
+        </clr-tab-content>
+
+        <form>
+            <section class="form-block">
+                <label>
+                    Fields + metadata
+                    Data content (high-level) + quality
+                    Suggested graphs + visualisations
+                </label>
+                <div class="form-group">
+                    <label for="aForm_1">This is a form field</label>
+                    <input type="text" id="aForm_1" placeholder="Enter value here" size="45">
+                </div>
+                <div class="form-group">
+                    <label for="aForm_2">Another form field</label>
+                    <input type="password" id="aForm_2" placeholder="Enter another value here" size="35">
+                </div>
+                <div class="form-group">
+                    <label for="aForm_3">A select box</label>
+                    <div class="select">
+                        <select id="aForm_3">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                            <option>Option 4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="aForm_4">Textarea</label>
+                    <textarea id="aForm_4" rows="5"></textarea>
+                </div>
+            </section>
+        </form>
+
+    </clr-tab>
     
 </clr-tabs>
