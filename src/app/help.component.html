@@ -1,40 +1,79 @@
-<div>
-	<h2>New</h2>
-	<a 
-	    (click)="createNewSpecification()"
-	    routerLink="datasources"
-	    >Start exploring your data</a>
-</div>
-
-<div>
-	<h2>Recent</h2>
-	<div *ngFor="let folder of rootDirectory">
-		<div *ngFor="let file of folder.files">		
+<div class="row">
+	<div class="col-xs-6">
+		<div>
+			<h2>New</h2>
 			<a 
-	            (click)="loadExistingSpecification()"
-	            routerLink="datasources">
-				{{file.name}}
+				(click)="createNewSpecification()"
+				routerLink="datasources"
+				>Start exploring your data
 			</a>
 		</div>
-	</div>
-</div>
 
-<div>
-	<h2>Help</h2>
-	<div>
-		<a href="#">Getting starting with Canvas</a>
-	</div>
-	<div>
-		<a href="#">Advanced transformations with tributary</a>
-	</div>
-</div>
+		<div>
+			<h2>Help</h2>
+			<div>
+				<a href="#">Demo</a>
+			</div>
+			<div>
+				<a href="#">Getting starting with Canvas</a>
+			</div>
+			<div>
+				<a href="#">Getting data</a>
+			</div>
+			<div>
+				<a href="#">Transforming data</a>
+			</div>
+			<div>
+				<a href="#">Creating a Dashboard</a>
+			</div>
+			<div>
+				<a href="#">Creating a Widget</a>
+			</div>
+			<div>
+				<a href="#">Tutorials</a>
+			</div>
+			<div>
+				<a href="#">Creating a Dashboard</a>
+			</div>
+			<div>
+				<a href="#">Documentaion</a>
+			</div>
+		</div>
 
-<div id="contact">
-	<h2>Get in touch</h2>
-	<div>
-		If you 
-		<clr-icon shape="heart" class="is-solid"></clr-icon>
-		canvas or just want to get in touch we'd love to hear your thoughts
-		<a href="mailto:info@clarityanalytics.xyz">info@clarityanalytics.xyz</a>
-	</div>
+		<div id="contact">
+			<h2>Get in touch</h2>
+			<div>
+				If you 
+				<clr-icon shape="heart" class="is-solid"></clr-icon>
+				Canvas or just want to get in touch we'd love to hear your thoughts
+				<a href="mailto:info@clarityanalytics.xyz">info@clarityanalytics.xyz</a>
+			</div>
+		</div>
+
+	</div>	
+	
+	<div class="col-xs-6">
+
+		<div>
+			<form class="compact"> 
+				<section class="form-block">
+					<button type="button" class="btn btn-primary">New Dashboard</button>
+					<h2>Recent Dashboards</h2>
+				</section>	
+
+				<section class="form-block">
+					<div *ngFor="let folder of rootDirectory">
+						<div *ngFor="let file of folder.files">		
+							<a 
+								(click)="loadExistingSpecification()"
+								routerLink="datasources">
+								{{file.name}}
+							</a>
+						</div>
+					</div>
+				</section>	
+			</form>
+		</div>
+
+	</div>	
 </div>
