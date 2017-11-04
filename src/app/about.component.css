@@ -1,0 +1,17 @@
+.menuItm {
+    margin: auto;
+}
+
+.menuButton  {
+    color: rgba(245, 116, 10, 0.527) !important;
+}
+
+.dropdown-header .dropdown-menu {
+    color: rgb(255, 205, 192);
+}
+
+.header-nav .dropdown {
+    color: rgb(255, 205, 192);
+}
+
+ 
