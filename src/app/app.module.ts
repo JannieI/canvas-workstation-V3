@@ -20,7 +20,7 @@ import { AppComponent }               from './app.component';
 import { HomeComponent }              from "./home.component";
 import { HelpComponent }              from "./help.component";
 import { DataComponent }              from "./data.component";
-import { AboutComponent }             from "./about.component";
+import { DashboardComponent }             from "./dashboard.component";
 import { GetDataComponent }           from './getdata.component';
 
 // Our Services
@@ -31,7 +31,7 @@ import { GlobalFunctionService }      from './global-function.service';
 @NgModule({
     declarations: [
         AppComponent,
-        AboutComponent,
+        DashboardComponent,
         HomeComponent,
         HelpComponent,
         DataComponent,

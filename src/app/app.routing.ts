@@ -6,7 +6,7 @@ import { ModuleWithProviders }        from '@angular/core/src/metadata/ng_module
 import { Routes, RouterModule }       from '@angular/router';
 
 // Our Components
-import { AboutComponent }             from './about.component';
+import { DashboardComponent }             from './dashboard.component';
 import { HomeComponent }              from './home.component';
 import { HelpComponent }              from './help.component';
 import { DataComponent }              from './data.component';
@@ -21,7 +21,7 @@ export const ROUTES: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'data', component: DataComponent},
     {path: 'help', component: HelpComponent},
-    {path: 'about', component: AboutComponent},
+    {path: 'dashboard', component: DashboardComponent},
     {
         path: 'getdata', 
         component: GetDataComponent, 

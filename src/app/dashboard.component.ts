@@ -1,5 +1,5 @@
 /*
- * About page
+ * Dashboard
  */
 
 // From Angular
@@ -28,10 +28,10 @@ import { load } from 'datalib';
 // var dl = require('datalib');
 
 @Component({
-    styleUrls: ['./about.component.css'],
-    templateUrl: './about.component.html'
+    styleUrls: ['./dashboard.component.css'],
+    templateUrl: './dashboard.component.html'
 })
-export class AboutComponent {
+export class DashboardComponent {
     @ViewChild('vis', {read: ElementRef}) vis: ElementRef;  //Vega graph
     
     open: Boolean = false;

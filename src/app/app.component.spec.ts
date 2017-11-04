@@ -7,7 +7,7 @@ import { ROUTING } from "./app.routing";
 import { APP_BASE_HREF } from "@angular/common";
 
 import { HomeComponent } from "./home.component";
-import { AboutComponent } from "./about.component";
+import { DashboardComponent } from "./dashboard.component";
 
 describe('AppComponent', () => {
 
@@ -18,7 +18,7 @@ describe('AppComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 AppComponent,
-                AboutComponent,
+                DashboardComponent,
                 HomeComponent
             ],
             imports: [

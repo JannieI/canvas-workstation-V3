@@ -3,6 +3,7 @@
  */
 
 import { Component }                  from "@angular/core";
+import { Router }                     from '@angular/router';
 import { ViewChild }                  from "@angular/core";
 
 // Clarity UI
@@ -22,18 +23,30 @@ export class GetDataComponent {
     
     constructor(
         private globalVariableService: GlobalVariableService,
+        private router: Router
+        
     ) {
     }
+
     ngOnInit () {
         console.log('oninit ...')
-        this.xlOpenGetDataWizard = this.globalVariableService.xlOpenGetDataWizard; // Open when menu is clicked
+        // Prevent opening on startup ...
+        if (!this.globalVariableService.xlOpenGetDataWizard) {
+            this.globalVariableService.xlOpenGetDataWizard = true;
+        } else {
+            this.xlOpenGetDataWizard = true;
+        };
         this.wizardExtraLarge.reset();
     }
 
     clickButtonFinish() {
         console.log('clickButtonFinish')
-        this.globalVariableService.xlOpenGetDataWizard = true;  // Reset for next time
+        this.globalVariableService.xlOpenGetDataWizard = true;  // Set for next time
+        this.wizardExtraLarge.close;
+        this.router.navigate(['/data']);
+        
     }
+
     ngOnDestroy() {
         console.log('dead')
     }
