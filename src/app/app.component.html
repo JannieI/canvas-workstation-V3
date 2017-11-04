@@ -11,8 +11,7 @@
 
     <div class="header-nav" [clr-nav-level]="1">
 
-        <a class="nav-link" href="#" [routerLink]="['/home']" routerLinkActive="active"
-           (click)="clickButtonMenu('data')">
+        <a class="nav-link" href="#" [routerLink]="['/data']" routerLinkActive="active">
             <span class="nav-text">Data</span>
         </a>
 
@@ -20,10 +19,6 @@
            (click)="clickButtonMenu('dashboard')">
           <span class="nav-text">Dashboard</span>
         </a>    
-
-        <a class="nav-link" href="#" [routerLink]="['/about']" routerLinkActive="active">
-            <span class="nav-text">About...</span>
-        </a>
         
         <a class="nav-link" href="#" [routerLink]="['/help']" routerLinkActive="active">
             <span class="nav-text">Help</span>
@@ -52,22 +47,6 @@
   </clr-header>
 
   <!-- Sub Navs -->
-  <nav class="subnav" *ngIf="showSubMenuData">
-    <ul class="nav">
-      <li class="nav-item">
-        <div class="nav-link" (click)="clickButtonSubMenu('data')">Data</div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Explore</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Visualise</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Share</a>
-      </li>
-    </ul>
-  </nav>
   <nav class="subnav" *ngIf="showSubMenuDashboard">
     <ul class="nav">
       <li class="nav-item">
@@ -91,177 +70,86 @@
     </div>
 
 
-    <!-- SIDENAV - Menu -->
-    <nav class="sidenav" *ngIf="showNavData">
-      <section class="sidenav-content">
-          <a href="..." class="nav-link active">
-              Nav Element DATA 1
-          </a>
-          <a href="..." class="nav-link">
-              Nav Element 2
-          </a>
-          <section class="nav-group collapsible">
-              <input id="tabexample1" type="checkbox">
-              <label for="tabexample1">Collapsible Nav Element 1</label>
-              <ul class="nav-list">
-                  <li><a class="nav-link">Link 1</a></li>
-                  <li><a class="nav-link">Link 2</a></li>
-                  <li><a class="nav-link nav-icon" href="#" 
-                        [routerLink]="['/home']" routerLinkActive="active">Bar Chart
-                      </a>
-                  </li>
-              </ul>
-          </section>
-          <section class="nav-group">
-              <input id="tabexample2" type="checkbox">
-              <label for="tabexample2">Default Nav Element</label>
-              <ul class="nav-list">
-                  <li><a class="nav-link">Link 1</a></li>
-                  <li><a class="nav-link">Link 2</a></li>
-                  <li><a class="nav-link active">Link 3</a></li>
-                  <li><a class="nav-link">Link 4</a></li>
-                  <li><a class="nav-link">Link 5</a></li>
-                  <li><a class="nav-link">Link 6</a></li>
-              </ul>
-          </section>
-      </section>
-    </nav>
-
-
-
-
     <!-- SIDENAV - Palette -->
     <nav class="sidenav" *ngIf="showNavDashboard">
-
-        <section class="sidenav-content">
-          Palette
-        </section>  
-    
-        <ul class="nav-list">
-                  <button type="button" class="btn btn-icon">
-                      <clr-icon shape="home"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon btn-primary">
-                      <clr-icon shape="cog"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon btn-warning">
-                      <clr-icon shape="warning-standard"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon btn-danger">
-                      <clr-icon shape="error-standard"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon btn-success">
-                      <clr-icon shape="check"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon" disabled>
-                      <clr-icon shape="home"></clr-icon>
-                  </button>
-        </ul>
-
-      <section class="sidenav-content">
-        Multi select
-      </section>                
-      
       
       <section class="sidenav-content">
 
-          <ul class="nav-list">
-              <button type="button" class="btn btn-icon">
-                  <clr-icon shape="home"></clr-icon>
-              </button>
-              <button type="button" class="btn btn-icon btn-primary">
-                  <clr-icon shape="cog"></clr-icon>
-              </button>
-              <button type="button" class="btn btn-icon btn-warning">
-                  <clr-icon shape="warning-standard"></clr-icon>
-              </button>
-              <button type="button" class="btn btn-icon btn-danger">
-                  <clr-icon shape="error-standard"></clr-icon>
-              </button>
-              <button type="button" class="btn btn-icon btn-success">
-                  <clr-icon shape="check"></clr-icon>
-              </button>
-              <button type="button" class="btn btn-icon" disabled>
-                  <clr-icon shape="home"></clr-icon>
-              </button>
-          </ul>
+        <section class="nav-group collapsible">
+            <input id="tabexample2" type="checkbox">
+            <label for="tabexample2">Default Nav Element</label>
+            <ul class="nav-list">
+                <li><a class="nav-link">Link 1</a></li>
+                <li><a class="nav-link">Link 2</a></li>
+                <li><a class="nav-link active">Link 3</a></li>
+                <li><a class="nav-link">Link 4</a></li>
+                <li><a class="nav-link">Link 5</a></li>
+                <li><a class="nav-link">Link 6</a></li>
+            </ul>
+        </section>
 
-
-          <section class="nav-group collapsible">
-              <input id="tabexample2" type="checkbox">
-              <label for="tabexample2">Default Nav Element</label>
-              <ul class="nav-list">
-                  <li><a class="nav-link">Link 1</a></li>
-                  <li><a class="nav-link">Link 2</a></li>
-                  <li><a class="nav-link active">Link 3</a></li>
-                  <li><a class="nav-link">Link 4</a></li>
-                  <li><a class="nav-link">Link 5</a></li>
-                  <li><a class="nav-link">Link 6</a></li>
-              </ul>
-          </section>
-
-          <section class="nav-group collapsible" >
-              <form class="compact">
-                <input id="tabexample3" type="checkbox">
-                <label for="tabexample3">Collapsible Nav Element 2</label>
-                <ul class="nav-list">
-                  
-                  <clr-tooltip>
-                    <button type="button" class="btn btn-icon" clrTooltipTrigger>
-                      <clr-icon shape="home"></clr-icon>
-                    </button>
-                    <clr-tooltip-content clrPosition="top-right" clrSize="xs" *clrIfOpen>
-                        <span>Yea baby</span>
-                    </clr-tooltip-content>
-                  </clr-tooltip>
-                      
-                  <button type="button" class="btn btn-icon btn-primary">
-                      <clr-icon shape="cog"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon btn-warning">
-                      <clr-icon shape="warning-standard"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon btn-danger">
-                      <clr-icon shape="error-standard"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon btn-success">
-                      <clr-icon shape="check"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon" disabled>
-                      <clr-icon shape="home"></clr-icon>
-                  </button>
-                </ul>
-              </form>
-            </section>
-
-            <section class="nav-group collapsible">
-                <input id="tabexample1" type="checkbox">
-                <label for="tabexample1">Collapsible Nav Element 2</label>
+        <section class="nav-group collapsible" >
+            <form class="compact">
+            <input id="tabexample3" type="checkbox">
+            <label for="tabexample3">Collapsible Nav Element 2</label>
+            <ul class="nav-list">
                 
-                <ul class="nav-list">
+                <clr-tooltip>
+                <button type="button" class="btn btn-icon" clrTooltipTrigger>
+                    <clr-icon shape="home"></clr-icon>
+                </button>
+                <clr-tooltip-content clrPosition="top-right" clrSize="xs" *clrIfOpen>
+                    <span>Yea baby</span>
+                </clr-tooltip-content>
+                </clr-tooltip>
                     
-                  <button type="button" class="btn btn-icon">
-                      <clr-icon shape="home"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon btn-primary">
-                      <clr-icon shape="cog"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon btn-warning">
-                      <clr-icon shape="warning-standard"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon btn-danger">
-                      <clr-icon shape="error-standard"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon btn-success">
-                      <clr-icon shape="check"></clr-icon>
-                  </button>
-                  <button type="button" class="btn btn-icon" disabled>
-                      <clr-icon shape="home"></clr-icon>
-                  </button>
-                </ul>
-            </section>
+                <button type="button" class="btn btn-icon btn-primary">
+                    <clr-icon shape="cog"></clr-icon>
+                </button>
+                <button type="button" class="btn btn-icon btn-warning">
+                    <clr-icon shape="warning-standard"></clr-icon>
+                </button>
+                <button type="button" class="btn btn-icon btn-danger">
+                    <clr-icon shape="error-standard"></clr-icon>
+                </button>
+                <button type="button" class="btn btn-icon btn-success">
+                    <clr-icon shape="check"></clr-icon>
+                </button>
+                <button type="button" class="btn btn-icon" disabled>
+                    <clr-icon shape="home"></clr-icon>
+                </button>
+            </ul>
+            </form>
+        </section>
+
+        <section class="nav-group collapsible">
+            <input id="tabexample1" type="checkbox">
+            <label for="tabexample1">Collapsible Nav Element 2</label>
             
-          </section>
+            <ul class="nav-list">
+                
+                <button type="button" class="btn btn-icon">
+                    <clr-icon shape="home"></clr-icon>
+                </button>
+                <button type="button" class="btn btn-icon btn-primary">
+                    <clr-icon shape="cog"></clr-icon>
+                </button>
+                <button type="button" class="btn btn-icon btn-warning">
+                    <clr-icon shape="warning-standard"></clr-icon>
+                </button>
+                <button type="button" class="btn btn-icon btn-danger">
+                    <clr-icon shape="error-standard"></clr-icon>
+                </button>
+                <button type="button" class="btn btn-icon btn-success">
+                    <clr-icon shape="check"></clr-icon>
+                </button>
+                <button type="button" class="btn btn-icon" disabled>
+                    <clr-icon shape="home"></clr-icon>
+                </button>
+            </ul>
+        </section>
+        
+        </section>
     </nav>
   
 

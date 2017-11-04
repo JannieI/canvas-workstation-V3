@@ -1,0 +1,36 @@
+<clr-tabs>
+    <clr-tab>
+        <button clrTabLink id="link1">Define Datasource</button>
+        <clr-tab-content id="content1" *clrIfActive>
+            Select a Datasource to make it available in your Dashboard.  A Datasource can be
+             a file, for example Excel, or a Database table.  The block of data that is returned
+             is called a Dataset.
+        </clr-tab-content>
+    </clr-tab>
+
+    <clr-tab>
+        <button clrTabLink>Define Query</button>
+        <clr-tab-content *clrIfActive="false">
+            Select a Query to use in the extraction of the data.  If no Query is specified, 
+            then all the data in the Datasource will be returned.  This step is optional for files or small tables.
+        </clr-tab-content>
+    </clr-tab>
+
+    <clr-tab>
+        <button clrTabLink>Transform</button>
+        <clr-tab-content *clrIfActive="false">
+            Select a list of Transformation to apply to the data returned from the Datasource.  
+            For example, add a calculated field.  This step is only necessary if the data is 
+            not in the required format.
+        </clr-tab-content>
+    </clr-tab>
+
+    <clr-tab>
+            <button clrTabLink>Summary</button>
+            <clr-tab-content *clrIfActive="false">
+            The summary data provides more insight into the data.  No changes to the selected 
+            data can be made here.
+            </clr-tab-content>
+        </clr-tab>
+    
+</clr-tabs>

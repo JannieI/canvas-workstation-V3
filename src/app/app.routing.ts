@@ -9,6 +9,7 @@ import { Routes, RouterModule }       from '@angular/router';
 import { AboutComponent }             from './about.component';
 import { HomeComponent }              from './home.component';
 import { HelpComponent }              from './help.component';
+import { DataComponent }              from './data.component';
 import { GetDataComponent }           from './getdata.component';
 
 // Own Services
@@ -18,6 +19,7 @@ import { GlobalVariableService }      from './global-variable.service';
 export const ROUTES: Routes = [
     {path: '', redirectTo: 'help', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
+    {path: 'data', component: DataComponent},
     {path: 'help', component: HelpComponent},
     {path: 'about', component: AboutComponent},
     {

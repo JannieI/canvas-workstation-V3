@@ -60,7 +60,8 @@ export class HelpComponent implements OnInit {
 	rootDirectory: object[] = rootDirectory;
 
 	constructor(
-		private globalFunctionService: GlobalFunctionService
+		private globalFunctionService: GlobalFunctionService,
+		private router: Router
 	) {}
 
 	ngOnInit() {
@@ -68,4 +69,7 @@ export class HelpComponent implements OnInit {
 		console.log('rootDirectory',rootDirectory)
 	}
 	
+	clickButtonData() {
+		this.router.navigate(['/data']);
+	}
 }

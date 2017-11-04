@@ -19,6 +19,7 @@ import { ClarityModule }              from 'clarity-angular';
 import { AppComponent }               from './app.component';
 import { HomeComponent }              from "./home.component";
 import { HelpComponent }              from "./help.component";
+import { DataComponent }              from "./data.component";
 import { AboutComponent }             from "./about.component";
 import { GetDataComponent }           from './getdata.component';
 
@@ -33,6 +34,7 @@ import { GlobalFunctionService }      from './global-function.service';
         AboutComponent,
         HomeComponent,
         HelpComponent,
+        DataComponent,
         GetDataComponent,
     ],
     imports: [
