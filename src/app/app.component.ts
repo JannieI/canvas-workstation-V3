@@ -53,40 +53,18 @@ console.log('clickedOption',clickedOption)
             this.globalVariableService.showNavData.next(true);
         } else if (clickedOption == 'dashboard') {
             this.globalVariableService.showSubMenuDashboard.next(true);
-            this.globalVariableService.showNavDashboard.next(true);
+            this.globalVariableService.showNavDashboard.next(false);
         }
     }
 
     clickButtonSubMenu(clickedOption: string) {
         this.showNavData = false;
     }
-
-    ondragEnd(event) {
-        console.log('ondragEnd', event)
-    }
-
-    allowDrop(event) {
-        event.preventDefault();
-        console.log('allowDrop',event)
-    }
-
-    drop(event) {
-        event.preventDefault();
-        console.log('drop',event)
-        var data = event.dataTransfer.getData("Text");
-        // event.target.appendChild(document.getElementById(data));
-    }
-
-    dragStart(event) {
-        event.preventDefault();
-        console.log('dragStart',event)
-        event.dataTransfer.setData("Text", event.target.id);
-        // document.getElementById("demo").innerHTML = "Started to drag the p element";
-    }
     
     dragEnd(event) {
-        event.preventDefault();
+        // event.preventDefault();
         console.log('dragEnd',event)
         // document.getElementById("demo").innerHTML = "Finished dragging the p element.";
     }
+
 }

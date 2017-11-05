@@ -64,11 +64,9 @@
   <div class="content-container">
 
       
-      <div  class="content-area droptarget" 
-            (ondrop)="drop(event)" 
-            (ondragover)="allowDrop(event)"
+      <div  class="content-area"
             >
-
+Div @ top
         <router-outlet></router-outlet>
     </div>
 
@@ -77,7 +75,6 @@
     <nav class="sidenav" *ngIf="showNavDashboard">
       
         <section class="sidenav-content">
-
             <section class="nav-group collapsible">
                 <input id="Columns" type="checkbox">
                 <label for="Columns">Columns</label>
@@ -85,8 +82,7 @@
                     <li>
                         <a 
                             class="nav-link"
-                            (ondragstart)="dragStart($event)" 
-                            (ondragend)="dragEnd($event)" 
+                            (dragend)="dragEnd($event)" 
                             draggable="true" 
                             id="dragtarget"
                             >

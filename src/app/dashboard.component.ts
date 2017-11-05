@@ -35,6 +35,7 @@ export class DashboardComponent {
     @ViewChild('vis', {read: ElementRef}) vis: ElementRef;  //Vega graph
     
     open: Boolean = false;
+    showNavDashboard: boolean = true;
     vlSpecs: dl.spec.TopLevelExtendedSpec[] = [
         {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
@@ -79,9 +80,10 @@ export class DashboardComponent {
     ngAfterViewInit() {
     }
 
-    showGraphs() {
+    showGraphs(event) {
         // Show Graph Examples
         
+        console.log('showGraph', event)
 
         let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
         let specification = compile(definition).spec;

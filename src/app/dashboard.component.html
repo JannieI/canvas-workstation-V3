@@ -16,6 +16,54 @@
   </div>
 </clr-modal>
 
+<nav class="sidenav" *ngIf="showNavDashboard">
+  
+    <section class="sidenav-content">
+        <section class="nav-group collapsible">
+            <input id="Columns" type="checkbox">
+            <label for="Columns">Columns</label>
+            <ul class="nav-list">
+                <li>
+                    <a 
+                        class="nav-link"
+                        (dragend)="showGraphs($event)" 
+                        draggable="true" 
+                        id="dragtarget"
+                        >
+                    Trader
+                    </a>
+                </li>
+                <li><a class="nav-link">Country</a></li>
+                <li><a class="nav-link active">Trade Type</a></li>
+                <li><a class="nav-link">Date</a></li>
+                <li><a class="nav-link">DateTime</a></li>
+                <li><a class="nav-link">Stock</a></li>
+            </ul>
+        </section>
+
+        <section class="nav-group collapsible">
+            <input id="Measures" type="checkbox">
+            <label for="Measures">Measures</label>
+            <ul class="nav-list">
+                <li><a class="nav-link">Volume</a></li>
+                <li><a class="nav-link">Trades</a></li>
+                <li><a class="nav-link active">Value</a></li>
+            </ul>
+        </section>
+    
+        <section class="nav-group collapsible">
+            <input id="Format" type="checkbox">
+            <label for="Format">Format</label>
+            <ul class="nav-list">
+                <li><a class="nav-link">Graph Type</a></li>
+                <li><a class="nav-link">Header</a></li>
+                <li><a class="nav-link active">Border</a></li>
+            </ul>
+        </section>
+
+    
+    </section>
+</nav>
 
 <!-- Graphs -->
 <div #vis>
