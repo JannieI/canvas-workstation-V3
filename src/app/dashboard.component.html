@@ -1,19 +1,16 @@
 
-<p>This is a page to help demonstrate routing.</p>
 <button class="btn btn-primary" (click)="open = true">Show modal</button>
-
-<button type="button" class="btn btn-outline" (click)="showGraphs()">Show Graphs</button>
 
 <!-- Modal Form -->
 <clr-modal [(clrModalOpen)]="open">
-  <h3 class="modal-title">I have a nice title</h3>
-  <div class="modal-body">
-    <p>But not much to say...</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="open = false">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="open = false">Ok</button>
-  </div>
+    <h3 class="modal-title">I have a nice title</h3>
+    <div class="modal-body">
+        <p>But not much to say...</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="open = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="open = false">Ok</button>
+    </div>
 </clr-modal>
 
 <nav class="sidenav" *ngIf="showNavDashboard">
@@ -66,6 +63,9 @@
 </nav>
 
 <!-- Graphs -->
-<div #vis>
-  <div>Vega-Lite Div</div>
+<div class="graphy">
+    <div  #vis>
+      <div>Vega-Lite Div</div>
+    </div>  
 </div>  
+  

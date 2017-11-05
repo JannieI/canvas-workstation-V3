@@ -57,7 +57,8 @@
 						<div *ngFor="let file of folder.files">		
 							<a 
 								(click)="loadExistingSpecification()"
-								routerLink="datasources">
+								class="nav-link" href="#"
+								[routerLink]="['/dashboard']" routerLinkActive="active">
 								{{file.name}}
 							</a>
 						</div>
@@ -68,3 +69,6 @@
 
 	</div>	
 </div>
+
+<a class="nav-link" href="#" [routerLink]="['/data']" routerLinkActive="active">
+	

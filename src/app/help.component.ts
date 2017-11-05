@@ -72,4 +72,8 @@ export class HelpComponent implements OnInit {
 	clickButtonData() {
 		this.router.navigate(['/data']);
 	}
+
+	loadExistingSpecification() {
+		console.log('start loadExistingSpecification')
+	}
 }
