@@ -1,0 +1,21 @@
+a {
+    color: rgb(69, 192, 230);
+}
+
+.DatasetTab {
+    display: inline-block;
+    vertical-align: text-top;
+}
+
+.DatasetTabContent {
+    background-color: lightgray;
+    display: inline-flex;
+    float: right;
+    width: 900px;
+}
+
+div .DatasetDiv {
+    display: inline-block;
+    padding: 5px;
+    vertical-align: text-top;
+}

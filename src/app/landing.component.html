@@ -1,8 +1,9 @@
+<input type="checkbox" id="checkrads_1" (click)="toggleFirstTime()">
 <div class="row">
 	<div class="col-xs-6">
 		<div>
 			<h2>Start</h2>
-			<button type="button" class="btn btn-primary" (click)="clickButtonData()">Get Data</button>
+			<a href="#">Getting exploring your data</a>
 		</div>
 
 		<div>
@@ -35,8 +36,9 @@
 				<a href="#">Documentaion</a>
 			</div>
 		</div>
+		
 
-		<div id="contact">
+		<div>
 			<h2>Get in touch</h2>
 			<div>
 				If you 
@@ -50,12 +52,28 @@
 	 
 	<div class="col-xs-6">
 
-		<div>
-					
+		<div *ngIf="!firstTimeUser">
+			<h2>Recent Dashboards</h2>
+
+			<div *ngFor="let folder of rootDirectory">
+				<div *ngFor="let file of folder.files">		
+					<a 
+						(click)="loadExistingSpecification()"
+						class="nav-link" href="#"
+						[routerLink]="['/dashboard']" routerLinkActive="active">
+						{{file.name}}
+						<clr-icon 
+                        	(click)="promptDeleteRecent(file.name)"
+							shape="trash">
+						</clr-icon>
+					</a>
+				</div>
+			</div>
+			<br><br>
 		</div>
 
 	</div>	
 </div>
 
-<a class="nav-link" href="#" [routerLink]="['/data']" routerLinkActive="active">
+
 	

@@ -97,11 +97,12 @@ export class DataComponent implements OnInit {
 
     datasource: Idatasource[] = datasource;
     dataset: Idataset[] = dataset;
-    transformaton: Itransformaton[] = transformaton;
-    selectedDatasource: any;
     dataTabDatasource: boolean = false;
     errorMessage: string = "";
+    firstTimeUser: boolean = true;
     isError: boolean = false;
+    selectedDatasource: any;
+    transformaton: Itransformaton[] = transformaton;
 
 	constructor(
 		private globalFunctionService: GlobalFunctionService
@@ -127,4 +128,7 @@ export class DataComponent implements OnInit {
     }
 
 
+	toggleFirstTime() {
+		this.firstTimeUser = !this.firstTimeUser;
+	}
 }

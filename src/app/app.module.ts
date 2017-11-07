@@ -17,10 +17,11 @@ import { ClarityModule }              from 'clarity-angular';
 
 // Own Components
 import { AppComponent }               from './app.component';
-import { HomeComponent }              from "./home.component";
-import { HelpComponent }              from "./help.component";
 import { DataComponent }              from "./data.component";
 import { DashboardComponent }             from "./dashboard.component";
+import { HelpComponent }              from "./help.component";
+import { HomeComponent }              from "./home.component";
+import { LandingComponent }           from "./landing.component";
 import { GetDataComponent }           from './getdata.component';
 
 // Our Services
@@ -31,10 +32,11 @@ import { GlobalFunctionService }      from './global-function.service';
 @NgModule({
     declarations: [
         AppComponent,
+        DataComponent,
         DashboardComponent,
         HomeComponent,
         HelpComponent,
-        DataComponent,
+        LandingComponent,
         GetDataComponent,
     ],
     imports: [

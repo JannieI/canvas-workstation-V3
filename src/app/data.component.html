@@ -1,197 +1,218 @@
-<clr-tabs>
-    <clr-tab>
-        <button clrTabLink id="link1">Datasources</button>
-        <clr-tab-content id="content1" *clrIfActive>
-            A Datasource can be a file (for example Excel) or a Database table from which data
-            must be extracted.  The subset (block) of data that is returned from a Datasource
-             is called a Dataset, which is defined in the next tab.  Visualisations (widgets) 
-             are based on Datasets.
-
-             <br>
-             <button type="button" class="btn btn-primary" 
-                     [routerLink]="['/getdata']" routerLinkActive="active">
-                     Add Datasource
-            </button>
-
-            <br>
-            <div class="alert alert-danger" *ngIf="isError">
-                {{  errorMessage  }}
-            </div>  
-            <br>
-
-             Datasources already available to your Dashboard.  Select one to refine the Dataset.
-             <br>
-             <button type="button" class="btn btn-secondary" 
-                     (click)="clickRow()">
-                     Define Dataset
-            </button>
-
-            <clr-datagrid [(clrDgSingleSelected)]="selectedDatasource">
-                <clr-dg-column>Datasource ID</clr-dg-column>
-                <clr-dg-column>Type</clr-dg-column>
-                <clr-dg-column>Name</clr-dg-column>
-                <clr-dg-column>Location</clr-dg-column>
-            
-                <clr-dg-row *ngFor="let ds of datasource"  [clrDgItem]="ds">
-                    <clr-dg-cell>{{ds.id}}</clr-dg-cell>
-                    <clr-dg-cell>{{ds.type}}</clr-dg-cell>
-                    <clr-dg-cell>{{ds.name}}</clr-dg-cell>
-                    <clr-dg-cell>{{ds.location}}</clr-dg-cell>
-                </clr-dg-row>
-            
-                <clr-dg-footer>{{datasource.length}} datasources</clr-dg-footer>
-            </clr-datagrid>
-
-        </clr-tab-content>
-    </clr-tab>
-
-    <clr-tab>
-        <button clrTabLink>Dataset</button>
-        <clr-tab-content *clrIfActive="false">
-            Refine the Dataset (block of data) to be used in the visualisation (graph or table)
-            on the Dashboard.  Select a Query to use in the extraction of the data.  If no 
-            Query is specified, then all the data in the Datasource will be returned.  This step 
-            is optional for files or small tables, but essential for Datasources with large amounts
-            of data.
-
-            <br>
-            <button type="button" class="btn btn-primary" 
-                    (click)="clickRow()">
-                    Add Dataset
-           </button>
-
-           <clr-datagrid [(clrDgSingleSelected)]="selectedDataset">
-                <clr-dg-column>Dataset ID</clr-dg-column>
-                <clr-dg-column>Type</clr-dg-column>
-                <clr-dg-column>Name</clr-dg-column>
-                <clr-dg-column>Location</clr-dg-column>
-            
-                <clr-dg-row *ngFor="let ds of transformaton"  [clrDgItem]="ds">
-                    <clr-dg-cell>{{ds.id}}</clr-dg-cell>
-                    <clr-dg-cell>{{ds.type}}</clr-dg-cell>
-                    <clr-dg-cell>{{ds.name}}</clr-dg-cell>
-                    <clr-dg-cell>{{ds.location}}</clr-dg-cell>
-                </clr-dg-row>
-           
-               <clr-dg-footer>{{datasource.length}} datasources</clr-dg-footer>
-           </clr-datagrid>
-
-        </clr-tab-content>
-    </clr-tab>
-
-    <clr-tab>
-        <button clrTabLink>Transform</button>
-        <clr-tab-content *clrIfActive="false">
-            Select a list of Transformation to apply to the data returned from the Datasource.  
-            For example, add a calculated field.  This step is only necessary if the data is 
-            not in the required format.
-
-            <br>
-            <button type="button" class="btn btn-primary" 
-                    (click)="clickRow()">
-                    Add Transformation
-           </button>
-
-           <!-- Two Transformation lists -->
-           <div class="row">
-                <div class="col-xs-5">
-                    <clr-datagrid>
-                            <clr-dg-column>Transformation</clr-dg-column>
-                            <clr-dg-column>Description</clr-dg-column>
-                        
-                            <clr-dg-row *ngFor="let ds of transformaton"  [clrDgItem]="ds">
-                                <clr-dg-cell>{{ds.name}}</clr-dg-cell>
-                                <clr-dg-cell>{{ds.description}}</clr-dg-cell>
-                            </clr-dg-row>
-                        
-                        <clr-dg-footer>{{datasource.length}} datasources</clr-dg-footer>
-                    </clr-datagrid>
-                </div>  
-                <div class="col-xs-1">
-                    <br>
-                    <br>
-                    <br>
-                    <button type="button" class="btn btn-primary" (click)="clickRow()">
-                        Add
-                    </button>
-                    <button type="button" class="btn btn-primary" (click)="clickRow()">
-                        Remove
-                    </button>
-                    <button type="button" class="btn btn-primary" (click)="clickRow()">
-                        Clear
-                    </button>
+<div *ngIf="firstTimeUser">
+    <p> 
+        A Dataset is a block of data (with rows and columns) to be used in a visualisation 
+        (graph or table) on a Dashboard.  See a sample set <a>here</a>.  These are the steps:
+    </p>    
+    <p>
+        1. Select where the data comes from (Datasource).  This can for example be a file that
+        you have saved locally, or a table in a database. Click on <a>new datasource</a> to add 
+        one.
+    </p>    
+    <p>
         
-                </div>                          
-                <div class="col-xs-5">
-                    <clr-datagrid>
-                            <clr-dg-column>Transformation</clr-dg-column>
-                            <clr-dg-column>Description</clr-dg-column>
-                        
-                            <clr-dg-row *ngFor="let ds of transformaton"  [clrDgItem]="ds">
-                                <clr-dg-cell>{{ds.name}}</clr-dg-cell>
-                                <clr-dg-cell>{{ds.description}}</clr-dg-cell>
-                            </clr-dg-row>
-                        
-                        <clr-dg-footer>{{datasource.length}} datasources</clr-dg-footer>
-                    </clr-datagrid>
-                </div>
-                <div class="col-xs-1">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <button type="button" class="btn btn-secondary" (click)="clickRow()">
-                        Up
-                    </button>
-                    <button type="button" class="btn btn-secondary" (click)="clickRow()">
-                        Down
-                    </button>
-                </div>                          
-    
-            </div>  
+        2. In order to work with a smaller subset of data in the Datasource, you need to define a 
+        Query.  This will be necessary when the Datasource is very large.  For example, only
+        return the Date, Broker and ValueTraded for last month.  This can be done once you have
+        selected a Datasource.
+    </p>    
+    <p>
+        3. In case the data is not in the required format, you may use tranformations to create
+        a Dataset that is perfect for your visualisation.  For example, add a calculated field
+        called ValueTradedDollar by dividing the ValueTraded field by 100.  See a <a>demo</a> of
+        a set of transformatons.
+    </p>   
+    <p>
+        Got it, dont show this text again <input type="checkbox" id="checkrads_1" (click)="toggleFirstTime()">    
+    </p>
+</div>  
 
-        </clr-tab-content>
-    </clr-tab>
 
-    <clr-tab>
-        <button clrTabLink>Summary</button>
-        <clr-tab-content *clrIfActive="false">
-        The summary data provides more insight into the data.  No changes to the selected 
-        data can be made here.
+<div *ngIf="!firstTimeUser">
+    <p>
+        <a>Add a new Dataset</a> or click on an existing Dataset to edit.
+    </p>
+</div>  
 
-            <form>
-                <section class="form-block">
-                    <label>
-                        Fields + metadata
-                        Data content (high-level) + quality
-                        Suggested graphs + visualisations
-                    </label>
-                    <div class="form-group">
-                        <label for="aForm_1">This is a form field</label>
-                        <input type="text" id="aForm_1" placeholder="Enter value here" size="45">
-                    </div>
-                    <div class="form-group">
-                        <label for="aForm_2">Another form field</label>
-                        <input type="password" id="aForm_2" placeholder="Enter another value here" size="35">
-                    </div>
-                    <div class="form-group">
-                        <label for="aForm_3">A select box</label>
-                        <div class="select">
-                            <select id="aForm_3">
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
-                                <option>Option 4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="aForm_4">Textarea</label>
-                        <textarea id="aForm_4" rows="5"></textarea>
-                    </div>
+
+<div>
+    <div class="DatasetDiv" href="#">
+        <div class="DatasetTab">    
+            <nav class="sidenav">
+                <h4>Datasets</h4>
+                
+                <section class="sidenav-content">
+        
+                    <section class="nav-group collapsible">
+                        <label for="Columns">From Files</label>
+                        <ul class="nav-list">
+                            <li><a class="nav-link">Budget Forecast</a></li>
+                            <li><a class="nav-link">Costing preparation</a></li>
+                            <li><a class="nav-link active">Historic Indices</a></li>
+                            <li><a class="nav-link">World Indices</a></li>
+                            <li><a class="nav-link">SP Companies</a></li>
+                            <li><a class="nav-link">Stock prices TEMP</a></li>
+                        </ul>
+                    </section>
+        
+                    <section class="nav-group collapsible">
+                        <label for="Columns">From Database</label>
+                        <ul class="nav-list">
+                            <li><a class="nav-link">Trades per Year</a></li>
+                            <li><a class="nav-link">Bond volume trades</a></li>
+                            <li><a class="nav-link active">Trades by Trade Type</a></li>
+                            <li><a class="nav-link">YTD Expenditure by Cost Center</a></li>
+                            <li><a class="nav-link">Headcount</a></li>
+                            <li><a class="nav-link">Customer List</a></li>
+                        </ul>
+                    </section>
+        
+                    <section class="nav-group collapsible">
+                        <label for="Columns">From Websites</label>
+                        <ul class="nav-list">
+                            <li><a class="nav-link">CPI figures</a></li>
+                            <li><a class="nav-link">GDP by Country</a></li>
+                            <li><a class="nav-link active">Bicycle trips in Rome</a></li>
+                            <li><a class="nav-link">Vega Airport Dataset</a></li>
+                            <li><a class="nav-link">Test1</a></li>
+                        </ul>
+                    </section>
+                                
                 </section>
-            </form>
-        </clr-tab-content>
-    </clr-tab>
+            </nav>
+        </div>  
+    </div>
     
-</clr-tabs>
+    <div class="DatasetDiv" href="#">
+        <div class="DatasetTab">    
+            <div class="DatasetTabContent">
+                <clr-tabs>
+                    
+                    <clr-tab>
+                        <button clrTabLink id="link1">1. Select Datasources</button>
+                        <clr-tab-content id="content1" *clrIfActive>
+                            A Datasource can be a file (for example Excel) or a Database table from which data
+                            must be extracted.  The subset (block) of data that is returned from a Datasource
+                            is called a Dataset, which is defined in the next tab.  Visualisations (widgets) 
+                            are based on Datasets.
+
+                            <br>
+                            <button type="button" class="btn btn-primary" 
+                                    [routerLink]="['/getdata']" routerLinkActive="active">
+                                    Add Datasource
+                            </button>
+
+                            <br>
+                            <div class="alert alert-danger" *ngIf="isError">
+                                {{  errorMessage  }}
+                            </div>  
+                            <br>
+
+                            Datasources already available to your Dashboard.  Select one to refine the Dataset.
+                            <br>
+                            <button type="button" class="btn btn-secondary" 
+                                    (click)="clickRow()">
+                                    Define Dataset
+                            </button>
+
+                            <clr-datagrid [(clrDgSingleSelected)]="selectedDatasource">
+                                <clr-dg-column>Datasource ID</clr-dg-column>
+                                <clr-dg-column>Type</clr-dg-column>
+                                <clr-dg-column>Name</clr-dg-column>
+                                <clr-dg-column>Location</clr-dg-column>
+                            
+                                <clr-dg-row *ngFor="let ds of datasource"  [clrDgItem]="ds">
+                                    <clr-dg-cell>{{ds.id}}</clr-dg-cell>
+                                    <clr-dg-cell>{{ds.type}}</clr-dg-cell>
+                                    <clr-dg-cell>{{ds.name}}</clr-dg-cell>
+                                    <clr-dg-cell>{{ds.location}}</clr-dg-cell>
+                                </clr-dg-row>
+                            
+                                <clr-dg-footer>{{datasource.length}} datasources</clr-dg-footer>
+                            </clr-datagrid>
+
+                        </clr-tab-content>
+                    </clr-tab>
+                    
+                    
+                    <clr-tab>
+                        <button clrTabLink id="link1">2. Define Query</button>
+                        <clr-tab-content id="content1" *clrIfActive>
+                            The Query defines the block of data that will be used from a
+                            Datasource in your visualisations.  In case of a small Datasource,
+                            select All.  Queries defined already for a Datasource will be 
+                            listed here.  These definitions are managed in the Eazl Admin 
+                            module.
+
+                            Select ALL the data in the Datasource: <input type="checkbox" id="checkrads_1">    
+                            Custome Query (select rows and columns): <input type="checkbox" id="checkrads_1">    
+                            Select from prefined Queries for this Datasource: <input type="checkbox" id="checkrads_1">    
+                            <br>
+
+                        </clr-tab-content>
+                    </clr-tab>
+
+                    
+                    <clr-tab>
+                        <button clrTabLink id="link1">3. Transform</button>
+                        <clr-tab-content id="content1" *clrIfActive>
+                            In case your data is not in the required format, you can apply one or 
+                            more transformations.  Just select from the list of available ones.
+                            This step is optional.
+
+                            <br>
+
+                            <br>
+                            <div class="alert alert-danger" *ngIf="isError">
+                                {{  errorMessage  }}
+                            </div>  
+                            <br>
+
+
+                            <clr-datagrid [(clrDgSingleSelected)]="selectedDatasource">
+                                <clr-dg-column>Datasource ID</clr-dg-column>
+                                <clr-dg-column>Type</clr-dg-column>
+                                <clr-dg-column>Name</clr-dg-column>
+                                <clr-dg-column>Location</clr-dg-column>
+                            
+                                <clr-dg-row *ngFor="let ds of datasource"  [clrDgItem]="ds">
+                                    <clr-dg-cell>{{ds.id}}</clr-dg-cell>
+                                    <clr-dg-cell>{{ds.type}}</clr-dg-cell>
+                                    <clr-dg-cell>{{ds.name}}</clr-dg-cell>
+                                    <clr-dg-cell>{{ds.location}}</clr-dg-cell>
+                                </clr-dg-row>
+                            
+                                <clr-dg-footer>{{datasource.length}} datasources</clr-dg-footer>
+                            </clr-datagrid>
+
+                        </clr-tab-content>
+                    </clr-tab>
+
+                    <clr-tab>
+                        <button clrTabLink id="link1">4. Visualise</button>
+                        <clr-tab-content id="content1" *clrIfActive>
+                            In order to visualise (show) your data in the desired format, for example in 
+                            a bar chart, you need to perform the following steps:.  
+                            - First define a Datasource (see the tabs at the top of this form).
+                            - Then define the subset of data to use by defining a Query.  In case of a small 
+                              Datasource, select <i>All</i>.  Queries defined already for a Datasource will 
+                              be listed here.  These definitions are managed in the Eazl Admin module.
+                            - You can optionally select one or more transformations to mold your data into
+                              the desired format.  For example, you could use a simple transformation to swap
+                              the rows and the columns defined in the Query.
+                            - Last, visualise any Dataset defined in the above three steps:  
+                              * Click the Dashboard tab at the top
+                              * Select a Dataset
+                              * Drag a field (column or measure) onto the open canvas.  A widget
+                                with a default setting will be created.  Now amend by dragging
+                                more fields onto the widget, or changing the graph type.
+                        </clr-tab-content>
+                    </clr-tab>
+
+                </clr-tabs>
+                
+            </div>
+        </div> 
+    </div>
+</div>
+
+ 
