@@ -102,6 +102,8 @@ export class DataComponent implements OnInit {
     firstTimeUser: boolean = true;
     isError: boolean = false;
     selectedDatasource: any;
+    showDatasourceForm: boolean = false;
+    snipDatasource: boolean = false;
     transformaton: Itransformaton[] = transformaton;
 
 	constructor(
@@ -130,5 +132,10 @@ export class DataComponent implements OnInit {
 
 	toggleFirstTime() {
 		this.firstTimeUser = !this.firstTimeUser;
-	}
+    }
+    
+    clickShowDatasourceForm() {
+        console.log('this.showDatasourceForm', this.showDatasourceForm)
+        this.showDatasourceForm = !this.showDatasourceForm
+    }
 }

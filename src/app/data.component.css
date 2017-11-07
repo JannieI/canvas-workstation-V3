@@ -19,3 +19,28 @@ div .DatasetDiv {
     padding: 5px;
     vertical-align: text-top;
 }
+
+p {
+    margin: 5px 0 0 10px;
+}
+p.notes {
+    margin: 10px 0 0 10px;
+    padding: 0;
+}
+
+p.subnotes {
+    margin: 10px 0 0 20px;
+    padding: 0;
+}
+
+.singleAction {
+    margin: 10px 0 0 30px;
+    
+}
+
+.spanButton {
+    color: rgb(54, 181, 219)
+}
+form {
+    margin: 5px 0 0 20px;
+}

@@ -15,7 +15,8 @@
 }
 
 .graphy {
-    left: 600px;
+    float: right;
     top: 80px;
+    width: 50%;
 }
  
