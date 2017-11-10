@@ -47,7 +47,22 @@
                 <button clrTabLink id="link1">Fields</button>
                 <clr-tab-content id="content1" *clrIfActive>
                     <clr-datagrid>
-                        <clr-dg-column>ID</clr-dg-column>
+                        <clr-dg-column>
+                                <div class="dropdown right-bottom open">
+                                        <button type="button" class="dropdown-toggle btn btn-link">
+                                            ID
+                                            <clr-icon shape="caret down"></clr-icon>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <h4 class="dropdown-header">Formatting options</h4>
+                                            <button type="button" class="dropdown-item active">Sort</button>
+                                            <button type="button" class="dropdown-item disabled">2 Decimals</button>
+                                            <div class="dropdown-divider"></div>
+                                            <button type="button" class="dropdown-item">Conditional Format</button>
+                                            <button type="button" class="dropdown-item">Align Right</button>
+                                        </div>
+                                    </div>                                  
+                        </clr-dg-column>
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Type</clr-dg-column>
                         <clr-dg-column>Format</clr-dg-column>
