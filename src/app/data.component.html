@@ -89,129 +89,80 @@
             <clr-tab>
                 <button clrTabLink id="link1">Transform</button>
                 <clr-tab-content id="content1" *clrIfActive>
-                    In case your data is not in the required format, you can select one 
-                    or more transformations below to mold your data into the desired 
-                    format.  For example, you could use a simple transformation to swap 
-                    the rows and the columns defined in the Query.  Similarly, it is easy
-                    to add a new calculated field to your Dataset.  Selected steps will
-                    be executed from top to bottom.  This list can be ordered.
-                    Adding a transformation is optional.
-
+                    Type of transformation: 
+                    <div class="dropdown open">
+                        <button type="button" class="dropdown-toggle btn btn-link">
+                            Type
+                            <clr-icon shape="caret down"></clr-icon>
+                        </button>
+                        <div class="dropdown-menu">
+                            <h4 class="dropdown-header">Type header</h4>
+                            <button type="button" class="dropdown-item">Standard</button>
+                            <div class="dropdown-divider"></div>
+                            <button type="button" class="dropdown-item">R Extensions</button>
+                            <button type="button" class="dropdown-item">Pyhton functions</button>
+                        </div>
+                    </div>
                     <br>
-                    Dataset: <b>All Budget Forecast</b> 
-                    
-                    <br>
-                    <div class="alert alert-danger" *ngIf="isError">
-                        {{  errorMessage  }}
-                    </div>  
-                    <br>
+                    Select transformation: 
+                    <div class="dropdown">
+                        <div class="dropdown-menu">
+                            <h4 class="dropdown-header">Select a type:</h4>
+                            <button type="button" class="dropdown-item">Transpose rows and columns</button>
+                            <button type="button" class="dropdown-item">Add field</button>
+                            <button type="button" class="dropdown-item">Calculated field</button>
+                            <button type="button" class="dropdown-item">Etc</button>
+                        </div>
+                    </div>
 
-
-                    <clr-datagrid [(clrDgSingleSelected)]="selectedDatasource">
-                        <clr-dg-column>ID</clr-dg-column>
+                    Selected transformations
+                    <div class="dropdown">
+                            <button type="button" class="dropdown-toggle btn btn-link">
+                                Dropdown Toggle
+                                <clr-icon shape="caret down"></clr-icon>
+                            </button>
+                            <div class="dropdown-menu">
+                                <h4 class="dropdown-header">Dropdown header</h4>
+                                <button type="button" class="dropdown-item">Transpose rows and columns</button>
+                                <button type="button" class="dropdown-item">Add field</button>
+                                <button type="button" class="dropdown-item">Calculated field</button>
+                                <button type="button" class="dropdown-item">Etc</button>
+                            </div>
+                        </div>
+                        <br>
+                        <clr-datagrid>
+                        <clr-dg-column>Nr</clr-dg-column>
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Description</clr-dg-column>
                     
                         <clr-dg-row *ngFor="let ds of transformaton"  [clrDgItem]="ds">
-                            <clr-dg-cell>{{ds.id}}</clr-dg-cell>
+                            <clr-dg-cell>
+                                <clr-icon shape="arrow" size="16"></clr-icon>
+                                <clr-icon shape="arrow" size="16" dir="down"></clr-icon>
+                                <clr-icon shape="times" size="16"></clr-icon>
+                                {{ds.id}}
+                            </clr-dg-cell>
                             <clr-dg-cell>{{ds.name}}</clr-dg-cell>
-                            <clr-dg-cell>{{ds.description}}</clr-dg-cell>
+                            <clr-dg-cell>
+                                {{ds.description}}
+                            </clr-dg-cell>
                         </clr-dg-row>
                     
-                        <clr-dg-footer>{{datasource.length}} transformatons</clr-dg-footer>
+                        <clr-dg-footer>{{transformaton.length}} transformatons</clr-dg-footer>
                     </clr-datagrid>
 
                 </clr-tab-content>
             </clr-tab>
 
             <clr-tab>
-                <button clrTabLink id="link1">4. Visualise</button>
+                <button clrTabLink id="link1">Summarise</button>
                 <clr-tab-content id="content1" *clrIfActive>
-                    After completing steps 1-3, you can visualise any Dataset
-                    as follows:  
-                    <p class="subnotes"> 
-                        * Click the Dashboard tab at the top
-                        </p>
-                        <p class="subnotes"> 
-                        * Select a Dataset from the list on the left, and open the fields
-                        by clicking the ^.
-                        </p>
-                        <p class="subnotes"> 
-                        * Then drag any field (column or measure) from 
-                            the list onto the open canvas.  A widget with default settings 
-                            will be created.  Now amend this widget by dragging more fields 
-                            onto the widget, or by changing the graph type.  
-                        </p>
-                        <p class="subnotes"> 
-                            You can create another widget by dragging any field onto an open
-                            area on the canvas.
-                        </p>
-                    </clr-tab-content>
-            </clr-tab>
-
-
-            <clr-tab>
-                <button clrTabLink id="link1">Tips</button>
-                <clr-tab-content id="content1" *clrIfActive>
-                    <p class="notes"> 
-                        1. If you new to Canvas, first create a simple example from a 
-                            Excel Spreadsheet, following these <a>steps</a>.
-                    </p>
-                    <p class="notes"> 
-                        2. If you have a large Datasource that is used in different ways
-                        in your visualisations, you can define the Datasource once, and 
-                        create more than one Dataset on it (using different Queries).
-                    </p>
-                    <p class="notes"> 
-                        3. You dont have to define all your Dataset before you start <tbody>
-                            visualise your data; you can define a Dataset and visualise it.  
-                            Afterwards, you can define another Dataset and visualise it.  
-                            If you Datasets are known initially, you may also define all
-                            the Datasets and only then start to visualise your data.
-                        </tbody>
-                    </p>
-                    <p class="notes"> 
-                        4. You may edit a Datasource or Dataset after it has already been used
-                        in a visualisation.  This is however not recommended since the change
-                        to the Dataset may render the visual invalid.
-                    </p>
-                    <p class="notes"> 
-                        5. Unused Datasources and Datasets should ideally be deleted.  These are
-                        flagged in the list with an asterix (*).
-                    </p>
-                    <p class="notes">  
-                        6. Dataset definition: A Dataset is a block of data (with rows and columns) to be used in a visualisation 
-                        (graph or table) on a Dashboard.  See a sample Dataset <a>here</a>.  The Datasets 
-                        already available for use in your Dashboard is listed on the left.  If these are 
-                        sufficient, then proceed to create your Dashboard (click the Dashboard tab at the
-                        top of the page).  These are the steps to define a new Dataset:
-                    </p>    
-                    <p class="notes"> 
-                        7. Steps to create a Dataset and visualistion:
-                    </p>
-                    <p class="subnotes"> 
-                        a. Select where the data comes from (<b>1. Define Datasource</b> tab).  This can for example be a file that
-                        you have saved locally, or a table in a database. Click on 
-                        <span class="spanButton" (click)="clickShowDatasourceForm()">new Datasource</span> 
-                        to add 
-                        one.
-                    </p>
-                    <p class="subnotes"> 
-                        b. In order to work with a smaller subset of data in the Datasource, you need to define a 
-                        Query (<b>2. Define Query</b> tab).  This will be necessary when the Datasource is very large.  For example, only
-                        return the Date, Broker and ValueTraded for last month.  This can be done once you have
-                        selected a Datasource.
-                    </p>
-                    <p class="subnotes"> 
-                        c. In case the data is not in the required format, you may use tranformations to create
-                        a Dataset that is perfect for your visualisation (<b>3. Transform</b> tab).  For example, add a calculated field
-                        called ValueTradedDollar by dividing the ValueTraded field by 100.  See a <a>demo</a> of
-                        a set of transformatons.
-                    </p>   
-                
-
-
-
+                    Information about the dataset:
+                    <p>* Data Quality notes</p>
+                    <p>* Table Description</p>
+                    <p>* Nr records</p>
+                    <p>* Maybe cardinality ?</p>
+                    <p>* Data that explains this, ie table.fiels ?</p>
                 </clr-tab-content>
             </clr-tab>
                 
