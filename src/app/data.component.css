@@ -1,46 +1,9 @@
-a {
-    color: rgb(69, 192, 230);
-}
-
-.DatasetTab {
-    display: inline-block;
-    vertical-align: text-top;
-}
-
-.DatasetTabContent {
-    background-color: lightgray;
-    display: inline-flex;
-    float: right;
-    width: 900px;
-}
-
-div .DatasetDiv {
-    display: inline-block;
-    padding: 5px;
-    vertical-align: text-top;
-}
-
-p {
-    margin: 5px 0 0 10px;
-}
-p.notes {
-    margin: 10px 0 0 10px;
+.sidenav .sidenav-content .nav-list {
+    margin: 0;
     padding: 0;
 }
 
-p.subnotes {
-    margin: 10px 0 0 20px;
+.clr-tabs .clr-tab-content {
+    margin: 0;
     padding: 0;
-}
-
-.singleAction {
-    margin: 10px 0 0 30px;
-    
-}
-
-.spanButton {
-    color: rgb(54, 181, 219)
-}
-form {
-    margin: 5px 0 0 20px;
 }

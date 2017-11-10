@@ -29,6 +29,22 @@ interface Itransformaton {
     name: string;
     description: string;
 }
+
+interface Ifield {
+    id: number;
+    name: string;
+    type: string;
+    format: string;
+    filter: string;
+    calc: string;
+    order: string;
+}
+
+interface IfieldsMetadata{
+    name: string;
+    description: string;
+}
+
 const datasource: Idatasource[] = [
     {
         id: 1,
@@ -88,6 +104,97 @@ const transformaton: Itransformaton[] = [
         description: 'Left align string values',
     }
 ]
+
+const fields: Ifield[] = [
+    {
+        id: 1,
+        name: 'DateTrade',
+        type: 'Date',
+        format: '',
+        filter: '',
+        calc: '',
+        order: 'Asc 1'
+    },
+    {
+        id: 2,
+        name: 'Share',
+        type: 'Text',
+        format: '',
+        filter:  '',
+        calc:  '',
+        order: ''
+    },
+    {
+        id: 3,
+        name: 'Volume',
+        type: 'Number',
+        format: 'Integer',
+        filter: '',
+        calc:  '',
+        order: ''
+    },
+    {
+        id: 4,
+        name: 'Value',
+        type: 'Number',
+        format: '2 decimals',
+        filter: '> 1m',
+        calc: 'Volume * 10',
+        order: '' 
+    }
+]
+
+const fieldsMetadata: IfieldsMetadata[] = [
+    {
+        name: 'DateTrade',
+        description: 'Date on which trade when through trading system'
+    },
+    {
+        name: 'Share',
+        description: 'Name of share (stock) that traded, ie Anglo American plc'
+    },
+    {
+        name: 'Volume',
+        description: 'Number of instruments traded'
+    },
+    {
+        name: 'Value',
+        description: 'Value in Rand of the instruments traded'
+    }
+]
+
+// The most straightforward solution would be for you to get a reference to the NavLevelDirective instance for the sidenav with @ViewChild, and all its close() method.
+
+// For instance, add a reference variable in your template:
+
+// <nav #mySidenav class="sidenav" [clr-nav-level]="2">
+//     <app-sidebar></app-sidebar>
+// </nav>
+// Then access it in your app's component by using:
+
+// @ViewChild("mySidenav", {read: NavLevelDirective}) sidenav: NavLevelDirective;
+// and just call sidenav.close() when the user clicks the "find" button.
+
+
+
+// <nav class="subnav">
+// <ul class="nav">
+//     <li class="nav-item" *ngFor="nav of navs">
+//         <a class="nav-link" routerLinkActive="active"
+// [routerLink]="nav.link">{{nav.title}}</a>
+//     </li>
+// </ul>
+// </nav>
+// and in your class :
+
+// nav = [
+//    {link:'somewhere/dashboard',title:'Dashboard'},
+//    {link:'somewhere/management',title:'Management'},
+//    {link:'somewhere/cloud',title:'Cloud'}
+
+// ]
+
+
 @Component({
   selector: 'app-help',
   templateUrl: './data.component.html',
@@ -99,6 +206,8 @@ export class DataComponent implements OnInit {
     dataset: Idataset[] = dataset;
     dataTabDatasource: boolean = false;
     errorMessage: string = "";
+    fields: Ifield[] = fields;
+    fieldsMetadata: IfieldsMetadata[] = fieldsMetadata;
     firstTimeUser: boolean = true;
     isError: boolean = false;
     selectedDatasource: any;
