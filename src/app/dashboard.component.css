@@ -20,3 +20,12 @@
     width: 50%;
 }
  
+.sidenav .sidenav-content .nav-list {
+    margin: 0;
+    padding: 0;
+}
+
+.clr-tabs .clr-tab-content {
+    margin: 0;
+    padding: 0;
+}

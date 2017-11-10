@@ -1,162 +1,83 @@
 <clr-main-container>
-  <clr-header class="header-6">
-    <div class="branding">
-      <a href="http://clarityanalytics.xyz" class="nav-link">
-        <span class="clr-icon ca-logo">
-          <img src="../favicon.ico" height="35" width="35">
-        </span>
-        <span class="title">Clarity Analtyics</span>
-      </a>
-    </div>
-
-    <div class="header-nav" [clr-nav-level]="1">
-
-        <a class="nav-link" href="#" [routerLink]="['/data']" routerLinkActive="active">
-            <span class="nav-text">Datasource</span>
-        </a>
-
-        <a class="nav-link" href="#" [routerLink]="['/dashboard']" routerLinkActive="active"
-           (click)="clickButtonMenu('dashboard')">
-          <span class="nav-text">Visualise</span>
-        </a>    
-        
-        <a class="nav-link" href="#" [routerLink]="['/help']" routerLinkActive="active">
-            <span class="nav-text">Help</span>
-        </a>
-
-    </div>
-
-    <div class="header-actions">
-      <a class="nav-link nav-icon" href="#" [routerLink]="['/home']" routerLinkActive="active">
-        <clr-icon shape="cog"></clr-icon>
-      </a>
-    
-      <clr-dropdown class="dropdown bottom-right">
-        <button class="nav-icon" clrDropdownToggle>
-          <clr-icon shape="user"></clr-icon>
-          <clr-icon shape="caret down"></clr-icon>
-        </button>
-        <div class="dropdown-menu">
-          <a clrDropdownItem>About</a>
-          <a clrDropdownItem>Preferences</a>
-          <a clrDropdownItem>Log out</a>
+    <clr-header class="header-6">
+        <div class="branding">
+            <a href="http://clarityanalytics.xyz" class="nav-link">
+                <span class="clr-icon ca-logo">
+                <img src="../favicon.ico" height="35" width="35">
+                </span>
+                <span class="title">Clarity Analtyics</span>
+            </a>
         </div>
-      </clr-dropdown>
-    
-    </div>
-  </clr-header>
 
-  <!-- Sub Navs -->
-  <nav class="subnav" *ngIf="showSubMenuDashboard">
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Tab</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Widget</a>
-      </li>
-    </ul>
-  </nav>
+        <div class="header-nav" [clr-nav-level]="1">
 
-  <div class="content-container">
+            <a class="nav-link" href="#" [routerLink]="['/data']" routerLinkActive="active">
+                <span class="nav-text">Datasource</span>
+            </a>
 
-      
-    <div  class="content-area">
-        <router-outlet></router-outlet>
-    </div>
+            <a class="nav-link" href="#" [routerLink]="['/dashboard']" routerLinkActive="active"
+            (click)="clickButtonMenu('dashboard')">
+            <span class="nav-text">Visualise</span>
+            </a>    
+            
+            <a class="nav-link" href="#" [routerLink]="['/help']" routerLinkActive="active">
+                <span class="nav-text">Help</span>
+            </a>
 
+        </div>
 
-    <!-- Side Nav -->
-    <nav class="sidenav" *ngIf="showNavDashboard">
-      
-        <section class="sidenav-content">
-            <section class="nav-group collapsible">
-                <input id="Columns" type="checkbox">
-                <label for="Columns">Columns</label>
-                <ul class="nav-list">
-                    <li>
-                        <a 
-                            class="nav-link"
-                            (dragend)="dragEnd($event)" 
-                            draggable="true" 
-                            id="dragtarget"
-                            >
-                        Trader
-                        </a>
-                    </li>
-                    <li><a class="nav-link">Country</a></li>
-                    <li><a class="nav-link active">Trade Type</a></li>
-                    <li><a class="nav-link">Date</a></li>
-                    <li><a class="nav-link">DateTime</a></li>
-                    <li><a class="nav-link">Stock</a></li>
-                </ul>
-            </section>
+        <div class="header-actions">
+            <a class="nav-link nav-icon" href="#" [routerLink]="['/home']" routerLinkActive="active">
+                <clr-icon shape="cog"></clr-icon>
+            </a>
+            
+            <clr-dropdown class="dropdown bottom-right">
+                <button class="nav-icon" clrDropdownToggle>
+                <clr-icon shape="user"></clr-icon>
+                <clr-icon shape="caret down"></clr-icon>
+                </button>
+                <div class="dropdown-menu">
+                    <a clrDropdownItem>About</a>
+                    <a clrDropdownItem>Preferences</a>
+                    <a clrDropdownItem>Log out</a>
+                </div>
+            </clr-dropdown>
+            
+        </div>
+    </clr-header>
 
-            <section class="nav-group collapsible">
-                <input id="Measures" type="checkbox">
-                <label for="Measures">Measures</label>
-                <ul class="nav-list">
-                    <li><a class="nav-link">Volume</a></li>
-                    <li><a class="nav-link">Trades</a></li>
-                    <li><a class="nav-link active">Value</a></li>
-                </ul>
-            </section>
-        
-            <section class="nav-group collapsible">
-                <input id="Format" type="checkbox">
-                <label for="Format">Format</label>
-                <ul class="nav-list">
-                    <li><a class="nav-link">Graph Type</a></li>
-                    <li><a class="nav-link">Header</a></li>
-                    <li><a class="nav-link active">Border</a></li>
-                </ul>
-            </section>
-    
-        
-        </section>
+    <!-- Sub Navs -->
+    <nav class="subnav" *ngIf="showSubMenuDashboard">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Tab</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Format</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Dataset</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Explore</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Presentation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Collaborate</a>
+            </li>
+        </ul>
     </nav>
-  
 
-    <nav class="sidenav" *ngIf="showNavFormat">
-        <section class="sidenav-content">
-            <a href="..." class="nav-link active">
-                Nav Element DATA 1
-            </a>
-            <a href="..." class="nav-link">
-                Nav Element 2
-            </a>
-            <section class="nav-group collapsible">
-                <input id="tabexample1" type="checkbox">
-                <label for="tabexample1">Collapsible Nav Element 1</label>
-                <ul class="nav-list">
-                    <li><a class="nav-link">Link 1</a></li>
-                    <li><a class="nav-link">Link 2</a></li>
-                    <li><a class="nav-link nav-icon" href="#" 
-                          [routerLink]="['/home']" routerLinkActive="active">Bar Chart
-                        </a>
-                    </li>
-                </ul>
-            </section>
-            <section class="nav-group">
-                <input id="tabexample2" type="checkbox">
-                <label for="tabexample2">Default Nav Element</label>
-                <ul class="nav-list">
-                    <li><a class="nav-link">Link 1</a></li>
-                    <li><a class="nav-link">Link 2</a></li>
-                    <li><a class="nav-link active">Link 3</a></li>
-                    <li><a class="nav-link">Link 4</a></li>
-                    <li><a class="nav-link">Link 5</a></li>
-                    <li><a class="nav-link">Link 6</a></li>
-                </ul>
-            </section>
-        </section>
-      </nav>
-  
-
-
-    
-  </div>
+    <div class="content-container">
+        
+        <div  class="content-area">
+            <router-outlet></router-outlet>
+        </div>
+        
+    </div>
 </clr-main-container>
