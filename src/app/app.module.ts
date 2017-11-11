@@ -23,6 +23,7 @@ import { HelpComponent }              from "./help.component";
 import { HomeComponent }              from "./home.component";
 import { LandingComponent }           from "./landing.component";
 import { GetDataComponent }           from './getdata.component';
+import { VisualiseComponent }         from './visualise.component';
 
 // Our Services
 import { AuthGuard }                  from './authguard.service';
@@ -38,6 +39,7 @@ import { GlobalFunctionService }      from './global-function.service';
         HelpComponent,
         LandingComponent,
         GetDataComponent,
+        VisualiseComponent,
     ],
     imports: [
         BrowserAnimationsModule,

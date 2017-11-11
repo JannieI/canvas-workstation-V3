@@ -11,7 +11,8 @@ import { DataComponent }              from './data.component';
 import { GetDataComponent }           from './getdata.component';
 import { HomeComponent }              from './home.component';
 import { HelpComponent }              from './help.component';
-import { LandingComponent }           from "./landing.component";
+import { LandingComponent }           from './landing.component';
+import { VisualiseComponent }         from './visualise.component';
 
 // Own Services
 import { AuthGuard }                  from './authguard.service';
@@ -22,6 +23,7 @@ export const ROUTES: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'data', component: DataComponent},
     {path: 'help', component: HelpComponent},
+    {path: 'visualise', component: VisualiseComponent},
     {path: 'dashboard', component: DashboardComponent},
     {
         path: 'getdata', 

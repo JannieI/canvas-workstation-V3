@@ -36,9 +36,13 @@
 }
 
 .dimensionField {
-    background-color: rgb(156, 156, 197);
+    background-color: rgb(243, 243, 247);
 }
 
 .metricField {
-    background-color: rgb(253, 253, 33);
+    background-color: rgb(238, 172, 96);
+}
+
+.dateField {
+    background-color: rgb(193, 196, 197);
 }

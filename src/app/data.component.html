@@ -1,10 +1,4 @@
 
-<div *ngIf="!firstTimeUser">
-    <p>
-        Complete the steps on the tabs numbered 1-4 below for each new Dataset.
-    </p>
-</div>  
-
 <div class="row">
     <div class="col-xs-3">
  
@@ -40,7 +34,20 @@
 
     </div>
     <div class="col-xs-9">
-        
+        <div *ngIf="firstTimeUser">
+            <p>
+                Type:
+                <input type="text" id="formFields_7" placeholder="File">
+                Format:
+                <input type="text" id="formFields_7" placeholder="Excel">
+                Locaton:
+                <input type="text" id="formFields_7" placeholder="Folder">
+                <input type="text" id="formFields_7" placeholder="Name">
+                <input type="text" id="formFields_7" placeholder="Worksheet">
+                DB: DBtype, Tablename, Queryname/SQLstatement, UserID, Password, Limit
+            </p>
+        </div> 
+        <br>
         <clr-tabs>
             
             <clr-tab>
@@ -69,6 +76,7 @@
                         <clr-dg-column>Filter</clr-dg-column>
                         <clr-dg-column>Calc</clr-dg-column>
                         <clr-dg-column>Order</clr-dg-column>
+                        <clr-dg-column>Hide</clr-dg-column>
                     
                         <clr-dg-row *ngFor="let field of fields">
                             <clr-dg-cell>{{field.id}}</clr-dg-cell>
@@ -115,7 +123,7 @@
                             <button type="button" class="dropdown-item">Standard</button>
                             <div class="dropdown-divider"></div>
                             <button type="button" class="dropdown-item">R Extensions</button>
-                            <button type="button" class="dropdown-item">Pyhton functions</button>
+                            <button type="button" class="dropdown-item">Python Extensions</button>
                         </div>
                     </div>
                     <br>

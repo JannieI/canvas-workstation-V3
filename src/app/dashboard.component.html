@@ -52,7 +52,7 @@
         <nav class="sidenav" *ngIf="showNavDashboard">
             <section class="sidenav-content">
 
-                <button class="btn btn-sm">
+                <button class="btn btn-sm" (click)="clickButtonAddDashboard()">
                     Add New
                     <clr-icon shape="plus" size="16"></clr-icon>
                 </button>
@@ -106,7 +106,17 @@
         </nav>
             
         <nav class="sidenav" *ngIf="showNavFormat">
-            Formating options for selected Widget
+            <b>Dashboard:</b>
+            <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+                Background color
+                <clr-icon shape="caret down"></clr-icon>
+            </button>
+            <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+                Border
+                <clr-icon shape="caret down"></clr-icon>
+            </button>
+            <br>
+            <b>Selected Widget(s):</b>
             <button class="dropdown-toggle btn btn-link btn-sm" type="button">
                 Background color
                 <clr-icon shape="caret down"></clr-icon>
@@ -116,6 +126,7 @@
                 <clr-icon shape="caret down"></clr-icon>
             </button>
                 
+             
 
             <button class="btn btn-sm">Save</button>
             
@@ -136,7 +147,8 @@
                                     draggable="true" 
                                     id="dragtarget"
                                     >
-                                Trader
+                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                    Trader
                                 </a>
                             </li>
                             <li>
@@ -151,12 +163,42 @@
                                     Trade Type
                                 </a>
                             </li>
-                            <li><a class="nav-link">Date</a></li>
-                            <li><a class="nav-link">DateTime</a></li>
-                            <li><a class="nav-link">Stock</a></li>
-                            <li><a class="nav-link">Volume</a></li>
-                            <li><a class="nav-link">Trades</a></li>
-                            <li><a class="nav-link">Value</a></li>
+                            <li>
+                                <a class="nav-link">
+                                    <clr-icon shape="block" class="dateField"></clr-icon>
+                                    Date
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link">
+                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                    DateTime
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link">
+                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                    Stock
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link">
+                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                    Volume
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link">
+                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                    Trades
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link">
+                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                    Value
+                                </a>
+                            </li>
                         </ul>
                     </section>
             </section>

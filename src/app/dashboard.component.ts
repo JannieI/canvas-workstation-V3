@@ -27,6 +27,7 @@ import { load } from 'datalib';
 // Own Components
 
 // var dl = require('datalib');
+// import * as sqlite3 from 'sqlite3';
 
 @Component({
     styleUrls: ['./dashboard.component.css'],
@@ -300,6 +301,17 @@ export class DashboardComponent {
             this.showNavCollaborate = !this.showNavCollaborate;
         }
 
+    }
+
+    clickButtonAddDashboard () {
+        
+        // Experiment: get SQLite from inside the browser
+        // ----------------------------------------------
+        // var db = new sqlite3.Database('./assets/test.db');
+        // db.each("SELECT * FROM memos", (err, row) => {
+        //   console.log(row.text);
+        // });
+        // db.close();        
     }
 }
 
