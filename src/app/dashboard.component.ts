@@ -236,21 +236,70 @@ export class DashboardComponent {
 
     onClickSubmenu(menuOption: string) {
 
-        this.showNavDashboard = false;
-        this.showNavTab = false;
-        this.showNavFormat = false;
-        this.showNavDataset = false;
-        this.showNavExplore = false;
-        this.showNavPresentation = false;
-        this.showNavCollaborate = false;
+        if (menuOption == 'dashboard') {
+            this.showNavDashboard = !this.showNavDashboard;
+            this.showNavTab = false;
+            this.showNavFormat = false;
+            this.showNavDataset = false;
+            this.showNavExplore = false;
+            this.showNavPresentation = false;
+            this.showNavCollaborate = false;
+        }
+        else if (menuOption == 'tab') {
+            this.showNavDashboard = false;
+            this.showNavTab = !this.showNavTab;
+            this.showNavFormat = false;
+            this.showNavDataset = false;
+            this.showNavExplore = false;
+            this.showNavPresentation = false;
+            this.showNavCollaborate = false;
+        }
+        else if (menuOption == 'format') {
+            this.showNavDashboard = false;
+            this.showNavTab = false;
+            this.showNavFormat = !this.showNavFormat;
+            this.showNavDataset = false;
+            this.showNavExplore = false;
+            this.showNavPresentation = false;
+            this.showNavCollaborate = false;
+            }
+        else if (menuOption == 'dataset') {
+            this.showNavDashboard = false;
+            this.showNavTab = false;
+            this.showNavFormat = false;
+            this.showNavDataset = !this.showNavDataset;
+            this.showNavExplore = false;
+            this.showNavPresentation = false;
+            this.showNavCollaborate = false;
+            }
+        else if (menuOption == 'explore') {
+            this.showNavDashboard = false;
+            this.showNavTab = false;
+            this.showNavFormat = false;
+            if (!this.showNavExplore) {this.showNavDataset = !this.showNavExplore};
+            this.showNavExplore = !this.showNavExplore;
+            this.showNavPresentation = false;
+            this.showNavCollaborate = false;
+            }
+        else if (menuOption == 'presentation') {
+            this.showNavDashboard = false;
+            this.showNavTab = false;
+            this.showNavFormat = false;
+            this.showNavDataset = false;
+            this.showNavExplore = false;
+            this.showNavPresentation = !this.showNavPresentation;
+            this.showNavCollaborate = false;
+        }
+        else if (menuOption == 'collaborate') {
+            this.showNavDashboard = false;
+            this.showNavTab = false;
+            this.showNavFormat = false;
+            this.showNavDataset = false;
+            this.showNavExplore = false;
+            this.showNavPresentation = false;
+            this.showNavCollaborate = !this.showNavCollaborate;
+        }
 
-        if (menuOption == 'dashboard') {this.showNavDashboard = true}
-        else if (menuOption == 'tab') {this.showNavTab = true}
-        else if (menuOption == 'format') {this.showNavFormat = true}
-        else if (menuOption == 'dataset') {this.showNavDataset = true}
-        else if (menuOption == 'explore') {this.showNavExplore = true}
-        else if (menuOption == 'presentation') {this.showNavPresentation = true}
-        else if (menuOption == 'collaborate') {this.showNavCollaborate = true}
     }
 }
 
