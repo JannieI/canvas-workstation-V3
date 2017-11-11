@@ -132,24 +132,24 @@
 
                     Selected transformations
                     <div class="dropdown">
-                            <button type="button" class="dropdown-toggle btn btn-link">
-                                Dropdown Toggle
-                                <clr-icon shape="caret down"></clr-icon>
-                            </button>
-                            <div class="dropdown-menu">
-                                <h4 class="dropdown-header">Dropdown header</h4>
-                                <button type="button" class="dropdown-item">Transpose rows and columns</button>
-                                <button type="button" class="dropdown-item">Add field</button>
-                                <button type="button" class="dropdown-item">Calculated field</button>
-                                <button type="button" class="dropdown-item">Etc</button>
-                            </div>
+                        <button type="button" class="dropdown-toggle btn btn-link">
+                            Dropdown Toggle
+                            <clr-icon shape="caret down"></clr-icon>
+                        </button>
+                        <div class="dropdown-menu">
+                            <h4 class="dropdown-header">Dropdown header</h4>
+                            <button type="button" class="dropdown-item">Transpose rows and columns</button>
+                            <button type="button" class="dropdown-item">Add field</button>
+                            <button type="button" class="dropdown-item">Calculated field</button>
+                            <button type="button" class="dropdown-item">Etc</button>
                         </div>
-                        <br>
-                        <clr-datagrid>
+                    </div>
+                    <br>
+                    <clr-datagrid>
                         <clr-dg-column>Nr</clr-dg-column>
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Description</clr-dg-column>
-                    
+                
                         <clr-dg-row *ngFor="let ds of transformaton"  [clrDgItem]="ds">
                             <clr-dg-cell>
                                 <clr-icon shape="arrow" size="16"></clr-icon>
@@ -162,7 +162,7 @@
                                 {{ds.description}}
                             </clr-dg-cell>
                         </clr-dg-row>
-                    
+                
                         <clr-dg-footer>{{transformaton.length}} transformatons</clr-dg-footer>
                     </clr-datagrid>
 

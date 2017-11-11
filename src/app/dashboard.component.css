@@ -34,3 +34,11 @@
     margin: 0;
     padding: 0;
 }
+
+.dimensionField {
+    background-color: rgb(156, 156, 197);
+}
+
+.metricField {
+    background-color: rgb(253, 253, 33);
+}

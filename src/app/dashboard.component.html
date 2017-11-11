@@ -50,139 +50,218 @@
 
 <nav class="sidenav" *ngIf="showNavDashboard">
     <section class="sidenav-content">
-        <section class="nav-group collapsible">
-            <input id="Columns" type="checkbox">
-            <label for="Columns">Dashboard</label>
-            <ul class="nav-list">
-                <li>
-                    <a 
-                        class="nav-link"
-                        (dragend)="showGraphs($event)" 
-                        draggable="true" 
-                        id="dragtarget"
-                        >
-                    Trader
-                    </a>
-                </li>
-                <li><a class="nav-link">Country</a></li>
-                <li><a class="nav-link active">Trade Type</a></li>
-                <li><a class="nav-link">Date</a></li>
-                <li><a class="nav-link">DateTime</a></li>
-                <li><a class="nav-link">Stock</a></li>
-            </ul>
-        </section>
 
-        <section class="nav-group collapsible">
-            <input id="Measures" type="checkbox">
-            <label for="Measures">Measures</label>
-            <ul class="nav-list">
-                <li><a class="nav-link">Volume</a></li>
-                <li><a class="nav-link">Trades</a></li>
-                <li><a class="nav-link active">Value</a></li>
-            </ul>
-        </section>
+        <button class="btn btn-sm">
+            Add New
+            <clr-icon shape="plus" size="16"></clr-icon>
+        </button>
+            
+        <clr-datagrid>
+                <clr-dg-column>Name</clr-dg-column>
+                
+                <clr-dg-row>
+                    <clr-dg-cell>
+                        <clr-icon shape="upload" size="16"></clr-icon>
+                        <clr-icon shape="share" size="16" dir="down"></clr-icon>
+                        <clr-icon shape="star" size="16"></clr-icon>
+                        Sales Summary for Exco
+                    </clr-dg-cell>
+                </clr-dg-row>
+                <clr-dg-row>
+                    <clr-icon shape="upload" size="16"></clr-icon>
+                    <clr-icon shape="share" size="16" dir="down"></clr-icon>
+                    <clr-icon shape="half-star" size="16"></clr-icon>
+                    <clr-dg-cell>Headcount</clr-dg-cell>
+                </clr-dg-row>
+                <clr-dg-row>
+                    <clr-icon shape="upload" size="16"></clr-icon>
+                    <clr-icon shape="share" size="16" dir="down"></clr-icon>
+                    <clr-icon shape="tag" size="16"></clr-icon>
+                    <clr-dg-cell>Financial Summary</clr-dg-cell>
+                </clr-dg-row>
+                        
+            </clr-datagrid>
+        <div>
+            <button class="btn">Save As</button>
+            <input type="text" id="formFields_7" placeholder="Name...">
+        </div>
+
     </section>
                 
 </nav>
 
 <nav class="sidenav" *ngIf="showNavTab">
-    <section class="sidenav-content">
-        
-        <section class="nav-group collapsible">
-            <input id="Format" type="checkbox">
-            <label for="Format">Tab</label>
-            <ul class="nav-list">
-                <li><a class="nav-link">Graph Type</a></li>
-                <li><a class="nav-link">Header</a></li>
-                <li><a class="nav-link active">Border</a></li>
-            </ul>
-        </section>
-
-        
-    </section>
+    <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+            Background color
+            <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+            Border
+            <clr-icon shape="caret down"></clr-icon>
+        </button>
+    
+        <button class="btn btn-sm">Save</button>
+            
 </nav>
     
 <nav class="sidenav" *ngIf="showNavFormat">
-    <section class="sidenav-content">
+    <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+        Background color
+        <clr-icon shape="caret down"></clr-icon>
+    </button>
+    <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+        Border
+        <clr-icon shape="caret down"></clr-icon>
+    </button>
         
-        <section class="nav-group collapsible">
-            <input id="Format" type="checkbox">
-            <label for="Format">Format</label>
-            <ul class="nav-list">
-                <li><a class="nav-link">Graph Type</a></li>
-                <li><a class="nav-link">Header</a></li>
-                <li><a class="nav-link active">Border</a></li>
-            </ul>
-        </section>
 
-        
-    </section>
+    <button class="btn btn-sm">Save</button>
+    
 </nav>
 
 <nav class="sidenav" *ngIf="showNavDataset">
+    <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+        Select Data
+        <clr-icon shape="caret down"></clr-icon>
+    </button>
     <section class="sidenav-content">
-        
-        <section class="nav-group collapsible">
-            <input id="Format" type="checkbox">
-            <label for="Format">Dataset</label>
-            <ul class="nav-list">
-                <li><a class="nav-link">Graph Type</a></li>
-                <li><a class="nav-link">Header</a></li>
-                <li><a class="nav-link active">Border</a></li>
-            </ul>
-        </section>
-
-        
+        <section class="nav-group">
+                <ul class="nav-list">
+                    <li>
+                        <a 
+                            class="nav-link"
+                            (dragend)="showGraphs($event)" 
+                            draggable="true" 
+                            id="dragtarget"
+                            >
+                        Trader
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link">
+                            <clr-icon shape="block" class="dimensionField"></clr-icon>
+                            Country
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link active">
+                            <clr-icon shape="bolt" class="metricField"></clr-icon>
+                            Trade Type
+                        </a>
+                    </li>
+                    <li><a class="nav-link">Date</a></li>
+                    <li><a class="nav-link">DateTime</a></li>
+                    <li><a class="nav-link">Stock</a></li>
+                    <li><a class="nav-link">Volume</a></li>
+                    <li><a class="nav-link">Trades</a></li>
+                    <li><a class="nav-link">Value</a></li>
+                </ul>
+            </section>
     </section>
 </nav>
 
 <nav class="sidenav" *ngIf="showNavExplore">
     <section class="sidenav-content">
-        
-        <section class="nav-group collapsible">
-            <input id="Format" type="checkbox">
-            <label for="Format">Explore</label>
-            <ul class="nav-list">
-                <li><a class="nav-link">Graph Type</a></li>
-                <li><a class="nav-link">Header</a></li>
-                <li><a class="nav-link active">Border</a></li>
-            </ul>
-        </section>
-
-        
+        <div>
+            <button class="btn btn-sm">Type</button>
+        </div>
+        <div>        
+            <button class="btn btn-sm">x (drag here)</button>
+            <button class="btn btn-sm">...</button>
+            <div>
+                    <button class="btn btn-sm">type</button>
+                    <button class="btn btn-sm">bin</button>
+                    <button class="btn btn-sm">aggregate</button>
+                    <button class="btn btn-sm">zero</button>
+                    <button class="btn btn-sm">scale</button>
+                    
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-sm">y (drag here)</button>
+            <button class="btn btn-sm">...</button>
+        </div>
+        <div>
+            <button class="btn btn-sm">color (drag here)</button>
+            <button class="btn btn-sm">...</button>
+        </div>
+            
     </section>
 </nav>
 
 <nav class="sidenav" *ngIf="showNavPresentation">
     <section class="sidenav-content">
         
-        <section class="nav-group collapsible">
-            <input id="Format" type="checkbox">
-            <label for="Format">Presentation</label>
-            <ul class="nav-list">
-                <li><a class="nav-link">Graph Type</a></li>
-                <li><a class="nav-link">Header</a></li>
-                <li><a class="nav-link active">Border</a></li>
-            </ul>
-        </section>
+        <clr-datagrid>
+            <clr-dg-column>Name</clr-dg-column>
+            
+            <clr-dg-row>
+                <clr-dg-cell>
+                    <clr-icon shape="arrow" size="16"></clr-icon>
+                    <clr-icon shape="arrow" size="16" dir="down"></clr-icon>
+                    <clr-icon shape="times" size="16"></clr-icon>
+                    Total Profit
+                </clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+                <clr-dg-cell>
+                    <clr-icon shape="arrow" size="16"></clr-icon>
+                    <clr-icon shape="arrow" size="16" dir="down"></clr-icon>
+                    <clr-icon shape="times" size="16"></clr-icon>
+                    By Product
+                </clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+                <clr-dg-cell>
+                    <clr-icon shape="arrow" size="16"></clr-icon>
+                    <clr-icon shape="arrow" size="16" dir="down"></clr-icon>
+                    <clr-icon shape="times" size="16"></clr-icon>
+                    By Region
+                </clr-dg-cell>
+            </clr-dg-row>
+                    
+        </clr-datagrid>
+        <div class="checkbox">
+            <input type="checkbox" id="checkrads_1">
+            <label for="checkrads_1">Show Arrows</label>
+        </div>
+        <div>
+            <button class="btn">Save As</button>
+            <input type="text" id="formFields_7" placeholder="Name...">
+        </div>
 
-        
     </section>
 </nav>
 
 <nav class="sidenav" *ngIf="showNavCollaborate">
     <section class="sidenav-content">
         
-        <section class="nav-group collapsible">
-            <input id="Format" type="checkbox">
-            <label for="Format">Collaborate</label>
-            <ul class="nav-list">
-                <li><a class="nav-link">Graph Type</a></li>
-                <li><a class="nav-link">Header</a></li>
-                <li><a class="nav-link active">Border</a></li>
-            </ul>
-        </section>
-
-        
+    <section class="nav-group collapsible">
+        <input id="tabexample1" type="checkbox">
+        <label for="tabexample1">Collapsible Nav Element</label>
+        <ul class="nav-list">
+            <li><a class="nav-link">Link 1</a></li>
+            <li><a class="nav-link">Link 2</a></li>
+        </ul>
+    </section>
+    <clr-datagrid>
+        <clr-dg-column>Name</clr-dg-column>
+            
+            <clr-dg-row>
+                <clr-dg-cell>
+                    <clr-icon shape="arrow" size="16"></clr-icon>
+                    <clr-icon shape="arrow" size="16" dir="down"></clr-icon>
+                    <clr-icon shape="times" size="16"></clr-icon>
+                    Transpose rows and columns
+                </clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+                <clr-dg-cell>N</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+                <clr-dg-cell>N</clr-dg-cell>
+            </clr-dg-row>
+                    
+        </clr-datagrid>
     </section>
 </nav>

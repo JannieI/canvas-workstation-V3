@@ -42,7 +42,7 @@ export class DashboardComponent {
     showNavDashboard: Boolean = false;
     showNavTab: Boolean = false;
     showNavFormat: Boolean = false;
-    showNavDataset: Boolean = false;
+    showNavDataset: Boolean = true;
     showNavExplore: Boolean = false;
     showNavPresentation: Boolean = false;
     showNavCollaborate: Boolean = false;
