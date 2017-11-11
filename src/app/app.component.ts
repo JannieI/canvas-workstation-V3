@@ -22,6 +22,7 @@ import { GlobalFunctionService } 		  from './global-function.service';
 })
 export class AppComponent implements OnInit {
 
+    menuOptionSelected: string;
     showNavData: boolean = false;
     showNavDashboard: boolean = false;
     showNavFormat: boolean = false;
@@ -52,7 +53,7 @@ console.log('clickedOption',clickedOption)
             this.globalVariableService.showSubMenuData.next(true);
             this.globalVariableService.showNavData.next(true);
         } else if (clickedOption == 'dashboard') {
-            this.globalVariableService.showSubMenuDashboard.next(true);
+            this.globalVariableService.showSubMenuDashboard.next(false);
             this.globalVariableService.showNavDashboard.next(false);
         }
     }
@@ -65,6 +66,11 @@ console.log('clickedOption',clickedOption)
         // event.preventDefault();
         console.log('dragEnd',event)
         // document.getElementById("demo").innerHTML = "Finished dragging the p element.";
+    }
+
+    onClickSubmenu(menuOption: string) {
+        this.menuOptionSelected = menuOption;
+        console.log('menuOption', menuOption)
     }
 
 }

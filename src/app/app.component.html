@@ -50,33 +50,47 @@
     <nav class="subnav" *ngIf="showSubMenuDashboard">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Dashboard</a>
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('dashboard')">
+                    Dashboard
+                </button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Tab</a>
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('tab')">
+                    Tab
+                </button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Format</a>
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('format')">
+                    Format
+                </button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Dataset</a>
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('dataset')">
+                    Dataset
+                </button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Explore</a>
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('explore')">
+                    Explore
+                </button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Presentation</a>
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('presentation')">
+                    Presentation
+                </button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Collaborate</a>
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('collaborate')">
+                    Collaborate
+                </button>
             </li>
         </ul>
     </nav>
 
     <div class="content-container">
         
-        <div  class="content-area">
-            <router-outlet></router-outlet>
+        <div  class="content-area" >
+            <router-outlet ></router-outlet>
         </div>
         
     </div>

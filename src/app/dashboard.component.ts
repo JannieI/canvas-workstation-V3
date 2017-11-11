@@ -7,6 +7,7 @@ import { AfterViewInit }              from '@angular/core';
 import { Component }                  from '@angular/core';
 import { Directive }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
+import { Input }                      from '@angular/core';
 import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
@@ -33,9 +34,19 @@ import { load } from 'datalib';
 })
 export class DashboardComponent {
     @ViewChild('vis', {read: ElementRef}) vis: ElementRef;  //Vega graph
-    
+    @Input() menuOptionSelected: string;
+
     open: Boolean = false;
-    showNavDashboard: boolean = true;
+    showSubMenuDashboard: boolean = true;
+
+    showNavDashboard: Boolean = false;
+    showNavTab: Boolean = false;
+    showNavFormat: Boolean = false;
+    showNavDataset: Boolean = false;
+    showNavExplore: Boolean = false;
+    showNavPresentation: Boolean = false;
+    showNavCollaborate: Boolean = false;
+
     vlSpecs: dl.spec.TopLevelExtendedSpec[] = [
         {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
@@ -77,13 +88,18 @@ export class DashboardComponent {
     constructor(
         private renderer: Renderer,
     ) {}
+
     ngAfterViewInit() {
+    }
+
+    ngOnChanges() {
+        console.log('menuOptionSelected', this.menuOptionSelected)
     }
 
     showGraphs(event) {
         // Show Graph Examples
         
-        console.log('showGraph', event)
+        console.log('showGraph', event, this.menuOptionSelected)
 
         let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
         let specification = compile(definition).spec;
@@ -216,6 +232,25 @@ export class DashboardComponent {
         var year_date = dl.$year('date');       // returns year from date field
         var counts = dl.groupby(year_date, bin_price).count().execute(data);
         console.log(dl.mutual.dist(counts, 'bin_price', 'year_date', 'count'));
+    }
+
+    onClickSubmenu(menuOption: string) {
+
+        this.showNavDashboard = false;
+        this.showNavTab = false;
+        this.showNavFormat = false;
+        this.showNavDataset = false;
+        this.showNavExplore = false;
+        this.showNavPresentation = false;
+        this.showNavCollaborate = false;
+
+        if (menuOption == 'dashboard') {this.showNavDashboard = true}
+        else if (menuOption == 'tab') {this.showNavTab = true}
+        else if (menuOption == 'format') {this.showNavFormat = true}
+        else if (menuOption == 'dataset') {this.showNavDataset = true}
+        else if (menuOption == 'explore') {this.showNavExplore = true}
+        else if (menuOption == 'presentation') {this.showNavPresentation = true}
+        else if (menuOption == 'collaborate') {this.showNavCollaborate = true}
     }
 }
 

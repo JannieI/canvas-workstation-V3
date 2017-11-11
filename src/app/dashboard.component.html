@@ -1,4 +1,43 @@
 
+<nav class="subnav" *ngIf="showSubMenuDashboard">
+        <ul class="nav">
+            <li class="nav-item">
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('dashboard')">
+                    Dashboard
+                </button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('tab')">
+                    Tab
+                </button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('format')">
+                    Format
+                </button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('dataset')">
+                    Dataset
+                </button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('explore')">
+                    Explore
+                </button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('presentation')">
+                    Presentation
+                </button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-link" (click)="onClickSubmenu('collaborate')">
+                    Collaborate
+                </button>
+            </li>
+        </ul>
+</nav>
 
 
 <!-- Graphs -->
@@ -13,7 +52,7 @@
     <section class="sidenav-content">
         <section class="nav-group collapsible">
             <input id="Columns" type="checkbox">
-            <label for="Columns">Columns</label>
+            <label for="Columns">Dashboard</label>
             <ul class="nav-list">
                 <li>
                     <a 
@@ -46,10 +85,24 @@
                 
 </nav>
 
+<nav class="sidenav" *ngIf="showNavTab">
+    <section class="sidenav-content">
+        
+        <section class="nav-group collapsible">
+            <input id="Format" type="checkbox">
+            <label for="Format">Tab</label>
+            <ul class="nav-list">
+                <li><a class="nav-link">Graph Type</a></li>
+                <li><a class="nav-link">Header</a></li>
+                <li><a class="nav-link active">Border</a></li>
+            </ul>
+        </section>
 
-
-
-<nav class="sidenav" *ngIf="showNavDashboard">
+        
+    </section>
+</nav>
+    
+<nav class="sidenav" *ngIf="showNavFormat">
     <section class="sidenav-content">
         
         <section class="nav-group collapsible">
@@ -65,4 +118,71 @@
         
     </section>
 </nav>
-    
+
+<nav class="sidenav" *ngIf="showNavDataset">
+    <section class="sidenav-content">
+        
+        <section class="nav-group collapsible">
+            <input id="Format" type="checkbox">
+            <label for="Format">Dataset</label>
+            <ul class="nav-list">
+                <li><a class="nav-link">Graph Type</a></li>
+                <li><a class="nav-link">Header</a></li>
+                <li><a class="nav-link active">Border</a></li>
+            </ul>
+        </section>
+
+        
+    </section>
+</nav>
+
+<nav class="sidenav" *ngIf="showNavExplore">
+    <section class="sidenav-content">
+        
+        <section class="nav-group collapsible">
+            <input id="Format" type="checkbox">
+            <label for="Format">Explore</label>
+            <ul class="nav-list">
+                <li><a class="nav-link">Graph Type</a></li>
+                <li><a class="nav-link">Header</a></li>
+                <li><a class="nav-link active">Border</a></li>
+            </ul>
+        </section>
+
+        
+    </section>
+</nav>
+
+<nav class="sidenav" *ngIf="showNavPresentation">
+    <section class="sidenav-content">
+        
+        <section class="nav-group collapsible">
+            <input id="Format" type="checkbox">
+            <label for="Format">Presentation</label>
+            <ul class="nav-list">
+                <li><a class="nav-link">Graph Type</a></li>
+                <li><a class="nav-link">Header</a></li>
+                <li><a class="nav-link active">Border</a></li>
+            </ul>
+        </section>
+
+        
+    </section>
+</nav>
+
+<nav class="sidenav" *ngIf="showNavCollaborate">
+    <section class="sidenav-content">
+        
+        <section class="nav-group collapsible">
+            <input id="Format" type="checkbox">
+            <label for="Format">Collaborate</label>
+            <ul class="nav-list">
+                <li><a class="nav-link">Graph Type</a></li>
+                <li><a class="nav-link">Header</a></li>
+                <li><a class="nav-link active">Border</a></li>
+            </ul>
+        </section>
+
+        
+    </section>
+</nav>

@@ -155,11 +155,11 @@ const fieldsMetadata: IfieldsMetadata[] = [
     },
     {
         name: 'Volume',
-        description: 'Number of instruments traded'
+        description: 'Number of instruments traded.  Single counted, excluding BR, YT trade types.'
     },
     {
         name: 'Value',
-        description: 'Value in Rand of the instruments traded'
+        description: 'Value in Rand of the instruments traded, based on Volume and Price.'
     }
 ]
 
