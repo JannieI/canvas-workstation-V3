@@ -39,8 +39,38 @@
 
     </div>
     <div class="col-xs-9">
-        <div *ngIf="firstTimeUser">
-            <h4>Chose the data to use, and click <i>Open</i>.  Then click <i>Design</i> to show it.</h4>
+        <div>
+            <h4 *ngIf="firstTimeUser">Choose the data to use, and click <i>Get Data</i>.  Then click <i>Design</i> to show it.</h4>
+
+                <div class="dropdown open">
+                    <button class="dropdown-toggle btn btn-link" type="button">
+                        Type
+                        <clr-icon shape="caret down"></clr-icon>
+                    </button>
+                    <div class="dropdown-menu">
+                        <button type="button" class="dropdown-item active">File</button>
+                        <button type="button" class="dropdown-item">Database</button>
+                        <button type="button" class="dropdown-item">Service</button>
+                        <button type="button" class="dropdown-item">Web</button>
+                        <button type="button" class="dropdown-item">AnOther</button>
+                    </div>
+                </div>
+
+                <div class="dropdown open">
+                    <button class="dropdown-toggle btn btn-link" type="button">
+                        Location
+                        <clr-icon shape="caret down"></clr-icon>
+                    </button>
+                    <div class="dropdown-menu">
+                        <button type="button" class="dropdown-item active">File</button>
+                        <button type="button" class="dropdown-item">Database</button>
+                        <button type="button" class="dropdown-item">Service</button>
+                        <button type="button" class="dropdown-item">Web</button>
+                        <button type="button" class="dropdown-item">AnOther</button>
+                    </div>
+                </div>
+
+
             <p>
                 Type:
                 <input type="text" id="formFields_7" placeholder="File">
@@ -51,10 +81,12 @@
                 <input type="text" id="formFields_7" placeholder="Name">
                 <input type="text" id="formFields_7" placeholder="Worksheet">
                 DB: DBtype, Tablename, Queryname/SQLstatement, UserID, Password, Limit
-                <button class="btn btn-link" (click)="clickAddDatasource()">Open</button>
+                <button class="btn btn-link" (click)="clickAddDatasource()">Get Data</button>
             </p>
         </div> 
+        
         <br>
+
         <clr-tabs *ngIf="showDatasourceForm">
             
             <clr-tab>

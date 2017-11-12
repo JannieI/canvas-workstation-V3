@@ -237,11 +237,6 @@ export class DataComponent implements OnInit {
         // Reset
         this.selectedDatasource = null;
     }
-
-
-	toggleFirstTime() {
-		this.firstTimeUser = !this.firstTimeUser;
-    }
     
     clickShowDatasourceForm() {
         console.log('this.showDatasourceForm', this.showDatasourceForm)
@@ -250,5 +245,6 @@ export class DataComponent implements OnInit {
 
     clickAddDatasource() {
         this.showDatasourceForm = !this.showDatasourceForm;
+		this.firstTimeUser = !this.firstTimeUser;
     }
 }
