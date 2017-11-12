@@ -41,7 +41,11 @@
 
 
 <!-- Graphs -->
-<div class="graphy">
+<div 
+    class="graphy" 
+    [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
+    (click)="clickWidget($event)"
+    >
     <div  #vis>
         <div>Vega-Lite Div</div>
     </div>  

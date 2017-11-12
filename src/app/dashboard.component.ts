@@ -39,7 +39,7 @@ export class DashboardComponent {
 
     open: Boolean = false;
     showSubMenuDashboard: boolean = true;
-
+    showContainerHeader: boolean = false;
     showNavDashboard: Boolean = false;
     showNavTab: Boolean = false;
     showNavFormat: Boolean = false;
@@ -47,6 +47,7 @@ export class DashboardComponent {
     showNavExplore: Boolean = false;
     showNavPresentation: Boolean = false;
     showNavCollaborate: Boolean = false;
+    widgetBorder: string = '1px black solid';
 
     vlSpecs: dl.spec.TopLevelExtendedSpec[] = [
         {
@@ -312,6 +313,12 @@ export class DashboardComponent {
         //   console.log(row.text);
         // });
         // db.close();        
+    }
+
+    clickWidget(ev) {
+        console.log('clickWidget()', this.showContainerHeader,  this.showNavDataset, ev);
+        this.showContainerHeader = !this.showContainerHeader;
+        this.onClickSubmenu('explore');
     }
 }
 
