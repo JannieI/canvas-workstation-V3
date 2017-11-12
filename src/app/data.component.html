@@ -7,26 +7,31 @@
             <section class="sidenav-content nav-group">
     
                 <ul class="nav-list">
-                    <li><a class="nav-link"></a>Add Data
-                        <clr-icon shape="plus" size="16"></clr-icon>
-                    </li>
-                    <li><a class="nav-link active">Budget Forecast</a></li>
-                    <li><a class="nav-link">Costing preparation</a></li>
-                    <li><a class="nav-link">Historic Indices*</a></li>
-                    <li><a class="nav-link">World Indices</a></li>
-                    <li><a class="nav-link">SP Companies*</a></li>
-                    <li><a class="nav-link">Stock prices TEMP</a></li>
-                    <li><a class="nav-link">Trades per Year</a></li>
-                    <li><a class="nav-link">Bond volume trades</a></li>
-                    <li><a class="nav-link">Trades by Trade Type</a></li>
-                    <li><a class="nav-link">YTD Expenditure by Cost Center</a></li>
-                    <li><a class="nav-link">Headcount</a></li>
-                    <li><a class="nav-link">Customer List</a></li>
-                    <li><a class="nav-link">CPI figures</a></li>
-                    <li><a class="nav-link">GDP by Country</a></li>
-                    <li><a class="nav-link">Bicycle trips in Rome</a></li>
-                    <li><a class="nav-link">Vega Airport Dataset</a></li>
-                    <li><a class="nav-link">Test1</a></li>
+                    <!-- <li>
+                        <a class="nav-link">
+                            Add Data
+                            <clr-icon shape="plus" size="16"></clr-icon>
+                        </a>
+                    </li> -->
+                    <div *ngIf="showDatasourceForm">
+                        <li><a class="nav-link active">Budget Forecast</a></li>
+                        <li><a class="nav-link">Costing preparation</a></li>
+                        <li><a class="nav-link">Historic Indices*</a></li>
+                        <li><a class="nav-link">World Indices</a></li>
+                        <li><a class="nav-link">SP Companies*</a></li>
+                        <li><a class="nav-link">Stock prices TEMP</a></li>
+                        <li><a class="nav-link">Trades per Year</a></li>
+                        <li><a class="nav-link">Bond volume trades</a></li>
+                        <li><a class="nav-link">Trades by Trade Type</a></li>
+                        <li><a class="nav-link">YTD Expenditure by Cost Center</a></li>
+                        <li><a class="nav-link">Headcount</a></li>
+                        <li><a class="nav-link">Customer List</a></li>
+                        <li><a class="nav-link">CPI figures</a></li>
+                        <li><a class="nav-link">GDP by Country</a></li>
+                        <li><a class="nav-link">Bicycle trips in Rome</a></li>
+                        <li><a class="nav-link">Vega Airport Dataset</a></li>
+                        <li><a class="nav-link">Test1</a></li>
+                    </div>
                 </ul>
                             
             </section>
@@ -35,6 +40,7 @@
     </div>
     <div class="col-xs-9">
         <div *ngIf="firstTimeUser">
+            <h4>Chose the data to use, and click <i>Open</i>.  Then click <i>Design</i> to show it.</h4>
             <p>
                 Type:
                 <input type="text" id="formFields_7" placeholder="File">
@@ -45,10 +51,11 @@
                 <input type="text" id="formFields_7" placeholder="Name">
                 <input type="text" id="formFields_7" placeholder="Worksheet">
                 DB: DBtype, Tablename, Queryname/SQLstatement, UserID, Password, Limit
+                <button class="btn btn-link" (click)="clickAddDatasource()">Open</button>
             </p>
         </div> 
         <br>
-        <clr-tabs>
+        <clr-tabs *ngIf="showDatasourceForm">
             
             <clr-tab>
                 <button clrTabLink id="link1">Fields</button>

@@ -13,7 +13,7 @@
             </li>
             <li class="nav-item">
                 <button type="button" class="btn btn-link" (click)="onClickSubmenu('format')">
-                    Format
+                    Widget
                 </button>
             </li>
             <li class="nav-item">
@@ -39,6 +39,14 @@
         </ul>
 </nav>
 
+<div class="btn-group tabList">
+    <button class="btn">Tab 1</button>
+    <button class="btn">
+        <clr-icon shape="plus" size="16"></clr-icon>
+    </button>
+</div>
+
+<h4>Drag a field onto the canvas to create a graph.</h4>
 
 <!-- Graphs -->
 <div 
@@ -52,51 +60,11 @@
 </div>  
     
 <div class="row">
+
     <div class="col-lg-5">
         <nav class="sidenav" *ngIf="showNavDashboard">
             <section class="sidenav-content">
-
-                <button class="btn btn-sm" (click)="clickButtonAddDashboard()">
-                    Add New
-                    <clr-icon shape="plus" size="16"></clr-icon>
-                </button>
-                    
-                <clr-datagrid>
-                        <clr-dg-column>Name</clr-dg-column>
-                        
-                        <clr-dg-row>
-                            <clr-dg-cell>
-                                <clr-icon shape="upload" size="16"></clr-icon>
-                                <clr-icon shape="share" size="16" dir="down"></clr-icon>
-                                <clr-icon shape="star" size="16"></clr-icon>
-                                Sales Summary for Exco
-                            </clr-dg-cell>
-                        </clr-dg-row>
-                        <clr-dg-row>
-                            <clr-icon shape="upload" size="16"></clr-icon>
-                            <clr-icon shape="share" size="16" dir="down"></clr-icon>
-                            <clr-icon shape="half-star" size="16"></clr-icon>
-                            <clr-dg-cell>Headcount</clr-dg-cell>
-                        </clr-dg-row>
-                        <clr-dg-row>
-                            <clr-icon shape="upload" size="16"></clr-icon>
-                            <clr-icon shape="share" size="16" dir="down"></clr-icon>
-                            <clr-icon shape="tag" size="16"></clr-icon>
-                            <clr-dg-cell>Financial Summary</clr-dg-cell>
-                        </clr-dg-row>
-                                
-                    </clr-datagrid>
-                <div>
-                    <button class="btn">Save As</button>
-                    <input type="text" id="formFields_7" placeholder="Name...">
-                </div>
-
-            </section>
-                        
-        </nav>
-
-        <nav class="sidenav" *ngIf="showNavTab">
-            <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+                <button class="dropdown-toggle btn btn-link btn-sm" type="button">
                     Background color
                     <clr-icon shape="caret down"></clr-icon>
                 </button>
@@ -104,13 +72,60 @@
                     Border
                     <clr-icon shape="caret down"></clr-icon>
                 </button>
-            
-                <button class="btn btn-sm">Save</button>
+
+                <button class="btn">Share</button>
+                
+                <div>
+                    <button class="btn">Save As</button>
+                    <input type="text" id="formFields_7" placeholder="Name...">
+                </div>
+
+
+
+                <button class="btn btn-sm" (click)="clickButtonAddDashboard()">
+                    Add New
+                    <clr-icon shape="plus" size="16"></clr-icon>
+                </button>
+                    
+                <clr-datagrid>
+                    <clr-dg-column>Double click to open:
+                        <button class="btn btn-sm" (click)="clickButtonAddDashboard()">
+                            Filter
+                            <clr-icon shape="caret down" size="16"></clr-icon>
+                        </button>                        
+                    </clr-dg-column>
+                    
+                    <clr-dg-row>
+                        <clr-dg-cell>Sales Summary for Exco</clr-dg-cell>
+                    </clr-dg-row>
+                    <clr-dg-row>
+                        <clr-dg-cell>Headcount</clr-dg-cell>
+                    </clr-dg-row>
+                    <clr-dg-row>
+                        <clr-dg-cell>Financial Summary</clr-dg-cell>
+                    </clr-dg-row>
+                            
+                </clr-datagrid>
+
+            </section>
+                        
+        </nav>
+
+        <nav class="sidenav" *ngIf="showNavTab">
+            <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+                Background color
+                <clr-icon shape="caret down"></clr-icon>
+            </button>
+            <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+                Border
+                <clr-icon shape="caret down"></clr-icon>
+            </button>
+        
+            <button class="btn btn-sm">Save</button>
                     
         </nav>
             
         <nav class="sidenav" *ngIf="showNavFormat">
-            <b>Dashboard:</b>
             <button class="dropdown-toggle btn btn-link btn-sm" type="button">
                 Background color
                 <clr-icon shape="caret down"></clr-icon>
@@ -119,19 +134,6 @@
                 Border
                 <clr-icon shape="caret down"></clr-icon>
             </button>
-            <br>
-            <b>Selected Widget(s):</b>
-            <button class="dropdown-toggle btn btn-link btn-sm" type="button">
-                Background color
-                <clr-icon shape="caret down"></clr-icon>
-            </button>
-            <button class="dropdown-toggle btn btn-link btn-sm" type="button">
-                Border
-                <clr-icon shape="caret down"></clr-icon>
-            </button>
-                
-             
-
             <button class="btn btn-sm">Save</button>
             
         </nav>
@@ -257,28 +259,26 @@
                 
             <section class="nav-group collapsible">
                 <input id="tabexample1" type="checkbox">
-                <label for="tabexample1">Collapsible Nav Element</label>
+                <label for="tabexample1">Messages</label>
                 <ul class="nav-list">
-                    <li><a class="nav-link">Link 1</a></li>
-                    <li><a class="nav-link">Link 2</a></li>
+                    <li><a class="nav-link">John H</a></li>
+                    <li><a class="nav-link">Alisson</a></li>
                 </ul>
             </section>
             <clr-datagrid>
-                <clr-dg-column>Name</clr-dg-column>
+                <clr-dg-column>Task</clr-dg-column>
                     
                     <clr-dg-row>
                         <clr-dg-cell>
-                            <clr-icon shape="arrow" size="16"></clr-icon>
-                            <clr-icon shape="arrow" size="16" dir="down"></clr-icon>
-                            <clr-icon shape="times" size="16"></clr-icon>
-                            Transpose rows and columns
+                            <clr-icon shape="check" size="16"></clr-icon>
+                            Get outstanding data
                         </clr-dg-cell>
                     </clr-dg-row>
                     <clr-dg-row>
-                        <clr-dg-cell>N</clr-dg-cell>
+                        <clr-dg-cell>Prepare</clr-dg-cell>
                     </clr-dg-row>
                     <clr-dg-row>
-                        <clr-dg-cell>N</clr-dg-cell>
+                        <clr-dg-cell>Presentation</clr-dg-cell>
                     </clr-dg-row>
                             
                 </clr-datagrid>

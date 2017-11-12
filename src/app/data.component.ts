@@ -247,4 +247,8 @@ export class DataComponent implements OnInit {
         console.log('this.showDatasourceForm', this.showDatasourceForm)
         this.showDatasourceForm = !this.showDatasourceForm
     }
+
+    clickAddDatasource() {
+        this.showDatasourceForm = !this.showDatasourceForm;
+    }
 }
