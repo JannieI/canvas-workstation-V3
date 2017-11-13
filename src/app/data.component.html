@@ -1,11 +1,11 @@
 
 <div class="row">
     <div class="col-xs-3">
- 
+
         <nav class="sidenav">
-            
+
             <section class="sidenav-content nav-group">
-    
+
                 <ul class="nav-list">
                     <!-- <li>
                         <a class="nav-link">
@@ -33,7 +33,7 @@
                         <li><a class="nav-link">Test1</a></li>
                     </div>
                 </ul>
-                            
+
             </section>
         </nav>
 
@@ -42,29 +42,29 @@
         <div>
             <h4 *ngIf="firstTimeUser">Select your data with <i>Get Data</i>, and then click <i>Design</i> in the top menu to show it.</h4>
 
-                <div class="dropdown" #typeDropdown >
-                    <button class="dropdown-toggle btn btn-secondary" 
-                    type="button"
-                    (click)="clickDropdownType()">
-                        Get Data
-                        <clr-icon shape="caret down"></clr-icon>
-                    </button>
-                    <div class="dropdown-menu">
-                        <button type="button" class="dropdown-item active"
-                            (click)="clickOpenFile()">File</button>
-                        <button type="button" class="dropdown-item"
-                        (click)="clickOpenDatabase()">Database</button>
-                        <button type="button" class="dropdown-item">Service</button>
-                        <button type="button" class="dropdown-item">Web</button>
-                        <button type="button" class="dropdown-item">NoSQL database</button>
-                    </div>
+            <div class="dropdown" #typeDropdown >
+                <button class="dropdown-toggle btn btn-secondary"
+                type="button"
+                (click)="clickDropdownType()">
+                    Get Data
+                    <clr-icon shape="caret down"></clr-icon>
+                </button>
+                <div class="dropdown-menu">
+                    <button type="button" class="dropdown-item active"
+                        (click)="clickOpenFile()">File</button>
+                    <button type="button" class="dropdown-item"
+                    (click)="clickOpenDatabase()">Database</button>
+                    <button type="button" class="dropdown-item">Service</button>
+                    <button type="button" class="dropdown-item">Web</button>
+                    <button type="button" class="dropdown-item">NoSQL database</button>
                 </div>
-
+            </div>
             <div *ngIf="selectedFile" class="fileLocation">
                 <p>From : Excel: C:\My Documents\Budget.xls</p>
                 <br>
                 <input type="text" id="formFields_7" placeholder="Dataset Name">
             </div>
+
             <div *ngIf="selectedDatabase">
                     Locaton:
                 <input type="text" id="formFields_7" placeholder="Server">
@@ -73,13 +73,14 @@
                 <input type="text" id="formFields_7" placeholder="Password">
                 <input type="text" id="formFields_7" placeholder="QueryName/SQLstatement">
                 <input type="text" id="formFields_7" placeholder="Limit">
+                <br>
+                <input type="text" id="formFields_7" placeholder="Dataset Name">
             </div>
-        </div> 
-        
+
         <br>
 
         <clr-tabs *ngIf="showDatasourceForm">
-            
+
             <clr-tab>
                 <button clrTabLink id="link1">Fields</button>
                 <clr-tab-content id="content1" *clrIfActive>
@@ -94,7 +95,7 @@
                         <clr-dg-column>Calc</clr-dg-column>
                         <clr-dg-column>Order</clr-dg-column>
                         <clr-dg-column>Hide</clr-dg-column>
-                    
+
                         <clr-dg-row *ngFor="let field of fields">
                             <clr-dg-cell>{{field.id}}</clr-dg-cell>
                             <clr-dg-cell>{{field.name}}</clr-dg-cell>
@@ -104,66 +105,63 @@
                             <clr-dg-cell>{{field.calc}}</clr-dg-cell>
                             <clr-dg-cell>{{field.order}}</clr-dg-cell>
                         </clr-dg-row>
-                    
+
                         <clr-dg-footer>{{fields.length}} fields</clr-dg-footer>
                     </clr-datagrid>
                 </clr-tab-content>
             </clr-tab>
-            
+
             <clr-tab>
                 <button clrTabLink id="link1">Metadata</button>
                 <clr-tab-content id="content1" *clrIfActive>
                     Information about the fields:
                     <clr-datagrid>
                         <clr-dg-column>Name</clr-dg-column>
+                        <clr-dg-column>Type</clr-dg-column>
                         <clr-dg-column>Description</clr-dg-column>
-                    
+                        <clr-dg-column>Key?</clr-dg-column>
+                        <clr-dg-column>ExplainedBy</clr-dg-column>
+                        
                         <clr-dg-row *ngFor="let field of fieldsMetadata">
-                                <clr-dg-cell>{{field.name}}</clr-dg-cell>
-                                <clr-dg-cell>{{field.description}}</clr-dg-cell>
+                            <clr-dg-cell>{{field.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{field.type}}</clr-dg-cell>
+                            <clr-dg-cell>{{field.description}}</clr-dg-cell>
+                            <clr-dg-cell>{{field.keyField}}</clr-dg-cell>
+                            <clr-dg-cell>{{field.explainedBy}}</clr-dg-cell>
                         </clr-dg-row>
                     </clr-datagrid>
                 </clr-tab-content>
             </clr-tab>
 
-            
+
             <clr-tab>
                 <button clrTabLink id="link1">Transformation</button>
                 <clr-tab-content id="content1" *clrIfActive>
-                    Type of transformation: 
-                    <div class="dropdown open">
-                        <button type="button" class="dropdown-toggle btn btn-link">
+                    Type of transformation:
+                    <div class="dropdown"  #typeTransformationDropdown>
+                        <button type="button" class="dropdown-toggle btn btn-link"
+                            (click)="clickTypeTransformation()">
                             Type
                             <clr-icon shape="caret down"></clr-icon>
                         </button>
                         <div class="dropdown-menu">
-                            <h4 class="dropdown-header">Type header</h4>
+                            <h4 class="dropdown-header">Select a Type</h4>
                             <button type="button" class="dropdown-item">Standard</button>
                             <div class="dropdown-divider"></div>
                             <button type="button" class="dropdown-item">R Extensions</button>
                             <button type="button" class="dropdown-item">Python Extensions</button>
                         </div>
                     </div>
-                    <br>
-                    Select transformation: 
-                    <div class="dropdown">
-                        <div class="dropdown-menu">
-                            <h4 class="dropdown-header">Select a type:</h4>
-                            <button type="button" class="dropdown-item">Transpose rows and columns</button>
-                            <button type="button" class="dropdown-item">Add field</button>
-                            <button type="button" class="dropdown-item">Calculated field</button>
-                            <button type="button" class="dropdown-item">Etc</button>
-                        </div>
-                    </div>
 
                     Selected transformations
-                    <div class="dropdown">
-                        <button type="button" class="dropdown-toggle btn btn-link">
+                    <div class="dropdown" #transformations>
+                        <button type="button" class="dropdown-toggle btn btn-link"
+                            (click)="clickTransformation()">
                             Dropdown Toggle
                             <clr-icon shape="caret down"></clr-icon>
                         </button>
                         <div class="dropdown-menu">
-                            <h4 class="dropdown-header">Dropdown header</h4>
+                            <h4 class="dropdown-header">Select transformation</h4>
                             <button type="button" class="dropdown-item">Transpose rows and columns</button>
                             <button type="button" class="dropdown-item">Add field</button>
                             <button type="button" class="dropdown-item">Calculated field</button>
@@ -175,7 +173,7 @@
                         <clr-dg-column>Nr</clr-dg-column>
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Description</clr-dg-column>
-                
+
                         <clr-dg-row *ngFor="let ds of transformaton"  [clrDgItem]="ds">
                             <clr-dg-cell>
                                 <clr-icon shape="arrow" size="16"></clr-icon>
@@ -188,7 +186,7 @@
                                 {{ds.description}}
                             </clr-dg-cell>
                         </clr-dg-row>
-                
+
                         <clr-dg-footer>{{transformaton.length}} transformatons</clr-dg-footer>
                     </clr-datagrid>
 
@@ -198,7 +196,7 @@
             <clr-tab>
                 <button clrTabLink id="link1">Analysis</button>
                 <clr-tab-content id="content1" *clrIfActive>
-                    <h4>Perform analytical functions on your data.  This will keep your 
+                    <h4>Perform analytical functions on your data.  This will keep your
                         data as is, and add a new dataset to the available list.</h4>
                         <div class="checkbox">
                             <input type="checkbox" id="checkrads_2" checked>
@@ -243,7 +241,7 @@
         </clr-tabs>
 
     </div>
-</div>  
+</div>
 
 
 
@@ -272,10 +270,16 @@
     <h3 class="modal-title">File selection</h3>
     <div class="modal-body">
         <p>Please select formatting options (for all available options, use the Transformation tab):</p>
-            Sort: <input type="text" id="formFields_7" placeholder="Ascending / Descending">
-            Decimals : <input type="text" id="formFields_7" placeholder="2 (ie 12.01)">
-            Align : <input type="text" id="formFields_7" placeholder="Left / Center / Right">
-        </div>
+        <p>Type : <input type="text" id="formFields_7" placeholder="String / Number / Boolean / Date"></p>
+        <p>Format : <input type="text" id="formFields_7" placeholder="2 decimals"></p>
+        <p>Filter : <input type="text" id="formFields_7" placeholder="> 100"></p>
+        <p>Calc : <input type="text" id="formFields_7" placeholder="valueTrade / 100"></p>
+        <p>Order: <input type="text" id="formFields_7" placeholder="Ascending / Descending"></p>
+        <p>Hide : <input type="text" id="formFields_7" placeholder="Hide / Show"></p>
+        <br>
+        <p>SaveAs : <input type="text" id="formFields_7" placeholder="Format Name"></p>
+
+    </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline" (click)="showModalFileFormatter = false">Cancel</button>
         <button type="button" class="btn btn-primary" (click)="clickCloseFieldFormatter()">Ok</button>

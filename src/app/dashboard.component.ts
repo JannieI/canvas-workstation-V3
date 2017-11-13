@@ -18,6 +18,7 @@ import { parse }                      from 'vega';
 import { View }                       from 'vega';
 import * as dl from 'datalib';
 import { load } from 'datalib';
+import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
 // import { load } from 'datalib';
 
@@ -37,6 +38,7 @@ export class DashboardComponent {
     @ViewChild('vis', {read: ElementRef}) vis: ElementRef;  //Vega graph
     @Input() menuOptionSelected: string;
 
+    isFirstTime: boolean = true;
     open: Boolean = false;
     showSubMenuDashboard: boolean = true;
     showContainerHeader: boolean = false;
@@ -102,7 +104,7 @@ export class DashboardComponent {
         // Show Graph Examples
         
         console.log('showGraph', event, this.menuOptionSelected)
-
+        this.isFirstTime = false;
         let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
         let specification = compile(definition).spec;
 

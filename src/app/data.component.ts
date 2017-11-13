@@ -45,7 +45,10 @@ interface Ifield {
 
 interface IfieldsMetadata{
     name: string;
+    type: string;
     description: string;
+    keyField: boolean;
+    explainedBy: string
 }
 
 const datasource: Idatasource[] = [
@@ -273,19 +276,31 @@ const fields: Ifield[] = [
 const fieldsMetadata: IfieldsMetadata[] = [
     {
         name: 'DateTrade',
-        description: 'Date on which trade when through trading system'
+        type: 'Date',
+        description: 'Date on which trade when through trading system',
+        keyField: false,
+        explainedBy: ''
     },
     {
         name: 'Share',
-        description: 'Name of share (stock) that traded, ie Anglo American plc'
+        type: 'String',
+        description: 'Name of share (stock) that traded, ie Anglo American plc',
+        keyField: true,
+        explainedBy: ''
     },
     {
         name: 'Volume',
-        description: 'Number of instruments traded.  Single counted, excluding BR, YT trade types.'
+        type: 'Number',
+        description: 'Number of instruments traded.  Single counted, excluding BR, YT trade types.',
+        keyField: false,
+        explainedBy: 'Broker, TradeType'
     },
     {
         name: 'Value',
-        description: 'Value in Rand of the instruments traded, based on Volume and Price.'
+        type: 'Number',
+        description: 'Value in Rand of the instruments traded, based on Volume and Price.',
+        keyField: false,
+        explainedBy: 'Query: TradeAttribution'
     }
 ]
 
@@ -329,6 +344,9 @@ const fieldsMetadata: IfieldsMetadata[] = [
 export class DataComponent implements OnInit {
 
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
+    @ViewChild('typeTransformationDropdown') typeTransformationDropdown: ElementRef;
+    @ViewChild('transformations') transformations: ElementRef;
+
 
     datasource: Idatasource[] = datasource;
     dataset: Idataset[] = dataset;
@@ -384,6 +402,22 @@ export class DataComponent implements OnInit {
         }
     }
     
+    clickTypeTransformation() {
+        if (this.typeTransformationDropdown.nativeElement.className == "dropdown open") {
+            this.typeTransformationDropdown.nativeElement.className = "dropdown";
+        } else {
+            this.typeTransformationDropdown.nativeElement.className = "dropdown open";
+        }
+    }
+
+    clickTransformation() {
+        if (this.transformations.nativeElement.className == "dropdown open") {
+            this.transformations.nativeElement.className = "dropdown";
+        } else {
+            this.transformations.nativeElement.className = "dropdown open";
+        }
+    }
+
     clickOpenFile() {
         console.log('clickOpenFile()')
         this.selectedDatabase = false;

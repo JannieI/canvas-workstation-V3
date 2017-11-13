@@ -46,7 +46,7 @@
     </button>
 </div>
 
-<h4>Drag a field onto the canvas to create a graph.</h4>
+<h4 *ngIf="isFirstTime">Drag a field onto the canvas to create a graph.</h4>
 
 <!-- Graphs -->
 <div 
@@ -54,8 +54,7 @@
     [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
     (click)="clickWidget($event)"
     >
-    <div  #vis>
-        <div>Vega-Lite Div</div>
+    <div #vis>
     </div>  
 </div>  
     
