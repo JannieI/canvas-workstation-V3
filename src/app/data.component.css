@@ -7,3 +7,6 @@
     margin: 0;
     padding: 0;
 }
+.fileLocation {
+    width: 300px !important;
+}

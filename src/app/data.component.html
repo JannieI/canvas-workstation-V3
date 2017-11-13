@@ -40,49 +40,38 @@
     </div>
     <div class="col-xs-9">
         <div>
-            <h4 *ngIf="firstTimeUser">Choose the data to use, and click <i>Get Data</i>.  Then click <i>Design</i> to show it.</h4>
+            <h4 *ngIf="firstTimeUser">Click <i>Get Data</i>, and then click <i>Design</i> to show it.</h4>
 
-                <div class="dropdown open">
-                    <button class="dropdown-toggle btn btn-link" type="button">
-                        Type
+                <div class="dropdown" #typeDropdown >
+                    <button class="dropdown-toggle btn btn-secondary" 
+                    type="button"
+                    (click)="clickDropdownType()">
+                        Get Data
                         <clr-icon shape="caret down"></clr-icon>
                     </button>
                     <div class="dropdown-menu">
-                        <button type="button" class="dropdown-item active">File</button>
-                        <button type="button" class="dropdown-item">Database</button>
+                        <button type="button" class="dropdown-item active"
+                            (click)="clickOpenFile()">File</button>
+                        <button type="button" class="dropdown-item"
+                        (click)="clickOpenDatabase()">Database</button>
                         <button type="button" class="dropdown-item">Service</button>
                         <button type="button" class="dropdown-item">Web</button>
                         <button type="button" class="dropdown-item">AnOther</button>
                     </div>
                 </div>
 
-                <div class="dropdown open">
-                    <button class="dropdown-toggle btn btn-link" type="button">
-                        Location
-                        <clr-icon shape="caret down"></clr-icon>
-                    </button>
-                    <div class="dropdown-menu">
-                        <button type="button" class="dropdown-item active">File</button>
-                        <button type="button" class="dropdown-item">Database</button>
-                        <button type="button" class="dropdown-item">Service</button>
-                        <button type="button" class="dropdown-item">Web</button>
-                        <button type="button" class="dropdown-item">AnOther</button>
-                    </div>
-                </div>
-
-
-            <p>
-                Type:
-                <input type="text" id="formFields_7" placeholder="File">
-                Format:
-                <input type="text" id="formFields_7" placeholder="Excel">
-                Locaton:
-                <input type="text" id="formFields_7" placeholder="Folder">
-                <input type="text" id="formFields_7" placeholder="Name">
-                <input type="text" id="formFields_7" placeholder="Worksheet">
-                DB: DBtype, Tablename, Queryname/SQLstatement, UserID, Password, Limit
-                <button class="btn btn-link" (click)="clickAddDatasource()">Get Data</button>
-            </p>
+            <div *ngIf="selectedFile" class="fileLocation">
+                Excel: C:\My Documents\Budget.xls
+            </div>
+            <div *ngIf="selectedDatabase">
+                    Locaton:
+                <input type="text" id="formFields_7" placeholder="Server">
+                <input type="text" id="formFields_7" placeholder="Table">
+                <input type="text" id="formFields_7" placeholder="Username">
+                <input type="text" id="formFields_7" placeholder="Password">
+                <input type="text" id="formFields_7" placeholder="QueryName/SQLstatement">
+                <input type="text" id="formFields_7" placeholder="Limit">
+            </div>
         </div> 
         
         <br>
@@ -135,6 +124,7 @@
             <clr-tab>
                 <button clrTabLink id="link1">Metadata</button>
                 <clr-tab-content id="content1" *clrIfActive>
+                    Information about the fields:
                     <clr-datagrid>
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Description</clr-dg-column>
@@ -149,7 +139,7 @@
 
             
             <clr-tab>
-                <button clrTabLink id="link1">Transform</button>
+                <button clrTabLink id="link1">Transformation</button>
                 <clr-tab-content id="content1" *clrIfActive>
                     Type of transformation: 
                     <div class="dropdown open">
@@ -217,7 +207,7 @@
             </clr-tab>
 
             <clr-tab>
-                <button clrTabLink id="link1">Summarise</button>
+                <button clrTabLink id="link1">Summary</button>
                 <clr-tab-content id="content1" *clrIfActive>
                     Information about the dataset:
                     <p>* Data Quality notes</p>
@@ -227,8 +217,26 @@
                     <p>* Data that explains this, ie table.fiels ?</p>
                 </clr-tab-content>
             </clr-tab>
-                
+
         </clr-tabs>
 
     </div>
 </div>  
+
+
+
+
+
+
+<clr-modal [(clrModalOpen)]="showModalFileselector">
+    <h3 class="modal-title">File selection</h3>
+    <div class="modal-body">
+        <p>Please enter file name and location, or Browse:</p>
+            <input type="text" id="formFields_7" placeholder="Folder/FileName">
+            <input type="text" id="formFields_7" placeholder="Worksheet">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="showModalFileselector = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="clickCloseModel()">Ok</button>
+    </div>
+</clr-modal>

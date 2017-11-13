@@ -6,6 +6,8 @@
 import { Component }                  from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Router }                     from '@angular/router';
+import { ViewChild }                  from '@angular/core';
+import { ElementRef }                 from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -202,6 +204,8 @@ const fieldsMetadata: IfieldsMetadata[] = [
 })
 export class DataComponent implements OnInit {
 
+    @ViewChild('typeDropdown') typeDropdown: ElementRef;
+
     datasource: Idatasource[] = datasource;
     dataset: Idataset[] = dataset;
     dataTabDatasource: boolean = false;
@@ -211,7 +215,10 @@ export class DataComponent implements OnInit {
     firstTimeUser: boolean = true;
     isError: boolean = false;
     selectedDatasource: any;
+    selectedFile: boolean = false;
+    selectedDatabase: boolean = false;
     showDatasourceForm: boolean = false;
+    showModalFileselector: boolean = false;
     snipDatasource: boolean = false;
     transformaton: Itransformaton[] = transformaton;
 
@@ -243,8 +250,37 @@ export class DataComponent implements OnInit {
         this.showDatasourceForm = !this.showDatasourceForm
     }
 
-    clickAddDatasource() {
+    
+    clickDropdownType() {
+        if (this.typeDropdown.nativeElement.className == "dropdown open") {
+            this.typeDropdown.nativeElement.className = "dropdown";
+        } else {
+            this.typeDropdown.nativeElement.className = "dropdown open";
+        }
+    }
+    
+    clickOpenFile() {
+        console.log('clickOpenFile()')
+        this.selectedDatabase = true;
+        this.showModalFileselector = true;
+        this.selectedFile = false;
+    }
+    
+    clickOpenDatabase() {
+        console.log('clickOpenDatabase()')
+        this.selectedFile = false;
+        this.selectedDatabase = true;
+        this.typeDropdown.nativeElement.className = "dropdown";
         this.showDatasourceForm = !this.showDatasourceForm;
-		this.firstTimeUser = !this.firstTimeUser;
+        this.firstTimeUser = !this.firstTimeUser;
+    }
+    
+    clickCloseModel() {
+        console.log('clickCloseModel()')
+        this.showModalFileselector = false;
+        this.selectedFile = true;
+        this.typeDropdown.nativeElement.className = "dropdown";
+        this.showDatasourceForm = !this.showDatasourceForm;
+        this.firstTimeUser = !this.firstTimeUser;
     }
 }
