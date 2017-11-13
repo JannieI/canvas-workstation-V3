@@ -40,8 +40,11 @@
     </div>
     <div class="col-xs-9">
         <div>
-            <h4 *ngIf="firstTimeUser">Select your data with <i>Get Data</i>, and then click <i>Design</i> in the top menu to show it.</h4>
-
+            <h4 *ngIf="firstTimeUser" class="helpMessage">
+                Select your data with <i>Get Data</i>, and then click <i>Design</i> in the top menu 
+                to show it.
+            </h4>
+            <br>
             <div class="dropdown" #typeDropdown >
                 <button class="dropdown-toggle btn btn-secondary"
                 type="button"
@@ -60,13 +63,16 @@
                 </div>
             </div>
             <div *ngIf="selectedFile" class="fileLocation">
-                <p>From : Excel: C:\My Documents\Budget.xls</p>
+                <br>
+                Description: <input type="text" id="formFields_7" placeholder="This is ...">
+                <br><p>From : Excel: C:\My Documents\Budget.xls</p>
                 <br>
                 <input type="text" id="formFields_7" placeholder="Dataset Name">
             </div>
-
+            <br>
             <div *ngIf="selectedDatabase">
-                    Locaton:
+                Description: <input type="text" id="formFields_7" placeholder="This is ...">
+                <br>Locaton:
                 <input type="text" id="formFields_7" placeholder="Server">
                 <input type="text" id="formFields_7" placeholder="Table">
                 <input type="text" id="formFields_7" placeholder="Username">
@@ -157,7 +163,7 @@
                     <div class="dropdown" #transformations>
                         <button type="button" class="dropdown-toggle btn btn-link"
                             (click)="clickTransformation()">
-                            Dropdown Toggle
+                            Select transformation
                             <clr-icon shape="caret down"></clr-icon>
                         </button>
                         <div class="dropdown-menu">
@@ -169,7 +175,10 @@
                         </div>
                     </div>
                     <br>
-                    <clr-datagrid>
+                    <br>
+                    Transformation already selected:
+                    <br>
+                    <clr-datagrid *ngIf="showTransformation">
                         <clr-dg-column>Nr</clr-dg-column>
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Description</clr-dg-column>

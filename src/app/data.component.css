@@ -10,3 +10,7 @@
 .fileLocation {
     width: 300px !important;
 }
+
+.helpMessage {
+    color: gray;
+}

@@ -361,6 +361,7 @@ export class DataComponent implements OnInit {
     selectedDatabase: boolean = false;
     showDatasourceForm: boolean = false;
     showModalFileselector: boolean = false;
+    showTransformation: boolean = false;
     showModalFileFormatter: boolean = false;
     snipDatasource: boolean = false;
     transformaton: Itransformaton[] = transformaton;
@@ -416,6 +417,7 @@ export class DataComponent implements OnInit {
         } else {
             this.transformations.nativeElement.className = "dropdown open";
         }
+        this.showTransformation = true;
     }
 
     clickOpenFile() {
