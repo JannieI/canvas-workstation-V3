@@ -5,10 +5,10 @@
 			<a href="#" [routerLink]="['/data']" routerLinkActive="active">Start exploring your data</a>
 			<h2>
                 <div class="checkbox">
-					<input type="checkbox" id="checkrads_2" checked 
+					<input type="checkbox" id="checkrads_2" checked
 						(click)="firstTimeUser=!firstTimeUser">
 					<label for="checkrads_2"></label>
-				</div>				
+				</div>
 			</h2>
 		</div>
 
@@ -42,33 +42,33 @@
 				<a href="#">Documentaion</a>
 			</div>
 		</div>
-		
+
 
 		<div>
 			<h2>Get in touch</h2>
 			<div>
-				If you 
+				If you
 				<clr-icon shape="heart" class="is-solid"></clr-icon>
 				Canvas or just want to get in touch we'd love to hear your thoughts
 				<a href="mailto:info@clarityanalytics.xyz">info@clarityanalytics.xyz</a>
 			</div>
 		</div>
 
-	</div>	
-	 
+	</div>
+
 	<div class="col-xs-6">
 
 		<div *ngIf="!firstTimeUser">
 			<h2>Recent Dashboards</h2>
 
 			<div *ngFor="let folder of rootDirectory">
-				<div *ngFor="let file of folder.files">		
-					<a 
+				<div *ngFor="let file of folder.files">
+					<a
 						(click)="loadExistingSpecification()"
 						class="nav-link" href="#"
 						[routerLink]="['/dashboard']" routerLinkActive="active">
 						{{file.name}}
-						<clr-icon 
+						<clr-icon
                         	(click)="promptDeleteRecent(file.name)"
 							shape="trash">
 						</clr-icon>
@@ -78,8 +78,7 @@
 			<br><br>
 		</div>
 
-	</div>	
+	</div>
 </div>
 
 
-	

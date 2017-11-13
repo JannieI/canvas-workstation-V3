@@ -343,6 +343,7 @@ export class DataComponent implements OnInit {
     selectedDatabase: boolean = false;
     showDatasourceForm: boolean = false;
     showModalFileselector: boolean = false;
+    showModalFileFormatter: boolean = false;
     snipDatasource: boolean = false;
     transformaton: Itransformaton[] = transformaton;
 
@@ -407,4 +408,14 @@ export class DataComponent implements OnInit {
         this.showDatasourceForm = !this.showDatasourceForm;
         this.firstTimeUser = !this.firstTimeUser;
     }
+
+    clickField(fieldName: string) {
+        console.log('id');
+        this.showModalFileFormatter = true;
+    }
+
+    clickCloseFieldFormatter() {
+        this.showModalFileFormatter = false;
+    }
+
 }

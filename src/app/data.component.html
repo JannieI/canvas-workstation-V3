@@ -61,7 +61,9 @@
                 </div>
 
             <div *ngIf="selectedFile" class="fileLocation">
-                Excel: C:\My Documents\Budget.xls
+                <p>From : Excel: C:\My Documents\Budget.xls</p>
+                <br>
+                <input type="text" id="formFields_7" placeholder="Dataset Name">
             </div>
             <div *ngIf="selectedDatabase">
                     Locaton:
@@ -82,21 +84,8 @@
                 <button clrTabLink id="link1">Fields</button>
                 <clr-tab-content id="content1" *clrIfActive>
                     <clr-datagrid>
-                        <clr-dg-column>
-                                <div class="dropdown right-bottom open">
-                                        <button type="button" class="dropdown-toggle btn btn-link">
-                                            ID
-                                            <clr-icon shape="caret down"></clr-icon>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <h4 class="dropdown-header">Formatting options</h4>
-                                            <button type="button" class="dropdown-item active">Sort</button>
-                                            <button type="button" class="dropdown-item disabled">2 Decimals</button>
-                                            <div class="dropdown-divider"></div>
-                                            <button type="button" class="dropdown-item">Conditional Format</button>
-                                            <button type="button" class="dropdown-item">Align Right</button>
-                                        </div>
-                                    </div>                                  
+                        <clr-dg-column (click)="clickField('id')">
+                            ID
                         </clr-dg-column>
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Type</clr-dg-column>
@@ -211,6 +200,11 @@
                 <clr-tab-content id="content1" *clrIfActive>
                     <h4>Perform analytical functions on your data.  This will keep your 
                         data as is, and add a new dataset to the available list.</h4>
+                        <div class="checkbox">
+                            <input type="checkbox" id="checkrads_2" checked>
+                            <label for="checkrads_2">Replace existing dataset ?</label>
+                        </div>
+                    <br>
                     <p>* Forecasting</p>
                     <p>* Cluster Analysts</p>
                 </clr-tab-content>
@@ -220,6 +214,11 @@
                 <button clrTabLink id="link1">Advanced</button>
                 <clr-tab-content id="content1" *clrIfActive>
                     <h4>Create a new dataset by combining existing datasets.</h4>
+                    <div class="checkbox">
+                        <input type="checkbox" id="checkrads_2" checked>
+                        <label for="checkrads_2">Replace existing dataset ?</label>
+                    </div>
+                    <br>
                     <p>Fields are: Set1, keyField, Set 2, keyField</p>
                     <p>* Union (add data in 2nd to the end of 1st)</p>
                     <p>* Join (add data in 2nd to the the right of 1st)</p>
@@ -250,16 +249,35 @@
 
 
 
+<!-- Modals: -->
+<!-- ******* -->
 
+<!-- Field Selector -->
 <clr-modal [(clrModalOpen)]="showModalFileselector">
     <h3 class="modal-title">File selection</h3>
     <div class="modal-body">
         <p>Please enter file name and location, or Browse:</p>
             <input type="text" id="formFields_7" placeholder="Folder/FileName">
             <input type="text" id="formFields_7" placeholder="Worksheet">
-    </div>
+            <input type="text" id="formFields_7" placeholder="Dataset Name">
+        </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline" (click)="showModalFileselector = false">Cancel</button>
         <button type="button" class="btn btn-primary" (click)="clickCloseModel()">Ok</button>
+    </div>
+</clr-modal>
+
+<!-- Field Formatter -->
+<clr-modal [(clrModalOpen)]="showModalFileFormatter">
+    <h3 class="modal-title">File selection</h3>
+    <div class="modal-body">
+        <p>Please select formatting options (for all available options, use the Transformation tab):</p>
+            Sort: <input type="text" id="formFields_7" placeholder="Ascending / Descending">
+            Decimals : <input type="text" id="formFields_7" placeholder="2 (ie 12.01)">
+            Align : <input type="text" id="formFields_7" placeholder="Left / Center / Right">
+        </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="showModalFileFormatter = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="clickCloseFieldFormatter()">Ok</button>
     </div>
 </clr-modal>
