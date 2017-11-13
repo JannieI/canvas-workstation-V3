@@ -1,4 +1,4 @@
-/* 
+/*
  * Visualise page, to view / present Dashboards previously created
  */
 
@@ -11,13 +11,19 @@ import { Router }                     from '@angular/router';
 import { GlobalFunctionService } 		  from './global-function.service';
 
 @Component({
-  selector: 'app-visualise',
-  templateUrl: './visualise.component.html',
-  styleUrls: ['./visualise.component.css']
+    selector: 'app-visualise',
+    templateUrl: './visualise.component.html',
+    styleUrls: ['./visualise.component.css']
 })
 export class VisualiseComponent implements OnInit {
 
+    showModalFileselector: boolean = false;
+
     ngOnInit() {
-        
+
+    }
+
+    clickOpenDashboard() {
+      this.showModalFileselector = !this.showModalFileselector;
     }
 }

@@ -1,5 +1,7 @@
 <div class="btn-group tabList">
-    <button class="btn">
+    <button class="btn"
+        (click)="clickOpenDashboard()"
+        >
         Open
         <clr-icon shape="folder-open" size="16"></clr-icon>
     </button>
@@ -30,4 +32,43 @@ Open a Dashboard from the Dashboard tab in the Open menu option.
     standalone Dashboards (in which case the data is incorporated into the Dashboard, 
     and visible to all).
 </i>
+
+
+<!-- File Selector -->
+<clr-modal [(clrModalOpen)]="showModalFileselector">
+    <h3 class="modal-title">File selection</h3>
+    <div class="modal-body">
+        <p>Please enter file name and location, or Browse:</p>
+        <input type="text" id="formFields_7" placeholder="Folder/FileName">
+        <input type="text" id="formFields_7" placeholder="Worksheet">
+        <input type="text" id="formFields_7" placeholder="Dataset Name">
+        <br><br>
+        <p>Select a Dashboard located on the Server:</p>
+        <clr-datagrid>
+            <clr-dg-column>Double click to open:
+                <button class="btn btn-sm" (click)="clickButtonAddDashboard()">
+                    Filter
+                    <clr-icon shape="caret down" size="16"></clr-icon>
+                </button>                        
+            </clr-dg-column>
+            
+            <clr-dg-row>
+                <clr-dg-cell>Sales Summary for Exco</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+                <clr-dg-cell>Headcount</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-row>
+                <clr-dg-cell>Financial Summary</clr-dg-cell>
+            </clr-dg-row>
+                    
+        </clr-datagrid>
+
+
+        </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="showModalFileselector = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="showModalFileselector = false">Ok</button>
+    </div>
+</clr-modal>
 
