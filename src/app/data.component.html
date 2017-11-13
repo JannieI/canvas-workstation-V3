@@ -40,7 +40,7 @@
     </div>
     <div class="col-xs-9">
         <div>
-            <h4 *ngIf="firstTimeUser">Click <i>Get Data</i>, and then click <i>Design</i> to show it.</h4>
+            <h4 *ngIf="firstTimeUser">Select your data with <i>Get Data</i>, and then click <i>Design</i> in the top menu to show it.</h4>
 
                 <div class="dropdown" #typeDropdown >
                     <button class="dropdown-toggle btn btn-secondary" 
@@ -56,7 +56,7 @@
                         (click)="clickOpenDatabase()">Database</button>
                         <button type="button" class="dropdown-item">Service</button>
                         <button type="button" class="dropdown-item">Web</button>
-                        <button type="button" class="dropdown-item">AnOther</button>
+                        <button type="button" class="dropdown-item">NoSQL database</button>
                     </div>
                 </div>
 
@@ -220,9 +220,12 @@
                 <button clrTabLink id="link1">Advanced</button>
                 <clr-tab-content id="content1" *clrIfActive>
                     <h4>Create a new dataset by combining existing datasets.</h4>
-                    <p>* Union (add data to the the end)</p>
-                    <p>* Minus (subtract data from the first that exists in the second)</p>
-                    <p>* Intersect (data that exists in both)</p>
+                    <p>Fields are: Set1, keyField, Set 2, keyField</p>
+                    <p>* Union (add data in 2nd to the end of 1st)</p>
+                    <p>* Join (add data in 2nd to the the right of 1st)</p>
+                    <p>* Minus (subtract data from 1st that exists in 2nd)</p>
+                    <p>* Intersect (only data that exists in both)</p>
+
                 </clr-tab-content>
             </clr-tab>
 
