@@ -5,10 +5,13 @@
         Open
         <clr-icon shape="folder-open" size="16"></clr-icon>
     </button>
-    <button class="btn">
+    <button class="btn"
+    (click)="clickArrow()"
+    >
         <clr-icon shape="arrow right" size="16"></clr-icon>
     </button>
-    <button class="btn">
+    <button class="btn"
+    (click)="clickArrow()">
         <clr-icon shape="arrow left" size="16"></clr-icon>
     </button>
     <button class="btn">
@@ -16,23 +19,58 @@
     </button>
 </div>
 <br><br>
-Present Dashboards previously created.  Exploration is limited to features already created
-and saved during the Design phase.
-Use the Arrows at the top of the page to navigate between linked Dashboards.  The List icon 
-provides a list of linked Dashboards.  In case there are no linked Dashboards (the Dashboard
-is independant), then the Arrows and List icon at the top will be disabled.
-<br><br>
+<div *ngIf="!showTypeDashboard">
+    Present Dashboards previously created.  Exploration is limited to features already created
+    and saved during the Design phase.
+    Use the Arrows at the top of the page to navigate between linked Dashboards.  The List icon 
+    provides a list of linked Dashboards.  In case there are no linked Dashboards (the Dashboard
+    is independant), then the Arrows and List icon at the top will be disabled.
+    <br><br>
 
-When a Widget has visible Arrows, it can be used to show different graphs in the same Widget.
-This can be used to drill down to more detail for the current graph.
-<br><br>
-Open a Dashboard from the Dashboard tab in the Open menu option.
-<br><br>
-<i>This Viewer is free of charge, and can be used to view Dashboards from the Server, or
-    standalone Dashboards (in which case the data is incorporated into the Dashboard, 
-    and visible to all).
-</i>
-
+    When a Widget has visible Arrows, it can be used to show different graphs in the same Widget.
+    This can be used to drill down to more detail for the current graph.
+    <br><br>
+    Open a Dashboard from the Dashboard tab in the Open menu option.
+    <br><br>
+    <i>This Viewer is free of charge, and can be used to view Dashboards from the Server, or
+        standalone Dashboards (in which case the data is incorporated into the Dashboard, 
+        and visible to all).
+    </i>
+</div>
+<div *ngIf="showDashboard">
+    <img class="typeIcon1"
+    *ngIf="showTypeDashboard"
+    [style.height.px]="200"
+    [style.width.px]="200"
+    src="../images/BarChart.png"
+    >
+    <img class="typeIcon2"
+    *ngIf="showTypeDashboard"
+    [style.height.px]="200"
+    [style.width.px]="200"
+    src="../images/LineChart.png"
+    >
+    <img class="typeIcon3"
+    *ngIf="showTypeDashboard"
+    [style.height.px]="200"
+    [style.width.px]="200"
+    src="../images/ScatterChart.png"
+    >
+</div>
+<div *ngIf="!showDashboard">
+    <img class="typeIcon1"
+    *ngIf="showTypeDashboard"
+    [style.height.px]="200"
+    [style.width.px]="200"
+    src="../images/PieChart.png"
+    >
+    <img class="typeIcon2"
+    *ngIf="showTypeDashboard"
+    [style.height.px]="200"
+    [style.width.px]="200"
+    src="../images/ColumnChart.png"
+    >
+</div>
 
 <!-- File Selector -->
 <clr-modal [(clrModalOpen)]="showModalFileselector">
@@ -63,7 +101,6 @@ Open a Dashboard from the Dashboard tab in the Open menu option.
             </clr-dg-row>
                     
         </clr-datagrid>
-
 
         </div>
     <div class="modal-footer">

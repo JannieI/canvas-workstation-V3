@@ -17,7 +17,9 @@ import { GlobalFunctionService } 		  from './global-function.service';
 })
 export class VisualiseComponent implements OnInit {
 
+    showTypeDashboard: boolean = false;  
     showModalFileselector: boolean = false;
+    showDashboard: boolean = false;
 
     ngOnInit() {
 
@@ -25,5 +27,10 @@ export class VisualiseComponent implements OnInit {
 
     clickOpenDashboard() {
       this.showModalFileselector = !this.showModalFileselector;
+      this.showTypeDashboard = true;
+    }
+
+    clickArrow() {
+        this.showDashboard = !this.showDashboard;
     }
 }
