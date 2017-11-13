@@ -60,7 +60,7 @@
     
 <div class="row">
 
-    <div class="col-lg-5">
+    <div class="col-lg-3">
         <nav class="sidenav" *ngIf="showNavDashboard">
             <section class="sidenav-content">
                 <button class="dropdown-toggle btn btn-link btn-sm" type="button">
@@ -286,33 +286,82 @@
     </div>
     <div class="col-lg-2">
         <nav class="sidenav" *ngIf="showNavExplore">
-                <section class="sidenav-content">
+            <section class="sidenav-content">
+                <div>
+                    <button class="btn btn-sm"
+                    (click)="showType=!showType"
+                    >Select Type
+                    <clr-icon shape="caret down"></clr-icon>
+                </button>
+                <img class="typeIcon"
+                *ngIf="showTypeIcon"
+                [style.height.px]="30"
+                [style.width.px]="30"
+                    [src]="graphTypeFile"
+                >
+                </div>
+                <div *ngIf="showType">
+            
+                    <img class="typeIcon"
+                    [style.height.px]="30"
+                    [style.width.px]="30"
+                    src="../images/BarChart.png"
+                    (click)="clickIcon('BarChart')"
+                    >
+                    <img
+                    [style.height.px]="30"
+                    [style.width.px]="30"
+                    src="../images/BubbleChart.png"
+                    (click)="clickIcon('BubbleChart')"
+                    >
+                    <img class="typeIcon"
+                    [style.height.px]="30"
+                    [style.width.px]="30"
+                    src="../images/ColumnChart.png"
+                    (click)="clickIcon('ColumnChart')"
+                    >
+                    <img
+                    [style.height.px]="30"
+                    [style.width.px]="30"
+                    src="../images/LineChart.png"
+                    (click)="clickIcon('LineChart')"
+                    >
+                    <img class="typeIcon"
+                    [style.height.px]="30"
+                    [style.width.px]="30"
+                    src="../images/PieChart.png"
+                    (click)="clickIcon('PieChart')"
+                    >
+                    <img
+                    [style.height.px]="30"
+                    [style.width.px]="30"
+                    src="../images/ScatterChart.png"
+                    (click)="clickIcon('ScatterChart')"
+                    >
+                </div>                
+                <div>        
+                    <button class="btn btn-sm">x (drag here)</button>
+                    <button class="btn btn-sm">...</button>
                     <div>
-                        <button class="btn btn-sm">Type</button>
+                            <button class="btn btn-sm">type</button>
+                            <button class="btn btn-sm">bin</button>
+                            <button class="btn btn-sm">aggregate</button>
+                            <button class="btn btn-sm">zero</button>
+                            <button class="btn btn-sm">scale</button>
+                            
                     </div>
-                    <div>        
-                        <button class="btn btn-sm">x (drag here)</button>
-                        <button class="btn btn-sm">...</button>
-                        <div>
-                                <button class="btn btn-sm">type</button>
-                                <button class="btn btn-sm">bin</button>
-                                <button class="btn btn-sm">aggregate</button>
-                                <button class="btn btn-sm">zero</button>
-                                <button class="btn btn-sm">scale</button>
-                                
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn btn-sm">y (drag here)</button>
-                        <button class="btn btn-sm">...</button>
-                    </div>
-                    <div>
-                        <button class="btn btn-sm">color (drag here)</button>
-                        <button class="btn btn-sm">...</button>
-                    </div>
-                        
-                </section>
-            </nav>
+                </div>
+                <div>
+                    <button class="btn btn-sm">y (drag here)</button>
+                    <button class="btn btn-sm">...</button>
+                </div>
+                <div>
+                    <button class="btn btn-sm">color (drag here)</button>
+                    <button class="btn btn-sm">...</button>
+                </div>
+                    
+            </section>
+        </nav>
                         
     </div>
 </div>  

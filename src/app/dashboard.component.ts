@@ -38,6 +38,8 @@ export class DashboardComponent {
     @ViewChild('vis', {read: ElementRef}) vis: ElementRef;  //Vega graph
     @Input() menuOptionSelected: string;
 
+    graphType: string = 'BarChart';
+    graphTypeFile: string = '../images/BarChart.png';
     isFirstTime: boolean = true;
     open: Boolean = false;
     showSubMenuDashboard: boolean = true;
@@ -49,6 +51,8 @@ export class DashboardComponent {
     showNavExplore: Boolean = false;
     showNavPresentation: Boolean = false;
     showNavCollaborate: Boolean = false;
+    showType: boolean = false;
+    showTypeIcon: boolean = false;
     widgetBorder: string = '1px black solid';
 
     vlSpecs: dl.spec.TopLevelExtendedSpec[] = [
@@ -321,6 +325,13 @@ export class DashboardComponent {
         console.log('clickWidget()', this.showContainerHeader,  this.showNavDataset, ev);
         this.showContainerHeader = !this.showContainerHeader;
         this.onClickSubmenu('explore');
+    }
+
+    clickIcon(selectedGraphType: string) {
+        this.showTypeIcon = true;
+        this.showType = false;
+        this.graphType = selectedGraphType;  
+        this.graphTypeFile = '../images/' + selectedGraphType + '.png';
     }
 }
 

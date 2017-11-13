@@ -58,3 +58,7 @@ h4 {
     left: 50%;
     top: 50%;
 }
+
+.typeIcon {
+    display: inline;
+}
