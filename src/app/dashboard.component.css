@@ -60,5 +60,6 @@ h4 {
 }
 
 .typeIcon {
+    border: 1px solid darkgray;
     display: inline;
 }

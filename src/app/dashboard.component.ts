@@ -42,6 +42,7 @@ export class DashboardComponent {
     graphTypeFile: string = '../images/BarChart.png';
     isFirstTime: boolean = true;
     open: Boolean = false;
+    showAdvancedField: boolean = false;
     showSubMenuDashboard: boolean = true;
     showContainerHeader: boolean = false;
     showNavDashboard: Boolean = false;
@@ -52,7 +53,7 @@ export class DashboardComponent {
     showNavPresentation: Boolean = false;
     showNavCollaborate: Boolean = false;
     showType: boolean = false;
-    showTypeIcon: boolean = false;
+    showTypeIcon: boolean = true;
     widgetBorder: string = '1px black solid';
 
     vlSpecs: dl.spec.TopLevelExtendedSpec[] = [
@@ -332,6 +333,10 @@ export class DashboardComponent {
         this.showType = false;
         this.graphType = selectedGraphType;  
         this.graphTypeFile = '../images/' + selectedGraphType + '.png';
+    }
+
+    clickAdvancedField() {
+        this.showAdvancedField = !this.showAdvancedField;
     }
 }
 

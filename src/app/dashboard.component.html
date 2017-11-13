@@ -339,27 +339,54 @@
                     (click)="clickIcon('ScatterChart')"
                     >
                 </div>                
-                <div>        
-                    <button class="btn btn-sm">x (drag here)</button>
-                    <button class="btn btn-sm">...</button>
-                    <div>
-                            <button class="btn btn-sm">type</button>
-                            <button class="btn btn-sm">bin</button>
-                            <button class="btn btn-sm">aggregate</button>
-                            <button class="btn btn-sm">zero</button>
-                            <button class="btn btn-sm">scale</button>
-                            
-                    </div>
-                </div>
-                <div>
-                    <button class="btn btn-sm">y (drag here)</button>
-                    <button class="btn btn-sm">...</button>
-                </div>
-                <div>
-                    <button class="btn btn-sm">color (drag here)</button>
-                    <button class="btn btn-sm">...</button>
-                </div>
+
+                <clr-datagrid>
+                    <clr-dg-column>X axis (drag here)
+                        Column
+                    </clr-dg-column>
                     
+                    <clr-dg-row>
+                        <clr-dg-cell>
+                            <clr-icon shape="plus" size="16"
+                            (click)="clickAdvancedField()"></clr-icon>
+                            TradeDate
+                        </clr-dg-cell>
+                    </clr-dg-row>
+                </clr-datagrid>
+
+                <clr-datagrid>
+                    <clr-dg-column>Y axis (drag here)
+                        Row
+                    </clr-dg-column>
+                    
+                    <clr-dg-row>
+                        <clr-dg-cell>
+                            <clr-icon shape="plus" size="16"></clr-icon>
+                            ValueTraded
+                        </clr-dg-cell>
+                    </clr-dg-row>
+                </clr-datagrid>
+                <div *ngIf="showAdvancedField">
+                        <button class="btn btn-sm">type</button>
+                        <button class="btn btn-sm">bin</button>
+                        <button class="btn btn-sm">aggregate</button>
+                        <button class="btn btn-sm">zero</button>
+                        <button class="btn btn-sm">scale</button>
+                        
+                </div>
+                <clr-datagrid>
+                    <clr-dg-column>Color (drag here)
+                        Row
+                    </clr-dg-column>
+                    
+                    <clr-dg-row>
+                        <clr-dg-cell>
+                            <clr-icon shape="plus" size="16"></clr-icon>
+                            Country
+                        </clr-dg-cell>
+                    </clr-dg-row>
+                </clr-datagrid>
+                        
             </section>
         </nav>
                         
