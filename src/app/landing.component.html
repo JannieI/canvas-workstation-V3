@@ -2,16 +2,18 @@
 	<div class="col-xs-6">
 		<div>
 			<h2>Start</h2>
-			<a href="#" [routerLink]="['/data']" routerLinkActive="active">Start exploring your data</a>
+			<div>
+				<a href="#">Getting starting with Canvas</a>
+			</div>
+			<div>
+				<a href="#" [routerLink]="['/data']" routerLinkActive="active">Start exploring your data</a>
+			</div>
 		</div>
 
 		<div>
 			<h2>Help</h2>
 			<div>
 				<a href="#">Demo</a>
-			</div>
-			<div>
-				<a href="#">Getting starting with Canvas</a>
 			</div>
 			<div>
 				<a href="#">Getting data</a>
@@ -44,27 +46,42 @@
 	</div>
 
 	<div class="col-xs-6">
+	
+		<h2>Sample Dashboards</h2>
+		<div>
 
-		<div *ngIf="!firstTimeUser">
-			<h2>Recent Dashboards</h2>
-
-			<div *ngFor="let folder of rootDirectory">
-				<div *ngFor="let file of folder.files">
-					<a
-						(click)="loadExistingSpecification()"
-						class="nav-link" href="#"
-						[routerLink]="['/dashboard']" routerLinkActive="active">
-						{{file.name}}
-						<clr-icon
-                        	(click)="promptDeleteRecent(file.name)"
-							shape="trash">
-						</clr-icon>
-					</a>
-				</div>
+			<div *ngFor="let dash of sampleDashboards">
+				<a
+					(click)="loadExistingSpecification()"
+					class="nav-link" href="#"
+					[routerLink]="['/explore']" routerLinkActive="active">
+					{{dash.name}}
+					<clr-icon
+						(click)="promptDeleteRecent(file.name)"
+						shape="trash">
+					</clr-icon>
+				</a>
 			</div>
 			<br><br>
 		</div>
 
+		<h2>Recent Dashboards</h2>
+		<div *ngIf="!firstTimeUser">
+
+			<div *ngFor="let dash of recentDashboards">
+				<a
+					(click)="loadExistingSpecification()"
+					class="nav-link" href="#"
+					[routerLink]="['/explore']" routerLinkActive="active">
+					{{dash.name}}
+					<clr-icon
+						(click)="promptDeleteRecent(file.name)"
+						shape="trash">
+					</clr-icon>
+				</a>
+			</div>
+		</div>
+	
 	</div>
 </div>
 
