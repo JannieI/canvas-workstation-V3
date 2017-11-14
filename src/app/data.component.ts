@@ -51,6 +51,11 @@ interface IfieldsMetadata{
     explainedBy: string
 }
 
+
+interface Idata{
+    name: string;
+}
+
 const datasource: Idatasource[] = [
     {
         id: 1,
@@ -304,6 +309,59 @@ const fieldsMetadata: IfieldsMetadata[] = [
     }
 ]
 
+const data: Idata[] = [
+    {
+        name: 'Budget Forecast'
+    },
+    {
+        name: 'Costing preparation'
+    },
+    {
+        name: 'Historic Indices*'
+    },
+    {
+        name: 'World Indices'
+    },
+    {
+        name: 'SP Companies*'
+    },
+    {
+        name: 'Stock prices TEMP'
+    },
+    {
+        name: 'Trades per Year'
+    },
+    {
+        name: 'Bond volume trades'
+    },
+    {
+        name: 'Trades by Trade Type'
+    },
+    {
+        name: 'YTD Expenditure by Cost Center'
+    },
+    {
+        name: 'Headcount'
+    },
+    {
+        name: 'Customer List'
+    },
+    {
+        name: 'CPI figures'
+    },
+    {
+        name: 'GDP by Country'
+    },
+    {
+        name: 'Bicycle trips in Rome'
+    },
+    {
+        name: 'Vega Airport Dataset'
+    },
+    {
+        name: 'Test1'
+    }
+]
 // The most straightforward solution would be for you to get a reference to the NavLevelDirective instance for the sidenav with @ViewChild, and all its close() method.
 
 // For instance, add a reference variable in your template:
@@ -349,6 +407,7 @@ export class DataComponent implements OnInit {
 
     datasource: Idatasource[] = datasource;
     dataset: Idataset[] = dataset;
+    data: Idata[] = data;
     dataTabDatasource: boolean = false;
     errorMessage: string = "";
     fields: Ifield[] = fields;

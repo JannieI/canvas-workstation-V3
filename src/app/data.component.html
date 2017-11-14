@@ -1,3 +1,20 @@
+<div class="dropdown buttonGetData" #typeDropdown >
+    <button class="dropdown-toggle btn btn-secondary"
+    type="button"
+    (click)="clickDropdownType()">
+        Get Data
+        <clr-icon shape="caret down"></clr-icon>
+    </button>
+    <div class="dropdown-menu">
+        <button type="button" class="dropdown-item active"
+            (click)="clickOpenFile()">File</button>
+        <button type="button" class="dropdown-item"
+        (click)="clickOpenDatabase()">Database</button>
+        <button type="button" class="dropdown-item">Service</button>
+        <button type="button" class="dropdown-item">Web</button>
+        <button type="button" class="dropdown-item">NoSQL database</button>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-xs-3">
@@ -14,23 +31,9 @@
                         </a>
                     </li> -->
                     <div *ngIf="showDatasourceForm">
-                        <li><a class="nav-link active">Budget Forecast</a></li>
-                        <li><a class="nav-link">Costing preparation</a></li>
-                        <li><a class="nav-link">Historic Indices*</a></li>
-                        <li><a class="nav-link">World Indices</a></li>
-                        <li><a class="nav-link">SP Companies*</a></li>
-                        <li><a class="nav-link">Stock prices TEMP</a></li>
-                        <li><a class="nav-link">Trades per Year</a></li>
-                        <li><a class="nav-link">Bond volume trades</a></li>
-                        <li><a class="nav-link">Trades by Trade Type</a></li>
-                        <li><a class="nav-link">YTD Expenditure by Cost Center</a></li>
-                        <li><a class="nav-link">Headcount</a></li>
-                        <li><a class="nav-link">Customer List</a></li>
-                        <li><a class="nav-link">CPI figures</a></li>
-                        <li><a class="nav-link">GDP by Country</a></li>
-                        <li><a class="nav-link">Bicycle trips in Rome</a></li>
-                        <li><a class="nav-link">Vega Airport Dataset</a></li>
-                        <li><a class="nav-link">Test1</a></li>
+                        <div *ngFor="let dat of data">
+                            <li><a class="nav-link active">{{ dat.name }}</a></li>
+                        </div>
                     </div>
                 </ul>
 
@@ -41,27 +44,11 @@
     <div class="col-xs-9">
         <div>
             <h4 *ngIf="firstTimeUser" class="helpMessage">
-                Select your data with <i>Get Data</i>, and then click <i>Design</i> in the top menu 
+                Select your data with <i class="textToClick">Get Data</i>, 
+                and then click <i class="textToClick">Explore</i> in the top menu 
                 to show it.
             </h4>
             <br>
-            <div class="dropdown" #typeDropdown >
-                <button class="dropdown-toggle btn btn-secondary"
-                type="button"
-                (click)="clickDropdownType()">
-                    Get Data
-                    <clr-icon shape="caret down"></clr-icon>
-                </button>
-                <div class="dropdown-menu">
-                    <button type="button" class="dropdown-item active"
-                        (click)="clickOpenFile()">File</button>
-                    <button type="button" class="dropdown-item"
-                    (click)="clickOpenDatabase()">Database</button>
-                    <button type="button" class="dropdown-item">Service</button>
-                    <button type="button" class="dropdown-item">Web</button>
-                    <button type="button" class="dropdown-item">NoSQL database</button>
-                </div>
-            </div>
             <div *ngIf="selectedFile" class="fileLocation">
                 <br>
                 Description: <input type="text" id="formFields_7" placeholder="This is ...">

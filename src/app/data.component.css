@@ -14,3 +14,13 @@
 .helpMessage {
     color: gray;
 }
+
+.buttonGetData {
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+
+.textToClick {
+    color: rgb(71, 70, 70);
+}
