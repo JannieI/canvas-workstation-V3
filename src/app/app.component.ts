@@ -11,7 +11,7 @@ import { Router }                     from '@angular/router';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Functions
-import { GlobalFunctionService } 		  from './global-function.service';
+import { GlobalFunctionService } 	  from './global-function.service';
 
 // Own Components
 
@@ -22,13 +22,6 @@ import { GlobalFunctionService } 		  from './global-function.service';
 })
 export class AppComponent implements OnInit {
 
-    menuOptionSelected: string;
-    showNavData: boolean = false;
-    showNavDashboard: boolean = false;
-    showNavFormat: boolean = false;
-    showSubMenuData: boolean = false;
-    showSubMenuDashboard: boolean = false;
-
     constructor(
         private router: Router,
         private globalVariableService: GlobalVariableService,
@@ -38,39 +31,6 @@ export class AppComponent implements OnInit {
     }
     
     ngOnInit() {
-        this.globalVariableService.showNavData.subscribe( value => this.showNavData = value)
-        this.globalVariableService.showNavDashboard.subscribe( value => this.showNavDashboard = value)
-        this.globalVariableService.showNavFormat.subscribe( value => this.showNavFormat = value)
-        this.globalVariableService.showSubMenuData.subscribe( value => this.showSubMenuData = value)
-        this.globalVariableService.showSubMenuDashboard.subscribe( value => this.showSubMenuDashboard = value)
     }   
-
-    clickButtonMenu(clickedOption: string) {
-        this.globalFunctionService.hideSecondaryMenus();
-
-console.log('clickedOption',clickedOption)
-        if (clickedOption == 'data') {
-            this.globalVariableService.showSubMenuData.next(true);
-            this.globalVariableService.showNavData.next(true);
-        } else if (clickedOption == 'dashboard') {
-            this.globalVariableService.showSubMenuDashboard.next(false);
-            this.globalVariableService.showNavDashboard.next(false);
-        }
-    }
-
-    clickButtonSubMenu(clickedOption: string) {
-        this.showNavData = false;
-    }
-    
-    dragEnd(event) {
-        // event.preventDefault();
-        console.log('dragEnd',event)
-        // document.getElementById("demo").innerHTML = "Finished dragging the p element.";
-    }
-
-    onClickSubmenu(menuOption: string) {
-        this.menuOptionSelected = menuOption;
-        console.log('menuOption', menuOption)
-    }
 
 }

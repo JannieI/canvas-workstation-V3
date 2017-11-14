@@ -31,10 +31,10 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 // import * as sqlite3 from 'sqlite3';
 
 @Component({
-    styleUrls: ['./dashboard.component.css'],
-    templateUrl: './dashboard.component.html'
+    styleUrls: ['./explore.component.css'],
+    templateUrl: './explore.component.html'
 })
-export class DashboardComponent {
+export class ExploreComponent {
     @ViewChild('vis', {read: ElementRef}) vis: ElementRef;  //Vega graph
     @Input() menuOptionSelected: string;
 
@@ -108,6 +108,7 @@ export class DashboardComponent {
     showGraphs(event) {
         // Show Graph Examples
         
+        this.showNavExplore = true;
         console.log('showGraph', event, this.menuOptionSelected)
         this.isFirstTime = false;
         let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
@@ -213,34 +214,34 @@ export class DashboardComponent {
 
 
 
-        // Load datalib.
+            // Load datalib.
 
-        // Load and parse a CSV file. Datalib does type inference for you.
-        // The result is an array of JavaScript objects with named values.
-        // Parsed dates are stored as UNIX timestamp values.
-        var data = dl.csv('http://vega.github.io/datalib/data/stocks.csv');
+            // Load and parse a CSV file. Datalib does type inference for you.
+            // The result is an array of JavaScript objects with named values.
+            // Parsed dates are stored as UNIX timestamp values.
+            var data = dl.csv('http://vega.github.io/datalib/data/stocks.csv');
 
-        // Show summary statistics for each column of the data table.
-        console.log(dl.format.summary(data));
+            // Show summary statistics for each column of the data table.
+            console.log(dl.format.summary(data));
 
-        // Compute mean and standard deviation by ticker symbol.
-        var rollup = dl.groupby('symbol')
-        .summarize({'price': ['mean', 'stdev']})
-        .execute(data);
-        console.log(dl.format.table(rollup));
+            // Compute mean and standard deviation by ticker symbol.
+            var rollup = dl.groupby('symbol')
+            .summarize({'price': ['mean', 'stdev']})
+            .execute(data);
+            console.log(dl.format.table(rollup));
 
-        // Compute correlation measures between price and date.
-        console.log(
-        dl.cor(data, 'price', 'date'),      // Pearson product-moment correlation
-        dl.cor.rank(data, 'price', 'date'), // Spearman rank correlation
-        dl.cor.dist(data, 'price', 'date')  // Distance correlation
-        );
+            // Compute correlation measures between price and date.
+            console.log(
+            dl.cor(data, 'price', 'date'),      // Pearson product-moment correlation
+            dl.cor.rank(data, 'price', 'date'), // Spearman rank correlation
+            dl.cor.dist(data, 'price', 'date')  // Distance correlation
+            );
 
-        // Compute mutual information distance between years and binned price.
-        var bin_price = dl.$bin(data, 'price'); // returns binned price values
-        var year_date = dl.$year('date');       // returns year from date field
-        var counts = dl.groupby(year_date, bin_price).count().execute(data);
-        console.log(dl.mutual.dist(counts, 'bin_price', 'year_date', 'count'));
+            // Compute mutual information distance between years and binned price.
+            var bin_price = dl.$bin(data, 'price'); // returns binned price values
+            var year_date = dl.$year('date');       // returns year from date field
+            var counts = dl.groupby(year_date, bin_price).count().execute(data);
+            console.log(dl.mutual.dist(counts, 'bin_price', 'year_date', 'count'));
     }
 
     onClickSubmenu(menuOption: string) {

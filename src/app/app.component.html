@@ -15,13 +15,16 @@
                 <span class="nav-text">Data</span>
             </a>
 
-            <a class="nav-link" href="#" [routerLink]="['/dashboard']" routerLinkActive="active"
-            (click)="clickButtonMenu('dashboard')">
-            <span class="nav-text">Design</span>
+            <a class="nav-link" href="#" [routerLink]="['/explore']" routerLinkActive="active">
+                <span class="nav-text">Explore</span>
             </a>    
 
-            <a class="nav-link" href="#" [routerLink]="['/visualise']" routerLinkActive="active">
+            <a class="nav-link" href="#" [routerLink]="['/present']" routerLinkActive="active">
                 <span class="nav-text">Present</span>
+            </a>
+
+            <a class="nav-link" href="#" [routerLink]="['/collaborate']" routerLinkActive="active">
+                <span class="nav-text">Collaborate</span>
             </a>
 
             <a class="nav-link" href="#" [routerLink]="['/help']" routerLinkActive="active">
@@ -49,47 +52,6 @@
             
         </div>
     </clr-header>
-
-    <!-- Sub Navs -->
-    <nav class="subnav" *ngIf="showSubMenuDashboard">
-        <ul class="nav">
-            <li class="nav-item">
-                <button type="button" class="btn btn-link" (click)="onClickSubmenu('dashboard')">
-                    Dashboard
-                </button>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="btn btn-link" (click)="onClickSubmenu('tab')">
-                    Tab
-                </button>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="btn btn-link" (click)="onClickSubmenu('format')">
-                    Format
-                </button>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="btn btn-link" (click)="onClickSubmenu('dataset')">
-                    Dataset
-                </button>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="btn btn-link" (click)="onClickSubmenu('explore')">
-                    Explore
-                </button>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="btn btn-link" (click)="onClickSubmenu('presentation')">
-                    Presentation
-                </button>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="btn btn-link" (click)="onClickSubmenu('collaborate')">
-                    Collaborate
-                </button>
-            </li>
-        </ul>
-    </nav>
 
     <div class="content-container">
         

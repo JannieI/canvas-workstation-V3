@@ -8,14 +8,13 @@ import { OnInit }                     from '@angular/core';
 import { Router }                     from '@angular/router';
 
 // Our Functions
-import { GlobalFunctionService } 		  from './global-function.service';
+import { GlobalFunctionService } 	  from './global-function.service';
 
 @Component({
-    selector: 'app-visualise',
-    templateUrl: './visualise.component.html',
-    styleUrls: ['./visualise.component.css']
+    templateUrl: './collaborate.component.html',
+    styleUrls: ['./collaborate.component.css']
 })
-export class VisualiseComponent implements OnInit {
+export class CollaborateComponent implements OnInit {
 
     showTypeDashboard: boolean = false;  
     showModalFileselector: boolean = false;

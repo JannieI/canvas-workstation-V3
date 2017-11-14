@@ -17,13 +17,14 @@ import { ClarityModule }              from 'clarity-angular';
 
 // Own Components
 import { AppComponent }               from './app.component';
-import { DataComponent }              from "./data.component";
-import { DashboardComponent }             from "./dashboard.component";
-import { HelpComponent }              from "./help.component";
-import { HomeComponent }              from "./home.component";
-import { LandingComponent }           from "./landing.component";
+import { CollaborateComponent }       from './collaborate.component';
+import { DataComponent }              from './data.component';
+import { ExploreComponent }           from './explore.component';
 import { GetDataComponent }           from './getdata.component';
-import { VisualiseComponent }         from './visualise.component';
+import { HelpComponent }              from './help.component';
+import { HomeComponent }              from './home.component';
+import { LandingComponent }           from './landing.component';
+import { PresentComponent }           from './present.component';
 
 // Our Services
 import { AuthGuard }                  from './authguard.service';
@@ -33,13 +34,14 @@ import { GlobalFunctionService }      from './global-function.service';
 @NgModule({
     declarations: [
         AppComponent,
+        CollaborateComponent,
         DataComponent,
-        DashboardComponent,
+        ExploreComponent,
+        GetDataComponent,
         HomeComponent,
         HelpComponent,
         LandingComponent,
-        GetDataComponent,
-        VisualiseComponent,
+        PresentComponent,
     ],
     imports: [
         BrowserAnimationsModule,

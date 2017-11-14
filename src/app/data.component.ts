@@ -337,7 +337,6 @@ const fieldsMetadata: IfieldsMetadata[] = [
 
 
 @Component({
-  selector: 'app-help',
   templateUrl: './data.component.html',
   styleUrls: ['./data.component.css']
 })
