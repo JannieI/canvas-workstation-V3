@@ -404,7 +404,7 @@ export class DataComponent implements OnInit {
     @ViewChild('typeTransformationDropdown') typeTransformationDropdown: ElementRef;
     @ViewChild('transformations') transformations: ElementRef;
 
-
+    buttonLabel: string = "Show More";
     datasource: Idatasource[] = datasource;
     dataset: Idataset[] = dataset;
     data: Idata[] = data;
@@ -417,6 +417,7 @@ export class DataComponent implements OnInit {
     selectedDatasource: any;
     selectedFile: boolean = false;
     selectedDatabase: boolean = false;
+    showDetail: boolean = false;
     showDatasourceForm: boolean = false;
     showModalFileselector: boolean = false;
     showTransformation: boolean = false;
@@ -512,4 +513,14 @@ export class DataComponent implements OnInit {
         this.showModalFileFormatter = false;
     }
 
+    clickShowMore() {
+        if (!this.showDetail) {
+            this.buttonLabel = "Show Less";
+            this.showDetail = true;
+        } else {
+            this.buttonLabel = "Show More ...";
+            this.showDetail = false;
+        }
+    console.log(this.buttonLabel, this.showDetail )
+    }
 }

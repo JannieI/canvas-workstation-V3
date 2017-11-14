@@ -20,23 +20,29 @@
     <div class="col-xs-3">
 
         <nav class="sidenav">
-
-            <section class="sidenav-content nav-group">
-
-                <ul class="nav-list">
-                    <!-- <li>
-                        <a class="nav-link">
-                            Add Data
-                            <clr-icon shape="plus" size="16"></clr-icon>
-                        </a>
-                    </li> -->
-                    <div *ngIf="showDatasourceForm">
-                        <div *ngFor="let dat of data">
-                            <li><a class="nav-link active">{{ dat.name }}</a></li>
+            <section class="sidenav-content">
+                <section class="nav-group collapsible">
+                    <input id="tabexample1" type="checkbox">
+                    <label for="tabexample1">Data in this Dashboard</label>
+                    <ul class="nav-list">
+                        <div *ngIf="showDatasourceForm">
+                            <div *ngFor="let dat of data">
+                                <li><a class="nav-link">{{ dat.name }}</a></li>
+                            </div>
                         </div>
-                    </div>
-                </ul>
-
+                    </ul>
+                </section>
+                <section class="nav-group collapsible">
+                    <input id="tabexample2" type="checkbox">
+                    <label for="tabexample2">Data in this Dashboard</label>
+                    <ul class="nav-list">
+                        <div *ngIf="showDatasourceForm">
+                            <div *ngFor="let dat of data">
+                                <li><a class="nav-link">{{ dat.name }}</a></li>
+                            </div>
+                        </div>
+                    </ul>
+                </section>
             </section>
         </nav>
 
@@ -49,27 +55,32 @@
                 to show it.
             </h4>
             <br>
-            <div *ngIf="selectedFile" class="fileLocation">
-                <br>
-                Description: <input type="text" id="formFields_7" placeholder="This is ...">
-                <br><p>From : Excel: C:\My Documents\Budget.xls</p>
-                <br>
-                <input type="text" id="formFields_7" placeholder="Dataset Name">
+            <div *ngIf="selectedFile  ||  selectedDatabase">
+                Your current datasource is: <i>JSE Trades</i>
+                <button class="btn btn-link" (click)="clickShowMore()">{{buttonLabel}}</button>
+                <div *ngIf="showDetail">
+                    <div *ngIf="selectedFile" class="fileLocation">
+                        <br>
+                        Description: <input type="text" id="formFields_7" placeholder="This is ...">
+                        <br><p>From : Excel: C:\My Documents\Budget.xls</p>
+                        <br>
+                        <input type="text" id="formFields_7" placeholder="Dataset Name">
+                    </div>
+                    
+                    <div *ngIf="selectedDatabase">
+                        Description: <input type="text" id="formFields_7" placeholder="This is ...">
+                        <br>Locaton:
+                        <input type="text" id="formFields_7" placeholder="Server">
+                        <input type="text" id="formFields_7" placeholder="Table">
+                        <input type="text" id="formFields_7" placeholder="Username">
+                        <input type="text" id="formFields_7" placeholder="Password">
+                        <input type="text" id="formFields_7" placeholder="QueryName/SQLstatement">
+                        <input type="text" id="formFields_7" placeholder="Limit">
+                        <br>
+                        <input type="text" id="formFields_7" placeholder="Dataset Name">
+                    </div>
+                </div>
             </div>
-            <br>
-            <div *ngIf="selectedDatabase">
-                Description: <input type="text" id="formFields_7" placeholder="This is ...">
-                <br>Locaton:
-                <input type="text" id="formFields_7" placeholder="Server">
-                <input type="text" id="formFields_7" placeholder="Table">
-                <input type="text" id="formFields_7" placeholder="Username">
-                <input type="text" id="formFields_7" placeholder="Password">
-                <input type="text" id="formFields_7" placeholder="QueryName/SQLstatement">
-                <input type="text" id="formFields_7" placeholder="Limit">
-                <br>
-                <input type="text" id="formFields_7" placeholder="Dataset Name">
-            </div>
-
         <br>
 
         <clr-tabs *ngIf="showDatasourceForm">
