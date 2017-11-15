@@ -291,34 +291,37 @@ const fieldsMetadata: IfieldsMetadata[] = [
         type: 'String',
         description: 'Name of share (stock) that traded, ie Anglo American plc',
         keyField: true,
-        explainedBy: ''
+        explainedBy: 'Bar of new Listings per Month'
     },
     {
         name: 'Volume',
         type: 'Number',
         description: 'Number of instruments traded.  Single counted, excluding BR, YT trade types.',
         keyField: false,
-        explainedBy: 'Broker, TradeType'
+        explainedBy: 'Pie of Trades by Broker'
     },
     {
         name: 'Value',
         type: 'Number',
         description: 'Value in Rand of the instruments traded, based on Volume and Price.',
         keyField: false,
-        explainedBy: 'Query: TradeAttribution'
+        explainedBy: 'Custom Query: TradeAttribution'
     }
 ]
 
-const data: Idata[] = [
+const dataCurrent: Idata[] = [
     {
-        name: 'Budget Forecast'
+        name: 'Trades for 2016'
     },
     {
         name: 'Costing preparation'
     },
     {
-        name: 'Historic Indices*'
-    },
+        name: 'Budget Forecas'
+    }
+]
+
+const dataServer: Idata[] = [
     {
         name: 'World Indices'
     },
@@ -345,13 +348,19 @@ const data: Idata[] = [
     },
     {
         name: 'Customer List'
-    },
+    }
+]
+
+const dataRecent: Idata[] = [
     {
         name: 'CPI figures'
     },
     {
         name: 'GDP by Country'
-    },
+    }
+]
+
+const dataSample: Idata[] = [
     {
         name: 'Bicycle trips in Rome'
     },
@@ -405,9 +414,13 @@ export class DataComponent implements OnInit {
     @ViewChild('transformations') transformations: ElementRef;
 
     buttonLabel: string = "Show More";
+    canUse: boolean = true;
     datasource: Idatasource[] = datasource;
     dataset: Idataset[] = dataset;
-    data: Idata[] = data;
+    dataCurrent: Idata[] = dataCurrent;
+    dataServer: Idata[] = dataServer;
+    dataRecent: Idata[] = dataRecent;
+    dataSample: Idata[] = dataSample;
     dataTabDatasource: boolean = false;
     errorMessage: string = "";
     fields: Ifield[] = fields;
@@ -415,8 +428,9 @@ export class DataComponent implements OnInit {
     firstTimeUser: boolean = true;
     isError: boolean = false;
     selectedDatasource: any;
-    selectedFile: boolean = false;
+    selectedData: string = 'Trades for 2016';
     selectedDatabase: boolean = false;
+    selectedFile: boolean = false;
     showDetail: boolean = false;
     showDatasourceForm: boolean = false;
     showModalFileselector: boolean = false;
@@ -523,4 +537,19 @@ export class DataComponent implements OnInit {
         }
     console.log(this.buttonLabel, this.showDetail )
     }
+
+    clickNavData(selData: string) {
+        this.selectedData = selData;
+        this.canUse = true;
+    }
+
+    clickNavAddData(selData: string) {
+        this.selectedData = selData;
+        let newData: Idata = {
+            name: selData
+        };
+        let len: number = this.dataCurrent.push(newData);
+        this.canUse = false;
+    }
+
 }

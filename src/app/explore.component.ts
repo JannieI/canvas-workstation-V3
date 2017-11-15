@@ -61,18 +61,18 @@ export class ExploreComponent {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
             "data": {
               "values": [
-                {"a": "C", "b": 2}, {"a": "C", "b": 7}, {"a": "C", "b": 4},
-                {"a": "D", "b": 1}, {"a": "D", "b": 2}, {"a": "D", "b": 6},
-                {"a": "E", "b": 8}, {"a": "E", "b": 4}, {"a": "E", "b": 7}
+                {"Month": "C", "Profit": 2}, {"Month": "C", "Profit": 7}, {"Month": "C", "Profit": 4},
+                {"Month": "D", "Profit": 1}, {"Month": "D", "Profit": 2}, {"Month": "D", "Profit": 6},
+                {"Month": "E", "Profit": 8}, {"Month": "E", "Profit": 4}, {"Month": "E", "Profit": 7}
               ]
             },
             "mark": "bar",
             "encoding": {
-              "y": {"field": "a", "type": "nominal"},
+              "y": {"field": "Month", "type": "nominal"},
               "x": {
-                "aggregate": "average", "field": "b", "type": "quantitative",
+                "aggregate": "average", "field": "Profit", "type": "quantitative",
                 "axis": {
-                  "title": "Average of b"
+                  "title": "Average of Profit"
                 }
               }
             }
@@ -82,15 +82,22 @@ export class ExploreComponent {
             "description": "A simple bar chart with embedded data.",
             "data": {
               "values": [
-                {"a": "A","b": 28}, {"a": "B","b": 55}, {"a": "C","b": 43},
-                {"a": "D","b": 91}, {"a": "E","b": 81}, {"a": "F","b": 53},
-                {"a": "G","b": 19}, {"a": "H","b": 87}, {"a": "I","b": 52}
+                {"Month": "01","Trades": 28}, {"Month": "02","Trades": 55}, 
+                {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
+                {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
+                {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
+                {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
+                {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
               ]
             },
             "mark": "bar",
             "encoding": {
-              "x": {"field": "a", "type": "ordinal"},
-              "y": {"field": "b", "type": "quantitative"}
+              "x": {"field": "Month", "type": "ordinal"},
+              "y": {"field": "Trades", "type": "quantitative",
+                "axis": {
+                    "title": "Average Trading"
+                }
+              }
             }
         }        
     ];
