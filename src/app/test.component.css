@@ -1,8 +1,17 @@
 .leftMenu {
+    border: none;
+    border-radius: 2px;
     position: absolute;
     left: 0;
-    top: 3em;
+    margin: 5px;
+    padding: 4px;
+    top: 4.5em;
+    width: 40px;
     z-index: 2;
+}
+
+.leftButton {
+    border: 1px solid gray;
 }
 
 .tabList {
@@ -13,7 +22,12 @@
 .graphy {
     display: inline;
     left: 200px;
+    position: absolute;
     top: 80px;
+}
+
+.graphy:hover {
+    border: 1px dotted gray;
 }
 
 .graphy1 {

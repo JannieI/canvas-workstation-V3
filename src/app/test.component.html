@@ -1,23 +1,50 @@
 
 <div class="leftMenu">
-    <button type="button" class="btn btn-link" (click)="showGraphs()">
-        Dashboard
-    </button>
-    <button type="button" class="btn btn-link" (click)="onClickSubmenu('tab')">
-        Tab
-    </button>
-    <button type="button" class="btn btn-link" (click)="onClickSubmenu('format')">
-        Widget
-    </button>
-    <button type="button" class="btn btn-link" (click)="onClickSubmenu('dataset')">
-        Dataset
-    </button>
-    <button type="button" class="btn btn-link" (click)="onClickSubmenu('explore')">
-        Explore
-    </button>
-    <button type="button" class="btn btn-link" (click)="onClickSubmenu('presentation')">
-        Presentation
-    </button>
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-xs tooltip-right">
+        <img class="leftButton"
+            [style.height.px]="30"
+            [style.width.px]="30"
+            src="../images/FileOpen.png"
+            (click)="showGraphs()"
+            >
+        <span class="tooltip-content">Dashboard</span>
+    </span>
+
+    <img class="leftButton"
+        [style.height.px]="30"
+        [style.width.px]="30"
+        src="../images/Tabs.png"
+        (click)="showGraphs()"
+        >
+
+        <img class="leftButton"
+        [style.height.px]="30"
+        [style.width.px]="30"
+        src="../images/Widget.png"
+        (click)="showGraphs()"
+        >
+
+        <img class="leftButton"
+        [style.height.px]="30"
+        [style.width.px]="30"
+        src="../images/Data.png"
+        (click)="showGraphs()"
+        >
+
+        <img class="leftButton"
+        [style.height.px]="30"
+        [style.width.px]="30"
+        src="../images/Explore.png"
+        (click)="showGraphs()"
+        >
+
+        <img class="leftButton"
+        [style.height.px]="30"
+        [style.width.px]="30"
+        src="../images/Present.png"
+        (click)="showGraphs()"
+        >
+
 </div>
 
 <div class="btn-group tabList">
@@ -28,14 +55,16 @@
 </div>
 
 <!-- Graphs -->
-<div 
-    class="graphy" 
-    [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
-    (click)="clickWidget($event)"
-    >
-    <div #vis>
-    </div>  
-</div>  
+<span 
+    class="graphy">
+    <span 
+        [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
+        (click)="clickWidget($event)"
+        >
+        <span #vis>
+        </span>  
+    </span>  
+</span> 
 
 <div 
 class="graphy1" 
