@@ -15,6 +15,8 @@ import { LandingComponent }           from './landing.component';
 import { PresentComponent }           from './present.component';
 import { CollaborateComponent }       from './collaborate.component';
 
+import { TestComponent }              from './test.component';
+
 // Own Services
 import { AuthGuard }                  from './authguard.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -27,6 +29,9 @@ export const ROUTES: Routes = [
     {path: 'explore',       component: ExploreComponent},
     {path: 'help',          component: HelpComponent},
     {path: 'present',       component: PresentComponent},
+
+    {path: 'test',       component: TestComponent},
+
     {
         path: 'getdata', 
         component: GetDataComponent, 

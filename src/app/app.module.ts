@@ -26,6 +26,8 @@ import { HomeComponent }              from './home.component';
 import { LandingComponent }           from './landing.component';
 import { PresentComponent }           from './present.component';
 
+import { TestComponent }              from './test.component';
+
 // Our Services
 import { AuthGuard }                  from './authguard.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -42,6 +44,7 @@ import { GlobalFunctionService }      from './global-function.service';
         HelpComponent,
         LandingComponent,
         PresentComponent,
+        TestComponent,
     ],
     imports: [
         BrowserAnimationsModule,
