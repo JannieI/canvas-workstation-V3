@@ -77,8 +77,8 @@
     <div class="col-xs-9">
         <div>
             <h4 *ngIf="firstTimeUser" class="helpMessage">
-                Select your data with <i class="textToClick">Get Data</i>, 
-                and then click <i class="textToClick">Explore</i> in the top menu 
+                Select your data with <i class="textToClick">Get Data</i>,
+                and then click <i class="textToClick">Explore</i> in the top menu
                 to show it.
             </h4>
             <br>
@@ -93,7 +93,7 @@
                         <br>
                         <input type="text" id="formFields_7" placeholder="Dataset Name">
                     </div>
-                    
+
                     <div *ngIf="selectedDatabase">
                         Description: <input type="text" id="formFields_7" placeholder="This is ...">
                         <br>Locaton:
@@ -152,7 +152,7 @@
                         <clr-dg-column>Description</clr-dg-column>
                         <clr-dg-column>Key?</clr-dg-column>
                         <clr-dg-column>ExplainedBy</clr-dg-column>
-                        
+
                         <clr-dg-row *ngFor="let field of fieldsMetadata">
                             <clr-dg-cell>{{field.name}}</clr-dg-cell>
                             <clr-dg-cell>{{field.type}}</clr-dg-cell>
@@ -169,11 +169,11 @@
                 <button clrTabLink id="link1" class="tabHeadings"[class.disabled]="!canUse">
                     Transformation</button>
                 <clr-tab-content id="content1" *clrIfActive>
-                    Type of transformation:
+                    Selected type and specific transformation to add to the list below:
                     <div class="dropdown"  #typeTransformationDropdown>
                         <button type="button" class="dropdown-toggle btn btn-link"
                             (click)="clickTypeTransformation()">
-                            Type
+                            Select Type
                             <clr-icon shape="caret down"></clr-icon>
                         </button>
                         <div class="dropdown-menu">
@@ -184,8 +184,6 @@
                             <button type="button" class="dropdown-item">Python Extensions</button>
                         </div>
                     </div>
-
-                    Selected transformations
                     <div class="dropdown" #transformations>
                         <button type="button" class="dropdown-toggle btn btn-link"
                             (click)="clickTransformation()">
@@ -200,9 +198,23 @@
                             <button type="button" class="dropdown-item">Etc</button>
                         </div>
                     </div>
+                    <p>Or, select a tranformation list previously created:</p>
+                        <div class="dropdown">
+                            <button type="button" class="dropdown-toggle btn btn-link"
+                                >
+                                Transformation List
+                                <clr-icon shape="caret down"></clr-icon>
+                            </button>
+                            <div class="dropdown-menu">
+                                <h4 class="dropdown-header">Select a Transformation</h4>
+                                <button type="button" class="dropdown-item">Default</button>
+                                <button type="button" class="dropdown-item">Management Formatted</button>
+                            </div>
+                        </div>
                     <br>
+                    Optional Name: <input type="text" id="formFields_7" placeholder="Transformation Name">
                     <br>
-                    Transformation already selected:
+
                     <br>
                     <clr-datagrid *ngIf="showTransformation">
                         <clr-dg-column>Nr</clr-dg-column>
@@ -246,7 +258,10 @@
                     <p>* Cluster Analysts (will add a new Dataset, called: )
                         Field to cluster on: <input type="text" id="formFields_7" placeholder="Column Name">)
                     </p>
-                            
+                    <p>* Samples:
+                        Select a sample of: <input type="text" id="formFields_7" placeholder="# records / % of rows">)
+                    </p>
+    
                 </clr-tab-content>
             </clr-tab>
 
@@ -254,10 +269,7 @@
                 <button clrTabLink id="link1" class="tabHeadings">Advanced</button>
                 <clr-tab-content id="content1" *clrIfActive>
                     <h4>Create a new dataset by combining existing datasets.</h4>
-                    <div class="checkbox">
-                        <input type="checkbox" id="checkrads_2" checked>
-                        <label for="checkrads_2">Replace existing dataset ?</label>
-                    </div>
+                    New Dataset: <input type="text" id="formFields_7" placeholder="New Data Name">)
                     <br>
                     <p>Fields are: Set1, keyField, Set 2, keyField</p>
                     <p>* Union (add data in 2nd to the end of 1st)
@@ -266,7 +278,7 @@
                             [style.width.px]="30"
                             src="../images/Grids.png"
                             >
-                            
+
                     </p>
                     <p>* Join (add data in 2nd to the the right of 1st)
                             <img class="typeIcon"
@@ -274,7 +286,7 @@
                             [style.width.px]="30"
                             src="../images/Grids.png"
                             >
-                            
+
                     </p>
                     <p>* Minus (subtract data from 1st that exists in 2nd)
                             <img class="typeIcon"
@@ -282,7 +294,7 @@
                             [style.width.px]="30"
                             src="../images/Minus.png"
                             >
-                            
+
                     </p>
                     <p>* Intersect (only data that exists in both)
                         <img class="typeIcon"
@@ -290,7 +302,7 @@
                         [style.width.px]="30"
                         src="../images/Intersection.png"
                         >
-                                    
+
                     </p>
 
                 </clr-tab-content>
@@ -303,11 +315,24 @@
                     <p>* Data Quality notes</p>
                     <p>* Table Description</p>
                     <p>* Nr records</p>
-                    <p>* Maybe cardinality ?</p>
-                    <p>* Data that explains this, ie table.fiels ?</p>
+                    <p>* IF key fields have been marked, some cardinality / summary graphs
+                        will be shown to the shape of the data, bins, frequency distribution,
+                        etc to help understand the data
+                    </p>
                 </clr-tab-content>
             </clr-tab>
 
+
+            <clr-tab>
+                <button clrTabLink id="link1" class="tabHeadings">Export</button>
+                <clr-tab-content id="content1" *clrIfActive>
+                    Export the dataset to an external file:  -> Should we??
+                    <p>Format: <input type="text" id="formFields_7" placeholder="CSV / Text"></p>
+                    <p>Name: <input type="text" id="formFields_7" placeholder="File Name"></p>
+                    <button class="btn btn-secondary">Export</button>
+                </clr-tab-content>
+            </clr-tab>
+    
         </clr-tabs>
 
     </div>
@@ -346,6 +371,7 @@
         <p>Calc : <input type="text" id="formFields_7" placeholder="valueTrade / 100"></p>
         <p>Order: <input type="text" id="formFields_7" placeholder="Ascending / Descending"></p>
         <p>Hide : <input type="text" id="formFields_7" placeholder="Hide / Show"></p>
+        <p>Reference : <input type="text" id="formFields_7" placeholder="URL to external reference document"></p>
         <br>
         <p>SaveAs : <input type="text" id="formFields_7" placeholder="Format Name"></p>
 
@@ -356,4 +382,3 @@
     </div>
 </clr-modal>
 
-    

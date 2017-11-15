@@ -103,7 +103,7 @@ const transformaton: Itransformaton[] = [
         id: 1,
         category: 'Column-level',
         name: 'FormatDate', 
-        description: '(columnName, date format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, etc.'
+        description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.'
     },
     {
         id: 2,
@@ -221,18 +221,30 @@ const transformaton: Itransformaton[] = [
     },
     {
         id: 21,
+        category: 'Column-level',
+        name: 'AddLatitude', 
+        description: '(reference-columnName, new-columnName), add a new column with latitude, based on the information in the reference-columnName'
+    },
+    {
+        id: 22,
+        category: 'Column-level',
+        name: 'AddLongitude', 
+        description: '(reference-columnName, new-columnName), add a new column with longitude, based on the information in the reference-columnName'
+    },
+    {
+        id: 23,
         category: 'Table-level',
         name: 'Pivot', 
         description: '(row-heading, column-heading, operator, data-heading) '
     },
     {
-        id: 22,
+        id: 24,
         category: 'Table-level',
         name: 'Transpose', 
         description: 'turning rows into columns and vice versa'
     },
     {
-        id: 23,
+        id: 25,
         category: 'Table-level',
         name: 'FormatTable', 
         description: '(format), where format = json, csv, tsv, Excel, ADO, etc.'
