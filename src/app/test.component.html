@@ -1,13 +1,13 @@
 
 <div class="leftMenu">
-    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-xs tooltip-right">
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-xm tooltip-right">
         <img class="leftButton"
             [style.height.px]="30"
             [style.width.px]="30"
             src="../images/FileOpen.png"
             (click)="showGraphs()"
             >
-        <span class="tooltip-content">Dashboard</span>
+        <span class="tooltip-content">Open new Dashboard</span>
     </span>
 
     <img class="leftButton"
@@ -21,7 +21,7 @@
         [style.height.px]="30"
         [style.width.px]="30"
         src="../images/Widget.png"
-        (click)="showGraphs()"
+        (click)="showWidget()"
         >
 
         <img class="leftButton"
@@ -54,24 +54,124 @@
     </button>
 </div>
 
-<!-- Graphs -->
-<span 
-    class="graphy">
+
+
+
+
+<div *ngIf="showWidgetDesigner" class="showWidget">
+    Widget Designer
+
+    <nav class="sidenav" *ngIf="showNavDataset">
+        <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+            Select Data
+            <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <section class="sidenav-content">
+            <section class="nav-group">
+                    <ul class="nav-list">
+                        <li>
+                            <a 
+                                class="nav-link"
+                                (dragend)="showGraphs($event)" 
+                                draggable="true" 
+                                id="dragtarget"
+                                >
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Trader
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Country
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link active">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Trade Type
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dateField"></clr-icon>
+                                Date
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                DateTime
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Stock
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Volume
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Trades
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Value
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+        </section>
+    </nav>
+
+    <!-- Graphs -->
     <span 
-        [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
+        class="graphy"
+        [style.color] = "showContainerHeader ? 'black' : 'transparent'"
         (click)="clickWidget($event)"
         >
-        <span #vis>
-        </span>  
-    </span>  
-</span> 
+        <span class="widgetHandle"
+        [style.color] = "showContainerHeader ? 'black' : 'transparent'"
+        >Drag Edit</span>
+        <div 
+            [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
+            >
+            <span #vis>
+            </span>  
+        </div>  
+    </span> 
 
-<div 
-class="graphy1" 
-[style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
-(click)="clickWidget($event)"
->
-<div #vis1>
-</div>  
-</div>  
+    <span 
+        class="graphy"
+        [style.color] = "showContainerHeader ? 'black' : 'transparent'"
+        (click)="clickWidget($event)"
+        >
+        <span class="widgetHandle"
+        [style.color] = "showContainerHeader ? 'black' : 'transparent'"
+        >Drag Edit</span>
+        <div 
+            [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
+            >
+            <span #vis1>
+            </span>  
+        </div>  
+    </span> 
 
+    <div class="btn-group">
+        <button class="btn btn-secondary buttonWidget" (click)="clickWidgetClose()">
+            Cancel
+        </button>
+        <button class="btn btn-primary buttonWidget" (click)="clickWidgetClose()">
+            Save
+        </button>
+    </div>
+</div>

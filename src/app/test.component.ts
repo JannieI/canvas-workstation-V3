@@ -55,6 +55,7 @@ export class TestComponent {
     showNavCollaborate: Boolean = false;
     showType: boolean = false;
     showTypeIcon: boolean = true;
+    showWidgetDesigner: boolean = false;
     widgetBorder: string = '1px black solid';
 
     widget: number = 1;
@@ -119,7 +120,7 @@ export class TestComponent {
         // Show Graph Examples
         
         this.showNavExplore = true;
-        console.log('showGraph', event, this.menuOptionSelected)
+        console.log('showGraph', event, this.menuOptionSelected, this.widget)
         this.isFirstTime = false;
         let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
         let specification = compile(definition).spec;
@@ -347,6 +348,17 @@ export class TestComponent {
     clickAdvancedField() {
         this.showAdvancedField = !this.showAdvancedField;
     }
+
+    showWidget() {
+        this.showWidgetDesigner = true;
+    }
+
+    clickWidgetClose() {
+        this.showWidgetDesigner = false;
+    }
+
+
+
 }
 
 
