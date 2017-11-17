@@ -439,16 +439,33 @@ export class DataComponent implements OnInit {
     fieldsMetadata: IfieldsMetadata[] = fieldsMetadata;
     firstTimeUser: boolean = true;
     isError: boolean = false;
-    selectedDatasource: any;
+    showAddData: boolean = false;
+    showAddDataDetail: boolean = false;
+    showAddFile: boolean = false;
+    showAddDatabase: boolean = false;
+    showAddService: boolean = false;
+    showAddFromWeb: boolean = false;
+    showAddNoSQL: boolean = false;
+    showAddFromServer: boolean = false;
+
+    showServerData: boolean = false;
+    showRecentData: boolean = false;
+    showSampleData: boolean = false;
+    showCurrent: boolean = true;
+    showCurrentDetail: boolean = false;
+
+    selectedFile: boolean = true;
+
+    // selectedDatasource: any;
     selectedData: string = 'Trades for 2016';
-    selectedDatabase: boolean = false;
-    selectedFile: boolean = false;
+    // selectedDatabase: boolean = false;
     showDetail: boolean = false;
-    showDatasourceForm: boolean = false;
-    showModalFileselector: boolean = false;
-    showTransformation: boolean = false;
-    showModalFileFormatter: boolean = false;
-    snipDatasource: boolean = false;
+    // showDatasourceForm: boolean = false;
+    // showSelector: boolean = false;
+    // showFileselector: boolean = false;
+    // showTransformation: boolean = false;
+    // showModalFileFormatter: boolean = false;
+    // snipDatasource: boolean = false;
     transformaton: Itransformaton[] = transformaton;
 
 	constructor(
@@ -459,25 +476,25 @@ export class DataComponent implements OnInit {
 		this.globalFunctionService.hideSecondaryMenus();
     }
     
-    clickRow() {
-        if (this.selectedDatasource == null) {
-            this.errorMessage = "Please select a Dataset and click again"
-            this.isError = true;
-            return;
-        }
-        this.isError = false;
-        this.errorMessage = '';
-        console.log('selectedId', this.selectedDatasource )
-        this.selectedDatasource = true;
+    // clickRow() {
+    //     if (this.selectedDatasource == null) {
+    //         this.errorMessage = "Please select a Dataset and click again"
+    //         this.isError = true;
+    //         return;
+    //     }
+    //     this.isError = false;
+    //     this.errorMessage = '';
+    //     console.log('selectedId', this.selectedDatasource )
+    //     this.selectedDatasource = true;
 
-        // Reset
-        this.selectedDatasource = null;
-    }
+    //     // Reset
+    //     this.selectedDatasource = null;
+    // }
     
-    clickShowDatasourceForm() {
-        console.log('this.showDatasourceForm', this.showDatasourceForm)
-        this.showDatasourceForm = !this.showDatasourceForm
-    }
+    // clickShowDatasourceForm() {
+    //     console.log('this.showDatasourceForm', this.showDatasourceForm)
+    //     this.showDatasourceForm = !this.showDatasourceForm
+    // }
 
     
     clickDropdownType() {
@@ -488,56 +505,40 @@ export class DataComponent implements OnInit {
         }
     }
     
-    clickTypeTransformation() {
-        if (this.typeTransformationDropdown.nativeElement.className == "dropdown open") {
-            this.typeTransformationDropdown.nativeElement.className = "dropdown";
-        } else {
-            this.typeTransformationDropdown.nativeElement.className = "dropdown open";
-        }
-    }
+    // clickTypeTransformation() {
+    //     if (this.typeTransformationDropdown.nativeElement.className == "dropdown open") {
+    //         this.typeTransformationDropdown.nativeElement.className = "dropdown";
+    //     } else {
+    //         this.typeTransformationDropdown.nativeElement.className = "dropdown open";
+    //     }
+    // }
 
-    clickTransformation() {
-        if (this.transformations.nativeElement.className == "dropdown open") {
-            this.transformations.nativeElement.className = "dropdown";
-        } else {
-            this.transformations.nativeElement.className = "dropdown open";
-        }
-        this.showTransformation = true;
-    }
+    // clickTransformation() {
+    //     if (this.transformations.nativeElement.className == "dropdown open") {
+    //         this.transformations.nativeElement.className = "dropdown";
+    //     } else {
+    //         this.transformations.nativeElement.className = "dropdown open";
+    //     }
+    //     this.showTransformation = true;
+    // }
 
-    clickOpenFile() {
-        console.log('clickOpenFile()')
-        this.selectedDatabase = false;
-        this.showModalFileselector = true;
-        this.selectedFile = false;
-    }
-    
-    clickOpenDatabase() {
-        console.log('clickOpenDatabase()')
-        this.selectedFile = false;
-        this.selectedDatabase = true;
-        this.typeDropdown.nativeElement.className = "dropdown";
-        this.showDatasourceForm = !this.showDatasourceForm;
-        this.firstTimeUser = !this.firstTimeUser;
-    }
-    
-    clickCloseModel() {
-        console.log('clickCloseModel()')
-        this.showModalFileselector = false;
-        this.selectedFile = true;
-        this.typeDropdown.nativeElement.className = "dropdown";
-        this.showDatasourceForm = !this.showDatasourceForm;
-        this.firstTimeUser = !this.firstTimeUser;
-    }
+    // clickCloseModel() {
+    //     console.log('clickCloseModel()')
+    //     this.showFileselector = false;
+    //     this.selectedFile = true;
+    //     this.typeDropdown.nativeElement.className = "dropdown";
+    //     this.showDatasourceForm = !this.showDatasourceForm;
+    //     this.firstTimeUser = !this.firstTimeUser;
+    // }
 
-    clickField(fieldName: string) {
-        console.log('id');
-        this.showModalFileFormatter = true;
-    }
+    // clickField(fieldName: string) {
+    //     console.log('id');
+    //     this.showModalFileFormatter = true;
+    // }
 
-    clickCloseFieldFormatter() {
-        this.showModalFileFormatter = false;
-    }
+    // clickCloseFieldFormatter() {
+    //     this.showModalFileFormatter = false;
+    // }
 
     clickShowMore() {
         if (!this.showDetail) {
@@ -550,18 +551,123 @@ export class DataComponent implements OnInit {
     console.log(this.buttonLabel, this.showDetail )
     }
 
-    clickNavData(selData: string) {
-        this.selectedData = selData;
-        this.canUse = true;
+    // clickNavData(selData: string) {
+    //     this.selectedData = selData;
+    //     this.canUse = true;
+    // }
+
+    // clickNavAddData(selData: string) {
+    //     this.selectedData = selData;
+    //     let newData: Idata = {
+    //         name: selData
+    //     };
+    //     let len: number = this.dataCurrent.push(newData);
+    //     this.canUse = false;
+    // }
+
+
+
+
+
+    clickAddData() {
+        this.showAddData = !this.showAddData;
+        if (!this.showAddData) {
+            this.showAddDataDetail = false;
+        }
     }
 
-    clickNavAddData(selData: string) {
-        this.selectedData = selData;
+    clickAddFile() {
+        this.showAddDataDetail = true;
+        this.showAddFile = true;
+        this.showAddDatabase = false;
+        this.showAddService = false;
+        this.showAddFromWeb = false;
+        this.showAddNoSQL = false;
+        this.showAddFromServer = false;
+    }
+
+    clickAddFileClose() {
+        this.showAddData = false;
+        this.showAddDataDetail = false;
+        this.showAddFile = false;
+    }
+
+    clickAddFileSave() {
+        this.showAddData = false;
+        this.showAddDataDetail = false;
+        this.showAddFile = false;
         let newData: Idata = {
-            name: selData
+            name: 'Home Budget'
         };
         let len: number = this.dataCurrent.push(newData);
-        this.canUse = false;
     }
 
+    clickAddDatabase() {
+        this.showAddDataDetail = true;
+        this.showAddFile = false;
+        this.showAddDatabase = true;
+        this.showAddService = false;
+        this.showAddFromWeb = false;
+        this.showAddNoSQL = false;
+        this.showAddFromServer = false;
+    }
+
+    clickAddService() {
+        this.showAddDataDetail = true;
+        this.showAddFile = false;
+        this.showAddDatabase = false;
+        this.showAddService = true;
+        this.showAddFromWeb = false;
+        this.showAddNoSQL = false;
+        this.showAddFromServer = false;
+    }
+
+    clickAddFromWeb() {
+        this.showAddDataDetail = true;
+        this.showAddFile = false;
+        this.showAddDatabase = false;
+        this.showAddService = false;
+        this.showAddFromWeb = true;
+        this.showAddNoSQL = false;
+        this.showAddFromServer = false;
+    }
+
+    clickAddNoSQL() {
+        this.showAddDataDetail = true;
+        this.showAddFile = false;
+        this.showAddDatabase = false;
+        this.showAddService = false;
+        this.showAddFromWeb = false;
+        this.showAddNoSQL = true;
+        this.showAddFromServer = false;
+    }
+
+    clickAddFromServer() {
+        this.showAddDataDetail = true;
+        this.showAddFile = false;
+        this.showAddDatabase = false;
+        this.showAddService = false;
+        this.showAddFromWeb = false;
+        this.showAddNoSQL = false;
+        this.showAddFromServer = true;
+    }
+
+    clickOpenServerList() {
+        this.showServerData = !this.showServerData;
+    }
+
+    clickOpenRecentList() {
+        this.showRecentData = !this.showRecentData;
+    }
+
+    clickOpenSampleList() {
+        this.showSampleData = !this.showSampleData;
+    }
+
+    clickShowCurrentDetail() {
+        this.showCurrentDetail = true;
+        if (this.showCurrentDetail) {
+            this.showAddData = false;
+        }
+    }
 }

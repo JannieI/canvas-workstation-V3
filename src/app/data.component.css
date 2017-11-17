@@ -28,3 +28,11 @@
 .tabHeadings {
     background-color: rgb(223, 217, 217);
 }
+
+.dataSideNav {
+    border-right: 1px solid black;
+}
+.detailArea {
+    margin: 0;
+    padding: 0;
+}
