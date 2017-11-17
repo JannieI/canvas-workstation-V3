@@ -61,77 +61,187 @@
 <div *ngIf="showWidgetDesigner" class="showWidget">
     Widget Designer
 
-    <nav class="sidenav" *ngIf="showNavDataset">
-        <button class="dropdown-toggle btn btn-link btn-sm" type="button">
-            Select Data
-            <clr-icon shape="caret down"></clr-icon>
-        </button>
-        <section class="sidenav-content">
-            <section class="nav-group">
-                    <ul class="nav-list">
-                        <li>
-                            <a 
-                                class="nav-link"
-                                (dragend)="showGraphs($event)" 
-                                draggable="true" 
-                                id="dragtarget"
-                                >
-                                <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                Trader
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link">
-                                <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                Country
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link active">
-                                <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                Trade Type
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link">
-                                <clr-icon shape="block" class="dateField"></clr-icon>
-                                Date
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link">
-                                <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                DateTime
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link">
-                                <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                Stock
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link">
-                                <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                Volume
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link">
-                                <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                Trades
-                            </a>
-                        </li>
-                        <li>
-                            <a class="nav-link">
-                                <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                Value
-                            </a>
-                        </li>
-                    </ul>
+    <div class="row">
+        <div class="col-lg-3">
+            <nav class="sidenav" *ngIf="showNavDataset">
+                <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+                    Select Data
+                    <clr-icon shape="caret down"></clr-icon>
+                </button>
+                <section class="sidenav-content">
+                    <section class="nav-group">
+                            <ul class="nav-list">
+                                <li>
+                                    <a 
+                                        class="nav-link"
+                                        (dragend)="showGraphs($event)" 
+                                        draggable="true" 
+                                        id="dragtarget"
+                                        >
+                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                        Trader
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                        Country
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link active">
+                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                        Trade Type
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="block" class="dateField"></clr-icon>
+                                        Date
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                        DateTime
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                        Stock
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                        Volume
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                        Trades
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                        Value
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
                 </section>
-        </section>
-    </nav>
+            </nav>
+        </div>
+        <div class="col-lg-3">
+            <nav class="sidenav" *ngIf="showNavExplore">
+                <section class="sidenav-content">
+                    <div>
+                        <button class="btn btn-sm"
+                        (click)="showType=!showType"
+                        >Select Type
+                        <clr-icon shape="caret down"></clr-icon>
+                    </button>
+                    <img class="typeIcon"
+                    *ngIf="showTypeIcon"
+                    [style.height.px]="30"
+                    [style.width.px]="30"
+                        [src]="graphTypeFile"
+                    >
+                    </div>
+                    <div *ngIf="showType">
+                
+                        <img class="typeIcon"
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/BarChart.png"
+                        (click)="clickIcon('BarChart')"
+                        >
+                        <img
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/BubbleChart.png"
+                        (click)="clickIcon('BubbleChart')"
+                        >
+                        <img class="typeIcon"
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/ColumnChart.png"
+                        (click)="clickIcon('ColumnChart')"
+                        >
+                        <img
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/LineChart.png"
+                        (click)="clickIcon('LineChart')"
+                        >
+                        <img class="typeIcon"
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/PieChart.png"
+                        (click)="clickIcon('PieChart')"
+                        >
+                        <img
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/ScatterChart.png"
+                        (click)="clickIcon('ScatterChart')"
+                        >
+                    </div>                
+
+                    <clr-datagrid>
+                        <clr-dg-column>X axis (drag here)
+                            Column
+                        </clr-dg-column>
+                        
+                        <clr-dg-row>
+                            <clr-dg-cell>
+                                <clr-icon shape="plus" size="16"
+                                (click)="clickAdvancedField()"></clr-icon>
+                                TradeDate
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+
+                    <clr-datagrid>
+                        <clr-dg-column>Y axis (drag here)
+                            Row
+                        </clr-dg-column>
+                        
+                        <clr-dg-row>
+                            <clr-dg-cell>
+                                <clr-icon shape="plus" size="16"></clr-icon>
+                                ValueTraded
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+                    <div *ngIf="showAdvancedField">
+                            <button class="btn btn-sm">type</button>
+                            <button class="btn btn-sm">bin</button>
+                            <button class="btn btn-sm">aggregate</button>
+                            <button class="btn btn-sm">zero</button>
+                            <button class="btn btn-sm">scale</button>
+                            
+                    </div>
+                    <clr-datagrid>
+                        <clr-dg-column>Color (drag here)
+                            Row
+                        </clr-dg-column>
+                        
+                        <clr-dg-row>
+                            <clr-dg-cell>
+                                <clr-icon shape="plus" size="16"></clr-icon>
+                                Country
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+                            
+                </section>
+            </nav>
+        </div>
+    </div>                        
 
     <!-- Graphs -->
     <span 

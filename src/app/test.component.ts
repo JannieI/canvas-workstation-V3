@@ -50,7 +50,7 @@ export class TestComponent {
     showNavTab: Boolean = false;
     showNavFormat: Boolean = false;
     showNavDataset: Boolean = true;
-    showNavExplore: Boolean = false;
+    showNavExplore: Boolean = true;
     showNavPresentation: Boolean = false;
     showNavCollaborate: Boolean = false;
     showType: boolean = false;
