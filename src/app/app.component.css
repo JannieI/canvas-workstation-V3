@@ -7,3 +7,8 @@
     margin: 0;
     padding: 0;
 }
+
+.content-area {
+    margin: 5px 0 0 0 !important;
+    padding: 0 !important;
+}

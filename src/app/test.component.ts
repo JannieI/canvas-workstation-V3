@@ -47,7 +47,8 @@ export class TestComponent {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @Input() menuOptionSelected: string;
     
-
+    @ViewChild('typeDropdown') typeDropdown: ElementRef;
+    
 
 //*     @ViewChild('container') private containerElement: ElementRef;
 //*     @ViewChild('draggable') private draggableElement: ElementRef;
@@ -492,6 +493,14 @@ export class TestComponent {
         //     'top', "150px");    
         // this.renderer.setElementStyle(this.dragWidget.nativeElement,
         //     'border', "4px solid black");    
+    }
+
+    clickDropdownType() {
+        if (this.typeDropdown.nativeElement.className == "dropdown open") {
+            this.typeDropdown.nativeElement.className = "dropdown";
+        } else {
+            this.typeDropdown.nativeElement.className = "dropdown open";
+        }
     }
 }
 

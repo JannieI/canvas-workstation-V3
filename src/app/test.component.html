@@ -85,14 +85,14 @@
     </div> -->
 <!-- End fooling -->
 
-<h4> 
+<h4 class="helpMessage"> 
     <button
         type="button"
-        class="btn btn-link"
+        class="barsButton btn btn-link"
         (click)="clickShowPalette()">
-        <clr-icon shape="bars" size="32"></clr-icon>
+        <clr-icon shape="bars" size="24"></clr-icon>
     </button>
-    <span class="helpMessage" *ngIf="isFirstTime">
+    <span *ngIf="isFirstTime">
         Click to show the palette.  Then drag a field onto the x-axis or y-axis to show 
         a graph.  The name of your Dashboard and current Tab are shown at the bottom of 
         the page.
@@ -100,30 +100,109 @@
 </h4>
 
 
-<div class="btn-group tabList">
-    <button  role="tooltip" aria-haspopup="true" 
-        class="tooltip tooltip-xm tooltip-top btn btn-secondary"
-        >
-        Analysis of Value Traded 2017
-        <clr-icon shape="caret up" size="16"></clr-icon>
-        <span class="tooltip-content">Current Dashboard</span>
-    </button>
+<div class="tabList">
+    <clr-dropdown>
+        <button 
+            type="button" 
+            class="btn btn-secondary btn-sm tooltip tooltip-xm tooltip-top" 
+            clrDropdownTrigger
+            role="tooltip" 
+            aria-haspopup="true" 
+            >
+            Current: Analysis of Value Traded 2017 ...
+            <clr-icon shape="caret down" size="16"></clr-icon>
+            <span class="tooltip-content">Current Dashboard (click to change properties)</span>
+        </button>
+        <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
+            <label class="dropdown-header">Dropdown header</label>
+            <button type="button" clrDropdownItem>Action 1</button>
+            <button type="button" disabled clrDropdownItem>Disabled Action</button>
+            <div class="dropdown-divider"></div>
+            <clr-dropdown>
+                <button type="button" clrDropdownTrigger>Link 1</button>
+                <clr-dropdown-menu>
+                    <button type="button" clrDropdownItem>Foo</button>
+                    <clr-dropdown>
+                        <button type="button" clrDropdownTrigger>Bar</button>
+                        <clr-dropdown-menu clrPosition="left-top">
+                            <button type="button" clrDropdownItem>Baz</button>
+                        </clr-dropdown-menu>
+                    </clr-dropdown>
+                </clr-dropdown-menu>
+            </clr-dropdown>
+            <button type="button" clrDropdownItem>Link 2</button>
+        </clr-dropdown-menu>
+    </clr-dropdown>
+    Tabs: 
+    <clr-dropdown>
+        <button 
+            type="button" 
+            class="btn btn-secondary btn-sm tooltip tooltip-xm tooltip-top" 
+            clrDropdownTrigger
+            role="tooltip" 
+            aria-haspopup="true" 
+            >
+            Summary 
+            <clr-icon shape="caret down" size="16"></clr-icon>
+            <span class="tooltip-content">Current Tab (click to change properties)</span>
+        </button>
+        <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
+            <label class="dropdown-header">Dropdown header</label>
+            <button type="button" clrDropdownItem>Action 1</button>
+            <button type="button" disabled clrDropdownItem>Disabled Action</button>
+            <div class="dropdown-divider"></div>
+            <clr-dropdown>
+                <button type="button" clrDropdownTrigger>Link 1</button>
+                <clr-dropdown-menu>
+                    <button type="button" clrDropdownItem>Foo</button>
+                    <clr-dropdown>
+                        <button type="button" clrDropdownTrigger>Bar</button>
+                        <clr-dropdown-menu clrPosition="left-top">
+                            <button type="button" clrDropdownItem>Baz</button>
+                        </clr-dropdown-menu>
+                    </clr-dropdown>
+                </clr-dropdown-menu>
+            </clr-dropdown>
+            <button type="button" clrDropdownItem>Link 2</button>
+        </clr-dropdown-menu>
+    </clr-dropdown>
 
-    <button  role="tooltip" aria-haspopup="true" 
-        class="tooltip tooltip-xm tooltip-top btn btn-secondary"
-        >
-        Summary
-        <clr-icon shape="caret up" size="16"></clr-icon>
-        <span class="tooltip-content">Click Tab to amend</span>
-    </button>
-
-    <button  role="tooltip" aria-haspopup="true" 
-        class="tooltip tooltip-xm tooltip-top btn btn-secondary"
-        >
-        <clr-icon shape="plus" size="16"></clr-icon>
-        <span class="tooltip-content">Click to add a new Tab</span>
-    </button>
+    <clr-dropdown>
+        <button 
+            type="button" 
+            class="btn btn-secondary btn-sm tooltip tooltip-xm tooltip-top" 
+            clrDropdownTrigger
+            role="tooltip" 
+            aria-haspopup="true" 
+            >
+            Add Tab 
+            <clr-icon shape="caret down" size="16"></clr-icon>
+            <span class="tooltip-content">Add a new Tab</span>
+        </button>
+        <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
+            <label class="dropdown-header">Dropdown header</label>
+            <button type="button" clrDropdownItem>Action 1</button>
+            <button type="button" disabled clrDropdownItem>Disabled Action</button>
+            <div class="dropdown-divider"></div>
+            <clr-dropdown>
+                <button type="button" clrDropdownTrigger>Link 1</button>
+                <clr-dropdown-menu>
+                    <button type="button" clrDropdownItem>Foo</button>
+                    <clr-dropdown>
+                        <button type="button" clrDropdownTrigger>Bar</button>
+                        <clr-dropdown-menu clrPosition="left-top">
+                            <button type="button" clrDropdownItem>Baz</button>
+                        </clr-dropdown-menu>
+                    </clr-dropdown>
+                </clr-dropdown-menu>
+            </clr-dropdown>
+            <button type="button" clrDropdownItem>Link 2</button>
+        </clr-dropdown-menu>
+    </clr-dropdown>
+        
 </div>
+    
+
 
 <nav
     id="wrapper"
