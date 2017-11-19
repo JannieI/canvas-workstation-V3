@@ -7,8 +7,12 @@ import { AfterViewInit }              from '@angular/core';
 import { Component }                  from '@angular/core';
 import { Directive }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
+import { HostBinding }                from '@angular/core';
+import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
+import { OnInit }                     from '@angular/core';
 import { Renderer }                   from '@angular/core';
+//* import { Renderer2 }                  from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Vega, Vega-Lite
@@ -22,6 +26,8 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
 // import { load } from 'datalib';
 
+//* const draggableHeight = 50;
+//* const draggableWidth = 100;
 
 // Own Services
 
@@ -36,29 +42,96 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 })
 export class TestComponent {
     @ViewChild('vis', {read: ElementRef}) vis: ElementRef;  //Vega graph
-    @ViewChild('vis1', {read: ElementRef}) vis1: ElementRef;  //Vega graph
+    @ViewChild('visReal', {read: ElementRef}) visReal: ElementRef;  //Vega graph
+    @ViewChild('visReal111', {read: ElementRef}) visReal111: ElementRef;  //Vega graph
+    @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @Input() menuOptionSelected: string;
+    
+
+
+//*     @ViewChild('container') private containerElement: ElementRef;
+//*     @ViewChild('draggable') private draggableElement: ElementRef;
+  
+//*     boundary: any = {};
+//*     draggable: any;
+//*     isMouseDown = false;
+
+    // @HostBinding('class.droptarget') private ishovering: boolean;
+
+    // @HostListener('dragend', ["$event"]) onDrag(ev) {
+    //     console.log('HostListener - dragEnd', this.ishovering);
+    // }
+
+    // @HostListener('drop', ["$event"]) onDrop(ev) {
+    //     console.log('HostListener - drop', ev);
+    // }
+    
+    // @HostListener('mouseover') onMouseOver() {
+    //     console.log('mouseover', this.ishovering)
+    // }
 
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
     isFirstTime: boolean = true;
     open: Boolean = false;
+    sideNavWidth: string = '350';
+    sideNavMinWidth: string = '18';
+    sideNaveButtonText: string = 'Select Data';
     showAdvancedField: boolean = false;
     showSubMenuDashboard: boolean = true;
     showContainerHeader: boolean = false;
     showNavDashboard: Boolean = false;
     showNavTab: Boolean = false;
     showNavFormat: Boolean = false;
-    showNavDataset: Boolean = true;
+    showNavDataset: Boolean = false;
     showNavExplore: Boolean = true;
     showNavPresentation: Boolean = false;
     showNavCollaborate: Boolean = false;
+    showSideNav1: boolean = true;
+    showSideNav2: boolean = true;
     showType: boolean = false;
     showTypeIcon: boolean = true;
     showWidgetDesigner: boolean = false;
     widgetBorder: string = '1px black solid';
+    widgetStartX: number = 0;
+    widgetStartY: number = 0;
+    widgetEndX: number = 0;
+    widgetEndY: number = 0;
 
-    widget: number = 1;
+
+    
+    dragstart_handler(ev) {
+        console.log("dragStart");
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+        console.log('drag_start')
+    }
+
+    dragend_handler(ev) {
+        console.log('dragend_handler', ev.dataTransfer.dropEffect)
+    }
+    dragover_handler(ev) {
+        console.log('dragover_handler')
+        ev.preventDefault();
+        // Set the dropEffect to move
+        ev.dataTransfer.dropEffect = "move"
+       }
+    drop_handler(ev) {
+        ev.preventDefault();
+        // Get the id of the target and add the moved element to the target's DOM
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+        console.log('drop_handler dropped !!')
+    }
+
+    clickShowPalette() {
+        this.showNavDataset = !this.showNavDataset;
+        this.isFirstTime = false;
+    }
+
+
+
+
 
     vlSpecs: dl.spec.TopLevelExtendedSpec[] = [
         {
@@ -107,8 +180,43 @@ export class TestComponent {
     ];
     constructor(
         private renderer: Renderer,
+//*         private renderer2: Renderer2,
     ) {}
 
+
+
+//*   ngOnInit() {
+//*     this.draggable = this.draggableElement.nativeElement;
+//* 
+//*     const container = this.containerElement.nativeElement;
+//*     this.boundary = {
+//*       left: container.offsetLeft + (draggableWidth / 2),
+//*       right: container.clientWidth + container.offsetLeft - (draggableWidth / 2),
+//*       top: container.offsetTop + (draggableHeight / 2),
+//*       bottom: container.clientWidth + container.offsetTop - (draggableHeight / 2),
+//*     };
+//*     }
+
+//*     onMouseButton(event: MouseEvent): void {
+//*         this.isMouseDown = event.buttons === 1;
+//*     }
+//* 
+//*     onMouseMove(event: MouseEvent): void {
+//* 
+//*         if (this.isMouseDown && this.isInsideBoundary(event)) {
+//*         this.renderer2.setStyle(this.draggable, 'left', event.clientX - (draggableWidth / 2) + 'px');
+//*         this.renderer2.setStyle(this.draggable, 'top', event.clientY - (draggableHeight / 2) + 'px');
+//*         }
+//*     }
+//* 
+//*     isInsideBoundary(event: MouseEvent) {
+//*         return event.clientX > this.boundary.left &&
+//*         event.clientX < this.boundary.right &&
+//*         event.clientY > this.boundary.top &&
+//*         event.clientY < this.boundary.bottom;
+//*     }
+
+    
     ngAfterViewInit() {
     }
 
@@ -116,210 +224,186 @@ export class TestComponent {
         console.log('menuOptionSelected', this.menuOptionSelected)
     }
 
-    showGraphs() {
+    showGraphsReal() {
         // Show Graph Examples
         
         this.showNavExplore = true;
-        console.log('showGraph', event, this.menuOptionSelected, this.widget)
+        console.log('showGraph', event, this.menuOptionSelected)
         this.isFirstTime = false;
         let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
         let specification = compile(definition).spec;
-
-        // Full Vega Spec
-            specification = {
-                "$schema": "https://vega.github.io/schema/vega/v3.0.json",
-                "width": 960,
-                "height": 500,
-                "autosize": "none",
-
-                "data": [
-                    {
-                    "name": "unemp",
-                    "url": "./assets/vega/vega-datasets/unemployment.tsv",
-                    "format": {"type": "tsv", "parse": "auto"}
-                    },
-                    {
-                    "name": "counties",
-                    "url": "../assets/vega/vega-datasets/us-10m.json",
-                    "format": {"type": "topojson", "feature": "counties"},
-                    "transform": [
-                        { "type": "lookup", "from": "unemp", "key": "id", "fields": ["id"], "as": ["unemp"] },
-                        { "type": "filter", "expr": "datum.unemp != null" }
-                    ]
-                    }
-                ],
-
-                "projections": [
-                    {
-                    "name": "projection",
-                    "type": "albersUsa"
-                    }
-                ],
-
-                "scales": [
-                    {
-                    "name": "color",
-                    "type": "quantize",
-                    "domain": [0, 0.15],
-                    "range": {"scheme": "blues-9"}
-                    }
-                ],
-
-                "legends": [
-                    {
-                    "fill": "color",
-                    "orient": "bottom-right",
-                    "title": "Unemployment",
-                    "format": "0.1%",
-                    "encode": {
-                        "symbols": {
-                        "update": {
-                            "shape": {"value": "square"},
-                            "stroke": {"value": "#ccc"},
-                            "strokeWidth": {"value": 0.2}
-                        }
-                        }
-                    }
-                    }
-                ],
-
-                "marks": [
-                    {
-                    "type": "shape",
-                    "from": {"data": "counties"},
-                    "encode": {
-                        "enter": { "tooltip": {"signal": "format(datum.unemp.rate, '0.1%')"}},
-                        "update": { "fill": {"scale": "color", "field": "unemp.rate"} },
-                        "hover": { "fill": {"value": "red"} }
-                    },
-                    "transform": [
-                        { "type": "geoshape", "projection": "projection" }
-                    ]
-                    }
-                ]
-            }
-        // End of Full Vega Spec
 
         specification = compile(definition).spec;
 
         let view = new View(parse(specification));
         
-        if (this.widget == 1) {
-            this.widget = 0;
-            view.renderer('svg')
-                // .width(500)
-                // .height(500)
-                .initialize(this.vis.nativeElement)
-                .hover()
-                .run()
-                .finalize();
-        } else {
-                this.widget = 1;
-                view.renderer('svg')
-                // .width(500)
-                // .height(500)
-                .initialize(this.vis1.nativeElement)
-                .hover()
-                .run()
-                .finalize();
-        };
+        view.renderer('svg')
+            // .width(500)
+            // .height(500)
+            .initialize(this.visReal.nativeElement)
+            .hover()
+            .run()
+            .finalize();
+            this.renderer.setElementStyle(this.dragWidget.nativeElement,
+                'left', "500px");
+    }
+
+
+    allowDrop(event) {
+        event.preventDefault();
+    }
+
+
+    showGraphsReal111(ev) {
+        // Show Graph Examples
+
+        console.log('ev', ev)
+        ev.preventDefault()
+        this.showNavExplore = true;
+        console.log('showGraph111', event, this.menuOptionSelected)
+        this.isFirstTime = false;
+        let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
+        let specification = compile(definition).spec;
+
+        specification = compile(definition).spec;
+
+        let view = new View(parse(specification));
         
-
-            // Load and parse a CSV file. Datalib does type inference for you.
-            // The result is an array of JavaScript objects with named values.
-            // Parsed dates are stored as UNIX timestamp values.
-            // var data = dl.csv('http://vega.github.io/datalib/data/stocks.csv');
-
-            // Show summary statistics for each column of the data table.
-            // console.log(dl.format.summary(data));
-
-            // Compute mean and standard deviation by ticker symbol.
-            // var rollup = dl.groupby('symbol')
-            // .summarize({'price': ['mean', 'stdev']})
-            // .execute(data);
-            // console.log(dl.format.table(rollup));
-
-            // Compute correlation measures between price and date.
-            // console.log(
-            // dl.cor(data, 'price', 'date'),      // Pearson product-moment correlation
-            // dl.cor.rank(data, 'price', 'date'), // Spearman rank correlation
-            // dl.cor.dist(data, 'price', 'date')  // Distance correlation
-            // );
-
-            // Compute mutual information distance between years and binned price.
-            // var bin_price = dl.$bin(data, 'price'); // returns binned price values
-            // var year_date = dl.$year('date');       // returns year from date field
-            // var counts = dl.groupby(year_date, bin_price).count().execute(data);
-            // console.log(dl.mutual.dist(counts, 'bin_price', 'year_date', 'count'));
+        view.renderer('svg')
+            // .width(500)
+            // .height(500)
+            .initialize(this.visReal111.nativeElement)
+            .hover()
+            .run()
+            .finalize();
+            this.renderer.setElementStyle(this.dragWidget.nativeElement,
+                'left', "500px");
     }
 
-    onClickSubmenu(menuOption: string) {
+    // showGraphs() {
+    //     // Show Graph Examples
+        
+    //     this.showNavExplore = true;
+    //     console.log('showGraph', event, this.menuOptionSelected)
+    //     this.isFirstTime = false;
+    //     let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
+    //     let specification = compile(definition).spec;
 
-        if (menuOption == 'dashboard') {
-            this.showNavDashboard = !this.showNavDashboard;
-            this.showNavTab = false;
-            this.showNavFormat = false;
-            this.showNavDataset = false;
-            this.showNavExplore = false;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = false;
-        }
-        else if (menuOption == 'tab') {
-            this.showNavDashboard = false;
-            this.showNavTab = !this.showNavTab;
-            this.showNavFormat = false;
-            this.showNavDataset = false;
-            this.showNavExplore = false;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = false;
-        }
-        else if (menuOption == 'format') {
-            this.showNavDashboard = false;
-            this.showNavTab = false;
-            this.showNavFormat = !this.showNavFormat;
-            this.showNavDataset = false;
-            this.showNavExplore = false;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = false;
-            }
-        else if (menuOption == 'dataset') {
-            this.showNavDashboard = false;
-            this.showNavTab = false;
-            this.showNavFormat = false;
-            this.showNavDataset = !this.showNavDataset;
-            this.showNavExplore = false;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = false;
-            }
-        else if (menuOption == 'explore') {
-            this.showNavDashboard = false;
-            this.showNavTab = false;
-            this.showNavFormat = false;
-            if (!this.showNavExplore) {this.showNavDataset = !this.showNavExplore};
-            this.showNavExplore = !this.showNavExplore;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = false;
-            }
-        else if (menuOption == 'presentation') {
-            this.showNavDashboard = false;
-            this.showNavTab = false;
-            this.showNavFormat = false;
-            this.showNavDataset = false;
-            this.showNavExplore = false;
-            this.showNavPresentation = !this.showNavPresentation;
-            this.showNavCollaborate = false;
-        }
-        else if (menuOption == 'collaborate') {
-            this.showNavDashboard = false;
-            this.showNavTab = false;
-            this.showNavFormat = false;
-            this.showNavDataset = false;
-            this.showNavExplore = false;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = !this.showNavCollaborate;
-        }
+    //     // Full Vega Spec
+    //         specification = {
+    //             "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+    //             "width": 960,
+    //             "height": 500,
+    //             "autosize": "none",
 
-    }
+    //             "data": [
+    //                 {
+    //                 "name": "unemp",
+    //                 "url": "./assets/vega/vega-datasets/unemployment.tsv",
+    //                 "format": {"type": "tsv", "parse": "auto"}
+    //                 },
+    //                 {
+    //                 "name": "counties",
+    //                 "url": "../assets/vega/vega-datasets/us-10m.json",
+    //                 "format": {"type": "topojson", "feature": "counties"},
+    //                 "transform": [
+    //                     { "type": "lookup", "from": "unemp", "key": "id", "fields": ["id"], "as": ["unemp"] },
+    //                     { "type": "filter", "expr": "datum.unemp != null" }
+    //                 ]
+    //                 }
+    //             ],
+
+    //             "projections": [
+    //                 {
+    //                 "name": "projection",
+    //                 "type": "albersUsa"
+    //                 }
+    //             ],
+
+    //             "scales": [
+    //                 {
+    //                 "name": "color",
+    //                 "type": "quantize",
+    //                 "domain": [0, 0.15],
+    //                 "range": {"scheme": "blues-9"}
+    //                 }
+    //             ],
+
+    //             "legends": [
+    //                 {
+    //                 "fill": "color",
+    //                 "orient": "bottom-right",
+    //                 "title": "Unemployment",
+    //                 "format": "0.1%",
+    //                 "encode": {
+    //                     "symbols": {
+    //                     "update": {
+    //                         "shape": {"value": "square"},
+    //                         "stroke": {"value": "#ccc"},
+    //                         "strokeWidth": {"value": 0.2}
+    //                     }
+    //                     }
+    //                 }
+    //                 }
+    //             ],
+
+    //             "marks": [
+    //                 {
+    //                 "type": "shape",
+    //                 "from": {"data": "counties"},
+    //                 "encode": {
+    //                     "enter": { "tooltip": {"signal": "format(datum.unemp.rate, '0.1%')"}},
+    //                     "update": { "fill": {"scale": "color", "field": "unemp.rate"} },
+    //                     "hover": { "fill": {"value": "red"} }
+    //                 },
+    //                 "transform": [
+    //                     { "type": "geoshape", "projection": "projection" }
+    //                 ]
+    //                 }
+    //             ]
+    //         }
+    //     // End of Full Vega Spec
+
+    //     specification = compile(definition).spec;
+
+    //     let view = new View(parse(specification));
+        
+    //     view.renderer('svg')
+    //         // .width(500)
+    //         // .height(500)
+    //         .initialize(this.vis.nativeElement)
+    //         .hover()
+    //         .run()
+    //         .finalize();
+       
+
+    //         // Load and parse a CSV file. Datalib does type inference for you.
+    //         // The result is an array of JavaScript objects with named values.
+    //         // Parsed dates are stored as UNIX timestamp values.
+    //         // var data = dl.csv('http://vega.github.io/datalib/data/stocks.csv');
+
+    //         // Show summary statistics for each column of the data table.
+    //         // console.log(dl.format.summary(data));
+
+    //         // Compute mean and standard deviation by ticker symbol.
+    //         // var rollup = dl.groupby('symbol')
+    //         // .summarize({'price': ['mean', 'stdev']})
+    //         // .execute(data);
+    //         // console.log(dl.format.table(rollup));
+
+    //         // Compute correlation measures between price and date.
+    //         // console.log(
+    //         // dl.cor(data, 'price', 'date'),      // Pearson product-moment correlation
+    //         // dl.cor.rank(data, 'price', 'date'), // Spearman rank correlation
+    //         // dl.cor.dist(data, 'price', 'date')  // Distance correlation
+    //         // );
+
+    //         // Compute mutual information distance between years and binned price.
+    //         // var bin_price = dl.$bin(data, 'price'); // returns binned price values
+    //         // var year_date = dl.$year('date');       // returns year from date field
+    //         // var counts = dl.groupby(year_date, bin_price).count().execute(data);
+    //         // console.log(dl.mutual.dist(counts, 'bin_price', 'year_date', 'count'));
+    // }
 
     clickButtonAddDashboard () {
         
@@ -333,9 +417,32 @@ export class TestComponent {
     }
 
     clickWidget(ev) {
-        console.log('clickWidget()', this.showContainerHeader,  this.showNavDataset, ev);
-        this.showContainerHeader = !this.showContainerHeader;
-        this.onClickSubmenu('explore');
+        if (!this.showNavDataset) {
+            this.showNavDataset = true;
+        } 
+        return;
+
+        // Old way
+        // console.log('clickWidget()', this.showContainerHeader,  this.showNavDataset, ev);
+        // this.showContainerHeader = !this.showContainerHeader;
+        // this.showWidgetDesigner = true;
+        // let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
+        // console.log('1')
+        // let specification = compile(definition).spec;
+        // specification = compile(definition).spec;
+        // console.log('2')
+        // let view = new View(parse(specification));
+        // console.log('3', this.vis)
+        // this.showNavExplore = true;
+        // console.log('showGraph', event, this.menuOptionSelected)
+        // this.isFirstTime = false;
+        // view.renderer('svg')
+        //     // .width(500)
+        //     // .height(500)
+        //     .initialize(this.vis.nativeElement)
+        //     .hover()
+        //     .run()
+        //     .finalize();
     }
 
     clickIcon(selectedGraphType: string) {
@@ -357,8 +464,35 @@ export class TestComponent {
         this.showWidgetDesigner = false;
     }
 
+    dragStartWidget(ev: DragEvent) {
+        this.widgetStartX = ev.clientX;
+        this.widgetStartY = ev.clientY;
+        console.log('dragStartWidget', ev,this.widgetStartX, this.widgetStartY)
+        
+    }
 
+    dragEndWidget(ev: DragEvent) { 
+        this.widgetEndX = ev.clientX;
+        this.widgetEndY = ev.clientY;
+        let widgetMoveX = this.widgetEndX - this.widgetStartX;
+        let widgetMoveY = this.widgetEndY - this.widgetStartY;
+        console.log('dragEndWidget',  this.widgetStartX, this.widgetEndX,widgetMoveX, widgetMoveY, this.visReal.nativeElement['left'])
+        
+        this.renderer.setElementStyle(this.dragWidget.nativeElement,
+            'left', (500 + widgetMoveX).toString() + "px");
 
+        this.renderer.setElementStyle(this.dragWidget.nativeElement,
+            'top', (80 + widgetMoveX).toString() + "px");
+            // this.renderer.setElementStyle(this.dragWidget.nativeElement,
+        //     'background-color', 'brown'
+        // );
+        // this.renderer.setElementStyle(this.dragWidget.nativeElement,
+        //     'width', "1000px");
+        // this.renderer.setElementStyle(this.dragWidget.nativeElement,
+        //     'top', "150px");    
+        // this.renderer.setElementStyle(this.dragWidget.nativeElement,
+        //     'border', "4px solid black");    
+    }
 }
 
 
@@ -374,3 +508,21 @@ export class TestComponent {
 //     document.getElementById("mySidenav").style.width = "0";
 //     document.getElementById("main").style.marginLeft = "0";
 // }
+
+
+// Event	    On Event Handler	Description
+// drag	        ondrag	            Fired when an element or text selection is being dragged.
+// dragend	    ondragend	        Fired when a drag operation is being ended (for example,
+//               by releasing a mouse button or hitting the escape key). (See Finishing a Drag.)
+// dragenter	ondragenter	        Fired when a dragged element or text selection enters a 
+//              valid drop target. (See Specifying Drop Targets.)
+// dragexit	    ondragexit	        Fired when an element is no longer the drag operation's 
+//              immediate selection target.
+// dragleave	ondragleave	        Fired when a dragged element or text selection leaves a 
+//              valid drop target.
+// dragover	    ondragover	        Fired when an element or text selection is being dragged
+//               over a valid drop target (every few hundred milliseconds).
+// dragstart	ondragstart	        Fired when the user starts dragging an element or text s
+//              election. (See Starting a Drag Operation.)
+// drop	        ondrop	            Fired when an element or text selection is dropped on a 
+//              valid drop target. (See Performing a Drop.)

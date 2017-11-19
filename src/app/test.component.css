@@ -1,4 +1,21 @@
-.leftMenu {
+/* From Web:
+.container {
+    height: 320px;
+    width: 320px;
+    background-color: LightGray;
+  }
+  .draggable {
+    height: 50px;
+    width: 100px;
+    background-color: Green;
+    position: absolute;
+    cursor: move;
+  } */
+
+
+
+
+/* .leftMenu {
     background-color: lightgray;
     border: none;
     border-radius: 2px;
@@ -9,15 +26,18 @@
     top: 4.5em;
     width: 40px;
     z-index: 2;
-}
+} */
 
-.leftButton {
+/* .leftButton {
     border: 1px solid gray;
-}
+} */
 
 .tabList {
-	position: absolute;
+    background-color: lightgray;
     bottom: 0;
+    opacity: 1;
+    position: absolute;
+    z-index: 999;
 }
 
 .graphy {
@@ -28,6 +48,18 @@
 }
 
 .graphy:hover {
+    border: 1px dotted gray;
+    color: black !important;
+}
+
+.graphy111 {
+    display: inline;
+    left: 800px;
+    position: absolute;
+    top: 280px;
+}
+
+.graphy111:hover {
     border: 1px dotted gray;
     color: black !important;
 }
@@ -62,3 +94,45 @@
     z-index: 3;
 }
 
+.sidenav .navArrow {
+    position:absolute;
+    top: 3px;
+    right: 3px;
+    background-color: red;
+    width: 20px;
+}
+
+#wrapper {
+    border: 1px solid black;
+    position:relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+#first {
+    width: 40%;
+    /* border: 1px solid red; */
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+#second {
+    /* border: 1px solid green; */
+    position:absolute;
+    top: 2em;
+    width: 60%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    right:0;
+}
+
+.sidenav .dropdown-toggle {
+    margin: 0;
+    padding: 0;
+}
+
+.sidenav .nav-group .nav-list{
+    margin: 0;
+    padding: 0;
+}

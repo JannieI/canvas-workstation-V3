@@ -322,15 +322,6 @@ const fieldsMetadata: IfieldsMetadata[] = [
 ]
 
 const dataCurrent: Idata[] = [
-    {
-        name: 'Trades for 2016'
-    },
-    {
-        name: 'Costing preparation'
-    },
-    {
-        name: 'Budget Forecas'
-    }
 ]
 
 const dataServer: Idata[] = [
@@ -438,6 +429,7 @@ export class DataComponent implements OnInit {
     fields: Ifield[] = fields;
     fieldsMetadata: IfieldsMetadata[] = fieldsMetadata;
     firstTimeUser: boolean = true;
+    indexCurrent: number = 0;
     isError: boolean = false;
     showAddData: boolean = false;
     showAddDataDetail: boolean = false;
@@ -596,9 +588,25 @@ export class DataComponent implements OnInit {
         this.showAddData = false;
         this.showAddDataDetail = false;
         this.showAddFile = false;
-        let newData: Idata = {
-            name: 'Home Budget'
-        };
+        let newData: Idata =  {
+            name: 'Costing preparation'
+        }
+        if (this.indexCurrent == 0) {
+            newData.name = 'Trades for 2016'
+        }
+        if (this.indexCurrent == 1) {
+            newData.name = 'Costing preparation'
+        }
+        if (this.indexCurrent == 2) {
+            newData.name = 'Budget Forecas'
+        }
+        if (this.indexCurrent == 3) {
+            newData.name = 'Home Budget'
+        }
+
+        this.indexCurrent = this.indexCurrent +1;
+        if (this.indexCurrent > 3) {this.indexCurrent = 0}
+
         let len: number = this.dataCurrent.push(newData);
     }
 

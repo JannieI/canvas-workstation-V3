@@ -1,69 +1,451 @@
+<!-- Fooling around -->
+    <!-- From Web
+    <h1>Drag 'n Drop</h1>
+    <div #container
+        class="container"
+        (mousemove)="onMouseMove($event)">
+    <div #draggable
+        class="draggable"
+        (mousedown)="onMouseButton($event)"
+        (mouseup)="onMouseButton($event)">
+    </div>
+    </div> -->
 
-<div class="leftMenu">
-    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-xm tooltip-right">
-        <img class="leftButton"
+    <!-- <p id="p1" draggable="true" (dragstart)="dragstart_handler($event);">
+        This element is draggable.
+    </p>
+
+    <div id="target" (drop)="drop_handler($event);" (dragover)="dragover_handler($event);">
+        Drop Zone
+    </div> -->
+
+
+
+    <!-- <div class="leftMenu">
+        <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-xm tooltip-right">
+            <img class="leftButton"
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/FileOpen.png"
+                (click)="showGraphs()"
+                >
+            <span class="tooltip-content">Open new Dashboard</span>
+        </span>
+
+        <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-xm tooltip-right">
+            <img class="leftButton"
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/Tabs.png"
+                (click)="showGraphs()"
+                >
+            <span class="tooltip-content">Edit Tab</span>
+        </span>
+
+        <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-xm tooltip-right">
+            <img class="leftButton"
             [style.height.px]="30"
             [style.width.px]="30"
-            src="../images/FileOpen.png"
+            src="../images/Widget.png"
+            (click)="showWidget()"
+            >
+            <span class="tooltip-content">Edit Widget</span>
+        </span>
+
+        <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-xm tooltip-right">
+            <img class="leftButton"
+            [style.height.px]="30"
+            [style.width.px]="30"
+            src="../images/Data.png"
             (click)="showGraphs()"
             >
-        <span class="tooltip-content">Open new Dashboard</span>
+            <span class="tooltip-content">Data</span>
+        </span>
+
+        <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-xm tooltip-right">
+            <img class="leftButton"
+            [style.height.px]="30"
+            [style.width.px]="30"
+            src="../images/Explore.png"
+            (click)="showGraphs()"
+            >
+            <span class="tooltip-content">Explore</span>
+        </span>
+
+        <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-xm tooltip-right">
+            <img class="leftButton"
+            [style.height.px]="30"
+            [style.width.px]="30"
+            src="../images/Present.png"
+            (click)="showGraphs()"
+            >
+            <span class="tooltip-content">Presente</span>
+        </span>
+
+    </div> -->
+<!-- End fooling -->
+
+<h4> 
+    <button
+        type="button"
+        class="btn btn-link"
+        (click)="clickShowPalette()">
+        <clr-icon shape="bars" size="32"></clr-icon>
+    </button>
+    <span class="helpMessage" *ngIf="isFirstTime">
+        Click to show the palette.  Then drag a field onto the x-axis or y-axis to show 
+        a graph.  The name of your Dashboard and current Tab are shown at the bottom of 
+        the page.
     </span>
+</h4>
 
-    <img class="leftButton"
-        [style.height.px]="30"
-        [style.width.px]="30"
-        src="../images/Tabs.png"
-        (click)="showGraphs()"
-        >
-
-        <img class="leftButton"
-        [style.height.px]="30"
-        [style.width.px]="30"
-        src="../images/Widget.png"
-        (click)="showWidget()"
-        >
-
-        <img class="leftButton"
-        [style.height.px]="30"
-        [style.width.px]="30"
-        src="../images/Data.png"
-        (click)="showGraphs()"
-        >
-
-        <img class="leftButton"
-        [style.height.px]="30"
-        [style.width.px]="30"
-        src="../images/Explore.png"
-        (click)="showGraphs()"
-        >
-
-        <img class="leftButton"
-        [style.height.px]="30"
-        [style.width.px]="30"
-        src="../images/Present.png"
-        (click)="showGraphs()"
-        >
-
-</div>
 
 <div class="btn-group tabList">
-    <button class="btn">Tab 1</button>
-    <button class="btn">
+    <button  role="tooltip" aria-haspopup="true" 
+        class="tooltip tooltip-xm tooltip-top btn btn-secondary"
+        >
+        Analysis of Value Traded 2017
+        <clr-icon shape="caret up" size="16"></clr-icon>
+        <span class="tooltip-content">Current Dashboard</span>
+    </button>
+
+    <button  role="tooltip" aria-haspopup="true" 
+        class="tooltip tooltip-xm tooltip-top btn btn-secondary"
+        >
+        Summary
+        <clr-icon shape="caret up" size="16"></clr-icon>
+        <span class="tooltip-content">Click Tab to amend</span>
+    </button>
+
+    <button  role="tooltip" aria-haspopup="true" 
+        class="tooltip tooltip-xm tooltip-top btn btn-secondary"
+        >
         <clr-icon shape="plus" size="16"></clr-icon>
+        <span class="tooltip-content">Click to add a new Tab</span>
     </button>
 </div>
 
+<nav
+    id="wrapper"
+    class="sidenav"
+    *ngIf="showNavDataset"
+    [style.width.px]="sideNavWidth"
+    [style.min-width.rem]="sideNavMinWidth"
+    >
+
+    <button
+        class="dropdown-toggle btn btn-link btn-sm"
+        type="button"
+        [style.width.px]="sideNavWidth"
+        >
+        {{ sideNaveButtonText }}
+        <clr-icon shape="caret down"></clr-icon>
+    </button>
+    <div
+        id="first"
+        >
+        <section class="sidenav-content">
+            <section class="nav-group">
+                    <ul class="nav-list">
+                        <li>
+                            <a
+                                class="nav-link"
+                                (dragend)="showGraphsReal($event)"
+                                draggable="true"
+                                id="dragtarget"
+                                >
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Trader
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link"
+                                id="p1" 
+                                draggable="true" 
+                                (dragstart)="dragstart_handler($event)"
+                                (dragend)="dragend_handler($event)"
+                                >
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Country
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link active">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Trade Type
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dateField"></clr-icon>
+                                Date
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                DateTime
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Stock
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Volume
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Trades
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Value
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+        </section>
+    </div>
+    <div
+        id="second"
+        >
+        <!-- <section class="sidenav-content">
+            <section class="nav-group">
+                    <ul class="nav-list">
+                        <li>
+                            <a
+                                class="nav-link"
+                                (dragend)="showGraphsReal($event)"
+                                draggable="true"
+                                id="dragtarget"
+                                >
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Trader
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Country
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link active">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Trade Type
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dateField"></clr-icon>
+                                Date
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                DateTime
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Stock
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Volume
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Trades
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Value
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+        </section> -->
+        <section class="sidenav-content">
+            <div>
+                <button class="btn btn-sm"
+                (click)="showType=!showType"
+                >Select Type
+                <clr-icon shape="caret down"></clr-icon>
+            </button>
+            <img class="typeIcon"
+            *ngIf="showTypeIcon"
+            [style.height.px]="30"
+            [style.width.px]="30"
+                [src]="graphTypeFile"
+            >
+            </div>
+            <div *ngIf="showType">
+
+                <img class="typeIcon"
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/BarChart.png"
+                (click)="clickIcon('BarChart')"
+                >
+                <img
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/BubbleChart.png"
+                (click)="clickIcon('BubbleChart')"
+                >
+                <img class="typeIcon"
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/ColumnChart.png"
+                (click)="clickIcon('ColumnChart')"
+                >
+                <img
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/LineChart.png"
+                (click)="clickIcon('LineChart')"
+                >
+                <img class="typeIcon"
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/PieChart.png"
+                (click)="clickIcon('PieChart')"
+                >
+                <img
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/ScatterChart.png"
+                (click)="clickIcon('ScatterChart')"
+                >
+            </div>
+
+            <div 
+                id="target" (drop)="drop_handler($event);" (dragover)="dragover_handler($event);"
+            >
+            <clr-datagrid
+            >
+                <clr-dg-column
+                    
+                    >
+                    X axis (drag here)
+                    Column
+                </clr-dg-column>
+
+                <clr-dg-row>
+                    <clr-dg-cell>
+                        <clr-icon shape="plus" size="16"
+                        (click)="clickAdvancedField()"></clr-icon>
+                        TradeDate
+                    </clr-dg-cell>
+                </clr-dg-row>
+            </clr-datagrid>
+            </div>
+
+            <clr-datagrid>
+                <clr-dg-column>Y axis (drag here)
+                    Row
+                </clr-dg-column>
+
+                <clr-dg-row>
+                    <clr-dg-cell>
+                        <clr-icon shape="plus" size="16"></clr-icon>
+                        ValueTraded
+                    </clr-dg-cell>
+                </clr-dg-row>
+            </clr-datagrid>
+            <div *ngIf="showAdvancedField">
+                    <button class="btn btn-sm">type</button>
+                    <button class="btn btn-sm">bin</button>
+                    <button class="btn btn-sm">aggregate</button>
+                    <button class="btn btn-sm">zero</button>
+                    <button class="btn btn-sm">scale</button>
+
+            </div>
+            <clr-datagrid>
+                <clr-dg-column>Color (drag here)
+                    Row
+                </clr-dg-column>
+
+                <clr-dg-row>
+                    <clr-dg-cell>
+                        <clr-icon shape="plus" size="16"></clr-icon>
+                        Country
+                    </clr-dg-cell>
+                </clr-dg-row>
+            </clr-datagrid>
+
+        </section>
+
+    </div>
+</nav>
+
+
+<span
+    class="graphy"
+    [style.color] = "showContainerHeader ? 'black' : 'transparent'"
+    (click)="clickWidget($event)"
+    (dragstart)="dragStartWidget($event)"
+    (dragend)="dragEndWidget($event)"
+    draggable="true"
+    #dragWidget
+
+    >
+    <span class="widgetHandle"
+    [style.color] = "showContainerHeader ? 'black' : 'transparent'"
+    >Drag Edit</span>
+    <div
+        [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
+        >
+        <span #visReal>
+        </span>
+    </div>
+</span>
+
+<span
+    class="graphy111"
+    [style.color] = "showContainerHeader ? 'black' : 'transparent'"
+    (click)="clickWidget($event)"
+    #dragWidget111
+
+    >
+    <span class="widgetHandle"
+    [style.color] = "showContainerHeader ? 'black' : 'transparent'"
+    >Drag Edit</span>
+    <div
+        [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
+        >
+        <span #visReal111>
+        </span>
+    </div>
+</span>
 
 
 
-
+<!-- Widget Designer -->
 <div *ngIf="showWidgetDesigner" class="showWidget">
     Widget Designer
 
     <div class="row">
         <div class="col-lg-3">
-            <nav class="sidenav" *ngIf="showNavDataset">
+            <nav class="sidenav">
                 <button class="dropdown-toggle btn btn-link btn-sm" type="button">
                     Select Data
                     <clr-icon shape="caret down"></clr-icon>
@@ -72,10 +454,10 @@
                     <section class="nav-group">
                             <ul class="nav-list">
                                 <li>
-                                    <a 
+                                    <a
                                         class="nav-link"
-                                        (dragend)="showGraphs($event)" 
-                                        draggable="true" 
+                                        (dragend)="showGraphs($event)"
+                                        draggable="true"
                                         id="dragtarget"
                                         >
                                         <clr-icon shape="block" class="dimensionField"></clr-icon>
@@ -152,7 +534,7 @@
                     >
                     </div>
                     <div *ngIf="showType">
-                
+
                         <img class="typeIcon"
                         [style.height.px]="30"
                         [style.width.px]="30"
@@ -189,13 +571,13 @@
                         src="../images/ScatterChart.png"
                         (click)="clickIcon('ScatterChart')"
                         >
-                    </div>                
+                    </div>
 
                     <clr-datagrid>
                         <clr-dg-column>X axis (drag here)
                             Column
                         </clr-dg-column>
-                        
+
                         <clr-dg-row>
                             <clr-dg-cell>
                                 <clr-icon shape="plus" size="16"
@@ -209,7 +591,7 @@
                         <clr-dg-column>Y axis (drag here)
                             Row
                         </clr-dg-column>
-                        
+
                         <clr-dg-row>
                             <clr-dg-cell>
                                 <clr-icon shape="plus" size="16"></clr-icon>
@@ -223,13 +605,13 @@
                             <button class="btn btn-sm">aggregate</button>
                             <button class="btn btn-sm">zero</button>
                             <button class="btn btn-sm">scale</button>
-                            
+
                     </div>
                     <clr-datagrid>
                         <clr-dg-column>Color (drag here)
                             Row
                         </clr-dg-column>
-                        
+
                         <clr-dg-row>
                             <clr-dg-cell>
                                 <clr-icon shape="plus" size="16"></clr-icon>
@@ -237,14 +619,14 @@
                             </clr-dg-cell>
                         </clr-dg-row>
                     </clr-datagrid>
-                            
+
                 </section>
             </nav>
         </div>
-    </div>                        
+    </div>
 
-    <!-- Graphs -->
-    <span 
+    <!-- Graph -->
+    <span
         class="graphy"
         [style.color] = "showContainerHeader ? 'black' : 'transparent'"
         (click)="clickWidget($event)"
@@ -252,29 +634,13 @@
         <span class="widgetHandle"
         [style.color] = "showContainerHeader ? 'black' : 'transparent'"
         >Drag Edit</span>
-        <div 
+        <div
             [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
             >
             <span #vis>
-            </span>  
-        </div>  
-    </span> 
-
-    <span 
-        class="graphy"
-        [style.color] = "showContainerHeader ? 'black' : 'transparent'"
-        (click)="clickWidget($event)"
-        >
-        <span class="widgetHandle"
-        [style.color] = "showContainerHeader ? 'black' : 'transparent'"
-        >Drag Edit</span>
-        <div 
-            [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
-            >
-            <span #vis1>
-            </span>  
-        </div>  
-    </span> 
+            </span>
+        </div>
+    </span>
 
     <div class="btn-group">
         <button class="btn btn-secondary buttonWidget" (click)="clickWidgetClose()">
