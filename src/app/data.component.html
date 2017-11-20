@@ -16,6 +16,29 @@
 
 <div class="row">
 
+
+    <div class="col-xs-3" *ngIf="showCurrent">
+            
+        <nav class="sidenav">
+            <section class="sidenav-content">
+                <section class="nav-group collapsible open">
+                    <input id="tabexample1" type="checkbox">
+                    <label for="tabexample1">Data in this Dashboard</label>
+                    <ul class="nav-list">
+                        <div>
+                            <div *ngFor="let dat of dataCurrent">
+                                <li><a class="nav-link" (click)="clickShowCurrentDetail(dat.name)">
+                                    {{ dat.name }}</a>
+                                </li>
+                            </div>
+                        </div>
+                    </ul>
+                </section>
+            </section>
+        </nav>
+
+    </div>
+                
     <div class="col-xs-2 dataSideNav" *ngIf="showAddData">
         <div>
             <button
@@ -216,29 +239,6 @@
             </div>
         </div>
     
-    </div>
-    
-
-    <div class="col-xs-3" *ngIf="showCurrent">
-
-        <nav class="sidenav">
-            <section class="sidenav-content">
-                <section class="nav-group collapsible open">
-                    <input id="tabexample1" type="checkbox">
-                    <label for="tabexample1">Data in this Dashboard</label>
-                    <ul class="nav-list">
-                        <div>
-                            <div *ngFor="let dat of dataCurrent">
-                                <li><a class="nav-link" (click)="clickShowCurrentDetail(dat.name)">
-                                    {{ dat.name }}</a>
-                                </li>
-                            </div>
-                        </div>
-                    </ul>
-                </section>
-            </section>
-        </nav>
-
     </div>
 
     <div class="col-xs-7" *ngIf="showCurrentDetail">
