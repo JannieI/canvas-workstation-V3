@@ -36,6 +36,18 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 // var dl = require('datalib');
 // import * as sqlite3 from 'sqlite3';
 
+interface Idashboard {
+    name: string;
+    description: string;
+}
+
+const dashboards: Idashboard[] = [
+    {
+        name: 'Market Overview',
+        description: 'Economic indicator summary'
+    }
+]
+
 @Component({
     styleUrls: ['./test.component.css'],
     templateUrl: './test.component.html'
@@ -71,6 +83,7 @@ export class TestComponent {
     //     console.log('mouseover', this.ishovering)
     // }
 
+    dashboards: Idashboard[] = dashboards;
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
     isFirstTime: boolean = true;
@@ -80,8 +93,8 @@ export class TestComponent {
     sideNavMinWidth: string = '18';
     sideNaveButtonText: string = 'Select Data';
     showAdvancedField: boolean = false;
-    showSubMenuDashboard: boolean = true;
     showContainerHeader: boolean = false;
+    showModalOpenDashboard: boolean = false;
     showNavDashboard: Boolean = false;
     showNavTab: Boolean = false;
     showNavFormat: Boolean = false;
@@ -91,6 +104,7 @@ export class TestComponent {
     showNavCollaborate: Boolean = false;
     showSideNav1: boolean = true;
     showSideNav2: boolean = true;
+    showSubMenuDashboard: boolean = true;
     showType: boolean = false;
     showTypeIcon: boolean = true;
     showWidgetDesigner: boolean = false;
@@ -507,6 +521,11 @@ export class TestComponent {
     addNewTab() {
         this.secondTab = ! this.secondTab;
     }
+
+    clickCloseModel() {
+        this.showModalOpenDashboard = false;
+    }
+
 }
 
 

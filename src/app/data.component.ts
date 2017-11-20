@@ -439,7 +439,6 @@ export class DataComponent implements OnInit {
     showAddFromWeb: boolean = false;
     showAddNoSQL: boolean = false;
     showAddFromServer: boolean = false;
-
     showServerData: boolean = false;
     showRecentData: boolean = false;
     showSampleData: boolean = false;
