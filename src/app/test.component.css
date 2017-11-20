@@ -40,6 +40,10 @@
     z-index: 999;
 }
 
+.tabsLabel {
+    background-color: white !important;
+}
+
 .graphy {
     display: inline;
     left: 100px;

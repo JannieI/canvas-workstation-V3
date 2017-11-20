@@ -80,10 +80,73 @@ const backgroundcolors: Ibackgroundcolor[] = [
     }
 ]
 
+
+const vlTemplate: dl.spec.TopLevelExtendedSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+    "description": "",
+    "data": 
+        {
+            "values": ""
+        },
+    "mark": "",
+    "encoding": 
+        {
+            "x": {
+                "aggregate": "", 
+                "field": "", 
+                "type": "ordinal"},
+            "y": {
+                "aggregate": "", 
+                "field": "", 
+                "type": "quantitative",
+                "axis": {
+                    "title": ""
+            }
+        }
+    }
+}      
+
+    // const vlTemplate: dl.spec.TopLevelExtendedSpec = {
+//     // Properties for top-level specification (e.g., standalone single view specifications)
+//     "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+//     "background": ...,
+//     "padding": ...,
+//     "autosize": ...,
+//     "config": ...,
+  
+//     // Properties for any specifications
+//     "title": {
+//         "text": '$titleText',
+//         "anchor": '$titleAnchor',
+//         "offset": '$titleOffset',
+//         "orient": '$titleOrient',
+//         "style": '$titleStyle'
+//     },
+//     "name": ...,
+//     "description": ...,
+//     "data": '$data',
+//     "transform": ...,
+  
+//     // Properties for any single view specifications
+//     "width": '$width',
+//     "height": '$height',
+//     "mark": '$mark',
+//     "encoding": {
+//       "x": {
+//         "field": ...,
+//         "type": ...,
+//         ...
+//       },
+//       "y": ...,
+//       "color": ...,
+//       ...
+//     }
+//   }
 @Component({
     styleUrls: ['./test.component.css'],
     templateUrl: './test.component.html'
 })
+    
 export class TestComponent {
     @ViewChild('vis', {read: ElementRef}) vis: ElementRef;  //Vega graph
     @ViewChild('visReal', {read: ElementRef}) visReal: ElementRef;  //Vega graph
@@ -114,6 +177,20 @@ export class TestComponent {
     // @HostListener('mouseover') onMouseOver() {
     //     console.log('mouseover', this.ishovering)
     // }
+
+    description: string = 'A simple bar chart with embedded data.';
+    data: any = [
+        {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55}, 
+        {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
+        {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
+        {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
+        {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
+        {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
+        ];
+    mark: string = 'bar';
+    xfield: string = 'Month';
+    yfield: string = 'Trades';
+    title: string = 'Average Trading';
 
     backgroundcolors: Ibackgroundcolor[] = backgroundcolors;
     dashboards: Idashboard[] = dashboards;
@@ -181,7 +258,6 @@ export class TestComponent {
 
 
 
-
     vlSpecs: dl.spec.TopLevelExtendedSpec[] = [
         {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
@@ -208,7 +284,7 @@ export class TestComponent {
             "description": "A simple bar chart with embedded data.",
             "data": {
               "values": [
-                {"Month": "01","Trades": 28}, {"Month": "02","Trades": 55}, 
+                {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55}, 
                 {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
                 {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
                 {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
@@ -219,7 +295,7 @@ export class TestComponent {
             "mark": "bar",
             "encoding": {
               "x": {"field": "Month", "type": "ordinal"},
-              "y": {"field": "Trades", "type": "quantitative",
+              "y": {"aggregate": "", "field": "Trades", "type": "quantitative",
                 "axis": {
                     "title": "Average Trading"
                 }
@@ -280,6 +356,27 @@ export class TestComponent {
         console.log('showGraph', event, this.menuOptionSelected)
         this.isFirstTime = false;
         let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
+        console.log('definition 1', definition)
+        
+        // Replacement portion
+        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
+        vlSpecsNew['data']['values'] = [
+            {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55}, 
+            {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
+            {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
+            {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
+            {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
+            {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
+        ];
+        vlSpecsNew['description'] = this.description;
+        vlSpecsNew['mark'] = this.mark;
+        vlSpecsNew['encoding']['x']['field'] = this.xfield;
+        vlSpecsNew['encoding']['y']['field'] = this.yfield;
+        vlSpecsNew['title'] = this.title;
+        definition = vlSpecsNew;
+        console.log('definition 2', definition)
+
+
         let specification = compile(definition).spec;
 
         specification = compile(definition).spec;
