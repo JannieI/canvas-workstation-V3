@@ -41,10 +41,42 @@ interface Idashboard {
     description: string;
 }
 
+interface Ibackgroundcolor {
+    name: string;
+}
+
 const dashboards: Idashboard[] = [
     {
         name: 'Market Overview',
         description: 'Economic indicator summary'
+    },
+    {
+        name: 'Costing Summary',
+        description: 'Costing Summary'
+    },
+    {
+        name: 'Home Budget',
+        description: 'Home Budget'
+    },
+    {
+        name: 'Bitcoin sales',
+        description: 'Bitcoin sales'
+    },
+    {
+        name: 'Cycling routes',
+        description: 'Cycling routes'
+    }
+]
+
+const backgroundcolors: Ibackgroundcolor[] = [
+    {
+        name: 'transparent'
+    },
+    {
+        name: 'beige'
+    },
+    {
+        name: 'white'
     }
 ]
 
@@ -83,6 +115,7 @@ export class TestComponent {
     //     console.log('mouseover', this.ishovering)
     // }
 
+    backgroundcolors: Ibackgroundcolor[] = backgroundcolors;
     dashboards: Idashboard[] = dashboards;
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
@@ -526,6 +559,9 @@ export class TestComponent {
         this.showModalOpenDashboard = false;
     }
 
+    clickTabBg(dash: string) {
+        console.log('clickTabBg', dash)
+    }
 }
 
 

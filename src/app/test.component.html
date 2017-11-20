@@ -131,7 +131,7 @@
                 Open
                 <clr-icon shape="floppy" size="16"></clr-icon>
             </button>
-            </clr-dropdown-menu>
+        </clr-dropdown-menu>
     </clr-dropdown>
     Tabs: 
     <clr-dropdown>
@@ -156,11 +156,17 @@
                 Save
                 <clr-icon shape="floppy" size="16"></clr-icon>
             </button>
-                
-
+            <div class="form-group">
+                <label for="selects_6" class="popupLabel">Select Background Color</label>
+                <div class="select">
+                    <select id="selects_6" class="popupInput">
+                        <option *ngFor="let bg of backgroundcolors">{{bg.name}}</option>
+                    </select>
+                </div>
+            </div>    
 
             <clr-dropdown>
-                <button type="button" clrDropdownTrigger>Link 1</button>
+                <button type="button" clrDropdownTrigger>Later 1</button>
                 <clr-dropdown-menu>
                     <button type="button" clrDropdownItem>Foo</button>
                     <clr-dropdown>
@@ -171,7 +177,7 @@
                     </clr-dropdown>
                 </clr-dropdown-menu>
             </clr-dropdown>
-            <button type="button" clrDropdownItem>Link 2</button>
+            <button type="button" clrDropdownItem>Later 2</button>
         </clr-dropdown-menu>
     </clr-dropdown>
 
