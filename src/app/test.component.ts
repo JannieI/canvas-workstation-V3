@@ -562,6 +562,10 @@ export class TestComponent {
     clickTabBg(dash: string) {
         console.log('clickTabBg', dash)
     }
+
+    clickDeleteTab() {
+        alert ('Cannot delete last remaining Tab')
+    }
 }
 
 

@@ -152,10 +152,6 @@
                     class="popupInput">
             </div>
             <div class="dropdown-divider"></div>
-            <button type="button" class="popupButton" clrDropdownItem>
-                Save
-                <clr-icon shape="floppy" size="16"></clr-icon>
-            </button>
             <div class="form-group">
                 <label for="selects_6" class="popupLabel">Select Background Color</label>
                 <div class="select">
@@ -164,7 +160,15 @@
                     </select>
                 </div>
             </div>    
-
+            <button type="button" class="popupButton" clrDropdownItem>
+                Save
+                <clr-icon shape="floppy" size="16"></clr-icon>
+            </button>
+            <button type="button" class="popupButton" clrDropdownItem
+                (click)="clickDeleteTab()">
+                Delete
+            </button>
+    
             <clr-dropdown>
                 <button type="button" clrDropdownTrigger>Later 1</button>
                 <clr-dropdown-menu>
