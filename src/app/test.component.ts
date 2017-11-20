@@ -436,7 +436,7 @@ export class TestComponent {
             .run()
             .finalize();
             this.renderer.setElementStyle(this.dragWidget.nativeElement,
-                'left', "500px");
+                'top', "300px");
 
     }
     allowDrop(event) {

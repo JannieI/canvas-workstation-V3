@@ -1,65 +1,177 @@
-.menuItm {
-    margin: auto;
+/* From Web:
+.container {
+    height: 320px;
+    width: 320px;
+    background-color: LightGray;
+  }
+  .draggable {
+    height: 50px;
+    width: 100px;
+    background-color: Green;
+    position: absolute;
+    cursor: move;
+  } */
+
+
+
+
+/* .leftMenu {
+    background-color: lightgray;
+    border: none;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    margin: 5px;
+    padding: 4px;
+    top: 4.5em;
+    width: 40px;
+    z-index: 2;
+} */
+
+/* .leftButton {
+    border: 1px solid gray;
+} */
+
+.tabList {
+    background-color: lightgray;
+    bottom: 0;
+    opacity: 1;
+    position: absolute;
+    z-index: 999;
 }
 
-.menuButton  {
-    color: rgba(245, 116, 10, 0.527) !important;
-}
-
-.dropdown-header .dropdown-menu {
-    color: rgb(255, 205, 192);
-}
-
-.header-nav .dropdown {
-    color: rgb(255, 205, 192);
+.tabsLabel {
+    background-color: white !important;
 }
 
 .graphy {
-    float: right;
-    top: 80px;
-    width: 280px;
-}
-
-.tabList {
-	position: absolute;
-    bottom: 0;
-}
- 
-.sidenav .sidenav-content .nav-list {
-    margin: 0;
-    padding: 0;
-}
-
-.clr-tabs .clr-tab-content {
-    margin: 0;
-    padding: 0;
-}
-
-.subnav .nav {
-    margin: 0;
-    padding: 0;
-}
-
-.dimensionField {
-    background-color: rgb(243, 243, 247);
-}
-
-.metricField {
-    background-color: rgb(238, 172, 96);
-}
-
-.dateField {
-    background-color: rgb(193, 196, 197);
-}
-
-h4 {
-    color: gray;
-    position: relative;
-    left: 50%;
-    top: 50%;
-}
-
-.typeIcon {
-    border: 1px solid darkgray;
     display: inline;
+    left: 100px;
+    position: absolute;
+    top: 80px;
+}
+
+.graphy:hover {
+    border: 1px dotted gray;
+    color: black !important;
+}
+
+.graphy111 {
+    display: inline;
+    left: 800px;
+    position: absolute;
+    top: 280px;
+}
+
+.graphy111:hover {
+    border: 1px dotted gray;
+    color: black !important;
+}
+
+.widgetHandle {
+    color: transparent;
+}
+
+.widgetHandle:hover {
+    color: black;
+}
+
+.graphy {
+    display: inline;
+    left: 500px;
+    position: absolute;
+    top: 80px;
+}
+
+.graphy1:hover {
+    border: 1px dotted gray;
+    color: black !important;
+}
+
+.showWidget {
+    background-color: lightgray;
+    height: 100%;
+    left: 0;
+    top: 4.5em;
+    position: absolute;
+    width: 100%;
+    z-index: 3;
+}
+
+.sidenav .navArrow {
+    position:absolute;
+    top: 3px;
+    right: 3px;
+    background-color: red;
+    width: 20px;
+}
+
+#wrapper {
+    border: 1px solid black;
+    position:relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+#first {
+    width: 40%;
+    /* border: 1px solid red; */
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+#second {
+    /* border: 1px solid green; */
+    position:absolute;
+    top: 2em;
+    width: 60%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    right:0;
+}
+
+.sidenav .dropdown-toggle {
+    margin: 0;
+    padding: 0;
+}
+
+.sidenav .nav-group .nav-list{
+    margin: 0;
+    padding: 0;
+}
+
+.helpMessage {
+    margin: 0 0 0 5px;
+    padding: 0;
+}
+
+.barsButton {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-width: 10px !important;
+}
+
+.dashboardDropdown {
+    width: 12rem !important;
+}
+
+.popupLabel {
+    font-size: .5rem !important;
+    margin: 0 0 0 10px !important;
+    width: 3rem !important;
+}
+
+.popupInput {
+    font-size: .5rem !important;
+    margin: 0 0 0 10px !important;
+    width: 9rem !important;
+}
+
+.popupButton {
+    background-color: rgb(172, 169, 169);
+    border: none;
+    font-size: .6rem !important;
+    margin: 5px 0 0 10px !important;
+    width: 4rem !important;
 }

@@ -7,8 +7,12 @@ import { AfterViewInit }              from '@angular/core';
 import { Component }                  from '@angular/core';
 import { Directive }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
+import { HostBinding }                from '@angular/core';
+import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
+import { OnInit }                     from '@angular/core';
 import { Renderer }                   from '@angular/core';
+//* import { Renderer2 }                  from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Vega, Vega-Lite
@@ -22,6 +26,8 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
 // import { load } from 'datalib';
 
+//* const draggableHeight = 50;
+//* const draggableWidth = 100;
 
 // Own Services
 
@@ -30,31 +36,253 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 // var dl = require('datalib');
 // import * as sqlite3 from 'sqlite3';
 
+interface Idashboard {
+    name: string;
+    description: string;
+}
+
+interface Ibackgroundcolor {
+    name: string;
+}
+
+const dashboards: Idashboard[] = [
+    {
+        name: 'Market Overview',
+        description: 'Economic indicator summary'
+    },
+    {
+        name: 'Costing Summary',
+        description: 'Costing Summary'
+    },
+    {
+        name: 'Home Budget',
+        description: 'Home Budget'
+    },
+    {
+        name: 'Bitcoin sales',
+        description: 'Bitcoin sales'
+    },
+    {
+        name: 'Cycling routes',
+        description: 'Cycling routes'
+    }
+]
+
+const backgroundcolors: Ibackgroundcolor[] = [
+    {
+        name: 'transparent'
+    },
+    {
+        name: 'beige'
+    },
+    {
+        name: 'white'
+    }
+]
+
+
+const vlTemplate: dl.spec.TopLevelExtendedSpec = 
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+    
+    // Properties for top-level specification (e.g., standalone single view specifications)
+    "background": "",
+    "padding": "",
+    // "autosize": "",          NB - add these only if needed, blank causes no graph display
+    // "config": "",            NB - add these only if needed, blank causes no graph display
+  
+    // Properties for any specifications
+    "title": 
+        {
+            "text": "",
+            "anchor": "",
+            "offset": "",
+            "orient": "",
+            "style": ""
+        },
+    "name": "",
+    "transform": "",
+
+    "description": "",
+    "data": 
+        {
+            "values": ""
+        },
+    "mark": 
+        {
+            "type": "",  //bar circle square tick line area point rule text
+            "style": "",
+            "clip": ""
+        },
+    "encoding": 
+        {
+            "x": 
+                {
+                    "aggregate": "", 
+                    "field": "", 
+                    "type": "ordinal",
+                    "bin": "",
+                    "timeUnit": "",
+                    "axis": 
+                    {
+                        "title": ""
+                    },
+                    "scale": "",
+                    "legend": "",
+                    "format": "",
+                    "stack": "",
+                    "sort": "",
+                    "condition": ""
+                },
+            "y": 
+                {
+                    "aggregate": "", 
+                    "field": "", 
+                    "type": "quantitative",
+                    "bin": "",
+                    "timeUnit": "",
+                    "axis": 
+                        {
+                            "title": ""
+                        },
+                    "scale": "",
+                    "legend": "",
+                    "format": "",
+                    "stack": "",
+                    "sort": "",
+                    "condition": ""
+                    }
+        }
+}      
+
+    // const vlTemplate: dl.spec.TopLevelExtendedSpec = {
+  
+//     // Properties for any single view specifications
+//     "width": '$width',
+//     "height": '$height',
+//     "mark": '$mark',
+//     "encoding": {
+//       "x": {
+//         "field": ...,
+//         "type": ...,
+//         ...
+//       },
+//       "y": ...,
+//       "color": ...,
+//       ...
+//     }
+//   }
 @Component({
     styleUrls: ['./explore.component.css'],
     templateUrl: './explore.component.html'
 })
+    
 export class ExploreComponent {
     @ViewChild('vis', {read: ElementRef}) vis: ElementRef;  //Vega graph
+    @ViewChild('visReal', {read: ElementRef}) visReal: ElementRef;  //Vega graph
+    @ViewChild('visReal111', {read: ElementRef}) visReal111: ElementRef;  //Vega graph
+    @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @Input() menuOptionSelected: string;
+    
+    @ViewChild('typeDropdown') typeDropdown: ElementRef;
+    
 
+//*     @ViewChild('container') private containerElement: ElementRef;
+//*     @ViewChild('draggable') private draggableElement: ElementRef;
+  
+//*     boundary: any = {};
+//*     draggable: any;
+//*     isMouseDown = false;
+
+    // @HostBinding('class.droptarget') private ishovering: boolean;
+
+    // @HostListener('dragend', ["$event"]) onDrag(ev) {
+    //     console.log('HostListener - dragEnd', this.ishovering);
+    // }
+
+    // @HostListener('drop', ["$event"]) onDrop(ev) {
+    //     console.log('HostListener - drop', ev);
+    // }
+    
+    // @HostListener('mouseover') onMouseOver() {
+    //     console.log('mouseover', this.ishovering)
+    // }
+
+    description: string = 'A simple bar chart with embedded data.';
+    data: any = [
+        {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55}, 
+        {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
+        {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
+        {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
+        {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
+        {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
+        ];
+
+    backgroundcolors: Ibackgroundcolor[] = backgroundcolors;
+    dashboards: Idashboard[] = dashboards;
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
     isFirstTime: boolean = true;
     open: Boolean = false;
+    secondTab: Boolean = false;
+    sideNavWidth: string = '350';
+    sideNavMinWidth: string = '18';
+    sideNaveButtonText: string = 'Select Data';
     showAdvancedField: boolean = false;
-    showSubMenuDashboard: boolean = true;
     showContainerHeader: boolean = false;
+    showModalOpenDashboard: boolean = false;
     showNavDashboard: Boolean = false;
     showNavTab: Boolean = false;
     showNavFormat: Boolean = false;
-    showNavDataset: Boolean = true;
-    showNavExplore: Boolean = false;
+    showNavDataset: Boolean = false;
+    showNavExplore: Boolean = true;
     showNavPresentation: Boolean = false;
     showNavCollaborate: Boolean = false;
+    showSideNav1: boolean = true;
+    showSideNav2: boolean = true;
+    showSubMenuDashboard: boolean = true;
     showType: boolean = false;
     showTypeIcon: boolean = true;
+    showWidgetDesigner: boolean = false;
     widgetBorder: string = '1px black solid';
+    widgetStartX: number = 0;
+    widgetStartY: number = 0;
+    widgetEndX: number = 0;
+    widgetEndY: number = 0;
+
+
+    
+    dragstart_handler(ev) {
+        console.log("dragStart");
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+        console.log('drag_start')
+    }
+
+    dragend_handler(ev) {
+        console.log('dragend_handler', ev.dataTransfer.dropEffect)
+    }
+    dragover_handler(ev) {
+        console.log('dragover_handler')
+        ev.preventDefault();
+        // Set the dropEffect to move
+        ev.dataTransfer.dropEffect = "move"
+       }
+    drop_handler(ev) {
+        ev.preventDefault();
+        // Get the id of the target and add the moved element to the target's DOM
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+        console.log('drop_handler dropped !!')
+    }
+
+    clickShowPalette() {
+        this.showNavDataset = !this.showNavDataset;
+        this.isFirstTime = false;
+    }
+
+
+
 
     vlSpecs: dl.spec.TopLevelExtendedSpec[] = [
         {
@@ -82,7 +310,7 @@ export class ExploreComponent {
             "description": "A simple bar chart with embedded data.",
             "data": {
               "values": [
-                {"Month": "01","Trades": 28}, {"Month": "02","Trades": 55}, 
+                {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55}, 
                 {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
                 {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
                 {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
@@ -93,7 +321,7 @@ export class ExploreComponent {
             "mark": "bar",
             "encoding": {
               "x": {"field": "Month", "type": "ordinal"},
-              "y": {"field": "Trades", "type": "quantitative",
+              "y": {"aggregate": "", "field": "Trades", "type": "quantitative",
                 "axis": {
                     "title": "Average Trading"
                 }
@@ -103,8 +331,43 @@ export class ExploreComponent {
     ];
     constructor(
         private renderer: Renderer,
+//*         private renderer2: Renderer2,
     ) {}
 
+
+
+//*   ngOnInit() {
+//*     this.draggable = this.draggableElement.nativeElement;
+//* 
+//*     const container = this.containerElement.nativeElement;
+//*     this.boundary = {
+//*       left: container.offsetLeft + (draggableWidth / 2),
+//*       right: container.clientWidth + container.offsetLeft - (draggableWidth / 2),
+//*       top: container.offsetTop + (draggableHeight / 2),
+//*       bottom: container.clientWidth + container.offsetTop - (draggableHeight / 2),
+//*     };
+//*     }
+
+//*     onMouseButton(event: MouseEvent): void {
+//*         this.isMouseDown = event.buttons === 1;
+//*     }
+//* 
+//*     onMouseMove(event: MouseEvent): void {
+//* 
+//*         if (this.isMouseDown && this.isInsideBoundary(event)) {
+//*         this.renderer2.setStyle(this.draggable, 'left', event.clientX - (draggableWidth / 2) + 'px');
+//*         this.renderer2.setStyle(this.draggable, 'top', event.clientY - (draggableHeight / 2) + 'px');
+//*         }
+//*     }
+//* 
+//*     isInsideBoundary(event: MouseEvent) {
+//*         return event.clientX > this.boundary.left &&
+//*         event.clientX < this.boundary.right &&
+//*         event.clientY > this.boundary.top &&
+//*         event.clientY < this.boundary.bottom;
+//*     }
+
+    
     ngAfterViewInit() {
     }
 
@@ -112,212 +375,198 @@ export class ExploreComponent {
         console.log('menuOptionSelected', this.menuOptionSelected)
     }
 
-    showGraphs(event) {
+    showGraphsReal() {
         // Show Graph Examples
         
         this.showNavExplore = true;
         console.log('showGraph', event, this.menuOptionSelected)
         this.isFirstTime = false;
         let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
+        console.log('definition 1', definition)
+        
+        // Replacement portion
+
+        definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);
+        console.log('definition 2', definition)
+
+
         let specification = compile(definition).spec;
 
-        // Full Vega Spec
-            specification = {
-                "$schema": "https://vega.github.io/schema/vega/v3.0.json",
-                "width": 960,
-                "height": 500,
-                "autosize": "none",
-
-                "data": [
-                    {
-                    "name": "unemp",
-                    "url": "./assets/vega/vega-datasets/unemployment.tsv",
-                    "format": {"type": "tsv", "parse": "auto"}
-                    },
-                    {
-                    "name": "counties",
-                    "url": "../assets/vega/vega-datasets/us-10m.json",
-                    "format": {"type": "topojson", "feature": "counties"},
-                    "transform": [
-                        { "type": "lookup", "from": "unemp", "key": "id", "fields": ["id"], "as": ["unemp"] },
-                        { "type": "filter", "expr": "datum.unemp != null" }
-                    ]
-                    }
-                ],
-
-                "projections": [
-                    {
-                    "name": "projection",
-                    "type": "albersUsa"
-                    }
-                ],
-
-                "scales": [
-                    {
-                    "name": "color",
-                    "type": "quantize",
-                    "domain": [0, 0.15],
-                    "range": {"scheme": "blues-9"}
-                    }
-                ],
-
-                "legends": [
-                    {
-                    "fill": "color",
-                    "orient": "bottom-right",
-                    "title": "Unemployment",
-                    "format": "0.1%",
-                    "encode": {
-                        "symbols": {
-                        "update": {
-                            "shape": {"value": "square"},
-                            "stroke": {"value": "#ccc"},
-                            "strokeWidth": {"value": 0.2}
-                        }
-                        }
-                    }
-                    }
-                ],
-
-                "marks": [
-                    {
-                    "type": "shape",
-                    "from": {"data": "counties"},
-                    "encode": {
-                        "enter": { "tooltip": {"signal": "format(datum.unemp.rate, '0.1%')"}},
-                        "update": { "fill": {"scale": "color", "field": "unemp.rate"} },
-                        "hover": { "fill": {"value": "red"} }
-                    },
-                    "transform": [
-                        { "type": "geoshape", "projection": "projection" }
-                    ]
-                    }
-                ]
-            }
-        // End of Full Vega Spec
-
         specification = compile(definition).spec;
-       
-        console.log('ss', specification)
 
         let view = new View(parse(specification));
         
         view.renderer('svg')
             // .width(500)
             // .height(500)
-            .initialize(this.vis.nativeElement)
+            .initialize(this.visReal.nativeElement)
             .hover()
             .run()
             .finalize();
-
-
-            // var view = new vg.View(vg.parse( this.widgets[i].graph.spec ));
-            // view.renderer('svg')
-            //     .initialize( this.childrenWidgets.toArray()[i].nativeElement)
-            //     .hover()
-            //     .run();
-
-
-
-
-
-            // Load datalib.
-
-            // Load and parse a CSV file. Datalib does type inference for you.
-            // The result is an array of JavaScript objects with named values.
-            // Parsed dates are stored as UNIX timestamp values.
-            var data = dl.csv('http://vega.github.io/datalib/data/stocks.csv');
-
-            // Show summary statistics for each column of the data table.
-            console.log(dl.format.summary(data));
-
-            // Compute mean and standard deviation by ticker symbol.
-            var rollup = dl.groupby('symbol')
-            .summarize({'price': ['mean', 'stdev']})
-            .execute(data);
-            console.log(dl.format.table(rollup));
-
-            // Compute correlation measures between price and date.
-            console.log(
-            dl.cor(data, 'price', 'date'),      // Pearson product-moment correlation
-            dl.cor.rank(data, 'price', 'date'), // Spearman rank correlation
-            dl.cor.dist(data, 'price', 'date')  // Distance correlation
-            );
-
-            // Compute mutual information distance between years and binned price.
-            var bin_price = dl.$bin(data, 'price'); // returns binned price values
-            var year_date = dl.$year('date');       // returns year from date field
-            var counts = dl.groupby(year_date, bin_price).count().execute(data);
-            console.log(dl.mutual.dist(counts, 'bin_price', 'year_date', 'count'));
+            this.renderer.setElementStyle(this.dragWidget.nativeElement,
+                'left', "500px");
     }
 
-    onClickSubmenu(menuOption: string) {
+    clickSwapXY() {
+        // Show Graph Examples
+        
+        this.showNavExplore = true;
+        console.log('showGraph', event, this.menuOptionSelected)
+        this.isFirstTime = false;
+        let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
+        console.log('definition 1', definition)
+        
+        // Replacement portion
 
-        if (menuOption == 'dashboard') {
-            this.showNavDashboard = !this.showNavDashboard;
-            this.showNavTab = false;
-            this.showNavFormat = false;
-            this.showNavDataset = false;
-            this.showNavExplore = false;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = false;
-        }
-        else if (menuOption == 'tab') {
-            this.showNavDashboard = false;
-            this.showNavTab = !this.showNavTab;
-            this.showNavFormat = false;
-            this.showNavDataset = false;
-            this.showNavExplore = false;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = false;
-        }
-        else if (menuOption == 'format') {
-            this.showNavDashboard = false;
-            this.showNavTab = false;
-            this.showNavFormat = !this.showNavFormat;
-            this.showNavDataset = false;
-            this.showNavExplore = false;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = false;
-            }
-        else if (menuOption == 'dataset') {
-            this.showNavDashboard = false;
-            this.showNavTab = false;
-            this.showNavFormat = false;
-            this.showNavDataset = !this.showNavDataset;
-            this.showNavExplore = false;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = false;
-            }
-        else if (menuOption == 'explore') {
-            this.showNavDashboard = false;
-            this.showNavTab = false;
-            this.showNavFormat = false;
-            if (!this.showNavExplore) {this.showNavDataset = !this.showNavExplore};
-            this.showNavExplore = !this.showNavExplore;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = false;
-            }
-        else if (menuOption == 'presentation') {
-            this.showNavDashboard = false;
-            this.showNavTab = false;
-            this.showNavFormat = false;
-            this.showNavDataset = false;
-            this.showNavExplore = false;
-            this.showNavPresentation = !this.showNavPresentation;
-            this.showNavCollaborate = false;
-        }
-        else if (menuOption == 'collaborate') {
-            this.showNavDashboard = false;
-            this.showNavTab = false;
-            this.showNavFormat = false;
-            this.showNavDataset = false;
-            this.showNavExplore = false;
-            this.showNavPresentation = false;
-            this.showNavCollaborate = !this.showNavCollaborate;
-        }
+        definition = this.createVegaLiteSpec(undefined,'bar','Trades','Month',undefined);
+        console.log('definition 2', definition)
+
+
+        let specification = compile(definition).spec;
+
+        specification = compile(definition).spec;
+
+        let view = new View(parse(specification));
+        
+        view.renderer('svg')
+            // .width(500)
+            // .height(500)
+            .initialize(this.visReal.nativeElement)
+            .hover()
+            .run()
+            .finalize();
+            this.renderer.setElementStyle(this.dragWidget.nativeElement,
+                'top', "300px");
 
     }
+    allowDrop(event) {
+        event.preventDefault();
+    }
+
+    // showGraphs() {
+    //     // Show Graph Examples
+        
+    //     this.showNavExplore = true;
+    //     console.log('showGraph', event, this.menuOptionSelected)
+    //     this.isFirstTime = false;
+    //     let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
+    //     let specification = compile(definition).spec;
+
+    //     // Full Vega Spec
+    //         specification = {
+    //             "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+    //             "width": 960,
+    //             "height": 500,
+    //             "autosize": "none",
+
+    //             "data": [
+    //                 {
+    //                 "name": "unemp",
+    //                 "url": "./assets/vega/vega-datasets/unemployment.tsv",
+    //                 "format": {"type": "tsv", "parse": "auto"}
+    //                 },
+    //                 {
+    //                 "name": "counties",
+    //                 "url": "../assets/vega/vega-datasets/us-10m.json",
+    //                 "format": {"type": "topojson", "feature": "counties"},
+    //                 "transform": [
+    //                     { "type": "lookup", "from": "unemp", "key": "id", "fields": ["id"], "as": ["unemp"] },
+    //                     { "type": "filter", "expr": "datum.unemp != null" }
+    //                 ]
+    //                 }
+    //             ],
+
+    //             "projections": [
+    //                 {
+    //                 "name": "projection",
+    //                 "type": "albersUsa"
+    //                 }
+    //             ],
+
+    //             "scales": [
+    //                 {
+    //                 "name": "color",
+    //                 "type": "quantize",
+    //                 "domain": [0, 0.15],
+    //                 "range": {"scheme": "blues-9"}
+    //                 }
+    //             ],
+
+    //             "legends": [
+    //                 {
+    //                 "fill": "color",
+    //                 "orient": "bottom-right",
+    //                 "title": "Unemployment",
+    //                 "format": "0.1%",
+    //                 "encode": {
+    //                     "symbols": {
+    //                     "update": {
+    //                         "shape": {"value": "square"},
+    //                         "stroke": {"value": "#ccc"},
+    //                         "strokeWidth": {"value": 0.2}
+    //                     }
+    //                     }
+    //                 }
+    //                 }
+    //             ],
+
+    //             "marks": [
+    //                 {
+    //                 "type": "shape",
+    //                 "from": {"data": "counties"},
+    //                 "encode": {
+    //                     "enter": { "tooltip": {"signal": "format(datum.unemp.rate, '0.1%')"}},
+    //                     "update": { "fill": {"scale": "color", "field": "unemp.rate"} },
+    //                     "hover": { "fill": {"value": "red"} }
+    //                 },
+    //                 "transform": [
+    //                     { "type": "geoshape", "projection": "projection" }
+    //                 ]
+    //                 }
+    //             ]
+    //         }
+    //     // End of Full Vega Spec
+
+    //     specification = compile(definition).spec;
+
+    //     let view = new View(parse(specification));
+        
+    //     view.renderer('svg')
+    //         // .width(500)
+    //         // .height(500)
+    //         .initialize(this.vis.nativeElement)
+    //         .hover()
+    //         .run()
+    //         .finalize();
+       
+
+    //         // Load and parse a CSV file. Datalib does type inference for you.
+    //         // The result is an array of JavaScript objects with named values.
+    //         // Parsed dates are stored as UNIX timestamp values.
+    //         // var data = dl.csv('http://vega.github.io/datalib/data/stocks.csv');
+
+    //         // Show summary statistics for each column of the data table.
+    //         // console.log(dl.format.summary(data));
+
+    //         // Compute mean and standard deviation by ticker symbol.
+    //         // var rollup = dl.groupby('symbol')
+    //         // .summarize({'price': ['mean', 'stdev']})
+    //         // .execute(data);
+    //         // console.log(dl.format.table(rollup));
+
+    //         // Compute correlation measures between price and date.
+    //         // console.log(
+    //         // dl.cor(data, 'price', 'date'),      // Pearson product-moment correlation
+    //         // dl.cor.rank(data, 'price', 'date'), // Spearman rank correlation
+    //         // dl.cor.dist(data, 'price', 'date')  // Distance correlation
+    //         // );
+
+    //         // Compute mutual information distance between years and binned price.
+    //         // var bin_price = dl.$bin(data, 'price'); // returns binned price values
+    //         // var year_date = dl.$year('date');       // returns year from date field
+    //         // var counts = dl.groupby(year_date, bin_price).count().execute(data);
+    //         // console.log(dl.mutual.dist(counts, 'bin_price', 'year_date', 'count'));
+    // }
 
     clickButtonAddDashboard () {
         
@@ -331,9 +580,32 @@ export class ExploreComponent {
     }
 
     clickWidget(ev) {
-        console.log('clickWidget()', this.showContainerHeader,  this.showNavDataset, ev);
-        this.showContainerHeader = !this.showContainerHeader;
-        this.onClickSubmenu('explore');
+        if (!this.showNavDataset) {
+            this.showNavDataset = true;
+        } 
+        return;
+
+        // Old way
+        // console.log('clickWidget()', this.showContainerHeader,  this.showNavDataset, ev);
+        // this.showContainerHeader = !this.showContainerHeader;
+        // this.showWidgetDesigner = true;
+        // let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
+        // console.log('1')
+        // let specification = compile(definition).spec;
+        // specification = compile(definition).spec;
+        // console.log('2')
+        // let view = new View(parse(specification));
+        // console.log('3', this.vis)
+        // this.showNavExplore = true;
+        // console.log('showGraph', event, this.menuOptionSelected)
+        // this.isFirstTime = false;
+        // view.renderer('svg')
+        //     // .width(500)
+        //     // .height(500)
+        //     .initialize(this.vis.nativeElement)
+        //     .hover()
+        //     .run()
+        //     .finalize();
     }
 
     clickIcon(selectedGraphType: string) {
@@ -345,6 +617,96 @@ export class ExploreComponent {
 
     clickAdvancedField() {
         this.showAdvancedField = !this.showAdvancedField;
+    }
+
+    showWidget() {
+        this.showWidgetDesigner = true;
+    }
+
+    clickWidgetClose() {
+        this.showWidgetDesigner = false;
+    }
+
+    dragStartWidget(ev: DragEvent) {
+        this.widgetStartX = ev.clientX;
+        this.widgetStartY = ev.clientY;
+        console.log('dragStartWidget', ev,this.widgetStartX, this.widgetStartY)
+        
+    }
+
+    dragEndWidget(ev: DragEvent) { 
+        this.widgetEndX = ev.clientX;
+        this.widgetEndY = ev.clientY;
+        let widgetMoveX = this.widgetEndX - this.widgetStartX;
+        let widgetMoveY = this.widgetEndY - this.widgetStartY;
+        console.log('dragEndWidget',  this.widgetStartX, this.widgetEndX,widgetMoveX, widgetMoveY, this.visReal.nativeElement['left'])
+        
+        this.renderer.setElementStyle(this.dragWidget.nativeElement,
+            'left', (500 + widgetMoveX).toString() + "px");
+
+        this.renderer.setElementStyle(this.dragWidget.nativeElement,
+            'top', (80 + widgetMoveX).toString() + "px");
+            // this.renderer.setElementStyle(this.dragWidget.nativeElement,
+        //     'background-color', 'brown'
+        // );
+        // this.renderer.setElementStyle(this.dragWidget.nativeElement,
+        //     'width', "1000px");
+        // this.renderer.setElementStyle(this.dragWidget.nativeElement,
+        //     'top', "150px");    
+        // this.renderer.setElementStyle(this.dragWidget.nativeElement,
+        //     'border', "4px solid black");    
+    }
+
+    clickDropdownType() {
+        if (this.typeDropdown.nativeElement.className == "dropdown open") {
+            this.typeDropdown.nativeElement.className = "dropdown";
+        } else {
+            this.typeDropdown.nativeElement.className = "dropdown open";
+        }
+    }
+
+    addNewTab() {
+        this.secondTab = ! this.secondTab;
+    }
+
+    clickCloseModel() {
+        this.showModalOpenDashboard = false;
+    }
+
+    clickTabBg(dash: string) {
+        console.log('clickTabBg', dash)
+    }
+
+    clickDeleteTab() {
+        alert ('Cannot delete last remaining Tab')
+    }
+
+    createVegaLiteSpec(
+        description: string = 'First bar chart.',
+        mark: string = 'bar',
+        xfield: string = 'Month',
+        yfield: string = 'Trades',
+        title: string = 'Average Trading'): dl.spec.TopLevelExtendedSpec {
+
+        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
+    
+        vlSpecsNew['data']['values'] = [
+            {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55}, 
+            {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
+            {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
+            {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
+            {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
+            {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
+        ];
+        vlSpecsNew['description'] = description;
+        vlSpecsNew['mark']['type'] = mark;
+        vlSpecsNew['encoding']['x']['field'] = xfield;
+        vlSpecsNew['encoding']['y']['field'] = yfield;
+        vlSpecsNew['title']['text'] = title;
+        console.log('createVegaLiteSpec', vlSpecsNew)
+
+        return vlSpecsNew;
+
     }
 }
 
@@ -361,3 +723,21 @@ export class ExploreComponent {
 //     document.getElementById("mySidenav").style.width = "0";
 //     document.getElementById("main").style.marginLeft = "0";
 // }
+
+
+// Event	    On Event Handler	Description
+// drag	        ondrag	            Fired when an element or text selection is being dragged.
+// dragend	    ondragend	        Fired when a drag operation is being ended (for example,
+//               by releasing a mouse button or hitting the escape key). (See Finishing a Drag.)
+// dragenter	ondragenter	        Fired when a dragged element or text selection enters a 
+//              valid drop target. (See Specifying Drop Targets.)
+// dragexit	    ondragexit	        Fired when an element is no longer the drag operation's 
+//              immediate selection target.
+// dragleave	ondragleave	        Fired when a dragged element or text selection leaves a 
+//              valid drop target.
+// dragover	    ondragover	        Fired when an element or text selection is being dragged
+//               over a valid drop target (every few hundred milliseconds).
+// dragstart	ondragstart	        Fired when the user starts dragging an element or text s
+//              election. (See Starting a Drag Operation.)
+// drop	        ondrop	            Fired when an element or text selection is dropped on a 
+//              valid drop target. (See Performing a Drop.)
