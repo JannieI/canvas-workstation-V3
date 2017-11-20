@@ -104,7 +104,7 @@
     <clr-dropdown>
         <button 
             type="button" 
-            class="btn btn-secondary btn-sm tooltip tooltip-xm tooltip-top" 
+            class="btn btn-secondary btn-sm tooltip tooltip-xm tooltip-top-right" 
             clrDropdownTrigger
             role="tooltip" 
             aria-haspopup="true" 
@@ -119,9 +119,10 @@
 
             <div class="form-group">
                 <label for="dashboardName" class="popupLabel">Name :</label>
-                <input type="text" id="dashboardName" placeholder="Enter value here"
+                <input type="text" id="dashboardName" placeholder="Enter dashboard here"
                     class="popupInput">
             </div>
+            <div class="dropdown-divider"></div>
             <button type="button" class="popupButton" clrDropdownItem>
                 Save
                 <clr-icon shape="floppy" size="16"></clr-icon>
@@ -132,7 +133,7 @@
     <clr-dropdown>
         <button 
             type="button" 
-            class="btn btn-secondary btn-sm tooltip tooltip-xm tooltip-top" 
+            class="btn btn-secondary btn-sm tooltip tooltip-xm tooltip-top-right" 
             clrDropdownTrigger
             role="tooltip" 
             aria-haspopup="true" 
@@ -142,10 +143,21 @@
             <span class="tooltip-content">Current Tab (click to change properties)</span>
         </button>
         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-            <label class="dropdown-header">Dropdown header</label>
-            <button type="button" clrDropdownItem>Action 1</button>
-            <button type="button" disabled clrDropdownItem>Disabled Action</button>
+            <label class="dropdown-header">Tab properties</label>
+        
+            <div class="form-group">
+                <label for="dashboardName" class="popupLabel">Name :</label>
+                <input type="text" id="dashboardName" placeholder="Enter tab name here"
+                    class="popupInput">
+            </div>
             <div class="dropdown-divider"></div>
+            <button type="button" class="popupButton" clrDropdownItem>
+                Save
+                <clr-icon shape="floppy" size="16"></clr-icon>
+            </button>
+                
+
+
             <clr-dropdown>
                 <button type="button" clrDropdownTrigger>Link 1</button>
                 <clr-dropdown-menu>
@@ -165,7 +177,7 @@
     <clr-dropdown>
         <button 
             type="button" 
-            class="btn btn-secondary btn-sm tooltip tooltip-xm tooltip-top" 
+            class="btn btn-secondary btn-sm tooltip tooltip-xm tooltip-top-right" 
             clrDropdownTrigger
             role="tooltip" 
             aria-haspopup="true" 
@@ -175,23 +187,18 @@
             <span class="tooltip-content">Add a new Tab</span>
         </button>
         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-            <label class="dropdown-header">Dropdown header</label>
-            <button type="button" clrDropdownItem>Action 1</button>
-            <button type="button" disabled clrDropdownItem>Disabled Action</button>
+            <label class="dropdown-header">New Tab</label>
+            
+            <div class="form-group">
+                <label for="dashboardName" class="popupLabel">Name :</label>
+                <input type="text" id="dashboardName" placeholder="Enter new name here"
+                    class="popupInput">
+            </div>
             <div class="dropdown-divider"></div>
-            <clr-dropdown>
-                <button type="button" clrDropdownTrigger>Link 1</button>
-                <clr-dropdown-menu>
-                    <button type="button" clrDropdownItem>Foo</button>
-                    <clr-dropdown>
-                        <button type="button" clrDropdownTrigger>Bar</button>
-                        <clr-dropdown-menu clrPosition="left-top">
-                            <button type="button" clrDropdownItem>Baz</button>
-                        </clr-dropdown-menu>
-                    </clr-dropdown>
-                </clr-dropdown-menu>
-            </clr-dropdown>
-            <button type="button" clrDropdownItem>Link 2</button>
+            <button type="button" class="popupButton" clrDropdownItem>
+                Save
+                <clr-icon shape="floppy" size="16"></clr-icon>
+            </button>
         </clr-dropdown-menu>
     </clr-dropdown>
         
