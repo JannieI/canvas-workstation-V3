@@ -81,51 +81,81 @@ const backgroundcolors: Ibackgroundcolor[] = [
 ]
 
 
-const vlTemplate: dl.spec.TopLevelExtendedSpec = {
+const vlTemplate: dl.spec.TopLevelExtendedSpec = 
+{
     "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+    
+    // Properties for top-level specification (e.g., standalone single view specifications)
+    "background": "",
+    "padding": "",
+    // "autosize": "",          NB - add these only if needed, blank causes no graph display
+    // "config": "",            NB - add these only if needed, blank causes no graph display
+  
+    // Properties for any specifications
+    "title": 
+        {
+            "text": "",
+            "anchor": "",
+            "offset": "",
+            "orient": "",
+            "style": ""
+        },
+    "name": "",
+    "transform": "",
+
     "description": "",
     "data": 
         {
             "values": ""
         },
-    "mark": "",
+    "mark": 
+        {
+            "type": "",  //bar circle square tick line area point rule text
+            "style": "",
+            "clip": ""
+        },
     "encoding": 
         {
-            "x": {
-                "aggregate": "", 
-                "field": "", 
-                "type": "ordinal"},
-            "y": {
-                "aggregate": "", 
-                "field": "", 
-                "type": "quantitative",
-                "axis": {
-                    "title": ""
-            }
+            "x": 
+                {
+                    "aggregate": "", 
+                    "field": "", 
+                    "type": "ordinal",
+                    "bin": "",
+                    "timeUnit": "",
+                    "axis": 
+                    {
+                        "title": ""
+                    },
+                    "scale": "",
+                    "legend": "",
+                    "format": "",
+                    "stack": "",
+                    "sort": "",
+                    "condition": ""
+                },
+            "y": 
+                {
+                    "aggregate": "", 
+                    "field": "", 
+                    "type": "quantitative",
+                    "bin": "",
+                    "timeUnit": "",
+                    "axis": 
+                        {
+                            "title": ""
+                        },
+                    "scale": "",
+                    "legend": "",
+                    "format": "",
+                    "stack": "",
+                    "sort": "",
+                    "condition": ""
+                    }
         }
-    }
 }      
 
     // const vlTemplate: dl.spec.TopLevelExtendedSpec = {
-//     // Properties for top-level specification (e.g., standalone single view specifications)
-//     "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-//     "background": ...,
-//     "padding": ...,
-//     "autosize": ...,
-//     "config": ...,
-  
-//     // Properties for any specifications
-//     "title": {
-//         "text": '$titleText',
-//         "anchor": '$titleAnchor',
-//         "offset": '$titleOffset',
-//         "orient": '$titleOrient',
-//         "style": '$titleStyle'
-//     },
-//     "name": ...,
-//     "description": ...,
-//     "data": '$data',
-//     "transform": ...,
   
 //     // Properties for any single view specifications
 //     "width": '$width',
@@ -187,10 +217,6 @@ export class TestComponent {
         {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
         {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
         ];
-    mark: string = 'bar';
-    xfield: string = 'Month';
-    yfield: string = 'Trades';
-    title: string = 'Average Trading';
 
     backgroundcolors: Ibackgroundcolor[] = backgroundcolors;
     dashboards: Idashboard[] = dashboards;
@@ -359,21 +385,8 @@ export class TestComponent {
         console.log('definition 1', definition)
         
         // Replacement portion
-        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
-        vlSpecsNew['data']['values'] = [
-            {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55}, 
-            {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
-            {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
-            {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
-            {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
-            {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
-        ];
-        vlSpecsNew['description'] = this.description;
-        vlSpecsNew['mark'] = this.mark;
-        vlSpecsNew['encoding']['x']['field'] = this.xfield;
-        vlSpecsNew['encoding']['y']['field'] = this.yfield;
-        vlSpecsNew['title'] = this.title;
-        definition = vlSpecsNew;
+
+        definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);
         console.log('definition 2', definition)
 
 
@@ -394,21 +407,21 @@ export class TestComponent {
                 'left', "500px");
     }
 
-
-    allowDrop(event) {
-        event.preventDefault();
-    }
-
-
-    showGraphsReal111(ev) {
+    clickSwapXY() {
         // Show Graph Examples
-
-        console.log('ev', ev)
-        ev.preventDefault()
+        
         this.showNavExplore = true;
-        console.log('showGraph111', event, this.menuOptionSelected)
+        console.log('showGraph', event, this.menuOptionSelected)
         this.isFirstTime = false;
         let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
+        console.log('definition 1', definition)
+        
+        // Replacement portion
+
+        definition = this.createVegaLiteSpec(undefined,'bar','Trades','Month',undefined);
+        console.log('definition 2', definition)
+
+
         let specification = compile(definition).spec;
 
         specification = compile(definition).spec;
@@ -418,12 +431,16 @@ export class TestComponent {
         view.renderer('svg')
             // .width(500)
             // .height(500)
-            .initialize(this.visReal111.nativeElement)
+            .initialize(this.visReal.nativeElement)
             .hover()
             .run()
             .finalize();
             this.renderer.setElementStyle(this.dragWidget.nativeElement,
                 'left', "500px");
+
+    }
+    allowDrop(event) {
+        event.preventDefault();
     }
 
     // showGraphs() {
@@ -662,6 +679,34 @@ export class TestComponent {
 
     clickDeleteTab() {
         alert ('Cannot delete last remaining Tab')
+    }
+
+    createVegaLiteSpec(
+        description: string = 'First bar chart.',
+        mark: string = 'bar',
+        xfield: string = 'Month',
+        yfield: string = 'Trades',
+        title: string = 'Average Trading'): dl.spec.TopLevelExtendedSpec {
+
+        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
+    
+        vlSpecsNew['data']['values'] = [
+            {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55}, 
+            {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
+            {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
+            {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
+            {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
+            {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
+        ];
+        vlSpecsNew['description'] = description;
+        vlSpecsNew['mark']['type'] = mark;
+        vlSpecsNew['encoding']['x']['field'] = xfield;
+        vlSpecsNew['encoding']['y']['field'] = yfield;
+        vlSpecsNew['title']['text'] = title;
+        console.log('createVegaLiteSpec', vlSpecsNew)
+
+        return vlSpecsNew;
+
     }
 }
 

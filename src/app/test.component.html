@@ -455,12 +455,14 @@
                 (click)="clickIcon('ScatterChart')"
                 >
             </div>
-
+            <button class="btn btn-secondary buttonWidget" (click)="clickSwapXY()">
+                Swap X-Y
+            </button>
+    
             <div 
                 id="target" (drop)="drop_handler($event);" (dragover)="dragover_handler($event);"
             >
-            <clr-datagrid
-            >
+            <clr-datagrid>
                 <clr-dg-column
                     
                     >
@@ -490,14 +492,14 @@
                     </clr-dg-cell>
                 </clr-dg-row>
             </clr-datagrid>
-            <div *ngIf="showAdvancedField">
-                    <button class="btn btn-sm">type</button>
-                    <button class="btn btn-sm">bin</button>
-                    <button class="btn btn-sm">aggregate</button>
-                    <button class="btn btn-sm">zero</button>
-                    <button class="btn btn-sm">scale</button>
+                <div *ngIf="showAdvancedField">
+                        <button class="btn btn-sm">type</button>
+                        <button class="btn btn-sm">bin</button>
+                        <button class="btn btn-sm">aggregate</button>
+                        <button class="btn btn-sm">zero</button>
+                        <button class="btn btn-sm">scale</button>
 
-            </div>
+                </div>
             <clr-datagrid>
                 <clr-dg-column>Color (drag here)
                     Row
