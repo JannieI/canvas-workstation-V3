@@ -75,6 +75,7 @@ export class TestComponent {
     graphTypeFile: string = '../images/BarChart.png';
     isFirstTime: boolean = true;
     open: Boolean = false;
+    secondTab: Boolean = false;
     sideNavWidth: string = '350';
     sideNavMinWidth: string = '18';
     sideNaveButtonText: string = 'Select Data';
@@ -501,6 +502,10 @@ export class TestComponent {
         } else {
             this.typeDropdown.nativeElement.className = "dropdown open";
         }
+    }
+
+    addNewTab() {
+        this.secondTab = ! this.secondTab;
     }
 }
 
