@@ -10,30 +10,152 @@
         </div>
 
         <div class="header-nav" [clr-nav-level]="1">
+            <button type="button" (click)="menuToggle = ! menuToggle">
+                Toggle
+            </button>
+            <div *ngIf="menuToggle">
+                <a class="nav-link" href="#" [routerLink]="['/data']" routerLinkActive="active">
+                    <span class="nav-text">Data</span>
+                </a>
 
-            <a class="nav-link" href="#" [routerLink]="['/data']" routerLinkActive="active">
-                <span class="nav-text">Data</span>
-            </a>
+                <a class="nav-link" href="#" [routerLink]="['/explore']" routerLinkActive="active">
+                    <span class="nav-text">Explore</span>
+                </a>    
 
-            <a class="nav-link" href="#" [routerLink]="['/explore']" routerLinkActive="active">
-                <span class="nav-text">Explore</span>
-            </a>    
+                <a class="nav-link" href="#" [routerLink]="['/present']" routerLinkActive="active">
+                    <span class="nav-text">Present</span>
+                </a>
 
-            <a class="nav-link" href="#" [routerLink]="['/present']" routerLinkActive="active">
-                <span class="nav-text">Present</span>
-            </a>
+                <a class="nav-link" href="#" [routerLink]="['/collaborate']" routerLinkActive="active">
+                    <span class="nav-text">Collaborate</span>
+                </a>
 
-            <a class="nav-link" href="#" [routerLink]="['/collaborate']" routerLinkActive="active">
-                <span class="nav-text">Collaborate</span>
-            </a>
+                <a class="nav-link" href="#" [routerLink]="['/help']" routerLinkActive="active">
+                    <span class="nav-text">Help</span>
+                </a>
+            </div>
 
-            <a class="nav-link" href="#" [routerLink]="['/help']" routerLinkActive="active">
-                <span class="nav-text">Help</span>
-            </a>
+            <div *ngIf="!menuToggle">
+                        
+                <clr-dropdown class="menuText">
+                    <button 
+                        type="button" 
+                        class="btn btn-link btn-sm menuButton" 
+                        clrDropdownTrigger
+                        >
+                        File
+                    </button>
+                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Save
+                        </button>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
 
-            <a class="nav-link" href="#" [routerLink]="['/test']" routerLinkActive="active">
-                <span class="nav-text">Test</span>
-            </a>
+                <clr-dropdown class="menuText">
+                    <button 
+                        type="button" 
+                        class="btn btn-link btn-sm" 
+                        clrDropdownTrigger
+                        >
+                        Edit
+                        <clr-icon shape="caret down" size="16"></clr-icon>
+                    </button>
+                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Save
+                        </button>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
+
+                <clr-dropdown class="menuText">
+                    <button 
+                        type="button" 
+                        class="btn btn-link btn-sm" 
+                        clrDropdownTrigger
+                        >
+                        View
+                        <clr-icon shape="caret down" size="16"></clr-icon>
+                    </button>
+                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Save
+                        </button>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
+
+                <clr-dropdown class="menuText">
+                    <button 
+                        type="button" 
+                        class="btn btn-link btn-sm" 
+                        clrDropdownTrigger
+                        >
+                        Insert
+                        <clr-icon shape="caret down" size="16"></clr-icon>
+                    </button>
+                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Save
+                        </button>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
+
+                <clr-dropdown class="menuText">
+                    <button 
+                        type="button" 
+                        class="btn btn-link btn-sm" 
+                        clrDropdownTrigger
+                        >
+                        Format
+                        <clr-icon shape="caret down" size="16"></clr-icon>
+                    </button>
+                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Save
+                        </button>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
+
+                <clr-dropdown class="menuText">
+                    <button 
+                        type="button" 
+                        class="btn btn-link btn-sm" 
+                        clrDropdownTrigger
+                        >
+                        Arrange
+                        <clr-icon shape="caret down" size="16"></clr-icon>
+                    </button>
+                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Save
+                        </button>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
+
+                <clr-dropdown class="menuText">
+                    <button 
+                        type="button" 
+                        class="btn btn-link btn-sm" 
+                        clrDropdownTrigger
+                        >
+                        Help
+                        <clr-icon shape="caret down" size="16"></clr-icon>
+                    </button>
+                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Save
+                        </button>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
+        
+            </div>
         </div>
 
         <div class="header-actions">

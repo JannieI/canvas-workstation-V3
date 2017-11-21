@@ -12,3 +12,15 @@
     margin: 5px 0 0 0 !important;
     padding: 0 !important;
 }
+
+.menuButton {
+    color: white !important;
+}
+
+.menuButton:hover {
+    color: lightgray !important;
+}
+
+.menuText {
+    padding: 18px !important;
+}

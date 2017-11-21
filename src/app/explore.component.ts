@@ -48,8 +48,6 @@ interface IVegaUpdate {
     }
 }
 
-
-
 interface Idashboard {
     name: string;
     description: string;

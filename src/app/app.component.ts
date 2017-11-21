@@ -22,6 +22,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 })
 export class AppComponent implements OnInit {
 
+    menuToggle: boolean = false;
+
     constructor(
         private router: Router,
         private globalVariableService: GlobalVariableService,
