@@ -175,3 +175,12 @@
     margin: 5px 0 0 10px !important;
     width: 4rem !important;
 }
+
+.aCircle {
+    background-color: transparent;
+    opacity: .5;
+    left: 300px;
+    z-index: 12;
+    display: inline;
+
+}

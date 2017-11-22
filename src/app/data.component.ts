@@ -431,7 +431,7 @@ export class DataComponent implements OnInit {
     firstTimeUser: boolean = true;
     indexCurrent: number = 0;
     isError: boolean = false;
-    showAddData: boolean = false;
+    showAddData: boolean = true;
     showAddFile: boolean = false;
     showAddDatabase: boolean = false;
     showAddService: boolean = false;

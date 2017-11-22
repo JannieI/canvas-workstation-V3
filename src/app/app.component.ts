@@ -4,6 +4,8 @@
 
 // Angular
 import { Component }                  from '@angular/core';
+import { DOCUMENT }                   from '@angular/platform-browser';
+import { Inject }                     from "@angular/core";
 import { OnInit }                     from '@angular/core';
 import { Router }                     from '@angular/router';
 
@@ -28,7 +30,8 @@ export class AppComponent implements OnInit {
     constructor(
         private router: Router,
         private globalVariableService: GlobalVariableService,
-        private globalFunctionService: GlobalFunctionService
+        private globalFunctionService: GlobalFunctionService,
+        @Inject(DOCUMENT) private document: Document
         
     ) {
     }
@@ -45,8 +48,20 @@ export class AppComponent implements OnInit {
         this.router.navigate(['/data']);
     }
 
+    menuCreateShapeRectangle() {
+        // <div style="width:500px;height:100px;border:1px solid #000;">This is a rectangle!</div>
+    }
+
+    menuCreateShapeCircle() {
+        // <svg height="100" width="100">
+        //     <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+        // </svg>
+    }
+
     handleCloseModal() {
         this.showModalLanding = false;
+        this.document.body.style.backgroundImage ='../images/BarChart.png';
+        
     }
 }
 
