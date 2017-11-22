@@ -430,3 +430,33 @@
         
     </div>
 </clr-main-container>
+
+
+<!-- Field Formatter -->
+<!-- <clr-modal [(clrModalOpen)]="showModalFileFormatter" -->
+    <!-- class="modal-dialog modal-xl" role="dialog" aria-hidden="true"> -->
+
+
+    <landing *ngIf="showModalLanding"
+        (formLandingClosed)="handleCloseModal()">landing></landing>
+
+    <!-- <h3 class="modal-title">File selection</h3>
+    <div class="modal-body">
+        <p>Please select formatting options (for all available options, use the Transformation tab):</p>
+        <p>Type : <input type="text" id="formFields_7" placeholder="String / Number / Boolean / Date"></p>
+        <p>Format : <input type="text" id="formFields_7" placeholder="2 decimals"></p>
+        <p>Filter : <input type="text" id="formFields_7" placeholder="> 100"></p>
+        <p>Calc : <input type="text" id="formFields_7" placeholder="valueTrade / 100"></p>
+        <p>Order: <input type="text" id="formFields_7" placeholder="Ascending / Descending"></p>
+        <p>Hide : <input type="text" id="formFields_7" placeholder="Hide / Show"></p>
+        <p>Reference : <input type="text" id="formFields_7" placeholder="URL to external reference document"></p>
+        <br>
+        <p>SaveAs : <input type="text" id="formFields_7" placeholder="Format Name"></p>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="showModalFileFormatter = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="clickCloseFieldFormatter()">Ok</button>
+    </div> -->
+<!-- </clr-modal> -->
+

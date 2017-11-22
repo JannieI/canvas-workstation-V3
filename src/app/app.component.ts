@@ -23,6 +23,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 export class AppComponent implements OnInit {
 
     menuToggle: boolean = false;
+    showModalLanding: boolean = true;
 
     constructor(
         private router: Router,
@@ -44,6 +45,9 @@ export class AppComponent implements OnInit {
         this.router.navigate(['/data']);
     }
 
+    handleCloseModal() {
+        this.showModalLanding = false;
+    }
 }
 
 // Naming conventions

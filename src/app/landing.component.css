@@ -2,3 +2,15 @@
 	position: absolute;
 	bottom: 0;
 }
+
+a:hover{
+	cursor: pointer;
+}
+
+.modalBox {
+	box-shadow: 0 2px 2px 0 lightgray;
+}
+
+.modalContent {
+	background-color: rgb(229, 229, 233);
+}

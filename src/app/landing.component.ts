@@ -4,7 +4,9 @@
 
 // Angular
 import { Component }                  from '@angular/core';
+import { EventEmitter }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
+import { Output }                     from '@angular/core';
 import { Router }                     from '@angular/router';
 
 // Our Functions
@@ -47,14 +49,18 @@ const recentDashboards = [
 ]
 
 @Component({
+  selector: 'landing',
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
 
+	@Output() formLandingClosed: EventEmitter<string> = new EventEmitter();
+	
 	sampleDashboards: object[] = sampleDashboards;
 	recentDashboards: object[] = recentDashboards;
 	firstTimeUser: boolean = true;
+	showModel: boolean = true;
 
 	constructor(
 		private globalFunctionService: GlobalFunctionService,
@@ -80,4 +86,9 @@ export class LandingComponent implements OnInit {
 	promptDeleteRecent(fileToDelete: string) {
 		console.log("Prompt and then delete from list")
 	}
+
+	clickClose(action: string) {
+		this.formLandingClosed.emit(action);
+	}
+	
 }

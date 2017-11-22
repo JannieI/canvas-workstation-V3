@@ -1,103 +1,109 @@
-<div class="row">
-	<div class="col-xs-6">
-		<div>
-			<h3>Start</h3>
-			<div>
-				Create a <a href="#" [routerLink]="['/data']" routerLinkActive="active">
-					new Dashboard</a>
+<div class="modal modalBox">
+	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+		<div class="modal-content modalContent">
+			<div class="row">
+				<div class="col-xs-6">
+					<div>
+						<h3>Start</h3>
+						<div>
+							<a (click)="clickClose('New')">Create a new Dashboard</a>
+						</div>
+					</div>
+
+					<div>
+						<h3>Help</h3>
+						<div>
+							<a (click)="clickClose('HelpGettingStarted')">Getting starting with Canvas</a>
+						</div>
+						<div>
+							<a href="#">Demo</a>
+						</div>
+						<div>
+							<a href="#">Getting data</a>
+						</div>
+						<div>
+							<a href="#">Transforming data</a>
+						</div>
+						<div>
+							<a href="#">Creating a Dashboard</a>
+						</div>
+						<div>
+							<a href="#">Creating a Widget</a>
+						</div>
+						<div>
+							<a href="#">Tutorials</a>
+						</div>
+						<div>
+							<a href="#">Creating a Dashboard</a>
+						</div>
+						<div>
+							<a href="#">Documentaion</a>
+						</div>
+						<div class="checkbox">
+							<input type="checkbox" id="checkrads_2" 
+								(click)="firstTimeUser=!firstTimeUser">
+							<label for="checkrads_2"></label>
+						</div>
+				</div>
+
+				</div>
+
+				<div class="col-xs-6">
+				
+					<h3>Sample Dashboards</h3>
+					<div>
+
+						<div *ngFor="let dash of sampleDashboards">
+							<a
+								(click)="loadExistingSpecification()"
+								class="nav-link" href="#"
+								[routerLink]="['/explore']" routerLinkActive="active">
+								{{dash.name}}
+								<clr-icon
+									(click)="promptDeleteRecent(file.name)"
+									shape="trash">
+								</clr-icon>
+							</a>
+						</div>
+						<br><br>
+					</div>
+
+					<h3>Recent Dashboards</h3>
+					<div *ngIf="!firstTimeUser">
+
+						<div *ngFor="let dash of recentDashboards">
+							<a
+								(click)="loadExistingSpecification()"
+								class="nav-link" href="#"
+								[routerLink]="['/explore']" routerLinkActive="active">
+								{{dash.name}}
+								<clr-icon
+									(click)="promptDeleteRecent(file.name)"
+									shape="trash">
+								</clr-icon>
+							</a>
+						</div>
+						
+					</div>
+					<br>
+					<div>
+						<a (click)="clickClose('OpenExisting')">Open an existing Dashboard</a>
+					</div>
+				</div>
 			</div>
+
+
+			<div>
+				<h3>Get in touch</h3>
+				<div>
+					If you
+					<clr-icon shape="heart" class="is-solid"></clr-icon>
+					Canvas or just want to get in touch we'd love to hear your thoughts
+					<a href="mailto:info@clarityanalytics.xyz">info@clarityanalytics.xyz</a>
+				</div>
+			</div>
+
+
 		</div>
-
-		<div>
-			<h3>Help</h3>
-			<div>
-				<a href="#">Getting starting with Canvas</a>
-			</div>
-			<div>
-				<a href="#">Demo</a>
-			</div>
-			<div>
-				<a href="#">Getting data</a>
-			</div>
-			<div>
-				<a href="#">Transforming data</a>
-			</div>
-			<div>
-				<a href="#">Creating a Dashboard</a>
-			</div>
-			<div>
-				<a href="#">Creating a Widget</a>
-			</div>
-			<div>
-				<a href="#">Tutorials</a>
-			</div>
-			<div>
-				<a href="#">Creating a Dashboard</a>
-			</div>
-			<div>
-				<a href="#">Documentaion</a>
-			</div>
-			<div class="checkbox">
-				<input type="checkbox" id="checkrads_2" 
-					(click)="firstTimeUser=!firstTimeUser">
-				<label for="checkrads_2"></label>
-			</div>
-	</div>
-
-	</div>
-
-	<div class="col-xs-6">
-	
-		<h3>Sample Dashboards</h3>
-		<div>
-
-			<div *ngFor="let dash of sampleDashboards">
-				<a
-					(click)="loadExistingSpecification()"
-					class="nav-link" href="#"
-					[routerLink]="['/explore']" routerLinkActive="active">
-					{{dash.name}}
-					<clr-icon
-						(click)="promptDeleteRecent(file.name)"
-						shape="trash">
-					</clr-icon>
-				</a>
-			</div>
-			<br><br>
-		</div>
-
-		<h3>Recent Dashboards</h3>
-		<div *ngIf="!firstTimeUser">
-
-			<div *ngFor="let dash of recentDashboards">
-				<a
-					(click)="loadExistingSpecification()"
-					class="nav-link" href="#"
-					[routerLink]="['/explore']" routerLinkActive="active">
-					{{dash.name}}
-					<clr-icon
-						(click)="promptDeleteRecent(file.name)"
-						shape="trash">
-					</clr-icon>
-				</a>
-			</div>
-			
-		</div>
-		<br>
-		<div>
-			<a href="#">Open an existing Dashboard</a>
-		</div>
-
-	</div>
-</div>
-
-
-<div>
-	<h3>Get in touch</h3>
-	<div>
-		If you
-		<clr-icon shape="heart" class="is-solid"></clr-icon>
-		Canvas or just want to get in touch we'd love to hear your thoughts
-		<a href="mailto:info@clarityanalytics.xyz">info@clarityanalytics.xyz</a>
 	</div>
 </div>

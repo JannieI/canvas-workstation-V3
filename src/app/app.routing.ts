@@ -20,7 +20,7 @@ import { AuthGuard }                  from './authguard.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 export const ROUTES: Routes = [
-    {path: '', redirectTo: 'landing', pathMatch: 'full'},
+    {path: '', redirectTo: 'explore', pathMatch: 'full'},
     {path: 'home',          component: HomeComponent},
     {path: 'collaborate',   component: CollaborateComponent},
     {path: 'data',          component: DataComponent},
