@@ -86,448 +86,672 @@
 <!-- End fooling -->
 
 <h4 class="helpMessage"> 
-        <button
-            type="button"
-            class="barsButton btn btn-link"
-            (click)="clickShowPalette()">
-            <clr-icon shape="bars" size="24"></clr-icon>
+    <button
+        type="button"
+        class="barsButton btn btn-link"
+        (click)="clickShowPalette()">
+        <clr-icon shape="bars" size="24"></clr-icon>
+    </button>
+    <span *ngIf="isFirstTime">
+        Click to show the palette.  Then drag a field onto the x-axis or y-axis to show 
+        a graph.  The name of your Dashboard and current Tab are shown at the bottom of 
+        the page.
+    </span>
+</h4>
+
+
+
+<div class="tabList">
+    <clr-dropdown>
+        <button 
+            type="button" 
+            class="btn btn-secondary btn-sm" 
+            clrDropdownTrigger
+            >
+            Current: Analysis of Value Traded 2017 ... <pre>&nbsp    </pre>
+            <clr-icon shape="caret down" size="16"></clr-icon>
         </button>
-        <span *ngIf="isFirstTime">
-            Click to show the palette.  Then drag a field onto the x-axis or y-axis to show 
-            a graph.  The name of your Dashboard and current Tab are shown at the bottom of 
-            the page.
-        </span>
-    </h4>
-    
-    
-    <div class="tabList">
-        <clr-dropdown>
-            <button 
-                type="button" 
-                class="btn btn-secondary btn-sm" 
-                clrDropdownTrigger
-                >
-                Current: Analysis of Value Traded 2017 ... <pre>&nbsp    </pre>
-                <clr-icon shape="caret down" size="16"></clr-icon>
-            </button>
-            <clr-dropdown-menu clrPosition="top-left" *clrIfOpen class="dashboardDropdown">
-                
-                <label class="dropdown-header">Dashboard properties</label>
-    
-                <div class="form-group">
-                    <label for="dashboardName" class="popupLabel">Name :</label>
-                    <input type="text" id="dashboardName" placeholder="Enter dashboard here"
-                        class="popupInput">
-                </div>
-                <div class="dropdown-divider"></div>
-                <button type="button" class="popupButton" clrDropdownItem>
-                    Save
-                    <clr-icon shape="floppy" size="16"></clr-icon>
-                </button>
-                
-                <button type="button" class="popupButton" clrDropdownItem
-                    (click)="showModalOpenDashboard=true"
-                    >
-                    Open
-                    <clr-icon shape="floppy" size="16"></clr-icon>
-                </button>
-            </clr-dropdown-menu>
-        </clr-dropdown>
-        <span class="tabsLabel">Tabs: </span>
-        <clr-dropdown>
-            <button 
-                type="button" 
-                class="btn btn-secondary btn-sm" 
-                clrDropdownTrigger
-                >
-                Summary<pre>&nbsp    </pre>
-                <clr-icon shape="caret down" size="16"></clr-icon>
-            </button>
-            <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-                <label class="dropdown-header">Tab properties</label>
+        <clr-dropdown-menu clrPosition="top-left" *clrIfOpen class="dashboardDropdown">
             
-                <div class="form-group">
-                    <label for="dashboardName" class="popupLabel">Name :</label>
-                    <input type="text" id="dashboardName" placeholder="Enter tab name here"
-                        class="popupInput">
-                </div>
-                <div class="dropdown-divider"></div>
-                <div class="form-group">
-                    <label for="selects_6" class="popupLabel">Select Background Color</label>
-                    <div class="select">
-                        <select id="selects_6" class="popupInput">
-                            <option *ngFor="let bg of backgroundcolors">{{bg.name}}</option>
-                        </select>
-                    </div>
-                </div>    
-                <button type="button" class="popupButton" clrDropdownItem>
-                    Save
-                    <clr-icon shape="floppy" size="16"></clr-icon>
-                </button>
-                <button type="button" class="popupButton" clrDropdownItem
-                    (click)="clickDeleteTab()">
-                    Delete
-                </button>
-        
-                <clr-dropdown>
-                    <button type="button" clrDropdownTrigger>Later 1</button>
-                    <clr-dropdown-menu>
-                        <button type="button" clrDropdownItem>Foo</button>
-                        <clr-dropdown>
-                            <button type="button" clrDropdownTrigger>Bar</button>
-                            <clr-dropdown-menu clrPosition="left-top">
-                                <button type="button" clrDropdownItem>Baz</button>
-                            </clr-dropdown-menu>
-                        </clr-dropdown>
-                    </clr-dropdown-menu>
-                </clr-dropdown>
-                <button type="button" clrDropdownItem>Later 2</button>
-            </clr-dropdown-menu>
-        </clr-dropdown>
-    
-        
-    
-        <clr-dropdown *ngIf="secondTab">
-            <button 
-                type="button" 
-                class="btn btn-secondary btn-sm" 
-                clrDropdownTrigger
-                >
-                Detail Costs<pre>&nbsp    </pre>
-                <clr-icon shape="caret down" size="16"></clr-icon>
+            <label class="dropdown-header">Dashboard properties</label>
+
+            <div class="form-group">
+                <label for="dashboardName" class="popupLabel">Name :</label>
+                <input type="text" id="dashboardName" placeholder="Enter dashboard here"
+                    class="popupInput">
+            </div>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="popupButton" clrDropdownItem>
+                Save
+                <clr-icon shape="floppy" size="16"></clr-icon>
             </button>
-            <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-                <label class="dropdown-header">Tab properties</label>
             
-                <div class="form-group">
-                    <label for="dashboardName" class="popupLabel">Name :</label>
-                    <input type="text" id="dashboardName" placeholder="Enter tab name here"
-                        class="popupInput">
-                </div>
-                <div class="dropdown-divider"></div>
-                <button type="button" class="popupButton" clrDropdownItem>
-                    Save
-                    <clr-icon shape="floppy" size="16"></clr-icon>
-                </button>
-            </clr-dropdown-menu>
-        </clr-dropdown>
-        
-    
-        <clr-dropdown>
-            <button 
-                type="button" 
-                class="btn btn-secondary btn-sm" 
-                clrDropdownTrigger
+            <button type="button" class="popupButton" clrDropdownItem
+                (click)="showModalOpenDashboard=true"
                 >
-                Add Tab <pre>&nbsp    </pre>
-                <clr-icon shape="caret down" size="16"></clr-icon>
+                Open
+                <clr-icon shape="floppy" size="16"></clr-icon>
             </button>
-            <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-                <label class="dropdown-header">New Tab</label>
-                
-                <div class="form-group">
-                    <label for="dashboardName" class="popupLabel">Name :</label>
-                    <input type="text" id="dashboardName" placeholder="Enter new name here"
-                        class="popupInput">
-                </div>
-                <div class="dropdown-divider"></div>
-                <button type="button" class="popupButton" clrDropdownItem
-                    (click)="addNewTab()"
-                    >
-                    Save
-                    <clr-icon shape="floppy" size="16"></clr-icon>
-                </button>
-            </clr-dropdown-menu>
-        </clr-dropdown>
-            
-    </div>
+        </clr-dropdown-menu>
+    </clr-dropdown>
+    <span class="tabsLabel">Tabs: </span>
+    <clr-dropdown>
+        <button 
+            type="button" 
+            class="btn btn-secondary btn-sm" 
+            clrDropdownTrigger
+            >
+            Summary<pre>&nbsp    </pre>
+            <clr-icon shape="caret down" size="16"></clr-icon>
+        </button>
+        <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
+            <label class="dropdown-header">Tab properties</label>
         
+            <div class="form-group">
+                <label for="dashboardName" class="popupLabel">Name :</label>
+                <input type="text" id="dashboardName" placeholder="Enter tab name here"
+                    class="popupInput">
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="form-group">
+                <label for="selects_6" class="popupLabel">Select Background Color</label>
+                <div class="select">
+                    <select id="selects_6" class="popupInput">
+                        <option *ngFor="let bg of backgroundcolors">{{bg.name}}</option>
+                    </select>
+                </div>
+            </div>    
+            <button type="button" class="popupButton" clrDropdownItem>
+                Save
+                <clr-icon shape="floppy" size="16"></clr-icon>
+            </button>
+            <button type="button" class="popupButton" clrDropdownItem
+                (click)="clickDeleteTab()">
+                Delete
+            </button>
     
+            <clr-dropdown>
+                <button type="button" clrDropdownTrigger>Later 1</button>
+                <clr-dropdown-menu>
+                    <button type="button" clrDropdownItem>Foo</button>
+                    <clr-dropdown>
+                        <button type="button" clrDropdownTrigger>Bar</button>
+                        <clr-dropdown-menu clrPosition="left-top">
+                            <button type="button" clrDropdownItem>Baz</button>
+                        </clr-dropdown-menu>
+                    </clr-dropdown>
+                </clr-dropdown-menu>
+            </clr-dropdown>
+            <button type="button" clrDropdownItem>Later 2</button>
+        </clr-dropdown-menu>
+    </clr-dropdown>
+
     
-    <nav
-        id="wrapper"
-        class="sidenav"
-        *ngIf="showNavDataset"
+
+    <clr-dropdown *ngIf="secondTab">
+        <button 
+            type="button" 
+            class="btn btn-secondary btn-sm" 
+            clrDropdownTrigger
+            >
+            Detail Costs<pre>&nbsp    </pre>
+            <clr-icon shape="caret down" size="16"></clr-icon>
+        </button>
+        <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
+            <label class="dropdown-header">Tab properties</label>
+        
+            <div class="form-group">
+                <label for="dashboardName" class="popupLabel">Name :</label>
+                <input type="text" id="dashboardName" placeholder="Enter tab name here"
+                    class="popupInput">
+            </div>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="popupButton" clrDropdownItem>
+                Save
+                <clr-icon shape="floppy" size="16"></clr-icon>
+            </button>
+        </clr-dropdown-menu>
+    </clr-dropdown>
+    
+
+    <clr-dropdown>
+        <button 
+            type="button" 
+            class="btn btn-secondary btn-sm" 
+            clrDropdownTrigger
+            >
+            Add Tab <pre>&nbsp    </pre>
+            <clr-icon shape="caret down" size="16"></clr-icon>
+        </button>
+        <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
+            <label class="dropdown-header">New Tab</label>
+            
+            <div class="form-group">
+                <label for="dashboardName" class="popupLabel">Name :</label>
+                <input type="text" id="dashboardName" placeholder="Enter new name here"
+                    class="popupInput">
+            </div>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="popupButton" clrDropdownItem
+                (click)="addNewTab()"
+                >
+                Save
+                <clr-icon shape="floppy" size="16"></clr-icon>
+            </button>
+        </clr-dropdown-menu>
+    </clr-dropdown>
+        
+</div>
+    
+
+
+<nav
+    id="wrapper"
+    class="sidenav"
+    *ngIf="showNavDataset"
+    [style.width.px]="sideNavWidth"
+    [style.min-width.rem]="sideNavMinWidth"
+    >
+
+    <button
+        class="dropdown-toggle btn btn-link btn-sm"
+        type="button"
         [style.width.px]="sideNavWidth"
-        [style.min-width.rem]="sideNavMinWidth"
         >
-    
-        <button
-            class="dropdown-toggle btn btn-link btn-sm"
-            type="button"
-            [style.width.px]="sideNavWidth"
+        {{ sideNaveButtonText }}
+        <clr-icon shape="caret down"></clr-icon>
+    </button>
+    <div
+        id="first"
+        >
+        <section class="sidenav-content">
+            <section class="nav-group">
+                    <ul class="nav-list">
+                        <li>
+                            <a
+                                class="nav-link"
+                                (dragend)="showGraphsReal($event)"
+                                draggable="true"
+                                id="dragtarget"
+                                >
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Trader
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link"
+                                id="p1" 
+                                draggable="true" 
+                                (dragstart)="dragstart_handler($event)"
+                                (dragend)="dragend_handler($event)"
+                                >
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Country
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link active">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Trade Type
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dateField"></clr-icon>
+                                Date
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                DateTime
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Stock
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Volume
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Trades
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Value
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+        </section>
+    </div>
+    <div
+        id="second"
+        >
+        <!-- <section class="sidenav-content">
+            <section class="nav-group">
+                    <ul class="nav-list">
+                        <li>
+                            <a
+                                class="nav-link"
+                                (dragend)="showGraphsReal($event)"
+                                draggable="true"
+                                id="dragtarget"
+                                >
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Trader
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Country
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link active">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Trade Type
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dateField"></clr-icon>
+                                Date
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                DateTime
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                Stock
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Volume
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Trades
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link">
+                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                Value
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+        </section> -->
+        <section class="sidenav-content">
+            <div>
+                <button class="btn btn-sm"
+                (click)="showType=!showType"
+                >Select Type
+                <clr-icon shape="caret down"></clr-icon>
+            </button>
+            <img class="typeIcon"
+            *ngIf="showTypeIcon"
+            [style.height.px]="30"
+            [style.width.px]="30"
+                [src]="graphTypeFile"
             >
-            {{ sideNaveButtonText }}
-            <clr-icon shape="caret down"></clr-icon>
-        </button>
-        <div
-            id="first"
-            >
-            <section class="sidenav-content">
-                <section class="nav-group">
-                        <ul class="nav-list">
-                            <li>
-                                <a
-                                    class="nav-link"
-                                    (dragend)="showGraphsReal($event)"
-                                    draggable="true"
-                                    id="dragtarget"
-                                    >
-                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                    Trader
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link"
-                                    id="p1" 
-                                    draggable="true" 
-                                    (dragstart)="dragstart_handler($event)"
-                                    (dragend)="dragend_handler($event)"
-                                    >
-                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                    Country
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link active">
-                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                    Trade Type
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="block" class="dateField"></clr-icon>
-                                    Date
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                    DateTime
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                    Stock
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                    Volume
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                    Trades
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                    Value
-                                </a>
-                            </li>
-                        </ul>
-                    </section>
-            </section>
-        </div>
-        <div
-            id="second"
-            >
-            <!-- <section class="sidenav-content">
-                <section class="nav-group">
-                        <ul class="nav-list">
-                            <li>
-                                <a
-                                    class="nav-link"
-                                    (dragend)="showGraphsReal($event)"
-                                    draggable="true"
-                                    id="dragtarget"
-                                    >
-                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                    Trader
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                    Country
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link active">
-                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                    Trade Type
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="block" class="dateField"></clr-icon>
-                                    Date
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                    DateTime
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                    Stock
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                    Volume
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                    Trades
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link">
-                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                    Value
-                                </a>
-                            </li>
-                        </ul>
-                    </section>
-            </section> -->
-            <section class="sidenav-content">
-                <div>
-                    <button class="btn btn-sm"
-                    (click)="showType=!showType"
-                    >Select Type
-                    <clr-icon shape="caret down"></clr-icon>
-                </button>
+            </div>
+            <div *ngIf="showType">
+
                 <img class="typeIcon"
-                *ngIf="showTypeIcon"
                 [style.height.px]="30"
                 [style.width.px]="30"
-                    [src]="graphTypeFile"
+                src="../images/BarChart.png"
+                (click)="clickIcon('BarChart')"
                 >
-                </div>
-                <div *ngIf="showType">
+                <img
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/BubbleChart.png"
+                (click)="clickIcon('BubbleChart')"
+                >
+                <img class="typeIcon"
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/ColumnChart.png"
+                (click)="clickIcon('ColumnChart')"
+                >
+                <img
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/LineChart.png"
+                (click)="clickIcon('LineChart')"
+                >
+                <img class="typeIcon"
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/PieChart.png"
+                (click)="clickIcon('PieChart')"
+                >
+                <img
+                [style.height.px]="30"
+                [style.width.px]="30"
+                src="../images/ScatterChart.png"
+                (click)="clickIcon('ScatterChart')"
+                >
+            </div>
+            <button class="btn btn-secondary buttonWidget" (click)="clickSwapXY()">
+                Swap X-Y
+            </button>
     
-                    <img class="typeIcon"
-                    [style.height.px]="30"
-                    [style.width.px]="30"
-                    src="../images/BarChart.png"
-                    (click)="clickIcon('BarChart')"
+            <div 
+                id="target" (drop)="drop_handler($event);" (dragover)="dragover_handler($event);"
+            >
+            <clr-datagrid>
+                <clr-dg-column
+                    
                     >
-                    <img
-                    [style.height.px]="30"
-                    [style.width.px]="30"
-                    src="../images/BubbleChart.png"
-                    (click)="clickIcon('BubbleChart')"
-                    >
-                    <img class="typeIcon"
-                    [style.height.px]="30"
-                    [style.width.px]="30"
-                    src="../images/ColumnChart.png"
-                    (click)="clickIcon('ColumnChart')"
-                    >
-                    <img
-                    [style.height.px]="30"
-                    [style.width.px]="30"
-                    src="../images/LineChart.png"
-                    (click)="clickIcon('LineChart')"
-                    >
-                    <img class="typeIcon"
-                    [style.height.px]="30"
-                    [style.width.px]="30"
-                    src="../images/PieChart.png"
-                    (click)="clickIcon('PieChart')"
-                    >
-                    <img
-                    [style.height.px]="30"
-                    [style.width.px]="30"
-                    src="../images/ScatterChart.png"
-                    (click)="clickIcon('ScatterChart')"
-                    >
+                    X axis (drag here)
+                    Column
+                </clr-dg-column>
+
+                <clr-dg-row>
+                    <clr-dg-cell>
+                        <clr-icon shape="plus" size="16"
+                        (click)="clickAdvancedField()"></clr-icon>
+                        TradeDate
+                    </clr-dg-cell>
+                </clr-dg-row>
+            </clr-datagrid>
+            </div>
+
+            <clr-datagrid>
+                <clr-dg-column>Y axis (drag here)
+                    Row
+                </clr-dg-column>
+
+                <clr-dg-row>
+                    <clr-dg-cell>
+                        <clr-icon shape="plus" size="16"></clr-icon>
+                        ValueTraded
+                    </clr-dg-cell>
+                </clr-dg-row>
+            </clr-datagrid>
+                <div *ngIf="showAdvancedField">
+                        <button class="btn btn-sm">type</button>
+                        <button class="btn btn-sm">bin</button>
+                        <button class="btn btn-sm">aggregate</button>
+                        <button class="btn btn-sm">zero</button>
+                        <button class="btn btn-sm">scale</button>
+
                 </div>
-                <button class="btn btn-secondary buttonWidget" (click)="clickSwapXY()">
-                    Swap X-Y
+            <clr-datagrid>
+                <clr-dg-column>Color (drag here)
+                    Row
+                </clr-dg-column>
+
+                <clr-dg-row>
+                    <clr-dg-cell>
+                        <clr-icon shape="plus" size="16"></clr-icon>
+                        Country
+                    </clr-dg-cell>
+                </clr-dg-row>
+            </clr-datagrid>
+
+        </section>
+
+    </div>
+</nav>
+
+
+<span
+    class="graphy"
+    [style.color] = "showContainerHeader ? 'black' : 'transparent'"
+    (click)="clickWidget($event)"
+    (dragstart)="dragStartWidget($event)"
+    (dragend)="dragEndWidget($event)"
+    draggable="true"
+    #dragWidget
+
+    >
+    <span class="widgetHandle"
+    [style.color] = "showContainerHeader ? 'black' : 'transparent'"
+    >Drag Edit</span>
+    <div
+        [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
+        >
+        <span #visReal>
+        </span>
+    </div>
+</span>
+
+<span
+    class="graphy111"
+    [style.color] = "showContainerHeader ? 'black' : 'transparent'"
+    (click)="clickWidget($event)"
+    #dragWidget111
+
+    >
+    <span class="widgetHandle"
+    [style.color] = "showContainerHeader ? 'black' : 'transparent'"
+    >Drag Edit</span>
+    <div
+        [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
+        >
+        <span #visReal111>
+        </span>
+    </div>
+</span>
+
+
+
+<!-- Widget Designer -->
+<div *ngIf="showWidgetDesigner" class="showWidget">
+    Widget Designer
+
+    <div class="row">
+        <div class="col-lg-3">
+            <nav class="sidenav">
+                <button class="dropdown-toggle btn btn-link btn-sm" type="button">
+                    Select Data
+                    <clr-icon shape="caret down"></clr-icon>
                 </button>
-        
-                <div 
-                    id="target" (drop)="drop_handler($event);" (dragover)="dragover_handler($event);"
-                >
-                <clr-datagrid>
-                    <clr-dg-column
-                        
+                <section class="sidenav-content">
+                    <section class="nav-group">
+                            <ul class="nav-list">
+                                <li>
+                                    <a
+                                        class="nav-link"
+                                        (dragend)="showGraphs($event)"
+                                        draggable="true"
+                                        id="dragtarget"
+                                        >
+                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                        Trader
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                        Country
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link active">
+                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                        Trade Type
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="block" class="dateField"></clr-icon>
+                                        Date
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                        DateTime
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                        Stock
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                        Volume
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                        Trades
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="nav-link">
+                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                        Value
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                </section>
+            </nav>
+        </div>
+        <div class="col-lg-3">
+            <nav class="sidenav" *ngIf="showNavExplore">
+                <section class="sidenav-content">
+                    <div>
+                        <button class="btn btn-sm"
+                        (click)="showType=!showType"
+                        >Select Type
+                        <clr-icon shape="caret down"></clr-icon>
+                    </button>
+                    <img class="typeIcon"
+                    *ngIf="showTypeIcon"
+                    [style.height.px]="30"
+                    [style.width.px]="30"
+                        [src]="graphTypeFile"
+                    >
+                    </div>
+                    <div *ngIf="showType">
+
+                        <img class="typeIcon"
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/BarChart.png"
+                        (click)="clickIcon('BarChart')"
                         >
-                        X axis (drag here)
-                        Column
-                    </clr-dg-column>
-    
-                    <clr-dg-row>
-                        <clr-dg-cell>
-                            <clr-icon shape="plus" size="16"
-                            (click)="clickAdvancedField()"></clr-icon>
-                            TradeDate
-                        </clr-dg-cell>
-                    </clr-dg-row>
-                </clr-datagrid>
-                </div>
-    
-                <clr-datagrid>
-                    <clr-dg-column>Y axis (drag here)
-                        Row
-                    </clr-dg-column>
-    
-                    <clr-dg-row>
-                        <clr-dg-cell>
-                            <clr-icon shape="plus" size="16"></clr-icon>
-                            ValueTraded
-                        </clr-dg-cell>
-                    </clr-dg-row>
-                </clr-datagrid>
+                        <img
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/BubbleChart.png"
+                        (click)="clickIcon('BubbleChart')"
+                        >
+                        <img class="typeIcon"
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/ColumnChart.png"
+                        (click)="clickIcon('ColumnChart')"
+                        >
+                        <img
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/LineChart.png"
+                        (click)="clickIcon('LineChart')"
+                        >
+                        <img class="typeIcon"
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/PieChart.png"
+                        (click)="clickIcon('PieChart')"
+                        >
+                        <img
+                        [style.height.px]="30"
+                        [style.width.px]="30"
+                        src="../images/ScatterChart.png"
+                        (click)="clickIcon('ScatterChart')"
+                        >
+                    </div>
+
+                    <clr-datagrid>
+                        <clr-dg-column>X axis (drag here)
+                            Column
+                        </clr-dg-column>
+
+                        <clr-dg-row>
+                            <clr-dg-cell>
+                                <clr-icon shape="plus" size="16"
+                                (click)="clickAdvancedField()"></clr-icon>
+                                TradeDate
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+
+                    <clr-datagrid>
+                        <clr-dg-column>Y axis (drag here)
+                            Row
+                        </clr-dg-column>
+
+                        <clr-dg-row>
+                            <clr-dg-cell>
+                                <clr-icon shape="plus" size="16"></clr-icon>
+                                ValueTraded
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
                     <div *ngIf="showAdvancedField">
                             <button class="btn btn-sm">type</button>
                             <button class="btn btn-sm">bin</button>
                             <button class="btn btn-sm">aggregate</button>
                             <button class="btn btn-sm">zero</button>
                             <button class="btn btn-sm">scale</button>
-    
+
                     </div>
-                <clr-datagrid>
-                    <clr-dg-column>Color (drag here)
-                        Row
-                    </clr-dg-column>
-    
-                    <clr-dg-row>
-                        <clr-dg-cell>
-                            <clr-icon shape="plus" size="16"></clr-icon>
-                            Country
-                        </clr-dg-cell>
-                    </clr-dg-row>
-                </clr-datagrid>
-    
-            </section>
-    
+                    <clr-datagrid>
+                        <clr-dg-column>Color (drag here)
+                            Row
+                        </clr-dg-column>
+
+                        <clr-dg-row>
+                            <clr-dg-cell>
+                                <clr-icon shape="plus" size="16"></clr-icon>
+                                Country
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+
+                </section>
+            </nav>
         </div>
-    </nav>
-    
-    
+    </div>
+
+    <!-- Graph -->
     <span
         class="graphy"
         [style.color] = "showContainerHeader ? 'black' : 'transparent'"
         (click)="clickWidget($event)"
-        (dragstart)="dragStartWidget($event)"
-        (dragend)="dragEndWidget($event)"
-        draggable="true"
-        #dragWidget
-    
         >
         <span class="widgetHandle"
         [style.color] = "showContainerHeader ? 'black' : 'transparent'"
@@ -535,267 +759,44 @@
         <div
             [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
             >
-            <span #visReal>
+            <span #vis>
             </span>
         </div>
     </span>
-    
-    <span
-        class="graphy111"
-        [style.color] = "showContainerHeader ? 'black' : 'transparent'"
-        (click)="clickWidget($event)"
-        #dragWidget111
-    
-        >
-        <span class="widgetHandle"
-        [style.color] = "showContainerHeader ? 'black' : 'transparent'"
-        >Drag Edit</span>
-        <div
-            [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
-            >
-            <span #visReal111>
-            </span>
-        </div>
-    </span>
-    
-    
-    
-    <!-- Widget Designer -->
-    <div *ngIf="showWidgetDesigner" class="showWidget">
-        Widget Designer
-    
-        <div class="row">
-            <div class="col-lg-3">
-                <nav class="sidenav">
-                    <button class="dropdown-toggle btn btn-link btn-sm" type="button">
-                        Select Data
-                        <clr-icon shape="caret down"></clr-icon>
-                    </button>
-                    <section class="sidenav-content">
-                        <section class="nav-group">
-                                <ul class="nav-list">
-                                    <li>
-                                        <a
-                                            class="nav-link"
-                                            (dragend)="showGraphs($event)"
-                                            draggable="true"
-                                            id="dragtarget"
-                                            >
-                                            <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                            Trader
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link">
-                                            <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                            Country
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link active">
-                                            <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                            Trade Type
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link">
-                                            <clr-icon shape="block" class="dateField"></clr-icon>
-                                            Date
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link">
-                                            <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                            DateTime
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link">
-                                            <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                            Stock
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link">
-                                            <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                            Volume
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link">
-                                            <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                            Trades
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link">
-                                            <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                            Value
-                                        </a>
-                                    </li>
-                                </ul>
-                            </section>
-                    </section>
-                </nav>
-            </div>
-            <div class="col-lg-3">
-                <nav class="sidenav" *ngIf="showNavExplore">
-                    <section class="sidenav-content">
-                        <div>
-                            <button class="btn btn-sm"
-                            (click)="showType=!showType"
-                            >Select Type
-                            <clr-icon shape="caret down"></clr-icon>
-                        </button>
-                        <img class="typeIcon"
-                        *ngIf="showTypeIcon"
-                        [style.height.px]="30"
-                        [style.width.px]="30"
-                            [src]="graphTypeFile"
-                        >
-                        </div>
-                        <div *ngIf="showType">
-    
-                            <img class="typeIcon"
-                            [style.height.px]="30"
-                            [style.width.px]="30"
-                            src="../images/BarChart.png"
-                            (click)="clickIcon('BarChart')"
-                            >
-                            <img
-                            [style.height.px]="30"
-                            [style.width.px]="30"
-                            src="../images/BubbleChart.png"
-                            (click)="clickIcon('BubbleChart')"
-                            >
-                            <img class="typeIcon"
-                            [style.height.px]="30"
-                            [style.width.px]="30"
-                            src="../images/ColumnChart.png"
-                            (click)="clickIcon('ColumnChart')"
-                            >
-                            <img
-                            [style.height.px]="30"
-                            [style.width.px]="30"
-                            src="../images/LineChart.png"
-                            (click)="clickIcon('LineChart')"
-                            >
-                            <img class="typeIcon"
-                            [style.height.px]="30"
-                            [style.width.px]="30"
-                            src="../images/PieChart.png"
-                            (click)="clickIcon('PieChart')"
-                            >
-                            <img
-                            [style.height.px]="30"
-                            [style.width.px]="30"
-                            src="../images/ScatterChart.png"
-                            (click)="clickIcon('ScatterChart')"
-                            >
-                        </div>
-    
-                        <clr-datagrid>
-                            <clr-dg-column>X axis (drag here)
-                                Column
-                            </clr-dg-column>
-    
-                            <clr-dg-row>
-                                <clr-dg-cell>
-                                    <clr-icon shape="plus" size="16"
-                                    (click)="clickAdvancedField()"></clr-icon>
-                                    TradeDate
-                                </clr-dg-cell>
-                            </clr-dg-row>
-                        </clr-datagrid>
-    
-                        <clr-datagrid>
-                            <clr-dg-column>Y axis (drag here)
-                                Row
-                            </clr-dg-column>
-    
-                            <clr-dg-row>
-                                <clr-dg-cell>
-                                    <clr-icon shape="plus" size="16"></clr-icon>
-                                    ValueTraded
-                                </clr-dg-cell>
-                            </clr-dg-row>
-                        </clr-datagrid>
-                        <div *ngIf="showAdvancedField">
-                                <button class="btn btn-sm">type</button>
-                                <button class="btn btn-sm">bin</button>
-                                <button class="btn btn-sm">aggregate</button>
-                                <button class="btn btn-sm">zero</button>
-                                <button class="btn btn-sm">scale</button>
-    
-                        </div>
-                        <clr-datagrid>
-                            <clr-dg-column>Color (drag here)
-                                Row
-                            </clr-dg-column>
-    
-                            <clr-dg-row>
-                                <clr-dg-cell>
-                                    <clr-icon shape="plus" size="16"></clr-icon>
-                                    Country
-                                </clr-dg-cell>
-                            </clr-dg-row>
-                        </clr-datagrid>
-    
-                    </section>
-                </nav>
-            </div>
-        </div>
-    
-        <!-- Graph -->
-        <span
-            class="graphy"
-            [style.color] = "showContainerHeader ? 'black' : 'transparent'"
-            (click)="clickWidget($event)"
-            >
-            <span class="widgetHandle"
-            [style.color] = "showContainerHeader ? 'black' : 'transparent'"
-            >Drag Edit</span>
-            <div
-                [style.border] = "showContainerHeader ? '1px black dotted' : 'none'"
-                >
-                <span #vis>
-                </span>
-            </div>
-        </span>
-    
-        <div class="btn-group">
-            <button class="btn btn-secondary buttonWidget" (click)="clickWidgetClose()">
-                Cancel
-            </button>
-            <button class="btn btn-primary buttonWidget" (click)="clickWidgetClose()">
-                Save
-            </button>
-        </div>
+
+    <div class="btn-group">
+        <button class="btn btn-secondary buttonWidget" (click)="clickWidgetClose()">
+            Cancel
+        </button>
+        <button class="btn btn-primary buttonWidget" (click)="clickWidgetClose()">
+            Save
+        </button>
     </div>
-    
-    
-    <!-- Modals: -->
-    <!-- ******* -->
-    
-    <!-- Dashboard Selector -->
-    <clr-modal [(clrModalOpen)]="showModalOpenDashboard">
-        <h3 class="modal-title">Open a Dashboard</h3>
-        <div class="modal-body">
-            <p>Please select:</p>
-            <clr-datagrid>
-                <clr-dg-column>Name</clr-dg-column>
-                <clr-dg-column>Description</clr-dg-column>
-            
-                <clr-dg-row *ngFor="let dash of dashboards">
-                    <clr-dg-cell>{{dash.name}}</clr-dg-cell>
-                    <clr-dg-cell>{{dash.description}}</clr-dg-cell>
-                </clr-dg-row>
-            
-                <clr-dg-footer>{{dashboards.length}} dashboards</clr-dg-footer>
-            </clr-datagrid>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline" (click)="showModalOpenDashboard = false">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="clickCloseModel()">Ok</button>
-        </div>
-    </clr-modal>
+</div>
+
+
+<!-- Modals: -->
+<!-- ******* -->
+
+<!-- Dashboard Selector -->
+<clr-modal [(clrModalOpen)]="showModalOpenDashboard">
+    <h3 class="modal-title">Open a Dashboard</h3>
+    <div class="modal-body">
+        <p>Please select:</p>
+        <clr-datagrid>
+            <clr-dg-column>Name</clr-dg-column>
+            <clr-dg-column>Description</clr-dg-column>
+        
+            <clr-dg-row *ngFor="let dash of dashboards">
+                <clr-dg-cell>{{dash.name}}</clr-dg-cell>
+                <clr-dg-cell>{{dash.description}}</clr-dg-cell>
+            </clr-dg-row>
+        
+            <clr-dg-footer>{{dashboards.length}} dashboards</clr-dg-footer>
+        </clr-datagrid>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="showModalOpenDashboard = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="clickCloseModel()">Ok</button>
+    </div>
+</clr-modal>

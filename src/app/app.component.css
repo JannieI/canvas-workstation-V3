@@ -22,5 +22,12 @@
 }
 
 .menuText {
-    padding: 18px !important;
+    padding: 18px 6px 18px 4px !important;
+}
+
+
+.menuInput {
+    font-size: .5rem !important;
+    margin: 0 0 0 10px !important;
+    width: 9rem !important;
 }
