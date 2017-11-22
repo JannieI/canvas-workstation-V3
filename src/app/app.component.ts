@@ -35,4 +35,24 @@ export class AppComponent implements OnInit {
     ngOnInit() {
     }   
 
+    menuFileNew() {
+
+
+    }
+
+    menuDataGetData() {
+        this.router.navigate(['/data']);
+    }
+
 }
+
+// Naming conventions
+// [(visible)] ="displayMe"
+// (click)="clickButtonName()"
+// (formSubmit)="handleFormSubmit"
+// (ngSubmit)="ngSubmitABC"
+// (onChange)="changeABC"
+// (onDragEnd)="dragEnd"
+// [(selection)]="selectedABC"
+// placeholder: (info), Required, (Optional)
+// [(ngModel)]="selectedABC"

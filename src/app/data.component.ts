@@ -432,7 +432,6 @@ export class DataComponent implements OnInit {
     indexCurrent: number = 0;
     isError: boolean = false;
     showAddData: boolean = false;
-    showAddDataDetail: boolean = false;
     showAddFile: boolean = false;
     showAddDatabase: boolean = false;
     showAddService: boolean = false;
@@ -460,7 +459,8 @@ export class DataComponent implements OnInit {
     transformaton: Itransformaton[] = transformaton;
 
 	constructor(
-		private globalFunctionService: GlobalFunctionService
+        private router: Router,
+        private globalFunctionService: GlobalFunctionService
 	) {}
 
 	ngOnInit() {
@@ -563,13 +563,10 @@ export class DataComponent implements OnInit {
     clickAddData() {
         this.showAddData = !this.showAddData;
         if (!this.showAddData) {
-            this.showAddDataDetail = false;
         }
     }
 
     clickAddFile() {
-        this.showAddDataDetail = true;
-        this.showAddFile = true;
         this.showAddDatabase = false;
         this.showAddService = false;
         this.showAddFromWeb = false;
@@ -579,13 +576,11 @@ export class DataComponent implements OnInit {
 
     clickAddFileClose() {
         this.showAddData = false;
-        this.showAddDataDetail = false;
         this.showAddFile = false;
     }
 
     clickAddFileSave() {
         this.showAddData = false;
-        this.showAddDataDetail = false;
         this.showAddFile = false;
         let newData: Idata =  {
             name: 'Costing preparation'
@@ -610,7 +605,6 @@ export class DataComponent implements OnInit {
     }
 
     clickAddDatabase() {
-        this.showAddDataDetail = true;
         this.showAddFile = false;
         this.showAddDatabase = true;
         this.showAddService = false;
@@ -620,7 +614,6 @@ export class DataComponent implements OnInit {
     }
 
     clickAddService() {
-        this.showAddDataDetail = true;
         this.showAddFile = false;
         this.showAddDatabase = false;
         this.showAddService = true;
@@ -630,7 +623,6 @@ export class DataComponent implements OnInit {
     }
 
     clickAddFromWeb() {
-        this.showAddDataDetail = true;
         this.showAddFile = false;
         this.showAddDatabase = false;
         this.showAddService = false;
@@ -640,7 +632,6 @@ export class DataComponent implements OnInit {
     }
 
     clickAddNoSQL() {
-        this.showAddDataDetail = true;
         this.showAddFile = false;
         this.showAddDatabase = false;
         this.showAddService = false;
@@ -650,7 +641,6 @@ export class DataComponent implements OnInit {
     }
 
     clickAddFromServer() {
-        this.showAddDataDetail = true;
         this.showAddFile = false;
         this.showAddDatabase = false;
         this.showAddService = false;
@@ -677,4 +667,8 @@ export class DataComponent implements OnInit {
             this.showAddData = false;
         }
     }
-}
+
+    clickBack() {
+        this.router.navigate(['/explore']);
+    }
+ }

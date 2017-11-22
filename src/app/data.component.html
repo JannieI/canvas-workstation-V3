@@ -1,18 +1,14 @@
-<div class="detailArea">
-    <h4 class="helpMessage"> 
         <button
             type="button"
             class="barsButton btn btn-link"
-            (click)="clickAddData()">
-            <clr-icon shape="bars" size="24"></clr-icon>
+            (click)="clickBack()">
+            Back
+            <clr-icon shape="arrow left" size="24"></clr-icon>
         </button>
         <span class="helpMessage">
-            Click to add data to your Dashboard.  Then click <i class="textToClick">Explore</i> in the top menu
-            to show it.
+            Add more data to your Dashboard.  Then click <i class="textToClick">Back</i> 
+            to return to your current Dashboard.
         </span>
-    </h4>
-    <br>
-</div>
 
 <div class="row">
 
@@ -145,7 +141,7 @@
         </nav>
     </div>
 
-    <div class="col-xs-5" *ngIf="showAddDataDetail">
+    <div class="col-xs-5">
         <div *ngIf="showAddFile">
             <h3 class="modal-title">File selection</h3>
             <div class="modal-body">

@@ -105,7 +105,7 @@
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="menuDataGetData()">
                             Get data
                         </button>
                         <button type="button" clrDropdownItem (click)="clickSave()">
@@ -231,13 +231,13 @@
                         Create
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Dashboard
                         </button>
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Widget
                         </button>
+                        <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Text box
                         </button>
@@ -365,9 +365,34 @@
                         Help
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Demo
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Getting starting with Canvas
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Getting data
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Creating a Dashboard
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Creating a Widget
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Transforming data
+                        </button>
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickSave()">
-                            Save
+                            Tutorials
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Documentation
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickSave()">
+                            Support
                         </button>
                     </clr-dropdown-menu>
                 </clr-dropdown>
@@ -377,16 +402,18 @@
 
         <div class="header-actions">
             <a class="nav-link nav-icon" href="#" [routerLink]="['/home']" routerLinkActive="active">
-                <clr-icon shape="cog"></clr-icon>
+                <clr-icon shape="share"></clr-icon>
             </a>
             
             <clr-dropdown class="dropdown bottom-right">
                 <button class="nav-icon" clrDropdownToggle>
-                <clr-icon shape="user"></clr-icon>
+                <clr-icon shape="user" class="is-solid has-alert"></clr-icon>
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
                 <div class="dropdown-menu">
                     <a clrDropdownItem>My Profile</a>
+                    <a clrDropdownItem>New Message</a>
+                    <a clrDropdownItem>Messages</a>
                     <a clrDropdownItem>Preferences</a>
                     <a clrDropdownItem>Log out</a>
                 </div>
