@@ -37,7 +37,7 @@
     bottom: 0;
     opacity: 1;
     position: absolute;
-    z-index: 999;
+    z-index: 3;
 }
 
 .tabsLabel {
@@ -178,9 +178,11 @@
 
 .aCircle {
     background-color: transparent;
+    bottom: 0;
     opacity: .5;
     left: 300px;
     z-index: 12;
+    position: absolute;
     display: inline;
 
 }
