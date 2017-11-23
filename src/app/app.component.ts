@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
 
     menuToggle: boolean = false;
     showModalLanding: boolean = true;
+    showPalette: boolean = true;
 
     constructor(
         private router: Router,
@@ -63,6 +64,11 @@ export class AppComponent implements OnInit {
         this.document.body.style.backgroundImage ='../images/BarChart.png';
         
     }
+
+    clickPaletteClose() {
+        this.showPalette = ! this.showPalette;
+    }
+    
 }
 
 // Naming conventions
