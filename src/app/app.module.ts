@@ -26,6 +26,7 @@ import { HomeComponent }              from './home.component';
 import { LandingComponent }           from './landing.component';
 import { PresentComponent }           from './present.component';
 import { WidgetEditorComponent }      from './widget.editor.component';
+import { RenameDashboardComponent }   from './rename.dashboard.component';
 
 // Our Services
 import { AuthGuard }                  from './authguard.service';
@@ -44,6 +45,7 @@ import { GlobalFunctionService }      from './global-function.service';
         LandingComponent,
         PresentComponent,
         WidgetEditorComponent,
+        RenameDashboardComponent,
     ],
     imports: [
         BrowserAnimationsModule,

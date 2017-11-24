@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
     menuToggle: boolean = false;
     showCollaborate: boolean = false;
     showModalLanding: boolean = false;
+    showModalRenameDashboard: boolean = false;
     showModalWidgetEditor: boolean = false;
     showPalette: boolean = false;
     currentWidgetSpec: string = "{...}";
@@ -77,16 +78,16 @@ export class AppComponent implements OnInit {
         console.log('handleCloseCollaborate')
     }
 
+    handleCloseRenameDashboard(action) {
+        this.showModalRenameDashboard = false;
+    }
+    
     clickPaletteClose() {
         this.showPalette = ! this.showPalette;
     }
 
-    clickRenameSave() {
-        this.showPalette = false;
-    }
-
     clickMenuRename() {
-        this.showPalette = true;
+        this.showModalRenameDashboard = true;
     }
 
 }
