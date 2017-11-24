@@ -538,7 +538,9 @@
 
 
 <!-- Modal: widget editor -->
-<widget-editor *ngIf="showModalWidgetEditor"
+<widget-editor 
+    *ngIf="showModalWidgetEditor"
+    [currentWidgetSpec]="currentWidgetSpec"
     (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Open Widget Editor ...
 </widget-editor>
 

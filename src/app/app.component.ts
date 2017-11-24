@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
     showModalLanding: boolean = false;
     showModalWidgetEditor: boolean = false;
     showPalette: boolean = false;
+    currentWidgetSpec: string = "{...}";
 
     constructor(
         private router: Router,

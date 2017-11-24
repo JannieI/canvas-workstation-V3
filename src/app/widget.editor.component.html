@@ -1,5 +1,20 @@
-Widget Editor ...
+<div class="modal modalBox">
+	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+		<div class="modal-content modalContent">
+			<div>
 
-<button type="button" (click)="clickClose()">
-    Close
-</button>
+                Widget Editor:
+
+                {{ currentWidgetSpec }}
+
+                <span #dragWidget>
+                    <span #visReal>
+                    </span>
+                </span>
+                <button type="button" (click)="clickClose()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
