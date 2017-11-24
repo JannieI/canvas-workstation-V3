@@ -1,0 +1,32 @@
+.gridColumn {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.nav-list {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.dropdown-toggle {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.nav-group {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.sidenav {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-width: 5rem !important;
+    border-right: 1px solid black !important;
+    width: 100% !important;
+}
+
+.modalBox {
+	background-color: rgba(0,0,0,0.4); 
+	-shadow: 0 2px 2px 0 lightgray;
+}
