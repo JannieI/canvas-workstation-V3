@@ -213,17 +213,24 @@
                             Show grid
                         </button>
                         <div class="dropdown-divider"></div>
-                            
-                        <div class="dropdown open right-top">
-                            <button class="dropdown-item expandable">Zoom %</button>
-                            <div class="dropdown-menu">
-                                <button type="button" class="dropdown-item">50%</button>
-                                <button type="button" class="dropdown-item">75%</button>
-                                <button type="button" class="dropdown-item">100%</button>
-                                <button type="button" class="dropdown-item">150%</button>
-                                <button type="button" class="dropdown-item">200%</button>
-                            </div>
-                        </div>
+
+                        
+                        <clr-dropdown class="menuText">
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Zoom %
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button" class="dropdown-item" clrDropdownItem>50%</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>75%</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>100%</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>150%</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>200%</button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>                                
 
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Zoom 100%
@@ -263,16 +270,22 @@
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Text box
                         </button>
-                        <div class="dropdown open right-top">
-                        <button class="dropdown-item expandable">Shape</button>
-                            <div class="dropdown-menu">
-                                <button type="button" class="dropdown-item">Circle</button>
-                                <button type="button" class="dropdown-item">Rectangle</button>
-                                <button type="button" class="dropdown-item">Square</button>
-                                <button type="button" class="dropdown-item">Line</button>
-                                <button type="button" class="dropdown-item">Arrow</button>
-                            </div>
-                        </div>
+                        <clr-dropdown class="menuText">
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Shape
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Circle</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Rectangle</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Square</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Line</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Arrow</button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Image
                         </button>
@@ -303,39 +316,57 @@
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Underline
                         </button>
-                        <div class="dropdown open right-top">
-                            <button class="dropdown-item expandable">Font size</button>
-                            <div class="dropdown-menu">
-                                <button type="button" class="dropdown-item">8</button>
-                                <button type="button" class="dropdown-item">10</button>
-                                <button type="button" class="dropdown-item">12</button>
-                                <button type="button" class="dropdown-item">16</button>
-                                <button type="button" class="dropdown-item">20</button>
-                            </div>
-                        </div>
+                        <clr-dropdown class="menuText">
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Font size
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button" class="dropdown-item" clrDropdownItem>8</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>10</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>12</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>16</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>20</button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <div class="dropdown open right-top">
-                            <button class="dropdown-item expandable">Border</button>
-                            <div class="dropdown-menu">
-                                <button type="button" class="dropdown-item">None</button>
-                                <button type="button" class="dropdown-item">1px solid black</button>
-                                <button type="button" class="dropdown-item">2px solid black</button>
-                                <button type="button" class="dropdown-item">1px dotted black</button>
-                                <button type="button" class="dropdown-item">2px dotted black</button>
-                            </div>
-                        </div>
+                        <clr-dropdown class="menuText">
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Border
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button" class="dropdown-item" clrDropdownItem>None</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>1px solid black</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>2px solid black</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>1px dotted black</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>2px dotted black</button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Snap to Grid
                         </button>
-                        <div class="dropdown open right-top">
-                        <button class="dropdown-item expandable">Grid size</button>
-                            <div class="dropdown-menu">
-                                <button type="button" class="dropdown-item">Small</button>
-                                <button type="button" class="dropdown-item">Medium</button>
-                                <button type="button" class="dropdown-item">Large</button>
-                            </div>
-                        </div>
+                        <clr-dropdown class="menuText">
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Grid size
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Small</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Medium</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Large</button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
@@ -361,25 +392,34 @@
                             Front
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
-                            Align left
-                        </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
-                            Align center
-                        </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
-                            Align right
-                        </button>
-                        <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
-                            Align top
-                        </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
-                            Align middle
-                        </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
-                            Align bottom
-                        </button>
+
+                        <clr-dropdown class="menuText">
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Align
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Left</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Center</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Right</button>
+                                <div class="dropdown-divider"></div>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Top</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Middle</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Bottom</button>
+                                <div class="dropdown-divider"></div>
+                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                    Center page
+                                    <clr-icon shape="two-way-arrows down"></clr-icon>
+                                </button>
+                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                    Center page 
+                                    <clr-icon shape="two-way-arrows right"></clr-icon>
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Group
@@ -388,14 +428,6 @@
                             Ungroup
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
-                            Center page
-                            <clr-icon shape="two-way-arrows"></clr-icon>
-                        </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
-                            Center page 
-                            <clr-icon shape="two-way-arrows"></clr-icon>
-                        </button>
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Distribute 
                             <clr-icon shape="two-way-arrows"></clr-icon>

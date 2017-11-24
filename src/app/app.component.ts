@@ -25,7 +25,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 export class AppComponent implements OnInit {
 
     menuToggle: boolean = false;
-    showModalLanding: boolean = true;
+    showModalLanding: boolean = false;
     showPalette: boolean = true;
 
     constructor(
