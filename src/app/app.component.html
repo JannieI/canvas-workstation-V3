@@ -46,13 +46,13 @@
                         File
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem>
+                        <button type="button" clrDropdownItem (click)="clickMenuFileNew()">
                             New
                         </button>
                         <button type="button" clrDropdownItem>
                             Open
                         </button>
-                        <button type="button" clrDropdownItem>
+                        <button type="button" clrDropdownItem (click)="clickMenuRename()">
                             Rename
                         </button>
                         <button type="button" clrDropdownItem>
@@ -516,7 +516,10 @@
         <div class="row">
             <div class="col-xs-2" *ngIf="showPalette">
                 <h4 (click)="clickPaletteClose()">Side Panel</h4>
-                Click above to close
+                <label for="dashboardName" class="popupLabel">New Name :</label>
+                <input type="text" id="dashboardName" placeholder="Enter new dashboard name here"
+                    class="popupInput">
+                <button type="button" (click)="clickRenameSave()">Save</button>
             </div>  
             <div class="col-xs-10">
                 <div  class="content-area" >
@@ -530,7 +533,13 @@
 
 <!-- Modal: landing page -->
 <landing *ngIf="showModalLanding"
-    (formLandingClosed)="handleCloseModal()">landing>
+    (formLandingClosed)="handleCloseModal()">Load landing page ...
 </landing>
+
+
+<!-- Modal: widget editor -->
+<widget-editor *ngIf="showModalWidgetEditor"
+    (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Open Widget Editor ...
+</widget-editor>
 
 

@@ -31,3 +31,15 @@
     margin: 0 0 0 10px !important;
     width: 9rem !important;
 }
+
+.popupLabel {
+    font-size: .5rem !important;
+    margin: 0 0 0 10px !important;
+    width: 3rem !important;
+}
+
+.popupInput {
+    font-size: .5rem !important;
+    margin: 0 0 0 10px !important;
+    width: 9rem !important;
+}

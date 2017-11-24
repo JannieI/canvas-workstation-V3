@@ -26,7 +26,8 @@ export class AppComponent implements OnInit {
 
     menuToggle: boolean = false;
     showModalLanding: boolean = false;
-    showPalette: boolean = true;
+    showModalWidgetEditor: boolean = false;
+    showPalette: boolean = false;
 
     constructor(
         private router: Router,
@@ -40,8 +41,8 @@ export class AppComponent implements OnInit {
     ngOnInit() {
     }   
 
-    menuFileNew() {
-
+    clickMenuFileNew() {
+        this.showModalWidgetEditor = true;
 
     }
 
@@ -65,10 +66,22 @@ export class AppComponent implements OnInit {
         
     }
 
+    handleCloseWidgetEditor() {
+        this.showModalWidgetEditor = false;
+    }
+
     clickPaletteClose() {
         this.showPalette = ! this.showPalette;
     }
-    
+
+    clickRenameSave() {
+        this.showPalette = false;
+    }
+
+    clickMenuRename() {
+        this.showPalette = true;
+    }
+
 }
 
 // Naming conventions
