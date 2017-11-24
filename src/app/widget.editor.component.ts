@@ -266,26 +266,7 @@ const vlTemplateSpec12: any =
   "width": 300,
   "height": 200,
   "data": {"url": "../assets/vega-datasets/unemployment-across-industries.json"},
-  "mark": "area",
-  "encoding": {
-    "x": {
-      "timeUnit": "yearmonth", "field": "date", "type": "temporal",
-      "axis": {"format": "%Y"}
-    },
-    "y": {
-      "aggregate": "sum", "field": "count", "type": "quantitative",
-      "axis": {"title": "count"}
-    }
-  }
-}
-
-const vlTemplateSpec13: any = 
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-  "width": 300, 
-  "height": 200,
-  "data": {"url": "../assets/vega-datasets/unemployment-across-industries.json"},
-  "mark": "area",
+  "mark": "line",
   "encoding": {
     "x": {
       "timeUnit": "yearmonth", "field": "date", "type": "temporal",
@@ -299,6 +280,17 @@ const vlTemplateSpec13: any =
       "field": "series",
       "type": "nominal"
     }
+  }
+}
+
+const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec = 
+{
+  "data": {"url": "../assets/vega-datasets/cars.json"},
+  "mark": "point",
+  "encoding": {
+    "x": {"field": "Horsepower", "type": "quantitative"},
+    "y": {"field": "Miles_per_Gallon", "type": "quantitative"},
+    "color": {"field": "Displacement", "type": "quantitative"}
   }
 }
 
@@ -748,6 +740,35 @@ const vlTemplateSpec17: any =
   }
 }
 
+const vlTemplateSpec18: any = 
+{
+  "repeat": {"column": ["Horsepower","Miles_per_Gallon", "Acceleration"]},
+  "spec": {
+    "data": {"url": "../assets/vega-datasets/cars.json"},
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": {"repeat": "column"},
+        "bin": true,
+        "type": "quantitative"
+      },
+      "y": {"aggregate": "count","type": "quantitative"},
+      "color": {"field": "Origin","type": "nominal"}
+    }
+  }
+}
+
+const vlTemplateSpec19: any = 
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {"url": "../assets/vega-datasets/cars.json"},
+  "mark": "rect",
+  "encoding": {
+    "y": {"field": "Origin", "type": "nominal"},
+    "x": {"field": "Cylinders", "type": "ordinal"},
+    "color": {"aggregate": "mean", "field": "Horsepower", "type": "quantitative"}
+  }
+}
 
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
 {
@@ -833,10 +854,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
   export class WidgetEditorComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
+    @Output() formWidgetEditorClosed: EventEmitter<string> = new EventEmitter();
+
     @ViewChild('visReal', {read: ElementRef}) visReal: ElementRef;  //Vega graph
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
-    @Output() formWidgetEditorClosed: EventEmitter<string> = new EventEmitter();
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -863,7 +885,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // let definition = vlTemplateSpec10;
         // let definition = vlTemplateSpec11;
         let definition = vlTemplateSpec12;
-        // let definition = vlTemplateSpec13;      // *bad
+        // let definition = vlTemplateSpec13;      // *area=bad, line=good ...
         // let definition = vlTemplateSpec14;      // *bad
         // let definition = vlTemplateSpec15;      // *bad
         // let definition = vlTemplateSpec16;
@@ -888,11 +910,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         //   .finalize();
 
         // MINE
-        let specification = compile(definition);
-        let view = new View(parse(specification.spec));
+        let specification = compile(definition).spec;
+        let view = new View(parse(specification));
         view.renderer('svg')
-            .width(1000)
-            .height(200)
+            .width(350)
+            .height(260)
             .initialize(this.visReal.nativeElement)
             .hover()
             .run()

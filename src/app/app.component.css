@@ -43,3 +43,11 @@
     margin: 0 0 0 10px !important;
     width: 9rem !important;
 }
+
+.formCollaborate {
+    border: 1px solid gray;
+    position: absolute;
+    right: 0;
+    top: 4.5em;
+    z-index: 22;
+}

@@ -25,6 +25,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 export class AppComponent implements OnInit {
 
     menuToggle: boolean = false;
+    showCollaborate: boolean = false;
     showModalLanding: boolean = false;
     showModalWidgetEditor: boolean = false;
     showPalette: boolean = false;
@@ -69,6 +70,11 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetEditor() {
         this.showModalWidgetEditor = false;
+    }
+
+    handleCloseCollaborate() {
+        this.showCollaborate = false;
+        console.log('handleCloseCollaborate')
     }
 
     clickPaletteClose() {

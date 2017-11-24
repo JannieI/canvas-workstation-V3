@@ -501,7 +501,9 @@
                     <a clrDropdownItem>My Profile</a>
                     <a clrDropdownItem>Send Email</a>
                     <a clrDropdownItem>Send Message</a>
-                    <a clrDropdownItem>Messages</a>
+                    <a clrDropdownItem (click)="showCollaborate = !showCollaborate">
+                        Messages
+                    </a>
                     <a clrDropdownItem>Alerts</a>
                     <a clrDropdownItem>Preferences</a>
                     <a clrDropdownItem>Log out</a>
@@ -545,3 +547,11 @@
 </widget-editor>
 
 
+<!-- Overlay: Collaborate -->
+<collaborate
+    class="formCollaborate"
+    *ngIf="showCollaborate"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formCollaborateClosed)="handleCloseCollaborate($event)">Open Collaborate form ...
+    >
+</collaborate>
