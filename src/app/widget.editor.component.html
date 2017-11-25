@@ -125,6 +125,10 @@
                     <div class="col-xs-2">
                         <span class="advancedY" *ngIf="showCloseAdvancedY">
                             <label for="dashboardName" class="popupLabel">
+                                Field : Country_Of_Origin_Calculated
+                            </label>
+                            <br>
+                            <label for="dashboardName" class="popupLabel">
                                 Aggregate :
                             </label>
                             <br>
@@ -160,20 +164,17 @@
                             </button>
                         </span>
 
-                        <button class="btn btn-secondary buttonWidget" (click)="clickSwapXY()">
-                            Swap X-Y
-                        </button>
                         <div
                             class="dropZoneY"
-                            id="target"
-                            (drop)="drop_handler($event);"
+                            id="target" 
+                            (drop)="drop_handler($event);" 
                             (dragover)="dragover_handler($event);"
                             >
                             {{ showXdropMessageY }}
                         </div>
                         <div>
-                            <button
-                                class="btn btn-secondary buttonWidget"
+                            <button 
+                                class="btn btn-secondary buttonWidgetY" 
                                 (click)="showAvancedY()"
                                 >
                                 Advanced ...
@@ -184,7 +185,10 @@
 
                     <div class="col-xs-6">
 
-                        <span class="advancedX" *ngIf="showCloseAdvancedX">
+                        <span 
+                            class="advancedX"
+                            *ngIf="showCloseAdvancedX"
+                            >
                             <label for="dashboardName" class="popupLabel">Aggregate :</label>
                             <br>
                             <button class="popupButton">No</button>
@@ -220,6 +224,12 @@
                                 </div>
                             </div>
                         </div>
+                        <button
+                            class="btn btn-secondary buttonWidgetX"
+                            (click)="showAvancedX()"
+                            >
+                            Advanced ...
+                        </button>
                         <div
                             class="dropZoneX"
                             id="target"
@@ -228,12 +238,6 @@
                             >
                             {{ showXdropMessageX }}
                         </div>
-                        <button
-                            class="btn btn-secondary buttonWidget"
-                            (click)="showAvancedX()"
-                            >
-                            Advanced ...
-                        </button>
 
                     </div>
 

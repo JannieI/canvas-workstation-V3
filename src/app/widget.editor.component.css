@@ -34,6 +34,7 @@
 .dropZoneX {
     border: 2px dotted rgb(98, 98, 153);
     border-radius: 8px;
+    display: block;
     height: 2.5em;
     justify-content: center;
     margin: auto;
@@ -47,7 +48,9 @@
     height: 2.5em;
     justify-content: center;
     margin: auto;
+    position: relative !important;
     text-align: left;
+    top: 8em;
     width: 100%;
 }
 
@@ -108,4 +111,17 @@
 
 .selectedDatasource {
     background-color: lightgray;
+}
+
+.buttonWidgetX {
+    margin: 0;
+    padding: 0;
+    float: right
+}
+
+.buttonWidgetY {
+    margin: 0;
+    padding: 0;
+    position: relative !important;
+    top: 12em;
 }
