@@ -875,6 +875,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     showAdvancedY: boolean = false;
     showCloseAdvancedX: boolean = false;
     showCloseAdvancedY: boolean = false;
+    showType: boolean = false;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -994,11 +995,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
    showAvancedX(){
-    this.showCloseAdvancedX = true;
+      this.showCloseAdvancedX = true;
    }
 
    showAvancedY(){
-    this.showCloseAdvancedY = true;
+      this.showCloseAdvancedY = true;
    }
 
     createVegaLiteSpec(
@@ -1030,6 +1031,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     clickDatasource(index: number, name: string) {
-      console.log (index, name)
+        console.log (index, name)
     }
+
+    clickIcon(graph: string) {
+        this.showType = false;
+    }
+
   }

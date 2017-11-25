@@ -50,6 +50,14 @@
     width: 8rem;
 }
 
+.dropZoneYlabel {
+    display: block;
+    position: relative;
+    top: 8em;
+    text-align: left;
+    width: 8rem;
+}
+
 .dropZoneY {
     border: 2px dotted rgb(98, 98, 153);
     border-radius: 8px;
@@ -62,6 +70,12 @@
     width: 100%;
 }
 
+.dropZoneXlabel {
+    left: 4rem;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
 .dropZoneColor {
     border: 2px dotted rgb(98, 98, 153);
     border-radius: 8px;
