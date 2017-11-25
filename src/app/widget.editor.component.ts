@@ -844,7 +844,23 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         }
 }
 
+interface IcurrentDatasource {
+  id: number;
+  name: string;
+  type: string;
+  description;
+}
 
+const currentDatasources: IcurrentDatasource [] = 
+[
+  {
+      id: 1,
+      name: 'DS 1',
+      type: 'Xls File',
+      description: 'budget type bla-bla-bla'
+    
+  }
+]
 
 @Component({
     selector: 'widget-editor',
@@ -860,6 +876,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
     clickedButtonAggregateNo: boolean = false;
+    currentDatasources: IcurrentDatasource[] = currentDatasources;
     dropMessageX: string = 'Drop field here';
     dropMessageY: string = 'Drop field here';
     dropMessageColor: string = 'Drop field here';
@@ -1013,4 +1030,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     }
 
+    clickDatasource(index: number, name: string) {
+      console.log (index, name)
+    }
   }

@@ -21,14 +21,25 @@
                             [style.min-width.rem]="sideNavMinWidth"
                             >
 
-                            <button
-                                class="dropdown-toggle btn btn-link btn-sm"
-                                type="button"
-                                [style.width.px]="sideNavWidth"
-                                >
-                                {{ sideNaveButtonText }}
-                                <clr-icon shape="caret down"></clr-icon>
-                            </button>
+                            <clr-dropdown class="menuText">
+                                <button 
+                                    type="button" 
+                                    class="btn btn-link btn-sm menuButton" 
+                                    clrDropdownTrigger
+                                    >
+                                    Data in this Dashboard
+                                    <clr-icon shape="caret down"></clr-icon>
+                                </button>
+                                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+
+                                    <div *ngFor="let cd of currentDatasources; let i = index"
+                                        (click)="clickDatasource(i, cd.name)">
+                                        {{ cd.name }}
+                                    </div>
+                                </clr-dropdown-menu>
+                                Selected: {{ currentDatasources[0].name }}
+                            </clr-dropdown>
+
                             <section class="sidenav-content">
                                 <section class="nav-group">
                                         <ul class="nav-list">
