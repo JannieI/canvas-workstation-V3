@@ -861,7 +861,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     dropMessageX: string = 'Drop field here';
     dropMessageY: string = 'Drop field here';
-
+    dropMessageColor: string = 'Drop field here';
+    
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private renderer: Renderer,
@@ -950,6 +951,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Get the id of the target and add the moved element to the target's DOM
         this.dropMessageX = "";
         this.dropMessageY = "";
+        this.dropMessageColor = "";
+        
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
         console.log('drop_handler dropped !!')

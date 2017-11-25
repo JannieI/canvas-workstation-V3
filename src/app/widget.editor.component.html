@@ -191,27 +191,23 @@
                                     >
                                 </div>
 
-                                    <div *ngIf="showAdvancedField">
-                                            <button class="btn btn-sm">type</button>
-                                            <button class="btn btn-sm">bin</button>
-                                            <button class="btn btn-sm">aggregate</button>
-                                            <button class="btn btn-sm">zero</button>
-                                            <button class="btn btn-sm">scale</button>
+                                <div *ngIf="showAdvancedField">
+                                        <button class="btn btn-sm">type</button>
+                                        <button class="btn btn-sm">bin</button>
+                                        <button class="btn btn-sm">aggregate</button>
+                                        <button class="btn btn-sm">zero</button>
+                                        <button class="btn btn-sm">scale</button>
 
-                                    </div>
-                                <clr-datagrid>
-                                    <clr-dg-column>Color (drag here)
-                                        Row
-                                    </clr-dg-column>
-
-                                    <clr-dg-row>
-                                        <clr-dg-cell>
-                                            <clr-icon shape="plus" size="16"></clr-icon>
-                                            Country
-                                        </clr-dg-cell>
-                                    </clr-dg-row>
-                                </clr-datagrid>
-
+                                </div>
+                                <div
+                                    class="dropZoneColor"
+                                    id="target" 
+                                    (drop)="drop_handler($event);" 
+                                    (dragover)="dragover_handler($event);"
+                                    >
+                                    {{ showXdropMessageColor }}
+                                </div>
+    
                             </section>
 
                         </div>
