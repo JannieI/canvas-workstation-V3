@@ -60,3 +60,29 @@
     text-align: left;
     width: 100%;
 }
+
+.advancedX {
+    background: rgb(231, 230, 230);
+    border: 1px solid black;
+    left: 10px;
+    position: absolute;
+    top: 50px;
+    width: 12rem;
+    z-index: 9000;
+}
+
+.popupLabel {
+    font-size: .5rem !important;
+    margin: 0 0 0 10px !important;
+    width: 3rem !important;
+}
+
+.popupInput {
+    font-size: .5rem !important;
+    margin: 0 0 0 10px !important;
+    width: 9rem !important;
+}
+
+.popupButton {
+    width: 40px;
+}

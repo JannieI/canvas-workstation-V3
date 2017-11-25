@@ -862,7 +862,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     dropMessageX: string = 'Drop field here';
     dropMessageY: string = 'Drop field here';
     dropMessageColor: string = 'Drop field here';
-    
+    showCloseAdvancedX: boolean = false;
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private renderer: Renderer,
@@ -957,6 +958,14 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         ev.target.appendChild(document.getElementById(data));
         console.log('drop_handler dropped !!')
     }
+
+    clickCloseAdvancedX(action) {
+       this.showCloseAdvancedX = false;
+    }
+
+    clickApplyAdvancedX(action) {
+      this.showCloseAdvancedX = false;
+   }
 
     createVegaLiteSpec(
         description: string = 'First bar chart.',
