@@ -104,9 +104,16 @@
 
                     <div class="col-xs-2">
                         <span class="advancedY" *ngIf="showCloseAdvancedY">
-                            <label for="dashboardName" class="popupLabel">Aggregate :</label>
+                            <label for="dashboardName" class="popupLabel">
+                                Aggregate :
+                            </label>
                             <br>
-                            <button class="popupButton">No</button>
+                            <button class="popupButton"
+                                (click)="clickedButtonAggregateNo = !clickedButtonAggregateNo"
+                                [style.background-color] = "clickedButtonAggregateNo ? 'darkgray' : 'transparent'"
+                                
+                                >No
+                            </button>
                             <button class="popupButton">Sum</button>
                             <button class="popupButton">Avg</button>
                             <button class="popupButton">Min</button>
@@ -150,6 +157,7 @@
                                 (click)="showAvancedY()"
                                 >
                                 Advanced ...
+                                <span class="badge">1</span>
                             </button>
                         </div>
                     </div>

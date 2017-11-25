@@ -859,6 +859,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     @ViewChild('visReal', {read: ElementRef}) visReal: ElementRef;  //Vega graph
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
+    clickedButtonAggregateNo: boolean = false;
     dropMessageX: string = 'Drop field here';
     dropMessageY: string = 'Drop field here';
     dropMessageColor: string = 'Drop field here';
