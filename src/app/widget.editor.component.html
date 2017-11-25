@@ -10,7 +10,7 @@
                     Close
                 </button>
 
-                    
+
 
                 <div class="row">
                     <div class="col-xs-2 gridColumn">
@@ -21,24 +21,33 @@
                             [style.min-width.rem]="sideNavMinWidth"
                             >
 
-                            <clr-dropdown class="menuText">
-                                <button 
-                                    type="button" 
-                                    class="btn btn-link btn-sm menuButton" 
+                            <clr-dropdown class="datasourceDropdown">
+                                <button
+                                    type="button"
+                                    class="btn btn-link btn-sm menuButton"
                                     clrDropdownTrigger
                                     >
-                                    Data in this Dashboard
+                                    Datasources
                                     <clr-icon shape="caret down"></clr-icon>
                                 </button>
-                                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                                <clr-dropdown-menu 
+                                    clrPosition="bottom-left" 
+                                    *clrIfOpen
+                                    class="datasourceDropdown"
+                                    >
 
                                     <div *ngFor="let cd of currentDatasources; let i = index"
-                                        (click)="clickDatasource(i, cd.name)">
+                                        (click)="clickDatasource(i, cd.name)"
+                                        clrDropdownItem
+                                        class="datasourceDropdown"
+                                        >
                                         {{ cd.name }}
                                     </div>
                                 </clr-dropdown-menu>
-                                Selected: {{ currentDatasources[0].name }}
                             </clr-dropdown>
+                            <div>
+                                Fields for: {{ currentDatasources[0].name }} 
+                            </div>
 
                             <section class="sidenav-content">
                                 <section class="nav-group">
@@ -122,7 +131,7 @@
                             <button class="popupButton"
                                 (click)="clickedButtonAggregateNo = !clickedButtonAggregateNo"
                                 [style.background-color] = "clickedButtonAggregateNo ? 'darkgray' : 'transparent'"
-                                
+
                                 >No
                             </button>
                             <button class="popupButton">Sum</button>
@@ -130,41 +139,41 @@
                             <button class="popupButton">Min</button>
                             <button class="popupButton">Max</button>
                             <button class="popupButton">Cnt</button>
-        
+
                             <br>
                             <label for="dashboardName" class="popupLabel">Bin :</label>
                             <br>
                             <button class="popupButton">No</button>
                             <button class="popupButton">Yes</button>
                             <br>
-                            
-                            <button 
-                                class="btn btn-sm btn-secondary" 
+
+                            <button
+                                class="btn btn-sm btn-secondary"
                                 (click)="clickCloseAdvancedY('Close')">
                                 Close
                             </button>
-        
-                            <button 
-                                class="btn btn-sm btn-secondary" 
+
+                            <button
+                                class="btn btn-sm btn-secondary"
                                 (click)="clickApplyAdvancedY('Close')">
                                 Apply
                             </button>
-                        </span> 
+                        </span>
 
                         <button class="btn btn-secondary buttonWidget" (click)="clickSwapXY()">
                             Swap X-Y
                         </button>
                         <div
                             class="dropZoneY"
-                            id="target" 
-                            (drop)="drop_handler($event);" 
+                            id="target"
+                            (drop)="drop_handler($event);"
                             (dragover)="dragover_handler($event);"
                             >
                             {{ showXdropMessageY }}
                         </div>
                         <div>
-                            <button 
-                                class="btn btn-secondary buttonWidget" 
+                            <button
+                                class="btn btn-secondary buttonWidget"
                                 (click)="showAvancedY()"
                                 >
                                 Advanced ...
@@ -184,26 +193,26 @@
                             <button class="popupButton">Min</button>
                             <button class="popupButton">Max</button>
                             <button class="popupButton">Cnt</button>
-        
+
                             <br>
                             <label for="dashboardName" class="popupLabel">Bin :</label>
                             <br>
                             <button class="popupButton">No</button>
                             <button class="popupButton">Yes</button>
                             <br>
-                            
-                            <button 
-                                class="btn btn-sm btn-secondary" 
+
+                            <button
+                                class="btn btn-sm btn-secondary"
                                 (click)="clickCloseAdvancedX('Close')">
                                 Close
                             </button>
-        
-                            <button 
-                                class="btn btn-sm btn-secondary" 
+
+                            <button
+                                class="btn btn-sm btn-secondary"
                                 (click)="clickApplyAdvancedX('Close')">
                                 Apply
                             </button>
-                        </span> 
+                        </span>
 
                         <div>
                             <div #dragWidget>
@@ -213,14 +222,14 @@
                         </div>
                         <div
                             class="dropZoneX"
-                            id="target" 
-                            (drop)="drop_handler($event);" 
+                            id="target"
+                            (drop)="drop_handler($event);"
                             (dragover)="dragover_handler($event);"
                             >
                             {{ showXdropMessageX }}
                         </div>
-                        <button 
-                            class="btn btn-secondary buttonWidget" 
+                        <button
+                            class="btn btn-secondary buttonWidget"
                             (click)="showAvancedX()"
                             >
                             Advanced ...
@@ -297,13 +306,13 @@
                                 </div>
                                 <div
                                     class="dropZoneColor"
-                                    id="target" 
-                                    (drop)="drop_handler($event);" 
+                                    id="target"
+                                    (drop)="drop_handler($event);"
                                     (dragover)="dragover_handler($event);"
                                     >
                                     {{ showXdropMessageColor }}
                                 </div>
-    
+
                             </section>
 
                         </div>
@@ -313,7 +322,7 @@
                     </div>
                 </div>
 
-            
+
             </div>
         </div>
     </div>

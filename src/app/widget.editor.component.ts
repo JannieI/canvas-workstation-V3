@@ -9,11 +9,15 @@ import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 
-// Our Functions
+// Our models
+import { currentDatasource }          from './model.currentDashboard';
+
+// Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
+// Functions
 import { compile }                    from 'vega-lite';
-
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
 import * as dl from 'datalib';
@@ -844,23 +848,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         }
 }
 
-interface IcurrentDatasource {
-  id: number;
-  name: string;
-  type: string;
-  description;
-}
 
-const currentDatasources: IcurrentDatasource [] = 
-[
-  {
-      id: 1,
-      name: 'DS 1',
-      type: 'Xls File',
-      description: 'budget type bla-bla-bla'
-    
-  }
-]
+
+
 
 @Component({
     selector: 'widget-editor',
@@ -876,7 +866,7 @@ const currentDatasources: IcurrentDatasource [] =
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
     clickedButtonAggregateNo: boolean = false;
-    currentDatasources: IcurrentDatasource[] = currentDatasources;
+    currentDatasources: currentDatasource[];
     dropMessageX: string = 'Drop field here';
     dropMessageY: string = 'Drop field here';
     dropMessageColor: string = 'Drop field here';
@@ -885,16 +875,20 @@ const currentDatasources: IcurrentDatasource [] =
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
+        private globalVariableService: GlobalVariableService,
         private renderer: Renderer,
-        private router: Router
+        private router: Router,
     ) {}
 
     ngOnInit() {
+        this.currentDatasources = this.globalVariableService.currentDatasources;
 
     }
 
     ngAfterViewInit() {
 
+        // this.currentDatasources = this.globalVariableService.currentDatasources;
+        // console.log('this.currentDatasources', this.currentDatasources)
         // let definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);
         // let definition = vlTemplateSpec1
         // let definition = vlTemplateSpec2;

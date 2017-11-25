@@ -3,11 +3,32 @@ import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
 
 // Our Models
+import { currentDatasource }          from './model.currentDashboard';
+
 // import { CanvasUser }                 from './model.user';
+
+const currentDatasources: currentDatasource [] = 
+[
+    {
+        id: 1,
+        name: 'DS 1',
+        type: 'Xls File',
+        description: 'budget type bla-bla-bla'
+        
+    },
+    {
+        id: 2,
+        name: 'DS 2',
+        type: 'Trades from Exchange',
+        description: 'Trades ...'
+    
+    }
+]
 
 @Injectable()
 export class GlobalVariableService {
 
+    currentDatasources: currentDatasource[] = currentDatasources;
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard
     showNavData = new BehaviorSubject<boolean>(false);             // Show sideNav
     showNavDashboard = new BehaviorSubject<boolean>(false);        // Show sideNav

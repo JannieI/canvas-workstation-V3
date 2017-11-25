@@ -96,3 +96,8 @@
 .popupButton {
     width: 40px;
 }
+
+.datasourceDropdown {
+    margin: 0;
+    padding: 0;
+}
