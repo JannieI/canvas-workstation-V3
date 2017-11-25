@@ -102,52 +102,34 @@
 
                     <div class="col-xs-2">
                         <button class="btn btn-secondary buttonWidget" (click)="clickSwapXY()">
-                                Swap X-Y
-                            </button>
+                            Swap X-Y
+                        </button>
                         <div
-                            id="target" (drop)="drop_handler($event);" (dragover)="dragover_handler($event);"
+                            class="dropZoneY"
+                            id="target" 
+                            (drop)="drop_handler($event);" 
+                            (dragover)="dragover_handler($event);"
                             >
-                            <clr-datagrid>
-                                <clr-dg-column
-
-                                    >
-                                    X axis (drag here)
-                                    Column
-                                </clr-dg-column>
-
-                                <clr-dg-row>
-                                    <clr-dg-cell>
-                                        <clr-icon shape="plus" size="16"
-                                        (click)="clickAdvancedField()"></clr-icon>
-                                        TradeDate
-                                    </clr-dg-cell>
-                                </clr-dg-row>
-                            </clr-datagrid>
-                
+                            {{ showXdropMessageY }}
                         </div>
-
-
                     </div>
 
                     <div class="col-xs-6">
                         <div>
-                        <div #dragWidget>
-                            <div #visReal>
+                            <div #dragWidget>
+                                <div #visReal>
+                                </div>
                             </div>
                         </div>
+                        <div
+                            class="dropZoneX"
+                            id="target" 
+                            (drop)="drop_handler($event);" 
+                            (dragover)="dragover_handler($event);"
+                            >
+                            {{ showXdropMessageX }}
                         </div>
-                        <clr-datagrid>
-                            <clr-dg-column>Y axis (drag here)
-                                Row
-                            </clr-dg-column>
-        
-                            <clr-dg-row>
-                                <clr-dg-cell>
-                                    <clr-icon shape="plus" size="16"></clr-icon>
-                                    ValueTraded
-                                </clr-dg-cell>
-                            </clr-dg-row>
-                        </clr-datagrid>
+
                     </div>
 
                     <div class="col-xs-2">

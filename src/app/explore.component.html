@@ -85,7 +85,7 @@
     </div> -->
 <!-- End fooling -->
 
-<h4 class="helpMessage"> 
+<h4 class="helpMessage">
     <button
         type="button"
         class="barsButton btn btn-link"
@@ -93,8 +93,8 @@
         <clr-icon shape="bars" size="24"></clr-icon>
     </button>
     <span *ngIf="isFirstTime">
-        Click to show the palette.  Then drag a field onto the x-axis or y-axis to show 
-        a graph.  The name of your Dashboard and current Tab are shown at the bottom of 
+        Click to show the palette.  Then drag a field onto the x-axis or y-axis to show
+        a graph.  The name of your Dashboard and current Tab are shown at the bottom of
         the page.
     </span>
 </h4>
@@ -109,16 +109,16 @@
 
 <div class="tabList">
     <clr-dropdown>
-        <button 
-            type="button" 
-            class="btn btn-secondary btn-sm" 
+        <button
+            type="button"
+            class="btn btn-secondary btn-sm"
             clrDropdownTrigger
             >
             Current: Analysis of Value Traded 2017 ... <pre>&nbsp    </pre>
             <clr-icon shape="caret down" size="16"></clr-icon>
         </button>
         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen class="dashboardDropdown">
-            
+
             <label class="dropdown-header">Dashboard properties</label>
 
             <div class="form-group">
@@ -131,7 +131,7 @@
                 Save
                 <clr-icon shape="floppy" size="16"></clr-icon>
             </button>
-            
+
             <button type="button" class="popupButton" clrDropdownItem
                 (click)="showModalOpenDashboard=true"
                 >
@@ -142,9 +142,9 @@
     </clr-dropdown>
     <span class="tabsLabel">Tabs: </span>
     <clr-dropdown>
-        <button 
-            type="button" 
-            class="btn btn-secondary btn-sm" 
+        <button
+            type="button"
+            class="btn btn-secondary btn-sm"
             clrDropdownTrigger
             >
             Summary<pre>&nbsp    </pre>
@@ -152,7 +152,7 @@
         </button>
         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
             <label class="dropdown-header">Tab properties</label>
-        
+
             <div class="form-group">
                 <label for="dashboardName" class="popupLabel">Name :</label>
                 <input type="text" id="dashboardName" placeholder="Enter tab name here"
@@ -166,7 +166,7 @@
                         <option *ngFor="let bg of backgroundcolors">{{bg.name}}</option>
                     </select>
                 </div>
-            </div>    
+            </div>
             <button type="button" class="popupButton" clrDropdownItem>
                 Save
                 <clr-icon shape="floppy" size="16"></clr-icon>
@@ -175,7 +175,7 @@
                 (click)="clickDeleteTab()">
                 Delete
             </button>
-    
+
             <clr-dropdown>
                 <button type="button" clrDropdownTrigger>Later 1</button>
                 <clr-dropdown-menu>
@@ -192,12 +192,12 @@
         </clr-dropdown-menu>
     </clr-dropdown>
 
-    
+
 
     <clr-dropdown *ngIf="secondTab">
-        <button 
-            type="button" 
-            class="btn btn-secondary btn-sm" 
+        <button
+            type="button"
+            class="btn btn-secondary btn-sm"
             clrDropdownTrigger
             >
             Detail Costs<pre>&nbsp    </pre>
@@ -205,7 +205,7 @@
         </button>
         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
             <label class="dropdown-header">Tab properties</label>
-        
+
             <div class="form-group">
                 <label for="dashboardName" class="popupLabel">Name :</label>
                 <input type="text" id="dashboardName" placeholder="Enter tab name here"
@@ -218,12 +218,12 @@
             </button>
         </clr-dropdown-menu>
     </clr-dropdown>
-    
+
 
     <clr-dropdown>
-        <button 
-            type="button" 
-            class="btn btn-secondary btn-sm" 
+        <button
+            type="button"
+            class="btn btn-secondary btn-sm"
             clrDropdownTrigger
             >
             Add Tab <pre>&nbsp    </pre>
@@ -231,7 +231,7 @@
         </button>
         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
             <label class="dropdown-header">New Tab</label>
-            
+
             <div class="form-group">
                 <label for="dashboardName" class="popupLabel">Name :</label>
                 <input type="text" id="dashboardName" placeholder="Enter new name here"
@@ -246,9 +246,9 @@
             </button>
         </clr-dropdown-menu>
     </clr-dropdown>
-        
+
 </div>
-    
+
 
 
 <nav
@@ -286,8 +286,8 @@
                         </li>
                         <li>
                             <a class="nav-link"
-                                id="p1" 
-                                draggable="true" 
+                                id="p1"
+                                draggable="true"
                                 (dragstart)="dragstart_handler($event)"
                                 (dragend)="dragend_handler($event)"
                                 >
@@ -465,13 +465,13 @@
             <button class="btn btn-secondary buttonWidget" (click)="clickSwapXY()">
                 Swap X-Y
             </button>
-    
-            <div 
+
+            <div
                 id="target" (drop)="drop_handler($event);" (dragover)="dragover_handler($event);"
             >
             <clr-datagrid>
                 <clr-dg-column
-                    
+
                     >
                     X axis (drag here)
                     Column
@@ -792,12 +792,12 @@
         <clr-datagrid>
             <clr-dg-column>Name</clr-dg-column>
             <clr-dg-column>Description</clr-dg-column>
-        
+
             <clr-dg-row *ngFor="let dash of dashboards">
                 <clr-dg-cell>{{dash.name}}</clr-dg-cell>
                 <clr-dg-cell>{{dash.description}}</clr-dg-cell>
             </clr-dg-row>
-        
+
             <clr-dg-footer>{{dashboards.length}} dashboards</clr-dg-footer>
         </clr-datagrid>
     </div>

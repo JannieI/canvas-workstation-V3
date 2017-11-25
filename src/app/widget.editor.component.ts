@@ -47,10 +47,10 @@ const vlTemplateSpec1: dl.spec.TopLevelExtendedSpec =
 
 const vlTemplateSpec2: any =
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-  "data": {
-    "values": [{"date":"2001/01/14 21:55","delay":0,"distance":480,"origin":"SAN","destination":"SMF"},{"date":"2001/03/26 20:15","delay":-11,"distance":507,"origin":"PHX","destination":"SLC"},{"date":"2001/03/05 14:55","delay":-3,"distance":714,"origin":"ELP","destination":"LAX"}],
-    "format": {"parse": {"date": "date"}}
+    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+    "data": {
+        "values": [{"date":"2001/01/14 21:55","delay":0,"distance":480,"origin":"SAN","destination":"SMF"},{"date":"2001/03/26 20:15","delay":-11,"distance":507,"origin":"PHX","destination":"SLC"},{"date":"2001/03/05 14:55","delay":-3,"distance":714,"origin":"ELP","destination":"LAX"}],
+        "format": {"parse": {"date": "date"}}
   },
   "transform": [{"calculate": "hours(datum.date)", "as": "time"}],
   "repeat": {"column": ["distance", "delay", "time"]},
@@ -859,6 +859,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     @ViewChild('visReal', {read: ElementRef}) visReal: ElementRef;  //Vega graph
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
+    dropMessageX: string = 'Drop field here';
+    dropMessageY: string = 'Drop field here';
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -884,7 +886,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // let definition = vlTemplateSpec9;
         // let definition = vlTemplateSpec10;
         // let definition = vlTemplateSpec11;
-        let definition = vlTemplateSpec12;
+        let definition = vlTemplateSpec13;
         // let definition = vlTemplateSpec13;      // *area=bad, line=good ...
         // let definition = vlTemplateSpec14;      // *bad
         // let definition = vlTemplateSpec15;      // *bad
@@ -925,6 +927,32 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 	clickClose(action: string) {
 		this.formWidgetEditorClosed.emit(action);
+    }
+
+    dragstart_handler(ev) {
+        console.log("dragStart");
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+        console.log('drag_start')
+    }
+
+    dragend_handler(ev) {
+        console.log('dragend_handler', ev.dataTransfer.dropEffect)
+    }
+    dragover_handler(ev) {
+        console.log('dragover_handler')
+        ev.preventDefault();
+        // Set the dropEffect to move
+        ev.dataTransfer.dropEffect = "move"
+      }
+    drop_handler(ev) {
+        ev.preventDefault();
+        // Get the id of the target and add the moved element to the target's DOM
+        this.dropMessageX = "";
+        this.dropMessageY = "";
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+        console.log('drop_handler dropped !!')
     }
 
     createVegaLiteSpec(

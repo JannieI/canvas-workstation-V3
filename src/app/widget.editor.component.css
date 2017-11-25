@@ -31,3 +31,22 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
+.dropZoneX {
+    border: 2px dotted rgb(98, 98, 153);
+    border-radius: 8px;
+    height: 2.5em;
+    justify-content: center;
+    margin: auto;
+    text-align: left;
+    width: 8rem;
+}
+
+.dropZoneY {
+    border: 2px dotted rgb(98, 98, 153);
+    border-radius: 8px;
+    height: 2.5em;
+    justify-content: center;
+    margin: auto;
+    text-align: left;
+    width: 100%;
+}
