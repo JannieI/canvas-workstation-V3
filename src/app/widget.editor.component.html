@@ -1,17 +1,12 @@
 <div class="modal modalBox">
 	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
-			<div>
 
-                Widget Editor:
-
-                Data from calling component: {{ currentWidgetSpec }}
-                <button type="button" (click)="clickClose()">
-                    Close
+            <div>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
                 </button>
-
-
-
+    
                 <div class="row">
                     <div class="col-xs-2 gridColumn">
                         <nav
@@ -27,7 +22,7 @@
                                     class="btn btn-link btn-sm"
                                     clrDropdownTrigger
                                     >
-                                    Datasources
+                                    More Datasources
                                 </button>
                                 <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
                                 <clr-dropdown-menu 
@@ -176,6 +171,7 @@
                             <button 
                                 class="btn btn-secondary buttonWidgetY" 
                                 (click)="showAvancedY()"
+                                *ngIf="showAdvancedY"
                                 >
                                 Advanced ...
                                 <span class="badge">1</span>
@@ -227,6 +223,7 @@
                         <button
                             class="btn btn-secondary buttonWidgetX"
                             (click)="showAvancedX()"
+                            *ngIf="showAdvancedX"
                             >
                             Advanced ...
                         </button>

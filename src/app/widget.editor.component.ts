@@ -17,7 +17,7 @@ import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Functions
-import { compile }                    from 'vega-lite';
+import { compile, transform }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
 import * as dl from 'datalib';
@@ -870,6 +870,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     dropMessageX: string = 'Drop field here';
     dropMessageY: string = 'Drop field here';
     dropMessageColor: string = 'Drop field here';
+    opened: boolean = true;
+    showAdvancedX: boolean = false;
+    showAdvancedY: boolean = false;
     showCloseAdvancedX: boolean = false;
     showCloseAdvancedY: boolean = false;
 
@@ -965,6 +968,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Get the id of the target and add the moved element to the target's DOM
         this.dropMessageX = "";
         this.dropMessageY = "";
+        this.showAdvancedX = true;
+        this.showAdvancedY = true;
         this.dropMessageColor = "";
         
         var data = ev.dataTransfer.getData("text");
