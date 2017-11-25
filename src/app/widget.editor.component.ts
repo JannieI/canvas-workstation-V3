@@ -967,6 +967,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
       this.showCloseAdvancedX = false;
    }
 
+   showAvancedX(){
+    this.showCloseAdvancedX = true;
+   }
+
     createVegaLiteSpec(
         description: string = 'First bar chart.',
         mark: string = 'bar',

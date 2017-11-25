@@ -103,36 +103,36 @@
                     </div>
 
                     <div class="col-xs-2">
-                        <span class="advancedX">
-                                <label for="dashboardName" class="popupLabel">Aggregate :</label>
-                                <br>
-                                <button class="popupButton">No</button>
-                                <button class="popupButton">Sum</button>
-                                <button class="popupButton">Avg</button>
-                                <button class="popupButton">Min</button>
-                                <button class="popupButton">Max</button>
-                                <button class="popupButton">Cnt</button>
+                        <span class="advancedX" *ngIf="showCloseAdvancedX">
+                            <label for="dashboardName" class="popupLabel">Aggregate :</label>
+                            <br>
+                            <button class="popupButton">No</button>
+                            <button class="popupButton">Sum</button>
+                            <button class="popupButton">Avg</button>
+                            <button class="popupButton">Min</button>
+                            <button class="popupButton">Max</button>
+                            <button class="popupButton">Cnt</button>
+        
+                            <br>
+                            <label for="dashboardName" class="popupLabel">Bin :</label>
+                            <br>
+                            <button class="popupButton">No</button>
+                            <button class="popupButton">Yes</button>
+                            <br>
+                            
+                            <button 
+                                class="btn btn-sm btn-secondary" 
+                                (click)="clickCloseAdvancedX('Close')">
+                                Close
+                            </button>
+        
+                            <button 
+                                class="btn btn-sm btn-secondary" 
+                                (click)="clickApplyAdvancedX('Close')">
+                                Apply
+                            </button>
+                        </span> 
             
-                                <br>
-                                <label for="dashboardName" class="popupLabel">Bin :</label>
-                                <br>
-                                <button class="popupButton">No</button>
-                                <button class="popupButton">Yes</button>
-                                <br>
-                                
-                                <button 
-                                    class="btn btn-sm btn-secondary" 
-                                    (click)="clickCloseAdvancedX('Close')">
-                                    Close
-                                </button>
-            
-                                <button 
-                                    class="btn btn-sm btn-secondary" 
-                                    (click)="clickApplyAdvancedX('Close')">
-                                    Apply
-                                </button>
-                            </span> 
-                
 
                         <button class="btn btn-secondary buttonWidget" (click)="clickSwapXY()">
                             Swap X-Y
@@ -145,7 +145,14 @@
                             >
                             {{ showXdropMessageY }}
                         </div>
-
+                        <div>
+                            <button 
+                                class="btn btn-secondary buttonWidget" 
+                                (click)="showAvancedX()"
+                                >
+                                Advanced ...
+                            </button>
+                        </div>
                     </div>
 
                     <div class="col-xs-6">
