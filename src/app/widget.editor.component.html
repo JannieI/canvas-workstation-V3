@@ -24,12 +24,12 @@
                             <clr-dropdown class="datasourceDropdown">
                                 <button
                                     type="button"
-                                    class="btn btn-link btn-sm menuButton"
+                                    class="btn btn-link btn-sm"
                                     clrDropdownTrigger
                                     >
                                     Datasources
-                                    <clr-icon shape="caret down"></clr-icon>
                                 </button>
+                                <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
                                 <clr-dropdown-menu 
                                     clrPosition="bottom-left" 
                                     *clrIfOpen
@@ -45,7 +45,7 @@
                                     </div>
                                 </clr-dropdown-menu>
                             </clr-dropdown>
-                            <div>
+                            <div class="selectedDatasource">
                                 Fields for: {{ currentDatasources[0].name }} 
                             </div>
 
