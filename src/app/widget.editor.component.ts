@@ -863,6 +863,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     dropMessageY: string = 'Drop field here';
     dropMessageColor: string = 'Drop field here';
     showCloseAdvancedX: boolean = false;
+    showCloseAdvancedY: boolean = false;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -967,8 +968,20 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
       this.showCloseAdvancedX = false;
    }
 
+   clickCloseAdvancedY(action) {
+        this.showCloseAdvancedY = false;
+    }
+
+    clickApplyAdvancedY(action) {
+        this.showCloseAdvancedY = false;
+    }
+
    showAvancedX(){
     this.showCloseAdvancedX = true;
+   }
+
+   showAvancedY(){
+    this.showCloseAdvancedY = true;
    }
 
     createVegaLiteSpec(

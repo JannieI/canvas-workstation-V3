@@ -71,6 +71,16 @@
     z-index: 9000;
 }
 
+.advancedY {
+    background: rgb(231, 230, 230);
+    border: 1px solid black;
+    left: 10px;
+    position: absolute;
+    top: 0px;
+    width: 12rem;
+    z-index: 9000;
+}
+
 .popupLabel {
     font-size: .5rem !important;
     margin: 0 0 0 10px !important;
