@@ -39,23 +39,26 @@
             </clr-icon>
         </div>
 
-        <nav class="sidenav">
-            <section class="sidenav-content">
-                <section class="nav-group collapsible open">
-                    <input id="tabexample1" type="checkbox">
-                    <label for="tabexample1">Data in this Dashboard</label>
-                    <ul class="nav-list">
-                        <div>
-                            <div *ngFor="let dat of dataCurrent">
-                                <li><a class="nav-link" (click)="clickShowCurrentDetail(dat.name)">
-                                    {{ dat.name }}</a>
-                                </li>
-                            </div>
-                        </div>
-                    </ul>
-                </section>
+
+        <section class="sidenav-content">
+            <section class="nav-group">
+                <ul *ngFor="let dat of dataCurrent"
+                    id="p1"
+                    draggable="true"
+                    (dragstart)="dragstart_handler($event)"
+                    (dragend)="dragend_handler($event)"
+                    >
+                    <li 
+                        *ngFor="let dat of dataCurrent"
+                        (click)="clickShowCurrentDetail(dat.name)">
+                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                        {{ dat.name }}
+                    </li>
+                </ul>
+                <!-- <clr-icon shape="block" class="dateField"></clr-icon> -->
+                <!-- <clr-icon shape="bolt" class="metricField"> -->
             </section>
-        </nav>
+        </section>
 
     </div>
                 

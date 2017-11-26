@@ -321,7 +321,11 @@ const fieldsMetadata: IfieldsMetadata[] = [
     }
 ]
 
-const dataCurrent: Idata[] = [
+const dataCurrent: Idata[] = 
+[
+    {
+        name: 'Already added Datasource'
+    }
 ]
 
 const dataServer: Idata[] = [
