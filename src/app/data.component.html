@@ -1,20 +1,30 @@
+<div class="row">
+        
+    <div class="col-xs-1">
+        
+        <div class="helpMessage">
+            <button
+                type="button"
+                class="barsButton btn btn-secondary"
+                (click)="clickBack()">
+                Back
+                <clr-icon shape="arrow left" size="16"></clr-icon>
+            </button>
+        </div>
+    </div>
 
-<div class="helpMessage">
-    <button
-        type="button"
-        class="barsButton btn btn-secondary"
-        (click)="clickBack()">
-        Back
-        <clr-icon shape="arrow left" size="16"></clr-icon>
-    </button>
-    A Dashboard can show the datasources you have added to it.  These are shown down the left
-    hand side.
-    After adding data, return to your Dashboard by clicking the <b>Back</b> button.  You can 
-    add more data at any stage by clicking the <b>Data</b> menu option at the top.
+    <div class="col-xs-11">
+        <span>
+            A Dashboard can show the datasources you have added to it.  These are shown down the left
+            hand side.
+            After adding data, return to your Dashboard by clicking the <b>Back</b> button.  You can 
+            add more data at any stage by clicking the <b>Data</b> menu option at the top.
+        </span>
+    </div>
 </div>
+<br>
 
 <div class="row">
-
 
     <div class="col-xs-3 currentDatasources">
            
@@ -24,7 +34,7 @@
                 shape="plus" 
                 size="16" 
                 class="currentDataIcon"
-                (click)="showAddData = ! showAddData"
+                (click)="showAddData = true"
                 >
             </clr-icon>
         </div>
@@ -49,7 +59,20 @@
 
     </div>
                 
-    <div class="col-xs-2 dataSideNav" *ngIf="showAddData">
+    <div class="col-xs-2 dataSideNav currentDatasources" *ngIf="showAddData">
+           
+        <div class="currentDataHeader">
+            New Data
+            <clr-icon 
+                shape="minus" 
+                size="16" 
+                class="currentDataIcon"
+                (click)="showAddData = false"
+                >
+            </clr-icon>
+        </div>
+
+        
         <div>
             <button
                 type="button"
