@@ -453,7 +453,6 @@ export class DataComponent implements OnInit {
     // selectedDatasource: any;
     selectedData: string = 'Trades for 2016';
     // selectedDatabase: boolean = false;
-    showDetail: boolean = false;
     // showDatasourceForm: boolean = false;
     // showSelector: boolean = false;
     // showFileselector: boolean = false;
@@ -534,17 +533,6 @@ export class DataComponent implements OnInit {
     // clickCloseFieldFormatter() {
     //     this.showModalFileFormatter = false;
     // }
-
-    clickShowMore() {
-        if (!this.showDetail) {
-            this.buttonLabel = "Show Less";
-            this.showDetail = true;
-        } else {
-            this.buttonLabel = "Show More ...";
-            this.showDetail = false;
-        }
-    console.log(this.buttonLabel, this.showDetail )
-    }
 
     // clickNavData(selData: string) {
     //     this.selectedData = selData;

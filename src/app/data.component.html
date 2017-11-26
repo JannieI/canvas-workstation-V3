@@ -276,37 +276,12 @@
     
     </div>
 
-    <div class="col-xs-2" *ngIf="showCurrentDetail">
+    <div class="col-xs-8 dataSideNav" *ngIf="showCurrentDetail">
+
+        Your current datasource is: <i>{{ selectedData }}</i>
 
         <div class="detailArea">
-            Your current datasource is: <i>{{ selectedData }}</i>
-            <button class="btn btn-link" (click)="clickShowMore()">{{buttonLabel}}</button>
-            <div *ngIf="showDetail">
-                <div *ngIf="selectedFile" class="fileLocation">
-                    <br>
-                    Description: <input type="text" id="formFields_7" placeholder="This is ...">
-                    <br><p>From : Excel: C:\My Documents\Budget.xls</p>
-                    <br>
-                    <input type="text" id="formFields_7" placeholder="Dataset Name">
-                </div>
-
-                <div *ngIf="selectedDatabase">
-                    Description: <input type="text" id="formFields_7" placeholder="This is ...">
-                    <br>Locaton:
-                    <input type="text" id="formFields_7" placeholder="Server">
-                    <input type="text" id="formFields_7" placeholder="Table">
-                    <input type="text" id="formFields_7" placeholder="Username">
-                    <input type="text" id="formFields_7" placeholder="Password">
-                    <input type="text" id="formFields_7" placeholder="QueryName/SQLstatement">
-                    <input type="text" id="formFields_7" placeholder="Limit">
-                    <br>
-                    <input type="text" id="formFields_7" placeholder="Dataset Name">
-                </div>
-            </div>
-        </div>
-
-        <div class="detailArea">
-            <clr-tabs *ngIf="showDetail">
+            <clr-tabs>
 
                 <clr-tab>
                     <button clrTabLink id="link1" class="tabHeadings" >Columns</button>
