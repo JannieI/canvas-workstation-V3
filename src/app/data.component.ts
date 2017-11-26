@@ -599,6 +599,10 @@ export class DataComponent implements OnInit {
         this.showAddFromServer = false;
     }
 
+    clickAddDatabaseClose() {
+        this.showAddDatabase = false;
+    }
+
     clickAddService() {
         this.showAddFile = false;
         this.showAddDatabase = false;
@@ -606,6 +610,9 @@ export class DataComponent implements OnInit {
         this.showAddFromWeb = false;
         this.showAddNoSQL = false;
         this.showAddFromServer = false;
+    }
+    clickAddServiceClose() {
+        this.showAddService = false;
     }
 
     clickAddFromWeb() {
@@ -616,6 +623,9 @@ export class DataComponent implements OnInit {
         this.showAddNoSQL = false;
         this.showAddFromServer = false;
     }
+    clickAddFromWebClose() {
+        this.showAddFromWeb = false;
+    }
 
     clickAddNoSQL() {
         this.showAddFile = false;
@@ -625,6 +635,9 @@ export class DataComponent implements OnInit {
         this.showAddNoSQL = true;
         this.showAddFromServer = false;
     }
+    clickAddNoSQLClose() {
+        this.showAddNoSQL = false;
+    }
 
     clickAddFromServer() {
         this.showAddFile = false;
@@ -633,6 +646,9 @@ export class DataComponent implements OnInit {
         this.showAddFromWeb = false;
         this.showAddNoSQL = false;
         this.showAddFromServer = true;
+    }
+    clickAddFromServerClose() {
+        this.showAddFromServer = false;
     }
 
     clickOpenServerList() {
