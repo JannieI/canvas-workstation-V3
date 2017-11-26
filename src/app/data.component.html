@@ -1,7 +1,7 @@
 <div class="row">
-        
+
     <div class="col-xs-1">
-        
+
         <div class="helpMessage">
             <button
                 type="button"
@@ -15,10 +15,10 @@
 
     <div class="col-xs-11">
         <span>
-            A Dashboard can show the datasources you have added to it.  These datasources are 
-            shown down the left hand side.  After adding data, return to your Dashboard by 
-            clicking the <b>Back</b> button.  You can add more datasources at any stage by 
-            clicking the <b>Data</b> menu option at the top.  Click a Datasource below to 
+            A Dashboard can show the datasources you have added to it.  These datasources are
+            shown down the left hand side.  After adding data, return to your Dashboard by
+            clicking the <b>Back</b> button.  You can add more datasources at any stage by
+            clicking the <b>Data</b> menu option at the top.  Click a Datasource below to
             change its detail (advanced option).
         </span>
     </div>
@@ -28,12 +28,12 @@
 <div class="row">
 
     <div class="col-xs-3 currentDatasources">
-           
+
         <div class="currentDataHeader">
             Current Data
-            <clr-icon 
-                shape="plus" 
-                size="16" 
+            <clr-icon
+                shape="plus"
+                size="16"
                 class="currentDataIcon"
                 (click)="clickShowAddData()"
                 >
@@ -45,7 +45,7 @@
                 <div
                     *ngFor="let dat of currentDatasources"
                     >
-                    <a 
+                    <a
                         id="p1"
                         draggable="true"
                         (dragstart)="dragstart_handler($event)"
@@ -61,21 +61,21 @@
         </section>
 
     </div>
-                
+
     <div class="col-xs-2 dataSideNav" *ngIf="showAddData">
-           
+
         <div class="currentDataHeader">
             New Data
-            <clr-icon 
-                shape="minus" 
-                size="16" 
+            <clr-icon
+                shape="minus"
+                size="16"
                 class="currentDataIcon"
                 (click)="showAddData = false"
                 >
             </clr-icon>
         </div>
 
-        
+
         <div>
             <button
                 type="button"
@@ -83,7 +83,7 @@
                 (click)="clickAddFile()">
                 Add from File
             </button>
-        </div>  
+        </div>
         <div class="dropdown buttonGetData" #typeDropdown >
             <button class="dropdown-toggle btn btn-link"
                 type="button"
@@ -152,9 +152,9 @@
                         </div>
                     </ul>
                 </section>
-            </section>  
-        </nav>  
-        
+            </section>
+        </nav>
+
         <button
             type="button"
             class="btn btn-link"
@@ -164,7 +164,7 @@
         </button>
         <nav class="sidenav" *ngIf="showSampleData">
             <section class="sidenav-content">
-                        
+
                 <section class="nav-group collapsible open">
                     <input id="tabexample4" type="checkbox">
                     <label for="tabexample4">Add from samples</label>
@@ -274,7 +274,7 @@
                 <button type="button" class="btn btn-primary" (click)="clickAddFromServerClose()">Ok</button>
             </div>
         </div>
-    
+
     </div>
 
     <div class="col-xs-8 dataSideNav" *ngIf="showCurrentDetail">

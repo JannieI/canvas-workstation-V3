@@ -251,7 +251,6 @@ export class ExploreComponent {
     showNavDashboard: Boolean = false;
     showNavTab: Boolean = false;
     showNavFormat: Boolean = false;
-    showNavDataset: Boolean = false;
     showNavExplore: Boolean = true;
     showNavPresentation: Boolean = false;
     showNavCollaborate: Boolean = false;
@@ -292,14 +291,6 @@ export class ExploreComponent {
         ev.target.appendChild(document.getElementById(data));
         console.log('drop_handler dropped !!')
     }
-
-    clickShowPalette() {
-        this.showNavDataset = !this.showNavDataset;
-        this.isFirstTime = false;
-    }
-
-
-
 
     vlSpecs: dl.spec.TopLevelExtendedSpec[] = [
         {
@@ -509,9 +500,6 @@ export class ExploreComponent {
     }
 
     clickWidget(ev) {
-        if (!this.showNavDataset) {
-            this.showNavDataset = true;
-        } 
         return;
     }
 
