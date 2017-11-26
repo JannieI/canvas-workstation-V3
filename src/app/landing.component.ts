@@ -93,6 +93,8 @@ export class LandingComponent implements OnInit {
 
 	clickClose(action: string) {
 		this.formLandingClosed.emit(action);
+		this.router.navigate(['/explore']);
+		
 	}
 	
 }
