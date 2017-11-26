@@ -436,6 +436,7 @@ export class DataComponent implements OnInit {
     indexCurrent: number = 0;
     isError: boolean = false;
     showAddData: boolean = true;
+    showAddDataDetail: boolean = false;
     showAddFile: boolean = false;
     showAddDatabase: boolean = false;
     showAddService: boolean = false;
@@ -564,6 +565,8 @@ export class DataComponent implements OnInit {
 
 
     clickAddFile() {
+        this.showAddDataDetail = true;
+        this.showAddFile = true;
         this.showAddDatabase = false;
         this.showAddService = false;
         this.showAddFromWeb = false;
@@ -657,10 +660,18 @@ export class DataComponent implements OnInit {
     }
 
     clickShowCurrentDetail() {
+        this.showAddData = false;
+        this.showAddDataDetail = false;
         this.showCurrentDetail = true;
     }
 
     clickBack() {
         this.router.navigate(['/explore']);
+    }
+
+    clickShowAddData() {
+        this.showAddData = true;
+        this.showAddDataDetail = false;
+        this.showCurrentDetail = false;
     }
  }

@@ -21,6 +21,14 @@
     float: right;
     margin: 4px !important;
 }
+
+.dataSideNav {
+    border: 1px solid black;
+    border-radius: 4px;
+    margin: 0 2px 0 2px !important;
+    padding: 5px !important;
+}
+
 .clr-tabs .clr-tab-content {
     margin: 0;
     padding: 0;
@@ -45,10 +53,6 @@
 
 .tabHeadings {
     background-color: rgb(223, 217, 217);
-}
-
-.dataSideNav {
-    border-right: 1px solid black;
 }
 
 .helpMessage {

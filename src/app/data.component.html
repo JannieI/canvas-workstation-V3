@@ -34,11 +34,10 @@
                 shape="plus" 
                 size="16" 
                 class="currentDataIcon"
-                (click)="showAddData = true"
+                (click)="clickShowAddData()"
                 >
             </clr-icon>
         </div>
-
 
         <section class="sidenav-content">
             <section class="nav-group">
@@ -48,12 +47,12 @@
                     (dragstart)="dragstart_handler($event)"
                     (dragend)="dragend_handler($event)"
                     >
-                    <li 
+                    <a 
                         *ngFor="let dat of dataCurrent"
                         (click)="clickShowCurrentDetail(dat.name)">
                         <clr-icon shape="block" class="dimensionField"></clr-icon>
                         {{ dat.name }}
-                    </li>
+                    </a>
                 </ul>
                 <!-- <clr-icon shape="block" class="dateField"></clr-icon> -->
                 <!-- <clr-icon shape="bolt" class="metricField"> -->
@@ -62,7 +61,7 @@
 
     </div>
                 
-    <div class="col-xs-2 dataSideNav currentDatasources" *ngIf="showAddData">
+    <div class="col-xs-2 dataSideNav" *ngIf="showAddData">
            
         <div class="currentDataHeader">
             New Data
@@ -181,7 +180,7 @@
         </nav>
     </div>
 
-    <div class="col-xs-5">
+    <div class="col-xs-2" *ngIf="showAddDataDetail">
         <div *ngIf="showAddFile">
             <h3 class="modal-title">File selection</h3>
             <div class="modal-body">
@@ -277,7 +276,7 @@
     
     </div>
 
-    <div class="col-xs-7" *ngIf="showCurrentDetail">
+    <div class="col-xs-2" *ngIf="showCurrentDetail">
 
         <div class="detailArea">
             Your current datasource is: <i>{{ selectedData }}</i>
