@@ -36,7 +36,7 @@ const vlTemplateSpec1: dl.spec.TopLevelExtendedSpec =
           "url": "../assets/vega-datasets/flights-2k.json",
       },
       "transform": [{"calculate": "hours(datum.date)", "as": "time"}],
-      
+
       "mark": "bar",
       "encoding": {
         "x": {"field": "origin", "type": "ordinal"},
@@ -88,7 +88,7 @@ const vlTemplateSpec2: any =
   }
 }
 
-const vlTemplateSpec3: any = 
+const vlTemplateSpec3: any =
 {
   "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
   "mark": "bar",
@@ -110,7 +110,7 @@ const vlTemplateSpec3: any =
   }
 }
 
-const vlTemplateSpec4: any = 
+const vlTemplateSpec4: any =
 {
   "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
   "mark": "bar",
@@ -137,7 +137,7 @@ const vlTemplateSpec4: any =
   }
 }
 
-const vlTemplateSpec5: any = 
+const vlTemplateSpec5: any =
 {
   "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
   "mark": "tick",
@@ -146,7 +146,7 @@ const vlTemplateSpec5: any =
   }
 }
 
-const vlTemplateSpec6: any = 
+const vlTemplateSpec6: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "data": {"url": "../assets/vega-datasets/cars.json"},
@@ -157,7 +157,7 @@ const vlTemplateSpec6: any =
   }
 }
 
-const vlTemplateSpec7: any = 
+const vlTemplateSpec7: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "data": {"url": "../assets/vega-datasets/movies.json"},
@@ -180,7 +180,7 @@ const vlTemplateSpec7: any =
   }
 }
 
-const vlTemplateSpec8: any = 
+const vlTemplateSpec8: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "description": "Stock prices of 5 Tech Companies over Time.",
@@ -193,7 +193,7 @@ const vlTemplateSpec8: any =
   }
 }
 
-const vlTemplateSpec9: any = 
+const vlTemplateSpec9: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "data": {"url": "../assets/vega-datasets/cars.json"},
@@ -205,7 +205,7 @@ const vlTemplateSpec9: any =
   }
 }
 
-const vlTemplateSpec10: any = 
+const vlTemplateSpec10: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "data": {"url": "../assets/vega-datasets/movies.json"},
@@ -240,7 +240,7 @@ const vlTemplateSpec10: any =
   }
 }
 
-const vlTemplateSpec11: any = 
+const vlTemplateSpec11: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "data": { "url": "../assets/vega-datasets/github.csv"},
@@ -264,7 +264,7 @@ const vlTemplateSpec11: any =
   }
 }
 
-const vlTemplateSpec12: any = 
+const vlTemplateSpec12: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "width": 300,
@@ -287,7 +287,7 @@ const vlTemplateSpec12: any =
   }
 }
 
-const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec = 
+const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec =
 {
   "data": {"url": "../assets/vega-datasets/cars.json"},
   "mark": "point",
@@ -298,7 +298,7 @@ const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec =
   }
 }
 
-const vlTemplateSpec14: any = 
+const vlTemplateSpec14: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "data": {"url": "../assets/vega-datasets/unemployment-across-industries.json"},
@@ -319,7 +319,7 @@ const vlTemplateSpec14: any =
   }
 }
 
-const vlTemplateSpec15: any = 
+const vlTemplateSpec15: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "width": 300, "height": 200,
@@ -339,7 +339,7 @@ const vlTemplateSpec15: any =
   }
 }
 
-const vlTemplateSpec16: any = 
+const vlTemplateSpec16: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "description": "A diverging stacked bar chart for sentiments towards a set of eight questions, displayed as percentages with neutral responses straddling the 0% mark",
@@ -717,7 +717,7 @@ const vlTemplateSpec16: any =
   }
 }
 
-const vlTemplateSpec17: any = 
+const vlTemplateSpec17: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "description": "Anscombe's Quartet",
@@ -744,7 +744,7 @@ const vlTemplateSpec17: any =
   }
 }
 
-const vlTemplateSpec18: any = 
+const vlTemplateSpec18: any =
 {
   "repeat": {"column": ["Horsepower","Miles_per_Gallon", "Acceleration"]},
   "spec": {
@@ -762,7 +762,7 @@ const vlTemplateSpec18: any =
   }
 }
 
-const vlTemplateSpec19: any = 
+const vlTemplateSpec19: any =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
   "data": {"url": "../assets/vega-datasets/cars.json"},
@@ -886,7 +886,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     ngOnInit() {
         this.currentDatasources = this.globalVariableService.currentDatasources;
-
     }
 
     ngAfterViewInit() {
@@ -918,7 +917,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // const vegaSpecification = parse(specification.spec);
         // const view = new View(vegaSpecification);
         //   view.renderer('canvas')
-           
+
 
         // TRY
         // const specification = compile(vlTemplateSpec13);
@@ -972,7 +971,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showAdvancedX = true;
         this.showAdvancedY = true;
         this.dropMessageColor = "";
-        
+
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
         console.log('drop_handler dropped !!')

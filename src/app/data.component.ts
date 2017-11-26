@@ -11,6 +11,10 @@ import { ElementRef }                 from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 		  from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
+
+// Our Models
+import { currentDatasource }          from './model.currentDashboard';
 
 interface Idatasource {
     id: number;
@@ -50,7 +54,6 @@ interface IfieldsMetadata{
     keyField: boolean;
     explainedBy: string
 }
-
 
 interface Idata{
     name: string;
@@ -321,13 +324,6 @@ const fieldsMetadata: IfieldsMetadata[] = [
     }
 ]
 
-const dataCurrent: Idata[] = 
-[
-    {
-        name: 'Already added Datasource'
-    }
-]
-
 const dataServer: Idata[] = [
     {
         name: 'World Indices'
@@ -422,9 +418,9 @@ export class DataComponent implements OnInit {
 
     buttonLabel: string = "Show More";
     canUse: boolean = true;
+    currentDatasources: currentDatasource[];
     datasource: Idatasource[] = datasource;
     dataset: Idataset[] = dataset;
-    dataCurrent: Idata[] = dataCurrent;
     dataServer: Idata[] = dataServer;
     dataRecent: Idata[] = dataRecent;
     dataSample: Idata[] = dataSample;
@@ -462,14 +458,16 @@ export class DataComponent implements OnInit {
     transformaton: Itransformaton[] = transformaton;
 
 	constructor(
+        private globalFunctionService: GlobalFunctionService,
+        private globalVariableService: GlobalVariableService,
         private router: Router,
-        private globalFunctionService: GlobalFunctionService
 	) {}
 
 	ngOnInit() {
 		this.globalFunctionService.hideSecondaryMenus();
+        this.currentDatasources = this.globalVariableService.currentDatasources;
     }
-    
+
     // clickRow() {
     //     if (this.selectedDatasource == null) {
     //         this.errorMessage = "Please select a Dataset and click again"
@@ -568,9 +566,13 @@ export class DataComponent implements OnInit {
 
     clickAddFileSave() {
         this.showAddFile = false;
-        let newData: Idata =  {
-            name: 'Costing preparation'
+        let newData: currentDatasource =  {
+            id: 1,
+            type: 'Excel file',
+            name: 'Costing preparation',
+            description: 'Costing preparation'
         }
+        
         if (this.indexCurrent == 0) {
             newData.name = 'Trades for 2016'
         }
@@ -587,7 +589,7 @@ export class DataComponent implements OnInit {
         this.indexCurrent = this.indexCurrent +1;
         if (this.indexCurrent > 3) {this.indexCurrent = 0}
 
-        let len: number = this.dataCurrent.push(newData);
+        let len: number = this.currentDatasources.push(newData);
     }
 
     clickAddDatabase() {

@@ -11,16 +11,16 @@ const currentDatasources: currentDatasource [] =
 [
     {
         id: 1,
-        name: 'DS 1',
+        name: 'My Expenses',
         type: 'Xls File',
-        description: 'budget type bla-bla-bla'
+        description: 'Personal expenses, with info per budget type.'
         
     },
     {
         id: 2,
-        name: 'DS 2',
-        type: 'Trades from Exchange',
-        description: 'Trades ...'
+        name: 'Bitcoin Trades',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange'
     
     }
 ]
