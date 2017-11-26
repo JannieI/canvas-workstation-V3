@@ -1,21 +1,28 @@
 
 <div class="helpMessage">
-    Add more data to your Dashboard.  Then click 
     <button
         type="button"
-        class="barsButton btn btn-link"
+        class="barsButton btn btn-secondary"
         (click)="clickBack()">
         Back
         <clr-icon shape="arrow left" size="16"></clr-icon>
     </button>
-    to return to your current Dashboard.
+    A Dashboard can show the datasources you have added to it.  These are shown down the left
+    hand side.
+    After adding data, return to your Dashboard by clicking the <b>Back</b> button.  You can 
+    add more data at any stage by clicking the <b>Data</b> menu option at the top.
 </div>
 
 <div class="row">
 
 
-    <div class="col-xs-3" *ngIf="showCurrent">
-            
+    <div class="col-xs-3 currentDatasources">
+           
+        <div class="currentDataHeader">
+            Current Data
+            <clr-icon shape="plus"></clr-icon>
+        </div>
+        
         <nav class="sidenav">
             <section class="sidenav-content">
                 <section class="nav-group collapsible open">

@@ -441,7 +441,6 @@ export class DataComponent implements OnInit {
     showServerData: boolean = false;
     showRecentData: boolean = false;
     showSampleData: boolean = false;
-    showCurrent: boolean = true;
     showCurrentDetail: boolean = false;
 
     selectedFile: boolean = true;
@@ -560,12 +559,6 @@ export class DataComponent implements OnInit {
 
 
 
-    clickAddData() {
-        this.showAddData = !this.showAddData;
-        if (!this.showAddData) {
-        }
-    }
-
     clickAddFile() {
         this.showAddDatabase = false;
         this.showAddService = false;
@@ -575,12 +568,10 @@ export class DataComponent implements OnInit {
     }
 
     clickAddFileClose() {
-        this.showAddData = false;
         this.showAddFile = false;
     }
 
     clickAddFileSave() {
-        this.showAddData = false;
         this.showAddFile = false;
         let newData: Idata =  {
             name: 'Costing preparation'
