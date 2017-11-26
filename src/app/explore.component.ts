@@ -15,6 +15,9 @@ import { Renderer }                   from '@angular/core';
 //* import { Renderer2 }                  from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
+// Our Services
+import { GlobalVariableService }      from './global-variable.service';
+
 // Vega, Vega-Lite
 // declare var require: any;
 import { compile }                    from 'vega-lite';
@@ -235,6 +238,8 @@ export class ExploreComponent {
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
     isFirstTime: boolean = true;
+    menuCreateDisabled: boolean = false;
+    message: string;
     open: Boolean = false;
     secondTab: Boolean = false;
     sideNavWidth: string = '350';
@@ -342,12 +347,20 @@ export class ExploreComponent {
         }        
     ];
     constructor(
+        private globalVariableService: GlobalVariableService,
         private renderer: Renderer,
 //*         private renderer2: Renderer2,
     ) {}
 
 
-
+    ngOnInit() {
+        console.log('ngOnInit')
+        this.globalVariableService.currentMessage.subscribe(message => this.message = message);
+        this.globalVariableService.menuCreateDisabled.subscribe(
+            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
+        );
+        console.log('ngOnInit', this.message, this.menuCreateDisabled)
+    }
 //*   ngOnInit() {
 //*     this.draggable = this.draggableElement.nativeElement;
 //* 
@@ -455,102 +468,6 @@ export class ExploreComponent {
         event.preventDefault();
     }
 
-    // showGraphs() {
-    //     // Show Graph Examples
-        
-    //     this.showNavExplore = true;
-    //     console.log('showGraph', event, this.menuOptionSelected)
-    //     this.isFirstTime = false;
-    //     let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
-    //     let specification = compile(definition).spec;
-
-    //     // Full Vega Spec
-    //         specification = {
-    //             "$schema": "https://vega.github.io/schema/vega/v3.0.json",
-    //             "width": 960,
-    //             "height": 500,
-    //             "autosize": "none",
-
-    //             "data": [
-    //                 {
-    //                 "name": "unemp",
-    //                 "url": "./assets/vega/vega-datasets/unemployment.tsv",
-    //                 "format": {"type": "tsv", "parse": "auto"}
-    //                 },
-    //                 {
-    //                 "name": "counties",
-    //                 "url": "../assets/vega/vega-datasets/us-10m.json",
-    //                 "format": {"type": "topojson", "feature": "counties"},
-    //                 "transform": [
-    //                     { "type": "lookup", "from": "unemp", "key": "id", "fields": ["id"], "as": ["unemp"] },
-    //                     { "type": "filter", "expr": "datum.unemp != null" }
-    //                 ]
-    //                 }
-    //             ],
-
-    //             "projections": [
-    //                 {
-    //                 "name": "projection",
-    //                 "type": "albersUsa"
-    //                 }
-    //             ],
-
-    //             "scales": [
-    //                 {
-    //                 "name": "color",
-    //                 "type": "quantize",
-    //                 "domain": [0, 0.15],
-    //                 "range": {"scheme": "blues-9"}
-    //                 }
-    //             ],
-
-    //             "legends": [
-    //                 {
-    //                 "fill": "color",
-    //                 "orient": "bottom-right",
-    //                 "title": "Unemployment",
-    //                 "format": "0.1%",
-    //                 "encode": {
-    //                     "symbols": {
-    //                     "update": {
-    //                         "shape": {"value": "square"},
-    //                         "stroke": {"value": "#ccc"},
-    //                         "strokeWidth": {"value": 0.2}
-    //                     }
-    //                     }
-    //                 }
-    //                 }
-    //             ],
-
-    //             "marks": [
-    //                 {
-    //                 "type": "shape",
-    //                 "from": {"data": "counties"},
-    //                 "encode": {
-    //                     "enter": { "tooltip": {"signal": "format(datum.unemp.rate, '0.1%')"}},
-    //                     "update": { "fill": {"scale": "color", "field": "unemp.rate"} },
-    //                     "hover": { "fill": {"value": "red"} }
-    //                 },
-    //                 "transform": [
-    //                     { "type": "geoshape", "projection": "projection" }
-    //                 ]
-    //                 }
-    //             ]
-    //         }
-    //     // End of Full Vega Spec
-
-    //     specification = compile(definition).spec;
-
-    //     let view = new View(parse(specification));
-        
-    //     view.renderer('svg')
-    //         // .width(500)
-    //         // .height(500)
-    //         .initialize(this.vis.nativeElement)
-    //         .hover()
-    //         .run()
-    //         .finalize();
-       
 
     //         // Load and parse a CSV file. Datalib does type inference for you.
     //         // The result is an array of JavaScript objects with named values.
@@ -596,28 +513,6 @@ export class ExploreComponent {
             this.showNavDataset = true;
         } 
         return;
-
-        // Old way
-        // console.log('clickWidget()', this.showContainerHeader,  this.showNavDataset, ev);
-        // this.showContainerHeader = !this.showContainerHeader;
-        // this.showWidgetDesigner = true;
-        // let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
-        // console.log('1')
-        // let specification = compile(definition).spec;
-        // specification = compile(definition).spec;
-        // console.log('2')
-        // let view = new View(parse(specification));
-        // console.log('3', this.vis)
-        // this.showNavExplore = true;
-        // console.log('showGraph', event, this.menuOptionSelected)
-        // this.isFirstTime = false;
-        // view.renderer('svg')
-        //     // .width(500)
-        //     // .height(500)
-        //     .initialize(this.vis.nativeElement)
-        //     .hover()
-        //     .run()
-        //     .finalize();
     }
 
     clickIcon(selectedGraphType: string) {
@@ -718,8 +613,8 @@ export class ExploreComponent {
         console.log('createVegaLiteSpec', vlSpecsNew)
 
         return vlSpecsNew;
-
     }
+
 }
 
 

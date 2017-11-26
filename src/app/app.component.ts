@@ -24,6 +24,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 })
 export class AppComponent implements OnInit {
 
+    menuCreateDisabled: boolean = false;
     menuToggle: boolean = false;
     showCollaborate: boolean = false;
     showModalLanding: boolean = false;
@@ -42,14 +43,21 @@ export class AppComponent implements OnInit {
     }
     
     ngOnInit() {
+        this.globalVariableService.menuCreateDisabled.subscribe(
+            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
+        );
     }   
 
     clickMenuFileNew() {
         this.showModalWidgetEditor = true;
-
+    }
+    
+    clickMenuCreateWidget() {
+        this.showModalWidgetEditor = true;
     }
 
     menuDataGetData() {
+        this.globalVariableService.changeMenuCreateDisabled(true);
         this.router.navigate(['/data']);
     }
 

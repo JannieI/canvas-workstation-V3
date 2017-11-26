@@ -148,6 +148,18 @@ export class GlobalVariableService {
     // lastWidgetLeft: number = 25;
     // lastWidgetTop: number = 80;
 
+    private messageSource = new BehaviorSubject<string>("default message");
+    currentMessage = this.messageSource.asObservable();
+    menuCreateDisabled = new BehaviorSubject<boolean>(false);
+
     constructor() { }
 
+    changeMessage(message: string) {
+        console.log('changeMessage', message)
+        this.messageSource.next(message)
+    }
+
+    changeMenuCreateDisabled(value: boolean) {
+        this.menuCreateDisabled.next(value);
+    }
 }

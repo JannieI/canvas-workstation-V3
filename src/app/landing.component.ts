@@ -11,6 +11,7 @@ import { Router }                     from '@angular/router';
 
 // Our Functions
 import { GlobalFunctionService } 		  from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 const sampleDashboards = [
   	{
@@ -64,6 +65,7 @@ export class LandingComponent implements OnInit {
 
 	constructor(
 		private globalFunctionService: GlobalFunctionService,
+        private globalVariableService: GlobalVariableService,
 		private router: Router
 	) {}
 
@@ -72,6 +74,8 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickButtonData() {
+		console.log('clickButtonData')
+		this.globalVariableService.changeMenuCreateDisabled(true);
 		this.router.navigate(['/data']);
 	}
 

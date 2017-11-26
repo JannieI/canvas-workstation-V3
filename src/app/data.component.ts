@@ -431,6 +431,8 @@ export class DataComponent implements OnInit {
     firstTimeUser: boolean = true;
     indexCurrent: number = 0;
     isError: boolean = false;
+    menuCreateDisabled: boolean = true;
+    message:string;    
     showAddData: boolean = true;
     showAddDataDetail: boolean = false;
     showAddFile: boolean = false;
@@ -464,8 +466,16 @@ export class DataComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+        this.globalVariableService.currentMessage.subscribe(message => this.message = message)
+        this.globalVariableService.menuCreateDisabled.subscribe(
+            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
+        );
 		this.globalFunctionService.hideSecondaryMenus();
         this.currentDatasources = this.globalVariableService.currentDatasources;
+    }
+
+    ngAfterViewInit() {
+        console.log('ngAfterViewInit')
     }
 
     // clickRow() {
@@ -572,7 +582,7 @@ export class DataComponent implements OnInit {
             name: 'Costing preparation',
             description: 'Costing preparation'
         }
-        
+
         if (this.indexCurrent == 0) {
             newData.name = 'Trades for 2016'
         }
@@ -672,6 +682,8 @@ export class DataComponent implements OnInit {
     }
 
     clickBack() {
+        this.globalVariableService.changeMessage("Hello from Sibling");
+        this.globalVariableService.changeMenuCreateDisabled(false);
         this.router.navigate(['/explore']);
     }
 

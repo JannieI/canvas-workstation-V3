@@ -255,6 +255,7 @@
                         type="button" 
                         class="btn btn-link btn-sm menuButton" 
                         clrDropdownTrigger
+                        [disabled]="menuCreateDisabled"
                         >
                         Create
                     </button>
@@ -262,7 +263,7 @@
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Dashboard
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuCreateWidget()">
                             Widget
                         </button>
                         <div class="dropdown-divider"></div>
