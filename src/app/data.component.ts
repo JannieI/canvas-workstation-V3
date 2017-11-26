@@ -654,9 +654,6 @@ export class DataComponent implements OnInit {
 
     clickShowCurrentDetail() {
         this.showCurrentDetail = true;
-        if (this.showCurrentDetail) {
-            this.showAddData = false;
-        }
     }
 
     clickBack() {
