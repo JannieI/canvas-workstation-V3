@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
     showModalLanding: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardRename: boolean = false;
+    showModalDashboardDetails: boolean = false;
     showModalWidgetEditor: boolean = false;
     showPalette: boolean = false;
     currentWidgetSpec: string = "{...}";
@@ -94,7 +95,11 @@ export class AppComponent implements OnInit {
     handleCloseDashboardRename(action) {
         this.showModalDashboardRename = false;
     }
-    
+
+    handleCloseDashboardDetails(action) {
+        this.showModalDashboardDetails = false;
+    }
+
     clickPaletteClose() {
         this.showPalette = ! this.showPalette;
     }
@@ -108,6 +113,9 @@ export class AppComponent implements OnInit {
         this.showModalDashboardRename = true;
     }
 
+    clickMenuFileDetails() {
+        this.showModalDashboardDetails = true;
+    }
 }
 
 // Naming conventions

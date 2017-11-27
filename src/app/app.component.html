@@ -83,10 +83,7 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-
-
-
-                        <button type="button" clrDropdownItem>
+                        <button type="button" clrDropdownItem (click)="clickMenuFileDetails()">
                             Details
                         </button>
                         <div class="dropdown-divider"></div>
@@ -565,6 +562,14 @@
     (formDashboardRenameClosed)="handleCloseDashboardRename($event)">Open Rename Dashboard ...
 </dashboard-rename>
 
+
+<!-- Overlay: Dashboard Details -->
+<dashboard-details
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardDetails"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardDetailsClosed)="handleCloseDashboardDetails($event)">Open Dashboard Details ...
+</dashboard-details>
 
 <!-- Modal: widget editor -->
 <widget-editor 
