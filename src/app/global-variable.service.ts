@@ -4,8 +4,49 @@ import { Injectable }                 from '@angular/core';
 
 // Our Models
 import { currentDatasource }          from './model.currentDashboard';
+import { dashboard }                  from './models'
+import { datasource }                 from './models'
+import { CSScolor }                   from './models'
 
 // import { CanvasUser }                 from './model.user';
+
+// Constants - to be replaced with DB access
+const currentDashboards: dashboard[] = 
+[
+    {
+        name: 'Market Overview',
+        description: 'Economic indicator summary'
+    },
+    {
+        name: 'Costing Summary',
+        description: 'Costing Summary'
+    },
+    {
+        name: 'Home Budget',
+        description: 'Home Budget'
+    },
+    {
+        name: 'Bitcoin sales',
+        description: 'Bitcoin sales'
+    },
+    {
+        name: 'Cycling routes',
+        description: 'Cycling routes'
+    }
+];
+
+const backgroundcolors: CSScolor[] = 
+[
+    {
+        name: 'transparent'
+    },
+    {
+        name: 'beige'
+    },
+    {
+        name: 'white'
+    }
+];
 
 const currentDatasources: currentDatasource [] = 
 [
@@ -23,12 +64,13 @@ const currentDatasources: currentDatasource [] =
         description: 'Trades from Bitcoin Exchange'
     
     }
-]
+];
 
 @Injectable()
 export class GlobalVariableService {
-
-    currentDatasources: currentDatasource[] = currentDatasources;
+    currentDashboards: dashboard[] = currentDashboards;
+    backgroundcolors: CSScolor[] = backgroundcolors;
+    currentDatasources: datasource[] = currentDatasources;
     isFirstTime: boolean = true;    
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard
     showNavData = new BehaviorSubject<boolean>(false);             // Show sideNav

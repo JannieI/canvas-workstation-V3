@@ -45,40 +45,7 @@ import { CSScolor }                   from './models'
 // import * as sqlite3 from 'sqlite3';
 
 
-const dashboards: dashboard[] = [
-    {
-        name: 'Market Overview',
-        description: 'Economic indicator summary'
-    },
-    {
-        name: 'Costing Summary',
-        description: 'Costing Summary'
-    },
-    {
-        name: 'Home Budget',
-        description: 'Home Budget'
-    },
-    {
-        name: 'Bitcoin sales',
-        description: 'Bitcoin sales'
-    },
-    {
-        name: 'Cycling routes',
-        description: 'Cycling routes'
-    }
-]
 
-const backgroundcolors: CSScolor[] = [
-    {
-        name: 'transparent'
-    },
-    {
-        name: 'beige'
-    },
-    {
-        name: 'white'
-    }
-]
 
 
 const vlTemplate: dl.spec.TopLevelExtendedSpec = 
@@ -218,8 +185,8 @@ export class ExploreComponent {
         {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
         ];
 
-    backgroundcolors: CSScolor[] = backgroundcolors;
-    dashboards: dashboard[] = dashboards;
+    currentDashboards: dashboard[];
+    currentDatasources: datasource[];
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
     isFirstTime: boolean;
@@ -330,13 +297,17 @@ export class ExploreComponent {
 
 
     ngOnInit() {
-        console.log('ngOnInit')
+        console.log('Explore ngOnInit')
+
+        // Get all the global variables
         this.globalVariableService.currentMessage.subscribe(message => this.message = message);
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
         this.isFirstTime = this.globalVariableService.isFirstTime;
-        
+        this.currentDashboards = this.globalVariableService.currentDashboards;
+        this.currentDatasources = this.globalVariableService.currentDatasources;
+    
         console.log('ngOnInit', this.message, this.menuCreateDisabled)
     }
 //*   ngOnInit() {
