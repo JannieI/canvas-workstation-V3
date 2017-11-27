@@ -62,9 +62,30 @@
                             Save As
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem>
-                            Version History >
-                        </button>
+
+                        <clr-dropdown>
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Version History
+                            </button>
+                            <clr-dropdown-menu clrPosition="top-right" *clrIfOpen>
+                                <button type="button" clrDropdownItem>
+                                    Checkpoint now
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    Role back
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    Show previous
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+
+
+
                         <button type="button" clrDropdownItem>
                             Details
                         </button>
