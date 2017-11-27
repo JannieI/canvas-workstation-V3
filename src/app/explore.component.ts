@@ -45,10 +45,6 @@ import { CSScolor }                   from './models'
 // import * as sqlite3 from 'sqlite3';
 
 
-interface Ibackgroundcolor {
-    name: string;
-}
-
 const dashboards: dashboard[] = [
     {
         name: 'Market Overview',
@@ -72,7 +68,7 @@ const dashboards: dashboard[] = [
     }
 ]
 
-const backgroundcolors: Ibackgroundcolor[] = [
+const backgroundcolors: CSScolor[] = [
     {
         name: 'transparent'
     },
@@ -222,7 +218,7 @@ export class ExploreComponent {
         {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
         ];
 
-    backgroundcolors: Ibackgroundcolor[] = backgroundcolors;
+    backgroundcolors: CSScolor[] = backgroundcolors;
     dashboards: dashboard[] = dashboards;
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';

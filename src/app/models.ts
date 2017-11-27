@@ -17,5 +17,4 @@ export class dashboard {
 // CSS Color
 export class CSScolor {
     name: string;
-    code: string;
 }
