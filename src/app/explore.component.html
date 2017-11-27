@@ -20,14 +20,14 @@
         </button>
         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen class="dashboardDropdown">
 
-            <label class="dropdown-header">Dashboard properties</label>
+            <label>Dashboard properties</label>
 
-            <div class="form-group">
+            <div>
                 <label for="dashboardName" class="popupLabel">Name :</label>
                 <input type="text" id="dashboardName" placeholder="Enter dashboard here"
                     class="popupInput">
             </div>
-            <div class="dropdown-divider"></div>
+            <div></div>
             <button type="button" class="popupButton" clrDropdownItem>
                 Save
                 <clr-icon shape="floppy" size="16"></clr-icon>
@@ -52,17 +52,17 @@
             <clr-icon shape="caret down" size="16"></clr-icon>
         </button>
         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-            <label class="dropdown-header">Tab properties</label>
+            <label>Tab properties</label>
 
-            <div class="form-group">
+            <div>
                 <label for="dashboardName" class="popupLabel">Name :</label>
                 <input type="text" id="dashboardName" placeholder="Enter tab name here"
                     class="popupInput">
             </div>
-            <div class="dropdown-divider"></div>
-            <div class="form-group">
+            <div></div>
+            <div>
                 <label for="selects_6" class="popupLabel">Select Background Color</label>
-                <div class="select">
+                <div>
                     <select id="selects_6" class="popupInput">
                         <option *ngFor="let bg of backgroundcolors">{{bg.name}}</option>
                     </select>
@@ -103,14 +103,14 @@
             <clr-icon shape="caret down" size="16"></clr-icon>
         </button>
         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-            <label class="dropdown-header">Tab properties</label>
+            <label>Tab properties</label>
 
-            <div class="form-group">
+            <div>
                 <label for="dashboardName" class="popupLabel">Name :</label>
                 <input type="text" id="dashboardName" placeholder="Enter tab name here"
                     class="popupInput">
             </div>
-            <div class="dropdown-divider"></div>
+            <div></div>
             <button type="button" class="popupButton" clrDropdownItem>
                 Save
                 <clr-icon shape="floppy" size="16"></clr-icon>
@@ -129,14 +129,14 @@
             <clr-icon shape="caret down" size="16"></clr-icon>
         </button>
         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-            <label class="dropdown-header">New Tab</label>
+            <label>New Tab</label>
 
-            <div class="form-group">
+            <div>
                 <label for="dashboardName" class="popupLabel">Name :</label>
                 <input type="text" id="dashboardName" placeholder="Enter new name here"
                     class="popupInput">
             </div>
-            <div class="dropdown-divider"></div>
+            <div></div>
             <button type="button" class="popupButton" clrDropdownItem
                 (click)="addNewTab()"
                 >
@@ -177,7 +177,7 @@
 
 <!-- Dashboard Selector -->
 <clr-modal [(clrModalOpen)]="showModalOpenDashboard">
-    <h3 class="modal-title">Open a Dashboard</h3>
+    <h3>Open a Dashboard</h3>
     <div class="modal-body">
         <p>Please select:</p>
         <clr-datagrid>
@@ -192,7 +192,7 @@
             <clr-dg-footer>{{dashboards.length}} dashboards</clr-dg-footer>
         </clr-datagrid>
     </div>
-    <div class="modal-footer">
+    <div>
         <button type="button" class="btn btn-outline" (click)="showModalOpenDashboard = false">Cancel</button>
         <button type="button" class="btn btn-primary" (click)="clickCloseModel()">Ok</button>
     </div>

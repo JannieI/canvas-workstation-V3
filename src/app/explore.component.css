@@ -1,37 +1,3 @@
-/* From Web:
-.container {
-    height: 320px;
-    width: 320px;
-    background-color: LightGray;
-  }
-  .draggable {
-    height: 50px;
-    width: 100px;
-    background-color: Green;
-    position: absolute;
-    cursor: move;
-  } */
-
-
-
-
-/* .leftMenu {
-    background-color: lightgray;
-    border: none;
-    border-radius: 2px;
-    position: absolute;
-    left: 0;
-    margin: 5px;
-    padding: 4px;
-    top: 4.5em;
-    width: 40px;
-    z-index: 2;
-} */
-
-/* .leftButton {
-    border: 1px solid gray;
-} */
-
 .tabList {
     background-color: lightgray;
     bottom: 0;
@@ -56,18 +22,6 @@
     color: black !important;
 }
 
-.graphy111 {
-    display: inline;
-    left: 800px;
-    position: absolute;
-    top: 280px;
-}
-
-.graphy111:hover {
-    border: 1px dotted gray;
-    color: black !important;
-}
-
 .widgetHandle {
     color: transparent;
 }
@@ -76,81 +30,6 @@
     color: black;
 }
 
-.graphy {
-    display: inline;
-    left: 500px;
-    position: absolute;
-    top: 80px;
-}
-
-.graphy1:hover {
-    border: 1px dotted gray;
-    color: black !important;
-}
-
-.showWidget {
-    background-color: lightgray;
-    height: 100%;
-    left: 0;
-    top: 4.5em;
-    position: absolute;
-    width: 100%;
-    z-index: 3;
-}
-
-.sidenav .navArrow {
-    position:absolute;
-    top: 3px;
-    right: 3px;
-    background-color: red;
-    width: 20px;
-}
-
-#wrapper {
-    border: 1px solid black;
-    position:relative;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-}
-#first {
-    width: 40%;
-    /* border: 1px solid red; */
-    margin: 0;
-    padding: 0;
-    float: left;
-}
-#second {
-    /* border: 1px solid green; */
-    position:absolute;
-    top: 2em;
-    width: 60%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    right:0;
-}
-
-.sidenav .dropdown-toggle {
-    margin: 0;
-    padding: 0;
-}
-
-.sidenav .nav-group .nav-list{
-    margin: 0;
-    padding: 0;
-}
-
-.helpMessage {
-    margin: 0 15px 0 15px;
-    padding: 0;
-}
-
-.barsButton {
-    margin: 0 !important;
-    padding: 0 !important;
-    min-width: 10px !important;
-}
 
 .dashboardDropdown {
     width: 12rem !important;
