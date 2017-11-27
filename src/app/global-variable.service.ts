@@ -8,6 +8,8 @@ import { dashboard }                  from './models'
 import { datasource }                 from './models'
 import { CSScolor }                   from './models'
 import { transformation }             from './models'
+import { field }                      from './models'
+import { fieldMetadata }              from './models'
 
 // import { CanvasUser }                 from './model.user';
 
@@ -64,6 +66,78 @@ const currentDatasources: currentDatasource [] =
         type: 'Database - PostgreSQL',
         description: 'Trades from Bitcoin Exchange'
     
+    }
+];
+
+const fields: field[] = 
+[
+    {
+        id: 1,
+        name: 'DateTrade',
+        type: 'Date',
+        format: '',
+        filter: '',
+        calc: '',
+        order: 'Asc 1'
+    },
+    {
+        id: 2,
+        name: 'Share',
+        type: 'Text',
+        format: '',
+        filter:  '',
+        calc:  '',
+        order: ''
+    },
+    {
+        id: 3,
+        name: 'Volume',
+        type: 'Number',
+        format: 'Integer',
+        filter: '',
+        calc:  '',
+        order: ''
+    },
+    {
+        id: 4,
+        name: 'Value',
+        type: 'Number',
+        format: '2 decimals',
+        filter: '> 1m',
+        calc: 'Volume * 10',
+        order: '' 
+    }
+];
+
+const fieldsMetadata: fieldMetadata[] = 
+[
+    {
+        name: 'DateTrade',
+        type: 'Date',
+        description: 'Date on which trade when through trading system',
+        keyField: false,
+        explainedBy: ''
+    },
+    {
+        name: 'Share',
+        type: 'String',
+        description: 'Name of share (stock) that traded, ie Anglo American plc',
+        keyField: true,
+        explainedBy: 'Bar of new Listings per Month'
+    },
+    {
+        name: 'Volume',
+        type: 'Number',
+        description: 'Number of instruments traded.  Single counted, excluding BR, YT trade types.',
+        keyField: false,
+        explainedBy: 'Pie of Trades by Broker'
+    },
+    {
+        name: 'Value',
+        type: 'Number',
+        description: 'Value in Rand of the instruments traded, based on Volume and Price.',
+        keyField: false,
+        explainedBy: 'Custom Query: TradeAttribution'
     }
 ];
 
@@ -227,6 +301,8 @@ export class GlobalVariableService {
     backgroundcolors: CSScolor[] = backgroundcolors;
     currentDatasources: datasource[] = currentDatasources;
     transformations: transformation[] = transformations;
+    fields: field[] = fields;
+    fieldsMetadata: fieldMetadata[] = fieldsMetadata;
 
     isFirstTime: boolean = true;    
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard

@@ -23,78 +23,6 @@ interface Idata{
     name: string;
 }
 
-const fields: field[] = 
-[
-    {
-        id: 1,
-        name: 'DateTrade',
-        type: 'Date',
-        format: '',
-        filter: '',
-        calc: '',
-        order: 'Asc 1'
-    },
-    {
-        id: 2,
-        name: 'Share',
-        type: 'Text',
-        format: '',
-        filter:  '',
-        calc:  '',
-        order: ''
-    },
-    {
-        id: 3,
-        name: 'Volume',
-        type: 'Number',
-        format: 'Integer',
-        filter: '',
-        calc:  '',
-        order: ''
-    },
-    {
-        id: 4,
-        name: 'Value',
-        type: 'Number',
-        format: '2 decimals',
-        filter: '> 1m',
-        calc: 'Volume * 10',
-        order: '' 
-    }
-]
-
-const fieldsMetadata: fieldMetadata[] = 
-[
-    {
-        name: 'DateTrade',
-        type: 'Date',
-        description: 'Date on which trade when through trading system',
-        keyField: false,
-        explainedBy: ''
-    },
-    {
-        name: 'Share',
-        type: 'String',
-        description: 'Name of share (stock) that traded, ie Anglo American plc',
-        keyField: true,
-        explainedBy: 'Bar of new Listings per Month'
-    },
-    {
-        name: 'Volume',
-        type: 'Number',
-        description: 'Number of instruments traded.  Single counted, excluding BR, YT trade types.',
-        keyField: false,
-        explainedBy: 'Pie of Trades by Broker'
-    },
-    {
-        name: 'Value',
-        type: 'Number',
-        description: 'Value in Rand of the instruments traded, based on Volume and Price.',
-        keyField: false,
-        explainedBy: 'Custom Query: TradeAttribution'
-    }
-]
-
 const dataServer: Idata[] = 
 [
     {
@@ -198,8 +126,8 @@ export class DataComponent implements OnInit {
     dataSample: Idata[] = dataSample;
     dataTabDatasource: boolean = false;
     errorMessage: string = "";
-    fields: field[] = fields;
-    fieldsMetadata: fieldMetadata[] = fieldsMetadata;
+    fields: field[];
+    fieldsMetadata: fieldMetadata[];
     firstTimeUser: boolean = true;
     indexCurrent: number = 0;
     isError: boolean = false;
@@ -247,6 +175,8 @@ export class DataComponent implements OnInit {
 		this.globalFunctionService.hideSecondaryMenus();
         this.currentDatasources = this.globalVariableService.currentDatasources;
         this.transformation = this.globalVariableService.transformations;
+        this.fields = this.globalVariableService.fields;
+        this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
         
     }
 
