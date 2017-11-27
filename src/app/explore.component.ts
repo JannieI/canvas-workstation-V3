@@ -12,7 +12,6 @@ import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Renderer }                   from '@angular/core';
-//* import { Renderer2 }                  from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our Services
@@ -29,24 +28,35 @@ import { View }                       from 'vega';
 import * as dl from 'datalib';
 import { load } from 'datalib';
 import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
-// import { load } from 'datalib';
 
 // Own Services
 
 // Own Components
 
-const vlTemplate: dl.spec.TopLevelExtendedSpec = 
+// Constants
+const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec =
+{
+  "data": {"url": "../assets/vega-datasets/cars.json"},
+  "mark": "point",
+  "encoding": {
+    "x": {"field": "Horsepower", "type": "quantitative"},
+    "y": {"field": "Miles_per_Gallon", "type": "quantitative"},
+    "color": {"field": "Displacement", "type": "quantitative"}
+  }
+};
+
+const vlTemplate: dl.spec.TopLevelExtendedSpec =
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-    
+
     // Properties for top-level specification (e.g., standalone single view specifications)
     "background": "",
     "padding": "",
     // "autosize": "",          NB - add these only if needed, blank causes no graph display
     // "config": "",            NB - add these only if needed, blank causes no graph display
-  
+
     // Properties for any specifications
-    "title": 
+    "title":
         {
             "text": "",
             "anchor": "",
@@ -58,26 +68,26 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     "transform": "",
 
     "description": "",
-    "data": 
+    "data":
         {
             "values": ""
         },
-    "mark": 
+    "mark":
         {
             "type": "",  //bar circle square tick line area point rule text
             "style": "",
             "clip": ""
         },
-    "encoding": 
+    "encoding":
         {
-            "x": 
+            "x":
                 {
-                    "aggregate": "", 
-                    "field": "", 
+                    "aggregate": "",
+                    "field": "",
                     "type": "ordinal",
                     "bin": "",
                     "timeUnit": "",
-                    "axis": 
+                    "axis":
                     {
                         "title": ""
                     },
@@ -88,14 +98,14 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                     "sort": "",
                     "condition": ""
                 },
-            "y": 
+            "y":
                 {
-                    "aggregate": "", 
-                    "field": "", 
+                    "aggregate": "",
+                    "field": "",
                     "type": "quantitative",
                     "bin": "",
                     "timeUnit": "",
-                    "axis": 
+                    "axis":
                         {
                             "title": ""
                         },
@@ -107,67 +117,27 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                     "condition": ""
                     }
         }
-}      
+};
 
-    // const vlTemplate: dl.spec.TopLevelExtendedSpec = {
-  
-//     // Properties for any single view specifications
-//     "width": '$width',
-//     "height": '$height',
-//     "mark": '$mark',
-//     "encoding": {
-//       "x": {
-//         "field": ...,
-//         "type": ...,
-//         ...
-//       },
-//       "y": ...,
-//       "color": ...,
-//       ...
-//     }
-//   }
 @Component({
     styleUrls: ['./explore.component.css'],
     templateUrl: './explore.component.html'
 })
-    
+
 export class ExploreComponent {
+    @Input() menuOptionSelected: string;
+
     @ViewChild('vis', {read: ElementRef}) vis: ElementRef;  //Vega graph
     @ViewChild('visReal', {read: ElementRef}) visReal: ElementRef;  //Vega graph
-    @ViewChild('visReal111', {read: ElementRef}) visReal111: ElementRef;  //Vega graph
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
-    @Input() menuOptionSelected: string;
-    
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
-    
-
-//*     @ViewChild('container') private containerElement: ElementRef;
-//*     @ViewChild('draggable') private draggableElement: ElementRef;
-  
-//*     boundary: any = {};
-//*     draggable: any;
-//*     isMouseDown = false;
-
-    // @HostBinding('class.droptarget') private ishovering: boolean;
-
-    // @HostListener('dragend', ["$event"]) onDrag(ev) {
-    //     console.log('HostListener - dragEnd', this.ishovering);
-    // }
-
-    // @HostListener('drop', ["$event"]) onDrop(ev) {
-    //     console.log('HostListener - drop', ev);
-    // }
-    
-    // @HostListener('mouseover') onMouseOver() {
-    //     console.log('mouseover', this.ishovering)
-    // }
 
     description: string = 'A simple bar chart with embedded data.';
     data: any = [
-        {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55}, 
-        {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
+        {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
+        {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
         {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
-        {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
+        {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
         {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
         {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
         ];
@@ -197,14 +167,26 @@ export class ExploreComponent {
     showSubMenuDashboard: boolean = true;
     showType: boolean = false;
     showTypeIcon: boolean = true;
-    showWidgetDesigner: boolean = false;
     widgetBorder: string = '1px black solid';
     widgetStartX: number = 0;
     widgetStartY: number = 0;
     widgetEndX: number = 0;
     widgetEndY: number = 0;
 
-
+    ngOnViewInit() {
+        let definition = vlTemplateSpec13;
+        let specification = compile(definition).spec;
+        let view = new View(parse(specification));
+        view.renderer('svg')
+            .width(350)
+            .height(260)
+            .initialize(this.dragWidget.nativeElement)
+            .hover()
+            .run()
+            .finalize();
+            this.renderer.setElementStyle(this.dragWidget.nativeElement,
+                'left', "200px");
+    }    
     
     dragstart_handler(ev) {
         console.log("dragStart");
@@ -256,10 +238,10 @@ export class ExploreComponent {
             "description": "A simple bar chart with embedded data.",
             "data": {
               "values": [
-                {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55}, 
-                {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
+                {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
+                {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
                 {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
-                {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
+                {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
                 {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
                 {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
               ]
@@ -273,12 +255,11 @@ export class ExploreComponent {
                 }
               }
             }
-        }        
+        }
     ];
     constructor(
         private globalVariableService: GlobalVariableService,
         private renderer: Renderer,
-//*         private renderer2: Renderer2,
     ) {}
 
 
@@ -292,30 +273,19 @@ export class ExploreComponent {
         this.isFirstTime = this.globalVariableService.isFirstTime;
         this.dashboards = this.globalVariableService.currentDashboards;
     }
-//*   ngOnInit() {
-//*     this.draggable = this.draggableElement.nativeElement;
-//* 
-//*     const container = this.containerElement.nativeElement;
-//*     this.boundary = {
-//*       left: container.offsetLeft + (draggableWidth / 2),
-//*       right: container.clientWidth + container.offsetLeft - (draggableWidth / 2),
-//*       top: container.offsetTop + (draggableHeight / 2),
-//*       bottom: container.clientWidth + container.offsetTop - (draggableHeight / 2),
-//*     };
-//*     }
 
 //*     onMouseButton(event: MouseEvent): void {
 //*         this.isMouseDown = event.buttons === 1;
 //*     }
-//* 
+//*
 //*     onMouseMove(event: MouseEvent): void {
-//* 
+//*
 //*         if (this.isMouseDown && this.isInsideBoundary(event)) {
 //*         this.renderer2.setStyle(this.draggable, 'left', event.clientX - (draggableWidth / 2) + 'px');
 //*         this.renderer2.setStyle(this.draggable, 'top', event.clientY - (draggableHeight / 2) + 'px');
 //*         }
 //*     }
-//* 
+//*
 //*     isInsideBoundary(event: MouseEvent) {
 //*         return event.clientX > this.boundary.left &&
 //*         event.clientX < this.boundary.right &&
@@ -323,76 +293,6 @@ export class ExploreComponent {
 //*         event.clientY < this.boundary.bottom;
 //*     }
 
-    
-    ngAfterViewInit() {
-    }
-
-    ngOnChanges() {
-        console.log('menuOptionSelected', this.menuOptionSelected)
-    }
-
-    showGraphsReal() {
-        // Show Graph Examples
-        
-        this.showNavExplore = true;
-        console.log('showGraph', event, this.menuOptionSelected)
-        let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
-        console.log('definition 1', definition)
-        
-        // Replacement portion
-
-        definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);
-        console.log('definition 2', definition)
-
-
-        let specification = compile(definition).spec;
-
-        specification = compile(definition).spec;
-
-        let view = new View(parse(specification));
-        
-        view.renderer('svg')
-            // .width(500)
-            // .height(500)
-            .initialize(this.visReal.nativeElement)
-            .hover()
-            .run()
-            .finalize();
-            this.renderer.setElementStyle(this.dragWidget.nativeElement,
-                'left', "500px");
-    }
-
-    clickSwapXY() {
-        // Show Graph Examples
-        
-        this.showNavExplore = true;
-        console.log('showGraph', event, this.menuOptionSelected)
-        let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
-        console.log('definition 1', definition)
-        
-        // Replacement portion
-
-        definition = this.createVegaLiteSpec(undefined,'bar','Trades','Month',undefined);
-        console.log('definition 2', definition)
-
-
-        let specification = compile(definition).spec;
-
-        specification = compile(definition).spec;
-
-        let view = new View(parse(specification));
-        
-        view.renderer('svg')
-            // .width(500)
-            // .height(500)
-            .initialize(this.visReal.nativeElement)
-            .hover()
-            .run()
-            .finalize();
-            this.renderer.setElementStyle(this.dragWidget.nativeElement,
-                'top', "300px");
-
-    }
     allowDrop(event) {
         event.preventDefault();
     }
@@ -426,76 +326,29 @@ export class ExploreComponent {
     //         // console.log(dl.mutual.dist(counts, 'bin_price', 'year_date', 'count'));
     // }
 
-    clickButtonAddDashboard () {
-        
-        // Experiment: get SQLite from inside the browser
-        // ----------------------------------------------
-        // var db = new sqlite3.Database('./assets/test.db');
-        // db.each("SELECT * FROM memos", (err, row) => {
-        //   console.log(row.text);
-        // });
-        // db.close();        
-    }
-
     clickWidget(ev) {
         return;
-    }
-
-    clickIcon(selectedGraphType: string) {
-        this.showTypeIcon = true;
-        this.showType = false;
-        this.graphType = selectedGraphType;  
-        this.graphTypeFile = '../images/' + selectedGraphType + '.png';
-    }
-
-    clickAdvancedField() {
-        this.showAdvancedField = !this.showAdvancedField;
-    }
-
-    showWidget() {
-        this.showWidgetDesigner = true;
-    }
-
-    clickWidgetClose() {
-        this.showWidgetDesigner = false;
     }
 
     dragStartWidget(ev: DragEvent) {
         this.widgetStartX = ev.clientX;
         this.widgetStartY = ev.clientY;
         console.log('dragStartWidget', ev,this.widgetStartX, this.widgetStartY)
-        
+
     }
 
-    dragEndWidget(ev: DragEvent) { 
+    dragEndWidget(ev: DragEvent) {
         this.widgetEndX = ev.clientX;
         this.widgetEndY = ev.clientY;
         let widgetMoveX = this.widgetEndX - this.widgetStartX;
         let widgetMoveY = this.widgetEndY - this.widgetStartY;
         console.log('dragEndWidget',  this.widgetStartX, this.widgetEndX,widgetMoveX, widgetMoveY, this.visReal.nativeElement['left'])
-        
+
         this.renderer.setElementStyle(this.dragWidget.nativeElement,
             'left', (500 + widgetMoveX).toString() + "px");
 
         this.renderer.setElementStyle(this.dragWidget.nativeElement,
             'top', (80 + widgetMoveX).toString() + "px");
-            // this.renderer.setElementStyle(this.dragWidget.nativeElement,
-        //     'background-color', 'brown'
-        // );
-        // this.renderer.setElementStyle(this.dragWidget.nativeElement,
-        //     'width', "1000px");
-        // this.renderer.setElementStyle(this.dragWidget.nativeElement,
-        //     'top', "150px");    
-        // this.renderer.setElementStyle(this.dragWidget.nativeElement,
-        //     'border', "4px solid black");    
-    }
-
-    clickDropdownType() {
-        if (this.typeDropdown.nativeElement.className == "dropdown open") {
-            this.typeDropdown.nativeElement.className = "dropdown";
-        } else {
-            this.typeDropdown.nativeElement.className = "dropdown open";
-        }
     }
 
     addNewTab() {
@@ -506,10 +359,6 @@ export class ExploreComponent {
         this.showModalOpenDashboard = false;
     }
 
-    clickTabBg(dash: string) {
-        console.log('clickTabBg', dash)
-    }
-
     clickDeleteTab() {
         alert ('Cannot delete last remaining Tab')
     }
@@ -517,6 +366,7 @@ export class ExploreComponent {
     clickGotIt() {
         this.isFirstTime = !this.isFirstTime;
     }
+
     createVegaLiteSpec(
         description: string = 'First bar chart.',
         mark: string = 'bar',
@@ -525,12 +375,12 @@ export class ExploreComponent {
         title: string = 'Average Trading'): dl.spec.TopLevelExtendedSpec {
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
-    
+
         vlSpecsNew['data']['values'] = [
-            {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55}, 
-            {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91}, 
+            {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
+            {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
             {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
-            {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87}, 
+            {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
             {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
             {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
         ];
@@ -565,15 +415,15 @@ export class ExploreComponent {
 // drag	        ondrag	            Fired when an element or text selection is being dragged.
 // dragend	    ondragend	        Fired when a drag operation is being ended (for example,
 //               by releasing a mouse button or hitting the escape key). (See Finishing a Drag.)
-// dragenter	ondragenter	        Fired when a dragged element or text selection enters a 
+// dragenter	ondragenter	        Fired when a dragged element or text selection enters a
 //              valid drop target. (See Specifying Drop Targets.)
-// dragexit	    ondragexit	        Fired when an element is no longer the drag operation's 
+// dragexit	    ondragexit	        Fired when an element is no longer the drag operation's
 //              immediate selection target.
-// dragleave	ondragleave	        Fired when a dragged element or text selection leaves a 
+// dragleave	ondragleave	        Fired when a dragged element or text selection leaves a
 //              valid drop target.
 // dragover	    ondragover	        Fired when an element or text selection is being dragged
 //               over a valid drop target (every few hundred milliseconds).
 // dragstart	ondragstart	        Fired when the user starts dragging an element or text s
 //              election. (See Starting a Drag Operation.)
-// drop	        ondrop	            Fired when an element or text selection is dropped on a 
+// drop	        ondrop	            Fired when an element or text selection is dropped on a
 //              valid drop target. (See Performing a Drop.)

@@ -910,7 +910,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // let definition = vlTemplateSpec15;      // *bad
         // let definition = vlTemplateSpec16;
         // let definition = vlTemplateSpec17;
-        console.log('definition 2', definition)
 
         // BRADLEY
         // const specification = compile(this.specification);
