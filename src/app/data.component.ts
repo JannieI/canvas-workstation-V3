@@ -23,19 +23,6 @@ interface Idata{
     name: string;
 }
 
-const dataSample: Idata[] = 
-[
-    {
-        name: 'Bicycle trips in Rome'
-    },
-    {
-        name: 'Vega Airport Dataset'
-    },
-    {
-        name: 'Test1'
-    }
-]
-
 @Component({
   templateUrl: './data.component.html',
   styleUrls: ['./data.component.css']
@@ -51,7 +38,7 @@ export class DataComponent implements OnInit {
     currentDatasources: currentDatasource[];
     dataServer: Idata[];
     dataRecent: Idata[];
-    dataSample: Idata[] = dataSample;
+    dataSample: Idata[];
     dataTabDatasource: boolean = false;
     errorMessage: string = "";
     fields: field[];
@@ -107,6 +94,7 @@ export class DataComponent implements OnInit {
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
         this.dataServer = this.globalVariableService.dataServer;
         this.dataRecent = this.globalVariableService.dataRecent;
+        this.dataSample = this.globalVariableService.dataSample;
 
     }
 
