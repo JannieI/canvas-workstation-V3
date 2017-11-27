@@ -49,10 +49,10 @@
                         <button type="button" clrDropdownItem (click)="clickMenuFileNew()">
                             New
                         </button>
-                        <button type="button" clrDropdownItem>
+                        <button type="button" clrDropdownItem (click)="clickMenuFileOpen()">
                             Open
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuRename()">
+                        <button type="button" clrDropdownItem (click)="clickMenuFileRename()">
                             Rename
                         </button>
                         <button type="button" clrDropdownItem>
@@ -527,13 +527,22 @@
 </landing>
 
 
-<!-- Overlay: rename Dashboard -->
-<rename-dashboard
-    class="formPopupOnDashboard"
-    *ngIf="showModalRenameDashboard"
+<!-- Overlay: open Dashboard -->
+<dashboard-open
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardOpen"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formRenameDashboardClosed)="handleCloseRenameDashboard($event)">Open Rename Dashboard ...
-</rename-dashboard>
+    (formDashboardOpenClosed)="handleCloseDashboardOpen($event)">Open Open Dashboard ...
+</dashboard-open>
+
+
+<!-- Overlay: rename Dashboard -->
+<dashboard-rename
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardRename"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardRenameClosed)="handleCloseDashboardRename($event)">Open Rename Dashboard ...
+</dashboard-rename>
 
 
 <!-- Modal: widget editor -->

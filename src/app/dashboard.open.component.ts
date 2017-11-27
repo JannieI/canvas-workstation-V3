@@ -14,24 +14,23 @@ import { Router }                     from '@angular/router';
 import { GlobalFunctionService } 	  from './global-function.service';
 
 @Component({
-    selector: 'dashboard-rename',
-    templateUrl: './dashboard.rename.component.html',
-    styleUrls: ['./dashboard.rename.component.css']
+    selector: 'dashboard-open',
+    templateUrl: './dashboard.open.component.html',
+    styleUrls: ['./dashboard.open.component.css']
 })
-export class DashboardRenameComponent implements OnInit {
+export class DashboardOpenComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formDashboardRenameClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
 
     ngOnInit() {
-
     }
 
     clickClose(action: string) {
         console.log('clickClose')
         
-		this.formDashboardRenameClosed.emit(action);
+		this.formDashboardOpenClosed.emit(action);
     }
 }
