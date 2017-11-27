@@ -237,7 +237,7 @@ export class ExploreComponent {
     dashboards: Idashboard[] = dashboards;
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
-    isFirstTime: boolean = true;
+    isFirstTime: boolean;
     menuCreateDisabled: boolean = false;
     message: string;
     open: Boolean = false;
@@ -350,6 +350,8 @@ export class ExploreComponent {
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
+        this.isFirstTime = this.globalVariableService.isFirstTime;
+        
         console.log('ngOnInit', this.message, this.menuCreateDisabled)
     }
 //*   ngOnInit() {
@@ -396,7 +398,6 @@ export class ExploreComponent {
         
         this.showNavExplore = true;
         console.log('showGraph', event, this.menuOptionSelected)
-        this.isFirstTime = false;
         let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
         console.log('definition 1', definition)
         
@@ -428,7 +429,6 @@ export class ExploreComponent {
         
         this.showNavExplore = true;
         console.log('showGraph', event, this.menuOptionSelected)
-        this.isFirstTime = false;
         let definition: dl.spec.TopLevelExtendedSpec = this.vlSpecs[1];
         console.log('definition 1', definition)
         
@@ -576,6 +576,9 @@ export class ExploreComponent {
         alert ('Cannot delete last remaining Tab')
     }
 
+    clickGotIt() {
+        this.isFirstTime = !this.isFirstTime;
+    }
     createVegaLiteSpec(
         description: string = 'First bar chart.',
         mark: string = 'bar',

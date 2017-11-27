@@ -1,10 +1,12 @@
-<span *ngIf="isFirstTime">
-    First add a datasource (click Data in the top menu).  Then insert a Widget to visualise 
+<div class="helpMessage" *ngIf="isFirstTime">
+    First add a datasource (click Data in the top menu).  Then insert a Widget to visualise
     the data (click Create -> Widget in the top menu).  Once the Widgets have been formatted
     and arranged, you can save the Dashboard with a name (File -> SaveAs).  Existing
-    Dashboards can be opened with File -> Open.  Collaborating happens via messages and 
+    Dashboards can be opened with File -> Open.  Collaborating happens via messages and
     tasks (click user icon in the top right menu).
-</span>
+    <br>
+    Got it  <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTime">
+</div>
 
 <!-- <span class="aCircle">
 <svg height="100" width="100">

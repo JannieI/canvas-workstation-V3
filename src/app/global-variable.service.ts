@@ -29,6 +29,7 @@ const currentDatasources: currentDatasource [] =
 export class GlobalVariableService {
 
     currentDatasources: currentDatasource[] = currentDatasources;
+    isFirstTime: boolean = true;    
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard
     showNavData = new BehaviorSubject<boolean>(false);             // Show sideNav
     showNavDashboard = new BehaviorSubject<boolean>(false);        // Show sideNav
