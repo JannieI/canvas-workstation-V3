@@ -12,7 +12,6 @@ import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Renderer }                   from '@angular/core';
-//* import { Renderer2 }                  from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our Services
@@ -28,6 +27,11 @@ import * as dl from 'datalib';
 import { load } from 'datalib';
 import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
+// Our Models
+import { dashboard }                  from './models'
+import { datasource }                 from './models'
+import { CSScolor }                   from './models'
+
 // import { load } from 'datalib';
 
 //* const draggableHeight = 50;
@@ -41,16 +45,11 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 // import * as sqlite3 from 'sqlite3';
 
 
-interface Idashboard {
-    name: string;
-    description: string;
-}
-
 interface Ibackgroundcolor {
     name: string;
 }
 
-const dashboards: Idashboard[] = [
+const dashboards: dashboard[] = [
     {
         name: 'Market Overview',
         description: 'Economic indicator summary'
@@ -224,7 +223,7 @@ export class ExploreComponent {
         ];
 
     backgroundcolors: Ibackgroundcolor[] = backgroundcolors;
-    dashboards: Idashboard[] = dashboards;
+    dashboards: dashboard[] = dashboards;
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
     isFirstTime: boolean;
