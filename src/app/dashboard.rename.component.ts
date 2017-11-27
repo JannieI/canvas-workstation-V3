@@ -15,10 +15,10 @@ import { GlobalFunctionService } 	  from './global-function.service';
 
 @Component({
     selector: 'rename-dashboard',
-    templateUrl: './rename.dashboard.component.html',
-    styleUrls: ['./rename.dashboard.component.css']
+    templateUrl: './dashboard.rename.component.html',
+    styleUrls: ['./dashboard.rename.component.css']
 })
-export class RenameDashboardComponent implements OnInit {
+export class DashboardRenameComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
     @Output() formRenameDashboardClosed: EventEmitter<string> = new EventEmitter();
