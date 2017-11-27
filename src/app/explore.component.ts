@@ -35,30 +35,6 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
 // Own Components
 
-
-const dashboards: dashboard[] = [
-    {
-        name: 'Market Overview',
-        description: 'Economic indicator summary'
-    },
-    {
-        name: 'Costing Summary',
-        description: 'Costing Summary'
-    },
-    {
-        name: 'Home Budget',
-        description: 'Home Budget'
-    },
-    {
-        name: 'Bitcoin sales',
-        description: 'Bitcoin sales'
-    },
-    {
-        name: 'Cycling routes',
-        description: 'Cycling routes'
-    }
-];
-
 const vlTemplate: dl.spec.TopLevelExtendedSpec = 
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v2.json",

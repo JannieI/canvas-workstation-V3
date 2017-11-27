@@ -16,13 +16,6 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { currentDatasource }          from './model.currentDashboard';
 
-interface Idatasource {
-    id: number;
-    type: string;
-    name: string;
-    location: string;
-}
-
 interface Idataset {
     id: number;
     type: string;
@@ -58,28 +51,6 @@ interface IfieldsMetadata{
 interface Idata{
     name: string;
 }
-
-const datasource: Idatasource[] = 
-[
-    {
-        id: 1,
-        type: 'Excel', 
-        name: 'Revenue forecast for 2017',
-        location: 'C:\My Documents'
-    },
-    {
-        id: 2,
-        type: 'PostgreSQL', 
-        name: 'CPI tables',
-        location: 'pDB'
-    },
-    {
-        id: 3,
-        type: 'Microsoft SQL', 
-        name: 'Trades',
-        location: 'prod51SQL'
-    }
-]
 
 const dataset: Idataset[] = 
 [
@@ -427,7 +398,6 @@ export class DataComponent implements OnInit {
     buttonLabel: string = "Show More";
     canUse: boolean = true;
     currentDatasources: currentDatasource[];
-    datasource: Idatasource[] = datasource;
     dataset: Idataset[] = dataset;
     dataServer: Idata[] = dataServer;
     dataRecent: Idata[] = dataRecent;
