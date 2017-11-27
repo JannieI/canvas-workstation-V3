@@ -15,20 +15,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { currentDatasource }          from './model.currentDashboard';
-
-interface Idataset {
-    id: number;
-    type: string;
-    name: string;
-    location: string;
-}
-
-interface Itransformaton {
-    id: number;
-    category: string;
-    name: string;
-    description: string;
-}
+import { transformation }             from './models'
 
 interface Ifield {
     id: number;
@@ -51,182 +38,6 @@ interface IfieldsMetadata{
 interface Idata{
     name: string;
 }
-
-const dataset: Idataset[] = 
-[
-    {
-        id: 1,
-        type: 'SQL', 
-        name: 'Value by year',
-        location: 'Local'
-    },
-    {
-        id: 2,
-        type: 'Overlay spec', 
-        name: 'CPI tables with calculated fields',
-        location: 'Server'
-    },
-    {
-        id: 3,
-        type: 'SQL', 
-        name: 'Trades with extensive group-by',
-        location: 'Local'
-    }
-]
-
-const transformaton: Itransformaton[] = 
-[
-    {
-        id: 1,
-        category: 'Column-level',
-        name: 'FormatDate', 
-        description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.'
-    },
-    {
-        id: 2,
-        category: 'Column-level',
-        name: 'FillBlanks', 
-        description: '(columnName, newValue)'
-    },
-    {
-        id: 3,
-        category: 'Column-level',
-        name: 'FillNull', 
-        description: '(columnName, newValue)'
-    },
-    {
-        id: 4,
-        category: 'Column-level',
-        name: 'FillBlankAndNull', 
-        description: '(columnName, newValue)'
-    },
-    {
-        id: 5,
-        category: 'Column-level',
-        name: 'ReplaceNumbers', 
-        description: '(columnName, from, to, newValue)'
-    },
-    {
-        id: 6,
-        category: 'Column-level',
-        name: 'ReplaceString', 
-        description: '(columnName, oldValue, newValue)'
-    },
-    {
-        id: 7,
-        category: 'Column-level',
-        name: 'AppendColumn', 
-        description: '(newColumnName, dataType, fillValue)'
-    },
-    {
-        id: 8,
-        category: 'Column-level',
-        name: 'Columns', 
-        description: '([column1, column2, ...]) to be returned'
-    },
-    {
-        id: 9,
-        category: 'Column-level',
-        name: 'Field Filters', 
-        description: '([ {columnX, operator, value} ]'
-    },
-    {
-        id: 10,
-        category: 'Column-level',
-        name: 'CalcColumn', 
-        description: '(newColumnName, columnOne, columnTwo, Operator, fillValue)'
-    },
-    {
-        id: 11,
-        category: 'Column-level',
-        name: 'Substring', 
-        description: '(columnName, startPosition, length)'
-    },
-    {
-        id: 12,
-        category: 'Column-level',
-        name: 'LeftTrim', 
-        description: '(columnName)'
-    },
-    {
-        id: 13,
-        category: 'Column-level',
-        name: 'RightTrim', 
-        description: '(columnName)'
-    },
-    {
-        id: 14,
-        category: 'Column-level',
-        name: 'Trim', 
-        description: '(columnName), which combines LeftTrim and RightTrim'
-    },
-    {
-        id: 15,
-        category: 'Column-level',
-        name: 'RightSubstring', 
-        description: '(columnName, startPosition, length) is similar to Substring, but startPosition is counted from the right.'
-    },
-    {
-        id: 16,
-        category: 'Column-level',
-        name: 'DatePart', 
-        description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second'
-    },
-    {
-        id: 17,
-        category: 'Column-level',
-        name: 'Concatenate', 
-        description: '(columnNameOne, ColumnNameTwo)'
-    },
-    {
-        id: 18,
-        category: 'Column-level',
-        name: 'ConcatenateColumn', 
-        description: '(columnName, preString, postString) will append strings to the front or back of a column'
-    },
-    {
-        id: 19,
-        category: 'Column-level',
-        name: 'Calculate', 
-        description: '(columnName, expression) where operation is a valid math expression, for example ‘+ 2’, or ‘/1000’.  The [columnName] (in square brackets) can be part of the expression, say [columnName] * 1.14'
-    },
-    {
-        id: 20,
-        category: 'Column-level',
-        name: 'FormatNumber', 
-        description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’'
-    },
-    {
-        id: 21,
-        category: 'Column-level',
-        name: 'AddLatitude', 
-        description: '(reference-columnName, new-columnName), add a new column with latitude, based on the information in the reference-columnName'
-    },
-    {
-        id: 22,
-        category: 'Column-level',
-        name: 'AddLongitude', 
-        description: '(reference-columnName, new-columnName), add a new column with longitude, based on the information in the reference-columnName'
-    },
-    {
-        id: 23,
-        category: 'Table-level',
-        name: 'Pivot', 
-        description: '(row-heading, column-heading, operator, data-heading) '
-    },
-    {
-        id: 24,
-        category: 'Table-level',
-        name: 'Transpose', 
-        description: 'turning rows into columns and vice versa'
-    },
-    {
-        id: 25,
-        category: 'Table-level',
-        name: 'FormatTable', 
-        description: '(format), where format = json, csv, tsv, Excel, ADO, etc.'
-    },
-]
 
 const fields: Ifield[] = 
 [
@@ -398,7 +209,6 @@ export class DataComponent implements OnInit {
     buttonLabel: string = "Show More";
     canUse: boolean = true;
     currentDatasources: currentDatasource[];
-    dataset: Idataset[] = dataset;
     dataServer: Idata[] = dataServer;
     dataRecent: Idata[] = dataRecent;
     dataSample: Idata[] = dataSample;
@@ -435,7 +245,7 @@ export class DataComponent implements OnInit {
     // showTransformation: boolean = false;
     // showModalFileFormatter: boolean = false;
     // snipDatasource: boolean = false;
-    transformaton: Itransformaton[] = transformaton;
+    transformation: transformation[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -444,12 +254,16 @@ export class DataComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+
+        // Load global variables
         this.globalVariableService.currentMessage.subscribe(message => this.message = message)
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
 		this.globalFunctionService.hideSecondaryMenus();
         this.currentDatasources = this.globalVariableService.currentDatasources;
+        this.transformation = this.globalVariableService.transformations;
+        
     }
 
     ngAfterViewInit() {

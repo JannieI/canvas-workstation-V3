@@ -18,3 +18,10 @@ export class dashboard {
 export class CSScolor {
     name: string;
 }
+
+export class transformation {
+    id: number;
+    category: string;
+    name: string;
+    description: string;
+}
