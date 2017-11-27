@@ -1,5 +1,7 @@
 /* 
- * Data tabs
+ * Data page: to get new datasources, and add to the current list of datasources for this
+ * Dashboard.  Can also do transformations to the data, and crteate new datasets, ie via
+ * pivot.
  */
 
 // Angular
@@ -34,7 +36,7 @@ export class DataComponent implements OnInit {
     @ViewChild('transformations') transformations: ElementRef;
 
     buttonLabel: string = "Show More";
-    canUse: boolean = true;
+    canUse: boolean = true;                 // Can use a Tab heading
     currentDatasources: currentDatasource[];
     dataServer: Idata[];
     dataRecent: Idata[];
@@ -63,8 +65,8 @@ export class DataComponent implements OnInit {
 
     selectedFile: boolean = true;
 
-    // selectedDatasource: any;
     selectedData: string = 'Trades for 2016';
+    // selectedDatasource: any;
     // selectedDatabase: boolean = false;
     // showDatasourceForm: boolean = false;
     // showSelector: boolean = false;
@@ -102,27 +104,6 @@ export class DataComponent implements OnInit {
         console.log('ngAfterViewInit')
     }
 
-    // clickRow() {
-    //     if (this.selectedDatasource == null) {
-    //         this.errorMessage = "Please select a Dataset and click again"
-    //         this.isError = true;
-    //         return;
-    //     }
-    //     this.isError = false;
-    //     this.errorMessage = '';
-    //     console.log('selectedId', this.selectedDatasource )
-    //     this.selectedDatasource = true;
-
-    //     // Reset
-    //     this.selectedDatasource = null;
-    // }
-    
-    // clickShowDatasourceForm() {
-    //     console.log('this.showDatasourceForm', this.showDatasourceForm)
-    //     this.showDatasourceForm = !this.showDatasourceForm
-    // }
-
-    
     clickDropdownType() {
         if (this.typeDropdown.nativeElement.className == "dropdown open") {
             this.typeDropdown.nativeElement.className = "dropdown";
@@ -148,15 +129,6 @@ export class DataComponent implements OnInit {
     //     this.showTransformation = true;
     // }
 
-    // clickCloseModel() {
-    //     console.log('clickCloseModel()')
-    //     this.showFileselector = false;
-    //     this.selectedFile = true;
-    //     this.typeDropdown.nativeElement.className = "dropdown";
-    //     this.showDatasourceForm = !this.showDatasourceForm;
-    //     this.firstTimeUser = !this.firstTimeUser;
-    // }
-
     // clickField(fieldName: string) {
     //     console.log('id');
     //     this.showModalFileFormatter = true;
@@ -164,11 +136,6 @@ export class DataComponent implements OnInit {
 
     // clickCloseFieldFormatter() {
     //     this.showModalFileFormatter = false;
-    // }
-
-    // clickNavData(selData: string) {
-    //     this.selectedData = selData;
-    //     this.canUse = true;
     // }
 
     // clickNavAddData(selData: string) {
