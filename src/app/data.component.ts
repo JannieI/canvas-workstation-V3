@@ -23,16 +23,6 @@ interface Idata{
     name: string;
 }
 
-const dataRecent: Idata[] = 
-[
-    {
-        name: 'CPI figures'
-    },
-    {
-        name: 'GDP by Country'
-    }
-]
-
 const dataSample: Idata[] = 
 [
     {
@@ -60,7 +50,7 @@ export class DataComponent implements OnInit {
     canUse: boolean = true;
     currentDatasources: currentDatasource[];
     dataServer: Idata[];
-    dataRecent: Idata[] = dataRecent;
+    dataRecent: Idata[];
     dataSample: Idata[] = dataSample;
     dataTabDatasource: boolean = false;
     errorMessage: string = "";
@@ -115,8 +105,9 @@ export class DataComponent implements OnInit {
         this.transformation = this.globalVariableService.transformations;
         this.fields = this.globalVariableService.fields;
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
-        this.dataServer =this.globalVariableService.dataServer;
-        
+        this.dataServer = this.globalVariableService.dataServer;
+        this.dataRecent = this.globalVariableService.dataRecent;
+
     }
 
     ngAfterViewInit() {
