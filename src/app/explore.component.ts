@@ -12,41 +12,52 @@ import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Renderer }                   from '@angular/core';
+//* import { Renderer2 }                  from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our Services
 import { GlobalVariableService }      from './global-variable.service';
 
-// Vega, Vega-Lite
-// declare var require: any;
-import { compile }                    from 'vega-lite';
+// Our Models
+import { dashboard }                  from './models'
+import { datasource }                 from './models'
 
+// Vega, Vega-Lite
+import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
 import * as dl from 'datalib';
 import { load } from 'datalib';
 import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
-
-// Our Models
-import { dashboard }                  from './models'
-import { datasource }                 from './models'
-import { CSScolor }                   from './models'
-
 // import { load } from 'datalib';
-
-//* const draggableHeight = 50;
-//* const draggableWidth = 100;
 
 // Own Services
 
 // Own Components
 
-// var dl = require('datalib');
-// import * as sqlite3 from 'sqlite3';
 
-
-
-
+const dashboards: dashboard[] = [
+    {
+        name: 'Market Overview',
+        description: 'Economic indicator summary'
+    },
+    {
+        name: 'Costing Summary',
+        description: 'Costing Summary'
+    },
+    {
+        name: 'Home Budget',
+        description: 'Home Budget'
+    },
+    {
+        name: 'Bitcoin sales',
+        description: 'Bitcoin sales'
+    },
+    {
+        name: 'Cycling routes',
+        description: 'Cycling routes'
+    }
+];
 
 const vlTemplate: dl.spec.TopLevelExtendedSpec = 
 {
@@ -185,8 +196,7 @@ export class ExploreComponent {
         {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
         ];
 
-    currentDashboards: dashboard[];
-    currentDatasources: datasource[];
+    dashboards: dashboard[];
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
     isFirstTime: boolean;
@@ -297,18 +307,14 @@ export class ExploreComponent {
 
 
     ngOnInit() {
-        console.log('Explore ngOnInit')
+        console.log('Explore ngOnInit');
 
-        // Get all the global variables
+        // Load global variables
         this.globalVariableService.currentMessage.subscribe(message => this.message = message);
         this.globalVariableService.menuCreateDisabled.subscribe(
-            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
-        );
+            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled);
         this.isFirstTime = this.globalVariableService.isFirstTime;
-        this.currentDashboards = this.globalVariableService.currentDashboards;
-        this.currentDatasources = this.globalVariableService.currentDatasources;
-    
-        console.log('ngOnInit', this.message, this.menuCreateDisabled)
+        this.dashboards = this.globalVariableService.currentDashboards;
     }
 //*   ngOnInit() {
 //*     this.draggable = this.draggableElement.nativeElement;

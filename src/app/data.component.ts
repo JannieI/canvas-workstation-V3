@@ -59,7 +59,8 @@ interface Idata{
     name: string;
 }
 
-const datasource: Idatasource[] = [
+const datasource: Idatasource[] = 
+[
     {
         id: 1,
         type: 'Excel', 
@@ -80,7 +81,8 @@ const datasource: Idatasource[] = [
     }
 ]
 
-const dataset: Idataset[] = [
+const dataset: Idataset[] = 
+[
     {
         id: 1,
         type: 'SQL', 
@@ -101,7 +103,8 @@ const dataset: Idataset[] = [
     }
 ]
 
-const transformaton: Itransformaton[] = [
+const transformaton: Itransformaton[] = 
+[
     {
         id: 1,
         category: 'Column-level',
@@ -254,7 +257,8 @@ const transformaton: Itransformaton[] = [
     },
 ]
 
-const fields: Ifield[] = [
+const fields: Ifield[] = 
+[
     {
         id: 1,
         name: 'DateTrade',
@@ -293,7 +297,8 @@ const fields: Ifield[] = [
     }
 ]
 
-const fieldsMetadata: IfieldsMetadata[] = [
+const fieldsMetadata: IfieldsMetadata[] = 
+[
     {
         name: 'DateTrade',
         type: 'Date',
@@ -324,7 +329,8 @@ const fieldsMetadata: IfieldsMetadata[] = [
     }
 ]
 
-const dataServer: Idata[] = [
+const dataServer: Idata[] = 
+[
     {
         name: 'World Indices'
     },
@@ -354,7 +360,8 @@ const dataServer: Idata[] = [
     }
 ]
 
-const dataRecent: Idata[] = [
+const dataRecent: Idata[] = 
+[
     {
         name: 'CPI figures'
     },
@@ -363,7 +370,8 @@ const dataRecent: Idata[] = [
     }
 ]
 
-const dataSample: Idata[] = [
+const dataSample: Idata[] = 
+[
     {
         name: 'Bicycle trips in Rome'
     },
