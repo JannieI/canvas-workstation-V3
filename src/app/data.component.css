@@ -33,13 +33,6 @@
     margin: 0;
     padding: 0;
 }
-.fileLocation {
-    width: 300px !important;
-}
-
-.helpMessage {
-    color: gray;
-}
 
 .buttonGetData {
     left: 0;
@@ -47,21 +40,17 @@
     z-index: 2;
 }
 
-.textToClick {
-    color: rgb(71, 70, 70);
-}
-
 .tabHeadings {
     background-color: rgb(235, 234, 245);
 }
 
 .helpMessage {
+    color: gray;
     margin: 0 0 0 5px;
     padding: 0;
 }
 
 .barsButton {
     margin: 0 !important;
-    padding: 0 !important;
     min-width: 10px !important;
 }

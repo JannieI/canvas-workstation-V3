@@ -147,10 +147,6 @@ export class DataComponent implements OnInit {
     //     this.canUse = false;
     // }
 
-
-
-
-
     clickAddFile() {
         this.showAddDataDetail = true;
         this.showAddFile = true;
