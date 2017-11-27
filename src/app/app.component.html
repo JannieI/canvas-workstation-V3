@@ -56,13 +56,10 @@
                             Rename
                         </button>
                         <button type="button" clrDropdownItem>
-                            Delete
-                        </button>
-                        <button type="button" clrDropdownItem>
                             Save As
                         </button>
-                        <div class="dropdown-divider"></div>
 
+                        <div class="dropdown-divider"></div>
                         <clr-dropdown>
                             <button 
                                 type="button" 
@@ -71,7 +68,7 @@
                                 >
                                 Version History
                             </button>
-                            <clr-dropdown-menu clrPosition="top-right" *clrIfOpen>
+                            <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
                                 <button type="button" clrDropdownItem>
                                     Checkpoint now
                                 </button>
@@ -83,9 +80,37 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-                        <button type="button" clrDropdownItem (click)="clickMenuFileDetails()">
-                            Details
-                        </button>
+
+                        <clr-dropdown>
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Details
+                            </button>
+                            <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                                <button type="button" clrDropdownItem>
+                                    Descripton
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    Favourite
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    Tags
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    Settings
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    Theme
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    Schedule
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem>
                             Print
@@ -96,30 +121,13 @@
                         <button type="button" clrDropdownItem>
                             Export
                         </button>
+
+                        <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem>
-                            <clr-icon shape="check"></clr-icon>
-                            Fav
+                            Delete
                         </button>
-                        <button type="button" clrDropdownItem>
-                            Tags
-                        </button>
-                        <button type="button" clrDropdownItem>
-                            Share
-                        </button>
-                        <button type="button" clrDropdownItem>
-                            Settings
-                        </button>
-                        <button type="button" clrDropdownItem>
-                            Theme
-                        </button>
-                        <button type="button" clrDropdownItem>
-                            Schedule
-                        </button>
- 
- 
                     </clr-dropdown-menu>
                 </clr-dropdown>
-
 
                 <clr-dropdown class="menuText">
                     <button 
@@ -506,23 +514,30 @@
         </div>
 
         <div class="header-actions">
-            <a class="nav-link nav-icon" href="#" [routerLink]="['/home']" routerLinkActive="active">
-                <clr-icon shape="share"></clr-icon>
-            </a>
-            
             <clr-dropdown class="dropdown bottom-right">
                 <button class="nav-icon" clrDropdownToggle>
-                <clr-icon shape="user" class="is-solid has-alert"></clr-icon>
+                <clr-icon shape="share"></clr-icon>
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
                 <div class="dropdown-menu">
-                    <a clrDropdownItem>My Profile</a>
+                    <a clrDropdownItem>Share</a>
                     <a clrDropdownItem>Send Email</a>
                     <a clrDropdownItem>Send Message</a>
                     <a clrDropdownItem (click)="showCollaborate = !showCollaborate">
                         Messages
                     </a>
                     <a clrDropdownItem>Alerts</a>
+                    <a clrDropdownItem>Tasks</a>
+                </div>
+            </clr-dropdown>
+            <clr-dropdown class="dropdown bottom-right">
+                <button class="nav-icon" clrDropdownToggle>
+                <clr-icon shape="user" class="is-solid has-alert"></clr-icon>
+                <clr-icon shape="caret down"></clr-icon>
+                </button>
+                <div class="dropdown-menu">
+                    <a clrDropdownItem>Login</a>
+                    <a clrDropdownItem>My Profile</a>
                     <a clrDropdownItem>Preferences</a>
                     <a clrDropdownItem>Log out</a>
                 </div>
