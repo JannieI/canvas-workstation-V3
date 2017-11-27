@@ -19,14 +19,6 @@ import { transformation }             from './models'
 import { field }                      from './models'
 import { fieldMetadata }              from './models'
 
-interface IfieldsMetadata{
-    name: string;
-    type: string;
-    description: string;
-    keyField: boolean;
-    explainedBy: string
-}
-
 interface Idata{
     name: string;
 }
@@ -71,7 +63,7 @@ const fields: field[] =
     }
 ]
 
-const fieldsMetadata: IfieldsMetadata[] = 
+const fieldsMetadata: fieldMetadata[] = 
 [
     {
         name: 'DateTrade',
@@ -207,7 +199,7 @@ export class DataComponent implements OnInit {
     dataTabDatasource: boolean = false;
     errorMessage: string = "";
     fields: field[] = fields;
-    fieldsMetadata: IfieldsMetadata[] = fieldsMetadata;
+    fieldsMetadata: fieldMetadata[] = fieldsMetadata;
     firstTimeUser: boolean = true;
     indexCurrent: number = 0;
     isError: boolean = false;
