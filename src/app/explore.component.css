@@ -1,5 +1,8 @@
+.helpMessage {
+    margin: 5px 15px 5px 25px;
+}
+
 .tabList {
-    background-color: lightgray;
     bottom: 0;
     opacity: 1;
     position: absolute;

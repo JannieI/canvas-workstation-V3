@@ -173,7 +173,8 @@ export class ExploreComponent {
     widgetEndX: number = 0;
     widgetEndY: number = 0;
 
-    ngOnViewInit() {
+    ngAfterViewInit() {
+        console.log('Explore ngOnViewInit')
         let definition = vlTemplateSpec13;
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
