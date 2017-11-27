@@ -40,16 +40,6 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 // var dl = require('datalib');
 // import * as sqlite3 from 'sqlite3';
 
-interface IVegaUpdate {
-    encoding?: {
-        x?: string;
-        y?: string;
-    },
-    title: {
-        text?: string;
-        align?: string;
-    }
-}
 
 interface Idashboard {
     name: string;
