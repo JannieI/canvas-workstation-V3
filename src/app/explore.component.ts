@@ -11,8 +11,10 @@ import { HostBinding }                from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
+import { QueryList }                  from '@angular/core';
 import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
+import { ViewChildren }               from '@angular/core';
 
 // Our Services
 import { GlobalVariableService }      from './global-variable.service';
@@ -40,10 +42,41 @@ const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec =
   "mark": "point",
   "encoding": {
     "x": {"field": "Horsepower", "type": "quantitative"},
-    "y": {"field": "Miles_per_Gallon", "type": "quantitative"},
-    "color": {"field": "Displacement", "type": "quantitative"}
+    "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
   }
 };
+
+const localDashboards: dl.spec.TopLevelExtendedSpec[] =
+[
+    {
+        "data": {"url": "../assets/vega-datasets/cars.json"},
+        "mark": "point",
+        "encoding": {
+            "x": {"field": "Horsepower", "type": "quantitative"},
+            "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+        }
+    },
+    {
+        "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
+        "mark": "bar",
+        "encoding": {
+          "x": {
+            "timeUnit": "month",
+            "field": "date",
+            "type": "ordinal"
+          },
+          "y": {
+            "aggregate": "count",
+            "field": "*",
+            "type": "quantitative"
+          },
+          "color": {
+            "field": "weather",
+            "type": "nominal"
+          }
+        }
+    }
+];
 
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
 {
@@ -132,6 +165,10 @@ export class ExploreComponent {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
 
+    @ViewChildren('widget')             childrenWidgets: QueryList<ElementRef>;  
+    @ViewChildren('widgetContainter')   widgetContainters: QueryList<ElementRef>;
+    
+    localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     description: string = 'A simple bar chart with embedded data.';
     data: any = [
         {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
@@ -141,7 +178,7 @@ export class ExploreComponent {
         {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
         {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
         ];
-
+    temp: number[] = [0];
     dashboards: dashboard[];
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
@@ -175,18 +212,54 @@ export class ExploreComponent {
 
     ngAfterViewInit() {
         console.log('Explore ngOnViewInit')
-        let definition = vlTemplateSpec13;
-        let specification = compile(definition).spec;
-        let view = new View(parse(specification));
-        view.renderer('svg')
-            .width(350)
-            .height(260)
-            .initialize(this.dragWidget.nativeElement)
-            .hover()
-            .run()
-            .finalize();
-            this.renderer.setElementStyle(this.dragWidget.nativeElement,
-                'left', "200px");
+
+        
+        // let definition = vlTemplateSpec13;
+        // let specification = compile(definition).spec;
+        // let view = new View(parse(specification));
+        
+        if (this.childrenWidgets.toArray().length > 0) {
+            for (var i: number = 0; i < this.localDashboards.length; i++) {
+                console.log('loop i', i)
+                let definition = localDashboards[i];
+                let specification = compile(definition).spec;
+                let view = new View(parse(specification));
+
+                console.log('xx', this.childrenWidgets.toArray()[i].nativeElement)
+                // this.renderer.setElementAttribute(
+                //     this.childrenWidgets.toArray()[i].nativeElement,
+                //     'id', '2');
+                // this.renderer.setElementStyle(
+                //     this.childrenWidgets.toArray()[i].nativeElement,
+                //     'top',  '80px');
+                if (i == 0) {
+                    this.renderer.setElementStyle(
+                        this.widgetContainters.toArray()[i].nativeElement,
+                        'left', '20px');
+                } else {
+                    this.renderer.setElementStyle(
+                        this.widgetContainters.toArray()[i].nativeElement,
+                        'left', '600px');
+                }
+                view.renderer('svg')
+                    .initialize( this.childrenWidgets.toArray()[i].nativeElement)
+                    .width(180)
+                    .hover()
+                    .run()
+                    .finalize();  
+                console.log('loop end')
+            }
+        }
+
+        // view.renderer('svg')
+        //     .width(350)
+        //     .height(260)
+        //     .initialize(this.dragWidget.nativeElement)
+        //     .hover()
+        //     .run()
+        //     .finalize();
+        //     this.renderer.setElementStyle(this.dragWidget.nativeElement,
+        //         'left', "200px");
     }    
     
     dragstart_handler(ev) {

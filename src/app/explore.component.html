@@ -1,9 +1,9 @@
 <div class="helpMessage" *ngIf="isFirstTime">
-    First add a datasource (click Data in the top menu).  Then insert a Widget to visualise
-    the data (click Create -> Widget in the top menu).  Once the Widgets have been formatted
-    and arranged, you can save the Dashboard with a name (File -> SaveAs).  Existing
-    Dashboards can be opened with File -> Open.  Collaborating happens via messages and
-    tasks (click user icon in the top right menu).
+    First add a datasource (click <i>Data</i> in the top menu).  Then insert a Widget to visualise
+    the data (click <i>Create -> Widget</i> in the top menu).  Once the Widgets have been formatted
+    and arranged, you can save the Dashboard with a name (<i>File -> SaveAs</i>).  Existing
+    Dashboards can be opened with <i>File -> Open</i>.  Collaborating happens via messages and
+    tasks (click <i>User icon</i> in the top right menu).
     <br>
     Got it  <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTime">
 </div>
@@ -170,6 +170,15 @@
     </div>
 </span>
 
+
+<div *ngFor="let ds of localDashboards" class="widgetContainer"
+    #widgetContainter>
+    <div class="widget">
+        <div #widget>
+            Here: {{ ds }}
+        </div> 
+    </div>
+</div>
 
 
 <!-- Modals: -->
