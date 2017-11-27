@@ -23,37 +23,6 @@ interface Idata{
     name: string;
 }
 
-const dataServer: Idata[] = 
-[
-    {
-        name: 'World Indices'
-    },
-    {
-        name: 'SP Companies*'
-    },
-    {
-        name: 'Stock prices TEMP'
-    },
-    {
-        name: 'Trades per Year'
-    },
-    {
-        name: 'Bond volume trades'
-    },
-    {
-        name: 'Trades by Trade Type'
-    },
-    {
-        name: 'YTD Expenditure by Cost Center'
-    },
-    {
-        name: 'Headcount'
-    },
-    {
-        name: 'Customer List'
-    }
-]
-
 const dataRecent: Idata[] = 
 [
     {
@@ -76,37 +45,6 @@ const dataSample: Idata[] =
         name: 'Test1'
     }
 ]
-// The most straightforward solution would be for you to get a reference to the NavLevelDirective instance for the sidenav with @ViewChild, and all its close() method.
-
-// For instance, add a reference variable in your template:
-
-// <nav #mySidenav class="sidenav" [clr-nav-level]="2">
-//     <app-sidebar></app-sidebar>
-// </nav>
-// Then access it in your app's component by using:
-
-// @ViewChild("mySidenav", {read: NavLevelDirective}) sidenav: NavLevelDirective;
-// and just call sidenav.close() when the user clicks the "find" button.
-
-
-
-// <nav class="subnav">
-// <ul class="nav">
-//     <li class="nav-item" *ngFor="nav of navs">
-//         <a class="nav-link" routerLinkActive="active"
-// [routerLink]="nav.link">{{nav.title}}</a>
-//     </li>
-// </ul>
-// </nav>
-// and in your class :
-
-// nav = [
-//    {link:'somewhere/dashboard',title:'Dashboard'},
-//    {link:'somewhere/management',title:'Management'},
-//    {link:'somewhere/cloud',title:'Cloud'}
-
-// ]
-
 
 @Component({
   templateUrl: './data.component.html',
@@ -121,7 +59,7 @@ export class DataComponent implements OnInit {
     buttonLabel: string = "Show More";
     canUse: boolean = true;
     currentDatasources: currentDatasource[];
-    dataServer: Idata[] = dataServer;
+    dataServer: Idata[];
     dataRecent: Idata[] = dataRecent;
     dataSample: Idata[] = dataSample;
     dataTabDatasource: boolean = false;
@@ -177,6 +115,7 @@ export class DataComponent implements OnInit {
         this.transformation = this.globalVariableService.transformations;
         this.fields = this.globalVariableService.fields;
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
+        this.dataServer =this.globalVariableService.dataServer;
         
     }
 

@@ -295,6 +295,102 @@ const transformations: transformation[] =
     },
 ];
 
+const dataServer: datasource[] = 
+[
+    {
+        id: 1,
+        name: 'World Indices',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'SP Companies*',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Stock prices TEMP',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Trades per Year',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Bond volume trades',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Trades by Trade Type',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'YTD Expenditure by Cost Center',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Headcount',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Customer List',
+        type: 'Xls File',
+        description: ''
+    }
+];
+
+const dataRecent: datasource[] = 
+[
+    {
+        id: 1,
+        name: 'CPI figures',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'GDP by Country',
+        type: 'Xls File',
+        description: ''
+    }
+];
+
+const dataSample: datasource[] = 
+[
+    {
+        id: 1,
+        name: 'Bicycle trips in Rome',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Vega Airport Dataset',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Test1',
+        type: 'Xls File',
+        description: ''
+    }
+];
+
 @Injectable()
 export class GlobalVariableService {
     currentDashboards: dashboard[] = currentDashboards;
@@ -303,7 +399,10 @@ export class GlobalVariableService {
     transformations: transformation[] = transformations;
     fields: field[] = fields;
     fieldsMetadata: fieldMetadata[] = fieldsMetadata;
-
+    dataServer: datasource[] = dataServer;
+    dataRecent: datasource[] = dataRecent;
+    dataSample: datasource[] = dataSample;
+    
     isFirstTime: boolean = true;    
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard
     showNavData = new BehaviorSubject<boolean>(false);             // Show sideNav
