@@ -36,7 +36,7 @@ export class field {
     order: string;
 }
 
-export class fieldsMetadata{
+export class fieldMetadata{
     name: string;
     type: string;
     description: string;

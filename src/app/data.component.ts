@@ -16,16 +16,8 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { currentDatasource }          from './model.currentDashboard';
 import { transformation }             from './models'
-
-interface Ifield {
-    id: number;
-    name: string;
-    type: string;
-    format: string;
-    filter: string;
-    calc: string;
-    order: string;
-}
+import { field }                      from './models'
+import { fieldMetadata }              from './models'
 
 interface IfieldsMetadata{
     name: string;
@@ -39,7 +31,7 @@ interface Idata{
     name: string;
 }
 
-const fields: Ifield[] = 
+const fields: field[] = 
 [
     {
         id: 1,
@@ -214,7 +206,7 @@ export class DataComponent implements OnInit {
     dataSample: Idata[] = dataSample;
     dataTabDatasource: boolean = false;
     errorMessage: string = "";
-    fields: Ifield[] = fields;
+    fields: field[] = fields;
     fieldsMetadata: IfieldsMetadata[] = fieldsMetadata;
     firstTimeUser: boolean = true;
     indexCurrent: number = 0;
