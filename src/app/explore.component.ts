@@ -193,15 +193,6 @@ export class ExploreComponent {
     showAdvancedField: boolean = false;
     showContainerHeader: boolean = false;
     showModalOpenDashboard: boolean = false;
-    showNavDashboard: Boolean = false;
-    showNavTab: Boolean = false;
-    showNavFormat: Boolean = false;
-    showNavExplore: Boolean = true;
-    showNavPresentation: Boolean = false;
-    showNavCollaborate: Boolean = false;
-    showSideNav1: boolean = true;
-    showSideNav2: boolean = true;
-    showSubMenuDashboard: boolean = true;
     showType: boolean = false;
     showTypeIcon: boolean = true;
     widgetBorder: string = '1px black solid';

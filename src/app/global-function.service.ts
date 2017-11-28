@@ -35,13 +35,4 @@ export class GlobalFunctionService {
         }
     }
 
-    hideSecondaryMenus() {
-        this.globalVariableService.showSubMenuData.next(false);
-        this.globalVariableService.showNavData.next(false);
-        this.globalVariableService.showNavDashboard.next(false);
-        this.globalVariableService.showNavFormat.next(false);
-        this.globalVariableService.showSubMenuData.next(false);
-        this.globalVariableService.showSubMenuDashboard.next(false);
-    }
-
 }

@@ -70,7 +70,6 @@ export class LandingComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.globalFunctionService.hideSecondaryMenus();
 	}
 
 	clickButtonData() {

@@ -89,7 +89,6 @@ export class DataComponent implements OnInit {
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
-		this.globalFunctionService.hideSecondaryMenus();
         this.currentDatasources = this.globalVariableService.currentDatasources;
         this.transformation = this.globalVariableService.transformations;
         this.fields = this.globalVariableService.fields;

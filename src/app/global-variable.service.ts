@@ -276,19 +276,19 @@ const transformations: transformation[] =
         description: '(reference-columnName, new-columnName), add a new column with longitude, based on the information in the reference-columnName'
     },
     {
-        id: 23,
+        id: 100,
         category: 'Table-level',
         name: 'Pivot', 
         description: '(row-heading, column-heading, operator, data-heading) '
     },
     {
-        id: 24,
+        id: 101,
         category: 'Table-level',
         name: 'Transpose', 
         description: 'turning rows into columns and vice versa'
     },
     {
-        id: 25,
+        id: 102,
         category: 'Table-level',
         name: 'FormatTable', 
         description: '(format), where format = json, csv, tsv, Excel, ADO, etc.'
@@ -405,11 +405,6 @@ export class GlobalVariableService {
     
     isFirstTime: boolean = true;    
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard
-    showNavData = new BehaviorSubject<boolean>(false);             // Show sideNav
-    showNavDashboard = new BehaviorSubject<boolean>(false);        // Show sideNav
-    showNavFormat = new BehaviorSubject<boolean>(false);           // Show sideNav
-    showSubMenuData = new BehaviorSubject<boolean>(false);         // Show Sub Menu for Data
-    showSubMenuDashboard = new BehaviorSubject<boolean>(false);    // Show Sub Menu for Dashboard
     // Company related variables
     // companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig
     // companyLogo: string = '';                                   // Optional file name, set in SystemConfig

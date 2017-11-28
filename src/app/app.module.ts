@@ -21,6 +21,7 @@ import { CollaborateComponent }       from './collaborate.component';
 import { DataComponent }              from './data.component';
 import { ExploreComponent }           from './explore.component';
 import { GetDataComponent }           from './getdata.component';
+import { DataPopupComponent }         from './data.popup.component';
 import { HelpComponent }              from './help.component';
 import { HomeComponent }              from './home.component';
 import { LandingComponent }           from './landing.component';
@@ -50,6 +51,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardRenameComponent,
         DashboardOpenComponent,
         DashboardDetailsComponent,
+        DataPopupComponent,
     ],
     imports: [
         BrowserAnimationsModule,

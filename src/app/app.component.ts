@@ -25,13 +25,13 @@ import { GlobalFunctionService } 	  from './global-function.service';
 export class AppComponent implements OnInit {
 
     menuCreateDisabled: boolean = false;
-    menuToggle: boolean = false;
     showCollaborate: boolean = false;
     showModalLanding: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardRename: boolean = false;
     showModalDashboardDetails: boolean = false;
     showModalWidgetEditor: boolean = false;
+    showModalDataPopup: boolean = false;
     showPalette: boolean = false;
     currentWidgetSpec: string = "{...}";
 
@@ -51,14 +51,19 @@ export class AppComponent implements OnInit {
     }   
 
     clickMenuFileNew() {
-        this.showModalWidgetEditor = true;
     }
     
     clickMenuCreateWidget() {
         this.showModalWidgetEditor = true;
     }
 
+    menuDataFromFile() {
+        console.log('menuDataFromFile')
+        this.showModalDataPopup = true;
+    }
+
     menuDataGetData() {
+        console.log('menuDataGetData')
         this.globalVariableService.changeMenuCreateDisabled(true);
         this.router.navigate(['/data']);
     }
@@ -77,6 +82,10 @@ export class AppComponent implements OnInit {
         this.showModalLanding = false;
         this.document.body.style.backgroundImage ='../images/BarChart.png';
         
+    }
+
+    handleCloseDataPopup() {
+        this.showModalDataPopup = false;
     }
 
     handleCloseWidgetEditor() {

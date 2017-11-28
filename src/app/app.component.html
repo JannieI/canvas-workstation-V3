@@ -10,32 +10,7 @@
         </div>
 
         <div class="header-nav" [clr-nav-level]="1">
-            <button type="button" (click)="menuToggle = ! menuToggle">
-                Toggle
-            </button>
-            <div *ngIf="menuToggle">
-                <a class="nav-link" href="#" [routerLink]="['/data']" routerLinkActive="active">
-                    <span class="nav-text">Data</span>
-                </a>
-
-                <a class="nav-link" href="#" [routerLink]="['/explore']" routerLinkActive="active">
-                    <span class="nav-text">Explore</span>
-                </a>    
-
-                <a class="nav-link" href="#" [routerLink]="['/present']" routerLinkActive="active">
-                    <span class="nav-text">Present</span>
-                </a>
-
-                <a class="nav-link" href="#" [routerLink]="['/collaborate']" routerLinkActive="active">
-                    <span class="nav-text">Collaborate</span>
-                </a>
-
-                <a class="nav-link" href="#" [routerLink]="['/help']" routerLinkActive="active">
-                    <span class="nav-text">Help</span>
-                </a>
-            </div>
-
-            <div *ngIf="!menuToggle">
+            <div>
                         
                 <clr-dropdown class="menuText">
                     <button 
@@ -49,6 +24,27 @@
                         <button type="button" clrDropdownItem (click)="clickMenuFileNew()">
                             New
                         </button>
+                        <clr-dropdown>
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Recent
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button" clrDropdownItem>
+                                    1. Budget per Department
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    2. Economic Overview
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    3. Leave Summary
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+
                         <button type="button" clrDropdownItem (click)="clickMenuFileOpen()">
                             Open
                         </button>
@@ -162,7 +158,7 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="menuDataGetData()">
+                        <button type="button" clrDropdownItem (click)="menuDataFromFile()">
                             From File
                         </button>
                         <button type="button" clrDropdownItem (click)="menuDataGetData()">
@@ -215,8 +211,12 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
+                        <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="menuDataGetData()">
                             Edit
+                        </button>
+                        <button type="button" clrDropdownItem (click)="menuDataGetData()">
+                            Combinations
                         </button>
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickSave()">
@@ -663,12 +663,20 @@
     (formDashboardDetailsClosed)="handleCloseDashboardDetails($event)">Open Dashboard Details ...
 </dashboard-details>
 
+
 <!-- Modal: widget editor -->
 <widget-editor 
     *ngIf="showModalWidgetEditor"
     [currentWidgetSpec]="currentWidgetSpec"
     (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Open Widget Editor ...
 </widget-editor>
+
+
+<!-- Modal: Get Data -->
+<data-popup 
+    *ngIf="showModalDataPopup"
+    (formDataPopupClosed)="handleCloseDataPopup($event)">Open Data Popup ...
+</data-popup>
 
 
 <!-- Overlay: Collaborate -->

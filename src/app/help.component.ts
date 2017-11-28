@@ -65,7 +65,6 @@ export class HelpComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.globalFunctionService.hideSecondaryMenus();
 		console.log('rootDirectory',rootDirectory)
 	}
 	
