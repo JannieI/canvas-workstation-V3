@@ -73,10 +73,10 @@
                                     Checkpoint now
                                 </button>
                                 <button type="button" clrDropdownItem>
-                                    Role back
+                                    Roll back
                                 </button>
                                 <button type="button" clrDropdownItem>
-                                    Show previous
+                                    Previous checkpoints
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
@@ -138,8 +138,85 @@
                         Data
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <clr-dropdown>
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Recent
+                            </button>
+                            <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                                <button type="button" clrDropdownItem>
+                                    1. Sales per region
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    2. Risk analysis
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    3. Part maintenance
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    4. Production comparison
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+                        <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="menuDataGetData()">
-                            Get data
+                            From File
+                        </button>
+                        <button type="button" clrDropdownItem (click)="menuDataGetData()">
+                            From Server
+                        </button>
+
+                        <clr-dropdown>
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Samples
+                            </button>
+                            <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                                <button type="button" clrDropdownItem>
+                                    1. Personal Budget
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    2. Voting by gender ...
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    3. Aging populatio...
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    4. Gold reserves ...
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+                        <clr-dropdown>
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                More ...
+                            </button>
+                            <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                                <button type="button" clrDropdownItem>
+                                    Database
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    Service
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    Web
+                                </button>
+                                <button type="button" clrDropdownItem>
+                                    NoSQL
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+                        <button type="button" clrDropdownItem (click)="menuDataGetData()">
+                            Edit
                         </button>
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickSave()">
