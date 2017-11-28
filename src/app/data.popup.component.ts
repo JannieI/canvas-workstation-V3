@@ -29,7 +29,7 @@ interface Idata{
 @Component({
     selector: 'data-popup',
     templateUrl: './data.popup.component.html',
-    styleUrls: ['./data.popup.component.css']
+    styleUrls:  ['./data.popup.component.css']
 })
 export class DataPopupComponent implements OnInit {
 

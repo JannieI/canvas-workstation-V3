@@ -6,7 +6,6 @@
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
- 
 
                 <div class="row">
 
@@ -45,22 +44,36 @@
 
                     </div>
 
-                    <div class="col-xs-8">
+                    <div class="col-xs-8 fileSelector">
                         <div>
-                            <h3 class="modal-title">File selection</h3>
-                            <div class="modal-body">
-                                <p>Please enter file name and location, or Browse:</p>
-                                <input type="text" id="formFields_7" placeholder="Folder/FileName">
+                            <h3 class="fileSelectorHeader">File selection</h3>
+                                <span>Please enter file name and location, or Browse: </span>
+                                <input type="text" id="formFields_7" 
+                                    placeholder="Folder/FileName"
+                                    class="selectFile"
+                                    >
                                 <br>
-                                <input type="text" id="formFields_7" placeholder="Worksheet">
+                                Worksheet: 
+                                <span class="select">
+                                    <select id="selects_3" class="selectBox">
+                                        <option>New York</option>
+                                        <option>San Francisco</option>
+                                        <option>Austin</option>
+                                        <option>Paris</option>
+                                        <option>Seattle</option>
+                                    </select>
+                                </span>
                                 <br>
+                                Name of Dataset:
                                 <input type="text" id="formFields_7" placeholder="Dataset Name">
+                                <button 
+                                    type="button" 
+                                    class="btn btn-secondary" 
+                                    (click)="clickAddFileSave()"
+                                    >
+                                    Open
+                                </button>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline" (click)="clickAddFileClose()">Cancel</button>
-                                <button type="button" class="btn btn-primary" (click)="clickAddFileSave()">Ok</button>
-                            </div>
-                        </div>
                     </div>
 
                     Your current datasource is: <i>{{ selectedData }}</i>
