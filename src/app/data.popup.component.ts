@@ -43,8 +43,11 @@ export class DataPopupComponent implements OnInit {
     errorMessage: string = "";
     fields: field[];
     fieldsMetadata: fieldMetadata[];
+    selectorDetailColumnEnd: string = '9';
     selectedFile: boolean = true;
     selectedData: string = 'Trades for 2016';
+    showSelectorDetailArea: boolean = false;
+    showSelectField: boolean = false;
     transformation: transformation[];
 
 	constructor(
@@ -61,7 +64,7 @@ export class DataPopupComponent implements OnInit {
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
     }
 
-    clickAddFileSave() {
+    clickOpenFile() {
         let newData: currentDatasource =  {
             id: 1,
             type: 'Excel file',
@@ -70,6 +73,11 @@ export class DataPopupComponent implements OnInit {
         }
 
         newData.name = 'Trades for 2016'
+        this.showSelectorDetailArea = true;
+    }
+
+    clickField() {
+        this.showSelectField = !this.showSelectField;
     }
 
     clickClose(action: string) {
