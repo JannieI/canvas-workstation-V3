@@ -32,8 +32,9 @@
 }
 
 .currentDataHeader {
-    background-color: rgb(131, 180, 230);
+    background-color: rgb(101, 101, 102);
     border-radius: 4px;
+    color: black;
     margin: 3px;
     padding: 3px;
 }
