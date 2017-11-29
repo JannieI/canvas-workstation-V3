@@ -43,7 +43,7 @@ export class DataPopupComponent implements OnInit {
     errorMessage: string = "";
     fields: field[];
     fieldsMetadata: fieldMetadata[];
-    selectorDetailColumnEnd: string = '9';
+    selectorDetailColumnEnd: string = '12';
     selectedFile: boolean = true;
     selectedData: string = 'Trades for 2016';
     showSelectorDetailArea: boolean = false;
@@ -77,7 +77,13 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickField() {
-        this.showSelectField = !this.showSelectField;
+        if (this.showSelectField) {
+            this.showSelectField = false;
+            this.selectorDetailColumnEnd = '12';
+        } else {
+            this.showSelectField = true;
+            this.selectorDetailColumnEnd = '9';
+        }
     }
 
     clickClose(action: string) {

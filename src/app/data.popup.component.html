@@ -82,64 +82,101 @@
                                 [style.grid-row-start]='7'
                                 [style.grid-row-end]='20'
                                 >
+                                <div *ngIf="!showSelectField  &&  showSelectorDetailArea" class="fileSelectFieldHelp">
+                                    Click on a column heading to see its detail
+                                </div>
+                                <clr-datagrid>
+                                    <clr-dg-column (click)="clickField('id')">
+                                        ID
+                                    </clr-dg-column>
+                                    <clr-dg-column>Name</clr-dg-column>
+                                    <clr-dg-column>Type</clr-dg-column>
+                                    <clr-dg-column>Format</clr-dg-column>
+                                    <clr-dg-column>Filter</clr-dg-column>
+                                    <clr-dg-column>Calc</clr-dg-column>
+                                    <clr-dg-column>Order</clr-dg-column>
+                                    <clr-dg-column>Hide</clr-dg-column>
+
+                                    <clr-dg-row *ngFor="let field of fields">
+                                        <clr-dg-cell>{{field.id}}</clr-dg-cell>
+                                        <clr-dg-cell>{{field.name}}</clr-dg-cell>
+                                        <clr-dg-cell>{{field.type}}</clr-dg-cell>
+                                        <clr-dg-cell>{{field.format}}</clr-dg-cell>
+                                        <clr-dg-cell>{{field.filter}}</clr-dg-cell>
+                                        <clr-dg-cell>{{field.calc}}</clr-dg-cell>
+                                        <clr-dg-cell>{{field.order}}</clr-dg-cell>
+                                    </clr-dg-row>
+
+                                    <clr-dg-footer>{{fields.length}} fields</clr-dg-footer>
+                                </clr-datagrid>
+                            </div>
+
+                            <div *ngIf="showSelectField" class="fileSelectField">
+
                                 <clr-tabs>
-
+                                        
                                     <clr-tab>
-                                        <button clrTabLink id="link1" class="tabHeadings" >Columns</button>
+                                        <button clrTabLink id="link1" class="tabHeadings" >
+                                            Info
+                                        </button>
                                         <clr-tab-content id="content1" *clrIfActive>
-                                            <clr-datagrid>
-                                                <clr-dg-column (click)="clickField('id')">
-                                                    ID
-                                                </clr-dg-column>
-                                                <clr-dg-column>Name</clr-dg-column>
-                                                <clr-dg-column>Type</clr-dg-column>
-                                                <clr-dg-column>Format</clr-dg-column>
-                                                <clr-dg-column>Filter</clr-dg-column>
-                                                <clr-dg-column>Calc</clr-dg-column>
-                                                <clr-dg-column>Order</clr-dg-column>
-                                                <clr-dg-column>Hide</clr-dg-column>
-
-                                                <clr-dg-row *ngFor="let field of fields">
-                                                    <clr-dg-cell>{{field.id}}</clr-dg-cell>
-                                                    <clr-dg-cell>{{field.name}}</clr-dg-cell>
-                                                    <clr-dg-cell>{{field.type}}</clr-dg-cell>
-                                                    <clr-dg-cell>{{field.format}}</clr-dg-cell>
-                                                    <clr-dg-cell>{{field.filter}}</clr-dg-cell>
-                                                    <clr-dg-cell>{{field.calc}}</clr-dg-cell>
-                                                    <clr-dg-cell>{{field.order}}</clr-dg-cell>
-                                                </clr-dg-row>
-
-                                                <clr-dg-footer>{{fields.length}} fields</clr-dg-footer>
-                                            </clr-datagrid>
+                                            
+                                            Info for <b>TradeData</b>
+                                            <br>
+                                            Description: bla-bla-bla
+                                            <br>
+                                            Local Name: <input type="text" id="formFields_7" placeholder="Enter Name">
+                                            <br>
+                                            Type: <b>Number</b>  Change to:
+                                            <div class="select">
+                                                <select id="selects_3">
+                                                    <option>Boolean (true/false)</option>
+                                                    <option>Date (2014/07/31)</option>
+                                                    <option>DateTime (2014/07/31 12:41:04)</option>
+                                                    <option>String ('May West')</option>
+                                                </select>
+                                            </div>
+                                            <br>
+                                            Format: <b></b>  Change to: 
+                                            <div class="select">
+                                                <select id="selects_3">
+                                                    <option>Number</option>
+                                                    <option>Monetary</option>
+                                                    <option>YYYY/MM/DD</option>
+                                                </select>
+                                            </div>
+                                            <br>
+                                            Filter: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Filter text">
+                                            Calculation: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Enter Formula">
+                                            <br>
+                                            Order: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Order (1 Asc)">
+                                            <br>
+                                            Hide: <b></b>  Change to:
+                                            <div class="select">
+                                                <select id="selects_3">
+                                                    <option>True</option>
+                                                    <option>False</option>
+                                                </select>
+                                            </div>
                                         </clr-tab-content>
                                     </clr-tab>
 
                                     <clr-tab>
-                                        <button clrTabLink id="link1" class="tabHeadings">Metadata</button>
+                                        <button clrTabLink id="link1" class="tabHeadings" >
+                                            Summary
+                                        </button>
                                         <clr-tab-content id="content1" *clrIfActive>
-                                            Information about the fields:
-                                            <clr-datagrid>
-                                                <clr-dg-column>Name</clr-dg-column>
-                                                <clr-dg-column>Type</clr-dg-column>
-                                                <clr-dg-column>Description</clr-dg-column>
-                                                <clr-dg-column>Key?</clr-dg-column>
-                                                <clr-dg-column>ExplainedBy</clr-dg-column>
 
-                                                <clr-dg-row *ngFor="let field of fieldsMetadata">
-                                                    <clr-dg-cell>{{field.name}}</clr-dg-cell>
-                                                    <clr-dg-cell>{{field.type}}</clr-dg-cell>
-                                                    <clr-dg-cell>{{field.description}}</clr-dg-cell>
-                                                    <clr-dg-cell>{{field.keyField}}</clr-dg-cell>
-                                                    <clr-dg-cell>{{field.explainedBy}}</clr-dg-cell>
-                                                </clr-dg-row>
-                                            </clr-datagrid>
+                                            Key: T/F
+                                            ExplainedBy: BarChart, TradeDate, Value
                                         </clr-tab-content>
-                                    </clr-tab>
-
+                                    </clr-tab>  
                                     <clr-tab>
-                                        <button clrTabLink id="link1" class="tabHeadings"[class.disabled]="!canUse">
-                                            Transformation</button>
+                                        <button clrTabLink id="link1" class="tabHeadings" >
+                                            Transformation
+                                        </button>
                                         <clr-tab-content id="content1" *clrIfActive>
+
                                             Selected type and specific transformation to add to the list below:
                                             <div class="dropdown"  #typeTransformationDropdown>
                                                 <button type="button" class="dropdown-toggle btn btn-link"
@@ -207,101 +244,24 @@
 
                                                 <clr-dg-footer>{{transformation.length}} transformations</clr-dg-footer>
                                             </clr-datagrid>
-
                                         </clr-tab-content>
-                                    </clr-tab>
+                                    </clr-tab>  
+
+
 
                                     <clr-tab>
-                                        <button clrTabLink id="link1" class="tabHeadings">Summary</button>
+                                        <button clrTabLink id="link1" class="tabHeadings" >
+                                            Quality
+                                        </button>
                                         <clr-tab-content id="content1" *clrIfActive>
-                                            Information about the dataset:
-                                            <p>* Data Quality notes</p>
-                                            <p>* Table Description</p>
-                                            <p>* Nr records</p>
-                                            <p>* IF key fields have been marked, some cardinality / summary graphs
-                                                will be shown to the shape of the data, bins, frequency distribution,
-                                                etc to help understand the data
-                                            </p>
+                                            Data Quality notes
+                                            Nr records
+                                            * IF key fields have been marked, some cardinality / summary 
+                                                graphs will be shown to the shape of the data, bins, 
+                                                frequency distribution, etc to help understand the data
                                         </clr-tab-content>
                                     </clr-tab>
-
-                                    <clr-tab>
-                                        <button clrTabLink id="link1" class="tabHeadings">Export</button>
-                                        <clr-tab-content id="content1" *clrIfActive>
-                                            Export the dataset to an external file:  -> Should we??
-                                            <p>Format: <input type="text" id="formFields_7" placeholder="CSV / Text"></p>
-                                            <p>Name: <input type="text" id="formFields_7" placeholder="File Name"></p>
-                                            <button class="btn btn-secondary">Export</button>
-                                        </clr-tab-content>
-                                    </clr-tab>
-
-                                </clr-tabs>
-                            </div>
-
-                            <div *ngIf="!showSelectField  &&  showSelectorDetailArea" class="fileSelectFieldHelp">
-                                Click on a column heading to see its detail
-                            </div>
-                            <div *ngIf="showSelectField" class="fileSelectField">
-                                Info for <b>TradeData</b>
-                                Description: bla-bla-bla
-                                Key: T/F
-                                ExplainedBy: BarChart, TradeDate, Value
-                                Transformation
-                                Data Quality notes
-                                Nr records
-                                * IF key fields have been marked, some cardinality / summary 
-                                    graphs will be shown to the shape of the data, bins, 
-                                    frequency distribution, etc to help understand the data
-                                Local Name: <input type="text" id="formFields_7" placeholder="Enter Name">
-                                Type: <b>Number</b>  Change to:
-                                <div class="select">
-                                    <select id="selects_3">
-                                        <option>Boolean (true/false)</option>
-                                        <option>Date (2014/07/31)</option>
-                                        <option>DateTime (2014/07/31 12:41:04)</option>
-                                        <option>String ('May West')</option>
-                                    </select>
-                                </div>
-                                Format: <b></b>  Change to: 
-                                <div class="select">
-                                        <select id="selects_3">
-                                            <option>Number</option>
-                                            <option>Monetary</option>
-                                            <option>YYYY/MM/DD</option>
-                                        </select>
-                                    </div>
-                                    Filter: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Filter text">
-                                Calculation: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Enter Formula">
-                                Order: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Order (1 Asc)">
-                                Hide: <b></b>  Change to:
-                                <div class="select">
-                                        <select id="selects_3">
-                                            <option>True</option>
-                                            <option>False</option>
-                                        </select>
-                                    </div>
-    
-                                <div class="select">
-                                    <select id="selects_3">
-                                        <option>New York</option>
-                                        <option>San Francisco</option>
-                                        <option>Austin</option>
-                                        <option>Paris</option>
-                                        <option>Seattle</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Default/Stacked radio button group</label>
-                                    <div class="radio">
-                                        <input type="radio" name="gridRadio
-                                        s" id="checkrads_9">
-                                        <label for="checkrads_9">Radio option 1</label>
-                                    </div>
-                                    <div class="radio">
-                                        <input type="radio" name="gridRadios" id="checkrads_10" checked>
-                                        <label for="checkrads_10">Radio option 2 (checked)</label>
-                                    </div>
-                                </div>                                
+                                </clr-tabs>              
                             </div>
                         </div>
                     </div>
