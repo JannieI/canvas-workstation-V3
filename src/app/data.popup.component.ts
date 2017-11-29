@@ -64,15 +64,7 @@ export class DataPopupComponent implements OnInit {
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
     }
 
-    clickOpenFile() {
-        let newData: currentDatasource =  {
-            id: 1,
-            type: 'Excel file',
-            name: 'Costing preparation',
-            description: 'Costing preparation'
-        }
-
-        newData.name = 'Trades for 2016'
+    clickFileView() {
         this.showSelectorDetailArea = true;
     }
 
@@ -84,6 +76,18 @@ export class DataPopupComponent implements OnInit {
             this.showSelectField = true;
             this.selectorDetailColumnEnd = '9';
         }
+    }
+
+    clickFileAdd() {
+        console.log(this.currentDatasources)
+        let newData: currentDatasource =  {
+            id: 1,
+            type: 'Excel file',
+            name: 'Costing preparation',
+            description: 'Costing preparation'
+        };        
+        this.currentDatasources.push(newData)
+        console.log(this.currentDatasources)
     }
 
     clickClose(action: string) {

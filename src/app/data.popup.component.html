@@ -13,13 +13,6 @@
 
                         <div class="currentDataHeader">
                             Current Data
-                            <clr-icon
-                                shape="plus"
-                                size="16"
-                                class="currentDataIcon"
-                                (click)="clickShowAddData()"
-                                >
-                            </clr-icon>
                         </div>
 
                         <section class="sidenav-content">
@@ -48,7 +41,16 @@
                         <div class="wrapper">
                             <div class="fileSelectorTop">
                                 <h3 class="fileSelectorHeader">File selection</h3>
-                                <span>Please enter file name and location, or Browse: </span>
+                                <span>Please enter file name and location, or 
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-link" 
+                                        (click)="clickOpenFile()"
+                                        >
+                                        Browse
+                                    </button>
+                                    : 
+                                </span>
                                 <input type="text" id="formFields_7" 
                                     placeholder="Folder/FileName"
                                     class="selectFile"
@@ -70,9 +72,16 @@
                                 <button 
                                     type="button" 
                                     class="btn btn-secondary selectButon" 
-                                    (click)="clickOpenFile()"
+                                    (click)="clickFileView()"
                                     >
-                                    Open
+                                    View
+                                </button>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-secondary selectButon" 
+                                    (click)="clickFileAdd()"
+                                    >
+                                    Add
                                 </button>
                             </div>
 
