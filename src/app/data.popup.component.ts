@@ -65,7 +65,7 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickFileView() {
-        this.showSelectorDetailArea = true;
+        this.showSelectorDetailArea = !this.showSelectorDetailArea;
     }
 
     clickField() {

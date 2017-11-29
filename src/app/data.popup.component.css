@@ -61,7 +61,7 @@
     grid-row-start: 1; 
     grid-row-end: 7; 
     margin: 0 0 0 15px !important;
-    padding: 5px !important;
+    padding: 0 !important;
 }
 
 .fileSelectorDetailArea {
@@ -69,6 +69,19 @@
     border-radius: 5px;
 
     margin: 5px;
+}
+
+.datagrid {
+    margin-top: 0 !important; 
+}
+
+.fieldsDataGrid {
+    margin-top: 0 !important; 
+}
+
+.fieldDataGridFooter {
+    position: absolute;
+    left: 2rem;
 }
 
 .fileSelectFieldHelp {
@@ -111,3 +124,4 @@
 .tabHeadings {
     background-color: rgb(235, 234, 245);
 }
+
