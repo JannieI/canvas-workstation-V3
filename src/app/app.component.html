@@ -161,7 +161,7 @@
                         <button type="button" clrDropdownItem (click)="menuDataFromFile()">
                             From File
                         </button>
-                        <button type="button" clrDropdownItem (click)="menuDataGetData()">
+                        <button type="button" clrDropdownItem (click)="menuDataFromServer()">
                             From Server
                         </button>
 
@@ -677,6 +677,14 @@
     *ngIf="showModalDataPopup"
     (formDataPopupClosed)="handleCloseDataPopup($event)">Open Data Popup ...
 </data-popup>
+
+
+
+<!-- Modal: Get Data 11111111111111 -->
+<data-popup1 
+    *ngIf="showModalDataPopup1"
+    (formDataPopupClosed)="handleCloseDataPopup($event)">Open Data Popup ...
+</data-popup1>
 
 
 <!-- Overlay: Collaborate -->

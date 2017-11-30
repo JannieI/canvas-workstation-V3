@@ -29,7 +29,10 @@ import { PresentComponent }           from './present.component';
 import { WidgetEditorComponent }      from './widget.editor.component';
 import { DashboardRenameComponent }   from './dashboard.rename.component';
 import { DashboardOpenComponent }     from './dashboard.open.component';
-import { DashboardDetailsComponent }     from './dashboard.details.component';
+import { DashboardDetailsComponent }  from './dashboard.details.component';
+
+import { DataPopup1Component }        from './data.popup1.component';
+
 
 // Our Services
 import { AuthGuard }                  from './authguard.service';
@@ -52,6 +55,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardOpenComponent,
         DashboardDetailsComponent,
         DataPopupComponent,
+        DataPopup1Component,
     ],
     imports: [
         BrowserAnimationsModule,

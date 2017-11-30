@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
     showModalDashboardDetails: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalDataPopup: boolean = false;
+    showModalDataPopup1: boolean = false;
     showPalette: boolean = false;
     currentWidgetSpec: string = "{...}";
 
@@ -62,6 +63,10 @@ export class AppComponent implements OnInit {
         this.showModalDataPopup = true;
     }
 
+    menuDataFromServer() {
+        console.log('menuDataFromServer')
+        this.showModalDataPopup1 = true;
+    }
     menuDataGetData() {
         console.log('menuDataGetData')
         this.globalVariableService.changeMenuCreateDisabled(true);
@@ -86,6 +91,7 @@ export class AppComponent implements OnInit {
 
     handleCloseDataPopup() {
         this.showModalDataPopup = false;
+        this.showModalDataPopup1 = false;
     }
 
     handleCloseWidgetEditor() {
