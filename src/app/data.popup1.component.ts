@@ -7,6 +7,7 @@
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
+import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { ViewChild }                  from '@angular/core';
@@ -36,7 +37,9 @@ interface Idata{
 })
 export class DataPopup1Component implements OnInit {
 
-
+    @Input() showWizard: boolean;
+    @Output() formDataPopupClosed: EventEmitter<string> = new EventEmitter();
+    
     @ViewChild("wizard") wizard: Wizard;
     @ViewChild("pageThree") pageThree: WizardPage;
     @ViewChild("pageFive") pageFive: WizardPage;
@@ -71,7 +74,10 @@ export class DataPopup1Component implements OnInit {
         this.jumpTo(this.pageFive);
     }
 
-    clickAlert() {
-        alert ('Hallo')
+    clickClose(action: string) {
+		this.formDataPopupClosed.emit(action);
     }
+
+    
+
 }

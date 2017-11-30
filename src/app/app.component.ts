@@ -16,6 +16,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService } 	  from './global-function.service';
 
 // Own Components
+import { field }                      from './models'
 
 @Component({
     selector: 'my-app',
@@ -23,7 +24,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+    fields: field[];
+    
     menuCreateDisabled: boolean = false;
     showCollaborate: boolean = false;
     showModalLanding: boolean = false;
@@ -32,6 +34,7 @@ export class AppComponent implements OnInit {
     showModalDashboardDetails: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalDataPopup: boolean = false;
+    showWizard: boolean = false;
     showModalDataPopup1: boolean = false;
     showPalette: boolean = false;
     currentWidgetSpec: string = "{...}";
@@ -49,6 +52,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
+        this.fields = this.globalVariableService.fields;
     }   
 
     clickMenuFileNew() {
@@ -64,8 +68,10 @@ export class AppComponent implements OnInit {
     }
 
     menuDataFromServer() {
-        console.log('menuDataFromServer')
-        this.showModalDataPopup1 = true;
+        // console.log('menuDataFromServer 1', this.showWizard, this.showModalDataPopup1)
+        this.showWizard = true;
+        // this.showModalDataPopup1 = true;
+        console.log('menuDataFromServer', this.showWizard, this.showModalDataPopup1)
     }
     menuDataGetData() {
         console.log('menuDataGetData')

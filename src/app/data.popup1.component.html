@@ -1,44 +1,34 @@
-<!-- <div class="modal modalBox">
-	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-		<div class="modal-content modalContent">
+{{ showWizard }}
+<clr-wizard #wizard [(clrWizardOpen)]="showWizard" [clrWizardSize]="'xl'">
+    <clr-wizard-title>Jump-To Wizard</clr-wizard-title>
 
-            Wizard -->
-            <clr-wizard #wizard [(clrWizardOpen)]="open" [clrWizardSize]="'xl'">
-                <clr-wizard-title>Jump-To Wizard</clr-wizard-title>
-            
-                <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
-                <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
-                <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
-                <clr-wizard-button [type]="'finish'">Done</clr-wizard-button>
-            
-                <clr-wizard-page>
-                    <ng-template clrPageTitle>Page 1</ng-template>
-                    ...
-                </clr-wizard-page>
-            
-                <clr-wizard-page>
-                    <ng-template clrPageTitle>Page 2</ng-template>
-                    ...
-                    <ng-template clrPageButtons> 
-                        <button (click)="clickAlert()"> Alert </button> 
-                    </ng-template>
-                </clr-wizard-page>
-            
-                <clr-wizard-page #pageThree>
-                    <ng-template clrPageTitle>Page 3</ng-template>
-                    ...
-                </clr-wizard-page>
-            
-                <clr-wizard-page>
-                    <ng-template clrPageTitle>Page 4</ng-template>
-                    ...
-                </clr-wizard-page>
-            
-                <clr-wizard-page #pageFive>
-                    <ng-template clrPageTitle>Page 5</ng-template>
-                    ...
-                </clr-wizard-page>
-            </clr-wizard>            
-        <!-- </div>  
-    </div>
-</div> -->
+    <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
+    <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+    <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+    <clr-wizard-button [type]="'finish'">Done</clr-wizard-button>
+
+    <clr-wizard-page>
+        <ng-template clrPageTitle>Page 1</ng-template>
+        {{ showWizard }}
+    </clr-wizard-page>
+
+    <clr-wizard-page>
+        <ng-template clrPageTitle>Page 2</ng-template>
+        ...
+    </clr-wizard-page>
+
+    <clr-wizard-page #pageThree>
+        <ng-template clrPageTitle>Page 3</ng-template>
+        ...
+    </clr-wizard-page>
+
+    <clr-wizard-page>
+        <ng-template clrPageTitle>Page 4</ng-template>
+        ...
+    </clr-wizard-page>
+
+    <clr-wizard-page #pageFive>
+        <ng-template clrPageTitle>Page 5</ng-template>
+        ...
+    </clr-wizard-page>
+</clr-wizard>            

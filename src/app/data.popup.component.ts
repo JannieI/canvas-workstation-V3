@@ -81,6 +81,7 @@ export class DataPopupComponent implements OnInit {
     clickFileBrowse() {
         alert('Later: File component to browse ...')
     }
+    
     clickFileAdd() {
         console.log(this.currentDatasources)
         let newData: currentDatasource =  {
