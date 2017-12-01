@@ -20,28 +20,28 @@
                         </button>
                         <button 
                             type="button" 
-                            class="btn btn-link" 
+                            class="btn btn-link wizardButton" 
                             (click)="clickFileBrowse()"
                             >
                             Datasource
                         </button>
                         <button 
                             type="button" 
-                            class="btn btn-link" 
+                            class="btn btn-link wizardButton" 
                             (click)="clickFileBrowse()"
                             >
                             Overall Transform
                         </button>
                         <button 
                             type="button" 
-                            class="btn btn-link" 
+                            class="btn btn-link wizardButton" 
                             (click)="clickFileBrowse()"
                             >
                             Field Transform
                         </button>
                         <button 
                             type="button" 
-                            class="btn btn-link" 
+                            class="btn btn-link wizardButton" 
                             (click)="clickFileBrowse()"
                             >
                             Summary
@@ -52,7 +52,7 @@
 
                     <div class="col-xs-10 fileSelector">
 
-                        <div>
+                        <div *ngIf="selectedExisting">
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column (click)="clickField('id')">
                                     ID

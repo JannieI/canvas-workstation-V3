@@ -3,7 +3,7 @@ import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
 
 // Our Models
-import { currentDatasource }          from './model.currentDashboard';
+import { currentDatasource }          from './models';
 import { dashboard }                  from './models'
 import { datasource }                 from './models'
 import { CSScolor }                   from './models'
@@ -14,7 +14,7 @@ import { fieldMetadata }              from './models'
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
-const currentDashboards: dashboard[] = 
+const currentDashboards: dashboard[] =
 [
     {
         name: 'Market Overview',
@@ -38,7 +38,7 @@ const currentDashboards: dashboard[] =
     }
 ];
 
-const backgroundcolors: CSScolor[] = 
+const backgroundcolors: CSScolor[] =
 [
     {
         name: 'transparent'
@@ -51,25 +51,25 @@ const backgroundcolors: CSScolor[] =
     }
 ];
 
-const currentDatasources: currentDatasource [] = 
+const currentDatasources: currentDatasource [] =
 [
     {
         id: 1,
         name: 'My Expenses',
         type: 'Xls File',
         description: 'Personal expenses, with info per budget type.'
-        
+
     },
     {
         id: 2,
         name: 'Bitcoin Trades',
         type: 'Database - PostgreSQL',
         description: 'Trades from Bitcoin Exchange'
-    
+
     }
 ];
 
-const fields: field[] = 
+const fields: field[] =
 [
     {
         id: 1,
@@ -105,11 +105,11 @@ const fields: field[] =
         format: '2 decimals',
         filter: '> 1m',
         calc: 'Volume * 10',
-        order: '' 
+        order: ''
     }
 ];
 
-const fieldsMetadata: fieldMetadata[] = 
+const fieldsMetadata: fieldMetadata[] =
 [
     {
         name: 'DateTrade',
@@ -141,161 +141,161 @@ const fieldsMetadata: fieldMetadata[] =
     }
 ];
 
-const transformations: transformation[] = 
+const transformations: transformation[] =
 [
     {
         id: 1,
         category: 'Column-level',
-        name: 'FormatDate', 
+        name: 'FormatDate',
         description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.'
     },
     {
         id: 2,
         category: 'Column-level',
-        name: 'FillBlanks', 
+        name: 'FillBlanks',
         description: '(columnName, newValue)'
     },
     {
         id: 3,
         category: 'Column-level',
-        name: 'FillNull', 
+        name: 'FillNull',
         description: '(columnName, newValue)'
     },
     {
         id: 4,
         category: 'Column-level',
-        name: 'FillBlankAndNull', 
+        name: 'FillBlankAndNull',
         description: '(columnName, newValue)'
     },
     {
         id: 5,
         category: 'Column-level',
-        name: 'ReplaceNumbers', 
+        name: 'ReplaceNumbers',
         description: '(columnName, from, to, newValue)'
     },
     {
         id: 6,
         category: 'Column-level',
-        name: 'ReplaceString', 
+        name: 'ReplaceString',
         description: '(columnName, oldValue, newValue)'
     },
     {
         id: 7,
         category: 'Column-level',
-        name: 'AppendColumn', 
+        name: 'AppendColumn',
         description: '(newColumnName, dataType, fillValue)'
     },
     {
         id: 8,
         category: 'Column-level',
-        name: 'Columns', 
+        name: 'Columns',
         description: '([column1, column2, ...]) to be returned'
     },
     {
         id: 9,
         category: 'Column-level',
-        name: 'Field Filters', 
+        name: 'Field Filters',
         description: '([ {columnX, operator, value} ]'
     },
     {
         id: 10,
         category: 'Column-level',
-        name: 'CalcColumn', 
+        name: 'CalcColumn',
         description: '(newColumnName, columnOne, columnTwo, Operator, fillValue)'
     },
     {
         id: 11,
         category: 'Column-level',
-        name: 'Substring', 
+        name: 'Substring',
         description: '(columnName, startPosition, length)'
     },
     {
         id: 12,
         category: 'Column-level',
-        name: 'LeftTrim', 
+        name: 'LeftTrim',
         description: '(columnName)'
     },
     {
         id: 13,
         category: 'Column-level',
-        name: 'RightTrim', 
+        name: 'RightTrim',
         description: '(columnName)'
     },
     {
         id: 14,
         category: 'Column-level',
-        name: 'Trim', 
+        name: 'Trim',
         description: '(columnName), which combines LeftTrim and RightTrim'
     },
     {
         id: 15,
         category: 'Column-level',
-        name: 'RightSubstring', 
+        name: 'RightSubstring',
         description: '(columnName, startPosition, length) is similar to Substring, but startPosition is counted from the right.'
     },
     {
         id: 16,
         category: 'Column-level',
-        name: 'DatePart', 
+        name: 'DatePart',
         description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second'
     },
     {
         id: 17,
         category: 'Column-level',
-        name: 'Concatenate', 
+        name: 'Concatenate',
         description: '(columnNameOne, ColumnNameTwo)'
     },
     {
         id: 18,
         category: 'Column-level',
-        name: 'ConcatenateColumn', 
+        name: 'ConcatenateColumn',
         description: '(columnName, preString, postString) will append strings to the front or back of a column'
     },
     {
         id: 19,
         category: 'Column-level',
-        name: 'Calculate', 
+        name: 'Calculate',
         description: '(columnName, expression) where operation is a valid math expression, for example ‘+ 2’, or ‘/1000’.  The [columnName] (in square brackets) can be part of the expression, say [columnName] * 1.14'
     },
     {
         id: 20,
         category: 'Column-level',
-        name: 'FormatNumber', 
+        name: 'FormatNumber',
         description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’'
     },
     {
         id: 21,
         category: 'Column-level',
-        name: 'AddLatitude', 
+        name: 'AddLatitude',
         description: '(reference-columnName, new-columnName), add a new column with latitude, based on the information in the reference-columnName'
     },
     {
         id: 22,
         category: 'Column-level',
-        name: 'AddLongitude', 
+        name: 'AddLongitude',
         description: '(reference-columnName, new-columnName), add a new column with longitude, based on the information in the reference-columnName'
     },
     {
         id: 100,
         category: 'Table-level',
-        name: 'Pivot', 
+        name: 'Pivot',
         description: '(row-heading, column-heading, operator, data-heading) '
     },
     {
         id: 101,
         category: 'Table-level',
-        name: 'Transpose', 
+        name: 'Transpose',
         description: 'turning rows into columns and vice versa'
     },
     {
         id: 102,
         category: 'Table-level',
-        name: 'FormatTable', 
+        name: 'FormatTable',
         description: '(format), where format = json, csv, tsv, Excel, ADO, etc.'
     },
 ];
 
-const dataServer: datasource[] = 
+const dataServer: datasource[] =
 [
     {
         id: 1,
@@ -353,7 +353,7 @@ const dataServer: datasource[] =
     }
 ];
 
-const dataRecent: datasource[] = 
+const dataRecent: datasource[] =
 [
     {
         id: 1,
@@ -369,7 +369,7 @@ const dataRecent: datasource[] =
     }
 ];
 
-const dataSample: datasource[] = 
+const dataSample: datasource[] =
 [
     {
         id: 1,
@@ -402,8 +402,8 @@ export class GlobalVariableService {
     dataServer: datasource[] = dataServer;
     dataRecent: datasource[] = dataRecent;
     dataSample: datasource[] = dataSample;
-    
-    isFirstTime: boolean = true;    
+
+    isFirstTime: boolean = true;
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard
     // Company related variables
     // companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig

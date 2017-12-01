@@ -8,6 +8,13 @@ export class datasource {
     description;
 }
 
+export class currentDatasource {
+    id: number;
+    name: string;
+    type: string;
+    description;
+}
+
 // Dashboard
 export class dashboard {
     name: string;

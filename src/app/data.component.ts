@@ -16,7 +16,7 @@ import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { currentDatasource }          from './model.currentDashboard';
+import { currentDatasource }          from './models';
 import { transformation }             from './models'
 import { field }                      from './models'
 import { fieldMetadata }              from './models'
