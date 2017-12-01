@@ -13,10 +13,18 @@
                         <button
                             type="button"
                             class="btn btn-link wizardButton"
-                            [style.background-color]="selectedExisting? 'rgb(182, 179, 179)' : 'transparent'"
-                            (click)="clickMenuExisting()"
+                            [style.background-color]="selectedExistingDS? 'rgb(182, 179, 179)' : 'transparent'"
+                            (click)="clickMenuExistingDS()"
                             >
                             Existing Data
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-link wizardButton"
+                            [style.background-color]="selectedExistingTransform? 'rgb(182, 179, 179)' : 'transparent'"
+                            (click)="clickMenuExistingTransformation()"
+                            >
+                            All Transformations
                         </button>
                         <button
                             type="button"
@@ -87,7 +95,7 @@
 
                     <div class="col-xs-10 fileSelector">
 
-                        <div *ngIf="selectedExisting">
+                        <div *ngIf="selectedExistingDS">
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column>Edit</clr-dg-column>
                                 <clr-dg-column>Name</clr-dg-column>
@@ -123,239 +131,7 @@
                             </clr-datagrid>
                         </div>
 
-
-                        <div *ngIf="selectedDatasource">
-                                <div class="fileSelectorTop">
-                                <!-- <h4 class="fileSelectorHeader">File selection</h4> -->
-                                <span>Please enter file name and location, or
-                                    <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        (click)="clickFileBrowse()"
-                                        >
-                                        Browse
-                                    </button>
-                                    :
-                                </span>
-                                <input type="text" id="formFields_7"
-                                    placeholder="Folder/FileName"
-                                    class="selectFile"
-                                    >
-                                <br>
-                                Worksheet:
-                                <span class="select">
-                                    <select id="selects_3" class="selectBox">
-                                        <option>New York</option>
-                                        <option>San Francisco</option>
-                                        <option>Austin</option>
-                                        <option>Paris</option>
-                                        <option>Seattle</option>
-                                    </select>
-                                </span>
-                                <br>
-                                Name of Dataset:
-                                <input type="text" id="formFields_7" placeholder="Dataset Name">
-                                <button
-                                    type="button"
-                                    class="btn btn-link selectButon"
-                                    (click)="clickFileView()"
-                                    >
-                                    View
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link selectButon"
-                                    (click)="clickFileAdd()"
-                                    >
-                                    Add
-                                </button>
-                            </div>
-
-                            <div *ngIf="showSelectorDetailArea" class="fileSelectorDetailArea"
-                                [style.grid-column-start]='1'
-                                [style.grid-column-end]="selectorDetailColumnEnd"
-                                [style.grid-row-start]='7'
-                                [style.grid-row-end]='18'
-                                >
-                                <clr-datagrid class="fieldsDataGrid">
-                                    <clr-dg-column (click)="clickField('id')">
-                                        ID
-                                    </clr-dg-column>
-                                    <clr-dg-column>Name</clr-dg-column>
-                                    <clr-dg-column>Type</clr-dg-column>
-                                    <clr-dg-column>Format</clr-dg-column>
-                                    <clr-dg-column>Filter</clr-dg-column>
-                                    <clr-dg-column>Calc</clr-dg-column>
-                                    <clr-dg-column>Order</clr-dg-column>
-                                    <clr-dg-column>Hide</clr-dg-column>
-
-                                    <clr-dg-row *ngFor="let field of fields">
-                                        <clr-dg-cell>{{field.id}}</clr-dg-cell>
-                                        <clr-dg-cell>{{field.name}}</clr-dg-cell>
-                                        <clr-dg-cell>{{field.type}}</clr-dg-cell>
-                                        <clr-dg-cell>{{field.format}}</clr-dg-cell>
-                                        <clr-dg-cell>{{field.filter}}</clr-dg-cell>
-                                        <clr-dg-cell>{{field.calc}}</clr-dg-cell>
-                                        <clr-dg-cell>{{field.order}}</clr-dg-cell>
-                                    </clr-dg-row>
-
-                                    <clr-dg-footer>
-                                        <span class="fieldDataGridFooter">
-                                            Click on a column heading to see its detail
-                                        </span>
-                                        {{fields.length}} fields
-                                    </clr-dg-footer>
-                                </clr-datagrid>
-                            </div>
-                    </div>
-
-                    <div *ngIf="selectedFieldProperties">
-                        Info for <b>TradeData</b>
-                        <br>
-                        Description: bla-bla-bla
-                        <br>
-                        Local Name: <input type="text" id="formFields_7" placeholder="Enter Name">
-                        <br>
-                        Type: <b>Number</b>  Change to:
-                        <div class="select">
-                            <select id="selects_3">
-                                <option>Boolean (true/false)</option>
-                                <option>Date (2014/07/31)</option>
-                                <option>DateTime (2014/07/31 12:41:04)</option>
-                                <option>String ('May West')</option>
-                            </select>
-                        </div>
-                        <br>
-                        Format: <b></b>  Change to:
-                        <div class="select">
-                            <select id="selects_3">
-                                <option>Number</option>
-                                <option>Monetary</option>
-                                <option>YYYY/MM/DD</option>
-                            </select>
-                        </div>
-                        <br>
-                        Filter: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Filter text">
-                        Calculation: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Enter Formula">
-                        <br>
-                        Order: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Order (1 Asc)">
-                        <br>
-                        Hide: <b></b>  Change to:
-                        <div class="select">
-                            <select id="selects_3">
-                                <option>True</option>
-                                <option>False</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div *ngIf="selectedsummary">
-                        Key: T/F
-                        ExplainedBy: BarChart, TradeDate, Value
-                    </div>
-
-                    <div *ngIf="selectedFieldTransform">
-
-
-                        Existing field-level transformations:
-                        <clr-datagrid>
-                            <clr-dg-column>Up</clr-dg-column>
-                            <clr-dg-column>Down</clr-dg-column>
-                            <clr-dg-column>Del</clr-dg-column>
-                            <clr-dg-column>Nr</clr-dg-column>
-                            <clr-dg-column>Name</clr-dg-column>
-                            <clr-dg-column>Description</clr-dg-column>
-
-                            <clr-dg-row>
-                                <clr-dg-cell>
-                                    <clr-icon shape="arrow" size="16"></clr-icon>
-                                </clr-dg-cell>
-                                <clr-dg-cell>    
-                                    <clr-icon shape="arrow" size="16" dir="down"></clr-icon>
-                                </clr-dg-cell>
-                                <clr-dg-cell>
-                                <clr-icon shape="times" size="16"></clr-icon>
-                                </clr-dg-cell>
-                                <clr-dg-cell>
-                                    1
-                                </clr-dg-cell>
-                                <clr-dg-cell>Trim spaces</clr-dg-cell>
-                                <clr-dg-cell>
-                                    Trim spaces from left and right
-                                </clr-dg-cell>
-                            </clr-dg-row>
-
-                        </clr-datagrid>
-
-                        <br>
-                        Optionally save this as:  
-                        <input 
-                            type="text" 
-                            placeholder="Transformation Name"
-                            >
-                        <button 
-                            type="button" 
-                            class="btn btn-link btn-sm" 
-                            (click)="clickSave()"
-                            >
-                            Save
-                        </button>
-                        <br>
-
-                        <clr-icon 
-                            *ngIf="!selectAddTransformation"
-                            shape="plus" 
-                            size="32" 
-                            (click)="clickOpenTransformation()"
-                            >
-                        </clr-icon>
-
-                        <div *ngIf="selectAddTransformation" class="openTransformation">
-                            To ADD more transformations, select:
-
-                            <clr-dropdown>
-                                <button 
-                                    type="button" 
-                                    class="btn btn-link btn-sm" 
-                                    clrDropdownTrigger
-                                    >
-                                    Category
-                                    <clr-icon shape="caret down" *ngIf="!showServerData"></clr-icon>
-                                </button>
-                                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                                    <button type="button" clrDropdownItem (click)="clickTransitionFormat()">
-                                        Format content
-                                    </button>
-                                    <button type="button" clrDropdownItem (click)="clickSave()">
-                                        Fill content
-                                    </button>
-                                    <button type="button" clrDropdownItem (click)="clickSave()">
-                                        Add Geo
-                                    </button>
-                                    <button type="button" clrDropdownItem (click)="clickSave()">
-                                        Append Column
-                                    </button>
-                                    <button type="button" clrDropdownItem (click)="clickSave()">
-                                        Replace content
-                                    </button>
-                                    <button type="button" clrDropdownItem (click)="clickSave()">
-                                        Partial content
-                                    </button>
-                                    <button type="button" clrDropdownItem (click)="clickSave()">
-                                        Trim content
-                                    </button>
-                                    <button type="button" clrDropdownItem (click)="clickSave()">
-                                        Saved Transformations
-                                    </button>
-                                    <button type="button" clrDropdownItem (click)="clickSave()">
-                                        R Extensions
-                                    </button>
-                                    <button type="button" clrDropdownItem (click)="clickSave()">
-                                        PythonExtensions
-                                    </button>
-                                </clr-dropdown-menu>
-                            </clr-dropdown>
-
+                        <div *ngIf="selectedExistingTransform">
                             <div class="transformationCategoryGrid">
                                 <div class="row" *ngIf="showTransitionFormat">
                                     <div 
@@ -370,14 +146,253 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div>
-                                
-                            </div>
-                            
                         </div>
 
-                    </div>
+                        <div *ngIf="selectedDatasource">
+                            <div class="fileSelectorTop">
+                            <!-- <h4 class="fileSelectorHeader">File selection</h4> -->
+                            <span>Please enter file name and location, or
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    (click)="clickFileBrowse()"
+                                    >
+                                    Browse
+                                </button>
+                                :
+                            </span>
+                            <input type="text" id="formFields_7"
+                                placeholder="Folder/FileName"
+                                class="selectFile"
+                                >
+                            <br>
+                            Worksheet:
+                            <span class="select">
+                                <select id="selects_3" class="selectBox">
+                                    <option>New York</option>
+                                    <option>San Francisco</option>
+                                    <option>Austin</option>
+                                    <option>Paris</option>
+                                    <option>Seattle</option>
+                                </select>
+                            </span>
+                            <br>
+                            Name of Dataset:
+                            <input type="text" id="formFields_7" placeholder="Dataset Name">
+                            <button
+                                type="button"
+                                class="btn btn-link selectButon"
+                                (click)="clickFileView()"
+                                >
+                                View
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-link selectButon"
+                                (click)="clickFileAdd()"
+                                >
+                                Add
+                            </button>
+                        </div>
+
+                        <div *ngIf="showSelectorDetailArea" class="fileSelectorDetailArea"
+                            [style.grid-column-start]='1'
+                            [style.grid-column-end]="selectorDetailColumnEnd"
+                            [style.grid-row-start]='7'
+                            [style.grid-row-end]='18'
+                            >
+                            <clr-datagrid class="fieldsDataGrid">
+                                <clr-dg-column (click)="clickField('id')">
+                                    ID
+                                </clr-dg-column>
+                                <clr-dg-column>Name</clr-dg-column>
+                                <clr-dg-column>Type</clr-dg-column>
+                                <clr-dg-column>Format</clr-dg-column>
+                                <clr-dg-column>Filter</clr-dg-column>
+                                <clr-dg-column>Calc</clr-dg-column>
+                                <clr-dg-column>Order</clr-dg-column>
+                                <clr-dg-column>Hide</clr-dg-column>
+
+                                <clr-dg-row *ngFor="let field of fields">
+                                    <clr-dg-cell>{{field.id}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.name}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.type}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.format}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.filter}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.calc}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.order}}</clr-dg-cell>
+                                </clr-dg-row>
+
+                                <clr-dg-footer>
+                                    <span class="fieldDataGridFooter">
+                                        Click on a column heading to see its detail
+                                    </span>
+                                    {{fields.length}} rows
+                                </clr-dg-footer>
+                            </clr-datagrid>
+                        </div>
+                        </div>
+
+                        <div *ngIf="selectedFieldProperties">
+                            Info for <b>TradeData</b>
+                            <br>
+                            Description: bla-bla-bla
+                            <br>
+                            Local Name: <input type="text" id="formFields_7" placeholder="Enter Name">
+                            <br>
+                            Type: <b>Number</b>  Change to:
+                            <div class="select">
+                                <select id="selects_3">
+                                    <option>Boolean (true/false)</option>
+                                    <option>Date (2014/07/31)</option>
+                                    <option>DateTime (2014/07/31 12:41:04)</option>
+                                    <option>String ('May West')</option>
+                                </select>
+                            </div>
+                            <br>
+                            Format: <b></b>  Change to:
+                            <div class="select">
+                                <select id="selects_3">
+                                    <option>Number</option>
+                                    <option>Monetary</option>
+                                    <option>YYYY/MM/DD</option>
+                                </select>
+                            </div>
+                            <br>
+                            Filter: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Filter text">
+                            Calculation: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Enter Formula">
+                            <br>
+                            Order: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Order (1 Asc)">
+                            <br>
+                            Hide: <b></b>  Change to:
+                            <div class="select">
+                                <select id="selects_3">
+                                    <option>True</option>
+                                    <option>False</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div *ngIf="selectedsummary">
+                            Key: T/F
+                            ExplainedBy: BarChart, TradeDate, Value
+                        </div>
+
+                        <div *ngIf="selectedFieldTransform">
+
+
+                            <div class="openTransformation">
+                                    To ADD more transformations, select a
+        
+                                <clr-dropdown>
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-link btn-sm" 
+                                        clrDropdownTrigger
+                                        >
+                                        Category
+                                        <clr-icon shape="caret down" *ngIf="!showServerData"></clr-icon>
+                                    </button>
+                                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                                        <button type="button" clrDropdownItem (click)="clickTransitionFormat()">
+                                            Format content
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Fill content
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Add Geo
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Append Column
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Replace content
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Partial content
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Trim content
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Saved Transformations
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            R Extensions
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            PythonExtensions
+                                        </button>
+                                    </clr-dropdown-menu>
+                                </clr-dropdown>
+
+                                <div class="transformationCategoryGrid">
+                                    <div class="row" *ngIf="showTransitionFormat">
+                                        <div 
+                                            role="tooltip" 
+                                            aria-haspopup="true" 
+                                            class="tooltip tooltip-lg col-xs-4 transformationName" 
+                                            *ngFor="let row of transformationsFormat"
+                                            (click)="clickSave(row.id)"
+                                            >
+                                            {{ row.name }}
+                                            <span class="tooltip-content">{{ row.description }}</span>                                    
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    
+                                </div>
+                                
+                            </div>
+            
+                            Existing field-level transformations:
+                            <clr-datagrid>
+                                <clr-dg-column>Up</clr-dg-column>
+                                <clr-dg-column>Down</clr-dg-column>
+                                <clr-dg-column>Del</clr-dg-column>
+                                <clr-dg-column>Nr</clr-dg-column>
+                                <clr-dg-column>Name</clr-dg-column>
+                                <clr-dg-column>Description</clr-dg-column>
+
+                                <clr-dg-row>
+                                    <clr-dg-cell>
+                                        <clr-icon shape="arrow" size="16"></clr-icon>
+                                    </clr-dg-cell>
+                                    <clr-dg-cell>    
+                                        <clr-icon shape="arrow" size="16" dir="down"></clr-icon>
+                                    </clr-dg-cell>
+                                    <clr-dg-cell>
+                                    <clr-icon shape="times" size="16"></clr-icon>
+                                    </clr-dg-cell>
+                                    <clr-dg-cell>
+                                        1
+                                    </clr-dg-cell>
+                                    <clr-dg-cell>Trim spaces</clr-dg-cell>
+                                    <clr-dg-cell>
+                                        Trim spaces from left and right
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+                                <clr-dg-footer>
+                                    Optionally save this as:  
+                                    <input 
+                                        type="text" 
+                                        placeholder="Transformation Name"
+                                        >
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-link btn-sm" 
+                                        (click)="clickSave()"
+                                        >
+                                        Save
+                                    </button>
+                                </clr-dg-footer>
+                                
+                            </clr-datagrid>
+
+                        </div>
 
                                             <!-- Data Quality notes
                                             Nr records

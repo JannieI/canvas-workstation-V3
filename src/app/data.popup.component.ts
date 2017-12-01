@@ -50,7 +50,8 @@ export class DataPopupComponent implements OnInit {
     showSelectField: boolean = false;
     transformationsFormat: transformation[];
 
-    selectedExisting: boolean = false;
+    selectedExistingDS: boolean = false;
+    selectedExistingTransform: boolean = false;
     selectedDatasource: boolean = false;
     selectedOverallTransform: boolean = false;
     selectedFieldTransform: boolean = false;
@@ -113,8 +114,19 @@ export class DataPopupComponent implements OnInit {
 		this.formDataPopupClosed.emit(action);
     }
 
-    clickMenuExisting() {
-        this.selectedExisting = true;
+    clickMenuExistingDS() {
+        this.selectedExistingDS = true;
+        this.selectedExistingTransform = false;
+        this.selectedDatasource = false;
+        this.selectedOverallTransform = false;
+        this.selectedFieldTransform = false;
+        this.selectedFieldProperties = false;
+        this.selectedsummary = false;
+    }
+
+    clickMenuExistingTransformation() {
+        this.selectedExistingDS = false;
+        this.selectedExistingTransform = true;
         this.selectedDatasource = false;
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = false;
@@ -127,7 +139,8 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickMenuDatasource() {
-        this.selectedExisting = false;
+        this.selectedExistingDS = false;
+        this.selectedExistingTransform = false;
         this.selectedDatasource = true;
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = false;
@@ -135,7 +148,8 @@ export class DataPopupComponent implements OnInit {
         this.selectedsummary = false;
     }
     clickMenuOverallTransform() {
-        this.selectedExisting = false;
+        this.selectedExistingDS = false;
+        this.selectedExistingTransform = false;
         this.selectedDatasource = false;
         this.selectedOverallTransform = true;
         this.selectedFieldTransform = false;
@@ -144,7 +158,8 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickMenuFieldTransform() {
-        this.selectedExisting = false;
+        this.selectedExistingDS = false;
+        this.selectedExistingTransform = false;
         this.selectedDatasource = false;
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = true;
@@ -153,7 +168,8 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickMenuFieldProperties() {
-        this.selectedExisting = false;
+        this.selectedExistingDS = false;
+        this.selectedExistingTransform = false;
         this.selectedDatasource = false;
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = false;
@@ -162,7 +178,8 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickMenuSummary() {
-        this.selectedExisting = false;
+        this.selectedExistingDS = false;
+        this.selectedExistingTransform = false;
         this.selectedDatasource = false;
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = false;
