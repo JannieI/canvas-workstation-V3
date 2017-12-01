@@ -10,7 +10,7 @@ import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { currentDatasource }          from './model.currentDashboard';
+import { currentDatasource }          from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';

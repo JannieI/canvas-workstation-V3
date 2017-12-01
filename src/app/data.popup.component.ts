@@ -51,6 +51,7 @@ export class DataPopupComponent implements OnInit {
     transformation: transformation[];
 
     selectedExisting: boolean = false;
+    selectedDatasource: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -107,6 +108,16 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickMenuExisting() {
-        this.selectedExisting = ! this.selectedExisting;
+        this.selectedExisting = true;
+        this.selectedDatasource = false;
+    }
+
+    clickEditDS(dsID: number) {
+        console.log('DS ID', dsID);
+    }
+
+    clickMenuDatasource() {
+        this.selectedExisting = false;
+        this.selectedDatasource = true;
     }
  }

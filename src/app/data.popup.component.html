@@ -21,7 +21,7 @@
                         <button 
                             type="button" 
                             class="btn btn-link wizardButton" 
-                            (click)="clickFileBrowse()"
+                            (click)="clickMenuDatasource()"
                             >
                             Datasource
                         </button>
@@ -54,39 +54,43 @@
 
                         <div *ngIf="selectedExisting">
                             <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-column (click)="clickField('id')">
-                                    ID
-                                </clr-dg-column>
+                                <clr-dg-column>Edit</clr-dg-column>
                                 <clr-dg-column>Name</clr-dg-column>
                                 <clr-dg-column>Type</clr-dg-column>
-                                <clr-dg-column>Format</clr-dg-column>
-                                <clr-dg-column>Filter</clr-dg-column>
-                                <clr-dg-column>Calc</clr-dg-column>
-                                <clr-dg-column>Order</clr-dg-column>
-                                <clr-dg-column>Hide</clr-dg-column>
+                                <clr-dg-column>createdBy</clr-dg-column>
+                                <clr-dg-column>createdOn</clr-dg-column>
+                                <clr-dg-column>refreshedBy</clr-dg-column>
+                                <clr-dg-column>refreshedOn</clr-dg-column>
+                                <clr-dg-column>parameters</clr-dg-column>
 
-                                <clr-dg-row *ngFor="let field of fields">
-                                    <clr-dg-cell>{{field.id}}</clr-dg-cell>
-                                    <clr-dg-cell>{{field.name}}</clr-dg-cell>
-                                    <clr-dg-cell>{{field.type}}</clr-dg-cell>
-                                    <clr-dg-cell>{{field.format}}</clr-dg-cell>
-                                    <clr-dg-cell>{{field.filter}}</clr-dg-cell>
-                                    <clr-dg-cell>{{field.calc}}</clr-dg-cell>
-                                    <clr-dg-cell>{{field.order}}</clr-dg-cell>
+                                <clr-dg-row *ngFor="let row of currentDatasources">
+                                    <clr-dg-cell>
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-link wizardButton" 
+                                            (click)="clickEditDS(row.id)"
+                                            >
+                                            <clr-icon shape="pencil" size="12"></clr-icon>
+                                        </button>
+                                    </clr-dg-cell>
+                                    <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.type}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
                                 </clr-dg-row>
 
                                 <clr-dg-footer>
-                                    <span class="fieldDataGridFooter">
-                                        Click on a column heading to see its detail
-                                    </span>
-                                    {{fields.length}} fields
+                                    {{currentDatasources.length}} fields
                                 </clr-dg-footer>
                             </clr-datagrid>
                         </div>
     
 
-                        <div class="wrapper">
-                            <div class="fileSelectorTop">
+                        <div *ngIf="selectedDatasource">
+                                <div class="fileSelectorTop">
                                 <!-- <h4 class="fileSelectorHeader">File selection</h4> -->
                                 <span>Please enter file name and location, or 
                                     <button 
@@ -168,7 +172,7 @@
                                     </clr-dg-footer>
                                 </clr-datagrid>
                             </div>
-
+                    </div>  
                             <div *ngIf="showSelectField" class="fileSelectField">
 
                                 <clr-tabs>
@@ -321,7 +325,6 @@
                                     </clr-tab>
                                 </clr-tabs>              
                             </div>
-                        </div>
                     </div>
                     
                 </div>
