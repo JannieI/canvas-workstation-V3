@@ -53,6 +53,34 @@
                             >
                             Summary
                         </button>
+                        <button
+                            type="button"
+                            class="btn btn-link wizardButton"
+                            (click)="clickMenuSummary()"
+                            >
+                            
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-link wizardButton"
+                            (click)="clickMenuSummary()"
+                            >
+                            
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-link wizardButton"
+                            (click)="clickMenuSummary()"
+                            >
+                            
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-link wizardButton"
+                            (click)="clickMenuSummary()"
+                            >
+                            
+                        </button>
 
 
                     </div>
@@ -291,7 +319,8 @@
                                     class="btn btn-link btn-sm" 
                                     clrDropdownTrigger
                                     >
-                                    Type
+                                    Category
+                                    <clr-icon shape="caret down" *ngIf="!showServerData"></clr-icon>
                                 </button>
                                 <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
                                     <button type="button" clrDropdownItem (click)="clickTransitionFormat()">
@@ -316,6 +345,9 @@
                                         Trim content
                                     </button>
                                     <button type="button" clrDropdownItem (click)="clickSave()">
+                                        Saved Transformations
+                                    </button>
+                                    <button type="button" clrDropdownItem (click)="clickSave()">
                                         R Extensions
                                     </button>
                                     <button type="button" clrDropdownItem (click)="clickSave()">
@@ -324,12 +356,12 @@
                                 </clr-dropdown-menu>
                             </clr-dropdown>
 
-                            <div>
+                            <div class="transformationCategoryGrid">
                                 <div class="row" *ngIf="showTransitionFormat">
                                     <div 
                                         role="tooltip" 
                                         aria-haspopup="true" 
-                                        class="tooltip tooltip-lg col-xs-2 transformationName" 
+                                        class="tooltip tooltip-lg col-xs-4 transformationName" 
                                         *ngFor="let row of transformationsFormat"
                                         (click)="clickSave(row.id)"
                                         >
@@ -338,31 +370,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <p>Or, select a tranformation list previously created:</p>
-                            <clr-dropdown>
-                                <button 
-                                    type="button" 
-                                    class="btn btn-link btn-sm" 
-                                    clrDropdownTrigger
-                                    >
-                                    Select Saved Transformation
-                                </button>
-                                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                                    <button type="button" clrDropdownItem (click)="clickSave()">
-                                        Default
-                                    </button>
-                                    <button type="button" clrDropdownItem (click)="clickSave()">
-                                        Management Report Format
-                                    </button>
-                                </clr-dropdown-menu>
-                            </clr-dropdown>
-                            <button 
-                                type="button" 
-                                class="btn btn-link btn-sm" 
-                                (click)="clickAddTransformation()"
-                                >
-                                Add
-                            </button>
+
+                            <div>
+                                
+                            </div>
                             
                         </div>
 
