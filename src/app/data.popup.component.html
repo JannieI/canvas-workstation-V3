@@ -28,21 +28,28 @@
                         <button 
                             type="button" 
                             class="btn btn-link wizardButton" 
-                            (click)="clickFileBrowse()"
+                            (click)="clickMenuOverallTransform()"
                             >
                             Overall Transform
                         </button>
                         <button 
                             type="button" 
                             class="btn btn-link wizardButton" 
-                            (click)="clickFileBrowse()"
+                            (click)="clickMenuFieldTransform()"
                             >
                             Field Transform
                         </button>
                         <button 
                             type="button" 
                             class="btn btn-link wizardButton" 
-                            (click)="clickFileBrowse()"
+                            (click)="clickMenuFieldProperties()"
+                            >
+                            Field Properties
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-link wizardButton" 
+                            (click)="clickMenuSummary()"
                             >
                             Summary
                         </button>
@@ -173,6 +180,7 @@
                                 </clr-datagrid>
                             </div>
                     </div>  
+                    <div *ngIf="selectedFieldProperties">
                             <div *ngIf="showSelectField" class="fileSelectField">
 
                                 <clr-tabs>

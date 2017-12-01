@@ -52,6 +52,10 @@ export class DataPopupComponent implements OnInit {
 
     selectedExisting: boolean = false;
     selectedDatasource: boolean = false;
+    selectedOverallTransform: boolean = false;
+    selectedFieldTransform: boolean = false;
+    selectedFieldProperties: boolean = false;
+    selectedsummary: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -110,6 +114,10 @@ export class DataPopupComponent implements OnInit {
     clickMenuExisting() {
         this.selectedExisting = true;
         this.selectedDatasource = false;
+        this.selectedOverallTransform = false;
+        this.selectedFieldTransform = false;
+        this.selectedFieldProperties = false;
+        this.selectedsummary = false;
     }
 
     clickEditDS(dsID: number) {
@@ -119,5 +127,45 @@ export class DataPopupComponent implements OnInit {
     clickMenuDatasource() {
         this.selectedExisting = false;
         this.selectedDatasource = true;
+        this.selectedOverallTransform = false;
+        this.selectedFieldTransform = false;
+        this.selectedFieldProperties = false;
+        this.selectedsummary = false;
     }
+    clickMenuOverallTransform() {
+        this.selectedExisting = false;
+        this.selectedDatasource = false;
+        this.selectedOverallTransform = true;
+        this.selectedFieldTransform = false;
+        this.selectedFieldProperties = false;
+        this.selectedsummary = false;
+    }
+
+    clickMenuFieldTransform() {
+        this.selectedExisting = false;
+        this.selectedDatasource = false;
+        this.selectedOverallTransform = false;
+        this.selectedFieldTransform = true;
+        this.selectedFieldProperties = false;
+        this.selectedsummary = false;
+    }
+
+    clickMenuFieldProperties() {
+        this.selectedExisting = false;
+        this.selectedDatasource = false;
+        this.selectedOverallTransform = false;
+        this.selectedFieldTransform = false;
+        this.selectedFieldProperties = true;
+        this.selectedsummary = true;
+    }
+
+    clickMenuSummary() {
+        this.selectedExisting = false;
+        this.selectedDatasource = false;
+        this.selectedOverallTransform = false;
+        this.selectedFieldTransform = false;
+        this.selectedFieldProperties = false;
+        this.selectedsummary = true;
+    }
+
  }
