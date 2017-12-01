@@ -56,6 +56,7 @@ export class DataPopupComponent implements OnInit {
     selectedFieldTransform: boolean = false;
     selectedFieldProperties: boolean = false;
     selectedsummary: boolean = false;
+    selectAddTransformation: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -168,4 +169,11 @@ export class DataPopupComponent implements OnInit {
         this.selectedsummary = true;
     }
 
+    clickOpenTransformation() {
+        this.selectAddTransformation = true;
+    }
+
+    clickAddTransformation() {
+        this.selectAddTransformation = false;
+    }
  }

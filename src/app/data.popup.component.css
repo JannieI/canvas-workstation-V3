@@ -6,7 +6,7 @@
 }
 
 .modalContent {
-	background-color: rgb(251, 251, 253);
+    background-color: rgb(251, 251, 253);
 }
 
 .closeButton {
@@ -129,4 +129,13 @@
 .wizardButton {
     text-align: left;
     width: 100%;
+}
+
+.transformationName {
+    border: 1px solid gray;
+    margin: 2px;
+}
+
+.openTransformation {
+    margin-left: 20px;
 }

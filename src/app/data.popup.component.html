@@ -1,54 +1,54 @@
 <div class="modal modalBox">
 	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-		<div class="modal-content modalContent">
+		<div class="modal-content   ">
 
-            <div>
+            <div modalContent>
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
 
-                <div class="row">
+                <div class="row" modalContent>
 
                     <div class="col-xs-2 currentDatasources">
-                        <button 
-                            type="button" 
-                            class="btn btn-link wizardButton" 
+                        <button
+                            type="button"
+                            class="btn btn-link wizardButton"
                             [style.background-color]="selectedExisting? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuExisting()"
                             >
                             Existing Data
                         </button>
-                        <button 
-                            type="button" 
-                            class="btn btn-link wizardButton" 
+                        <button
+                            type="button"
+                            class="btn btn-link wizardButton"
                             (click)="clickMenuDatasource()"
                             >
                             Datasource
                         </button>
-                        <button 
-                            type="button" 
-                            class="btn btn-link wizardButton" 
+                        <button
+                            type="button"
+                            class="btn btn-link wizardButton"
                             (click)="clickMenuOverallTransform()"
                             >
                             Overall Transform
                         </button>
-                        <button 
-                            type="button" 
-                            class="btn btn-link wizardButton" 
+                        <button
+                            type="button"
+                            class="btn btn-link wizardButton"
                             (click)="clickMenuFieldTransform()"
                             >
                             Field Transform
                         </button>
-                        <button 
-                            type="button" 
-                            class="btn btn-link wizardButton" 
+                        <button
+                            type="button"
+                            class="btn btn-link wizardButton"
                             (click)="clickMenuFieldProperties()"
                             >
                             Field Properties
                         </button>
-                        <button 
-                            type="button" 
-                            class="btn btn-link wizardButton" 
+                        <button
+                            type="button"
+                            class="btn btn-link wizardButton"
                             (click)="clickMenuSummary()"
                             >
                             Summary
@@ -72,9 +72,9 @@
 
                                 <clr-dg-row *ngFor="let row of currentDatasources">
                                     <clr-dg-cell>
-                                        <button 
-                                            type="button" 
-                                            class="btn btn-link wizardButton" 
+                                        <button
+                                            type="button"
+                                            class="btn btn-link wizardButton"
                                             (click)="clickEditDS(row.id)"
                                             >
                                             <clr-icon shape="pencil" size="12"></clr-icon>
@@ -94,27 +94,27 @@
                                 </clr-dg-footer>
                             </clr-datagrid>
                         </div>
-    
+
 
                         <div *ngIf="selectedDatasource">
                                 <div class="fileSelectorTop">
                                 <!-- <h4 class="fileSelectorHeader">File selection</h4> -->
-                                <span>Please enter file name and location, or 
-                                    <button 
-                                        type="button" 
-                                        class="btn btn-link" 
+                                <span>Please enter file name and location, or
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
                                         (click)="clickFileBrowse()"
                                         >
                                         Browse
                                     </button>
-                                    : 
+                                    :
                                 </span>
-                                <input type="text" id="formFields_7" 
+                                <input type="text" id="formFields_7"
                                     placeholder="Folder/FileName"
                                     class="selectFile"
                                     >
                                 <br>
-                                Worksheet: 
+                                Worksheet:
                                 <span class="select">
                                     <select id="selects_3" class="selectBox">
                                         <option>New York</option>
@@ -127,16 +127,16 @@
                                 <br>
                                 Name of Dataset:
                                 <input type="text" id="formFields_7" placeholder="Dataset Name">
-                                <button 
-                                    type="button" 
-                                    class="btn btn-link selectButon" 
+                                <button
+                                    type="button"
+                                    class="btn btn-link selectButon"
                                     (click)="clickFileView()"
                                     >
                                     View
                                 </button>
-                                <button 
-                                    type="button" 
-                                    class="btn btn-link selectButon" 
+                                <button
+                                    type="button"
+                                    class="btn btn-link selectButon"
                                     (click)="clickFileAdd()"
                                     >
                                     Add
@@ -179,7 +179,8 @@
                                     </clr-dg-footer>
                                 </clr-datagrid>
                             </div>
-                    </div>  
+                    </div>
+
                     <div *ngIf="selectedFieldProperties">
                         Info for <b>TradeData</b>
                         <br>
@@ -197,7 +198,7 @@
                             </select>
                         </div>
                         <br>
-                        Format: <b></b>  Change to: 
+                        Format: <b></b>  Change to:
                         <div class="select">
                             <select id="selects_3">
                                 <option>Number</option>
@@ -227,81 +228,134 @@
 
                     <div *ngIf="selectedFieldTransform">
 
-                        Selected type and specific transformation to add to the list below:
-                        <div class="dropdown"  #typeTransformationDropdown>
-                            <button type="button" class="dropdown-toggle btn btn-link"
-                                (click)="clickTypeTransformation()">
-                                Select Type
-                                <clr-icon shape="caret down"></clr-icon>
-                            </button>
-                            <div class="dropdown-menu">
-                                <h4 class="dropdown-header">Select a Type</h4>
-                                <button type="button" class="dropdown-item">Standard</button>
-                                <div class="dropdown-divider"></div>
-                                <button type="button" class="dropdown-item">R Extensions</button>
-                                <button type="button" class="dropdown-item">Python Extensions</button>
-                            </div>
-                        </div>
-                        <div class="dropdown" #transformations>
-                            <button type="button" class="dropdown-toggle btn btn-link"
-                                (click)="clickTransformation()">
-                                Select transformation
-                                <clr-icon shape="caret down"></clr-icon>
-                            </button>
-                            <div class="dropdown-menu">
-                                <h4 class="dropdown-header">Select transformation</h4>
-                                <button type="button" class="dropdown-item">Transpose rows and columns</button>
-                                <button type="button" class="dropdown-item">Add field</button>
-                                <button type="button" class="dropdown-item">Calculated field</button>
-                                <button type="button" class="dropdown-item">Etc</button>
-                            </div>
-                        </div>
-                        <p>Or, select a tranformation list previously created:</p>
-                            <div class="dropdown">
-                                <button type="button" class="dropdown-toggle btn btn-link"
-                                    >
-                                    Transformation List
-                                    <clr-icon shape="caret down"></clr-icon>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <h4 class="dropdown-header">Select a Transformation</h4>
-                                    <button type="button" class="dropdown-item">Default</button>
-                                    <button type="button" class="dropdown-item">Management Formatted</button>
-                                </div>
-                            </div>
-                        <br>
-                        Optional Name: <input type="text" id="formFields_7" placeholder="Transformation Name">
-                        <br>
 
-                        <br>
+                        Existing field-level transformations:
                         <clr-datagrid>
+                            <clr-dg-column>Up</clr-dg-column>
+                            <clr-dg-column>Down</clr-dg-column>
+                            <clr-dg-column>Del</clr-dg-column>
                             <clr-dg-column>Nr</clr-dg-column>
                             <clr-dg-column>Name</clr-dg-column>
                             <clr-dg-column>Description</clr-dg-column>
 
-                            <clr-dg-row *ngFor="let ds of transformation"  [clrDgItem]="ds">
+                            <clr-dg-row>
                                 <clr-dg-cell>
                                     <clr-icon shape="arrow" size="16"></clr-icon>
-                                    <clr-icon shape="arrow" size="16" dir="down"></clr-icon>
-                                    <clr-icon shape="times" size="16"></clr-icon>
-                                    {{ds.id}}
                                 </clr-dg-cell>
-                                <clr-dg-cell>{{ds.name}}</clr-dg-cell>
+                                <clr-dg-cell>    
+                                    <clr-icon shape="arrow" size="16" dir="down"></clr-icon>
+                                </clr-dg-cell>
                                 <clr-dg-cell>
-                                    {{ds.description}}
+                                <clr-icon shape="times" size="16"></clr-icon>
+                                </clr-dg-cell>
+                                <clr-dg-cell>
+                                    1
+                                </clr-dg-cell>
+                                <clr-dg-cell>Trim spaces</clr-dg-cell>
+                                <clr-dg-cell>
+                                    Trim spaces from left and right
                                 </clr-dg-cell>
                             </clr-dg-row>
 
-                            <clr-dg-footer>{{transformation.length}} transformations</clr-dg-footer>
                         </clr-datagrid>
+
+                        <br>
+                        Optionally save this as:  
+                        <input 
+                            type="text" 
+                            placeholder="Transformation Name"
+                            >
+                        <button 
+                            type="button" 
+                            class="btn btn-link btn-sm" 
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                        <br>
+
+                        <clr-icon 
+                            *ngIf="!selectAddTransformation"
+                            shape="plus" 
+                            size="32" 
+                            (click)="clickOpenTransformation()"
+                            >
+                        </clr-icon>
+
+                        <div *ngIf="selectAddTransformation" class="openTransformation">
+                            To ADD more transformations, select:
+
+                            <clr-dropdown>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-link btn-sm" 
+                                    clrDropdownTrigger
+                                    >
+                                    Type
+                                </button>
+                                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                                    <button type="button" clrDropdownItem (click)="clickSave()">
+                                        Standard
+                                    </button>
+                                    <button type="button" clrDropdownItem (click)="clickSave()">
+                                        R Extensions
+                                    </button>
+                                    <button type="button" clrDropdownItem (click)="clickSave()">
+                                        PythonExtensions
+                                    </button>
+                                </clr-dropdown-menu>
+                            </clr-dropdown>
+
+                            <div>
+                                <div class="row">
+                                    <div 
+                                        role="tooltip" 
+                                        aria-haspopup="true" 
+                                        class="tooltip tooltip-lg col-xs-2 transformationName" 
+                                        *ngFor="let row of transformation"
+                                        (click)="clickSave(row.id)"
+                                        >
+                                        {{ row.name }}
+                                        <span class="tooltip-content">{{ row.description }}</span>                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Or, select a tranformation list previously created:</p>
+                            <clr-dropdown>
+                                <button 
+                                    type="button" 
+                                    class="btn btn-link btn-sm" 
+                                    clrDropdownTrigger
+                                    >
+                                    Select Saved Transformation
+                                </button>
+                                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                                    <button type="button" clrDropdownItem (click)="clickSave()">
+                                        Default
+                                    </button>
+                                    <button type="button" clrDropdownItem (click)="clickSave()">
+                                        Management Report Format
+                                    </button>
+                                </clr-dropdown-menu>
+                            </clr-dropdown>
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                (click)="clickAddTransformation()"
+                                >
+                                Add
+                            </button>
+                            
+                        </div>
+
                     </div>
 
                                             <!-- Data Quality notes
                                             Nr records
-                                            * IF key fields have been marked, some cardinality / summary 
-                                                graphs will be shown to the shape of the data, bins, 
+                                            * IF key fields have been marked, some cardinality / summary
+                                                graphs will be shown to the shape of the data, bins,
                                                 frequency distribution, etc to help understand the data -->
-                    
+
                 </div>
             </div>
         </div>
@@ -309,7 +363,7 @@
 </div>
 
 
-    
+
 <!-- Check Browswer capabilities:
 if (Modernizr.draganddrop) {
     // Browser supports HTML5 DnD.
