@@ -49,7 +49,7 @@ export class DataPopupComponent implements OnInit {
     selectorDetailColumnEnd: string = '12';
     selectedFile: boolean = true;
     selectedData: string = 'Trades for 2016';
-    showSelectorDetailArea: boolean = false;
+    showDataPreview: boolean = false;
     showSelectField: boolean = false;
     transformationsFormat: transformation[];
 
@@ -59,10 +59,13 @@ export class DataPopupComponent implements OnInit {
     selectedOverallTransform: boolean = false;
     selectedFieldTransform: boolean = false;
     selectedFieldProperties: boolean = false;
-    selectedsummary: boolean = false;
+    selectedSummary: boolean = false;
     selectAddTransformation: boolean = false;
 
     showTransitionFormat: boolean = false;
+    transitionFieldName: string;
+    transitionAction: string;
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -79,8 +82,8 @@ export class DataPopupComponent implements OnInit {
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
     }
 
-    clickFileView() {
-        this.showSelectorDetailArea = !this.showSelectorDetailArea;
+    clickFilePreview() {
+        this.showDataPreview = !this.showDataPreview;
     }
 
     clickField() {
@@ -126,7 +129,7 @@ export class DataPopupComponent implements OnInit {
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = false;
         this.selectedFieldProperties = false;
-        this.selectedsummary = false;
+        this.selectedSummary = false;
     }
 
     clickMenuExistingTransformation() {
@@ -136,7 +139,7 @@ export class DataPopupComponent implements OnInit {
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = false;
         this.selectedFieldProperties = false;
-        this.selectedsummary = false;
+        this.selectedSummary = false;
     }
 
     clickEditDS(dsID: number) {
@@ -150,7 +153,7 @@ export class DataPopupComponent implements OnInit {
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = false;
         this.selectedFieldProperties = false;
-        this.selectedsummary = false;
+        this.selectedSummary = false;
     }
     clickMenuOverallTransform() {
         this.selectedExistingDS = false;
@@ -159,7 +162,7 @@ export class DataPopupComponent implements OnInit {
         this.selectedOverallTransform = true;
         this.selectedFieldTransform = false;
         this.selectedFieldProperties = false;
-        this.selectedsummary = false;
+        this.selectedSummary = false;
     }
 
     clickMenuFieldTransform() {
@@ -169,7 +172,7 @@ export class DataPopupComponent implements OnInit {
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = true;
         this.selectedFieldProperties = false;
-        this.selectedsummary = false;
+        this.selectedSummary = false;
     }
 
     clickMenuFieldProperties() {
@@ -179,17 +182,19 @@ export class DataPopupComponent implements OnInit {
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = false;
         this.selectedFieldProperties = true;
-        this.selectedsummary = false;
+        this.selectedSummary = false;
     }
 
     clickMenuSummary() {
+        console.log('clickMenuSummary')
+        console.log('')
         this.selectedExistingDS = false;
         this.selectedExistingTransform = false;
         this.selectedDatasource = false;
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = false;
         this.selectedFieldProperties = false;
-        this.selectedsummary = true;
+        this.selectedSummary = true;
     }
 
     clickOpenTransformation() {
@@ -203,5 +208,35 @@ export class DataPopupComponent implements OnInit {
     clickTransitionFormat() {
         this.showTransitionFormat = true;
     }
+
+
+    dragstart_handler(ev) {
+        console.log("dragStart", ev, ev.srcElement.innerText);
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+        console.log('drag_start')
+    }
+
+    dragend_handler(ev) {
+        console.log('dragend_handler', ev.dataTransfer.dropEffect)
+    }
+
+    dragover_handler(ev, actionName: string) {
+        console.log('dragover_handler', ev, ev.srcElement.innerText)
+        ev.preventDefault();
+        this.transitionFieldName = 'Add the field to transition: '
+
+        this.transitionAction = actionName;
+    }
     
+    drop_handler(ev) {
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "link"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+        // ev.target.appendChild(document.getElementById(data));
+        console.log('drop_handler dropped !!', data)
+    }
+
  }

@@ -956,13 +956,15 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     dragend_handler(ev) {
         console.log('dragend_handler', ev.dataTransfer.dropEffect)
     }
+
     dragover_handler(ev) {
         console.log('dragover_handler')
         ev.preventDefault();
         // Set the dropEffect to move
         ev.dataTransfer.dropEffect = "move"
       }
-    drop_handler(ev) {
+
+      drop_handler(ev) {
         ev.preventDefault();
         // Get the id of the target and add the moved element to the target's DOM
         this.dropMessageX = "";

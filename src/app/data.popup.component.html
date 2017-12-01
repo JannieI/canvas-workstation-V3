@@ -9,7 +9,7 @@
 
                 <div class="row" modalContent>
 
-                    <div class="col-xs-2 currentDatasources">
+                    <div class="col-xs-3 menuOptions">
                         <button
                             type="button"
                             class="btn btn-link wizardButton"
@@ -32,7 +32,7 @@
                             [style.background-color]="selectedDatasource? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuDatasource()"
                             >
-                            Datasource
+                            Add Datasource
                         </button>
                         <button
                             type="button"
@@ -61,7 +61,7 @@
                         <button
                             type="button"
                             class="btn btn-link wizardButton"
-                            [style.background-color]="selectedsummary? 'rgb(182, 179, 179)' : 'transparent'"
+                            [style.background-color]="selectedSummary? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuSummary()"
                             >
                             Summary
@@ -98,7 +98,7 @@
 
                     </div>
 
-                    <div class="col-xs-10 fileSelector">
+                    <div class="col-xs-9 fileSelector">
 
                         <div *ngIf="selectedExistingDS">
                             <clr-datagrid class="fieldsDataGrid">
@@ -159,7 +159,6 @@
                         </div>
 
                         <div *ngIf="selectedDatasource">
-                            <div class="fileSelectorTop">
                             <!-- <h4 class="fileSelectorHeader">File selection</h4> -->
                             <span>Please enter file name and location, or
                                 <button
@@ -192,9 +191,9 @@
                             <button
                                 type="button"
                                 class="btn btn-link selectButon"
-                                (click)="clickFileView()"
+                                (click)="clickFilePreview()"
                                 >
-                                View
+                                Preview
                             </button>
                             <button
                                 type="button"
@@ -203,9 +202,47 @@
                                 >
                                 Add
                             </button>
+
+                            <div *ngIf="showDataPreview">
+                                <clr-datagrid class="fieldsDataGrid">
+                                    <clr-dg-column>Edit</clr-dg-column>
+                                    <clr-dg-column>Name</clr-dg-column>
+                                    <clr-dg-column>Type</clr-dg-column>
+                                    <clr-dg-column>createdBy</clr-dg-column>
+                                    <clr-dg-column>createdOn</clr-dg-column>
+                                    <clr-dg-column>refreshedBy</clr-dg-column>
+                                    <clr-dg-column>refreshedOn</clr-dg-column>
+                                    <clr-dg-column>parameters</clr-dg-column>
+    
+                                    <clr-dg-row *ngFor="let row of currentDatasources">
+                                        <clr-dg-cell>
+                                            <button
+                                                type="button"
+                                                class="btn btn-link wizardButton"
+                                                (click)="clickEditDS(row.id)"
+                                                >
+                                                <clr-icon shape="pencil" size="12"></clr-icon>
+                                            </button>
+                                        </clr-dg-cell>
+                                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                                        <clr-dg-cell>{{row.type}}</clr-dg-cell>
+                                        <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
+                                        <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
+                                        <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
+                                        <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
+                                        <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
+                                    </clr-dg-row>
+    
+                                    <clr-dg-footer>
+                                        {{currentDatasources.length}} fields
+                                    </clr-dg-footer>
+                                </clr-datagrid>
+            
+                            </div>
                         </div>
 
-                        <div *ngIf="showSelectorDetailArea" class="fileSelectorDetailArea"
+                        <div *ngIf="selectedOverallTransform"
+                             class="fileSelectorDetailArea"
                             [style.grid-column-start]='1'
                             [style.grid-column-end]="selectorDetailColumnEnd"
                             [style.grid-row-start]='7'
@@ -241,8 +278,167 @@
                                 </clr-dg-footer>
                             </clr-datagrid>
                         </div>
-                        </div>
 
+                        <div *ngIf="selectedFieldTransform">
+                            <div class="row">
+                                <div class="col-xs-3 gridColumn">
+                                    <nav
+                                        class="sidenav"
+                                        [style.width.px]="sideNavWidth"
+                                        [style.min-width.rem]="sideNavMinWidth"
+                                        >
+            
+                                        <div class="selectedDatasource">
+                                            Fields for: {{ currentDatasources[0].name }} 
+                                        </div>
+            
+                                        <section class="sidenav-content">
+                                            <section class="nav-group">
+                                                    <ul class="nav-list">
+                                                        <li>
+                                                            <a
+                                                                class="nav-link"
+                                                                (dragend)="showGraphsReal($event)"
+                                                                draggable="true"
+                                                                id="dragtarget"
+                                                                >
+                                                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                                Trader
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="nav-link"
+                                                                id="p1"
+                                                                draggable="true"
+                                                                (dragstart)="dragstart_handler($event)"
+                                                                (dragend)="dragend_handler($event)"
+                                                                >
+                                                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                                Country
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="nav-link active">
+                                                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                                Trade Type
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="nav-link">
+                                                                <clr-icon shape="block" class="dateField"></clr-icon>
+                                                                Date
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="nav-link">
+                                                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                                DateTime
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="nav-link">
+                                                                <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                                Stock
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="nav-link">
+                                                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                                Volume
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="nav-link">
+                                                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                                Trades
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="nav-link">
+                                                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                                Value
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </section>
+                                        </section>
+                                    </nav>
+                                </div>
+            
+                                <div class="col-xs-9">
+
+                                    <div class="newTransitions">
+                                        To ADD more transformations, select a
+                
+                                        <clr-dropdown>
+                                            <button 
+                                                type="button" 
+                                                class="btn btn-link btn-sm" 
+                                                clrDropdownTrigger
+                                                >
+                                                Category
+                                                <clr-icon shape="caret down" *ngIf="!showServerData"></clr-icon>
+                                            </button>
+                                            <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                                                <button type="button" clrDropdownItem (click)="clickTransitionFormat()">
+                                                    Format content
+                                                </button>
+                                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                                    Fill content
+                                                </button>
+                                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                                    Add Geo
+                                                </button>
+                                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                                    Append Column
+                                                </button>
+                                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                                    Replace content
+                                                </button>
+                                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                                    Partial content
+                                                </button>
+                                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                                    Trim content
+                                                </button>
+                                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                                    Saved Transformations
+                                                </button>
+                                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                                    R Extensions
+                                                </button>
+                                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                                    PythonExtensions
+                                                </button>
+                                            </clr-dropdown-menu>
+                                        </clr-dropdown>
+
+                                        <div class="transformationCategoryGrid">
+                                            <div class="row" *ngIf="showTransitionFormat">
+                                                <div 
+                                                    role="tooltip" 
+                                                    aria-haspopup="true" 
+                                                    class="tooltip tooltip-lg col-xs-4 transformationName" 
+                                                    *ngFor="let row of transformationsFormat"
+                                                    (click)="clickSave(row.id)"
+                                                    (drop)="drop_handler($event);" 
+                                                    (dragover)="dragover_handler($event, row.name);"
+                                                    >
+                                                    {{ row.name }}
+                                                    <span class="tooltip-content">{{ row.description }}</span>                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+                                        {{ transitionFieldName }} - {{ transitionAction }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div *ngIf="selectedFieldProperties">
                             Info for <b>TradeData</b>
                             <br>
@@ -283,133 +479,18 @@
                             </div>
                         </div>
 
-                        <div *ngIf="selectedsummary">
+                        <div *ngIf="selectedSummary">
                             Key: T/F
                             ExplainedBy: BarChart, TradeDate, Value
                         </div>
 
-                        <div *ngIf="selectedFieldTransform">
-
-
-                            <div class="openTransformation">
-                                    To ADD more transformations, select a
-        
-                                <clr-dropdown>
-                                    <button 
-                                        type="button" 
-                                        class="btn btn-link btn-sm" 
-                                        clrDropdownTrigger
-                                        >
-                                        Category
-                                        <clr-icon shape="caret down" *ngIf="!showServerData"></clr-icon>
-                                    </button>
-                                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                                        <button type="button" clrDropdownItem (click)="clickTransitionFormat()">
-                                            Format content
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Fill content
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Add Geo
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Append Column
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Replace content
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Partial content
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Trim content
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Saved Transformations
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            R Extensions
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            PythonExtensions
-                                        </button>
-                                    </clr-dropdown-menu>
-                                </clr-dropdown>
-
-                                <div class="transformationCategoryGrid">
-                                    <div class="row" *ngIf="showTransitionFormat">
-                                        <div 
-                                            role="tooltip" 
-                                            aria-haspopup="true" 
-                                            class="tooltip tooltip-lg col-xs-4 transformationName" 
-                                            *ngFor="let row of transformationsFormat"
-                                            (click)="clickSave(row.id)"
-                                            >
-                                            {{ row.name }}
-                                            <span class="tooltip-content">{{ row.description }}</span>                                    
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    
-                                </div>
-                                
-                            </div>
-            
-                            Existing field-level transformations:
-                            <clr-datagrid>
-                                <clr-dg-column>Up</clr-dg-column>
-                                <clr-dg-column>Down</clr-dg-column>
-                                <clr-dg-column>Del</clr-dg-column>
-                                <clr-dg-column>Nr</clr-dg-column>
-                                <clr-dg-column>Name</clr-dg-column>
-                                <clr-dg-column>Description</clr-dg-column>
-
-                                <clr-dg-row>
-                                    <clr-dg-cell>
-                                        <clr-icon shape="arrow" size="16"></clr-icon>
-                                    </clr-dg-cell>
-                                    <clr-dg-cell>    
-                                        <clr-icon shape="arrow" size="16" dir="down"></clr-icon>
-                                    </clr-dg-cell>
-                                    <clr-dg-cell>
-                                    <clr-icon shape="times" size="16"></clr-icon>
-                                    </clr-dg-cell>
-                                    <clr-dg-cell>
-                                        1
-                                    </clr-dg-cell>
-                                    <clr-dg-cell>Trim spaces</clr-dg-cell>
-                                    <clr-dg-cell>
-                                        Trim spaces from left and right
-                                    </clr-dg-cell>
-                                </clr-dg-row>
-                                <clr-dg-footer>
-                                    Optionally save this as:  
-                                    <input 
-                                        type="text" 
-                                        placeholder="Transformation Name"
-                                        >
-                                    <button 
-                                        type="button" 
-                                        class="btn btn-link btn-sm" 
-                                        (click)="clickSave()"
-                                        >
-                                        Save
-                                    </button>
-                                </clr-dg-footer>
-                                
-                            </clr-datagrid>
-
-                        </div>
-
-                                            <!-- Data Quality notes
+                                        <!-- Data Quality notes
                                             Nr records
                                             * IF key fields have been marked, some cardinality / summary
                                                 graphs will be shown to the shape of the data, bins,
                                                 frequency distribution, etc to help understand the data -->
-
+                    </div>
+                                            
                 </div>
             </div>
         </div>

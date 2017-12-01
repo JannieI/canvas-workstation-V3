@@ -24,11 +24,15 @@
     grid-auto-rows: 1rem; 
   }
 
-.currentDatasources {
+.menuOptions {
     border: 1px solid black;
     border-radius: 4px;
     margin: 0;
     padding: 0;
+}
+
+.newTransitions {
+    margin-left: 25px;
 }
 
 .currentDataHeader {
