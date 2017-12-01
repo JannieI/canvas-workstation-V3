@@ -57,14 +57,25 @@ const currentDatasources: currentDatasource [] =
         id: 1,
         name: 'My Expenses',
         type: 'Xls File',
-        description: 'Personal expenses, with info per budget type.'
-
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    
     },
     {
         id: 2,
         name: 'Bitcoin Trades',
         type: 'Database - PostgreSQL',
-        description: 'Trades from Bitcoin Exchange'
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
 
     }
 ];
@@ -395,7 +406,7 @@ const dataSample: datasource[] =
 export class GlobalVariableService {
     currentDashboards: dashboard[] = currentDashboards;
     backgroundcolors: CSScolor[] = backgroundcolors;
-    currentDatasources: datasource[] = currentDatasources;
+    currentDatasources: currentDatasource[] = currentDatasources;
     transformations: transformation[] = transformations;
     fields: field[] = fields;
     fieldsMetadata: fieldMetadata[] = fieldsMetadata;

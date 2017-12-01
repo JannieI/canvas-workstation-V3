@@ -166,7 +166,13 @@ export class DataComponent implements OnInit {
             id: 1,
             type: 'Excel file',
             name: 'Costing preparation',
-            description: 'Costing preparation'
+            description: 'Costing preparation',
+            createdBy: 'JohnM',
+            createdOn: '2017/01/01',
+            refreshedBy: 'JohnM',
+            refreshedOn: '2017/01/01',
+            parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    
         }
 
         if (this.indexCurrent == 0) {

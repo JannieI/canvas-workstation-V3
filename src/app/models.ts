@@ -12,7 +12,12 @@ export class currentDatasource {
     id: number;
     name: string;
     type: string;
-    description;
+    description: string;
+    createdBy: string;
+    createdOn: string;
+    refreshedBy: string;
+    refreshedOn;
+    parameters: string;
 }
 
 // Dashboard
