@@ -24,11 +24,12 @@
                             [style.background-color]="selectedExistingTransform? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuExistingTransformation()"
                             >
-                            All Transformations
+                            Transformations
                         </button>
                         <button
                             type="button"
                             class="btn btn-link wizardButton"
+                            [style.background-color]="selectedDatasource? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuDatasource()"
                             >
                             Datasource
@@ -36,6 +37,7 @@
                         <button
                             type="button"
                             class="btn btn-link wizardButton"
+                            [style.background-color]="selectedOverallTransform? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuOverallTransform()"
                             >
                             Overall Transform
@@ -43,6 +45,7 @@
                         <button
                             type="button"
                             class="btn btn-link wizardButton"
+                            [style.background-color]="selectedFieldTransform? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuFieldTransform()"
                             >
                             Field Transform
@@ -50,6 +53,7 @@
                         <button
                             type="button"
                             class="btn btn-link wizardButton"
+                            [style.background-color]="selectedFieldProperties? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuFieldProperties()"
                             >
                             Field Properties
@@ -57,6 +61,7 @@
                         <button
                             type="button"
                             class="btn btn-link wizardButton"
+                            [style.background-color]="selectedsummary? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuSummary()"
                             >
                             Summary
