@@ -48,7 +48,7 @@ export class DataPopupComponent implements OnInit {
     selectedData: string = 'Trades for 2016';
     showSelectorDetailArea: boolean = false;
     showSelectField: boolean = false;
-    transformation: transformation[];
+    transformationsFormat: transformation[];
 
     selectedExisting: boolean = false;
     selectedDatasource: boolean = false;
@@ -58,6 +58,7 @@ export class DataPopupComponent implements OnInit {
     selectedsummary: boolean = false;
     selectAddTransformation: boolean = false;
 
+    showTransitionFormat: boolean = false;
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -67,7 +68,7 @@ export class DataPopupComponent implements OnInit {
 
         // Load global variables
         this.currentDatasources = this.globalVariableService.currentDatasources;
-        this.transformation = this.globalVariableService.transformations;
+        this.transformationsFormat = this.globalVariableService.transformationsFormat;
         this.fields = this.globalVariableService.fields;
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
     }
@@ -176,4 +177,9 @@ export class DataPopupComponent implements OnInit {
     clickAddTransformation() {
         this.selectAddTransformation = false;
     }
+
+    clickTransitionFormat() {
+        this.showTransitionFormat = true;
+    }
+    
  }

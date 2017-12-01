@@ -90,7 +90,7 @@ export class DataComponent implements OnInit {
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
         this.currentDatasources = this.globalVariableService.currentDatasources;
-        this.transformation = this.globalVariableService.transformations;
+        this.transformation = this.globalVariableService.transformationsFormat;
         this.fields = this.globalVariableService.fields;
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
         this.dataServer = this.globalVariableService.dataServer;

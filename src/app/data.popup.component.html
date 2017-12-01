@@ -294,8 +294,26 @@
                                     Type
                                 </button>
                                 <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                                    <button type="button" clrDropdownItem (click)="clickTransitionFormat()">
+                                        Format content
+                                    </button>
                                     <button type="button" clrDropdownItem (click)="clickSave()">
-                                        Standard
+                                        Fill content
+                                    </button>
+                                    <button type="button" clrDropdownItem (click)="clickSave()">
+                                        Add Geo
+                                    </button>
+                                    <button type="button" clrDropdownItem (click)="clickSave()">
+                                        Append Column
+                                    </button>
+                                    <button type="button" clrDropdownItem (click)="clickSave()">
+                                        Replace content
+                                    </button>
+                                    <button type="button" clrDropdownItem (click)="clickSave()">
+                                        Partial content
+                                    </button>
+                                    <button type="button" clrDropdownItem (click)="clickSave()">
+                                        Trim content
                                     </button>
                                     <button type="button" clrDropdownItem (click)="clickSave()">
                                         R Extensions
@@ -307,12 +325,12 @@
                             </clr-dropdown>
 
                             <div>
-                                <div class="row">
+                                <div class="row" *ngIf="showTransitionFormat">
                                     <div 
                                         role="tooltip" 
                                         aria-haspopup="true" 
                                         class="tooltip tooltip-lg col-xs-2 transformationName" 
-                                        *ngFor="let row of transformation"
+                                        *ngFor="let row of transformationsFormat"
                                         (click)="clickSave(row.id)"
                                         >
                                         {{ row.name }}
