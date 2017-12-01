@@ -50,6 +50,8 @@ export class DataPopupComponent implements OnInit {
     showSelectField: boolean = false;
     transformation: transformation[];
 
+    selectedExisting: boolean = false;
+    
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -79,7 +81,7 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickFileBrowse() {
-        alert('Later: File component to browse ...')
+        // alert('Later: File component to browse ...')
     }
     
     clickFileAdd() {
@@ -98,4 +100,7 @@ export class DataPopupComponent implements OnInit {
 		this.formDataPopupClosed.emit(action);
     }
 
+    clickMenuExisting() {
+        this.selectedExisting = ! this.selectedExisting;
+    }
  }

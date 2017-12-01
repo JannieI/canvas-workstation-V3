@@ -126,3 +126,7 @@
     background-color: rgb(235, 234, 245);
 }
 
+.wizardButton {
+    text-align: left;
+    width: 100%;
+}

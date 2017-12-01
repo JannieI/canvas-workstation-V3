@@ -10,34 +10,81 @@
                 <div class="row">
 
                     <div class="col-xs-2 currentDatasources">
+                        <button 
+                            type="button" 
+                            class="btn btn-link wizardButton" 
+                            [style.background-color]="selectedExisting? 'rgb(182, 179, 179)' : 'transparent'"
+                            (click)="clickMenuExisting()"
+                            >
+                            Existing Data
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-link" 
+                            (click)="clickFileBrowse()"
+                            >
+                            Datasource
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-link" 
+                            (click)="clickFileBrowse()"
+                            >
+                            Overall Transform
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-link" 
+                            (click)="clickFileBrowse()"
+                            >
+                            Field Transform
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-link" 
+                            (click)="clickFileBrowse()"
+                            >
+                            Summary
+                        </button>
 
-                        <div class="currentDataHeader">
-                            Current Data
-                        </div>
-
-                        <section class="sidenav-content">
-                            <section class="nav-group">
-                                <div
-                                    *ngFor="let dat of currentDatasources"
-                                    >
-                                    <a
-                                        id="p1"
-                                        draggable="true"
-                                        (dragstart)="dragstart_handler($event)"
-                                        (dragend)="dragend_handler($event)"
-                                        (click)="clickShowCurrentDetail(dat.name)">
-                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                        {{ dat.name }}
-                                    </a>
-                                </div>
-                                <!-- <clr-icon shape="block" class="dateField"></clr-icon> -->
-                                <!-- <clr-icon shape="bolt" class="metricField"> -->
-                            </section>
-                        </section>
 
                     </div>
 
                     <div class="col-xs-10 fileSelector">
+
+                        <div>
+                            <clr-datagrid class="fieldsDataGrid">
+                                <clr-dg-column (click)="clickField('id')">
+                                    ID
+                                </clr-dg-column>
+                                <clr-dg-column>Name</clr-dg-column>
+                                <clr-dg-column>Type</clr-dg-column>
+                                <clr-dg-column>Format</clr-dg-column>
+                                <clr-dg-column>Filter</clr-dg-column>
+                                <clr-dg-column>Calc</clr-dg-column>
+                                <clr-dg-column>Order</clr-dg-column>
+                                <clr-dg-column>Hide</clr-dg-column>
+
+                                <clr-dg-row *ngFor="let field of fields">
+                                    <clr-dg-cell>{{field.id}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.name}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.type}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.format}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.filter}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.calc}}</clr-dg-cell>
+                                    <clr-dg-cell>{{field.order}}</clr-dg-cell>
+                                </clr-dg-row>
+
+                                <clr-dg-footer>
+                                    <span class="fieldDataGridFooter">
+                                        Click on a column heading to see its detail
+                                    </span>
+                                    {{fields.length}} fields
+                                </clr-dg-footer>
+                            </clr-datagrid>
+                        </div>
+    
+
                         <div class="wrapper">
                             <div class="fileSelectorTop">
                                 <!-- <h4 class="fileSelectorHeader">File selection</h4> -->
