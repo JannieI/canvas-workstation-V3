@@ -18,9 +18,10 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { currentDatasource }          from './models';
-import { transformation }             from './models'
-import { field }                      from './models'
-import { fieldMetadata }              from './models'
+import { transformation }             from './models';
+import { field }                      from './models';
+import { fieldMetadata }              from './models';
+import { currentTransformation }      from './models';
 
 interface Idata{
     name: string;
@@ -40,6 +41,8 @@ export class DataPopupComponent implements OnInit {
     @ViewChild('transformations') transformations: ElementRef;
 
     currentDatasources: currentDatasource[];
+    currentTransformations: currentTransformation[]; 
+    
     errorMessage: string = "";
     fields: field[];
     fieldsMetadata: fieldMetadata[];
@@ -70,6 +73,8 @@ export class DataPopupComponent implements OnInit {
         // Load global variables
         this.currentDatasources = this.globalVariableService.currentDatasources;
         this.transformationsFormat = this.globalVariableService.transformationsFormat;
+        this.currentTransformations = this.globalVariableService.currentTransformations;
+        
         this.fields = this.globalVariableService.fields;
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
     }
