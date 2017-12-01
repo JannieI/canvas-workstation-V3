@@ -431,7 +431,8 @@
                                         </div>
 
                                     </div>
-
+                                    <br>
+                                    <br>
                                     <div>
                                         {{ transitionFieldName }} - {{ transitionAction }}
                                     </div>
@@ -482,13 +483,16 @@
                         <div *ngIf="selectedSummary">
                             Key: T/F
                             ExplainedBy: BarChart, TradeDate, Value
+                            Nr records
+                            * IF key fields have been marked, some cardinality / summary
+                                graphs will be shown to the shape of the data, bins,
+                                frequency distribution, etc to help understand the data
                         </div>
 
-                                        <!-- Data Quality notes
-                                            Nr records
-                                            * IF key fields have been marked, some cardinality / summary
-                                                graphs will be shown to the shape of the data, bins,
-                                                frequency distribution, etc to help understand the data -->
+                        <div *ngIf="selectedDataQuality">
+                            Data Quality notes: describes issues with the quality of the data,
+                            and what will be done about it by whom and when.
+                        </div>
                     </div>
                                             
                 </div>

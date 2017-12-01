@@ -224,7 +224,7 @@ export class DataPopupComponent implements OnInit {
     dragover_handler(ev, actionName: string) {
         console.log('dragover_handler', ev, ev.srcElement.innerText)
         ev.preventDefault();
-        this.transitionFieldName = 'Add the field to transition: '
+        this.transitionFieldName = 'Added the field to transition: '
 
         this.transitionAction = actionName;
     }
