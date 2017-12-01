@@ -4,12 +4,13 @@ import { Injectable }                 from '@angular/core';
 
 // Our Models
 import { currentDatasource }          from './models';
-import { dashboard }                  from './models'
-import { datasource }                 from './models'
-import { CSScolor }                   from './models'
-import { transformation }             from './models'
-import { field }                      from './models'
-import { fieldMetadata }              from './models'
+import { currentTransformation }      from './models';
+import { dashboard }                  from './models';
+import { datasource }                 from './models';
+import { CSScolor }                   from './models';
+import { transformation }             from './models';
+import { field }                      from './models';
+import { fieldMetadata }              from './models';
 
 // import { CanvasUser }                 from './model.user';
 
@@ -330,6 +331,19 @@ const transformationsFormat: transformation[] =
     }
 ];
 
+const currentTransformations: currentTransformation[] = 
+[
+     {
+        id: 1,
+        category: 'Format',
+        name: 'FillBlanks',
+        description: 'bla-bla-bla',
+        fieldID: 231,
+        fieldName: 'Region',
+        parameters: ""
+    }
+]
+
 const transformationsFill: transformation[] =
 [
     {
@@ -346,7 +360,7 @@ const transformationsFill: transformation[] =
     },
     {
         id: 4,
-        category: 'Column-level',
+        category: 'ColucurrentTransformationsmn-level',
         name: 'FillBlankAndNull',
         description: '(columnName, newValue)'
     }
@@ -456,8 +470,6 @@ const transformationsPortion: transformation[] =
     },
 ];
 
-
-
 const dataServer: datasource[] =
 [
     {
@@ -557,6 +569,7 @@ const dataSample: datasource[] =
 @Injectable()
 export class GlobalVariableService {
     currentDashboards: dashboard[] = currentDashboards;
+    currentTransformations: currentTransformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;
     currentDatasources: currentDatasource[] = currentDatasources;
     transformationsFormat: transformation[] = transformationsFormat;

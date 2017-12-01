@@ -38,6 +38,16 @@ export class transformation {
     description: string;
 }
 
+export class currentTransformation {
+    id: number;
+    category: string;
+    name: string;
+    description: string;
+    fieldID: number;
+    fieldName: string;
+    parameters: string;
+}
+
 export class field {
     id: number;
     name: string;
