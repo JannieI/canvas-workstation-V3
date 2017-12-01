@@ -156,7 +156,7 @@ export class DataPopupComponent implements OnInit {
         this.selectedOverallTransform = false;
         this.selectedFieldTransform = false;
         this.selectedFieldProperties = true;
-        this.selectedsummary = true;
+        this.selectedsummary = false;
     }
 
     clickMenuSummary() {
