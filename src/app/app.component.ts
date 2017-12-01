@@ -34,8 +34,6 @@ export class AppComponent implements OnInit {
     showModalDashboardDetails: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalDataPopup: boolean = false;
-    showWizard: boolean = false;
-    showModalDataPopup1: boolean = false;
     showPalette: boolean = false;
     currentWidgetSpec: string = "{...}";
 
@@ -68,10 +66,7 @@ export class AppComponent implements OnInit {
     }
 
     menuDataFromServer() {
-        // console.log('menuDataFromServer 1', this.showWizard, this.showModalDataPopup1)
-        this.showWizard = true;
-        // this.showModalDataPopup1 = true;
-        console.log('menuDataFromServer', this.showWizard, this.showModalDataPopup1)
+        console.log('menuDataFromServer')
     }
     menuDataGetData() {
         console.log('menuDataGetData')
@@ -97,7 +92,6 @@ export class AppComponent implements OnInit {
 
     handleCloseDataPopup() {
         this.showModalDataPopup = false;
-        this.showModalDataPopup1 = false;
     }
 
     handleCloseWidgetEditor() {
