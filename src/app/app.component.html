@@ -619,7 +619,7 @@
                     <a clrDropdownItem (click)="menuUserLogin()">Login</a>
                     <a clrDropdownItem (click)="menuUserMyProfile()">My Profile</a>
                     <a clrDropdownItem (click)="menuUserPreferences()">Preferences</a>
-                    <a clrDropdownItem>Log out</a>
+                    <a clrDropdownItem (click)="menuUserLogout()">Log out</a>
                 </div>
             </clr-dropdown>
             
@@ -659,12 +659,12 @@
 
 
 <!-- Modal: Logout -->
-<login
+<logout
     class="formPopupDashboard"
     *ngIf="showModalDashboardLogout"
     [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardLogoutClosed)="handleCloseDashboardLogout($event)">Open Logout ...
-</login>
+</logout>
 
 
 <!-- Modal: My Profile -->
