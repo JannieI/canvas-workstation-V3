@@ -13,6 +13,12 @@ import { Router }                     from '@angular/router';
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
 
+// Our Services
+import { GlobalVariableService}       from './global-variable.service';
+
+// Models
+import { dashboard }                  from './models';
+
 @Component({
     selector: 'dashboard-open',
     templateUrl: './dashboard.open.component.html',
@@ -24,8 +30,15 @@ export class DashboardOpenComponent implements OnInit {
     @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
+    dashboards: dashboard[];
+
+	constructor(
+        private globalFunctionService: GlobalFunctionService,
+        private globalVariableService: GlobalVariableService,
+	) {}
 
     ngOnInit() {
+        this.dashboards = this.globalVariableService.currentDashboards;
     }
 
     clickClose(action: string) {

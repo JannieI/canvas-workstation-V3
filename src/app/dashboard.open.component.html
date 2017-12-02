@@ -17,6 +17,30 @@
                     class="popupInput">
 
                 <button type="button" (click)="clickClose('Close')">Save</button>
+                <clr-datagrid>
+                    <clr-dg-column (click)="clickField('id')">
+                        ID
+                    </clr-dg-column>
+                    <clr-dg-column>Name</clr-dg-column>
+                    <clr-dg-column>Type</clr-dg-column>
+                    <clr-dg-column>Format</clr-dg-column>
+                    <clr-dg-column>Filter</clr-dg-column>
+                    <clr-dg-column>Calc</clr-dg-column>
+                    <clr-dg-column>Order</clr-dg-column>
+                    <clr-dg-column>Hide</clr-dg-column>
+
+                    <clr-dg-row *ngFor="let row of dashboards">
+                        <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.type}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.format}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.filter}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.calc}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.order}}</clr-dg-cell>
+                    </clr-dg-row>
+
+                </clr-datagrid>
+
             </div>  
         </div>  
     </div>  
