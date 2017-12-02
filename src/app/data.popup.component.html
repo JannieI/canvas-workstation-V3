@@ -6,7 +6,11 @@
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
-
+                <div class="titleDSBox">
+                    <div class="titleDS">
+                        <b>{{ currentDataset }}</b>
+                    </div>
+                </div>
                 <div class="row" modalContent>
 
                     <div class="col-xs-3 menuOptions">
@@ -24,7 +28,7 @@
                             [style.background-color]="selectedExistingTransform? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuExistingTransformation()"
                             >
-                            Transformations
+                            All Transformations
                         </button>
                         <button
                             type="button"
@@ -40,7 +44,7 @@
                             [style.background-color]="selectedOverallTransform? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuOverallTransform()"
                             >
-                            Overall Transform
+                            Add Overall Transform
                         </button>
                         <button
                             type="button"
@@ -48,7 +52,7 @@
                             [style.background-color]="selectedFieldTransform? 'rgb(182, 179, 179)' : 'transparent'"
                             (click)="clickMenuFieldTransform()"
                             >
-                            Field Transform
+                            Add Field Transform
                         </button>
                         <button
                             type="button"
@@ -116,7 +120,7 @@
                                         <button
                                             type="button"
                                             class="btn btn-link wizardButton"
-                                            (click)="clickEditDS(row.id)"
+                                            (click)="clickEditDS(row.id, row.name)"
                                             >
                                             <clr-icon shape="pencil" size="12"></clr-icon>
                                         </button>
@@ -205,7 +209,6 @@
 
                             <div *ngIf="showDataPreview">
                                 <clr-datagrid class="fieldsDataGrid">
-                                    <clr-dg-column>Edit</clr-dg-column>
                                     <clr-dg-column>Name</clr-dg-column>
                                     <clr-dg-column>Type</clr-dg-column>
                                     <clr-dg-column>createdBy</clr-dg-column>
@@ -215,15 +218,6 @@
                                     <clr-dg-column>parameters</clr-dg-column>
     
                                     <clr-dg-row *ngFor="let row of currentDatasources">
-                                        <clr-dg-cell>
-                                            <button
-                                                type="button"
-                                                class="btn btn-link wizardButton"
-                                                (click)="clickEditDS(row.id)"
-                                                >
-                                                <clr-icon shape="pencil" size="12"></clr-icon>
-                                            </button>
-                                        </clr-dg-cell>
                                         <clr-dg-cell>{{row.name}}</clr-dg-cell>
                                         <clr-dg-cell>{{row.type}}</clr-dg-cell>
                                         <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
@@ -379,6 +373,7 @@
                                                 Category
                                                 <clr-icon shape="caret down" *ngIf="!showServerData"></clr-icon>
                                             </button>
+                                            , and then drag the requird field onto it:
                                             <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
                                                 <button type="button" clrDropdownItem (click)="clickTransitionFormat()">
                                                     Format content

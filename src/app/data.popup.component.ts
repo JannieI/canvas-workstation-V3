@@ -13,7 +13,7 @@ import { ViewChild }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
 
 // Our Functions
-import { GlobalFunctionService } 		  from './global-function.service';
+import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
@@ -42,7 +42,8 @@ export class DataPopupComponent implements OnInit {
 
     currentDatasources: currentDatasource[];
     currentTransformations: currentTransformation[]; 
-    
+    currentDataset: string = '';
+
     errorMessage: string = "";
     fields: field[];
     fieldsMetadata: fieldMetadata[];
@@ -55,7 +56,7 @@ export class DataPopupComponent implements OnInit {
 
     selectedExistingDS: boolean = false;
     selectedExistingTransform: boolean = false;
-    selectedDatasource: boolean = false;
+    selectedDatasource: boolean = true;
     selectedOverallTransform: boolean = false;
     selectedFieldTransform: boolean = false;
     selectedFieldProperties: boolean = false;
@@ -114,7 +115,8 @@ export class DataPopupComponent implements OnInit {
             parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     
         };        
-        this.currentDatasources.push(newData)
+        this.currentDatasources.push(newData);
+        this.currentDataset = newData.name;
         console.log(this.currentDatasources)
     }
 
@@ -142,8 +144,10 @@ export class DataPopupComponent implements OnInit {
         this.selectedSummary = false;
     }
 
-    clickEditDS(dsID: number) {
+    clickEditDS(dsID: number, dsName: string) {
         console.log('DS ID', dsID);
+        this.currentDataset = dsName;
+        
     }
 
     clickMenuDatasource() {
