@@ -22,6 +22,7 @@ export class currentDatasource {
 
 // Dashboard
 export class dashboard {
+    id: number;
     name: string;
     description: string;
     nrWidgets: number;
