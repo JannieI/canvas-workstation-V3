@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
     showModalLanding: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardMyProfile: boolean = false;
+    showModalDashboardPreferences: boolean = false;
     showModalDashboardRename: boolean = false;
     showModalDashboardDetails: boolean = false;
     showModalWidgetEditor: boolean = false;
@@ -112,6 +113,10 @@ export class AppComponent implements OnInit {
         this.showModalDashboardMyProfile = false;
     }
 
+    handleCloseDashboardPreferences(action) {
+        this.showModalDashboardPreferences = false;
+    }
+
     handleCloseDashboardRename(action) {
         this.showModalDashboardRename = false;
     }
@@ -132,6 +137,10 @@ export class AppComponent implements OnInit {
     menuUserMyProfile() {
         console.log('ddd')
         this.showModalDashboardMyProfile = true;
+    }
+
+    menuUserPreferences() {
+        this.showModalDashboardPreferences = true;
     }
 
     clickMenuFileRename() {
