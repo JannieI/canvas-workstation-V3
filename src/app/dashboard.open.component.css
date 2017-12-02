@@ -10,3 +10,7 @@
     position: relative;
     top: 0;
 }
+
+.propertyLine {
+    margin: 5px;
+}

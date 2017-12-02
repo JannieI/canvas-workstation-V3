@@ -75,28 +75,28 @@
                             class="btn btn-link wizardButton"
                             (click)="clickMenuSummary()"
                             >
-                            
+
                         </button>
                         <button
                             type="button"
                             class="btn btn-link wizardButton"
                             (click)="clickMenuSummary()"
                             >
-                            
+
                         </button>
                         <button
                             type="button"
                             class="btn btn-link wizardButton"
                             (click)="clickMenuSummary()"
                             >
-                            
+
                         </button>
                         <button
                             type="button"
                             class="btn btn-link wizardButton"
                             (click)="clickMenuSummary()"
                             >
-                            
+
                         </button>
 
 
@@ -220,7 +220,7 @@
                                     <clr-dg-column>refreshedBy</clr-dg-column>
                                     <clr-dg-column>refreshedOn</clr-dg-column>
                                     <clr-dg-column>parameters</clr-dg-column>
-    
+
                                     <clr-dg-row *ngFor="let row of currentDatasources">
                                         <clr-dg-cell>{{row.name}}</clr-dg-cell>
                                         <clr-dg-cell>{{row.type}}</clr-dg-cell>
@@ -230,12 +230,12 @@
                                         <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
                                         <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
                                     </clr-dg-row>
-    
+
                                     <clr-dg-footer>
                                         {{currentDatasources.length}} fields
                                     </clr-dg-footer>
                                 </clr-datagrid>
-            
+
                             </div>
                         </div>
 
@@ -314,21 +314,21 @@
                                                 </ul>
                                     </nav>
                                 </div>
-                                <div 
+                                <div
                                     class="gridColumns"
-                                    (drop)="drop_pivot($event);" 
+                                    (drop)="drop_pivot($event);"
                                     (dragover)="dragover_pivot($event);"
                                     >
                                     Columns
                                 </div>
                                 <div class="gridRows"
-                                    (drop)="drop_pivot($event);" 
+                                    (drop)="drop_pivot($event);"
                                     (dragover)="dragover_pivot($event);"
                                     >
                                     Rows
                                 </div>
                                 <div class="gridAggregate">
-                                    Aggregate: 
+                                    Aggregate:
                                     <div class="select">
                                         <select id="selects_1">
                                             <option>Sum</option>
@@ -337,7 +337,7 @@
                                             <option>Maximum</option>
                                             <option>Mean</option>
                                         </select>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             <!-- <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column (click)="clickField('id')">
@@ -379,7 +379,7 @@
                                         [style.width.px]="sideNavWidth"
                                         [style.min-width.rem]="sideNavMinWidth"
                                         >
-            
+
                                         <section class="sidenav-content">
                                             <section class="nav-group">
                                                     <ul class="nav-list">
@@ -452,16 +452,16 @@
                                         </section>
                                     </nav>
                                 </div>
-            
+
                                 <div class="col-xs-9">
 
                                     <div class="newTransitions">
                                         To ADD more transformations, select a
-                
+
                                         <clr-dropdown>
-                                            <button 
-                                                type="button" 
-                                                class="btn btn-link btn-sm" 
+                                            <button
+                                                type="button"
+                                                class="btn btn-link btn-sm"
                                                 clrDropdownTrigger
                                                 >
                                                 Category
@@ -504,17 +504,17 @@
 
                                         <div class="transformationCategoryGrid">
                                             <div class="row" *ngIf="showTransitionFormat">
-                                                <div 
-                                                    role="tooltip" 
-                                                    aria-haspopup="true" 
-                                                    class="tooltip tooltip-lg col-xs-4 transformationName" 
+                                                <div
+                                                    role="tooltip"
+                                                    aria-haspopup="true"
+                                                    class="tooltip tooltip-lg col-xs-4 transformationName"
                                                     *ngFor="let row of transformationsFormat"
                                                     (click)="clickSave(row.id)"
-                                                    (drop)="drop_handler($event);" 
+                                                    (drop)="drop_handler($event);"
                                                     (dragover)="dragover_handler($event, row.name);"
                                                     >
                                                     {{ row.name }}
-                                                    <span class="tooltip-content">{{ row.description }}</span>                                    
+                                                    <span class="tooltip-content">{{ row.description }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -528,7 +528,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div *ngIf="selectedFieldProperties">
                             <div class="row">
                                 <div class="col-xs-3">
@@ -537,7 +537,7 @@
                                         [style.width.px]="sideNavWidth"
                                         [style.min-width.rem]="sideNavMinWidth"
                                         >
-            
+
                                         <section class="sidenav-content">
                                             <section class="nav-group">
                                                 <ul class="nav-list">
@@ -675,10 +675,10 @@
                         </div>
 
                         <div *ngIf="selectedSummary">
-                            
-                            ExplainedBy: 
+
+                            ExplainedBy:
                             <div class="propertyLine">
-                                Explained by: <input type="text" id="formFields_7" 
+                                Explained by: <input type="text" id="formFields_7"
                                 placeholder="BarChart of Value by TradeDate">
                             </div>
                             <button
@@ -688,11 +688,11 @@
                                 >
                                 Refresh Summary
                             </button>
-                            
+
                             <br> <br>
-                            
+
                             Nr records: <b>241</b>
-                            <br> 
+                            <br>
                             3-9 graphs that summarises the data
                             <br> <br>
                             <i>
@@ -709,7 +709,7 @@
                             and what will be done about it by whom and when.
                         </div>
                     </div>
-                                            
+
                 </div>
             </div>
         </div>
