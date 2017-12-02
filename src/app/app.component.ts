@@ -31,6 +31,8 @@ export class AppComponent implements OnInit {
     showModalLanding: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardMyProfile: boolean = false;
+    showModalDashboardLogin: boolean = false;
+    showModalDashboardLogout: boolean = false;
     showModalDashboardPreferences: boolean = false;
     showModalDashboardRename: boolean = false;
     showModalDashboardDetails: boolean = false;
@@ -113,6 +115,14 @@ export class AppComponent implements OnInit {
         this.showModalDashboardMyProfile = false;
     }
 
+    handleCloseDashboardLogin(action) {
+        this.showModalDashboardLogin = false;
+    }
+
+    handleCloseDashboardLogout(action) {
+        this.showModalDashboardLogout = false;
+    }
+
     handleCloseDashboardPreferences(action) {
         this.showModalDashboardPreferences = false;
     }
@@ -137,6 +147,14 @@ export class AppComponent implements OnInit {
     menuUserMyProfile() {
         console.log('ddd')
         this.showModalDashboardMyProfile = true;
+    }
+
+    menuUserLogin() {
+        this.showModalDashboardLogin = true;
+    }
+
+    menuUserLogout() {
+        this.showModalDashboardLogout = true;
     }
 
     menuUserPreferences() {

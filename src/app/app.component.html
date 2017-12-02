@@ -616,7 +616,7 @@
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
                 <div class="dropdown-menu">
-                    <a clrDropdownItem>Login</a>
+                    <a clrDropdownItem (click)="menuUserLogin()">Login</a>
                     <a clrDropdownItem (click)="menuUserMyProfile()">My Profile</a>
                     <a clrDropdownItem (click)="menuUserPreferences()">Preferences</a>
                     <a clrDropdownItem>Log out</a>
@@ -647,6 +647,24 @@
     [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardOpenClosed)="handleCloseDashboardOpen($event)">Open Open Dashboard ...
 </dashboard-open>
+
+
+<!-- Modal: Login -->
+<login
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardLogin"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardLoginClosed)="handleCloseDashboardLogin($event)">Open Login ...
+</login>
+
+
+<!-- Modal: Logout -->
+<login
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardLogout"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardLogoutClosed)="handleCloseDashboardLogout($event)">Open Logout ...
+</login>
 
 
 <!-- Modal: My Profile -->

@@ -32,6 +32,8 @@ import { DashboardOpenComponent }     from './dashboard.open.component';
 import { DashboardDetailsComponent }  from './dashboard.details.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
+import { LoginComponent}              from './login.component';
+import { LogoutComponent}             from './logout.component';
 
 // Our Services
 import { AuthGuard }                  from './authguard.service';
@@ -56,6 +58,8 @@ import { GlobalFunctionService }      from './global-function.service';
         DataPopupComponent,
         MyProfileComponent,
         PreferencesComponent,
+        LoginComponent,
+        LogoutComponent,
     ],
     imports: [
         BrowserAnimationsModule,
