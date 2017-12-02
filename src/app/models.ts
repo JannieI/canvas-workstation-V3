@@ -24,6 +24,10 @@ export class currentDatasource {
 export class dashboard {
     name: string;
     description: string;
+    nrWidgets: number;
+    nrRecords: number;
+    creator: string;
+    nrTimesOpened: number;
 }
 
 // CSS Color

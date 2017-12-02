@@ -336,7 +336,7 @@ export class ExploreComponent {
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled);
         this.isFirstTime = this.globalVariableService.isFirstTime;
-        this.dashboards = this.globalVariableService.currentDashboards;
+        this.dashboards = this.globalVariableService.dashboards;
     }
 
 //*     onMouseButton(event: MouseEvent): void {

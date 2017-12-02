@@ -15,27 +15,47 @@ import { fieldMetadata }              from './models';
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
-const currentDashboards: dashboard[] =
+const dashboards: dashboard[] =
 [
     {
         name: 'Market Overview',
-        description: 'Economic indicator summary'
+        description: 'Economic indicator summary',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 4
     },
     {
         name: 'Costing Summary',
-        description: 'Costing Summary'
+        description: 'Costing Summary',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 4
     },
     {
         name: 'Home Budget',
-        description: 'Home Budget'
+        description: 'Home Budget',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 4
     },
     {
         name: 'Bitcoin sales',
-        description: 'Bitcoin sales'
+        description: 'Bitcoin sales',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 4
     },
     {
         name: 'Cycling routes',
-        description: 'Cycling routes'
+        description: 'Cycling routes',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 4
     }
 ];
 
@@ -568,7 +588,7 @@ const dataSample: datasource[] =
 
 @Injectable()
 export class GlobalVariableService {
-    currentDashboards: dashboard[] = currentDashboards;
+    dashboards: dashboard[] = dashboards;
     currentTransformations: currentTransformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;
     currentDatasources: currentDatasource[] = currentDatasources;

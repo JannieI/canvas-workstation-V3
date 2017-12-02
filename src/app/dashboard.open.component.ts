@@ -38,7 +38,7 @@ export class DashboardOpenComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.currentDashboards;
+        this.dashboards = this.globalVariableService.dashboards;
     }
 
     clickClose(action: string) {
