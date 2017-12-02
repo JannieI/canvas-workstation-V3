@@ -660,18 +660,45 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="propertyLine">
+                                            Key Field: <b></b>  Change to:
+                                            <div class="select">
+                                                <select id="selects_3">
+                                                    <option>True</option>
+                                                    <option>False</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div *ngIf="selectedSummary">
-                            Key: T/F
-                            ExplainedBy: BarChart, TradeDate, Value
-                            Nr records
+                            
+                            ExplainedBy: 
+                            <div class="propertyLine">
+                                Explained by: <input type="text" id="formFields_7" 
+                                placeholder="BarChart of Value by TradeDate">
+                            </div>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickMenuExistingDS()"
+                                >
+                                Refresh Summary
+                            </button>
+                            
+                            Nr records: <b>241</b>
+                            3-9 graphs that summarises the data
+                            <br> <br>
+                            <i>
                             * IF key fields have been marked, some cardinality / summary
                                 graphs will be shown to the shape of the data, bins,
-                                frequency distribution, etc to help understand the data
+                                frequency distribution, etc to help understand the data.
+                                If no fields were marked, the software will makes its
+                                best guess.
+                            </i>
                         </div>
 
                         <div *ngIf="selectedDataQuality">
