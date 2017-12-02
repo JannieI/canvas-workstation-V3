@@ -333,7 +333,7 @@ const transformationsFormat: transformation[] =
 
 const currentTransformations: currentTransformation[] = 
 [
-     {
+    {
         id: 1,
         category: 'Format',
         name: 'FillBlanks',

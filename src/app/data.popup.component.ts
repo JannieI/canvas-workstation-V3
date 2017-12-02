@@ -243,4 +243,19 @@ export class DataPopupComponent implements OnInit {
         console.log('drop_handler dropped !!', data)
     }
 
+    drop_pivot(ev) {
+        ev.preventDefault();
+
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+        console.log('drop_handler dropped !!')
+    }
+
+    dragover_pivot(ev) {
+        console.log('dragover_handler')
+        ev.preventDefault();
+        // Set the dropEffect to move
+        ev.dataTransfer.dropEffect = "move"
+      }
+
  }

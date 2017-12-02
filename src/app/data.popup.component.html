@@ -199,6 +199,10 @@
                                 >
                                 Preview
                             </button>
+                            <div class="checkbox-inline">
+                                <input type="checkbox" id="checkrads_5">
+                                <label for="checkrads_5">Transpose rows and cols: </label>
+                            </div>
                             <button
                                 type="button"
                                 class="btn btn-link selectButon"
@@ -235,14 +239,107 @@
                             </div>
                         </div>
 
-                        <div *ngIf="selectedOverallTransform"
-                             class="fileSelectorDetailArea"
-                            [style.grid-column-start]='1'
-                            [style.grid-column-end]="selectorDetailColumnEnd"
-                            [style.grid-row-start]='7'
-                            [style.grid-row-end]='18'
-                            >
-                            <clr-datagrid class="fieldsDataGrid">
+                        <div *ngIf="selectedOverallTransform">
+
+                            <div class="wrapper">
+                                <div class="gridFields">
+                                    <nav
+                                        >
+
+                                                <ul class="nav-list">
+                                                    <li>
+                                                        <a
+                                                            class="nav-link"
+                                                            (dragend)="showGraphsReal($event)"
+                                                            draggable="true"
+                                                            id="dragtarget"
+                                                            >
+                                                            <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                            Trader
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link"
+                                                            id="p1"
+                                                            draggable="true"
+                                                            (dragstart)="dragstart_handler($event)"
+                                                            (dragend)="dragend_handler($event)"
+                                                            >
+                                                            <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                            Country
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link active">
+                                                            <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                            Trade Type
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link">
+                                                            <clr-icon shape="block" class="dateField"></clr-icon>
+                                                            Date
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link">
+                                                            <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                            DateTime
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link">
+                                                            <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                            Stock
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link">
+                                                            <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                            Volume
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link">
+                                                            <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                            Trades
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link">
+                                                            <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                            Value
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                    </nav>
+                                </div>
+                                <div 
+                                    class="gridColumns"
+                                    (drop)="drop_pivot($event);" 
+                                    (dragover)="dragover_pivot($event);"
+                                    >
+                                    Columns
+                                </div>
+                                <div class="gridRows"
+                                    (drop)="drop_pivot($event);" 
+                                    (dragover)="dragover_pivot($event);"
+                                    >
+                                    Rows
+                                </div>
+                                <div class="gridAggregate">
+                                    Aggregate: 
+                                    <div class="select">
+                                        <select id="selects_1">
+                                            <option>Sum</option>
+                                            <option>Average</option>
+                                            <option>Minimum</option>
+                                            <option>Maximum</option>
+                                            <option>Mean</option>
+                                        </select>
+                                    </div>                                    
+                                </div>
+                            <!-- <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column (click)="clickField('id')">
                                     ID
                                 </clr-dg-column>
@@ -270,7 +367,8 @@
                                     </span>
                                     {{fields.length}} rows
                                 </clr-dg-footer>
-                            </clr-datagrid>
+                            </clr-datagrid> -->
+                            </div>
                         </div>
 
                         <div *ngIf="selectedFieldTransform">
