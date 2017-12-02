@@ -1,21 +1,46 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-            <div class="modal-content modalContent">
-    
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+                    
+                Login
+
+
+                Logout
+
                 <div>
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
-                        
-                    Login
+                    <br>
                     <div class="propertyLine">
-                        Right:
-                        <input type="text" id="formFields_7" placeholder="Can Edit Dashboards">
-                        <input type="text" id="formFields_7" placeholder="Can Create Dashboards">
+                        UserName: 
+                        <input type="text" id="formFields_7" placeholder="UserName">
                     </div>
+                    <div class="propertyLine">
+                        Password:
+                        <input type="text" id="formFields_7" placeholder="**********">
+                    </div>
+                    <br>
+                    <button 
+                        type="button" 
+                        class="btn btn-link btn-sm" 
+                        (click)="clickClose()"
+                        >
+                        Cancel
+                    </button>
+                    <button 
+                        type="button" 
+                        class="btn btn-link btn-sm" 
+                        (click)="clickClose()"
+                        >
+                        Logout
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
                     
         
