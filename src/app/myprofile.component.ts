@@ -27,7 +27,7 @@ import { dashboard }                  from './models';
 export class MyProfileComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardMyProfileClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
     dashboards: dashboard[];
@@ -44,6 +44,8 @@ export class MyProfileComponent implements OnInit {
     clickClose(action: string) {
         console.log('clickClose')
         
-		this.formDashboardOpenClosed.emit(action);
+		this.formDashboardMyProfileClosed.emit(action);
     }
+
+
 }

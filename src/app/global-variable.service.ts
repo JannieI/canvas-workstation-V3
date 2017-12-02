@@ -19,6 +19,7 @@ const dashboards: dashboard[] =
 [
     {
         id: 1,
+        state: 'WIP',
         name: 'Market Overview',
         description: 'Economic indicator summary',
         nrWidgets: 1,
@@ -27,25 +28,28 @@ const dashboards: dashboard[] =
         nrTimesOpened: 4
     },
     {
-        id: 1,
+        id: 2,
+        state: 'Pending',
         name: 'Costing Summary',
         description: 'Costing Summary',
         nrWidgets: 1,
         nrRecords: 12,
         creator: 'JonathanS',
-        nrTimesOpened: 4
+        nrTimesOpened: 0
     },
     {
-        id: 1,
+        id: 3,
+        state: 'Complete',
         name: 'Home Budget',
         description: 'Home Budget',
         nrWidgets: 1,
         nrRecords: 12,
         creator: 'JonathanS',
-        nrTimesOpened: 4
+        nrTimesOpened: 21
     },
     {
-        id: 1,
+        id: 4,
+        state: 'Complete',
         name: 'Bitcoin sales',
         description: 'Bitcoin sales',
         nrWidgets: 1,
@@ -54,13 +58,14 @@ const dashboards: dashboard[] =
         nrTimesOpened: 4
     },
     {
-        id: 1,
+        id: 5,
+        state: 'Pending',
         name: 'Cycling routes',
         description: 'Cycling routes',
         nrWidgets: 1,
         nrRecords: 12,
         creator: 'JonathanS',
-        nrTimesOpened: 4
+        nrTimesOpened: 14
     }
 ];
 

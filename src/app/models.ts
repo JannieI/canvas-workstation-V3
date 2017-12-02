@@ -23,6 +23,7 @@ export class currentDatasource {
 // Dashboard
 export class dashboard {
     id: number;
+    state: string;
     name: string;
     description: string;
     nrWidgets: number;
