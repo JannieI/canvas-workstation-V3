@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
     showCollaborate: boolean = false;
     showModalLanding: boolean = false;
     showModalDashboardOpen: boolean = false;
+    showModalDashboardMyProfile: boolean = false;
     showModalDashboardRename: boolean = false;
     showModalDashboardDetails: boolean = false;
     showModalWidgetEditor: boolean = false;
@@ -107,6 +108,10 @@ export class AppComponent implements OnInit {
         this.showModalDashboardOpen = false;
     }
 
+    handleCloseDashboardMyProfile(action) {
+        this.showModalDashboardMyProfile = false;
+    }
+
     handleCloseDashboardRename(action) {
         this.showModalDashboardRename = false;
     }
@@ -122,6 +127,11 @@ export class AppComponent implements OnInit {
     clickMenuFileOpen() {
         console.log('open')
         this.showModalDashboardOpen = true;
+    }
+
+    menuUserMyProfile() {
+        console.log('ddd')
+        this.showModalDashboardMyProfile = true;
     }
 
     clickMenuFileRename() {

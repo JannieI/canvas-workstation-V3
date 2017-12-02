@@ -617,7 +617,7 @@
                 </button>
                 <div class="dropdown-menu">
                     <a clrDropdownItem>Login</a>
-                    <a clrDropdownItem>My Profile</a>
+                    <a clrDropdownItem (click)="menuUserMyProfile()">My Profile</a>
                     <a clrDropdownItem>Preferences</a>
                     <a clrDropdownItem>Log out</a>
                 </div>
@@ -640,13 +640,22 @@
 </landing>
 
 
-<!-- Overlay: open Dashboard -->
+<!-- Modal: open Dashboard -->
 <dashboard-open
     class="formPopupDashboard"
     *ngIf="showModalDashboardOpen"
     [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardOpenClosed)="handleCloseDashboardOpen($event)">Open Open Dashboard ...
 </dashboard-open>
+
+
+<!-- Modal: My Profile -->
+<myprofile
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardMyProfile"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardMyProfileClosed)="handleCloseDashboardMyProfile($event)">Open My Profile ...
+</myprofile>
 
 
 <!-- Overlay: rename Dashboard -->
