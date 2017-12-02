@@ -1,12 +1,23 @@
-<div>
-    <h4>Open an existing Dashboard</h4>
-    <button type="button">Open Previous Dashboard</button>
-    
-    <label for="dashboardName" class="popupLabel">New Name :</label>
-    <input type="text" id="dashboardName" placeholder="Enter new dashboard name here"
-        class="popupInput">
-    <input type="text" id="filter" placeholder="Filter on name, tags, fav"
-        class="popupInput">
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
 
-    <button type="button" (click)="clickClose('Close')">Save</button>
+            <div>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+
+                <h4>Open an existing Dashboard</h4>
+                <button type="button">Open Previous Dashboard</button>
+                
+                <label for="dashboardName" class="popupLabel">New Name :</label>
+                <input type="text" id="dashboardName" placeholder="Enter new dashboard name here"
+                    class="popupInput">
+                <input type="text" id="filter" placeholder="Filter on name, tags, fav"
+                    class="popupInput">
+
+                <button type="button" (click)="clickClose('Close')">Save</button>
+            </div>  
+        </div>  
+    </div>  
 </div>  
