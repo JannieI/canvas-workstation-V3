@@ -1,106 +1,56 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-            <div class="modal-content modalContent">
-    
-                <div>
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+
+                Dashboard Checkpoints
+                <div class="propertyLine">
+                    Checkpoints are saved by the user, and are bookmarks to which one can 
+                    roll back.  Checkpoints are optional.
+                </div>                            
+                <div class="propertyLine">
+                    Roll back to the previous checkpoint will discard all changes made since
+                    <button 
+                        type="button" 
+                        class="btn btn-secondary" 
+                        (click)="clickClose('Close')"
+                        >
+                        Checkpoint
                     </button>
-    
-                    Dashboard Checkpoints
-                    <div>Filters:</div>
-                    <div class="propertyLine">
-                        Schedule:
-                        <input type="text" id="formFields_7" placeholder="Send to">
-                        <input type="text" id="formFields_7" placeholder="Sent on">
-                        <input type="text" id="formFields_7" placeholder="Due on Date">
-                        <input type="text" id="formFields_7" placeholder="Send last wk/mnth">
-                    </div>
-                    <div class="propertyLine">
-                        Shared:
-                        <input type="text" id="formFields_7" placeholder="By me">
-                        <input type="text" id="formFields_7" placeholder="To me">
-                        <input type="text" id="formFields_7" placeholder="To user">
-                        <input type="text" id="formFields_7" placeholder="To grp">
-                    </div>
-                    <div class="propertyLine">
-                        Opened:
-                        <input type="text" id="formFields_7" placeholder="By me">
-                        <input type="text" id="formFields_7" placeholder="Last wk/mnth">
-                        <input type="text" id="formFields_7" placeholder="To user">
-                        <input type="text" id="formFields_7" placeholder="To grp">
-                    </div>
-    
-                    <div class="propertyLine">
-                        <span>
-                            Created by: 
-                            <input type="text" id="formFields_7" placeholder="User">
-                            </span>
-                        <span>
-                            Status: 
-                            <input type="text" id="formFields_7" placeholder="WIP, Pending, Complete">
-                        </span>>
-                        <span>
-                            Uses data: 
-                            <input type="text" id="formFields_7" placeholder="Datasource">
-                            <input type="text" id="formFields_7" placeholder="Field">
-                        </span>
-                    </div>
-                    <div class="propertyLine">
-                        <span>
-                            Tags: 
-                            <input type="text" id="formFields_7" placeholder="By tag">
-                        </span>
-                        <span class="propertyLine">
-                            My fav: 
-                            <input type="text" id="formFields_7" placeholder="My fav only">
-                        </span>
-                    </div>
-                    <div class="propertyLine">
-                        Last Modified: 
-                        <input type="text" id="formFields_7" placeholder="Last wk/mnth">
-                        <input type="text" id="formFields_7" placeholder="By user">
-                    </div>
-                    <div class="propertyLine">
-                        <span>
-                            <label for="dashboardName" class="popupLabel">Name :</label>
-                            <input type="text" id="dashboardName" placeholder="Enter dashboard/portion">
-                        </span>
-                        <span>
-                            <button type="button" class="btn btn-secondary" (click)="clickClose('Close')">Search</button>
-                        </span>
-                    </div>                                
-                    <clr-datagrid>
-                        <clr-dg-column>View</clr-dg-column>
-                        <clr-dg-column>Edit</clr-dg-column>
-                        <clr-dg-column>State</clr-dg-column>
-                        <clr-dg-column>Name</clr-dg-column>
-                        <clr-dg-column>Description</clr-dg-column>
-                        <clr-dg-column># Widgets</clr-dg-column>
-                        <clr-dg-column># Recs</clr-dg-column>
-                        <clr-dg-column>Creator</clr-dg-column>
-                        <clr-dg-column>#Opened</clr-dg-column>
-    
-                        <clr-dg-row *ngFor="let row of dashboards">
-                            <clr-dg-cell>
-                                <clr-icon shape="eye" class="selectIcon1" size="12"></clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>
-                                <clr-icon shape="pencil" class="selectIcon1" size="12"></clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>{{row.state}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.description}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.nrWidgets}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.nrRecords}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.creator}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.nrTimesOpened}}</clr-dg-cell>
-                        </clr-dg-row>
-    
-                    </clr-datagrid>
-    
-                </div>  
+                </div>
+                <div class="propertyLine">
+                    Checkpoints saved for this Dashboard:
+                </div>                                
+                <clr-datagrid>
+                    <clr-dg-column>Roll Back</clr-dg-column>
+                    <clr-dg-column>State</clr-dg-column>
+                    <clr-dg-column>Name</clr-dg-column>
+                    <clr-dg-column>Description</clr-dg-column>
+                    <clr-dg-column># Widgets</clr-dg-column>
+                    <clr-dg-column># Recs</clr-dg-column>
+                    <clr-dg-column>Creator</clr-dg-column>
+                    <clr-dg-column>#Opened</clr-dg-column>
+
+                    <clr-dg-row *ngFor="let row of dashboards">
+                        <clr-dg-cell>
+                            <clr-icon shape="refresh" class="selectIcon1" size="12"></clr-icon>
+                        </clr-dg-cell>
+                        <clr-dg-cell>{{row.state}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.nrWidgets}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.nrRecords}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.creator}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.nrTimesOpened}}</clr-dg-cell>
+                    </clr-dg-row>
+
+                </clr-datagrid>
+
             </div>  
         </div>  
     </div>  
-    
+</div>  
