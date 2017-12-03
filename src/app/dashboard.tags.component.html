@@ -9,13 +9,16 @@
     
                     Dashboard tags
                     
+                    <div>
+                        Add a new tag, or drag an existing Tag onto the list
+                    </div>
                     <label for="dashboardName" class="popupLabel">New Tag :</label>
                     <input type="text" id="dashboardName" placeholder="Enter new tag name here"
                         class="popupInput">
                     <button type="button" (click)="clickClose('Close')">Add</button>
                     
                     <br> <br> <br>
-                    
+
                     <div class="wrapper">
                         <div class="gridFields">
                             <nav
@@ -23,19 +26,16 @@
 
                                 <ul class="nav-list"
                                 >
-                                    <li>
-                                        <div
-                                            class="nav-link"
-                                            draggable="true"
-                                            (dragstart)="dragstart_handler($event)"
-                                            (dragend)="dragend_handler($event)"
-                                            *ngFor="let row of dashboardTags"
-                                            id="dragtarget"
-                                            >
-                                            <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                            {{ row.tag }}
-                                        </div>
-                                    </li>
+                                    <div
+                                        class="nav-link"
+                                        draggable="true"
+                                        (dragstart)="dragstart_handler($event)"
+                                        (dragend)="dragend_handler($event)"
+                                        *ngFor="let row of dashboardTags"
+                                        id="dragtarget"
+                                        >
+                                        {{ row.tag }}
+                                    </div>
                                 </ul>
                             </nav>
                         </div>
@@ -43,7 +43,7 @@
                             (drop)="drop_pivot($event);"
                             (dragover)="dragover_pivot($event);"
                             >
-                            Tags
+                            Tags for this dashboard:
                         </div>
                     </div>
             </div>  
