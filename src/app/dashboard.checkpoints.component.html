@@ -13,7 +13,9 @@
                     roll back.  Checkpoints are optional.
                 </div>                            
                 <div class="propertyLine">
-                    Roll back to the previous checkpoint will discard all changes made since
+                    Checkpoint the current Dashboard:
+                    <input type="text" id="formFields_7" placeholder="Checkpoint name">
+                    <input type="text" id="formFields_7" placeholder="Comment">
                     <button 
                         type="button" 
                         class="btn btn-secondary" 
@@ -22,9 +24,11 @@
                         Checkpoint
                     </button>
                 </div>
+
                 <div class="propertyLine">
                     Checkpoints saved for this Dashboard:
                 </div>                                
+
                 <clr-datagrid>
                     <clr-dg-column>Roll Back</clr-dg-column>
                     <clr-dg-column>State</clr-dg-column>

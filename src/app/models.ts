@@ -32,6 +32,13 @@ export class dashboard {
     nrTimesOpened: number;
 }
 
+export class checkpoint {
+    id: number; 
+    dashboardID: number;
+    name: string;
+    comment: string;
+}
+
 // CSS Color
 export class CSScolor {
     name: string;

@@ -10,11 +10,28 @@ import { datasource }                 from './models';
 import { CSScolor }                   from './models';
 import { transformation }             from './models';
 import { field }                      from './models';
+import { checkpoint }                 from './models';
 import { fieldMetadata }              from './models';
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
+const checkpoints: checkpoint[] =
+[
+    {
+        id: 1,
+        dashboardID: 1,
+        name: 'Rough layut',
+        comment: ''
+    },
+    {
+        id: 2,
+        dashboardID: 1,
+        name: 'Costing done',
+        comment: 'Still need to confirm figures'
+    }
+]
+
 const dashboards: dashboard[] =
 [
     {
@@ -598,6 +615,7 @@ const dataSample: datasource[] =
 
 @Injectable()
 export class GlobalVariableService {
+    checkpoints: checkpoint[] = checkpoints;
     dashboards: dashboard[] = dashboards;
     currentTransformations: currentTransformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;
@@ -689,7 +707,7 @@ export class GlobalVariableService {
     // growlLife: number = 3000;
     // gridSize: number = 3;
     // snapToGrid: boolean = true;
-
+ 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
     // lastContainerFontSize: SelectedItem =

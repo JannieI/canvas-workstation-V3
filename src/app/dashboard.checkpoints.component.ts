@@ -29,7 +29,7 @@ export class DashboardCheckpointsComponent implements OnInit {
     @Input() currentWidgetSpec: any;
     @Output() formDashboardCheckpointsClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: dashboard[];
 
 	constructor(
@@ -43,7 +43,7 @@ export class DashboardCheckpointsComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formDashboardCheckpointsClosed.emit(action);
     }
 }
