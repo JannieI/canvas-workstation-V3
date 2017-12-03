@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
     showModalDashboardRename: boolean = false;
     showModalDashboardDetails: boolean = false;
     showModalDashboardDescription: boolean = false;
+    showFav: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalDataPopup: boolean = false;
     showPalette: boolean = false;

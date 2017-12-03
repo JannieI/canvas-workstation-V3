@@ -70,8 +70,14 @@
                                 (click)="clickMenuFileDescription()">
                                     Descripton
                                 </button>
-                                <button type="button" clrDropdownItem>
+                                <button type="button" clrDropdownItem
+                                    (click)="showFav=!showFav">
                                     Favourite
+                                    <clr-icon 
+                                        shape="check" 
+                                        size="12"
+                                        *ngIf="showFav">
+                                    </clr-icon>
                                 </button>
                                 <button type="button" clrDropdownItem>
                                     Tags
