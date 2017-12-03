@@ -18,6 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
+import { checkpoint }                 from './models';
 
 @Component({
     selector: 'dashboard-checkpoints',
@@ -31,6 +32,8 @@ export class DashboardCheckpointsComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: dashboard[];
+    checkpoints: checkpoint[];
+   
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -39,6 +42,7 @@ export class DashboardCheckpointsComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
+        this.checkpoints = this.globalVariableService.checkpoints;
     }
 
     clickClose(action: string) {
