@@ -54,29 +54,9 @@
                         <button type="button" clrDropdownItem (click)="clickMenuFileSave()">
                             Save
                         </button>
-
-                        <div class="dropdown-divider"></div>
-                        <clr-dropdown>
-                            <button 
-                                type="button" 
-                                class="btn btn-link btn-sm" 
-                                clrDropdownTrigger
-                                >
-                                Version History
-                            </button>
-                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" clrDropdownItem>
-                                    Checkpoint now
-                                </button>
-                                <button type="button" clrDropdownItem>
-                                    Roll back
-                                </button>
-                                <button type="button" clrDropdownItem>
-                                    Previous checkpoints
-                                </button>
-                            </clr-dropdown-menu>
-                        </clr-dropdown>
-
+                        <button type="button" clrDropdownItem (click)="clickMenuFileCheckpoints()">
+                            Checkpoints
+                        </button>
                         <clr-dropdown>
                             <button 
                                 type="button" 
@@ -669,6 +649,15 @@
     [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardOpenClosed)="handleCloseDashboardSave($event)">Load Save Dashboard ...
 </dashboard-save>
+
+
+<!-- Modal: Checkpoints -->
+<dashboard-checkpoints
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardCheckpoints"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardCheckpointsClosed)="handleCloseDashboardCheckpoints($event)">Load Checkpoints Dashboard ...
+</dashboard-checkpoints>
 
 
 <!-- Modal: Login -->
