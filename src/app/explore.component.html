@@ -12,91 +12,26 @@
     <span class="tabsLabel">
         Analysis of Value Traded 2017 ...
     </span>
+    <button
+        type="button"
+        class="btn btn-secondary btn-sm"
+        >
+        Summary
+    </button>
+    <button
+        type="button"
+        class="btn btn-secondary btn-sm"
+        *ngIf="secondTab"
+        >
+        Detail Costs
+    </button>
     <clr-dropdown>
         <button
             type="button"
             class="btn btn-secondary btn-sm"
             clrDropdownTrigger
             >
-            Summary<pre>&nbsp    </pre>
-            <clr-icon shape="caret down" size="16"></clr-icon>
-        </button>
-        <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-            <label>Tab properties</label>
-
-            <div>
-                <label for="dashboardName" class="popupLabel">Name :</label>
-                <input type="text" id="dashboardName" placeholder="Enter tab name here"
-                    class="popupInput">
-            </div>
-            <div></div>
-            <div>
-                <label for="selects_6" class="popupLabel">Select Background Color</label>
-                <div>
-                    <select id="selects_6" class="popupInput">
-                        <option *ngFor="let bg of backgroundcolors">{{bg.name}}</option>
-                    </select>
-                </div>
-            </div>
-            <button type="button" class="popupButton" clrDropdownItem>
-                Save
-                <clr-icon shape="floppy" size="16"></clr-icon>
-            </button>
-            <button type="button" class="popupButton" clrDropdownItem
-                (click)="clickDeleteTab()">
-                Delete
-            </button>
-
-            <clr-dropdown>
-                <button type="button" clrDropdownTrigger>Later 1</button>
-                <clr-dropdown-menu>
-                    <button type="button" clrDropdownItem>Foo</button>
-                    <clr-dropdown>
-                        <button type="button" clrDropdownTrigger>Bar</button>
-                        <clr-dropdown-menu clrPosition="left-top">
-                            <button type="button" clrDropdownItem>Baz</button>
-                        </clr-dropdown-menu>
-                    </clr-dropdown>
-                </clr-dropdown-menu>
-            </clr-dropdown>
-            <button type="button" clrDropdownItem>Later 2</button>
-        </clr-dropdown-menu>
-    </clr-dropdown>
-
-    <clr-dropdown *ngIf="secondTab">
-        <button
-            type="button"
-            class="btn btn-secondary btn-sm"
-            clrDropdownTrigger
-            >
-            Detail Costs<pre>&nbsp    </pre>
-            <clr-icon shape="caret down" size="16"></clr-icon>
-        </button>
-        <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-            <label>Tab properties</label>
-
-            <div>
-                <label for="dashboardName" class="popupLabel">Name :</label>
-                <input type="text" id="dashboardName" placeholder="Enter tab name here"
-                    class="popupInput">
-            </div>
-            <div></div>
-            <button type="button" class="popupButton" clrDropdownItem>
-                Save
-                <clr-icon shape="floppy" size="16"></clr-icon>
-            </button>
-        </clr-dropdown-menu>
-    </clr-dropdown>
-
-
-    <clr-dropdown>
-        <button
-            type="button"
-            class="btn btn-secondary btn-sm"
-            clrDropdownTrigger
-            >
-            Add Tab <pre>&nbsp    </pre>
-            <clr-icon shape="caret down" size="16"></clr-icon>
+            <clr-icon shape="plus" size="24"></clr-icon>
         </button>
         <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
             <label>New Tab</label>
