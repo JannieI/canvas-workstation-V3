@@ -161,6 +161,10 @@ export class AppComponent implements OnInit {
         this.showModalDashboardSave = true;
     }
 
+    clickMenuFilePermissions() {
+
+    }
+    
     menuUserMyProfile() {
         console.log('ddd')
         this.showModalDashboardMyProfile = true;
