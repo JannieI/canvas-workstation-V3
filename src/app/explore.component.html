@@ -9,39 +9,9 @@
 </div>
 
 <div class="tabList">
-    <clr-dropdown>
-        <button
-            type="button"
-            class="btn btn-secondary btn-sm"
-            clrDropdownTrigger
-            >
-            Current: Analysis of Value Traded 2017 ... <pre>&nbsp    </pre>
-            <clr-icon shape="caret down" size="16"></clr-icon>
-        </button>
-        <clr-dropdown-menu clrPosition="top-left" *clrIfOpen class="dashboardDropdown">
-
-            <label>Dashboard properties</label>
-
-            <div>
-                <label for="dashboardName" class="popupLabel">Name :</label>
-                <input type="text" id="dashboardName" placeholder="Enter dashboard here"
-                    class="popupInput">
-            </div>
-            <div></div>
-            <button type="button" class="popupButton" clrDropdownItem>
-                Save
-                <clr-icon shape="floppy" size="16"></clr-icon>
-            </button>
-
-            <button type="button" class="popupButton" clrDropdownItem
-                (click)="showModalOpenDashboard=true"
-                >
-                Open
-                <clr-icon shape="floppy" size="16"></clr-icon>
-            </button>
-        </clr-dropdown-menu>
-    </clr-dropdown>
-    <span class="tabsLabel">Tabs: </span>
+    <span class="tabsLabel">
+        Analysis of Value Traded 2017 ...
+    </span>
     <clr-dropdown>
         <button
             type="button"
