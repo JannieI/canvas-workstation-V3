@@ -18,6 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
+import { dashboardTag }               from './models';
 
 @Component({
     selector: 'dashboard-tags',
@@ -31,6 +32,7 @@ export class DashboardTagsComponent implements OnInit {
 
     showTypeDashboard: boolean = false;  
     dashboards: dashboard[];
+    dashboardTags: dashboardTag[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -39,6 +41,7 @@ export class DashboardTagsComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
+        this.dashboardTags = this.globalVariableService.dashboardTags;
     }
 
     clickClose(action: string) {
@@ -46,4 +49,31 @@ export class DashboardTagsComponent implements OnInit {
         
 		this.formDashboardTagsClosed.emit(action);
     }
+
+    dragstart_handler(ev) {
+        console.log("dragStart", ev, ev.srcElement.innerText);
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+        console.log('drag_start')
+    }
+
+    dragend_handler(ev) {
+        console.log('dragend_handler', ev.dataTransfer.dropEffect)
+    }
+
+    drop_pivot(ev) {
+        ev.preventDefault();
+
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+        console.log('drop_handler dropped !!')
+    }
+
+    dragover_pivot(ev) {
+        console.log('dragover_handler')
+        ev.preventDefault();
+        // Set the dropEffect to move
+        ev.dataTransfer.dropEffect = "move"
+      }
+
 }

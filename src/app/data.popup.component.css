@@ -200,7 +200,6 @@
     grid-column-end: 25; 
     grid-row-start: 1; 
     grid-row-end: 3; 
-
 }
 
 .gridRows {
@@ -209,7 +208,6 @@
     grid-column-end: 13; 
     grid-row-start: 1; 
     grid-row-end: 20; 
-
 }
 
 .gridAggregate {
@@ -218,5 +216,4 @@
     grid-column-end: 21; 
     grid-row-start: 10; 
     grid-row-end: 12; 
-
 }
