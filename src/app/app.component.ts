@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
     showCollaborate: boolean = false;
     showModalLanding: boolean = false;
     showModalDashboardOpen: boolean = false;
+    showModalDashboardSave: boolean = false;
     showModalDashboardMyProfile: boolean = false;
     showModalDashboardLogin: boolean = false;
     showModalDashboardLogout: boolean = false;
@@ -111,7 +112,11 @@ export class AppComponent implements OnInit {
         this.showModalDashboardOpen = false;
     }
 
-    handleCloseDashboardMyProfile(action) {
+    handleCloseDashboardSave(action) {
+        this.showModalDashboardSave = false;
+    }
+
+        handleCloseDashboardMyProfile(action) {
         this.showModalDashboardMyProfile = false;
     }
 
@@ -142,6 +147,11 @@ export class AppComponent implements OnInit {
     clickMenuFileOpen() {
         console.log('open')
         this.showModalDashboardOpen = true;
+    }
+
+    clickMenuFileSave() {
+        console.log('open')
+        this.showModalDashboardSave = true;
     }
 
     menuUserMyProfile() {

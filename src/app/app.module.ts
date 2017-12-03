@@ -29,6 +29,7 @@ import { PresentComponent }           from './present.component';
 import { WidgetEditorComponent }      from './widget.editor.component';
 import { DashboardRenameComponent }   from './dashboard.rename.component';
 import { DashboardOpenComponent }     from './dashboard.open.component';
+import { DashboardSaveComponent }     from './dashboard.save.component';
 import { DashboardDetailsComponent }  from './dashboard.details.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
@@ -54,6 +55,7 @@ import { GlobalFunctionService }      from './global-function.service';
         WidgetEditorComponent,
         DashboardRenameComponent,
         DashboardOpenComponent,
+        DashboardSaveComponent,
         DashboardDetailsComponent,
         DataPopupComponent,
         MyProfileComponent,

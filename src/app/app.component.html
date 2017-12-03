@@ -51,8 +51,8 @@
                         <button type="button" clrDropdownItem (click)="clickMenuFileRename()">
                             Rename
                         </button>
-                        <button type="button" clrDropdownItem>
-                            Save As
+                        <button type="button" clrDropdownItem (click)="clickMenuFileSave()">
+                            Save
                         </button>
 
                         <div class="dropdown-divider"></div>
@@ -645,8 +645,17 @@
     class="formPopupDashboard"
     *ngIf="showModalDashboardOpen"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardOpenClosed)="handleCloseDashboardOpen($event)">Open Open Dashboard ...
+    (formDashboardOpenClosed)="handleCloseDashboardOpen($event)">Load Open Dashboard ...
 </dashboard-open>
+
+
+<!-- Modal: save Dashboard -->
+<dashboard-save
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardSave"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardOpenClosed)="handleCloseDashboardSave($event)">Load Save Dashboard ...
+</dashboard-save>
 
 
 <!-- Modal: Login -->
@@ -654,7 +663,7 @@
     class="formPopupDashboard"
     *ngIf="showModalDashboardLogin"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardLoginClosed)="handleCloseDashboardLogin($event)">Open Login ...
+    (formDashboardLoginClosed)="handleCloseDashboardLogin($event)">Load Login ...
 </login>
 
 
@@ -663,7 +672,7 @@
     class="formPopupDashboard"
     *ngIf="showModalDashboardLogout"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardLogoutClosed)="handleCloseDashboardLogout($event)">Open Logout ...
+    (formDashboardLogoutClosed)="handleCloseDashboardLogout($event)">Load Logout ...
 </logout>
 
 
@@ -672,7 +681,7 @@
     class="formPopupDashboard"
     *ngIf="showModalDashboardMyProfile"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardMyProfileClosed)="handleCloseDashboardMyProfile($event)">Open My Profile ...
+    (formDashboardMyProfileClosed)="handleCloseDashboardMyProfile($event)">Load My Profile ...
 </myprofile>
 
 
@@ -681,7 +690,7 @@
     class="formPopupDashboard"
     *ngIf="showModalDashboardPreferences"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardPreferencesClosed)="handleCloseDashboardPreferences($event)">Open Preferences ...
+    (formDashboardPreferencesClosed)="handleCloseDashboardPreferences($event)">Load Preferences ...
 </preferences>
 
 
@@ -690,7 +699,7 @@
     class="formPopupDashboard"
     *ngIf="showModalDashboardRename"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardRenameClosed)="handleCloseDashboardRename($event)">Open Rename Dashboard ...
+    (formDashboardRenameClosed)="handleCloseDashboardRename($event)">Load Rename Dashboard ...
 </dashboard-rename>
 
 
@@ -699,7 +708,7 @@
     class="formPopupDashboard"
     *ngIf="showModalDashboardDetails"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardDetailsClosed)="handleCloseDashboardDetails($event)">Open Dashboard Details ...
+    (formDashboardDetailsClosed)="handleCloseDashboardDetails($event)">Load Dashboard Details ...
 </dashboard-details>
 
 
@@ -707,14 +716,14 @@
 <widget-editor 
     *ngIf="showModalWidgetEditor"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Open Widget Editor ...
+    (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Widget Editor ...
 </widget-editor>
 
 
 <!-- Modal: Get Data -->
 <data-popup 
     *ngIf="showModalDataPopup"
-    (formDataPopupClosed)="handleCloseDataPopup($event)">Open Data Popup ...
+    (formDataPopupClosed)="handleCloseDataPopup($event)">Load Data Popup ...
 </data-popup>
 
 
@@ -723,6 +732,6 @@
     class="formCollaborate"
     *ngIf="showCollaborate"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formCollaborateClosed)="handleCloseCollaborate($event)">Open Collaborate form ...
+    (formCollaborateClosed)="handleCloseCollaborate($event)">Load Collaborate form ...
     >
 </collaborate>
