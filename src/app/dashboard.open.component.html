@@ -8,6 +8,7 @@
                 </button>
 
                 Open an existing Dashboard
+                <div>Filters:</div>
                 <div class="propertyLine">
                     Schedule:
                     <input type="text" id="formFields_7" placeholder="Send to">
@@ -66,10 +67,12 @@
                         <input type="text" id="dashboardName" placeholder="Enter dashboard/portion">
                     </span>
                     <span>
-                        <button type="button" class="btn btn-secondary" (click)="clickClose('Close')">Open</button>
+                        <button type="button" class="btn btn-secondary" (click)="clickClose('Close')">Search</button>
                     </span>
                 </div>                                
                 <clr-datagrid>
+                    <clr-dg-column>View</clr-dg-column>
+                    <clr-dg-column>Edit</clr-dg-column>
                     <clr-dg-column>State</clr-dg-column>
                     <clr-dg-column>Name</clr-dg-column>
                     <clr-dg-column>Description</clr-dg-column>
@@ -79,6 +82,12 @@
                     <clr-dg-column>#Opened</clr-dg-column>
 
                     <clr-dg-row *ngFor="let row of dashboards">
+                        <clr-dg-cell>
+                            <clr-icon shape="eye" class="selectIcon1" size="12"></clr-icon>
+                        </clr-dg-cell>
+                        <clr-dg-cell>
+                            <clr-icon shape="pencil" class="selectIcon1" size="12"></clr-icon>
+                        </clr-dg-cell>
                         <clr-dg-cell>{{row.state}}</clr-dg-cell>
                         <clr-dg-cell>{{row.name}}</clr-dg-cell>
                         <clr-dg-cell>{{row.description}}</clr-dg-cell>
