@@ -640,6 +640,15 @@
 </landing>
 
 
+<!-- Modal: new Dashboard -->
+<dashboard-new
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardNew"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardNewClosed)="handleCloseDashboardNew($event)">Load New Dashboard ...
+</dashboard-new>
+
+
 <!-- Modal: open Dashboard -->
 <dashboard-open
     class="formPopupDashboard"

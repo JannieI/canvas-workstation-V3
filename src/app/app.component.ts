@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
     menuCreateDisabled: boolean = false;
     showCollaborate: boolean = false;
     showModalLanding: boolean = false;
+    showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
     showModalDashboardMyProfile: boolean = false;
@@ -58,9 +59,6 @@ export class AppComponent implements OnInit {
         this.fields = this.globalVariableService.fields;
     }   
 
-    clickMenuFileNew() {
-    }
-    
     clickMenuCreateWidget() {
         this.showModalWidgetEditor = true;
     }
@@ -108,6 +106,10 @@ export class AppComponent implements OnInit {
         console.log('handleCloseCollaborate')
     }
 
+    handleCloseDashboardNew(action) {
+        this.showModalDashboardNew = false;
+    }
+
     handleCloseDashboardOpen(action) {
         this.showModalDashboardOpen = false;
     }
@@ -142,6 +144,11 @@ export class AppComponent implements OnInit {
 
     clickPaletteClose() {
         this.showPalette = ! this.showPalette;
+    }
+
+    clickMenuFileNew() {
+        console.log('open')
+        this.showModalDashboardNew = true;
     }
 
     clickMenuFileOpen() {
