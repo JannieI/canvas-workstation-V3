@@ -33,6 +33,7 @@ import { DashboardSaveComponent }     from './dashboard.save.component';
 import { DashboardRenameComponent }   from './dashboard.rename.component';
 import { DashboardCheckpointsComponent }   from './dashboard.checkpoints.component';
 import { DashboardDetailsComponent }  from './dashboard.details.component';
+import { DashboardDescriptionComponent }   from './dashboard.description.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
 import { LoginComponent}              from './login.component';
@@ -61,6 +62,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardRenameComponent,
         DashboardCheckpointsComponent,
         DashboardDetailsComponent,
+        DashboardDescriptionComponent,
         DataPopupComponent,
         MyProfileComponent,
         PreferencesComponent,

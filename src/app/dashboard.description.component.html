@@ -1,0 +1,53 @@
+<div class="modal modalBox">
+        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+            <div class="modal-content modalContent">
+    
+                <div>
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+    
+                    Dashboard Checkpoints
+                    <div class="propertyLine">
+                        Checkpoints are saved by the user, and are bookmarks to which one can 
+                        roll back.  Checkpoints are optional.
+                    </div>                            
+                    <div class="propertyLine">
+                        Checkpoint the current Dashboard:
+                        <input type="text" id="formFields_7" placeholder="Checkpoint name">
+                        <input type="text" id="formFields_7" placeholder="Comment">
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary" 
+                            (click)="clickClose('Close')"
+                            >
+                            Checkpoint
+                        </button>
+                    </div>
+    
+                    <div class="propertyLine">
+                        Checkpoints saved for this Dashboard:
+                    </div>                                
+    
+                    <clr-datagrid>
+                        <clr-dg-column>Roll Back</clr-dg-column>
+                        <clr-dg-column>ID</clr-dg-column>
+                        <clr-dg-column>Name</clr-dg-column>
+                        <clr-dg-column>Comment</clr-dg-column>
+    
+                        <clr-dg-row *ngFor="let row of checkpoints">
+                            <clr-dg-cell>
+                                <clr-icon shape="refresh" class="selectIcon1" size="12"></clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.comment}}</clr-dg-cell>
+                        </clr-dg-row>
+    
+                    </clr-datagrid>
+    
+                </div>  
+            </div>  
+        </div>  
+    </div>  
+    

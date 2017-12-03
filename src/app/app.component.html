@@ -66,7 +66,8 @@
                                 Details
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" clrDropdownItem>
+                                <button type="button" clrDropdownItem
+                                (click)="clickMenuFileDescription()">
                                     Descripton
                                 </button>
                                 <button type="button" clrDropdownItem>
@@ -651,6 +652,33 @@
 </dashboard-save>
 
 
+<!-- Overlay: rename Dashboard -->
+<dashboard-rename
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardRename"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardRenameClosed)="handleCloseDashboardRename($event)">Load Rename Dashboard ...
+</dashboard-rename>
+
+
+<!-- Overlay: Dashboard Details -->
+<dashboard-details
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardDetails"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardDetailsClosed)="handleCloseDashboardDetails($event)">Load Dashboard Details ...
+</dashboard-details>
+
+
+<!-- Overlay: Dashboard Description -->
+<dashboard-description
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardDescription"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardDescriptionClosed)="handleCloseDashboardDescription($event)">Load Dashboard Description ...
+</dashboard-description>
+
+
 <!-- Modal: Checkpoints -->
 <dashboard-checkpoints
     class="formPopupDashboard"
@@ -694,24 +722,6 @@
     [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardPreferencesClosed)="handleCloseDashboardPreferences($event)">Load Preferences ...
 </preferences>
-
-
-<!-- Overlay: rename Dashboard -->
-<dashboard-rename
-    class="formPopupDashboard"
-    *ngIf="showModalDashboardRename"
-    [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardRenameClosed)="handleCloseDashboardRename($event)">Load Rename Dashboard ...
-</dashboard-rename>
-
-
-<!-- Overlay: Dashboard Details -->
-<dashboard-details
-    class="formPopupDashboard"
-    *ngIf="showModalDashboardDetails"
-    [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardDetailsClosed)="handleCloseDashboardDetails($event)">Load Dashboard Details ...
-</dashboard-details>
 
 
 <!-- Modal: widget editor -->
