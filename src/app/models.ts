@@ -32,6 +32,12 @@ export class dashboard {
     nrTimesOpened: number;
 }
 
+export class dashboardTag {
+    id: number;
+    dashboardID: number;
+    tag: string;
+}
+
 export class checkpoint {
     id: number; 
     dashboardID: number;

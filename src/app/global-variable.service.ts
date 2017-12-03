@@ -12,10 +12,29 @@ import { transformation }             from './models';
 import { field }                      from './models';
 import { checkpoint }                 from './models';
 import { fieldMetadata }              from './models';
+import { dashboardTag }               from './models';
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
+const dashboardTags: dashboardTag[] = [
+    {
+        id: 1,
+        dashboardID: 12,
+        tag: 'budget2017'        
+    },
+    {
+        id: 2,
+        dashboardID: 12,
+        tag: 'savings'        
+    },
+    {
+        id: 3,
+        dashboardID: 12,
+        tag: 'projectAard'        
+    }
+];
+
 const checkpoints: checkpoint[] =
 [
     {
@@ -615,6 +634,7 @@ const dataSample: datasource[] =
 
 @Injectable()
 export class GlobalVariableService {
+    dashboardTags: dashboardTag[] = dashboardTags;
     checkpoints: checkpoint[] = checkpoints;
     dashboards: dashboard[] = dashboards;
     currentTransformations: currentTransformation[] = currentTransformations;
