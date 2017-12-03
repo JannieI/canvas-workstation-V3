@@ -7,98 +7,53 @@
                         X
                     </button>
     
-                    Open an existing Dashboard
-                    <div>Filters:</div>
+                    Save Dashboard changes
                     <div class="propertyLine">
-                        Schedule:
-                        <input type="text" id="formFields_7" placeholder="Send to">
-                        <input type="text" id="formFields_7" placeholder="Sent on">
-                        <input type="text" id="formFields_7" placeholder="Due on Date">
-                        <input type="text" id="formFields_7" placeholder="Send last wk/mnth">
+                        Discard (all changes since Opened to Edit):
+                        <input type="text" id="formFields_7" placeholder="Yes / No">
                     </div>
                     <div class="propertyLine">
-                        Shared:
-                        <input type="text" id="formFields_7" placeholder="By me">
-                        <input type="text" id="formFields_7" placeholder="To me">
-                        <input type="text" id="formFields_7" placeholder="To user">
-                        <input type="text" id="formFields_7" placeholder="To grp">
+                        Request QA:
+                        <input type="text" id="formFields_7" placeholder="Usr to QA">
+                        <input type="text" id="formFields_7" placeholder="QA message">
+                        <input type="text" id="formFields_7" placeholder="List of Db-Builders">
                     </div>
                     <div class="propertyLine">
-                        Opened:
-                        <input type="text" id="formFields_7" placeholder="By me">
-                        <input type="text" id="formFields_7" placeholder="Last wk/mnth">
-                        <input type="text" id="formFields_7" placeholder="To user">
-                        <input type="text" id="formFields_7" placeholder="To grp">
+                        Save as Complete (and replace original):
+                        <input type="text" id="formFields_7" placeholder="Usr/Grp Subscribed">
+                        <input type="text" id="formFields_7" placeholder="Add Usr/Grp to notify">
                     </div>
     
                     <div class="propertyLine">
                         <span>
-                            Created by: 
-                            <input type="text" id="formFields_7" placeholder="User">
-                            </span>
-                        <span>
-                            Status: 
-                            <input type="text" id="formFields_7" placeholder="WIP, Pending, Complete">
-                        </span>>
-                        <span>
-                            Uses data: 
-                            <input type="text" id="formFields_7" placeholder="Datasource">
-                            <input type="text" id="formFields_7" placeholder="Field">
+                            <br>
+                            <p>Your security mode (set by Admin): 
+                                <input type="text" id="formFields_7" placeholder="Normal / Strict">
+                            </p>
+                            <div>There are 2 security modes, the default is Normal</div>
+                            <div>
+                               In Normal mode all users can do the following to all Dashboards that 
+                               they have access to (full access is automatically granted to the creator,
+                               and further access can be granted to the same or lessor level that is owned):
+                                a. Open (for view in readonly mode - no changes can be done)
+                                b. Edit (a WIP version will be created, leaving Committed version unchanged)
+                                c. Discard (delete WIP version)
+                                d. Request-QA (on Request, the WIP -> Pending).  This step is optional.
+                                e. Save (approves QA request and WIP/Pending -> Committed)
+                               </div>
+                            <div>In Strict mode, there are different User roles:</div>
+                            <div>1. Admin - can Open, Edit, Request-QA, QA and Save all Dashboards</div>
+                            <div>2. DashboardBuilder, which is a type of group membership, can perform
+                                  the following actions on all Dashboards that the group has access to:
+                                a. Open (readonly)
+                                b. Edit
+                                c. Discard
+                                d. Request-QA
+                                e. Save</div>
+                            <div>3. All other Users can perform all actions to any Dashboard that the user has access 
+                                   to, BUT does not belong to a group.</div>
                         </span>
                     </div>
-                    <div class="propertyLine">
-                        <span>
-                            Tags: 
-                            <input type="text" id="formFields_7" placeholder="By tag">
-                        </span>
-                        <span class="propertyLine">
-                            My fav: 
-                            <input type="text" id="formFields_7" placeholder="My fav only">
-                        </span>
-                    </div>
-                    <div class="propertyLine">
-                        Last Modified: 
-                        <input type="text" id="formFields_7" placeholder="Last wk/mnth">
-                        <input type="text" id="formFields_7" placeholder="By user">
-                    </div>
-                    <div class="propertyLine">
-                        <span>
-                            <label for="dashboardName" class="popupLabel">Name :</label>
-                            <input type="text" id="dashboardName" placeholder="Enter dashboard/portion">
-                        </span>
-                        <span>
-                            <button type="button" class="btn btn-secondary" (click)="clickClose('Close')">Search</button>
-                        </span>
-                    </div>                                
-                    <clr-datagrid>
-                        <clr-dg-column>View</clr-dg-column>
-                        <clr-dg-column>Edit</clr-dg-column>
-                        <clr-dg-column>State</clr-dg-column>
-                        <clr-dg-column>Name</clr-dg-column>
-                        <clr-dg-column>Description</clr-dg-column>
-                        <clr-dg-column># Widgets</clr-dg-column>
-                        <clr-dg-column># Recs</clr-dg-column>
-                        <clr-dg-column>Creator</clr-dg-column>
-                        <clr-dg-column>#Opened</clr-dg-column>
-    
-                        <clr-dg-row *ngFor="let row of dashboards">
-                            <clr-dg-cell>
-                                <clr-icon shape="eye" class="selectIcon1" size="12"></clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>
-                                <clr-icon shape="pencil" class="selectIcon1" size="12"></clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>{{row.state}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.description}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.nrWidgets}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.nrRecords}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.creator}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.nrTimesOpened}}</clr-dg-cell>
-                        </clr-dg-row>
-    
-                    </clr-datagrid>
-    
                 </div>  
             </div>  
         </div>  
