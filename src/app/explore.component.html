@@ -1,4 +1,4 @@
-<div class="presentation">
+<div class="presentation" *ngIf="presentation">
     <button
         type="button"
         class="btn btn-secondary btn-sm"
@@ -23,7 +23,7 @@
         >
         Final
     </button>
-    <div *ngIf="presentation">
+    <div *ngIf="presentationMsg">
         
         Use the buttons to show the bookmarks previously created.  The bookmarks can link different
         Dashboards, which will show them one after another.  Inside a Dashboard, bookmarks can 
@@ -32,7 +32,7 @@
         may be bookmarked.  This allows for the display of different formats of the same graph, or
         even totally different graphs in the same Widget area.
         <br>
-        Got it  <input type="checkbox" (click)="clickGotItPresentation()" [checked]="!presentation">
+        Got it  <input type="checkbox" (click)="clickGotItPresentation()" [checked]="!presentationMsg">
     </div>
 </div>
 

@@ -65,8 +65,9 @@ export class AppComponent implements OnInit {
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
-        this.fields = this.globalVariableService.fields;
-        this.presentation = this.globalVariableService.presentation;
+        this.globalVariableService.presentation.subscribe(
+            pres => this.presentation = pres
+        );
     }   
 
     clickMenuCreateWidget() {
@@ -208,8 +209,7 @@ export class AppComponent implements OnInit {
     }
 
     clickViewPresentation() {
-        this.presentation = !this.presentation;
-        this.globalVariableService.presentation = !this.presentation;
+        this.globalVariableService.presentation.next(!this.presentation);
     }
 
     menuUserMyProfile() {

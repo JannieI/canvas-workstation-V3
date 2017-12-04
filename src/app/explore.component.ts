@@ -187,6 +187,7 @@ export class ExploreComponent {
     message: string;
     open: Boolean = false;
     presentation: boolean;
+    presentationMsg: boolean;
     secondTab: Boolean = false;
     sideNavWidth: string = '350';
     sideNavMinWidth: string = '18';
@@ -337,8 +338,11 @@ export class ExploreComponent {
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled);
         this.isFirstTime = this.globalVariableService.isFirstTime;
-        this.presentation = this.globalVariableService.presentation;
+        this.globalVariableService.presentation.subscribe(
+            pres => this.presentation = pres
+        );
         this.dashboards = this.globalVariableService.dashboards;
+        this.presentationMsg = this.globalVariableService.presentationMsg;
     }
 
 //*     onMouseButton(event: MouseEvent): void {
@@ -435,7 +439,7 @@ export class ExploreComponent {
     }
 
     clickGotItPresentation() {
-        this.presentation = !this.presentation;
+        this.presentationMsg = !this.presentationMsg;
     }
 
     createVegaLiteSpec(
