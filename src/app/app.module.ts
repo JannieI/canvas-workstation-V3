@@ -36,6 +36,7 @@ import { DashboardDetailsComponent }  from './dashboard.details.component';
 import { DashboardDescriptionComponent }   from './dashboard.description.component';
 import { DashboardTagsComponent }     from './dashboard.tags.component';
 import { DashboardSettingsComponent } from './dashboard.settings.component';
+import { DashboardThemeComponent }    from './dashboard.theme.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
 import { LoginComponent}              from './login.component';
@@ -67,6 +68,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardDescriptionComponent,
         DashboardTagsComponent,
         DashboardSettingsComponent,
+        DashboardThemeComponent,
         DataPopupComponent,
         MyProfileComponent,
         PreferencesComponent,

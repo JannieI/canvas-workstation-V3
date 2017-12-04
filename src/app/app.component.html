@@ -93,7 +93,11 @@
                                     >
                                     Settings
                                 </button>
-                                <button type="button" clrDropdownItem>
+                                <button 
+                                    type="button" 
+                                    clrDropdownItem
+                                    (click)="clickMenuFileTheme()"
+                                    >
                                     Theme
                                 </button>
                                 <button type="button" clrDropdownItem>
@@ -718,6 +722,15 @@ class="formPopupDashboard"
 [currentWidgetSpec]="currentWidgetSpec"
 (formDashboardSettingsClosed)="handleCloseDashboardSettings($event)">Load Dashboard Settings ...
 </dashboard-settings>
+
+
+<!-- Modal: Dashboard Settings -->
+<dashboard-theme
+class="formPopupDashboard"
+*ngIf="showModalDashboardTheme"
+[currentWidgetSpec]="currentWidgetSpec"
+(formDashboardThemeClosed)="handleCloseDashboardTheme($event)">Load Dashboard Theme ...
+</dashboard-theme>
 
 
 <!-- Modal: Login -->
