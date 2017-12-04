@@ -5,9 +5,12 @@
 // Angular
 import { Component }                  from '@angular/core';
 import { DOCUMENT }                   from '@angular/platform-browser';
+import { ElementRef }                 from '@angular/core';
 import { Inject }                     from "@angular/core";
 import { OnInit }                     from '@angular/core';
+import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
+import { ViewChild }                  from '@angular/core';
 
 // Own Services
 import { GlobalVariableService }      from './global-variable.service';
@@ -24,9 +27,20 @@ import { field }                      from './models'
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+    @ViewChild('dragCircle', {read: ElementRef}) dragCircle: ElementRef;  //Vega graph
+    
     fields: field[];
     
     menuCreateDisabled: boolean = false;
+    moveStartX: number;
+    moveStartY: number;
+    moveEndX: number;
+    moveEndY: number;
+    moveOffsetX: number;
+    moveOffsetY: number;
+    moveLastX: number = 0;
+    moveLastY: number = 0;
     presentation: boolean;
     showCollaborate: boolean = false;
     showGrid: boolean;
@@ -52,13 +66,15 @@ export class AppComponent implements OnInit {
     showModalWidgetEditor: boolean = false;
     showModalDataPopup: boolean = false;
     showPalette: boolean = false;
+
     currentWidgetSpec: string = "{...}";
 
     constructor(
         private router: Router,
         private globalVariableService: GlobalVariableService,
         private globalFunctionService: GlobalFunctionService,
-        @Inject(DOCUMENT) private document: Document
+        @Inject(DOCUMENT) private document: Document,
+        private renderer: Renderer,
         
     ) {
     }
@@ -283,6 +299,37 @@ export class AppComponent implements OnInit {
         alert ('this is not working correct, as yet')
         var newWindow = window.open('localhost:4200/help');
     }
+
+
+    dragStartCircle(ev: DragEvent) {
+        this.moveStartX = ev.x;
+        this.moveStartY = ev.y;
+        console.log('dragStartWidget', ev, this.moveStartX)
+
+    }
+
+    dragEndCircle(ev: DragEvent) {
+        this.moveEndX = ev.x;
+        this.moveEndY = ev.y;
+        this.moveOffsetX = this.moveEndX - this.moveStartX;
+        this.moveOffsetY = this.moveEndY - this.moveStartY;
+        this.moveLastX = this.moveLastX + this.moveOffsetX;
+        this.moveLastY = this.moveLastY + this.moveOffsetY;
+        console.log('dragEndWidget', ev, (this.moveLastY));
+        // this.renderer.setElementStyle(
+        //     this.dragCircle.nativeElement,'background-color', 'orange'
+        // );
+
+        this.renderer.setElementStyle(this.dragCircle.nativeElement,
+            'left', (this.moveLastX) + 'px');
+        this.renderer.setElementStyle(this.dragCircle.nativeElement,
+            'top', (this.moveLastY) + 'px');
+    
+        // this.renderer.setElementStyle(this.dragWidget.nativeElement,
+        //     'top', (80 + widgetMoveX).toString() + "px");
+    }
+
+
 }
 
 // Naming conventions

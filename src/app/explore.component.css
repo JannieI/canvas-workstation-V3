@@ -78,17 +78,6 @@
     width: 4rem !important;
 }
 
-.aCircle {
-    background-color: transparent;
-    bottom: 0;
-    opacity: .5;
-    left: 300px;
-    z-index: 12;
-    position: absolute;
-    display: inline;
-
-}
-
 .presentation {
     border-bottom: 1px solid black
 }
