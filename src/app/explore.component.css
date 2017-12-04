@@ -108,7 +108,7 @@
 .widgetButtonBar:hover {
     /* display: block; */
     opacity: 1;
-    border: 1px solid red;
+    border: 1px solid gray;
 }
 
 #stuff {
@@ -127,4 +127,10 @@
 }
 #hover:hover + #stuff {
     opacity: 1.0;
+}
+
+.buttonBarIcon {
+    border: 1px solid gray;
+    margin: 1px;
+    padding: 2px;
 }
