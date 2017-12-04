@@ -113,3 +113,19 @@
     z-index: 12;
 }
 
+.aTextBox {
+    background-color: lightgray;
+    border: 1px solid black;
+    border-radius: 3px;
+    display: inline-block;
+    height: 100px;
+    left: 1000px;
+    opacity: .5;
+    overflow: auto; 
+    position: absolute;
+    resize: none;
+    text-align: center;
+    top: 150px;
+    width: 210px;
+    z-index: 12;
+}

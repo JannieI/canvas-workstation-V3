@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
     presentation: boolean;
     showCircle: boolean = false;
     showImage: boolean = false;
+    showTextBox: boolean = false;
     showRectangle: boolean = false;
     showCollaborate: boolean = false;
     showGrid: boolean;

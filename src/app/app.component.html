@@ -354,7 +354,7 @@
                             Widget
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="showTextBox=!showTextBox">
                             Text box
                         </button>
                         <clr-dropdown>
@@ -809,6 +809,17 @@
     >
 </collaborate>
 
+
+<div
+    *ngIf="showTextBox"
+    #dragCircle
+    class="aTextBox"
+    (dragstart)="dragStartCircle($event)"
+    (dragend)="dragEndCircle($event)"
+    draggable="true"
+    >
+    <h2>Text box</h2>
+</div>
 
 <div
     *ngIf="showCircle"
