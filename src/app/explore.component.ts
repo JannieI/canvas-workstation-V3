@@ -186,6 +186,7 @@ export class ExploreComponent {
     menuCreateDisabled: boolean = false;
     message: string;
     open: Boolean = false;
+    presentation: boolean;
     secondTab: Boolean = false;
     sideNavWidth: string = '350';
     sideNavMinWidth: string = '18';
@@ -336,6 +337,7 @@ export class ExploreComponent {
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled);
         this.isFirstTime = this.globalVariableService.isFirstTime;
+        this.presentation = this.globalVariableService.presentation;
         this.dashboards = this.globalVariableService.dashboards;
     }
 
@@ -430,6 +432,10 @@ export class ExploreComponent {
 
     clickGotIt() {
         this.isFirstTime = !this.isFirstTime;
+    }
+
+    clickGotItPresentation() {
+        this.presentation = !this.presentation;
     }
 
     createVegaLiteSpec(

@@ -734,8 +734,9 @@ export class GlobalVariableService {
     dataSample: datasource[] = dataSample;
     dashboardThemes: dashboardTheme[] = dashboardThemes;
     dashboardSchedules: dashboardSchedule[] = dashboardSchedules;
-    
+
     isFirstTime: boolean = true;
+    presentation: boolean = true;
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard
     // Company related variables
     // companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig
