@@ -12,6 +12,7 @@
 .tabsLabel {
     background-color: white !important;
     color: transparent;
+    float: right;
 }
 .tabsLabel:hover {
     color: gray;

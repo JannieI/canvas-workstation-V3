@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
     showModalDashboardLogin: boolean = false;
     showModalDashboardLogout: boolean = false;
     showModalDashboardPreferences: boolean = false;
+    showModalDashboardComments: boolean = false;
     showModalDashboardRename: boolean = false;
     showModalDashboardDetails: boolean = false;
     showModalDashboardDescription: boolean = false;
@@ -185,6 +186,10 @@ export class AppComponent implements OnInit {
     handleCloseDashboardDelete() {
         this.showModalDashboardDelete = false;
     }
+
+    handleCloseDashboardComments() {
+        this.showModalDashboardComments = false;
+    }
     
     clickPaletteClose() {
         this.showPalette = ! this.showPalette;
@@ -221,7 +226,7 @@ export class AppComponent implements OnInit {
     }
 
     clickViewAllComments() {
-        
+        this.showModalDashboardComments = true;
     }
 
     menuUserMyProfile() {

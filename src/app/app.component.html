@@ -768,6 +768,15 @@
 </preferences>
 
 
+<!-- Modal: Comments -->
+<dashboard-comments
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardComments"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardCommentsClosed)="handleCloseDashboardComments($event)">Load Comments ...
+</dashboard-comments>
+
+
 <!-- Modal: widget editor -->
 <widget-editor 
     *ngIf="showModalWidgetEditor"
