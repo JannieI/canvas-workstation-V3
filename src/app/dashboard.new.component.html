@@ -12,16 +12,27 @@
                     Name:
                     <input type="text" id="formFields_7" placeholder="New (unique) name">
                 </div>
-                <div>The existing Dashboard will be closed (all changes will be saved 
+                <div class="propertyLine">
+                    Import:
+                    <input type="text" id="formFields_7" placeholder="Folder/File Name.json">
+                </div>
+                <button 
+                    type="button" 
+                    class="btn btn-secondary" 
+                    (click)="clickClose('Close')"
+                    >
+                    Create
+                </button>
+                
+                <div>The existing Dashboard will be closed (all changes will be saved
                     automatically) and a new Dashboard will be opened.  It has one Tab
                     called Tab1 (shown at the bottom of the screen).  A Tab can be renamed
-                    by clicking on its name.  More Tabs can be added using the Plus at 
-                    the buttom of the screen.You can add properties (Description, Theme, 
-                    Schedule, Favourite, etc) under the File -> Details menu option.  
+                    by clicking on its name.  More Tabs can be added using the Plus at
+                    the buttom of the screen.You can add properties (Description, Theme,
+                    Schedule, Favourite, etc) under the File -> Details menu option.
                     Permissions can be set with the File -> Permissions menu option.
                 </div>
             </div>
         </div>
     </div>
 </div>
-    
