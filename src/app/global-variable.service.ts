@@ -13,11 +13,22 @@ import { field }                      from './models';
 import { checkpoint }                 from './models';
 import { fieldMetadata }              from './models';
 import { dashboardTag }               from './models';
+import { dashboardTheme }             from './models';
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
-const dashboardTags: dashboardTag[] = [
+const dashboardThemes: dashboardTheme[] = 
+[
+    {
+        id: 1,
+        name: 'Theme basic',
+        description: 'bla-bla-bla'
+    }
+]
+
+const dashboardTags: dashboardTag[] = 
+[
     {
         id: 1,
         dashboardID: 12,
@@ -646,6 +657,7 @@ export class GlobalVariableService {
     dataServer: datasource[] = dataServer;
     dataRecent: datasource[] = dataRecent;
     dataSample: datasource[] = dataSample;
+    dashboardThemes: dashboardTheme[] = dashboardThemes;
 
     isFirstTime: boolean = true;
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard

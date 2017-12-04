@@ -38,6 +38,12 @@ export class dashboardTag {
     tag: string;
 }
 
+export class dashboardTheme {
+    id: number;
+    name: string;
+    description: string;
+}
+
 export class checkpoint {
     id: number; 
     dashboardID: number;

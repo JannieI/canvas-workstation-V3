@@ -9,39 +9,28 @@
 
                 Dashboard Theme
                 <div class="propertyLine">
-                    Checkpoints are saved by the user, and are bookmarks to which one can 
-                    roll back.  Checkpoints are optional.
+                    Themes are optional, and changes some aspects of the look and feel.
+                    Your current theme is 
+                    <input type="text" id="formFields_7" placeholder="Theme name">
                 </div>                            
-                <div class="propertyLine">
-                    Checkpoint the current Dashboard:
-                    <input type="text" id="formFields_7" placeholder="Checkpoint name">
-                    <input type="text" id="formFields_7" placeholder="Comment">
-                    <button 
-                        type="button" 
-                        class="btn btn-secondary" 
-                        (click)="clickClose('Close')"
-                        >
-                        Checkpoint
-                    </button>
-                </div>
 
                 <div class="propertyLine">
-                    Checkpoints saved for this Dashboard:
+                    Available themes:
                 </div>                                
 
                 <clr-datagrid>
-                    <clr-dg-column>Roll Back</clr-dg-column>
+                    <clr-dg-column>Select</clr-dg-column>
                     <clr-dg-column>ID</clr-dg-column>
                     <clr-dg-column>Name</clr-dg-column>
-                    <clr-dg-column>Comment</clr-dg-column>
+                    <clr-dg-column>Description</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let row of checkpoints">
+                    <clr-dg-row *ngFor="let row of dashboardThemes">
                         <clr-dg-cell>
-                            <clr-icon shape="refresh" class="selectIcon1" size="12"></clr-icon>
+                            <clr-icon shape="check" class="selectIcon1" size="12"></clr-icon>
                         </clr-dg-cell>
                         <clr-dg-cell>{{row.id}}</clr-dg-cell>
                         <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.comment}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.description}}</clr-dg-cell>
                     </clr-dg-row>
 
                 </clr-datagrid>
