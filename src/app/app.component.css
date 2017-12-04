@@ -81,17 +81,35 @@
     z-index: 12;
 }
 
-/* background-color: white;
-border: 2px solid   #669999;
-border-radius: 4px;
-color: black;
-display: block;
-font-size: 1em;
-left: 20px;
-margin: 4px;
-padding: 0;
-overflow: auto;
-position: absolute;
-resize: both;
-top: 4.5em;
-width: 200px; */
+.aRectangle {
+    background-color: transparent;
+    /* border: 1px solid black; */
+    /* border-radius: 3px; */
+    display: inline-block;
+    height: 110px;
+    left: 200px;
+    opacity: .5;
+    overflow: auto; 
+    position: absolute;
+    resize: none;
+    top: 200px;
+    width: 110px;
+    z-index: 12;
+}
+
+.aImage {
+    background-color: transparent;
+    /* border: 1px solid black; */
+    /* border-radius: 3px; */
+    display: inline-block;
+    height: 110px;
+    left: 400px;
+    opacity: .5;
+    overflow: auto; 
+    position: absolute;
+    resize: none;
+    top: 300px;
+    width: 110px;
+    z-index: 12;
+}
+

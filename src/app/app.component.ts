@@ -42,6 +42,9 @@ export class AppComponent implements OnInit {
     moveLastX: number = 0;
     moveLastY: number = 0;
     presentation: boolean;
+    showCircle: boolean = false;
+    showImage: boolean = false;
+    showRectangle: boolean = false;
     showCollaborate: boolean = false;
     showGrid: boolean;
     showModalLanding: boolean = false;

@@ -366,14 +366,22 @@
                                 Shape
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Circle</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Rectangle</button>
+                                <button 
+                                    type="button" 
+                                    class="dropdown-item" 
+                                    clrDropdownItem
+                                    (click)="showCircle=!showCircle"
+                                    >
+                                    Circle
+                                </button>
+                                <button type="button" class="dropdown-item" clrDropdownItem
+                                (click)="showRectangle=!showRectangle">Rectangle</button>
                                 <button type="button" class="dropdown-item" clrDropdownItem>Square</button>
                                 <button type="button" class="dropdown-item" clrDropdownItem>Line</button>
                                 <button type="button" class="dropdown-item" clrDropdownItem>Arrow</button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="showImage=!showImage">
                             Image
                         </button>
                         <button type="button" clrDropdownItem (click)="clickSave()">
@@ -803,6 +811,7 @@
 
 
 <div
+    *ngIf="showCircle"
     #dragCircle
     class="aCircle"
     (dragstart)="dragStartCircle($event)"
@@ -810,7 +819,29 @@
     draggable="true"
     >
     <svg height="100" width="100" >
-     
         <circle cx="50" cy="50" r="40" stroke="red" stroke-width="1" fill="none" />
     </svg>
 </div>
+
+<div
+    *ngIf="showRectangle"
+    #dragCircle
+    class="aRectangle"
+    (dragstart)="dragStartCircle($event)"
+    (dragend)="dragEndCircle($event)"
+    draggable="true"
+    >
+    <svg width="400" height="110">
+        <rect width="90" height="40" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+    </svg>
+</div>
+
+<img 
+    *ngIf="showImage" 
+    class="aImage"
+    src="../images/Tabs.png" 
+    alt="Tabs" 
+    height="42" 
+    width="42"
+>
+
