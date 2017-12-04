@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
-import { checkpoint }                 from './models';
+import { dashboardSchedule }          from './models';
 
 @Component({
     selector: 'dashboard-schedule',
@@ -32,7 +32,7 @@ export class DashboardScheduleComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: dashboard[];
-    Schedule: checkpoint[];
+    dashboardSchedules: dashboardSchedule[];
    
 
 	constructor(
@@ -42,7 +42,7 @@ export class DashboardScheduleComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        // this.Schedule = this.globalVariableService.Schedule;
+        this.dashboardSchedules = this.globalVariableService.dashboardSchedules;
     }
 
     clickClose(action: string) {

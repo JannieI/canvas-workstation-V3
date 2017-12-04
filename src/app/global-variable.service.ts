@@ -733,7 +733,8 @@ export class GlobalVariableService {
     dataRecent: datasource[] = dataRecent;
     dataSample: datasource[] = dataSample;
     dashboardThemes: dashboardTheme[] = dashboardThemes;
-
+    dashboardSchedules: dashboardSchedule[] = dashboardSchedules;
+    
     isFirstTime: boolean = true;
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard
     // Company related variables
