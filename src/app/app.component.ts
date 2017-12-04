@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
     fields: field[];
     
     menuCreateDisabled: boolean = false;
+    presentation: boolean;
     showCollaborate: boolean = false;
     showModalLanding: boolean = false;
     showModalDashboardNew: boolean = false;
@@ -65,6 +66,7 @@ export class AppComponent implements OnInit {
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
         this.fields = this.globalVariableService.fields;
+        this.presentation = this.globalVariableService.presentation;
     }   
 
     clickMenuCreateWidget() {
@@ -203,6 +205,11 @@ export class AppComponent implements OnInit {
     
     clickMenuFileCheckpoints() {
         this.showModalDashboardCheckpoints = true;
+    }
+
+    clickViewPresentation() {
+        this.presentation = !this.presentation;
+        this.globalVariableService.presentation = !this.presentation;
     }
 
     menuUserMyProfile() {
