@@ -11,6 +11,10 @@
 
 .tabsLabel {
     background-color: white !important;
+    color: transparent;
+}
+.tabsLabel:hover {
+    color: gray;
 }
 
 .graphy {
