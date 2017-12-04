@@ -100,7 +100,11 @@
                                     >
                                     Theme
                                 </button>
-                                <button type="button" clrDropdownItem>
+                                <button 
+                                    type="button" 
+                                    clrDropdownItem
+                                    (click)="clickMenuFileTheme()"
+                                    >
                                     Schedule
                                 </button>
                             </clr-dropdown-menu>
@@ -708,29 +712,38 @@
 
 <!-- Modal: Dashboard Tags -->
 <dashboard-tags
-class="formPopupDashboard"
-*ngIf="showModalDashboardTags"
-[currentWidgetSpec]="currentWidgetSpec"
-(formDashboardTagsClosed)="handleCloseDashboardTags($event)">Load Dashboard Tags ...
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardTags"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardTagsClosed)="handleCloseDashboardTags($event)">Load Dashboard Tags ...
 </dashboard-tags>
 
 
 <!-- Modal: Dashboard Settings -->
 <dashboard-settings
-class="formPopupDashboard"
-*ngIf="showModalDashboardSettings"
-[currentWidgetSpec]="currentWidgetSpec"
-(formDashboardSettingsClosed)="handleCloseDashboardSettings($event)">Load Dashboard Settings ...
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardSettings"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardSettingsClosed)="handleCloseDashboardSettings($event)">Load Dashboard Settings ...
 </dashboard-settings>
 
 
-<!-- Modal: Dashboard Settings -->
+<!-- Modal: Dashboard Theme -->
 <dashboard-theme
-class="formPopupDashboard"
-*ngIf="showModalDashboardTheme"
-[currentWidgetSpec]="currentWidgetSpec"
-(formDashboardThemeClosed)="handleCloseDashboardTheme($event)">Load Dashboard Theme ...
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardTheme"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardThemeClosed)="handleCloseDashboardTheme($event)">Load Dashboard Theme ...
 </dashboard-theme>
+
+
+<!-- Modal: Dashboard Schedule -->
+<dashboard-schedule
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardSchedule"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardScheduleClosed)="handleCloseDashboardSchedule($event)">Load Dashboard Schedule ...
+</dashboard-schedule>
 
 
 <!-- Modal: Login -->
