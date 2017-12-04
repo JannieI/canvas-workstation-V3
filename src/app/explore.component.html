@@ -117,8 +117,7 @@
 <div *ngFor="let ds of localDashboards" class="widgetContainer"
     #widgetContainter>
     <div class="widgetButtonBar">
-        Button Bar
-        <clr-icon shape="plus" size="20" class="buttonBarIcon"></clr-icon> 
+        <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon> 
         <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon> 
         <clr-icon shape="cursor-hand" size="20" class="buttonBarIcon"></clr-icon> 
         <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon> 

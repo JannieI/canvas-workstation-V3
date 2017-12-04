@@ -68,8 +68,8 @@ export class HelpComponent implements OnInit {
 		console.log('rootDirectory',rootDirectory)
 	}
 	
-	clickButtonData() {
-		this.router.navigate(['/data']);
+	clickBackButton() {
+		this.router.navigate(['/explore']);
 	}
 
 	loadExistingSpecification() {

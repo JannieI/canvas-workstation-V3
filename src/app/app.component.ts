@@ -299,17 +299,13 @@ export class AppComponent implements OnInit {
     }
 
     clickHelpDemo() {
-        // this.router.navigate(['/help']);
-        alert ('this is not working correct, as yet')
-        var newWindow = window.open('localhost:4200/help');
+        this.router.navigate(['/help']);
     }
-
 
     dragStartCircle(ev: DragEvent) {
         this.moveStartX = ev.x;
         this.moveStartY = ev.y;
         console.log('dragStartWidget', ev, this.moveStartX)
-
     }
 
     dragEndCircle(ev: DragEvent) {

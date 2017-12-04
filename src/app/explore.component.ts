@@ -473,6 +473,10 @@ export class ExploreComponent {
         return vlSpecsNew;
     }
 
+    clickWidgetEdit() {
+        console.log('Open Widget Editor')
+    }
+    
 }
 
 
