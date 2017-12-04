@@ -51,6 +51,21 @@ export class checkpoint {
     comment: string;
 }
 
+export class dashboardSchedule {
+    id: number;
+    dashboardID: number;
+    name: string;
+    description: string;
+    repeats: string;       // Daily, Weekday (M-F), Weekly, Monthly, Yearly
+    repeatsEvery: number;  //   X                     X        X        X
+    repeatsOn: string[];   // Weekly:  (M, T, W, ... S)
+    repeatsFor: string;    // Monthly: DayOfWeek, DayOfMonth
+    startsOn: string;      // Date
+    EndsNever: boolean;
+    EndsAfter: number;     // n times
+    EndsOn: string;        // Date
+}
+
 // CSS Color
 export class CSScolor {
     name: string;

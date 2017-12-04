@@ -14,10 +14,85 @@ import { checkpoint }                 from './models';
 import { fieldMetadata }              from './models';
 import { dashboardTag }               from './models';
 import { dashboardTheme }             from './models';
+import { dashboardSchedule }             from './models';
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
+const dashboardSchedules: dashboardSchedule[] =
+[
+    {
+        id: 1,
+        dashboardID: 12,
+        name: 'Daily',
+        description: '7 Days a weeks, forever',
+        repeats: 'Daily',
+        repeatsEvery: 1,
+        repeatsOn: null,
+        repeatsFor: null,
+        startsOn: '2017/01/01',
+        EndsNever: true,
+        EndsAfter: null,
+        EndsOn: null
+    },
+    {
+        id: 2,
+        dashboardID: 12,
+        name: 'Weekday (M-F)',
+        description: 'Mon-Fri for 10 times',
+        repeats: 'Weekday (M-F)',
+        repeatsEvery: null,
+        repeatsOn: null,
+        repeatsFor: null,
+        startsOn: '2017/01/01',
+        EndsNever: null,
+        EndsAfter: 10, 
+        EndsOn: null
+    },
+    {
+        id: 3,
+        dashboardID: 12,
+        name: 'Weekly',
+        description: 'Every second week on Tuesday and Friday',
+        repeats: 'Weekly',
+        repeatsEvery: 2,
+        repeatsOn: ['Tuesday, Friday'],
+        repeatsFor: 'DayOfWeek',
+        startsOn: '2017/01/01', 
+        EndsNever: true,
+        EndsAfter: 0,
+        EndsOn: '' 
+    },
+    {
+        id: 4,
+        dashboardID: 12,
+        name: 'Monthly',
+        description: 'Quarterly for one year',
+        repeats: 'Monthly',
+        repeatsEvery: 3,
+        repeatsOn: null,
+        repeatsFor: null,  
+        startsOn: '2017/01/01', 
+        EndsNever: null,
+        EndsAfter: null,
+        EndsOn: '2017/12/31'
+    },
+    {
+        id: 1,
+        dashboardID: 12,
+        name: 'Yearly',
+        description: 'Annualy forever',
+        repeats: 'Yearly',
+        repeatsEvery: 1,
+        repeatsOn: null,
+        repeatsFor: null,
+        startsOn: '2017/01/01', 
+        EndsNever: true,
+        EndsAfter:null,
+        EndsOn: null
+    }
+];
+
 const dashboardThemes: dashboardTheme[] = 
 [
     {
