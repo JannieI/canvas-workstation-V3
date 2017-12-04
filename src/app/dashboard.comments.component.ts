@@ -18,6 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
+import { dashboardComment }           from './models';
 
 @Component({
     selector: 'dashboard-comments',
@@ -31,6 +32,7 @@ export class DashboardCommentsComponent implements OnInit {
 
     showTypeDashboard: boolean = false;  
     dashboards: dashboard[];
+    dashboardComments: dashboardComment[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -39,6 +41,7 @@ export class DashboardCommentsComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
+        this.dashboardComments = this.globalVariableService.dashboardComments;
     }
 
     clickClose(action: string) {
