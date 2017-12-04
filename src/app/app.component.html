@@ -126,7 +126,11 @@
                         </button>
 
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem>
+                        <button 
+                            type="button" 
+                            clrDropdownItem
+                            (click)="clickMenuFileDelete()"
+                            >
                             Delete
                         </button>
                     </clr-dropdown-menu>
@@ -744,6 +748,15 @@
     [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardScheduleClosed)="handleCloseDashboardSchedule($event)">Load Dashboard Schedule ...
 </dashboard-schedule>
+
+
+<!-- Modal: Dashboard Delete -->
+<dashboard-delete
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardDelete"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardDeleteClosed)="handleCloseDashboardDelete($event)">Load Dashboard Delete ...
+</dashboard-delete>
 
 
 <!-- Modal: Login -->
