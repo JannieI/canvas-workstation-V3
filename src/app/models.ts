@@ -44,6 +44,14 @@ export class dashboardTheme {
     description: string;
 }
 
+export class dashboardComment {
+    id: number; 
+    dashboardID: number;
+    comment: string;
+    creator: string;
+    createdOn: string;
+}
+
 export class checkpoint {
     id: number; 
     dashboardID: number;

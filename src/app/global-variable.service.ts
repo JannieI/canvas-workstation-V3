@@ -14,11 +14,23 @@ import { checkpoint }                 from './models';
 import { fieldMetadata }              from './models';
 import { dashboardTag }               from './models';
 import { dashboardTheme }             from './models';
-import { dashboardSchedule }             from './models';
+import { dashboardSchedule }          from './models';
+import { dashboardComment }           from './models';
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
+const dashboardComments: dashboardComment[] =
+[
+    {
+        id: 1,
+        dashboardID: 42,
+        comment: 'We need to investigate the quality of the data',
+        creator: 'GerhardD',
+        createdOn: '2017/01/01'
+    }
+]
+
 const dashboardSchedules: dashboardSchedule[] =
 [
     {
@@ -46,7 +58,7 @@ const dashboardSchedules: dashboardSchedule[] =
         repeatsFor: null,
         startsOn: '2017/01/01',
         EndsNever: null,
-        EndsAfter: 10, 
+        EndsAfter: 10,
         EndsOn: null
     },
     {
@@ -58,10 +70,10 @@ const dashboardSchedules: dashboardSchedule[] =
         repeatsEvery: 2,
         repeatsOn: ['Tuesday, Friday'],
         repeatsFor: 'DayOfWeek',
-        startsOn: '2017/01/01', 
+        startsOn: '2017/01/01',
         EndsNever: true,
         EndsAfter: 0,
-        EndsOn: '' 
+        EndsOn: ''
     },
     {
         id: 4,
@@ -71,8 +83,8 @@ const dashboardSchedules: dashboardSchedule[] =
         repeats: 'Monthly',
         repeatsEvery: 3,
         repeatsOn: null,
-        repeatsFor: null,  
-        startsOn: '2017/01/01', 
+        repeatsFor: null,
+        startsOn: '2017/01/01',
         EndsNever: null,
         EndsAfter: null,
         EndsOn: '2017/12/31'
@@ -86,14 +98,14 @@ const dashboardSchedules: dashboardSchedule[] =
         repeatsEvery: 1,
         repeatsOn: null,
         repeatsFor: null,
-        startsOn: '2017/01/01', 
+        startsOn: '2017/01/01',
         EndsNever: true,
         EndsAfter:null,
         EndsOn: null
     }
 ];
 
-const dashboardThemes: dashboardTheme[] = 
+const dashboardThemes: dashboardTheme[] =
 [
     {
         id: 1,
@@ -102,22 +114,22 @@ const dashboardThemes: dashboardTheme[] =
     }
 ]
 
-const dashboardTags: dashboardTag[] = 
+const dashboardTags: dashboardTag[] =
 [
     {
         id: 1,
         dashboardID: 12,
-        tag: 'budget2017'        
+        tag: 'budget2017'
     },
     {
         id: 2,
         dashboardID: 12,
-        tag: 'savings'        
+        tag: 'savings'
     },
     {
         id: 3,
         dashboardID: 12,
-        tag: 'projectAard'        
+        tag: 'projectAard'
     }
 ];
 
@@ -216,7 +228,7 @@ const currentDatasources: currentDatasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    
+
     },
     {
         id: 2,
@@ -483,7 +495,7 @@ const transformationsFormat: transformation[] =
     }
 ];
 
-const currentTransformations: currentTransformation[] = 
+const currentTransformations: currentTransformation[] =
 [
     {
         id: 1,
@@ -734,7 +746,8 @@ export class GlobalVariableService {
     dataSample: datasource[] = dataSample;
     dashboardThemes: dashboardTheme[] = dashboardThemes;
     dashboardSchedules: dashboardSchedule[] = dashboardSchedules;
-
+    dashboardComments: dashboardComment[] = dashboardComments;
+    
     isFirstTime: boolean = true;
     presentation = new BehaviorSubject<boolean>(false);
     presentationMsg: boolean = true;
@@ -818,7 +831,7 @@ export class GlobalVariableService {
     // growlLife: number = 3000;
     // gridSize: number = 3;
     // snapToGrid: boolean = true;
- 
+
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
     // lastContainerFontSize: SelectedItem =

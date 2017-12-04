@@ -220,6 +220,10 @@ export class AppComponent implements OnInit {
         this.globalVariableService.showGrid.next(!this.showGrid);
     }
 
+    clickViewAllComments() {
+        
+    }
+
     menuUserMyProfile() {
         console.log('ddd')
         this.showModalDashboardMyProfile = true;
