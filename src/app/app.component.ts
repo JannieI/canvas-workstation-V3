@@ -277,6 +277,12 @@ export class AppComponent implements OnInit {
     clickMenuFileDelete() {
         this.showModalDashboardDelete = true;
     }
+
+    clickHelpDemo() {
+        // this.router.navigate(['/help']);
+        alert ('this is not working correct, as yet')
+        var newWindow = window.open('localhost:4200/help');
+    }
 }
 
 // Naming conventions
