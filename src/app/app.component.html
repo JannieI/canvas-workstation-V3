@@ -79,11 +79,18 @@
                                         *ngIf="showFav">
                                     </clr-icon>
                                 </button>
-                                <button type="button" clrDropdownItem
-                                (click)="clickMenuFileTags()">
+                                <button 
+                                    type="button" 
+                                    clrDropdownItem
+                                    (click)="clickMenuFileTags()"
+                                    >
                                     Tags
                                 </button>
-                                <button type="button" clrDropdownItem>
+                                <button 
+                                    type="button" 
+                                    clrDropdownItem
+                                    (click)="clickMenuFileSettings()"
+                                    >
                                     Settings
                                 </button>
                                 <button type="button" clrDropdownItem>
@@ -659,7 +666,7 @@
 </dashboard-save>
 
 
-<!-- Overlay: rename Dashboard -->
+<!-- Modal: rename Dashboard -->
 <dashboard-rename
     class="formPopupDashboard"
     *ngIf="showModalDashboardRename"
@@ -668,7 +675,7 @@
 </dashboard-rename>
 
 
-<!-- Overlay: Dashboard Details -->
+<!-- Modal: Dashboard Details -->
 <dashboard-details
     class="formPopupDashboard"
     *ngIf="showModalDashboardDetails"
@@ -677,16 +684,7 @@
 </dashboard-details>
 
 
-<!-- Overlay: Dashboard Details -->
-<dashboard-tags
-    class="formPopupDashboard"
-    *ngIf="showModalDashboardTags"
-    [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardTagsClosed)="handleCloseDashboardTags($event)">Load Dashboard Tags ...
-</dashboard-tags>
-
-
-<!-- Overlay: Dashboard Description -->
+<!-- Modal: Dashboard Description -->
 <dashboard-description
     class="formPopupDashboard"
     *ngIf="showModalDashboardDescription"
@@ -702,6 +700,24 @@
     [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardCheckpointsClosed)="handleCloseDashboardCheckpoints($event)">Load Checkpoints Dashboard ...
 </dashboard-checkpoints>
+
+
+<!-- Modal: Dashboard Tags -->
+<dashboard-tags
+class="formPopupDashboard"
+*ngIf="showModalDashboardTags"
+[currentWidgetSpec]="currentWidgetSpec"
+(formDashboardTagsClosed)="handleCloseDashboardTags($event)">Load Dashboard Tags ...
+</dashboard-tags>
+
+
+<!-- Modal: Dashboard Settings -->
+<dashboard-settings
+class="formPopupDashboard"
+*ngIf="showModalDashboardSettings"
+[currentWidgetSpec]="currentWidgetSpec"
+(formDashboardSettingsClosed)="handleCloseDashboardSettings($event)">Load Dashboard Settings ...
+</dashboard-settings>
 
 
 <!-- Modal: Login -->
