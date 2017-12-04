@@ -738,6 +738,7 @@ export class GlobalVariableService {
     isFirstTime: boolean = true;
     presentation = new BehaviorSubject<boolean>(false);
     presentationMsg: boolean = true;
+    showGrid = new BehaviorSubject<boolean>(false);
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard
     // Company related variables
     // companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig

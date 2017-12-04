@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
     menuCreateDisabled: boolean = false;
     presentation: boolean;
     showCollaborate: boolean = false;
+    showGrid: boolean;
     showModalLanding: boolean = false;
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
@@ -68,6 +69,10 @@ export class AppComponent implements OnInit {
         this.globalVariableService.presentation.subscribe(
             pres => this.presentation = pres
         );
+        this.globalVariableService.showGrid.subscribe(
+            sG => this.showGrid = sG
+        );
+        
     }   
 
     clickMenuCreateWidget() {
@@ -210,6 +215,9 @@ export class AppComponent implements OnInit {
 
     clickViewPresentation() {
         this.globalVariableService.presentation.next(!this.presentation);
+    }
+    clickViewShowGrid() {
+        this.globalVariableService.showGrid.next(!this.showGrid);
     }
 
     menuUserMyProfile() {

@@ -194,6 +194,7 @@ export class ExploreComponent {
     sideNaveButtonText: string = 'Select Data';
     showAdvancedField: boolean = false;
     showContainerHeader: boolean = false;
+    showGrid: boolean;
     showModalOpenDashboard: boolean = false;
     showType: boolean = false;
     showTypeIcon: boolean = true;
@@ -343,6 +344,9 @@ export class ExploreComponent {
         );
         this.dashboards = this.globalVariableService.dashboards;
         this.presentationMsg = this.globalVariableService.presentationMsg;
+        this.globalVariableService.showGrid.subscribe(
+            sG => this.showGrid = sG
+        );
     }
 
 //*     onMouseButton(event: MouseEvent): void {

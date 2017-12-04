@@ -91,3 +91,15 @@
 .presentation {
     border-bottom: 1px solid black
 }
+
+.bgGrid {
+    position: absolute;
+    left: 290px;
+    width: 100%;
+    top: 5rem;
+    color: red;
+    z-index: 999;
+    display: grid;
+    grid-template-columns: repeat(10, 20px);
+    grid-auto-rows: 1rem;
+}
