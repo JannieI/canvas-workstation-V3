@@ -97,6 +97,7 @@ export class DataPopupComponent implements OnInit {
 
     clickFilePreview() {
         this.showDataPreview = !this.showDataPreview;
+        this.currentDataset = 'Newly Added Data';
     }
 
     clickField() {
@@ -113,7 +114,7 @@ export class DataPopupComponent implements OnInit {
         // alert('Later: File component to browse ...')
     }
 
-    clickFileAddandClose() {
+    clickFileAdd(close: boolean) {
         console.log(this.currentDatasources)
         let newData: currentDatasource =  {
             id: 1,
@@ -130,13 +131,17 @@ export class DataPopupComponent implements OnInit {
         this.currentDatasources.push(newData);
         this.currentDataset = newData.name;
         this.globalVariableService.isFirstTimeData.next(false);
-        this.router.navigate(['/explore']);
+        this.isFirstTimeData = false;
+        if (close) {
+            this.router.navigate(['/explore']);
+        };
     }
 
-    clickFileShowMore() {
-        this.isFirstTimeData = false;
+    clickDatasourceRow(dsName: string) {
+        this.currentDataset = dsName;
+        console.log('dsName', dsName)
     }
-    
+
     clickFileAddTransformation() {
         alert('add transf')
     }

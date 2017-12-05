@@ -148,11 +148,12 @@
     }
 
     .gridIdentifyDataPreview {
-        border: 1px solid gray;
+        border: none;
         grid-column-start: 5; 
         grid-column-end: 21;
         grid-row-start: 11; 
         grid-row-end: 25; 
+        padding: 10px;
     }
 
 .gridTransform {
@@ -174,19 +175,21 @@
     }
 
     .gridTransformNew {
-        border: 1px solid gray;
+        border: none;
         grid-column-start: 5; 
         grid-column-end: 21;
         grid-row-start: 1; 
         grid-row-end: 11; 
+        padding: 10px;
     }
 
     .gridTransformExisting {
-        border: 1px solid gray;
+        border: none;
         grid-column-start: 5; 
         grid-column-end: 21;
         grid-row-start: 11; 
         grid-row-end: 25; 
+        padding: 10px;
     }
 
 .gridPivot {
@@ -247,6 +250,7 @@
         grid-column-end: 19;
         grid-row-start: 1; 
         grid-row-end: 11; 
+        padding: 10px;
     }
 
     .gridViewMiddle
@@ -256,6 +260,7 @@
         grid-column-end: 19;
         grid-row-start: 11; 
         grid-row-end: 25; 
+        padding: 10px;
     }
 
 .modalBox {
