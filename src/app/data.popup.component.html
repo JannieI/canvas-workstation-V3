@@ -82,231 +82,11 @@
     <div class="gridOld" *ngIf="NotYet">
         <div class="row" modalContent>
 
-            <div class="col-xs-3 menuOptions">
-                <button
-                    type="button"
-                    class="btn btn-link wizardButton"
-                    [style.background-color]="selectedExistingDS? 'rgb(182, 179, 179)' : 'transparent'"
-                    (click)="clickMenuExistingDS()"
-                    >
-                    Existing Data
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-link wizardButton"
-                    [style.background-color]="selectedExistingTransform? 'rgb(182, 179, 179)' : 'transparent'"
-                    (click)="clickMenuExistingTransformation()"
-                    >
-                    All Transformations
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-link wizardButton"
-                    [style.background-color]="selectedDatasource? 'rgb(182, 179, 179)' : 'transparent'"
-                    (click)="clickMenuDatasource()"
-                    >
-                    Add Datasource
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-link wizardButton"
-                    [style.background-color]="selectedOverallTransform? 'rgb(182, 179, 179)' : 'transparent'"
-                    (click)="clickMenuOverallTransform()"
-                    >
-                    Add Overall Transform
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-link wizardButton"
-                    [style.background-color]="selectedFieldTransform? 'rgb(182, 179, 179)' : 'transparent'"
-                    (click)="clickMenuFieldTransform()"
-                    >
-                    Add Field Transform
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-link wizardButton"
-                    [style.background-color]="selectedFieldProperties? 'rgb(182, 179, 179)' : 'transparent'"
-                    (click)="clickMenuFieldProperties()"
-                    >
-                    Change Field Properties
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-link wizardButton"
-                    [style.background-color]="selectedSummary? 'rgb(182, 179, 179)' : 'transparent'"
-                    (click)="clickMenuSummary()"
-                    >
-                    Summary
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-link wizardButton"
-                    (click)="clickMenuSummary()"
-                    >
-
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-link wizardButton"
-                    (click)="clickMenuSummary()"
-                    >
-
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-link wizardButton"
-                    (click)="clickMenuSummary()"
-                    >
-
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-link wizardButton"
-                    (click)="clickMenuSummary()"
-                    >
-
-                </button>
-
-
-            </div>
 
             <div class="col-xs-9 fileSelector">
 
-                <div *ngIf="selectedExistingDS">
-                    <clr-datagrid class="fieldsDataGrid">
-                        <clr-dg-column>Edit</clr-dg-column>
-                        <clr-dg-column>Name</clr-dg-column>
-                        <clr-dg-column>Type</clr-dg-column>
-                        <clr-dg-column>createdBy</clr-dg-column>
-                        <clr-dg-column>createdOn</clr-dg-column>
-                        <clr-dg-column>refreshedBy</clr-dg-column>
-                        <clr-dg-column>refreshedOn</clr-dg-column>
-                        <clr-dg-column>parameters</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of currentDatasources">
-                            <clr-dg-cell>
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    (click)="clickEditDS(row.id, row.name)"
-                                    >
-                                    <clr-icon shape="pencil" size="12"></clr-icon>
-                                </button>
-                            </clr-dg-cell>
-                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.type}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
-                        </clr-dg-row>
 
-                        <clr-dg-footer>
-                            {{currentDatasources.length}} fields
-                        </clr-dg-footer>
-                    </clr-datagrid>
-                </div>
-
-                <div *ngIf="selectedExistingTransform">
-                    <clr-datagrid class="fieldsDataGrid">
-                        <clr-dg-column>ID</clr-dg-column>
-                        <clr-dg-column>Category</clr-dg-column>
-                        <clr-dg-column>Name</clr-dg-column>
-                        <clr-dg-column>FieldName</clr-dg-column>
-                        <clr-dg-column>Parameters</clr-dg-column>
-
-                        <clr-dg-row *ngFor="let row of currentTransformations">
-                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.category}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.fieldName}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
-                        </clr-dg-row>
-
-                        <clr-dg-footer>
-                            {{currentTransformations.length}} rows
-                        </clr-dg-footer>
-                    </clr-datagrid>
-                </div>
-
-                <div *ngIf="selectedDatasource">
-                    <!-- <h4 class="fileSelectorHeader">File selection</h4> -->
-                    <span>Please enter file name and location, or
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            (click)="clickFileBrowse()"
-                            >
-                            Browse
-                        </button>
-                        :
-                    </span>
-                    <input type="text" id="formFields_7"
-                        placeholder="Folder/FileName"
-                        class="selectFile"
-                        >
-                    <br>
-                    Worksheet:
-                    <span class="select">
-                        <select id="selects_3" class="selectBox">
-                            <option>New York</option>
-                            <option>San Francisco</option>
-                            <option>Austin</option>
-                            <option>Paris</option>
-                            <option>Seattle</option>
-                        </select>
-                    </span>
-                    <br>
-                    Name of Dataset:
-                    <input type="text" id="formFields_7" placeholder="Dataset Name">
-                    <button
-                        type="button"
-                        class="btn btn-link selectButon"
-                        (click)="clickFilePreview()"
-                        >
-                        Preview
-                    </button>
-                    <div class="checkbox-inline">
-                        <input type="checkbox" id="checkrads_5">
-                        <label for="checkrads_5">Transpose rows and cols: </label>
-                    </div>
-                    <button
-                        type="button"
-                        class="btn btn-link selectButon"
-                        (click)="clickFileAdd()"
-                        >
-                        Add
-                    </button>
-
-                    <div *ngIf="showDataPreview">
-                        <clr-datagrid class="fieldsDataGrid">
-                            <clr-dg-column>Name</clr-dg-column>
-                            <clr-dg-column>Type</clr-dg-column>
-                            <clr-dg-column>createdBy</clr-dg-column>
-                            <clr-dg-column>createdOn</clr-dg-column>
-                            <clr-dg-column>refreshedBy</clr-dg-column>
-                            <clr-dg-column>refreshedOn</clr-dg-column>
-                            <clr-dg-column>parameters</clr-dg-column>
-
-                            <clr-dg-row *ngFor="let row of currentDatasources">
-                                <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.type}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
-                            </clr-dg-row>
-
-                            <clr-dg-footer>
-                                {{currentDatasources.length}} fields
-                            </clr-dg-footer>
-                        </clr-datagrid>
-
-                    </div>
-                </div>
 
                 <div *ngIf="selectedOverallTransform">
                     <div class="wrapper">
@@ -754,13 +534,6 @@
 
     <div class="gridIdentifyData" *ngIf="showIdentifyFile">
         <div *ngIf="!isFirstTimeData" class="gridIdentifyDataExisting">
-            <button
-                type="button"
-                class="btn btn-link"
-                >
-                Add New File
-            </button>
-
             <clr-datagrid class="fieldsDataGrid">
                 <clr-dg-column>Name</clr-dg-column>
 
@@ -772,7 +545,6 @@
                     {{currentDatasources.length}} fields
                 </clr-dg-footer>
             </clr-datagrid>
-
         </div>
         <div class="gridIdentifyDataIDfile">
             <span>Please enter file name and location, or
@@ -817,11 +589,18 @@
             <button
                 type="button"
                 class="btn btn-link selectButon"
-                (click)="clickFileAdd()"
+                (click)="clickFileAddandClose()"
                 >
-                Add
+                Add and Close
             </button>
-        </div>
+            <button
+                type="button"
+                class="btn btn-link selectButon"
+                (click)="clickFileShowMore()"
+                >
+                Let me change columns and content
+            </button>
+    </div>
         <div class="gridIdentifyDataPreview">
             <div *ngIf="showDataPreview">
                 <clr-datagrid class="fieldsDataGrid">
@@ -864,12 +643,12 @@
             <clr-datagrid class="fieldsDataGrid">
                 <clr-dg-column>Name</clr-dg-column>
 
-                <clr-dg-row *ngFor="let row of currentDatasources">
+                <clr-dg-row *ngFor="let row of currentTransformations">
                     <clr-dg-cell>{{row.name}}</clr-dg-cell>
                 </clr-dg-row>
 
                 <clr-dg-footer>
-                    {{currentDatasources.length}} fields
+                    {{currentTransformations.length}} fields
                 </clr-dg-footer>
             </clr-datagrid>
 
@@ -917,7 +696,7 @@
             <button
                 type="button"
                 class="btn btn-link selectButon"
-                (click)="clickFileAdd()"
+                (click)="clickFileAddTransformation()"
                 >
                 Add
             </button>
