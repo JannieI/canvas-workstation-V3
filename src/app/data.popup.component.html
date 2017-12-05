@@ -5,7 +5,9 @@
     <div class="gridTitleContainer">
         <div class="titleCurrent">
             Current Dataset: <b>{{ currentDataset }}</b>
-            <span *ngIf="currentDataset">(Click Identify, then click Add)</span>
+            <span *ngIf="currentDataset===''" class="titleFirsttimeMessage">
+                (Click Identify, then click Add)
+            </span>
         </div>
         <div class="titleIdentify titleBox">
             <button

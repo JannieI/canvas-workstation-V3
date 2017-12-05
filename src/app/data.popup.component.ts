@@ -43,7 +43,7 @@ export class DataPopupComponent implements OnInit {
 
     currentDatasources: currentDatasource[];
     currentTransformations: currentTransformation[];
-    currentDataset: string;
+    currentDataset: string = '';
 
     errorMessage: string = "";
     fields: field[];
