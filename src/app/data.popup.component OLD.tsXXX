@@ -51,10 +51,6 @@ export class DataPopupComponent implements OnInit {
     selectedFile: boolean = true;
     selectedData: string = 'Trades for 2016';
     showDataPreview: boolean = false;
-    showIdentifyFile: boolean = true;
-    showTransform: boolean = false;
-    showPivot: boolean = false;
-    showView: boolean = false;
     showSelectField: boolean = false;
     transformationsFormat: transformation[];
 
@@ -260,35 +256,6 @@ export class DataPopupComponent implements OnInit {
         ev.preventDefault();
         // Set the dropEffect to move
         ev.dataTransfer.dropEffect = "move"
-      }
-
-      
-      clickShowIdentifyFile() {
-        this.showIdentifyFile = true;
-        this.showTransform = false;
-        this.showPivot = false;
-        this.showView = false;
-      }
-
-      clickShowTransform() {
-        this.showIdentifyFile = false;
-        this.showTransform = true;
-        this.showPivot = false;
-        this.showView = false;
-      }
-
-      clickShowPivot() {
-        this.showIdentifyFile = false;
-        this.showTransform = false;
-        this.showPivot = true;
-        this.showView = false;
-      }
-
-      clickShowView() {
-        this.showIdentifyFile = false;
-        this.showTransform = false;
-        this.showPivot = false;
-        this.showView = true;
       }
 
  }

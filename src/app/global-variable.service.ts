@@ -240,9 +240,192 @@ const currentDatasources: currentDatasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 3,
+        name: 'My Budget',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
 
+    },
+    {
+        id: 4,
+        name: 'Bicycle Sales',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 5,
+        name: 'Bond Valuation',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
 
+    },
+    {
+        id: 6,
+        name: 'Auditors',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 7,
+        name: 'Student Marks',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 8,
+        name: 'Security Breaches',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 9,
+        name: 'Milk Proteins',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 10,
+        name: 'Malaria Cases',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 11,
+        name: 'Investments',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 12,
+        name: 'Bridge Maintenance',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 13,
+        name: 'Parts in storage',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 14,
+        name: 'Customer Complaints',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 15,
+        name: 'Issues',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 16,
+        name: 'Tickets',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 17,
+        name: 'Clothing lines',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 18,
+        name: 'Shoe Sales',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     }
+
 ];
 
 const fields: field[] =
