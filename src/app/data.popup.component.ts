@@ -48,6 +48,7 @@ export class DataPopupComponent implements OnInit {
     errorMessage: string = "";
     fields: field[];
     fieldsMetadata: fieldMetadata[];
+    isFirstTimeData: boolean;
     selectorDetailColumnEnd: string = '12';
     selectedFile: boolean = true;
     selectedData: string = 'Trades for 2016';
@@ -88,6 +89,10 @@ export class DataPopupComponent implements OnInit {
 
         this.fields = this.globalVariableService.fields;
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
+        this.globalVariableService.isFirstTimeData.subscribe(
+            i => this.isFirstTimeData = i
+        );
+        console.log('this.isFirstTimeData', this.isFirstTimeData)
     }
 
     clickFilePreview() {
@@ -124,7 +129,8 @@ export class DataPopupComponent implements OnInit {
         };
         this.currentDatasources.push(newData);
         this.currentDataset = newData.name;
-        console.log(this.currentDatasources)
+        this.globalVariableService.isFirstTimeData.next(false);
+        console.log(this.currentDatasources);
     }
 
     clickClose(action: string) {
@@ -264,35 +270,36 @@ export class DataPopupComponent implements OnInit {
         ev.preventDefault();
         // Set the dropEffect to move
         ev.dataTransfer.dropEffect = "move"
-      }
+    }
 
-
-      clickShowIdentifyFile() {
+    clickShowIdentifyFile() {
         this.showIdentifyFile = true;
         this.showTransform = false;
         this.showPivot = false;
         this.showView = false;
-      }
-
-      clickShowTransform() {
+    }
+    clickShowTransform() {
         this.showIdentifyFile = false;
         this.showTransform = true;
         this.showPivot = false;
         this.showView = false;
-      }
+    }
 
-      clickShowPivot() {
+    clickShowPivot() {
         this.showIdentifyFile = false;
         this.showTransform = false;
         this.showPivot = true;
         this.showView = false;
-      }
+    }
 
-      clickShowView() {
+    clickShowView() {
         this.showIdentifyFile = false;
         this.showTransform = false;
         this.showPivot = false;
         this.showView = true;
-      }
+    }
 
- }
+    clickShowIdentity() {
+        this.showIdentifyFile = true;
+    }
+}

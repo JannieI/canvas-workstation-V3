@@ -182,7 +182,7 @@ export class ExploreComponent {
     dashboards: dashboard[];
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
-    isFirstTime: boolean;
+    isFirstTimeDashboard: boolean;
     menuCreateDisabled: boolean = false;
     message: string;
     open: Boolean = false;
@@ -338,7 +338,9 @@ export class ExploreComponent {
         this.globalVariableService.currentMessage.subscribe(message => this.message = message);
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled);
-        this.isFirstTime = this.globalVariableService.isFirstTime;
+        this.globalVariableService.isFirstTimeDashboard.subscribe(
+            i => this.isFirstTimeDashboard = i
+        )
         this.globalVariableService.presentation.subscribe(
             pres => this.presentation = pres
         );
@@ -439,7 +441,7 @@ export class ExploreComponent {
     }
 
     clickGotIt() {
-        this.isFirstTime = !this.isFirstTime;
+        this.globalVariableService.isFirstTimeDashboard.next(false);
     }
 
     clickGotItPresentation() {

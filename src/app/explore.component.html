@@ -37,14 +37,14 @@
     </div>
 </div>
 
-<div class="helpMessage" *ngIf="isFirstTime">
+<div class="helpMessage" *ngIf="isFirstTimeDashboard">
     First add a datasource (click <i>Data</i> in the top menu).  Then insert a Widget to visualise
     the data (click <i>Create -> Widget</i> in the top menu).  Once the Widgets have been formatted
     and arranged, you can save the Dashboard with a name (<i>File -> SaveAs</i>).  Existing
     Dashboards can be opened with <i>File -> Open</i>.  Collaborating happens via messages and
     tasks (click the <i>Share <clr-icon shape="share"></clr-icon> icon</i> in the top right menu).
     <br>
-    Got it  <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTime">
+    Got it  <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboard">
 </div>
 
 <div class="tabList">

@@ -2,7 +2,7 @@
     X
 </button>
 <div class="gridOverall">
-    <div class="gridTitleContainer">
+    <div *ngIf="!isFirstTimeData" class="gridTitleContainer">
         <div class="titleCurrent">
             Current Dataset: <b>{{ currentDataset }}</b>
             <span *ngIf="currentDataset===''" class="titleFirsttimeMessage">
@@ -753,11 +753,10 @@
     </div>
 
     <div class="gridIdentifyData" *ngIf="showIdentifyFile">
-        <div class="gridIdentifyDataExisting">
+        <div *ngIf="!isFirstTimeData" class="gridIdentifyDataExisting">
             <button
                 type="button"
                 class="btn btn-link"
-                (click)="showIdentifyFile=!showIdentifyFile"
                 >
                 Add New File
             </button>
