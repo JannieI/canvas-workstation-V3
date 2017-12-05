@@ -1,4 +1,4 @@
-/* 
+/*
  * Data page: to get new datasources, and add to the current list of datasources for this
  * Dashboard.  Can also do transformations to the data, and crteate new datasets, ie via
  * pivot.
@@ -6,11 +6,12 @@
 
 // Angular
 import { Component }                  from '@angular/core';
+import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
+import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
-import { ElementRef }                 from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -28,21 +29,21 @@ interface Idata{
 }
 
 @Component({
-    selector: 'data-popup',
+    selector: 'data',
     templateUrl: './data.popup.component.html',
     styleUrls:  ['./data.popup.component.css']
 })
 export class DataPopupComponent implements OnInit {
 
     @Output() formDataPopupClosed: EventEmitter<string> = new EventEmitter();
-    
+
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
     @ViewChild('typeTransformationDropdown') typeTransformationDropdown: ElementRef;
     @ViewChild('transformations') transformations: ElementRef;
 
     currentDatasources: currentDatasource[];
-    currentTransformations: currentTransformation[]; 
-    currentDataset: string = '';
+    currentTransformations: currentTransformation[];
+    currentDataset: string;
 
     errorMessage: string = "";
     fields: field[];
@@ -74,15 +75,17 @@ export class DataPopupComponent implements OnInit {
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private router: Router,
 	) {}
 
 	ngOnInit() {
 
         // Load global variables
-        this.currentDatasources = this.globalVariableService.currentDatasources;
+        this.currentDatasources = this.globalVariableService.currentDatasources
+            .filter(d => d.id <= 14);
         this.transformationsFormat = this.globalVariableService.transformationsFormat;
         this.currentTransformations = this.globalVariableService.currentTransformations;
-        
+
         this.fields = this.globalVariableService.fields;
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
     }
@@ -104,7 +107,7 @@ export class DataPopupComponent implements OnInit {
     clickFileBrowse() {
         // alert('Later: File component to browse ...')
     }
-    
+
     clickFileAdd() {
         console.log(this.currentDatasources)
         let newData: currentDatasource =  {
@@ -117,15 +120,16 @@ export class DataPopupComponent implements OnInit {
             refreshedBy: 'JohnM',
             refreshedOn: '2017/01/01',
             parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    
-        };        
+
+        };
         this.currentDatasources.push(newData);
         this.currentDataset = newData.name;
         console.log(this.currentDatasources)
     }
 
     clickClose(action: string) {
-		this.formDataPopupClosed.emit(action);
+        // this.formDataPopupClosed.emit(action);
+        this.router.navigate(['/explore']);
     }
 
     clickMenuExistingDS() {
@@ -151,7 +155,7 @@ export class DataPopupComponent implements OnInit {
     clickEditDS(dsID: number, dsName: string) {
         console.log('DS ID', dsID);
         this.currentDataset = dsName;
-        
+
     }
 
     clickMenuDatasource() {
@@ -236,7 +240,7 @@ export class DataPopupComponent implements OnInit {
 
         this.transitionAction = actionName;
     }
-    
+
     drop_handler(ev) {
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "link"
@@ -262,7 +266,7 @@ export class DataPopupComponent implements OnInit {
         ev.dataTransfer.dropEffect = "move"
       }
 
-      
+
       clickShowIdentifyFile() {
         this.showIdentifyFile = true;
         this.showTransform = false;

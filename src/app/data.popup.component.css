@@ -1,3 +1,10 @@
+.closeButton {
+    background-color: transparent;
+    border: none;
+    float: left;
+    z-index: 11;
+}
+
 .datagrid {
     margin: 0px !important;
     margin-top: 0px !important;
@@ -142,6 +149,108 @@
         grid-row-end: 25; 
     }
 
+.gridTransform {
+    grid-column-start: 1; 
+    grid-column-end: 21;
+    grid-row-start: 5; 
+    grid-row-end: 30; 
+    display: grid;
+    grid-template-columns: repeat(19, 1fr);
+    grid-auto-rows: 1rem;
+}
+
+    .gridTransformTransformations {
+        border: 1px solid gray;
+        grid-column-start: 1; 
+        grid-column-end: 5;
+        grid-row-start: 1; 
+        grid-row-end: 25; 
+    }
+
+    .gridTransformNew {
+        border: 1px solid gray;
+        grid-column-start: 5; 
+        grid-column-end: 21;
+        grid-row-start: 1; 
+        grid-row-end: 11; 
+    }
+
+    .gridTransformExisting {
+        border: 1px solid gray;
+        grid-column-start: 5; 
+        grid-column-end: 21;
+        grid-row-start: 11; 
+        grid-row-end: 25; 
+    }
+
+.gridPivot {
+    grid-column-start: 1; 
+    grid-column-end: 21;
+    grid-row-start: 5; 
+    grid-row-end: 30; 
+    display: grid;
+    grid-template-columns: repeat(19, 1fr);
+    grid-auto-rows: 1rem;
+}
+
+    .gridPivotFields {
+        border: 1px solid gray;
+        grid-column-start: 1; 
+        grid-column-end: 5;
+        grid-row-start: 1; 
+        grid-row-end: 25; 
+    }
+
+    .gridPivotColumns {
+        border: 1px solid gray;
+        grid-column-start: 5; 
+        grid-column-end: 21;
+        grid-row-start: 1; 
+        grid-row-end: 3; 
+    }
+
+    .gridPivotRows {
+        border: 1px solid gray;
+        grid-column-start: 5; 
+        grid-column-end: 9;
+        grid-row-start: 11; 
+        grid-row-end: 14; 
+    }
+
+    .gridPivotAggregate {
+        border: 1px solid gray;
+        grid-column-start: 14; 
+        grid-column-end: 18;
+        grid-row-start: 14; 
+        grid-row-end: 17; 
+    }
+
+.gridView {
+    grid-column-start: 1; 
+    grid-column-end: 21;
+    grid-row-start: 5; 
+    grid-row-end: 30; 
+    display: grid;
+    grid-template-columns: repeat(19, 1fr);
+    grid-auto-rows: 1rem;
+}
+
+    .gridViewTop {
+        border: 1px solid gray;
+        grid-column-start: 1; 
+        grid-column-end: 19;
+        grid-row-start: 1; 
+        grid-row-end: 11; 
+    }
+
+    .gridViewMiddle
+    {
+        border: 1px solid gray;
+        grid-column-start: 1; 
+        grid-column-end: 19;
+        grid-row-start: 11; 
+        grid-row-end: 25; 
+    }
 
 .modalBox {
     background-color: rgb(0,0,0); /* Fallback color */
@@ -151,11 +260,6 @@
 
 .modalContent {
     background-color: rgb(251, 251, 253);
-}
-
-.closeButton {
-    background-color: transparent;
-    border: none;
 }
 
 .propertyBox {

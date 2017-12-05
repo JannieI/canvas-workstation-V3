@@ -74,11 +74,11 @@ export class AppComponent implements OnInit {
     currentWidgetSpec: string = "{...}";
 
     constructor(
-        private router: Router,
         private globalVariableService: GlobalVariableService,
         private globalFunctionService: GlobalFunctionService,
         @Inject(DOCUMENT) private document: Document,
         private renderer: Renderer,
+        private router: Router,
         
     ) {
     }
@@ -102,7 +102,8 @@ export class AppComponent implements OnInit {
 
     menuDataFromFile() {
         console.log('menuDataFromFile')
-        this.showModalDataPopup = true;
+        // this.showModalDataPopup = true;
+        this.router.navigate(['/data']);
     }
 
     menuDataFromServer() {

@@ -7,8 +7,7 @@ import { Routes, RouterModule }       from '@angular/router';
 
 // Our Components
 import { ExploreComponent }           from './explore.component';
-import { DataComponent }              from './data.component';
-import { GetDataComponent }           from './getdata.component';
+import { DataPopupComponent }         from './data.popup.component';
 import { HomeComponent }              from './home.component';
 import { HelpComponent }              from './help.component';
 import { LandingComponent }           from './landing.component';
@@ -23,17 +22,17 @@ export const ROUTES: Routes = [
     {path: '', redirectTo: 'explore', pathMatch: 'full'},
     {path: 'home',          component: HomeComponent},
     {path: 'collaborate',   component: CollaborateComponent},
-    {path: 'data',          component: DataComponent},
+    {path: 'data',          component: DataPopupComponent},
     {path: 'explore',       component: ExploreComponent},
     {path: 'help',          component: HelpComponent},
     {path: 'present',       component: PresentComponent},
 
-    {
-        path: 'getdata', 
-        component: GetDataComponent, 
-        canActivate: [AuthGuard], 
-        canDeactivate: [AuthGuard]
-    },
+    // {
+    //     path: 'getdata', 
+    //     component: GetDataComponent, 
+    //     canActivate: [AuthGuard], 
+    //     canDeactivate: [AuthGuard]
+    // },
     {path: '**', component: LandingComponent},
     
 ];

@@ -1,1164 +1,1006 @@
-<div class="modal modalBox">
-	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-		<div class="modal-content   ">
+<button type="button" class="closeButton" (click)="clickClose()">
+    X
+</button>
+<div class="gridOverall">
+    <div class="gridTitleContainer">
+        <div class="titleCurrent">
+            Current Dataset: <b>{{ currentDataset }}</b>
+            <span *ngIf="currentDataset">(Click Identify, then click Add)</span>
+        </div>
+        <div class="titleIdentify titleBox">
+            <button
+                type="button"
+                class="btn btn-link titleButton"
+                (click)="clickShowIdentifyFile()"
+                [style.background-color]="showIdentifyFile ? 'rgb(211, 211, 247)' : 'transparent'"
+                >
+                Identify
+            </button>   
+        </div>
+        <div class="titleChevron1">
+            <button
+                type="button"
+                class="btn btn-link titleButton"
+                (click)="clickShowTransform()"
+                >
+                >>
+            </button>   
+        </div>
+        <div class="titleTransform titleBox">
+            <button
+                type="button"
+                class="btn btn-link titleButton"
+                (click)="clickShowTransform()"
+                [style.background-color]="showTransform ? 'rgb(211, 211, 247)' : 'transparent'"
+                >
+                Transform
+            </button>
+        </div>
+        <div class="titleChevron2">
+            <button
+                type="button"
+                class="btn btn-link titleButton"
+                (click)="clickShowPivot()"
+                >
+                >>
+            </button>   
+        </div>
+        <div class="titlePivot titleBox">
+            <button
+                type="button"
+                class="btn btn-link titleButton"
+                (click)="clickShowPivot()"
+                [style.background-color]="showPivot ? 'rgb(211, 211, 247)' : 'transparent'"
+                >
+                Pivot
+            </button>   
+        </div>
+        <div class="titleChevron3">
+            <button
+                type="button"
+                class="btn btn-link titleButton"
+                (click)="clickShowView()"
+                >
+                >>
+            </button>   
+        </div>
+        <div class="titleView titleBox">
+            <button
+                type="button"
+                class="btn btn-link titleButton"
+                (click)="clickShowView()"
+                [style.background-color]="showView ? 'rgb(211, 211, 247)' : 'transparent'"
+                >
+                View
+            </button>   
+        </div>
+                                    
+    </div>
 
-            <div modalContent>
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
+    <div class="gridOld" *ngIf="NotYet">
+        <div class="row" modalContent>
+
+            <div class="col-xs-3 menuOptions">
+                <button
+                    type="button"
+                    class="btn btn-link wizardButton"
+                    [style.background-color]="selectedExistingDS? 'rgb(182, 179, 179)' : 'transparent'"
+                    (click)="clickMenuExistingDS()"
+                    >
+                    Existing Data
                 </button>
-                <div class="gridOverall">
-                    <div class="gridTitleContainer">
-                        <div class="titleCurrent">
-                            Current Dataset: <b>{{ currentDataset }}</b>
-                            <span *ngIf="currentDataset">(Click Identify, then click Add)</span>
-                        </div>
-                        <div class="titleIdentify titleBox">
-                            <button
-                                type="button"
-                                class="btn btn-link titleButton"
-                                (click)="clickShowIdentifyFile()"
-                                [style.background-color]="showIdentifyFile ? 'rgb(211, 211, 247)' : 'transparent'"
-                                >
-                                Identify
-                            </button>   
-                        </div>
-                        <div class="titleChevron1">
-                            <button
-                                type="button"
-                                class="btn btn-link titleButton"
-                                (click)="clickShowTransform()"
-                                >
-                                >>
-                            </button>   
-                        </div>
-                        <div class="titleTransform titleBox">
-                            <button
-                                type="button"
-                                class="btn btn-link titleButton"
-                                (click)="clickShowTransform()"
-                                [style.background-color]="showTransform ? 'rgb(211, 211, 247)' : 'transparent'"
-                                >
-                                Transform
-                            </button>
-                        </div>
-                        <div class="titleChevron2">
-                            <button
-                                type="button"
-                                class="btn btn-link titleButton"
-                                (click)="clickShowPivot()"
-                                >
-                                >>
-                            </button>   
-                        </div>
-                        <div class="titlePivot titleBox">
-                            <button
-                                type="button"
-                                class="btn btn-link titleButton"
-                                (click)="clickShowPivot()"
-                                [style.background-color]="showPivot ? 'rgb(211, 211, 247)' : 'transparent'"
-                                >
-                                Pivot
-                            </button>   
-                        </div>
-                        <div class="titleChevron3">
-                            <button
-                                type="button"
-                                class="btn btn-link titleButton"
-                                (click)="clickShowView()"
-                                >
-                                >>
-                            </button>   
-                        </div>
-                        <div class="titleView titleBox">
-                            <button
-                                type="button"
-                                class="btn btn-link titleButton"
-                                (click)="clickShowView()"
-                                [style.background-color]="showView ? 'rgb(211, 211, 247)' : 'transparent'"
-                                >
-                                View
-                            </button>   
-                        </div>
-                                                    
+                <button
+                    type="button"
+                    class="btn btn-link wizardButton"
+                    [style.background-color]="selectedExistingTransform? 'rgb(182, 179, 179)' : 'transparent'"
+                    (click)="clickMenuExistingTransformation()"
+                    >
+                    All Transformations
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-link wizardButton"
+                    [style.background-color]="selectedDatasource? 'rgb(182, 179, 179)' : 'transparent'"
+                    (click)="clickMenuDatasource()"
+                    >
+                    Add Datasource
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-link wizardButton"
+                    [style.background-color]="selectedOverallTransform? 'rgb(182, 179, 179)' : 'transparent'"
+                    (click)="clickMenuOverallTransform()"
+                    >
+                    Add Overall Transform
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-link wizardButton"
+                    [style.background-color]="selectedFieldTransform? 'rgb(182, 179, 179)' : 'transparent'"
+                    (click)="clickMenuFieldTransform()"
+                    >
+                    Add Field Transform
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-link wizardButton"
+                    [style.background-color]="selectedFieldProperties? 'rgb(182, 179, 179)' : 'transparent'"
+                    (click)="clickMenuFieldProperties()"
+                    >
+                    Change Field Properties
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-link wizardButton"
+                    [style.background-color]="selectedSummary? 'rgb(182, 179, 179)' : 'transparent'"
+                    (click)="clickMenuSummary()"
+                    >
+                    Summary
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-link wizardButton"
+                    (click)="clickMenuSummary()"
+                    >
+
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-link wizardButton"
+                    (click)="clickMenuSummary()"
+                    >
+
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-link wizardButton"
+                    (click)="clickMenuSummary()"
+                    >
+
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-link wizardButton"
+                    (click)="clickMenuSummary()"
+                    >
+
+                </button>
+
+
+            </div>
+
+            <div class="col-xs-9 fileSelector">
+
+                <div *ngIf="selectedExistingDS">
+                    <clr-datagrid class="fieldsDataGrid">
+                        <clr-dg-column>Edit</clr-dg-column>
+                        <clr-dg-column>Name</clr-dg-column>
+                        <clr-dg-column>Type</clr-dg-column>
+                        <clr-dg-column>createdBy</clr-dg-column>
+                        <clr-dg-column>createdOn</clr-dg-column>
+                        <clr-dg-column>refreshedBy</clr-dg-column>
+                        <clr-dg-column>refreshedOn</clr-dg-column>
+                        <clr-dg-column>parameters</clr-dg-column>
+
+                        <clr-dg-row *ngFor="let row of currentDatasources">
+                            <clr-dg-cell>
+                                <button
+                                    type="button"
+                                    class="btn btn-link wizardButton"
+                                    (click)="clickEditDS(row.id, row.name)"
+                                    >
+                                    <clr-icon shape="pencil" size="12"></clr-icon>
+                                </button>
+                            </clr-dg-cell>
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.type}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
+                        </clr-dg-row>
+
+                        <clr-dg-footer>
+                            {{currentDatasources.length}} fields
+                        </clr-dg-footer>
+                    </clr-datagrid>
+                </div>
+
+                <div *ngIf="selectedExistingTransform">
+                    <clr-datagrid class="fieldsDataGrid">
+                        <clr-dg-column>ID</clr-dg-column>
+                        <clr-dg-column>Category</clr-dg-column>
+                        <clr-dg-column>Name</clr-dg-column>
+                        <clr-dg-column>FieldName</clr-dg-column>
+                        <clr-dg-column>Parameters</clr-dg-column>
+
+                        <clr-dg-row *ngFor="let row of currentTransformations">
+                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.category}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.fieldName}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
+                        </clr-dg-row>
+
+                        <clr-dg-footer>
+                            {{currentTransformations.length}} rows
+                        </clr-dg-footer>
+                    </clr-datagrid>
+                </div>
+
+                <div *ngIf="selectedDatasource">
+                    <!-- <h4 class="fileSelectorHeader">File selection</h4> -->
+                    <span>Please enter file name and location, or
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickFileBrowse()"
+                            >
+                            Browse
+                        </button>
+                        :
+                    </span>
+                    <input type="text" id="formFields_7"
+                        placeholder="Folder/FileName"
+                        class="selectFile"
+                        >
+                    <br>
+                    Worksheet:
+                    <span class="select">
+                        <select id="selects_3" class="selectBox">
+                            <option>New York</option>
+                            <option>San Francisco</option>
+                            <option>Austin</option>
+                            <option>Paris</option>
+                            <option>Seattle</option>
+                        </select>
+                    </span>
+                    <br>
+                    Name of Dataset:
+                    <input type="text" id="formFields_7" placeholder="Dataset Name">
+                    <button
+                        type="button"
+                        class="btn btn-link selectButon"
+                        (click)="clickFilePreview()"
+                        >
+                        Preview
+                    </button>
+                    <div class="checkbox-inline">
+                        <input type="checkbox" id="checkrads_5">
+                        <label for="checkrads_5">Transpose rows and cols: </label>
                     </div>
+                    <button
+                        type="button"
+                        class="btn btn-link selectButon"
+                        (click)="clickFileAdd()"
+                        >
+                        Add
+                    </button>
 
-                    <div class="gridOld" *ngIf="NotYet">
-                        <div class="row" modalContent>
+                    <div *ngIf="showDataPreview">
+                        <clr-datagrid class="fieldsDataGrid">
+                            <clr-dg-column>Name</clr-dg-column>
+                            <clr-dg-column>Type</clr-dg-column>
+                            <clr-dg-column>createdBy</clr-dg-column>
+                            <clr-dg-column>createdOn</clr-dg-column>
+                            <clr-dg-column>refreshedBy</clr-dg-column>
+                            <clr-dg-column>refreshedOn</clr-dg-column>
+                            <clr-dg-column>parameters</clr-dg-column>
 
-                            <div class="col-xs-3 menuOptions">
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    [style.background-color]="selectedExistingDS? 'rgb(182, 179, 179)' : 'transparent'"
-                                    (click)="clickMenuExistingDS()"
-                                    >
-                                    Existing Data
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    [style.background-color]="selectedExistingTransform? 'rgb(182, 179, 179)' : 'transparent'"
-                                    (click)="clickMenuExistingTransformation()"
-                                    >
-                                    All Transformations
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    [style.background-color]="selectedDatasource? 'rgb(182, 179, 179)' : 'transparent'"
-                                    (click)="clickMenuDatasource()"
-                                    >
-                                    Add Datasource
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    [style.background-color]="selectedOverallTransform? 'rgb(182, 179, 179)' : 'transparent'"
-                                    (click)="clickMenuOverallTransform()"
-                                    >
-                                    Add Overall Transform
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    [style.background-color]="selectedFieldTransform? 'rgb(182, 179, 179)' : 'transparent'"
-                                    (click)="clickMenuFieldTransform()"
-                                    >
-                                    Add Field Transform
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    [style.background-color]="selectedFieldProperties? 'rgb(182, 179, 179)' : 'transparent'"
-                                    (click)="clickMenuFieldProperties()"
-                                    >
-                                    Change Field Properties
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    [style.background-color]="selectedSummary? 'rgb(182, 179, 179)' : 'transparent'"
-                                    (click)="clickMenuSummary()"
-                                    >
-                                    Summary
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    (click)="clickMenuSummary()"
-                                    >
+                            <clr-dg-row *ngFor="let row of currentDatasources">
+                                <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.type}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
+                            </clr-dg-row>
 
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    (click)="clickMenuSummary()"
-                                    >
+                            <clr-dg-footer>
+                                {{currentDatasources.length}} fields
+                            </clr-dg-footer>
+                        </clr-datagrid>
 
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    (click)="clickMenuSummary()"
-                                    >
+                    </div>
+                </div>
 
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-link wizardButton"
-                                    (click)="clickMenuSummary()"
-                                    >
+                <div *ngIf="selectedOverallTransform">
+                    <div class="wrapper">
+                        <div class="gridFields">
+                            <nav
+                                >
 
-                                </button>
-
-
-                            </div>
-
-                            <div class="col-xs-9 fileSelector">
-
-                                <div *ngIf="selectedExistingDS">
-                                    <clr-datagrid class="fieldsDataGrid">
-                                        <clr-dg-column>Edit</clr-dg-column>
-                                        <clr-dg-column>Name</clr-dg-column>
-                                        <clr-dg-column>Type</clr-dg-column>
-                                        <clr-dg-column>createdBy</clr-dg-column>
-                                        <clr-dg-column>createdOn</clr-dg-column>
-                                        <clr-dg-column>refreshedBy</clr-dg-column>
-                                        <clr-dg-column>refreshedOn</clr-dg-column>
-                                        <clr-dg-column>parameters</clr-dg-column>
-
-                                        <clr-dg-row *ngFor="let row of currentDatasources">
-                                            <clr-dg-cell>
-                                                <button
-                                                    type="button"
-                                                    class="btn btn-link wizardButton"
-                                                    (click)="clickEditDS(row.id, row.name)"
+                                        <ul class="nav-list">
+                                            <li>
+                                                <a
+                                                    class="nav-link"
+                                                    (dragend)="showGraphsReal($event)"
+                                                    draggable="true"
+                                                    id="dragtarget"
                                                     >
-                                                    <clr-icon shape="pencil" size="12"></clr-icon>
-                                                </button>
-                                            </clr-dg-cell>
-                                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.type}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
-                                        </clr-dg-row>
+                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                    Trader
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link"
+                                                    id="p1"
+                                                    draggable="true"
+                                                    (dragstart)="dragstart_handler($event)"
+                                                    (dragend)="dragend_handler($event)"
+                                                    >
+                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                    Country
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link active">
+                                                <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                    Trade Type
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="block" class="dateField"></clr-icon>
+                                                    Date
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                    DateTime
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                    Stock
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                    Volume
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                    Trades
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                    Value
+                                                </a>
+                                            </li>
+                                        </ul>
+                            </nav>
+                        </div>
+                        <div
+                            class="gridColumns"
+                            (drop)="drop_pivot($event);"
+                            (dragover)="dragover_pivot($event);"
+                            >
+                            Columns
+                        </div>
+                        <div class="gridRows"
+                            (drop)="drop_pivot($event);"
+                            (dragover)="dragover_pivot($event);"
+                            >
+                            Rows
+                        </div>
+                        <div class="gridAggregate">
+                            Aggregate:
+                            <div class="select">
+                                <select id="selects_1">
+                                    <option>Sum</option>
+                                    <option>Average</option>
+                                    <option>Minimum</option>
+                                    <option>Maximum</option>
+                                    <option>Mean</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                        <clr-dg-footer>
-                                            {{currentDatasources.length}} fields
-                                        </clr-dg-footer>
-                                    </clr-datagrid>
-                                </div>
+                <div *ngIf="selectedFieldTransform">
+                    <div class="row">
+                        <div class="col-xs-3 gridColumn">
+                            <nav
+                                class="sidenav"
+                                [style.width.px]="sideNavWidth"
+                                [style.min-width.rem]="sideNavMinWidth"
+                                >
 
-                                <div *ngIf="selectedExistingTransform">
-                                    <clr-datagrid class="fieldsDataGrid">
-                                        <clr-dg-column>ID</clr-dg-column>
-                                        <clr-dg-column>Category</clr-dg-column>
-                                        <clr-dg-column>Name</clr-dg-column>
-                                        <clr-dg-column>FieldName</clr-dg-column>
-                                        <clr-dg-column>Parameters</clr-dg-column>
-
-                                        <clr-dg-row *ngFor="let row of currentTransformations">
-                                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.category}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.fieldName}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
-                                        </clr-dg-row>
-
-                                        <clr-dg-footer>
-                                            {{currentTransformations.length}} rows
-                                        </clr-dg-footer>
-                                    </clr-datagrid>
-                                </div>
-
-                                <div *ngIf="selectedDatasource">
-                                    <!-- <h4 class="fileSelectorHeader">File selection</h4> -->
-                                    <span>Please enter file name and location, or
-                                        <button
-                                            type="button"
-                                            class="btn btn-link"
-                                            (click)="clickFileBrowse()"
-                                            >
-                                            Browse
-                                        </button>
-                                        :
-                                    </span>
-                                    <input type="text" id="formFields_7"
-                                        placeholder="Folder/FileName"
-                                        class="selectFile"
-                                        >
-                                    <br>
-                                    Worksheet:
-                                    <span class="select">
-                                        <select id="selects_3" class="selectBox">
-                                            <option>New York</option>
-                                            <option>San Francisco</option>
-                                            <option>Austin</option>
-                                            <option>Paris</option>
-                                            <option>Seattle</option>
-                                        </select>
-                                    </span>
-                                    <br>
-                                    Name of Dataset:
-                                    <input type="text" id="formFields_7" placeholder="Dataset Name">
-                                    <button
-                                        type="button"
-                                        class="btn btn-link selectButon"
-                                        (click)="clickFilePreview()"
-                                        >
-                                        Preview
-                                    </button>
-                                    <div class="checkbox-inline">
-                                        <input type="checkbox" id="checkrads_5">
-                                        <label for="checkrads_5">Transpose rows and cols: </label>
-                                    </div>
-                                    <button
-                                        type="button"
-                                        class="btn btn-link selectButon"
-                                        (click)="clickFileAdd()"
-                                        >
-                                        Add
-                                    </button>
-
-                                    <div *ngIf="showDataPreview">
-                                        <clr-datagrid class="fieldsDataGrid">
-                                            <clr-dg-column>Name</clr-dg-column>
-                                            <clr-dg-column>Type</clr-dg-column>
-                                            <clr-dg-column>createdBy</clr-dg-column>
-                                            <clr-dg-column>createdOn</clr-dg-column>
-                                            <clr-dg-column>refreshedBy</clr-dg-column>
-                                            <clr-dg-column>refreshedOn</clr-dg-column>
-                                            <clr-dg-column>parameters</clr-dg-column>
-
-                                            <clr-dg-row *ngFor="let row of currentDatasources">
-                                                <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                                <clr-dg-cell>{{row.type}}</clr-dg-cell>
-                                                <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
-                                                <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-                                                <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
-                                                <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
-                                                <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
-                                            </clr-dg-row>
-
-                                            <clr-dg-footer>
-                                                {{currentDatasources.length}} fields
-                                            </clr-dg-footer>
-                                        </clr-datagrid>
-
-                                    </div>
-                                </div>
-
-                                <div *ngIf="selectedOverallTransform">
-                                    <div class="wrapper">
-                                        <div class="gridFields">
-                                            <nav
-                                                >
-
-                                                        <ul class="nav-list">
-                                                            <li>
-                                                                <a
-                                                                    class="nav-link"
-                                                                    (dragend)="showGraphsReal($event)"
-                                                                    draggable="true"
-                                                                    id="dragtarget"
-                                                                    >
-                                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                    Trader
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link"
-                                                                    id="p1"
-                                                                    draggable="true"
-                                                                    (dragstart)="dragstart_handler($event)"
-                                                                    (dragend)="dragend_handler($event)"
-                                                                    >
-                                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                    Country
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link active">
-                                                                <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                    Trade Type
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="block" class="dateField"></clr-icon>
-                                                                    Date
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                    DateTime
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                    Stock
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                    Volume
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                    Trades
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                    Value
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                            </nav>
-                                        </div>
-                                        <div
-                                            class="gridColumns"
-                                            (drop)="drop_pivot($event);"
-                                            (dragover)="dragover_pivot($event);"
-                                            >
-                                            Columns
-                                        </div>
-                                        <div class="gridRows"
-                                            (drop)="drop_pivot($event);"
-                                            (dragover)="dragover_pivot($event);"
-                                            >
-                                            Rows
-                                        </div>
-                                        <div class="gridAggregate">
-                                            Aggregate:
-                                            <div class="select">
-                                                <select id="selects_1">
-                                                    <option>Sum</option>
-                                                    <option>Average</option>
-                                                    <option>Minimum</option>
-                                                    <option>Maximum</option>
-                                                    <option>Mean</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div *ngIf="selectedFieldTransform">
-                                    <div class="row">
-                                        <div class="col-xs-3 gridColumn">
-                                            <nav
-                                                class="sidenav"
-                                                [style.width.px]="sideNavWidth"
-                                                [style.min-width.rem]="sideNavMinWidth"
-                                                >
-
-                                                <section class="sidenav-content">
-                                                    <section class="nav-group">
-                                                            <ul class="nav-list">
-                                                                <li>
-                                                                    <a
-                                                                        class="nav-link"
-                                                                        (dragend)="showGraphsReal($event)"
-                                                                        draggable="true"
-                                                                        id="dragtarget"
-                                                                        >
-                                                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                        Trader
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="nav-link"
-                                                                        id="p1"
-                                                                        draggable="true"
-                                                                        (dragstart)="dragstart_handler($event)"
-                                                                        (dragend)="dragend_handler($event)"
-                                                                        >
-                                                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                        Country
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="nav-link active">
-                                                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                        Trade Type
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="nav-link">
-                                                                        <clr-icon shape="block" class="dateField"></clr-icon>
-                                                                        Date
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="nav-link">
-                                                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                        DateTime
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="nav-link">
-                                                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                        Stock
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="nav-link">
-                                                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                        Volume
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="nav-link">
-                                                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                        Trades
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a class="nav-link">
-                                                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                        Value
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </section>
-                                                </section>
-                                            </nav>
-                                        </div>
-
-                                        <div class="col-xs-9">
-
-                                            <div class="newTransitions">
-                                                To ADD more transformations, select a
-
-                                                <clr-dropdown>
-                                                    <button
-                                                        type="button"
-                                                        class="btn btn-link btn-sm"
-                                                        clrDropdownTrigger
+                                <section class="sidenav-content">
+                                    <section class="nav-group">
+                                            <ul class="nav-list">
+                                                <li>
+                                                    <a
+                                                        class="nav-link"
+                                                        (dragend)="showGraphsReal($event)"
+                                                        draggable="true"
+                                                        id="dragtarget"
                                                         >
-                                                        Category
-                                                        <clr-icon shape="caret down" *ngIf="!showServerData"></clr-icon>
-                                                    </button>
-                                                    , and then drag the requird field onto it:
-                                                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                                                        <button type="button" clrDropdownItem (click)="clickTransitionFormat()">
-                                                            Format content
-                                                        </button>
-                                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                                            Fill content
-                                                        </button>
-                                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                                            Add Geo
-                                                        </button>
-                                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                                            Append Column
-                                                        </button>
-                                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                                            Replace content
-                                                        </button>
-                                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                                            Partial content
-                                                        </button>
-                                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                                            Trim content
-                                                        </button>
-                                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                                            Saved Transformations
-                                                        </button>
-                                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                                            R Extensions
-                                                        </button>
-                                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                                            PythonExtensions
-                                                        </button>
-                                                    </clr-dropdown-menu>
-                                                </clr-dropdown>
+                                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                        Trader
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link"
+                                                        id="p1"
+                                                        draggable="true"
+                                                        (dragstart)="dragstart_handler($event)"
+                                                        (dragend)="dragend_handler($event)"
+                                                        >
+                                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                        Country
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link active">
+                                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                        Trade Type
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link">
+                                                        <clr-icon shape="block" class="dateField"></clr-icon>
+                                                        Date
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link">
+                                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                        DateTime
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link">
+                                                        <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                        Stock
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link">
+                                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                        Volume
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link">
+                                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                        Trades
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link">
+                                                        <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                        Value
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </section>
+                                </section>
+                            </nav>
+                        </div>
 
-                                                <div class="transformationCategoryGrid">
-                                                    <div class="row" *ngIf="showTransitionFormat">
-                                                        <div
-                                                            role="tooltip"
-                                                            aria-haspopup="true"
-                                                            class="tooltip tooltip-lg col-xs-4 transformationName"
-                                                            *ngFor="let row of transformationsFormat"
-                                                            (click)="clickSave(row.id)"
-                                                            (drop)="drop_handler($event);"
-                                                            (dragover)="dragover_handler($event, row.name);"
-                                                            >
-                                                            {{ row.name }}
-                                                            <span class="tooltip-content">{{ row.description }}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                        <div class="col-xs-9">
 
-                                            </div>
-                                            <br>
-                                            <br>
-                                            <div>
-                                                {{ transitionFieldName }} - {{ transitionAction }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="newTransitions">
+                                To ADD more transformations, select a
 
-                                <div *ngIf="selectedFieldProperties">
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                            <nav
-                                                class="sidenav"
-                                                [style.width.px]="sideNavWidth"
-                                                [style.min-width.rem]="sideNavMinWidth"
-                                                >
-
-                                                <section class="sidenav-content">
-                                                    <section class="nav-group">
-                                                        <ul class="nav-list">
-                                                            <li>
-                                                                <a
-                                                                    class="nav-link"
-                                                                    (dragend)="showGraphsReal($event)"
-                                                                    draggable="true"
-                                                                    id="dragtarget"
-                                                                    >
-                                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                    Trader
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link"
-                                                                    id="p1"
-                                                                    draggable="true"
-                                                                    (dragstart)="dragstart_handler($event)"
-                                                                    (dragend)="dragend_handler($event)"
-                                                                    >
-                                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                    Country
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link active">
-                                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                    Trade Type
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="block" class="dateField"></clr-icon>
-                                                                    Date
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                    DateTime
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                                    Stock
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                    Volume
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                    Trades
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a class="nav-link">
-                                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                                    Value
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </section>
-                                                </section>
-                                            </nav>
-                                        </div>
-                                        <div class="col-xs-9">
-                                            <div class="propertyBox">
-                                                <div class="propertyLine">
-                                                    Info for <b>TradeData</b>
-                                                </div>
-                                                <div class="propertyLine">
-                                                    Description: bla-bla-bla
-                                                </div>
-                                                <div class="propertyLine">
-                                                    Local Name: <input type="text" id="formFields_7" placeholder="Enter Name">
-                                                </div>
-                                                <div class="propertyLine">
-                                                    Type: <b>Number</b>  Change to:
-                                                    <div class="select">
-                                                        <select id="selects_3">
-                                                            <option>Boolean (true/false)</option>
-                                                            <option>Date (2014/07/31)</option>
-                                                            <option>DateTime (2014/07/31 12:41:04)</option>
-                                                            <option>String ('May West')</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="propertyLine">
-                                                    Format: <b></b>  Change to:
-                                                    <div class="select">
-                                                        <select id="selects_3">
-                                                            <option>Number</option>
-                                                            <option>Monetary</option>
-                                                            <option>YYYY/MM/DD</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="propertyLine">
-                                                    Filter: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Filter text">
-                                                </div>
-                                                <div class="propertyLine">
-                                                    Calculation: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Enter Formula">
-                                                </div>
-                                                <div class="propertyLine">
-                                                    Order: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Order (1 Asc)">
-                                                </div>
-                                                <div class="propertyLine">
-                                                    Hide: <b></b>  Change to:
-                                                    <div class="select">
-                                                        <select id="selects_3">
-                                                            <option>True</option>
-                                                            <option>False</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="propertyLine">
-                                                    Key Field: <b></b>  Change to:
-                                                    <div class="select">
-                                                        <select id="selects_3">
-                                                            <option>True</option>
-                                                            <option>False</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div *ngIf="selectedSummary">
-
-                                    ExplainedBy:
-                                    <div class="propertyLine">
-                                        Explained by: <input type="text" id="formFields_7"
-                                        placeholder="BarChart of Value by TradeDate">
-                                    </div>
+                                <clr-dropdown>
                                     <button
                                         type="button"
-                                        class="btn btn-secondary"
-                                        (click)="clickMenuExistingDS()"
+                                        class="btn btn-link btn-sm"
+                                        clrDropdownTrigger
                                         >
-                                        Refresh Summary
+                                        Category
+                                        <clr-icon shape="caret down" *ngIf="!showServerData"></clr-icon>
                                     </button>
+                                    , and then drag the requird field onto it:
+                                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                                        <button type="button" clrDropdownItem (click)="clickTransitionFormat()">
+                                            Format content
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Fill content
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Add Geo
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Append Column
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Replace content
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Partial content
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Trim content
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            Saved Transformations
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            R Extensions
+                                        </button>
+                                        <button type="button" clrDropdownItem (click)="clickSave()">
+                                            PythonExtensions
+                                        </button>
+                                    </clr-dropdown-menu>
+                                </clr-dropdown>
 
-                                    <br> <br>
-
-                                    Nr records: <b>241</b>
-                                    <br>
-                                    3-9 graphs that summarises the data
-                                    <br> <br>
-                                    <i>
-                                    * IF key fields have been marked, some cardinality / summary
-                                        graphs will be shown to the shape of the data, bins,
-                                        frequency distribution, etc to help understand the data.
-                                        If no fields were marked, the software will makes its
-                                        best guess.
-                                    </i>
+                                <div class="transformationCategoryGrid">
+                                    <div class="row" *ngIf="showTransitionFormat">
+                                        <div
+                                            role="tooltip"
+                                            aria-haspopup="true"
+                                            class="tooltip tooltip-lg col-xs-4 transformationName"
+                                            *ngFor="let row of transformationsFormat"
+                                            (click)="clickSave(row.id)"
+                                            (drop)="drop_handler($event);"
+                                            (dragover)="dragover_handler($event, row.name);"
+                                            >
+                                            {{ row.name }}
+                                            <span class="tooltip-content">{{ row.description }}</span>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div *ngIf="selectedDataQuality">
-                                    Data Quality notes: describes issues with the quality of the data,
-                                    and what will be done about it by whom and when.
+                            </div>
+                            <br>
+                            <br>
+                            <div>
+                                {{ transitionFieldName }} - {{ transitionAction }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="selectedFieldProperties">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <nav
+                                class="sidenav"
+                                [style.width.px]="sideNavWidth"
+                                [style.min-width.rem]="sideNavMinWidth"
+                                >
+
+                                <section class="sidenav-content">
+                                    <section class="nav-group">
+                                        <ul class="nav-list">
+                                            <li>
+                                                <a
+                                                    class="nav-link"
+                                                    (dragend)="showGraphsReal($event)"
+                                                    draggable="true"
+                                                    id="dragtarget"
+                                                    >
+                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                    Trader
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link"
+                                                    id="p1"
+                                                    draggable="true"
+                                                    (dragstart)="dragstart_handler($event)"
+                                                    (dragend)="dragend_handler($event)"
+                                                    >
+                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                    Country
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link active">
+                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                    Trade Type
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="block" class="dateField"></clr-icon>
+                                                    Date
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                    DateTime
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
+                                                    Stock
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                    Volume
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                    Trades
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link">
+                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
+                                                    Value
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </section>
+                                </section>
+                            </nav>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="propertyBox">
+                                <div class="propertyLine">
+                                    Info for <b>TradeData</b>
+                                </div>
+                                <div class="propertyLine">
+                                    Description: bla-bla-bla
+                                </div>
+                                <div class="propertyLine">
+                                    Local Name: <input type="text" id="formFields_7" placeholder="Enter Name">
+                                </div>
+                                <div class="propertyLine">
+                                    Type: <b>Number</b>  Change to:
+                                    <div class="select">
+                                        <select id="selects_3">
+                                            <option>Boolean (true/false)</option>
+                                            <option>Date (2014/07/31)</option>
+                                            <option>DateTime (2014/07/31 12:41:04)</option>
+                                            <option>String ('May West')</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="propertyLine">
+                                    Format: <b></b>  Change to:
+                                    <div class="select">
+                                        <select id="selects_3">
+                                            <option>Number</option>
+                                            <option>Monetary</option>
+                                            <option>YYYY/MM/DD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="propertyLine">
+                                    Filter: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Filter text">
+                                </div>
+                                <div class="propertyLine">
+                                    Calculation: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Enter Formula">
+                                </div>
+                                <div class="propertyLine">
+                                    Order: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Order (1 Asc)">
+                                </div>
+                                <div class="propertyLine">
+                                    Hide: <b></b>  Change to:
+                                    <div class="select">
+                                        <select id="selects_3">
+                                            <option>True</option>
+                                            <option>False</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="propertyLine">
+                                    Key Field: <b></b>  Change to:
+                                    <div class="select">
+                                        <select id="selects_3">
+                                            <option>True</option>
+                                            <option>False</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
+                </div>
 
-                    <div class="gridIdentifyData" *ngIf="showIdentifyFile">
-                        <div class="gridIdentifyDataExisting">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="showIdentifyFile=!showIdentifyFile"
-                                >
-                                Add New File
-                            </button>
+                <div *ngIf="selectedSummary">
 
-                            <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-column>Name</clr-dg-column>
-
-                                <clr-dg-row *ngFor="let row of currentDatasources">
-                                    <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                </clr-dg-row>
-
-                                <clr-dg-footer>
-                                    {{currentDatasources.length}} fields
-                                </clr-dg-footer>
-                            </clr-datagrid>
-
-                        </div>
-                        <div class="gridIdentifyDataIDfile">
-                            <span>Please enter file name and location, or
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    (click)="clickFileBrowse()"
-                                    >
-                                    Browse
-                                </button>
-                                :
-                            </span>
-                            <input type="text" id="formFields_7"
-                                placeholder="Folder/FileName"
-                                class="selectFile"
-                                >
-                            <br>
-                            Worksheet:
-                            <span class="select">
-                                <select id="selects_3" class="selectBox">
-                                    <option>New York</option>
-                                    <option>San Francisco</option>
-                                    <option>Austin</option>
-                                    <option>Paris</option>
-                                    <option>Seattle</option>
-                                </select>
-                            </span>
-                            <br>
-                            Name of Dataset:
-                            <input type="text" id="formFields_7" placeholder="Dataset Name">
-                            <button
-                                type="button"
-                                class="btn btn-link selectButon"
-                                (click)="clickFilePreview()"
-                                >
-                                Preview
-                            </button>
-                            <div class="checkbox-inline">
-                                <input type="checkbox" id="checkrads_5">
-                                <label for="checkrads_5">Transpose rows and cols: </label>
-                            </div>
-                            <button
-                                type="button"
-                                class="btn btn-link selectButon"
-                                (click)="clickFileAdd()"
-                                >
-                                Add
-                            </button>
-                        </div>
-                        <div class="gridIdentifyDataPreview">
-                            <div *ngIf="showDataPreview">
-                                <clr-datagrid class="fieldsDataGrid">
-                                    <clr-dg-column>Name</clr-dg-column>
-                                    <clr-dg-column>Type</clr-dg-column>
-                                    <clr-dg-column>createdBy</clr-dg-column>
-                                    <clr-dg-column>createdOn</clr-dg-column>
-                                    <clr-dg-column>refreshedBy</clr-dg-column>
-                                    <clr-dg-column>refreshedOn</clr-dg-column>
-                                    <clr-dg-column>parameters</clr-dg-column>
-
-                                    <clr-dg-row *ngFor="let row of currentDatasources">
-                                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.type}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
-                                    </clr-dg-row>
-
-                                    <clr-dg-footer>
-                                        {{currentDatasources.length}} fields
-                                    </clr-dg-footer>
-                                </clr-datagrid>
-                            </div>
-                        </div>
+                    ExplainedBy:
+                    <div class="propertyLine">
+                        Explained by: <input type="text" id="formFields_7"
+                        placeholder="BarChart of Value by TradeDate">
                     </div>
-                    
-                    <div class="gridTransform" *ngIf="showTransform">
-                        <div class="gridIdentifyDataExisting">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="showIdentifyFile=!showIdentifyFile"
-                                >
-                                Add New File
-                            </button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickMenuExistingDS()"
+                        >
+                        Refresh Summary
+                    </button>
 
-                            <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-column>Name</clr-dg-column>
+                    <br> <br>
 
-                                <clr-dg-row *ngFor="let row of currentDatasources">
-                                    <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                </clr-dg-row>
+                    Nr records: <b>241</b>
+                    <br>
+                    3-9 graphs that summarises the data
+                    <br> <br>
+                    <i>
+                    * IF key fields have been marked, some cardinality / summary
+                        graphs will be shown to the shape of the data, bins,
+                        frequency distribution, etc to help understand the data.
+                        If no fields were marked, the software will makes its
+                        best guess.
+                    </i>
+                </div>
 
-                                <clr-dg-footer>
-                                    {{currentDatasources.length}} fields
-                                </clr-dg-footer>
-                            </clr-datagrid>
+                <div *ngIf="selectedDataQuality">
+                    Data Quality notes: describes issues with the quality of the data,
+                    and what will be done about it by whom and when.
+                </div>
+            </div>
 
-                        </div>
-                        <div class="gridIdentifyDataIDfile">
-                            <span>Please enter file name and location, or
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    (click)="clickFileBrowse()"
-                                    >
-                                    Browse
-                                </button>
-                                :
-                            </span>
-                            <input type="text" id="formFields_7"
-                                placeholder="Folder/FileName"
-                                class="selectFile"
-                                >
-                            <br>
-                            Worksheet:
-                            <span class="select">
-                                <select id="selects_3" class="selectBox">
-                                    <option>New York</option>
-                                    <option>San Francisco</option>
-                                    <option>Austin</option>
-                                    <option>Paris</option>
-                                    <option>Seattle</option>
-                                </select>
-                            </span>
-                            <br>
-                            Name of Dataset:
-                            <input type="text" id="formFields_7" placeholder="Dataset Name">
-                            <button
-                                type="button"
-                                class="btn btn-link selectButon"
-                                (click)="clickFilePreview()"
-                                >
-                                Preview
-                            </button>
-                            <div class="checkbox-inline">
-                                <input type="checkbox" id="checkrads_5">
-                                <label for="checkrads_5">Transpose rows and cols: </label>
-                            </div>
-                            <button
-                                type="button"
-                                class="btn btn-link selectButon"
-                                (click)="clickFileAdd()"
-                                >
-                                Add
-                            </button>
-                        </div>
-                        <div class="gridIdentifyDataPreview">
-                            <div *ngIf="showDataPreview">
-                                <clr-datagrid class="fieldsDataGrid">
-                                    <clr-dg-column>Name</clr-dg-column>
-                                    <clr-dg-column>Type</clr-dg-column>
-                                    <clr-dg-column>createdBy</clr-dg-column>
-                                    <clr-dg-column>createdOn</clr-dg-column>
-                                    <clr-dg-column>refreshedBy</clr-dg-column>
-                                    <clr-dg-column>refreshedOn</clr-dg-column>
-                                    <clr-dg-column>parameters</clr-dg-column>
+        </div>
+    </div>
 
-                                    <clr-dg-row *ngFor="let row of currentDatasources">
-                                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.type}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
-                                    </clr-dg-row>
+    <div class="gridIdentifyData" *ngIf="showIdentifyFile">
+        <div class="gridIdentifyDataExisting">
+            <button
+                type="button"
+                class="btn btn-link"
+                (click)="showIdentifyFile=!showIdentifyFile"
+                >
+                Add New File
+            </button>
 
-                                    <clr-dg-footer>
-                                        {{currentDatasources.length}} fields
-                                    </clr-dg-footer>
-                                </clr-datagrid>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="gridPivot" *ngIf="showPivot">
-                        <div class="gridIdentifyDataExisting">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="showIdentifyFile=!showIdentifyFile"
-                                >
-                                Add New File
-                            </button>
+            <clr-datagrid class="fieldsDataGrid">
+                <clr-dg-column>Name</clr-dg-column>
 
-                            <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-column>Name</clr-dg-column>
+                <clr-dg-row *ngFor="let row of currentDatasources">
+                    <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                </clr-dg-row>
 
-                                <clr-dg-row *ngFor="let row of currentDatasources">
-                                    <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                </clr-dg-row>
+                <clr-dg-footer>
+                    {{currentDatasources.length}} fields
+                </clr-dg-footer>
+            </clr-datagrid>
 
-                                <clr-dg-footer>
-                                    {{currentDatasources.length}} fields
-                                </clr-dg-footer>
-                            </clr-datagrid>
+        </div>
+        <div class="gridIdentifyDataIDfile">
+            <span>Please enter file name and location, or
+                <button
+                    type="button"
+                    class="btn btn-link"
+                    (click)="clickFileBrowse()"
+                    >
+                    Browse
+                </button>
+                :
+            </span>
+            <input type="text" id="formFields_7"
+                placeholder="Folder/FileName"
+                class="selectFile"
+                >
+            <br>
+            Worksheet:
+            <span class="select">
+                <select id="selects_3" class="selectBox">
+                    <option>New York</option>
+                    <option>San Francisco</option>
+                    <option>Austin</option>
+                    <option>Paris</option>
+                    <option>Seattle</option>
+                </select>
+            </span>
+            <br>
+            Name of Dataset:
+            <input type="text" id="formFields_7" placeholder="Dataset Name">
+            <button
+                type="button"
+                class="btn btn-link selectButon"
+                (click)="clickFilePreview()"
+                >
+                Preview
+            </button>
+            <div class="checkbox-inline">
+                <input type="checkbox" id="checkrads_5">
+                <label for="checkrads_5">Transpose rows and cols: </label>
+            </div>
+            <button
+                type="button"
+                class="btn btn-link selectButon"
+                (click)="clickFileAdd()"
+                >
+                Add
+            </button>
+        </div>
+        <div class="gridIdentifyDataPreview">
+            <div *ngIf="showDataPreview">
+                <clr-datagrid class="fieldsDataGrid">
+                    <clr-dg-column>Name</clr-dg-column>
+                    <clr-dg-column>Type</clr-dg-column>
+                    <clr-dg-column>createdBy</clr-dg-column>
+                    <clr-dg-column>createdOn</clr-dg-column>
+                    <clr-dg-column>refreshedBy</clr-dg-column>
+                    <clr-dg-column>refreshedOn</clr-dg-column>
+                    <clr-dg-column>parameters</clr-dg-column>
 
-                        </div>
-                        <div class="gridIdentifyDataIDfile">
-                            <span>Please enter file name and location, or
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    (click)="clickFileBrowse()"
-                                    >
-                                    Browse
-                                </button>
-                                :
-                            </span>
-                            <input type="text" id="formFields_7"
-                                placeholder="Folder/FileName"
-                                class="selectFile"
-                                >
-                            <br>
-                            Worksheet:
-                            <span class="select">
-                                <select id="selects_3" class="selectBox">
-                                    <option>New York</option>
-                                    <option>San Francisco</option>
-                                    <option>Austin</option>
-                                    <option>Paris</option>
-                                    <option>Seattle</option>
-                                </select>
-                            </span>
-                            <br>
-                            Name of Dataset:
-                            <input type="text" id="formFields_7" placeholder="Dataset Name">
-                            <button
-                                type="button"
-                                class="btn btn-link selectButon"
-                                (click)="clickFilePreview()"
-                                >
-                                Preview
-                            </button>
-                            <div class="checkbox-inline">
-                                <input type="checkbox" id="checkrads_5">
-                                <label for="checkrads_5">Transpose rows and cols: </label>
-                            </div>
-                            <button
-                                type="button"
-                                class="btn btn-link selectButon"
-                                (click)="clickFileAdd()"
-                                >
-                                Add
-                            </button>
-                        </div>
-                        <div class="gridIdentifyDataPreview">
-                            <div *ngIf="showDataPreview">
-                                <clr-datagrid class="fieldsDataGrid">
-                                    <clr-dg-column>Name</clr-dg-column>
-                                    <clr-dg-column>Type</clr-dg-column>
-                                    <clr-dg-column>createdBy</clr-dg-column>
-                                    <clr-dg-column>createdOn</clr-dg-column>
-                                    <clr-dg-column>refreshedBy</clr-dg-column>
-                                    <clr-dg-column>refreshedOn</clr-dg-column>
-                                    <clr-dg-column>parameters</clr-dg-column>
+                    <clr-dg-row *ngFor="let row of currentDatasources">
+                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.type}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
+                    </clr-dg-row>
 
-                                    <clr-dg-row *ngFor="let row of currentDatasources">
-                                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.type}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
-                                    </clr-dg-row>
-
-                                    <clr-dg-footer>
-                                        {{currentDatasources.length}} fields
-                                    </clr-dg-footer>
-                                </clr-datagrid>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="gridView" *ngIf="showView">
-                        <div class="gridIdentifyDataExisting">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="showIdentifyFile=!showIdentifyFile"
-                                >
-                                Add New File
-                            </button>
-
-                            <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-column>Name</clr-dg-column>
-
-                                <clr-dg-row *ngFor="let row of currentDatasources">
-                                    <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                </clr-dg-row>
-
-                                <clr-dg-footer>
-                                    {{currentDatasources.length}} fields
-                                </clr-dg-footer>
-                            </clr-datagrid>
-
-                        </div>
-                        <div class="gridIdentifyDataIDfile">
-                            <span>Please enter file name and location, or
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    (click)="clickFileBrowse()"
-                                    >
-                                    Browse
-                                </button>
-                                :
-                            </span>
-                            <input type="text" id="formFields_7"
-                                placeholder="Folder/FileName"
-                                class="selectFile"
-                                >
-                            <br>
-                            Worksheet:
-                            <span class="select">
-                                <select id="selects_3" class="selectBox">
-                                    <option>New York</option>
-                                    <option>San Francisco</option>
-                                    <option>Austin</option>
-                                    <option>Paris</option>
-                                    <option>Seattle</option>
-                                </select>
-                            </span>
-                            <br>
-                            Name of Dataset:
-                            <input type="text" id="formFields_7" placeholder="Dataset Name">
-                            <button
-                                type="button"
-                                class="btn btn-link selectButon"
-                                (click)="clickFilePreview()"
-                                >
-                                Preview
-                            </button>
-                            <div class="checkbox-inline">
-                                <input type="checkbox" id="checkrads_5">
-                                <label for="checkrads_5">Transpose rows and cols: </label>
-                            </div>
-                            <button
-                                type="button"
-                                class="btn btn-link selectButon"
-                                (click)="clickFileAdd()"
-                                >
-                                Add
-                            </button>
-                        </div>
-                        <div class="gridIdentifyDataPreview">
-                            <div *ngIf="showDataPreview">
-                                <clr-datagrid class="fieldsDataGrid">
-                                    <clr-dg-column>Name</clr-dg-column>
-                                    <clr-dg-column>Type</clr-dg-column>
-                                    <clr-dg-column>createdBy</clr-dg-column>
-                                    <clr-dg-column>createdOn</clr-dg-column>
-                                    <clr-dg-column>refreshedBy</clr-dg-column>
-                                    <clr-dg-column>refreshedOn</clr-dg-column>
-                                    <clr-dg-column>parameters</clr-dg-column>
-
-                                    <clr-dg-row *ngFor="let row of currentDatasources">
-                                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.type}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
-                                    </clr-dg-row>
-
-                                    <clr-dg-footer>
-                                        {{currentDatasources.length}} fields
-                                    </clr-dg-footer>
-                                </clr-datagrid>
-                            </div>
-                        </div>
-                    </div>
-                </div>  
+                    <clr-dg-footer>
+                        {{currentDatasources.length}} fields
+                    </clr-dg-footer>
+                </clr-datagrid>
             </div>
         </div>
     </div>
-</div>
+    
+    <div class="gridTransform" *ngIf="showTransform">
+        <div class="gridTransformTransformations">
+            <button
+                type="button"
+                class="btn btn-link"
+                (click)="showIdentifyFile=!showIdentifyFile"
+                >
+                Add New Transformation
+            </button>
+
+            <clr-datagrid class="fieldsDataGrid">
+                <clr-dg-column>Name</clr-dg-column>
+
+                <clr-dg-row *ngFor="let row of currentDatasources">
+                    <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                </clr-dg-row>
+
+                <clr-dg-footer>
+                    {{currentDatasources.length}} fields
+                </clr-dg-footer>
+            </clr-datagrid>
+
+        </div>
+        <div class="gridTransformNew">
+            <span>Please select Transformation and Field
+                <button
+                    type="button"
+                    class="btn btn-link"
+                    (click)="clickFileBrowse()"
+                    >
+                    Browse
+                </button>
+                :
+            </span>
+            <input type="text" id="formFields_7"
+                placeholder="Folder/FileName"
+                class="selectFile"
+                >
+            <br>
+            Worksheet:
+            <span class="select">
+                <select id="selects_3" class="selectBox">
+                    <option>New York</option>
+                    <option>San Francisco</option>
+                    <option>Austin</option>
+                    <option>Paris</option>
+                    <option>Seattle</option>
+                </select>
+            </span>
+            <br>
+            Name of Dataset:
+            <input type="text" id="formFields_7" placeholder="Dataset Name">
+            <button
+                type="button"
+                class="btn btn-link selectButon"
+                (click)="clickFilePreview()"
+                >
+                Preview
+            </button>
+            <div class="checkbox-inline">
+                <input type="checkbox" id="checkrads_5">
+                <label for="checkrads_5">Transpose rows and cols: </label>
+            </div>
+            <button
+                type="button"
+                class="btn btn-link selectButon"
+                (click)="clickFileAdd()"
+                >
+                Add
+            </button>
+        </div>
+        <div class="gridTransformExisting">
+            <div *ngIf="showDataPreview">
+                <clr-datagrid class="fieldsDataGrid">
+                    <clr-dg-column>Name</clr-dg-column>
+                    <clr-dg-column>Type</clr-dg-column>
+                    <clr-dg-column>createdBy</clr-dg-column>
+                    <clr-dg-column>createdOn</clr-dg-column>
+                    <clr-dg-column>refreshedBy</clr-dg-column>
+                    <clr-dg-column>refreshedOn</clr-dg-column>
+                    <clr-dg-column>parameters</clr-dg-column>
+
+                    <clr-dg-row *ngFor="let row of currentDatasources">
+                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.type}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
+                    </clr-dg-row>
+
+                    <clr-dg-footer>
+                        {{currentDatasources.length}} fields
+                    </clr-dg-footer>
+                </clr-datagrid>
+            </div>
+        </div>
+    </div>
+    
+    <div class="gridPivot" *ngIf="showPivot">
+        <div class="gridPivotFields">
+            <button
+                type="button"
+                class="btn btn-link"
+                (click)="showIdentifyFile=!showIdentifyFile"
+                >
+                Choose a Field
+            </button>
+
+            <clr-datagrid class="fieldsDataGrid">
+                <clr-dg-column>Name</clr-dg-column>
+
+                <clr-dg-row *ngFor="let row of currentDatasources">
+                    <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                </clr-dg-row>
+
+                <clr-dg-footer *ngIf="currentDatasources">
+                    {{currentDatasources.length}} fields
+                </clr-dg-footer>
+            </clr-datagrid>
+
+        </div>
+        <div class="gridPivotColumns">
+            <span>Please a Field onto Cols
+            </span>
+        </div>
+        <div class="gridPivotRows">
+            <span>Please a Field onto Rows
+            </span>
+        </div>
+        <div class="gridPivotAggregate">
+            <span>Please select Aggregation
+            </span>
+        </div>
+    </div>
+    
+    <div class="gridView" *ngIf="showView">
+        <div class="gridViewTop">
+            <button
+                type="button"
+                class="btn btn-link"
+                (click)="showIdentifyFile=!showIdentifyFile"
+                >
+                Summary, etc @ Top
+            </button>
+        </div>
+        <div class="gridViewMiddle">
+        </div>
+    </div>
+</div>  
 
 
 
