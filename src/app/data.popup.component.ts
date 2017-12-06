@@ -84,14 +84,16 @@ export class DataPopupComponent implements OnInit {
         // Load global variables
         this.currentDatasources = this.globalVariableService.currentDatasources
             .filter(d => d.id <= 14);
+        if (this.currentDatasources.length > 0) {
+            this.isFirstTimeData = false;
+        } else {
+            this.isFirstTimeData = true;
+        }
         this.transformationsFormat = this.globalVariableService.transformationsFormat;
         this.currentTransformations = this.globalVariableService.currentTransformations;
 
         this.fields = this.globalVariableService.fields;
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
-        this.globalVariableService.isFirstTimeData.subscribe(
-            i => this.isFirstTimeData = i
-        );
         console.log('this.isFirstTimeData', this.isFirstTimeData)
     }
 
@@ -130,7 +132,7 @@ export class DataPopupComponent implements OnInit {
         };
         this.currentDatasources.push(newData);
         this.currentDataset = newData.name;
-        this.globalVariableService.isFirstTimeData.next(false);
+        this.isFirstTimeData = true;
         this.isFirstTimeData = false;
         if (close) {
             this.router.navigate(['/explore']);

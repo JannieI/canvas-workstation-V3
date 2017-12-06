@@ -933,7 +933,6 @@ export class GlobalVariableService {
     
     isFirstTimeCanvas: boolean = true;
     isFirstTimeDashboard = new BehaviorSubject<boolean>(true);
-    isFirstTimeData = new BehaviorSubject<boolean>(true);
     presentation = new BehaviorSubject<boolean>(false);
     presentationMsg: boolean = true;
     showGrid = new BehaviorSubject<boolean>(false);
