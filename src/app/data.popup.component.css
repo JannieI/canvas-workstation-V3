@@ -409,6 +409,9 @@
 
 .fieldsDataGrid {
     margin-top: 0 !important; 
+    height: 19rem;
+    width: 100%;
+    overflow: auto;
 }
 
 .fieldDataGridFooter {
