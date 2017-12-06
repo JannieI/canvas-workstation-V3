@@ -259,6 +259,12 @@
         width: 70%;
     }
 
+    .gridPivotAggregateField {
+        display: inline-block;
+        margin-left: 20px;
+        width: 30%;
+    }
+    
     .pivotDropAggregate {
         border: 1px solid gray;
         display: inline-block;
@@ -501,13 +507,6 @@
     grid-row-end: 20; 
 }
 
-.gridAggregate {
-    border: 1px dotted gray;
-    grid-column-start: 17; 
-    grid-column-end: 21; 
-    grid-row-start: 10; 
-    grid-row-end: 12; 
-}
 
 /* Aint working */
 .datagrid {

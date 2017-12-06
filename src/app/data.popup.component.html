@@ -420,7 +420,7 @@
                                 Please drop a Field onto a Row, Column and the Aggregate. 
                                 Then select the type of aggregation and Refresh.
                             </div>
-                            <div >
+                            <div>
                                 Row Fields:
                                 <div class="pivotDropField"
                                     draggable="true"
@@ -440,7 +440,7 @@
 
                                 </div>
                             </div>
-                            <div class="gridAggregate">
+                            <div>
                                 Aggregation:
                                 <div class="select">
                                     <select id="selects_1">
@@ -451,15 +451,16 @@
                                         <option>Mean</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div
-                                draggable="true"
-                                (dragstart)="dragstart_handler($event)"
-                                (dragend)="dragend_handler($event)"
-                                >
-                                Aggregate Field:
-                                <div class="pivotDropAggregate">
+                                <div
+                                    class="gridPivotAggregateField"
+                                    draggable="true"
+                                    (dragstart)="dragstart_handler($event)"
+                                    (dragend)="dragend_handler($event)"
+                                    >
+                                    Aggregate Field:
+                                    <div class="pivotDropAggregate">
 
+                                    </div>
                                 </div>
                             </div>
                             <div>       
