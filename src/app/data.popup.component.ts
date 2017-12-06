@@ -172,95 +172,14 @@ export class DataPopupComponent implements OnInit {
     clickRefreshPivot() {
         this.pivotData = 'All done !'
     }
-    clickMenuExistingDS() {
-        this.selectedExistingDS = true;
-        this.selectedExistingTransform = false;
-        this.selectedDatasource = false;
-        this.selectedOverallTransform = false;
-        this.selectedFieldTransform = false;
-        this.selectedFieldProperties = false;
-        this.selectedSummary = false;
-    }
 
-    clickMenuExistingTransformation() {
-        this.selectedExistingDS = false;
-        this.selectedExistingTransform = true;
-        this.selectedDatasource = false;
-        this.selectedOverallTransform = false;
-        this.selectedFieldTransform = false;
-        this.selectedFieldProperties = false;
-        this.selectedSummary = false;
-    }
-
-    clickEditDS(dsID: number, dsName: string) {
-        console.log('DS ID', dsID);
-        this.currentDataset = dsName;
-
-    }
-
-    clickMenuDatasource() {
-        this.selectedExistingDS = false;
-        this.selectedExistingTransform = false;
-        this.selectedDatasource = true;
-        this.selectedOverallTransform = false;
-        this.selectedFieldTransform = false;
-        this.selectedFieldProperties = false;
-        this.selectedSummary = false;
-    }
-    clickMenuOverallTransform() {
-        this.selectedExistingDS = false;
-        this.selectedExistingTransform = false;
-        this.selectedDatasource = false;
-        this.selectedOverallTransform = true;
-        this.selectedFieldTransform = false;
-        this.selectedFieldProperties = false;
-        this.selectedSummary = false;
-    }
-
-    clickMenuFieldTransform() {
-        this.selectedExistingDS = false;
-        this.selectedExistingTransform = false;
-        this.selectedDatasource = false;
-        this.selectedOverallTransform = false;
-        this.selectedFieldTransform = true;
-        this.selectedFieldProperties = false;
-        this.selectedSummary = false;
-    }
-
-    clickMenuFieldProperties() {
-        this.selectedExistingDS = false;
-        this.selectedExistingTransform = false;
-        this.selectedDatasource = false;
-        this.selectedOverallTransform = false;
-        this.selectedFieldTransform = false;
-        this.selectedFieldProperties = true;
-        this.selectedSummary = false;
-    }
-
-    clickMenuSummary() {
-        console.log('clickMenuSummary')
-        console.log('')
-        this.selectedExistingDS = false;
-        this.selectedExistingTransform = false;
-        this.selectedDatasource = false;
-        this.selectedOverallTransform = false;
-        this.selectedFieldTransform = false;
-        this.selectedFieldProperties = false;
-        this.selectedSummary = true;
-    }
-
-    clickOpenTransformation() {
-        this.selectAddTransformation = true;
-    }
-
-    clickAddTransformation() {
-        this.selectAddTransformation = false;
+    clickRefreshSummary() {
+        alert('clickRefreshSummary')
     }
 
     clickTransitionFormat() {
         this.showTransitionFormat = true;
     }
-
 
     dragstart_handler(ev) {
         console.log("dragStart", ev, ev.srcElement.innerText);
@@ -312,6 +231,7 @@ export class DataPopupComponent implements OnInit {
         this.showPivot = false;
         this.showView = false;
     }
+
     clickShowTransform() {
         this.showIdentifyFile = false;
         this.showTransform = true;

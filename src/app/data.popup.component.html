@@ -484,13 +484,7 @@
 
                     <div class="gridView" *ngIf="showView">
                         <div class="gridViewTop">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="showIdentifyFile=!showIdentifyFile"
-                                >
-                                Summary, etc @ Top
-                            </button>
+                            Summary, etc @ Top
                         </div>
                         <div class="gridViewMiddle">
 
@@ -502,7 +496,7 @@
                             <button
                                 type="button"
                                 class="btn btn-secondary"
-                                (click)="clickMenuExistingDS()"
+                                (click)="clickRefreshSummary()"
                                 >
                                 Refresh Summary
                             </button>
