@@ -60,12 +60,12 @@
     .titleIdentify {
         border: 1px solid gray;
         grid-column-start: 2; 
-        grid-column-end: 4;
+        grid-column-end: 5;
         grid-row-start: 2; 
         grid-row-end: 4; 
     }
 
-    .titleChevron1 {
+    .titleChevron1a {
         border: none;
         grid-column-start: 5; 
         grid-column-end: 6;
@@ -75,15 +75,25 @@
         padding: 0;
     }
 
+    .titleChevron1b {
+        border: none;
+        grid-column-start: 6; 
+        grid-column-end: 7;
+        grid-row-start: 2; 
+        grid-row-end: 4; 
+        margin: 0;
+        padding: 0;
+    }
+
     .titleTransform {
         border: 1px solid gray;
         grid-column-start: 7; 
-        grid-column-end: 9;
+        grid-column-end: 10;
         grid-row-start: 2; 
         grid-row-end: 4; 
     }
 
-    .titleChevron2 {
+    .titleChevron2a {
         border: none;
         grid-column-start: 10; 
         grid-column-end: 11;
@@ -93,15 +103,25 @@
         padding: 0;
     }
 
+    .titleChevron2b {
+        border: none;
+        grid-column-start: 11; 
+        grid-column-end: 12;
+        grid-row-start: 2; 
+        grid-row-end: 4; 
+        margin: 0;
+        padding: 0;
+    }
+
     .titlePivot {
         border: 1px solid gray;
         grid-column-start: 12; 
-        grid-column-end: 14;
+        grid-column-end: 15;
         grid-row-start: 2; 
         grid-row-end: 4; 
     }
 
-    .titleChevron3 {
+    .titleChevron3a {
         border: none;
         grid-column-start: 15; 
         grid-column-end: 16;
@@ -111,10 +131,20 @@
         padding: 0;
     }
 
+    .titleChevron3b {
+        border: none;
+        grid-column-start: 16; 
+        grid-column-end: 17;
+        grid-row-start: 2; 
+        grid-row-end: 4; 
+        margin: 0;
+        padding: 0;
+    }
+
     .titleView {
         border: 1px solid gray;
         grid-column-start: 17; 
-        grid-column-end: 19;
+        grid-column-end: 20;
         grid-row-start: 2; 
         grid-row-end: 4; 
     }
