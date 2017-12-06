@@ -78,6 +78,7 @@ export class DataPopupComponent implements OnInit {
     transitionAction: string;
     filterDataset: string = '';
     filterTransformation: string = '';
+    filterPivotFields: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
