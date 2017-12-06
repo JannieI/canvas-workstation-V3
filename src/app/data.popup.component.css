@@ -406,8 +406,9 @@
     margin: 5px;
 }
 
-.datagrid {
+.datagrid-host .datagrid {
     margin-top: 0 !important; 
+    padding: 0 !important;
 }
 
 .fieldsDataGrid {

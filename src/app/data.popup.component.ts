@@ -73,10 +73,10 @@ export class DataPopupComponent implements OnInit {
     selectedSummary: boolean = false;
     selectAddTransformation: boolean = false;
 
-    gridViewFieldProperties: boolean = false;
+    gridViewFieldProperties: boolean = true;
     gridViewExplain: boolean = false;
     gridViewSummaryGraphs: boolean = false;
-    gridViewDataQuality: boolean = true;
+    gridViewDataQuality: boolean = false;
 
     showTransitionFormat: boolean = false;
     transitionFieldName: string;
