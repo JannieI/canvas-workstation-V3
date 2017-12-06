@@ -299,21 +299,21 @@
     grid-auto-rows: 0.8rem;
 }
 
-    .gridViewTop {
+    .gridViewSide {
         border: 1px solid gray;
         grid-column-start: 1; 
-        grid-column-end: 19;
+        grid-column-end: 5;
         grid-row-start: 1; 
-        grid-row-end: 11; 
+        grid-row-end: 25; 
         padding: 10px;
     }
 
-    .gridViewMiddle
+    .gridViewRight
     {
         border: 1px solid gray;
-        grid-column-start: 1; 
-        grid-column-end: 19;
-        grid-row-start: 11; 
+        grid-column-start: 6; 
+        grid-column-end: 21;
+        grid-row-start: 1; 
         grid-row-end: 25; 
         padding: 10px;
     }

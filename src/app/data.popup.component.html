@@ -498,40 +498,105 @@
                     </div>
 
                     <div class="gridView" *ngIf="showView">
-                        <div class="gridViewTop">
+                        <div class="gridViewSide">
                             Summary, etc @ Top
                         </div>
-                        <div class="gridViewMiddle">
-
-                            ExplainedBy:
-                            <div class="propertyLine">
-                                Explained by: <input type="text" id="formFields_7"
-                                placeholder="BarChart of Value by TradeDate">
+                        <div class="gridViewRight">
+                            <div *ngIf="gridViewFieldProperties" class="propertyBox">
+                                <div class="propertyLine">
+                                    Info for <b>TradeData</b>
+                                </div>
+                                <div class="propertyLine">
+                                    Description: bla-bla-bla
+                                </div>
+                                <div class="propertyLine">
+                                    Local Name: <input type="text" id="formFields_7" placeholder="Enter Name">
+                                </div>
+                                <div class="propertyLine">
+                                    Type: <b>Number</b>  Change to:
+                                    <div class="select">
+                                        <select id="selects_3">
+                                            <option>Boolean (true/false)</option>
+                                            <option>Date (2014/07/31)</option>
+                                            <option>DateTime (2014/07/31 12:41:04)</option>
+                                            <option>String ('May West')</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="propertyLine">
+                                    Format: <b></b>  Change to:
+                                    <div class="select">
+                                        <select id="selects_3">
+                                            <option>Number</option>
+                                            <option>Monetary</option>
+                                            <option>YYYY/MM/DD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="propertyLine">
+                                    Filter: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Filter text">
+                                </div>
+                                <div class="propertyLine">
+                                    Calculation: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Enter Formula">
+                                </div>
+                                <div class="propertyLine">
+                                    Order: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Order (1 Asc)">
+                                </div>
+                                <div class="propertyLine">
+                                    Hide: <b></b>  Change to:
+                                    <div class="select">
+                                        <select id="selects_3">
+                                            <option>True</option>
+                                            <option>False</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="propertyLine">
+                                    Key Field: <b></b>  Change to:
+                                    <div class="select">
+                                        <select id="selects_3">
+                                            <option>True</option>
+                                            <option>False</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>     
+                            <div *ngIf="gridViewExplain">                               
+                                ExplainedBy:
+                                <div class="propertyLine">
+                                    Explained by: <input type="text" id="formFields_7"
+                                    placeholder="BarChart of Value by TradeDate">
+                                </div>
                             </div>
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickRefreshSummary()"
-                                >
-                                Refresh Summary
-                            </button>
+                            <div *ngIf="gridViewSummaryGraphs">
+                                
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    (click)="clickRefreshSummary()"
+                                    >
+                                    Refresh Summary
+                                </button>
 
-                            <br> <br>
+                                <br> <br>
 
-                            Nr records: <b>241</b>
-                            <br>
-                            3-9 graphs that summarises the data
-                            <br> <br>
-                            <i>
-                            * IF key fields have been marked, some cardinality / summary
-                                graphs will be shown to the shape of the data, bins,
-                                frequency distribution, etc to help understand the data.
-                                If no fields were marked, the software will makes its
-                                best guess.
-                            </i>
-                            Data Quality notes: describes issues with the quality of the data,
-                            and what will be done about it by whom and when.
-
+                                Nr records: <b>241</b>
+                                <br>
+                                3-9 graphs that summarises the data
+                                <br> <br>
+                                <i>
+                                    * IF key fields have been marked, some cardinality / summary
+                                    graphs will be shown to the shape of the data, bins,
+                                    frequency distribution, etc to help understand the data.
+                                    If no fields were marked, the software will makes its
+                                    best guess.
+                                </i>
+                            </div>
+                            <div *ngIf="gridViewDataQuality">
+                                
+                                Data Quality notes: describes issues with the quality of the data,
+                                and what will be done about it by whom and when.
+                            </div>
                         </div>
                     </div>
                 </div>
