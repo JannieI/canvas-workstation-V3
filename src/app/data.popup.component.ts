@@ -61,6 +61,7 @@ export class DataPopupComponent implements OnInit {
     showView: boolean = false;
     showSelectField: boolean = false;
     transformationsFormat: transformation[];
+    showTransformDetail: boolean = false;
 
     selectedExistingDS: boolean = false;
     selectedExistingTransform: boolean = false;
@@ -148,7 +149,18 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickFileAddTransformation() {
-        alert('add transf')
+        let newTransformation: currentTransformation = {
+            id: 2,
+            category: 'Format',
+            name: 'Trim left (Trader)',
+            description: 'bla-bla-bla',
+            fieldID: 21,
+            fieldName: 'Trader',
+            parameters: "param1=a"        
+        };
+        this.currentTransformations.push(newTransformation);
+
+        this.showTransformDetail = true;
     }
 
     clickClose(action: string) {

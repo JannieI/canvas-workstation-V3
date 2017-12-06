@@ -21,7 +21,7 @@
                                     [style.background-color]="showIdentifyFile ? 'rgb(211, 211, 247)' : 'transparent'"
                                     >
                                     1. Identify
-                                </button>   
+                                </button>
                             </div>
                             <div class="titleChevron1a">
                                 <button
@@ -30,7 +30,7 @@
                                     (click)="clickShowTransform()"
                                     >
                                     >>
-                                </button>   
+                                </button>
                             </div>
                             <div class="titleChevron1b">
                                 <button
@@ -39,7 +39,7 @@
                                     (click)="clickShowTransform()"
                                     >
                                     >>
-                                </button>   
+                                </button>
                             </div>
                             <div class="titleTransform titleBox">
                                 <button
@@ -58,7 +58,7 @@
                                     (click)="clickShowPivot()"
                                     >
                                     >>
-                                </button>   
+                                </button>
                             </div>
                             <div class="titleChevron2b">
                                 <button
@@ -67,7 +67,7 @@
                                     (click)="clickShowPivot()"
                                     >
                                     >>
-                                </button>   
+                                </button>
                             </div>
                             <div class="titlePivot titleBox">
                                 <button
@@ -77,7 +77,7 @@
                                     [style.background-color]="showPivot ? 'rgb(211, 211, 247)' : 'transparent'"
                                     >
                                     3. Pivot
-                                </button>   
+                                </button>
                             </div>
                             <div class="titleChevron3a">
                                 <button
@@ -86,7 +86,7 @@
                                     (click)="clickShowView()"
                                     >
                                     >>
-                                </button>   
+                                </button>
                             </div>
                             <div class="titleChevron3b">
                                 <button
@@ -95,7 +95,7 @@
                                     (click)="clickShowView()"
                                     >
                                     >>
-                                </button>   
+                                </button>
                             </div>
                             <div class="titleView titleBox">
                                 <button
@@ -105,9 +105,9 @@
                                     [style.background-color]="showView ? 'rgb(211, 211, 247)' : 'transparent'"
                                     >
                                     4. View
-                                </button>   
+                                </button>
                             </div>
-                                                        
+
                         </div>
 
                         <div class="gridOld" *ngIf="NotYet">
@@ -565,10 +565,11 @@
 
                         <div class="gridIdentifyData" *ngIf="showIdentifyFile">
                             <div *ngIf="!isFirstTimeData" class="gridIdentifyDataExisting">
+                                    <span class="gridHeading">Existing Datasets</span>
                                 <clr-datagrid class="fieldsDataGrid">
                                     <clr-dg-column>Name</clr-dg-column>
 
-                                    <clr-dg-row 
+                                    <clr-dg-row
                                         *ngFor="let row of currentDatasources"
                                         (click)="clickDatasourceRow(row.name)"
                                         >
@@ -667,17 +668,10 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="gridTransform" *ngIf="showTransform">
                             <div class="gridTransformTransformations">
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    (click)="showIdentifyFile=!showIdentifyFile"
-                                    >
-                                    Add New Transformation
-                                </button>
-
+                                <span class="gridHeading">Transformations </span>
                                 <clr-datagrid class="fieldsDataGrid">
                                     <clr-dg-column>Name</clr-dg-column>
 
@@ -692,82 +686,55 @@
 
                             </div>
                             <div class="gridTransformNew">
-                                <span>Please select Transformation and Field
-                                    <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        (click)="clickFileBrowse()"
-                                        >
-                                        Browse
-                                    </button>
-                                    :
-                                </span>
-                                <input type="text" id="formFields_7"
-                                    placeholder="Folder/FileName"
-                                    class="selectFile"
-                                    >
-                                <br>
-                                Worksheet:
-                                <span class="select">
-                                    <select id="selects_3" class="selectBox">
-                                        <option>New York</option>
-                                        <option>San Francisco</option>
-                                        <option>Austin</option>
-                                        <option>Paris</option>
-                                        <option>Seattle</option>
+                                <div>Please select Transformation and Field.
+                                </div>
+                                <label for="selects_2">Field:</label>
+                                <div class="select">
+                                    <select id="selects_2">
+                                        <option>Add new Field</option>
+                                        <option>Traders</option>
+                                        <option>TradeDate</option>
                                     </select>
-                                </span>
-                                <br>
-                                Name of Dataset:
-                                <input type="text" id="formFields_7" placeholder="Dataset Name">
-                                <button
-                                    type="button"
-                                    class="btn btn-link selectButon"
-                                    (click)="clickFilePreview()"
-                                    >
-                                    Preview
-                                </button>
-                                <div class="checkbox-inline">
-                                    <input type="checkbox" id="checkrads_5">
-                                    <label for="checkrads_5">Transpose rows and cols: </label>
+                                </div>
+                                <label for="selects_1">Transformation:</label>
+                                <div class="select">
+                                    <select id="selects_1">
+                                        <option>Fill Blanks</option>
+                                        <option>Trim Left</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <input type="text" id="formFields_7"
+                                        placeholder="Description"
+                                        class="selectFile"
+                                        >
                                 </div>
                                 <button
                                     type="button"
-                                    class="btn btn-link selectButon"
+                                    class="btn btn-secondary selectButon"
                                     (click)="clickFileAddTransformation()"
                                     >
                                     Add
                                 </button>
+                                <br>
+                                <br>
+                                Optionally save these transformations as a Transformation-Set for later use:
+                                <input type="text" id="formFields_7"
+                                    placeholder="Set Name"
+                                    class="selectFile"
+                                    >
                             </div>
                             <div class="gridTransformExisting">
-                                <div *ngIf="showDataPreview">
-                                    <clr-datagrid class="fieldsDataGrid">
-                                        <clr-dg-column>Name</clr-dg-column>
-                                        <clr-dg-column>Type</clr-dg-column>
-                                        <clr-dg-column>createdBy</clr-dg-column>
-                                        <clr-dg-column>createdOn</clr-dg-column>
-                                        <clr-dg-column>refreshedBy</clr-dg-column>
-                                        <clr-dg-column>refreshedOn</clr-dg-column>
-                                        <clr-dg-column>parameters</clr-dg-column>
+                                <div *ngIf="showTransformDetail">
+                                    <input type="text" id="formFields_7"
+                                        placeholder="Enter formula"
+                                        class="selectFile"
+                                        >
 
-                                        <clr-dg-row *ngFor="let row of currentDatasources">
-                                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.type}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
-                                        </clr-dg-row>
-
-                                        <clr-dg-footer>
-                                            {{currentDatasources.length}} fields
-                                        </clr-dg-footer>
-                                    </clr-datagrid>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="gridPivot" *ngIf="showPivot">
                             <div class="gridPivotFields">
                                 <button
@@ -804,7 +771,7 @@
                                 </span>
                             </div>
                         </div>
-                        
+
                         <div class="gridView" *ngIf="showView">
                             <div class="gridViewTop">
                                 <button
@@ -818,7 +785,7 @@
                             <div class="gridViewMiddle">
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>

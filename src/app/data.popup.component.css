@@ -5,6 +5,10 @@
     z-index: 11;
 }
 
+.gridHeading {
+    padding: 5px;
+}
+
 .datagrid {
     margin: 0px !important;
     margin-top: 0px !important;
