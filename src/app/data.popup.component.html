@@ -525,33 +525,6 @@
                                 </div>
 
                                 <div *ngIf="selectedSummary">
-
-                                    ExplainedBy:
-                                    <div class="propertyLine">
-                                        Explained by: <input type="text" id="formFields_7"
-                                        placeholder="BarChart of Value by TradeDate">
-                                    </div>
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary"
-                                        (click)="clickMenuExistingDS()"
-                                        >
-                                        Refresh Summary
-                                    </button>
-
-                                    <br> <br>
-
-                                    Nr records: <b>241</b>
-                                    <br>
-                                    3-9 graphs that summarises the data
-                                    <br> <br>
-                                    <i>
-                                    * IF key fields have been marked, some cardinality / summary
-                                        graphs will be shown to the shape of the data, bins,
-                                        frequency distribution, etc to help understand the data.
-                                        If no fields were marked, the software will makes its
-                                        best guess.
-                                    </i>
                                 </div>
 
                                 <div *ngIf="selectedDataQuality">
@@ -813,6 +786,34 @@
                             </button>
                         </div>
                         <div class="gridViewMiddle">
+
+                            ExplainedBy:
+                            <div class="propertyLine">
+                                Explained by: <input type="text" id="formFields_7"
+                                placeholder="BarChart of Value by TradeDate">
+                            </div>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickMenuExistingDS()"
+                                >
+                                Refresh Summary
+                            </button>
+
+                            <br> <br>
+
+                            Nr records: <b>241</b>
+                            <br>
+                            3-9 graphs that summarises the data
+                            <br> <br>
+                            <i>
+                            * IF key fields have been marked, some cardinality / summary
+                                graphs will be shown to the shape of the data, bins,
+                                frequency distribution, etc to help understand the data.
+                                If no fields were marked, the software will makes its
+                                best guess.
+                            </i>
+
                         </div>
                     </div>
                 </div>
