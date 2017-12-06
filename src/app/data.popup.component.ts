@@ -76,7 +76,8 @@ export class DataPopupComponent implements OnInit {
     showTransitionFormat: boolean = false;
     transitionFieldName: string;
     transitionAction: string;
-    filterDataset: string = 'xx';
+    filterDataset: string = '';
+    filterTransformation: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
