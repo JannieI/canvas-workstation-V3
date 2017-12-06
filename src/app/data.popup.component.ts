@@ -51,6 +51,7 @@ export class DataPopupComponent implements OnInit {
     fields: field[];
     fieldsMetadata: fieldMetadata[];
     isFirstTimeData: boolean;
+    pivotData: string = '';
     selectorDetailColumnEnd: string = '12';
     selectedFile: boolean = true;
     selectedData: string = 'Trades for 2016';
@@ -168,6 +169,9 @@ export class DataPopupComponent implements OnInit {
         this.router.navigate(['/explore']);
     }
 
+    clickRefreshPivot() {
+        this.pivotData = 'All done !'
+    }
     clickMenuExistingDS() {
         this.selectedExistingDS = true;
         this.selectedExistingTransform = false;
