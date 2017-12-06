@@ -401,9 +401,31 @@
 
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
+                                <clr-dg-column [clrDgField]="'filterPivotFields'">Type</clr-dg-column>
+                                <clr-dg-column [clrDgField]="'filterPivotFields'">Edit?</clr-dg-column>
                                 <clr-dg-row *ngFor="let row of currentDatasources">
                                     <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                                    <clr-dg-cell>
+                                        <span class="color-square" 
+                                        [style.backgroundColor]="'blue'">.</span>
+                                    </clr-dg-cell>
+
+                                    <clr-dg-cell>
+                                        <div [hidden]="isEditMode">
+                                            {{row.name}}
+                                            <input #input type="number" min="0" 
+                                            [(value)]="changeVar" 
+                                            (change)="changedInput(value)" />
+                                        </div>
+                                        <div [hidden]="!isEditMode">
+                                            <input #input type="number" min="0" 
+                                            [(value)]="changeVar" 
+                                            (change)="changedInput(value)" />
+                                        </div>
+                                    </clr-dg-cell>
+
                                 </clr-dg-row>
+
                             </clr-datagrid>
 
                         </div>

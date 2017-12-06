@@ -76,9 +76,12 @@ export class DataPopupComponent implements OnInit {
     showTransitionFormat: boolean = false;
     transitionFieldName: string;
     transitionAction: string;
+
     filterDataset: string = '';
     filterTransformation: string = '';
     filterPivotFields: string = '';
+    changeVar: number = 2;
+    isEditMode: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -258,5 +261,9 @@ export class DataPopupComponent implements OnInit {
 
     clickShowIdentity() {
         this.showIdentifyFile = true;
+    }
+
+    changedInput(newValue: any) {
+        console.log('changedInput: Old-New', this.changeVar, newValue)
     }
 }

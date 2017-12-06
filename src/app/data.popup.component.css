@@ -534,3 +534,22 @@ datagrid-placeholder-container {
 .datagrid-placeholder {
     background-color: red !important;
 }
+
+.color-square {
+    border-color: 1px solid black;
+    height: 5px;
+    width: 5px;
+    border-radius: 2px;
+    margin: auto;
+    padding: 0;
+}
+
+/* Not working ! */
+.datagrid-cell {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+ }
+.datagrid-fixed-width {
+        flex: 0 0 auto;
+}
