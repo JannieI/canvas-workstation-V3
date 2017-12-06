@@ -216,7 +216,9 @@ const backgroundcolors: CSScolor[] =
     }
 ];
 
-const currentDatasources: currentDatasource [] =
+const currentDatasources: currentDatasource [] = [];
+
+const datasources: currentDatasource [] =
 [
     {
         id: 1,
@@ -921,6 +923,7 @@ export class GlobalVariableService {
     currentTransformations: currentTransformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;
     currentDatasources: currentDatasource[] = currentDatasources;
+    datasources: currentDatasource[] = datasources;
     transformationsFormat: transformation[] = transformationsFormat;
     fields: field[] = fields;
     fieldsMetadata: fieldMetadata[] = fieldsMetadata;

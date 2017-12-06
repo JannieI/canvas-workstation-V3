@@ -42,6 +42,8 @@ export class DataPopupComponent implements OnInit {
     @ViewChild('transformations') transformations: ElementRef;
 
     currentDatasources: currentDatasource[];
+    datasources: currentDatasource[];
+    
     currentTransformations: currentTransformation[];
     currentDataset: string = '';
 
@@ -82,8 +84,9 @@ export class DataPopupComponent implements OnInit {
 	ngOnInit() {
 
         // Load global variables
-        this.currentDatasources = this.globalVariableService.currentDatasources
-            .filter(d => d.id <= 14);
+        this.datasources = this.globalVariableService.datasources
+        .filter(d => d.id <= 14);
+        this.currentDatasources = this.globalVariableService.currentDatasources;
         if (this.currentDatasources.length > 0) {
             this.isFirstTimeData = false;
         } else {
