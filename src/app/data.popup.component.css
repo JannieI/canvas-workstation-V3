@@ -172,8 +172,8 @@
         grid-row-start: 1; 
         grid-row-end: 25; 
         height: 19rem;
-        width: 100%;
         overflow: auto;
+        width: 100%;
     }
 
     .gridIdentifyDataIDfile {
@@ -191,7 +191,10 @@
         grid-column-end: 21;
         grid-row-start: 11; 
         grid-row-end: 25; 
+        height: 11rem;
+        overflow: auto;
         padding: 10px;
+        width: 100%;
     }
 
 .gridTransform {
@@ -211,8 +214,8 @@
         grid-row-start: 1; 
         grid-row-end: 25; 
         height: 19rem;
-        width: 100%;
         overflow: auto;
+        width: 100%;
     }
 
     .gridTransformNew {
@@ -410,8 +413,8 @@
 .fieldsDataGrid {
     margin-top: 0 !important; 
     height: 19rem;
-    width: 100%;
     overflow: auto;
+    width: 100%;
 }
 
 .fieldDataGridFooter {
