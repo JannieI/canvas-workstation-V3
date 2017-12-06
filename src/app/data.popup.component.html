@@ -184,7 +184,7 @@
                         <div *ngIf="!isFirstTimeData" class="gridIdentifyDataExisting">
                                 <span class="gridHeading">Existing Datasets</span>
                             <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-column>Name</clr-dg-column>
+                                <clr-dg-column  [clrDgField]="'filterDataset'">Name</clr-dg-column>
 
                                 <clr-dg-row
                                     *ngFor="let row of currentDatasources"
@@ -460,7 +460,7 @@
                                 <label for="checkrads_1">Always-Refresh</label>
                                 <button
                                     type="button"
-                                    class="btn btn-link"
+                                    class="btn btn-secondary"
                                     (click)="clickRefreshPivot()"
                                     >
                                     Refresh
@@ -529,3 +529,53 @@
 
                 <!-- cursor: move gives users a visual indicator that something is moveable:
                 -->
+
+                <!-- <clr-dg-footer>
+                        {{pagination1.firstItem + 1}} - {{pagination1.lastItem + 1}} of     {{pagination1.totalItems}} Nodes
+                        <clr-dg-pagination #pagination1 [clrDgPageSize]="5"></clr-dg-pagination>
+                </clr-dg-footer> -->
+                <!-- clrDgColumnSizeChange clrDgColumnResize -->
+
+
+
+                <!-- <ng-container>
+                        <clr-dg-row *ngFor="let destination of walkingDistance.destinationHeader; let i=index">
+                            <clr-dg-cell>{{destination.name}}</clr-dg-cell>
+                            <clr-dg-cell *ngFor="let d of walkingDistance.depotZoneHeader; let j=index">
+                                <div [hidden]="isEditMode">
+                                    {{walkingDistance.walkingDistanceMatrix[i][j]}}
+                                </div>
+                                <div [hidden]="!isEditMode">
+                                    <input #input type="number" min="0" [value]="walkingDistance.walkingDistanceMatrix[i][j]" (change)="setWalkingDistance(i, j, input.value)" />
+                                </div>
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </ng-container>
+                
+                    <clr-dg-footer></clr-dg-footer>
+                
+                </clr-datagrid> -->
+
+
+                <!-- So in your case, when switching from read-only to inline edit and vice-versa, 
+                you'd just call datagrid.resize() after the change and the columns should 
+                resize accordingly. I hope this helps. -->
+
+
+                <!-- If I add 'overflow' and 'text-overflow' properties to '.datagrid-cell' in 
+                _datagrid.clarity.scss then I can get the cell to look proper, but making 
+                similar change to '.datagrid-column' or '.datagrid-column-title' make the 
+                column resize handle disappear during times when it overflows.
+                
+                    .datagrid-cell {
+                        flex: 1 1 auto;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        &.datagrid-fixed-width {
+                            flex: 0 0 auto;
+                        }
+                    } -->
+
+
+                    <!-- <clr-dg-column [clrDgField]="'ruleName'">Name</clr-dg-column> -->
+

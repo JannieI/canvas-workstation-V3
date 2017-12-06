@@ -76,6 +76,7 @@ export class DataPopupComponent implements OnInit {
     showTransitionFormat: boolean = false;
     transitionFieldName: string;
     transitionAction: string;
+    filterDataset: string = 'xx';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -146,7 +147,7 @@ export class DataPopupComponent implements OnInit {
 
     clickDatasourceRow(dsName: string) {
         this.currentDataset = dsName;
-        console.log('dsName', dsName)
+        console.log('dsName', dsName, this.filterDataset)
     }
 
     clickFileAddTransformation() {
