@@ -171,6 +171,9 @@
         grid-column-end: 5;
         grid-row-start: 1; 
         grid-row-end: 25; 
+        height: 19rem;
+        width: 100%;
+        overflow: auto;
     }
 
     .gridIdentifyDataIDfile {
