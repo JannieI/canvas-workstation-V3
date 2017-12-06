@@ -281,10 +281,6 @@
                                         <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
                                         <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
                                     </clr-dg-row>
-
-                                    <clr-dg-footer>
-                                        {{currentDatasources.length}} fields
-                                    </clr-dg-footer>
                                 </clr-datagrid>
                             </div>
                         </div>
@@ -346,10 +342,6 @@
                                 <clr-dg-row *ngFor="let row of currentTransformations">
                                     <clr-dg-cell>{{row.name}}</clr-dg-cell>
                                 </clr-dg-row>
-
-                                <clr-dg-footer>
-                                    {{currentTransformations.length}} fields
-                                </clr-dg-footer>
                             </clr-datagrid>
 
                         </div>
