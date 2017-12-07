@@ -167,7 +167,7 @@ export class DataPopupComponent implements OnInit {
         
         startNow = Date.now()
         console.log('LOAD data_csv start:')
-        dl.csv({url: './assets/vega-datasets/stocks.csv'},{}, function(err, data) {
+        dl.csv({url: './assets/vega-datasets/stocks.csv'},{}, (err, data) => {
             if (err) {
               console.log('error on load', err)
             } else {
@@ -193,6 +193,33 @@ export class DataPopupComponent implements OnInit {
                 // {name: 'bar', ops: ['sum, median']}].
                 console.log('     summ', summ)
                 console.log('     END summ: ', (Date.now() - startNow) / 1000)
+
+                // Preview
+                console.log('LOOP start:')
+                startNow = Date.now()
+                for (var i = 0; i < summ.length; i++) {
+                    let newData: currentDatasource =  {
+                        id: i,
+                        type: summ[i]['s'],
+                        name: summ[i]['m'],
+                        description: summ[i]['symbol'],
+                        createdBy: i.toString(),
+                        createdOn: '2017/01/01',
+                        refreshedBy: 'JohnM',
+                        refreshedOn: '2017/01/01',
+                        parameters: summ[i]['symbol']
+            
+                    };
+                    this.currentDatasources.push(newData);
+                    console.log(i)
+                }
+                console.log('     currentDatasources', this.currentDatasources)
+                console.log('     END loop: ', (Date.now() - startNow) / 1000)
+
+                console.log('PREVIEW start:')
+                startNow = Date.now()
+                this.showDataPreview = true;
+                console.log('        END preview: ', (Date.now() - startNow) / 1000)
             }
           });
 
