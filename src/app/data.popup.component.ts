@@ -166,14 +166,33 @@ export class DataPopupComponent implements OnInit {
         // console.log('end', Date.now() - startNow)
         
         startNow = Date.now()
-        dl.csv({url: './assets/vega-datasets/stocks1.csv'},{}, function(err, data) {
+        console.log('LOAD data_csv start:')
+        dl.csv({url: './assets/vega-datasets/stocks.csv'},{}, function(err, data) {
             if (err) {
-              console.log('error on load')
+              console.log('error on load', err)
             } else {
                 // let data_csv = dl.read(csv_data, {type: 'csv', parse: 'auto'});
-                console.log('data_csv', data[0])
-                console.log('data rows', data.length)
-                console.log('end secs: ', (Date.now() - startNow) / 1000)
+                console.log('     data rows', data.length)
+                console.log('     END secs: ', (Date.now() - startNow) / 1000)
+
+                    console.log('')
+                    console.log('GROUPBY start:')
+                    startNow = Date.now()
+                    var summ = dl.groupby('symbol')
+                    // .summarize({'symbol': 'valid', 'price': ['sum', 'median']})
+                    .summarize( [
+                        {name: 'symbol', ops: ['valid']},
+                        {name: 'price',  ops: ['sum', 'median'], as: ['s', 'm']} 
+                        ] )
+                    // .summar ize([
+                    //     {name: 'foo', ops: ['valid']},
+                    //     {name: 'bar',    ops: ['sum', 'median'], as: ['s', 'm']}
+                    //   ])
+                    // .summarize( [ {'symbol': 'valid', 'price': ['sum, median']} ] )
+                    .execute(data);
+                // {name: 'bar', ops: ['sum, median']}].
+                console.log('     summ', summ)
+                console.log('     END summ: ', (Date.now() - startNow) / 1000)
             }
           });
 
