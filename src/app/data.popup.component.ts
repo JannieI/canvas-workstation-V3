@@ -28,6 +28,9 @@ import { currentTransformation }      from './models';
 import * as dl from 'datalib';
 import { load } from 'datalib';
 
+var dataArray: any;
+var dataUniqueInColumn: string[] = [];
+
 @Component({
     selector: 'data',
     templateUrl: './data.popup.component.html',
@@ -166,56 +169,98 @@ export class DataPopupComponent implements OnInit {
         // console.log('end', Date.now() - startNow)
         
         startNow = Date.now()
-        console.log('LOAD data_csv start:')
+        console.log('LOAD data start:')
         dl.csv({url: './assets/vega-datasets/stocks.csv'},{}, (err, data) => {
             if (err) {
               console.log('error on load', err)
             } else {
-                // let data_csv = dl.read(csv_data, {type: 'csv', parse: 'auto'});
+
+                // Load
+                console.log('     data hdr', data[0])
                 console.log('     data rows', data.length)
                 console.log('     END secs: ', (Date.now() - startNow) / 1000)
+                console.log('')
 
-                    console.log('')
-                    console.log('GROUPBY start:')
-                    startNow = Date.now()
-                    var summ = dl.groupby('symbol')
-                    // .summarize({'symbol': 'valid', 'price': ['sum', 'median']})
+                // Types
+                console.log('')
+                console.log('TYPES start:')
+                startNow = Date.now()
+                var dataTypes = dl.type.all(data)
+                console.log('     types', dataTypes)
+                console.log('     END sort: ', (Date.now() - startNow) / 1000)
+
+                // Sort
+                console.log('')
+                console.log('SORT start:')
+                startNow = Date.now()
+                data.sort(dl.comparator(['+symbol', '-price']));
+                console.log('     END sort: ', (Date.now() - startNow) / 1000)
+                
+                // Fields
+                console.log('')
+                console.log('FIELDS start:')
+                startNow = Date.now()
+                var dataFields = dl.keys(data)
+                console.log('     fields', dataFields)
+                console.log('     END fields: ', (Date.now() - startNow) / 1000)
+                
+                // Group By
+                console.log('')
+                console.log('GROUPBY start:')
+                startNow = Date.now()
+                dataArray = dl.groupby('symbol')
                     .summarize( [
                         {name: 'symbol', ops: ['valid']},
                         {name: 'price',  ops: ['sum', 'median'], as: ['s', 'm']} 
                         ] )
-                    // .summar ize([
-                    //     {name: 'foo', ops: ['valid']},
-                    //     {name: 'bar',    ops: ['sum', 'median'], as: ['s', 'm']}
-                    //   ])
-                    // .summarize( [ {'symbol': 'valid', 'price': ['sum, median']} ] )
                     .execute(data);
-                // {name: 'bar', ops: ['sum, median']}].
-                console.log('     summ', summ)
-                console.log('     END summ: ', (Date.now() - startNow) / 1000)
+                console.log('     groupby', dataArray)
+                console.log('     END groupby: ', (Date.now() - startNow) / 1000)
 
-                // Preview
+                // Get Unique Symbols
+                console.log('')
+                console.log('UNIQUE start:')
+                startNow = Date.now()
+                var dataUniqueInColumn = dl.unique(data);
+                console.log('     unique', dataUniqueInColumn)
+                console.log('     END unique: ', (Date.now() - startNow) / 1000)
+
+                // Get Unique Symbols 2
+                console.log('')
+                console.log('UNIQUE 2 start:')
+                startNow = Date.now()
+                dataUniqueInColumn = dl.groupby('symbol')
+                    .summarize( [
+                        {name: 'symbol', ops: ['values']} 
+                        ] )
+                    .execute(data);
+                console.log('     unique', dataUniqueInColumn)
+                console.log('     END unique: ', (Date.now() - startNow) / 1000)
+                
+                // Loop to load Array
+                console.log('')
                 console.log('LOOP start:')
                 startNow = Date.now()
-                for (var i = 0; i < summ.length; i++) {
+                for (var i = 0; i < dataArray.length; i++) {
                     let newData: currentDatasource =  {
                         id: i,
-                        type: summ[i]['s'],
-                        name: summ[i]['m'],
-                        description: summ[i]['symbol'],
+                        type: dataArray[i]['s'],
+                        name: dataArray[i]['m'],
+                        description: dataArray[i]['symbol'],
                         createdBy: i.toString(),
                         createdOn: '2017/01/01',
                         refreshedBy: 'JohnM',
                         refreshedOn: '2017/01/01',
-                        parameters: summ[i]['symbol']
+                        parameters: dataArray[i]['symbol']
             
                     };
                     this.currentDatasources.push(newData);
-                    console.log(i)
                 }
                 console.log('     currentDatasources', this.currentDatasources)
                 console.log('     END loop: ', (Date.now() - startNow) / 1000)
 
+                // Preview
+                console.log('')
                 console.log('PREVIEW start:')
                 startNow = Date.now()
                 this.showDataPreview = true;
