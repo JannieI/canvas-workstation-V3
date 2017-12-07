@@ -28,9 +28,6 @@ import { currentTransformation }      from './models';
 import * as dl from 'datalib';
 import { load } from 'datalib';
 
-var dataArray: any;
-var dataUniqueInColumn: string[] = [];
-
 @Component({
     selector: 'data',
     templateUrl: './data.popup.component.html',
@@ -47,6 +44,11 @@ export class DataPopupComponent implements OnInit {
     currentDatasources: currentDatasource[];
     datasources: currentDatasource[];
     
+    dataArray: any;
+    dataFieldNames: string[];
+    dataFieldTypes: string[] = [];
+    dataUniqueInColumn: string[] = [];
+
     currentTransformations: currentTransformation[];
     currentDataset: string = '';
 
@@ -186,7 +188,11 @@ export class DataPopupComponent implements OnInit {
                 console.log('FIELDS start:')
                 startNow = Date.now()
                 var dataTypes = dl.type.all(data)
-                console.log('     fields', Object.keys(dataTypes))
+                this.dataFieldNames = Object.keys(dataTypes);
+                console.log('     fields', this.dataFieldNames)
+                for (var i = 0; i < this.dataFieldNames.length; i++) {
+                    console.log('     ', i, this.dataFieldNames[i])
+                }
                 console.log('     END fields: ', (Date.now() - startNow) / 1000)
 
                 // Types
@@ -194,8 +200,9 @@ export class DataPopupComponent implements OnInit {
                 console.log('TYPES start:')
                 startNow = Date.now()
                 console.log('     types');
-                for (var i = 0; i < Object.keys(dataTypes).length; i++) {
-                    console.log(i, dataTypes[ Object.keys(dataTypes)[i] ])
+                for (var i = 0; i < this.dataFieldNames.length; i++) {
+                    this.dataFieldTypes.push(dataTypes[ this.dataFieldNames[i] ] );
+                    console.log('     ', i, this.dataFieldTypes[i])
                 }
                 console.log('     END types: ', (Date.now() - startNow) / 1000)
 
@@ -210,13 +217,13 @@ export class DataPopupComponent implements OnInit {
                 console.log('')
                 console.log('GROUPBY start:')
                 startNow = Date.now()
-                dataArray = dl.groupby('symbol')
+                this.dataArray = dl.groupby('symbol')
                     .summarize( [
                         {name: 'symbol', ops: ['valid']},
                         {name: 'price',  ops: ['sum', 'median'], as: ['s', 'm']} 
                         ] )
                     .execute(data);
-                console.log('     groupby', dataArray)
+                console.log('     groupby', this.dataArray)
                 console.log('     END groupby: ', (Date.now() - startNow) / 1000)
 
                 // Get Unique Symbols
@@ -243,17 +250,17 @@ export class DataPopupComponent implements OnInit {
                 console.log('')
                 console.log('LOOP start:')
                 startNow = Date.now()
-                for (var i = 0; i < dataArray.length; i++) {
+                for (var i = 0; i < this.dataArray.length; i++) {
                     let newData: currentDatasource =  {
                         id: i,
-                        type: dataArray[i]['s'],
-                        name: dataArray[i]['m'],
-                        description: dataArray[i]['symbol'],
+                        type: this.dataArray[i]['s'],
+                        name: this.dataArray[i]['m'],
+                        description: this.dataArray[i]['symbol'],
                         createdBy: i.toString(),
                         createdOn: '2017/01/01',
                         refreshedBy: 'JohnM',
                         refreshedOn: '2017/01/01',
-                        parameters: dataArray[i]['symbol']
+                        parameters: this.dataArray[i]['symbol']
             
                     };
                     this.currentDatasources.push(newData);
