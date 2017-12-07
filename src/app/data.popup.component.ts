@@ -147,9 +147,52 @@ export class DataPopupComponent implements OnInit {
 
         };
         var csv_data = dl.load({url: './assets/vega-datasets/stocks.csv'});
-        var data = dl.read(csv_data, {type: 'csv', parse: 'auto'});
-        console.log('data', data)
+        let startNow: number;
+        // var data = dl.read(csv_data, {type: 'csv', parse: 'auto'});
+        // startNow = Date.now()
+        // console.log('data rows', data.length)
+        // console.log('end', Date.now() - startNow)
+
+        // var csv_data = dl.load({url: './assets/vega-datasets/stocks1.csv'});
+        // var data = dl.read(csv_data, {type: 'csv', parse: 'auto'});
+        // startNow = Date.now()
+        // console.log('data rows', data.length)
+        // console.log('end', Date.now() - startNow)
         
+        // var csv_data = dl.load({url: './assets/vega-datasets/stocks2.csv'});
+        // var data = dl.read(csv_data, {type: 'csv', parse: 'auto'});
+        // startNow = Date.now()
+        // console.log('data rows', data.length)
+        // console.log('end', Date.now() - startNow)
+        
+        startNow = Date.now()
+        dl.csv({url: './assets/vega-datasets/stocks1.csv'},{}, function(err, data) {
+            if (err) {
+              console.log('error on load')
+            } else {
+                // let data_csv = dl.read(csv_data, {type: 'csv', parse: 'auto'});
+                console.log('data_csv', data[0])
+                console.log('data rows', data.length)
+                console.log('end secs: ', (Date.now() - startNow) / 1000)
+            }
+          });
+
+        // dl.load({url: './assets/vega-datasets/stocks1.csv'}, function(err, data) {
+        // if (err) {
+        //     console.log('error on load')
+        // } else {
+        //     let data_csv = dl.read(csv_data, {type: 'csv', parse: 'auto'});
+        //     console.log('data_csv', data_csv[0])
+        //     console.log('data rows', data_csv.length)
+        //     console.log('end secs: ', (Date.now() - startNow) / 1000)
+        // }
+        // });
+
+        // var csv_data = dl.csv({url: './assets/vega-datasets/stocks3.csv'});
+        // startNow = Date.now()
+        // console.log('data rows', data.length)
+        // console.log('end', Date.now() , startNow)
+
         this.currentDatasources.push(newData);
         this.currentDataset = newData.name;
         this.isFirstTimeData = true;
