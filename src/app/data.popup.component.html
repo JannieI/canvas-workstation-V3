@@ -264,22 +264,31 @@
 
                             <div *ngIf="showDataPreview">
                                 <clr-datagrid class="fieldsDataGrid">
-                                    <clr-dg-column>Name</clr-dg-column>
+                                        
+
+                                    <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+
+                                    <!-- <clr-dg-column>Name</clr-dg-column>
                                     <clr-dg-column>Type</clr-dg-column>
                                     <clr-dg-column>createdBy</clr-dg-column>
                                     <clr-dg-column>createdOn</clr-dg-column>
                                     <clr-dg-column>refreshedBy</clr-dg-column>
                                     <clr-dg-column>refreshedOn</clr-dg-column>
-                                    <clr-dg-column>parameters</clr-dg-column>
+                                    <clr-dg-column>parameters</clr-dg-column> -->
 
-                                    <clr-dg-row *ngFor="let row of currentDatasources">
-                                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                                    <clr-dg-row *ngFor="let row of dataArray; let i = index">
+                                        
+                                        <clr-dg-cell *ngFor="let col of dataFieldNames; let j = index">
+                                            {{ row['price'] }}
+                                        </clr-dg-cell>
+
+                                        <!-- <clr-dg-cell>{{row.name}}</clr-dg-cell>
                                         <clr-dg-cell>{{row.type}}</clr-dg-cell>
                                         <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
                                         <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
                                         <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
                                         <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
+                                        <clr-dg-cell>{{row.parameters}}</clr-dg-cell> -->
                                     </clr-dg-row>
                                 </clr-datagrid>
                             </div>
