@@ -136,19 +136,19 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickFileAdd(close: boolean) {
-        console.log(this.currentDatasources)
-        let newData: currentDatasource =  {
-            id: 1,
-            type: 'Excel file',
-            name: 'Costing preparation',
-            description: 'Costing preparation',
-            createdBy: 'JohnM',
-            createdOn: '2017/01/01',
-            refreshedBy: 'JohnM',
-            refreshedOn: '2017/01/01',
-            parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+        // console.log(this.currentDatasources)
+        // let newData: currentDatasource =  {
+        //     id: 1,
+        //     type: 'Excel file',
+        //     name: 'Costing preparation',
+        //     description: 'Costing preparation',
+        //     createdBy: 'JohnM',
+        //     createdOn: '2017/01/01',
+        //     refreshedBy: 'JohnM',
+        //     refreshedOn: '2017/01/01',
+        //     parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
 
-        };
+        // };
         var csv_data = dl.load({url: './assets/vega-datasets/stocks.csv'});
         let startNow: number;
         // var data = dl.read(csv_data, {type: 'csv', parse: 'auto'});
@@ -181,13 +181,23 @@ export class DataPopupComponent implements OnInit {
                 console.log('     END secs: ', (Date.now() - startNow) / 1000)
                 console.log('')
 
+                // Fields
+                console.log('')
+                console.log('FIELDS start:')
+                startNow = Date.now()
+                var dataTypes = dl.type.all(data)
+                console.log('     fields', Object.keys(dataTypes))
+                console.log('     END fields: ', (Date.now() - startNow) / 1000)
+
                 // Types
                 console.log('')
                 console.log('TYPES start:')
                 startNow = Date.now()
-                var dataTypes = dl.type.all(data)
-                console.log('     types', dataTypes)
-                console.log('     END sort: ', (Date.now() - startNow) / 1000)
+                console.log('     types');
+                for (var i = 0; i < Object.keys(dataTypes).length; i++) {
+                    console.log(i, dataTypes[ Object.keys(dataTypes)[i] ])
+                }
+                console.log('     END types: ', (Date.now() - startNow) / 1000)
 
                 // Sort
                 console.log('')
@@ -195,14 +205,6 @@ export class DataPopupComponent implements OnInit {
                 startNow = Date.now()
                 data.sort(dl.comparator(['+symbol', '-price']));
                 console.log('     END sort: ', (Date.now() - startNow) / 1000)
-                
-                // Fields
-                console.log('')
-                console.log('FIELDS start:')
-                startNow = Date.now()
-                var dataFields = dl.keys(data)
-                console.log('     fields', dataFields)
-                console.log('     END fields: ', (Date.now() - startNow) / 1000)
                 
                 // Group By
                 console.log('')
@@ -284,8 +286,8 @@ export class DataPopupComponent implements OnInit {
         // console.log('data rows', data.length)
         // console.log('end', Date.now() , startNow)
 
-        this.currentDatasources.push(newData);
-        this.currentDataset = newData.name;
+        // this.currentDatasources.push(newData);
+        // this.currentDataset = newData.name;
         this.isFirstTimeData = true;
         this.isFirstTimeData = false;
         if (close) {
@@ -316,6 +318,7 @@ export class DataPopupComponent implements OnInit {
     clickClose(action: string) {
         // this.formDataPopupClosed.emit(action);
         this.router.navigate(['/explore']);
+
     }
 
     clickRefreshPivot() {
