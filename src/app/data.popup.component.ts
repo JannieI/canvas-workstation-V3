@@ -24,9 +24,9 @@ import { field }                      from './models';
 import { fieldMetadata }              from './models';
 import { currentTransformation }      from './models';
 
-interface Idata{
-    name: string;
-}
+// Vega
+import * as dl from 'datalib';
+import { load } from 'datalib';
 
 @Component({
     selector: 'data',
@@ -146,6 +146,10 @@ export class DataPopupComponent implements OnInit {
             parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
 
         };
+        var csv_data = dl.load({url: './assets/vega-datasets/stocks.csv'});
+        var data = dl.read(csv_data, {type: 'csv', parse: 'auto'});
+        console.log('data', data)
+        
         this.currentDatasources.push(newData);
         this.currentDataset = newData.name;
         this.isFirstTimeData = true;
