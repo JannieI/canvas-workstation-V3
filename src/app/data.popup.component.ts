@@ -53,6 +53,8 @@ export class DataPopupComponent implements OnInit {
     
     currentTransformations: currentTransformation[];
     currentDataset: string = '';
+    draggedField: string = '';
+    rowField: string = 'Drag a field here ...';
 
     errorMessage: string = "";
     fields: field[];
@@ -331,7 +333,8 @@ export class DataPopupComponent implements OnInit {
         console.log("dragStart", ev, ev.srcElement.innerText);
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
-        console.log('drag_start')
+        this.draggedField = ev.srcElement.innerText;
+        console.log('drag_start', this.rowField)
     }
 
     dragend_handler(ev) {
@@ -352,8 +355,9 @@ export class DataPopupComponent implements OnInit {
         // Get the id of the target and add the moved element to the target's DOM
 
         var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-        console.log('drop_handler dropped !!', data)
+        // ev.target.appendChild(document.getElementById(data));
+        this.rowField = this.draggedField;
+        console.log('drop_handler dropped !!', ev.srcElement.innerText)
     }
 
     drop_pivot(ev) {
