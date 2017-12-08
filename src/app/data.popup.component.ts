@@ -170,7 +170,10 @@ export class DataPopupComponent implements OnInit {
         
         startNow = Date.now()
         console.log('LOAD data start:')
-        dl.csv({url: './assets/vega-datasets/stocks.csv'},{}, (err, currentData) => {
+        let fileFolder: string = './assets/vega-datasets/';
+        let fileName: string = 'stocks.csv';
+        let filePath: string = fileFolder + fileName;
+        dl.csv({url: filePath}, {}, (err, currentData) => {
             if (err) {
               console.log('error on load', err)
             } else {
@@ -250,10 +253,6 @@ export class DataPopupComponent implements OnInit {
             }
           });
 
-        // this.currentDatasources.push(newData);
-        // this.currentDataset = newData.name;
-        this.isFirstTimeData = true;
-        this.isFirstTimeData = false;
         if (action == 'AddAndClose') {
             this.router.navigate(['/explore']);
         };
@@ -282,7 +281,8 @@ export class DataPopupComponent implements OnInit {
                 parameters: 'None'
     
             };
-            this.currentDataset = 'Newly Added Data';
+            this.isFirstTimeData = false;
+            this.currentDataset = fileName;
             this.currentDatasources.push(newData);
             console.log('     currentDatasources', this.currentDatasources)
             console.log('     END datasource: ', (Date.now() - startNow) / 1000)
