@@ -348,11 +348,11 @@ export class DataPopupComponent implements OnInit {
 
     drop_handler(ev) {
         ev.preventDefault();
-        ev.dataTransfer.dropEffect = "link"
+        ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
 
         var data = ev.dataTransfer.getData("text");
-        // ev.target.appendChild(document.getElementById(data));
+        ev.target.appendChild(document.getElementById(data));
         console.log('drop_handler dropped !!', data)
     }
 
