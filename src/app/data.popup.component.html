@@ -359,8 +359,15 @@
                                 (dragend)="dragend_handler($event)"
                                 >
                                 Column Fields:
-                                <div class="pivotDropField">
-
+                                <div class="pivotDropField"
+                                    id="colFld"
+                                    (drop)="drop_handlerCol($event);" 
+                                    (dragover)="dragover_handler($event);"
+                                    draggable="true"
+                                    (dragstart)="dragstart_handler($event)"
+                                    (dragend)="dragend_handler($event)"
+                                    >
+                                    {{ colField }}
                                 </div>
                             </div>
                             <div>

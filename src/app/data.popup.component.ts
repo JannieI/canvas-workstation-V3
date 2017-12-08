@@ -55,6 +55,8 @@ export class DataPopupComponent implements OnInit {
     currentDataset: string = '';
     draggedField: string = '';
     rowField: string = 'Drag a field here ...';
+    colField: string = 'Drag a field here ...';
+    aggField: string = 'Drag a field here ...';
 
     errorMessage: string = "";
     fields: field[];
@@ -357,6 +359,17 @@ export class DataPopupComponent implements OnInit {
         var data = ev.dataTransfer.getData("text");
         // ev.target.appendChild(document.getElementById(data));
         this.rowField = this.draggedField;
+        console.log('drop_handler dropped !!', ev.srcElement.innerText)
+    }
+
+    drop_handlerCol(ev) {
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+        // ev.target.appendChild(document.getElementById(data));
+        this.colField = this.draggedField;
         console.log('drop_handler dropped !!', ev.srcElement.innerText)
     }
 
