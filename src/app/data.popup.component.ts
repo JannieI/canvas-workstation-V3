@@ -44,11 +44,13 @@ export class DataPopupComponent implements OnInit {
     currentDatasources: currentDatasource[];
     datasources: currentDatasource[];
     
+    currentData: any = [];
     dataArray: any;
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
     dataUniqueInColumn: string[] = [];
-
+    pageSize: number = 4;
+    
     currentTransformations: currentTransformation[];
     currentDataset: string = '';
 
@@ -177,6 +179,9 @@ export class DataPopupComponent implements OnInit {
               console.log('error on load', err)
             } else {
 
+                this.currentData = data;
+                console.log('!!!', this.currentData.length, this.currentData[0])
+
                 // Load
                 console.log('     data hdr', data[0])
                 console.log('     data rows', data.length)
@@ -194,6 +199,18 @@ export class DataPopupComponent implements OnInit {
                     console.log('     ', i, this.dataFieldNames[i])
                 }
                 console.log('     END fields: ', (Date.now() - startNow) / 1000)
+
+                // var n = +"1"; // the unary + converts to number
+                // var b = !!"2"; // the !! converts truthy to true, and falsy to false
+                // var s = ""+3; // the ""+ converts to string via toString()
+
+                console.log('     this.currentData', this.currentData.length)
+                console.log('     this.currentData', this.currentData[0])
+                console.log('     this.currentData', this.currentData[0].symbol)
+                console.log('     this.currentData', this.currentData[0]['symbol'])
+                console.log('     END data: ', (Date.now() - startNow) / 1000)
+                
+                // console.log('ONE', this.currentData[0][this.dataFieldNames[0]])
 
                 // Types
                 console.log('')
@@ -264,6 +281,7 @@ export class DataPopupComponent implements OnInit {
             
                     };
                     this.currentDatasources.push(newData);
+
                 }
                 console.log('     currentDatasources', this.currentDatasources)
                 console.log('     END loop: ', (Date.now() - startNow) / 1000)
