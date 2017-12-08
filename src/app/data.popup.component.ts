@@ -336,7 +336,7 @@ export class DataPopupComponent implements OnInit {
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = ev.srcElement.innerText;
-        console.log('drag_start', this.rowField)
+        console.log('drag_start for ', this.draggedField)
     }
 
     dragend_handler(ev) {
@@ -370,6 +370,17 @@ export class DataPopupComponent implements OnInit {
         var data = ev.dataTransfer.getData("text");
         // ev.target.appendChild(document.getElementById(data));
         this.colField = this.draggedField;
+        console.log('drop_handler dropped !!', ev.srcElement.innerText)
+    }
+
+    drop_handlerAgg(ev) {
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+        // ev.target.appendChild(document.getElementById(data));
+        this.aggField = this.draggedField;
         console.log('drop_handler dropped !!', ev.srcElement.innerText)
     }
 

@@ -388,7 +388,15 @@
                                     (dragend)="dragend_handler($event)"
                                     >
                                     Aggregate Field:
-                                    <div class="pivotDropAggregate">
+                                    <div class="pivotDropAggregate"
+                                        id="aggFld"
+                                        (drop)="drop_handlerAgg($event);" 
+                                        (dragover)="dragover_handler($event);"
+                                        draggable="true"
+                                        (dragstart)="dragstart_handler($event)"
+                                        (dragend)="dragend_handler($event)"
+                                        >
+                                        {{ aggField }}
 
                                     </div>
                                 </div>
