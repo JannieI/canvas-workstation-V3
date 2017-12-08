@@ -345,7 +345,7 @@
                                     (drop)="drop_handlerRow($event);" 
                                     (dragover)="dragover_handler($event);"
                                     draggable="true"
-                                    (dragstart)="dragstart_handler($event)"
+                                    (dragstart)="dragstart_handlerRow($event)"
                                     (dragend)="dragend_handler($event)"
                                     >
                                     {{ rowField }}
@@ -362,7 +362,7 @@
                                     (drop)="drop_handlerCol($event);" 
                                     (dragover)="dragover_handler($event);"
                                     draggable="true"
-                                    (dragstart)="dragstart_handler($event)"
+                                    (dragstart)="dragstart_handlerCol($event)"
                                     (dragend)="dragend_handler($event)"
                                     >
                                     {{ colField }}
@@ -382,7 +382,7 @@
                                 <div
                                     class="gridPivotAggregateField"
                                     draggable="true"
-                                    (dragstart)="dragstart_handler($event)"
+                                    (dragstart)="dragstart_handlerAgg($event)"
                                     (dragend)="dragend_handler($event)"
                                     >
                                     Aggregate Field:
@@ -435,25 +435,25 @@
                                     [style.height.px]="80"
                                     [style.width.px]="80"
                                     src="../images/BarChart.png"
-                                    (click)="clickIcon('BarChart')"
+                                    (click)="clickViewOptions('gridViewFieldProperties')"
                                 >
                                 <img
                                     [style.height.px]="80"
                                     [style.width.px]="80"
                                     src="../images/BubbleChart.png"
-                                    (click)="clickIcon('BubbleChart')"
+                                    (click)="clickViewOptions('gridViewExplain')"
                                 >
                                 <img class="typeIcon"
                                     [style.height.px]="80"
                                     [style.width.px]="80"
                                     src="../images/ColumnChart.png"
-                                    (click)="clickIcon('ColumnChart')"
+                                    (click)="clickViewOptions('gridViewSummaryGraphs')"
                                 >
                                 <img
                                     [style.height.px]="80"
                                     [style.width.px]="80"
                                     src="../images/LineChart.png"
-                                    (click)="clickIcon('LineChart')"
+                                    (click)="clickViewOptions('gridViewDataQuality')"
                                 >
 
                             </section>

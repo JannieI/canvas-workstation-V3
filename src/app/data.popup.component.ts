@@ -333,11 +333,39 @@ export class DataPopupComponent implements OnInit {
         this.showTransitionFormat = true;
     }
 
+    
     dragstart_handler(ev) {
         console.log("dragStart", ev, ev.srcElement.innerText);
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = ev.srcElement.innerText;
+        console.log('drag_start for ', this.draggedField)
+    }
+
+    dragstart_handlerCol(ev) {
+        console.log("dragStart", ev, ev.srcElement.innerText);
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+        this.draggedField = ev.srcElement.innerText;
+        this.colField = '';
+        console.log('drag_start for ', this.draggedField)
+    }
+
+    dragstart_handlerRow(ev) {
+        console.log("dragStart", ev, ev.srcElement.innerText);
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+        this.draggedField = ev.srcElement.innerText;
+        this.rowField = '';
+        console.log('drag_start for ', this.draggedField)
+    }
+
+    dragstart_handlerAgg(ev) {
+        console.log("dragStart", ev, ev.srcElement.innerText);
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+        this.draggedField = ev.srcElement.innerText;
+        this.aggField = '';
         console.log('drag_start for ', this.draggedField)
     }
 
@@ -460,5 +488,34 @@ export class DataPopupComponent implements OnInit {
 
     changedInput(newValue: any) {
         console.log('changedInput: Old-New', this.changeVar, newValue)
+    }
+
+    clickViewOptions(area: string) {
+        console.log('area', area)
+        if (area = 'gridViewFieldProperties') {
+            this.gridViewFieldProperties = true;
+            this.gridViewExplain = false;
+            this.gridViewSummaryGraphs = false;
+            this.gridViewDataQuality = false;
+        }
+        if (area = 'gridViewExplain') {
+            this.gridViewFieldProperties = false;
+            this.gridViewExplain = true;
+            this.gridViewSummaryGraphs = false;
+            this.gridViewDataQuality = false;
+        }
+        if (area = 'gridViewSummaryGraphs') {
+            this.gridViewFieldProperties = false;
+            this.gridViewExplain = false;
+            this.gridViewSummaryGraphs = true;
+            this.gridViewDataQuality = false;
+        }
+        if (area = 'gridViewDataQuality') {
+            this.gridViewFieldProperties = false;
+            this.gridViewExplain = false;
+            this.gridViewSummaryGraphs = false;
+            this.gridViewDataQuality = true;
+        }
+
     }
 }
