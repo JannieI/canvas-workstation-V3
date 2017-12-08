@@ -494,25 +494,25 @@ export class DataPopupComponent implements OnInit {
 
     clickViewOptions(area: string) {
         console.log('area', area)
-        if (area = 'gridViewFieldProperties') {
+        if (area == 'gridViewFieldProperties') {
             this.gridViewFieldProperties = true;
             this.gridViewExplain = false;
             this.gridViewSummaryGraphs = false;
             this.gridViewDataQuality = false;
         }
-        if (area = 'gridViewExplain') {
+        if (area == 'gridViewExplain') {
             this.gridViewFieldProperties = false;
             this.gridViewExplain = true;
             this.gridViewSummaryGraphs = false;
             this.gridViewDataQuality = false;
         }
-        if (area = 'gridViewSummaryGraphs') {
+        if (area == 'gridViewSummaryGraphs') {
             this.gridViewFieldProperties = false;
             this.gridViewExplain = false;
             this.gridViewSummaryGraphs = true;
             this.gridViewDataQuality = false;
         }
-        if (area = 'gridViewDataQuality') {
+        if (area == 'gridViewDataQuality') {
             this.gridViewFieldProperties = false;
             this.gridViewExplain = false;
             this.gridViewSummaryGraphs = false;
