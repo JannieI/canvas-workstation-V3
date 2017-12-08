@@ -60,12 +60,12 @@ export class DataPopupComponent implements OnInit {
     pivotCols: string[];
     pivotRows: string[];
     pivotAgg: string[];
+    resultMessage: string = 'Results will be shown here: drag and drop fields, then click Refresh'
 
     errorMessage: string = "";
     fields: field[];
     fieldsMetadata: fieldMetadata[];
     isFirstTimeData: boolean;
-    pivotData: string = '';
     selectorDetailColumnEnd: string = '12';
     selectedFile: boolean = true;
     selectedData: string = 'Trades for 2016';
@@ -322,7 +322,7 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickRefreshPivot() {
-        this.pivotData = 'All done !'
+        this.resultMessage = ''
     }
 
     clickRefreshSummary() {
@@ -392,7 +392,7 @@ export class DataPopupComponent implements OnInit {
         console.log('drop_handler dropped !!', ev.srcElement.innerText)
 
         // Pivot Rows
-        this.pivotRows = [];
+        this.pivotRows = [''];
         let pC = dl.groupby('symbol')
             .summarize( [
                 {name: 'symbol', ops: ['values']} 
@@ -401,6 +401,7 @@ export class DataPopupComponent implements OnInit {
         for (var i = 0; i < pC.length; i++) {
             this.pivotRows.push(pC[i].symbol)
         }
+        this.resultMessage = '';
         console.log('this.pivotRows', this.pivotRows)
 
     }
@@ -416,7 +417,7 @@ export class DataPopupComponent implements OnInit {
         console.log('drop_handler dropped !!', ev.srcElement.innerText)
 
         // Pivot Cols
-        this.pivotCols = [];
+        this.pivotCols = [''];
         let pC = dl.groupby('symbol')
             .summarize( [
                 {name: 'symbol', ops: ['values']} 
@@ -425,6 +426,7 @@ export class DataPopupComponent implements OnInit {
         for (var i = 0; i < pC.length; i++) {
             this.pivotCols.push(pC[i].symbol)
         }
+        this.resultMessage = '';
         console.log('this.pivotCols', this.pivotCols)
     }
 

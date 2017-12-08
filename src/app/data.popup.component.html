@@ -412,18 +412,20 @@
                             </div>
 
                         </div>
-                        <div class="gridPivotResult">
-                            <b>Result
+                        <div class="gridPivotColResult">
+                            <b>{{ resultMessage }}
                             </b>
                             <div *ngFor="let row of pivotCols"
                                 class="pivotCols">
                                 {{ row }}
                             </div>
+                        </div>
+                        <div class="gridPivotRowResult">
                             <div *ngFor="let row of pivotRows"
                                 class="pivotRows">
                                 {{ row }}
                             </div>
-                    </div>
+                        </div>
                     </div>
 
                     <div class="gridView" *ngIf="showView">
