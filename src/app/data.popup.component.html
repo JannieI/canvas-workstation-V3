@@ -306,9 +306,7 @@
                                         draggable="true"
                                         (dragstart)="dragstart_handler($event)"
                                         (dragend)="dragend_handler($event)"
-                                        (drop)="drop_handler($event);" 
-                                        (dragover)="dragover_handler($event);"
-                                            >
+                                        >
                                         {{ row }}
                                     </clr-dg-cell>
                                     <!-- <clr-dg-cell>
@@ -344,7 +342,7 @@
                                 Row Fields:
                                 <div class="pivotDropField"
                                     id="rowFld"
-                                    (drop)="drop_handler($event);" 
+                                    (drop)="drop_handlerRow($event);" 
                                     (dragover)="dragover_handler($event);"
                                     draggable="true"
                                     (dragstart)="dragstart_handler($event)"
@@ -417,8 +415,15 @@
                         <div class="gridPivotResult">
                             <b>Result
                             </b>
-                            {{ pivotData }}
-                        </div>
+                            <div *ngFor="let row of pivotCols"
+                                class="pivotCols">
+                                {{ row }}
+                            </div>
+                            <div *ngFor="let row of pivotRows"
+                                class="pivotRows">
+                                {{ row }}
+                            </div>
+                    </div>
                     </div>
 
                     <div class="gridView" *ngIf="showView">

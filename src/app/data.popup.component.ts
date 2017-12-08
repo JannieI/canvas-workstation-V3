@@ -57,6 +57,9 @@ export class DataPopupComponent implements OnInit {
     rowField: string = 'Drag a field here ...';
     colField: string = 'Drag a field here ...';
     aggField: string = 'Drag a field here ...';
+    pivotCols: string[];
+    pivotRows: string[];
+    pivotAgg: string[];
 
     errorMessage: string = "";
     fields: field[];
@@ -201,7 +204,6 @@ export class DataPopupComponent implements OnInit {
                     console.log('     ', i, this.dataFieldNames[i])
                 }
                 console.log('     END fields: ', (Date.now() - startNow) / 1000)
-
 
                 // Types
                 console.log('')
@@ -351,7 +353,7 @@ export class DataPopupComponent implements OnInit {
         this.transitionAction = actionName;
     }
 
-    drop_handler(ev) {
+    drop_handlerRow(ev) {
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
@@ -360,6 +362,19 @@ export class DataPopupComponent implements OnInit {
         // ev.target.appendChild(document.getElementById(data));
         this.rowField = this.draggedField;
         console.log('drop_handler dropped !!', ev.srcElement.innerText)
+
+        // Pivot Rows
+        this.pivotRows = [];
+        let pC = dl.groupby('symbol')
+            .summarize( [
+                {name: 'symbol', ops: ['values']} 
+                ] )
+            .execute(this.currentData);
+        for (var i = 0; i < pC.length; i++) {
+            this.pivotRows.push(pC[i].symbol)
+        }
+        console.log('this.pivotRows', this.pivotRows)
+
     }
 
     drop_handlerCol(ev) {
@@ -371,6 +386,18 @@ export class DataPopupComponent implements OnInit {
         // ev.target.appendChild(document.getElementById(data));
         this.colField = this.draggedField;
         console.log('drop_handler dropped !!', ev.srcElement.innerText)
+
+        // Pivot Cols
+        this.pivotCols = [];
+        let pC = dl.groupby('symbol')
+            .summarize( [
+                {name: 'symbol', ops: ['values']} 
+                ] )
+            .execute(this.currentData);
+        for (var i = 0; i < pC.length; i++) {
+            this.pivotCols.push(pC[i].symbol)
+        }
+        console.log('this.pivotCols', this.pivotCols)
     }
 
     drop_handlerAgg(ev) {
