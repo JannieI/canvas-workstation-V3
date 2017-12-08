@@ -110,76 +110,6 @@
 
                     </div>
 
-                    <!-- <div class="gridOld" *ngIf="NotYet">
-                        <div *ngIf="selectedFieldProperties">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                </div>
-                                <div class="col-xs-9">
-                                    <div class="propertyBox">
-                                        <div class="propertyLine">
-                                            Info for <b>TradeData</b>
-                                        </div>
-                                        <div class="propertyLine">
-                                            Description: bla-bla-bla
-                                        </div>
-                                        <div class="propertyLine">
-                                            Local Name: <input type="text" id="formFields_7" placeholder="Enter Name">
-                                        </div>
-                                        <div class="propertyLine">
-                                            Type: <b>Number</b>  Change to:
-                                            <div class="select">
-                                                <select id="selects_3">
-                                                    <option>Boolean (true/false)</option>
-                                                    <option>Date (2014/07/31)</option>
-                                                    <option>DateTime (2014/07/31 12:41:04)</option>
-                                                    <option>String ('May West')</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="propertyLine">
-                                            Format: <b></b>  Change to:
-                                            <div class="select">
-                                                <select id="selects_3">
-                                                    <option>Number</option>
-                                                    <option>Monetary</option>
-                                                    <option>YYYY/MM/DD</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="propertyLine">
-                                            Filter: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Filter text">
-                                        </div>
-                                        <div class="propertyLine">
-                                            Calculation: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Enter Formula">
-                                        </div>
-                                        <div class="propertyLine">
-                                            Order: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Order (1 Asc)">
-                                        </div>
-                                        <div class="propertyLine">
-                                            Hide: <b></b>  Change to:
-                                            <div class="select">
-                                                <select id="selects_3">
-                                                    <option>True</option>
-                                                    <option>False</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="propertyLine">
-                                            Key Field: <b></b>  Change to:
-                                            <div class="select">
-                                                <select id="selects_3">
-                                                    <option>True</option>
-                                                    <option>False</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
                     <div class="gridIdentifyData" *ngIf="showIdentifyFile">
                         <div class="gridIdentifyDataExisting">
                                 <span class="gridHeading">Existing Datasets</span>
@@ -293,52 +223,6 @@
                     <div class="gridTransform" *ngIf="showTransform">
                         <div class="gridTransformTransformations">
 
-                                <!-- <clr-dropdown>
-                                    <button
-                                        type="button"
-                                        class="btn btn-link btn-sm"
-                                        clrDropdownTrigger
-                                        >
-                                        Category
-                                        <clr-icon shape="caret down" *ngIf="!showServerData"></clr-icon>
-                                    </button>
-                                    , and then drag the requird field onto it:
-                                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                                        <button type="button" clrDropdownItem (click)="clickTransitionFormat()">
-                                            Format content
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Fill content
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Add Geo
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Append Column
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Replace content
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Partial content
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Trim content
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            Saved Transformations
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            R Extensions
-                                        </button>
-                                        <button type="button" clrDropdownItem (click)="clickSave()">
-                                            PythonExtensions
-                                        </button>
-                                    </clr-dropdown-menu>
-                                </clr-dropdown> -->
-
-
-
                             <span class="gridHeading">Added Transformations </span>
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column [clrDgField]="'filterTransformation'">Name</clr-dg-column>
@@ -414,16 +298,16 @@
 
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
-                                <clr-dg-column [clrDgField]="'filterPivotFields'">Type</clr-dg-column>
-                                <clr-dg-column [clrDgField]="'filterPivotFields'">Edit?</clr-dg-column>
-                                <clr-dg-row *ngFor="let row of currentDatasources">
-                                    <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                    <clr-dg-cell>
+                                <!-- <clr-dg-column [clrDgField]="'filterPivotFields'">Type</clr-dg-column> -->
+                                <!-- <clr-dg-column [clrDgField]="'filterPivotFields'">Edit?</clr-dg-column> -->
+                                <clr-dg-row *ngFor="let row of dataFieldNames">
+                                    <clr-dg-cell>{{ row }}</clr-dg-cell>
+                                    <!-- <clr-dg-cell>
                                         <span class="color-square" 
                                         [style.backgroundColor]="'blue'">.</span>
-                                    </clr-dg-cell>
+                                    </clr-dg-cell> -->
 
-                                    <clr-dg-cell>
+                                    <!-- <clr-dg-cell>
                                         <div [hidden]="isEditMode">
                                             {{row.name}}
                                             <input #input type="number" min="0" 
@@ -435,7 +319,7 @@
                                             [(value)]="changeVar" 
                                             (change)="changedInput(value)" />
                                         </div>
-                                    </clr-dg-cell>
+                                    </clr-dg-cell> -->
 
                                 </clr-dg-row>
 
