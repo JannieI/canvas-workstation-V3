@@ -226,7 +226,7 @@
                             <button
                                 type="button"
                                 class="btn btn-link selectButon"
-                                (click)="clickFilePreview()"
+                                (click)="clickFileAdd('Preview')"
                                 >
                                 Preview
                             </button>
@@ -238,14 +238,14 @@
                             <button
                                 type="button"
                                 class="btn btn-secondary selectButon"
-                                (click)="clickFileAdd(false)"
+                                (click)="clickFileAdd('Add')"
                                 >
                                 Add
                             </button>
                             <button
                                 type="button"
                                 class="btn btn-secondary selectButon"
-                                (click)="clickFileAdd(true)"
+                                (click)="clickFileAdd('AddAndClose')"
                                 >
                                 Add and Close
                             </button>
@@ -281,7 +281,7 @@
                                     
                                     <clr-dg-footer>
                                         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                        of {{pagination.totalItems}} users
+                                        of {{pagination.totalItems}} rows
                                         <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
                                     </clr-dg-footer>                                    
 

@@ -120,10 +120,6 @@ export class DataPopupComponent implements OnInit {
         console.log('this.isFirstTimeData', this.isFirstTimeData)
     }
 
-    clickFilePreview() {
-        this.showDataPreview = !this.showDataPreview;
-        this.currentDataset = 'Newly Added Data';
-    }
 
     clickField() {
         if (this.showSelectField) {
@@ -139,7 +135,7 @@ export class DataPopupComponent implements OnInit {
         // alert('Later: File component to browse ...')
     }
 
-    clickFileAdd(close: boolean) {
+    clickFileAdd(action: string) {
         // console.log(this.currentDatasources)
         // let newData: currentDatasource =  {
         //     id: 1,
@@ -174,25 +170,24 @@ export class DataPopupComponent implements OnInit {
         
         startNow = Date.now()
         console.log('LOAD data start:')
-        dl.csv({url: './assets/vega-datasets/stocks.csv'},{}, (err, data) => {
+        dl.csv({url: './assets/vega-datasets/stocks.csv'},{}, (err, currentData) => {
             if (err) {
               console.log('error on load', err)
             } else {
 
-                this.currentData = data;
-                console.log('!!!', this.currentData.length, this.currentData[0])
-
                 // Load
-                console.log('     data hdr', data[0])
-                console.log('     data rows', data.length)
-                console.log('     END secs: ', (Date.now() - startNow) / 1000)
                 console.log('')
+                console.log('LOAD start:')
+                this.currentData = currentData;
+                currentData = [];
+                console.log('     data rows', this.currentData.length)
+                console.log('     END load: ', (Date.now() - startNow) / 1000)
 
                 // Fields
                 console.log('')
                 console.log('FIELDS start:')
                 startNow = Date.now()
-                var dataTypes = dl.type.all(data)
+                var dataTypes = dl.type.all(this.currentData)
                 this.dataFieldNames = Object.keys(dataTypes);
                 console.log('     fields', this.dataFieldNames)
                 for (var i = 0; i < this.dataFieldNames.length; i++) {
@@ -200,17 +195,6 @@ export class DataPopupComponent implements OnInit {
                 }
                 console.log('     END fields: ', (Date.now() - startNow) / 1000)
 
-                // var n = +"1"; // the unary + converts to number
-                // var b = !!"2"; // the !! converts truthy to true, and falsy to false
-                // var s = ""+3; // the ""+ converts to string via toString()
-
-                console.log('     this.currentData', this.currentData.length)
-                console.log('     this.currentData', this.currentData[0])
-                console.log('     this.currentData', this.currentData[0].symbol)
-                console.log('     this.currentData', this.currentData[0]['symbol'])
-                console.log('     END data: ', (Date.now() - startNow) / 1000)
-                
-                // console.log('ONE', this.currentData[0][this.dataFieldNames[0]])
 
                 // Types
                 console.log('')
@@ -227,7 +211,7 @@ export class DataPopupComponent implements OnInit {
                 console.log('')
                 console.log('SORT start:')
                 startNow = Date.now()
-                data.sort(dl.comparator(['+symbol', '-price']));
+                this.currentData.sort(dl.comparator(['+symbol', '-price']));
                 console.log('     END sort: ', (Date.now() - startNow) / 1000)
                 
                 // Group By
@@ -239,7 +223,7 @@ export class DataPopupComponent implements OnInit {
                         {name: 'symbol', ops: ['valid']},
                         {name: 'price',  ops: ['sum', 'median'], as: ['s', 'm']} 
                         ] )
-                    .execute(data);
+                    .execute(this.currentData);
                 console.log('     groupby', this.dataArray)
                 console.log('     END groupby: ', (Date.now() - startNow) / 1000)
 
@@ -247,7 +231,7 @@ export class DataPopupComponent implements OnInit {
                 console.log('')
                 console.log('UNIQUE start:')
                 startNow = Date.now()
-                var dataUniqueInColumn = dl.unique(data);
+                var dataUniqueInColumn = dl.unique(this.currentData);
                 console.log('     unique', dataUniqueInColumn)
                 console.log('     END unique: ', (Date.now() - startNow) / 1000)
 
@@ -259,65 +243,50 @@ export class DataPopupComponent implements OnInit {
                     .summarize( [
                         {name: 'symbol', ops: ['values']} 
                         ] )
-                    .execute(data);
+                    .execute(this.currentData);
                 console.log('     unique', dataUniqueInColumn)
                 console.log('     END unique: ', (Date.now() - startNow) / 1000)
-                
-                // Loop to load Array
-                console.log('')
-                console.log('LOOP start:')
-                startNow = Date.now()
-                for (var i = 0; i < this.dataArray.length; i++) {
-                    let newData: currentDatasource =  {
-                        id: i,
-                        type: this.dataArray[i]['s'],
-                        name: this.dataArray[i]['m'],
-                        description: this.dataArray[i]['symbol'],
-                        createdBy: i.toString(),
-                        createdOn: '2017/01/01',
-                        refreshedBy: 'JohnM',
-                        refreshedOn: '2017/01/01',
-                        parameters: this.dataArray[i]['symbol']
             
-                    };
-                    this.currentDatasources.push(newData);
-
-                }
-                console.log('     currentDatasources', this.currentDatasources)
-                console.log('     END loop: ', (Date.now() - startNow) / 1000)
-
-                // Preview
-                console.log('')
-                console.log('PREVIEW start:')
-                startNow = Date.now()
-                this.showDataPreview = true;
-                console.log('        END preview: ', (Date.now() - startNow) / 1000)
             }
           });
-
-        // dl.load({url: './assets/vega-datasets/stocks1.csv'}, function(err, data) {
-        // if (err) {
-        //     console.log('error on load')
-        // } else {
-        //     let data_csv = dl.read(csv_data, {type: 'csv', parse: 'auto'});
-        //     console.log('data_csv', data_csv[0])
-        //     console.log('data rows', data_csv.length)
-        //     console.log('end secs: ', (Date.now() - startNow) / 1000)
-        // }
-        // });
-
-        // var csv_data = dl.csv({url: './assets/vega-datasets/stocks3.csv'});
-        // startNow = Date.now()
-        // console.log('data rows', data.length)
-        // console.log('end', Date.now() , startNow)
 
         // this.currentDatasources.push(newData);
         // this.currentDataset = newData.name;
         this.isFirstTimeData = true;
         this.isFirstTimeData = false;
-        if (close) {
+        if (action == 'AddAndClose') {
             this.router.navigate(['/explore']);
         };
+
+        // Preview
+        console.log('')
+        console.log('PREVIEW start:')
+        startNow = Date.now()
+        this.showDataPreview = true;
+        console.log('        END preview: ', (Date.now() - startNow) / 1000)
+
+        if (action =="Add") {
+            // Datasource
+            console.log('')
+            console.log('DATASOURCE start:')
+            startNow = Date.now()
+            let newData: currentDatasource =  {
+                id: 1,
+                type: 'CSV File',
+                name: 'Stocks.csv',
+                description: 'Hard coded name',
+                createdBy: 'Me',
+                createdOn: '2017/01/01',
+                refreshedBy: 'JohnM',
+                refreshedOn: '2017/01/01',
+                parameters: 'None'
+    
+            };
+            this.currentDataset = 'Newly Added Data';
+            this.currentDatasources.push(newData);
+            console.log('     currentDatasources', this.currentDatasources)
+            console.log('     END datasource: ', (Date.now() - startNow) / 1000)
+        }
     }
 
     clickDatasourceRow(dsName: string) {
