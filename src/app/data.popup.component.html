@@ -339,7 +339,7 @@
 
 
 
-                            <span class="gridHeading">Transformations </span>
+                            <span class="gridHeading">Added Transformations </span>
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column [clrDgField]="'filterTransformation'">Name</clr-dg-column>
 
@@ -350,26 +350,28 @@
 
                         </div>
                         <div class="gridTransformNew">
-                            <div>Please select Transformation and Field.
+                            <div>Please select a fields and the transformation that must be 
+                                applied to it:
                             </div>
                             <label for="selects_2">Field:</label>
                             <div class="select">
                                 <select id="selects_2">
-                                    <option>Add new Field</option>
-                                    <option>Traders</option>
-                                    <option>TradeDate</option>
+                                    <option *ngFor="let row of dataFieldNames">
+                                        {{ row }}
+                                    </option>
                                 </select>
                             </div>
                             <label for="selects_1">Transformation:</label>
                             <div class="select">
                                 <select id="selects_1">
-                                    <option>Fill Blanks</option>
-                                    <option>Trim Left</option>
-                                </select>
+                                    <option *ngFor="let row of transformationsFormat">
+                                            {{ row.name }}
+                                        </option>
+                                    </select>
                             </div>
                             <div>
                                 <input type="text" id="formFields_7"
-                                    placeholder="Description"
+                                    placeholder="Description of transformation ..."
                                     class="selectFile"
                                     >
                             </div>
@@ -387,11 +389,18 @@
                                 placeholder="Set Name"
                                 class="selectFile"
                                 >
+                            <button
+                                type="button"
+                                class="btn btn-link selectButon"
+                                (click)="clickFileAddTransformation()"
+                                >
+                                Save
+                            </button>
                         </div>
                         <div class="gridTransformExisting">
                             <div *ngIf="showTransformDetail">
                                 <input type="text" id="formFields_7"
-                                    placeholder="Enter formula"
+                                    placeholder="Enter date format"
                                     class="selectFile"
                                     >
 
