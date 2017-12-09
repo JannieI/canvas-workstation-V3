@@ -467,68 +467,71 @@
 
                         </div>
                         <div class="gridViewRight">
-                            <div *ngIf="gridViewOverview" class="gridViewRightOverview">
-                                <b>
-                                    <h4 class="gridViewFieldHeading" >Explanations</h4>
-                                </b>
-                                <i>This area shows an overview of the data in 6 graphs.
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary"
-                                        (click)="clickRefreshData()"
-                                        >
-                                        Save
-                                    </button>
-                                </i>
-                                <br><br>
+                            <div *ngIf="gridViewOverview">
                                 <div>
-                                    <img class="gridViewRightOverviewGraph"
-                                        [style.height.px]="80"
-                                        [style.width.px]="80"
-                                        src="../images/GraphIcon.png"
-                                        (click)="clickViewOptions('gridViewOverview')"
-                                    >
-
+                                    <b>
+                                        <h4 class="gridViewFieldHeading" >Overview</h4>
+                                    </b>
+                                    <i>This area shows an overview of the data in 6 graphs.
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary"
+                                            (click)="clickRefreshData()"
+                                            >
+                                            Refresh
+                                        </button>
+                                    </i>
                                 </div>
-                                <div>
+                                <div class="gridViewRightOverview">
+                                    <div class="gridViewRightOverviewGraph">
                                         <img class="gridViewRightOverviewGraph"
-                                        [style.height.px]="80"
-                                        [style.width.px]="80"
-                                        src="../images/GraphIcon.png"
-                                        (click)="clickViewOptions('gridViewOverview')"
-                                    >
-                                </div>
-                                <div>
-                                    <img class="gridViewRightOverviewGraph"
-                                        [style.height.px]="80"
-                                        [style.width.px]="80"
-                                        src="../images/GraphIcon.png"
-                                        (click)="clickViewOptions('gridViewOverview')"
-                                    >
-                                </div>
-                                <div>
-                                    <img class="gridViewRightOverviewGraph"
-                                        [style.height.px]="80"
-                                        [style.width.px]="80"
-                                        src="../images/GraphIcon.png"
-                                        (click)="clickViewOptions('gridViewOverview')"
-                                    >
-                                </div>
-                                <div>
-                                    <img class="gridViewRightOverviewGraph"
-                                        [style.height.px]="80"
-                                        [style.width.px]="80"
-                                        src="../images/GraphIcon.png"
-                                        (click)="clickViewOptions('gridViewOverview')"
-                                    >
-                                </div>
-                                <div>
-                                    <img class="gridViewRightOverviewGraph"
-                                        [style.height.px]="80"
-                                        [style.width.px]="80"
-                                        src="../images/GraphIcon.png"
-                                        (click)="clickViewOptions('gridViewOverview')"
-                                    >
+                                            [style.height.px]="120"
+                                            [style.width.px]="120"
+                                            src="../images/GraphIcon.png"
+                                            (click)="clickViewOptions('gridViewOverview')"
+                                        >
+
+                                    </div>
+                                    <div class="gridViewRightOverviewGraph">
+                                            <img class="gridViewRightOverviewGraph"
+                                            [style.height.px]="120"
+                                            [style.width.px]="120"
+                                            src="../images/GraphIcon.png"
+                                            (click)="clickViewOptions('gridViewOverview')"
+                                        >
+                                    </div>
+                                    <div class="gridViewRightOverviewGraph">
+                                        <img class="gridViewRightOverviewGraph"
+                                            [style.height.px]="120"
+                                            [style.width.px]="120"
+                                            src="../images/GraphIcon.png"
+                                            (click)="clickViewOptions('gridViewOverview')"
+                                        >
+                                    </div>
+                                    <div class="gridViewRightOverviewGraph">
+                                        <img class="gridViewRightOverviewGraph"
+                                            [style.height.px]="120"
+                                            [style.width.px]="120"
+                                            src="../images/GraphIcon.png"
+                                            (click)="clickViewOptions('gridViewOverview')"
+                                        >
+                                    </div>
+                                    <div class="gridViewRightOverviewGraph">
+                                        <img class="gridViewRightOverviewGraph"
+                                            [style.height.px]="120"
+                                            [style.width.px]="120"
+                                            src="../images/GraphIcon.png"
+                                            (click)="clickViewOptions('gridViewOverview')"
+                                        >
+                                    </div>
+                                    <div class="gridViewRightOverviewGraph">
+                                        <img class="gridViewRightOverviewGraph"
+                                            [style.height.px]="120"
+                                            [style.width.px]="120"
+                                            src="../images/GraphIcon.png"
+                                            (click)="clickViewOptions('gridViewOverview')"
+                                        >
+                                    </div>
                                 </div>
                             </div>
 
@@ -662,49 +665,20 @@
                             </div>
                             <div *ngIf="gridViewSummaryGraphs">
 
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    (click)="clickRefreshSummary()"
-                                    >
-                                    Refresh Summary
-                                </button>
-
-                                <br> <br>
-
-                                Nr records: <b>241</b>
-                                <br>
-                                3-9 graphs that summarises the data
-                                <br> <br>
-                                <i>
-                                    * IF key fields have been marked, some cardinality / summary
-                                    graphs will be shown to the shape of the data, bins,
-                                    frequency distribution, etc to help understand the data.
-                                    If no fields were marked, the software will makes its
-                                    best guess.
-                                </i>
-
-
-
                                 <b>
-                                    <h4 class="gridViewFieldHeading" >Explanations</h4>
+                                    <h4 class="gridViewFieldHeading" >Field Profile</h4>
                                 </b>
-                                <i>This area is used for optional pre-defined explanations.  An explanation
-                                    consists of two fields and a graph type.  For example, for
-                                    SoftDrinkSalesData we can define an Explanation = (date, temparature,
-                                    BarChart).  When the SoftDrinkSalesData Widget is displayed, one
-                                    can explain the data with a single click (by showing the weather
-                                    for the period).  Explanations can be defined at the data level
-                                    (applicable to all the fields) or field level.
+                                <i>This area gives a summary or profile of a seleted field.
+                                    Your dataset has <b>241</b> records, and <b>24</b> fields,
+                                    of the following types: Text fields: <b>8</b>, 
+                                    Date fields: <b>4</b>,
+                                    Number fields: <b>9</b>, 
+                                    Boolean fields: <b>2</b>, 
+                                    ? fields: <b>1</b>. 
                                 </i>
                                 <br><br>
                                 <div class="propertyLine">
-                                    The whole dataset (all fields) is explained by:
-                                    <input type="text" id="formFields_7"
-                                        placeholder="BarChart of Temperature by Date">
-                                </div>
-                                <div class="propertyLine">
-                                    This field:
+                                    Select a Field:
                                     <b>
                                         <div class="select">
                                             <select id="selects_3">
@@ -714,21 +688,52 @@
                                             </select>
                                         </div>
                                     </b>
-                                    Is explained by:
-                                    <input type="text" id="formFields_7"
-                                        placeholder="PieChart of Sales by City">
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary buttonRefresh"
-                                        (click)="clickRefreshData()"
-                                        >
-                                        Save
-                                    </button>
                                 </div>
-
-
-
-
+                                <br>
+                                <div class="gridViewSummaryGraphsFields">
+                                    <div class="propertyLine">
+                                        "field": (field name)
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "unique": (# value:count pairs)
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "count": 1000,
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "valid": 1000,
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "missing": 0,
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "distinct": 1000,
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "min": -2.7983914656538427,
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "max": 2.9931226872439436,
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "mean": 0.024987537472992594,
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "stdev": 0.965105294571081,
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "median": 0.012544328964464974,
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "q1": -0.6686040453830552, // 25th percentile
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "q3": 0.7090708668163043   // 75th percentile
+                                    </div>  
+                                    <div class="propertyLine">
+                                        "modeskew": 0.012893109776231,
+                                    </div>
+                                </div>
                             </div>
                             <div *ngIf="gridViewDataQuality">
 

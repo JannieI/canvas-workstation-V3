@@ -357,11 +357,15 @@
     }
 
         .iconButton {
-            border: 1px gray solid !important;
+            border: 1px gray solid;
             border-radius: 3px;
             box-shadow: 2px 2px gray;
             margin: 4px;
             padding: 0;
+        }
+
+        .iconButton:hover {
+            border: 2px rgb(36, 36, 206) solid;
         }
 
     .gridViewRight
@@ -384,13 +388,24 @@
         .buttonRefresh {
             float: right;
         }
-
+        
         .gridViewRightOverview {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(2, 1fr);
+            margin: auto;
+            padding: 10px;
         }
 
+        .gridViewRightOverviewGraph {
+            margin: 20px;
+        }
+
+        .gridViewSummaryGraphsFields {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            
+        }
 
 .modalBox {
     background-color: rgb(0,0,0); /* Fallback color */
