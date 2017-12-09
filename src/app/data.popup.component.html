@@ -582,6 +582,13 @@
                                     Is explained by:
                                     <input type="text" id="formFields_7"
                                         placeholder="PieChart of Sales by City">
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary buttonRefresh"
+                                        (click)="clickRefreshData()"
+                                        >
+                                        Save
+                                    </button>
                                 </div>
                             </div>
                             <div *ngIf="gridViewSummaryGraphs">
