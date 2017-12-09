@@ -348,11 +348,20 @@
 
     .gridViewSide {
         border: 1px solid gray;
+        border-radius: 5px;
         grid-column-start: 1;
-        grid-column-end: 5;
+        grid-column-end: 3;
         grid-row-start: 1;
         grid-row-end: 25;
-        padding: 10px;
+        padding: 8px;
+    }
+
+    .iconButton {
+        border: 1px gray solid !important;
+        border-radius: 3px;
+        box-shadow: 2px 2px gray;
+        margin: 4px;
+        padding: 0;
     }
 
     .gridViewRight
@@ -595,12 +604,4 @@ datagrid-placeholder-container {
  }
 .datagrid-fixed-width {
         flex: 0 0 auto;
-}
-
-.iconButton {
-    border: 1px gray solid !important;
-    border-radius: 3px;
-    box-shadow: 2px 2px gray;
-    margin: 5px;
-    padding: 0;
 }
