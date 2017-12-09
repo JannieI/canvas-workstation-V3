@@ -16,10 +16,37 @@ import { dashboardTag }               from './models';
 import { dashboardTheme }             from './models';
 import { dashboardSchedule }          from './models';
 import { dashboardComment }           from './models';
+import { dataQualityIssue}            from './models'
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
+const dataQualityIssues: dataQualityIssue[] =
+[ 
+    {
+        id: 1,
+        status: 'Open',
+        name: 'Missing Data',
+        type: 'Data',
+        description: 'bla-bla-bla',
+        loggedBy: 'AstonK',
+        loggedOn: '2017/01/01',
+        solvedBy: '',
+        solvedOn: '',
+    },
+    {
+        id: 2,
+        status: '',
+        name: 'Invalid Entries',
+        type: 'Process',
+        description: 'bla-bla-bla',
+        loggedBy: 'BarbaraR',
+        loggedOn: '2017/01/01',
+        solvedBy: 'GordonL',
+        solvedOn: '2017/01/01',
+    }
+]
+
 const dashboardComments: dashboardComment[] =
 [
     {
@@ -924,6 +951,7 @@ export class GlobalVariableService {
     backgroundcolors: CSScolor[] = backgroundcolors;
     currentDatasources: currentDatasource[] = currentDatasources;
     datasources: currentDatasource[] = datasources;
+    dataQualityIssues: dataQualityIssue[] = dataQualityIssues;
     transformationsFormat: transformation[] = transformationsFormat;
     fields: field[] = fields;
     fieldsMetadata: fieldMetadata[] = fieldsMetadata;

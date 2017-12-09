@@ -1,6 +1,17 @@
 // ALL models (schema) are kept here
 
-// Datasource
+export class dataQualityIssue {
+    id: number;
+    status: string;
+    name: string;
+    type: string;
+    description;
+    loggedBy: string;
+    loggedOn: string;
+    solvedBy: string;
+    solvedOn: string;
+}
+
 export class datasource {
     id: number;
     name: string;
