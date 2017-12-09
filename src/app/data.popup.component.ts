@@ -87,7 +87,8 @@ export class DataPopupComponent implements OnInit {
     selectedSummary: boolean = false;
     selectAddTransformation: boolean = false;
 
-    gridViewFieldProperties: boolean = true;
+    gridViewOverview: boolean = true;
+    gridViewFieldProperties: boolean = false;
     gridViewExplain: boolean = false;
     gridViewSummaryGraphs: boolean = false;
     gridViewDataQuality: boolean = false;
@@ -494,25 +495,37 @@ export class DataPopupComponent implements OnInit {
 
     clickViewOptions(area: string) {
         console.log('area', area)
+        
+        if (area == 'gridViewOverview') {
+            this.gridViewOverview = true;
+            this.gridViewFieldProperties = false;
+            this.gridViewExplain = false;
+            this.gridViewSummaryGraphs = false;
+            this.gridViewDataQuality = false;
+        }
         if (area == 'gridViewFieldProperties') {
+            this.gridViewOverview = false;
             this.gridViewFieldProperties = true;
             this.gridViewExplain = false;
             this.gridViewSummaryGraphs = false;
             this.gridViewDataQuality = false;
         }
         if (area == 'gridViewExplain') {
+            this.gridViewOverview = false;
             this.gridViewFieldProperties = false;
             this.gridViewExplain = true;
             this.gridViewSummaryGraphs = false;
             this.gridViewDataQuality = false;
         }
         if (area == 'gridViewSummaryGraphs') {
+            this.gridViewOverview = false;
             this.gridViewFieldProperties = false;
             this.gridViewExplain = false;
             this.gridViewSummaryGraphs = true;
             this.gridViewDataQuality = false;
         }
         if (area == 'gridViewDataQuality') {
+            this.gridViewOverview = false;
             this.gridViewFieldProperties = false;
             this.gridViewExplain = false;
             this.gridViewSummaryGraphs = false;

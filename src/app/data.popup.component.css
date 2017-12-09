@@ -385,6 +385,13 @@
             float: right;
         }
 
+        .gridViewRightOverview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+        }
+
+
 .modalBox {
     background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
