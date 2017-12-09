@@ -464,6 +464,16 @@
                         </div>
                         <div class="gridViewRight">
                             <div *ngIf="gridViewFieldProperties" class="propertyBox">
+                                <b>
+                                    <h4 class="gridViewFieldPropertiesHeading" >Field Properties</h4>
+                                </b>
+                                <i>Changes made on this page are applied to the data at time of 
+                                    extraction.  Click <b>Refresh Data</b> for changes made now to 
+                                    take effect, which will reload your data.  If a field is already
+                                    used in a Widget, new changes may impact on Widget. This field 
+                                    is currently used in <b>2</b> Widgets.
+                                </i>
+                                <br><br>
                                 <div class="propertyLine">
                                     Select field:
                                     <b>
@@ -495,26 +505,26 @@
                                     </div>
                                 </div>
                                 <div class="propertyLine">
-                                    Format: <b></b>  Change to:
+                                    Format: <b>None</b>  Change to:
                                     <div class="select">
                                         <select id="selects_3">
-                                            <option>Number</option>
+                                            <option>Month</option>
                                             <option>Monetary</option>
                                             <option>YYYY/MM/DD</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="propertyLine">
-                                    Filter: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Filter text">
+                                    Filter: <b>None</b>  Change to: <input type="text" id="formFields_7" placeholder="Filter text">
                                 </div>
                                 <div class="propertyLine">
-                                    Calculation: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Enter Formula">
+                                    Calculation: <b>None</b>  Change to: <input type="text" id="formFields_7" placeholder="Enter Formula">
                                 </div>
                                 <div class="propertyLine">
-                                    Order: <b></b>  Change to: <input type="text" id="formFields_7" placeholder="Order (1 Asc)">
+                                    Order: <b>None</b>  Change to: <input type="text" id="formFields_7" placeholder="Order (1 Asc)">
                                 </div>
                                 <div class="propertyLine">
-                                    Hide: <b></b>  Change to:
+                                    Hide: <b>False</b>  Change to:
                                     <div class="select">
                                         <select id="selects_3">
                                             <option>True</option>
@@ -523,14 +533,22 @@
                                     </div>
                                 </div>
                                 <div class="propertyLine">
-                                    Key Field: <b></b>  Change to:
+                                    Key Field: <b>False</b>  Change to:
                                     <div class="select">
                                         <select id="selects_3">
                                             <option>True</option>
                                             <option>False</option>
                                         </select>
                                     </div>
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary buttonRefresh"
+                                        (click)="clickRefreshData()"
+                                        >
+                                        Refresh Data
+                                    </button>
                                 </div>
+                                
                             </div>     
                             <div *ngIf="gridViewExplain">                               
                                 ExplainedBy:
