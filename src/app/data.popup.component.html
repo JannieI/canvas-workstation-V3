@@ -194,11 +194,11 @@
 
                             <div *ngIf="showDataPreview">
                                 <clr-datagrid class="fieldsDataGrid">
-                                        
+
 
                                     <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
                                     <clr-dg-row *ngFor="let row of currentData">
-                                        
+
                                         <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
                                                 {{ row[col] }}
                                         </clr-dg-cell>
@@ -208,12 +208,12 @@
                                         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} rows
                                         <clr-dg-pagination #pagination [clrDgPageSize]="pageSize"></clr-dg-pagination>
                                     </clr-dg-footer> -->
-                                    
+
                                     <clr-dg-footer>
                                         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                         of {{pagination.totalItems}} rows
                                         <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
-                                    </clr-dg-footer>                                    
+                                    </clr-dg-footer>
 
                                 </clr-datagrid>
                             </div>
@@ -234,7 +234,7 @@
 
                         </div>
                         <div class="gridTransformNew">
-                            <div>Please select a fields and the transformation that must be 
+                            <div>Please select a fields and the transformation that must be
                                 applied to it:
                             </div>
                             <label for="selects_2">Field:</label>
@@ -310,20 +310,20 @@
                                         {{ row }}
                                     </clr-dg-cell>
                                     <!-- <clr-dg-cell>
-                                        <span class="color-square" 
+                                        <span class="color-square"
                                         [style.backgroundColor]="'blue'">.</span>
                                     </clr-dg-cell> -->
 
                                     <!-- <clr-dg-cell>
                                         <div [hidden]="isEditMode">
                                             {{row.name}}
-                                            <input #input type="number" min="0" 
-                                            [(value)]="changeVar" 
+                                            <input #input type="number" min="0"
+                                            [(value)]="changeVar"
                                             (change)="changedInput(value)" />
                                         </div>
                                         <div [hidden]="!isEditMode">
-                                            <input #input type="number" min="0" 
-                                            [(value)]="changeVar" 
+                                            <input #input type="number" min="0"
+                                            [(value)]="changeVar"
                                             (change)="changedInput(value)" />
                                         </div>
                                     </clr-dg-cell> -->
@@ -335,14 +335,14 @@
                         </div>
                         <div class="gridPivotDropArea">
                             <div>
-                                Please drop a Field onto a Row, Column and the Aggregate. 
+                                Please drop a Field onto a Row, Column and the Aggregate.
                                 Then select the type of aggregation and Refresh.
                             </div>
                             <div>
                                 Row Fields:
                                 <div class="pivotDropField"
                                     id="rowFld"
-                                    (drop)="drop_handlerRow($event);" 
+                                    (drop)="drop_handlerRow($event);"
                                     (dragover)="dragover_handler($event);"
                                     draggable="true"
                                     (dragstart)="dragstart_handlerRow($event)"
@@ -359,7 +359,7 @@
                                 Column Fields:
                                 <div class="pivotDropField"
                                     id="colFld"
-                                    (drop)="drop_handlerCol($event);" 
+                                    (drop)="drop_handlerCol($event);"
                                     (dragover)="dragover_handler($event);"
                                     draggable="true"
                                     (dragstart)="dragstart_handlerCol($event)"
@@ -388,7 +388,7 @@
                                     Aggregate Field:
                                     <div class="pivotDropAggregate"
                                         id="aggFld"
-                                        (drop)="drop_handlerAgg($event);" 
+                                        (drop)="drop_handlerAgg($event);"
                                         (dragover)="dragover_handler($event);"
                                         draggable="true"
                                         (dragstart)="dragstart_handler($event)"
@@ -399,7 +399,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>       
+                            <div>
                                 <input type="checkbox" id="checkrads_1">
                                 <label for="checkrads_1">Always-Refresh</label>
                                 <button
@@ -433,7 +433,7 @@
                         <div class="gridViewSide">
                             Select:
                             <section>
-                                        
+
                                 <img class="iconButton"
                                     [style.height.px]="80"
                                     [style.width.px]="80"
@@ -460,17 +460,17 @@
                                 >
 
                             </section>
-                            
+
                         </div>
                         <div class="gridViewRight">
                             <div *ngIf="gridViewFieldProperties" class="propertyBox">
                                 <b>
-                                    <h4 class="gridViewFieldPropertiesHeading" >Field Properties</h4>
+                                    <h4 class="gridViewFieldHeading" >Field Properties</h4>
                                 </b>
-                                <i>Changes made on this page are applied to the data at time of 
-                                    extraction.  Click <b>Refresh Data</b> for changes made now to 
+                                <i>Changes made on this page are applied to the data at time of
+                                    extraction.  Click <b>Refresh Data</b> for changes made now to
                                     take effect, which will reload your data.  If a field is already
-                                    used in a Widget, new changes may impact on Widget. This field 
+                                    used in a Widget, new changes may impact on Widget. This field
                                     is currently used in <b>2</b> Widgets.
                                 </i>
                                 <br><br>
@@ -548,17 +548,44 @@
                                         Refresh Data
                                     </button>
                                 </div>
-                                
-                            </div>     
-                            <div *ngIf="gridViewExplain">                               
-                                ExplainedBy:
+
+                            </div>
+                            <div *ngIf="gridViewExplain">
+                                <b>
+                                    <h4 class="gridViewFieldHeading" >Explanations</h4>
+                                </b>
+                                <i>This area is used for optional pre-defined explanations.  An explanation
+                                    consists of two fields and a graph type.  For example, for
+                                    SoftDrinkSalesData we can define an Explanation = (date, temparature,
+                                    BarChart).  When the SoftDrinkSalesData Widget is displayed, one
+                                    can explain the data with a single click (by showing the weather
+                                    for the period).  Explanations can be defined at the data level
+                                    (applicable to all the fields) or field level.
+                                </i>
+                                <br><br>
                                 <div class="propertyLine">
-                                    Explained by: <input type="text" id="formFields_7"
-                                    placeholder="BarChart of Value by TradeDate">
+                                    The whole dataset (all fields) is explained by:
+                                    <input type="text" id="formFields_7"
+                                        placeholder="BarChart of Temperature by Date">
+                                </div>
+                                <div class="propertyLine">
+                                    This field:
+                                    <b>
+                                        <div class="select">
+                                            <select id="selects_3">
+                                                <option *ngFor="let row of dataFieldNames">
+                                                    {{ row }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </b>
+                                    Is explained by:
+                                    <input type="text" id="formFields_7"
+                                        placeholder="PieChart of Sales by City">
                                 </div>
                             </div>
                             <div *ngIf="gridViewSummaryGraphs">
-                                
+
                                 <button
                                     type="button"
                                     class="btn btn-secondary"
@@ -582,7 +609,7 @@
                                 </i>
                             </div>
                             <div *ngIf="gridViewDataQuality">
-                                
+
                                 Data Quality notes: describes issues with the quality of the data,
                                 and what will be done about it by whom and when.
                             </div>
@@ -627,22 +654,22 @@
                             </clr-dg-cell>
                         </clr-dg-row>
                     </ng-container>
-                
+
                     <clr-dg-footer></clr-dg-footer>
-                
+
                 </clr-datagrid> -->
 
 
-                <!-- So in your case, when switching from read-only to inline edit and vice-versa, 
-                you'd just call datagrid.resize() after the change and the columns should 
+                <!-- So in your case, when switching from read-only to inline edit and vice-versa,
+                you'd just call datagrid.resize() after the change and the columns should
                 resize accordingly. I hope this helps. -->
 
 
-                <!-- If I add 'overflow' and 'text-overflow' properties to '.datagrid-cell' in 
-                _datagrid.clarity.scss then I can get the cell to look proper, but making 
-                similar change to '.datagrid-column' or '.datagrid-column-title' make the 
+                <!-- If I add 'overflow' and 'text-overflow' properties to '.datagrid-cell' in
+                _datagrid.clarity.scss then I can get the cell to look proper, but making
+                similar change to '.datagrid-column' or '.datagrid-column-title' make the
                 column resize handle disappear during times when it overflows.
-                
+
                     .datagrid-cell {
                         flex: 1 1 auto;
                         overflow: hidden;

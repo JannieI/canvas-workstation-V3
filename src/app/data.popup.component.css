@@ -375,7 +375,7 @@
         padding-top: 0;
     }
         
-        .gridViewFieldPropertiesHeading {
+        .gridViewFieldHeading {
             text-align: center;
             margin: 0;
             padding: 0;
@@ -384,7 +384,7 @@
         .buttonRefresh {
             float: right;
         }
-        
+
 .modalBox {
     background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
