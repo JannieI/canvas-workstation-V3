@@ -77,7 +77,7 @@ export class DataPopupComponent implements OnInit {
     showSelectField: boolean = false;
     transformationsFormat: transformation[];
     showTransformDetail: boolean = false;
-
+    transformationDescription: string = '';
     selectedExistingDS: boolean = false;
     selectedExistingTransform: boolean = false;
     selectedDatasource: boolean = true;
@@ -301,19 +301,26 @@ export class DataPopupComponent implements OnInit {
         console.log('dsName', dsName, this.filterDataset)
     }
 
+    clickFileAddTransformationDetail() {
+        this.transformationDescription = 'Format date, ie YYYY/MM/DD'
+        this.showTransformDetail = true;
+    }
+
     clickFileAddTransformation() {
         let newTransformation: currentTransformation = {
             id: 2,
             category: 'Format',
-            name: 'Trim left (Trader)',
+            name: 'Format Date',
             description: 'bla-bla-bla',
             fieldID: 21,
             fieldName: 'Trader',
             parameters: "param1=a"        
         };
         this.currentTransformations.push(newTransformation);
+    }
 
-        this.showTransformDetail = true;
+    clickFileSaveTransformation() {
+        console.log('Saved the name for next time ...')
     }
 
     clickClose(action: string) {

@@ -234,11 +234,15 @@
         padding: 10px;
     }
 
+    .transformationSaveButton {
+        float: right;
+    }
+
     .gridTransformExisting {
         border: none;
         grid-column-start: 5;
         grid-column-end: 21;
-        grid-row-start: 11;
+        grid-row-start: 12;
         grid-row-end: 25;
         padding: 10px;
     }
@@ -543,7 +547,7 @@
     width: 7rem !important;
 }
 
-.selectButon {
+.selectButton {
     margin-left: 20px !important;
 }
 

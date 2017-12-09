@@ -155,7 +155,7 @@
                             <input type="text" id="formFields_7" placeholder="Dataset Name">
                             <button
                                 type="button"
-                                class="btn btn-link selectButon"
+                                class="btn btn-link selectButton"
                                 (click)="clickFileAdd('Preview')"
                                 >
                                 Preview
@@ -167,21 +167,21 @@
                             <div></div>
                             <button
                                 type="button"
-                                class="btn btn-secondary selectButon"
+                                class="btn btn-secondary selectButton"
                                 (click)="clickFileAdd('Add')"
                                 >
                                 Add
                             </button>
                             <button
                                 type="button"
-                                class="btn btn-secondary selectButon"
+                                class="btn btn-secondary selectButton"
                                 (click)="clickFileAdd('AddAndClose')"
                                 >
                                 Add and Close
                             </button>
                             <button
                                 type="button"
-                                class="btn btn-secondary selectButon"
+                                class="btn btn-secondary selectButton"
                                 (click)="clickClose(true)"
                                 >
                                 Close
@@ -247,7 +247,9 @@
                             </div>
                             <label for="selects_1">Transformation:</label>
                             <div class="select">
-                                <select id="selects_1">
+                                <select id="selects_1" 
+                                    (click)="clickFileAddTransformationDetail()"
+                                    >
                                     <option *ngFor="let row of transformationsFormat">
                                             {{ row.name }}
                                         </option>
@@ -256,16 +258,10 @@
                             <div>
                                 <input type="text" id="formFields_7"
                                     placeholder="Description of transformation ..."
+                                    [(ngModel)]="transformationDescription"
                                     class="selectFile"
                                     >
                             </div>
-                            <button
-                                type="button"
-                                class="btn btn-secondary selectButon"
-                                (click)="clickFileAddTransformation()"
-                                >
-                                Add
-                            </button>
                             <br>
                             <br>
                             Optionally save these transformations as a Transformation-Set for later use:
@@ -275,8 +271,8 @@
                                 >
                             <button
                                 type="button"
-                                class="btn btn-link selectButon"
-                                (click)="clickFileAddTransformation()"
+                                class="btn btn-link transformationSaveButton"
+                                (click)="clickFileSaveTransformation()"
                                 >
                                 Save
                             </button>
@@ -287,7 +283,13 @@
                                     placeholder="Enter date format"
                                     class="selectFile"
                                     >
-
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary selectButton"
+                                    (click)="clickFileAddTransformation()"
+                                    >
+                                    Add
+                                </button>
                             </div>
                         </div>
                     </div>
