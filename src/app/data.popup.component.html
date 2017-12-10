@@ -125,7 +125,11 @@
                             </clr-datagrid>
                         </div>
                         <div class="gridIdentifyDataIDfile">
-                            <span>Please enter file name and location, or
+                            <span>Please enter file name and location:</span>
+                            <input type="text" id="formFields_7"
+                                placeholder="Folder/FileName"
+                                class="selectFile"
+                                >
                                 <button
                                     type="button"
                                     class="btn btn-link"
@@ -133,14 +137,8 @@
                                     >
                                     Browse
                                 </button>
-                                :
-                            </span>
-                            <input type="text" id="formFields_7"
-                                placeholder="Folder/FileName"
-                                class="selectFile"
-                                >
                             <br>
-                            Worksheet:
+                            Excel Worksheet:
                             <span class="select">
                                 <select id="selects_3" class="selectBox">
                                     <option>New York</option>
@@ -150,9 +148,10 @@
                                     <option>Seattle</option>
                                 </select>
                             </span>
-                            <br>
-                            Name of Dataset:
-                            <input type="text" id="formFields_7" placeholder="Dataset Name">
+                            <div class="checkbox-inline">
+                                <input type="checkbox" id="checkrads_5">
+                                <label for="checkrads_5">Transpose rows and cols</label>
+                            </div>
                             <button
                                 type="button"
                                 class="btn btn-link selectButton"
@@ -160,11 +159,9 @@
                                 >
                                 Preview
                             </button>
-                            <div class="checkbox-inline">
-                                <input type="checkbox" id="checkrads_5">
-                                <label for="checkrads_5">Transpose rows and cols: </label>
-                            </div>
-                            <div></div>
+                            <br>
+                            Name of Dataset in this Dashboard:
+                            <input type="text" id="formFields_7" placeholder="Dataset Name">
                             <button
                                 type="button"
                                 class="btn btn-secondary selectButton"
