@@ -1029,7 +1029,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.colorField = this.draggedField;
         console.log('drop_handler dropped !!', this.colorField )
 
-
         let definition = this.createVegaLiteSpec(
             undefined, 
             undefined, 
@@ -1134,6 +1133,16 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     clickIcon(graph: string) {
         this.showType = false;
+
+        let definition = this.createVegaLiteSpec(
+          undefined, 
+          graph,
+          undefined, 
+          undefined,
+          undefined
+        );
+        this.renderGraph(definition);
+
     }
 
   }
