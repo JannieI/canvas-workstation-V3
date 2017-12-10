@@ -61,6 +61,7 @@ export class DataPopupComponent implements OnInit {
     pivotRows: string[];
     pivotAgg: string[];
     resultMessage: string = 'Results will be shown here: drag and drop fields, then click Refresh'
+    dragoverCol: boolean = false;
     pivotResults: any[] = 
         [
             {
@@ -412,8 +413,17 @@ export class DataPopupComponent implements OnInit {
         console.log('dragover_handler', ev, ev.srcElement.innerText)
         ev.preventDefault();
         this.transitionFieldName = 'Added the field to transition: '
-
         this.transitionAction = actionName;
+    }
+
+    dragover_handlerColEnter(ev, actionName: string) {
+        ev.preventDefault();
+        this.dragoverCol = true;
+    }
+
+    dragover_handlerColLeave(ev, actionName: string) {
+        ev.preventDefault();
+        this.dragoverCol = false;
     }
 
     drop_handlerRow(ev) {
@@ -462,6 +472,7 @@ export class DataPopupComponent implements OnInit {
             this.pivotCols.push(pC[i].symbol)
         }
         this.resultMessage = '';
+        this.dragoverCol = false;        
         console.log('this.pivotCols', this.pivotCols)
     }
 
@@ -485,7 +496,7 @@ export class DataPopupComponent implements OnInit {
     }
 
     dragover_pivot(ev) {
-        console.log('dragover_handler')
+        console.log('dragover_pivot')
         ev.preventDefault();
         // Set the dropEffect to move
         ev.dataTransfer.dropEffect = "move"

@@ -353,10 +353,12 @@
                             <div class="gridPivotDropFieldX"
                                 id="colFld"
                                 (drop)="drop_handlerCol($event);"
-                                (dragover)="dragover_handler($event);"
+                                (dragenter)="dragover_handlerColEnter($event);"
+                                (dragleave)="dragover_handlerColLeave($event);"
                                 draggable="true"
                                 (dragstart)="dragstart_handlerCol($event)"
                                 (dragend)="dragend_handler($event)"
+                                [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
                                 >
                                 {{ colField }}
                             </div>
