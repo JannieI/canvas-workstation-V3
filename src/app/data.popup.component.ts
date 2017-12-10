@@ -61,6 +61,33 @@ export class DataPopupComponent implements OnInit {
     pivotRows: string[];
     pivotAgg: string[];
     resultMessage: string = 'Results will be shown here: drag and drop fields, then click Refresh'
+    pivotResults: any[] = 
+        [
+            {
+                Date: '2017/01/01',
+                AAPL: 11,
+                AMZN: 26,
+                GOOG: 30,
+                IBM: 47,
+                MSFT: 50
+            },
+            {
+                Date: '2017/01/01',
+                AAPL: 12,
+                AMZN: 25,
+                GOOG: 34,
+                IBM: 49,
+                MSFT: 51
+            },
+            {
+                Date: '2017/01/01',
+                AAPL: 13,
+                AMZN: 24,
+                GOOG: 37,
+                IBM: 48,
+                MSFT: 50
+            }
+        ]
 
     errorMessage: string = "";
     fields: field[];
@@ -400,7 +427,7 @@ export class DataPopupComponent implements OnInit {
         console.log('drop_handler dropped !!', ev.srcElement.innerText)
 
         // Pivot Rows
-        this.pivotRows = [''];
+        this.pivotRows = [];
         let pC = dl.groupby('symbol')
             .summarize( [
                 {name: 'symbol', ops: ['values']} 
@@ -425,7 +452,7 @@ export class DataPopupComponent implements OnInit {
         console.log('drop_handler dropped !!', ev.srcElement.innerText)
 
         // Pivot Cols
-        this.pivotCols = [''];
+        this.pivotCols = ['Date'];
         let pC = dl.groupby('symbol')
             .summarize( [
                 {name: 'symbol', ops: ['values']} 

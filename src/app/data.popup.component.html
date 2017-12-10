@@ -112,7 +112,7 @@
 
                     <div class="gridIdentifyData" *ngIf="showIdentifyFile">
                         <div class="gridIdentifyDataExisting">
-                                <span class="gridHeading">Existing Datasets</span>
+                            <span class="gridHeading">Existing Datasets</span>
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column>
 
@@ -422,18 +422,32 @@
                                 <b>{{ resultMessage }}</b>
                             </div>
 
+                            <!-- Works
                             <div class="gridPivotResultCols">
                                 <div *ngFor="let row of pivotCols" class="gridPivotResultColumn">
                                     {{ row }}
                                 </div>
+                            </div> -->
+
+                            <div class="gridPivotResultRows">
+                                <clr-datagrid>
+                                    <clr-dg-column *ngFor="let row of pivotCols">{{row}}</clr-dg-column>
+                                    <clr-dg-row *ngFor="let row of pivotResults">
+                                        <clr-dg-cell *ngFor="let col of pivotCols; let i = index">
+                                            {{ row[col] }}
+                                        </clr-dg-cell>
+                                    </clr-dg-row>
+                                </clr-datagrid>
                             </div>
-                            
+
+
+                            <!-- Works
                             <div class="gridPivotResultRows">
                                 <div *ngFor="let row of pivotRows"
                                     class="pivotRows">
                                     {{ row }}
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
