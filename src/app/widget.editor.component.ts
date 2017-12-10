@@ -1007,7 +1007,17 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // ev.target.appendChild(document.getElementById(data));
         this.rowField = this.draggedField;
         console.log('drop_handler dropped !!', this.rowField )
-    } 
+
+
+        let definition = this.createVegaLiteSpec(
+            undefined, 
+            undefined, 
+            undefined,
+            this.rowField,
+            undefined
+        );
+        this.renderGraph(definition);
+      } 
 
     drop_handlerColor(ev) {
         ev.preventDefault();
@@ -1018,7 +1028,17 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // ev.target.appendChild(document.getElementById(data));
         this.colorField = this.draggedField;
         console.log('drop_handler dropped !!', this.colorField )
-    } 
+
+
+        let definition = this.createVegaLiteSpec(
+            undefined, 
+            undefined, 
+            this.colField,
+            undefined,
+            undefined
+        );
+        this.renderGraph(definition);
+      } 
 
     dragover_handlerColEnter(ev, actionName: string) {
       ev.preventDefault();
