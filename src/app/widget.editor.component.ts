@@ -903,7 +903,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         // this.currentDatasources = this.globalVariableService.currentDatasources;
         // console.log('this.currentDatasources', this.currentDatasources)
-        // let definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);
+        let definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);
         // let definition = vlTemplateSpec1
         // let definition = vlTemplateSpec2;
         // let definition = vlTemplateSpec3;
@@ -915,31 +915,21 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // let definition = vlTemplateSpec9;
         // let definition = vlTemplateSpec10;
         // let definition = vlTemplateSpec11;
-        let definition = vlTemplateSpec13;
+        
+        // let definition = vlTemplateSpec13;
+
         // let definition = vlTemplateSpec13;      // *area=bad, line=good ...
         // let definition = vlTemplateSpec14;      // *bad
         // let definition = vlTemplateSpec15;      // *bad
         // let definition = vlTemplateSpec16;
         // let definition = vlTemplateSpec17;
 
-        // BRADLEY
-        // const specification = compile(this.specification);
-        // const vegaSpecification = parse(specification.spec);
-        // const view = new View(vegaSpecification);
-        //   view.renderer('canvas')
+        // Render
+        this.renderGraph(definition)
 
+    }
 
-        // TRY
-        // const specification = compile(vlTemplateSpec13);
-        // const vegaSpecification = parse(specification.spec);
-        // const view = new View(vegaSpecification);
-        // view.renderer('canvas')
-        //   .initialize(this.visReal.nativeElement)
-        //   .hover()
-        //   .run()
-        //   .finalize();
-
-        // MINE
+    renderGraph(definition: any) {
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
         view.renderer('svg')
@@ -953,9 +943,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 'left', "200px");
 
     }
-	clickClose(action: string) {
-		this.formWidgetEditorClosed.emit(action);
-    }
+
+  	clickClose(action: string) {
+	  	this.formWidgetEditorClosed.emit(action);
+        }
 
     dragstart_handlerField(ev) {
         ev.dataTransfer.setData("text/plain", ev.target.id);
