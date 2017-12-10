@@ -865,11 +865,19 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     @ViewChild('visReal', {read: ElementRef}) visReal: ElementRef;  //Vega graph
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
+    rowField: string = 'Drag a field here ...';
+    colField: string = 'Drag a field here ...';
+    colorField: string = 'Drag a field here ...';
+    graphCols: string[];
+    graphRows: string[];
+    graphColor: string[];
+
     clickedButtonAggregateNo: boolean = false;
     currentDatasources: currentDatasource[];
     dropMessageX: string = 'Drop field here';
     dropMessageY: string = 'Drop field here';
     dropMessageColor: string = 'Drop field here';
+    draggedField: string = '';    
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverColor: boolean = false;
@@ -950,10 +958,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     dragstart_handler(ev) {
-        console.log("dragStart");
-        // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
-        console.log('drag_start')
+        this.draggedField = ev.srcElement.innerText;
     }
 
     dragend_handler(ev) {
@@ -964,10 +970,27 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         console.log('dragover_handler')
         ev.preventDefault();
         // Set the dropEffect to move
-        ev.dataTransfer.dropEffect = "move"
-      }
+        // ev.dataTransfer.dropEffect = "move"
+    }
 
-      drop_handler(ev) {
+
+
+    dragover_handlerColor(ev, actionName: string) {
+        ev.preventDefault();
+    }
+
+    dragstart_handlerColor(ev) {
+      console.log("dragStart", ev, ev.srcElement.innerText);
+      // Add the target element's id to the data transfer object
+      ev.dataTransfer.setData("text/plain", ev.target.id);
+      this.draggedField = ev.srcElement.innerText;
+      this.colField = '';
+      console.log('drag_start for ', this.draggedField)
+  }
+
+
+
+    drop_handler(ev) {
         ev.preventDefault();
         // Get the id of the target and add the moved element to the target's DOM
         this.dropMessageX = "";
@@ -980,6 +1003,19 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         ev.target.appendChild(document.getElementById(data));
         console.log('drop_handler dropped !!')
     }
+
+    drop_handlerColor(ev) {
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+        // ev.target.appendChild(document.getElementById(data));
+        this.colorField = this.draggedField;
+        console.log('drop_handler dropped !!', this.colorField )
+
+  
+      } 
 
     clickCloseAdvancedX(action) {
        this.showCloseAdvancedX = false;

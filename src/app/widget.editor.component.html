@@ -361,13 +361,13 @@
                                 <div
                                     class="dropZoneColor"
                                     id="target"
-                                    (drop)="drop_handler($event);"
-                                    (dragover)="dragover_handler($event);"
+                                    (drop)="drop_handlerColor($event);"
+                                    (dragover)="dragover_handlerColor($event);"
                                     (dragenter)="dragover_handlerColorEnter($event);"
                                     (dragleave)="dragover_handlerColorLeave($event);"
                                     [style.background-color]="dragoverColor? 'lightgray' : 'transparent'"
                                     >
-                                    {{ showXdropMessageColor }}
+                                    {{ colorField }}
                                 </div>
 
                             </section>
