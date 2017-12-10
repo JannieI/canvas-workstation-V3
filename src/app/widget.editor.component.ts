@@ -941,7 +941,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             .finalize();
             this.renderer.setElementStyle(this.dragWidget.nativeElement,
                 'left', "200px");
-
     }
 
   	clickClose(action: string) {

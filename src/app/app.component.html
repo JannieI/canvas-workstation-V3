@@ -345,12 +345,15 @@
                         type="button" 
                         class="btn btn-link btn-sm menuButton" 
                         clrDropdownTrigger
-                        [disabled]="menuCreateDisabled"
                         >
                         Create
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickMenuCreateWidget()">
+                        <button 
+                            type="button" 
+                            [disabled]="menuCreateDisabled"
+                            clrDropdownItem (click)="clickMenuCreateWidget()"
+                            >
                             Widget
                         </button>
                         <div class="dropdown-divider"></div>

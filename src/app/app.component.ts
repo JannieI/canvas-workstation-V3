@@ -31,8 +31,7 @@ export class AppComponent implements OnInit {
     @ViewChild('dragCircle', {read: ElementRef}) dragCircle: ElementRef;  //Vega graph
     
     fields: field[];
-    
-    menuCreateDisabled: boolean = false;
+    menuCreateDisabled: boolean;
     moveStartX: number;
     moveStartY: number;
     moveEndX: number;
@@ -109,6 +108,7 @@ export class AppComponent implements OnInit {
     menuDataFromServer() {
         console.log('menuDataFromServer')
     }
+    
     menuDataGetData() {
         console.log('menuDataGetData')
         this.globalVariableService.changeMenuCreateDisabled(true);

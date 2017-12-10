@@ -290,6 +290,8 @@ export class DataPopupComponent implements OnInit {
             }
           });
 
+        this.globalVariableService.menuCreateDisabled.next(false);
+          
         if (action == 'AddAndClose') {
             this.router.navigate(['/explore']);
         };

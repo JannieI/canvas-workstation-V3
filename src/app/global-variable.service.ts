@@ -1083,7 +1083,7 @@ export class GlobalVariableService {
 
     private messageSource = new BehaviorSubject<string>("default message");
     currentMessage = this.messageSource.asObservable();
-    menuCreateDisabled = new BehaviorSubject<boolean>(false);
+    menuCreateDisabled = new BehaviorSubject<boolean>(true);
 
     constructor() { }
 
