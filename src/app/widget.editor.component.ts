@@ -896,7 +896,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     ngOnInit() {
         this.currentDatasources = this.globalVariableService.currentDatasources;
-        this.dataFieldNames = ['symbol', 'date', 'price'];
+        this.dataFieldNames = ['symbol', 'date', 'price', 'Month', 'Trades'];
     }
 
     ngAfterViewInit() {
@@ -987,7 +987,13 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.colField = this.draggedField;
         console.log('drop_handler dropped !!', this.colField )
 
-        let definition = this.createVegaLiteSpec(undefined,'line',undefined,undefined,undefined);
+        let definition = this.createVegaLiteSpec(
+            undefined, 
+            undefined, 
+            this.colField,
+            undefined,
+            undefined
+        );
         this.renderGraph(definition);
 
     } 
