@@ -986,6 +986,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // ev.target.appendChild(document.getElementById(data));
         this.colField = this.draggedField;
         console.log('drop_handler dropped !!', this.colField )
+
+        let definition = this.createVegaLiteSpec(undefined,'line',undefined,undefined,undefined);
+        this.renderGraph(definition);
+
     } 
 
     drop_handlerRow(ev) {
