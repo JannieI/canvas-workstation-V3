@@ -201,11 +201,6 @@
                                         </clr-dg-cell>
                                     </clr-dg-row>
 
-                                    <!-- <clr-dg-footer>
-                                        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} rows
-                                        <clr-dg-pagination #pagination [clrDgPageSize]="pageSize"></clr-dg-pagination>
-                                    </clr-dg-footer> -->
-
                                     <clr-dg-footer>
                                         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                         of {{pagination.totalItems}} rows
@@ -231,28 +226,40 @@
 
                         </div>
                         <div class="gridTransformNew">
-                            <div>Please select a fields and the transformation that must be
-                                applied to it:
-                            </div>
-                            <label for="selects_2">Field:</label>
-                            <div class="select">
-                                <select id="selects_2">
-                                    <option *ngFor="let row of dataFieldNames">
-                                        {{ row }}
-                                    </option>
-                                </select>
-                            </div>
-                            <label for="selects_1">Transformation:</label>
-                            <div class="select">
-                                <select id="selects_1" 
-                                    (click)="clickFileAddTransformationDetail()"
-                                    >
-                                    <option *ngFor="let row of transformationsFormat">
-                                            {{ row.name }}
+                            Select a list of transformation that was previosly saved as a
+                            Transformation-Set (non-existant column names will be ignored):
+                            <div class="gridTransformNewNames">
+                                <div class="select">
+                                    <select id="selects_2">
+                                        <option *ngFor="let row of dataFieldNames">
+                                            {{ row }}
                                         </option>
                                     </select>
+                                </div>
                             </div>
-                            <div>
+                            <br>
+                            <div>Select a single field and the transformation that must be
+                                applied to it:
+                            </div>
+                            <div class="gridTransformNewNames">
+                                <label for="selects_2">Field:</label>
+                                <div class="select ">
+                                    <select id="selects_2">
+                                        <option *ngFor="let row of dataFieldNames">
+                                            {{ row }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <label for="selects_1">Transformation:</label>
+                                <div class="select">
+                                    <select id="selects_1" 
+                                        (click)="clickFileAddTransformationDetail()"
+                                        >
+                                        <option *ngFor="let row of transformationsFormat">
+                                                {{ row.name }}
+                                            </option>
+                                        </select>
+                                </div>
                                 <input type="text" id="formFields_7"
                                     placeholder="Description of transformation ..."
                                     [(ngModel)]="transformationDescription"
@@ -260,19 +267,20 @@
                                     >
                             </div>
                             <br>
-                            <br>
-                            Optionally save these transformations as a Transformation-Set for later use:
-                            <input type="text" id="formFields_7"
-                                placeholder="Set Name"
-                                class="selectFile"
-                                >
-                            <button
-                                type="button"
-                                class="btn btn-link transformationSaveButton"
-                                (click)="clickFileSaveTransformation()"
-                                >
-                                Save
-                            </button>
+                            Optionally save all these transformations as a Transformation-Set for later use:
+                            <div class="gridTransformNewNames">
+                                    <input type="text" id="formFields_7"
+                                    placeholder="Set Name"
+                                    class="selectFile"
+                                    >
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    (click)="clickFileSaveTransformation()"
+                                    >
+                                    Save
+                                </button>
+                            </div>
                         </div>
                         <div class="gridTransformExisting">
                             <div *ngIf="showTransformDetail">

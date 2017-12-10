@@ -195,7 +195,7 @@
         grid-row-start: 8;
         grid-row-end: 25;
         height: 11rem;
-        overflow: auto;
+        overflow: scroll;
         padding: 10px;
         width: 100%;
     }
@@ -233,15 +233,15 @@
         padding: 10px;
     }
 
-    .transformationSaveButton {
-        float: right;
+    .gridTransformNewNames {
+        margin-left: 20px;
     }
 
     .gridTransformExisting {
         border: none;
         grid-column-start: 5;
         grid-column-end: 21;
-        grid-row-start: 12;
+        grid-row-start: 13;
         grid-row-end: 25;
         padding: 10px;
     }
