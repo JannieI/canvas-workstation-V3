@@ -387,10 +387,13 @@
                             <div class="gridPivotDropFieldAgg"
                                 id="aggFld"
                                 (drop)="drop_handlerAgg($event);"
+                                (dragenter)="dragover_handlerAggEnter($event);"
+                                (dragleave)="dragover_handlerAggLeave($event);"
                                 (dragover)="dragover_handler($event);"
                                 draggable="true"
                                 (dragstart)="dragstart_handler($event)"
                                 (dragend)="dragend_handler($event)"
+                                [style.background-color]="dragoverAgg? 'lightgray' : 'transparent'"
                                 >
                                 {{ aggField }}
 
