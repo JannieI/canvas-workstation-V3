@@ -352,39 +352,10 @@
             grid-row-end: 10;
         }
 
-    .pivotDropFieldArea {
-        margin-left: 20px;
-        margin-top: 5px;
-    }
-
-    .pivotDropField {
-        border: 1px solid gray;
-        border-radius: 4px;
-        display: inline-block;
-        height: 1rem;
-        width: 70%;
-    }
-
-    .gridPivotAggregateField {
-        display: inline-block;
-        margin-left: 20px;
-    }
-
-    .pivotDropAggregate {
-        border: 1px solid gray;
-        border-radius: 4px;
-        display: inline-block;
-        height: 1rem;
-    }
-
     .gridPivotColResult {
         border: 1px solid gray;
-        grid-column-start: 6;
         display: flex;
-              /* justify-content: center;
-              align-items: center; */
-              /* flex-direction: column; */
-              /* min-height: 1rem; */
+        grid-column-start: 6;
         grid-column-end: 21;
         grid-row-start: 12;
         grid-row-end: 25;
