@@ -352,43 +352,56 @@
             grid-row-end: 10;
         }
 
-    .gridPivotColResult {
+    .gridPivotResult {
         border: 1px solid gray;
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(20, 1fr);
         grid-column-start: 6;
         grid-column-end: 21;
         grid-row-start: 12;
         grid-row-end: 25;
     }
 
-    .pivotCols {
-        border: 1px solid gray;
-        height: 1rem;
-        margin: 0;
-        padding: 0 3px 0 3px;
-        width: 3rem;
-    }
-    
-    .gridPivotRowResult {
-        border: 1px solid gray;
-        grid-column-start: 6;
-        display: flex;
-              /* justify-content: center; */
-        align-items: left;
-        flex-direction: column;
-        min-height: 1rem;
-        grid-column-end: 21;
-        grid-row-start: 12;
-        grid-row-end: 25;
-    }
+        .gridPivotResultHeader {
+            grid-column-start: 1;
+            grid-column-end: 21;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            height: 1rem;
+            margin: 0;
+            padding: 0 3px 0 3px;
+            text-align: left;
+        }
+        
+        .gridPivotResultCols {
+            display: flex;
+            flex-direction: row;
+            grid-column-start: 2;
+            grid-column-end: 21;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            height: 1rem;
+            margin: 0;
+        }
 
-    .pivotRows {
-        border: 1px solid gray;
-        height: 1rem;
-        margin: 0;
-        padding: 0 3px 0 3px;
-        width: 3rem;
-    }
+        .gridPivotResultColumn{
+            text-align: left;
+            border: 1px solid gray;
+            margin: 0;
+            padding: 0 3px 0 3px;
+            width: 3rem;
+        }
+
+        .gridPivotResultRows {
+            align-items: left;
+            grid-column-start: 1;
+            min-height: 1rem;
+            grid-column-end: 21;
+            grid-row-start: 2;
+            grid-row-end: 25;
+            margin: 0;
+            padding: 0 3px 0 3px;
+        }
 
 .gridView {
     border-top: 2px solid black;
