@@ -161,14 +161,19 @@
                         <div class="dropZoneYlabel"> 
                             Y axis:
                         </div>
+
                         <div
                             class="dropZoneY"
                             id="target" 
                             (drop)="drop_handler($event);" 
+                            (dragenter)="dragover_handlerRowEnter($event);"
+                            (dragleave)="dragover_handlerRowLeave($event);"
                             (dragover)="dragover_handler($event);"
+                            [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
                             >
                             {{ showXdropMessageY }}
                         </div>
+
                         <div>
                             <button 
                                 class="btn btn-secondary buttonWidgetY" 

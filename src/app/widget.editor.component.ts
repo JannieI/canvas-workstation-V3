@@ -870,6 +870,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     dropMessageX: string = 'Drop field here';
     dropMessageY: string = 'Drop field here';
     dropMessageColor: string = 'Drop field here';
+    dragoverCol: boolean = false;
+    dragoverRow: boolean = false;
+    dragoverAgg: boolean = false;
     opened: boolean = true;
     showAdvancedX: boolean = false;
     showAdvancedY: boolean = false;
@@ -1036,6 +1039,19 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     clickIcon(graph: string) {
         this.showType = false;
+    }
+
+
+    dragover_handlerRowEnter(ev, actionName: string) {
+      ev.preventDefault();
+      this.dragoverCol = false;
+      this.dragoverRow = true;
+      this.dragoverAgg = false;
+    }
+
+    dragover_handlerRowLeave(ev, actionName: string) {
+        ev.preventDefault();
+        this.dragoverRow = false;
     }
 
   }
