@@ -44,76 +44,21 @@
                                 Fields for: {{ currentDatasources[0].name }} 
                             </div>
 
-                            <section class="sidenav-content">
-                                <section class="nav-group">
-                                        <ul class="nav-list">
-                                            <li>
-                                                <a
-                                                    class="nav-link"
-                                                    (dragend)="showGraphsReal($event)"
-                                                    draggable="true"
-                                                    id="dragtarget"
-                                                    >
-                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                    Trader
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link"
-                                                    id="p1"
-                                                    draggable="true"
-                                                    (dragstart)="dragstart_handlerField($event)"
-                                                    (dragend)="dragend_handlerField($event)"
-                                                    >
-                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                    Country
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link active">
-                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                    Trade Type
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link">
-                                                    <clr-icon shape="block" class="dateField"></clr-icon>
-                                                    Date
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link">
-                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                    DateTime
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link">
-                                                    <clr-icon shape="block" class="dimensionField"></clr-icon>
-                                                    Stock
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link">
-                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                    Volume
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link">
-                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                    Trades
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link">
-                                                    <clr-icon shape="bolt" class="metricField"></clr-icon>
-                                                    Value
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </section>
-                            </section>
+                            <div>
+                                <clr-datagrid>
+                                    <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
+                                    <clr-dg-row *ngFor="let row of dataFieldNames">
+                                        <clr-dg-cell
+                                            id="fld"
+                                            draggable="true"
+                                            (dragstart)="dragstart_handlerField($event)"
+                                            (dragend)="dragend_handler($event)"
+                                            >
+                                            {{ row }}
+                                        </clr-dg-cell>
+                                    </clr-dg-row>
+                                </clr-datagrid>
+                            </div>
                         </nav>
                     </div>
 

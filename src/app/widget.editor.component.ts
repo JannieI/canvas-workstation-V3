@@ -874,10 +874,12 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     clickedButtonAggregateNo: boolean = false;
     currentDatasources: currentDatasource[];
+    dataFieldNames: string[];
     draggedField: string = '';    
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverColor: boolean = false;
+    filterPivotFields: string = '';    
     opened: boolean = true;
     showAdvancedX: boolean = false;
     showAdvancedY: boolean = false;
@@ -894,6 +896,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     ngOnInit() {
         this.currentDatasources = this.globalVariableService.currentDatasources;
+        this.dataFieldNames = ['symbol', 'date', 'price'];
     }
 
     ngAfterViewInit() {
