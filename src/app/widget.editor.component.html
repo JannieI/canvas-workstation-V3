@@ -62,8 +62,8 @@
                                                 <a class="nav-link"
                                                     id="p1"
                                                     draggable="true"
-                                                    (dragstart)="dragstart_handler($event)"
-                                                    (dragend)="dragend_handler($event)"
+                                                    (dragstart)="dragstart_handlerField($event)"
+                                                    (dragend)="dragend_handlerField($event)"
                                                     >
                                                     <clr-icon shape="block" class="dimensionField"></clr-icon>
                                                     Country
@@ -168,7 +168,7 @@
                             (drop)="drop_handlerRow($event);" 
                             (dragenter)="dragover_handlerRowEnter($event);"
                             (dragleave)="dragover_handlerRowLeave($event);"
-                            (dragover)="dragover_handler($event);"
+                            (dragover)="dragover_handlerRow($event);"
                             [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
                             >
                             {{ rowField }}
@@ -239,7 +239,7 @@
                             class="dropZoneX"
                             id="target"
                             (drop)="drop_handlerCol($event);"
-                            (dragover)="dragover_handler($event);"
+                            (dragover)="dragover_handlerCol($event);"
                             (dragenter)="dragover_handlerColEnter($event);"
                             (dragleave)="dragover_handlerColLeave($event);"
                             [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"

@@ -874,9 +874,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     clickedButtonAggregateNo: boolean = false;
     currentDatasources: currentDatasource[];
-    dropMessageX: string = 'Drop field here';
-    dropMessageY: string = 'Drop field here';
-    dropMessageColor: string = 'Drop field here';
     draggedField: string = '';    
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
@@ -957,23 +954,22 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 		this.formWidgetEditorClosed.emit(action);
     }
 
-    dragstart_handler(ev) {
+    dragstart_handlerField(ev) {
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = ev.srcElement.innerText;
     }
 
-    dragend_handler(ev) {
+    dragend_handlerField(ev) {
         console.log('dragend_handler', ev.dataTransfer.dropEffect)
     }
 
-    dragover_handler(ev) {
-        console.log('dragover_handler')
+    dragover_handlerCol(ev, actionName: string) {
         ev.preventDefault();
-        // Set the dropEffect to move
-        // ev.dataTransfer.dropEffect = "move"
     }
 
-
+    dragover_handlerRow(ev, actionName: string) {
+        ev.preventDefault();
+    }
 
     dragover_handlerColor(ev, actionName: string) {
         ev.preventDefault();
@@ -986,22 +982,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
       this.draggedField = ev.srcElement.innerText;
       this.colField = '';
       console.log('drag_start for ', this.draggedField)
-  }
-
-
-
-    drop_handler(ev) {
-        ev.preventDefault();
-        // Get the id of the target and add the moved element to the target's DOM
-        this.dropMessageX = "";
-        this.dropMessageY = "";
-        this.showAdvancedX = true;
-        this.showAdvancedY = true;
-        this.dropMessageColor = "";
-
-        var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-        console.log('drop_handler dropped !!')
     }
 
     drop_handlerCol(ev) {
@@ -1036,6 +1016,42 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.colorField = this.draggedField;
         console.log('drop_handler dropped !!', this.colorField )
     } 
+
+    dragover_handlerColEnter(ev, actionName: string) {
+      ev.preventDefault();
+      this.dragoverCol = true;
+      this.dragoverRow = false;
+      this.dragoverColor = false;
+    }
+
+    dragover_handlerColLeave(ev, actionName: string) {
+        ev.preventDefault();
+        this.dragoverCol = false;
+    }
+
+    dragover_handlerRowEnter(ev, actionName: string) {
+      ev.preventDefault();
+      this.dragoverCol = false;
+      this.dragoverRow = true;
+      this.dragoverColor = false;
+    }
+
+    dragover_handlerRowLeave(ev, actionName: string) {
+        ev.preventDefault();
+        this.dragoverRow = false;
+    }
+
+    dragover_handlerColorEnter(ev, actionName: string) {
+      ev.preventDefault();
+      this.dragoverCol = false;
+      this.dragoverRow = false;
+      this.dragoverColor = true;
+    }
+
+    dragover_handlerColorLeave(ev, actionName: string) {
+        ev.preventDefault();
+        this.dragoverColor = false;
+    }
 
     clickCloseAdvancedX(action) {
        this.showCloseAdvancedX = false;
@@ -1095,43 +1111,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     clickIcon(graph: string) {
         this.showType = false;
-    }
-
-    dragover_handlerColEnter(ev, actionName: string) {
-      ev.preventDefault();
-      this.dragoverCol = true;
-      this.dragoverRow = false;
-      this.dragoverColor = false;
-    }
-
-    dragover_handlerColLeave(ev, actionName: string) {
-        ev.preventDefault();
-        this.dragoverCol = false;
-    }
-
-    dragover_handlerRowEnter(ev, actionName: string) {
-      ev.preventDefault();
-      this.dragoverCol = false;
-      this.dragoverRow = true;
-      this.dragoverColor = false;
-    }
-
-    dragover_handlerRowLeave(ev, actionName: string) {
-        ev.preventDefault();
-        this.dragoverRow = false;
-    }
-
-
-    dragover_handlerColorEnter(ev, actionName: string) {
-      ev.preventDefault();
-      this.dragoverCol = false;
-      this.dragoverRow = false;
-      this.dragoverColor = true;
-    }
-
-    dragover_handlerColorLeave(ev, actionName: string) {
-        ev.preventDefault();
-        this.dragoverColor = false;
     }
 
   }
