@@ -240,6 +240,9 @@
                             id="target"
                             (drop)="drop_handler($event);"
                             (dragover)="dragover_handler($event);"
+                            (dragenter)="dragover_handlerColEnter($event);"
+                            (dragleave)="dragover_handlerColLeave($event);"
+                            [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
                             >
                             {{ showXdropMessageX }}
                         </div>
@@ -360,6 +363,9 @@
                                     id="target"
                                     (drop)="drop_handler($event);"
                                     (dragover)="dragover_handler($event);"
+                                    (dragenter)="dragover_handlerColorEnter($event);"
+                                    (dragleave)="dragover_handlerColorLeave($event);"
+                                    [style.background-color]="dragoverColor? 'lightgray' : 'transparent'"
                                     >
                                     {{ showXdropMessageColor }}
                                 </div>

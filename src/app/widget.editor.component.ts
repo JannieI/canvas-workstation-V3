@@ -872,7 +872,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     dropMessageColor: string = 'Drop field here';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
-    dragoverAgg: boolean = false;
+    dragoverColor: boolean = false;
     opened: boolean = true;
     showAdvancedX: boolean = false;
     showAdvancedY: boolean = false;
@@ -1041,17 +1041,41 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showType = false;
     }
 
+    dragover_handlerColEnter(ev, actionName: string) {
+      ev.preventDefault();
+      this.dragoverCol = true;
+      this.dragoverRow = false;
+      this.dragoverColor = false;
+    }
+
+    dragover_handlerColLeave(ev, actionName: string) {
+        ev.preventDefault();
+        this.dragoverCol = false;
+    }
 
     dragover_handlerRowEnter(ev, actionName: string) {
       ev.preventDefault();
       this.dragoverCol = false;
       this.dragoverRow = true;
-      this.dragoverAgg = false;
+      this.dragoverColor = false;
     }
 
     dragover_handlerRowLeave(ev, actionName: string) {
         ev.preventDefault();
         this.dragoverRow = false;
+    }
+
+
+    dragover_handlerColorEnter(ev, actionName: string) {
+      ev.preventDefault();
+      this.dragoverCol = false;
+      this.dragoverRow = false;
+      this.dragoverColor = true;
+    }
+
+    dragover_handlerColorLeave(ev, actionName: string) {
+        ev.preventDefault();
+        this.dragoverColor = false;
     }
 
   }
