@@ -421,6 +421,8 @@ export class DataPopupComponent implements OnInit {
     dragover_handlerColEnter(ev, actionName: string) {
         ev.preventDefault();
         this.dragoverCol = true;
+        this.dragoverRow = false;
+        this.dragoverAgg = false;
     }
 
     dragover_handlerColLeave(ev, actionName: string) {
@@ -430,7 +432,9 @@ export class DataPopupComponent implements OnInit {
 
     dragover_handlerRowEnter(ev, actionName: string) {
         ev.preventDefault();
+        this.dragoverCol = false;
         this.dragoverRow = true;
+        this.dragoverAgg = false;
     }
 
     dragover_handlerRowLeave(ev, actionName: string) {
@@ -440,6 +444,8 @@ export class DataPopupComponent implements OnInit {
 
     dragover_handlerAggEnter(ev, actionName: string) {
         ev.preventDefault();
+        this.dragoverCol = false;
+        this.dragoverRow = false;
         this.dragoverAgg = true;
     }
 
