@@ -341,62 +341,57 @@
 
                         </div>
                         <div class="gridPivotDropArea">
-                            <div>
-                                Please drop a Field onto a Row, Column and the Aggregate.
-                                Then select the type of aggregation and Refresh.
+                            <div class="gridPivotDropHeading">
+                                Drag and drop a Field onto a Row, Column and the Aggregate.  
+                                Then select the Type of aggregation and Refresh.
                             </div>
-                            <div class="pivotDropFieldArea"
+
+                            <div class="gridPivotDropLabelX">
+                                Column 
+                                <clr-icon shape="arrow right" size="12"></clr-icon>:
+                            </div>  
+                            <div class="gridPivotDropFieldX"
+                                id="colFld"
+                                (drop)="drop_handlerCol($event);"
+                                (dragover)="dragover_handler($event);"
+                                draggable="true"
+                                (dragstart)="dragstart_handlerCol($event)"
+                                (dragend)="dragend_handler($event)"
+                                >
+                                {{ colField }}
+                            </div>
+
+                            <div class="gridPivotDropLabelY">
+                                Row
+                                <clr-icon shape="arrow down" size="12"></clr-icon>:
+                            </div>
+                            <div class="gridPivotDropFieldY"
+                                id="rowFld"
+                                (drop)="drop_handlerRow($event);"
+                                (dragover)="dragover_handler($event);"
+                                draggable="true"
+                                (dragstart)="dragstart_handlerRow($event)"
+                                (dragend)="dragend_handler($event)"
+                                >
+                                {{ rowField }}
+                            </div>
+
+                            <div class="gridPivotDropLabelAgg">
+                                Aggregate:
+                            </div>
+                            <div class="gridPivotDropFieldAgg"
+                                id="aggFld"
+                                (drop)="drop_handlerAgg($event);"
+                                (dragover)="dragover_handler($event);"
                                 draggable="true"
                                 (dragstart)="dragstart_handler($event)"
                                 (dragend)="dragend_handler($event)"
                                 >
-                                Column 
-                                <clr-icon shape="arrow right" size="12"></clr-icon>:
-                                <div class="pivotDropField"
-                                    id="colFld"
-                                    (drop)="drop_handlerCol($event);"
-                                    (dragover)="dragover_handler($event);"
-                                    draggable="true"
-                                    (dragstart)="dragstart_handlerCol($event)"
-                                    (dragend)="dragend_handler($event)"
-                                    >
-                                    {{ colField }}
-                                </div>
-                            </div>
-                            <div class="pivotDropFieldArea">
-                                Row
-                                <clr-icon shape="arrow down" size="12"></clr-icon>:
-                                <div class="pivotDropField"
-                                    id="rowFld"
-                                    (drop)="drop_handlerRow($event);"
-                                    (dragover)="dragover_handler($event);"
-                                    draggable="true"
-                                    (dragstart)="dragstart_handlerRow($event)"
-                                    (dragend)="dragend_handler($event)"
-                                    >
-                                    {{ rowField }}
-                                </div>
-                            </div>
-                            <div class="pivotDropFieldArea">
-                                Aggregate:
-                                <div
-                                    class="gridPivotAggregateField"
-                                    draggable="true"
-                                    (dragstart)="dragstart_handlerAgg($event)"
-                                    (dragend)="dragend_handler($event)"
-                                    >
-                                    <div class="pivotDropAggregate"
-                                        id="aggFld"
-                                        (drop)="drop_handlerAgg($event);"
-                                        (dragover)="dragover_handler($event);"
-                                        draggable="true"
-                                        (dragstart)="dragstart_handler($event)"
-                                        (dragend)="dragend_handler($event)"
-                                        >
-                                        {{ aggField }}
+                                {{ aggField }}
 
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="gridPivotDropFieldType">
+                                Type:
                                 <div class="select">
                                     <select id="selects_1">
                                         <option>Sum</option>
@@ -408,7 +403,7 @@
                                 </div>
                             </div>
                             <br>
-                            <div>
+                            <div class="gridPivotDropFieldRefresh">
                                 <input type="checkbox" id="checkrads_1">
                                 <label for="checkrads_1">Always-Refresh</label>
                                 <button
