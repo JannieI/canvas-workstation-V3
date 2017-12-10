@@ -274,8 +274,14 @@
         grid-row-end: 11;
     }
 
+    .pivotDropFieldArea {
+        margin-left: 20px;
+        margin-top: 5px;
+    }
+
     .pivotDropField {
         border: 1px solid gray;
+        border-radius: 4px;
         display: inline-block;
         height: 1rem;
         width: 70%;
@@ -284,14 +290,13 @@
     .gridPivotAggregateField {
         display: inline-block;
         margin-left: 20px;
-        width: 30%;
     }
 
     .pivotDropAggregate {
         border: 1px solid gray;
+        border-radius: 4px;
         display: inline-block;
         height: 1rem;
-        width: 20%;
     }
 
     .gridPivotColResult {

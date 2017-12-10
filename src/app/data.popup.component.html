@@ -345,25 +345,13 @@
                                 Please drop a Field onto a Row, Column and the Aggregate.
                                 Then select the type of aggregation and Refresh.
                             </div>
-                            <div>
-                                Row Fields:
-                                <div class="pivotDropField"
-                                    id="rowFld"
-                                    (drop)="drop_handlerRow($event);"
-                                    (dragover)="dragover_handler($event);"
-                                    draggable="true"
-                                    (dragstart)="dragstart_handlerRow($event)"
-                                    (dragend)="dragend_handler($event)"
-                                    >
-                                    {{ rowField }}
-                                </div>
-                            </div>
-                            <div
+                            <div class="pivotDropFieldArea"
                                 draggable="true"
                                 (dragstart)="dragstart_handler($event)"
                                 (dragend)="dragend_handler($event)"
                                 >
-                                Column Fields:
+                                Column 
+                                <clr-icon shape="arrow right" size="12"></clr-icon>:
                                 <div class="pivotDropField"
                                     id="colFld"
                                     (drop)="drop_handlerCol($event);"
@@ -375,24 +363,28 @@
                                     {{ colField }}
                                 </div>
                             </div>
-                            <div>
-                                Aggregation:
-                                <div class="select">
-                                    <select id="selects_1">
-                                        <option>Sum</option>
-                                        <option>Average</option>
-                                        <option>Minimum</option>
-                                        <option>Maximum</option>
-                                        <option>Mean</option>
-                                    </select>
+                            <div class="pivotDropFieldArea">
+                                Row
+                                <clr-icon shape="arrow down" size="12"></clr-icon>:
+                                <div class="pivotDropField"
+                                    id="rowFld"
+                                    (drop)="drop_handlerRow($event);"
+                                    (dragover)="dragover_handler($event);"
+                                    draggable="true"
+                                    (dragstart)="dragstart_handlerRow($event)"
+                                    (dragend)="dragend_handler($event)"
+                                    >
+                                    {{ rowField }}
                                 </div>
+                            </div>
+                            <div class="pivotDropFieldArea">
+                                Aggregate:
                                 <div
                                     class="gridPivotAggregateField"
                                     draggable="true"
                                     (dragstart)="dragstart_handlerAgg($event)"
                                     (dragend)="dragend_handler($event)"
                                     >
-                                    Aggregate Field:
                                     <div class="pivotDropAggregate"
                                         id="aggFld"
                                         (drop)="drop_handlerAgg($event);"
@@ -405,7 +397,17 @@
 
                                     </div>
                                 </div>
+                                <div class="select">
+                                    <select id="selects_1">
+                                        <option>Sum</option>
+                                        <option>Average</option>
+                                        <option>Minimum</option>
+                                        <option>Maximum</option>
+                                        <option>Mean</option>
+                                    </select>
+                                </div>
                             </div>
+                            <br>
                             <div>
                                 <input type="checkbox" id="checkrads_1">
                                 <label for="checkrads_1">Always-Refresh</label>
@@ -430,7 +432,6 @@
                         <div class="gridPivotRowResult">
                             <div *ngFor="let row of pivotRows"
                                 class="pivotRows">
-                                {{ row }}
                                 {{ row }}
                             </div>
                         </div>
