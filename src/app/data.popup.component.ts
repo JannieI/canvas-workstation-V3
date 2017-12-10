@@ -62,6 +62,7 @@ export class DataPopupComponent implements OnInit {
     pivotAgg: string[];
     resultMessage: string = 'Results will be shown here: drag and drop fields, then click Refresh'
     dragoverCol: boolean = false;
+    dragoverRow: boolean = false;
     pivotResults: any[] = 
         [
             {
@@ -424,6 +425,16 @@ export class DataPopupComponent implements OnInit {
     dragover_handlerColLeave(ev, actionName: string) {
         ev.preventDefault();
         this.dragoverCol = false;
+    }
+
+    dragover_handlerRowEnter(ev, actionName: string) {
+        ev.preventDefault();
+        this.dragoverRow = true;
+    }
+
+    dragover_handlerRowLeave(ev, actionName: string) {
+        ev.preventDefault();
+        this.dragoverRow = false;
     }
 
     drop_handlerRow(ev) {

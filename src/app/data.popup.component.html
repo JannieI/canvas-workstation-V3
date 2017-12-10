@@ -370,10 +370,13 @@
                             <div class="gridPivotDropFieldY"
                                 id="rowFld"
                                 (drop)="drop_handlerRow($event);"
+                                (dragenter)="dragover_handlerRowEnter($event);"
+                                (dragleave)="dragover_handlerRowLeave($event);"
                                 (dragover)="dragover_handler($event);"
                                 draggable="true"
                                 (dragstart)="dragstart_handlerRow($event)"
                                 (dragend)="dragend_handler($event)"
+                                [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
                                 >
                                 {{ rowField }}
                             </div>
