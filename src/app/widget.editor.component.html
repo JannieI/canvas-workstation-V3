@@ -165,13 +165,13 @@
                         <div
                             class="dropZoneY"
                             id="target" 
-                            (drop)="drop_handler($event);" 
+                            (drop)="drop_handlerRow($event);" 
                             (dragenter)="dragover_handlerRowEnter($event);"
                             (dragleave)="dragover_handlerRowLeave($event);"
                             (dragover)="dragover_handler($event);"
                             [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
                             >
-                            {{ showXdropMessageY }}
+                            {{ rowField }}
                         </div>
 
                         <div>
@@ -238,13 +238,13 @@
                         <div
                             class="dropZoneX"
                             id="target"
-                            (drop)="drop_handler($event);"
+                            (drop)="drop_handlerCol($event);"
                             (dragover)="dragover_handler($event);"
                             (dragenter)="dragover_handlerColEnter($event);"
                             (dragleave)="dragover_handlerColLeave($event);"
                             [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
                             >
-                            {{ showXdropMessageX }}
+                            {{ colField }}
                         </div>
 
                     </div>

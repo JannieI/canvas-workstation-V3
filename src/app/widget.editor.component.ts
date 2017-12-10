@@ -1004,6 +1004,28 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         console.log('drop_handler dropped !!')
     }
 
+    drop_handlerCol(ev) {
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+        // ev.target.appendChild(document.getElementById(data));
+        this.colField = this.draggedField;
+        console.log('drop_handler dropped !!', this.colField )
+    } 
+
+    drop_handlerRow(ev) {
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+        // ev.target.appendChild(document.getElementById(data));
+        this.rowField = this.draggedField;
+        console.log('drop_handler dropped !!', this.rowField )
+    } 
+
     drop_handlerColor(ev) {
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
@@ -1013,9 +1035,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // ev.target.appendChild(document.getElementById(data));
         this.colorField = this.draggedField;
         console.log('drop_handler dropped !!', this.colorField )
-
-  
-      } 
+    } 
 
     clickCloseAdvancedX(action) {
        this.showCloseAdvancedX = false;
