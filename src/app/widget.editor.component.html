@@ -133,10 +133,8 @@
                     </div>
                 </div>
 
-                <div class="colAdvanced">
+                <div class="colAdvanced" *ngIf="showColFieldAdvancedArea">
                     <span 
-                        class="advancedX"
-                        *ngIf="showCloseAdvancedX"
                         >
                         <label for="dashboardName" class="popupLabel">Aggregate :</label>
                         <br>
@@ -205,16 +203,7 @@
                 </div> -->
 
                 <div class="colField">
-                    <button
-                        class="btn btn-secondary buttonWidgetX"
-                        (click)="showAvancedX()"
-                        *ngIf="showAdvancedX"
-                        >
-                        Advanced ...
-                    </button>
-                    
-                    <div
-                        class="dropZoneX"
+                    <div class="colFieldDropField"
                         id="target"
                         (drop)="drop_handlerCol($event);"
                         (dragover)="dragover_handlerCol($event);"
@@ -224,9 +213,17 @@
                         >
                         {{ colField }}
                     </div>
-
                 </div>
-                                
+
+                <div class="colFieldDropButton">
+                    <button class="btn btn-secondary"
+                        (click)="rowFieldDropButton()"
+                        *ngIf="showColFieldAdvanced"
+                        >
+                        Advanced ...
+                    </button>
+                </div>
+                
                 <div class="graphArea">
                     <div #dragWidget>
                         <div #visReal>

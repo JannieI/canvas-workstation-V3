@@ -881,9 +881,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     dragoverColor: boolean = false;
     filterPivotFields: string = '';    
     opened: boolean = true;
-    showAdvancedX: boolean = false;
     showRowFieldAdvanced: boolean = false;
-    showCloseAdvancedX: boolean = false;
+    showColFieldAdvanced: boolean = false;
+    showColFieldAdvancedArea: boolean = false;
     showRowFieldAdvancedArea: boolean = false;
     showType: boolean = false;
 
@@ -994,6 +994,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             undefined,
             undefined
         );
+
+        this.showColFieldAdvanced = true;
         this.renderGraph(definition);
 
     } 
@@ -1076,11 +1078,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     clickCloseAdvancedX(action) {
-       this.showCloseAdvancedX = false;
+       this.showColFieldAdvancedArea = false;
     }
 
     clickApplyAdvancedX(action) {
-      this.showCloseAdvancedX = false;
+      this.showColFieldAdvancedArea = false;
    }
 
    clickCloseAdvancedY(action) {
@@ -1091,8 +1093,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showRowFieldAdvancedArea = false;
     }
 
-   showAvancedX(){
-      this.showCloseAdvancedX = true;
+    rowFieldDropButton(){
+      this.showColFieldAdvancedArea = true;
    }
 
    clickShowRowFieldAdvanced(){
