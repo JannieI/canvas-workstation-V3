@@ -2,7 +2,358 @@
 	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
 
-            <div>
+            <div class="overall">
+                <div class="closeButton">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+                </div>
+
+                <div class="fieldList">
+                    <nav
+                        id="wrapper"
+                        class="sidenav"
+                        [style.width.px]="sideNavWidth"
+                        [style.min-width.rem]="sideNavMinWidth"
+                        >
+
+                        <clr-dropdown class="datasourceDropdown">
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                >
+                                More Datasources
+                            </button>
+                            <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
+                            <clr-dropdown-menu 
+                                clrPosition="bottom-left" 
+                                *clrIfOpen
+                                class="datasourceDropdown"
+                                >
+
+                                <div *ngFor="let cd of currentDatasources; let i = index"
+                                    (click)="clickDatasource(i, cd.name)"
+                                    clrDropdownItem
+                                    class="datasourceDropdown"
+                                    >
+                                    {{ cd.name }}
+                                </div>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+                        <div class="selectedDatasource">
+                            Fields for: {{ currentDatasources[0].name }} 
+                        </div>
+
+                        <div>
+                            <clr-datagrid>
+                                <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
+                                <clr-dg-row *ngFor="let row of dataFieldNames">
+                                    <clr-dg-cell
+                                        id="fld"
+                                        draggable="true"
+                                        (dragstart)="dragstart_handlerField($event)"
+                                        >
+                                        {{ row }}
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="rowAdvanced">
+                    <span class="advancedY" *ngIf="showCloseAdvancedY">
+                        <label for="dashboardName" class="popupLabel">
+                            Field : Country_Of_Origin_Calculated
+                        </label>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">
+                            Aggregate :
+                        </label>
+                        <br>
+                        <button class="popupButton"
+                            (click)="clickedButtonAggregateNo = !clickedButtonAggregateNo"
+                            [style.background-color] = "clickedButtonAggregateNo ? 'darkgray' : 'transparent'"
+
+                            >No
+                        </button>
+                        <button class="popupButton">Sum</button>
+                        <button class="popupButton">Avg</button>
+                        <button class="popupButton">Min</button>
+                        <button class="popupButton">Max</button>
+                        <button class="popupButton">Cnt</button>
+
+                        <br>
+                        <label for="dashboardName" class="popupLabel">Bin :</label>
+                        <br>
+                        <button class="popupButton">No</button>
+                        <button class="popupButton">Yes</button>
+                        <br>
+
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickCloseAdvancedY('Close')">
+                            Close
+                        </button>
+
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickApplyAdvancedY('Close')">
+                            Apply
+                        </button>
+                    </span>
+                </div>
+
+                <div class="rowField">
+                        
+                    <div class="dropZoneYlabel"> 
+                        Y axis:
+                    </div>
+
+                    <div class="dropZoneYField"
+                        id="target" 
+                        (drop)="drop_handlerRow($event);" 
+                        (dragenter)="dragover_handlerRowEnter($event);"
+                        (dragleave)="dragover_handlerRowLeave($event);"
+                        (dragover)="dragover_handlerRow($event);"
+                        [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
+                        >
+                        {{ rowField }}
+                    </div>
+
+                    <div class="dropZoneYButton">
+                        <button class="btn btn-secondary" 
+                            (click)="showAvancedY()"
+                            *ngIf="showAdvancedRow"
+                            >
+                            Advanced ...
+                            <span class="badge">1</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="colAdvanced">
+                    <span 
+                        class="advancedX"
+                        *ngIf="showCloseAdvancedX"
+                        >
+                        <label for="dashboardName" class="popupLabel">Aggregate :</label>
+                        <br>
+                        <button class="popupButton">No</button>
+                        <button class="popupButton">Sum</button>
+                        <button class="popupButton">Avg</button>
+                        <button class="popupButton">Min</button>
+                        <button class="popupButton">Max</button>
+                        <button class="popupButton">Cnt</button>
+
+                        <br>
+                        <label for="dashboardName" class="popupLabel">Bin :</label>
+                        <br>
+                        <button class="popupButton">No</button>
+                        <button class="popupButton">Yes</button>
+                        <br>
+
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickCloseAdvancedX('Close')">
+                            Close
+                        </button>
+
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickApplyAdvancedX('Close')">
+                            Apply
+                        </button>
+                    </span>
+                </div>
+
+                <!-- <div class="col-xs-6">
+
+                    <span 
+                        class="advancedX"
+                        *ngIf="showCloseAdvancedX"
+                        >
+                        <label for="dashboardName" class="popupLabel">Aggregate :</label>
+                        <br>
+                        <button class="popupButton">No</button>
+                        <button class="popupButton">Sum</button>
+                        <button class="popupButton">Avg</button>
+                        <button class="popupButton">Min</button>
+                        <button class="popupButton">Max</button>
+                        <button class="popupButton">Cnt</button>
+
+                        <br>
+                        <label for="dashboardName" class="popupLabel">Bin :</label>
+                        <br>
+                        <button class="popupButton">No</button>
+                        <button class="popupButton">Yes</button>
+                        <br>
+
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickCloseAdvancedX('Close')">
+                            Close
+                        </button>
+
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickApplyAdvancedX('Close')">
+                            Apply
+                        </button>
+                    </span>
+                </div> -->
+
+                <div class="colField">
+                    <button
+                        class="btn btn-secondary buttonWidgetX"
+                        (click)="showAvancedX()"
+                        *ngIf="showAdvancedX"
+                        >
+                        Advanced ...
+                    </button>
+                    
+                    <div
+                        class="dropZoneX"
+                        id="target"
+                        (drop)="drop_handlerCol($event);"
+                        (dragover)="dragover_handlerCol($event);"
+                        (dragenter)="dragover_handlerColEnter($event);"
+                        (dragleave)="dragover_handlerColLeave($event);"
+                        [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
+                        >
+                        {{ colField }}
+                    </div>
+
+                </div>
+                                
+                <div class="graphArea">
+                    <div #dragWidget>
+                        <div #visReal>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="graphType">
+                    <img class="typeIcon"
+                        [style.height.px]="40"
+                        [style.width.px]="40"
+                        src="../images/BarChart.png"
+                        (click)="clickIcon('bar')"
+                    >
+                    <img
+                        [style.height.px]="40"
+                        [style.width.px]="40"
+                        src="../images/BubbleChart.png"
+                        (click)="clickIcon('circle')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="40"
+                        [style.width.px]="40"
+                        src="../images/ColumnChart.png"
+                        (click)="clickIcon('rect')"
+                    >
+                    <img
+                        [style.height.px]="40"
+                        [style.width.px]="40"
+                        src="../images/LineChart.png"
+                        (click)="clickIcon('line')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="40"
+                        [style.width.px]="40"
+                        src="../images/PieChart.png"
+                        (click)="clickIcon('square')"
+                    >
+                    <img
+                        [style.height.px]="40"
+                        [style.width.px]="40"
+                        src="../images/ScatterChart.png"
+                        (click)="clickIcon('point')"
+                    >
+                        
+                    <div>
+                        <button class="btn btn-sm btn-link"
+                            (click)="showType=!showType"
+                            >More graph types
+                        </button>
+                    </div>
+                    <div>
+                        Current:
+                        <img class="typeIcon"
+                            [style.height.px]="50"
+                            [style.width.px]="50"
+                            src="../images/BarChart.png"
+                        >
+                    </div>
+            
+                    <div *ngIf="showType">
+
+                        <img class="typeIcon"
+                            [style.height.px]="40"
+                            [style.width.px]="40"
+                            src="../images/BarChart.png"
+                            (click)="clickIcon('BarChart')"
+                        >
+                        <img
+                            [style.height.px]="40"
+                            [style.width.px]="40"
+                            src="../images/BubbleChart.png"
+                            (click)="clickIcon('BubbleChart')"
+                        >
+                        <img class="typeIcon"
+                            [style.height.px]="40"
+                            [style.width.px]="40"
+                            src="../images/ColumnChart.png"
+                            (click)="clickIcon('ColumnChart')"
+                        >
+                        <img
+                            [style.height.px]="40"
+                            [style.width.px]="40"
+                            src="../images/LineChart.png"
+                            (click)="clickIcon('LineChart')"
+                        >
+                        <img class="typeIcon"
+                            [style.height.px]="40"
+                            [style.width.px]="40"
+                            src="../images/PieChart.png"
+                            (click)="clickIcon('PieChart')"
+                        >
+                        <img
+                            [style.height.px]="40"
+                            [style.width.px]="40"
+                            src="../images/ScatterChart.png"
+                            (click)="clickIcon('ScatterChart')"
+                        >
+                    </div>
+                </div>
+
+                <div class="colorAdvanced" *ngIf="showAdvancedField">
+                        <button class="btn btn-sm">type</button>
+                        <button class="btn btn-sm">bin</button>
+                        <button class="btn btn-sm">aggregate</button>
+                        <button class="btn btn-sm">zero</button>
+                        <button class="btn btn-sm">scale</button>
+
+                </div>
+
+                <div class="colorField">
+                    Color:
+                    <div
+                        class="dropZoneColor"
+                        id="target"
+                        (drop)="drop_handlerColor($event);"
+                        (dragover)="dragover_handlerColor($event);"
+                        (dragenter)="dragover_handlerColorEnter($event);"
+                        (dragleave)="dragover_handlerColorLeave($event);"
+                        [style.background-color]="dragoverColor? 'lightgray' : 'transparent'"
+                        >
+                        {{ colorField }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div>
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
@@ -319,7 +670,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

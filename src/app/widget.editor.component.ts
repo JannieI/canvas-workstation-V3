@@ -882,7 +882,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     filterPivotFields: string = '';    
     opened: boolean = true;
     showAdvancedX: boolean = false;
-    showAdvancedY: boolean = false;
+    showAdvancedRow: boolean = false;
     showCloseAdvancedX: boolean = false;
     showCloseAdvancedY: boolean = false;
     showType: boolean = false;
@@ -1008,7 +1008,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.rowField = this.draggedField;
         console.log('drop_handler dropped !!', this.rowField )
 
-
         let definition = this.createVegaLiteSpec(
             undefined, 
             undefined, 
@@ -1016,6 +1015,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.rowField,
             undefined
         );
+        this.showAdvancedRow = true;
         this.renderGraph(definition);
       } 
 

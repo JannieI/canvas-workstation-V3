@@ -372,7 +372,7 @@
             padding: 0 3px 0 3px;
             text-align: left;
         }
-        
+
         .gridPivotResultCols {
             display: flex;
             flex-direction: row;
@@ -448,7 +448,7 @@
         margin: 2px;
         padding-top: 0;
     }
-        
+
         .gridViewFieldHeading {
             text-align: center;
             margin: 0;
@@ -458,7 +458,7 @@
         .buttonRefresh {
             float: right;
         }
-        
+
         .gridViewRightOverview {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -474,7 +474,7 @@
         .gridViewSummaryGraphsFields {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            
+
         }
 
 .modalBox {
