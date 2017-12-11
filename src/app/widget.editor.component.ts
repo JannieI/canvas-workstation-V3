@@ -862,7 +862,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     @Input() currentWidgetSpec: any;
     @Output() formWidgetEditorClosed: EventEmitter<string> = new EventEmitter();
 
-    @ViewChild('visReal', {read: ElementRef}) visReal: ElementRef;  //Vega graph
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
     rowField: string = 'Drag a field here ...';
