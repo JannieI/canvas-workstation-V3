@@ -882,9 +882,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     filterPivotFields: string = '';    
     opened: boolean = true;
     showAdvancedX: boolean = false;
-    showAdvancedRow: boolean = false;
+    showRowFieldAdvanced: boolean = false;
     showCloseAdvancedX: boolean = false;
-    showCloseAdvancedY: boolean = false;
+    showRowFieldAdvancedArea: boolean = false;
     showType: boolean = false;
 
     constructor(
@@ -1015,7 +1015,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.rowField,
             undefined
         );
-        this.showAdvancedRow = true;
+        this.showRowFieldAdvanced = true;
         this.renderGraph(definition);
       } 
 
@@ -1084,19 +1084,19 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
    }
 
    clickCloseAdvancedY(action) {
-        this.showCloseAdvancedY = false;
+        this.showRowFieldAdvancedArea = false;
     }
 
     clickApplyAdvancedY(action) {
-        this.showCloseAdvancedY = false;
+        this.showRowFieldAdvancedArea = false;
     }
 
    showAvancedX(){
       this.showCloseAdvancedX = true;
    }
 
-   showAvancedY(){
-      this.showCloseAdvancedY = true;
+   clickShowRowFieldAdvanced(){
+      this.showRowFieldAdvancedArea = true;
    }
 
     createVegaLiteSpec(

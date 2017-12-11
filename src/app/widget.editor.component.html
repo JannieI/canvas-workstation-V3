@@ -62,8 +62,8 @@
                     </nav>
                 </div>
 
-                <div class="rowAdvanced">
-                    <span class="advancedY" *ngIf="showCloseAdvancedY">
+                <div class="rowAdvanced" *ngIf="showRowFieldAdvancedArea">
+                    <span>
                         <label for="dashboardName" class="popupLabel">
                             Field : Country_Of_Origin_Calculated
                         </label>
@@ -107,11 +107,11 @@
 
                 <div class="rowField">
                         
-                    <div class="dropZoneYlabel"> 
+                    <div class="rowFieldDropLabel"> 
                         Y axis:
                     </div>
 
-                    <div class="dropZoneYField"
+                    <div class="rowFieldDropField"
                         id="target" 
                         (drop)="drop_handlerRow($event);" 
                         (dragenter)="dragover_handlerRowEnter($event);"
@@ -122,10 +122,10 @@
                         {{ rowField }}
                     </div>
 
-                    <div class="dropZoneYButton">
+                    <div class="rowFieldDropButton">
                         <button class="btn btn-secondary" 
-                            (click)="showAvancedY()"
-                            *ngIf="showAdvancedRow"
+                            (click)="clickShowRowFieldAdvanced()"
+                            *ngIf="showRowFieldAdvanced"
                             >
                             Advanced ...
                             <span class="badge">1</span>

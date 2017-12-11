@@ -23,12 +23,16 @@
     }
     
     .rowAdvanced {
-        grid-column-start: 7;
-        grid-column-end: 10;
-        grid-row-start: 11;
-        grid-row-end: 18;
+        background: rgb(231, 230, 230);
+        border: 1px solid black;
+        grid-column-start: 4;
+        grid-column-end: 8;
+        grid-row-start: 10;
+        grid-row-end: 19;
         margin-bottom: 0;
-        text-align: center;
+        padding: 10px;
+        text-align: left;
+        z-index: 9000
     }
  
     .rowField {
@@ -41,11 +45,11 @@
         width: 90%;
     }
  
-        .dropZoneYlabel {
+        .rowFieldDropLabel {
             text-align: left;
         }
 
-        .dropZoneYField {
+        .rowFieldDropField {
             border: 2px dotted rgb(98, 98, 153);
             border-radius: 8px;
             height: 2.5em;
@@ -55,7 +59,7 @@
             width: 100%;
         }
         
-        .dropZoneYButton {
+        .rowFieldDropButton {
             margin: 0;
             padding: 0;
         }
@@ -213,7 +217,7 @@
     z-index: 9000;
 }
 
-.advancedY {
+/* .advancedY {
     background: rgb(231, 230, 230);
     border: 1px solid black;
     left: 10px;
@@ -221,7 +225,7 @@
     top: 0px;
     width: 12rem;
     z-index: 9000;
-}
+} */
 
 .popupLabel {
     font-size: .5rem !important;
