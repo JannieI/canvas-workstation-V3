@@ -40,9 +40,9 @@
         grid-column-end: 7;
         grid-row-start: 11;
         grid-row-end: 16;
-        margin-left: 1rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
         text-align: center;
-        width: 90%;
     }
  
         .rowFieldDropLabel {
@@ -111,6 +111,8 @@
     }
 
     .graphArea {
+        border: 1px solid gray;
+        border-radius: 4px;
         grid-column-start: 7;
         grid-column-end: 16;
         grid-row-start: 1;
@@ -143,6 +145,8 @@
         grid-row-start: 11;
         grid-row-end: 13;
         margin-bottom: 0;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
         text-align: center;
     }
  

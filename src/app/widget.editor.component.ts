@@ -933,9 +933,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
         view.renderer('svg')
-            .width(350)
-            .height(260)
-            .initialize(this.visReal.nativeElement)
+            .width(600)
+            .height(340)
+            .initialize(this.dragWidget.nativeElement)
             .hover()
             .run()
             .finalize();
