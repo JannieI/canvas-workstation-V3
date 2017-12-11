@@ -6,7 +6,7 @@
 					<div>
 						<h3>Start</h3>
 						<div>
-							<a (click)="clickClose('New')">Create a new Dashboard</a>
+							<a (click)="clickClose('New')">Get data for new Dashboard</a>
 						</div>
 					</div>
 
@@ -72,10 +72,10 @@
 					<div *ngIf="!firstTimeUser">
 
 						<div *ngFor="let dash of recentDashboards">
-							<a
-								(click)="loadExistingSpecification()"
+							<a (click)="loadExistingSpecification()"
 								class="nav-link" href="#"
-								[routerLink]="['/explore']" routerLinkActive="active">
+								[routerLink]="['/explore']" routerLinkActive="active"
+								>
 								{{dash.name}}
 								<clr-icon
 									(click)="promptDeleteRecent(file.name)"
@@ -87,7 +87,10 @@
 					</div>
 					<br>
 					<div>
-						<a (click)="clickClose('OpenExisting')">Open an existing Dashboard</a>
+						<a (click)="clickClose('OpenExisting')"
+							[routerLink]="['/explore']" routerLinkActive="active">
+							Open an existing Dashboard
+						</a>
 					</div>
 				</div>
 			</div>

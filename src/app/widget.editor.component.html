@@ -229,13 +229,23 @@
                 </div>
 
                 <div class="graphType">
+
+                    <div>
+                        Current:
+                        <img class="typeIcon"
+                            [style.height.px]="50"
+                            [style.width.px]="50"
+                            src="../images/BarChart.png"
+                        >
+                    </div>
+                    <br>                    
                     <img class="typeIcon"
                         [style.height.px]="40"
                         [style.width.px]="40"
                         src="../images/BarChart.png"
                         (click)="clickIcon('bar')"
                     >
-                    <img
+                    <img class="typeIcon" 
                         [style.height.px]="40"
                         [style.width.px]="40"
                         src="../images/BubbleChart.png"
@@ -247,7 +257,7 @@
                         src="../images/ColumnChart.png"
                         (click)="clickIcon('rect')"
                     >
-                    <img
+                    <img class="typeIcon"
                         [style.height.px]="40"
                         [style.width.px]="40"
                         src="../images/LineChart.png"
@@ -259,27 +269,19 @@
                         src="../images/PieChart.png"
                         (click)="clickIcon('square')"
                     >
-                    <img
+                    <img class="typeIcon"
                         [style.height.px]="40"
                         [style.width.px]="40"
                         src="../images/ScatterChart.png"
                         (click)="clickIcon('point')"
                     >
-                        
-                    <div>
-                        <button class="btn btn-sm btn-link"
-                            (click)="showType=!showType"
-                            >More graph types
-                        </button>
-                    </div>
-                    <div>
-                        Current:
-                        <img class="typeIcon"
-                            [style.height.px]="50"
-                            [style.width.px]="50"
-                            src="../images/BarChart.png"
-                        >
-                    </div>
+                </div>
+                
+                <div class="graphTypeMore">
+                    <button class="btn btn-sm btn-link"
+                        (click)="showType=!showType"
+                        >More graph types
+                    </button>
             
                     <div *ngIf="showType">
 
@@ -321,7 +323,7 @@
                         >
                     </div>
                 </div>
-
+                
                 <div class="colorAdvanced" *ngIf="showAdvancedField">
                         <button class="btn btn-sm">type</button>
                         <button class="btn btn-sm">bin</button>

@@ -1095,4 +1095,5 @@ export class GlobalVariableService {
     changeMenuCreateDisabled(value: boolean) {
         this.menuCreateDisabled.next(value);
     }
+
 }

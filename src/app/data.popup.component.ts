@@ -24,6 +24,7 @@ import { field }                      from './models';
 import { fieldMetadata }              from './models';
 import { currentTransformation }      from './models';
 import { dataQualityIssue }           from './models';
+
 // Vega
 import * as dl from 'datalib';
 import { load } from 'datalib';
@@ -608,4 +609,12 @@ export class DataPopupComponent implements OnInit {
         }
 
     }
+
+    clickTest() {
+        console.log('currentData', this.currentData[0])
+        let result: any;
+        result = this.globalFunctionService.convertArrayToPivot(this.currentData);
+        console.log(result);
+    }
+
 }

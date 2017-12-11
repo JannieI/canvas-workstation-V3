@@ -83,6 +83,7 @@
         grid-row-start: 22;
         grid-row-end: 23;
         margin: 0;
+        padding-top: 0.25rem;
         text-align: center;
         width: 90%;
     }
@@ -131,7 +132,22 @@
         margin: 10px;
         text-align: center;
     }
+
+        .typeIcon {
+            border: 1px solid gray;
+            border-radius: 3px;
+            margin: 2px;
+        }
  
+    .graphTypeMore {
+        grid-column-start: 16;
+        grid-column-end: 19;
+        grid-row-start: 18;
+        grid-row-end: 25;
+        margin: 10px;
+        text-align: center;
+    }
+
     .colorAdvanced {
         grid-column-start: 16;
         grid-column-end: 19;

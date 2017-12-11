@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
     showRectangle: boolean = false;
     showCollaborate: boolean = false;
     showGrid: boolean;
-    showModalLanding: boolean = false;
+    showModalLanding: boolean = true;
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
@@ -329,7 +329,6 @@ export class AppComponent implements OnInit {
         // this.renderer.setElementStyle(this.dragWidget.nativeElement,
         //     'top', (80 + widgetMoveX).toString() + "px");
     }
-
 
 }
 

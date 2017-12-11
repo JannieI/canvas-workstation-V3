@@ -92,8 +92,9 @@ export class LandingComponent implements OnInit {
 
 	clickClose(action: string) {
 		this.formLandingClosed.emit(action);
-		this.router.navigate(['/data']);
-		
+		if (action !== 'OpenExisting') {
+			this.router.navigate(['/data']);
+		}
 	}
 	
 }
