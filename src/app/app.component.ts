@@ -95,36 +95,6 @@ export class AppComponent implements OnInit {
         
     }   
 
-    clickMenuCreateWidget() {
-        this.showModalWidgetEditor = true;
-    }
-
-    menuDataFromFile() {
-        console.log('menuDataFromFile')
-        // this.showModalDataPopup = true;
-        this.router.navigate(['/data']);
-    }
-
-    menuDataFromServer() {
-        console.log('menuDataFromServer')
-    }
-    
-    menuDataGetData() {
-        console.log('menuDataGetData')
-        this.globalVariableService.changeMenuCreateDisabled(true);
-        this.router.navigate(['/data']);
-    }
-
-    menuCreateShapeRectangle() {
-        // <div style="width:500px;height:100px;border:1px solid #000;">This is a rectangle!</div>
-    }
-
-    menuCreateShapeCircle() {
-        // <svg height="100" width="100">
-        //     <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-        // </svg>
-    }
-
     handleCloseModal() {
         this.showModalLanding = false;
         this.document.body.style.backgroundImage ='../images/BarChart.png';
@@ -237,29 +207,161 @@ export class AppComponent implements OnInit {
     clickMenuFileShare() {
 
     }
-    
+
     clickMenuFileSave() {
         console.log('open')
         this.showModalDashboardSave = true;
-    }
-
-    clickMenuFilePermissions() {
-
     }
     
     clickMenuFileCheckpoints() {
         this.showModalDashboardCheckpoints = true;
     }
 
-    clickViewPresentation() {
+
+
+    clickMenuFileRename() {
+        this.showModalDashboardRename = true;
+    }
+
+    clickMenuFileDetails() {
+        this.showModalDashboardDetails = true;
+    }
+
+    clickMenuFileDetailDescription() {
+        this.showModalDashboardDescription = true;
+    }
+
+    clickMenuFileDetailTags() {
+        this.showModalDashboardTags = true;
+    }
+
+    clickMenuFileDetailSettings() {
+        this.showModalDashboardSettings = true;
+    }
+
+    clickMenuFileDetailTheme() {
+        this.showModalDashboardTheme = true;
+    }
+
+    clickMenuFileDetailSchedule() {
+        this.showModalDashboardSchedule = true;
+    }
+
+    clickMenuFilePermissions() {
+
+    }
+
+    clickMenuFilePrint() {
+
+    }
+
+    clickMenuFileDelete() {
+        this.showModalDashboardDelete = true;
+    }
+
+    clickMenuDataFromFile() {
+        console.log('menuDataFromFile')
+        // this.showModalDataPopup = true;
+        this.router.navigate(['/data']);
+    }
+
+    clickMenuDataFromServer() {
+        console.log('clickMenuDataFromServer')
+    }
+    
+    clickMenuDataEdit() {
+        console.log('clickMenuDataEdit')
+        this.globalVariableService.changeMenuCreateDisabled(true);
+        this.router.navigate(['/data']);
+    }
+
+    clickMenuDataCombinations(){
+
+    }
+
+    clickMenuDataPermissions() {
+
+    }
+
+    clickMenuDataRefreshAll() {
+
+    }
+
+    clickMenuEditUndo() {
+
+    }
+
+    clickMenuEditRedo() {
+
+    }
+
+    clickMenuEditWidget() {
+
+    }
+
+    clickMenuEditWidgetCopyFormat() {
+
+    }
+
+    clickMenuEditWidgetPastFormat() {
+
+    }
+
+    clickMenuEditWidgetCopy() {
+
+    }
+
+    clickMenuEditWidgetCut() {
+
+    }
+
+    clickMenuEditWidgetPaste() {
+
+    }
+
+    clickMenuEditSelectAll() {
+
+    }
+
+    clickMenuEditSelectNone() {
+
+    }
+
+    clickMenuEditFind() {
+
+    }
+
+    clickMenuEditReplace() {
+
+    }
+
+    clickMenuEditDeleteWidget() {
+
+    }
+
+    clickViewMenuPresentation() {
         this.globalVariableService.presentation.next(!this.presentation);
     }
-    clickViewShowGrid() {
+
+    clickMenuViewPrintLayout(){
+
+    }
+
+    clickMenuViewShowGrid() {
         this.globalVariableService.showGrid.next(!this.showGrid);
     }
 
-    clickViewAllComments() {
+    clickMenuViewZoom() {
+
+    }
+
+    clickMenuViewAllComments() {
         this.showModalDashboardComments = true;
+    }
+
+
+    clickMenuViewWidgetEditor() {
+        this.showModalWidgetEditor = true;
     }
 
     menuUserMyProfile() {
@@ -279,36 +381,17 @@ export class AppComponent implements OnInit {
         this.showModalDashboardPreferences = true;
     }
 
-    clickMenuFileRename() {
-        this.showModalDashboardRename = true;
+
+
+ {}    
+    menuCreateShapeRectangle() {
+        // <div style="width:500px;height:100px;border:1px solid #000;">This is a rectangle!</div>
     }
 
-    clickMenuFileDetails() {
-        this.showModalDashboardDetails = true;
-    }
-
-    clickMenuFileDescription() {
-        this.showModalDashboardDescription = true;
-    }
-
-    clickMenuFileTags() {
-        this.showModalDashboardTags = true;
-    }
-
-    clickMenuFileSettings() {
-        this.showModalDashboardSettings = true;
-    }
-
-    clickMenuFileTheme() {
-        this.showModalDashboardTheme = true;
-    }
-
-    clickMenuFileSchedule() {
-        this.showModalDashboardSchedule = true;
-    }
-
-    clickMenuFileDelete() {
-        this.showModalDashboardDelete = true;
+    menuCreateShapeCircle() {
+        // <svg height="100" width="100">
+        //     <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+        // </svg>
     }
 
     clickHelpDemo() {
