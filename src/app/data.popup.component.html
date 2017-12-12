@@ -257,16 +257,28 @@
                                 <input type="text" id="formFields_7"
                                     placeholder="Filter value"
                                     >
+                                <button
+                                    type="button"
+                                    class="btn btn-sedondary"
+                                    (click)="clickFileSaveTransformation()"
+                                    >
+                                    Add
+                                </button>
                             </div>
-                            <button
-                                type="button"
-                                class="btn btn-sedondary"
-                                (click)="clickFileSaveTransformation()"
-                                >
-                                Add
-                            </button>
                         </div>
                         <div class="gridFilterResult">
+                            <clr-datagrid class="fieldsDataGrid">
+                                <clr-dg-column>Field Name</clr-dg-column>
+                                <clr-dg-column>Operator</clr-dg-column>
+                                <clr-dg-column>Filter Value</clr-dg-column>
+
+                                <clr-dg-row *ngFor="let row of datasourceFilters">
+                                    <clr-dg-cell>{{row.fieldName}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.operator}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.filterValue}}</clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+
                         </div>
                     </div>
 

@@ -24,6 +24,7 @@ import { field }                      from './models';
 import { fieldMetadata }              from './models';
 import { currentTransformation }      from './models';
 import { dataQualityIssue }           from './models';
+import { datasourceFilter}            from './models'
 
 // Vega
 import * as dl from 'datalib';
@@ -52,6 +53,7 @@ export class DataPopupComponent implements OnInit {
     dataUniqueInColumn: string[] = [];
     pageSize: number = 4;
     dataQualityIssues: dataQualityIssue[];
+    datasourceFilters: datasourceFilter[];
     currentTransformations: currentTransformation[];
     currentDataset: string = '';
     draggedField: string = '';
@@ -156,6 +158,7 @@ export class DataPopupComponent implements OnInit {
         this.transformationsFormat = this.globalVariableService.transformationsFormat;
         this.currentTransformations = this.globalVariableService.currentTransformations;
         this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
+        this.datasourceFilters = this.globalVariableService.datasourceFilters;
         this.fields = this.globalVariableService.fields;
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
         console.log('this.isFirstTimeData', this.isFirstTimeData)
