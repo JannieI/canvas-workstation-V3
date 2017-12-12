@@ -29,7 +29,7 @@ export class DashboardSaveComponent implements OnInit {
     @Input() currentWidgetSpec: any;
     @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: dashboard[];
 
 	constructor(
@@ -43,7 +43,7 @@ export class DashboardSaveComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formDashboardOpenClosed.emit(action);
     }
 }

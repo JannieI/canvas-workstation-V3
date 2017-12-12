@@ -32,6 +32,7 @@ export class DashboardOpenComponent implements OnInit {
     showTypeDashboard: boolean = false;  
     dashboards: dashboard[];
     isFirstTimeDashboardOpen: boolean;
+    showAdvancedFilters: boolean = false;
     
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -53,6 +54,10 @@ export class DashboardOpenComponent implements OnInit {
 
     clickGotIt() {
         this.globalVariableService.isFirstTimeDashboard.next(false);
+    }
+
+    clickShowAdvancedFilters() {
+        this.showAdvancedFilters = !this.showAdvancedFilters;
     }
 
 }

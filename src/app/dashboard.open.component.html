@@ -24,57 +24,61 @@
                     
 
                 <div>Filters:</div>
-                <div class="propertyLine">
-                    Schedule:
-                    <input type="text" id="formFields_7" placeholder="Send to">
-                    <input type="text" id="formFields_7" placeholder="Sent on">
-                    <input type="text" id="formFields_7" placeholder="Due on Date">
-                    <input type="text" id="formFields_7" placeholder="Send last wk/mnth">
-                </div>
-                <div class="propertyLine">
-                    Shared:
-                    <input type="text" id="formFields_7" placeholder="By me">
-                    <input type="text" id="formFields_7" placeholder="To me">
-                    <input type="text" id="formFields_7" placeholder="To user">
-                    <input type="text" id="formFields_7" placeholder="To grp">
-                </div>
-                <div class="propertyLine">
-                    Opened:
-                    <input type="text" id="formFields_7" placeholder="By me">
-                    <input type="text" id="formFields_7" placeholder="Last wk/mnth">
-                    <input type="text" id="formFields_7" placeholder="To user">
-                    <input type="text" id="formFields_7" placeholder="To grp">
-                </div>
+                Show Advanced filters <input type="checkbox" [checked]="showAdvancedFilters" 
+                    (click)="clickShowAdvancedFilters()" [checked]="!isFirstTimeDashboardOpen"> 
+                <div *ngIf="showAdvancedFilters">
+                    <div class="propertyLine">
+                        Schedule:
+                        <input type="text" id="formFields_7" placeholder="Send to">
+                        <input type="text" id="formFields_7" placeholder="Sent on">
+                        <input type="text" id="formFields_7" placeholder="Due on Date">
+                        <input type="text" id="formFields_7" placeholder="Send last wk/mnth">
+                    </div>
+                    <div class="propertyLine">
+                        Shared:
+                        <input type="text" id="formFields_7" placeholder="By me">
+                        <input type="text" id="formFields_7" placeholder="To me">
+                        <input type="text" id="formFields_7" placeholder="To user">
+                        <input type="text" id="formFields_7" placeholder="To grp">
+                    </div>
+                    <div class="propertyLine">
+                        Opened:
+                        <input type="text" id="formFields_7" placeholder="By me">
+                        <input type="text" id="formFields_7" placeholder="Last wk/mnth">
+                        <input type="text" id="formFields_7" placeholder="To user">
+                        <input type="text" id="formFields_7" placeholder="To grp">
+                    </div>
 
-                <div class="propertyLine">
-                    <span>
-                        Created by: 
-                        <input type="text" id="formFields_7" placeholder="User">
+                    <div class="propertyLine">
+                        <span>
+                            Created by: 
+                            <input type="text" id="formFields_7" placeholder="User">
+                            </span>
+                        <span>
+                            Status: 
+                            <input type="text" id="formFields_7" placeholder="WIP, Pending, Complete">
+                        </span>>
+                        <span>
+                            Uses data: 
+                            <input type="text" id="formFields_7" placeholder="Datasource">
+                            <input type="text" id="formFields_7" placeholder="Field">
                         </span>
-                    <span>
-                        Status: 
-                        <input type="text" id="formFields_7" placeholder="WIP, Pending, Complete">
-                    </span>>
-                    <span>
-                        Uses data: 
-                        <input type="text" id="formFields_7" placeholder="Datasource">
-                        <input type="text" id="formFields_7" placeholder="Field">
-                    </span>
-                </div>
-                <div class="propertyLine">
-                    <span>
-                        Tags: 
-                        <input type="text" id="formFields_7" placeholder="By tag">
-                    </span>
-                    <span class="propertyLine">
-                        My fav: 
-                        <input type="text" id="formFields_7" placeholder="My fav only">
-                    </span>
-                </div>
-                <div class="propertyLine">
-                    Last Modified: 
-                    <input type="text" id="formFields_7" placeholder="Last wk/mnth">
-                    <input type="text" id="formFields_7" placeholder="By user">
+                    </div>
+                    <div class="propertyLine">
+                        <span>
+                            Tags: 
+                            <input type="text" id="formFields_7" placeholder="By tag">
+                        </span>
+                        <span class="propertyLine">
+                            My fav: 
+                            <input type="text" id="formFields_7" placeholder="My fav only">
+                        </span>
+                    </div>
+                    <div class="propertyLine">
+                        Last Modified: 
+                        <input type="text" id="formFields_7" placeholder="Last wk/mnth">
+                        <input type="text" id="formFields_7" placeholder="By user">
+                    </div>
                 </div>
                 <div class="propertyLine">
                     <span>
