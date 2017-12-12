@@ -123,6 +123,7 @@ export class DataPopupComponent implements OnInit {
     selectAddTransformation: boolean = false;
 
     gridViewOverview: boolean = true;
+    gridViewFields: boolean = false;
     gridViewFieldProperties: boolean = false;
     gridViewExplain: boolean = false;
     gridViewFieldProfile: boolean = false;
@@ -559,6 +560,15 @@ export class DataPopupComponent implements OnInit {
         
         if (area == 'gridViewOverview') {
             this.gridViewOverview = true;
+            this.gridViewFields = false;
+            this.gridViewFieldProperties = false;
+            this.gridViewExplain = false;
+            this.gridViewFieldProfile = false;
+            this.gridViewDataQuality = false;
+        }
+        if (area == 'gridViewFields') {
+            this.gridViewOverview = false;
+            this.gridViewFields = true;
             this.gridViewFieldProperties = false;
             this.gridViewExplain = false;
             this.gridViewFieldProfile = false;
@@ -566,6 +576,7 @@ export class DataPopupComponent implements OnInit {
         }
         if (area == 'gridViewFieldProperties') {
             this.gridViewOverview = false;
+            this.gridViewFields = false;
             this.gridViewFieldProperties = true;
             this.gridViewExplain = false;
             this.gridViewFieldProfile = false;
@@ -573,6 +584,7 @@ export class DataPopupComponent implements OnInit {
         }
         if (area == 'gridViewExplain') {
             this.gridViewOverview = false;
+            this.gridViewFields = false;
             this.gridViewFieldProperties = false;
             this.gridViewExplain = true;
             this.gridViewFieldProfile = false;
@@ -580,6 +592,7 @@ export class DataPopupComponent implements OnInit {
         }
         if (area == 'gridViewFieldProfile') {
             this.gridViewOverview = false;
+            this.gridViewFields = false;
             this.gridViewFieldProperties = false;
             this.gridViewExplain = false;
             this.gridViewFieldProfile = true;
@@ -587,6 +600,7 @@ export class DataPopupComponent implements OnInit {
         }
         if (area == 'gridViewDataQuality') {
             this.gridViewOverview = false;
+            this.gridViewFields = false;
             this.gridViewFieldProperties = false;
             this.gridViewExplain = false;
             this.gridViewFieldProfile = false;
