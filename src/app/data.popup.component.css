@@ -466,7 +466,7 @@
         border: 1px solid gray;
         border-radius: 5px;
         grid-column-start: 1;
-        grid-column-end: 5;
+        grid-column-end: 4;
         grid-row-start: 1;
         grid-row-end: 25;
         padding: 8px;
@@ -487,8 +487,7 @@
             border: 2px rgb(36, 36, 206) solid;
         }
 
-    .gridViewRight
-    {
+    .gridViewRight {
         border: 1px solid gray;
         grid-column-start: 4;
         grid-column-end: 21;

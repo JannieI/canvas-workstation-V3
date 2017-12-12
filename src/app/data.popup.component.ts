@@ -125,7 +125,7 @@ export class DataPopupComponent implements OnInit {
     gridViewOverview: boolean = true;
     gridViewFieldProperties: boolean = false;
     gridViewExplain: boolean = false;
-    gridViewSummaryGraphs: boolean = false;
+    gridViewFieldProfile: boolean = false;
     gridViewDataQuality: boolean = false;
 
     showTransitionFormat: boolean = false;
@@ -561,35 +561,35 @@ export class DataPopupComponent implements OnInit {
             this.gridViewOverview = true;
             this.gridViewFieldProperties = false;
             this.gridViewExplain = false;
-            this.gridViewSummaryGraphs = false;
+            this.gridViewFieldProfile = false;
             this.gridViewDataQuality = false;
         }
         if (area == 'gridViewFieldProperties') {
             this.gridViewOverview = false;
             this.gridViewFieldProperties = true;
             this.gridViewExplain = false;
-            this.gridViewSummaryGraphs = false;
+            this.gridViewFieldProfile = false;
             this.gridViewDataQuality = false;
         }
         if (area == 'gridViewExplain') {
             this.gridViewOverview = false;
             this.gridViewFieldProperties = false;
             this.gridViewExplain = true;
-            this.gridViewSummaryGraphs = false;
+            this.gridViewFieldProfile = false;
             this.gridViewDataQuality = false;
         }
-        if (area == 'gridViewSummaryGraphs') {
+        if (area == 'gridViewFieldProfile') {
             this.gridViewOverview = false;
             this.gridViewFieldProperties = false;
             this.gridViewExplain = false;
-            this.gridViewSummaryGraphs = true;
+            this.gridViewFieldProfile = true;
             this.gridViewDataQuality = false;
         }
         if (area == 'gridViewDataQuality') {
             this.gridViewOverview = false;
             this.gridViewFieldProperties = false;
             this.gridViewExplain = false;
-            this.gridViewSummaryGraphs = false;
+            this.gridViewFieldProfile = false;
             this.gridViewDataQuality = true;
         }
 
