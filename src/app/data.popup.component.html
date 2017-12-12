@@ -644,6 +644,21 @@
                                 </div>
                             </div>
 
+                            <div *ngIf="gridViewFields" class="propertyBox">
+                                <b>
+                                    <h4 class="gridViewFieldHeading" >Fields</h4>
+                                </b>
+                                <i>List of fields after the filters, transformations and 
+                                    optional pivot has been applied.
+                                </i>
+                                <br> <br>
+                                <div>
+                                    <b>
+                                    FieldName    DataType    LocalName    Filtered?    Transformed?
+                                    </b>
+                                </div>
+                            </div>
+
                             <div *ngIf="gridViewFieldProperties" class="propertyBox">
                                 <b>
                                     <h4 class="gridViewFieldHeading" >Field Properties</h4>
@@ -731,6 +746,7 @@
                                 </div>
 
                             </div>
+
                             <div *ngIf="gridViewExplain">
                                 <b>
                                     <h4 class="gridViewFieldHeading" >Explanations</h4>
@@ -772,6 +788,7 @@
                                     </button>
                                 </div>
                             </div>
+
                             <div *ngIf="gridViewFieldProfile">
 
                                 <b>
@@ -844,6 +861,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div *ngIf="gridViewDataQuality">
                                 <b>
                                     <h4 class="gridViewFieldHeading" >Data Quality Issues</h4>
