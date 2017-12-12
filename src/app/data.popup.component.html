@@ -13,6 +13,7 @@
                                 (Click Identify, then click Add)
                             </span>
                         </div>
+
                         <div class="titleIdentify titleBox">
                             <button
                                 type="button"
@@ -20,10 +21,10 @@
                                 (click)="clickShowIdentifyFile()"
                                 [style.background-color]="showIdentifyFile ? 'rgb(211, 211, 247)' : 'transparent'"
                                 >
-                                1. Identify
+                                Identify
                             </button>
                         </div>
-                        <div class="titleChevron1a">
+                        <div class="titleChevron1">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -32,7 +33,17 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titleChevron1b">
+                        <div class="titleFilter titleBox">
+                            <button
+                                type="button"
+                                class="btn btn-link titleButton"
+                                (click)="clickShowTransform()"
+                                [style.background-color]="showTransform ? 'rgb(211, 211, 247)' : 'transparent'"
+                                >
+                                Filter
+                            </button>
+                        </div>
+                        <div class="titleChevron2">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -48,19 +59,10 @@
                                 (click)="clickShowTransform()"
                                 [style.background-color]="showTransform ? 'rgb(211, 211, 247)' : 'transparent'"
                                 >
-                                2. Transform
+                                Transform
                             </button>
                         </div>
-                        <div class="titleChevron2a">
-                            <button
-                                type="button"
-                                class="btn btn-link titleButton"
-                                (click)="clickShowPivot()"
-                                >
-                                >>
-                            </button>
-                        </div>
-                        <div class="titleChevron2b">
+                        <div class="titleChevron3">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -76,19 +78,10 @@
                                 (click)="clickShowPivot()"
                                 [style.background-color]="showPivot ? 'rgb(211, 211, 247)' : 'transparent'"
                                 >
-                                3. Pivot
+                                Pivot
                             </button>
                         </div>
-                        <div class="titleChevron3a">
-                            <button
-                                type="button"
-                                class="btn btn-link titleButton"
-                                (click)="clickShowView()"
-                                >
-                                >>
-                            </button>
-                        </div>
-                        <div class="titleChevron3b">
+                        <div class="titleChevron4">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -104,7 +97,16 @@
                                 (click)="clickShowView()"
                                 [style.background-color]="showView ? 'rgb(211, 211, 247)' : 'transparent'"
                                 >
-                                4. View
+                                Summary
+                            </button>
+                        </div>
+                        <div class="titleButtonDiv">
+                            <button
+                                type="button"
+                                class="btn btn-secondary titleButton"
+                                (click)="clickFileAdd('Add')"
+                                >
+                                Add
                             </button>
                         </div>
 

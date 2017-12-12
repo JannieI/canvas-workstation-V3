@@ -47,5 +47,7 @@ export class PreferencesComponent implements OnInit {
 		this.formDashboardPreferencesClosed.emit(action);
     }
 
+    //TODO
+    //1. Set global var isFirstTimeDashboard = T/F depending on user input
 
 }
