@@ -103,6 +103,7 @@ export class DataPopupComponent implements OnInit {
     selectedData: string = 'Trades for 2016';
     showDataPreview: boolean = false;
     showIdentifyFile: boolean = true;
+    showFilter: boolean = false;
     showTransform: boolean = false;
     showPivot: boolean = false;
     showView: boolean = false;
@@ -504,6 +505,15 @@ export class DataPopupComponent implements OnInit {
 
     clickShowIdentifyFile() {
         this.showIdentifyFile = true;
+        this.showFilter = false;
+        this.showTransform = false;
+        this.showPivot = false;
+        this.showView = false;
+    }
+
+    clickShowFilter() {
+        this.showIdentifyFile = false;
+        this.showFilter = true;
         this.showTransform = false;
         this.showPivot = false;
         this.showView = false;
@@ -511,6 +521,7 @@ export class DataPopupComponent implements OnInit {
 
     clickShowTransform() {
         this.showIdentifyFile = false;
+        this.showFilter = false;
         this.showTransform = true;
         this.showPivot = false;
         this.showView = false;
@@ -518,6 +529,7 @@ export class DataPopupComponent implements OnInit {
 
     clickShowPivot() {
         this.showIdentifyFile = false;
+        this.showFilter = false;
         this.showTransform = false;
         this.showPivot = true;
         this.showView = false;
@@ -525,6 +537,7 @@ export class DataPopupComponent implements OnInit {
 
     clickShowView() {
         this.showIdentifyFile = false;
+        this.showFilter = false;
         this.showTransform = false;
         this.showPivot = false;
         this.showView = true;
