@@ -46,4 +46,8 @@ export class DashboardSaveComponent implements OnInit {
 
 		this.formDashboardOpenClosed.emit(action);
     }
+
+    clickSecurityMode(mode: any) {
+        console.log('mode', mode.srcElement.value)
+    }
 }

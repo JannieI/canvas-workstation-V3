@@ -8,6 +8,22 @@
                     </button>
 
                     Save Dashboard changes
+
+
+                    Security Mode (set at installation):
+                    <span class="select">
+                        <select id="selects_3"
+                            (change)="clickSecurityMode($event)"
+                            >
+                            <option>No Security</option>
+                            <option>Team</option>
+                            <option>QA required</option>
+                        </select>
+                    </span>
+
+
+
+
                     <div class="propertyLine">
                         Discard (all changes since Opened to Edit):
                         <input type="text" id="formFields_7" placeholder="Yes / No">
