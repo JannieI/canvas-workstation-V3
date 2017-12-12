@@ -31,7 +31,8 @@ export class DashboardOpenComponent implements OnInit {
 
     showTypeDashboard: boolean = false;  
     dashboards: dashboard[];
-
+    isFirstTimeDashboardOpen: boolean;
+    
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -39,6 +40,9 @@ export class DashboardOpenComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
+        this.globalVariableService.isFirstTimeDashboard.subscribe(
+            i => this.isFirstTimeDashboardOpen = i
+        )
     }
 
     clickClose(action: string) {
@@ -46,4 +50,9 @@ export class DashboardOpenComponent implements OnInit {
         
 		this.formDashboardOpenClosed.emit(action);
     }
+
+    clickGotIt() {
+        this.globalVariableService.isFirstTimeDashboard.next(false);
+    }
+
 }

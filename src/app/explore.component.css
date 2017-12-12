@@ -5,6 +5,10 @@
     margin: 5px 15px 5px 35px;
 }
 
+    .helpMessageDiv {
+        padding-left: 20px;
+    }
+
 .editMode {
     background-color: transparent;
     border: none;
