@@ -153,7 +153,7 @@ export class DataPopupComponent implements OnInit {
         if (this.currentDatasources.length > 0) {
             this.isFirstTimeData = false;
         } else {
-            this.isFirstTimeData = true;
+            this.isFirstTimeData = false;
         }
         this.transformationsFormat = this.globalVariableService.transformationsFormat;
         this.currentTransformations = this.globalVariableService.currentTransformations;

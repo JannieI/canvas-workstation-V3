@@ -466,12 +466,15 @@
         border: 1px solid gray;
         border-radius: 5px;
         grid-column-start: 1;
-        grid-column-end: 3;
+        grid-column-end: 5;
         grid-row-start: 1;
         grid-row-end: 25;
         padding: 8px;
     }
 
+        .gridViewButton {
+            width: 100%;
+        }
         .iconButton {
             border: 1px gray solid;
             border-radius: 3px;

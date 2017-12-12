@@ -38,7 +38,7 @@
                                 type="button"
                                 class="btn btn-link titleButton"
                                 (click)="clickShowFilter()"
-                                [style.background-color]="showTransform ? 'rgb(211, 211, 247)' : 'transparent'"
+                                [style.background-color]="showFilter ? 'rgb(211, 211, 247)' : 'transparent'"
                                 >
                                 Filter
                             </button>
@@ -532,40 +532,41 @@
 
                     <div class="gridView" *ngIf="showView">
                         <div class="gridViewSide">
-                            <section>
-                                <img class="iconButton"
-                                    [style.height.px]="80"
-                                    [style.width.px]="80"
-                                    src="../images/CircleIcon.png"
-                                    (click)="clickViewOptions('gridViewOverview')"
+                            <button
+                                type="button"
+                                class="btn btn-sedondary gridViewButton"
+                                (click)="clickViewOptions('gridViewOverview')"
                                 >
-                                <img class="iconButton"
-                                    [style.height.px]="80"
-                                    [style.width.px]="80"
-                                    src="../images/arrow-scroll-icon.png"
-                                    (click)="clickViewOptions('gridViewFieldProperties')"
+                                Overview
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-sedondary gridViewButton"
+                                (click)="clickViewOptions('gridViewFieldProperties')"
                                 >
-                                <img class="iconButton"
-                                    [style.height.px]="80"
-                                    [style.width.px]="80"
-                                    src="../images/PaperClipIcon.png"
-                                    (click)="clickViewOptions('gridViewExplain')"
+                                Fields Prop
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-sedondary gridViewButton"
+                                (click)="clickViewOptions('gridViewExplain')"
                                 >
-                                <img class="iconButton"
-                                    [style.height.px]="80"
-                                    [style.width.px]="80"
-                                    src="../images/GraphIcon.png"
-                                    (click)="clickViewOptions('gridViewSummaryGraphs')"
+                                Explain
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-sedondary gridViewButton"
+                                (click)="clickViewOptions('gridViewSummaryGraphs')"
                                 >
-                                <img class="iconButton"
-                                    [style.height.px]="80"
-                                    [style.width.px]="80"
-                                    src="../images/CheckIcon2.png"
-                                    (click)="clickViewOptions('gridViewDataQuality')"
+                                Graphs
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-sedondary gridViewButton"
+                                (click)="clickViewOptions('gridViewDataQuality')"
                                 >
-
-                            </section>
-
+                                Data Quality
+                            </button>
                         </div>
                         <div class="gridViewRight">
                             <div *ngIf="gridViewOverview">
