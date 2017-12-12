@@ -366,7 +366,7 @@
                         <button 
                             type="button" 
                             [disabled]="menuCreateDisabled"
-                            clrDropdownItem (click)="clickMenuCreateWidget()"
+                            clrDropdownItem (click)="clickMenuViewWidgetEditor()"
                             >
                             Widget
                         </button>
@@ -401,7 +401,7 @@
                         <button type="button" clrDropdownItem (click)="showImage=!showImage">
                             Image
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuCreateComment()">
                             Comment
                         </button>
                     </clr-dropdown-menu>
@@ -416,13 +416,13 @@
                         Format
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuFormatBold()">
                             Bold
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuFormatItalic()">
                             Italic
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuFormatUnderline()">
                             Underline
                         </button>
                         <clr-dropdown>
@@ -459,7 +459,7 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuFormatSnapToGrid()">
                             Snap to Grid
                         </button>
                         <clr-dropdown>
@@ -488,16 +488,16 @@
                         Arrange
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuArrangeBackward()">
                             Backward
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuArrangeForward()">
                             Forward
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuArrangeBack()">
                             Back
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuArrangeFront()">
                             Front
                         </button>
                         <div class="dropdown-divider"></div>
@@ -519,34 +519,34 @@
                                 <button type="button" class="dropdown-item" clrDropdownItem>Middle</button>
                                 <button type="button" class="dropdown-item" clrDropdownItem>Bottom</button>
                                 <div class="dropdown-divider"></div>
-                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                <button type="button" clrDropdownItem (click)="clickMenuArrangeAlignCenterPageDown()">
                                     Center page
                                     <clr-icon shape="two-way-arrows down"></clr-icon>
                                 </button>
-                                <button type="button" clrDropdownItem (click)="clickSave()">
+                                <button type="button" clrDropdownItem (click)="clickMenuArrangeAlignCenterPageRight()">
                                     Center page 
                                     <clr-icon shape="two-way-arrows right"></clr-icon>
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuArrangeGroup()">
                             Group
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuArrangeUnGroup()">
                             Ungroup
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuArrangeDistributeVertical()">
                             Distribute 
                             <clr-icon shape="two-way-arrows"></clr-icon>
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuArrangeDistributeHorisontal()">
                             Distribute 
                             <clr-icon shape="two-way-arrows right"></clr-icon>
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickSave()">
+                        <button type="button" clrDropdownItem (click)="clickMenuArrangeSameSize()">
                             Same size 
                         </button>
                     </clr-dropdown-menu>
@@ -561,7 +561,7 @@
                         Help
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickHelpDemo()">
+                        <button type="button" clrDropdownItem (click)="clickMenuHelpDemo()">
                             Demo
                         </button>
                         <button type="button" clrDropdownItem (click)="clickSave()">
@@ -621,10 +621,10 @@
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
                 <div class="dropdown-menu">
-                    <a clrDropdownItem (click)="menuUserLogin()">Login</a>
-                    <a clrDropdownItem (click)="menuUserMyProfile()">My Profile</a>
-                    <a clrDropdownItem (click)="menuUserPreferences()">Preferences</a>
-                    <a clrDropdownItem (click)="menuUserLogout()">Log out</a>
+                    <a clrDropdownItem (click)="clickMenuUserLogin()">Login</a>
+                    <a clrDropdownItem (click)="clickMenuUserMyProfile()">My Profile</a>
+                    <a clrDropdownItem (click)="clickMenuUserPreferences()">Preferences</a>
+                    <a clrDropdownItem (click)="clickMenuUserLogout()">Log out</a>
                 </div>
             </clr-dropdown>
             

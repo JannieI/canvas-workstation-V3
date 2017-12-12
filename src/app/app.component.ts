@@ -217,8 +217,6 @@ export class AppComponent implements OnInit {
         this.showModalDashboardCheckpoints = true;
     }
 
-
-
     clickMenuFileRename() {
         this.showModalDashboardRename = true;
     }
@@ -339,7 +337,7 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickViewMenuPresentation() {
+    clickMenuViewPresentation() {
         this.globalVariableService.presentation.next(!this.presentation);
     }
 
@@ -359,42 +357,92 @@ export class AppComponent implements OnInit {
         this.showModalDashboardComments = true;
     }
 
-
     clickMenuViewWidgetEditor() {
         this.showModalWidgetEditor = true;
     }
 
-    menuUserMyProfile() {
+    clickMenuCreateComment() {
+        
+    }
+
+    clickMenuFormatBold() {
+        
+    }
+        
+    clickMenuFormatItalic() {
+        
+    }
+
+    clickMenuFormatUnderline() {
+        
+    }
+
+    clickMenuFormatSnapToGrid() {
+        
+    }
+
+    clickMenuArrangeBackward() {
+        
+    }
+
+    clickMenuArrangeForward() {
+        
+    }
+
+    clickMenuArrangeBack() {
+        
+    }
+
+    clickMenuArrangeFront() {
+        
+    }
+
+    clickMenuArrangeAlignCenterPageDown() {
+        
+    }
+
+    clickMenuArrangeAlignCenterPageRight() {
+        
+    }
+
+    clickMenuArrangeGroup() {
+        
+    }
+
+    clickMenuArrangeUnGroup() {
+        
+    }
+
+    clickMenuArrangeDistributeVertical() {
+        
+    }
+
+    clickMenuArrangeDistributeHorisontal() {
+        
+    }
+
+    clickMenuArrangeSameSize() {
+        
+    }
+    
+    clickMenuUserMyProfile() {
         console.log('ddd')
         this.showModalDashboardMyProfile = true;
     }
 
-    menuUserLogin() {
+    clickMenuUserLogin() {
         this.showModalDashboardLogin = true;
     }
 
-    menuUserLogout() {
+    clickMenuUserLogout() {
         this.showModalDashboardLogout = true;
     }
 
-    menuUserPreferences() {
+    clickMenuUserPreferences() {
         this.showModalDashboardPreferences = true;
     }
 
-
-
- {}    
-    menuCreateShapeRectangle() {
-        // <div style="width:500px;height:100px;border:1px solid #000;">This is a rectangle!</div>
-    }
-
-    menuCreateShapeCircle() {
-        // <svg height="100" width="100">
-        //     <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-        // </svg>
-    }
-
-    clickHelpDemo() {
+    clickMenuHelpDemo() {
         this.router.navigate(['/help']);
     }
 
