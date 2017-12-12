@@ -1,5 +1,12 @@
 // ALL models (schema) are kept here
 
+export class datasourceFilter {
+    id: number;
+    fieldName: string; 
+    operator: string;
+    filterValue: string | number;
+}
+
 export class dataQualityIssue {
     id: number;
     status: string;

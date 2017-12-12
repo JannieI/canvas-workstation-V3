@@ -17,10 +17,27 @@ import { dashboardTheme }             from './models';
 import { dashboardSchedule }          from './models';
 import { dashboardComment }           from './models';
 import { dataQualityIssue}            from './models'
+import { datasourceFilter}            from './models'
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
+const datasourceFilters: datasourceFilter[] = 
+[
+    {
+        id: 1,
+        fieldName: 'symbol',
+        operator: 'Equal',
+        filterValue: 'MSFT'
+    },
+    {
+        id: 1,
+        fieldName: 'price',
+        operator: 'GreaterEqual',
+        filterValue: '100'
+    }
+]
+
 const dataQualityIssues: dataQualityIssue[] =
 [ 
     {
@@ -952,6 +969,7 @@ export class GlobalVariableService {
     currentDatasources: currentDatasource[] = currentDatasources;
     datasources: currentDatasource[] = datasources;
     dataQualityIssues: dataQualityIssue[] = dataQualityIssues;
+    datasourceFilters: datasourceFilter[] = datasourceFilters;
     transformationsFormat: transformation[] = transformationsFormat;
     fields: field[] = fields;
     fieldsMetadata: fieldMetadata[] = fieldsMetadata;
