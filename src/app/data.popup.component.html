@@ -867,7 +867,9 @@
                                     <h4 class="gridViewFieldHeading" >Data Quality Issues</h4>
                                 </b>
                                 <i>This area provides a list of issues pertaining to Data
-                                    Quality, and whether it has been resolved.
+                                    Quality, and whether it has been resolved.  Double click
+                                    a row to see all the detail values affected (if Nr Issues
+                                    is greater than 0).
                                 </i>
                                 <button
                                     type="button"
@@ -884,21 +886,23 @@
                                         <clr-dg-column>Name</clr-dg-column>
                                         <clr-dg-column>Type</clr-dg-column>
                                         <clr-dg-column>Description</clr-dg-column>
+                                        <clr-dg-column>NrIssues</clr-dg-column>
                                         <clr-dg-column>LoggedBy</clr-dg-column>
                                         <clr-dg-column>LoggedOn</clr-dg-column>
                                         <clr-dg-column>SolvedBy</clr-dg-column>
                                         <clr-dg-column>SolvedOn</clr-dg-column>
 
                                         <clr-dg-row *ngFor="let row of dataQualityIssues">
-                                            <clr-dg-cell>{{row.id}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.status}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.name}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.type}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.description}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.loggedBy}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.loggedOn}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.solvedBy}</clr-dg-cell>
-                                            <clr-dg-cell>{{row.solvedOn}</clr-dg-cell>
+                                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                                            <clr-dg-cell>{{row.status}}</clr-dg-cell>
+                                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                                            <clr-dg-cell>{{row.type}}</clr-dg-cell>
+                                            <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                                            <clr-dg-cell>{{row.nrIssues}}</clr-dg-cell>
+                                            <clr-dg-cell>{{row.loggedBy}}</clr-dg-cell>
+                                            <clr-dg-cell>{{row.loggedOn}}</clr-dg-cell>
+                                            <clr-dg-cell>{{row.solvedBy}}</clr-dg-cell>
+                                            <clr-dg-cell>{{row.solvedOn}}</clr-dg-cell>
                                         </clr-dg-row>
 
                                         <clr-dg-footer>{{dataQualityIssues.length}} issues</clr-dg-footer>

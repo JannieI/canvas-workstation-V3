@@ -13,6 +13,7 @@ export class dataQualityIssue {
     name: string;
     type: string;
     description;
+    nrIssues: number;
     loggedBy: string;
     loggedOn: string;
     solvedBy: string;
