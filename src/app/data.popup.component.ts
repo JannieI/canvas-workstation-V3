@@ -329,6 +329,161 @@ export class DataPopupComponent implements OnInit {
         }
     }
 
+    clickFileSelect(action: string) {
+        // console.log(this.currentDatasources)
+        // let newData: currentDatasource =  {
+        //     id: 1,
+        //     type: 'Excel file',
+        //     name: 'Costing preparation',
+        //     description: 'Costing preparation',
+        //     createdBy: 'JohnM',
+        //     createdOn: '2017/01/01',
+        //     refreshedBy: 'JohnM',
+        //     refreshedOn: '2017/01/01',
+        //     parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+        // };
+        var csv_data = dl.load({url: './assets/vega-datasets/stocks.csv'});
+        let startNow: number;
+        // var data = dl.read(csv_data, {type: 'csv', parse: 'auto'});
+        // startNow = Date.now()
+        // console.log('data rows', data.length)
+        // console.log('end', Date.now() - startNow)
+
+        // var csv_data = dl.load({url: './assets/vega-datasets/stocks1.csv'});
+        // var data = dl.read(csv_data, {type: 'csv', parse: 'auto'});
+        // startNow = Date.now()
+        // console.log('data rows', data.length)
+        // console.log('end', Date.now() - startNow)
+        
+        // var csv_data = dl.load({url: './assets/vega-datasets/stocks2.csv'});
+        // var data = dl.read(csv_data, {type: 'csv', parse: 'auto'});
+        // startNow = Date.now()
+        // console.log('data rows', data.length)
+        // console.log('end', Date.now() - startNow)
+        
+        startNow = Date.now()
+        console.log('LOAD data start:')
+        let fileFolder: string = './assets/vega-datasets/';
+        let fileName: string = 'stocks.csv';
+        let filePath: string = fileFolder + fileName;
+        dl.csv({url: filePath}, {}, (err, currentData) => {
+            if (err) {
+              console.log('error on load', err)
+            } else {
+
+                // Load
+                console.log('')
+                console.log('LOAD start:')
+                this.currentData = currentData;
+                currentData = [];
+                console.log('     data rows', this.currentData.length)
+                console.log('     END load: ', (Date.now() - startNow) / 1000)
+
+                // Fields
+                console.log('')
+                console.log('FIELDS start:')
+                startNow = Date.now()
+                var dataTypes = dl.type.all(this.currentData)
+                this.dataFieldNames = Object.keys(dataTypes);
+                console.log('     fields', this.dataFieldNames)
+                for (var i = 0; i < this.dataFieldNames.length; i++) {
+                    console.log('     ', i, this.dataFieldNames[i])
+                }
+                console.log('     END fields: ', (Date.now() - startNow) / 1000)
+
+                // Types
+                console.log('')
+                console.log('TYPES start:')
+                startNow = Date.now()
+                console.log('     types');
+                for (var i = 0; i < this.dataFieldNames.length; i++) {
+                    this.dataFieldTypes.push(dataTypes[ this.dataFieldNames[i] ] );
+                    console.log('     ', i, this.dataFieldTypes[i])
+                }
+                console.log('     END types: ', (Date.now() - startNow) / 1000)
+
+                // Sort
+                console.log('')
+                console.log('SORT start:')
+                startNow = Date.now()
+                this.currentData.sort(dl.comparator(['+symbol', '-price']));
+                console.log('     END sort: ', (Date.now() - startNow) / 1000)
+                
+                // Group By
+                console.log('')
+                console.log('GROUPBY start:')
+                startNow = Date.now()
+                this.dataArray = dl.groupby('symbol')
+                    .summarize( [
+                        {name: 'symbol', ops: ['valid']},
+                        {name: 'price',  ops: ['sum', 'median'], as: ['s', 'm']} 
+                        ] )
+                    .execute(this.currentData);
+                console.log('     groupby', this.dataArray)
+                console.log('     END groupby: ', (Date.now() - startNow) / 1000)
+
+                // Get Unique Symbols
+                console.log('')
+                console.log('UNIQUE start:')
+                startNow = Date.now()
+                var dataUniqueInColumn = dl.unique(this.currentData);
+                console.log('     unique', dataUniqueInColumn)
+                console.log('     END unique: ', (Date.now() - startNow) / 1000)
+
+                // Get Unique Symbols 2
+                console.log('')
+                console.log('UNIQUE 2 start:')
+                startNow = Date.now()
+                dataUniqueInColumn = dl.groupby('symbol')
+                    .summarize( [
+                        {name: 'symbol', ops: ['values']} 
+                        ] )
+                    .execute(this.currentData);
+                console.log('     unique', dataUniqueInColumn)
+                console.log('     END unique: ', (Date.now() - startNow) / 1000)
+            
+            }
+          });
+
+        this.globalVariableService.menuCreateDisabled.next(false);
+          
+        if (action == 'AddAndClose') {
+            this.router.navigate(['/explore']);
+        };
+
+        // Preview
+        console.log('')
+        console.log('PREVIEW start:')
+        startNow = Date.now()
+        this.showDataPreview = true;
+        console.log('        END preview: ', (Date.now() - startNow) / 1000)
+
+        if (action =="Add") {
+            // Datasource
+            console.log('')
+            console.log('DATASOURCE start:')
+            startNow = Date.now()
+            let newData: currentDatasource =  {
+                id: 1,
+                type: 'CSV File',
+                name: 'Stocks.csv',
+                description: 'Hard coded name',
+                createdBy: 'Me',
+                createdOn: '2017/01/01',
+                refreshedBy: 'JohnM',
+                refreshedOn: '2017/01/01',
+                parameters: 'None'
+    
+            };
+            this.isFirstTimeData = false;
+            this.currentDataset = fileName;
+            this.currentDatasources.push(newData);
+            console.log('     currentDatasources', this.currentDatasources)
+            console.log('     END datasource: ', (Date.now() - startNow) / 1000)
+        }
+    }
+
     clickDatasourceRow(dsName: string) {
         this.currentDataset = dsName;
         console.log('dsName', dsName, this.filterDataset)
