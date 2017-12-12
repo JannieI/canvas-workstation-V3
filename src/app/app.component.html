@@ -48,11 +48,20 @@
                         <button type="button" clrDropdownItem (click)="clickMenuFileOpen()">
                             Open
                         </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuFileEdit()">
+                            Edit
+                        </button>
                         <button type="button" clrDropdownItem (click)="clickMenuFileRename()">
                             Rename
                         </button>
                         <button type="button" clrDropdownItem (click)="clickMenuFileSave()">
                             Save
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuFileDiscard()">
+                            Discard
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuFileShare()">
+                            Share
                         </button>
                         <button type="button" clrDropdownItem (click)="clickMenuFileCheckpoints()">
                             Checkpoints
@@ -247,6 +256,10 @@
                         </button>
                         <button type="button" clrDropdownItem (click)="clickSave()">
                             Redo
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickMenuEditWidget()">
+                            Widget
                         </button>
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickSave()">
@@ -589,7 +602,6 @@
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
                 <div class="dropdown-menu">
-                    <a clrDropdownItem>Share</a>
                     <a clrDropdownItem>Send Email</a>
                     <a clrDropdownItem>Send Message</a>
                     <a clrDropdownItem (click)="showCollaborate = !showCollaborate">

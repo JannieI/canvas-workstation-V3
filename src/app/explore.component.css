@@ -5,6 +5,16 @@
     margin: 5px 15px 5px 35px;
 }
 
+.editMode {
+    background-color: transparent;
+    border: none;
+    color: rgb(248, 159, 4);
+    position: absolute;
+    right: 1rem;
+    top: 2.6rem;
+    z-index: 20;
+}
+
 .tabList {
     bottom: 0;
     opacity: 1;

@@ -26,8 +26,8 @@
                                 More Datasources
                             </button>
                             <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
-                            <clr-dropdown-menu 
-                                clrPosition="bottom-left" 
+                            <clr-dropdown-menu
+                                clrPosition="bottom-left"
                                 *clrIfOpen
                                 class="datasourceDropdown"
                                 >
@@ -42,7 +42,7 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="selectedDatasource">
-                            Fields for: {{ currentDatasources[0].name }} 
+                            Fields for: {{ currentDatasources[0].name }}
                         </div>
 
                         <div>
@@ -106,14 +106,14 @@
                 </div>
 
                 <div class="rowField">
-                        
-                    <div class="rowFieldDropLabel"> 
+
+                    <div class="rowFieldDropLabel">
                         Y axis:
                     </div>
 
                     <div class="rowFieldDropField"
-                        id="target" 
-                        (drop)="drop_handlerRow($event);" 
+                        id="target"
+                        (drop)="drop_handlerRow($event);"
                         (dragenter)="dragover_handlerRowEnter($event);"
                         (dragleave)="dragover_handlerRowLeave($event);"
                         (dragover)="dragover_handlerRow($event);"
@@ -123,7 +123,7 @@
                     </div>
 
                     <div class="rowFieldDropButton">
-                        <button class="btn btn-secondary" 
+                        <button class="btn btn-secondary"
                             (click)="clickShowRowFieldAdvanced()"
                             *ngIf="showRowFieldAdvanced"
                             >
@@ -134,7 +134,7 @@
                 </div>
 
                 <div class="colAdvanced" *ngIf="showColFieldAdvancedArea">
-                    <span 
+                    <span
                         >
                         <label for="dashboardName" class="popupLabel">Aggregate :</label>
                         <br>
@@ -168,7 +168,7 @@
 
                 <!-- <div class="col-xs-6">
 
-                    <span 
+                    <span
                         class="advancedX"
                         *ngIf="showCloseAdvancedX"
                         >
@@ -225,7 +225,7 @@
                 </div>
 
                 <div class="graphArea" #dragWidget>
-                
+
                 </div>
 
                 <div class="graphType">
@@ -238,14 +238,14 @@
                             src="../images/BarChart.png"
                         >
                     </div>
-                    <br>                    
+                    <br>
                     <img class="typeIcon"
                         [style.height.px]="40"
                         [style.width.px]="40"
                         src="../images/BarChart.png"
                         (click)="clickIcon('bar')"
                     >
-                    <img class="typeIcon" 
+                    <img class="typeIcon"
                         [style.height.px]="40"
                         [style.width.px]="40"
                         src="../images/BubbleChart.png"
@@ -276,13 +276,13 @@
                         (click)="clickIcon('point')"
                     >
                 </div>
-                
+
                 <div class="graphTypeMore">
                     <button class="btn btn-sm btn-link"
                         (click)="showType=!showType"
                         >More graph types
                     </button>
-            
+
                     <div *ngIf="showType">
 
                         <img class="typeIcon"
@@ -323,7 +323,7 @@
                         >
                     </div>
                 </div>
-                
+
                 <div class="colorAdvanced" *ngIf="showAdvancedField">
                         <button class="btn btn-sm">type</button>
                         <button class="btn btn-sm">bin</button>
@@ -353,7 +353,7 @@
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
-    
+
                 <div class="row">
                     <div class="col-xs-2 gridColumn">
                         <nav
@@ -372,8 +372,8 @@
                                     More Datasources
                                 </button>
                                 <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
-                                <clr-dropdown-menu 
-                                    clrPosition="bottom-left" 
+                                <clr-dropdown-menu
+                                    clrPosition="bottom-left"
                                     *clrIfOpen
                                     class="datasourceDropdown"
                                     >
@@ -388,7 +388,7 @@
                                 </clr-dropdown-menu>
                             </clr-dropdown>
                             <div class="selectedDatasource">
-                                Fields for: {{ currentDatasources[0].name }} 
+                                Fields for: {{ currentDatasources[0].name }}
                             </div>
 
                             <div>
@@ -449,14 +449,14 @@
                                 Apply
                             </button>
                         </span>
-                        <div class="dropZoneYlabel"> 
+                        <div class="dropZoneYlabel">
                             Y axis:
                         </div>
 
                         <div
                             class="dropZoneY"
-                            id="target" 
-                            (drop)="drop_handlerRow($event);" 
+                            id="target"
+                            (drop)="drop_handlerRow($event);"
                             (dragenter)="dragover_handlerRowEnter($event);"
                             (dragleave)="dragover_handlerRowLeave($event);"
                             (dragover)="dragover_handlerRow($event);"
@@ -466,8 +466,8 @@
                         </div>
 
                         <div>
-                            <button 
-                                class="btn btn-secondary buttonWidgetY" 
+                            <button
+                                class="btn btn-secondary buttonWidgetY"
                                 (click)="showAvancedY()"
                                 *ngIf="showAdvancedY"
                                 >
@@ -479,7 +479,7 @@
 
                     <div class="col-xs-6">
 
-                        <span 
+                        <span
                             class="advancedX"
                             *ngIf="showCloseAdvancedX"
                             >
@@ -525,7 +525,7 @@
                             >
                             Advanced ...
                         </button>
-                        
+
                         <div
                             class="dropZoneX"
                             id="target"
@@ -545,7 +545,7 @@
                             id="second"
                             >
                             <section class="sidenav-content">
-                                        
+
                                 <img class="typeIcon"
                                     [style.height.px]="40"
                                     [style.width.px]="40"
@@ -582,7 +582,7 @@
                                     src="../images/ScatterChart.png"
                                     (click)="clickIcon('point')"
                                 >
-                                    
+
                                 <div>
                                     <button class="btn btn-sm btn-link"
                                         (click)="showType=!showType"
@@ -597,7 +597,7 @@
                                         src="../images/BarChart.png"
                                     >
                                 </div>
-                        
+
                                 <div *ngIf="showType">
 
                                     <img class="typeIcon"

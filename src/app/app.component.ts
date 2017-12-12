@@ -226,6 +226,18 @@ export class AppComponent implements OnInit {
         this.showModalDashboardOpen = true;
     }
 
+    clickMenuFileEdit() {
+
+    }
+
+    clickMenuFileDiscard() {
+
+    }
+
+    clickMenuFileShare() {
+
+    }
+    
     clickMenuFileSave() {
         console.log('open')
         this.showModalDashboardSave = true;
