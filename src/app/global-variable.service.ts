@@ -199,7 +199,7 @@ const dashboards: dashboard[] =
 [
     {
         id: 1,
-        state: 'WIP',
+        state: 'Draft',
         name: 'Market Overview',
         description: 'Economic indicator summary',
         nrWidgets: 1,

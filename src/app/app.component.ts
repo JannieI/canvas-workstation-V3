@@ -325,7 +325,7 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickMenuEditFind() {
+    clickMenuEditDiff() {
 
     }
 

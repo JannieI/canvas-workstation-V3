@@ -13,9 +13,10 @@
                     HELP message: use the filters at the top to narrow down the list of 
                     Dashboards displayed in the grid below.  Opening a Dashboard is 
                     done in View mode by default.  Click <i>File -> Edit</i> to change to Edit
-                    mode after a Dashboard has been opened. Once you have started editing a Dashboard,
-                    the status will change to WIP (Work in Progress).  Opening such Dashboard
-                    will be in Edit mode, reading for editing. 
+                    mode after a Dashboard has been opened. This will create a Draft copy, 
+                    leaving the original unchanged.  Only the editor can see the Draft copy.  
+                    Subsequently opening this Dashboard will open it in Edit mode, ready for 
+                    editing. 
                     <br><br>
                     Got it <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboardOpen"> 
                         (You can make this message re-appear with the <i>Preferences</i> option under your 
@@ -56,7 +57,7 @@
                             </span>
                         <span>
                             Status: 
-                            <input type="text" id="formFields_7" placeholder="WIP, Pending, Complete">
+                            <input type="text" id="formFields_7" placeholder="Draft, Pending, Complete">
                         </span>>
                         <span>
                             Uses data: 
