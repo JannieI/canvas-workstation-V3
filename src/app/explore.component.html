@@ -3,26 +3,26 @@
         type="button"
         class="btn btn-secondary btn-sm"
         >
-        <clr-icon shape="step-forward down" size="20"></clr-icon> 
-        
+        <clr-icon shape="step-forward down" size="20"></clr-icon>
+
     </button>
     <button
         type="button"
         class="btn btn-secondary btn-sm"
         >
-        <clr-icon shape="fast-forward" size="20"></clr-icon> 
+        <clr-icon shape="fast-forward" size="20"></clr-icon>
     </button>
     <button
         type="button"
         class="btn btn-secondary btn-sm"
         >
-        <clr-icon shape="rewind" size="20"></clr-icon> 
+        <clr-icon shape="rewind" size="20"></clr-icon>
     </button>
     <button
         type="button"
         class="btn btn-secondary btn-sm"
         >
-        <clr-icon shape="step-forward" size="20"></clr-icon> 
+        <clr-icon shape="step-forward" size="20"></clr-icon>
     </button>
     <div *ngIf="presentationMsg">
 
@@ -45,31 +45,31 @@
          like <i>From File</i>).  Once done, return to this Dashboard.
     </div>
     <div class="helpMessageDiv">
-        2. Insert a Widget to visualise the added datasource (click <i>Create -> Widget</i> in the top 
-            menu).  
+        2. Insert a Widget to visualise the added datasource (click <i>Create -> Widget</i> in the top
+            menu).
     </div>
     <div class="helpMessageDiv">
         3. Format and arrange Widgets as necessary.
     </div>
     <div class="helpMessageDiv">
-        4. Save your new Dashboard with a name using <i>File -> SaveAs</i>.  
+        4. Save your new Dashboard with a name using <i>File -> SaveAs</i>.
     </div>
     <div class="helpMessageDiv">
-    5. Existing Dashboards can be opened with <i>File -> Open</i>.  
+    5. Existing Dashboards can be opened with <i>File -> Open</i>.
     </div>
     <div class="helpMessageDiv">
-        6. Collaboration (discussions with colleagues) happens via messages and tasks (click 
+        6. Collaboration (discussions with colleagues) happens via messages and tasks (click
             the <i>Share <clr-icon shape="share"></clr-icon> icon</i> in the top right menu).
     </div>
     <div class="helpMessageDiv">
-        7. Click <i>File -> Edit</i> to Edit a Dashboard.  An indicator will be shown in the 
+        7. Click <i>File -> Edit</i> to Edit a Dashboard.  An indicator will be shown in the
         right hand bottom corner.
     </div>
     <br><br>
-    Got it <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboard"> 
-        (You can make this message re-appear with the <i>Preferences</i> option under your 
+    Got it <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboard">
+        (You can make this message re-appear with the <i>Preferences</i> option under your
         User icon <clr-icon shape="user"></clr-icon> in the top right menu.  The Dashboard
-        will function normally while this message is displayed.) 
+        will function normally while this message is displayed.)
 </div>
 
 
@@ -147,13 +147,13 @@
 <div *ngFor="let ds of localDashboards" class="widgetContainer"
     #widgetContainter>
     <div class="widgetButtonBar">
-        <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon> 
-        <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon> 
-        <clr-icon shape="cursor-hand" size="20" class="buttonBarIcon"></clr-icon> 
-        <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon> 
-        <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon> 
-        <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon> 
-        <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon> 
+        <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
+        <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="cursor-hand" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
     </div>
     <div class="widget">
         <div #widget>

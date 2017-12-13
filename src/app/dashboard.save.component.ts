@@ -29,6 +29,7 @@ export class DashboardSaveComponent implements OnInit {
     @Input() currentWidgetSpec: any;
     @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
 
+    isFirstTimeDashboardSave: boolean;
     showTypeDashboard: boolean = false;
     showNoSecurity: boolean = true;
     showTeam: boolean = false;
@@ -42,6 +43,9 @@ export class DashboardSaveComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
+        this.globalVariableService.isFirstTimeDashboardSave.subscribe(
+            i => this.isFirstTimeDashboardSave = i
+        )
     }
 
     clickClose(action: string) {
@@ -70,6 +74,9 @@ export class DashboardSaveComponent implements OnInit {
     }
 
     clickSaveFile() {
-        
+    }
+
+    clickGotIt() {
+        this.globalVariableService.isFirstTimeDashboardSave.next(false);
     }
 }

@@ -11,6 +11,13 @@
     top: 0;
 }
 
+.helpMessage {
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: rgb(204, 204, 245);
+    margin: 5px 15px 5px 35px;
+}
+
 .propertyLine {
     margin: 5px;
 }
