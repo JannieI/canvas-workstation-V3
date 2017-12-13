@@ -22,7 +22,47 @@
                     </span>
 
                     <div *ngIf="showNoSecurity">
-                        No Security
+                        <div>
+                            With the <b>No Security</b> model, all users have full access to all
+                            Dashboards.  In a sense, all users have Admin rights to them.  Anyone
+                            can create a Dashboard, and all Dashboards can be viewed and editted 
+                            by all users.  This model is ideal for standalone installations (where
+                            there is only one user) or small teams with a high level of trust.  
+                        </div>
+                        <div>
+                            Note that while editing a Dashboard, changes are never applied to the 
+                            original. A separate Draft copy is created.  This copy is visible
+                            only to the editor, while all other users will see only the original.  
+                            The user can use checkpoints (see File -> Checkpoints menu item) to
+                            store interim copies.  The user may role back to a previously stored
+                            checkpoint at any time.  When the Draft copy is created, the system
+                            automatically creates the first checkpoint called 'Original'.  The
+                            use of checkpoints is optional.
+                        </div>
+                        <div>
+                            During editing, all changes are saved automatically to the Draft copy
+                            without any user input.  Once changes have been finalised and the user
+                            wants to make these available to other users, he clicks Save.  The Save
+                            button will replace the original copy with the Draft copy, and 
+                            remove the Draft copy. 
+                        </div>
+                        <div>
+                            Also, only one user at a time may edit a Dashboard. Once changes 
+                            have started, the user can Discard these changes (which will 
+                            simply delete the Draft copy and all checkpoints). In order to 
+                            allocate rights to individual users or groups, the Team security 
+                            model must be used.
+                        </div>
+                        </div>
+                        <br>
+                        <div>
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickSaveFile()"
+                                >
+                                Save
+                            </button>
                     </div>
 
                     <div *ngIf="showTeam">
@@ -63,16 +103,6 @@
                                     <input type="text" id="formFields_7" placeholder="Normal / Strict">
                                 </p>
                                 <div>There are 2 security modes, the default is Normal</div>
-                                <div>
-                                In Normal mode all users can do the following to all Dashboards that
-                                they have access to (full access is automatically granted to the creator,
-                                and further access can be granted to the same or lessor level that is owned):
-                                    a. Open (for view in readonly mode - no changes can be done)
-                                    b. Edit (a WIP version will be created, leaving Committed version unchanged)
-                                    c. Discard (delete WIP version)
-                                    d. Request-QA (on Request, the WIP -> Pending).  This step is optional.
-                                    e. Save (approves QA request and WIP/Pending -> Committed)
-                                </div>
                                 <div>In Strict mode, there are different User roles:</div>
                                 <div>1. Admin - can Open, Edit, Request-QA, QA and Save all Dashboards</div>
                                 <div>2. DashboardBuilder, which is a type of group membership, can perform

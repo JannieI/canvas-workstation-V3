@@ -30,7 +30,7 @@ export class DashboardSaveComponent implements OnInit {
     @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    showNoSecurity: boolean = false;
+    showNoSecurity: boolean = true;
     showTeam: boolean = false;
     showQArequired: boolean = false;
     dashboards: dashboard[];
@@ -67,9 +67,9 @@ export class DashboardSaveComponent implements OnInit {
             this.showTeam = false;
             this.showQArequired = true;
         }
+    }
 
-        // console.log('x', this.showNoSecurity,
-        // this.showTeam,
-        // this.showQArequired)
+    clickSaveFile() {
+        
     }
 }
