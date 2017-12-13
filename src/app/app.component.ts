@@ -266,12 +266,6 @@ export class AppComponent implements OnInit {
     clickMenuDataFromServer() {
         console.log('clickMenuDataFromServer')
     }
-    
-    clickMenuDataEdit() {
-        console.log('clickMenuDataEdit')
-        this.globalVariableService.changeMenuCreateDisabled(true);
-        this.router.navigate(['/data']);
-    }
 
     clickMenuDataCombinations(){
 
