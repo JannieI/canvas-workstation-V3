@@ -30,6 +30,9 @@ export class DashboardSaveComponent implements OnInit {
     @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
+    showNoSecurity: boolean = false;
+    showTeam: boolean = false;
+    showQArequired: boolean = false;
     dashboards: dashboard[];
 
 	constructor(
@@ -49,5 +52,24 @@ export class DashboardSaveComponent implements OnInit {
 
     clickSecurityMode(mode: any) {
         console.log('mode', mode.srcElement.value)
+        if (mode.srcElement.value == 'No Security') {
+            this.showNoSecurity = true;
+            this.showTeam = false;
+            this.showQArequired = false;
+        }
+        if (mode.srcElement.value == 'Team') {
+            this.showNoSecurity = false;
+            this.showTeam = true;
+            this.showQArequired = false;
+        }
+        if (mode.srcElement.value == 'QA required') {
+            this.showNoSecurity = false;
+            this.showTeam = false;
+            this.showQArequired = true;
+        }
+
+        // console.log('x', this.showNoSecurity,
+        // this.showTeam,
+        // this.showQArequired)
     }
 }

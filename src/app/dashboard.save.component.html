@@ -21,65 +21,72 @@
                         </select>
                     </span>
 
-
-
-
-                    <div class="propertyLine">
-                        Discard (all changes since Opened to Edit):
-                        <input type="text" id="formFields_7" placeholder="Yes / No">
-                    </div>
-                    <div class="propertyLine">
-                        Request QA:
-                        <input type="text" id="formFields_7" placeholder="Usr to QA">
-                        <input type="text" id="formFields_7" placeholder="QA message">
-                        <input type="text" id="formFields_7" placeholder="List of Db-Builders">
-                    </div>
-                    <div class="propertyLine">
-                        Save (Complete and replaces original):
-                        <input type="text" id="formFields_7" placeholder="Usr/Grp Subscribed">
-                        <input type="text" id="formFields_7" placeholder="Add Usr/Grp to notify">
-                    </div>
-                    <div class="propertyLine">
-                        Save As (original unchanged and creates WIP):
-                        <input type="text" id="formFields_7" placeholder="New Name">
-                        <input type="text" id="formFields_7" placeholder="">
-                    </div>
-                    <div class="propertyLine">
-                        Export current Dashboard (as json file, that can be Imported):
-                        <input type="text" id="formFields_7" placeholder="Folder">
-                        <input type="text" id="formFields_7" placeholder="File Name.json">
+                    <div *ngIf="showNoSecurity">
+                        No Security
                     </div>
 
-                    <div class="propertyLine">
-                        <span>
-                            <br>
-                            <p>Your security mode (set by Admin):
-                                <input type="text" id="formFields_7" placeholder="Normal / Strict">
-                            </p>
-                            <div>There are 2 security modes, the default is Normal</div>
-                            <div>
-                               In Normal mode all users can do the following to all Dashboards that
-                               they have access to (full access is automatically granted to the creator,
-                               and further access can be granted to the same or lessor level that is owned):
-                                a. Open (for view in readonly mode - no changes can be done)
-                                b. Edit (a WIP version will be created, leaving Committed version unchanged)
-                                c. Discard (delete WIP version)
-                                d. Request-QA (on Request, the WIP -> Pending).  This step is optional.
-                                e. Save (approves QA request and WIP/Pending -> Committed)
-                               </div>
-                            <div>In Strict mode, there are different User roles:</div>
-                            <div>1. Admin - can Open, Edit, Request-QA, QA and Save all Dashboards</div>
-                            <div>2. DashboardBuilder, which is a type of group membership, can perform
-                                  the following actions on all Dashboards that the group has access to:
-                                a. Open (readonly)
-                                b. Edit
-                                c. Discard
-                                d. Request-QA
-                                e. Save</div>
-                            <div>3. All other Users can perform all actions to any Dashboard that the user has access
-                                   to, BUT does not belong to a group.</div>
-                        </span>
+                    <div *ngIf="showTeam">
+                        Team
                     </div>
+
+                    <div *ngIf="showQArequired">
+                        <div class="propertyLine">
+                            Discard (all changes since Opened to Edit):
+                            <input type="text" id="formFields_7" placeholder="Yes / No">
+                        </div>
+                        <div class="propertyLine">
+                            Request QA:
+                            <input type="text" id="formFields_7" placeholder="Usr to QA">
+                            <input type="text" id="formFields_7" placeholder="QA message">
+                            <input type="text" id="formFields_7" placeholder="List of Db-Builders">
+                        </div>
+                        <div class="propertyLine">
+                            Save (Complete and replaces original):
+                            <input type="text" id="formFields_7" placeholder="Usr/Grp Subscribed">
+                            <input type="text" id="formFields_7" placeholder="Add Usr/Grp to notify">
+                        </div>
+                        <div class="propertyLine">
+                            Save As (original unchanged and creates WIP):
+                            <input type="text" id="formFields_7" placeholder="New Name">
+                            <input type="text" id="formFields_7" placeholder="">
+                        </div>
+                        <div class="propertyLine">
+                            Export current Dashboard (as json file, that can be Imported):
+                            <input type="text" id="formFields_7" placeholder="Folder">
+                            <input type="text" id="formFields_7" placeholder="File Name.json">
+                        </div>
+
+                        <div class="propertyLine">
+                            <span>
+                                <br>
+                                <p>Your security mode (set by Admin):
+                                    <input type="text" id="formFields_7" placeholder="Normal / Strict">
+                                </p>
+                                <div>There are 2 security modes, the default is Normal</div>
+                                <div>
+                                In Normal mode all users can do the following to all Dashboards that
+                                they have access to (full access is automatically granted to the creator,
+                                and further access can be granted to the same or lessor level that is owned):
+                                    a. Open (for view in readonly mode - no changes can be done)
+                                    b. Edit (a WIP version will be created, leaving Committed version unchanged)
+                                    c. Discard (delete WIP version)
+                                    d. Request-QA (on Request, the WIP -> Pending).  This step is optional.
+                                    e. Save (approves QA request and WIP/Pending -> Committed)
+                                </div>
+                                <div>In Strict mode, there are different User roles:</div>
+                                <div>1. Admin - can Open, Edit, Request-QA, QA and Save all Dashboards</div>
+                                <div>2. DashboardBuilder, which is a type of group membership, can perform
+                                    the following actions on all Dashboards that the group has access to:
+                                    a. Open (readonly)
+                                    b. Edit
+                                    c. Discard
+                                    d. Request-QA
+                                    e. Save</div>
+                                <div>3. All other Users can perform all actions to any Dashboard that the user has access
+                                    to, BUT does not belong to a group.</div>
+                            </span>
+                        </div>
+                        
                 </div>
             </div>
         </div>
