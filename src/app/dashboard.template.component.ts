@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
-import { dashboardTheme }             from './models';
+import { dashboardTemplate }          from './models';
 
 @Component({
     selector: 'dashboard-template',
@@ -32,7 +32,7 @@ export class DashboardTemplateComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: dashboard[];
-    dashboardThemes: dashboardTheme[];
+    dashboardTemplates: dashboardTemplate[];
    
 
 	constructor(
@@ -42,7 +42,7 @@ export class DashboardTemplateComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.dashboardThemes = this.globalVariableService.dashboardThemes;
+        this.dashboardTemplates = this.globalVariableService.dashboardTemplates;
     }
 
     clickClose(action: string) {
