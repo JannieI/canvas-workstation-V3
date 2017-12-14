@@ -894,6 +894,14 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     }
 
+    clickSelectStep() {
+        let definition = this.createVegaLiteSpec(undefined,'line',undefined,undefined,undefined);
+
+        // Render
+        this.renderGraph(definition)
+
+    }
+
     renderGraph(definition: any) {
         let specification = compile(definition).spec;
         let view = new View(parse(specification));

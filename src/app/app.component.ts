@@ -188,6 +188,10 @@ export class AppComponent implements OnInit {
         this.showModalDashboardComments = false;
     }
     
+    handleCloseWidgetSteps() {
+        this.showModalWidgetSteps = false;
+    }
+    
     clickPaletteClose() {
         this.showPalette = ! this.showPalette;
     }
