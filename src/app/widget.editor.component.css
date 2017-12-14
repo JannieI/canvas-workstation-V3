@@ -148,6 +148,9 @@
         text-align: center;
     }
 
+    .graphTypeMoreMsg {
+        font-size: 0.4rem;
+    }
     .colorAdvanced {
         grid-column-start: 16;
         grid-column-end: 19;
