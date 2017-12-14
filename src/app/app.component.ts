@@ -68,6 +68,7 @@ export class AppComponent implements OnInit {
     showModalDashboardDelete: boolean = false;
     showModalWidgetSteps: boolean = false;
     showModalDashboardPrint: boolean = false;
+    showModalDataRefresh: boolean = false;
     showFav: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalDataPopup: boolean = false;
@@ -197,6 +198,10 @@ export class AppComponent implements OnInit {
         this.showModalDashboardPrint = false;
     }
 
+    handleCloseDataRefresh() {
+        this.showModalDataRefresh = false;
+    }
+
     clickPaletteClose() {
         this.showPalette = ! this.showPalette;
     }
@@ -292,7 +297,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDataRefreshAll() {
-
+        this.showModalDataRefresh = true;
     }
 
     clickMenuEditUndo() {

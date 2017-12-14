@@ -20,6 +20,7 @@ import { AppComponent }               from './app.component';
 import { CollaborateComponent }       from './collaborate.component';
 import { ExploreComponent }           from './explore.component';
 import { DataPopupComponent }         from './data.popup.component';
+import { DataRefreshComponent }       from './data.refresh.component';
 import { HelpComponent }              from './help.component';
 import { HomeComponent }              from './home.component';
 import { LandingComponent }           from './landing.component';
@@ -78,6 +79,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardCommentsComponent,
         DashboardPrintComponent,
         DataPopupComponent,
+        DataRefreshComponent,
         MyProfileComponent,
         PreferencesComponent,
         LoginComponent,

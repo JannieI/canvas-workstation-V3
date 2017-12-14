@@ -165,9 +165,9 @@ export class ExploreComponent {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
 
-    @ViewChildren('widget')             childrenWidgets: QueryList<ElementRef>;  
+    @ViewChildren('widget')             childrenWidgets: QueryList<ElementRef>;
     @ViewChildren('widgetContainter')   widgetContainters: QueryList<ElementRef>;
-    
+
     localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     description: string = 'A simple bar chart with embedded data.';
     data: any = [
@@ -207,11 +207,11 @@ export class ExploreComponent {
     ngAfterViewInit() {
         console.log('Explore ngOnViewInit')
 
-        
+
         // let definition = vlTemplateSpec13;
         // let specification = compile(definition).spec;
         // let view = new View(parse(specification));
-        
+
         if (this.childrenWidgets.toArray().length > 0) {
             for (var i: number = 0; i < this.localDashboards.length; i++) {
                 console.log('loop i', i)
@@ -230,17 +230,25 @@ export class ExploreComponent {
                     this.renderer.setElementStyle(
                         this.widgetContainters.toArray()[i].nativeElement,
                         'left', '20px');
+                // } else {
+                //     this.renderer.setElementStyle(
+                //         this.widgetContainters.toArray()[i].nativeElement,
+                //         'left', '600px');
+                // }
                 } else {
                     this.renderer.setElementStyle(
                         this.widgetContainters.toArray()[i].nativeElement,
-                        'left', '600px');
+                        'left', '180px');
+                    this.renderer.setElementStyle(
+                        this.widgetContainters.toArray()[i].nativeElement,
+                        'z-index', '4');
                 }
                 view.renderer('svg')
                     .initialize( this.childrenWidgets.toArray()[i].nativeElement)
                     .width(180)
                     .hover()
                     .run()
-                    .finalize();  
+                    .finalize();
                 console.log('loop end')
             }
         }
@@ -254,8 +262,8 @@ export class ExploreComponent {
         //     .finalize();
         //     this.renderer.setElementStyle(this.dragWidget.nativeElement,
         //         'left', "200px");
-    }    
-    
+    }
+
     dragstart_handler(ev) {
         console.log("dragStart");
         // Add the target element's id to the data transfer object
@@ -478,7 +486,7 @@ export class ExploreComponent {
     clickWidgetEdit() {
         console.log('Open Widget Editor')
     }
-    
+
 }
 
 

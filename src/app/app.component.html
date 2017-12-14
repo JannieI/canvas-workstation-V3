@@ -801,6 +801,14 @@ class="formPopupDashboard"
 </dashboard-comments>
 
 
+<!-- Modal: data refresh all -->
+<data-refresh 
+    *ngIf="showModalDataRefresh"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDataRefreshClosed)="handleCloseDataRefresh($event)">Refresh All Data ...
+</data-refresh>
+
+
 <!-- Modal: widget steps -->
 <dashboard-print 
     *ngIf="showModalDashboardPrint"
@@ -821,7 +829,7 @@ class="formPopupDashboard"
 <widget-steps 
     *ngIf="showModalWidgetSteps"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Widget Steps ...
+    (formWidgetStepsClosed)="handleCloseWidgetSteps($event)">Load Widget Steps ...
 </widget-steps>
 
 
