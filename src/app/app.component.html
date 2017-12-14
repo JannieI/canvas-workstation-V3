@@ -666,6 +666,15 @@
 </dashboard-save>
 
 
+<!-- Modal: discard Dashboard -->
+<dashboard-discard
+class="formPopupDashboard"
+*ngIf="showModalDashboardDiscard"
+[currentWidgetSpec]="currentWidgetSpec"
+(formDashboardDiscardClosed)="handleCloseDashboardDiscard($event)">Load Discard Dashboard ...
+</dashboard-discard>
+
+
 <!-- Modal: rename Dashboard -->
 <dashboard-rename
     class="formPopupDashboard"

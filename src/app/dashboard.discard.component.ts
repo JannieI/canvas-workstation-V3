@@ -27,14 +27,9 @@ import { dashboard }                  from './models';
 export class DashboardDiscardComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardDiscardClosed: EventEmitter<string> = new EventEmitter();
 
-    isFirstTimeDashboardSave: boolean;
-    showTypeDashboard: boolean = false;
-    showNoSecurity: boolean = true;
-    showTeam: boolean = false;
-    showQArequired: boolean = false;
-    dashboards: dashboard[];
+    isFirstTimeDashboardDiscard: boolean;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -43,40 +38,21 @@ export class DashboardDiscardComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.globalVariableService.isFirstTimeDashboardSave.subscribe(
-            i => this.isFirstTimeDashboardSave = i
+        this.globalVariableService.isFirstTimeDashboardDiscard.subscribe(
+            i => this.isFirstTimeDashboardDiscard = i
         )
     }
 
     clickClose(action: string) {
         console.log('clickClose')
 
-		this.formDashboardOpenClosed.emit(action);
-    }
-
-    clickSecurityMode(mode: any) {
-        console.log('mode', mode.srcElement.value)
-        if (mode.srcElement.value == 'No Security') {
-            this.showNoSecurity = true;
-            this.showTeam = false;
-            this.showQArequired = false;
-        }
-        if (mode.srcElement.value == 'Team') {
-            this.showNoSecurity = false;
-            this.showTeam = true;
-            this.showQArequired = false;
-        }
-        if (mode.srcElement.value == 'QA required') {
-            this.showNoSecurity = false;
-            this.showTeam = false;
-            this.showQArequired = true;
-        }
+		this.formDashboardDiscardClosed.emit(action);
     }
 
     clickSaveFile() {
     }
 
     clickGotIt() {
-        this.globalVariableService.isFirstTimeDashboardSave.next(false);
+        this.globalVariableService.isFirstTimeDashboardDiscard.next(false);
     }
 }
