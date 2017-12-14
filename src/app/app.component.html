@@ -21,7 +21,7 @@
                         Dashboard
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickMenuFileNew()">
+                        <button type="button" clrDropdownItem (click)="clickDashboardNew()">
                             New
                         </button>
                         <clr-dropdown>
@@ -45,25 +45,25 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
 
-                        <button type="button" clrDropdownItem (click)="clickMenuFileOpen()">
+                        <button type="button" clrDropdownItem (click)="clickDashboardOpen()">
                             Open
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuFileEdit()">
+                        <button type="button" clrDropdownItem (click)="clickDashboardEdit()">
                             Edit
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuFileRename()">
+                        <button type="button" clrDropdownItem (click)="clickDashboardRename()">
                             Rename
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuFileSave()">
+                        <button type="button" clrDropdownItem (click)="clickDashboardSave()">
                             Save
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuFileDiscard()">
+                        <button type="button" clrDropdownItem (click)="clickDashboardDiscard()">
                             Discard
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuFileShare()">
+                        <button type="button" clrDropdownItem (click)="clickDashboardShare()">
                             Share
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuFileCheckpoints()">
+                        <button type="button" clrDropdownItem (click)="clickDashboardCheckpoints()">
                             Checkpoints
                         </button>
                         <clr-dropdown>
@@ -76,7 +76,7 @@
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
                                 <button type="button" clrDropdownItem
-                                (click)="clickMenuFileDetailDescription()">
+                                (click)="clickMenuDashboardDetailDescription()">
                                     Descripton
                                 </button>
                                 <button type="button" clrDropdownItem
@@ -91,35 +91,35 @@
                                 <button 
                                     type="button" 
                                     clrDropdownItem
-                                    (click)="clickMenuFileDetailTags()"
+                                    (click)="clickMenuDashboardDetailTags()"
                                     >
                                     Tags
                                 </button>
                                 <button 
                                     type="button" 
                                     clrDropdownItem
-                                    (click)="clickMenuFileDetailSettings()"
+                                    (click)="clickMenuDashboardDetailSettings()"
                                     >
                                     Settings
                                 </button>
                                 <button 
                                     type="button" 
                                     clrDropdownItem
-                                    (click)="clickMenuFileDetailTheme()"
+                                    (click)="clickMenuDashboardDetailTheme()"
                                     >
                                     Theme
                                 </button>
                                 <button 
                                     type="button" 
                                     clrDropdownItem
-                                    (click)="clickMenuFileDetailTemplate()"
+                                    (click)="clickMenuDashboardDetailTemplate()"
                                     >
                                     Template
                                 </button>
                                 <button 
                                     type="button" 
                                     clrDropdownItem
-                                    (click)="clickMenuFileDetailSchedule()"
+                                    (click)="clickMenuDashboardDetailSchedule()"
                                     >
                                     Schedule
                                 </button>
@@ -128,7 +128,7 @@
     
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem
-                        (click)="clickMenuFilePrint()">
+                        (click)="clickMenuDashboardPrint()">
                             Print
                         </button>
 
@@ -136,7 +136,7 @@
                         <button 
                             type="button" 
                             clrDropdownItem
-                            (click)="clickMenuFileDelete()"
+                            (click)="clickMenuDashboardDelete()"
                             >
                             Delete
                         </button>
@@ -313,6 +313,28 @@
                         class="btn btn-link btn-sm menuButton" 
                         clrDropdownTrigger
                         >
+                        Shape
+                    </button>
+                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetNew()">
+                            New
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetEdit()">
+                            Edit
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickMenuEditDeleteWidget()">
+                            Delete
+                        </button>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
+    
+                <clr-dropdown class="menuText">
+                    <button 
+                        type="button" 
+                        class="btn btn-link btn-sm menuButton" 
+                        clrDropdownTrigger
+                        >
                         View
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
@@ -370,28 +392,6 @@
                             Zoom 100%
                         </button>
                         <div class="dropdown-divider"></div>
-                    </clr-dropdown-menu>
-                </clr-dropdown>
-
-                <clr-dropdown class="menuText">
-                    <button 
-                        type="button" 
-                        class="btn btn-link btn-sm menuButton" 
-                        clrDropdownTrigger
-                        >
-                        Shape
-                    </button>
-                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetNew()">
-                            New
-                        </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetEdit()">
-                            Edit
-                        </button>
-                        <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuEditDeleteWidget()">
-                            Delete
-                        </button>
                     </clr-dropdown-menu>
                 </clr-dropdown>
 

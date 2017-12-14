@@ -73,7 +73,6 @@ export class AppComponent implements OnInit {
     showFav: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalDataPopup: boolean = false;
-    showPalette: boolean = false;
 
     currentWidgetSpec: string = "{...}";
 
@@ -207,43 +206,38 @@ export class AppComponent implements OnInit {
         this.showModalDataRefresh = false;
     }
 
-    clickPaletteClose() {
-        this.showPalette = ! this.showPalette;
-    }
-
-    clickMenuFileNew() {
+    clickDashboardNew() {
         console.log('open')
         this.showModalDashboardNew = true;
     }
 
-    clickMenuFileOpen() {
+    clickDashboardOpen() {
         console.log('open')
         this.showModalDashboardOpen = true;
     }
 
-    clickMenuFileEdit() {
+    clickDashboardEdit() {
 
     }
 
-    clickMenuFileDiscard() {
-        console.log('clickMenuFileDiscard')
+    clickDashboardDiscard() {
         this.showModalDashboardDiscard = true;
     }
 
-    clickMenuFileShare() {
+    clickDashboardShare() {
 
     }
 
-    clickMenuFileSave() {
+    clickDashboardSave() {
         console.log('open')
         this.showModalDashboardSave = true;
     }
     
-    clickMenuFileCheckpoints() {
+    clickDashboardCheckpoints() {
         this.showModalDashboardCheckpoints = true;
     }
 
-    clickMenuFileRename() {
+    clickDashboardRename() {
         this.showModalDashboardRename = true;
     }
 
@@ -251,35 +245,35 @@ export class AppComponent implements OnInit {
         this.showModalDashboardDetails = true;
     }
 
-    clickMenuFileDetailDescription() {
+    clickMenuDashboardDetailDescription() {
         this.showModalDashboardDescription = true;
     }
 
-    clickMenuFileDetailTags() {
+    clickMenuDashboardDetailTags() {
         this.showModalDashboardTags = true;
     }
 
-    clickMenuFileDetailSettings() {
+    clickMenuDashboardDetailSettings() {
         this.showModalDashboardSettings = true;
     }
 
-    clickMenuFileDetailTheme() {
+    clickMenuDashboardDetailTheme() {
         this.showModalDashboardTheme = true;
     }
 
-    clickMenuFileDetailTemplate() {
+    clickMenuDashboardDetailTemplate() {
         this.showModalDashboardTemplate = true;
     }
 
-    clickMenuFileDetailSchedule() {
+    clickMenuDashboardDetailSchedule() {
         this.showModalDashboardSchedule = true;
     }
 
-    clickMenuFilePrint() {
+    clickMenuDashboardPrint() {
         this.showModalDashboardPrint = true;
     }
 
-    clickMenuFileDelete() {
+    clickMenuDashboardDelete() {
         this.showModalDashboardDelete = true;
     }
 

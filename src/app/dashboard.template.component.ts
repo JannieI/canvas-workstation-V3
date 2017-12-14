@@ -28,7 +28,7 @@ import { dashboardTemplate }          from './models';
 export class DashboardTemplateComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formDashboardThemeClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardTemplateClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
     dashboards: dashboard[];
@@ -48,6 +48,6 @@ export class DashboardTemplateComponent implements OnInit {
     clickClose(action: string) {
         console.log('clickClose')
 
-		this.formDashboardThemeClosed.emit(action);
+		this.formDashboardTemplateClosed.emit(action);
     }
 }
