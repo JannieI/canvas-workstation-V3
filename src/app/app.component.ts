@@ -277,6 +277,45 @@ export class AppComponent implements OnInit {
         this.showModalDashboardDelete = true;
     }
 
+    clickMenuWidgetNew() {
+
+    }
+
+    clickMenuWidgetEdit() {
+        
+    }
+
+    clickMenuWidgetSteps() {
+        this.showModalWidgetSteps = true;
+    }
+
+    clickMenuWidgetComments() {
+        this.showModalDashboardComments = true;
+    }
+
+    clickMenuWidgetCopy() {
+        
+    }
+
+    clickMenuWidgetCut() {
+
+    }
+
+    clickMenuWidgetPaste() {
+
+    }
+
+    clickMenuWidgetDelete() {
+        
+    }        
+
+
+
+
+
+
+
+
     clickMenuDataFromFile() {
         console.log('menuDataFromFile')
         // this.showModalDataPopup = true;
@@ -311,26 +350,6 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickMenuEditWidgetCopyFormat() {
-
-    }
-
-    clickMenuEditWidgetPastFormat() {
-
-    }
-
-    clickMenuEditWidgetCopy() {
-
-    }
-
-    clickMenuEditWidgetCut() {
-
-    }
-
-    clickMenuEditWidgetPaste() {
-
-    }
-
     clickMenuEditSelectAll() {
 
     }
@@ -339,17 +358,10 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickMenuEditSteps() {
-        this.showModalWidgetSteps = true;
-    }
-
     clickMenuEditReplace() {
 
     }
 
-    clickMenuEditDeleteWidget() {
-
-    }
 
     clickMenuViewPresentation() {
         this.globalVariableService.presentation.next(!this.presentation);
@@ -365,10 +377,6 @@ export class AppComponent implements OnInit {
 
     clickMenuViewZoom() {
 
-    }
-
-    clickMenuViewAllComments() {
-        this.showModalDashboardComments = true;
     }
 
     clickMenuViewWidgetEditor() {
