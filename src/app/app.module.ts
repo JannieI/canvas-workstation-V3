@@ -40,6 +40,7 @@ import { DashboardThemeComponent }    from './dashboard.theme.component';
 import { DashboardScheduleComponent } from './dashboard.schedule.component';
 import { DashboardDeleteComponent }   from './dashboard.delete.component';
 import { DashboardCommentsComponent } from './dashboard.comments.component';
+import { DashboardPrintComponent }    from './dashboard.print.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
 import { LoginComponent}              from './login.component';
@@ -75,6 +76,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardScheduleComponent,
         DashboardDeleteComponent,
         DashboardCommentsComponent,
+        DashboardPrintComponent,
         DataPopupComponent,
         MyProfileComponent,
         PreferencesComponent,

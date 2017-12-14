@@ -801,6 +801,14 @@ class="formPopupDashboard"
 </dashboard-comments>
 
 
+<!-- Modal: widget steps -->
+<dashboard-print 
+    *ngIf="showModalDashboardPrint"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Dashboard Print Steps ...
+</dashboard-print>
+
+
 <!-- Modal: widget editor -->
 <widget-editor 
     *ngIf="showModalWidgetEditor"
@@ -811,9 +819,9 @@ class="formPopupDashboard"
 
 <!-- Modal: widget steps -->
 <widget-steps 
-*ngIf="showModalWidgetSteps"
-[currentWidgetSpec]="currentWidgetSpec"
-(formWidgetStepsClosed)="handleCloseWidgetSteps($event)">Load Widget Steps ...
+    *ngIf="showModalDashboardPrint"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Widget Steps ...
 </widget-steps>
 
 
