@@ -322,7 +322,7 @@
                         </button>
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickMenuViewPrintLayout()">
-                            Print layout
+                            Print preview
                         </button>
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickMenuViewShowGrid()">
@@ -330,6 +330,24 @@
                             <clr-icon shape="check" size="12" *ngIf="showGrid"></clr-icon>
                         </button>
                         <div class="dropdown-divider"></div>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickMenuFormatSnapToGrid()">
+                            Snap to Grid
+                        </button>
+                        <clr-dropdown>
+                            <button 
+                                type="button" 
+                                class="btn btn-link btn-sm" 
+                                clrDropdownTrigger
+                                >
+                                Grid size
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Small</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Medium</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem>Large</button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
 
                         <clr-dropdown>
                             <button 
@@ -352,9 +370,6 @@
                             Zoom 100%
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuViewWidgetEditor()">
-                            Widget Editor
-                        </button>
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
@@ -377,78 +392,6 @@
                         <button type="button" clrDropdownItem (click)="clickMenuEditDeleteWidget()">
                             Delete
                         </button>
-                    </clr-dropdown-menu>
-                </clr-dropdown>
-
-                <clr-dropdown class="menuText">
-                    <button 
-                        type="button" 
-                        class="btn btn-link btn-sm menuButton" 
-                        clrDropdownTrigger
-                        >
-                        Format
-                    </button>
-                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickMenuFormatBold()">
-                            Bold
-                        </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuFormatItalic()">
-                            Italic
-                        </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuFormatUnderline()">
-                            Underline
-                        </button>
-                        <clr-dropdown>
-                            <button 
-                                type="button" 
-                                class="btn btn-link btn-sm" 
-                                clrDropdownTrigger
-                                >
-                                Font size
-                            </button>
-                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" class="dropdown-item" clrDropdownItem>8</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>10</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>12</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>16</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>20</button>
-                            </clr-dropdown-menu>
-                        </clr-dropdown>
-                        <div class="dropdown-divider"></div>
-                        <clr-dropdown>
-                            <button 
-                                type="button" 
-                                class="btn btn-link btn-sm" 
-                                clrDropdownTrigger
-                                >
-                                Border
-                            </button>
-                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" class="dropdown-item" clrDropdownItem>None</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>1px solid black</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>2px solid black</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>1px dotted black</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>2px dotted black</button>
-                            </clr-dropdown-menu>
-                        </clr-dropdown>
-                        <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuFormatSnapToGrid()">
-                            Snap to Grid
-                        </button>
-                        <clr-dropdown>
-                            <button 
-                                type="button" 
-                                class="btn btn-link btn-sm" 
-                                clrDropdownTrigger
-                                >
-                                Grid size
-                            </button>
-                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Small</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Medium</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Large</button>
-                            </clr-dropdown-menu>
-                        </clr-dropdown>
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
