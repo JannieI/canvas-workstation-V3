@@ -1,0 +1,26 @@
+.closeButton {
+    background-color: transparent;
+    border: none;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+
+.graphArea {
+    border: 1px solid gray;
+    border-radius: 4px;
+    grid-column-start: 7;
+    grid-column-end: 16;
+    grid-row-start: 1;
+    grid-row-end: 21;
+    margin-bottom: 0;
+    text-align: center;
+}
+ 
+.selectStep {
+    border: 1px solid gray;
+    border-radius: 4px;
+    margin: 10px;
+    text-align: center;
+}
+

@@ -25,6 +25,7 @@ import { HomeComponent }              from './home.component';
 import { LandingComponent }           from './landing.component';
 import { PresentComponent }           from './present.component';
 import { WidgetEditorComponent }      from './widget.editor.component';
+import { WidgetStepsComponent }       from './widget.steps.component';
 import { DashboardNewComponent }      from './dashboard.new.component';
 import { DashboardOpenComponent }     from './dashboard.open.component';
 import { DashboardSaveComponent }     from './dashboard.save.component';
@@ -59,6 +60,7 @@ import { GlobalFunctionService }      from './global-function.service';
         LandingComponent,
         PresentComponent,
         WidgetEditorComponent,
+        WidgetStepsComponent,
         DashboardNewComponent,
         DashboardOpenComponent,
         DashboardSaveComponent,

@@ -66,6 +66,7 @@ export class AppComponent implements OnInit {
     showModalDashboardTheme: boolean = false;
     showModalDashboardSchedule: boolean = false;
     showModalDashboardDelete: boolean = false;
+    showModalWidgetSteps: boolean = false;
     showFav: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalDataPopup: boolean = false;
@@ -325,8 +326,8 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickMenuEditDiff() {
-
+    clickMenuEditSteps() {
+        this.showModalWidgetSteps = true;
     }
 
     clickMenuEditReplace() {

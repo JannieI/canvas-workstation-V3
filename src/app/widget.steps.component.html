@@ -1,0 +1,31 @@
+<div class="modal modalBox">
+	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+		<div class="modal-content modalContent">
+
+            <div class="overall">
+                <div class="closeButton">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+                </div>
+
+                Select a previously save Step for this Widget:
+                <span class="select">
+                    <select id="selects_3"
+                        (change)="clickSecurityMode($event)"
+                        >
+                        <option>Summary</option>
+                        <option>Sales by Region</option>
+                        <option>Sales by Persion</option>
+                    </select>
+                </span>
+
+                <div class="graphArea" #dragWidget>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

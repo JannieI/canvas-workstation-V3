@@ -284,8 +284,8 @@
                             Select None
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuEditDiff()">
-                            Diff
+                        <button type="button" clrDropdownItem (click)="clickMenuEditSteps()">
+                            Steps
                         </button>
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickMenuEditDeleteWidget()">
@@ -807,6 +807,14 @@ class="formPopupDashboard"
     [currentWidgetSpec]="currentWidgetSpec"
     (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Widget Editor ...
 </widget-editor>
+
+
+<!-- Modal: widget steps -->
+<widget-steps 
+*ngIf="showModalWidgetSteps"
+[currentWidgetSpec]="currentWidgetSpec"
+(formWidgetStepsClosed)="handleCloseWidgetSteps($event)">Load Widget Steps ...
+</widget-steps>
 
 
 <!-- Modal: Get Data -->
