@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
     showModalDashboardCheckpoints: boolean = false;
+    showModalDashboardDiscard: boolean = false;
     showModalDashboardMyProfile: boolean = false;
     showModalDashboardLogin: boolean = false;
     showModalDashboardLogout: boolean = false;
@@ -130,6 +131,10 @@ export class AppComponent implements OnInit {
         this.showModalDashboardCheckpoints = false;
     }
 
+    handleCloseDashboardDiscard() {
+        this.showModalDashboardDiscard = false;
+    }
+
     handleCloseDashboardMyProfile(action) {
         this.showModalDashboardMyProfile = false;
     }
@@ -201,7 +206,8 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuFileDiscard() {
-
+        console.log('clickMenuFileDiscard')
+        this.showModalDashboardDiscard = true;
     }
 
     clickMenuFileShare() {

@@ -7,50 +7,40 @@
                     X
                 </button>
 
-                Save Dashboard changes (Security Mode (set at installation)
+                Discard all Dashboard changes
+
+                <div class="helpMessage" *ngIf="isFirstTimeDashboardDiscard">
+                    <div class="propertyLine">
+                        With this option, <b>ALL</b> changes to the current Dashboard since 
+                        editing has started will be lost.  The Dasboard will be restored to 
+                        the original state, before editing has started.  Also, all checkpoints 
+                        will be lost.
+                    </div>
+                    <div class="propertyLine">
+                        The Discard action is final, there is <b>NO</b> way to get your changes
+                        back. 
+                    </div>
+                    <div class="propertyLine">
+                        Got it <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboardDiscard">
+                            (You can make this message re-appear with the <i>Preferences</i> option under your
+                            User icon <clr-icon shape="user"></clr-icon> on the menu top right.)
+                    </div>
+                </div>
 
                 <div>
-                    <span class="select">
-                        <select id="selects_3"
-                            (change)="clickSecurityMode($event)"
-                            >
-                            <option>No Security</option>
-                            <option>Team</option>
-                            <option>QA required</option>
-                        </select>
-                    </span>
-
-                    <div class="helpMessage" *ngIf="showNoSecurity  &&  isFirstTimeDashboardDiscard">
-                        <div class="propertyLine">
-                            When changes are discarded, <b>ALL</b> changes applied since editing
-                            on this Dashboard has started.  The Dasboard will be in the original 
-                            state, before editing started.  Also, all checkpoints will be lost.
-                        </div>
-                        <div class="propertyLine">
-                            The discard action is final, there is <b>NO</b> way to get your changes
-                            back. 
-                        </div>
-                        <div class="propertyLine">
-                            Got it <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboardDiscard">
-                                (You can make this message re-appear with the <i>Preferences</i> option under your
-                                User icon <clr-icon shape="user"></clr-icon> on the menu top right.)
-                        </div>
-                    </div>
-
-                    <div>
-                        <br>
-                        All changes made to the Dashboard since editing has started will be lost,
-                        and the Dashboard will be restored to its original state.
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            (click)="clickSaveFile()"
-                            >
-                            Discard
-                        </button>
-                    </div>
-
+                    <br>
+                    All changes made to the Dashboard since editing has started will be lost,
+                    all checkpoints for it will be deleted and the Dashboard will be restored 
+                    to its original state.  Click Discard to continue, else close the form.
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickSaveFile()"
+                        >
+                        Discard
+                    </button>
                 </div>
+
             </div>
         </div>
     </div>

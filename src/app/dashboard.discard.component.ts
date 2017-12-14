@@ -29,7 +29,7 @@ export class DashboardDiscardComponent implements OnInit {
     @Output() formDashboardDiscardClosed: EventEmitter<string> = new EventEmitter();
 
     isFirstTimeDashboardDiscard: boolean;
-
+    
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,

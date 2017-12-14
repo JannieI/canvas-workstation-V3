@@ -27,7 +27,7 @@ import { dashboard }                  from './models';
 export class DashboardSaveComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardSaveClosed: EventEmitter<string> = new EventEmitter();
 
     isFirstTimeDashboardSave: boolean;
     showTypeDashboard: boolean = false;
@@ -51,7 +51,7 @@ export class DashboardSaveComponent implements OnInit {
     clickClose(action: string) {
         console.log('clickClose')
 
-		this.formDashboardOpenClosed.emit(action);
+		this.formDashboardSaveClosed.emit(action);
     }
 
     clickSecurityMode(mode: any) {
