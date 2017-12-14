@@ -277,6 +277,28 @@ export class AppComponent implements OnInit {
         this.showModalDashboardDelete = true;
     }
 
+    clickMenuDataFromFile() {
+        console.log('menuDataFromFile')
+        // this.showModalDataPopup = true;
+        this.router.navigate(['/data']);
+    }
+
+    clickMenuDataFromServer() {
+        console.log('clickMenuDataFromServer')
+    }
+
+    clickMenuDataCombinations(){
+
+    }
+
+    clickMenuDataPermissions() {
+
+    }
+
+    clickMenuDataRefreshAll() {
+        this.showModalDataRefresh = true;
+    }
+
     clickMenuWidgetNew() {
 
     }
@@ -309,44 +331,11 @@ export class AppComponent implements OnInit {
         
     }        
 
-
-
-
-
-
-
-
-    clickMenuDataFromFile() {
-        console.log('menuDataFromFile')
-        // this.showModalDataPopup = true;
-        this.router.navigate(['/data']);
-    }
-
-    clickMenuDataFromServer() {
-        console.log('clickMenuDataFromServer')
-    }
-
-    clickMenuDataCombinations(){
-
-    }
-
-    clickMenuDataPermissions() {
-
-    }
-
-    clickMenuDataRefreshAll() {
-        this.showModalDataRefresh = true;
-    }
-
     clickMenuEditUndo() {
 
     }
 
     clickMenuEditRedo() {
-
-    }
-
-    clickMenuEditWidget() {
 
     }
 
@@ -358,10 +347,19 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickMenuEditReplace() {
-
+    clickMenuShapeNew() {
+        
+    }
+    
+    clickMenuShapeEdit() {
+        
+    }
+    
+    clickMenuShapeDelete() {
+        
     }
 
+    
 
     clickMenuViewPresentation() {
         this.globalVariableService.presentation.next(!this.presentation);
