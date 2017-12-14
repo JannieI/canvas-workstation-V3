@@ -17,7 +17,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
 
 @Component({
     selector: 'dashboard-discard',
@@ -37,7 +36,6 @@ export class DashboardDiscardComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards;
         this.globalVariableService.isFirstTimeDashboardDiscard.subscribe(
             i => this.isFirstTimeDashboardDiscard = i
         )
