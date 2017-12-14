@@ -249,6 +249,49 @@
                         class="btn btn-link btn-sm menuButton" 
                         clrDropdownTrigger
                         >
+                        Widget
+                    </button>
+                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetNew()">
+                            New
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetEdit()">
+                            Edit
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickMenuEditSteps()">
+                            Steps
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuViewAllComments()">
+                            Comments
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickMenuEditWidgetCopy()">
+                            Copy
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuEditWidgetCut()">
+                            Cut
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuEditWidgetPaste()">
+                            Paste
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickMenuEditDeleteWidget()">
+                            Delete Widget
+                        </button>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
+
+
+
+
+
+                <clr-dropdown class="menuText">
+                    <button 
+                        type="button" 
+                        class="btn btn-link btn-sm menuButton" 
+                        clrDropdownTrigger
+                        >
                         Edit
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
@@ -342,9 +385,6 @@
                             Zoom 100%
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuViewAllComments()">
-                            All Comments
-                        </button>
                         <button type="button" clrDropdownItem (click)="clickMenuViewWidgetEditor()">
                             Widget Editor
                         </button>
