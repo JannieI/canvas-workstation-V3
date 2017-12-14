@@ -375,21 +375,9 @@ export class AppComponent implements OnInit {
         
     }
 
-
-
-
-
-
-
     clickMenuViewZoom() {
 
     }
-
-    clickMenuViewWidgetEditor() {
-        this.showModalWidgetEditor = true;
-    }
-
-
 
     clickMenuArrangeBackward() {
         
@@ -434,26 +422,31 @@ export class AppComponent implements OnInit {
     clickMenuArrangeSameSize() {
         
     }
-    
-    clickMenuUserMyProfile() {
-        console.log('ddd')
-        this.showModalDashboardMyProfile = true;
+
+    clickMenuHelpDemo() {
+        this.router.navigate(['/help']);
     }
+    
+    // clickMenuPreferences Messages etc
+
 
     clickMenuUserLogin() {
         this.showModalDashboardLogin = true;
     }
 
-    clickMenuUserLogout() {
-        this.showModalDashboardLogout = true;
+
+    clickMenuUserMyProfile() {
+        console.log('ddd')
+        this.showModalDashboardMyProfile = true;
     }
 
     clickMenuUserPreferences() {
         this.showModalDashboardPreferences = true;
     }
 
-    clickMenuHelpDemo() {
-        this.router.navigate(['/help']);
+
+    clickMenuUserLogout() {
+        this.showModalDashboardLogout = true;
     }
 
     dragStartCircle(ev: DragEvent) {
