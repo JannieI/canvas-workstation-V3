@@ -364,49 +364,18 @@
                         class="btn btn-link btn-sm menuButton" 
                         clrDropdownTrigger
                         >
-                        Create
+                        Shape
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button 
-                            type="button" 
-                            [disabled]="menuCreateDisabled"
-                            clrDropdownItem (click)="clickMenuViewWidgetEditor()"
-                            >
-                            Widget
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetNew()">
+                            New
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetEdit()">
+                            Edit
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="showTextBox=!showTextBox">
-                            Text box
-                        </button>
-                        <clr-dropdown>
-                            <button 
-                                type="button" 
-                                class="btn btn-link btn-sm" 
-                                clrDropdownTrigger
-                                >
-                                Shape
-                            </button>
-                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button 
-                                    type="button" 
-                                    class="dropdown-item" 
-                                    clrDropdownItem
-                                    (click)="showCircle=!showCircle"
-                                    >
-                                    Circle
-                                </button>
-                                <button type="button" class="dropdown-item" clrDropdownItem
-                                (click)="showRectangle=!showRectangle">Rectangle</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Square</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Line</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Arrow</button>
-                            </clr-dropdown-menu>
-                        </clr-dropdown>
-                        <button type="button" clrDropdownItem (click)="showImage=!showImage">
-                            Image
-                        </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuCreateComment()">
-                            Comment
+                        <button type="button" clrDropdownItem (click)="clickMenuEditDeleteWidget()">
+                            Delete
                         </button>
                     </clr-dropdown-menu>
                 </clr-dropdown>
