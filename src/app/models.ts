@@ -2,7 +2,7 @@
 
 export class datasourceFilter {
     id: number;
-    fieldName: string; 
+    fieldName: string;
     operator: string;
     filterValue: string | number;
 }
@@ -57,6 +57,12 @@ export class dashboardTag {
     tag: string;
 }
 
+export class dashboardTemplate {
+    id: number;
+    name: string;
+    description: string;
+}
+
 export class dashboardTheme {
     id: number;
     name: string;
@@ -64,7 +70,7 @@ export class dashboardTheme {
 }
 
 export class dashboardComment {
-    id: number; 
+    id: number;
     dashboardID: number;
     comment: string;
     creator: string;
@@ -72,7 +78,7 @@ export class dashboardComment {
 }
 
 export class checkpoint {
-    id: number; 
+    id: number;
     dashboardID: number;
     name: string;
     comment: string;

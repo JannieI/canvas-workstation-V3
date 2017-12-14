@@ -14,6 +14,7 @@ import { checkpoint }                 from './models';
 import { fieldMetadata }              from './models';
 import { dashboardTag }               from './models';
 import { dashboardTheme }             from './models';
+import { dashboardTemplate }          from './models';
 import { dashboardSchedule }          from './models';
 import { dashboardComment }           from './models';
 import { dataQualityIssue}            from './models'
@@ -156,6 +157,15 @@ const dashboardThemes: dashboardTheme[] =
     {
         id: 1,
         name: 'Theme basic',
+        description: 'bla-bla-bla'
+    }
+]
+
+const dashboardTemplates: dashboardTemplate[] =
+[
+    {
+        id: 1,
+        name: 'Corporate Logo and Name',
         description: 'bla-bla-bla'
     }
 ]
@@ -979,6 +989,7 @@ export class GlobalVariableService {
     dataRecent: datasource[] = dataRecent;
     dataSample: datasource[] = dataSample;
     dashboardThemes: dashboardTheme[] = dashboardThemes;
+    dashboardTemplates: dashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: dashboardSchedule[] = dashboardSchedules;
     dashboardComments: dashboardComment[] = dashboardComments;
     
