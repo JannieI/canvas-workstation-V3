@@ -64,6 +64,7 @@ export class AppComponent implements OnInit {
     showModalDashboardTags: boolean = false;
     showModalDashboardSettings: boolean = false;
     showModalDashboardTheme: boolean = false;
+    showModalDashboardTemplate: boolean = false;
     showModalDashboardSchedule: boolean = false;
     showModalDashboardDelete: boolean = false;
     showModalWidgetSteps: boolean = false;
@@ -178,6 +179,10 @@ export class AppComponent implements OnInit {
         this.showModalDashboardTheme = false;
     }
     
+    handleCloseDashboardTemplate() {
+        this.showModalDashboardTemplate = false;
+    }
+
     handleCloseDashboardSchedule() {
         this.showModalDashboardSchedule = false;
     }
@@ -260,6 +265,10 @@ export class AppComponent implements OnInit {
 
     clickMenuFileDetailTheme() {
         this.showModalDashboardTheme = true;
+    }
+
+    clickMenuFileDetailTemplate() {
+        this.showModalDashboardTemplate = true;
     }
 
     clickMenuFileDetailSchedule() {

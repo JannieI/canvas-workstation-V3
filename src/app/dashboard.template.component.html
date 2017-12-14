@@ -1,0 +1,46 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+
+                Dashboard Template
+                <div class="propertyLine">
+                    A Template is a Dashboards that is displayed behind your
+					Dashboard.  It is readonly wherever it is added as Template,
+				 	and cannot be edited.  The original can be edited at any stage,
+					in the same way as any other Dashboard.  When the template is
+					changed, this will be applied to all the Dashboads that use it
+					as a template.
+                    <input type="text" id="formFields_7" placeholder="Templete name">
+					<input type="text" id="formFields_7" placeholder="Visible: Yes/No">
+                </div>                            
+
+                <div class="propertyLine">
+                    Available templates:
+                </div>                                
+
+                <clr-datagrid>
+                    <clr-dg-column>Select</clr-dg-column>
+                    <clr-dg-column>ID</clr-dg-column>
+                    <clr-dg-column>Name</clr-dg-column>
+                    <clr-dg-column>Description</clr-dg-column>
+
+                    <clr-dg-row *ngFor="let row of dashboardThemes">
+                        <clr-dg-cell>
+                            <clr-icon shape="check" class="selectIcon1" size="12"></clr-icon>
+                        </clr-dg-cell>
+                        <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                    </clr-dg-row>
+
+                </clr-datagrid>
+
+            </div>  
+        </div>  
+    </div>  
+</div>  

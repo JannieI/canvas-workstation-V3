@@ -38,6 +38,7 @@ import { DashboardDescriptionComponent }   from './dashboard.description.compone
 import { DashboardTagsComponent }     from './dashboard.tags.component';
 import { DashboardSettingsComponent } from './dashboard.settings.component';
 import { DashboardThemeComponent }    from './dashboard.theme.component';
+import { DashboardTemplateComponent } from './dashboard.template.component';
 import { DashboardScheduleComponent } from './dashboard.schedule.component';
 import { DashboardDeleteComponent }   from './dashboard.delete.component';
 import { DashboardCommentsComponent } from './dashboard.comments.component';
@@ -74,6 +75,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardTagsComponent,
         DashboardSettingsComponent,
         DashboardThemeComponent,
+        DashboardTemplateComponent,
         DashboardScheduleComponent,
         DashboardDeleteComponent,
         DashboardCommentsComponent,

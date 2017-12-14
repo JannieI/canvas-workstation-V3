@@ -112,6 +112,13 @@
                                 <button 
                                     type="button" 
                                     clrDropdownItem
+                                    (click)="clickMenuFileDetailTemplate()"
+                                    >
+                                    Template
+                                </button>
+                                <button 
+                                    type="button" 
+                                    clrDropdownItem
                                     (click)="clickMenuFileDetailSchedule()"
                                     >
                                     Schedule
@@ -736,6 +743,15 @@ class="formPopupDashboard"
     [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardThemeClosed)="handleCloseDashboardTheme($event)">Load Dashboard Theme ...
 </dashboard-theme>
+
+
+<!-- Modal: Dashboard Template -->
+<dashboard-template
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardTemplate"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardTemplateClosed)="handleCloseDashboardTemplate($event)">Load Dashboard Template ...
+</dashboard-template>
 
 
 <!-- Modal: Dashboard Schedule -->
