@@ -275,10 +275,6 @@ export class AppComponent implements OnInit {
         this.showModalDashboardSchedule = true;
     }
 
-    clickMenuFilePermissions() {
-
-    }
-
     clickMenuFilePrint() {
         this.showModalDashboardPrint = true;
     }
