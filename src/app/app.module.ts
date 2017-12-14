@@ -28,6 +28,7 @@ import { WidgetEditorComponent }      from './widget.editor.component';
 import { DashboardNewComponent }      from './dashboard.new.component';
 import { DashboardOpenComponent }     from './dashboard.open.component';
 import { DashboardSaveComponent }     from './dashboard.save.component';
+import { DashboardDiscardComponent }  from './dashboard.discard.component';
 import { DashboardRenameComponent }   from './dashboard.rename.component';
 import { DashboardCheckpointsComponent }   from './dashboard.checkpoints.component';
 import { DashboardDetailsComponent }  from './dashboard.details.component';
@@ -61,6 +62,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardNewComponent,
         DashboardOpenComponent,
         DashboardSaveComponent,
+        DashboardDiscardComponent,
         DashboardRenameComponent,
         DashboardCheckpointsComponent,
         DashboardDetailsComponent,
