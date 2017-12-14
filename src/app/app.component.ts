@@ -359,19 +359,27 @@ export class AppComponent implements OnInit {
         
     }
 
-    
-
     clickMenuViewPresentation() {
         this.globalVariableService.presentation.next(!this.presentation);
     }
 
-    clickMenuViewPrintLayout(){
+    clickMenuViewPrintPreview(){
 
     }
 
     clickMenuViewShowGrid() {
         this.globalVariableService.showGrid.next(!this.showGrid);
     }
+
+    clickMenuViewSnapToGrid() {
+        
+    }
+
+
+
+
+
+
 
     clickMenuViewZoom() {
 
@@ -381,25 +389,7 @@ export class AppComponent implements OnInit {
         this.showModalWidgetEditor = true;
     }
 
-    clickMenuCreateComment() {
-        
-    }
 
-    clickMenuFormatBold() {
-        
-    }
-        
-    clickMenuFormatItalic() {
-        
-    }
-
-    clickMenuFormatUnderline() {
-        
-    }
-
-    clickMenuFormatSnapToGrid() {
-        
-    }
 
     clickMenuArrangeBackward() {
         
