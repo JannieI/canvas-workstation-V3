@@ -9,29 +9,65 @@
                     </button>
                 </div>
 
+                Prints a Dashboard in selected format
                 <form>
                     <section>
                         <div class="form-group">
-                            <label for="selects_4">Select a previously saved Step:</label>
+                            <label for="selects_4">Select a printer:</label>
                             <div class="select">
                                 <select id="selects_3"
                                     (change)="clickSelectStep($event)"
                                     >
-                                    <option>Summary</option>
-                                    <option>Sales by Region</option>
-                                    <option>Sales by Persion</option>
+                                    <option>Local HP</option>
+                                    <option>Network Toshiba</option>
+                                    <option>Beast 2nd floor</option>
                                 </select>
                             </div>
                         </div>
                     </section>
+                    <section>
+                        <div class="form-group">
+                            <label for="selects_4">Select a page size:</label>
+                            <div class="select">
+                                <select id="selects_3"
+                                    (change)="clickSelectStep($event)"
+                                    >
+                                    <option>A3</option>
+                                    <option>A4</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="form-group">
+                            <label for="selects_4">Select a format:</label>
+                            <div class="select">
+                                <select id="selects_3"
+                                    (change)="clickSelectStep($event)"
+                                    >
+                                    <option>Single page</option>
+                                    <option>Widget per page</option>
+                                    <option>Auto layout</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="form-group">
+                            <label for="selects_4">Select colour:</label>
+                            <div class="select">
+                                <select id="selects_3"
+                                    (change)="clickSelectStep($event)"
+                                    >
+                                    <option>Black and White</option>
+                                    <option>Full colour</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+                    
                 </form>
-
-                <div class="graphArea" #dragWidget>
-
-                </div>
-
             </div>
-
         </div>
     </div>
 </div>
