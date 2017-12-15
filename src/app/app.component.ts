@@ -305,11 +305,11 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetNew() {
-
+        this.showModalWidgetEditor = true;
     }
 
     clickMenuWidgetEdit() {
-        
+        this.showModalWidgetEditor = true;
     }
 
     clickMenuWidgetSteps() {
@@ -321,7 +321,9 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetCopy() {
-        
+        // Copies reference to existing datasource (of From Widget)
+        // For now, only per Dashboard - issue with Global paste is datasource
+        // What if not defined in the new Dashboard ?
     }
 
     clickMenuWidgetCut() {

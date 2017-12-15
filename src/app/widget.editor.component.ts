@@ -848,10 +848,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         }
 }
 
-
-
-
-
 @Component({
     selector: 'widget-editor',
     templateUrl: './widget.editor.component.html',
@@ -874,11 +870,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     clickedButtonAggregateNo: boolean = false;
     currentDatasources: currentDatasource[];
     dataFieldNames: string[];
-    draggedField: string = '';    
+    draggedField: string = '';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverColor: boolean = false;
-    filterPivotFields: string = '';    
+    filterPivotFields: string = '';
     opened: boolean = true;
     showRowFieldAdvanced: boolean = false;
     showColFieldAdvanced: boolean = false;
@@ -914,7 +910,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // let definition = vlTemplateSpec9;
         // let definition = vlTemplateSpec10;
         // let definition = vlTemplateSpec11;
-        
+
         // let definition = vlTemplateSpec13;
 
         // let definition = vlTemplateSpec13;      // *area=bad, line=good ...
@@ -987,8 +983,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         console.log('drop_handler dropped !!', this.colField )
 
         let definition = this.createVegaLiteSpec(
-            undefined, 
-            undefined, 
+            undefined,
+            undefined,
             this.colField,
             undefined,
             undefined
@@ -997,7 +993,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showColFieldAdvanced = true;
         this.renderGraph(definition);
 
-    } 
+    }
 
     drop_handlerRow(ev) {
         ev.preventDefault();
@@ -1010,15 +1006,15 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         console.log('drop_handler dropped !!', this.rowField )
 
         let definition = this.createVegaLiteSpec(
-            undefined, 
-            undefined, 
+            undefined,
+            undefined,
             undefined,
             this.rowField,
             undefined
         );
         this.showRowFieldAdvanced = true;
         this.renderGraph(definition);
-      } 
+      }
 
     drop_handlerColor(ev) {
         ev.preventDefault();
@@ -1031,14 +1027,14 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         console.log('drop_handler dropped !!', this.colorField )
 
         let definition = this.createVegaLiteSpec(
-            undefined, 
-            undefined, 
+            undefined,
+            undefined,
             this.colField,
             undefined,
             undefined
         );
         this.renderGraph(definition);
-      } 
+      }
 
     dragover_handlerColEnter(ev, actionName: string) {
       ev.preventDefault();
@@ -1136,9 +1132,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showType = false;
 
         let definition = this.createVegaLiteSpec(
-          undefined, 
+          undefined,
           graph,
-          undefined, 
+          undefined,
           undefined,
           undefined
         );

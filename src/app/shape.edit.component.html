@@ -5,6 +5,11 @@
                 <div class="overall">
 
                     <div class="shapeProperties">
+                        <button type="button" class="closeButton" (click)="clickClose()">
+                            X
+                        </button>
+
+                        Shape
                         <form>
                             <section>
                                 <div class="form-group">
@@ -54,7 +59,7 @@
                     <div class="shapeBottomText" *ngIf="showTextBox">
                         <div class="propertyLine">
                             Text input:
-                            <input type="text" id="formFields_7" placeholder="Text">
+                            <input type="text" id="formFields_7" placeholder="The brown fox ...">
                         </div>
                         <div class="propertyLine">
                             Text Font:

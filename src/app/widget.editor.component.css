@@ -151,6 +151,7 @@
     .graphTypeMoreMsg {
         font-size: 0.4rem;
     }
+
     .colorAdvanced {
         grid-column-start: 16;
         grid-column-end: 19;
@@ -171,32 +172,11 @@
         text-align: center;
     }
 
-
-
-
-
-
-
-
-
-.gridColumn {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.nav-list {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.dropdown-toggle {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.nav-group {
-    margin: 0 !important;
-    padding: 0 !important;
+.saveButton {
+    grid-column-start: 14;
+    grid-column-end: 15;
+    grid-row-start: 22;
+    grid-row-end: 23;
 }
 
 .sidenav {
@@ -212,43 +192,6 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
-.dropZoneX {
-    border: 2px dotted rgb(98, 98, 153);
-    border-radius: 8px;
-    display: block;
-    height: 2.5em;
-    justify-content: center;
-    margin: auto;
-    text-align: left;
-    width: 8rem;
-}
-
-/* .dropZoneYlabel {
-    display: block;
-    position: relative;
-    top: 8em;
-    text-align: left;
-    width: 8rem;
-} */
-
-/* .dropZoneY {
-    border: 2px dotted rgb(98, 98, 153);
-    border-radius: 8px;
-    height: 2.5em;
-    justify-content: center;
-    margin: auto;
-    position: relative !important;
-    text-align: left;
-    top: 8em;
-    width: 100%;
-} */
-
-.dropZoneXlabel {
-    left: 4rem;
-    margin: 0;
-    padding: 0;
-    position: relative;
-}
 .dropZoneColor {
     border: 2px dotted rgb(98, 98, 153);
     border-radius: 8px;
@@ -259,36 +202,10 @@
     width: 100%;
 }
 
-/* .advancedX {
-    background: rgb(231, 230, 230);
-    border: 1px solid black;
-    left: 10px;
-    position: absolute;
-    top: 50px;
-    width: 12rem;
-    z-index: 9000;
-} */
-
-/* .advancedY {
-    background: rgb(231, 230, 230);
-    border: 1px solid black;
-    left: 10px;
-    position: absolute;
-    top: 0px;
-    width: 12rem;
-    z-index: 9000;
-} */
-
 .popupLabel {
     font-size: .5rem !important;
     margin: 0 0 0 10px !important;
     width: 3rem !important;
-}
-
-.popupInput {
-    font-size: .5rem !important;
-    margin: 0 0 0 10px !important;
-    width: 9rem !important;
 }
 
 .popupButton {
@@ -308,15 +225,3 @@
     background-color: lightgray;
 }
 
-.buttonWidgetX {
-    margin: 0;
-    padding: 0;
-    float: right
-}
-
-/* .buttonWidgetY {
-    margin: 0;
-    padding: 0;
-    position: relative !important;
-    top: 12em;
-} */
