@@ -38,7 +38,7 @@
 </div>
 
 <div class="helpMessage" *ngIf="isFirstTimeDashboard">
-    HELP message: this is your Dashboard on which data can be visualised.  It can have more than
+    <b>HELP</b> message: this is your Dashboard on which data can be visualised.  It can have more than
     one tab (like a spreadsheet), as shown at the bottom of the page.  Some actions:
     <div class="helpMessageDiv">
         1. Add a datasource (click <i>Data</i> in the top menu, and select the type of source
@@ -66,7 +66,8 @@
         right hand bottom corner.
     </div>
     <br><br>
-    Got it <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboard">
+        <b>Got it</b> 
+        <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboard">
         (You can make this message re-appear with the <i>Preferences</i> option under your
         User icon <clr-icon shape="user"></clr-icon> in the top right menu.  The Dashboard
         will function normally while this message is displayed.)

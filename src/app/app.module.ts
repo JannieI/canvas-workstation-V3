@@ -17,16 +17,10 @@ import { ClarityModule }              from 'clarity-angular';
 
 // Own Components
 import { AppComponent }               from './app.component';
-import { CollaborateComponent }       from './collaborate.component';
-import { ExploreComponent }           from './explore.component';
-import { DataPopupComponent }         from './data.popup.component';
-import { DataRefreshComponent }       from './data.refresh.component';
-import { HelpComponent }              from './help.component';
 import { HomeComponent }              from './home.component';
 import { LandingComponent }           from './landing.component';
-import { PresentComponent }           from './present.component';
-import { WidgetEditorComponent }      from './widget.editor.component';
-import { WidgetStepsComponent }       from './widget.steps.component';
+
+import { ExploreComponent }           from './explore.component';
 import { DashboardNewComponent }      from './dashboard.new.component';
 import { DashboardOpenComponent }     from './dashboard.open.component';
 import { DashboardSaveComponent }     from './dashboard.save.component';
@@ -43,9 +37,23 @@ import { DashboardScheduleComponent } from './dashboard.schedule.component';
 import { DashboardDeleteComponent }   from './dashboard.delete.component';
 import { DashboardCommentsComponent } from './dashboard.comments.component';
 import { DashboardPrintComponent }    from './dashboard.print.component';
+
+import { WidgetEditorComponent }      from './widget.editor.component';
+import { WidgetStepsComponent }       from './widget.steps.component';
+
+import { DataPopupComponent }         from './data.popup.component';
+import { DataRefreshComponent }       from './data.refresh.component';
+
+import { ShapeEditComponent }         from './shape.edit.component';
+
+import { PresentComponent }           from './present.component';
+import { HelpComponent }              from './help.component';
+
+import { CollaborateComponent }       from './collaborate.component';
+
+import { LoginComponent}              from './login.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
-import { LoginComponent}              from './login.component';
 import { LogoutComponent}             from './logout.component';
 
 // Our Services
@@ -82,6 +90,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardPrintComponent,
         DataPopupComponent,
         DataRefreshComponent,
+        ShapeEditComponent,
         MyProfileComponent,
         PreferencesComponent,
         LoginComponent,
