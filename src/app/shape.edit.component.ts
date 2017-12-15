@@ -29,7 +29,7 @@ export class ShapeEditComponent implements OnInit {
     showLine: boolean = false;  
     showArrow: boolean = false;  
     showImage: boolean = false;  
-    
+
     showTypeDashboard: boolean = false;  
 
     ngOnInit() {
@@ -92,7 +92,7 @@ export class ShapeEditComponent implements OnInit {
             this.showRectangle = false;
             this.showLine = false;
             this.showArrow = false;
-            this.showImage = false;
+            this.showImage = true;
         }
 
     }

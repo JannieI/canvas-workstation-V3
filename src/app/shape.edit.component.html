@@ -1,15 +1,8 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
     
                 <div class="overall">
-                    <div>
-                        <button type="button" class="closeButton" (click)="clickClose()">
-                            X
-                        </button>
-        
-                        Shape
-                    </div>
 
                     <div class="shapeProperties">
                         <form>
@@ -91,9 +84,9 @@
 
                     <div *ngIf="showRectangle">
                         <div  class="shapeTop">
-                            <svg height="100" width="100">
-                                <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-                            </svg>
+                            <svg width="400" height="110">
+                                <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+                                </svg>
                         </div>
                         <div class="shapeBottom">
                             Radius
@@ -102,7 +95,9 @@
 
                     <div *ngIf="showLine">
                         <div  class="shapeTop">
-                            Line
+                            <svg height="210" width="500">
+                                <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
+                            </svg>
                         </div>
                         <div class="shapeBottom">
                             <div class="propertyLine">
@@ -114,9 +109,8 @@
                     
                     <div *ngIf="showArrow">
                         <div  class="shapeTop">
-                            <svg height="100" width="100">
-                                <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-                            </svg>
+                                <p>I will display &#9754;</p>
+                            
                         </div>
                         <div class="shapeBottom">
                             Radius
@@ -125,7 +119,11 @@
 
                     <div *ngIf="showImage">
                         <div  class="shapeTop">
-                            Image 
+                            <img
+                            [style.height.px]="120"
+                            [style.width.px]="120"
+                            src="../images/ChartCandleStick.png"
+                        >
                         </div>
                         <div class="shapeBottom">
                             <div class="propertyLine">
