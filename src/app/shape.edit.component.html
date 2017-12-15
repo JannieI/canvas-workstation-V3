@@ -71,25 +71,47 @@
                         </div>
                     </div>
 
-                    <div class="shapeTopText" *ngIf="showCircle">
-                        <svg height="100" width="100">
+                    <div class="shapeTopShape" *ngIf="showCircle">
+                        <svg height="200" width="200">
                             <circle 
-                                cx="50" cy="50" r="40" stroke="black" 
+                                cx="100" cy="100" r="80" stroke="black" 
                                 stroke-width="3" fill="red" />
                         </svg>
                     </div>
-                    <div class="shapeBottomText" *ngIf="showCircle">
+                    <div class="shapeBottomShape" *ngIf="showCircle">
                         Radius:
                         <input type="text" id="formFields_7" placeholder="5-200px">
+                        Line Colour:
+                        <input type="text" id="formFields_7" placeholder="Black">
+                        Line thickness:
+                        <input type="text" id="formFields_7" placeholder="3">
+                        Fill colour:
+                        <input type="text" id="formFields_7" placeholder="Red">
                     </div>
 
                     <div class="shapeTopShape" *ngIf="showRectangle">
-                        <svg width="400" height="110">
-                            <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
-                        </svg>
+                        <svg width="400" height="180">
+                        <rect x="50" y="20" rx="20" ry="20" width="150" height="150"
+                        style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+                        </svg>                        
+                        <!-- <svg width="400" height="110">
+                            <rect width="300" height="100" 
+                            style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+                        </svg> -->
                     </div>
                     <div class="shapeBottomShape" *ngIf="showRectangle">
-                        Radius
+                        Fill Colour:
+                        <input type="text" id="formFields_7" placeholder="Pink">
+                        Line thickness:
+                        <input type="text" id="formFields_7" placeholder="3">
+                        Line Colour:
+                        <input type="text" id="formFields_7" placeholder="1px solid Black">
+                        Fill Opacity:
+                        <input type="text" id="formFields_7" placeholder="0-1">
+                        Line Opacity:
+                        <input type="text" id="formFields_7" placeholder="0-1">
+                        Corners:
+                        <input type="text" id="formFields_7" placeholder="Rounded/Not">
                     </div>
 
                     <div class="shapeTopShape" *ngIf="showLine">
