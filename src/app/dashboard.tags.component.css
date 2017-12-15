@@ -11,15 +11,6 @@
     top: 0;
 }
 
-.propertyLine {
-    margin: 5px;
-}
-
-p {
-    margin-right: 5px !important;
-    padding: 0;
-}
-
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(15, 1fr);
