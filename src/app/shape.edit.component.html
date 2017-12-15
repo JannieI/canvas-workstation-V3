@@ -2,58 +2,60 @@
         <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
     
-                <div>
+                <div class="overall">
                     <button type="button" class="closeButton" (click)="clickClose()">
                         X
                     </button>
     
                     Shape
-                    <form>
-                        <section>
-                            <div class="form-group">
-                                <label for="selects_4">Select a shape:</label>
-                                <div class="select">
-                                    <select id="selects_3"
-                                        (change)="clickSelectStep($event)"
-                                        >
-                                        <option>TextBox</option>
-                                        <option>Circle</option>
-                                        <option>Rectangle</option>
-                                        <option>Line</option>
-                                        <option>Arrow</option>
-                                        <option>Image</option>
-                                    </select>
+                    <div class="shapeProperties">
+                        <form>
+                            <section>
+                                <div class="form-group">
+                                    <label for="selects_4">Select a shape:</label>
+                                    <div class="select">
+                                        <select id="selects_3"
+                                            (change)="clickSelectStep($event)"
+                                            >
+                                            <option>TextBox</option>
+                                            <option>Circle</option>
+                                            <option>Rectangle</option>
+                                            <option>Line</option>
+                                            <option>Arrow</option>
+                                            <option>Image</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                        </section>
-                    </form>
-                    <div class="propertyLine">
-                        Position:
-                        <input type="text" id="formFields_7" placeholder="Left">
-                        <input type="text" id="formFields_7" placeholder="Top">
+                                
+                            </section>
+                        </form>
+                        <div class="propertyLine">
+                            Position:
+                            <input type="text" id="formFields_7" placeholder="Left">
+                            <input type="text" id="formFields_7" placeholder="Top">
+                        </div>
+        
+                        <div class="propertyLine">
+                            Size:
+                            <input type="text" id="formFields_7" placeholder="Height">
+                            <input type="text" id="formFields_7" placeholder="Width">
+                        </div>
+                        <div class="propertyLine">
+                            Border:
+                            <input type="text" id="formFields_7" placeholder="1px solid Gray">
+                        </div>
+                        <div class="propertyLine">
+                            Background Colour:
+                            <input type="text" id="formFields_7" placeholder="Transparent">
+                        </div>
                     </div>
-    
-                    <div class="propertyLine">
-                        Size:
-                        <input type="text" id="formFields_7" placeholder="Height">
-                        <input type="text" id="formFields_7" placeholder="Width">
-                    </div>
-                    <div class="propertyLine">
-                        Border:
-                        <input type="text" id="formFields_7" placeholder="1px solid Gray">
-                    </div>
-                    <div class="propertyLine">
-                        Background Colour:
-                        <input type="text" id="formFields_7" placeholder="Transparent">
-                    </div>
-                    <div>
+                    <div *ngIf="showImage">
                         <div class="propertyLine">
                             Image:
                             <input type="text" id="formFields_7" placeholder="Co. logo">
                         </div>
                     </div>
-                     <div>
+                    <div class="shapeCircleBottom">
                         <div class="propertyLine">
                             Text input:
                             <input type="text" id="formFields_7" placeholder="Text">
@@ -81,14 +83,15 @@
                     <svg height="100" width="100">
                         <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
                     </svg>
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="clickClose('Close')"
-                        >
-                        Save
-                    </button>
-
+                    <div class="shapeCircleTop">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose('Close')"
+                            >
+                            Save
+                        </button>
+                    </div>
                 </div>  
             </div>  
         </div>  

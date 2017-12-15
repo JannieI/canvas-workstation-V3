@@ -21,7 +21,7 @@
         margin-bottom: 0;
         text-align: center;
     }
-    
+
     .rowAdvanced {
         background: rgb(231, 230, 230);
         border: 1px solid black;
@@ -34,7 +34,7 @@
         text-align: left;
         z-index: 9000
     }
- 
+
     .rowField {
         grid-column-start: 4;
         grid-column-end: 7;
@@ -44,7 +44,7 @@
         margin-right: 0.5rem;
         text-align: center;
     }
- 
+
         .rowFieldDropLabel {
             text-align: left;
         }
@@ -58,12 +58,12 @@
             text-align: left;
             width: 100%;
         }
-        
+
         .rowFieldDropButton {
             margin: 0;
             padding: 0;
         }
-    
+
     .colAdvanced {
         background: rgb(231, 230, 230);
         border: 1px solid black;
@@ -76,7 +76,7 @@
         text-align: left;
         z-index: 9000
     }
- 
+
     .colField {
         grid-column-start: 10;
         grid-column-end: 13;
@@ -101,7 +101,7 @@
             text-align: left;
             width: 100%;
         }
-        
+
     .colFieldDropButton {
         grid-column-start: 13;
         grid-column-end: 16;
@@ -121,7 +121,7 @@
         margin-bottom: 0;
         text-align: center;
     }
- 
+
     .graphType {
         border: 1px solid gray;
         border-radius: 4px;
@@ -138,7 +138,7 @@
             border-radius: 3px;
             margin: 2px;
         }
- 
+
     .graphTypeMore {
         grid-column-start: 16;
         grid-column-end: 19;
@@ -159,7 +159,7 @@
         margin-bottom: 0;
         text-align: center;
     }
- 
+
     .colorField {
         grid-column-start: 16;
         grid-column-end: 19;
@@ -170,7 +170,7 @@
         margin-right: 0.5rem;
         text-align: center;
     }
- 
+
 
 
 
@@ -208,7 +208,7 @@
 }
 
 .modalBox {
-	background-color: rgba(0,0,0,0.4); 
+	background-color: rgba(0,0,0,0.4);
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
