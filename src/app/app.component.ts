@@ -148,14 +148,6 @@ export class AppComponent implements OnInit {
         this.showModalDashboardDiscard = false;
     }
 
-    handleCloseDashboardLogin(action) {
-        this.showModalDashboardLogin = false;
-    }
-
-    handleCloseDashboardLogout(action) {
-        this.showModalDashboardLogout = false;
-    }
-
     handleCloseDashboardRename(action) {
         this.showModalDashboardRename = false;
     }
@@ -238,6 +230,14 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetExport() {
         this.showModalWidgetExport = false;
+    }
+
+    handleCloseUserLogin(action) {
+        this.showModalDashboardLogin = false;
+    }
+
+    handleCloseUserLogout(action) {
+        this.showModalDashboardLogout = false;
     }
 
     handleCloseUserPreferences(action) {

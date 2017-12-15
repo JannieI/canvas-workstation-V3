@@ -719,8 +719,18 @@ class="formPopupDashboard"
     class="formPopupDashboard"
     *ngIf="showModalDashboardLogin"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardLoginClosed)="handleCloseDashboardLogin($event)">Load Login ...
+    (formUserLoginClosed)="handleCloseUserLogin($event)">Load Login ...
 </login>
+
+
+<!-- Modal: Widget Button Bar -->
+<widget-buttonbar
+    class="formPopupUserWidgetButtonBar"
+    *ngIf="showModalUserWidgetButtonBar"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formUserWidgetButtonBarClosed)="handleCloseUserWidgetButtonBar($event)">
+    Load Widget Button Bar ...
+</widget-buttonbar>
 
 
 <!-- Modal: Logout -->
@@ -728,7 +738,7 @@ class="formPopupDashboard"
     class="formPopupDashboard"
     *ngIf="showModalDashboardLogout"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardLogoutClosed)="handleCloseDashboardLogout($event)">Load Logout ...
+    (formUserLogoutClosed)="handleCloseUserLogout($event)">Load Logout ...
 </logout>
 
 
