@@ -3,11 +3,14 @@
             <div class="modal-content modalContent">
     
                 <div class="overall">
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
-    
-                    Shape
+                    <div>
+                        <button type="button" class="closeButton" (click)="clickClose()">
+                            X
+                        </button>
+        
+                        Shape
+                    </div>
+
                     <div class="shapeProperties">
                         <form>
                             <section>
@@ -15,7 +18,7 @@
                                     <label for="selects_4">Select a shape:</label>
                                     <div class="select">
                                         <select id="selects_3"
-                                            (change)="clickSelectStep($event)"
+                                            (change)="clickSelectShape($event)"
                                             >
                                             <option>TextBox</option>
                                             <option>Circle</option>
@@ -49,41 +52,68 @@
                             <input type="text" id="formFields_7" placeholder="Transparent">
                         </div>
                     </div>
+                    
                     <div *ngIf="showImage">
-                        <div class="propertyLine">
-                            Image:
-                            <input type="text" id="formFields_7" placeholder="Co. logo">
+                        <div  class="shapeTop">
+                            Image 
+                        </div>
+                        <div class="shapeBottom">
+                            <div class="propertyLine">
+                                Image:
+                                <input type="text" id="formFields_7" placeholder="Co. logo">
+                            </div>
                         </div>
                     </div>
-                    <div class="shapeCircleBottom">
-                        <div class="propertyLine">
-                            Text input:
-                            <input type="text" id="formFields_7" placeholder="Text">
+
+                    <div *ngIf="showText">
+                        <div class="shapeTop">
+                            The brown fox is tired
                         </div>
-                        <div class="propertyLine">
-                            Text Font:
-                            <input type="text" id="formFields_7" placeholder="Font Size">
-                            <input type="text" id="formFields_7" placeholder="Font Family">
-                        </div>
-                        <div class="propertyLine">
-                            Text Look:
-                            <input type="text" id="formFields_7" placeholder="Bold/Italic/Underline">
-                        </div>
-                        <div class="propertyLine">
-                            Text Alignment:
-                            <input type="text" id="formFields_7" placeholder="Left/Center/Right">
+                        <div class="shapeBottom">
+                            <div class="propertyLine">
+                                Text input:
+                                <input type="text" id="formFields_7" placeholder="Text">
+                            </div>
+                            <div class="propertyLine">
+                                Text Font:
+                                <input type="text" id="formFields_7" placeholder="Font Size">
+                                <input type="text" id="formFields_7" placeholder="Font Family">
+                            </div>
+                            <div class="propertyLine">
+                                Text Look:
+                                <input type="text" id="formFields_7" placeholder="Bold/Italic/Underline">
+                            </div>
+                            <div class="propertyLine">
+                                Text Alignment:
+                                <input type="text" id="formFields_7" placeholder="Left/Center/Right">
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="propertyLine">
-                            Direction:
-                            <input type="text" id="formFields_7" placeholder="Arrow / Line">
+
+                    <div *ngIf="showLine">
+                        <div  class="shapeTop">
+                            Line
+                        </div>
+                        <div class="shapeBottom">
+                            <div class="propertyLine">
+                                Direction:
+                                <input type="text" id="formFields_7" placeholder="Arrow / Line">
+                            </div>  
                         </div>
                     </div>
-                    <svg height="100" width="100">
-                        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-                    </svg>
-                    <div class="shapeCircleTop">
+
+                    <div *ngIf="showCircle">
+                        <div  class="shapeTop">
+                            <svg height="100" width="100">
+                                <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+                            </svg>
+                        </div>
+                        <div class="shapeBottom">
+                            Radius
+                        </div>
+                    </div>
+
+                    <div class="shapeButton">
                         <button
                             type="button"
                             class="btn btn-secondary"

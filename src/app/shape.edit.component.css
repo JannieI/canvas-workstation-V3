@@ -17,42 +17,43 @@
 
 .overall {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(12, 1fr);
     grid-template-rows:  1fr 1fr;
     margin-top: 2px;
 }
 
     .shapeProperties {
         grid-column-start: 1;
-        grid-column-end: 2;
+        grid-column-end: 7;
         grid-row-start: 1;
         grid-row-end: 3;
-        text-align: center;
+        text-align: left;
     }
 
-    .shapeCircleTop {
-        grid-column-start: 2;
-        grid-column-end: 3;
+    .shapeTop {
+        grid-column-start: 7;
+        grid-column-end: 13;
         grid-row-start: 1;
         grid-row-end: 2;
         margin-bottom: 0;
         text-align: center;
     }
 
-    .shapeCircleBottom {
-        grid-column-start: 2;
-        grid-column-end: 3;
+    .shapeBottom {
+        grid-column-start: 7;
+        grid-column-end: 13;
         grid-row-start: 2;
         grid-row-end: 3;
         margin-bottom: 0;
-        text-align: center;
+        text-align: left;
     }
 
-    .shapeCircle {
-        grid-column-start: 1;
-        grid-column-end: 4;
+    .shapeButton {
+        grid-column-start: 7;
+        grid-column-end: 13;
         grid-row-start: 2;
-        grid-row-end: 25;
+        grid-row-end: 3;
         margin-bottom: 0;
-        text-align: center;
+        text-align: left;
     }
+
