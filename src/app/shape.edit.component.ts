@@ -23,13 +23,14 @@ export class ShapeEditComponent implements OnInit {
     @Input() currentWidgetSpec: any;
     @Output() formShapeEditClosed: EventEmitter<string> = new EventEmitter();
 
-    showLine: boolean = false;  
+    showTextBox: boolean = true;  
     showCircle: boolean = false;  
-    showText: boolean = true;  
-    showImage: boolean = false;  
-    showTypeDashboard: boolean = false;  
     showRectangle: boolean = false;  
+    showLine: boolean = false;  
     showArrow: boolean = false;  
+    showImage: boolean = false;  
+    
+    showTypeDashboard: boolean = false;  
 
     ngOnInit() {
 
@@ -46,52 +47,52 @@ export class ShapeEditComponent implements OnInit {
         let shape: string = ev.srcElement.value;
 
         if (shape == 'TextBox') {
-            this.showLine = false;
+            this.showTextBox = true;
             this.showCircle = false;
-            this.showText = true;
-            this.showImage = false;
             this.showRectangle = false;
+            this.showLine = false;
             this.showArrow = false;
+            this.showImage = false;
         }
         if (shape == 'Circle') {
-            this.showLine = false;
+            this.showTextBox = false;
             this.showCircle = true;
-            this.showText = false;
-            this.showImage = false;
             this.showRectangle = false;
+            this.showLine = false;
             this.showArrow = false;
+            this.showImage = false;
         }
         if (shape == 'Rectangle') {
-            this.showLine = false;
+            this.showTextBox = false;
             this.showCircle = false;
-            this.showText = false;
-            this.showImage = false;
             this.showRectangle = true;
+            this.showLine = false;
             this.showArrow = false;
+            this.showImage = false;
         }
         if (shape == 'Line') {
-            this.showLine = true;
+            this.showTextBox = false;
             this.showCircle = false;
-            this.showText = false;
-            this.showImage = false;
             this.showRectangle = false;
+            this.showLine = true;
             this.showArrow = false;
+            this.showImage = false;
         }
         if (shape == 'Arrow') {
-            this.showLine = false;
+            this.showTextBox = false;
             this.showCircle = false;
-            this.showText = false;
-            this.showImage = false;
             this.showRectangle = false;
+            this.showLine = false;
             this.showArrow = true;
+            this.showImage = false;
         }
         if (shape == 'Image') {
-            this.showLine = false;
+            this.showTextBox = false;
             this.showCircle = false;
-            this.showText = false;
-            this.showImage = false;
             this.showRectangle = false;
+            this.showLine = false;
             this.showArrow = false;
+            this.showImage = false;
         }
 
     }

@@ -53,19 +53,7 @@
                         </div>
                     </div>
                     
-                    <div *ngIf="showImage">
-                        <div  class="shapeTop">
-                            Image 
-                        </div>
-                        <div class="shapeBottom">
-                            <div class="propertyLine">
-                                Image:
-                                <input type="text" id="formFields_7" placeholder="Co. logo">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div *ngIf="showText">
+                    <div *ngIf="showTextBox">
                         <div class="shapeTop">
                             The brown fox is tired
                         </div>
@@ -90,6 +78,28 @@
                         </div>
                     </div>
 
+                    <div *ngIf="showCircle">
+                        <div  class="shapeTop">
+                            <svg height="100" width="100">
+                                <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+                            </svg>
+                        </div>
+                        <div class="shapeBottom">
+                            Radius
+                        </div>
+                    </div>
+
+                    <div *ngIf="showRectangle">
+                        <div  class="shapeTop">
+                            <svg height="100" width="100">
+                                <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+                            </svg>
+                        </div>
+                        <div class="shapeBottom">
+                            Radius
+                        </div>
+                    </div>
+
                     <div *ngIf="showLine">
                         <div  class="shapeTop">
                             Line
@@ -101,8 +111,8 @@
                             </div>  
                         </div>
                     </div>
-
-                    <div *ngIf="showCircle">
+                    
+                    <div *ngIf="showArrow">
                         <div  class="shapeTop">
                             <svg height="100" width="100">
                                 <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
@@ -110,6 +120,18 @@
                         </div>
                         <div class="shapeBottom">
                             Radius
+                        </div>
+                    </div>
+
+                    <div *ngIf="showImage">
+                        <div  class="shapeTop">
+                            Image 
+                        </div>
+                        <div class="shapeBottom">
+                            <div class="propertyLine">
+                                Image:
+                                <input type="text" id="formFields_7" placeholder="Co. logo">
+                            </div>
                         </div>
                     </div>
 
