@@ -524,8 +524,8 @@ export class AppComponent implements OnInit {
     clickMenuUserPreferences() {
         this.showModalUserPreferences = true;
     }
-
-    clickMenuUSerWidgetButtonBar() {
+    
+    clickMenuUserWidgetButtonBar() {
         this.showModalUserWidgetButtonBar = true;
     }
 
