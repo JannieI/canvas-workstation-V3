@@ -18,7 +18,7 @@
 .overall {
     display: grid;
     grid-template-columns: repeat(11, 3rem);
-    grid-template-rows:  8rem 8rem 1rem;
+    grid-template-rows:  repeat(7, 2rem);
     margin-top: 2px;
 }
 
@@ -26,24 +26,52 @@
         grid-column-start: 1;
         grid-column-end: 6;
         grid-row-start: 1;
-        grid-row-end: 4;
+        grid-row-end: 12;
         text-align: left;
     }
 
-    .shapeTop {
+    .shapeTopShape {
+        display: flex;
         grid-column-start: 7;
         grid-column-end: 12;
         grid-row-start: 1;
-        grid-row-end: 2;
+        grid-row-end: 4;
+        justify-content: center;
         margin-bottom: 0;
         text-align: center;
     }
 
-    .shapeBottom {
+    .shapeTopText {
+        display: flex;
         grid-column-start: 7;
         grid-column-end: 12;
         grid-row-start: 2;
         grid-row-end: 3;
+        justify-content: center;
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+        .shapeTopInner {
+            justify-content: center;
+        }
+
+    .shapeBottomText {
+        align-content: center;
+        grid-column-start: 7;
+        grid-column-end: 12;
+        grid-row-start: 3;
+        grid-row-end: 12;
+        margin-bottom: 0;
+        text-align: left;
+    }
+    
+    .shapeBottomShape {
+        align-content: center;
+        grid-column-start: 7;
+        grid-column-end: 12;
+        grid-row-start: 4;
+        grid-row-end: 12;
         margin-bottom: 0;
         text-align: left;
     }
@@ -51,8 +79,8 @@
     .shapeButton {
         grid-column-start: 11;
         grid-column-end: 12;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 6;
+        grid-row-end: 7;
         margin-bottom: 0;
         text-align: left;
     }

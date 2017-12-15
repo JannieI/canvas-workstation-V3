@@ -46,90 +46,82 @@
                         </div>
                     </div>
                     
-                    <div *ngIf="showTextBox">
-                        <div class="shapeTop">
+                    <div class="shapeTopText" *ngIf="showTextBox">
+                        <div class="shapeTopInner">
                             The brown fox is tired
                         </div>
-                        <div class="shapeBottom">
-                            <div class="propertyLine">
-                                Text input:
-                                <input type="text" id="formFields_7" placeholder="Text">
-                            </div>
-                            <div class="propertyLine">
-                                Text Font:
-                                <input type="text" id="formFields_7" placeholder="Font Size">
-                                <input type="text" id="formFields_7" placeholder="Font Family">
-                            </div>
-                            <div class="propertyLine">
-                                Text Look:
-                                <input type="text" id="formFields_7" placeholder="Bold/Italic/Underline">
-                            </div>
-                            <div class="propertyLine">
-                                Text Alignment:
-                                <input type="text" id="formFields_7" placeholder="Left/Center/Right">
-                            </div>
+                    </div>
+                    <div class="shapeBottomText" *ngIf="showTextBox">
+                        <div class="propertyLine">
+                            Text input:
+                            <input type="text" id="formFields_7" placeholder="Text">
+                        </div>
+                        <div class="propertyLine">
+                            Text Font:
+                            <input type="text" id="formFields_7" placeholder="Font Size">
+                            <input type="text" id="formFields_7" placeholder="Font Family">
+                        </div>
+                        <div class="propertyLine">
+                            Text Look:
+                            <input type="text" id="formFields_7" placeholder="Bold/Italic/Underline">
+                        </div>
+                        <div class="propertyLine">
+                            Text Alignment:
+                            <input type="text" id="formFields_7" placeholder="Left/Center/Right">
                         </div>
                     </div>
 
-                    <div *ngIf="showCircle">
-                        <div  class="shapeTop">
-                            <svg height="100" width="100">
-                                <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-                            </svg>
-                        </div>
-                        <div class="shapeBottom">
-                            Radius
-                        </div>
+                    <div class="shapeTopText" *ngIf="showCircle">
+                        <svg height="100" width="100">
+                            <circle 
+                                cx="50" cy="50" r="40" stroke="black" 
+                                stroke-width="3" fill="red" />
+                        </svg>
+                    </div>
+                    <div class="shapeBottomText" *ngIf="showCircle">
+                        Radius:
+                        <input type="text" id="formFields_7" placeholder="5-200px">
                     </div>
 
-                    <div *ngIf="showRectangle">
-                        <div  class="shapeTop">
-                            <svg width="400" height="110">
-                                <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
-                                </svg>
-                        </div>
-                        <div class="shapeBottom">
-                            Radius
-                        </div>
+                    <div class="shapeTopShape" *ngIf="showRectangle">
+                        <svg width="400" height="110">
+                            <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+                        </svg>
+                    </div>
+                    <div class="shapeBottomShape" *ngIf="showRectangle">
+                        Radius
                     </div>
 
-                    <div *ngIf="showLine">
-                        <div  class="shapeTop">
-                            <svg height="210" width="500">
-                                <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
-                            </svg>
-                        </div>
-                        <div class="shapeBottom">
-                            <div class="propertyLine">
-                                Direction:
-                                <input type="text" id="formFields_7" placeholder="Arrow / Line">
-                            </div>  
-                        </div>
+                    <div class="shapeTopShape" *ngIf="showLine">
+                        <svg height="210" width="500">
+                            <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
+                        </svg>
+                    </div>
+                    <div class="shapeBottomShape" *ngIf="showLine">
+                        <div class="propertyLine">
+                            Direction:
+                            <input type="text" id="formFields_7" placeholder="Arrow / Line">
+                        </div>  
                     </div>
                     
-                    <div *ngIf="showArrow">
-                        <div  class="shapeTop">
-                                <p>I will display &#9754;</p>
-                            
-                        </div>
-                        <div class="shapeBottom">
-                            Radius
-                        </div>
+                    <div class="shapeTopShape" *ngIf="showArrow">
+                        <p>I will display &#9754;</p>
+                    </div>
+                    <div class="shapeBottomShape" *ngIf="showArrow">
+                        Radius
                     </div>
 
-                    <div *ngIf="showImage">
-                        <div  class="shapeTop">
-                            <img
+                    <div class="shapeTopShape" *ngIf="showImage">
+                        <img
                             [style.height.px]="120"
                             [style.width.px]="120"
                             src="../images/ChartCandleStick.png"
-                        >
-                        </div>
-                        <div class="shapeBottom">
-                            <div class="propertyLine">
-                                Image:
-                                <input type="text" id="formFields_7" placeholder="Co. logo">
-                            </div>
+                            >
+                    </div>
+                    <div class="shapeBottomShape" *ngIf="showImage">
+                        <div class="propertyLine" *ngIf="showImage">
+                            Image:
+                            <input type="text" id="formFields_7" placeholder="Co. logo">
                         </div>
                     </div>
 
