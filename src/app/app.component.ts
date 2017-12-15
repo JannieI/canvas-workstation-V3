@@ -53,10 +53,8 @@ export class AppComponent implements OnInit {
     showModalDashboardSave: boolean = false;
     showModalDashboardCheckpoints: boolean = false;
     showModalDashboardDiscard: boolean = false;
-    showModalDashboardMyProfile: boolean = false;
     showModalDashboardLogin: boolean = false;
     showModalDashboardLogout: boolean = false;
-    showModalDashboardPreferences: boolean = false;
     showModalDashboardComments: boolean = false;
     showModalDashboardRename: boolean = false;
     showModalDashboardDetails: boolean = false;
@@ -67,6 +65,7 @@ export class AppComponent implements OnInit {
     showModalDashboardTemplate: boolean = false;
     showModalDashboardSchedule: boolean = false;
     showModalDashboardDelete: boolean = false;
+    showModalDataPopup: boolean = false;
     showModalWidgetSteps: boolean = false;
     showModalWidgetNotes: boolean = false;
     showModalWidgetTags: boolean = false;
@@ -80,7 +79,10 @@ export class AppComponent implements OnInit {
     showModalShapeEdit: boolean = false;
     showFav: boolean = false;
     showModalWidgetEditor: boolean = false;
-    showModalDataPopup: boolean = false;
+    showModalUserMyProfile: boolean = false;
+    showModalUserPreferences: boolean = false;
+    showModalUserWidgetButtonBar: boolean = false;
+    showModalUserShapeButtonBar: boolean = false;
 
     currentWidgetSpec: string = "{...}";
 
@@ -146,20 +148,12 @@ export class AppComponent implements OnInit {
         this.showModalDashboardDiscard = false;
     }
 
-    handleCloseDashboardMyProfile(action) {
-        this.showModalDashboardMyProfile = false;
-    }
-
     handleCloseDashboardLogin(action) {
         this.showModalDashboardLogin = false;
     }
 
     handleCloseDashboardLogout(action) {
         this.showModalDashboardLogout = false;
-    }
-
-    handleCloseDashboardPreferences(action) {
-        this.showModalDashboardPreferences = false;
     }
 
     handleCloseDashboardRename(action) {
@@ -244,6 +238,21 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetExport() {
         this.showModalWidgetExport = false;
+    }
+
+    handleCloseUserPreferences(action) {
+        this.showModalUserPreferences = false;
+    }
+
+    handleCloseUserdMyProfile(action) {
+        this.showModalUserMyProfile = false;
+    }
+
+    handleCloseUserWidgetButtonBar(action) {
+        this.showModalUserWidgetButtonBar = false;
+    }
+    handleCloseUserShapeButtonBar(action) {
+        this.showModalUserShapeButtonBar = false;
     }
 
     clickDashboardNew() {
@@ -370,19 +379,19 @@ export class AppComponent implements OnInit {
     clickMenuWidgetRefresh() {
         this.showModalWidgetRefresh = true;
     }
-    
+
     clickMenuWidgetDuplicate() {
         this.showModalWidgetDuplicate = true;
     }
-    
+
     clickMenuWidgetExpand() {
         this.showModalWidgetExpand = true;
     }
-    
+
     clickMenuWidgetExport() {
         this.showModalWidgetExport = true;
     }
-    
+
 
 
     clickMenuWidgetCopy() {
@@ -509,13 +518,20 @@ export class AppComponent implements OnInit {
 
     clickMenuUserMyProfile() {
         console.log('ddd')
-        this.showModalDashboardMyProfile = true;
+        this.showModalUserMyProfile = true;
     }
 
     clickMenuUserPreferences() {
-        this.showModalDashboardPreferences = true;
+        this.showModalUserPreferences = true;
     }
 
+    clickMenuUSerWidgetButtonBar() {
+        this.showModalUserWidgetButtonBar = true;
+    }
+
+    clickMenuUserShapeButtonBar() {
+        this.showModalUserShapeButtonBar = true;
+    }
 
     clickMenuUserLogout() {
         this.showModalDashboardLogout = true;

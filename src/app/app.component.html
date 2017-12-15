@@ -556,6 +556,8 @@
                     <a clrDropdownItem (click)="clickMenuUserLogin()">Login</a>
                     <a clrDropdownItem (click)="clickMenuUserMyProfile()">My Profile</a>
                     <a clrDropdownItem (click)="clickMenuUserPreferences()">Preferences</a>
+                    <a clrDropdownItem (click)="clickMenuUserWidgetButtonBar()">Preferences</a>
+                    <a clrDropdownItem (click)="clickMenuUserShapeButtonBar()">Preferences</a>
                     <a clrDropdownItem (click)="clickMenuUserLogout()">Log out</a>
                 </div>
             </clr-dropdown>
@@ -733,18 +735,18 @@ class="formPopupDashboard"
 <!-- Modal: My Profile -->
 <myprofile
     class="formPopupDashboard"
-    *ngIf="showModalDashboardMyProfile"
+    *ngIf="showModalUserMyProfile"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardMyProfileClosed)="handleCloseDashboardMyProfile($event)">Load My Profile ...
+    (formDashboardMyProfileClosed)="handleCloseUserdMyProfile($event)">Load My Profile ...
 </myprofile>
 
 
 <!-- Modal: Preferences -->
 <preferences
     class="formPopupDashboard"
-    *ngIf="showModalDashboardPreferences"
+    *ngIf="showModalUserPreferences"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardPreferencesClosed)="handleCloseDashboardPreferences($event)">Load Preferences ...
+    (formDashboardPreferencesClosed)="handleCloseUserPreferences($event)">Load Preferences ...
 </preferences>
 
 
