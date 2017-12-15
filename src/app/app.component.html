@@ -105,6 +105,13 @@
                                 <button 
                                     type="button" 
                                     clrDropdownItem
+                                    (click)="clickMenuDashboardDetailComments()"
+                                    >
+                                    Comments
+                                </button>
+                                <button 
+                                    type="button" 
+                                    clrDropdownItem
                                     (click)="clickMenuDashboardDetailTheme()"
                                     >
                                     Theme
@@ -262,18 +269,27 @@
                         <button type="button" clrDropdownItem (click)="clickMenuWidgetSteps()">
                             Steps
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetComments()">
-                            Comments
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetNotes()">
+                            Notes
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetTags()">
+                            Tags
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetLinks()">
+                            Links
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetCopy()">
-                            Copy
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetRefresh()">
+                            Refresh
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetCut()">
-                            Cut
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetDuplicate()">
+                            Duplicate
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetPaste()">
-                            Paste
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetExpand()">
+                            Expand
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetExport()">
+                            Export
                         </button>
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickMenuWidgetDelete()">
@@ -735,7 +751,7 @@ class="formPopupDashboard"
 <!-- Modal: Comments -->
 <dashboard-comments
     class="formPopupDashboard"
-    *ngIf="showModalDashboardComments"
+    *ngIf="showModalDashboardNotes"
     [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardCommentsClosed)="handleCloseDashboardComments($event)">Load Comments ...
 </dashboard-comments>

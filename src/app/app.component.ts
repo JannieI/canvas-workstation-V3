@@ -61,13 +61,20 @@ export class AppComponent implements OnInit {
     showModalDashboardRename: boolean = false;
     showModalDashboardDetails: boolean = false;
     showModalDashboardDescription: boolean = false;
-    showModalDashboardTags: boolean = false;
+    showModalDashboardTags
     showModalDashboardSettings: boolean = false;
     showModalDashboardTheme: boolean = false;
     showModalDashboardTemplate: boolean = false;
     showModalDashboardSchedule: boolean = false;
     showModalDashboardDelete: boolean = false;
     showModalWidgetSteps: boolean = false;
+    showModalWidgetNotes: boolean = false;
+    showModalWidgetTags: boolean = false;
+    showModalWidgetLinks: boolean = false;
+    showModalWidgetRefresh: boolean = false;
+    showModalWidgetDuplicate: boolean = false;
+    showModalWidgetExpand: boolean = false;
+    showModalWidgetExport: boolean = false;
     showModalDashboardPrint: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalShapeEdit: boolean = false;
@@ -198,10 +205,6 @@ export class AppComponent implements OnInit {
     handleCloseDashboardComments() {
         this.showModalDashboardComments = false;
     }
-    
-    handleCloseWidgetSteps() {
-        this.showModalWidgetSteps = false;
-    }
 
     handleCloseDashboardPrint() {
         this.showModalDashboardPrint = false;
@@ -209,6 +212,38 @@ export class AppComponent implements OnInit {
 
     handleCloseDataRefresh() {
         this.showModalDataRefresh = false;
+    }
+
+    handleCloseWidgetSteps() {
+        this.showModalWidgetSteps = false;
+    }
+    
+    handleCloseWidgetNotes() {
+        this.showModalWidgetNotes = false;
+    }
+    
+    handleCloseWidgetTags() {
+        this.showModalWidgetTags = false;
+    }
+
+    handleCloseWidgetLinks() {
+        this.showModalWidgetLinks = false;
+    }
+
+    handleCloseWidgetRefresh() {
+        this.showModalWidgetRefresh = false;
+    }
+    
+    handleCloseWidgetDuplicate() {
+        this.showModalWidgetDuplicate = false;
+    }
+    
+    handleCloseWidgetExpand() {
+        this.showModalWidgetExpand = false;
+    }
+
+    handleCloseWidgetExport() {
+        this.showModalWidgetExport = false;
     }
 
     clickDashboardNew() {
@@ -260,6 +295,10 @@ export class AppComponent implements OnInit {
 
     clickMenuDashboardDetailSettings() {
         this.showModalDashboardSettings = true;
+    }
+
+    clickMenuDashboardDetailComments() {
+        this.showModalDashboardComments = true;
     }
 
     clickMenuDashboardDetailTheme() {
@@ -316,9 +355,35 @@ export class AppComponent implements OnInit {
         this.showModalWidgetSteps = true;
     }
 
-    clickMenuWidgetComments() {
-        this.showModalDashboardComments = true;
+    clickMenuWidgetNotes() {
+        this.showModalWidgetNotes = true;
     }
+
+    clickMenuWidgetTags() {
+        this.showModalWidgetTags = true;
+    }
+
+    clickMenuWidgetLinks() {
+        this.showModalWidgetLinks = true;
+    }
+
+    clickMenuWidgetRefresh() {
+        this.showModalWidgetRefresh = true;
+    }
+    
+    clickMenuWidgetDuplicate() {
+        this.showModalWidgetDuplicate = true;
+    }
+    
+    clickMenuWidgetExpand() {
+        this.showModalWidgetExpand = true;
+    }
+    
+    clickMenuWidgetExport() {
+        this.showModalWidgetExport = true;
+    }
+    
+
 
     clickMenuWidgetCopy() {
         // Copies reference to existing datasource (of From Widget)
