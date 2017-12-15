@@ -733,6 +733,16 @@ class="formPopupDashboard"
 </widget-buttonbar>
 
 
+<!-- Modal: Shape Button Bar -->
+<shape-buttonbar
+    class="formPopupUserShapeButtonBar"
+    *ngIf="showModalUserShapeButtonBar"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formUserShapeButtonBarClosed)="handleCloseUserShapeButtonBar($event)">
+    Load Shape Button Bar ...
+</shape-buttonbar>
+
+
 <!-- Modal: Logout -->
 <logout
     class="formPopupDashboard"

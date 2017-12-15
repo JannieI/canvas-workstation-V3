@@ -21,14 +21,14 @@ import { dashboard }                  from './models';
 import { dashboardTag }               from './models';
 
 @Component({
-    selector: 'dashboard-tags',
-    templateUrl: './dashboard.tags.component.html',
-    styleUrls: ['./dashboard.tags.component.css']
+    selector: 'shape-buttonbar',
+    templateUrl: './user.shape.buttonbar.component.html',
+    styleUrls: ['./user.shape.buttonbar.component.css']
 })
-export class DashboardTagsComponent implements OnInit {
+export class UserShapeButtonBarComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formDashboardTagsClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formUserShapeButtonBarClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
     dashboards: dashboard[];
@@ -47,7 +47,7 @@ export class DashboardTagsComponent implements OnInit {
     clickClose(action: string) {
         console.log('clickClose')
         
-		this.formDashboardTagsClosed.emit(action);
+		this.formUserShapeButtonBarClosed.emit(action);
     }
 
 }
