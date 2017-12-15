@@ -1,7 +1,7 @@
 <div class="modal modalBox">
         <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
-    
+
                 <div class="overall">
 
                     <div class="shapeProperties">
@@ -22,7 +22,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+
                             </section>
                         </form>
                         <div class="propertyLine">
@@ -30,7 +30,7 @@
                             <input type="text" id="formFields_7" placeholder="Left">
                             <input type="text" id="formFields_7" placeholder="Top">
                         </div>
-        
+
                         <div class="propertyLine">
                             Size:
                             <input type="text" id="formFields_7" placeholder="Height">
@@ -45,7 +45,7 @@
                             <input type="text" id="formFields_7" placeholder="Transparent">
                         </div>
                     </div>
-                    
+
                     <div class="shapeTopText" *ngIf="showTextBox">
                         <div class="shapeTopInner">
                             The brown fox is tired
@@ -73,8 +73,8 @@
 
                     <div class="shapeTopShape" *ngIf="showCircle">
                         <svg height="200" width="200">
-                            <circle 
-                                cx="100" cy="100" r="80" stroke="black" 
+                            <circle
+                                cx="100" cy="100" r="80" stroke="black"
                                 stroke-width="3" fill="red" />
                         </svg>
                     </div>
@@ -93,11 +93,7 @@
                         <svg width="400" height="180">
                         <rect x="100" y="20" rx="20" ry="20" width="150" height="150"
                         style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
-                        </svg>                        
-                        <!-- <svg width="400" height="110">
-                            <rect width="300" height="100" 
-                            style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
-                        </svg> -->
+                        </svg>
                     </div>
                     <div class="shapeBottomShape" *ngIf="showRectangle">
                         Fill Colour:
@@ -115,17 +111,22 @@
                     </div>
 
                     <div class="shapeTopShape" *ngIf="showLine">
-                        <svg height="210" width="500">
-                            <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" />
+                        <svg height="200" width="300">
+                            <line x1="10" y1="100" x2="2800" y2="100" 
+                                style="stroke:rgb(255,0,0);stroke-width:2" />
                         </svg>
                     </div>
                     <div class="shapeBottomShape" *ngIf="showLine">
                         <div class="propertyLine">
                             Direction:
-                            <input type="text" id="formFields_7" placeholder="Arrow / Line">
-                        </div>  
+                            <input type="text" id="formFields_7" placeholder="Vertical/Horisontal">
+                            Line thickness:
+                            <input type="text" id="formFields_7" placeholder="3">
+                            Line Colour:
+                            <input type="text" id="formFields_7" placeholder="Red">
+                        </div>
                     </div>
-                    
+
                     <div class="shapeTopShape" *ngIf="showArrow">
                         <p>I will display &#9754;</p>
                     </div>
@@ -156,8 +157,8 @@
                             Save
                         </button>
                     </div>
-                </div>  
-            </div>  
-        </div>  
-    </div>  
-    
+                </div>
+            </div>
+        </div>
+    </div>
+
