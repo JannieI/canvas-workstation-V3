@@ -19,76 +19,83 @@ import { dashboardSchedule }          from './models';
 import { dashboardComment }           from './models';
 import { dataQualityIssue}            from './models'
 import { datasourceFilter}            from './models'
-import { buttonBarAvailable}       from './models'
-import { buttonBarSelected }       from './models';
+import { buttonBarAvailable}          from './models'
+import { buttonBarSelected }          from './models';
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
-const shapeButtunAvailable: buttonBarSelected[] =
+const shapeButtonsAvailable: buttonBarAvailable[] =
 [ 
     {
         id: 1,
         buttonText: 'Edit',
         description: 'Open the edit form to edit the Widget, for example the graph type.',
         sortOrder: 1,
+        isDefault: true        
     },
     {
         id: 2,
         buttonText: 'Duplicate',
         description: 'Duplicates the current Shape with a new name (adding ... Copy n).  The Dataset is not duplicated.',
-        sortOrder: 4
+        sortOrder: 2,
+        isDefault: true        
     },
     {
         id: 3,
         buttonText: 'Backward',
         description: 'Send the selected Widget backwards.',
-        sortOrder: 5,
+        sortOrder: 3,
+        isDefault: true        
     },
     {
         id: 4,
         buttonText: 'Forward',
         description: 'Bring the selected Widget forward.',
-        sortOrder: 6,
+        sortOrder: 4,
+        isDefault: true        
     },
     {
         id: 5,
         buttonText: 'Delete',
         description: 'Delete the selected Widget.',
-        sortOrder: 10,
+        sortOrder: 5,
+        isDefault: true        
     },
     {
         id: 6,
         buttonText: 'Background toggle',
         description: 'Toggle the background of the selected Shape on / of.',
-        sortOrder: 13,
+        sortOrder: 6,
+        isDefault: true        
     },
     {
         id: 7,
         buttonText: 'Increase size',
         description: 'Increase the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
-        sortOrder: 15,
+        sortOrder: 7,
+        isDefault: true        
     },
     {
         id: 8,
         buttonText: 'Decrease',
         description: 'Decrease the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
-        sortOrder: 16,
+        sortOrder: 8,
+        isDefault: true        
     }
 ]
 
-const shapeButtunSelected: buttonBarAvailable[] =
+const shapeButtonsSelected: buttonBarSelected[] =
 [ 
     {
         id: 1,
         buttonText: 'Edit',
         description: 'Open the edit form to edit the Shape, for example the color of a circle.',
-        sortOrder: 1,
-        isDefault: true
+        sortOrder: 1
     }
 ]
 
-const widgetButtunsAvailable: buttonBarAvailable[] =
+const widgetButtonsAvailable: buttonBarAvailable[] =
 [ 
     {
         id: 1,
@@ -204,7 +211,7 @@ const widgetButtunsAvailable: buttonBarAvailable[] =
     }
 ]
 
-const widgetButtunsSelected: buttonBarSelected[] =
+const widgetButtonsSelected: buttonBarSelected[] =
 [ 
     {
         id: 1,
@@ -1190,6 +1197,11 @@ export class GlobalVariableService {
     dashboardSchedules: dashboardSchedule[] = dashboardSchedules;
     dashboardComments: dashboardComment[] = dashboardComments;
     
+    shapeButtonsAvailable: buttonBarAvailable[] = shapeButtonsAvailable;
+    shapeButtonsSelected: buttonBarSelected[] = shapeButtonsSelected;
+    widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;
+    widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
+
     isFirstTimeCanvas: boolean = true;
     isFirstTimeDashboard = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);

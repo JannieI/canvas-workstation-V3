@@ -19,6 +19,8 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { dashboard }                  from './models';
 import { dashboardTag }               from './models';
+import { buttonBarAvailable}          from './models'
+import { buttonBarSelected }          from './models';
 
 @Component({
     selector: 'shape-buttonbar',
@@ -33,6 +35,8 @@ export class UserShapeButtonBarComponent implements OnInit {
     showTypeDashboard: boolean = false;  
     dashboards: dashboard[];
     dashboardTags: dashboardTag[];
+    shapeButtonsAvailable: buttonBarAvailable[];
+    shapeButtonsSelected: buttonBarSelected[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -42,6 +46,8 @@ export class UserShapeButtonBarComponent implements OnInit {
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
         this.dashboardTags = this.globalVariableService.dashboardTags;
+        this.shapeButtonsAvailable = this. globalVariableService.shapeButtonsAvailable;
+        this.shapeButtonsSelected = this. globalVariableService.shapeButtonsSelected;
     }
 
     clickClose(action: string) {

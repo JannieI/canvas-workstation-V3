@@ -10,27 +10,31 @@
                     Shape Button Bar
 
                     <div class="gridOverall">
+                        Available
                         <div class="gridAvailable">
                             <nav>
                                 <ul class="nav-list">
                                     <div
                                         class="nav-link"
-                                        draggable="true"
-                                        (dragstart)="dragstart_handler($event)"
-                                        (dragend)="dragend_handler($event)"
-                                        *ngFor="let row of dashboardTags"
-                                        id="dragtarget"
+                                        *ngFor="let row of shapeButtonsAvailable"
                                         >
-                                        {{ row.tag }}
+                                        {{ row.buttonText }}
                                     </div>
                                 </ul>
                             </nav>
                         </div>
-                        <div class="gridSelected"
-                            (drop)="drop_pivot($event);"
-                            (dragover)="dragover_pivot($event);"
-                            >
-                            Tags for this dashboard:
+                        <div class="gridSelected">
+                            Selected
+                            <nav>
+                                <ul class="nav-list">
+                                    <div
+                                        class="nav-link"
+                                        *ngFor="let row of shapeButtonsSelected"
+                                        >
+                                        {{ row.buttonText }}
+                                    </div>
+                                </ul>
+                            </nav>
                         </div>
                         <div class="gridArrowAdd">Add</div>
                         <div class="gridArrowDelete">Del</div>

@@ -19,6 +19,8 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { dashboard }                  from './models';
 import { dashboardTag }               from './models';
+import { buttonBarAvailable}          from './models'
+import { buttonBarSelected }          from './models';
 
 @Component({
     selector: 'widget-buttonbar',
@@ -33,7 +35,8 @@ export class UserWidgetButtonBarComponent implements OnInit {
     showTypeDashboard: boolean = false;  
     dashboards: dashboard[];
     dashboardTags: dashboardTag[];
-
+    widgetButtonsAvailable: buttonBarAvailable[];
+    widgetButtonsSelected: buttonBarSelected[];
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -42,6 +45,8 @@ export class UserWidgetButtonBarComponent implements OnInit {
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
         this.dashboardTags = this.globalVariableService.dashboardTags;
+        this.widgetButtonsAvailable = this. globalVariableService.widgetButtonsAvailable;
+        this.widgetButtonsSelected = this. globalVariableService.widgetButtonsSelected;
     }
 
     clickClose(action: string) {

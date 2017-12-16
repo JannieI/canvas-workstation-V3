@@ -24,6 +24,8 @@
         grid-column-end: 7;
         grid-row-start: 1;
         grid-row-end: 8;
+        max-height: 8rem;
+        overflow: auto;
     }
 
     .gridSelected {
@@ -33,7 +35,8 @@
         grid-column-end: 16;
         grid-row-start: 1;
         grid-row-end: 8;
-
+        max-height: 8rem;
+        overflow: auto;
     }
 
     .gridArrowAdd {
