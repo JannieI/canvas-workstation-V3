@@ -56,4 +56,18 @@ export class UserShapeButtonBarComponent implements OnInit {
 		this.formUserShapeButtonBarClosed.emit(action);
     }
 
+    clickAdd() {
+        let x: buttonBarSelected = {
+            id: 12,
+            buttonText: 'new one Added',
+            description: '',
+            sortOrder: 12
+        }
+        this.shapeButtonsSelected.push(x)
+    }
+
+    clickDelete() {
+        this.shapeButtonsSelected.splice(this.shapeButtonsSelected.length-1,1)
+    }
+
 }
