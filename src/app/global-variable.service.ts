@@ -19,7 +19,8 @@ import { dashboardSchedule }          from './models';
 import { dashboardComment }           from './models';
 import { dataQualityIssue}            from './models'
 import { datasourceFilter}            from './models'
-import { widgetButtunAvailable}     from './models'
+import { widgetButtunAvailable}       from './models'
+import { widgetButtunSelected }       from './models';
 
 // import { CanvasUser }                 from './model.user';
 
@@ -137,6 +138,22 @@ const widgetButtunsAvailable: widgetButtunAvailable[] =
         description: 'Decrease the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
         sortOrder: 16,
         isDefault: false
+    }
+]
+
+const widgetButtunsSelected: widgetButtunSelected[] =
+[ 
+    {
+        id: 1,
+        buttonText: 'Edit',
+        description: 'Open the edit form to edit the Widget, for example the graph type.',
+        sortOrder: 1,
+    },
+    {
+        id: 2,
+        buttonText: 'Refresh',
+        description: 'Refresh the data linked to the current Widget.',
+        sortOrder: 2,
     }
 ]
 

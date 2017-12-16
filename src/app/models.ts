@@ -1,6 +1,6 @@
 // ALL models (schema) are kept here
 
-export class widgetButtunAvailable  {
+export class widgetButtunAvailable {
     id: number;
     buttonText: string;
     description: string;
@@ -8,7 +8,13 @@ export class widgetButtunAvailable  {
     isDefault: boolean;
 }
 
-export class widgetButtunSelected  {}
+export class widgetButtunSelected  {
+    id: number;
+    buttonText: string;
+    description: string;
+    sortOrder: number;
+}
+
 export class shapeButtunAvailable  {}
 export class shapeButtunSelected  {}
 export class datasourceFilter {
