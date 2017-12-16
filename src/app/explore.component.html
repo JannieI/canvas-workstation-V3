@@ -165,6 +165,16 @@
         <b    *ngSwitchCase="true">Edit Mode </b>
         <span *ngSwitchDefault>View-Only     </span> 
     </span>
+    <span class="statusBarText">
+        {{ statusBarRunning }}
+    </span>
+    <span class="statusBarText">
+        {{ statusBarCancelRefresh }}
+    </span>
+    <span class="statusBarText">
+      {{ statusBarMessages }}
+    </span>
+
 </div>
 
 <div *ngIf="showNewTab" class="newTab">

@@ -83,7 +83,6 @@ export class AppComponent implements OnInit {
     showModalUserPreferences: boolean = false;
     showModalUserWidgetButtonBar: boolean = false;
     showModalUserShapeButtonBar: boolean = false;
-
     currentWidgetSpec: string = "{...}";
 
     constructor(
@@ -386,6 +385,8 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetRefresh() {
         this.showModalWidgetRefresh = true;
+        this.globalVariableService.statusBarRunning.next('Query Running');
+        this.globalVariableService.statusBarCancelRefresh.next('Cancel');
     }
 
     clickMenuWidgetDuplicate() {

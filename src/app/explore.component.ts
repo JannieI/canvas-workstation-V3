@@ -200,6 +200,9 @@ export class ExploreComponent {
     showModalOpenDashboard: boolean = false;
     showType: boolean = false;
     showTypeIcon: boolean = true;
+    statusBarRunning: string = '';
+    statusBarCancelRefresh: string = '';
+    statusBarMessages: string = '';
     viewEditMode: string = 'Edit Mode';
     widgetBorder: string = '1px black solid';
     widgetStartX: number = 0;
@@ -366,6 +369,16 @@ export class ExploreComponent {
         this.globalVariableService.showGrid.subscribe(
             sG => this.showGrid = sG
         );
+        this.globalVariableService.statusBarRunning.subscribe(
+            i => this.statusBarRunning = i
+        )
+        this.globalVariableService.statusBarCancelRefresh.subscribe(
+            i => this.statusBarCancelRefresh = i
+        )
+        this.globalVariableService.statusBarMessages.subscribe(
+            i => this.statusBarMessages = i
+        )
+    
     }
 
 //*     onMouseButton(event: MouseEvent): void {

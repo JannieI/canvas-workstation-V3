@@ -1199,6 +1199,9 @@ export class GlobalVariableService {
     editMode = new BehaviorSubject<boolean>(false);
     shapeButtonsAvailable: buttonBarAvailable[] = shapeButtonsAvailable;
     shapeButtonsSelected: buttonBarSelected[] = shapeButtonsSelected;
+    statusBarRunning = new BehaviorSubject<string>('No Query running');
+    statusBarCancelRefresh = new BehaviorSubject<string>('');
+    statusBarMessages = new BehaviorSubject<string>('');
     widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
 
