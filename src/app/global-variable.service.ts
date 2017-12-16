@@ -19,10 +19,127 @@ import { dashboardSchedule }          from './models';
 import { dashboardComment }           from './models';
 import { dataQualityIssue}            from './models'
 import { datasourceFilter}            from './models'
+import { widgetButtunAvailable}     from './models'
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
+const widgetButtunsAvailable: widgetButtunAvailable[] =
+[ 
+    {
+        id: 1,
+        buttonText: 'Edit',
+        description: 'Open the edit form to edit the Widget, for example the graph type.',
+        sortOrder: 1,
+        isDefault: true
+    },
+    {
+        id: 2,
+        buttonText: 'Refresh',
+        description: 'Refresh the data linked to the current Widget.',
+        sortOrder: 2,
+        isDefault: false
+    },
+    {
+        id: 3,
+        buttonText: 'Expand',
+        description: 'Open a separate window showing all the data in the Dataset linked to the Widget.',
+        sortOrder: 3,
+        isDefault: false
+    },
+    {
+        id: 4,
+        buttonText: 'Duplicate',
+        description: 'Duplicates the current Widget with a new name (adding ... Copy n).  The Dataset is not duplicated.',
+        sortOrder: 4,
+        isDefault: false
+    },
+    {
+        id: 5,
+        buttonText: 'Backward',
+        description: 'Send the selected Widget backwards.',
+        sortOrder: 5,
+        isDefault: false
+    },
+    {
+        id: 6,
+        buttonText: 'Forward',
+        description: 'Bring the selected Widget forward.',
+        sortOrder: 6,
+        isDefault: false
+    },
+    {
+        id: 7,
+        buttonText: 'Notes',
+        description: 'Show the notes linked to the selected Widget.',
+        sortOrder: 7,
+        isDefault: false
+    },
+    {
+        id: 8,
+        buttonText: 'Data Quality',
+        description: 'Show a form with Data Quality issues pertaining to the Dataset linked to the selected Widget.',
+        sortOrder: 8,
+        isDefault: false
+    },
+    {
+        id: 9,
+        buttonText: 'Save Step',
+        description: 'Save the current layout of the selected Widget as a step.',
+        sortOrder: 9,
+        isDefault: false
+    },
+    {
+        id: 10,
+        buttonText: 'Delete',
+        description: 'Delete the selected Widget.',
+        sortOrder: 10,
+        isDefault: false
+    },
+    {
+        id: 11,
+        buttonText: 'Export png',
+        description: 'Export the graph of the selected Widget as a .png file, which is a static image.',
+        sortOrder: 11,
+        isDefault: false
+    },
+    {
+        id: 12,
+        buttonText: 'Tags',
+        description: 'Show the tags associated with the selected Widget.',
+        sortOrder: 12,
+        isDefault: false
+    },
+    {
+        id: 13,
+        buttonText: 'Border toggle',
+        description: 'Toggle the border around the selected Widget between none, gray and black.  The line is 1px solid.',
+        sortOrder: 13,
+        isDefault: false
+    },
+    {
+        id: 14,
+        buttonText: 'Links',
+        description: 'Show a form with links from and to the selected Widget.  New links can be added here.',
+        sortOrder: 14,
+        isDefault: false
+    },
+    {
+        id: 15,
+        buttonText: 'Increase size',
+        description: 'Increase the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
+        sortOrder: 15,
+        isDefault: false
+    },
+    {
+        id: 16,
+        buttonText: 'Decrease',
+        description: 'Decrease the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
+        sortOrder: 16,
+        isDefault: false
+    }
+]
+
 const datasourceFilters: datasourceFilter[] = 
 [
     {
