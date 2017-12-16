@@ -75,6 +75,7 @@ export class AppComponent implements OnInit {
     showModalWidgetExpand: boolean = false;
     showModalWidgetExport: boolean = false;
     showModalDashboardPrint: boolean = false;
+    showModalDataSlicers: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalShapeEdit: boolean = false;
     showFav: boolean = false;
@@ -196,6 +197,10 @@ export class AppComponent implements OnInit {
         this.showModalDashboardPrint = false;
     }
 
+    handleCloseDataSlicers() {
+        this.showModalDataSlicers = false;
+    }
+    
     handleCloseDataRefresh() {
         this.showModalDataRefresh = false;
     }
@@ -344,6 +349,18 @@ export class AppComponent implements OnInit {
 
     }
 
+    clickMenuDataSlicerAdd() {
+        this.showModalDataSlicers = true;
+    }
+
+    clickMenuDataSlicerEdit() {
+        this.showModalDataSlicers = true;
+    }
+
+    clickMenuDataSlicerDelete() {
+
+    }
+
     clickMenuDataPermissions() {
 
     }
@@ -437,7 +454,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuShapeLinks() {
-        
+
     }
     
     clickMenuShapeDelete() {
