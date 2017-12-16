@@ -435,6 +435,10 @@ export class AppComponent implements OnInit {
     clickMenuShapeEdit() {
         this.showModalShapeEdit = true;
     }
+
+    clickMenuShapeLinks() {
+        
+    }
     
     clickMenuShapeDelete() {
         

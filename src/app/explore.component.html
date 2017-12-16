@@ -119,7 +119,7 @@
     </span>
     <span class="statusBarText">
         Tabs :
-        Summary
+        <b>Summary</b>
         Detail Costs
     </span>
     <span class="statusBarText">
@@ -132,9 +132,9 @@
     <span class="statusBarText">
         Refreshed: 2017/01/01 08:31
     </span>
-    <span [ngSwitch]="editMode">
-        <b *ngSwitchCase="true">Edit Mode</b>
-           *ngSwitchDefault>View-Only
+    <span [ngSwitch]="editMode" class="statusBarText">
+        <b    *ngSwitchCase="true">Edit Mode </b>
+        <span *ngSwitchDefault>View-Only     </span> 
     </span>
 </div>
 
