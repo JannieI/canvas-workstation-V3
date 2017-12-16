@@ -1,4 +1,11 @@
 // ALL models (schema) are kept here
+export class widgetLinkedDashboard {
+    id: number;
+    sourceDashboardID: number;
+    sourceWidgetID: number;
+    destinationDashboardID: number;
+    destinationWidgetID: number;
+}
 
 export class buttonBarAvailable {
     id: number;

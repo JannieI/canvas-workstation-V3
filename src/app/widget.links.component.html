@@ -23,10 +23,15 @@
                 <div class="propertyLine">
                     Linked Dashboard:
                     <input type="text" id="formFields_7" placeholder="Dashboard Name">
+                    <button 
+                        type="button" 
+                        class="btn btn-secondary" 
+                        (click)="clickClose('Close')"
+                        >
+                        Link
+                    </button>
                 </div>
-                <button type="button" class="btn btn-secondary" (click)="clickClose('Close')">Import</button>
-                    </span>
-                </div>                                
+
                 <clr-datagrid>
                     <clr-dg-column>View</clr-dg-column>
                     <clr-dg-column>Edit</clr-dg-column>
@@ -53,7 +58,6 @@
                         <clr-dg-cell>{{row.creator}}</clr-dg-cell>
                         <clr-dg-cell>{{row.nrTimesOpened}}</clr-dg-cell>
                     </clr-dg-row>
-
                 </clr-datagrid>
 
             </div>  
