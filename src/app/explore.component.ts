@@ -497,6 +497,7 @@ export class ExploreComponent {
 
     clickSaveTab() {
         this.showNewTab = false;
+        console.log('--s')
     }
 }
 
