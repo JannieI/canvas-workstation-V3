@@ -10,7 +10,7 @@
                 Open an existing Dashboard
 
                 <div class="helpMessage" *ngIf="isFirstTimeDashboardOpen">
-                    HELP message: use the filters at the top to narrow down the list of 
+                    <b>Help</b> message: use the filters at the top to narrow down the list of 
                     Dashboards displayed in the grid below.  Opening a Dashboard is 
                     done in View mode by default.  Click <i>File -> Edit</i> to change to Edit
                     mode after a Dashboard has been opened. This will create a Draft copy, 
@@ -27,6 +27,7 @@
                 <div>Filters:</div>
                 Show Advanced filters <input type="checkbox" [checked]="showAdvancedFilters" 
                     (click)="clickShowAdvancedFilters()" [checked]="!isFirstTimeDashboardOpen"> 
+                Restore from Trash (rights will be checked) <input type="checkbox"> 
                 <div *ngIf="showAdvancedFilters">
                     <div class="propertyLine">
                         Schedule:
