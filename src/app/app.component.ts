@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
     showRectangle: boolean = false;
     showCollaborate: boolean = false;
     showGrid: boolean;
-    showModalLanding: boolean = true;
+    showModalLanding: boolean;  // Show Landing Page
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
@@ -106,7 +106,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.showGrid.subscribe(
             sG => this.showGrid = sG
         );
-        
+        this.showModalLanding = this.globalVariableService.showModalLanding;
     }   
 
     handleCloseModal() {

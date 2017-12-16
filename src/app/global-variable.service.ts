@@ -26,67 +26,67 @@ import { buttonBarSelected }          from './models';
 
 // Constants - to be replaced with DB access
 const shapeButtonsAvailable: buttonBarAvailable[] =
-[ 
+[
     {
         id: 1,
         buttonText: 'Edit',
         description: 'Open the edit form to edit the Widget, for example the graph type.',
         sortOrder: 1,
-        isDefault: true        
+        isDefault: true
     },
     {
         id: 2,
         buttonText: 'Duplicate',
         description: 'Duplicates the current Shape with a new name (adding ... Copy n).  The Dataset is not duplicated.',
         sortOrder: 2,
-        isDefault: true        
+        isDefault: true
     },
     {
         id: 3,
         buttonText: 'Backward',
         description: 'Send the selected Widget backwards.',
         sortOrder: 3,
-        isDefault: true        
+        isDefault: true
     },
     {
         id: 4,
         buttonText: 'Forward',
         description: 'Bring the selected Widget forward.',
         sortOrder: 4,
-        isDefault: true        
+        isDefault: true
     },
     {
         id: 5,
         buttonText: 'Delete',
         description: 'Delete the selected Widget.',
         sortOrder: 5,
-        isDefault: true        
+        isDefault: true
     },
     {
         id: 6,
         buttonText: 'Background toggle',
         description: 'Toggle the background of the selected Shape on / of.',
         sortOrder: 6,
-        isDefault: true        
+        isDefault: true
     },
     {
         id: 7,
         buttonText: 'Increase size',
         description: 'Increase the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
         sortOrder: 7,
-        isDefault: true        
+        isDefault: true
     },
     {
         id: 8,
         buttonText: 'Decrease',
         description: 'Decrease the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
         sortOrder: 8,
-        isDefault: true        
+        isDefault: true
     }
 ]
 
 const shapeButtonsSelected: buttonBarSelected[] =
-[ 
+[
     {
         id: 1,
         buttonText: 'Edit',
@@ -96,7 +96,7 @@ const shapeButtonsSelected: buttonBarSelected[] =
 ]
 
 const widgetButtonsAvailable: buttonBarAvailable[] =
-[ 
+[
     {
         id: 1,
         buttonText: 'Edit',
@@ -212,7 +212,7 @@ const widgetButtonsAvailable: buttonBarAvailable[] =
 ]
 
 const widgetButtonsSelected: buttonBarSelected[] =
-[ 
+[
     {
         id: 1,
         buttonText: 'Edit',
@@ -227,7 +227,7 @@ const widgetButtonsSelected: buttonBarSelected[] =
     }
 ]
 
-const datasourceFilters: datasourceFilter[] = 
+const datasourceFilters: datasourceFilter[] =
 [
     {
         id: 1,
@@ -244,7 +244,7 @@ const datasourceFilters: datasourceFilter[] =
 ]
 
 const dataQualityIssues: dataQualityIssue[] =
-[ 
+[
     {
         id: 1,
         status: 'Open',
@@ -1196,13 +1196,13 @@ export class GlobalVariableService {
     dashboardTemplates: dashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: dashboardSchedule[] = dashboardSchedules;
     dashboardComments: dashboardComment[] = dashboardComments;
-    
+
     shapeButtonsAvailable: buttonBarAvailable[] = shapeButtonsAvailable;
     shapeButtonsSelected: buttonBarSelected[] = shapeButtonsSelected;
     widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
 
-    isFirstTimeCanvas: boolean = false;  // Shows Landing page
+    showModalLanding: boolean = true;  // Shows Landing page
     isFirstTimeDashboard = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
