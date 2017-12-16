@@ -43,6 +43,7 @@ import { WidgetStepsComponent }       from './widget.steps.component';
 import { WidgetLinksComponent }       from './widget.links.component';
 
 import { DataPopupComponent }         from './data.popup.component';
+import { DataSlicersComponent }       from './data.slicers.component';
 import { DataRefreshComponent }       from './data.refresh.component';
 
 import { ShapeEditComponent }         from './shape.edit.component';
@@ -93,6 +94,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardCommentsComponent,
         DashboardPrintComponent,
         DataPopupComponent,
+        DataSlicersComponent,
         DataRefreshComponent,
         ShapeEditComponent,
         MyProfileComponent,
