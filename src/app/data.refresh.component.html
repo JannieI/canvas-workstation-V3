@@ -13,6 +13,17 @@
 				large datasets, this may take a while.  Data will be refreshed 
 				automatically when changes are Saved.
                 <form>
+                    <span class="gridHeading" (click)="clickTest()">Existing Datasets</span>
+                    <clr-datagrid class="fieldsDataGrid"  [(clrDgSingleSelected)]="selectedUser">
+                        <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column>
+
+                        <clr-dg-row
+                            *clrDgItems="let row of currentDatasources" [clrDgItem]="row"
+                            (click)="clickDatasourceRow(row.name)"
+                            >
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
                     <button
                         type="button"
                         class="btn btn-secondary"

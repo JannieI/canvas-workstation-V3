@@ -33,6 +33,8 @@ import { GlobalVariableService }      from './global-variable.service';
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
+    currentDatasources: currentDatasource[];
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -41,6 +43,9 @@ import { GlobalVariableService }      from './global-variable.service';
     ) {}
 
     ngOnInit() {
+      this.currentDatasources = this.globalVariableService.datasources.filter(
+        ds => ds.id < 3
+      );
     }
 
     ngAfterViewInit() {

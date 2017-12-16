@@ -45,7 +45,7 @@ export class DataPopupComponent implements OnInit {
 
     currentDatasources: currentDatasource[];
     datasources: currentDatasource[];
-    
+
     currentData: any = [];
     dataArray: any;
     dataFieldNames: string[];
@@ -68,7 +68,7 @@ export class DataPopupComponent implements OnInit {
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverAgg: boolean = false;
-    pivotResults: any[] = 
+    pivotResults: any[] =
         [
             {
                 Date: '2017/01/01',
@@ -205,7 +205,7 @@ export class DataPopupComponent implements OnInit {
     clickFileSelect(action: string) {
         var csv_data = dl.load({url: './assets/vega-datasets/stocks.csv'});
         let startNow: number;
-        
+
         startNow = Date.now()
         console.log('LOAD data start:')
         let fileFolder: string = './assets/vega-datasets/';
@@ -252,7 +252,7 @@ export class DataPopupComponent implements OnInit {
                 startNow = Date.now()
                 this.currentData.sort(dl.comparator(['+symbol', '-price']));
                 console.log('     END sort: ', (Date.now() - startNow) / 1000)
-                
+
                 // Group By
                 console.log('')
                 console.log('GROUPBY start:')
@@ -260,7 +260,7 @@ export class DataPopupComponent implements OnInit {
                 this.dataArray = dl.groupby('symbol')
                     .summarize( [
                         {name: 'symbol', ops: ['valid']},
-                        {name: 'price',  ops: ['sum', 'median'], as: ['s', 'm']} 
+                        {name: 'price',  ops: ['sum', 'median'], as: ['s', 'm']}
                         ] )
                     .execute(this.currentData);
                 console.log('     groupby', this.dataArray)
@@ -280,12 +280,12 @@ export class DataPopupComponent implements OnInit {
                 startNow = Date.now()
                 dataUniqueInColumn = dl.groupby('symbol')
                     .summarize( [
-                        {name: 'symbol', ops: ['values']} 
+                        {name: 'symbol', ops: ['values']}
                         ] )
                     .execute(this.currentData);
                 console.log('     unique', dataUniqueInColumn)
                 console.log('     END unique: ', (Date.now() - startNow) / 1000)
-            
+
             }
           });
 
@@ -300,7 +300,7 @@ export class DataPopupComponent implements OnInit {
 
         this.currentDataset = '';
         this.isFirstTimeData = false;
-        
+
     }
 
     clickDatasourceRow(dsName: string) {
@@ -321,7 +321,7 @@ export class DataPopupComponent implements OnInit {
             description: 'bla-bla-bla',
             fieldID: 21,
             fieldName: 'Trader',
-            parameters: "param1=a"        
+            parameters: "param1=a"
         };
         this.currentTransformations.push(newTransformation);
     }
@@ -348,7 +348,7 @@ export class DataPopupComponent implements OnInit {
         this.showTransitionFormat = true;
     }
 
-    
+
     dragstart_handler(ev) {
         console.log("dragStart", ev, ev.srcElement.innerText);
         // Add the target element's id to the data transfer object
@@ -445,7 +445,7 @@ export class DataPopupComponent implements OnInit {
         this.pivotRows = [];
         let pC = dl.groupby('symbol')
             .summarize( [
-                {name: 'symbol', ops: ['values']} 
+                {name: 'symbol', ops: ['values']}
                 ] )
             .execute(this.currentData);
         for (var i = 0; i < pC.length; i++) {
@@ -470,14 +470,14 @@ export class DataPopupComponent implements OnInit {
         this.pivotCols = ['Date'];
         let pC = dl.groupby('symbol')
             .summarize( [
-                {name: 'symbol', ops: ['values']} 
+                {name: 'symbol', ops: ['values']}
                 ] )
             .execute(this.currentData);
         for (var i = 0; i < pC.length; i++) {
             this.pivotCols.push(pC[i].symbol)
         }
         this.resultMessage = '';
-        this.dragoverCol = false;        
+        this.dragoverCol = false;
         console.log('this.pivotCols', this.pivotCols)
     }
 
@@ -557,7 +557,7 @@ export class DataPopupComponent implements OnInit {
 
     clickViewOptions(area: string) {
         console.log('area', area)
-        
+
         if (area == 'gridViewOverview') {
             this.gridViewOverview = true;
             this.gridViewFields = false;
