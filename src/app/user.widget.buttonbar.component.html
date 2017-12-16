@@ -45,8 +45,25 @@
                                 </nav>
                             </div>
                         </div>
-                        <div class="gridArrowAdd">Add</div>
-                        <div class="gridArrowDelete">Del</div>
+                        <div class="gridArrowAdd">
+                            <button 
+                                type="button" 
+                                class="btn btn-secondary btn-sm" 
+                                (click)="clickAdd()"
+                                >
+                                Add
+                            </button>
+                        </div>
+                        <div class="gridArrowDelete">
+                            <button 
+                                type="button" 
+                                class="btn btn-secondary btn-sm" 
+                                (click)="clickDelete()"
+                                >
+                                Delete
+                            </button>
+                            
+                        </div>
                     </div>
                 </div>
             </div>

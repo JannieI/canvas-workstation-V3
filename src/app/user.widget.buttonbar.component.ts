@@ -21,6 +21,7 @@ import { dashboard }                  from './models';
 import { dashboardTag }               from './models';
 import { buttonBarAvailable}          from './models'
 import { buttonBarSelected }          from './models';
+import { WidgetStepsComponent } from 'app/widget.steps.component';
 
 @Component({
     selector: 'widget-buttonbar',
@@ -53,6 +54,20 @@ export class UserWidgetButtonBarComponent implements OnInit {
         console.log('clickClose')
         
 		this.formUserWidgetButtonBarClosed.emit(action);
+    }
+
+    clickAdd() {
+        let x: buttonBarSelected = {
+            id: 12,
+            buttonText: 'new one Added',
+            description: '',
+            sortOrder: 12
+        }
+        this.widgetButtonsSelected.push(x)
+    }
+
+    clickDelete() {
+        this.widgetButtonsSelected.splice(this.widgetButtonsSelected.length-1,1)
     }
 
 }
