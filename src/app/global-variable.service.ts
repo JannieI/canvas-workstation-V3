@@ -19,13 +19,17 @@ import { dashboardSchedule }          from './models';
 import { dashboardComment }           from './models';
 import { dataQualityIssue}            from './models'
 import { datasourceFilter}            from './models'
-import { widgetButtunAvailable}       from './models'
-import { widgetButtunSelected }       from './models';
+import { buttonBarAvailable}       from './models'
+import { buttonBarSelected }       from './models';
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
-const widgetButtunsAvailable: widgetButtunAvailable[] =
+
+shapeButtunAvailable
+shapeButtunSelected
+
+const widgetButtunsAvailable: buttonBarAvailable[] =
 [ 
     {
         id: 1,
@@ -141,7 +145,7 @@ const widgetButtunsAvailable: widgetButtunAvailable[] =
     }
 ]
 
-const widgetButtunsSelected: widgetButtunSelected[] =
+const widgetButtunsSelected: buttonBarSelected[] =
 [ 
     {
         id: 1,
