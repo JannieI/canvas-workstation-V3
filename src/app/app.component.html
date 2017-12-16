@@ -815,6 +815,17 @@ class="formPopupDashboard"
 </widget-steps>
 
 
+<!-- Modal: widget links -->
+<widget-links 
+    *ngIf="showModalWidgetLinks"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formWidgetLinksClosed)="handleCloseWidgetLinks($event)">Load Widget Links ...
+</widget-links>
+
+
+
+
+
 <!-- Modal: Get Data -->
 <!-- <data-popup 
     *ngIf="showModalDataPopup"

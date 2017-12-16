@@ -40,6 +40,7 @@ import { DashboardPrintComponent }    from './dashboard.print.component';
 
 import { WidgetEditorComponent }      from './widget.editor.component';
 import { WidgetStepsComponent }       from './widget.steps.component';
+import { WidgetLinksComponent }       from './widget.links.component';
 
 import { DataPopupComponent }         from './data.popup.component';
 import { DataRefreshComponent }       from './data.refresh.component';
@@ -74,6 +75,7 @@ import { GlobalFunctionService }      from './global-function.service';
         PresentComponent,
         WidgetEditorComponent,
         WidgetStepsComponent,
+        WidgetLinksComponent,
         DashboardNewComponent,
         DashboardOpenComponent,
         DashboardSaveComponent,

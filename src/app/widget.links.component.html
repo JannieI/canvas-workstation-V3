@@ -1,0 +1,62 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+
+                Linked Dashboards
+
+                <div class="helpMessage" *ngIf="isFirstTimeWidgetLinked">
+                    HELP message: Select an existing Dashboard that will be linked to this
+					Widget.  This can be used during presentation to jump to the linked
+					Dashboard. 
+                    <br><br>
+                    <b>Got it</b> <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboardOpen"> 
+                    (You can make this message re-appear with the <i>Preferences</i> option under your 
+                    User icon <clr-icon shape="user"></clr-icon> in the top right menu.) 
+                </div>
+                     
+
+                <div class="propertyLine">
+                    Linked Dashboard:
+                    <input type="text" id="formFields_7" placeholder="Dashboard Name">
+                </div>
+                <button type="button" class="btn btn-secondary" (click)="clickClose('Close')">Import</button>
+                    </span>
+                </div>                                
+                <clr-datagrid>
+                    <clr-dg-column>View</clr-dg-column>
+                    <clr-dg-column>Edit</clr-dg-column>
+                    <clr-dg-column>State</clr-dg-column>
+                    <clr-dg-column>Name</clr-dg-column>
+                    <clr-dg-column>Description</clr-dg-column>
+                    <clr-dg-column># Widgets</clr-dg-column>
+                    <clr-dg-column># Recs</clr-dg-column>
+                    <clr-dg-column>Creator</clr-dg-column>
+                    <clr-dg-column>#Opened</clr-dg-column>
+
+                    <clr-dg-row *ngFor="let row of dashboards">
+                        <clr-dg-cell>
+                            <clr-icon shape="eye" class="selectIcon1" size="12"></clr-icon>
+                        </clr-dg-cell>
+                        <clr-dg-cell>
+                            <clr-icon shape="pencil" class="selectIcon1" size="12"></clr-icon>
+                        </clr-dg-cell>
+                        <clr-dg-cell>{{row.state}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.nrWidgets}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.nrRecords}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.creator}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.nrTimesOpened}}</clr-dg-cell>
+                    </clr-dg-row>
+
+                </clr-datagrid>
+
+            </div>  
+        </div>  
+    </div>  
+</div>  
