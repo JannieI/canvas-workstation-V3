@@ -132,8 +132,9 @@
     <span class="statusBarText">
         Refreshed: 2017/01/01 08:31
     </span>
-    <span class="statusBarText">
-        {{ viewEditMode }}
+    <span [ngSwitch]="editMode">
+        <b *ngSwitchCase="true">Edit Mode</b>
+           *ngSwitchDefault>View-Only
     </span>
 </div>
 

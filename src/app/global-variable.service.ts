@@ -1196,7 +1196,7 @@ export class GlobalVariableService {
     dashboardTemplates: dashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: dashboardSchedule[] = dashboardSchedules;
     dashboardComments: dashboardComment[] = dashboardComments;
-
+    editMode = new BehaviorSubject<boolean>(false);
     shapeButtonsAvailable: buttonBarAvailable[] = shapeButtonsAvailable;
     shapeButtonsSelected: buttonBarSelected[] = shapeButtonsSelected;
     widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;

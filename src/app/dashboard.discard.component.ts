@@ -47,7 +47,9 @@ export class DashboardDiscardComponent implements OnInit {
 		this.formDashboardDiscardClosed.emit(action);
     }
 
-    clickSaveFile() {
+    clickDiscard(action: string) {
+        this.globalVariableService.editMode.next(false);        
+		this.formDashboardDiscardClosed.emit(action);
     }
 
     clickGotIt() {

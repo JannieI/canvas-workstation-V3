@@ -266,7 +266,7 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardEdit() {
-
+        this.globalVariableService.editMode.next(true);
     }
 
     clickDashboardDiscard() {

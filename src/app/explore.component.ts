@@ -180,7 +180,7 @@ export class ExploreComponent {
         ];
     temp: number[] = [0];
     dashboards: dashboard[];
-    editMode: boolean = false;
+    editMode: boolean;
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
     isFirstTimeDashboard: boolean;
@@ -346,9 +346,12 @@ export class ExploreComponent {
         console.log('Explore ngOnInit');
 
         // Load global variables
-        this.globalVariableService.currentMessage.subscribe(message => this.message = message);
+        this.globalVariableService.currentMessage.subscribe(
+            message => this.message = message
+        );
         this.globalVariableService.menuCreateDisabled.subscribe(
-            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled);
+            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
+        );
         this.globalVariableService.isFirstTimeDashboard.subscribe(
             i => this.isFirstTimeDashboard = i
         )
@@ -356,6 +359,9 @@ export class ExploreComponent {
             pres => this.presentation = pres
         );
         this.dashboards = this.globalVariableService.dashboards;
+        this.globalVariableService.editMode.subscribe(
+            i => this.editMode = i
+        )
         this.presentationMsg = this.globalVariableService.presentationMsg;
         this.globalVariableService.showGrid.subscribe(
             sG => this.showGrid = sG
