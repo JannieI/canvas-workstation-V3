@@ -11,6 +11,7 @@
 
                     <div class="gridOverall">
                         <div class="gridAvailable">
+                            Available
                             <nav>
                                 <ul class="nav-list">
                                     <div
@@ -18,10 +19,10 @@
                                         draggable="true"
                                         (dragstart)="dragstart_handler($event)"
                                         (dragend)="dragend_handler($event)"
-                                        *ngFor="let row of dashboardTags"
+                                        *ngFor="let row of widgetButtonsAvailable"
                                         id="dragtarget"
                                         >
-                                        {{ row.tag }}
+                                        {{ row.buttonText }}
                                     </div>
                                 </ul>
                             </nav>
@@ -30,7 +31,19 @@
                             (drop)="drop_pivot($event);"
                             (dragover)="dragover_pivot($event);"
                             >
-                            Tags for this dashboard:
+                            <div class="gridSelected">
+                                Selected
+                                <nav>
+                                    <ul class="nav-list">
+                                        <div
+                                            class="nav-link"
+                                            *ngFor="let row of widgetButtonsSelected"
+                                            >
+                                            {{ row.buttonText }}
+                                        </div>
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
                         <div class="gridArrowAdd">Add</div>
                         <div class="gridArrowDelete">Del</div>
