@@ -25,9 +25,68 @@ import { buttonBarSelected }       from './models';
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
+const shapeButtunAvailable: buttonBarSelected[] =
+[ 
+    {
+        id: 1,
+        buttonText: 'Edit',
+        description: 'Open the edit form to edit the Widget, for example the graph type.',
+        sortOrder: 1,
+    },
+    {
+        id: 2,
+        buttonText: 'Duplicate',
+        description: 'Duplicates the current Shape with a new name (adding ... Copy n).  The Dataset is not duplicated.',
+        sortOrder: 4
+    },
+    {
+        id: 3,
+        buttonText: 'Backward',
+        description: 'Send the selected Widget backwards.',
+        sortOrder: 5,
+    },
+    {
+        id: 4,
+        buttonText: 'Forward',
+        description: 'Bring the selected Widget forward.',
+        sortOrder: 6,
+    },
+    {
+        id: 5,
+        buttonText: 'Delete',
+        description: 'Delete the selected Widget.',
+        sortOrder: 10,
+    },
+    {
+        id: 6,
+        buttonText: 'Background toggle',
+        description: 'Toggle the background of the selected Shape on / of.',
+        sortOrder: 13,
+    },
+    {
+        id: 7,
+        buttonText: 'Increase size',
+        description: 'Increase the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
+        sortOrder: 15,
+    },
+    {
+        id: 8,
+        buttonText: 'Decrease',
+        description: 'Decrease the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
+        sortOrder: 16,
+    }
+]
 
-shapeButtunAvailable
-shapeButtunSelected
+const shapeButtunSelected: buttonBarAvailable[] =
+[ 
+    {
+        id: 1,
+        buttonText: 'Edit',
+        description: 'Open the edit form to edit the Shape, for example the color of a circle.',
+        sortOrder: 1,
+        isDefault: true
+    }
+]
 
 const widgetButtunsAvailable: buttonBarAvailable[] =
 [ 
