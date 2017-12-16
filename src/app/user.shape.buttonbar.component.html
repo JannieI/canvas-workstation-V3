@@ -10,13 +10,14 @@
                     Shape Button Bar
 
                     <div class="gridOverall">
-                        Available
                         <div class="gridAvailable">
+                            Available
                             <nav>
                                 <ul class="nav-list">
                                     <div
                                         class="nav-link"
-                                        *ngFor="let row of shapeButtonsAvailable"
+                                        *ngFor="let row of shapeButtonsAvailable; let i = index"
+                                        (click)="clickItem(i)"
                                         >
                                         {{ row.buttonText }}
                                     </div>

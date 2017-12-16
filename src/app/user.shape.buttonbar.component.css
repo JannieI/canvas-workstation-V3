@@ -53,3 +53,7 @@
         grid-row-start: 5;
         grid-row-end: 6;
     }
+
+.nav-link:nth-child(odd) {
+    background: rgb(243, 241, 241);
+}

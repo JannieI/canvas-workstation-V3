@@ -70,4 +70,8 @@ export class UserShapeButtonBarComponent implements OnInit {
         this.shapeButtonsSelected.splice(this.shapeButtonsSelected.length-1,1)
     }
 
+    clickItem(index: number) {
+        console.log(index, this.shapeButtonsAvailable[index])
+    }
+
 }

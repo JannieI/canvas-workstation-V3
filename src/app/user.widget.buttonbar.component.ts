@@ -70,4 +70,7 @@ export class UserWidgetButtonBarComponent implements OnInit {
         this.widgetButtonsSelected.splice(this.widgetButtonsSelected.length-1,1)
     }
 
+    clickItem(index: number) {
+        console.log(index, this.widgetButtonsAvailable[index])
+    }
 }

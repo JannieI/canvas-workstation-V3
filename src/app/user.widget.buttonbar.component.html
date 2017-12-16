@@ -16,11 +16,8 @@
                                 <ul class="nav-list">
                                     <div
                                         class="nav-link"
-                                        draggable="true"
-                                        (dragstart)="dragstart_handler($event)"
-                                        (dragend)="dragend_handler($event)"
-                                        *ngFor="let row of widgetButtonsAvailable"
-                                        id="dragtarget"
+                                        *ngFor="let row of widgetButtonsAvailable; let i = index"
+                                        (click)="clickItem(i)"
                                         >
                                         {{ row.buttonText }}
                                     </div>
