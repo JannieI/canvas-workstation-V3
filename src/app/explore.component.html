@@ -73,56 +73,6 @@
         will function normally while this message is displayed.)
 </div>
 
-
-<div class="editMode">
-    Edit
-</div>
-
-<div class="tabList">
-    <span class="tabsLabel">
-        Analysis of Value Traded 2017 ...
-    </span>
-    <button
-        type="button"
-        class="btn btn-secondary btn-sm"
-        >
-        Summary
-    </button>
-    <button
-        type="button"
-        class="btn btn-secondary btn-sm"
-        *ngIf="secondTab"
-        >
-        Detail Costs
-    </button>
-    <clr-dropdown>
-        <button
-            type="button"
-            class="btn btn-secondary btn-sm"
-            clrDropdownTrigger
-            >
-            <clr-icon shape="plus" size="24"></clr-icon>
-        </button>
-        <clr-dropdown-menu clrPosition="top-left" *clrIfOpen>
-            <label>New Tab</label>
-
-            <div>
-                <label for="dashboardName" class="popupLabel">Name :</label>
-                <input type="text" id="dashboardName" placeholder="Enter new name here"
-                    class="popupInput">
-                <button type="button" class="popupButton" clrDropdownItem
-                    (click)="addNewTab()"
-                    >
-                    Save
-                    <clr-icon shape="floppy" size="16"></clr-icon>
-                </button>
-            </div>
-        </clr-dropdown-menu>
-    </clr-dropdown>
-    Last refreshed: 2017/01/01 08:31
-</div>
-
-
 <span
     class="graphy"
     [style.color] = "showContainerHeader ? 'black' : 'transparent'"
@@ -163,32 +113,47 @@
     </div>
 </div>
 
+<div class="statusBar">
+    <span class="statusBarText">
+        Analysis of Value Traded 2017 ...
+    </span>
+    <span class="statusBarText">
+        Tabs :
+        Summary
+        Detail Costs
+    </span>
+    <span class="statusBarText">
+        <clr-icon shape="plus" size="12"
+            (click)="clickAddTab()"></clr-icon>
+    </span>
+    <span class="statusBarText">
+        Updated: Yesterday
+    </span>
+    <span class="statusBarText">
+        Refreshed: 2017/01/01 08:31
+    </span>
+    <span class="statusBarText">
+        {{ viewEditMode }}
+    </span>
+</div>
 
-<!-- Modals: -->
-<!-- ******* -->
+<div *ngIf="showNewTab" class="newTab">
+    <label>New Tab</label>
 
-<!-- Dashboard Selector -->
-<clr-modal [(clrModalOpen)]="showModalOpenDashboard">
-    <h3>Open a Dashboard</h3>
-    <div class="modal-body">
-        <p>Please select:</p>
-        <clr-datagrid>
-            <clr-dg-column>Name</clr-dg-column>
-            <clr-dg-column>Description</clr-dg-column>
-
-            <clr-dg-row *ngFor="let dash of dashboards">
-                <clr-dg-cell>{{dash.name}}</clr-dg-cell>
-                <clr-dg-cell>{{dash.description}}</clr-dg-cell>
-            </clr-dg-row>
-
-            <clr-dg-footer>{{dashboards.length}} dashboards</clr-dg-footer>
-        </clr-datagrid>
-    </div>
     <div>
-        <button type="button" class="btn btn-outline" (click)="showModalOpenDashboard = false">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="clickCloseModel()">Ok</button>
+        <label for="dashboardName" class="popupLabel">Name :</label>
+        <input type="text" id="dashboardName" placeholder="Enter new name here"
+            class="popupInput">
+        <button type="button" class="popupButton" 
+            (click)="addNewTab()"
+            >
+            Save
+            <clr-icon shape="floppy" size="16"
+            (click)="clickSaveTab()"></clr-icon>
+        </button>
     </div>
-</clr-modal>
+</div>
+
 
 <div class="bgGrid" *ngIf="showGrid">
     <div>

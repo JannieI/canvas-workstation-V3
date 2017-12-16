@@ -180,6 +180,7 @@ export class ExploreComponent {
         ];
     temp: number[] = [0];
     dashboards: dashboard[];
+    editMode: boolean = false;
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';
     isFirstTimeDashboard: boolean;
@@ -195,9 +196,11 @@ export class ExploreComponent {
     showAdvancedField: boolean = false;
     showContainerHeader: boolean = false;
     showGrid: boolean;
+    showNewTab: boolean = false;
     showModalOpenDashboard: boolean = false;
     showType: boolean = false;
     showTypeIcon: boolean = true;
+    viewEditMode: string = 'Edit Mode';
     widgetBorder: string = '1px black solid';
     widgetStartX: number = 0;
     widgetStartY: number = 0;
@@ -487,6 +490,14 @@ export class ExploreComponent {
         console.log('Open Widget Editor')
     }
 
+    clickAddTab() {
+        this.showNewTab = true;
+        console.log('sss')
+    }
+
+    clickSaveTab() {
+        this.showNewTab = false;
+    }
 }
 
 
