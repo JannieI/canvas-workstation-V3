@@ -24,14 +24,43 @@
         >
         <clr-icon shape="step-forward" size="20"></clr-icon>
     </button>
+    <button
+        type="button"
+        class="btn btn-secondary btn-sm"
+        >
+        <clr-icon shape="camera" size="20"></clr-icon>
+    </button>
+    <button
+        type="button"
+        class="btn btn-secondary btn-sm"
+        >
+        <clr-icon shape="stop" size="20"></clr-icon>
+    </button>
+    <button
+        type="button"
+        class="btn btn-secondary btn-sm"
+        >
+        <clr-icon shape="video-camera" size="20"></clr-icon>
+    </button>
+    <button
+        type="button"
+        class="btn btn-secondary btn-sm"
+        >
+        <clr-icon shape="times" size="20"></clr-icon>
+    </button>
+
     <div *ngIf="presentationMsg">
 
-        Use the buttons to show the bookmarks previously created.  The bookmarks can link different
-        Dashboards, which will show them one after another.  Inside a Dashboard, bookmarks can
-        optionally be created for one or more Widgets.  These will be shown in the sequence of the
-        Widget number (this can be changed by the user).  Inside a Widget, different visualisations
-        may be bookmarked.  This allows for the display of different formats of the same graph, or
-        even totally different graphs in the same Widget area.
+        <b>HELP</b> message: Widgets and Shapes can be linked to existing Dashboards during 
+        editing.  This serves as a hyperlink.  During a presentation, clicking the Link button
+        will show the linked Dashboard.  Linking a Dashboard is optional, but only one
+        Dashboard can be linked.  More than one Widget /  Shape per Dashboard can be linked.
+        Optionally, one or more steps (similar to bookmarks) can be created for a Widget.
+        Clicking the Step button will show the different steps for the Widget (while the 
+        rest of the Dashboard remains unchanged.  Steps are useful for storytelling while
+        preserving space as totally different graphs can be shown in the same Widget area.
+        Last, the links and steps can be recorded and stored per Dashboard.  The arrows 
+        will then jump to the next link / step in the sequence.
         <br>
         <b>Got it</b> <input type="checkbox" (click)="clickGotItPresentation()" [checked]="!presentationMsg">
     </div>
