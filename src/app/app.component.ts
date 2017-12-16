@@ -68,7 +68,6 @@ export class AppComponent implements OnInit {
     showModalDataPopup: boolean = false;
     showModalWidgetSteps: boolean = false;
     showModalWidgetNotes: boolean = false;
-    showModalWidgetTags: boolean = false;
     showModalWidgetLinks: boolean = false;
     showModalWidgetRefresh: boolean = false;
     showModalWidgetDuplicate: boolean = false;
@@ -213,10 +212,6 @@ export class AppComponent implements OnInit {
         this.showModalWidgetNotes = false;
     }
     
-    handleCloseWidgetTags() {
-        this.showModalWidgetTags = false;
-    }
-
     handleCloseWidgetLinks() {
         this.showModalWidgetLinks = false;
     }
@@ -383,10 +378,6 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetNotes() {
         this.showModalWidgetNotes = true;
-    }
-
-    clickMenuWidgetTags() {
-        this.showModalWidgetTags = true;
     }
 
     clickMenuWidgetLinks() {
