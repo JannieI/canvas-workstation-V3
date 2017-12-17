@@ -755,6 +755,15 @@ class="formPopupDashboard"
 </shape-edit>
 
 
+<!-- Modal: Shape Delete -->
+<shape-delete
+    class="formPopupDashboard"
+    *ngIf="showModalShapeDelete"
+    [currentShapeSpec]="currentShapeSpec"
+    (formShapeDeleteClosed)="handleCloseShapeDelete($event)">Load Shape Delete ...
+</shape-delete>
+
+
 <!-- Modal: Login -->
 <login
     class="formPopupDashboard"

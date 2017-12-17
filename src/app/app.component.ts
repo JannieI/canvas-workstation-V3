@@ -78,6 +78,7 @@ export class AppComponent implements OnInit {
     showModalDataSlicers: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalShapeEdit: boolean = false;
+    showModalShapeDelete: boolean = false;
     showFav: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalUserMyProfile: boolean = false;
@@ -188,6 +189,10 @@ export class AppComponent implements OnInit {
         this.showModalShapeEdit = false;
     }
 
+    handleCloseShapeDelete() {
+        this.showModalShapeDelete = false;
+    }
+    
     handleCloseDashboardComments() {
         this.showModalDashboardComments = false;
     }
@@ -235,7 +240,7 @@ export class AppComponent implements OnInit {
     handleCloseWidgetDelete() {
         this.showModalWidgetDelete = false;
     }
-    
+
     handleCloseUserLogin(action) {
         this.showModalDashboardLogin = false;
     }
@@ -455,7 +460,7 @@ export class AppComponent implements OnInit {
     }
     
     clickMenuShapeDelete() {
-        
+        this.showModalShapeDelete = true;
     }
 
     clickMenuViewPresentation() {
