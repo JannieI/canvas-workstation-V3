@@ -113,15 +113,13 @@
 }
 
 .bgGrid {
+    border: 1px solid gray;
+    height: 100%;
+    left: 0;
     position: absolute;
-    left: 290px;
+    top: 2.5rem;
     width: 100%;
-    top: 5rem;
-    color: red;
     z-index: 999;
-    display: grid;
-    grid-template-columns: repeat(10, 20px);
-    grid-auto-rows: 1rem;
 }
 
 .widgetButtonBar {

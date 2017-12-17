@@ -30,6 +30,7 @@ import { GlobalVariableService }      from './global-variable.service';
     @Output() formWidgetDeleteClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
+    @ViewChild('myCanvas', {read: ElementRef}) myCanvas: ElementRef;  //Vega graph
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -45,7 +46,16 @@ import { GlobalVariableService }      from './global-variable.service';
 
     }
 
-
+    drawGrid() {
+      // var c = document.getElementById("myCanvas");
+      // var ctx = c.getContext("2d");
+      // ctx.clearRect(0, 0, c.width, c.height); 
+      // var img = document.getElementById("lamp")
+      // var pat = ctx.createPattern(img, 'repeat');
+      // ctx.rect(0, 0, 150, 100);
+      // ctx.fillStyle = pat;
+      // ctx.fill();
+  }
   	clickClose(action: string) {
 	  	this.formWidgetDeleteClosed.emit(action);
         }
