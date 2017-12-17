@@ -43,6 +43,7 @@ import { WidgetStepsComponent }       from './widget.steps.component';
 import { WidgetLinksComponent }       from './widget.links.component';
 import { WidgetExpandComponent }      from './widget.expand.component';
 import { WidgetExportComponent }      from './widget.export.component';
+import { WidgetDeleteComponent }      from './widget.delete.component';
 
 import { DataPopupComponent }         from './data.popup.component';
 import { DataSlicersComponent }       from './data.slicers.component';
@@ -81,6 +82,7 @@ import { GlobalFunctionService }      from './global-function.service';
         WidgetLinksComponent,
         WidgetExpandComponent,
         WidgetExportComponent,
+        WidgetDeleteComponent,
         DashboardNewComponent,
         DashboardOpenComponent,
         DashboardSaveComponent,

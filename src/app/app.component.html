@@ -737,6 +737,15 @@ class="formPopupDashboard"
 </widget-export>
 
 
+<!-- Modal: Widget Delete -->
+<widget-delete
+    class="formPopupDashboard"
+    *ngIf="showModalWidgetDelete"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formWidgetDeleteClosed)="handleCloseWidgetDelete($event)">Load Widget Delete ...
+</widget-delete>
+
+
 <!-- Modal: Shape Edit -->
 <shape-edit
     class="formPopupDashboard"

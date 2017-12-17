@@ -73,6 +73,7 @@ export class AppComponent implements OnInit {
     showModalWidgetDuplicate: boolean = false;
     showModalWidgetExpand: boolean = false;
     showModalWidgetExport: boolean = false;
+    showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
     showModalDataSlicers: boolean = false;
     showModalDataRefresh: boolean = false;
@@ -231,6 +232,10 @@ export class AppComponent implements OnInit {
         this.showModalWidgetExport = false;
     }
 
+    handleCloseWidgetDelete() {
+        this.showModalWidgetDelete = false;
+    }
+    
     handleCloseUserLogin(action) {
         this.showModalDashboardLogin = false;
     }
@@ -418,7 +423,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetDelete() {
-        
+        this.showModalWidgetDelete = true;
     }        
 
     clickMenuEditUndo() {
