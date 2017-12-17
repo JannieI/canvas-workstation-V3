@@ -25,7 +25,9 @@ import { GlobalVariableService }      from './global-variable.service';
   export class WidgetExpandComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
+    // @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
+    datasources: currentDatasource[];
+
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -35,15 +37,17 @@ import { GlobalVariableService }      from './global-variable.service';
     ) {}
 
     ngOnInit() {
+      this.datasources = this.globalVariableService.datasources
+        .filter(d => d.id <= 13);
     }
 
     ngAfterViewInit() {
 
     }
 
-
   	clickClose(action: string) {
-	  	this.formWidgetExpandClosed.emit(action);
+      // this.formWidgetExpandClosed.emit(action);
+      this.router.navigate(['explore'])
         }
 
   }
