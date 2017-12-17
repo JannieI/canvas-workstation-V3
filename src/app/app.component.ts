@@ -396,13 +396,12 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetExpand() {
         this.showModalWidgetExpand = true;
+        this.router.navigate(['/expand']);
     }
 
     clickMenuWidgetExport() {
         this.showModalWidgetExport = true;
     }
-
-
 
     clickMenuWidgetCopy() {
         // Copies reference to existing datasource (of From Widget)

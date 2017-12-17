@@ -13,6 +13,7 @@ import { HelpComponent }              from './help.component';
 import { LandingComponent }           from './landing.component';
 import { PresentComponent }           from './present.component';
 import { CollaborateComponent }       from './collaborate.component';
+import { WidgetExpandComponent }      from './widget.expand.component';
 
 // Own Services
 import { AuthGuard }                  from './authguard.service';
@@ -26,6 +27,7 @@ export const ROUTES: Routes = [
     {path: 'explore',       component: ExploreComponent},
     {path: 'help',          component: HelpComponent},
     {path: 'present',       component: PresentComponent},
+    {path: 'expand',        component: WidgetExpandComponent},
 
     // {
     //     path: 'getdata', 

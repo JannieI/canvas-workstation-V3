@@ -273,8 +273,9 @@ export class ExploreComponent {
                 let specification = compile(definition).spec;
                 let view = new View(parse(specification));
                 let leftpx: number = 300;
-                console.log('refreshWidgets array', this.childrenWidgets.toArray()[i])
-                console.log('refreshWidgets nativeEl', this.childrenWidgets.toArray()[i].nativeElement)
+                console.log('refreshWidgets childrenWidgets', this.childrenWidgets.toArray()[i])
+                console.log('refreshWidgets widgetContainters', this.widgetContainters.toArray()[i])
+                // console.log('refreshWidgets nativeEl', this.childrenWidgets.toArray()[i].nativeElement)
                 // this.renderer.setElementAttribute(
                 //     this.childrenWidgets.toArray()[i].nativeElement,
                 //     'id', '2');
@@ -293,12 +294,12 @@ export class ExploreComponent {
                         this.widgetContainters.toArray()[i].nativeElement,
                         'z-index', '4');
                 }
-                // view.renderer('svg')
-                //     .initialize( this.childrenWidgets.toArray()[i].nativeElement)
-                //     .width(180)
-                //     .hover()
-                //     .run()
-                //     .finalize();
+                view.renderer('svg')
+                    .initialize( this.childrenWidgets.toArray()[i].nativeElement)
+                    .width(180)
+                    .hover()
+                    .run()
+                    .finalize();
                 console.log('refreshWidgets loop end')
             }
         }
@@ -317,11 +318,11 @@ export class ExploreComponent {
     duplicateWidget(duplicate: boolean) {
         if (duplicate) {
             console.log('duplicateWidget', this.childrenWidgets.toArray().length)
-            this.showWidgets = false;
-            this.showWidgets = true;
+            // this.showWidgets = false;
             this.localDashboards.push(this.localDashboards[0]);
-            this.refreshWidgets();
-            console.log('holy moly', this.localDashboards)
+            // this.showWidgets = true;
+            // this.refreshWidgets();
+            console.log('Add to array ...', this.localDashboards)
         }
     }
 //*     onMouseButton(event: MouseEvent): void {

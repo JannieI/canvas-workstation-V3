@@ -41,6 +41,7 @@ import { DashboardPrintComponent }    from './dashboard.print.component';
 import { WidgetEditorComponent }      from './widget.editor.component';
 import { WidgetStepsComponent }       from './widget.steps.component';
 import { WidgetLinksComponent }       from './widget.links.component';
+import { WidgetExpandComponent }      from './widget.expand.component';
 
 import { DataPopupComponent }         from './data.popup.component';
 import { DataSlicersComponent }       from './data.slicers.component';
@@ -57,7 +58,7 @@ import { LoginComponent}              from './login.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
 import { UserWidgetButtonBarComponent}      from './user.widget.buttonbar.component';
-import { UserShapeButtonBarComponent}      from './user.shape.buttonbar.component';
+import { UserShapeButtonBarComponent}       from './user.shape.buttonbar.component';
 import { LogoutComponent}             from './logout.component';
 
 // Our Services
@@ -77,6 +78,7 @@ import { GlobalFunctionService }      from './global-function.service';
         WidgetEditorComponent,
         WidgetStepsComponent,
         WidgetLinksComponent,
+        WidgetExpandComponent,
         DashboardNewComponent,
         DashboardOpenComponent,
         DashboardSaveComponent,
