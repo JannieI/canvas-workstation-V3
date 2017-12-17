@@ -877,6 +877,14 @@ class="formPopupDashboard"
 </widget-links>
 
 
+<!-- Modal: widget links -->
+<widget-notes
+    *ngIf="showModalWidgetNotes"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formWidgetNotesClosed)="handleCloseWidgetNotes($event)">Load Widget Notes ...
+</widget-notes>
+
+
 
 
 
