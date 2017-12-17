@@ -1,4 +1,13 @@
 // ALL models (schema) are kept here
+export class widgetNote {
+    id: number;
+    dashboardID: number;
+    widgetID: number;
+    noteText: string;
+    updatedBy: string;
+    updatedOn: string;
+}
+
 export class widgetLinkedDashboard {
     id: number;
     sourceDashboardID: number;

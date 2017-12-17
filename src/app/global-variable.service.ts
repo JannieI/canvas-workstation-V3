@@ -21,10 +21,22 @@ import { dataQualityIssue}            from './models'
 import { datasourceFilter}            from './models'
 import { buttonBarAvailable}          from './models'
 import { buttonBarSelected }          from './models';
+import { widgetNote }                 from './models';
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
+const widgetNotes: widgetNote[] = 
+[
+    {
+        id: 1,
+        dashboardID: 2,
+        widgetID: 4,
+        noteText: 'Steps show more detail',
+        updatedBy: 'MarcoD',
+        updatedOn: '2017/01/01'
+    }
+]
 const shapeButtonsAvailable: buttonBarAvailable[] =
 [
     {
@@ -1199,6 +1211,7 @@ export class GlobalVariableService {
     duplicateDashboard = new BehaviorSubject<boolean>(false);    
     editMode = new BehaviorSubject<boolean>(false);
     shapeButtonsAvailable: buttonBarAvailable[] = shapeButtonsAvailable;
+    widgetNotes: widgetNote[] = widgetNotes;
     shapeButtonsSelected: buttonBarSelected[] = shapeButtonsSelected;
     statusBarRunning = new BehaviorSubject<string>('No Query running');
     statusBarCancelRefresh = new BehaviorSubject<string>('');
