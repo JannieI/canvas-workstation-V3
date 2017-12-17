@@ -123,21 +123,22 @@
     </div>
 </span>
 
-
-<div *ngFor="let ds of localDashboards" class="widgetContainer"
-    #widgetContainter>
-    <div class="widgetButtonBar">
-        <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
-        <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="cursor-hand" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
-    </div>
-    <div class="widget">
-        <div #widget>
-            Here: {{ ds }}
+<div *ngIf="showWidgets">
+    <div *ngFor="let ds of localDashboards" class="widgetContainer"
+        #widgetContainter>
+        <div class="widgetButtonBar">
+            <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
+            <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon>
+            <clr-icon shape="cursor-hand" size="20" class="buttonBarIcon"></clr-icon>
+            <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon>
+            <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon>
+            <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon>
+            <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
+        </div>
+        <div class="widget">
+            <div #widget>
+                Here: {{ ds.mark }}
+            </div>
         </div>
     </div>
 </div>

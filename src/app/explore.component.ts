@@ -75,7 +75,7 @@ const localDashboards: dl.spec.TopLevelExtendedSpec[] =
             "type": "nominal"
           }
         }
-    }
+    }  
 ];
 
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
@@ -200,6 +200,7 @@ export class ExploreComponent {
     showModalOpenDashboard: boolean = false;
     showType: boolean = false;
     showTypeIcon: boolean = true;
+    showWidgets: boolean = true;
     statusBarRunning: string = '';
     statusBarCancelRefresh: string = '';
     statusBarMessages: string = '';
@@ -210,22 +211,70 @@ export class ExploreComponent {
     widgetEndX: number = 0;
     widgetEndY: number = 0;
 
+    constructor(
+        private globalVariableService: GlobalVariableService,
+        private renderer: Renderer,
+    ) {}
+
+    ngOnInit() {
+        console.log('Explore ngOnInit');
+
+        // Load global variables
+        this.globalVariableService.currentMessage.subscribe(
+            message => this.message = message
+        );
+        this.globalVariableService.menuCreateDisabled.subscribe(
+            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
+        );
+        this.globalVariableService.isFirstTimeDashboard.subscribe(
+            i => this.isFirstTimeDashboard = i
+        )
+        this.globalVariableService.presentation.subscribe(
+            pres => this.presentation = pres
+        );
+        this.dashboards = this.globalVariableService.dashboards;
+        this.globalVariableService.editMode.subscribe(
+            i => this.editMode = i
+        )
+        this.presentationMsg = this.globalVariableService.presentationMsg;
+        this.globalVariableService.showGrid.subscribe(
+            sG => this.showGrid = sG
+        );
+        this.globalVariableService.statusBarRunning.subscribe(
+            i => this.statusBarRunning = i
+        )
+        this.globalVariableService.statusBarCancelRefresh.subscribe(
+            i => this.statusBarCancelRefresh = i
+        )
+        this.globalVariableService.statusBarMessages.subscribe(
+            i => this.statusBarMessages = i
+        )
+
+        this.globalVariableService.duplicateDashboard.subscribe(
+            i => this.duplicateWidget(i)
+        );
+    
+    }
+
     ngAfterViewInit() {
         console.log('Explore ngOnViewInit')
+        this.refreshWidgets();
+    }
 
-
+    refreshWidgets() {
         // let definition = vlTemplateSpec13;
         // let specification = compile(definition).spec;
         // let view = new View(parse(specification));
-
+        console.log('refreshWidgets started')
         if (this.childrenWidgets.toArray().length > 0) {
             for (var i: number = 0; i < this.localDashboards.length; i++) {
-                console.log('loop i', i)
+                console.log('refreshWidgets loop i', i)
                 let definition = localDashboards[i];
                 let specification = compile(definition).spec;
                 let view = new View(parse(specification));
-
-                console.log('xx', this.childrenWidgets.toArray()[i].nativeElement)
+                let leftpx: number = 300;
+                console.log('refreshWidgets array', this.childrenWidgets.toArray()[i])
+                console.log('refreshWidgets nativeEl', this.childrenWidgets.toArray()[i].nativeElement)
                 // this.renderer.setElementAttribute(
                 //     this.childrenWidgets.toArray()[i].nativeElement,
                 //     'id', '2');
@@ -235,27 +284,22 @@ export class ExploreComponent {
                 if (i == 0) {
                     this.renderer.setElementStyle(
                         this.widgetContainters.toArray()[i].nativeElement,
-                        'left', '20px');
-                // } else {
-                //     this.renderer.setElementStyle(
-                //         this.widgetContainters.toArray()[i].nativeElement,
-                //         'left', '600px');
-                // }
+                        'left', +(leftpx * (1 + i) ) + 'px');
                 } else {
                     this.renderer.setElementStyle(
                         this.widgetContainters.toArray()[i].nativeElement,
-                        'left', '180px');
+                        'left', +(leftpx * (1 + i) ) + 'px');
                     this.renderer.setElementStyle(
                         this.widgetContainters.toArray()[i].nativeElement,
                         'z-index', '4');
                 }
-                view.renderer('svg')
-                    .initialize( this.childrenWidgets.toArray()[i].nativeElement)
-                    .width(180)
-                    .hover()
-                    .run()
-                    .finalize();
-                console.log('loop end')
+                // view.renderer('svg')
+                //     .initialize( this.childrenWidgets.toArray()[i].nativeElement)
+                //     .width(180)
+                //     .hover()
+                //     .run()
+                //     .finalize();
+                console.log('refreshWidgets loop end')
             }
         }
 
@@ -270,22 +314,58 @@ export class ExploreComponent {
         //         'left', "200px");
     }
 
+    duplicateWidget(duplicate: boolean) {
+        if (duplicate) {
+            console.log('duplicateWidget', this.childrenWidgets.toArray().length)
+            this.showWidgets = false;
+            this.showWidgets = true;
+            this.localDashboards.push(this.localDashboards[0]);
+            this.refreshWidgets();
+            console.log('holy moly', this.localDashboards)
+        }
+    }
+//*     onMouseButton(event: MouseEvent): void {
+//*         this.isMouseDown = event.buttons === 1;
+//*     }
+//*
+//*     onMouseMove(event: MouseEvent): void {
+//*
+//*         if (this.isMouseDown && this.isInsideBoundary(event)) {
+//*         this.renderer2.setStyle(this.draggable, 'left', event.clientX - (draggableWidth / 2) + 'px');
+//*         this.renderer2.setStyle(this.draggable, 'top', event.clientY - (draggableHeight / 2) + 'px');
+//*         }
+//*     }
+//*
+//*     isInsideBoundary(event: MouseEvent) {
+//*         return event.clientX > this.boundary.left &&
+//*         event.clientX < this.boundary.right &&
+//*         event.clientY > this.boundary.top &&
+//*         event.clientY < this.boundary.bottom;
+//*     }
+
+    allowDrop(event) {
+        event.preventDefault();
+    }
+
+
     dragstart_handler(ev) {
-        console.log("dragStart");
+        // console.log("dragStart");
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
-        console.log('drag_start')
+        // console.log('drag_start')
     }
 
     dragend_handler(ev) {
         console.log('dragend_handler', ev.dataTransfer.dropEffect)
     }
+
     dragover_handler(ev) {
         console.log('dragover_handler')
         ev.preventDefault();
         // Set the dropEffect to move
         ev.dataTransfer.dropEffect = "move"
-       }
+    }
+    
     drop_handler(ev) {
         ev.preventDefault();
         // Get the id of the target and add the moved element to the target's DOM
@@ -339,71 +419,6 @@ export class ExploreComponent {
             }
         }
     ];
-    constructor(
-        private globalVariableService: GlobalVariableService,
-        private renderer: Renderer,
-    ) {}
-
-
-    ngOnInit() {
-        console.log('Explore ngOnInit');
-
-        // Load global variables
-        this.globalVariableService.currentMessage.subscribe(
-            message => this.message = message
-        );
-        this.globalVariableService.menuCreateDisabled.subscribe(
-            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
-        );
-        this.globalVariableService.isFirstTimeDashboard.subscribe(
-            i => this.isFirstTimeDashboard = i
-        )
-        this.globalVariableService.presentation.subscribe(
-            pres => this.presentation = pres
-        );
-        this.dashboards = this.globalVariableService.dashboards;
-        this.globalVariableService.editMode.subscribe(
-            i => this.editMode = i
-        )
-        this.presentationMsg = this.globalVariableService.presentationMsg;
-        this.globalVariableService.showGrid.subscribe(
-            sG => this.showGrid = sG
-        );
-        this.globalVariableService.statusBarRunning.subscribe(
-            i => this.statusBarRunning = i
-        )
-        this.globalVariableService.statusBarCancelRefresh.subscribe(
-            i => this.statusBarCancelRefresh = i
-        )
-        this.globalVariableService.statusBarMessages.subscribe(
-            i => this.statusBarMessages = i
-        )
-    
-    }
-
-//*     onMouseButton(event: MouseEvent): void {
-//*         this.isMouseDown = event.buttons === 1;
-//*     }
-//*
-//*     onMouseMove(event: MouseEvent): void {
-//*
-//*         if (this.isMouseDown && this.isInsideBoundary(event)) {
-//*         this.renderer2.setStyle(this.draggable, 'left', event.clientX - (draggableWidth / 2) + 'px');
-//*         this.renderer2.setStyle(this.draggable, 'top', event.clientY - (draggableHeight / 2) + 'px');
-//*         }
-//*     }
-//*
-//*     isInsideBoundary(event: MouseEvent) {
-//*         return event.clientX > this.boundary.left &&
-//*         event.clientX < this.boundary.right &&
-//*         event.clientY > this.boundary.top &&
-//*         event.clientY < this.boundary.bottom;
-//*     }
-
-    allowDrop(event) {
-        event.preventDefault();
-    }
-
 
     //         // Load and parse a CSV file. Datalib does type inference for you.
     //         // The result is an array of JavaScript objects with named values.

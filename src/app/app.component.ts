@@ -391,6 +391,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetDuplicate() {
         this.showModalWidgetDuplicate = true;
+        this.globalVariableService.duplicateDashboard.next(true);
     }
 
     clickMenuWidgetExpand() {
