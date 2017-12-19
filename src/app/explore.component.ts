@@ -294,7 +294,7 @@ export class ExploreComponent {
                         this.widgetContainters.toArray()[i].nativeElement,
                         'z-index', '4');
                 }
-                view.renderer('svg')
+                view.renderer('svg') 
                     .initialize( this.childrenWidgets.toArray()[i].nativeElement)
                     .width(180)
                     .hover()

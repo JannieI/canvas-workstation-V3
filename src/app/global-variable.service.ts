@@ -1219,7 +1219,7 @@ export class GlobalVariableService {
     widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
 
-    showModalLanding: boolean = false;  // Shows Landing page
+    showModalLanding: boolean = true;  // Shows Landing page
     isFirstTimeDashboard = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
