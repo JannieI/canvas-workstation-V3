@@ -9,6 +9,7 @@
                 type="button"
                 class="btn btn-link btn-sm"
                 clrDropdownItem
+                title="Show the first Dashboard in the presentation"
                 >
                 <clr-icon shape="step-forward down" size="20"></clr-icon>
                 First Dashboard
@@ -17,6 +18,7 @@
                 type="button"
                 class="btn btn-secondary btn-sm"
                 clrDropdownItem
+                title="Jump to the Next Dashboard"
                 >
                 <clr-icon shape="fast-forward" size="20"></clr-icon>
                 Next Dashboard
@@ -25,6 +27,7 @@
                 type="button"
                 class="btn btn-secondary btn-sm"
                 clrDropdownItem
+                title="Return to the Previous Dashboard"
                 >
                 <clr-icon shape="rewind" size="20"></clr-icon>
                 Previous Dashboard
@@ -33,6 +36,7 @@
                 type="button"
                 class="btn btn-secondary btn-sm"
                 clrDropdownItem
+                title="Show the Last Dashboard in the presentation"
                 >
                 <clr-icon shape="step-forward" size="20"></clr-icon>
                 Last Dashboard
@@ -41,6 +45,7 @@
                 type="button"
                 class="btn btn-secondary btn-sm"
                 clrDropdownItem
+                title="Start recording the navigation"
                 >
                 <clr-icon shape="camera" size="20"></clr-icon>
                 Record
@@ -49,6 +54,7 @@
                 type="button"
                 class="btn btn-secondary btn-sm"
                 clrDropdownItem
+                title="Stop recording the navigation"
                 >
                 <clr-icon shape="stop" size="20"></clr-icon>
                 Stop Record
@@ -57,6 +63,7 @@
                 type="button"
                 class="btn btn-secondary btn-sm"
                 clrDropdownItem
+                title="Play the pre-recorded navigation"
                 >
                 <clr-icon shape="video-camera" size="20"></clr-icon>
                 Play
@@ -65,7 +72,17 @@
                 type="button"
                 class="btn btn-secondary btn-sm"
                 clrDropdownItem
+                title="Print all the Dashboards in presentation format"
+                >
+                <clr-icon shape="printer" size="20"></clr-icon>
+                Print ...
+            </button>
+            <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                clrDropdownItem
                 (click)="clickClosePresentation()"
+                title="Exit the presentation, and return to the Dashboard page"
                 >
                 <clr-icon shape="times" size="20"></clr-icon>
                 Exit

@@ -61,6 +61,7 @@ This document describes items for later versions of Canvas.
 8. Make Tabs more visible on status bar
 9. Test printing - and see if pagelayout can be changed
 
+
 **Widget**
 1. More than one version of grammar - create space in spec and code (IF) - may not be needed
    on UI for now
@@ -70,6 +71,23 @@ This document describes items for later versions of Canvas.
 5. Fix bug and Duplicat Widget correctly
 6. In Slideshow mode: show link buttons and this now jumps (Edit mode = show linking form)
 
+
+**Presentation**
+1. See if can print, and if so: allow different layouts and formats, for example one 
+   Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
+2. Recording: store the name, show the actions (ie show Dashboard 1, then 2 etc) in an 
+   Explorer (tree) view.
+3. Add a Link button to the Widget, and maybe a 'make buttons in/visible' option on the
+   menu.
+4. Add cursor style and size on menu.
+5. Allow annotations - highligh, arrows, etc ... !?
+6. Add Easy Explore option: can look at other things while in presentation mode ??  Not 
+   sure if this makes sense ....  if want to look at different data, just open the relevant 
+   Dashboard in view-only, or create a temp one quicky ...
+7. Embed objects like voice recording, video and urls - can jump to web, show movie, etc!
+8. The Datasource and Dataset cannot be changed, but the user has Slicers to filter the
+   data.
+9. Make sure access rights are still respected at all levels: Dashboard, Widget, Datasource
 
 **Scheduler**
 1. Determines tech and where/how it runs
