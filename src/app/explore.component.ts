@@ -534,6 +534,12 @@ export class ExploreComponent {
         this.showNewTab = false;
         console.log('--s')
     }
+
+    clickClosePresentation() {
+        console.log('kkk')
+        this.globalVariableService.showMainMenu.next(true);
+        this.globalVariableService.presentation.next(false);
+    }
 }
 
 

@@ -65,6 +65,7 @@ export class AppComponent implements OnInit {
     showModalDashboardTemplate: boolean = false;
     showModalDashboardSchedule: boolean = false;
     showModalDashboardDelete: boolean = false;
+    showMainMenu: boolean = true;
     showModalWidgetSteps: boolean = false;
     showModalWidgetNotes: boolean = false;
     showModalWidgetLinks: boolean = false;
@@ -107,6 +108,9 @@ export class AppComponent implements OnInit {
             sG => this.showGrid = sG
         );
         this.showModalLanding = this.globalVariableService.showModalLanding;
+        this.globalVariableService.showMainMenu.subscribe(
+            sm => this.showMainMenu = sm
+        );
     }   
 
     handleCloseModal() {
@@ -462,6 +466,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewPresentation() {
         this.globalVariableService.presentation.next(!this.presentation);
+        this.globalVariableService.showMainMenu.next(false);
     }
 
     clickMenuViewPrintPreview(){
