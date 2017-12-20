@@ -2,34 +2,61 @@
 
 # 1. Clone from Git
 
-Use our Projects folder (create a new one with mkdir if necessary.  On Linux, all names
-are case sensitive).
-Run git clone https://github.com/JannieI/canvas-workstation.git
-This will create a folder under Projects called canvas-workstation.  The software is installed in the src/app folder.
+1. Clone the app:
+Use your Projects folder (create a new one with mkdir if necessary.  On Linux, all names
+are case sensitive).  The following will create a folder under Projects called canvas-workstation.  The typescript code is installed in the src/app folder inside it.  Run:
 
-Make sure you have node.js installed version 5+
-Determine the version with node -v
+    `Run git clone https://github.com/JannieI/canvas-workstation.git`
+
+Change to that folder with 
+    `cd canvas-workstation`
+
+
+2. Ensure node is installed, and at the correct version:
+Make sure you have node.js installed version 5 or higher.  Determine the version with 
+    `node -v`
+
 If needed, install the new version (Ubutu):
-sudo apt-get update
-sudo apt-get install nodejs
+    `sudo apt-get update`
+    `sudo apt-get install nodejs`
 
-I found this article that my help with Windows:
-http://blog.teamtreehouse.com/install-node-js-npm-windows
+    I found this article that may help with Windows:
+    http://blog.teamtreehouse.com/install-node-js-npm-windows
 
-Make sure you have NPM installed version 3+
-Determine the version with npm -v
+
+3. Ensure npm is installed, and at the correct version:
+Make sure you have NPM installed version 3 or higher.  Determine the version with 
+    `npm -v`
+
 If needed, install the new version (Ubutu):
-sudo apt-get install npm
+    `sudo apt-get install npm`
 
-WINDOWS ONLY run npm install -g webpack webpack-dev-server typescript to install global dependencies
 
-Install dependencies: when you clone the folder above, it contains a file called package.json.  This tells npm what dependant software and their versions are required.
-run npm install 
+4. Windows extra:
+On WINDOWS ONLY install global dependencies:
+    `npm install -g webpack webpack-dev-server typescript`
 
-Start up the dev server (I believe it uses Express), but first make sure you are in the canvas-workstation folder:
-ng serve (I have also used  run npm start  )
 
-open browser to http://localhost:4200 (if npm is used to start, this may be port 3000)
+5. Install dependencies: 
+When you clone the folder above, it contains a file called package.json.  This tells npm what dependant software and their versions are required.  Run 
+    `npm install` 
+
+
+
+6. Install Vega-Lite:
+    Vega-Lite is a concise declaritive graphics language.
+    `npm install vega-lite`
+
+7. Install datalib:
+    Datalib works with Vega to product data transformations like summary statistics.
+    `npm install datalib`
+
+6. Start up the dev server (I believe it uses Express), but first make sure you are in the canvas-workstation folder:
+    `ng serve` (I have also used  run npm start  )
+
+
+7. View the app in the browser:
+    Open browser to http://localhost:4200 (if npm is used to start, this may be port 3000)
 
 
 
