@@ -67,6 +67,18 @@ This document describes items for later versions of Canvas.
    links, etc.
 12.Add subscriptions, events and distribution: send {Clarity Message / Email / Telegram}
    when {Dashboard} is {changed/deleted}
+13.Save keeps all checkpoints and undo actions, forever.  Thus, can see how things looked
+   at any point in the past.  It must be clearly marked for the user.  Must also be able to
+   search the list, and see a list of undo actions.
+14.The SPEC contains all Widgets - this has a serious design implication that Widgets are
+   not standalone items, and connect be shared.  The reasons are: it will be difficult
+   to manage this, particularly over datasources and changes that users can do, the 
+   Dashboard is a selfcontained unit, access rights have to be extended to Widgets, and
+   there are no surprises (when someone changes a Widget that I reference in my Dashboard) 
+   = master of my own destiny.
+15.Import: check security, particularly for the Datasource.  Also, is the access rights
+   stored with the text file (security risk)?  Also, can / should it over-write an
+   existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
 
 
 **Dashboard Tabs**
@@ -96,6 +108,8 @@ This document describes items for later versions of Canvas.
 5. Fix bug and Duplicat Widget correctly
 6. In Slideshow mode: show link buttons and this now jumps (Edit mode = show linking form)
 7. Flag visible if it has a Note, Data Quality issues
+8. Consider Widget Templates - could be a way to make graphs easier, or standardise the
+   look and feel in the company ...
 
 
 **Shapes**
@@ -134,6 +148,13 @@ This document describes items for later versions of Canvas.
 1. Design and test layout of Canvas on a mobile device
 2. Sparklines
 3. Consider a Ribbon like Excel, which is customisable ..
+4. Add UPGRADE utility: this will migrate the app-database, config files, settings,
+   Dashboards and Widgets and Shapes from version x to version y.  We need to use 
+   this internally as well: that way clients are always okay.  
+5. Add migrate facility: to take standalone to server, and vice versa.  How do we resolve
+   1 user vs many, access rights, etc.  Does it only make a copy, and leave the original
+   one so that one can go back and check, methinks yes.
+6. Utility to check DIFF between local and standalone versions.
 
 
 ## Later
