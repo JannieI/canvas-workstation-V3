@@ -188,6 +188,7 @@ export class ExploreComponent {
     message: string;
     open: Boolean = false;
     presentation: boolean;
+    showMainMenu: boolean;
     presentationMsg: boolean;
     secondTab: Boolean = false;
     sideNavWidth: string = '350';
@@ -231,6 +232,9 @@ export class ExploreComponent {
         )
         this.globalVariableService.presentation.subscribe(
             pres => this.presentation = pres
+        );
+        this.globalVariableService.showMainMenu.subscribe(
+            sm => this.showMainMenu = sm
         );
         this.dashboards = this.globalVariableService.dashboards;
         this.globalVariableService.editMode.subscribe(

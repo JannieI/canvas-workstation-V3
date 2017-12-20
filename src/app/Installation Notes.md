@@ -28,7 +28,8 @@ If needed, install the new version (Ubutu):
 Make sure you have NPM installed version 3 or higher.  Determine the version with 
     `npm -v`
 
-If needed, install the new version (Ubutu):
+If needed, install the new version (sudo provides Admin user rights on Ubutu, and installs
+the package globally.  If left out, it installs in the node_modules sub-folder):
     `sudo apt-get install npm`
 
 
@@ -38,9 +39,9 @@ On WINDOWS ONLY install global dependencies:
 
 
 5. Install dependencies: 
-When you clone the folder above, it contains a file called package.json.  This tells npm what dependant software and their versions are required.  Run 
+When you clone the folder above, it contains a file called package.json.  This specifies
+the dependant software and their versions to npm.  Run 
     `npm install` 
-
 
 
 6. Install Vega-Lite:
@@ -51,11 +52,12 @@ When you clone the folder above, it contains a file called package.json.  This t
     Datalib works with Vega to product data transformations like summary statistics.
     `npm install datalib`
 
-6. Start up the dev server (I believe it uses Express), but first make sure you are in the canvas-workstation folder:
-    `ng serve` (I have also used  run npm start  )
+
+8. Start up the dev server (I believe it uses Express), but first make sure you are in the canvas-workstation folder:
+    `ng serve` (I have also used  `run npm start`)
 
 
-7. View the app in the browser:
+9. View the app in the browser:
     Open browser to http://localhost:4200 (if npm is used to start, this may be port 3000)
 
 
