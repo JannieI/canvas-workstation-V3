@@ -50,8 +50,9 @@ This document describes items for later versions of Canvas.
 
 
 **Dashboard**
-1. Design layers: background colour, background image, Grid, [widgets + shapes] - say 10,
-   and top layers are transparent so that one can see the Grid
+1. Design layers: background colour, background image, Grid, Template, 
+   [widgets + shapes] - say 10, and top layers are transparent so that one can see the 
+   Grid. 
 2. Easy way to create a Widget from a dataset - even on Add Dataset.  - like one click option
 3. Easy to drill in and out of dates - year - month - day, etc
 4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
@@ -61,6 +62,29 @@ This document describes items for later versions of Canvas.
 7. Click Tab to rename
 8. Make Tabs more visible on status bar
 9. Test printing - and see if pagelayout can be changed
+10.View all Comments and notes at once, with filter on messageText and Sender/Receiver
+11.Consider Explorer / Tree view of Dashboard - showing makeup of Widgets, Shapes, Datasets,
+   links, etc.
+12.Add subscriptions, events and distribution: send {Clarity Message / Email / Telegram}
+   when {Dashboard} is {changed/deleted}
+
+
+**Dashboard Tabs**
+1. Make more clear and visible
+2. Have colours per tab
+3. Tab name has max length of x
+4. Add Tab Description - maybe make this a tooltip as well.
+
+
+**Templates**
+1. Security is same since this is a normal Dashboard, not flagged as a template during
+   creation.
+2. Loading a template - make sure to respect security / rights
+3. Add Datasources to Dashboard, but flag them as invisible.  Thus, Dashboard can use them
+   in Template only, and user cannot use them.  If the user needs that Datasource, he can 
+   add it, in which case it will be duplicated, one invisible.
+4. If this gets too complicated, only use Shapes on Templates.
+5. Ensure Templates are on different layers / z-index
 
 
 **Widget**
@@ -71,6 +95,7 @@ This document describes items for later versions of Canvas.
 4. Drag and Sizing handles on select
 5. Fix bug and Duplicat Widget correctly
 6. In Slideshow mode: show link buttons and this now jumps (Edit mode = show linking form)
+7. Flag visible if it has a Note, Data Quality issues
 
 
 **Shapes**
@@ -78,7 +103,7 @@ This document describes items for later versions of Canvas.
    aggregation = {sum, min, max, average, first, last}, dataset is an existing one, and
    fieldname is a final column name.
 
-   
+
 **Presentation**
 1. See if can print, and if so: allow different layouts and formats, for example one 
    Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
@@ -96,6 +121,7 @@ This document describes items for later versions of Canvas.
    data.
 9. Make sure access rights are still respected at all levels: Dashboard, Widget, Datasource
 
+
 **Scheduler**
 1. Determines tech and where/how it runs
 2. How does standalone work - does it have a schedule?
@@ -103,13 +129,17 @@ This document describes items for later versions of Canvas.
 4. How is dataset stored - per Dashboard as more than one can be linked ..
 5. 
 
+
 ## Near future
 1. Design and test layout of Canvas on a mobile device
 2. Sparklines
+3. Consider a Ribbon like Excel, which is customisable ..
+
 
 ## Later
 1. Add Filter AFTER Tranformation and pivot ...  
 2. Expand filter to: In, Or, nested, etc ... If considered Really, Really necessary ...
+
 
 ## Maybe considered, not sure
 1. ETL process - there are products that does this already

@@ -1215,8 +1215,8 @@ export class GlobalVariableService {
     widgetNotes: widgetNote[] = widgetNotes;
     shapeButtonsSelected: buttonBarSelected[] = shapeButtonsSelected;
     statusBarRunning = new BehaviorSubject<string>('No Query running');
-    statusBarCancelRefresh = new BehaviorSubject<string>('');
-    statusBarMessages = new BehaviorSubject<string>('');
+    statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
+    statusBarMessages = new BehaviorSubject<string>('1 Message');
     widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
 
