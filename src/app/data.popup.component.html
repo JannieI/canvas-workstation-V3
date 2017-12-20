@@ -126,7 +126,9 @@
                                 </clr-dg-row>
                             </clr-datagrid>
                         </div>
-                        <div class="gridIdentifyDataIDfile">
+
+
+                        <div class="gridIdentifyDataIDfile" *ngIf="dataGetFromSwitch==='File'">
                             <span>Please enter file name and location:</span>
                             <input type="text" id="formFields_7"
                                 placeholder="Folder/FileName"
@@ -141,7 +143,15 @@
                                 </button>
                             <br>
                             Excel Worksheet:
-                            {{ dataGetFromSwitch }}
+
+                            <!-- <div [ngSwitch]="dataGetFromSwitch"> 
+                                <div *ngSwitchCase="'File'">
+                                    File stuffies
+                                </div> 
+                                <div *ngSwitchCase="'Server'">
+                                    Servers rule
+                                </div> 
+                            </div> -->
                             <span class="select">
                                 <select id="selects_3" class="selectBox">
                                     <option>New York</option>
@@ -166,6 +176,11 @@
                                 Select
                             </button>
                         </div>
+
+                        <div class="gridIdentifyDataIDfile" *ngIf="dataGetFromSwitch==='Server'">
+                                Server stuffies:
+                        </div>
+    
                         <div class="gridIdentifyDataPreview">
 
                                 <!-- [style.width.px]="sideNavWidth"
@@ -192,6 +207,7 @@
                                 </clr-datagrid>
                             </div>
                         </div>
+                            
                     </div>
 
                     <div class="gridFilter" *ngIf="showFilter">
