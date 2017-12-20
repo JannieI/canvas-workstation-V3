@@ -48,6 +48,7 @@ This document describes items for later versions of Canvas.
 2. Calculated fields can contain other fields, ie <TradeDate> - 1
 3. Calculated fields can contain IF-THEN-ELSE statements
 
+
 **Dashboard**
 1. Design layers: background colour, background image, Grid, [widgets + shapes] - say 10,
    and top layers are transparent so that one can see the Grid
@@ -72,6 +73,12 @@ This document describes items for later versions of Canvas.
 6. In Slideshow mode: show link buttons and this now jumps (Edit mode = show linking form)
 
 
+**Shapes**
+1. Add ability to use data in a textbox: aggregation : dataset : fieldname, where
+   aggregation = {sum, min, max, average, first, last}, dataset is an existing one, and
+   fieldname is a final column name.
+
+   
 **Presentation**
 1. See if can print, and if so: allow different layouts and formats, for example one 
    Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
