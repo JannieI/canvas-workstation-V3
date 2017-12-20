@@ -1,4 +1,28 @@
+.presentationButton {
+    background-color: rgb(212, 209, 209);
+    color: white;
+    left: 5px;
+    margin: 5px;
+    padding-left: 5px;
+    padding-right: 0;
+    position: absolute;
+    top: 5px;
+    z-index: 20;
+}
+
+
+.helpMessagePresentation {
+    background-color: rgb(204, 204, 245);
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: rgb(204, 204, 245);
+    left: 5px;
+    margin: 5px 15px 5px 55px;
+    padding: 5px;
+}
+
 .helpMessage {
+    background-color: rgb(204, 204, 245);
     border: 1px solid gray;
     border-radius: 5px;
     background-color: rgb(204, 204, 245);
@@ -106,16 +130,6 @@
     font-size: .6rem !important;
     margin: 5px 0 0 10px !important;
     width: 4rem !important;
-}
-
-.presentation {
-    background-color: gray;
-    border-bottom: 1px solid black;
-    color: white;
-    left: 5px;
-    position: absolute;
-    top: 5px;
-    z-index: 20;
 }
 
 .bgGrid {

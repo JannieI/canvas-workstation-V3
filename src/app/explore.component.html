@@ -1,4 +1,4 @@
-<div class="presentation dropdown" *ngIf="presentation">
+<div class="presentationButton dropdown" *ngIf="presentation">
     <clr-dropdown>
         <button type="button" clrDropdownTrigger>
             <clr-icon shape="bars"></clr-icon>
@@ -74,18 +74,24 @@
     </clr-dropdown>
 </div>
 
-<div *ngIf="presentationMsg  &&  presentation">
+<div class="helpMessagePresentation" *ngIf="presentationMsg  &&  presentation">
 
-    <b>HELP</b> message: Widgets and Shapes can be linked to existing Dashboards during 
-    editing.  This serves as a hyperlink.  During a presentation, clicking the Link button
-    will show the linked Dashboard.  Linking a Dashboard is optional, but only one
-    Dashboard can be linked.  More than one Widget /  Shape per Dashboard can be linked.
-    Optionally, one or more steps (similar to bookmarks) can be created for a Widget.
-    Clicking the Step button will show the different steps for the Widget (while the 
-    rest of the Dashboard remains unchanged.  Steps are useful for storytelling while
-    preserving space as totally different graphs can be shown in the same Widget area.
-    Last, the links and steps can be recorded and stored per Dashboard.  The arrows 
-    will then jump to the next link / step in the sequence.
+    <b>HELP</b> message: the presentation mode is the same as View-only Mode since no 
+    changes are allowed.  It however provides the following benefits:
+    <div>1. More screen area as the menus and status bar are hidden</div>
+    <div>2. Improved storytelling by linking to other Dashboards.  Usindiv the <clr-icon shape="bars"></clr-icon> 
+    menu in the top left corner, one can jump to other Dashboards that were linked
+    during the creation of the Dashboard.  The link button is also available by hovering
+    over the top of the Widget or Shape that is linked.  Multiple Widgets can be linked,
+    but each one can only link to one Dashboard.  Linking is optional.</div>
+    <div>3. Widget steps are different layouts/graphs of a Widget in the same container, 
+    similar to bookmarks.
+    This is ideal to save space and show the detail behind a graph, and is created during the creation of the Dashboard.
+    The buttons to travers the steps become visible when hovering over the top of the 
+    Widget.  Not all Widgets will have steps since it are options.</div>
+    <div>4. The navigation actions can be recorded and played back.  This is useful for 
+    predefined presentations.
+    </div>
     <br>
     <b>Got it</b> <input type="checkbox" (click)="clickGotItPresentation()" [checked]="!presentationMsg">
 </div>
