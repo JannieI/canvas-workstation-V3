@@ -1190,6 +1190,7 @@ const dataSample: datasource[] =
 @Injectable()
 export class GlobalVariableService {
     dashboardTags: dashboardTag[] = dashboardTags;
+    dataGetFromSwitch = new BehaviorSubject<string>('File');
     checkpoints: checkpoint[] = checkpoints;
     dashboards: dashboard[] = dashboards;
     currentTransformations: currentTransformation[] = currentTransformations;

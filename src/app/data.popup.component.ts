@@ -138,6 +138,7 @@ export class DataPopupComponent implements OnInit {
     filterPivotFields: string = '';
     changeVar: number = 2;
     isEditMode: boolean = false;
+    dataGetFromSwitch: string;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -162,6 +163,10 @@ export class DataPopupComponent implements OnInit {
         this.datasourceFilters = this.globalVariableService.datasourceFilters;
         this.fields = this.globalVariableService.fields;
         this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
+        this.globalVariableService.dataGetFromSwitch.subscribe(
+            ds => this.dataGetFromSwitch  = ds
+        )
+
         console.log('this.isFirstTimeData', this.isFirstTimeData)
     }
 

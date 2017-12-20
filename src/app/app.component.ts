@@ -65,7 +65,6 @@ export class AppComponent implements OnInit {
     showModalDashboardTemplate: boolean = false;
     showModalDashboardSchedule: boolean = false;
     showModalDashboardDelete: boolean = false;
-    showModalDataPopup: boolean = false;
     showModalWidgetSteps: boolean = false;
     showModalWidgetNotes: boolean = false;
     showModalWidgetLinks: boolean = false;
@@ -114,10 +113,6 @@ export class AppComponent implements OnInit {
         this.showModalLanding = false;
         this.document.body.style.backgroundImage ='../images/BarChart.png';
         
-    }
-
-    handleCloseDataPopup() {
-        this.showModalDataPopup = false;
     }
 
     handleCloseWidgetEditor() {
@@ -341,12 +336,14 @@ export class AppComponent implements OnInit {
 
     clickMenuDataFromFile() {
         console.log('menuDataFromFile')
-        // this.showModalDataPopup = true;
+        this.globalVariableService.dataGetFromSwitch.next('File');
         this.router.navigate(['/data']);
     }
 
     clickMenuDataFromServer() {
         console.log('clickMenuDataFromServer')
+        this.globalVariableService.dataGetFromSwitch.next('Server');
+        this.router.navigate(['/data']);
     }
 
     clickMenuDataCombinations(){
