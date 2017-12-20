@@ -1,69 +1,91 @@
-<div class="presentation" *ngIf="presentation">
-    <button
-        type="button"
-        class="btn btn-secondary btn-sm"
-        >
-        <clr-icon shape="step-forward down" size="20"></clr-icon>
+<div class="presentation dropdown" *ngIf="presentation">
+    <clr-dropdown>
+        <button type="button" clrDropdownTrigger>
+            <clr-icon shape="bars"></clr-icon>
+        </button>
+        
+        <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+            <button
+                type="button"
+                class="btn btn-link btn-sm"
+                clrDropdownItem
+                >
+                First Dashboard
+                <clr-icon shape="step-forward down" size="20"></clr-icon>
+            </button>
+            <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                clrDropdownItem
+                >
+                Next Dashboard
+                <clr-icon shape="fast-forward" size="20"></clr-icon>
+            </button>
+            <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                clrDropdownItem
+                >
+                Previous Dashboard
+                <clr-icon shape="rewind" size="20"></clr-icon>
+            </button>
+            <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                clrDropdownItem
+                >
+                Last Dashboard
+                <clr-icon shape="step-forward" size="20"></clr-icon>
+            </button>
+            <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                clrDropdownItem
+                >
+                Record
+                <clr-icon shape="camera" size="20"></clr-icon>
+            </button>
+            <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                clrDropdownItem
+                >
+                Stop Record
+                <clr-icon shape="stop" size="20"></clr-icon>
+            </button>
+            <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                clrDropdownItem
+                >
+                Play
+                <clr-icon shape="video-camera" size="20"></clr-icon>
+            </button>
+            <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                clrDropdownItem
+                >
+                <clr-icon shape="times" size="20"></clr-icon>
+            </button>
+        </clr-dropdown-menu>
+    </clr-dropdown>
+</div>
 
-    </button>
-    <button
-        type="button"
-        class="btn btn-secondary btn-sm"
-        >
-        <clr-icon shape="fast-forward" size="20"></clr-icon>
-    </button>
-    <button
-        type="button"
-        class="btn btn-secondary btn-sm"
-        >
-        <clr-icon shape="rewind" size="20"></clr-icon>
-    </button>
-    <button
-        type="button"
-        class="btn btn-secondary btn-sm"
-        >
-        <clr-icon shape="step-forward" size="20"></clr-icon>
-    </button>
-    <button
-        type="button"
-        class="btn btn-secondary btn-sm"
-        >
-        <clr-icon shape="camera" size="20"></clr-icon>
-    </button>
-    <button
-        type="button"
-        class="btn btn-secondary btn-sm"
-        >
-        <clr-icon shape="stop" size="20"></clr-icon>
-    </button>
-    <button
-        type="button"
-        class="btn btn-secondary btn-sm"
-        >
-        <clr-icon shape="video-camera" size="20"></clr-icon>
-    </button>
-    <button
-        type="button"
-        class="btn btn-secondary btn-sm"
-        >
-        <clr-icon shape="times" size="20"></clr-icon>
-    </button>
+<div *ngIf="presentationMsg  &&  presentation">
 
-    <div *ngIf="presentationMsg">
-
-        <b>HELP</b> message: Widgets and Shapes can be linked to existing Dashboards during 
-        editing.  This serves as a hyperlink.  During a presentation, clicking the Link button
-        will show the linked Dashboard.  Linking a Dashboard is optional, but only one
-        Dashboard can be linked.  More than one Widget /  Shape per Dashboard can be linked.
-        Optionally, one or more steps (similar to bookmarks) can be created for a Widget.
-        Clicking the Step button will show the different steps for the Widget (while the 
-        rest of the Dashboard remains unchanged.  Steps are useful for storytelling while
-        preserving space as totally different graphs can be shown in the same Widget area.
-        Last, the links and steps can be recorded and stored per Dashboard.  The arrows 
-        will then jump to the next link / step in the sequence.
-        <br>
-        <b>Got it</b> <input type="checkbox" (click)="clickGotItPresentation()" [checked]="!presentationMsg">
-    </div>
+    <b>HELP</b> message: Widgets and Shapes can be linked to existing Dashboards during 
+    editing.  This serves as a hyperlink.  During a presentation, clicking the Link button
+    will show the linked Dashboard.  Linking a Dashboard is optional, but only one
+    Dashboard can be linked.  More than one Widget /  Shape per Dashboard can be linked.
+    Optionally, one or more steps (similar to bookmarks) can be created for a Widget.
+    Clicking the Step button will show the different steps for the Widget (while the 
+    rest of the Dashboard remains unchanged.  Steps are useful for storytelling while
+    preserving space as totally different graphs can be shown in the same Widget area.
+    Last, the links and steps can be recorded and stored per Dashboard.  The arrows 
+    will then jump to the next link / step in the sequence.
+    <br>
+    <b>Got it</b> <input type="checkbox" (click)="clickGotItPresentation()" [checked]="!presentationMsg">
 </div>
 
 <div class="helpMessage" *ngIf="isFirstTimeDashboard">
