@@ -8,15 +8,24 @@ This document describes items for later versions of Canvas.
 **Global / Overall issues / Settings**
 1. Include internasionalisation - different languages
 2. My date format - and show like this ....
-3. Use
+3. Use style.css for standard items, ie class="helpMessage"
 
-**UI ideas**
+**API**
+1. Have flexible field selection: ie ..."fields": [A, B, F]
+
+**UI / ideas**
 1. See where and how to use tooltips on buttons (ie HTML title="" or via Clarity)
 2. Try keyboard shortcuts via access-key.  If it works, make customisable
 3. GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.
 4. Review whether as beautiful as Simplus
 5. Test on different configs: screen resolution, 2 screens
 6. Test on different devices, ie Tablet and Phone
+7. Install at user as pilot, may Liaan ...
+8. Show version 
+
+**Status Bar**
+1. Show Canvas version
+2. Show standalone/server name
 
 **Data**
 1. Light data exploration: outliers
@@ -24,6 +33,8 @@ This document describes items for later versions of Canvas.
 3. Make sure terminology is consitent: Datasource -> Transform -> Dataset
 4. Do we store more than one version of a dataset - say one dated 'calced on .,/,,/,,' ?
    This could be useful for comparisons, or required in some cases.
+5. Add start-row-number (ala Fredd files)
+6. Can Transformations do Group By !?
 
 **Admin module**
 1. Users, groups, permissions
@@ -72,6 +83,8 @@ This document describes items for later versions of Canvas.
 2. Sparklines
 
 ## Later
+1. Add Filter AFTER Tranformation and pivot ...  
+2. Expand filter to: In, Or, nested, etc ... If considered Really, Really necessary ...
 
 ## Maybe considered, not sure
 1. ETL process - there are products that does this already
