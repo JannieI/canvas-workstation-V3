@@ -26,9 +26,9 @@ import { DashboardOpenComponent }     from './dashboard.open.component';
 import { DashboardSaveComponent }     from './dashboard.save.component';
 import { DashboardDiscardComponent }  from './dashboard.discard.component';
 import { DashboardRenameComponent }   from './dashboard.rename.component';
-import { DashboardSnapshotsComponent }   from './dashboard.snapshots.component';
+import { DashboardSnapshotsComponent }      from './dashboard.snapshots.component';
 import { DashboardDetailsComponent }  from './dashboard.details.component';
-import { DashboardDescriptionComponent }   from './dashboard.description.component';
+import { DashboardDescriptionComponent }    from './dashboard.description.component';
 import { DashboardTagsComponent }     from './dashboard.tags.component';
 import { DashboardSettingsComponent } from './dashboard.settings.component';
 import { DashboardThemeComponent }    from './dashboard.theme.component';
@@ -39,7 +39,7 @@ import { DashboardCommentsComponent } from './dashboard.comments.component';
 import { DashboardPrintComponent }    from './dashboard.print.component';
 
 import { WidgetEditorComponent }      from './widget.editor.component';
-import { WidgetStepsComponent }       from './widget.steps.component';
+import { WidgetCheckpointsComponent }       from './widget.checkpoints.component';
 import { WidgetLinksComponent }       from './widget.links.component';
 import { WidgetExpandComponent }      from './widget.expand.component';
 import { WidgetExportComponent }      from './widget.export.component';
@@ -102,7 +102,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DataSlicersComponent,
         DataRefreshComponent,
         WidgetEditorComponent,
-        WidgetStepsComponent,
+        WidgetCheckpointsComponent,
         WidgetLinksComponent,
         WidgetExpandComponent,
         WidgetExportComponent,

@@ -21,7 +21,7 @@ import { dashboard }                  from './models';
 import { dashboardTag }               from './models';
 import { buttonBarAvailable}          from './models'
 import { buttonBarSelected }          from './models';
-import { WidgetStepsComponent } from 'app/widget.steps.component';
+import { WidgetCheckpointsComponent } from 'app/widget.checkpoints.component';
 
 @Component({
     selector: 'widget-buttonbar',

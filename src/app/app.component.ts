@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
     showModalDashboardSchedule: boolean = false;
     showModalDashboardDelete: boolean = false;
     showMainMenu: boolean = true;
-    showModalWidgetSteps: boolean = false;
+    showModalWidgetCheckpoints: boolean = false;
     showModalWidgetNotes: boolean = false;
     showModalWidgetLinks: boolean = false;
     showModalWidgetRefresh: boolean = false;
@@ -213,8 +213,8 @@ export class AppComponent implements OnInit {
         this.showModalDataRefresh = false;
     }
 
-    handleCloseWidgetSteps() {
-        this.showModalWidgetSteps = false;
+    handleCloseWidgetCheckpoints() {
+        this.showModalWidgetCheckpoints = false;
     }
     
     handleCloseWidgetNotes() {
@@ -387,8 +387,8 @@ export class AppComponent implements OnInit {
         this.showModalWidgetEditor = true;
     }
 
-    clickMenuWidgetSteps() {
-        this.showModalWidgetSteps = true;
+    clickMenuWidgetCheckpoints() {
+        this.showModalWidgetCheckpoints = true;
     }
 
     clickMenuWidgetNotes() {

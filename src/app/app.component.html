@@ -288,8 +288,8 @@
                             Edit
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetSteps()">
-                            Steps
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetCheckpoints()">
+                            Checkpoints
                         </button>
                         <button type="button" clrDropdownItem (click)="clickMenuWidgetNotes()">
                             Notes
@@ -853,11 +853,11 @@ class="formPopupDashboard"
 </data-refresh>
 
 
-<!-- Modal: widget steps -->
+<!-- Modal: widget checkpoints -->
 <dashboard-print
     *ngIf="showModalDashboardPrint"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Dashboard Print Steps ...
+    (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Dashboard Print Checkpoints ...
 </dashboard-print>
 
 
@@ -869,12 +869,12 @@ class="formPopupDashboard"
 </widget-editor>
 
 
-<!-- Modal: widget steps -->
-<widget-steps
-    *ngIf="showModalWidgetSteps"
+<!-- Modal: widget checkpoints -->
+<widget-checkpoints
+    *ngIf="showModalWidgetCheckpoints"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formWidgetStepsClosed)="handleCloseWidgetSteps($event)">Load Widget Steps ...
-</widget-steps>
+    (formWidgetCheckpointsClosed)="handleCloseWidgetCheckpoints($event)">Load Widget Checkpoints ...
+</widget-checkpoints>
 
 
 <!-- Modal: widget links -->

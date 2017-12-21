@@ -853,14 +853,14 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
 
 @Component({
-    selector: 'widget-steps',
-    templateUrl: './widget.steps.component.html',
-    styleUrls: ['./widget.steps.component.css']
+    selector: 'widget-checkpoints',
+    templateUrl: './widget.checkpoints.component.html',
+    styleUrls: ['./widget.checkpoints.component.css']
   })
-  export class WidgetStepsComponent implements OnInit {
+  export class WidgetCheckpointsComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formWidgetStepsClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formWidgetCheckpointsClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
@@ -917,7 +917,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
   	clickClose(action: string) {
-	  	this.formWidgetStepsClosed.emit(action);
+	  	this.formWidgetCheckpointsClosed.emit(action);
         }
 
     createVegaLiteSpec(

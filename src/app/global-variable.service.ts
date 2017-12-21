@@ -32,7 +32,7 @@ const widgetNotes: widgetNote[] =
         id: 1,
         dashboardID: 2,
         widgetID: 4,
-        noteText: 'Steps show more detail',
+        noteText: 'Checkpoints show more detail',
         updatedBy: 'MarcoD',
         updatedOn: '2017/01/01'
     }
@@ -167,8 +167,8 @@ const widgetButtonsAvailable: buttonBarAvailable[] =
     },
     {
         id: 9,
-        buttonText: 'Save Step',
-        description: 'Save the current layout of the selected Widget as a step.',
+        buttonText: 'Save Checkpoint',
+        description: 'Save the current layout of the selected Widget as a Checkpoint.',
         sortOrder: 9,
         isDefault: false
     },
