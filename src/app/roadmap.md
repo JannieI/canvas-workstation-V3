@@ -22,6 +22,9 @@ This document describes items for later versions of Canvas.
 6. Test on different devices, ie Tablet and Phone
 7. Install at user as pilot, may Liaan ...
 8. Show version 
+9. Make status bar customisable - can choose what to show.  Plus, ... if too many (and 
+   what happens then?)
+10.Statusbar - make read-only text dimmer / lighter so that clickable ones stand out
 
 **Status Bar**
 1. Show Canvas version
