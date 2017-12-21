@@ -49,6 +49,7 @@ import { WidgetNotesComponent }       from './widget.notes.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataPopupComponent }         from './data.popup.component';
+import { DataCombinationComponent }   from './data.combination.component';
 import { DataSlicersComponent }       from './data.slicers.component';
 import { DataRefreshComponent }       from './data.refresh.component';
 
@@ -97,6 +98,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardCommentsComponent,
         DashboardPrintComponent,
         DataPopupComponent,
+        DataCombinationComponent,
         DataSlicersComponent,
         DataRefreshComponent,
         WidgetEditorComponent,

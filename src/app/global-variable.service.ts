@@ -1227,6 +1227,8 @@ export class GlobalVariableService {
     isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardDiscard = new BehaviorSubject<boolean>(true);
     isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
+    isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
+
 
     presentation = new BehaviorSubject<boolean>(false);
     presentationMsg: boolean = true;

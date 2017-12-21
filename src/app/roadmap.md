@@ -21,14 +21,16 @@ This document describes items for later versions of Canvas.
 5. Test on different configs: screen resolution, 2 screens
 6. Test on different devices, ie Tablet and Phone
 7. Install at user as pilot, may Liaan ...
-8. Show version 
-9. Make status bar customisable - can choose what to show.  Plus, ... if too many (and 
-   what happens then?)
-10.Statusbar - make read-only text dimmer / lighter so that clickable ones stand out
+
 
 **Status Bar**
 1. Show Canvas version
 2. Show standalone/server name
+3. Show version 
+4. Make status bar customisable - can choose what to show.  Plus, ... if too many (and 
+   what happens then?)
+5 .Statusbar - make read-only text dimmer / lighter so that clickable ones stand out
+
 
 **Data**
 1. Light data exploration: outliers
@@ -38,6 +40,7 @@ This document describes items for later versions of Canvas.
    This could be useful for comparisons, or required in some cases.
 5. Add start-row-number (ala Fredd files)
 6. Can Transformations do Group By !?
+
 
 **Admin module**
 1. Users, groups, permissions
@@ -82,6 +85,8 @@ This document describes items for later versions of Canvas.
 15.Import: check security, particularly for the Datasource.  Also, is the access rights
    stored with the text file (security risk)?  Also, can / should it over-write an
    existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
+16.In view-only mode, can open Widget Editor and explore.  But, cannot save back !  Can 
+   also use Slicers to filter data set, and can add new ones!!
 
 
 **Dashboard Tabs**
