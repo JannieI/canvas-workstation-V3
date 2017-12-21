@@ -10,7 +10,7 @@ import { datasource }                 from './models';
 import { CSScolor }                   from './models';
 import { transformation }             from './models';
 import { field }                      from './models';
-import { checkpoint }                 from './models';
+import { snapshot }                 from './models';
 import { fieldMetadata }              from './models';
 import { dashboardTag }               from './models';
 import { dashboardTheme }             from './models';
@@ -405,7 +405,7 @@ const dashboardTags: dashboardTag[] =
     }
 ];
 
-const checkpoints: checkpoint[] =
+const snapshots: snapshot[] =
 [
     {
         id: 1,
@@ -1191,7 +1191,7 @@ const dataSample: datasource[] =
 export class GlobalVariableService {
     dashboardTags: dashboardTag[] = dashboardTags;
     dataGetFromSwitch = new BehaviorSubject<string>('File');
-    checkpoints: checkpoint[] = checkpoints;
+    snapshots: snapshot[] = snapshots;
     dashboards: dashboard[] = dashboards;
     currentTransformations: currentTransformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;

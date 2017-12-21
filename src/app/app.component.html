@@ -63,8 +63,8 @@
                         <button type="button" clrDropdownItem (click)="clickDashboardShare()">
                             Share
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickDashboardCheckpoints()">
-                            Checkpoints
+                        <button type="button" clrDropdownItem (click)="clickDashboardSnapshots()">
+                            Snapshots
                         </button>
                         <clr-dropdown>
                             <button
@@ -665,13 +665,13 @@ class="formPopupDashboard"
 </dashboard-description>
 
 
-<!-- Modal: Checkpoints -->
-<dashboard-checkpoints
+<!-- Modal: Snapshots -->
+<dashboard-snapshots
     class="formPopupDashboard"
-    *ngIf="showModalDashboardCheckpoints"
+    *ngIf="showModalDashboardSnapshots"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardCheckpointsClosed)="handleCloseDashboardCheckpoints($event)">Load Checkpoints Dashboard ...
-</dashboard-checkpoints>
+    (formDashboardSnapshotsClosed)="handleCloseDashboardSnapshots($event)">Load Snapshots Dashboard ...
+</dashboard-snapshots>
 
 
 <!-- Modal: Dashboard Tags -->

@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
-    showModalDashboardCheckpoints: boolean = false;
+    showModalDashboardSnapshots: boolean = false;
     showModalDashboardDiscard: boolean = false;
     showModalDashboardLogin: boolean = false;
     showModalDashboardLogout: boolean = false;
@@ -141,8 +141,8 @@ export class AppComponent implements OnInit {
         this.showModalDashboardSave = false;
     }
 
-    handleCloseDashboardCheckpoints() {
-        this.showModalDashboardCheckpoints = false;
+    handleCloseDashboardSnapshots() {
+        this.showModalDashboardSnapshots = false;
     }
 
     handleCloseDashboardDiscard() {
@@ -295,8 +295,8 @@ export class AppComponent implements OnInit {
         this.showModalDashboardSave = true;
     }
     
-    clickDashboardCheckpoints() {
-        this.showModalDashboardCheckpoints = true;
+    clickDashboardSnapshots() {
+        this.showModalDashboardSnapshots = true;
     }
 
     clickDashboardRename() {

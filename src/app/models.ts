@@ -108,7 +108,7 @@ export class dashboardComment {
     createdOn: string;
 }
 
-export class checkpoint {
+export class snapshot {
     id: number;
     dashboardID: number;
     name: string;

@@ -18,21 +18,21 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
-import { checkpoint }                 from './models';
+import { snapshot }                 from './models';
 
 @Component({
-    selector: 'dashboard-checkpoints',
-    templateUrl: './dashboard.checkpoints.component.html',
-    styleUrls: ['./dashboard.checkpoints.component.css']
+    selector: 'dashboard-snapshots',
+    templateUrl: './dashboard.snapshots.component.html',
+    styleUrls: ['./dashboard.snapshots.component.css']
 })
-export class DashboardCheckpointsComponent implements OnInit {
+export class DashboardSnapshotsComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formDashboardCheckpointsClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardSnapshotsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
     dashboards: dashboard[];
-    checkpoints: checkpoint[];
+    snapshots: snapshot[];
    
 
 	constructor(
@@ -42,12 +42,12 @@ export class DashboardCheckpointsComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.checkpoints = this.globalVariableService.checkpoints;
+        this.snapshots = this.globalVariableService.snapshots;
     }
 
     clickClose(action: string) {
         console.log('clickClose')
 
-		this.formDashboardCheckpointsClosed.emit(action);
+		this.formDashboardSnapshotsClosed.emit(action);
     }
 }

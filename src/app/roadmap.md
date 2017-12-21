@@ -9,6 +9,14 @@ This document describes items for later versions of Canvas.
 1. Include internasionalisation - different languages
 2. My date format - and show like this ....
 3. Use style.css for standard items, ie class="helpMessage"
+4. Have Server-Settings for:
+   * User can/cannot store any server data locally (ie sensitive)
+   * User can/cannot store schema for any server data locally (ie very sensitive)
+   * User can/cannot log into local server (ie standalone version)
+
+
+**Offline work**
+1. Copy schema or copy data, depending on Server settings
 
 **API**
 1. Have flexible field selection: ie ..."fields": [A, B, F]
@@ -46,6 +54,12 @@ This document describes items for later versions of Canvas.
 8. Add Remove Dataset logic and UI.  When removing a Dataset, it validates that not used
    in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all
    resultsets stored for it must be removed as well.
+9. Decide if Slicers link to 1 or many Datasets - this depends on how we can do this 
+   technically.  If not too complex, we should as this is quite powerful to drive the 
+   whole Dashboard from a single Widget.
+10.Data Quality issues: add place to add detail values.  An overall statement can say all
+   data has an issue, but a specific one must identify the column(s) and row(s) affected,
+   thus given the IDs or key values.
    
 
 
@@ -80,7 +94,7 @@ This document describes items for later versions of Canvas.
    links, etc.
 12.Add subscriptions, events and distribution: send {Clarity Message / Email / Telegram}
    when {Dashboard} is {changed/deleted}
-13.Save keeps all checkpoints and undo actions, forever.  Thus, can see how things looked
+13.Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
    at any point in the past.  It must be clearly marked for the user.  Must also be able to
    search the list, and see a list of undo actions.
 14.The SPEC contains all Widgets - this has a serious design implication that Widgets are
@@ -94,6 +108,10 @@ This document describes items for later versions of Canvas.
    existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
 16.In view-only mode, can open Widget Editor and explore.  But, cannot save back !  Can 
    also use Slicers to filter data set, and can add new ones!!
+17.Locking/Contention: due to the complexity, we will start with single user editing - 
+   only one user at a time can edit a Dashboard, and this applies to the whole Dashboard.
+   It seems sufficient for small to medium companies, and also Dashboards wont be edited
+   as frequently as transactional records.
 
 
 **Dashboard Tabs**
@@ -175,6 +193,10 @@ This document describes items for later versions of Canvas.
 ## Later
 1. Add Filter AFTER Tranformation and pivot ...  
 2. Expand filter to: In, Or, nested, etc ... If considered Really, Really necessary ...
+3. Multi-user updates: to allow more than one user at a time to edit a Dashboard, we could
+   go to finer levels of granularity: one user per Tab, one user per Widget and then
+   merging.  We could also look at Open for Edit - see SQL exclusive and shared locks.
+   This will ONLY be done if there is a real need.
 
 
 ## Maybe considered, not sure

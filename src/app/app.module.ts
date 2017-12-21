@@ -26,7 +26,7 @@ import { DashboardOpenComponent }     from './dashboard.open.component';
 import { DashboardSaveComponent }     from './dashboard.save.component';
 import { DashboardDiscardComponent }  from './dashboard.discard.component';
 import { DashboardRenameComponent }   from './dashboard.rename.component';
-import { DashboardCheckpointsComponent }   from './dashboard.checkpoints.component';
+import { DashboardSnapshotsComponent }   from './dashboard.snapshots.component';
 import { DashboardDetailsComponent }  from './dashboard.details.component';
 import { DashboardDescriptionComponent }   from './dashboard.description.component';
 import { DashboardTagsComponent }     from './dashboard.tags.component';
@@ -86,7 +86,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DashboardSaveComponent,
         DashboardDiscardComponent,
         DashboardRenameComponent,
-        DashboardCheckpointsComponent,
+        DashboardSnapshotsComponent,
         DashboardDetailsComponent,
         DashboardDescriptionComponent,
         DashboardTagsComponent,
