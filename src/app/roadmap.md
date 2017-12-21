@@ -40,6 +40,13 @@ This document describes items for later versions of Canvas.
    This could be useful for comparisons, or required in some cases.
 5. Add start-row-number (ala Fredd files)
 6. Can Transformations do Group By !?
+7. Combinations - needs proper design.  Union can be any number, picked from a list of
+   existing Datasets.  Datasets added after the Union has been defined, has to be added
+   manually.  Datasets can also be removed from the Union.  Can also delete a Union.
+8. Add Remove Dataset logic and UI.  When removing a Dataset, it validates that not used
+   in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all
+   resultsets stored for it must be removed as well.
+   
 
 
 **Admin module**
