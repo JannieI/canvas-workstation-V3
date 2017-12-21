@@ -76,6 +76,7 @@ export class AppComponent implements OnInit {
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
     showModalDataSlicers: boolean = false;
+    showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalShapeEdit: boolean = false;
     showModalShapeDelete: boolean = false;
@@ -202,6 +203,10 @@ export class AppComponent implements OnInit {
 
     handleCloseDataSlicers() {
         this.showModalDataSlicers = false;
+    }
+    
+    handleCloseDataCombination() {
+        this.showModalDataCombination = false;
     }
     
     handleCloseDataRefresh() {
@@ -351,7 +356,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDataCombinations(){
-
+        this.showModalDataCombination = true;
     }
 
     clickMenuDataSlicerAdd() {

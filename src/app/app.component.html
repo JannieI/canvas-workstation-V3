@@ -838,6 +838,14 @@ class="formPopupDashboard"
 
 
 <!-- Modal: data refresh all -->
+<data-combination
+    *ngIf="showModalDataCombination"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDataCombinationClosed)="handleCloseDataCombination($event)">Load Data Combination ...
+</data-combination>
+
+
+<!-- Modal: data refresh all -->
 <data-refresh
     *ngIf="showModalDataRefresh"
     [currentWidgetSpec]="currentWidgetSpec"
