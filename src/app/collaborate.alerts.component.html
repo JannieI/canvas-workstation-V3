@@ -22,18 +22,18 @@
                 </div>
 
                 <clr-datagrid>
-                    <clr-dg-column>Roll Back</clr-dg-column>
                     <clr-dg-column>ID</clr-dg-column>
-                    <clr-dg-column>Name</clr-dg-column>
-                    <clr-dg-column>Comment</clr-dg-column>
+                    <clr-dg-column>Sent On</clr-dg-column>
+                    <clr-dg-column>Recipient</clr-dg-column>
+                    <clr-dg-column>Read?</clr-dg-column>
+                    <clr-dg-column>Text</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let row of snapshots">
-                        <clr-dg-cell>
-                            <clr-icon shape="refresh" class="selectIcon1" size="12"></clr-icon>
-                        </clr-dg-cell>
+                    <clr-dg-row *ngFor="let row of canvasAlerts">
                         <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.comment}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.sentOn}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.recipient}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.read}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.alertText}}</clr-dg-cell>
                     </clr-dg-row>
 
                 </clr-datagrid>
