@@ -60,6 +60,8 @@ This document describes items for later versions of Canvas.
 10.Data Quality issues: add place to add detail values.  An overall statement can say all
    data has an issue, but a specific one must identify the column(s) and row(s) affected,
    thus given the IDs or key values.
+11.Determine which transformations live on server and which on client, and whether some/all
+   lives on both.
    
 
 
@@ -132,6 +134,10 @@ This document describes items for later versions of Canvas.
 5. Ensure Templates are on different layers / z-index
 
 
+**Alerts/Activities/Messages**
+1. Must be easy to access (1 button) and use
+
+
 **Widget**
 1. More than one version of grammar - create space in spec and code (IF) - may not be needed
    on UI for now
@@ -143,6 +149,8 @@ This document describes items for later versions of Canvas.
 7. Flag visible if it has a Note, Data Quality issues
 8. Consider Widget Templates - could be a way to make graphs easier, or standardise the
    look and feel in the company ...
+9. Quick Widget: when creating Dataset, click a button to get a best guess Wizard - Make this
+   really easy.
 
 
 **Shapes**
@@ -188,6 +196,14 @@ This document describes items for later versions of Canvas.
    1 user vs many, access rights, etc.  Does it only make a copy, and leave the original
    one so that one can go back and check, methinks yes.
 6. Utility to check DIFF between local and standalone versions.
+7. Tree view of Dashboard, with all its Datasets and Widgets per Dataset
+8. Startup utility: can read Excel / Powerpoint (data and graphs) and create a best estimation
+   in Canvas.  It must be past of a data cleanup service, which can also estimate the 
+   quality (ie missing values, etc).  This is linked to the centra metadata - for a corporate
+   cleanup / clarifying the data.
+9. Add data management module, where management ~ EDAL can take place.  Can view who uses what,
+   who changed what, data quality issues, store and manage SQL / Queries, metadata, data take-on
+   for new project including converting Excel files, any data-roles that might be needed
 
 
 ## Later
