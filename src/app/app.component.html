@@ -558,8 +558,6 @@
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
                 <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-
-                <!-- <div class="dropdown-menu"> -->
                     <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlerts()">
                         Alerts
                     </button>
@@ -587,11 +585,11 @@
             </clr-dropdown>
 
             <clr-dropdown class="dropdown bottom-right">
-                <button class="nav-icon" clrDropdownToggle>
+                <button class="nav-icon" clrDropdownTrigger>
                 <clr-icon shape="user" class="is-solid has-alert"></clr-icon>
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
-                <div class="dropdown-menu">
+                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
                     <a clrDropdownItem (click)="clickMenuUserLogin()">Login</a>
                     <a clrDropdownItem (click)="clickMenuUserMyProfile()">My Profile</a>
                     <a clrDropdownItem (click)="clickMenuUserPreferences()">Preferences</a>
@@ -600,7 +598,7 @@
                     <a clrDropdownItem (click)="clickMenuUserSystemSettings()">System Settings</a>
                     <a clrDropdownItem (click)="clickMenuUserOffline()">Work Offline</a>
                     <a clrDropdownItem (click)="clickMenuUserLogout()">Log out</a>
-                </div>
+                </clr-dropdown-menu>
             </clr-dropdown>
 
         </div>

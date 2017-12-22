@@ -12,6 +12,10 @@ import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 
+// Renderer eksperiment
+import { Renderer2 }                   from '@angular/core';
+
+
 // Own Services
 import { GlobalVariableService }      from './global-variable.service';
 
@@ -29,6 +33,7 @@ import { field }                      from './models'
 export class AppComponent implements OnInit {
 
     @ViewChild('dragCircle', {read: ElementRef}) dragCircle: ElementRef;  //Vega graph
+    @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
     
     fields: field[];
     menuCreateDisabled: boolean;
@@ -99,6 +104,11 @@ export class AppComponent implements OnInit {
         @Inject(DOCUMENT) private document: Document,
         private renderer: Renderer,
         private router: Router,
+
+
+        // Renderer eksperiment
+        private el: ElementRef,
+        private renderer2: Renderer2,
         
     ) {
     }
@@ -488,6 +498,136 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuShapeLinks() {
+        console.log('clickMenuShapeLinks')
+
+
+        // Renderer eksperiment 1
+        // ----------------------
+        // const div = this.renderer2.createElement('div');
+        // const text = this.renderer2.createText('Hello world!');
+      
+        // this.renderer2.appendChild(div, text);
+        // this.renderer2.appendChild(this.el.nativeElement, div);
+        // // this.renderer2.addClass(div, 'aCircle');
+        // this.renderer2.setStyle(
+        //     div,
+        //     'border-right',
+        //     '2px dashed olive'
+        // );
+        // this.renderer2.setStyle(
+        //     div,
+        //     'background-color',
+        //     'orange'
+        // );
+
+
+        // Render 222222222222222
+        // ----------------------
+
+        // <svg height="100" width="100" >
+        //     <circle cx="50" cy="50" r="40" stroke="red" stroke-width="1" fill="none" />
+        // </svg>
+        // const div = this.renderer2.createElement('div');
+        // const text = this.renderer2.createText('Hello world!');
+        // const svg = this.renderer2.createElement('svg');
+        // const circle = this.renderer2.createElement('circle');
+        
+        // // this.renderer2.appendChild(div, text);
+        // this.renderer2.appendChild(this.el.nativeElement, div);
+        // this.renderer2.appendChild(div, svg);
+        // this.renderer2.appendChild(svg, circle);
+        
+        // // this.renderer2.addClass(div, 'aCircle');
+        // this.renderer2.setStyle(div, 'position', 'absoluite' );
+        // this.renderer2.setStyle(div, 'left', '35px' );
+        // this.renderer2.setStyle(div, 'top', '5rem' );
+        // this.renderer2.setStyle(
+        //     div,
+        //     'border-right',
+        //     '2px dashed olive'
+        // );
+        // this.renderer2.setStyle(
+        //     div,
+        //     'background-color',
+        //     'orange'
+        // );
+        
+        // this.renderer2.setAttribute(svg, 'height', '100');
+        // this.renderer2.setAttribute(svg, 'width', '100');
+
+        // this.renderer2.setAttribute(circle, 'cx', '50' );
+        // this.renderer2.setAttribute(circle, 'cy', '50' );
+        // this.renderer2.setAttribute(circle, 'r', '40' );
+        // this.renderer2.setAttribute(circle, 'stroke', 'red' );
+        // this.renderer2.setAttribute(circle, 'stroke-width', '1' );
+        // this.renderer2.setAttribute(circle, 'fill', 'none' );
+
+        // this.renderer2.setStyle(circle, 'padding', '2px' );
+        // this.renderer2.setStyle(circle, 'background-color', 'none' );
+        // this.renderer2.setStyle(circle, 'height', '90px' );
+        // this.renderer2.setStyle(circle, 'width', '90px' );
+        // this.renderer2.setStyle(circle, 'border', '1px solid black' );
+
+        // this.renderer2.setProperty(circle, 'cx', '51' );
+        // this.renderer2.setProperty(circle, 'cy', '51' );
+        // this.renderer2.setProperty(circle, 'r', '41' );
+        // this.renderer2.setProperty(circle, 'stroke', 'red' );
+        // this.renderer2.setProperty(circle, 'stroke-width', '1' );
+        // this.renderer2.setProperty(circle, 'fill', 'none' );
+
+
+
+        // Render 3
+        // --------
+
+        // <svg height="100" width="100" >
+        //     <circle cx="50" cy="50" r="40" stroke="red" stroke-width="1" fill="none" />
+        // </svg>
+        const div = this.renderer2.createElement('div');
+        const svg = this.renderer2.createElement('svg');
+        const circle = this.renderer2.createElement('circle');
+        const text = this.renderer2.createText('Hallo World !');
+        const rect = this.renderer2.createElement('rect')
+         
+        this.renderer2.appendChild(this.el.nativeElement, div);
+        this.renderer2.appendChild(div, svg);
+        // this.renderer2.appendChild(div, text);
+        // this.renderer2.appendChild(svg, circle);
+        this.renderer2.appendChild(svg, rect);
+        this.renderer2.appendChild(rect, text);
+        
+        this.renderer2.addClass(div, 'aCircle');
+        this.renderer2.addClass(svg, 'aCircleDet');
+        this.renderer2.addClass(circle, 'aCircleDet');
+        this.renderer2.addClass(rect, 'aCircleRect');
+        
+        this.renderer2.setAttribute(rect, 'width', "400") 
+        this.renderer2.setAttribute(rect, 'height', "50")
+        this.renderer2.setStyle(rect, "fill", "rgb(0,0,255)")
+        this.renderer2.setStyle(rect, "stroke-width", "10;stroke:rgb(0,0,0)")
+        // this.renderer2.setStyle(
+        //     div,
+        //     'border-right',
+        //     '2px dashed olive'
+        // );
+        // this.renderer2.setStyle(
+        //     div,
+        //     'background-color',
+        //     'orange'
+        // );
+
+        this.renderer2.setAttribute(circle, 'id', 'circle1' );
+
+        this.renderer2.setAttribute(circle, 'cx', '50' );
+        this.renderer2.setAttribute(circle, 'cy', '50' );
+        this.renderer2.setAttribute(circle, 'r', '40' );
+        this.renderer2.setAttribute(circle, 'stroke', 'red' );
+        this.renderer2.setAttribute(circle, 'stroke-width', '1' );
+        this.renderer2.setAttribute(circle, 'fill', 'none' );
+
+        this.renderer2.listen('document', rect,  (event) => console.log('yes') )
+        console.log('circle1', this.circle1)
+
 
     }
     

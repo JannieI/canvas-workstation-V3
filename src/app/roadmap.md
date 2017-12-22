@@ -11,12 +11,9 @@ This document describes items for later versions of Canvas.
 3. Use style.css for standard items, ie class="helpMessage"
 
 
-
-**Offline work**
-1. Copy schema or copy data, depending on Server settings
-
 **API**
 1. Have flexible field selection: ie ..."fields": [A, B, F]
+
 
 **UI / ideas**
 1. See where and how to use tooltips on buttons (ie HTML title="" or via Clarity)
@@ -121,8 +118,7 @@ This document describes items for later versions of Canvas.
 
 
 **Templates**
-1. Security is same since this is a normal Dashboard, not flagged as a template during
-   creation.
+1. 
 2. Loading a template - make sure to respect security / rights
 3. Add Datasources to Dashboard, but flag them as invisible.  Thus, Dashboard can use them
    in Template only, and user cannot use them.  If the user needs that Datasource, he can 

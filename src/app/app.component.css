@@ -65,13 +65,33 @@
     color: red;
 }
 
+
+.aCircleRect {
+    background-color: white !important;
+    border: 1px solid black;
+    display: block !important;
+    height: 100px !important;
+    padding: 0 !important;
+    margin: 5 !important;
+    width: 80px !important;
+}
+
+.aCircleDet {
+    background-color: pink !important;
+    display: block !important;
+    height: 100px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100px !important;
+}
+
 .aCircle {
     background-color: transparent;
     /* border: 1px solid black; */
     /* border-radius: 3px; */
     display: inline-block;
     height: 110px;
-    left: 0px;
+    left: 20px;
     opacity: .5;
     overflow: auto; 
     position: absolute;
