@@ -21,14 +21,14 @@ import { dashboard }                  from './models';
 import { canvasAlert }                from './models';
 
 @Component({
-    selector: 'alerts',
-    templateUrl: './alerts.component.html',
-    styleUrls: ['./alerts.component.css']
+    selector: 'collaborate-alerts',
+    templateUrl: './collaborate.alerts.component.html',
+    styleUrls: ['./collaborate.alerts.component.css']
 })
-export class AlertsComponent implements OnInit {
+export class CollaborateAlertsComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formAlertsClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formCollaborateAlertsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
     dashboards: dashboard[];
@@ -48,6 +48,6 @@ export class AlertsComponent implements OnInit {
     clickClose(action: string) {
         console.log('clickClose')
 
-		this.formAlertsClosed.emit(action);
+		this.formCollaborateAlertsClosed.emit(action);
     }
 }

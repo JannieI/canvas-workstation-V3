@@ -7,27 +7,19 @@
                     X
                 </button>
 
-                Dashboard Snapshots
+                Alerts
                 <div class="propertyLine">
-                    Snapshots are saved by the user, and are bookmarks to which one can 
-                    roll back.  Snapshots are optional.
-                </div>                            
-                <div class="propertyLine">
-                    Snapshot the current Dashboard:
-                    <input type="text" id="formFields_7" placeholder="Snapshot name">
-                    <input type="text" id="formFields_7" placeholder="Comment">
+                    Filter on:
+                    <input type="text" id="formFields_7" placeholder="Daterange">
+                    <input type="text" id="formFields_7" placeholder="Text">
                     <button 
                         type="button" 
                         class="btn btn-secondary" 
                         (click)="clickClose('Close')"
                         >
-                        Snapshot
+                        Filter
                     </button>
                 </div>
-
-                <div class="propertyLine">
-                    Snapshots saved for this Dashboard:
-                </div>                                
 
                 <clr-datagrid>
                     <clr-dg-column>Roll Back</clr-dg-column>

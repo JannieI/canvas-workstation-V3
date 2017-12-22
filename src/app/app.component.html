@@ -563,7 +563,7 @@
                     <a clrDropdownItem (click)="showCollaborate = !showCollaborate">
                         Messages
                     </a>
-                    <a clrDropdownItem>Alerts</a>
+                    <a clrDropdownItem (click)="clickMenuCollaborateAlert()">Alerts</a>
                     <button type="button" clrDropdownItem>
                         <clr-icon shape="check" class="btn btn-link btn-sm redButton"></clr-icon>
                         Tasks
@@ -894,7 +894,13 @@ class="formPopupDashboard"
 
 
 
-
+<!-- Modal: Alerts -->
+<collaborate-alerts
+    class="formPopupDashboard"
+    *ngIf="showModalCollaborateAlerts"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formCollaborateAlertsClosed)="handleCloseCollaborateAlerts($event)">Load Alerts ...
+</collaborate-alerts>
 
 
 <!-- Overlay: Collaborate -->

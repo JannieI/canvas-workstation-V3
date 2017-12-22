@@ -1292,6 +1292,8 @@ export class GlobalVariableService {
     statusBarMessages = new BehaviorSubject<string>('1 Message');
     widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
+    canvasMessages: canvasMessage[] =  canvasMessages;
+    canvasAlerts: canvasAlert[] = canvasAlerts;
 
     showModalLanding: boolean = false;  // Shows Landing page
     showMainMenu = new BehaviorSubject<boolean>(true);

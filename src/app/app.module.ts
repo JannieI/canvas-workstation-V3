@@ -59,6 +59,7 @@ import { PresentComponent }           from './present.component';
 import { HelpComponent }              from './help.component';
 
 import { CollaborateComponent }       from './collaborate.component';
+import { CollaborateAlertsComponent } from './collaborate.alerts.component';
 
 import { LoginComponent}              from './login.component';
 import { MyProfileComponent }         from './myprofile.component';
@@ -75,12 +76,12 @@ import { GlobalFunctionService }      from './global-function.service';
 @NgModule({
     declarations: [
         AppComponent,
-        CollaborateComponent,
         ExploreComponent,
         HomeComponent,
         HelpComponent,
         LandingComponent,
         PresentComponent,
+
         DashboardNewComponent,
         DashboardOpenComponent,
         DashboardSaveComponent,
@@ -101,6 +102,7 @@ import { GlobalFunctionService }      from './global-function.service';
         DataCombinationComponent,
         DataSlicersComponent,
         DataRefreshComponent,
+
         WidgetEditorComponent,
         WidgetCheckpointsComponent,
         WidgetLinksComponent,
@@ -108,8 +110,13 @@ import { GlobalFunctionService }      from './global-function.service';
         WidgetExportComponent,
         WidgetDeleteComponent,
         WidgetNotesComponent,
+
         ShapeEditComponent,
         ShapeDeleteComponent,
+
+        CollaborateComponent,
+        CollaborateAlertsComponent,
+
         MyProfileComponent,
         PreferencesComponent,
         UserWidgetButtonBarComponent,
