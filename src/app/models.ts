@@ -1,4 +1,13 @@
 // ALL models (schema) are kept here
+export class alert {
+    id: number;
+    sentOn: string;
+    recipient: string;
+    read: boolean;
+    alertText: string;
+    alertData?: any;    //type of data, table name, field names, field values
+}
+
 export class widgetNote {
     id: number;
     dashboardID: number;

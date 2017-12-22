@@ -10,7 +10,7 @@ import { datasource }                 from './models';
 import { CSScolor }                   from './models';
 import { transformation }             from './models';
 import { field }                      from './models';
-import { snapshot }                 from './models';
+import { snapshot }                   from './models';
 import { fieldMetadata }              from './models';
 import { dashboardTag }               from './models';
 import { dashboardTheme }             from './models';
@@ -22,10 +22,43 @@ import { datasourceFilter}            from './models'
 import { buttonBarAvailable}          from './models'
 import { buttonBarSelected }          from './models';
 import { widgetNote }                 from './models';
+import { alert }                      from './models';
 
 // import { CanvasUser }                 from './model.user';
 
 // Constants - to be replaced with DB access
+const alerts: alert[] = 
+[ 
+    {
+        id: 1,
+        sentOn: '2017/01/01',
+        recipient: 'BonitaS',
+        read: false,
+        alertText: 'Schedule Weekly reports failed',
+    },
+    {
+        id: 2,
+        sentOn: '2017/01/01',
+        recipient: 'AlisonW',
+        read: true,
+        alertText: 'Please log out for maintenance',
+    },
+    {
+        id: 3,
+        sentOn: '2017/01/01',
+        recipient: 'GavinO',
+        read: false,
+        alertText: 'Longrunning query finished',
+    },
+    {
+        id: 4,
+        sentOn: '2017/01/01',
+        recipient: 'WendyA',
+        read: true,
+        alertText: 'Query xyz failed',
+    }
+];
+
 const widgetNotes: widgetNote[] = 
 [
     {
