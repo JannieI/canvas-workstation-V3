@@ -83,6 +83,7 @@ export class AppComponent implements OnInit {
     showFav: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalCollaborateAlerts: boolean = false;
+    showModalCollaborateMessages: boolean = false;
     showModalUserMyProfile: boolean = false;
     showModalUserPreferences: boolean = false;
     showModalUserWidgetButtonBar: boolean = false;
@@ -250,6 +251,10 @@ export class AppComponent implements OnInit {
         this.showModalCollaborateAlerts = false;
     }
 
+    handleCloseCollaborateMessages() {
+        this.showModalCollaborateMessages = false;
+    }
+    
     handleCloseUserLogin(action) {
         this.showModalDashboardLogin = false;
     }
@@ -546,8 +551,12 @@ export class AppComponent implements OnInit {
     // clickMenuPreferences Messages etc
 
 
-    clickMenuCollaborateAlert() {
+    clickMenuCollaborateAlerts() {
         this.showModalCollaborateAlerts = true;
+    }
+
+    clickMenuCollaborateMessages() {
+        this.showModalCollaborateMessages = true;
     }
 
     clickMenuUserLogin() {

@@ -32,7 +32,7 @@ export class CollaborateMessagesComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: dashboard[];
-    canvasMessages: canvasAlert[];
+    canvasMessages: canvasMessage[];
    
 
 	constructor(

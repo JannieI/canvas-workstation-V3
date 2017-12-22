@@ -560,10 +560,10 @@
                 <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
 
                 <!-- <div class="dropdown-menu"> -->
-                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
+                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlerts()">
                         Alerts
                     </button>
-                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
+                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateMessages()">
                         Messages
                     </button>
                     <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
@@ -909,7 +909,6 @@ class="formPopupDashboard"
 </widget-notes>
 
 
-
 <!-- Modal: Alerts -->
 <collaborate-alerts
     class="formPopupDashboard"
@@ -917,6 +916,15 @@ class="formPopupDashboard"
     [currentWidgetSpec]="currentWidgetSpec"
     (formCollaborateAlertsClosed)="handleCloseCollaborateAlerts($event)">Load Alerts ...
 </collaborate-alerts>
+
+
+<!-- Modal: Messages -->
+<collaborate-messages
+    class="formPopupDashboard"
+    *ngIf="showModalCollaborateMessages"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formCollaborateMessagesClosed)="handleCloseCollaborateMessages($event)">Load Messages ...
+</collaborate-messages>
 
 
 <!-- Overlay: Collaborate -->
