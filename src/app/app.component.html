@@ -566,7 +566,7 @@
                     <button type="button" clrDropdownItem (click)="clickMenuCollaborateMessages()">
                         Messages
                     </button>
-                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
+                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateActivities()">
                         Activities
                     </button>
                     <div class="dropdown-divider"></div>
@@ -925,6 +925,15 @@ class="formPopupDashboard"
     [currentWidgetSpec]="currentWidgetSpec"
     (formCollaborateMessagesClosed)="handleCloseCollaborateMessages($event)">Load Messages ...
 </collaborate-messages>
+
+
+<!-- Modal: Activities -->
+<collaborate-activities
+    class="formPopupDashboard"
+    *ngIf="showModalCollaborateActivities"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formCollaborateActivitiesClosed)="handleCloseCollaborateActivities($event)">Load Activities ...
+</collaborate-activities>
 
 
 <!-- Overlay: Collaborate -->
