@@ -1,0 +1,55 @@
+<div class="modal modalBox">
+        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+            <div class="modal-content modalContent">
+    
+                <div>
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+    
+                    Alerts
+                    <div class="propertyLine">
+                        Filter on:
+                        <input type="text" id="formFields_7" placeholder="Daterange">
+                        <input type="text" id="formFields_7" placeholder="Text">
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary" 
+                            (click)="clickClose('Close')"
+                            >
+                            Filter
+                        </button>
+                    </div>
+
+                    <clr-datagrid>
+                        <clr-dg-column>ID</clr-dg-column>
+                        <clr-dg-column>sendBy</clr-dg-column>
+                        <clr-dg-column>sentOn</clr-dg-column>
+                        <clr-dg-column>toUsers</clr-dg-column>
+                        <clr-dg-column>toGroups</clr-dg-column>
+                        <clr-dg-column>Recipient</clr-dg-column>
+                        <clr-dg-column>Read?</clr-dg-column>
+                        <clr-dg-column>Subject</clr-dg-column>
+                        <clr-dg-column>Body</clr-dg-column>
+                        <clr-dg-column>DashboardID</clr-dg-column>
+    
+                        <clr-dg-row *ngFor="let row of canvasMessages">
+                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.sendBy}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.sentOn}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.toUsers}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.toGroups}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.recipient}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.read}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.subject}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.body}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.dashboardID}}</clr-dg-cell>
+                        </clr-dg-row>
+    
+                    </clr-datagrid>
+    
+                </div>  
+            </div>  
+        </div>  
+    </div>  
+    
