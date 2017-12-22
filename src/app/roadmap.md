@@ -185,37 +185,5 @@ This document describes items for later versions of Canvas.
 5. 
 
 
-## Near future
-1. Design and test layout of Canvas on a mobile device
-2. Sparklines
-3. Consider a Ribbon like Excel, which is customisable ..
-4. Add UPGRADE utility: this will migrate the app-database, config files, settings,
-   Dashboards and Widgets and Shapes from version x to version y.  We need to use 
-   this internally as well: that way clients are always okay.  
-5. Add migrate facility: to take standalone to server, and vice versa.  How do we resolve
-   1 user vs many, access rights, etc.  Does it only make a copy, and leave the original
-   one so that one can go back and check, methinks yes.
-6. Utility to check DIFF between local and standalone versions.
-7. Tree view of Dashboard, with all its Datasets and Widgets per Dataset
-8. Startup utility: can read Excel / Powerpoint (data and graphs) and create a best estimation
-   in Canvas.  It must be past of a data cleanup service, which can also estimate the 
-   quality (ie missing values, etc).  This is linked to the centra metadata - for a corporate
-   cleanup / clarifying the data.
-9. Add data management module, where management ~ EDAL can take place.  Can view who uses what,
-   who changed what, data quality issues, store and manage SQL / Queries, metadata, data take-on
-   for new project including converting Excel files, any data-roles that might be needed
 
 
-## Later
-1. Add Filter AFTER Tranformation and pivot ...  
-2. Expand filter to: In, Or, nested, etc ... If considered Really, Really necessary ...
-3. Multi-user updates: to allow more than one user at a time to edit a Dashboard, we could
-   go to finer levels of granularity: one user per Tab, one user per Widget and then
-   merging.  We could also look at Open for Edit - see SQL exclusive and shared locks.
-   This will ONLY be done if there is a real need.
-
-
-## Maybe considered, not sure
-1. ETL process - there are products that does this already
-2. What-if questions - see Power BI
-3. Natural language questions - see Power BI
