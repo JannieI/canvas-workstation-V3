@@ -7,7 +7,7 @@ This document describes items for later versions of Canvas.
 
 **Global / Overall issues / Settings**
 1. Include internasionalisation - different languages
-2. My date format - and show like this ....
+2. 
 3. Use style.css for standard items, ie class="helpMessage"
 
 

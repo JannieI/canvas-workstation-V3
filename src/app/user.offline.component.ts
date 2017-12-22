@@ -21,14 +21,14 @@ import { dashboard }                  from './models';
 import { snapshot }                 from './models';
 
 @Component({
-    selector: 'dashboard-snapshots',
-    templateUrl: './dashboard.snapshots.component.html',
-    styleUrls: ['./dashboard.snapshots.component.css']
+    selector: 'user-offline',
+    templateUrl: './user.offline.component.html',
+    styleUrls: ['./user.offline.component.css']
 })
-export class DashboardSnapshotsComponent implements OnInit {
+export class UserOfflineComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formDashboardSnapshotsClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formUserOfflineClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
     dashboards: dashboard[];
@@ -48,6 +48,6 @@ export class DashboardSnapshotsComponent implements OnInit {
     clickClose(action: string) {
         console.log('clickClose')
 
-		this.formDashboardSnapshotsClosed.emit(action);
+		this.formUserOfflineClosed.emit(action);
     }
 }
