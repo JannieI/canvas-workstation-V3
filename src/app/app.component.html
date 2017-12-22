@@ -598,6 +598,7 @@
                     <a clrDropdownItem (click)="clickMenuUserWidgetButtonBar()">Widget Button Bar</a>
                     <a clrDropdownItem (click)="clickMenuUserShapeButtonBar()">Shape Button Bar</a>
                     <a clrDropdownItem (click)="clickMenuUserSystemSettings()">System Settings</a>
+                    <a clrDropdownItem (click)="clickMenuUserOffline()">Work Offline</a>
                     <a clrDropdownItem (click)="clickMenuUserLogout()">Log out</a>
                 </div>
             </clr-dropdown>
@@ -810,7 +811,7 @@ class="formPopupDashboard"
 </shape-buttonbar>
 
 
-<!-- Modal: Shape Button Bar -->
+<!-- Modal: System Settings -->
 <systemsettings
     class="formPopupDashboard"
     *ngIf="showModalUserSystemSettings"
@@ -818,6 +819,16 @@ class="formPopupDashboard"
     (formDashboardSystemSettingsClosed)="handleCloseUserSystemSettings($event)">
     Load System Settings ...
 </systemsettings>
+
+
+<!-- Modal: Offline Mode -->
+<user-offline
+    class="formPopupDashboard"
+    *ngIf="showModalUserOffline"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formUserOfflineClosed)="handleCloseUserOffline($event)">
+    Load Offline Mode ...
+</user-offline>
 
 
 <!-- Modal: Logout -->
