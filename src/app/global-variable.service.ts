@@ -24,6 +24,7 @@ import { buttonBarSelected }          from './models';
 import { widgetNote }                 from './models';
 import { canvasAlert }                from './models';
 import { canvasMessage }              from './models';
+import { canvasActivity }             from './models';
 
 // import { CanvasUser }                 from './model.user';
 const canvasMessages: canvasMessage[] =
@@ -67,6 +68,20 @@ const canvasMessages: canvasMessage[] =
 ];
 
 // Constants - to be replaced with DB access
+const  canvasActivities: canvasActivity[] =
+[
+    {
+        id: 1,
+        createdBy: 'AlexanderB',
+        sentOn: '2017/01/01',
+        activityType: 'Action',
+        activityStatus: 'Open',
+        linkedDashboardList: [],
+        activityText: 'Refactor Widget for coal levels',
+        activityComments: ['2017/01/01 @BorisN Levels in tenk 1-A checked and good']
+    }
+];
+
 const canvasAlerts: canvasAlert[] = 
 [ 
     {

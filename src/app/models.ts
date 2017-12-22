@@ -1,7 +1,18 @@
 // ALL models (schema) are kept here
+export class canvasActivity {
+    id: number;
+    createdBy: string;
+    sentOn: string;
+    activityType: string;
+    activityStatus: string;
+    linkedDashboardList: string[];
+    activityText: string;
+    activityComments: string[];
+}
+
 export class canvasMessage {
     id: number;
-    sendBy: string;
+    createdBy: string;
     sentOn: string;
     toUsers: string[];      // Original list
     toGroups: string[];     // Original list
