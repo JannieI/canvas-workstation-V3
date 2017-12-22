@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
-import { canvasMessage }              from './models';
+import { canvasActivity }             from './models';
 
 @Component({
     selector: 'collaborate-activities',
@@ -32,7 +32,7 @@ export class CollaborateActivitiesComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: dashboard[];
-    // canvasActivities: canvasActivity[];
+    canvasActivities: canvasActivity[];
    
 
 	constructor(
@@ -42,7 +42,7 @@ export class CollaborateActivitiesComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        // this.canvasActivities = this.globalVariableService.canvasActivities;
+        this.canvasActivities = this.globalVariableService.canvasActivities;
     }
 
     clickClose(action: string) {

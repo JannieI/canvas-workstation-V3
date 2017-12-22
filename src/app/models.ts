@@ -2,7 +2,7 @@
 export class canvasActivity {
     id: number;
     createdBy: string;
-    sentOn: string;
+    createdOn: string;
     activityType: string;
     activityStatus: string;
     linkedDashboardList: string[];
@@ -12,7 +12,7 @@ export class canvasActivity {
 
 export class canvasMessage {
     id: number;
-    createdBy: string;
+    sentBy: string;
     sentOn: string;
     toUsers: string[];      // Original list
     toGroups: string[];     // Original list

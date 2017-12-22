@@ -31,7 +31,7 @@ const canvasMessages: canvasMessage[] =
 [ 
     {
         id: 1,
-        sendBy: 'GinaU',
+        sentBy: 'GinaU',
         sentOn: '2017/01/01',
         toUsers: ['GinaU'],
         toGroups: [''],
@@ -43,7 +43,7 @@ const canvasMessages: canvasMessage[] =
     },
     {
         id: 2,
-        sendBy: 'PeterJ',
+        sentBy: 'PeterJ',
         sentOn: '2017/01/01',
         toUsers: [''],
         toGroups: ['Admin'],
@@ -55,7 +55,7 @@ const canvasMessages: canvasMessage[] =
     },
     {
         id: 3,
-        sendBy: 'RubinV',
+        sentBy: 'RubinV',
         sentOn: '2017/01/01',
         toUsers: [''],
         toGroups: ['Admin'],
@@ -73,7 +73,7 @@ const  canvasActivities: canvasActivity[] =
     {
         id: 1,
         createdBy: 'AlexanderB',
-        sentOn: '2017/01/01',
+        createdOn: '2017/01/01',
         activityType: 'Action',
         activityStatus: 'Open',
         linkedDashboardList: [],
@@ -1308,6 +1308,7 @@ export class GlobalVariableService {
     widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
     canvasMessages: canvasMessage[] =  canvasMessages;
+    canvasActivities: canvasActivity[] = canvasActivities;
     canvasAlerts: canvasAlert[] = canvasAlerts;
 
     showModalLanding: boolean = false;  // Shows Landing page
