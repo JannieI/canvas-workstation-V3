@@ -68,6 +68,7 @@ import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
 import { UserWidgetButtonBarComponent}      from './user.widget.buttonbar.component';
 import { UserShapeButtonBarComponent}       from './user.shape.buttonbar.component';
+import { SystemSettingsComponent}     from './systemsettings.component';
 import { LogoutComponent}             from './logout.component';
 
 // Our Services
@@ -125,6 +126,7 @@ import { GlobalFunctionService }      from './global-function.service';
         PreferencesComponent,
         UserWidgetButtonBarComponent,
         UserShapeButtonBarComponent,
+        SystemSettingsComponent,
         LoginComponent,
         LogoutComponent,
     ],
