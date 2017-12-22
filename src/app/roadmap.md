@@ -9,10 +9,7 @@ This document describes items for later versions of Canvas.
 1. Include internasionalisation - different languages
 2. My date format - and show like this ....
 3. Use style.css for standard items, ie class="helpMessage"
-4. Have Server-Settings for:
-   * User can/cannot store any server data locally (ie sensitive)
-   * User can/cannot store schema for any server data locally (ie very sensitive)
-   * User can/cannot log into local server (ie standalone version)
+
 
 
 **Offline work**

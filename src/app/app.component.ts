@@ -89,6 +89,7 @@ export class AppComponent implements OnInit {
     showModalUserPreferences: boolean = false;
     showModalUserWidgetButtonBar: boolean = false;
     showModalUserShapeButtonBar: boolean = false;
+    showModalUserSystemSettings: boolean = false;
     currentWidgetSpec: string = "{...}";
 
     constructor(
@@ -279,8 +280,13 @@ export class AppComponent implements OnInit {
     handleCloseUserWidgetButtonBar(action) {
         this.showModalUserWidgetButtonBar = false;
     }
+    
     handleCloseUserShapeButtonBar(action) {
         this.showModalUserShapeButtonBar = false;
+    }
+
+    handleCloseUserSystemSettings(action) {
+        this.showModalUserSystemSettings = false;
     }
 
     clickDashboardNew() {
@@ -588,6 +594,10 @@ export class AppComponent implements OnInit {
 
     clickMenuUserShapeButtonBar() {
         this.showModalUserShapeButtonBar = true;
+    }
+
+    clickMenuUserSystemSettings() {
+        this.showModalUserSystemSettings = true;
     }
 
     clickMenuUserLogout() {
