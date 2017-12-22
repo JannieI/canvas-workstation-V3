@@ -563,15 +563,26 @@
                     <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
                         Alerts
                     </button>
-                    
-                    <a clrDropdownItem>Send Email</a>
-                    <a clrDropdownItem>Send Message</a>
-                    <a clrDropdownItem (click)="showCollaborate = !showCollaborate">
+                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
                         Messages
-                    </a>
-                    <button type="button" clrDropdownItem>
-                        Tasks
                     </button>
+                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
+                        Activities
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
+                        Send Message
+                    </button>
+                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
+                        Send Email
+                    </button>
+                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
+                        Add Activity
+                    </button>
+                    
+                    <a clrDropdownItem (click)="showCollaborate = !showCollaborate">
+                        Old Messages ...
+                    </a>
                 </clr-dropdown-menu>
             </clr-dropdown>
 
