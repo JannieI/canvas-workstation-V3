@@ -553,23 +553,28 @@
 
         <div class="header-actions">
             <clr-dropdown class="dropdown bottom-right">
-                <button class="nav-icon" clrDropdownToggle>
+                <button class="nav-icon" clrDropdownTrigger>
                 <clr-icon shape="share"></clr-icon>
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
-                <div class="dropdown-menu">
+                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+
+                <!-- <div class="dropdown-menu"> -->
+                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
+                        Alerts
+                    </button>
+                    
                     <a clrDropdownItem>Send Email</a>
                     <a clrDropdownItem>Send Message</a>
                     <a clrDropdownItem (click)="showCollaborate = !showCollaborate">
                         Messages
                     </a>
-                    <a clrDropdownItem (click)="clickMenuCollaborateAlert()">Alerts</a>
                     <button type="button" clrDropdownItem>
-                        <clr-icon shape="check" class="btn btn-link btn-sm redButton"></clr-icon>
                         Tasks
                     </button>
-                </div>
+                </clr-dropdown-menu>
             </clr-dropdown>
+
             <clr-dropdown class="dropdown bottom-right">
                 <button class="nav-icon" clrDropdownToggle>
                 <clr-icon shape="user" class="is-solid has-alert"></clr-icon>
