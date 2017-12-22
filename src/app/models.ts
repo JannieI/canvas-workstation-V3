@@ -1,5 +1,18 @@
 // ALL models (schema) are kept here
-export class alert {
+export class canvasMessage {
+    id: number;
+    sendBy: string;
+    sentOn: string;
+    toUsers: string[];      // Original list
+    toGroups: string[];     // Original list
+    recipient: string;      // Independant message, deduced from to lists
+    read: boolean;
+    subject: string;
+    body: string;
+    dashboardID: number;
+}
+
+export class canvasAlert {
     id: number;
     sentOn: string;
     recipient: string;
