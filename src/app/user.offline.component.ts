@@ -18,7 +18,14 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
-import { snapshot }                 from './models';
+
+const selectDashboards: any = [
+    { 
+        id: 1,
+        dashboardName: 'Fruit exports',
+        dataLevel: 'data/schema'
+    }
+];
 
 @Component({
     selector: 'user-offline',
@@ -32,7 +39,7 @@ export class UserOfflineComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: dashboard[];
-    snapshots: snapshot[];
+    selectDashboards: any = selectDashboards;
 
 
 	constructor(
@@ -42,7 +49,7 @@ export class UserOfflineComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.snapshots = this.globalVariableService.snapshots;
+        console.log('xx', this.selectDashboards)
     }
 
     clickClose(action: string) {

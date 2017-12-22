@@ -13,22 +13,18 @@
                     the server.  When you log back into the server afterwards, all changed
                     Dashboards will be synced back to the server.  Select the Dashboards that
                     must be copied for offline work.  Note that you can only copy Dashboards
-                    that are in EditMode.
+                    that are currently in EditMode.
                 </div>                            
 
                 <clr-datagrid>
-                    <clr-dg-column>Roll Back</clr-dg-column>
                     <clr-dg-column>ID</clr-dg-column>
                     <clr-dg-column>Name</clr-dg-column>
-                    <clr-dg-column>Comment</clr-dg-column>
+                    <clr-dg-column>Data/Schema?</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let row of snapshots">
-                        <clr-dg-cell>
-                            <clr-icon shape="refresh" class="selectIcon1" size="12"></clr-icon>
-                        </clr-dg-cell>
+                    <clr-dg-row *ngFor="let row of selectDashboards">
                         <clr-dg-cell>{{row.id}}</clr-dg-cell>
                         <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.comment}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.dataLevel}}</clr-dg-cell>
                     </clr-dg-row>
 
                 </clr-datagrid>
