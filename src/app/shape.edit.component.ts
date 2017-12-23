@@ -23,14 +23,14 @@ export class ShapeEditComponent implements OnInit {
     @Input() currentWidgetSpec: any;
     @Output() formShapeEditClosed: EventEmitter<string> = new EventEmitter();
 
-    showTextBox: boolean = true;  
-    showCircle: boolean = false;  
-    showRectangle: boolean = false;  
-    showLine: boolean = false;  
-    showArrow: boolean = false;  
-    showImage: boolean = false;  
+    showTextBox: boolean = true;
+    showCircle: boolean = false;
+    showRectangle: boolean = false;
+    showLine: boolean = false;
+    showArrow: boolean = false;
+    showImage: boolean = false;
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
 
     ngOnInit() {
 
@@ -38,7 +38,7 @@ export class ShapeEditComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formShapeEditClosed.emit(action);
     }
 
@@ -95,5 +95,9 @@ export class ShapeEditComponent implements OnInit {
             this.showImage = true;
         }
 
+    }
+
+    clickSave() {
+        
     }
 }

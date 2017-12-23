@@ -67,17 +67,17 @@
 
 
 .aCircleRect {
-    background-color: white !important;
+    background-color: transparent !important;
     border: 1px solid black;
     display: block !important;
     height: 100px !important;
     padding: 0 !important;
-    margin: 5 !important;
-    width: 80px !important;
+    margin: 0 !important;
+    width: 100px !important;
 }
 
 .aCircleDet {
-    background-color: pink !important;
+    background-color: transparent !important;
     display: block !important;
     height: 100px !important;
     padding: 0 !important;
