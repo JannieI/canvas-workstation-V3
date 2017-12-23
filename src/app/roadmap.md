@@ -119,7 +119,7 @@ This document describes items for later versions of Canvas.
 
 **Templates**
 1. 
-2. Loading a template - make sure to respect security / rights
+2. Loading a template - make sure to respect security / rights + all is read-only
 3. Add Datasources to Dashboard, but flag them as invisible.  Thus, Dashboard can use them
    in Template only, and user cannot use them.  If the user needs that Datasource, he can 
    add it, in which case it will be duplicated, one invisible.
