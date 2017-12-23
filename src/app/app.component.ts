@@ -200,8 +200,11 @@ export class AppComponent implements OnInit {
         this.showModalDashboardDelete = false;
     }
 
-    handleCloseShapeEdit() {
+    handleCloseShapeEdit(action: string) {
         this.showModalShapeEdit = false;
+        if (action == 'saved') {
+            alert('saved')
+        }
     }
 
     handleCloseShapeDelete() {
@@ -416,6 +419,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetNew() {
+        
         this.showModalWidgetEditor = true;
     }
 
@@ -506,8 +510,8 @@ export class AppComponent implements OnInit {
         const text = this.renderer2.createText('Hallo World !');
         // const rect = this.renderer2.createElement('rect')
          
-        // this.renderer2.appendChild(div, text);
-        // this.renderer2.appendChild(svg, circle);
+        this.renderer2.appendChild(div, text);
+        this.renderer2.appendChild(svg, circle);
         // this.renderer2.appendChild(rect, text);
         // this.renderer2.appendChild(svg, this.dragCircle);
 
@@ -548,7 +552,7 @@ export class AppComponent implements OnInit {
         // this.renderer2.listen('document', rect,  (event) => console.log('yes') )
         console.log('circle1', this.circle1)
 
-        this.showCircle = true;
+        // this.showCircle = true;
   
     }
     

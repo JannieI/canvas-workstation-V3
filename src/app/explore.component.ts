@@ -36,6 +36,22 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 // Own Components
 
 // Constants
+const localShapes: any[] =
+[ 
+    {
+        type: "circle",
+        variable: "#dragCircle",
+        height: "100",
+        width: "100",
+        cx: "50", 
+        cy: "50", 
+        r: "40", 
+        stroke: "red", 
+        strokewidth: "1", 
+        fill: "none"
+    }
+]
+
 const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec =
 {
   "data": {"url": "../assets/vega-datasets/cars.json"},
@@ -46,37 +62,37 @@ const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec =
   }
 };
 
-const localDashboards: dl.spec.TopLevelExtendedSpec[] =
-[
-    {
-        "data": {"url": "../assets/vega-datasets/cars.json"},
-        "mark": "point",
-        "encoding": {
-            "x": {"field": "Horsepower", "type": "quantitative"},
-            "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-        }
-    },
-    {
-        "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
-        "mark": "bar",
-        "encoding": {
-          "x": {
-            "timeUnit": "month",
-            "field": "date",
-            "type": "ordinal"
-          },
-          "y": {
-            "aggregate": "count",
-            "field": "*",
-            "type": "quantitative"
-          },
-          "color": {
-            "field": "weather",
-            "type": "nominal"
-          }
-        }
-    }  
-];
+// const localDashboards: dl.spec.TopLevelExtendedSpec[] =
+// [
+//     {
+//         "data": {"url": "../assets/vega-datasets/cars.json"},
+//         "mark": "point",
+//         "encoding": {
+//             "x": {"field": "Horsepower", "type": "quantitative"},
+//             "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+//         }
+//     },
+//     {
+//         "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
+//         "mark": "bar",
+//         "encoding": {
+//           "x": {
+//             "timeUnit": "month",
+//             "field": "date",
+//             "type": "ordinal"
+//           },
+//           "y": {
+//             "aggregate": "count",
+//             "field": "*",
+//             "type": "quantitative"
+//           },
+//           "color": {
+//             "field": "weather",
+//             "type": "nominal"
+//           }
+//         }
+//     }  
+// ];
 
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
 {
@@ -168,7 +184,10 @@ export class ExploreComponent {
     @ViewChildren('widget')             childrenWidgets: QueryList<ElementRef>;
     @ViewChildren('widgetContainter')   widgetContainters: QueryList<ElementRef>;
 
-    localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
+    rowcx=50;
+    // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
+    localDashboards: dl.spec.TopLevelExtendedSpec[];
+    localShapes: any[] = localShapes;
     description: string = 'A simple bar chart with embedded data.';
     data: any = [
         {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
@@ -194,19 +213,24 @@ export class ExploreComponent {
     sideNavWidth: string = '350';
     sideNavMinWidth: string = '18';
     sideNaveButtonText: string = 'Select Data';
+
     showAdvancedField: boolean = false;
     showContainerHeader: boolean = false;
     showGrid: boolean;
-    showNewTab: boolean = false;
     showModalOpenDashboard: boolean = false;
+    showNewTab: boolean = false;
+    showShapes: boolean = true;
     showType: boolean = false;
     showTypeIcon: boolean = true;
     showWidgets: boolean = true;
+
     statusBarRunning: string = '';
     statusBarCancelRefresh: string = '';
     statusBarMessages: string = '';
+
     viewEditMode: string = 'Edit Mode';
     widgetBorder: string = '1px black solid';
+
     widgetStartX: number = 0;
     widgetStartY: number = 0;
     widgetEndX: number = 0;
@@ -257,6 +281,10 @@ export class ExploreComponent {
         this.globalVariableService.duplicateDashboard.subscribe(
             i => this.duplicateWidget(i)
         );
+        // this.globalVariableService.localDashboards.subscribe(
+        //     i => this.localDashboards
+        // );
+        this.localDashboards = this.globalVariableService.localDashboards;
     
     }
 
@@ -273,7 +301,7 @@ export class ExploreComponent {
         if (this.childrenWidgets.toArray().length > 0) {
             for (var i: number = 0; i < this.localDashboards.length; i++) {
                 console.log('refreshWidgets loop i', i)
-                let definition = localDashboards[i];
+                let definition = this.localDashboards[i];
                 let specification = compile(definition).spec;
                 let view = new View(parse(specification));
                 let leftpx: number = 300;

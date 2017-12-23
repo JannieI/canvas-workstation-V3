@@ -36,10 +36,10 @@ export class ShapeEditComponent implements OnInit {
 
     }
 
-    clickClose(action: string) {
+    clickClose() {
         console.log('clickClose')
 
-		this.formShapeEditClosed.emit(action);
+		this.formShapeEditClosed.emit('cancelled');
     }
 
     clickSelectShape(ev) {
@@ -98,6 +98,6 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSave() {
-        
+		this.formShapeEditClosed.emit('saved');        
     }
 }

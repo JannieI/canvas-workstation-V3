@@ -108,6 +108,27 @@
     color: black;
 }
 
+
+
+.shapeContainer {
+    /* border: 1px dotted gray; */
+    display: inline-block;
+    height: 200px;
+    left:400px;
+    position: absolute;
+    width: 250px;
+}
+
+.shape {
+    /* border: 1px dotted gray; */
+    display: inline-block;
+    height: 180px;
+    width: 200px;
+}
+
+
+
+
 .dashboardDropdown {
     width: 12rem !important;
 }

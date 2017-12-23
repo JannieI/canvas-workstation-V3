@@ -190,6 +190,42 @@
     </div>
 </div>
 
+
+<div *ngIf="showShapes">
+    <div *ngFor="let row of localShapes" class="shapeContainer"
+        #shapeContainter>
+        <div class="widgetButtonBar">
+            <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
+            <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon>
+            <clr-icon shape="cursor-hand" size="20" class="buttonBarIcon"></clr-icon>
+            <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon>
+            <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon>
+            <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon>
+            <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
+        </div>
+        <div class="shape">
+            <div #shape>
+                {{ row.type }}
+                <div
+                    #dragCircle
+                    class="aCircle"
+                    (dragstart)="dragStartCircle($event)"
+                    (dragend)="dragEndCircle($event)"
+                    draggable="true"
+                    >
+                    <svg height="100" width="100" >
+                        <circle cx="50" cy="50" r="30" stroke="blue" stroke-width="2" fill="none" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 <div class="statusBar" *ngIf="showMainMenu">
     <span class="statusBarText">
         Analysis of Value Traded 2017 ...

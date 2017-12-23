@@ -26,6 +26,8 @@ import { canvasAlert }                from './models';
 import { canvasMessage }              from './models';
 import { canvasActivity }             from './models';
 
+import * as dl from 'datalib';
+
 // import { CanvasUser }                 from './model.user';
 const canvasMessages: canvasMessage[] =
 [ 
@@ -326,6 +328,38 @@ const widgetButtonsSelected: buttonBarSelected[] =
         sortOrder: 2,
     }
 ]
+
+const localDashboards: dl.spec.TopLevelExtendedSpec[] =
+[
+    {
+        "data": {"url": "../assets/vega-datasets/cars.json"},
+        "mark": "point",
+        "encoding": {
+            "x": {"field": "Horsepower", "type": "quantitative"},
+            "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+        }
+    },
+    {
+        "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
+        "mark": "bar",
+        "encoding": {
+          "x": {
+            "timeUnit": "month",
+            "field": "date",
+            "type": "ordinal"
+          },
+          "y": {
+            "aggregate": "count",
+            "field": "*",
+            "type": "quantitative"
+          },
+          "color": {
+            "field": "weather",
+            "type": "nominal"
+          }
+        }
+    }  
+];
 
 const datasourceFilters: datasourceFilter[] =
 [
@@ -1286,6 +1320,8 @@ export class GlobalVariableService {
     currentDatasources: currentDatasource[] = currentDatasources;
     datasources: currentDatasource[] = datasources;
     dataQualityIssues: dataQualityIssue[] = dataQualityIssues;
+    localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
+    // localDashboards = new BehaviorSubject<dl.spec.TopLevelExtendedSpec[]>(localDashboards);
     datasourceFilters: datasourceFilter[] = datasourceFilters;
     transformationsFormat: transformation[] = transformationsFormat;
     fields: field[] = fields;
