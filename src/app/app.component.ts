@@ -98,6 +98,10 @@ export class AppComponent implements OnInit {
     showModalUserOffline: boolean = false;
     currentWidgetSpec: string = "{...}";
 
+    // Testings ....
+    test: number[] = [1,2,3,4,5,6];
+    condition: boolean = true;
+
     constructor(
         private globalVariableService: GlobalVariableService,
         private globalFunctionService: GlobalFunctionService,
@@ -419,7 +423,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetNew() {
-        
+
         this.showModalWidgetEditor = true;
     }
 
@@ -511,7 +515,7 @@ export class AppComponent implements OnInit {
         // const rect = this.renderer2.createElement('rect')
          
         this.renderer2.appendChild(div, text);
-        this.renderer2.appendChild(svg, circle);
+        // this.renderer2.appendChild(svg, circle);
         // this.renderer2.appendChild(rect, text);
         // this.renderer2.appendChild(svg, this.dragCircle);
 
@@ -542,15 +546,19 @@ export class AppComponent implements OnInit {
 
         this.renderer2.setAttribute(circle, 'id', 'circle1' );
 
-        this.renderer2.setAttribute(circle, 'cx', '50' );
-        this.renderer2.setAttribute(circle, 'cy', '50' );
-        this.renderer2.setAttribute(circle, 'r', '40' );
-        this.renderer2.setAttribute(circle, 'stroke', 'red' );
-        this.renderer2.setAttribute(circle, 'stroke-width', '1' );
-        this.renderer2.setAttribute(circle, 'fill', 'none' );
+        // this.renderer2.setAttribute(circle, 'cx', '50' );
+        // this.renderer2.setAttribute(circle, 'cy', '50' );
+        // this.renderer2.setAttribute(circle, 'r', '40' );
+        // this.renderer2.setAttribute(circle, 'stroke', 'red' );
+        // this.renderer2.setAttribute(circle, 'stroke-width', '1' );
+        // this.renderer2.setAttribute(circle, 'fill', 'none' );
 
+        // circle.innerHTML = '<circle cx="50" cy="50" r="30" stroke="blue" stroke-width="2" fill="none" />'
+        svg.innerHTML = '<circle cx="50" cy="50" r="30" stroke="green" stroke-width="2" fill="none" />'
+        // console.log('circle.innerHTML', circle.innerHTML)
         // this.renderer2.listen('document', rect,  (event) => console.log('yes') )
-        console.log('circle1', this.circle1)
+        // console.log('circle', circle)
+        console.log('svg', svg)
 
         // this.showCircle = true;
   

@@ -13,6 +13,7 @@ import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { QueryList }                  from '@angular/core';
 import { Renderer }                   from '@angular/core';
+import { Renderer2 }                  from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 import { ViewChildren }               from '@angular/core';
 
@@ -61,38 +62,6 @@ const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec =
     "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
   }
 };
-
-// const localDashboards: dl.spec.TopLevelExtendedSpec[] =
-// [
-//     {
-//         "data": {"url": "../assets/vega-datasets/cars.json"},
-//         "mark": "point",
-//         "encoding": {
-//             "x": {"field": "Horsepower", "type": "quantitative"},
-//             "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-//         }
-//     },
-//     {
-//         "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
-//         "mark": "bar",
-//         "encoding": {
-//           "x": {
-//             "timeUnit": "month",
-//             "field": "date",
-//             "type": "ordinal"
-//           },
-//           "y": {
-//             "aggregate": "count",
-//             "field": "*",
-//             "type": "quantitative"
-//           },
-//           "color": {
-//             "field": "weather",
-//             "type": "nominal"
-//           }
-//         }
-//     }  
-// ];
 
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
 {
@@ -184,11 +153,14 @@ export class ExploreComponent {
     @ViewChildren('widget')             childrenWidgets: QueryList<ElementRef>;
     @ViewChildren('widgetContainter')   widgetContainters: QueryList<ElementRef>;
 
+    @ViewChildren('shape')             shape: QueryList<ElementRef>; 
+    @ViewChildren('circle')            circle: QueryList<ElementRef>; 
     rowcx=50;
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     localDashboards: dl.spec.TopLevelExtendedSpec[];
     localShapes: any[] = localShapes;
     description: string = 'A simple bar chart with embedded data.';
+    circleRadius: number = 20;
     data: any = [
         {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
         {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
@@ -239,6 +211,7 @@ export class ExploreComponent {
     constructor(
         private globalVariableService: GlobalVariableService,
         private renderer: Renderer,
+        private renderer2: Renderer2,
     ) {}
 
     ngOnInit() {
@@ -290,7 +263,36 @@ export class ExploreComponent {
 
     ngAfterViewInit() {
         console.log('Explore ngOnViewInit')
+        
+        
+
+        // Loop on the graph ElementRefs, and set properties ala widget[].properties
+        if (this.shape.toArray().length > 0) {
+            for (var i = 0; i < this.shape.toArray().length; i++) {
+                console.log('shape', this.shape.toArray()[i].nativeElement)
+            } 
+        };
+        if (this.circle.toArray().length > 0) {
+            for (var i = 0; i < this.circle.toArray().length; i++) {
+                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cx', '50')
+                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cy', '50')
+                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'r', '40')
+                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke', 'orange')
+                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke-width', '2')
+                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
+                // console.log('circle', this.circle.toArray()[i].nativeElement.cx.SVGAnimatedLength)
+                // circle SVGAnimatedLength 
+                // {baseVal: SVGLength, animVal: SVGLength}
+                // animVal: SVGLength 
+                // {unitType: 1, value: 50, valueInSpecifiedUnits: 50, valueAsString: "50"}
+                // baseVal: SVGLength {unitType: 1, value: 50, valueInSpecifiedUnits: 50, valueAsString: "50"}__proto__: SVGAnimatedLength
+                this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
+                console.log('circle', this.circle.toArray()[i].nativeElement)
+            } 
+        };
+
         this.refreshWidgets();
+
     }
 
     refreshWidgets() {
@@ -379,7 +381,6 @@ export class ExploreComponent {
     allowDrop(event) {
         event.preventDefault();
     }
-
 
     dragstart_handler(ev) {
         // console.log("dragStart");

@@ -77,6 +77,11 @@ import { AuthGuard }                  from './authguard.service';
 import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService }      from './global-function.service';
 
+// Testing
+import { DelayDirective }             from './test.delay.directive';
+import { CardComponent }              from './test.app.card.component';
+import { MyNgIfDirective }              from './test.ngif.directive';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -131,6 +136,10 @@ import { GlobalFunctionService }      from './global-function.service';
         UserOfflineComponent,
         LoginComponent,
         LogoutComponent,
+
+        CardComponent,
+        DelayDirective,
+        MyNgIfDirective,
     ],
     imports: [
         BrowserAnimationsModule,
@@ -146,6 +155,7 @@ import { GlobalFunctionService }      from './global-function.service';
         AuthGuard,
         GlobalVariableService,
         GlobalFunctionService,
+
     ],
     bootstrap: [AppComponent]
 })

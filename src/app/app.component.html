@@ -1011,3 +1011,16 @@ class="formPopupDashboard"
     height="42"
     width="42"
 >
+
+<div>
+    Test
+    <div *ngFor="let item of test">
+        <app-card *appDelay="500 * item">
+        {{item}}
+        </app-card>
+    </div>
+</div>
+
+<div *myNgIf=condition>
+    Test ngMyNgIf
+</div>
