@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 
     @ViewChild('dragCircle', {read: ElementRef}) dragCircle: ElementRef;  //Vega graph
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
-    
+
     fields: field[];
     menuCreateDisabled: boolean;
     moveStartX: number;
@@ -589,12 +589,15 @@ export class AppComponent implements OnInit {
         const text = this.renderer2.createText('Hallo World !');
         const rect = this.renderer2.createElement('rect')
          
-        this.renderer2.appendChild(this.el.nativeElement, div);
-        this.renderer2.appendChild(div, svg);
-        // this.renderer2.appendChild(div, text);
+        this.renderer2.appendChild(div, text);
         // this.renderer2.appendChild(svg, circle);
-        this.renderer2.appendChild(svg, rect);
-        this.renderer2.appendChild(rect, text);
+        // this.renderer2.appendChild(rect, text);
+        // this.renderer2.appendChild(svg, this.dragCircle);
+
+        // this.renderer2.appendChild(svg, rect);
+        this.renderer2.appendChild(div, svg);
+        this.renderer2.appendChild(this.el.nativeElement, div);
+        
         
         this.renderer2.addClass(div, 'aCircle');
         this.renderer2.addClass(svg, 'aCircleDet');
@@ -625,10 +628,11 @@ export class AppComponent implements OnInit {
         this.renderer2.setAttribute(circle, 'stroke-width', '1' );
         this.renderer2.setAttribute(circle, 'fill', 'none' );
 
-        this.renderer2.listen('document', rect,  (event) => console.log('yes') )
+        // this.renderer2.listen('document', rect,  (event) => console.log('yes') )
         console.log('circle1', this.circle1)
 
-
+        this.showCircle = true;
+  
     }
     
     clickMenuShapeDelete() {
