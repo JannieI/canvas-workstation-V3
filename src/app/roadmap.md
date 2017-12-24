@@ -73,9 +73,9 @@ This document describes items for later versions of Canvas.
 4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
    for March last year, or compare all to last year ... NB
 5. Also, easy way to jump to previous period:  loaded at start with data ??
-6. Delete moves to Trash - may sure can open again with File -> Open
-7. Click Tab to rename
-8. Make Tabs more visible on status bar
+6. 
+7. 
+8. 
 9. Test printing - and see if pagelayout can be changed
 10.View all Comments and notes at once, with filter on messageText and Sender/Receiver
 11.Consider Explorer / Tree view of Dashboard - showing makeup of Widgets, Shapes, Datasets,
@@ -123,7 +123,7 @@ This document describes items for later versions of Canvas.
 **Widget**
 1. More than one version of grammar - create space in spec and code (IF) - may not be needed
    on UI for now
-2. On delete, moves to Trash?  And can be restored?
+2. 
 3. Border on select
 4. Drag and Sizing handles on select
 5. Fix bug and Duplicat Widget correctly
