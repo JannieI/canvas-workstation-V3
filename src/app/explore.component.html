@@ -229,44 +229,49 @@
 
 
 <div class="statusBar" *ngIf="showMainMenu">
-    <span class="statusBarText">
+    <span class="statusBarText" title="Current Dashboard">
         Analysis of Value Traded 2017 ...
     </span>
     <span class="statusBarText">
         Tabs :
+    </span>
+    <span class="statusBarText statusBarTextBorder" title="Tab: Summary of Sales">
         <b>Summary</b>
+    </span>
+    <span class="statusBarText statusBarTextBorder" title="Tab: Detail costing YTD">
         Detail Costs
     </span>
-    <span class="statusBarText">
+
+    <span class="statusBarText statusBarTextBorder" title="Click to Add a new Tab">
         <clr-icon shape="plus" size="12"
             (click)="clickAddTab()"></clr-icon>
     </span>
-    <span class="statusBarText">
+    <span class="statusBarText" title="How long ago the Dashboard layout was updated">
         Updated: 1d
     </span>
-    <span class="statusBarText">
+    <span class="statusBarText" title="When last all the data in the Dashboard was refresh">
         Refreshed: 08:31
     </span>
     <span [ngSwitch]="editMode" class="statusBarText">
-        <b    *ngSwitchCase="true">Edit Mode </b>
-        <span *ngSwitchDefault>View-Only     </span> 
+        <b    *ngSwitchCase="true" title="Changes can be done in Edit Mode">Edit Mode </b>
+        <span *ngSwitchDefault title="View only mode means no changes can be made">View-Only     </span> 
     </span>
-    <span class="statusBarText">
+    <span class="statusBarText" title="Indicate long-running queries in the background">
         {{ statusBarRunning }}
     </span>
-    <span class="statusBarText">
+    <span class="statusBarText statusBarTextBorder" title="Click to cancel a running query">
         {{ statusBarCancelRefresh }}
     </span>
-    <span class="statusBarText">
+    <span class="statusBarText" title="Short message.  If more than one, it will indicate the last one">
       {{ statusBarMessages }}
     </span>
-    <span class="statusBarText">
+    <span class="statusBarText" title="Working standalone (local) or logged into a server">
       Local/Srv
     </span>
-    <span class="statusBarText">
-      Saving/Saved
+    <span class="statusBarText" title="All changes have been saved, or are being saved...">
+      Saving.../Saved
     </span>
-    <span class="statusBarText">
+    <span class="statusBarText" title="Indicates if a Template is being used (which is readonly)">
       Template Used
     </span>
 </div>

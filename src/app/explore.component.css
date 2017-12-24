@@ -36,7 +36,7 @@
 .statusBar {
     background-color: #192b35;;;
     bottom: 0;
-    color: white;
+    color: rgb(197, 194, 194);
     display: inline-block;
     font-family: Metropolis,Avenir Next,Helvetica Neue,Arial,sans-serif;
     font-size: .48rem;
@@ -51,12 +51,16 @@
     z-index: 20;
 }
 
-.statusBarText {
-    background-color: #293841;;;
+.statusBarTextBorder {
     border-top: 1px solid rgb(129, 128, 128);
     border-left: 1px solid rgb(129, 128, 128);
     border-right: 2px solid rgb(75, 74, 74);
     border-bottom: 2px solid rgb(75, 74, 74);
+    color: white !important;
+}
+
+.statusBarText {
+    background-color: #293841;;;
     bottom: 0.5rem !important;
     height: 0.6rem !important;
     margin: 0 2px 0 2px !important;
