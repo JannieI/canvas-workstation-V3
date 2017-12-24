@@ -597,7 +597,21 @@ export class ExploreComponent {
         'diff', event.clientX - this.startX,
         'new', this.localWidgets[index].container_left + event.clientX - this.startX)
 
-        this.localWidgets[index].container_left = this.localWidgets[index].container_left + event.clientX - this.startX;
+        let moveX: number = event.clientX - this.startX;
+        let moveY: number = event.clientY - this.startY;
+        
+        let newX: number = this.localWidgets[index].container_left + moveX;
+        let newY: number = this.localWidgets[index].container_top + moveY;
+
+        if (newX < 0) {
+            newX = 0;
+        }
+        if (newY < 0) {
+            newY = 0;
+        }
+        
+        this.localWidgets[index].container_left = newX;
+        this.localWidgets[index].container_top = newY;
         
     }
     clickDragKeydown(event, id: number) {
