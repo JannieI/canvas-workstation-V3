@@ -643,16 +643,15 @@ export class ExploreComponent {
         let newX: number = this.localWidgets[index].container_width + moveX;
         let newY: number = this.localWidgets[index].container_height + moveY;
 
-        if (newX < 0) {
-            newX = 0;
+        if (newX < 80) {
+            newX = 80;
         }
-        if (newY < 15) {
-            newY = 15;
+        if (newY < 50) {
+            newY = 50;
         }
         
         this.localWidgets[index].container_width = newX;
         this.localWidgets[index].container_height = newY;
-        
     }
     clickResizeKeydown(event, id: number) {
         console.log('clickResizeKeydown', id)
