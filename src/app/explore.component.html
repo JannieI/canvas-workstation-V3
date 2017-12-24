@@ -629,12 +629,19 @@
         <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
         <clr-icon shape="cursor-arrow" size="20" class="buttonBarIcon" (click)="clickSelect()"></clr-icon>
     </div>
-    <div class="widgetSelected" *ngIf="selectW">
+    <div class="widgetSelected" *ngIf="selectW"
+        (mousedown)="clickDragMouseDown($event,  row.id)"
+        (mouseup)="clickDragMouseUp($event, row.id)"
+        (dragstart)="clickDragStart($event, row.id)"
+        (dragend)="clickDragEnd($event, row.id)"
+        (keydown)="clickDragKeydown($event, row.id)"
+        >
         <clr-icon 
             shape="cursor-hand" 
             size="20" 
             class="buttonBarIcon2" 
             title="Drag handle to move Widget around"
+            draggable="true"
             >
         </clr-icon>
     </div>

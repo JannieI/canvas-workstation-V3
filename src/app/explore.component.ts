@@ -209,6 +209,8 @@ export class ExploreComponent {
     widgetEndY: number = 0;
 
     selectW: boolean = false;
+    startX: number;
+    startY: number;
 
     constructor(
         private globalVariableService: GlobalVariableService,
@@ -577,6 +579,26 @@ export class ExploreComponent {
         console.log('clickSelect()')
         this.selectW = !this.selectW;
     }
+
+    clickDragMouseDown(event, id: number) {
+        console.log('clickDragMouseDown', id)
+    }
+    clickDragMouseUp(event, id: number) {
+        console.log('clickDragMouseUp')
+    }
+    clickDragStart(event, id: number) {
+        console.log('clickDragStart', id, event.clientX, event.clientY)
+        this.startX = event.clientX;
+        this.startY = event.clientY;
+    }
+    clickDragEnd(event, id: number) {
+        console.log('clickDragEnd', id, event.clientX, event.clientY)
+        
+    }
+    clickDragKeydown(event, id: number) {
+        console.log('clickDragKeydown', id)
+    }
+
 }
 
 
