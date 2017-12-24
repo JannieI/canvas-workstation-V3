@@ -102,6 +102,13 @@
     width: 250px;
 }
 
+.widgetContainer:hover {
+    border: 1px dotted black;
+}
+.widgetContainer:visited {
+    border: 1px dotted black;
+}
+
 .widget {
     /* border: 1px dotted gray; */
     display: inline-block;
@@ -117,8 +124,6 @@
     color: black;
 }
 
-
-
 .shapeContainer {
     /* border: 1px dotted gray; */
     display: inline-block;
@@ -126,6 +131,12 @@
     left:100px;
     position: absolute;
     width: 250px;
+}
+.shapeContainer:hover {
+    border: 1px dotted black;
+}
+.widgetContainer:focus {
+    border: 1px dotted black;
 }
 
 .shape {
