@@ -47,7 +47,41 @@ const localWidgets: Partial<canvasWidget>[] =
         container_widget_title: 'Title 1',
         container_top: 180,
         container_width: 250,
-        container_zindex: 20
+        container_zindex: 20,
+        graph_specification: {
+            "data": {"url": "../assets/vega-datasets/cars.json"},
+            "mark": "point",
+            "encoding": {
+                "x": {"field": "Horsepower", "type": "quantitative"},
+                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+            }
+        }
+
+    },
+    {
+        id: 2,
+        name: 'line chart',
+        description: 'bla-bla-bla',
+        datasetID: 1,
+        container_background_color: 'beige',
+        container_border: '1px solid red',
+        container_box_shadow: '',
+        container_color: 'orange',
+        container_font_size: 12,
+        container_height: 300,
+        container_left: 240,
+        container_widget_title: 'Title Line',
+        container_top: 290,
+        container_width: 250,
+        container_zindex: 20,
+        graph_specification: {
+            "data": {"url": "../assets/vega-datasets/cars.json"},
+            "mark": "bar",
+            "encoding": {
+                "x": {"field": "Horsepower", "type": "quantitative"},
+                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+            }
+        }
 
     }
 ]
@@ -1377,7 +1411,7 @@ export class GlobalVariableService {
 
     showModalLanding: boolean = false;  // Shows Landing page
     showMainMenu = new BehaviorSubject<boolean>(true);
-    isFirstTimeDashboard = new BehaviorSubject<boolean>(true);
+    isFirstTimeDashboard = new BehaviorSubject<boolean>(false);
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardDiscard = new BehaviorSubject<boolean>(true);

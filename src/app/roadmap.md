@@ -7,8 +7,9 @@ This document describes items for later versions of Canvas.
 
 **Global / Overall issues / Settings**
 1. Include internasionalisation - different languages
-2. 
+2. Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
 3. Use style.css for standard items, ie class="helpMessage"
+4. Standardize date format shown - as selected by the user, stored as settings
 
 
 **API**
@@ -125,7 +126,7 @@ This document describes items for later versions of Canvas.
 2. 
 3. Border on select
 4. Drag and Sizing handles on select
-5. Fix bug and Duplicat Widget correctly
+5. Fix bug and Duplicate Widget correctly
 6. In Slideshow mode: show link buttons and this now jumps (Edit mode = show linking form)
 7. Flag visible if it has a Note, Data Quality issues
 8. Consider Widget Templates - could be a way to make graphs easier, or standardise the

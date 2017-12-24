@@ -613,21 +613,30 @@
     [style.left.px]="row.container_left"
     [style.top.px]="row.container_top"
 
-    [style.background_color]="row.container_background_color"
+    [style.background-color]="row.container_background_color"
     [style.border]="row.container_border"
     [style.height]="row.container_height"
     [style.width]="row.container_width"
     [style.zindex]="row.container_zindex"
     [style.box_shadow]="row.container_box_shadow"
     >
-    <div class="widgetButtonBar">
+    <div class="widgetButtonBar2">
         <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
         <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="cursor-hand" size="20" class="buttonBarIcon"></clr-icon>
         <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon>
         <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon>
         <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon>
         <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="cursor-arrow" size="20" class="buttonBarIcon" (click)="clickSelect()"></clr-icon>
+    </div>
+    <div class="widgetSelected" *ngIf="selectW">
+        <clr-icon 
+            shape="cursor-hand" 
+            size="20" 
+            class="buttonBarIcon2" 
+            title="Drag handle to move Widget around"
+            >
+        </clr-icon>
     </div>
     <div class="widget">
         <div #widget2>

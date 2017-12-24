@@ -84,7 +84,7 @@ export class canvasWidget {
     graph_ycolumn: string;
     graph_fillColor: string;
     graph_hoverColor: string;
-    graph_spec: any;
+    graph_specification: any;
 
     // Table - to be determined later ...
     table_color: string;                    // Text color

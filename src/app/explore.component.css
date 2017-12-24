@@ -134,7 +134,38 @@
     position: relative;
     width: 250px;
 }
+.widgetContainer2:hover {
+    border: 1px dotted black !important;
+}
 
+.widgetSelected {
+    top: 0;
+    float: right;
+    border: none !important;
+    background-color: transparent;
+}
+
+.widgetButtonBar2 {
+    border: 1px solid gray;
+    display: inline-block;
+    opacity: 0.0;
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -ms-transition: all 500ms ease-in-out;
+    -o-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
+    /* width: 80%; */
+}
+.widgetButtonBar2:hover {
+    /* display: block; */
+    opacity: 1;
+    border: 1px solid gray;
+    z-index: 1;
+}
+.buttonBarIcon2 {
+    margin: 1px;
+    padding: 2px;
+}
 
 
 .shapeContainer {

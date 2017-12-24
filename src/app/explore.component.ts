@@ -208,6 +208,8 @@ export class ExploreComponent {
     widgetEndX: number = 0;
     widgetEndY: number = 0;
 
+    selectW: boolean = false;
+
     constructor(
         private globalVariableService: GlobalVariableService,
         private renderer: Renderer,
@@ -569,6 +571,11 @@ export class ExploreComponent {
 
     handleCloseDashboardTab() {
         this.showNewTab = false;
+    }
+
+    clickSelect() {
+        console.log('clickSelect()')
+        this.selectW = !this.selectW;
     }
 }
 
