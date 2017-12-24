@@ -31,7 +31,7 @@ export class WidgetNotesComponent implements OnInit {
     @Output() formWidgetNotesClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     widgetNotes: widgetNote[];
 
 	constructor(

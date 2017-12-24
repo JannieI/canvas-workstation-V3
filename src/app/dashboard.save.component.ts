@@ -34,7 +34,7 @@ export class DashboardSaveComponent implements OnInit {
     showNoSecurity: boolean = true;
     showTeam: boolean = false;
     showQArequired: boolean = false;
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

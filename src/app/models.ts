@@ -10,14 +10,40 @@ export class canvasShape {
 }
 
 export class canvasWidget {
+
+    // Not needed when Widget is inside a Dashboard
+    dashboard_id: number;                   // FK to DashboardID to which widget belongs
+    dashboard_tab_id: number;               // FK to Tab where the widget lives
+    dashboard_tab_name: string;             // FK to Tab Name where widget lives
+
+    // Identification and Description
     id: number;
     name: string;
     description: string;
     grammar: string;
     version: number;
-    top: number;
-    left: number;
+    is_liked: boolean;                      // @RunTime: True if Widget is liked by me
 
+    // Data related
+    datasetID: number;
+    data_parameters: 
+    [ 
+        {
+            "field": string;
+            "value": string;
+        }
+    ]
+    report_id: number;                      // FK to report (query / data).  -1: dont load any report data
+    report_name: string;                    // Report (query) name in Eazl (DS implied)
+    row_limit: number;                      // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
+    add_rest_row: boolean;                  // True means add a row to  = SUM(rest)
+    size: string;                           // Small, Medium, Large ito data loading
+
+    // Links
+    hyperlinkDashboardID: number;           // Optional Widget ID to jump to
+    hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
+
+    // Container
     container_background_color: string;
     container_border: string;
     container_box_shadow: string;
@@ -25,38 +51,42 @@ export class canvasWidget {
     container_font_size: number;
     container_height: number;
     container_left: number;
-    container_widget_title: string;                   // Title at top of container
+    container_widget_title: string;         // Title at top of container
     container_top: number;
     container_width: number;
+    container_zindex: number;
 
-    textual_text_text: string;                      // with HTML & keywords (##today##)
-    textual_text_backgroundColor: string;
-    textual_text_border: string;
-    textual_text_color: string;
-    textual_text_fontSize: number;                  // in px
-    textual_text_fontWeight: string;
-    textual_text_height: number;                    // in px
-    textual_text_left: number;                      // in px
-    textual_text_margin: string;
-    textual_text_padding: string;
-    textual_text_position: string;
-    textual_text_textAlign: string;
-    textual_text_top: number;                       // in px
-    textual_text_width: number;                     // in px: 0 means it adapts to container
+    // Title
+    title_text: string;                     // with HTML & keywords (##today##)
+    title_backgroundColor: string;
+    title_border: string;
+    title_color: string;
+    title_fontSize: number;                 // in px
+    title_fontWeight: string;
+    title_height: number;                   // in px
+    title_left: number;                     // in px
+    title_margin: string;
+    title_padding: string;
+    title_position: string;
+    title_textAlign: string;
+    title_top: number;                      // in px
+    title_width: number;                    // in px: 0 means it adapts to container
 
-    graph_graph_id: number;
-    graph_graph_left: number;                     // in px
-    graph_graph_top: number;                      // in px
-    graph_vega_parameters_vega_graphHeight: number;
-    graph_vega_parameters_vega_graphWidth: number;
-    graph_vega_parameters_vega_graphPadding: number;
-    graph_vega_parameters_vega_hasSignals: boolean;
-    graph_vega_parameters_vega_xcolumn: string;
-    graph_vega_parameters_vega_ycolumn: string;
-    graph_vega_parameters_vega_fillColor: string;
-    graph_vega_parameters_vega_hoverColor: string;
+    // Graph
+    graph_type: string;                     // bar, pie, etc
+    graph_height: number;                   // in px
+    graph_left: number;                     // in px
+    graph_top: number;                      // in px
+    graph_width: number;                    // in px
+    graph_graphPadding: number;
+    graph_hasSignals: boolean;
+    graph_xcolumn: string;
+    graph_ycolumn: string;
+    graph_fillColor: string;
+    graph_hoverColor: string;
     graph_spec: any;
 
+    // Table - to be determined later ...
     table_color: string;                    // Text color
     table_cols: number;                     // Nr of cols, 0 means all
     table_height: number;                   // in px, cuts of rest if bigger than this
@@ -66,40 +96,16 @@ export class canvasWidget {
     table_top: number;                      // in px
     table_width: number;                    // in px, cuts of rest if bigger than this
 
+    // Created, updated and refreshed
+    refresh_mode: string;                   // Manual, OnOpen, Repeatedly
+    refresh_frequency: number;              // Nr of seconds if RefreshMode = Repeatedly
+    widget_refreshed_on: string;            // Data Refreshed on
+    widget_refreshed_by: string;            // Date Refreshed by
+    widget_Created_on: string;              // Created on
+    widget_Created_by: string;              // Created by
+    widget_updated_on: string;              // Updated on
+    widget_updated_by: string;              // Updated by    
 
-    properties_widget_id: number;                      // Unique ID from DB
-    properties_dashboard_id: number;                   // FK to DashboardID to which widget belongs
-    properties_dashboard_tab_id: number;               // FK to Tab where the widget lives
-    properties_dashboard_tab_name: string;             // FK to Tab Name where widget lives
-    properties_widget_code: string;                    // Short Code ~ ShortName
-    properties_widget_name: string;                    // Descriptive Name
-    properties_widget_description: string;             // User description
-    properties_widget_default_export_filetype: string; // User can select others at export time
-    properties_widget_hyperlink_tab_nr: string;        // Optional Tab Nr to jump to
-    properties_widget_hyperlinkWidget_id: string;      // Optional Widget ID to jump to
-    properties_widget_refresh_mode: string;            // Manual, OnOpen, Repeatedly
-    properties_widget_refresh_frequency: number;       // Nr of seconds if RefreshMode = Repeatedly
-    properties_widget_password: string;                // Optional password
-    properties_widget_is_liked: boolean;               // @RunTime: True if Widget is liked by me
-
-    properties_widget_report_id: number;               // FK to report (query / data).  -1: dont load any report data
-    properties_widget_report_name: string;             // Report (query) name in Eazl (DS implied)
-    properties_widget_report_parameters: string;       // Optional Report parameters
-    properties_widget_show_limited_rows: number;       // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
-    properties_widget_add_rest_row: boolean;           // True means add a row to  = SUM(rest)
-    properties_widget_type: string;                    // Bar, Pie, Text, etc - must correspond to coding
-    properties_widget_comments: string;                // Optional comments
-    properties_widget_index: number;                   // Sequence number on dashboard
-    properties_widget_is_locked: boolean;              // Protected against changes
-    properties_widget_size: string;                    // Small, Medium, Large
-    properties_widget_system_message: string;          // Optional for Canvas to say something to user
-    properties_widget_type_id: number;                 // Widget Type ID (for Bar, Pie, etc)
-    properties_widget_refreshed_on: string;            // Data Refreshed on
-    properties_widget_refreshed_by: string;            // Date Refreshed by
-    properties_widget_Created_on: string;              // Created on
-    properties_widget_Created_by: string;              // Created by
-    properties_widget_updated_on: string;              // Updated on
-    properties_widget_updated_by: string;              // Updated by    
 }
 
 export class canvasActivity {

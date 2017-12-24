@@ -30,7 +30,7 @@ export class PreferencesComponent implements OnInit {
     @Output() formDashboardPreferencesClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

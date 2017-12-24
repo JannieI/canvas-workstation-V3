@@ -31,7 +31,7 @@ export class CollaborateAlertsComponent implements OnInit {
     @Output() formCollaborateAlertsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     canvasAlerts: canvasAlert[];
    
 

@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     @Output() formUserLoginClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

@@ -30,7 +30,7 @@ export class SystemSettingsComponent implements OnInit {
     @Output() formDashboardSystemSettingsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

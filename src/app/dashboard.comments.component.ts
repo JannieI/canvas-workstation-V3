@@ -31,7 +31,7 @@ export class DashboardCommentsComponent implements OnInit {
     @Output() formDashboardCommentsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     dashboardComments: dashboardComment[];
 
 	constructor(

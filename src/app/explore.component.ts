@@ -170,7 +170,7 @@ export class ExploreComponent {
         {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
         ];
     temp: number[] = [0];
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     editMode: boolean;
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';

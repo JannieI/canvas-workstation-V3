@@ -30,7 +30,7 @@ export class DashboardOpenComponent implements OnInit {
     @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     isFirstTimeDashboardOpen: boolean;
     showAdvancedFilters: boolean = false;
     

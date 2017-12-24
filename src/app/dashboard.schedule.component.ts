@@ -31,7 +31,7 @@ export class DashboardScheduleComponent implements OnInit {
     @Output() formDashboardScheduleClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     dashboardSchedules: dashboardSchedule[];
    
 

@@ -31,7 +31,7 @@ export class DashboardTemplateComponent implements OnInit {
     @Output() formDashboardTemplateClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     dashboardTemplates: dashboardTemplate[];
    
 

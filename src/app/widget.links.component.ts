@@ -30,7 +30,7 @@ export class WidgetLinksComponent implements OnInit {
     @Output() formWidgetLinksClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     isFirstTimeDashboardOpen: boolean;
     showAdvancedFilters: boolean = false;
     

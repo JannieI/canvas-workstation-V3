@@ -34,7 +34,7 @@ export class UserWidgetButtonBarComponent implements OnInit {
     @Output() formUserWidgetButtonBarClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     dashboardTags: dashboardTag[];
     widgetButtonsAvailable: buttonBarAvailable[];
     widgetButtonsSelected: buttonBarSelected[];

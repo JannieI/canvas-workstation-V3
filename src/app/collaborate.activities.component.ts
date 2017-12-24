@@ -31,7 +31,7 @@ export class CollaborateActivitiesComponent implements OnInit {
     @Output() formCollaborateActivitiesClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     canvasActivities: canvasActivity[];
    
 

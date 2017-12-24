@@ -33,7 +33,7 @@ export class UserShapeButtonBarComponent implements OnInit {
     @Output() formUserShapeButtonBarClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     dashboardTags: dashboardTag[];
     shapeButtonsAvailable: buttonBarAvailable[];
     shapeButtonsSelected: buttonBarSelected[];

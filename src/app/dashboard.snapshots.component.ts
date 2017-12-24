@@ -31,7 +31,7 @@ export class DashboardSnapshotsComponent implements OnInit {
     @Output() formDashboardSnapshotsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: dashboard[];
+    dashboards: Partial<dashboard>[];
     snapshots: snapshot[];
 
 
