@@ -42,4 +42,8 @@ import { GlobalVariableService }      from './global-variable.service';
 	  	this.formDashboardTabClosed.emit(action);
     }
 
+    clickDelete(action: string) {
+      alert('Can only delete a Tab once it is empty (so remove Widgets first), and cannot delete the last Tab (has to have at least one)')
+	  	this.formDashboardTabClosed.emit(action);
+    }
   }

@@ -57,6 +57,7 @@ This document describes items for later versions of Canvas.
 4. What and how is cached locally - and how refreshed
 5. Finalise group membership / roles
 
+
 **Transformations:**
 1. Calculated field with TS like formulas
 2. Calculated fields can contain other fields, ie <TradeDate> - 1
@@ -102,10 +103,7 @@ This document describes items for later versions of Canvas.
 
 
 **Dashboard Tabs**
-1. Make more clear and visible
-2. Have colours per tab
-3. Tab name has max length of x
-4. Add Tab Description - maybe make this a tooltip as well.
+4. Tab Description - maybe make this a tooltip as well.
 
 
 **Templates**
