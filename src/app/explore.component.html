@@ -629,7 +629,8 @@
         <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
         <clr-icon shape="cursor-arrow" size="20" class="buttonBarIcon" (click)="clickSelect()"></clr-icon>
     </div>
-    <div class="widgetSelected" *ngIf="selectW"
+    
+    <div class="widgetSelectedDrag" *ngIf="selectW"
         (mousedown)="clickDragMouseDown($event, i)"
         (mouseup)="clickDragMouseUp($event, i)"
         (dragstart)="clickDragStart($event, i)"
@@ -645,6 +646,24 @@
             >
         </clr-icon>
     </div>
+
+    <span class="widgetSelectedResize" *ngIf="selectW"
+        (mousedown)="clickResizeMouseDown($event, i)"
+        (mouseup)="clickResizeMouseUp($event, i)"
+        (dragstart)="clickResizeStart($event, i)"
+        (dragend)="clickResizeEnd($event, i)"
+        (keydown)="clickResizeKeydown($event, i)"
+        >
+        <clr-icon class="widgetSelectedResize"
+            shape="resize left" 
+            size="20" 
+            class="buttonBarIcon2" 
+            title="Resize handle to change Widget container size"
+            draggable="true"
+            >
+        </clr-icon>
+    </span>
+
     <div class="widget">
         <div #widget2>
             Here: {{ row.name }}

@@ -138,11 +138,22 @@
     border: 1px dotted black !important;
 }
 
-.widgetSelected {
-    top: 0;
-    float: right;
-    border: none !important;
+.widgetSelectedDrag {
     background-color: transparent;
+    border: none !important;
+    float: right;
+    top: 0;
+}
+.widgetSelectedResize {
+    background-color: transparent;
+    border: none !important;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+.widgetSelectedResize:hover {
+    background-color: black;
+    color: white;
 }
 
 .widgetButtonBar2 {

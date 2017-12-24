@@ -122,7 +122,7 @@ This document describes items for later versions of Canvas.
 
 
 **Widget**
-1. 
+1. Consider Widget to use CSS Grid for layut
 2. 
 3. Border on select
 4. Drag and Sizing handles on select

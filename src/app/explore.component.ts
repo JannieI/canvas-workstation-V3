@@ -606,8 +606,8 @@ export class ExploreComponent {
         if (newX < 0) {
             newX = 0;
         }
-        if (newY < 0) {
-            newY = 0;
+        if (newY < 15) {
+            newY = 15;
         }
         
         this.localWidgets[index].container_left = newX;
@@ -617,6 +617,47 @@ export class ExploreComponent {
     clickDragKeydown(event, id: number) {
         console.log('clickDragKeydown', id)
     }
+
+
+
+    clickResizeMouseDown(event, id: number) {
+        console.log('clickResizeMouseDown', id)
+    }
+    clickResizeMouseUp(event, id: number) {
+        console.log('clickResizeMouseUp')
+    }
+    clickResizeStart(event, id: number) {
+        console.log('clickResizeStart', id, event.clientX, event.clientY)
+        this.startX = event.clientX;
+        this.startY = event.clientY;
+    }
+    clickResizeEnd(event, index: number) {
+        console.log('clickResizeEnd', index, event.clientX, event.clientY, 
+        'was', this.localWidgets[index].container_width, 
+        'diff', event.clientX - this.startX,
+        'new', this.localWidgets[index].container_width + event.clientX - this.startX)
+
+        let moveX: number = event.clientX - this.startX;
+        let moveY: number = event.clientY - this.startY;
+        
+        let newX: number = this.localWidgets[index].container_width + moveX;
+        let newY: number = this.localWidgets[index].container_height + moveY;
+
+        if (newX < 0) {
+            newX = 0;
+        }
+        if (newY < 15) {
+            newY = 15;
+        }
+        
+        this.localWidgets[index].container_width = newX;
+        this.localWidgets[index].container_height = newY;
+        
+    }
+    clickResizeKeydown(event, id: number) {
+        console.log('clickResizeKeydown', id)
+    }
+
 
 }
 
