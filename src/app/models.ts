@@ -106,6 +106,7 @@ export class currentDatasource {
 // Dashboard
 export class dashboard {
     id: number;
+    version: number;
     state: string;
     name: string;
     description: string;

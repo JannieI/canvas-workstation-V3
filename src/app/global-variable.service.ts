@@ -548,6 +548,7 @@ const dashboards: dashboard[] =
     {
         id: 1,
         state: 'Draft',
+        version: 1,
         name: 'Market Overview',
         description: 'Economic indicator summary',
         nrWidgets: 1,
@@ -558,6 +559,7 @@ const dashboards: dashboard[] =
     {
         id: 2,
         state: 'Pending',
+        version: 1,
         name: 'Costing Summary',
         description: 'Costing Summary',
         nrWidgets: 1,
@@ -568,6 +570,7 @@ const dashboards: dashboard[] =
     {
         id: 3,
         state: 'Complete',
+        version: 1,
         name: 'Home Budget',
         description: 'Home Budget',
         nrWidgets: 1,
@@ -578,6 +581,7 @@ const dashboards: dashboard[] =
     {
         id: 4,
         state: 'Complete',
+        version: 1,
         name: 'Bitcoin sales',
         description: 'Bitcoin sales',
         nrWidgets: 1,
@@ -588,6 +592,7 @@ const dashboards: dashboard[] =
     {
         id: 5,
         state: 'Pending',
+        version: 1,
         name: 'Cycling routes',
         description: 'Cycling routes',
         nrWidgets: 1,
