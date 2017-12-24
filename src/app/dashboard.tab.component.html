@@ -13,54 +13,19 @@
                 <form>
                     <section>
                         <div class="form-group">
-                            <label for="selects_4">Select a printer:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Local HP</option>
-                                    <option>Network Toshiba</option>
-                                    <option>Beast 2nd floor</option>
-                                </select>
-                            </div>
+                            <label for="dashboardName" class="popupLabel">Name :</label>
+                            <input type="text" id="dashboardName" placeholder="Enter new name here"
+                                class="popupInput">
                         </div>
-                    </section>
-                    <section>
                         <div class="form-group">
-                            <label for="selects_4">Select a page size:</label>
+                            <label for="selects_4">Tab colour:</label>
                             <div class="select">
                                 <select id="selects_3"
                                     (change)="clickSelectStep($event)"
                                     >
-                                    <option>A3</option>
-                                    <option>A4</option>
-                                </select>
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="form-group">
-                            <label for="selects_4">Select a format:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Single page</option>
-                                    <option>Widget per page</option>
-                                    <option>Auto layout</option>
-                                </select>
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="form-group">
-                            <label for="selects_4">Select colour:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Black and White</option>
-                                    <option>Full colour</option>
+                                    <option>White</option>
+                                    <option>Black</option>
+                                    <option>Orange</option>
                                 </select>
                             </div>
                         </div>
@@ -70,9 +35,15 @@
                         class="btn btn-secondary"
                         (click)="clickClose('Close')"
                         >
-                        Print
+                        Delete
                     </button>
-                    
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose('Close')"
+                        >
+                        Save
+                    </button>
                 </form>
             </div>
         </div>
