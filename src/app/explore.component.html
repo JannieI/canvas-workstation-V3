@@ -235,10 +235,12 @@
     <span class="statusBarText">
         Tabs :
     </span>
-    <span class="statusBarText statusBarTextBorder" title="Tab: Summary of Sales">
+    <span class="statusBarText statusBarTextBorder" title="Tab: Summary of Sales"
+        (click)="clickAddTab()">
         <b>Summary</b>
     </span>
-    <span class="statusBarText statusBarTextBorder" title="Tab: Detail costing YTD">
+    <span class="statusBarText statusBarTextBorder" title="Tab: Detail costing YTD"
+        *ngIf="secondTab" (click)="clickAddTab()">
         Detail Costs
     </span>
 
@@ -279,13 +281,32 @@
     </span>
 </div>
 
-<div *ngIf="showNewTab" class="newTab">
+<!-- <div *ngIf="showNewTab" class="newTab">
     <label>New Tab</label>
 
     <div>
         <label for="dashboardName" class="popupLabel">Name :</label>
         <input type="text" id="dashboardName" placeholder="Enter new name here"
             class="popupInput">
+        <div class="form-group">
+            <label for="selects_4">Tab colour:</label>
+            <div class="select">
+                <select id="selects_3"
+                    (change)="clickSelectStep($event)"
+                    >
+                    <option>White</option>
+                    <option>Black</option>
+                    <option>Orange</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="button" class="popupButton" 
+            (click)="clickSaveTab()"
+            >
+            Delete
+            <clr-icon shape="floppy" size="16"></clr-icon>
+        </button>
         <button type="button" class="popupButton" 
             (click)="clickSaveTab()"
             >
@@ -293,7 +314,7 @@
             <clr-icon shape="floppy" size="16"></clr-icon>
         </button>
     </div>
-</div>
+</div> -->
 
 
 <!-- <div class="bgGrid" *ngIf="showGrid">
@@ -613,3 +634,11 @@
         
     </svg>
 </div>
+
+
+<!-- Modal: New Tab -->
+<dashboard-tab
+    class="formPopupDashboard"
+    *ngIf="showNewTab"
+    (formDashboardTabClosed)="handleCloseDashboardTab($event)">Load Dashboard Tab ...
+</dashboard-tab>

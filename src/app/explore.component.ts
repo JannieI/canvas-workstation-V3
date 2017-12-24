@@ -573,6 +573,10 @@ export class ExploreComponent {
         this.globalVariableService.showMainMenu.next(true);
         this.globalVariableService.presentation.next(false);
     }
+
+    handleCloseDashboardTab() {
+        this.showNewTab = false;
+    }
 }
 
 
