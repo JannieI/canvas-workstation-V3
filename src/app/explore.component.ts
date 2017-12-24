@@ -563,11 +563,6 @@ export class ExploreComponent {
         console.log('sss')
     }
 
-    clickSaveTab() {
-        this.showNewTab = false;
-        console.log('--s')
-    }
-
     clickClosePresentation() {
         console.log('kkk')
         this.globalVariableService.showMainMenu.next(true);

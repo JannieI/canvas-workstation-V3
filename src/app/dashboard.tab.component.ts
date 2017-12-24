@@ -18,9 +18,6 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Functions
 
-
-
-
 @Component({
     selector: 'dashboard-tab',
     templateUrl: './dashboard.tab.component.html',
@@ -39,16 +36,10 @@ import { GlobalVariableService }      from './global-variable.service';
         private router: Router,
     ) {}
 
-    ngOnInit() {
-    }
-
-    ngAfterViewInit() {
-
-    }
-
+    ngOnInit() {}
 
   	clickClose(action: string) {
 	  	this.formDashboardTabClosed.emit(action);
-        }
+    }
 
   }

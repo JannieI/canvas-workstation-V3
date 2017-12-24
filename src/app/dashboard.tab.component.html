@@ -13,8 +13,13 @@
                 <form>
                     <section>
                         <div class="form-group">
-                            <label for="dashboardName" class="popupLabel">Name :</label>
-                            <input type="text" id="dashboardName" placeholder="Enter new name here"
+                            <label for="dashboardName" class="popupLabel">Name (25 char):</label>
+                            <input type="text" id="dashboardName" placeholder="Enter short name here"
+                                class="popupInput">
+                        </div>
+                        <div class="form-group">
+                            <label for="dashboardName" class="popupLabel">Description :</label>
+                            <input type="text" id="dashboardName" placeholder="Enter Tab description"
                                 class="popupInput">
                         </div>
                         <div class="form-group">
@@ -33,14 +38,14 @@
                     <button
                         type="button"
                         class="btn btn-secondary"
-                        (click)="clickClose('Close')"
+                        (click)="clickClose('Delete')"
                         >
                         Delete
                     </button>
                     <button
                         type="button"
                         class="btn btn-secondary"
-                        (click)="clickClose('Close')"
+                        (click)="clickClose('Save')"
                         >
                         Save
                     </button>
