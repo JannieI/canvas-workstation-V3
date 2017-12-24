@@ -608,7 +608,7 @@
 
 
 <!-- Testing new Widget stuffies -->
-<div *ngFor="let row of localWidgets" class="widgetContainer2"
+<div *ngFor="let row of localWidgets; let i = index" class="widgetContainer2"
     #widgetContainter2
     [style.left.px]="row.container_left"
     [style.top.px]="row.container_top"
@@ -630,11 +630,11 @@
         <clr-icon shape="cursor-arrow" size="20" class="buttonBarIcon" (click)="clickSelect()"></clr-icon>
     </div>
     <div class="widgetSelected" *ngIf="selectW"
-        (mousedown)="clickDragMouseDown($event,  row.id)"
-        (mouseup)="clickDragMouseUp($event, row.id)"
-        (dragstart)="clickDragStart($event, row.id)"
-        (dragend)="clickDragEnd($event, row.id)"
-        (keydown)="clickDragKeydown($event, row.id)"
+        (mousedown)="clickDragMouseDown($event, i)"
+        (mouseup)="clickDragMouseUp($event, i)"
+        (dragstart)="clickDragStart($event, i)"
+        (dragend)="clickDragEnd($event, i)"
+        (keydown)="clickDragKeydown($event, i)"
         >
         <clr-icon 
             shape="cursor-hand" 

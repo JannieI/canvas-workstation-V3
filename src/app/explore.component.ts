@@ -591,8 +591,13 @@ export class ExploreComponent {
         this.startX = event.clientX;
         this.startY = event.clientY;
     }
-    clickDragEnd(event, id: number) {
-        console.log('clickDragEnd', id, event.clientX, event.clientY)
+    clickDragEnd(event, index: number) {
+        console.log('clickDragEnd', index, event.clientX, event.clientY, 
+        'was', this.localWidgets[index].container_left, 
+        'diff', event.clientX - this.startX,
+        'new', this.localWidgets[index].container_left + event.clientX - this.startX)
+
+        this.localWidgets[index].container_left = this.localWidgets[index].container_left + event.clientX - this.startX;
         
     }
     clickDragKeydown(event, id: number) {
