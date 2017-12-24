@@ -1,10 +1,23 @@
 // ALL models (schema) are kept here
+export class canvasShape {
+    image_alt: string;                      // alt in img tag
+    image_heigt: number;                    // in px
+    image_left: number;                     // in px
+    image_source: string;                   // Path (folder + filename) <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+    image_top: number;                      // in px
+    image_width: number;                    // in px
+    
+}
+
 export class canvasWidget {
     id: number;
+    name: string;
+    description: string;
     grammar: string;
     version: number;
     top: number;
     left: number;
+
     container_background_color: string;
     container_border: string;
     container_box_shadow: string;
@@ -15,11 +28,6 @@ export class canvasWidget {
     container_widget_title: string;                   // Title at top of container
     container_top: number;
     container_width: number;
-
-    areas_show_widget_text: boolean;
-    areas_show_widget_graph: boolean;
-    areas_show_widget_table: boolean;
-    areas_show_widget_image: boolean;
 
     textual_text_text: string;                      // with HTML & keywords (##today##)
     textual_text_backgroundColor: string;
@@ -58,12 +66,6 @@ export class canvasWidget {
     table_top: number;                      // in px
     table_width: number;                    // in px, cuts of rest if bigger than this
 
-    image_alt: string;                      // alt in img tag
-    image_heigt: number;                    // in px
-    image_left: number;                     // in px
-    image_source: string;                   // Path (folder + filename) <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
-    image_top: number;                      // in px
-    image_width: number;                    // in px
 
     properties_widget_id: number;                      // Unique ID from DB
     properties_dashboard_id: number;                   // FK to DashboardID to which widget belongs
