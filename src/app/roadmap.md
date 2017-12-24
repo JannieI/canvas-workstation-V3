@@ -121,8 +121,7 @@ This document describes items for later versions of Canvas.
 
 
 **Widget**
-1. More than one version of grammar - create space in spec and code (IF) - may not be needed
-   on UI for now
+1. 
 2. 
 3. Border on select
 4. Drag and Sizing handles on select

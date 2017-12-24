@@ -194,7 +194,6 @@ export class ExploreComponent {
     showShapes: boolean = true;
     showType: boolean = false;
     showTypeIcon: boolean = true;
-    showWidgets: boolean = true;
 
     statusBarRunning: string = '';
     statusBarCancelRefresh: string = '';
@@ -352,9 +351,7 @@ export class ExploreComponent {
     duplicateWidget(duplicate: boolean) {
         if (duplicate) {
             console.log('duplicateWidget', this.childrenWidgets.toArray().length)
-            // this.showWidgets = false;
             this.localDashboards.push(this.localDashboards[0]);
-            // this.showWidgets = true;
             // this.refreshWidgets();
             console.log('Add to array ...', this.localDashboards)
         }
