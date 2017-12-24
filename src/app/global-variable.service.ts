@@ -25,10 +25,32 @@ import { widgetNote }                 from './models';
 import { canvasAlert }                from './models';
 import { canvasMessage }              from './models';
 import { canvasActivity }             from './models';
+import { canvasWidget }               from './models';
 
 import * as dl from 'datalib';
 
 // import { CanvasUser }                 from './model.user';
+const localWidgets: Partial<canvasWidget>[] =
+[
+    {
+        id: 1,
+        name: 'barchart for start',
+        description: 'bla-bla-bla',
+        datasetID: 1,
+        container_background_color: 'transparent',
+        container_border: '1px solid black',
+        container_box_shadow: '2px 2px gray',
+        container_color: 'wite',
+        container_font_size: 12,
+        container_height: 300,
+        container_left: 50,
+        container_widget_title: 'Title 1',
+        container_top: 180,
+        container_width: 250,
+        container_zindex: 20
+
+    }
+]
 const canvasMessages: canvasMessage[] =
 [ 
     {
@@ -1349,6 +1371,7 @@ export class GlobalVariableService {
     widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
     canvasMessages: canvasMessage[] =  canvasMessages;
+    localWidgets: Partial<canvasWidget>[] = localWidgets;
     canvasActivities: canvasActivity[] = canvasActivities;
     canvasAlerts: canvasAlert[] = canvasAlerts;
 

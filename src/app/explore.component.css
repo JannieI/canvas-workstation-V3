@@ -124,6 +124,19 @@
     color: black;
 }
 
+
+
+.widgetContainer2 {
+    /* border: 1px dotted gray; */
+    display: inline-block;
+    height: 200px;
+    left:400px;
+    position: relative;
+    width: 250px;
+}
+
+
+
 .shapeContainer {
     /* border: 1px dotted gray; */
     display: inline-block;

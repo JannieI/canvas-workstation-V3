@@ -21,7 +21,7 @@ import { ViewChildren }               from '@angular/core';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { dashboard }                  from './models'
+import { dashboard, canvasWidget }                  from './models'
 import { datasource }                 from './models'
 
 // Vega, Vega-Lite
@@ -159,6 +159,7 @@ export class ExploreComponent {
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     localDashboards: dl.spec.TopLevelExtendedSpec[];
     localShapes: any[] = localShapes;
+    localWidgets: Partial<canvasWidget>[];
     description: string = 'A simple bar chart with embedded data.';
     circleRadius: number = 20;
     data: any = [
@@ -257,7 +258,7 @@ export class ExploreComponent {
         //     i => this.localDashboards
         // );
         this.localDashboards = this.globalVariableService.localDashboards;
-    
+        this.localWidgets = this.globalVariableService.localWidgets;
     }
 
     ngAfterViewInit() {
