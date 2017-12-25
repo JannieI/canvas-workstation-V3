@@ -37,12 +37,11 @@ export class DashboardHelpPresentationComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-
 		this.formDashboardHelpPresentationClosed.emit(action);
     }
 
     clickGotIt() {
-        this.globalVariableService.isFirstTimeDashboard.next(false);
+        this.globalVariableService.isFirstTimePresentation.next(false);
 		this.formDashboardHelpPresentationClosed.emit();
     }
 }

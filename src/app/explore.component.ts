@@ -183,7 +183,7 @@ export class ExploreComponent {
     open: Boolean = false;
     presentation: boolean;
     showMainMenu: boolean;
-    presentationMsg: boolean;
+    isFirstTimePresentation: boolean;
     secondTab: Boolean = false;
     sideNavWidth: string = '350';
     sideNavMinWidth: string = '18';
@@ -243,7 +243,9 @@ export class ExploreComponent {
         this.globalVariableService.editMode.subscribe(
             i => this.editMode = i
         )
-        this.presentationMsg = this.globalVariableService.presentationMsg;
+        this.globalVariableService.isFirstTimePresentation.subscribe(
+            i => this.isFirstTimePresentation = i
+        );
         this.globalVariableService.showGrid.subscribe(
             sG => this.showGrid = sG
         );
@@ -546,10 +548,6 @@ export class ExploreComponent {
         this.globalVariableService.isFirstTimeDashboard.next(false);
     }
 
-    clickGotItPresentation() {
-        this.presentationMsg = !this.presentationMsg;
-    }
-
     createVegaLiteSpec(
         description: string = 'First bar chart.',
         mark: string = 'bar',
@@ -680,11 +678,9 @@ export class ExploreComponent {
     }
 
     handleCloseDashboardHelp() {
-        this.globalVariableService.isFirstTimeDashboard.next(false)
     }
 
     handleCloseDashboardHelpPresentation() {
-        this.globalVariableService.isFirstTimeDashboard.next(false)
     }
 
 }

@@ -1456,12 +1456,12 @@ export class GlobalVariableService {
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardDiscard = new BehaviorSubject<boolean>(true);
+    isFirstTimePresentation = new BehaviorSubject<boolean>(true);
     isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
     isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
 
 
     presentation = new BehaviorSubject<boolean>(false);
-    presentationMsg: boolean = true;
     showGrid = new BehaviorSubject<boolean>(false);
     xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard
     // Company related variables

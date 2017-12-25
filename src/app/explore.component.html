@@ -91,45 +91,18 @@
     </clr-dropdown>
 </div>
 
-<div class="helpMessagePresentation" *ngIf="presentationMsg  &&  presentation">
-
-    <b>HELP</b> message: the presentation mode is the same as View-only Mode since no 
-    changes are allowed.  It however provides the following benefits:
-    <div>1. More screen area as the menus and status bar are hidden</div>
-    <div>2. Improved storytelling by linking to other Dashboards.  Usindiv the <clr-icon shape="bars"></clr-icon> 
-    menu in the top left corner, one can jump to other Dashboards that were linked
-    during the creation of the Dashboard.  The link button is also available by hovering
-    over the top of the Widget or Shape that is linked.  Multiple Widgets can be linked,
-    but each one can only link to one Dashboard.  Linking is optional.</div>
-    <div>3. Widget checkpoints are different layouts/graphs of a Widget in the same container, 
-    similar to bookmarks.
-    This is ideal to save space and show the detail behind a graph, and is created during the creation of the Dashboard.
-    The buttons to travers the checkpoints become visible when hovering over the top of the 
-    Widget.  Not all Widgets will have checkpoints since it are options.</div>
-    <div>4. The navigation actions can be recorded and played back.  This is useful for 
-    predefined presentations.
-    </div>
-    <br>
-    <b>Got it</b> <input type="checkbox" (click)="clickGotItPresentation()" [checked]="!presentationMsg">
-</div>
-
-
-
-
 
 <!-- Overlay: Dashboard Help -->
 <dashboard-help
-    class="formCollaborate"
     *ngIf="isFirstTimeDashboard"
     (formDashboardHelpClosed)="handleCloseDashboardHelp($event)">Load Help form ...
     >
 </dashboard-help>
 
 
-<!-- Overlay: Dashboard Help -->
+<!-- Overlay: Dashboard Help for Presentation -->
 <dashboard-helpPresentation
-    class="formCollaborate"
-    *ngIf="isFirstTimeDashboard"
+    *ngIf="isFirstTimePresentation  &&  presentation"
     (formDashboardHelpPresentationClosed)="handleCloseDashboardHelpPresentation($event)">Load Help form ...
     >
 </dashboard-helpPresentation>
