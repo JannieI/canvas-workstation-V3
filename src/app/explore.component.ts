@@ -268,7 +268,7 @@ export class ExploreComponent {
         // );
         this.localDashboards = this.globalVariableService.localDashboards;
         this.globalVariableService.localWidgets.subscribe(
-            i => this.localWidgets = i
+            i => this.localWidgets = i.filter(f => f.isTrashed == false)
         );
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
@@ -601,7 +601,7 @@ export class ExploreComponent {
     }
 
     clickSelect(i: number) {
-        console.log('clickSelect()')
+        console.log('clickSelect()', this.localWidgets)
         // this.selectW = !this.selectW;
         this.localWidgets[i].isSelected = !this.localWidgets[i].isSelected;
     }

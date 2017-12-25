@@ -33,7 +33,7 @@ import * as dl from 'datalib';
 const localWidgets: canvasWidget[] =
 [
     {
-        isDelete: true,
+        isTrashed: false,
         dashboardID: 1,                
         dashboardTabID: 1,             
         dashboardTabName: '',          
@@ -121,7 +121,7 @@ const localWidgets: canvasWidget[] =
         widgetUpdatedBy: '',
     },
     {
-        isDelete: false,
+        isTrashed: false,
         dashboardID: 1,                
         dashboardTabID: 1,             
         dashboardTabName: '',          
@@ -209,7 +209,7 @@ const localWidgets: canvasWidget[] =
         widgetUpdatedBy: '',
     },
     {
-        isDelete: false,
+        isTrashed: false,
         dashboardID: 1,                
         dashboardTabID: 1,             
         dashboardTabName: '',          
@@ -1843,4 +1843,13 @@ export class GlobalVariableService {
         this.menuCreateDisabled.next(value);
     }
 
+    deleteWidget(index: number) {
+        console.log('deleteWidget')
+        this.localWidgets.forEach( i => (i.forEach( e => {
+            if (e.id == index) {
+                e.isTrashed = true;
+                console.log(e)
+            }
+        })))
+    }
 }

@@ -12,8 +12,8 @@ export class canvasShape {
 export class canvasWidget {
 
     // Trashed
-    isDelete: boolean;
-    
+    isTrashed: boolean;
+
     // Not needed when Widget is inside a Dashboard
     dashboardID: number;                   // FK to DashboardID to which widget belongs
     dashboardTabID: number;               // FK to Tab where the widget lives
