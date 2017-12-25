@@ -72,6 +72,7 @@ export class AppComponent implements OnInit {
     showModalDashboardTemplate: boolean = false;
     showModalDashboardSchedule: boolean = false;
     showModalDashboardDelete: boolean = false;
+    showModalDashboardTreeview: boolean = false;
     showMainMenu: boolean = true;
     showModalWidgetCheckpoints: boolean = false;
     showModalWidgetNotes: boolean = false;
@@ -217,6 +218,10 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardDelete() {
         this.showModalDashboardDelete = false;
+    }
+
+    handleCloseDashboardTreeview(){
+        this.showModalDashboardTreeview = false;
     }
 
     handleCloseShapeEdit(action: string) {

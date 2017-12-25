@@ -742,6 +742,15 @@ class="formPopupDashboard"
 </dashboard-delete>
 
 
+<!-- Modal: Dashboard Delete -->
+<dashboard-treeview
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardTreeview"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardTreeviewClosed)="handleCloseDashboardTreeview($event)">Load Dashboard Treeview ...
+</dashboard-treeview>
+
+
 <!-- Modal: Widget Export -->
 <widget-export
     class="formPopupDashboard"

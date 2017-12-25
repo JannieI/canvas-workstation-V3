@@ -125,7 +125,7 @@ This document describes items for later versions of Canvas.
 3. Border on select
 4. Fix bug: isTrash => Widget does not disappear !
 5. Fix bug and Duplicate Widget correctly
-6. In Slideshow mode: show link buttons and this now jumps (Edit mode = show linking form)
+6. 
 7. Flag visible if it has a Note, Data Quality issues
 8. Consider Widget Templates - could be a way to make graphs easier, or standardise the
    look and feel in the company ...
@@ -133,7 +133,7 @@ This document describes items for later versions of Canvas.
    really easy.
 10.Issue - button bar is at top of Widget => moves graph down, messes up things.  Either totally
    separate SINGLE bar => just make visible ...  OR  duplicate div and border around Widget
-11.When resize Widget => resize graph as well.
+11.When resize Widget => add resize graph as well.
 12.Fix bug: graph moves inside another when Dragging - had this in v1 ...
 
 
