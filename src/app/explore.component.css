@@ -193,10 +193,10 @@
 .shapeContainer {
     /* border: 1px dotted gray; */
     display: inline-block;
-    height: 200px;
-    left:100px;
+    height: 100px;
+    left:1100px;
     position: absolute;
-    width: 250px;
+    width: 100px;
 }
 .shapeContainer:hover {
     border: 1px dotted black;

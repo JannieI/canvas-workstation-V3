@@ -46,10 +46,10 @@ export class AppComponent implements OnInit {
     moveLastX: number = 0;
     moveLastY: number = 0;
     presentation: boolean;
-    showCircle: boolean = false;
-    showImage: boolean = false;
-    showTextBox: boolean = false;
-    showRectangle: boolean = false;
+    // showCircle: boolean = false;
+    // showImage: boolean = false;
+    // showTextBox: boolean = false;
+    // showRectangle: boolean = false;
     showCollaborate: boolean = false;
     showGrid: boolean;
     showModalLanding: boolean;  // Show Landing Page
@@ -508,59 +508,30 @@ export class AppComponent implements OnInit {
     clickMenuShapeLinks() {
         console.log('clickMenuShapeLinks')
 
-        const div = this.renderer2.createElement('div');
-        const svg = this.renderer2.createElement('svg');
-        const circle = this.renderer2.createElement('circle');
-        const text = this.renderer2.createText('Hallo World !');
-        // const rect = this.renderer2.createElement('rect')
+        // const div = this.renderer2.createElement('div');
+        // const svg = this.renderer2.createElement('svg');
+        // const circle = this.renderer2.createElement('circle');
+        // const text = this.renderer2.createText('Hallo World !');
+        // // const rect = this.renderer2.createElement('rect')
          
-        this.renderer2.appendChild(div, text);
-        // this.renderer2.appendChild(svg, circle);
-        // this.renderer2.appendChild(rect, text);
-        // this.renderer2.appendChild(svg, this.dragCircle);
+        // this.renderer2.appendChild(div, text);
+        // // this.renderer2.appendChild(svg, circle);
+        // // this.renderer2.appendChild(rect, text);
+        // // this.renderer2.appendChild(svg, this.dragCircle);
 
-        // this.renderer2.appendChild(svg, rect);
-        this.renderer2.appendChild(div, svg);
-        this.renderer2.appendChild(this.el.nativeElement, div);
+        // // this.renderer2.appendChild(svg, rect);
+        // this.renderer2.appendChild(div, svg);
+        // this.renderer2.appendChild(this.el.nativeElement, div);
         
         
-        this.renderer2.addClass(div, 'aCircle');
-        this.renderer2.addClass(svg, 'aCircleDet');
-        this.renderer2.addClass(circle, 'aCircleDet');
-        // this.renderer2.addClass(rect, 'aCircleRect');
-        
-        // this.renderer2.setAttribute(rect, 'width', "400") 
-        // this.renderer2.setAttribute(rect, 'height', "50")
-        // this.renderer2.setStyle(rect, "fill", "rgb(0,0,255)")
-        // this.renderer2.setStyle(rect, "stroke-width", "10;stroke:rgb(0,0,0)")
-        // this.renderer2.setStyle(
-        //     div,
-        //     'border-right',
-        //     '2px dashed olive'
-        // );
-        // this.renderer2.setStyle(
-        //     div,
-        //     'background-color',
-        //     'orange'
-        // );
+        // this.renderer2.addClass(div, 'aCircle');
+        // this.renderer2.addClass(svg, 'aCircleDet');
+        // this.renderer2.addClass(circle, 'aCircleDet');
 
-        this.renderer2.setAttribute(circle, 'id', 'circle1' );
+        // this.renderer2.setAttribute(circle, 'id', 'circle1' );
 
-        // this.renderer2.setAttribute(circle, 'cx', '50' );
-        // this.renderer2.setAttribute(circle, 'cy', '50' );
-        // this.renderer2.setAttribute(circle, 'r', '40' );
-        // this.renderer2.setAttribute(circle, 'stroke', 'red' );
-        // this.renderer2.setAttribute(circle, 'stroke-width', '1' );
-        // this.renderer2.setAttribute(circle, 'fill', 'none' );
-
-        // circle.innerHTML = '<circle cx="50" cy="50" r="30" stroke="blue" stroke-width="2" fill="none" />'
-        svg.innerHTML = '<circle cx="50" cy="50" r="30" stroke="green" stroke-width="2" fill="none" />'
-        // console.log('circle.innerHTML', circle.innerHTML)
-        // this.renderer2.listen('document', rect,  (event) => console.log('yes') )
-        // console.log('circle', circle)
-        console.log('svg', svg)
-
-        // this.showCircle = true;
+        // svg.innerHTML = '<circle cx="50" cy="50" r="30" stroke="green" stroke-width="2" fill="none" />'
+        // console.log('svg', svg)
   
     }
     
