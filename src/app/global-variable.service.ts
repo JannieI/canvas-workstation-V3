@@ -1844,11 +1844,10 @@ export class GlobalVariableService {
     }
 
     deleteWidget(index: number) {
-        console.log('deleteWidget')
         this.localWidgets.forEach( i => (i.forEach( e => {
             if (e.id == index) {
                 e.isTrashed = true;
-                console.log(e)
+                console.log('Deleted id:', e.id)
             }
         })))
     }

@@ -23,7 +23,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService } 	  from './global-function.service';
 
 // Own Components
-import { field }                      from './models'
+import { field, canvasWidget }                      from './models'
 
 @Component({
     selector: 'my-app',
@@ -98,6 +98,8 @@ export class AppComponent implements OnInit {
     showModalUserOffline: boolean = false;
     currentWidgetSpec: string = "{...}";
 
+    localTrash: canvasWidget[];
+
     // Testings ....
     test: number[] = [1,2,3,4,5,6];
     condition: boolean = true;
@@ -130,6 +132,9 @@ export class AppComponent implements OnInit {
         this.showModalLanding = this.globalVariableService.showModalLanding;
         this.globalVariableService.showMainMenu.subscribe(
             sm => this.showMainMenu = sm
+        );
+        this.globalVariableService.localTrash.subscribe(
+            i => this.localTrash = i
         );
     }   
 
@@ -264,6 +269,7 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseWidgetDelete() {
+        console.log('Trashed Widgets', this.localTrash)
         this.showModalWidgetDelete = false;
     }
 
