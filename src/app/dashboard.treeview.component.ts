@@ -38,18 +38,18 @@ export class DashboardTreeviewComponent implements OnInit {
 
     rootDirectory: any[] = [
         {
-            name: "Applications",
+            name: "Datasets",
             icon: "folder",
             expanded: true,
             files: [
                 {
                     icon: "calendar",
-                    name: "Calendar",
+                    name: "Calendar Widget",
                     active: true
                 },
                 {
                     icon: "line-chart",
-                    name: "Charts",
+                    name: "Line Charts",
                     active: false
                 },
                 {
@@ -65,25 +65,13 @@ export class DashboardTreeviewComponent implements OnInit {
             ]
         },
         {
-            name: "Files",
+            name: "Shapes",
             icon: "folder",
             expanded: false,
             files: [
                 {
                     icon: "file",
-                    name: "Cover Letter.doc",
-                    active: false
-                },
-            ]
-        },
-        {
-            name: "Images",
-            icon: "folder",
-            expanded: false,
-            files: [
-                {
-                    icon: "image",
-                    name: "Screenshot.png",
+                    name: "Circle",
                     active: false
                 },
             ]

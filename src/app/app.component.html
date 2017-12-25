@@ -595,6 +595,7 @@
                     <a clrDropdownItem (click)="clickMenuUserLogin()">Login</a>
                     <a clrDropdownItem (click)="clickMenuUserMyProfile()">My Profile</a>
                     <a clrDropdownItem (click)="clickMenuUserPreferences()">Preferences</a>
+                    <a clrDropdownItem (click)="clickMenuDashboardSubscribe()">Subscribe</a>
                     <a clrDropdownItem (click)="clickMenuUserWidgetButtonBar()">Widget Button Bar</a>
                     <a clrDropdownItem (click)="clickMenuUserShapeButtonBar()">Shape Button Bar</a>
                     <a clrDropdownItem (click)="clickMenuUserSystemSettings()">System Settings</a>
@@ -746,13 +747,22 @@ class="formPopupDashboard"
 </dashboard-delete>
 
 
-<!-- Modal: Dashboard Delete -->
+<!-- Modal: Dashboard Treeview -->
 <dashboard-treeview
     class="formPopupDashboard"
     *ngIf="showModalDashboardTreeview"
     [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardTreeviewClosed)="handleCloseDashboardTreeview($event)">Load Dashboard Treeview ...
 </dashboard-treeview>
+
+
+<!-- Modal: Dashboard Subscribe -->
+<dashboard-subscribe
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardSubscribe"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardSubscribeClosed)="handleCloseDashboardSubscribe($event)">Load Dashboard Subscribe ...
+</dashboard-subscribe>
 
 
 <!-- Modal: Widget Export -->

@@ -77,8 +77,7 @@ This document describes items for later versions of Canvas.
 8. 
 9. Test printing - and see if pagelayout can be changed
 10.View all Comments and notes at once, with filter on messageText and Sender/Receiver
-11.Consider Explorer / Tree view of Dashboard - showing makeup of Widgets, Shapes, Datasets,
-   links, etc.
+11.
 12.Add subscriptions, events and distribution: send {Clarity Message / Email / Telegram}
    when {Dashboard} is {changed/deleted}
 13.Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked

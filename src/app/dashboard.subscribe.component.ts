@@ -21,18 +21,17 @@ import { dashboard }                  from './models';
 import { snapshot }                 from './models';
 
 @Component({
-    selector: 'dashboard-snapshots',
-    templateUrl: './dashboard.snapshots.component.html',
-    styleUrls: ['./dashboard.snapshots.component.css']
+    selector: 'dashboard-subscribe',
+    templateUrl: './dashboard.subscribe.component.html',
+    styleUrls: ['./dashboard.subscribe.component.css']
 })
-export class DashboardSnapshotsComponent implements OnInit {
+export class DashboardSubscribeComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formDashboardSnapshotsClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardSubscribeClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
     dashboards: Partial<dashboard>[];
-    snapshots: snapshot[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -41,12 +40,11 @@ export class DashboardSnapshotsComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.snapshots = this.globalVariableService.snapshots;
     }
 
     clickClose(action: string) {
         console.log('clickClose')
 
-		this.formDashboardSnapshotsClosed.emit(action);
+		this.formDashboardSubscribeClosed.emit(action);
     }
 }

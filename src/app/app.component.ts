@@ -73,6 +73,7 @@ export class AppComponent implements OnInit {
     showModalDashboardSchedule: boolean = false;
     showModalDashboardDelete: boolean = false;
     showModalDashboardTreeview: boolean = false;
+    showModalDashboardSubscribe: boolean = false;
     showMainMenu: boolean = true;
     showModalWidgetCheckpoints: boolean = false;
     showModalWidgetNotes: boolean = false;
@@ -222,6 +223,10 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardTreeview(){
         this.showModalDashboardTreeview = false;
+    }
+
+    handleCloseDashboardSubscribe() {
+        this.showModalDashboardSubscribe = true;
     }
 
     handleCloseShapeEdit(action: string) {
@@ -410,7 +415,11 @@ export class AppComponent implements OnInit {
     clickMenuDashboardTreeview() {
         this.showModalDashboardTreeview = true;
     }
-    
+
+    clickMenuDashboardSubscribe() {
+        this.showModalDashboardSubscribe = true;
+    }
+
     clickMenuDataFromFile() {
         console.log('menuDataFromFile')
         this.globalVariableService.dataGetFromSwitch.next('File');
