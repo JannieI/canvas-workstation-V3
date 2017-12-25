@@ -276,7 +276,9 @@ export class ExploreComponent {
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
         );
-        this.currentDatasources = this.globalVariableService.currentDatasources;
+        this.globalVariableService.currentDatasources.subscribe(
+            i => this.currentDatasources = i
+        );
 
     }
 

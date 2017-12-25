@@ -1669,7 +1669,7 @@ export class GlobalVariableService {
     dashboards: Partial<dashboard>[] = dashboards;
     currentTransformations: currentTransformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;
-    currentDatasources: currentDatasource[] = currentDatasources;
+    currentDatasources = new BehaviorSubject<currentDatasource[]>(currentDatasources);
     datasources: currentDatasource[] = datasources;
     dataQualityIssues: dataQualityIssue[] = dataQualityIssues;
     localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
@@ -1851,4 +1851,9 @@ export class GlobalVariableService {
             }
         })))
     }
+    currentDatasourceAdd(newData: currentDatasource) {
+        this.currentDatasources.value.push(newData);
+        console.log('yy', this.currentDatasources.value)
+    }
+
 }

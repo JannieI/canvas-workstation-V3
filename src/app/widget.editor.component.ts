@@ -891,11 +891,13 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     ) {}
 
     ngOnInit() {
-        this.currentDatasources = this.globalVariableService.currentDatasources;
+        this.globalVariableService.currentDatasources.subscribe(
+          i => this.currentDatasources = i
+        );
         this.dataFieldNames = ['symbol', 'date', 'price', 'Month', 'Trades'];
         this.globalVariableService.presentation.subscribe(
-          pres => this.presentation = pres
-      );    
+            pres => this.presentation = pres
+        );    
     }
 
     ngAfterViewInit() {

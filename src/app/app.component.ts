@@ -143,8 +143,9 @@ export class AppComponent implements OnInit {
         this.globalVariableService.localWidgets.subscribe(
             i => this.localWidgets = i
         );
-        this.currentDatasources = this.globalVariableService.currentDatasources;
-
+        this.globalVariableService.currentDatasources.subscribe(
+            i => this.currentDatasources = i
+        );
     }   
 
     handleCloseModal() {

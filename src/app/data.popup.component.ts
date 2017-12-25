@@ -151,8 +151,10 @@ export class DataPopupComponent implements OnInit {
         // Load global variables
         this.datasources = this.globalVariableService.datasources
         .filter(d => d.id <= 14);
-        this.currentDatasources = this.globalVariableService.currentDatasources;
-        if (this.currentDatasources.length > 0) {
+        this.globalVariableService.currentDatasources.subscribe(
+            i => this.currentDatasources = i
+        );
+       if (this.currentDatasources.length > 0) {
             this.isFirstTimeData = false;
         } else {
             this.isFirstTimeData = false;
@@ -203,7 +205,9 @@ export class DataPopupComponent implements OnInit {
         this.isFirstTimeData = false;
         this.showDataPreview = true;
         this.currentDataset = this.fileName;
-        this.currentDatasources.push(newData);
+        
+        this.globalVariableService.currentDatasourceAdd(newData);
+        // this.currentDatasources.push(newData);
         console.log('     currentDatasources', this.currentDatasources)
     }
 
