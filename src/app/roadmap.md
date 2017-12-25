@@ -123,7 +123,7 @@ This document describes items for later versions of Canvas.
 
 **Widget**
 1. Consider Widget to use CSS Grid for layout
-2. 
+2. Issue: how to call WidgetEdit, etc from explore NOT duplicating code ...
 3. Border on select
 4. Fix bug: isTrash => Widget does not disappear !
 5. Fix bug and Duplicate Widget correctly

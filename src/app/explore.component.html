@@ -3,7 +3,7 @@
         <button type="button" clrDropdownTrigger>
             <clr-icon shape="bars"></clr-icon>
         </button>
-        
+
         <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
             <button
                 type="button"
@@ -172,8 +172,8 @@
                     draggable="true"
                     >
                     <svg height="100" width="100" >
-                        <circle #circle [attr.cx]="50" 
-                        [attr.cy]="50" [attr.r]="circleRadius" [attr.stroke]="blue" 
+                        <circle #circle [attr.cx]="50"
+                        [attr.cy]="50" [attr.r]="circleRadius" [attr.stroke]="blue"
                         [attr.stroke-width]="2" [style.fill]="none" />
                     </svg>
                 </div>
@@ -210,7 +210,7 @@
     </span>
     <span [ngSwitch]="editMode" class="statusBarText">
         <b    *ngSwitchCase="true" title="Changes can be done in Edit Mode">Edit Mode </b>
-        <span *ngSwitchDefault title="View only mode means no changes can be made">View-Only     </span> 
+        <span *ngSwitchDefault title="View only mode means no changes can be made">View-Only     </span>
     </span>
     <span class="statusBarText" title="Indicate long-running queries in the background">
         {{ statusBarRunning }}
@@ -529,7 +529,7 @@
 
 <div class="bgGrid" *ngIf="showGrid">
     <svg width="100%" height="100%">
-    
+
         <!-- Create mask that we'll use to define a slight gradient -->
         <mask maskUnits="userSpaceOnUse" id="fade">
         <!-- Here's that slight gradient -->
@@ -540,7 +540,7 @@
         <!-- The canvas for our mask -->
         <rect fill="url(#gradient)" width="100%" height="100%" />
         </mask>
-        
+
         <!-- Let's define the pattern -->
         <!-- The width and height should be double the circle radius we plan to use -->
         <pattern id="pattern-circles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -550,7 +550,7 @@
         </pattern>
         <!-- The canvas with our applied pattern -->
         <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)" />
-        
+
     </svg>
 </div>
 
@@ -579,20 +579,104 @@
     [style.box-shadow]="row.containerBoxshadow"
     >
     <div class="widgetButtonBar2">
-        <clr-icon shape="pencil" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
-        <clr-icon shape="pop-out" size="20" class="buttonBarIcon" (click)="clickWidgetCheckpoints()"></clr-icon>
-        <clr-icon shape="note" size="20" class="buttonBarIcon" (click)="clickMenuWidgetNotes()"></clr-icon>
-        <clr-icon shape="link" size="20" class="buttonBarIcon" (click)="clickMenuWidgetLinks()"></clr-icon>
-        <clr-icon shape="refresh" size="20" class="buttonBarIcon" (click)="clickMenuWidgetRefresh()"></clr-icon>
-        <clr-icon shape="copy" size="20" class="buttonBarIcon" (click)="clickMenuWidgetDuplicate()"></clr-icon>
-        <clr-icon shape="pop-out" size="20" class="buttonBarIcon" (click)="clickMenuWidgetExpand()"></clr-icon>
-        <clr-icon shape="export" size="20" class="buttonBarIcon" (click)="clickMenuWidgetExport()"></clr-icon>
-        <clr-icon shape="deploy" size="20" class="buttonBarIcon" (click)="clickMenuArrangeBack()"></clr-icon>
-        <clr-icon shape="block" size="20" class="buttonBarIcon" (click)="clickMenuArrangeFront()"></clr-icon>
-        <clr-icon shape="trash" size="20" class="buttonBarIcon" (click)="clickMenuWidgetDelete()"></clr-icon>
-        <clr-icon shape="cursor-arrow" size="20" class="buttonBarIcon" (click)="clickSelect(i)"></clr-icon>
+        <clr-icon
+            shape="pencil"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickWidgetEdit(i)"
+            title="Edit Widget"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="pop-out"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickWidgetCheckpoints(i)"
+            title="Show Checkpoints"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="note"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetNotes(i)"
+            title="Show Notes"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="link"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetLinks(i)"
+            title="Show Links"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="refresh"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetRefresh(i)"
+            title="Refresh Dataset for this Widget only"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="copy"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetDuplicate(i)"
+            title="Duplicate this Widget"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="pop-out"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetExpand(i)"
+            title="Expand the Dataset for this Widget"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="export"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetExport(i)"
+            title="Export the Dataset for this Widget"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="deploy"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuArrangeBack(i)"
+            title="Move Widget back"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="block"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuArrangeFront(i)"
+            title="Move Widget forward"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="trash"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetDelete(i)"
+            title="Delete this Widget"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="cursor-arrow"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickSelect(i)"
+            title="Select this Widget"
+            >
+        </clr-icon>
     </div>
-    
+
     <div class="widgetSelectedDrag" *ngIf="row.isSelected"
         (mousedown)="clickDragMouseDown($event, i)"
         (mouseup)="clickDragMouseUp($event, i)"
@@ -600,10 +684,10 @@
         (dragend)="clickDragEnd($event, i)"
         (keydown)="clickDragKeydown($event, i)"
         >
-        <clr-icon 
-            shape="cursor-hand" 
-            size="20" 
-            class="buttonBarIcon2" 
+        <clr-icon
+            shape="cursor-hand"
+            size="20"
+            class="buttonBarIcon2"
             title="Drag handle to move Widget around"
             draggable="true"
             >
@@ -618,9 +702,9 @@
         (keydown)="clickResizeKeydown($event, i)"
         >
         <clr-icon class="widgetSelectedResize"
-            shape="resize left" 
-            size="20" 
-            class="buttonBarIcon2" 
+            shape="resize left"
+            size="20"
+            class="buttonBarIcon2"
             title="Resize handle to change Widget container size"
             draggable="true"
             >
