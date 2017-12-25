@@ -360,7 +360,7 @@ export class ExploreComponent {
         console.log('refreshWidgets 2 started')
         for (var i: number = 0; i < this.childrenWidgets2.toArray().length; i++) {
             console.log('refreshWidgets loop i', i)
-            let definition = this.localWidgets[i].graph_specification;
+            let definition = this.localWidgets[i].graphSpecification;
             let specification = compile(definition).spec;
             console.log('spec 2', specification)
             let view = new View(parse(specification));
@@ -596,9 +596,10 @@ export class ExploreComponent {
         this.showNewTab = false;
     }
 
-    clickSelect() {
+    clickSelect(i: number) {
         console.log('clickSelect()')
-        this.selectW = !this.selectW;
+        // this.selectW = !this.selectW;
+        this.localWidgets[i].isSelected = !this.localWidgets[i].isSelected;
     }
 
     clickDragMouseDown(event, id: number) {
@@ -614,15 +615,15 @@ export class ExploreComponent {
     }
     clickDragEnd(event, index: number) {
         console.log('clickDragEnd', index, event.clientX, event.clientY, 
-        'was', this.localWidgets[index].container_left, 
+        'was', this.localWidgets[index].containerLeft, 
         'diff', event.clientX - this.startX,
-        'new', this.localWidgets[index].container_left + event.clientX - this.startX)
+        'new', this.localWidgets[index].containerLeft + event.clientX - this.startX)
 
         let moveX: number = event.clientX - this.startX;
         let moveY: number = event.clientY - this.startY;
         
-        let newX: number = this.localWidgets[index].container_left + moveX;
-        let newY: number = this.localWidgets[index].container_top + moveY;
+        let newX: number = this.localWidgets[index].containerLeft + moveX;
+        let newY: number = this.localWidgets[index].containerTop + moveY;
 
         if (newX < 0) {
             newX = 0;
@@ -631,8 +632,8 @@ export class ExploreComponent {
             newY = 15;
         }
         
-        this.localWidgets[index].container_left = newX;
-        this.localWidgets[index].container_top = newY;
+        this.localWidgets[index].containerLeft = newX;
+        this.localWidgets[index].containerTop = newY;
         
     }
     clickDragKeydown(event, id: number) {
@@ -654,15 +655,15 @@ export class ExploreComponent {
     }
     clickResizeEnd(event, index: number) {
         console.log('clickResizeEnd', index, event.clientX, event.clientY, 
-        'was', this.localWidgets[index].container_width, 
+        'was', this.localWidgets[index].containerWidth, 
         'diff', event.clientX - this.startX,
-        'new', this.localWidgets[index].container_width + event.clientX - this.startX)
+        'new', this.localWidgets[index].containerWidth + event.clientX - this.startX)
 
         let moveX: number = event.clientX - this.startX;
         let moveY: number = event.clientY - this.startY;
         
-        let newX: number = this.localWidgets[index].container_width + moveX;
-        let newY: number = this.localWidgets[index].container_height + moveY;
+        let newX: number = this.localWidgets[index].containerWidth + moveX;
+        let newY: number = this.localWidgets[index].containerHeight + moveY;
 
         if (newX < 80) {
             newX = 80;
@@ -671,8 +672,8 @@ export class ExploreComponent {
             newY = 50;
         }
         
-        this.localWidgets[index].container_width = newX;
-        this.localWidgets[index].container_height = newY;
+        this.localWidgets[index].containerWidth = newX;
+        this.localWidgets[index].containerHeight = newY;
     }
     clickResizeKeydown(event, id: number) {
         console.log('clickResizeKeydown', id)

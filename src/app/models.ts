@@ -1,20 +1,20 @@
 // ALL models (schema) are kept here
 export class canvasShape {
-    image_alt: string;                      // alt in img tag
-    image_heigt: number;                    // in px
-    image_left: number;                     // in px
-    image_source: string;                   // Path (folder + filename) <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
-    image_top: number;                      // in px
-    image_width: number;                    // in px
+    imageAlt: string;                      // alt in img tag
+    imageHeigt: number;                    // in px
+    imageLeft: number;                     // in px
+    imageSource: string;                   // Path (folder + filename) <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
+    imageTop: number;                      // in px
+    imageWidth: number;                    // in px
     
 }
 
 export class canvasWidget {
 
     // Not needed when Widget is inside a Dashboard
-    dashboard_id: number;                   // FK to DashboardID to which widget belongs
-    dashboard_tab_id: number;               // FK to Tab where the widget lives
-    dashboard_tab_name: string;             // FK to Tab Name where widget lives
+    dashboardID: number;                   // FK to DashboardID to which widget belongs
+    dashboardTabID: number;               // FK to Tab where the widget lives
+    dashboardTabName: string;             // FK to Tab Name where widget lives
 
     // Identification and Description
     id: number;
@@ -22,21 +22,24 @@ export class canvasWidget {
     description: string;
     grammar: string;
     version: number;
-    is_liked: boolean;                      // @RunTime: True if Widget is liked by me
+
+    // @Runtime
+    isLiked: boolean;                      // @RunTime: True if Widget is liked by me
+    isSelected: boolean;
 
     // Data related
     datasetID: number;
-    data_parameters: 
+    dataParameters: 
     [ 
         {
             "field": string;
             "value": string;
         }
     ]
-    report_id: number;                      // FK to report (query / data).  -1: dont load any report data
-    report_name: string;                    // Report (query) name in Eazl (DS implied)
-    row_limit: number;                      // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
-    add_rest_row: boolean;                  // True means add a row to  = SUM(rest)
+    reportID: number;                      // FK to report (query / data).  -1: dont load any report data
+    reportName: string;                    // Report (query) name in Eazl (DS implied)
+    rowLimit: number;                      // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
+    addRestRow: boolean;                  // True means add a row to  = SUM(rest)
     size: string;                           // Small, Medium, Large ito data loading
 
     // Links
@@ -44,67 +47,67 @@ export class canvasWidget {
     hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
 
     // Container
-    container_background_color: string;
-    container_border: string;
-    container_box_shadow: string;
-    container_color: string;
-    container_font_size: number;
-    container_height: number;
-    container_left: number;
-    container_widget_title: string;         // Title at top of container
-    container_top: number;
-    container_width: number;
-    container_zindex: number;
+    containerBackgroundcolor: string;
+    containerBorder: string;
+    containerBoxshadow: string;
+    containerColor: string;
+    containerFontsize: number;
+    containerHeight: number;
+    containerLeft: number;
+    containerWidgetTitle: string;         // Title at top of container
+    containerTop: number;
+    containerWidth: number;
+    containerZindex: number;
 
     // Title
-    title_text: string;                     // with HTML & keywords (##today##)
-    title_backgroundColor: string;
-    title_border: string;
-    title_color: string;
-    title_fontSize: number;                 // in px
-    title_fontWeight: string;
-    title_height: number;                   // in px
-    title_left: number;                     // in px
-    title_margin: string;
-    title_padding: string;
-    title_position: string;
-    title_textAlign: string;
-    title_top: number;                      // in px
-    title_width: number;                    // in px: 0 means it adapts to container
+    titleText: string;                     // with HTML & keywords (##today##)
+    titleBackgroundColor: string;
+    titleBorder: string;
+    titleColor: string;
+    titleFontsize: number;                 // in px
+    titleFontWeight: string;
+    titleHeight: number;                   // in px
+    titleLeft: number;                     // in px
+    titleMargin: string;
+    titlePadding: string;
+    titlePosition: string;
+    titleTextAlign: string;
+    titleTop: number;                      // in px
+    titleWidth: number;                    // in px: 0 means it adapts to container
 
     // Graph
-    graph_type: string;                     // bar, pie, etc
-    graph_height: number;                   // in px
-    graph_left: number;                     // in px
-    graph_top: number;                      // in px
-    graph_width: number;                    // in px
-    graph_graphPadding: number;
-    graph_hasSignals: boolean;
-    graph_xcolumn: string;
-    graph_ycolumn: string;
-    graph_fillColor: string;
-    graph_hoverColor: string;
-    graph_specification: any;
+    graphType: string;                     // bar, pie, etc
+    graphHeight: number;                   // in px
+    graphLeft: number;                     // in px
+    graphTop: number;                      // in px
+    graphWidth: number;                    // in px
+    graphGraphPadding: number;
+    graphHasSignals: boolean;
+    graphXcolumn: string;
+    graphYcolumn: string;
+    graphFillColor: string;
+    graphHoverColor: string;
+    graphSpecification: any;
 
     // Table - to be determined later ...
-    table_color: string;                    // Text color
-    table_cols: number;                     // Nr of cols, 0 means all
-    table_height: number;                   // in px, cuts of rest if bigger than this
-    table_hideHeader: boolean;
-    table_left: number;                     // in px
-    table_rows: number;                     // Nr of rows in the data, excluding header: 0 means all
-    table_top: number;                      // in px
-    table_width: number;                    // in px, cuts of rest if bigger than this
+    tableColor: string;                    // Text color
+    tableCols: number;                     // Nr of cols, 0 means all
+    tableHeight: number;                   // in px, cuts of rest if bigger than this
+    tableHideHeader: boolean;
+    tableLeft: number;                     // in px
+    tableRows: number;                     // Nr of rows in the data, excluding header: 0 means all
+    tableTop: number;                      // in px
+    tableWidth: number;                    // in px, cuts of rest if bigger than this
 
     // Created, updated and refreshed
-    refresh_mode: string;                   // Manual, OnOpen, Repeatedly
-    refresh_frequency: number;              // Nr of seconds if RefreshMode = Repeatedly
-    widget_refreshed_on: string;            // Data Refreshed on
-    widget_refreshed_by: string;            // Date Refreshed by
-    widget_Created_on: string;              // Created on
-    widget_Created_by: string;              // Created by
-    widget_updated_on: string;              // Updated on
-    widget_updated_by: string;              // Updated by    
+    refreshMode: string;                   // Manual, OnOpen, Repeatedly
+    refreshFrequency: number;              // Nr of seconds if RefreshMode = Repeatedly
+    widgetRefreshedOn: string;            // Data Refreshed on
+    widgetRefreshedBy: string;            // Date Refreshed by
+    widgetCreatedOn: string;              // Created on
+    widgetCreatedBy: string;              // Created by
+    widgetUpdatedOn: string;              // Updated on
+    widgetUpdatedBy: string;              // Updated by    
 
 }
 
@@ -225,24 +228,24 @@ export class dashboard {
 
     // Overall properties
     password: string;
-    refresh_mode: string;
-    refresh_timer: number;
-    default_tab_id: number;
-    default_export_file_type: string;
+    refreshMode: string;
+    refreshTimer: number;
+    defaultTabID;
+    defaultExportFileType: string;
     url: string;
 
     // Overlay looks
-    background_color: string;
-    background_image: string;
+    backgroundColor: string;
+    backgroundImage: string;
     templateDashboardID: number;
     
     // Creation, update and refresh
     creator: string;
-    date_created: string;
+    dateCreated: string;
     editor: string;
-    date_edited: string;
+    dateEdited: string;
     refresher: string;
-    date_refreshed: string;
+    dateRefreshed: string;
     
     // 2nd normal form
     nrWidgets: number;

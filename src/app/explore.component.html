@@ -610,15 +610,15 @@
 <!-- Testing new Widget stuffies -->
 <div *ngFor="let row of localWidgets; let i = index" class="widgetContainer2"
     #widgetContainter2
-    [style.left.px]="row.container_left"
-    [style.top.px]="row.container_top"
+    [style.left.px]="row.containerLeft"
+    [style.top.px]="row.containerTop"
 
-    [style.background-color]="row.container_background_color"
-    [style.border]="row.container_border"
-    [style.height.px]="row.container_height"
-    [style.width.px]="row.container_width"
-    [style.zindex]="row.container_zindex"
-    [style.box_shadow]="row.container_box_shadow"
+    [style.background-color]="row.containerBackgroundColor"
+    [style.border]="row.containerBorder"
+    [style.height.px]="row.containerHeight"
+    [style.width.px]="row.containerWidth"
+    [style.zindex]="row.containerZindex"
+    [style.box-shadow]="row.containerBoxshadow"
     >
     <div class="widgetButtonBar2">
         <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
@@ -627,10 +627,10 @@
         <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon>
         <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon>
         <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="cursor-arrow" size="20" class="buttonBarIcon" (click)="clickSelect()"></clr-icon>
+        <clr-icon shape="cursor-arrow" size="20" class="buttonBarIcon" (click)="clickSelect(i)"></clr-icon>
     </div>
     
-    <div class="widgetSelectedDrag" *ngIf="selectW"
+    <div class="widgetSelectedDrag" *ngIf="row.isSelected"
         (mousedown)="clickDragMouseDown($event, i)"
         (mouseup)="clickDragMouseUp($event, i)"
         (dragstart)="clickDragStart($event, i)"
@@ -647,7 +647,7 @@
         </clr-icon>
     </div>
 
-    <span class="widgetSelectedResize" *ngIf="selectW"
+    <span class="widgetSelectedResize" *ngIf="row.isSelected"
         (mousedown)="clickResizeMouseDown($event, i)"
         (mouseup)="clickResizeMouseUp($event, i)"
         (dragstart)="clickResizeStart($event, i)"
@@ -665,8 +665,8 @@
     </span>
 
     <div class="widget"
-        [style.height.px]="row.container_height - 35"
-        [style.width.px]="row.container_width"
+        [style.height.px]="row.containerHeight - 35"
+        [style.width.px]="row.containerWidth"
         >
         <div #widget2>
             Here: {{ row.name }}
