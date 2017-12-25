@@ -298,6 +298,7 @@ export class ExploreComponent {
         };
 
         this.refreshWidgets();
+        this.refreshWidgets2();
 
     }
 
@@ -361,6 +362,7 @@ export class ExploreComponent {
             console.log('refreshWidgets loop i', i)
             let definition = this.localWidgets[i].graph_specification;
             let specification = compile(definition).spec;
+            console.log('spec 2', specification)
             let view = new View(parse(specification));
             view.renderer('svg') 
                 .initialize( this.childrenWidgets2.toArray()[i].nativeElement)
