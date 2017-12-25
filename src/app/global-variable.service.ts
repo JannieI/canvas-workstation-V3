@@ -33,11 +33,31 @@ import * as dl from 'datalib';
 const localWidgets: Partial<canvasWidget>[] =
 [
     {
+        dashboardID: 1,                
+        dashboardTabID: 1,             
+        dashboardTabName: '',          
         id: 1,
         name: 'barchart for start',
         description: 'bla-bla-bla',
+        grammar: '',
+        version: 1,
         isSelected: false,
+        isLiked: false,     
         datasetID: 1,
+        dataParameters: 
+        [ 
+            {
+                "field": '',
+                "value": '',
+            }
+        ],
+        reportID: 1,                   
+        reportName: '',                
+        rowLimit: 1,                   
+        addRestRow: false,             
+        size: '',                      
+        hyperlinkDashboardID: 1,       
+        hyperlinkDashboardTabID: 1,    
         containerBackgroundcolor: 'transparent',
         containerBorder: '2px solid black',
         containerBoxshadow: '2px 2px gray',
@@ -49,6 +69,31 @@ const localWidgets: Partial<canvasWidget>[] =
         containerTop: 140,
         containerWidth: 250,
         containerZindex: 20,
+        titleText: '',    
+        titleBackgroundColor: '',
+        titleBorder: '',
+        titleColor: '',
+        titleFontsize: 1, 
+        titleFontWeight: '',
+        titleHeight: 1,   
+        titleLeft: 1,     
+        titleMargin: '',
+        titlePadding: '',
+        titlePosition: '',
+        titleTextAlign: '',
+        titleTop: 1,           
+        titleWidth: 1,         
+        graphType: '',         
+        graphHeight: 1,        
+        graphLeft: 1,          
+        graphTop: 1,           
+        graphWidth: 1,         
+        graphGraphPadding: 1,
+        graphHasSignals: false,
+        graphXcolumn: '',
+        graphYcolumn: '',
+        graphFillColor: '',
+        graphHoverColor: '',
         graphSpecification: {
             "data": {"url": "../assets/vega-datasets/cars.json"},
             "mark": "point",
@@ -56,75 +101,90 @@ const localWidgets: Partial<canvasWidget>[] =
                 "x": {"field": "Horsepower", "type": "quantitative"},
                 "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
             }
-        }
-
-    },
-    {
-        id: 2,
-        name: 'line chart',
-        description: 'bla-bla-bla',
-        isSelected: false,
-        datasetID: 1,
-        containerBackgroundcolor: 'transparent',
-        containerBorder: '',
-        containerBoxshadow: '',
-        containerColor: 'orange',
-        containerFontsize: 12,
-        containerHeight: 300,
-        containerLeft: 350,
-        containerWidgetTitle: 'Title Line',
-        containerTop: 140,
-        containerWidth: 250,
-        containerZindex: 20,
-        graphSpecification: {
-            "data": {"url": "../assets/vega-datasets/cars.json"},
-            "mark": "bar",
-            "encoding": {
-                "x": {"field": "Horsepower", "type": "quantitative"},
-                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-            }
-        }
-
-    },
-    {
-        id: 3,
-        name: 'line chart',
-        description: 'bla-bla-bla',
-        isSelected: false,
-        datasetID: 1,
-        containerBackgroundcolor: 'transparent',
-        containerBorder: '',
-        containerBoxshadow: '',
-        containerColor: 'orange',
-        containerFontsize: 12,
-        containerHeight: 300,
-        containerLeft: 650,
-        containerWidgetTitle: 'Title Line',
-        containerTop: 140,
-        containerWidth: 430,
-        containerZindex: 20,
-        graphSpecification: {
-            "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
-            "mark": "bar",
-            "encoding": {
-              "x": {
-                "timeUnit": "month",
-                "field": "date",
-                "type": "ordinal"
-              },
-              "y": {
-                "aggregate": "count",
-                "field": "*",
-                "type": "quantitative"
-              },
-              "color": {
-                "field": "weather",
-                "type": "nominal"
-              }
-            }
-        }
-
+        },
+        tableColor: '',
+        tableCols: 1, 
+        tableHeight: 1, 
+        tableHideHeader: false,
+        tableLeft: 1, 
+        tableRows: 1, 
+        tableTop: 1, 
+        tableWidth: 1, 
+        refreshMode: '',
+        refreshFrequency: 1, 
+        widgetRefreshedOn: '',
+        widgetRefreshedBy: '',
+        widgetCreatedOn: '',
+        widgetCreatedBy: '',
+        widgetUpdatedOn: '',
+        widgetUpdatedBy: '',
     }
+    // ,
+    // {
+    //     id: 2,
+    //     name: 'line chart',
+    //     description: 'bla-bla-bla',
+    //     isSelected: false,
+    //     datasetID: 1,
+    //     containerBackgroundcolor: 'transparent',
+    //     containerBorder: '',
+    //     containerBoxshadow: '',
+    //     containerColor: 'orange',
+    //     containerFontsize: 12,
+    //     containerHeight: 300,
+    //     containerLeft: 350,
+    //     containerWidgetTitle: 'Title Line',
+    //     containerTop: 140,
+    //     containerWidth: 250,
+    //     containerZindex: 20,
+    //     graphSpecification: {
+    //         "data": {"url": "../assets/vega-datasets/cars.json"},
+    //         "mark": "bar",
+    //         "encoding": {
+    //             "x": {"field": "Horsepower", "type": "quantitative"},
+    //             "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+    //         }
+    //     }
+
+    // },
+    // {
+    //     id: 3,
+    //     name: 'line chart',
+    //     description: 'bla-bla-bla',
+    //     isSelected: false,
+    //     datasetID: 1,
+    //     containerBackgroundcolor: 'transparent',
+    //     containerBorder: '',
+    //     containerBoxshadow: '',
+    //     containerColor: 'orange',
+    //     containerFontsize: 12,
+    //     containerHeight: 300,
+    //     containerLeft: 650,
+    //     containerWidgetTitle: 'Title Line',
+    //     containerTop: 140,
+    //     containerWidth: 430,
+    //     containerZindex: 20,
+    //     graphSpecification: {
+    //         "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
+    //         "mark": "bar",
+    //         "encoding": {
+    //           "x": {
+    //             "timeUnit": "month",
+    //             "field": "date",
+    //             "type": "ordinal"
+    //           },
+    //           "y": {
+    //             "aggregate": "count",
+    //             "field": "*",
+    //             "type": "quantitative"
+    //           },
+    //           "color": {
+    //             "field": "weather",
+    //             "type": "nominal"
+    //           }
+    //         }
+    //     }
+    // }
 ]
 const canvasMessages: canvasMessage[] =
 [ 
@@ -1446,7 +1506,8 @@ export class GlobalVariableService {
     widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
     canvasMessages: canvasMessage[] =  canvasMessages;
-    localWidgets: Partial<canvasWidget>[] = localWidgets;
+    // localWidgets: Partial<canvasWidget>[] = localWidgets;
+    localWidgets = new BehaviorSubject< Partial<canvasWidget>[] > = localWidgets;
     canvasActivities: canvasActivity[] = canvasActivities;
     canvasAlerts: canvasAlert[] = canvasAlerts;
 
