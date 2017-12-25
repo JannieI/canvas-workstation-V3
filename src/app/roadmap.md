@@ -27,7 +27,7 @@ This document describes items for later versions of Canvas.
 
 
 **Data**
-1. Light data exploration: outliers
+1. 
 2. Define Canvas datatype = TS ones?
 3. Make sure terminology is consitent: Datasource -> Transform -> Dataset
 4. Do we store more than one version of a dataset - say one dated 'calced on .,/,,/,,' ?
@@ -148,9 +148,8 @@ This document describes items for later versions of Canvas.
    Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
 2. Recording: store the name, show the actions (ie show Dashboard 1, then 2 etc) in an 
    Explorer (tree) view.
-3. Add a Link button to the Widget, and maybe a 'make buttons in/visible' option on the
-   menu.
-4. Add cursor style and size on menu.
+3. 
+4. 
 5. Allow annotations - highligh, arrows, etc ... !?
 6. Add Easy Explore option: can look at other things while in presentation mode ??  Not 
    sure if this makes sense ....  if want to look at different data, just open the relevant 
@@ -171,6 +170,10 @@ This document describes items for later versions of Canvas.
 
 
 ## Near Future
+
+**General**
+1. Add cursor style and size on menu: needs a custome .png file, IE needs .cur ...
+
 
 **Status Bar**
 1. Make status bar customisable - can choose what to show.  Plus, ... if too many (and 
