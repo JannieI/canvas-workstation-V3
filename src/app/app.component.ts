@@ -226,7 +226,7 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseDashboardSubscribe() {
-        this.showModalDashboardSubscribe = true;
+        this.showModalDashboardSubscribe = false;
     }
 
     handleCloseShapeEdit(action: string) {

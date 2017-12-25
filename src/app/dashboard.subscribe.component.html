@@ -9,39 +9,51 @@
     
                     Dashboard Subscriptions
                     <div class="propertyLine">
-                        Snapshots are saved by the user, and are bookmarks to which one can 
-                        roll back.  Snapshots are optional.
+                        You will be notified via a CanvasMessage or via email if the specified
+                        event takes place on a Dashboard.  The subscription events are toggle
+                        switched - click in the required event column, or just click again to 
+                        unsubscribe.
                     </div>                            
                     <div class="propertyLine">
                         Snapshot the current Dashboard:
-                        <input type="text" id="formFields_7" placeholder="Snapshot name">
-                        <input type="text" id="formFields_7" placeholder="Comment">
+                        <input type="text" id="formFields_7" placeholder="Dashboard name">
+                        <input type="text" id="formFields_7" placeholder="My Subscriptions">
                         <button 
                             type="button" 
                             class="btn btn-secondary" 
-                            (click)="clickClose('Close')"
                             >
-                            Snapshot
+                            Filter
                         </button>
                     </div>
     
-                    <div class="propertyLine">
-                        Snapshots saved for this Dashboard:
-                    </div>                                
-    
                     <clr-datagrid>
-                        <clr-dg-column>Roll Back</clr-dg-column>
-                        <clr-dg-column>ID</clr-dg-column>
-                        <clr-dg-column>Name</clr-dg-column>
-                        <clr-dg-column>Comment</clr-dg-column>
+                        <clr-dg-column>View</clr-dg-column>
+                        <clr-dg-column>EditMode</clr-dg-column>
+                        <clr-dg-column>Save</clr-dg-column>
+                        <clr-dg-column>Delete</clr-dg-column>
+                        <clr-dg-column>Dashboard</clr-dg-column>
+                        <clr-dg-column>Notify</clr-dg-column>
     
-                        <clr-dg-row *ngFor="let row of snapshots">
+                        <clr-dg-row *ngFor="let row of subscriptions">
+                                
                             <clr-dg-cell>
-                                <clr-icon shape="refresh" class="selectIcon1" size="12"></clr-icon>
+                                <clr-icon *ngIf="row.view" shape="check" class="selectIcon1" size="12"></clr-icon>
                             </clr-dg-cell>
-                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.comment}}</clr-dg-cell>
+                            <clr-dg-cell>
+                                <clr-icon *ngIf="row.editmode" shape="check" class="selectIcon1" size="12"></clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>
+                                <clr-icon *ngIf="row.save" shape="check" class="selectIcon1" size="12"></clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>
+                                <clr-icon *ngIf="row.delete" shape="check" class="selectIcon1" size="12"></clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>
+                                {{ row.dashboardname }}
+                            </clr-dg-cell>
+                            <clr-dg-cell>
+                                {{ row.notify }}
+                            </clr-dg-cell>
                         </clr-dg-row>
     
                     </clr-datagrid>

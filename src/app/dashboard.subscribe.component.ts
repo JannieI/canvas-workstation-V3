@@ -32,7 +32,24 @@ export class DashboardSubscribeComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Partial<dashboard>[];
-
+    subscriptions = [
+        {
+            view: true,
+            editmode: true,
+            save: false,
+            delete: true,
+            dashboardname: 'Budget',
+            notify: 'Email'
+        },
+        {
+            view: false,
+            editmode: false,
+            save: false,
+            delete: true,
+            dashboardname: 'Budget',
+            notify: 'Msg'
+        }
+    ]
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
