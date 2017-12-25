@@ -683,6 +683,10 @@ export class ExploreComponent {
         this.globalVariableService.isFirstTimeDashboard.next(false)
     }
 
+    handleCloseDashboardHelpPresentation() {
+        this.globalVariableService.isFirstTimeDashboard.next(false)
+    }
+
 }
 
 

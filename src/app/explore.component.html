@@ -126,6 +126,14 @@
 </dashboard-help>
 
 
+<!-- Overlay: Dashboard Help -->
+<dashboard-helpPresentation
+    class="formCollaborate"
+    *ngIf="isFirstTimeDashboard"
+    (formDashboardHelpPresentationClosed)="handleCloseDashboardHelpPresentation($event)">Load Help form ...
+    >
+</dashboard-helpPresentation>
+
 
 <span
     class="graphy"

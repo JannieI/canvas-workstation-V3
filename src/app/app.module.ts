@@ -39,6 +39,7 @@ import { DashboardCommentsComponent } from './dashboard.comments.component';
 import { DashboardPrintComponent }    from './dashboard.print.component';
 import { DashboardTabComponent }      from './dashboard.tab.component';
 import { DashboardHelpComponent }     from './dashboard.help.component';
+import { DashboardHelpPresentationComponent }     from './dashboard.helpPresentation.component';
 
 import { WidgetEditorComponent }      from './widget.editor.component';
 import { WidgetCheckpointsComponent }       from './widget.checkpoints.component';
@@ -111,6 +112,7 @@ import { MyNgIfDirective }              from './test.ngif.directive';
         DashboardPrintComponent,
         DashboardTabComponent,
         DashboardHelpComponent,
+        DashboardHelpPresentationComponent,
         DataPopupComponent,
         DataCombinationComponent,
         DataSlicersComponent,
