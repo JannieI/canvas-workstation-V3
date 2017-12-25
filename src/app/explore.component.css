@@ -212,7 +212,13 @@
     width: 200px;
 }
 
-
+.slicer {
+    border: '1px solid gray';
+    position: absolute;
+    right: 30px;
+    bottom: 100px;
+    background-color: lightgray;
+}
 
 
 .dashboardDropdown {

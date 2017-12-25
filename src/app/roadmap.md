@@ -78,8 +78,7 @@ This document describes items for later versions of Canvas.
 9. Test printing - and see if pagelayout can be changed
 10.View all Comments and notes at once, with filter on messageText and Sender/Receiver
 11.
-12.Add subscriptions, events and distribution: send {Clarity Message / Email / Telegram}
-   when {Dashboard} is {changed/deleted}
+12.
 13.Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
    at any point in the past.  It must be clearly marked for the user.  Must also be able to
    search the list, and see a list of undo actions.
@@ -119,7 +118,7 @@ This document describes items for later versions of Canvas.
 
 
 **Widget**
-1. Consider Widget to use CSS Grid for layout
+1. 
 2. Issue: how to call WidgetEdit, etc from explore NOT duplicating code ...
 3. Border on select
 4. Fix bug: isTrash => Widget does not disappear !
