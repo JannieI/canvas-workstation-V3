@@ -82,6 +82,16 @@
                 class="btn btn-secondary btn-sm"
                 clrDropdownItem
                 (click)="clickClosePresentation()"
+                title="Add a temporary Slicer to filter a Dataset"
+                >
+                <clr-icon shape="times" size="20"></clr-icon>
+                Add Slicer
+            </button>
+            <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                clrDropdownItem
+                (click)="clickClosePresentation()"
                 title="Exit the presentation, and return to the Dashboard page"
                 >
                 <clr-icon shape="times" size="20"></clr-icon>
@@ -733,16 +743,15 @@
 <!-- Dummy Slicer -->
 <div class="slicer">
     <section class="form-block">
-        <label>Slicer</label>
+        <label>Make</label>
         <div class="form-group">
-            <label for="selects_5">Multi Select</label>
             <div class="select multiple">
                 <select id="selects_5" multiple>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>50000000</option>
+                    <option>Volvo</option>
+                    <option>Kia</option>
+                    <option>Honda</option>
+                    <option>Jeep</option>
+                    <option>BMW</option>
                 </select>
             </div>
         </div>

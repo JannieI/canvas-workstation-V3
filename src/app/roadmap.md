@@ -40,9 +40,7 @@ This document describes items for later versions of Canvas.
 8. Add Remove Dataset logic and UI.  When removing a Dataset, it validates that not used
    in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all
    resultsets stored for it must be removed as well.
-9. Decide if Slicers link to 1 or many Datasets - this depends on how we can do this 
-   technically.  If not too complex, we should as this is quite powerful to drive the 
-   whole Dashboard from a single Widget.
+9. 
 10.Data Quality issues: add place to add detail values.  An overall statement can say all
    data has an issue, but a specific one must identify the column(s) and row(s) affected,
    thus given the IDs or key values.
@@ -91,12 +89,8 @@ This document describes items for later versions of Canvas.
 15.Import: check security, particularly for the Datasource.  Also, is the access rights
    stored with the text file (security risk)?  Also, can / should it over-write an
    existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
-16.In view-only mode, can open Widget Editor and explore.  But, cannot save back !  Can 
-   also use Slicers to filter data set, and can add new ones!!
-17.Locking/Contention: due to the complexity, we will start with single user editing - 
-   only one user at a time can edit a Dashboard, and this applies to the whole Dashboard.
-   It seems sufficient for small to medium companies, and also Dashboards wont be edited
-   as frequently as transactional records.
+16.
+17.
 
 
 **Dashboard Tabs**
@@ -118,7 +112,7 @@ This document describes items for later versions of Canvas.
 
 
 **Widget**
-1. 
+1. Issue: what happens if Treeview expand gt Modal height !?
 2. Issue: how to call WidgetEdit, etc from explore NOT duplicating code ...
 3. Border on select
 4. Fix bug: isTrash => Widget does not disappear !
@@ -153,8 +147,7 @@ This document describes items for later versions of Canvas.
    sure if this makes sense ....  if want to look at different data, just open the relevant 
    Dashboard in view-only, or create a temp one quicky ...
 7. Embed objects like voice recording, video and urls - can jump to web, show movie, etc!
-8. The Datasource and Dataset cannot be changed, but the user has Slicers to filter the
-   data.
+8. 
 9. Make sure access rights are still respected at all levels: Dashboard, Widget, Datasource
 
 
@@ -173,6 +166,12 @@ This document describes items for later versions of Canvas.
 1. Add cursor style and size on menu: needs a custome .png file, IE needs .cur ...
 
 
+**Data**
+1. Consider linking Slicers many Datasets - this depends on how we can do this 
+   technically.  If not too complex, we should as this is quite powerful to drive the 
+   whole Dashboard from a single Widget.
+
+   
 **Status Bar**
 1. Make status bar customisable - can choose what to show.  Plus, ... if too many (and 
    what happens then?)

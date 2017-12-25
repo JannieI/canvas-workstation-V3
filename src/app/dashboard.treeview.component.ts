@@ -75,6 +75,18 @@ export class DashboardTreeviewComponent implements OnInit {
                     active: false
                 },
             ]
+        },
+        {
+            name: "Slicers",
+            icon: "folder",
+            expanded: false,
+            files: [
+                {
+                    icon: "file",
+                    name: "TradeType",
+                    active: false
+                },
+            ]
         }
     ];
     
