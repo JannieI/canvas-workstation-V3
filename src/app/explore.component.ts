@@ -266,7 +266,9 @@ export class ExploreComponent {
         //     i => this.localDashboards
         // );
         this.localDashboards = this.globalVariableService.localDashboards;
-        this.localWidgets = this.globalVariableService.localWidgets;
+        this.globalVariableService.localWidgets.subscribe(
+            i => this.localWidgets = i
+        );
     }
 
     ngAfterViewInit() {

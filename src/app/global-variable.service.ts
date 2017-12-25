@@ -30,7 +30,7 @@ import { canvasWidget }               from './models';
 import * as dl from 'datalib';
 
 // import { CanvasUser }                 from './model.user';
-const localWidgets: Partial<canvasWidget>[] =
+const localWidgets: canvasWidget[] =
 [
     {
         dashboardID: 1,                
@@ -1507,7 +1507,7 @@ export class GlobalVariableService {
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
     canvasMessages: canvasMessage[] =  canvasMessages;
     // localWidgets: Partial<canvasWidget>[] = localWidgets;
-    localWidgets = new BehaviorSubject< Partial<canvasWidget>[] > = localWidgets;
+    localWidgets = new BehaviorSubject< canvasWidget[]>(localWidgets);
     canvasActivities: canvasActivity[] = canvasActivities;
     canvasAlerts: canvasAlert[] = canvasAlerts;
 
