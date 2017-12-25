@@ -718,6 +718,10 @@ export class ExploreComponent {
     clickMenuArrangeFront() {
     }
 
+    clickMenuWidgetDelete() {
+    }
+
+
 }
 
 
