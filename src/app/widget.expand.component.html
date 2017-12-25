@@ -39,7 +39,45 @@
             </div>
         </section>
     </form>
-    <clr-datagrid class="fieldsDataGrid">
+
+    <table>
+        <tbody>
+            <tr>
+                <th *ngFor="let row of dataFieldNames">
+                    {{row}}
+                </th>
+            </tr>
+            <tr *ngFor="let row of currentData">
+                <td *ngFor="let col of dataFieldNames; let i = index">
+                    {{ row[col] }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- New v1 -->
+    <!-- <div>
+        <clr-datagrid class="fieldsDataGrid">
+
+            <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+            <clr-dg-row *ngFor="let row of currentData">
+
+                <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+                        {{ row[col] }}
+                </clr-dg-cell>
+            </clr-dg-row>
+
+            <clr-dg-footer>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                of {{pagination.totalItems}} rows
+                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+            </clr-dg-footer>
+
+        </clr-datagrid>
+    </div> -->
+
+    <!-- Original -->
+    <!-- <clr-datagrid class="fieldsDataGrid">
         <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column>
         <clr-dg-column [clrDgField]="'filterDataset'">Type</clr-dg-column>
         <clr-dg-column [clrDgField]="'filterDataset'">Description</clr-dg-column>
@@ -59,6 +97,6 @@
             <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
             <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
         </clr-dg-row>
-    </clr-datagrid>
+    </clr-datagrid> -->
 
 </div>

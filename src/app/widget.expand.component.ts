@@ -26,8 +26,54 @@ import { GlobalVariableService }      from './global-variable.service';
 
     @Input() currentWidgetSpec: any;
     // @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
+    currentData = [
+      {
+        Name: 'Jay',
+        Type: 'Origon',
+        Description: 'bla-bla',
+        CreatedBy: 'aasdf',
+        CreatedOn: 'on',
+        RefreshedBy: 'by',
+        RefreshedOn: '2/2'
+      },
+      {
+        Name: 'Jay',
+        Type: 'Origon',
+        Description: 'bla-bla',
+        CreatedBy: 'aasdf',
+        CreatedOn: 'on',
+        RefreshedBy: 'by',
+        RefreshedOn: '2/2'
+      },
+      {
+        Name: 'Jay',
+        Type: 'Origon',
+        Description: 'bla-bla',
+        CreatedBy: 'aasdf',
+        CreatedOn: 'on',
+        RefreshedBy: 'by',
+        RefreshedOn: '2/2'
+      },
+      {
+        Name: 'Jay',
+        Type: 'Origon',
+        Description: 'bla-bla',
+        CreatedBy: 'aasdf',
+        CreatedOn: 'on',
+        RefreshedBy: 'by',
+        RefreshedOn: '2/2'
+      }
+    ];
     datasources: currentDatasource[];
-
+    dataFieldNames: string[] = [
+      'Name',
+      'Type',
+      'Description',
+      'CreatedBy',
+      'CreatedOn',
+      'RefreshedBy',
+      'RefreshedOn'
+    ]
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
