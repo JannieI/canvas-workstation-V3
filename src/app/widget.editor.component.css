@@ -173,8 +173,8 @@
     }
 
     .saveButton {
-        grid-column-start: 14;
-        grid-column-end: 15;
+        grid-column-start: 17;
+        grid-column-end: 18;
         grid-row-start: 22;
         grid-row-end: 23;
     }
