@@ -162,6 +162,7 @@ export class ExploreComponent {
     localDashboards: dl.spec.TopLevelExtendedSpec[];
     localShapes: any[] = localShapes;
     localWidgets: Partial<canvasWidget>[];
+    localTrash: canvasWidget[] = [];
     description: string = 'A simple bar chart with embedded data.';
     circleRadius: number = 20;
     data: any = [
@@ -268,6 +269,9 @@ export class ExploreComponent {
         this.localDashboards = this.globalVariableService.localDashboards;
         this.globalVariableService.localWidgets.subscribe(
             i => this.localWidgets = i
+        );
+        this.globalVariableService.localTrash.subscribe(
+            i => this.localTrash = i
         );
     }
 

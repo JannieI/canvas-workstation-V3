@@ -33,6 +33,7 @@ import * as dl from 'datalib';
 const localWidgets: canvasWidget[] =
 [
     {
+        isDelete: true,
         dashboardID: 1,                
         dashboardTabID: 1,             
         dashboardTabName: '',          
@@ -120,6 +121,7 @@ const localWidgets: canvasWidget[] =
         widgetUpdatedBy: '',
     },
     {
+        isDelete: false,
         dashboardID: 1,                
         dashboardTabID: 1,             
         dashboardTabName: '',          
@@ -207,10 +209,11 @@ const localWidgets: canvasWidget[] =
         widgetUpdatedBy: '',
     },
     {
+        isDelete: false,
         dashboardID: 1,                
         dashboardTabID: 1,             
         dashboardTabName: '',          
-        id: 1,
+        id: 3,
         name: 'barchart for start',
         description: 'bla-bla-bla',
         grammar: '',
@@ -233,8 +236,8 @@ const localWidgets: canvasWidget[] =
         hyperlinkDashboardID: 1,       
         hyperlinkDashboardTabID: 1,    
         containerBackgroundcolor: 'transparent',
-        containerBorder: '2px solid black',
-        containerBoxshadow: '2px 2px gray',
+        containerBorder: '',
+        containerBoxshadow: '',
         containerColor: 'transparent',
         containerFontsize: 12,
         containerHeight: 300,
@@ -1693,8 +1696,8 @@ export class GlobalVariableService {
     widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
     canvasMessages: canvasMessage[] =  canvasMessages;
-    // localWidgets: Partial<canvasWidget>[] = localWidgets;
     localWidgets = new BehaviorSubject< canvasWidget[]>(localWidgets);
+    localTrash = new BehaviorSubject< canvasWidget[]>([]);
     canvasActivities: canvasActivity[] = canvasActivities;
     canvasAlerts: canvasAlert[] = canvasAlerts;
 

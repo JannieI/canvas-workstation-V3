@@ -11,6 +11,7 @@ import { ViewChild }                  from '@angular/core';
 
 // Our models
 import { currentDatasource }          from './models';
+import { canvasWidget }               from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -23,14 +24,17 @@ import { GlobalVariableService }      from './global-variable.service';
     selector: 'widget-delete',
     templateUrl: './widget.delete.component.html',
     styleUrls: ['./widget.delete.component.css']
-  })
-  export class WidgetDeleteComponent implements OnInit {
+})
+export class WidgetDeleteComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
     @Output() formWidgetDeleteClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @ViewChild('myCanvas', {read: ElementRef}) myCanvas: ElementRef;  //Vega graph
+
+    localTrash: canvasWidget[];
+    localWidgets: canvasWidget[];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -40,6 +44,12 @@ import { GlobalVariableService }      from './global-variable.service';
     ) {}
 
     ngOnInit() {
+        this.globalVariableService.localWidgets.subscribe(
+            i => this.localWidgets = i
+        );
+          this.globalVariableService.localTrash.subscribe(
+        i => this.localTrash = i
+    );
     }
 
     ngAfterViewInit() {
@@ -55,9 +65,14 @@ import { GlobalVariableService }      from './global-variable.service';
       // ctx.rect(0, 0, 150, 100);
       // ctx.fillStyle = pat;
       // ctx.fill();
-  }
+    }
   	clickClose(action: string) {
 	  	this.formWidgetDeleteClosed.emit(action);
         }
 
-  }
+    clickDeleteWidget() {
+        console.log('Pre', this.localTrash.length)
+        this.localTrash = this.localWidgets.splice(0,1);
+        console.log('Deleted', this.localTrash.length)
+    }
+}
