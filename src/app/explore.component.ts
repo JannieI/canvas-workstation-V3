@@ -211,7 +211,6 @@ export class ExploreComponent {
     widgetEndX: number = 0;
     widgetEndY: number = 0;
 
-    selectW: boolean = false;
     startX: number;
     startY: number;
 
@@ -601,8 +600,6 @@ export class ExploreComponent {
     }
 
     clickSelect(i: number) {
-        console.log('clickSelect()', this.localWidgets)
-        // this.selectW = !this.selectW;
         this.localWidgets[i].isSelected = !this.localWidgets[i].isSelected;
     }
 
