@@ -25,10 +25,7 @@ import { GlobalVariableService}       from './global-variable.service';
 })
 export class DashboardHelpComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardHelpClosed: EventEmitter<string> = new EventEmitter();
-
-    isFirstTimeDashboardHelp: boolean;
     
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -36,9 +33,6 @@ export class DashboardHelpComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.globalVariableService.isFirstTimeDashboardHelp.subscribe(
-            i => this.isFirstTimeDashboardHelp = i
-        )
     }
 
     clickClose(action: string) {
@@ -47,12 +41,8 @@ export class DashboardHelpComponent implements OnInit {
 		this.formDashboardHelpClosed.emit(action);
     }
 
-    clickHelp(action: string) {
-        this.globalVariableService.editMode.next(false);        
-		this.formDashboardHelpClosed.emit(action);
-    }
-
     clickGotIt() {
-        this.globalVariableService.isFirstTimeDashboardHelp.next(false);
+        this.globalVariableService.isFirstTimeDashboard.next(false);
+		this.formDashboardHelpClosed.emit();
     }
 }

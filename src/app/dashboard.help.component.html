@@ -9,38 +9,38 @@
 
                 Quickstart help
 
-                <div class="helpMessage" *ngIf="isFirstTimeDashboardDiscard">
-                    <div class="propertyLine">
-                        With this option, <b>ALL</b> changes to the current Dashboard since
-                        editing has started will be lost.  The Dasboard will be restored to
-                        the original state, before editing has started.  Also, all snapshots
-                        will be lost.
-                    </div>
-                    <div class="propertyLine">
-                        The Discard action is final, there is <b>NO</b> way to get your changes
-                        back.
-                    </div>
-                    <div class="propertyLine">
-                        <b>Got it</b> <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboardDiscard">
-                        (You can make this message re-appear with the <i>Preferences</i> option under your
-                        User icon <clr-icon shape="user"></clr-icon> on the menu top right.)
-                    </div>
+                <b>HELP</b> message: this is your Dashboard on which data can be visualised.  It can have more than
+                one tab (like a spreadsheet), as shown at the bottom of the page.  Some actions:
+                <div class="helpMessageDiv">
+                    1. Add a datasource (click <i>Data</i> in the top menu, and select the type of source
+                        like <i>From File</i>).  Once done, return to this Dashboard.
                 </div>
-
-                <div>
-                    <br>
-                    All changes made to the Dashboard since editing has started will be lost,
-                    all snapshots for it will be deleted and the Dashboard will be restored
-                    to its original state.  Click Discard to continue, else close the form.
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="clickDiscard('Discard')"
-                        >
-                        Discard
-                    </button>
+                <div class="helpMessageDiv">
+                    2. Insert a Widget to visualise the added datasource (click <i>Create -> Widget</i> in the top
+                        menu).
                 </div>
-
+                <div class="helpMessageDiv">
+                    3. Format and arrange Widgets as necessary.
+                </div>
+                <div class="helpMessageDiv">
+                    4. Save your new Dashboard with a name using <i>File -> SaveAs</i>.
+                </div>
+                <div class="helpMessageDiv">
+                5. Existing Dashboards can be opened with <i>File -> Open</i>.
+                </div>
+                <div class="helpMessageDiv">
+                    6. Collaboration (discussions with colleagues) happens via messages and tasks (click
+                        the <i>Share <clr-icon shape="share"></clr-icon> icon</i> in the top right menu).
+                </div>
+                <div class="helpMessageDiv">
+                    7. Click <i>File -> Edit</i> to Edit a Dashboard.  An indicator will be shown in the
+                    right hand bottom corner.
+                </div>
+                <br><br>
+                    <b>Got it</b> 
+                    <input type="checkbox" (click)="clickGotIt()">
+                    (You can make this message re-appear with the <i>Preferences</i> option under your
+                    User icon <clr-icon shape="user"></clr-icon> in the top right menu.
             </div>
         </div>
     </div>

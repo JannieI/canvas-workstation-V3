@@ -679,6 +679,9 @@ export class ExploreComponent {
         console.log('clickResizeKeydown', id)
     }
 
+    handleCloseDashboardHelp() {
+        this.globalVariableService.isFirstTimeDashboard.next(false)
+    }
 
 }
 
