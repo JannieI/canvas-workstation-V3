@@ -213,6 +213,7 @@ export class ExploreComponent {
 
     startX: number;
     startY: number;
+    showModalWidgetEditor: boolean = false;
 
     constructor(
         private globalVariableService: GlobalVariableService,
@@ -580,10 +581,6 @@ export class ExploreComponent {
         return vlSpecsNew;
     }
 
-    clickWidgetEdit() {
-        console.log('Open Widget Editor')
-    }
-
     clickAddTab() {
         this.showNewTab = true;
         console.log('sss')
@@ -684,6 +681,41 @@ export class ExploreComponent {
     }
 
     handleCloseDashboardHelpPresentation() {
+    }
+
+    clickWidgetEdit() {
+        this.showModalWidgetEditor = true;
+        console.log('Open Widget Editor')
+    }
+    handleCloseWidgetEditor() {
+        this.showModalWidgetEditor = false;
+    }
+
+    clickWidgetCheckpoints() {
+    }
+
+    clickMenuWidgetNotes() {
+    }
+
+    clickMenuWidgetLinks() {
+    }
+
+    clickMenuWidgetRefresh() {
+    }
+
+    clickMenuWidgetDuplicate() {
+    }
+
+    clickMenuWidgetExpand() {
+    }
+
+    clickMenuWidgetExport() {
+    }
+
+    clickMenuArrangeBack() {
+    }
+
+    clickMenuArrangeFront() {
     }
 
 }

@@ -122,10 +122,10 @@ This document describes items for later versions of Canvas.
 
 
 **Widget**
-1. Consider Widget to use CSS Grid for layut
+1. Consider Widget to use CSS Grid for layout
 2. 
 3. Border on select
-4. Drag and Sizing handles on select
+4. Fix bug: isTrash => Widget does not disappear !
 5. Fix bug and Duplicate Widget correctly
 6. In Slideshow mode: show link buttons and this now jumps (Edit mode = show linking form)
 7. Flag visible if it has a Note, Data Quality issues

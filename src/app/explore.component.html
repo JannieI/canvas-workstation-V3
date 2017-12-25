@@ -580,11 +580,16 @@
     >
     <div class="widgetButtonBar2">
         <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
-        <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="filter-grid" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
+        <clr-icon shape="pop-out" size="20" class="buttonBarIcon" (click)="clickWidgetCheckpoints()"></clr-icon>
+        <clr-icon shape="pencil" size="20" class="buttonBarIcon" (click)="clickMenuWidgetNotes()"></clr-icon>
+        <clr-icon shape="pin" size="20" class="buttonBarIcon" (click)="clickMenuWidgetLinks()"></clr-icon>
+        <clr-icon shape="copy" size="20" class="buttonBarIcon" (click)="clickMenuWidgetRefresh()"></clr-icon>
+        <clr-icon shape="copy" size="20" class="buttonBarIcon" (click)="clickMenuWidgetDuplicate()"></clr-icon>
+        <clr-icon shape="copy" size="20" class="buttonBarIcon" (click)="clickMenuWidgetExpand()"></clr-icon>
+        <clr-icon shape="copy" size="20" class="buttonBarIcon" (click)="clickMenuWidgetExport()"></clr-icon>
+        <clr-icon shape="copy" size="20" class="buttonBarIcon" (click)="clickMenuArrangeBack()"></clr-icon>
+        <clr-icon shape="copy" size="20" class="buttonBarIcon" (click)="clickMenuArrangeFront()"></clr-icon>
         <clr-icon shape="cursor-arrow" size="20" class="buttonBarIcon" (click)="clickSelect(i)"></clr-icon>
     </div>
     
@@ -631,3 +636,13 @@
         </div>
     </div>
 </div>
+
+
+
+
+<!-- Modal: widget editor -->
+<widget-editor
+    *ngIf="showModalWidgetEditor"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Widget Editor ...
+</widget-editor>
