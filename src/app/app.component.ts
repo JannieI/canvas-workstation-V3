@@ -407,6 +407,10 @@ export class AppComponent implements OnInit {
         this.showModalDashboardDelete = true;
     }
 
+    clickMenuDashboardTreeview() {
+        this.showModalDashboardTreeview = true;
+    }
+    
     clickMenuDataFromFile() {
         console.log('menuDataFromFile')
         this.globalVariableService.dataGetFromSwitch.next('File');
