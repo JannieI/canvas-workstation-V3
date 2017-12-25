@@ -22,8 +22,10 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
 
-// Own Components
-import { field, canvasWidget }                      from './models'
+// Our Models
+import { field }                      from './models'
+import { canvasWidget }               from './models'
+import { currentDatasource }          from './models'
 
 @Component({
     selector: 'my-app',
@@ -99,6 +101,8 @@ export class AppComponent implements OnInit {
     currentWidgetSpec: string = "{...}";
 
     localTrash: canvasWidget[];
+    localWidgets: canvasWidget[];
+    currentDatasources: currentDatasource[];
 
     // Testings ....
     test: number[] = [1,2,3,4,5,6];
@@ -136,6 +140,11 @@ export class AppComponent implements OnInit {
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
         );
+        this.globalVariableService.localWidgets.subscribe(
+            i => this.localWidgets = i
+        );
+        this.currentDatasources = this.globalVariableService.currentDatasources;
+
     }   
 
     handleCloseModal() {
@@ -429,12 +438,19 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetNew() {
-
-        this.showModalWidgetEditor = true;
+        if (this.currentDatasources.length == 0) {
+            alert('Please add a Dataset first: Data -> From File')
+        } else {
+            this.showModalWidgetEditor = true;
+        };
     }
 
     clickMenuWidgetEdit() {
-        this.showModalWidgetEditor = true;
+        if (this.currentDatasources.length == 0) {
+            alert('Please add a Dataset first: Data -> From File')
+        } else {
+            this.showModalWidgetEditor = true;
+        };
     }
 
     clickMenuWidgetCheckpoints() {

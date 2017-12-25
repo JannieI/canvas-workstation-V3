@@ -66,9 +66,7 @@ This document describes items for later versions of Canvas.
 
 
 **Dashboard**
-1. Design layers: background colour, background image, Grid, Template, 
-   [widgets + shapes] - say 10, and top layers are transparent so that one can see the 
-   Grid. 
+1. 
 2. Easy way to create a Widget from a dataset - even on Add Dataset.  - like one click option
 3. Easy to drill in and out of dates - year - month - day, etc
 4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
@@ -133,6 +131,10 @@ This document describes items for later versions of Canvas.
    look and feel in the company ...
 9. Quick Widget: when creating Dataset, click a button to get a best guess Wizard - Make this
    really easy.
+10.Issue - button bar is at top of Widget => moves graph down, messes up things.  Either totally
+   separate SINGLE bar => just make visible ...  OR  duplicate div and border around Widget
+11.When resize Widget => resize graph as well.
+12.Fix bug: graph moves inside another when Dragging - had this in v1 ...
 
 
 **Shapes**

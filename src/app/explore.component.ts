@@ -21,8 +21,10 @@ import { ViewChildren }               from '@angular/core';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { dashboard, canvasWidget }                  from './models'
+import { dashboard }                  from './models'
+import { canvasWidget }               from './models'
 import { datasource }                 from './models'
+import { currentDatasource }          from './models'
 
 // Vega, Vega-Lite
 import { compile }                    from 'vega-lite';
@@ -161,8 +163,9 @@ export class ExploreComponent {
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     localDashboards: dl.spec.TopLevelExtendedSpec[];
     localShapes: any[] = localShapes;
-    localWidgets: Partial<canvasWidget>[];
+    localWidgets: canvasWidget[];
     localTrash: canvasWidget[] = [];
+    currentDatasources: currentDatasource[];
     description: string = 'A simple bar chart with embedded data.';
     circleRadius: number = 20;
     data: any = [
@@ -273,6 +276,8 @@ export class ExploreComponent {
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
         );
+        this.currentDatasources = this.globalVariableService.currentDatasources;
+
     }
 
     ngAfterViewInit() {
@@ -684,9 +689,13 @@ export class ExploreComponent {
     }
 
     clickWidgetEdit() {
-        this.showModalWidgetEditor = true;
-        console.log('Open Widget Editor')
+        if (this.currentDatasources.length == 0) {
+            alert('Please add a Dataset first: Data -> From File')
+        } else {
+            this.showModalWidgetEditor = true;
+        };
     }
+
     handleCloseWidgetEditor() {
         this.showModalWidgetEditor = false;
     }
@@ -698,6 +707,9 @@ export class ExploreComponent {
     }
 
     clickMenuWidgetLinks() {
+        if (this.presentation) {
+            alert ('Jumping to Linked Dashboard ...')
+        }
     }
 
     clickMenuWidgetRefresh() {

@@ -876,6 +876,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     dragoverColor: boolean = false;
     filterPivotFields: string = '';
     opened: boolean = true;
+    presentation: boolean;
     showRowFieldAdvanced: boolean = false;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
@@ -892,6 +893,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     ngOnInit() {
         this.currentDatasources = this.globalVariableService.currentDatasources;
         this.dataFieldNames = ['symbol', 'date', 'price', 'Month', 'Trades'];
+        this.globalVariableService.presentation.subscribe(
+          pres => this.presentation = pres
+      );    
     }
 
     ngAfterViewInit() {
@@ -920,7 +924,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // let definition = vlTemplateSpec17;
 
         // Render
-        this.renderGraph(definition)
+        // this.renderGraph(definition)
 
     }
 
@@ -940,7 +944,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
   	clickClose(action: string) {
 	  	this.formWidgetEditorClosed.emit(action);
-        }
+    }
 
     dragstart_handlerField(ev) {
         ev.dataTransfer.setData("text/plain", ev.target.id);

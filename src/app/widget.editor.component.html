@@ -352,7 +352,7 @@
                     </div>
                 </div>
 
-                <div class="saveButton">
+                <div class="saveButton" *ngIf="!presentation">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -361,6 +361,11 @@
                         Save
                     </button>
                 </div>
+                <span class="presentationNoSave" *ngIf="presentation"
+                    >
+                    No changes can be saved in Presentation Mode
+                </span>
+
             </div>
 
         </div>
