@@ -297,7 +297,7 @@ export class ExploreComponent {
             } 
         };
 
-        this.refreshWidgets();
+        // this.refreshWidgets();
         this.refreshWidgets2();
 
     }

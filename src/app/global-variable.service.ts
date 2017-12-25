@@ -38,14 +38,14 @@ const localWidgets: Partial<canvasWidget>[] =
         description: 'bla-bla-bla',
         datasetID: 1,
         container_background_color: 'transparent',
-        container_border: '1px solid black',
+        container_border: '2px solid black',
         container_box_shadow: '2px 2px gray',
-        container_color: 'wite',
+        container_color: 'transparent',
         container_font_size: 12,
         container_height: 300,
         container_left: 50,
         container_widget_title: 'Title 1',
-        container_top: 180,
+        container_top: 140,
         container_width: 250,
         container_zindex: 20,
         graph_specification: {
@@ -63,15 +63,15 @@ const localWidgets: Partial<canvasWidget>[] =
         name: 'line chart',
         description: 'bla-bla-bla',
         datasetID: 1,
-        container_background_color: 'beige',
-        container_border: '1px solid red',
+        container_background_color: 'transparent',
+        container_border: '',
         container_box_shadow: '',
         container_color: 'orange',
         container_font_size: 12,
         container_height: 300,
-        container_left: 240,
+        container_left: 350,
         container_widget_title: 'Title Line',
-        container_top: 290,
+        container_top: 140,
         container_width: 250,
         container_zindex: 20,
         graph_specification: {
@@ -80,6 +80,44 @@ const localWidgets: Partial<canvasWidget>[] =
             "encoding": {
                 "x": {"field": "Horsepower", "type": "quantitative"},
                 "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+            }
+        }
+
+    },
+    {
+        id: 3,
+        name: 'line chart',
+        description: 'bla-bla-bla',
+        datasetID: 1,
+        container_background_color: 'transparent',
+        container_border: '',
+        container_box_shadow: '',
+        container_color: 'orange',
+        container_font_size: 12,
+        container_height: 300,
+        container_left: 650,
+        container_widget_title: 'Title Line',
+        container_top: 140,
+        container_width: 430,
+        container_zindex: 20,
+        graph_specification: {
+            "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
+            "mark": "bar",
+            "encoding": {
+              "x": {
+                "timeUnit": "month",
+                "field": "date",
+                "type": "ordinal"
+              },
+              "y": {
+                "aggregate": "count",
+                "field": "*",
+                "type": "quantitative"
+              },
+              "color": {
+                "field": "weather",
+                "type": "nominal"
+              }
             }
         }
 
