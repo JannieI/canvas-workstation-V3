@@ -1452,7 +1452,7 @@ export class GlobalVariableService {
 
     showModalLanding: boolean = false;  // Shows Landing page
     showMainMenu = new BehaviorSubject<boolean>(true);
-    isFirstTimeDashboard = new BehaviorSubject<boolean>(false);
+    isFirstTimeDashboard = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardDiscard = new BehaviorSubject<boolean>(true);

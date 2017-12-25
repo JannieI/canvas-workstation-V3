@@ -149,6 +149,19 @@
         will function normally while this message is displayed.)
 </div>
 
+
+
+<!-- Overlay: Dashboard Help -->
+<widget-links
+    class="formCollaborate"
+    *ngIf="isFirstTimeDashboard"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formCollaborateClosed)="handleCloseCollaborate($event)">Load Collaborate form ...
+    >
+</widget-links>
+
+
+
 <span
     class="graphy"
     [style.color] = "showContainerHeader ? 'black' : 'transparent'"
