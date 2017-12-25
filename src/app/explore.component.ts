@@ -153,6 +153,8 @@ export class ExploreComponent {
     @ViewChildren('widget')             childrenWidgets: QueryList<ElementRef>;
     @ViewChildren('widgetContainter')   widgetContainters: QueryList<ElementRef>;
 
+    @ViewChildren('widget2')             childrenWidgets2: QueryList<ElementRef>;
+    
     @ViewChildren('shape')             shape: QueryList<ElementRef>; 
     @ViewChildren('circle')            circle: QueryList<ElementRef>; 
     rowcx=50;
@@ -351,6 +353,23 @@ export class ExploreComponent {
         //     .finalize();
         //     this.renderer.setElementStyle(this.dragWidget.nativeElement,
         //         'left', "200px");
+    }
+
+    refreshWidgets2() {
+        console.log('refreshWidgets 2 started')
+        for (var i: number = 0; i < this.childrenWidgets2.toArray().length; i++) {
+            console.log('refreshWidgets loop i', i)
+            let definition = this.localWidgets[i].graph_specification;
+            let specification = compile(definition).spec;
+            let view = new View(parse(specification));
+            view.renderer('svg') 
+                .initialize( this.childrenWidgets2.toArray()[i].nativeElement)
+                .width(180)
+                .hover()
+                .run()
+                .finalize();
+            console.log('refreshWidgets loop end')
+        }
     }
 
     duplicateWidget(duplicate: boolean) {

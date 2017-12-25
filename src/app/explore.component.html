@@ -664,7 +664,10 @@
         </clr-icon>
     </span>
 
-    <div class="widget">
+    <div class="widget"
+        [style.height.px]="row.container_height - 35"
+        [style.width.px]="row.container_width"
+        >
         <div #widget2>
             Here: {{ row.name }}
         </div>

@@ -131,7 +131,7 @@
     display: inline-block;
     /* height: 200px; */
     /* left:400px; */
-    position: relative;
+    position: absolute;
     /* width: 250px; */
     padding: 0;
     margin: 0;
@@ -172,6 +172,7 @@
     -ms-transition: all 500ms ease-in-out;
     -o-transition: all 500ms ease-in-out;
     transition: all 500ms ease-in-out;
+    overflow: hidden;
     /* width: 80%; */
 }
 .widgetButtonBar2:hover {
@@ -184,7 +185,10 @@
     margin: 1px;
     padding: 2px;
 }
-
+.widget2 {
+    /* border: 1px dotted gray; */
+    display: inline-block;
+}
 
 .shapeContainer {
     /* border: 1px dotted gray; */
