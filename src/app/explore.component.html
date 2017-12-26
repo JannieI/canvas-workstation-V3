@@ -629,7 +629,7 @@
             title="Refresh Dataset for this Widget only"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation"
+        <clr-icon *ngIf="!presentation  &&  hasDatasources"
             shape="copy"
             size="20"
             class="buttonBarIcon"
@@ -653,7 +653,7 @@
             title="Export the Dataset for this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation"
+        <clr-icon *ngIf="!presentation  &&  hasDatasources"
             shape="deploy"
             size="20"
             class="buttonBarIcon"
@@ -661,7 +661,7 @@
             title="Move Widget back"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation"
+        <clr-icon *ngIf="!presentation  &&  hasDatasources"
             shape="block"
             size="20"
             class="buttonBarIcon"
@@ -669,7 +669,7 @@
             title="Move Widget forward"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation"
+        <clr-icon *ngIf="!presentation  &&  hasDatasources"
             shape="trash"
             size="20"
             class="buttonBarIcon"

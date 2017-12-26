@@ -217,6 +217,7 @@ export class ExploreComponent {
     startX: number;
     startY: number;
     showModalWidgetEditor: boolean = false;
+    hasDatasources: boolean;
 
     constructor(
         private globalVariableService: GlobalVariableService,
@@ -277,7 +278,10 @@ export class ExploreComponent {
             i => this.localTrash = i
         );
         this.globalVariableService.currentDatasources.subscribe(
-            i => this.currentDatasources = i
+            i => {
+                    if (i.length > 0) { this.hasDatasources = true} else {this.hasDatasources = false}
+                    this.currentDatasources = i
+                 }
         );
 
     }
