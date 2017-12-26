@@ -10,13 +10,14 @@ import { datasource }                 from './models';
 import { CSScolor }                   from './models';
 import { transformation }             from './models';
 import { field }                      from './models';
-import { snapshot }                   from './models';
+import { dashboardSnapshot }                   from './models';
 import { fieldMetadata }              from './models';
 import { dashboardTag }               from './models';
 import { dashboardTheme }             from './models';
 import { dashboardTemplate }          from './models';
 import { dashboardSchedule }          from './models';
 import { dashboardComment }           from './models';
+import { dashboardPermission }        from './models';
 import { dataQualityIssue}            from './models'
 import { datasourceFilter}            from './models'
 import { buttonBarAvailable}          from './models'
@@ -30,6 +31,34 @@ import { canvasWidget }               from './models';
 import * as dl from 'datalib';
 
 // import { CanvasUser }                 from './model.user';
+const dashboardPermissions: dashboardPermission[] = 
+[
+    {
+        id: 1,
+        dashboardID: 1,
+        userID: 'KilmarE',
+        groupID: '',
+        canView: true,
+        canEdit: false,
+    }
+    {
+        id: 1,
+        dashboardID: 1,
+        userID: 'UweH',
+        groupID: '',
+        canView: false,
+        canEdit: true,
+    },
+    {
+        id: 3,
+        dashboardID: 1,
+        userID: 'IgnusO',
+        groupID: '',
+        canView: true,
+        canEdit: true,
+    }
+];
+
 const localWidgets: canvasWidget[] =
 [
     {
@@ -874,7 +903,7 @@ const dashboardTags: dashboardTag[] =
     }
 ];
 
-const snapshots: snapshot[] =
+const snapshots: dashboardSnapshot[] =
 [
     {
         id: 1,
@@ -1665,7 +1694,7 @@ const dataSample: datasource[] =
 export class GlobalVariableService {
     dashboardTags: dashboardTag[] = dashboardTags;
     dataGetFromSwitch = new BehaviorSubject<string>('File');
-    snapshots: snapshot[] = snapshots;
+    snapshots: dashboardSnapshot[] = snapshots;
     dashboards: Partial<dashboard>[] = dashboards;
     currentTransformations: currentTransformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;

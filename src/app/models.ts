@@ -287,7 +287,7 @@ export class dashboardComment {
     createdOn: string;
 }
 
-export class snapshot {
+export class dashboardSnapshot {
     id: number;
     dashboardID: number;
     name: string;
@@ -307,6 +307,15 @@ export class dashboardSchedule {
     EndsNever: boolean;
     EndsAfter: number;     // n times
     EndsOn: string;        // Date
+}
+
+export class dashboardPermission {
+    id: number;
+    dashboardID: number;
+    userID: string;        // 1 of usr/grp filled in, one blank
+    groupID: string;
+    canView: boolean;
+    canEdit: boolean;    
 }
 
 // CSS Color

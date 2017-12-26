@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
-import { snapshot }                 from './models';
+import { dashboardSnapshot }                 from './models';
 
 @Component({
     selector: 'dashboard-snapshots',
@@ -32,7 +32,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Partial<dashboard>[];
-    snapshots: snapshot[];
+    snapshots: dashboardSnapshot[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
