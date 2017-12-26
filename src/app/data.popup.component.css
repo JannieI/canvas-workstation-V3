@@ -328,6 +328,9 @@
         grid-column-end: 5;
         grid-row-start: 1;
         grid-row-end: 25;
+        height: 19rem;
+        overflow: auto;
+        width: 100%;
     }
 
     .gridPivotDropArea {
