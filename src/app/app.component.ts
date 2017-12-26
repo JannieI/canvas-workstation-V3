@@ -59,6 +59,7 @@ export class AppComponent implements OnInit {
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
     showModalDashboardSnapshots: boolean = false;
+    showModalDashboardImport: boolean = false;
     showModalDashboardDiscard: boolean = false;
     showModalDashboardLogin: boolean = false;
     showModalDashboardLogout: boolean = false;
@@ -179,6 +180,10 @@ export class AppComponent implements OnInit {
 
     handleCloseDashboardSnapshots() {
         this.showModalDashboardSnapshots = false;
+    }
+
+    handleCloseDashboardImport() {
+        this.showModalDashboardImport = false;
     }
 
     handleCloseDashboardDiscard() {
@@ -367,6 +372,11 @@ export class AppComponent implements OnInit {
     clickDashboardSnapshots() {
         this.showModalDashboardSnapshots = true;
     }
+        
+    clickDashboardImport() {
+        this.showModalDashboardImport = true;
+    }
+    
 
     clickDashboardRename() {
         this.showModalDashboardRename = true;

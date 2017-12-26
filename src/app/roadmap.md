@@ -48,6 +48,7 @@ This document describes items for later versions of Canvas.
    lives on both.
    
 
+--- store default folder in Pref
 
 **Admin module**
 1. Users, groups, permissions

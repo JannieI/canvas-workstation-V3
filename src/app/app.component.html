@@ -714,6 +714,15 @@ class="formPopupDashboard"
 </dashboard-snapshots>
 
 
+<!-- Modal: Import -->
+<dashboard-import
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardImport"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardImportClosed)="handleCloseDashboardImport($event)">Load Import Dashboard ...
+</dashboard-import>
+
+
 <!-- Modal: Dashboard Tags -->
 <dashboard-tags
     class="formPopupDashboard"
