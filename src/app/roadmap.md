@@ -58,9 +58,7 @@ This document describes items for later versions of Canvas.
 
 
 **Transformations:**
-1. Calculated field with TS like formulas
-2. Calculated fields can contain other fields, ie <TradeDate> - 1
-3. Calculated fields can contain IF-THEN-ELSE statements
+1. 
 
 
 **Dashboard**

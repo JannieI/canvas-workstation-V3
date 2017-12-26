@@ -144,13 +144,13 @@
                             <br>
                             Excel Worksheet:
 
-                            <!-- <div [ngSwitch]="dataGetFromSwitch"> 
+                            <!-- <div [ngSwitch]="dataGetFromSwitch">
                                 <div *ngSwitchCase="'File'">
                                     File stuffies
-                                </div> 
+                                </div>
                                 <div *ngSwitchCase="'Server'">
                                     Servers rule
-                                </div> 
+                                </div>
                             </div> -->
                             <span class="select">
                                 <select id="selects_3" class="selectBox">
@@ -179,13 +179,13 @@
 
                         <div class="gridIdentifyDataIDfile" *ngIf="dataGetFromSwitch==='Server'">
                                 Server stuffies:
-                                Query can be via: 
-                                1. Stored on server  
+                                Query can be via:
+                                1. Stored on server
                                 2. SQL (later with editor)
-                                Must be able to see / list paramters, and also to add 
+                                Must be able to see / list paramters, and also to add
                                 parameter values.
                         </div>
-    
+
                         <div class="gridIdentifyDataPreview">
 
                                 <!-- [style.width.px]="sideNavWidth"
@@ -212,7 +212,7 @@
                                 </clr-datagrid>
                             </div>
                         </div>
-                            
+
                     </div>
 
                     <div class="gridFilter" *ngIf="showFilter">
@@ -318,19 +318,38 @@
 
                         </div>
                         <div class="gridTransformNew">
-                            Select a list of transformation that was previosly saved as a
-                            Transformation-Set (non-existant column names will be ignored):
-                            <div class="gridTransformNewNames">
-                                <div class="select">
-                                    <select id="selects_2">
-                                        <option *ngFor="let row of dataFieldNames">
-                                            {{ row }}
-                                        </option>
-                                    </select>
+                            <div class="transformationSet">
+                                Select an optional Transformation Set (list of single transformations
+                                that were stored previously).  If this Set contains column names that
+                                does not exist in your current Dataset, it will simply be ignored):
+                                <div class="gridTransformNewNames">
+                                    <div class="select">
+                                        <select id="selects_2">
+                                            <option>Standard Nielson file transformations</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                Optionally save all the current transformations (shown on the left) 
+                                as a Transformation-Set for future use:
+                                <div class="gridTransformNewNames">
+                                        <input type="text" id="formFields_7"
+                                        placeholder="Set Name"
+                                        class="selectFile"
+                                        >
+                                    <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        (click)="clickFileSaveTransformation()"
+                                        >
+                                        Save
+                                    </button>
                                 </div>
                             </div>
                             <br>
-                            <div>Select a single field and the transformation that must be
+                            <b>Create a transformation:</b>
+                            <div>
+                                Select a single field and the transformation that must be
                                 applied to it:
                             </div>
                             <div class="gridTransformNewNames">
@@ -357,22 +376,23 @@
                                     [(ngModel)]="transformationDescription"
                                     class="selectFile"
                                     >
-                            </div>
-                            <br>
-                            Optionally save all these transformations as a Transformation-Set for later use:
-                            <div class="gridTransformNewNames">
-                                    <input type="text" id="formFields_7"
-                                    placeholder="Set Name"
-                                    class="selectFile"
-                                    >
                                 <button
                                     type="button"
-                                    class="btn btn-link"
+                                    class="btn btn-secondary"
                                     (click)="clickFileSaveTransformation()"
                                     >
                                     Save
                                 </button>
+                                <br>
+                                <br>
+                                <i>Note: When creating Calculated Fields, use a subset of TypeScript syntax in the
+                                    formulas.  It is possible to use IF-THEN-ELSE statements, but it 
+                                    is not possible to use callbacks.  Fields existing in the Dataset (
+                                    original or calculated) can be referenced by wrapping them in [], for
+                                    example [TradeDate] - 1 where TradeDate is an existing field.
+                                </i>
                             </div>
+                            <br>
                         </div>
                         <div class="gridTransformExisting">
                             <div *ngIf="showTransformDetail">
@@ -603,8 +623,8 @@
                                     <b>
                                         <h4 class="gridViewFieldHeading" >Overview</h4>
                                     </b>
-                                    <i>This area shows an overview of the data in 6 graphs.  It 
-                                        includes frequency distributions of key fields, and a 
+                                    <i>This area shows an overview of the data in 6 graphs.  It
+                                        includes frequency distributions of key fields, and a
                                         Light data exploration, ie outliers about xth percentile.
                                         <button
                                             type="button"

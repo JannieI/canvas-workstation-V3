@@ -279,6 +279,13 @@
         padding: 10px;
     }
 
+        .transformationSet {
+            background-color: lightgray;
+            border: 1px solid gray;
+            border-radius: 5px;
+            padding:  5px !important;
+        }
+
     .gridTransformNewNames {
         margin-left: 20px;
     }
