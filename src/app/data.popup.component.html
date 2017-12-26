@@ -10,7 +10,7 @@
                         <div class="titleCurrent">
                             Current Dataset: <b>{{ currentDataset }}</b>
                             <span *ngIf="currentDataset===''" class="titleFirsttimeMessage">
-                                (Click Add, top right, to add this datasource)
+                                (Select one (Identify), and then click Add to add this datasource)
                             </span>
                         </div>
 
@@ -235,7 +235,9 @@
 
                         </div>
                         <div class="gridFilterDropArea">
-                            <div>Select a single field.  Then select the Operator, and enter
+                            <b>Create a filter:</b>
+                            <div>
+                                Select a single field.  Then select the Operator, and enter
                                 the filter value that must be applied to it.  More than one
                                 filter can be added per field.  All filters (on the same or
                                 different fields will be combined with AND logic).  The list of
@@ -288,13 +290,16 @@
                                 </button>
                             </div>
                         </div>
+                        <b>Existing filters:</b>
                         <div class="gridFilterResult">
                             <clr-datagrid class="fieldsDataGrid">
+                                <clr-dg-column>Delete</clr-dg-column>
                                 <clr-dg-column>Field Name</clr-dg-column>
                                 <clr-dg-column>Operator</clr-dg-column>
                                 <clr-dg-column>Filter Value</clr-dg-column>
 
                                 <clr-dg-row *ngFor="let row of datasourceFilters">
+                                    <clr-dg-cell><clr-icon shape="times"></clr-icon></clr-dg-cell>
                                     <clr-dg-cell>{{row.fieldName}}</clr-dg-cell>
                                     <clr-dg-cell>{{row.operator}}</clr-dg-cell>
                                     <clr-dg-cell>{{row.filterValue}}</clr-dg-cell>
