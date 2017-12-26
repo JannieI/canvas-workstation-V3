@@ -9,39 +9,34 @@
 
                 Share Dashboard
                 <div class="propertyLine">
-                    Snapshots are saved by the user, and are bookmarks to which one can
-                    roll back.  Snapshots are optional.
+                    Add a user or group and specify View or Edit permissions.  To change 
+                    existing permissions, double click the View / Edit cell in the grid below.
                 </div>
                 <div class="propertyLine">
-                    Snapshot the current Dashboard:
-                    <input type="text" id="formFields_7" placeholder="Snapshot name">
-                    <input type="text" id="formFields_7" placeholder="Comment">
+                    <input type="text" id="formFields_7" placeholder="User ID">
+                    <input type="text" id="formFields_7" placeholder="Group ID">
+                    <input type="text" id="formFields_7" placeholder="CanView">
+                    <input type="text" id="formFields_7" placeholder="CanEdit">
                     <button
                         type="button"
                         class="btn btn-secondary"
                         (click)="clickClose('Close')"
                         >
-                        Snapshot
+                        Add
                     </button>
                 </div>
-
-                <div class="propertyLine">
-                    Snapshots saved for this Dashboard:
-                </div>
-
+                
                 <clr-datagrid>
-                    <clr-dg-column>Roll Back</clr-dg-column>
-                    <clr-dg-column>ID</clr-dg-column>
-                    <clr-dg-column>Name</clr-dg-column>
-                    <clr-dg-column>Comment</clr-dg-column>
+                    <clr-dg-column>User ID</clr-dg-column>
+                    <clr-dg-column>Group ID</clr-dg-column>
+                    <clr-dg-column>CanView</clr-dg-column>
+                    <clr-dg-column>CanEdit</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let row of snapshots">
-                        <clr-dg-cell>
-                            <clr-icon shape="refresh" class="selectIcon1" size="12"></clr-icon>
-                        </clr-dg-cell>
-                        <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.comment}}</clr-dg-cell>
+                    <clr-dg-row *ngFor="let row of dashboardPermissions">
+                        <clr-dg-cell>{{row.userID}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.canView}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.canEdit}}</clr-dg-cell>
                     </clr-dg-row>
 
                 </clr-datagrid>

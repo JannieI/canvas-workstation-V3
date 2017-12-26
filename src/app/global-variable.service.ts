@@ -40,9 +40,9 @@ const dashboardPermissions: dashboardPermission[] =
         groupID: '',
         canView: true,
         canEdit: false,
-    }
+    },
     {
-        id: 1,
+        id: 2,
         dashboardID: 1,
         userID: 'UweH',
         groupID: '',
@@ -1726,6 +1726,7 @@ export class GlobalVariableService {
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
     canvasMessages: canvasMessage[] =  canvasMessages;
     localWidgets = new BehaviorSubject< canvasWidget[]>(localWidgets);
+    dashboardPermissions: dashboardPermission[] = dashboardPermissions;
     localTrash = new BehaviorSubject< canvasWidget[]>([]);
     canvasActivities: canvasActivity[] = canvasActivities;
     canvasAlerts: canvasAlert[] = canvasAlerts;

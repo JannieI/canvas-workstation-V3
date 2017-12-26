@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
-import { dashboardSnapshot }                 from './models';
+import { dashboardPermission }        from './models';
 
 @Component({
     selector: 'dashboard-share',
@@ -32,7 +32,7 @@ export class DashboardShareComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Partial<dashboard>[];
-    // Share: snapshot[];
+    dashboardPermissions: dashboardPermission[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -41,7 +41,7 @@ export class DashboardShareComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        // this.Share = this.globalVariableService.Share;
+        this.dashboardPermissions = this.globalVariableService.dashboardPermissions;
     }
 
     clickClose(action: string) {
