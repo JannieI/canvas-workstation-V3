@@ -236,6 +236,7 @@ export class dashboard {
     defaultTabID;
     defaultExportFileType: string;
     url: string;
+    qaRequired: boolean;
 
     // Overlay looks
     backgroundColor: string;
