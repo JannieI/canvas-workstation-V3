@@ -677,7 +677,7 @@
             title="Delete this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation"
+        <clr-icon *ngIf="!presentation  &&  hasDatasources"
             shape="cursor-arrow"
             size="20"
             class="buttonBarIcon"
@@ -742,8 +742,8 @@
 
 <!-- Dummy Slicer -->
 <div class="slicer">
-    <section class="form-block">
-        <label>Make</label>
+    <section class="form-block" title="Filter the Budget dataset on Make of Car">
+        <div class="slicerLabel"><b>Filter: Make</b></div>
         <div class="form-group">
             <div class="select multiple">
                 <select id="selects_5" multiple>
