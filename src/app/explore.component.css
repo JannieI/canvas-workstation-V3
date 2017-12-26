@@ -147,7 +147,9 @@
     top: 0;
 }
 .widgetSelectedDrag:hover {
-    background-color: black;
+    background-color: darkgray;
+    border-right: 2px solid black !important;
+    border-top: 2px solid black !important;
     color: white;
 }
 
@@ -159,7 +161,9 @@
     position: absolute;
 }
 .widgetSelectedResize:hover {
-    background-color: black;
+    background-color: darkgray;
+    border-bottom: 2px solid black !important;
+    border-right: 2px solid black !important;
     color: white;
 }
 
