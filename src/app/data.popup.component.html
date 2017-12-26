@@ -703,9 +703,24 @@
                                 </i>
                                 <br> <br>
                                 <div>
-                                    <b>
-                                    FieldName    DataType    LocalName    Filtered?    Transformed?
-                                    </b>
+                                        
+                                    <clr-datagrid>
+                                        <clr-dg-row>
+                                            <clr-dg-column>{{ FieldName }}</clr-dg-column>
+                                            <clr-dg-column>{{ DataType }}</clr-dg-column>
+                                            <clr-dg-column>{{ LocalName }}</clr-dg-column>
+                                            <clr-dg-column>{{ Filtered }}</clr-dg-column>
+                                            <clr-dg-column>{{ Transformed }}</clr-dg-column>
+                                        </clr-dg-row>
+                                        <clr-dg-row *ngFor="let row of finalFields">
+                                            <clr-dg-cell>row.fieldName</clr-dg-cell>
+                                            <clr-dg-cell>row.dataType</clr-dg-cell>
+                                            <clr-dg-cell>row.localName</clr-dg-cell>
+                                            <clr-dg-cell>row.filtered</clr-dg-cell>
+                                            <clr-dg-cell>row.transformed</clr-dg-cell>
+                                        </clr-dg-row>
+                                    </clr-datagrid>
+    
                                 </div>
                             </div>
 

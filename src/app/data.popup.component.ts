@@ -30,6 +30,44 @@ import { datasourceFilter}            from './models'
 import * as dl from 'datalib';
 import { load } from 'datalib';
 
+const finalFields = [
+    {
+        fieldName: 'MonthTraded',
+        dataType: 'string',
+        localName: 'Date',
+        filtered: '2 flters',
+        transformed: 'none'
+    },
+    {
+        fieldName: 'TradeType',
+        dataType: 'string',
+        localName: '',
+        filtered: 'none',
+        transformed: 'none'
+    },
+    {
+        fieldName: 'Volume',
+        dataType: 'number',
+        localName: '',
+        filtered: '1 flters',
+        transformed: '2 transf'
+    },
+    {
+        fieldName: 'Price',
+        dataType: 'number',
+        localName: '',
+        filtered: 'none',
+        transformed: '6 transf'
+    },
+    {
+        fieldName: 'Value',
+        dataType: 'Calculated: number',
+        localName: '',
+        filtered: 'none',
+        transformed: '1 transf'
+    }
+];
+
 @Component({
     selector: 'data',
     templateUrl: './data.popup.component.html',
@@ -46,6 +84,7 @@ export class DataPopupComponent implements OnInit {
     currentDatasources: currentDatasource[];
     datasources: currentDatasource[];
 
+    finalFields: any = finalFields;
     currentData: any = [];
     dataArray: any;
     dataFieldNames: string[];
