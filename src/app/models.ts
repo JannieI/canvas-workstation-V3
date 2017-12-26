@@ -218,6 +218,15 @@ export class currentDatasource {
     parameters: string;
 }
 
+export class datasourcePermission {
+    id: number;
+    datasourceID: number;
+    userID: string;        // 1 of usr/grp filled in, one blank
+    groupID: string;
+    canView: boolean;
+    canEdit: boolean;    
+}
+
 // Dashboard
 export class dashboard {
 

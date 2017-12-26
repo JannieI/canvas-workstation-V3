@@ -20,6 +20,7 @@ import { dashboardComment }           from './models';
 import { dashboardPermission }        from './models';
 import { dataQualityIssue}            from './models'
 import { datasourceFilter}            from './models'
+import { datasourcePermission}        from './models'
 import { buttonBarAvailable}          from './models'
 import { buttonBarSelected }          from './models';
 import { widgetNote }                 from './models';
@@ -31,6 +32,34 @@ import { canvasWidget }               from './models';
 import * as dl from 'datalib';
 
 // import { CanvasUser }                 from './model.user';
+const datasourcePermissions: datasourcePermission[] = 
+[
+    {
+        id: 1,
+        datasourceID: 1,
+        userID: 'KilmarE',
+        groupID: '',
+        canView: true,
+        canEdit: false,
+    },
+    {
+        id: 2,
+        datasourceID: 1,
+        userID: 'UweH',
+        groupID: '',
+        canView: false,
+        canEdit: true,
+    },
+    {
+        id: 3,
+        datasourceID: 1,
+        userID: 'IgnusO',
+        groupID: '',
+        canView: true,
+        canEdit: true,
+    }
+];
+
 const dashboardPermissions: dashboardPermission[] = 
 [
     {
