@@ -116,7 +116,7 @@ This document describes items for later versions of Canvas.
 3. Border on select
 4. Fix bug: isTrash => Widget does not disappear !
 5. Fix bug and Duplicate Widget correctly
-6. 
+6. Fix bug: [style.border]="row.isSelected? '2px solid black' : '2px solid red'" does not work
 7. Flag visible if it has a Note, Data Quality issues
 8. Consider Widget Templates - could be a way to make graphs easier, or standardise the
    look and feel in the company ...

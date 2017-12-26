@@ -9,8 +9,10 @@
 .graphArea {
     border: 1px solid gray;
     border-radius: 4px;
-    margin: 2rem;
+    height: 300px;
+    margin: 0;
     text-align: center;
+    width: 400px;
 }
  
 .selectStep {
