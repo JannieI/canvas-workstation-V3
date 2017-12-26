@@ -36,14 +36,14 @@ const finalFields = [
         dataType: 'string',
         localName: 'Date',
         filtered: '2 flters',
-        transformed: 'none'
+        transformed: ''
     },
     {
         fieldName: 'TradeType',
         dataType: 'string',
         localName: '',
-        filtered: 'none',
-        transformed: 'none'
+        filtered: '',
+        transformed: ''
     },
     {
         fieldName: 'Volume',
@@ -56,14 +56,14 @@ const finalFields = [
         fieldName: 'Price',
         dataType: 'number',
         localName: '',
-        filtered: 'none',
+        filtered: '',
         transformed: '6 transf'
     },
     {
         fieldName: 'Value',
         dataType: 'Calculated: number',
         localName: '',
-        filtered: 'none',
+        filtered: '',
         transformed: '1 transf'
     }
 ];
