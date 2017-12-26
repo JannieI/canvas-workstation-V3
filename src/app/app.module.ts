@@ -59,6 +59,7 @@ import { DataPopupComponent }         from './data.popup.component';
 import { DataCombinationComponent }   from './data.combination.component';
 import { DataSlicersComponent }       from './data.slicers.component';
 import { DataRefreshComponent }       from './data.refresh.component';
+import { DatasourceShareComponent }   from './data.share.component';
 
 import { ShapeEditComponent }         from './shape.edit.component';
 
@@ -125,6 +126,7 @@ import { MyNgIfDirective }              from './test.ngif.directive';
         DataCombinationComponent,
         DataSlicersComponent,
         DataRefreshComponent,
+        DatasourceShareComponent,
 
         WidgetEditorComponent,
         WidgetCheckpointsComponent,

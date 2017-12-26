@@ -91,6 +91,7 @@ export class AppComponent implements OnInit {
     showModalDataSlicers: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
+    showModalDataShare: boolean = false;
     showModalShapeEdit: boolean = false;
     showModalShapeDelete: boolean = false;
     showFav: boolean = false;
@@ -277,6 +278,10 @@ export class AppComponent implements OnInit {
     
     handleCloseDataRefresh() {
         this.showModalDataRefresh = false;
+    }
+
+    handleCloseDataShare() {
+        this.showModalDataShare = false;
     }
 
     handleCloseWidgetCheckpoints() {
@@ -472,12 +477,12 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickMenuDataPermissions() {
-
-    }
-
     clickMenuDataRefreshAll() {
         this.showModalDataRefresh = true;
+    }
+
+    clickMenuDataShare() {
+        this.showModalDataShare = true;
     }
 
     clickMenuWidgetNew() {

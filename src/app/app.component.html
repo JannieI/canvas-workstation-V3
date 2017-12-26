@@ -282,8 +282,8 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuDataPermissions()">
-                            Permissions
+                        <button type="button" clrDropdownItem (click)="clickMenuDataShare()">
+                            Share
                         </button>
                         <button type="button" clrDropdownItem (click)="clickMenuDataRefreshAll()">
                             Refresh All
@@ -947,6 +947,14 @@ class="formPopupDashboard"
     [currentWidgetSpec]="currentWidgetSpec"
     (formDataRefreshClosed)="handleCloseDataRefresh($event)">Refresh All Data ...
 </data-refresh>
+
+
+<!-- Modal: data Share -->
+<data-share
+    *ngIf="showModalDataShare"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDataShareClosed)="handleCloseDataShare($event)">Share All Data ...
+</data-share>
 
 
 <!-- Modal: widget checkpoints -->

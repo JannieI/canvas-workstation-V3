@@ -1,0 +1,47 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+
+                Share Data
+                <div class="propertyLine">
+                    Add a user or group and specify View or Edit permissions.  To change 
+                    existing permissions, double click the View / Edit cell in the grid below.
+                </div>
+                <div class="propertyLine">
+                    <input type="text" id="formFields_7" placeholder="User ID">
+                    <input type="text" id="formFields_7" placeholder="Group ID">
+                    <input type="text" id="formFields_7" placeholder="CanView">
+                    <input type="text" id="formFields_7" placeholder="CanEdit">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose('Close')"
+                        >
+                        Add
+                    </button>
+                </div>
+                
+                <clr-datagrid>
+                    <clr-dg-column>User ID</clr-dg-column>
+                    <clr-dg-column>Group ID</clr-dg-column>
+                    <clr-dg-column>CanView</clr-dg-column>
+                    <clr-dg-column>CanEdit</clr-dg-column>
+
+                    <clr-dg-row *ngFor="let row of datasourcePermissions">
+                        <clr-dg-cell>{{row.userID}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.canView}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.canEdit}}</clr-dg-cell>
+                    </clr-dg-row>
+
+                </clr-datagrid>
+
+            </div>
+        </div>
+    </div>
+</div>

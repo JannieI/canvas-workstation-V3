@@ -1756,6 +1756,7 @@ export class GlobalVariableService {
     canvasMessages: canvasMessage[] =  canvasMessages;
     localWidgets = new BehaviorSubject< canvasWidget[]>(localWidgets);
     dashboardPermissions: dashboardPermission[] = dashboardPermissions;
+    datasourcePermissions: datasourcePermission[] = datasourcePermissions;
     localTrash = new BehaviorSubject< canvasWidget[]>([]);
     canvasActivities: canvasActivity[] = canvasActivities;
     canvasAlerts: canvasAlert[] = canvasAlerts;
