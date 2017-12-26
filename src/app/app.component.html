@@ -48,6 +48,27 @@
                         <button type="button" clrDropdownItem (click)="clickDashboardOpen()">
                             Open
                         </button>
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger 
+                                >
+                                Open
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button" clrDropdownItem
+                                (click)="clickDashboardOpen()">
+                                    Existing Dashboard
+                                </button>
+                                <button type="button" clrDropdownItem
+                                (click)="clickMenuDashboardDetailDescription()">
+                                    Import
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown> 
+
                         <button type="button" clrDropdownItem (click)="clickDashboardEdit()">
                             Edit
                         </button>
