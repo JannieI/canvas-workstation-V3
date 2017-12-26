@@ -27,6 +27,7 @@ import { DashboardSaveComponent }     from './dashboard.save.component';
 import { DashboardDiscardComponent }  from './dashboard.discard.component';
 import { DashboardRenameComponent }   from './dashboard.rename.component';
 import { DashboardSnapshotsComponent }      from './dashboard.snapshots.component';
+import { DashboardShareComponent }    from './dashboard.share.component';
 import { DashboardDetailsComponent }  from './dashboard.details.component';
 import { DashboardDescriptionComponent }    from './dashboard.description.component';
 import { DashboardTagsComponent }     from './dashboard.tags.component';
@@ -103,6 +104,7 @@ import { MyNgIfDirective }              from './test.ngif.directive';
         DashboardDiscardComponent,
         DashboardRenameComponent,
         DashboardSnapshotsComponent,
+        DashboardShareComponent,
         DashboardDetailsComponent,
         DashboardDescriptionComponent,
         DashboardTagsComponent,

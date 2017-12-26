@@ -714,6 +714,15 @@ class="formPopupDashboard"
 </dashboard-snapshots>
 
 
+<!-- Modal: Share -->
+<dashboard-share
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardShare"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formDashboardShareClosed)="handleCloseDashboardShare($event)">Load Share Dashboard ...
+</dashboard-share>
+
+
 <!-- Modal: Import -->
 <dashboard-import
     class="formPopupDashboard"
