@@ -44,11 +44,6 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-
-                        <button type="button" clrDropdownItem (click)="clickDashboardOpen()">
-                            Open
-                        </button>
-
                         <clr-dropdown>
                             <button
                                 type="button"
@@ -69,8 +64,13 @@
                             </clr-dropdown-menu>
                         </clr-dropdown> 
 
-                        <button type="button" clrDropdownItem (click)="clickDashboardEdit()">
-                            Edit
+                        <button 
+                            type="button" 
+                            clrDropdownItem  
+                            (click)="clickDashboardEdit()"
+                            title="Enable EditMode to make changes"
+                            >
+                            {{ editMenuText }}
                         </button>
                         <button type="button" clrDropdownItem (click)="clickDashboardRename()">
                             Rename

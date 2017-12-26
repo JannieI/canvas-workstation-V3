@@ -37,6 +37,8 @@ export class AppComponent implements OnInit {
     @ViewChild('dragCircle', {read: ElementRef}) dragCircle: ElementRef;  //Vega graph
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
 
+    editMode: boolean;
+    editMenuText: string;
     fields: field[];
     menuCreateDisabled: boolean;
     moveStartX: number;
@@ -149,6 +151,14 @@ export class AppComponent implements OnInit {
         this.globalVariableService.currentDatasources.subscribe(
             i => this.currentDatasources = i
         );
+        this.globalVariableService.editMode.subscribe(
+            i => { 
+                    this.editMode = i;
+                    if (!i) {this.editMenuText = 'Edit Mode'} 
+                    else {this.editMenuText = 'View Mode'}; 
+                 }
+        );
+        
     }   
 
     handleCloseModal() {
@@ -353,7 +363,7 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardEdit() {
-        this.globalVariableService.editMode.next(true);
+        this.globalVariableService.editMode.next(!this.editMode);
     }
 
     clickDashboardDiscard() {
