@@ -290,8 +290,9 @@
                                 </button>
                             </div>
                         </div>
-                        <b>Existing filters:</b>
                         <div class="gridFilterResult">
+                            
+                            <span class="gridHeading"><b>Existing filters:</b></span>
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column>Delete</clr-dg-column>
                                 <clr-dg-column>Field Name</clr-dg-column>
@@ -312,7 +313,7 @@
                     <div class="gridTransform" *ngIf="showTransform">
                         <div class="gridTransformTransformations">
 
-                            <span class="gridHeading">Added Transformations </span>
+                            <span class="gridHeading">Added Transformations</span>
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column [clrDgField]="'filterTransformation'">Name</clr-dg-column>
 

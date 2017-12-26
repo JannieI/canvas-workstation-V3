@@ -215,7 +215,6 @@
     margin-top: 0;
     padding-top: 5px;
 }
-    
 
     .gridFilterFields {
         border: 1px solid gray;
@@ -223,26 +222,37 @@
         grid-column-end: 5;
         grid-row-start: 1;
         grid-row-end: 25;
+        height: 19rem;
+        overflow: auto;
+        width: 100%;
     }
 
     .gridFilterDropArea {
         grid-auto-rows: 0.8rem;
-        grid-column-start: 6;
+        grid-column-start: 5;
         grid-column-end: 21;
         grid-row-start: 1;
         grid-row-end: 11;
+        padding: 10px;
     }
 
     .gridFilterNames {
         margin-left: 20px;
+        height: 15rem;
+        overflow: auto;
+        width: 100%;
     }
 
     .gridFilterResult {
         border: 1px solid gray;
-        grid-column-start: 6;
+        grid-column-start: 5;
         grid-column-end: 21;
         grid-row-start: 10;
         grid-row-end: 25;
+        height: 11rem;
+        padding: 10px;
+        overflow: auto;
+        width: 100%;
     }
 
 
