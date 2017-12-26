@@ -1912,7 +1912,11 @@ export class GlobalVariableService {
         })))
     }
     currentDatasourceAdd(newData: currentDatasource) {
-        this.currentDatasources.value.push(newData);
+
+        let arr: currentDatasource[] = this.currentDatasources.value;
+        arr.push(newData);
+        console.log('arr', arr)
+        this.currentDatasources.next(arr)
         console.log('yy', this.currentDatasources.value)
     }
 

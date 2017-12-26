@@ -208,13 +208,13 @@ export class datasource {
 
 export class currentDatasource {
     id: number;
-    name: string;
     type: string;
+    name: string;
     description: string;
     createdBy: string;
     createdOn: string;
     refreshedBy: string;
-    refreshedOn;
+    refreshedOn: string;
     parameters: string;
 }
 

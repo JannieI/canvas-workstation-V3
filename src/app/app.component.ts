@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
 
     editMode: boolean;
+    hasDatasources: boolean = false;
     editMenuText: string;
     fields: field[];
     menuCreateDisabled: boolean;
@@ -151,7 +152,10 @@ export class AppComponent implements OnInit {
             i => this.localWidgets = i
         );
         this.globalVariableService.currentDatasources.subscribe(
-            i => this.currentDatasources = i
+            i => {
+                    if (i.length > 0) { this.hasDatasources = true} else {this.hasDatasources = false}
+                    this.currentDatasources = i
+                 }
         );
         this.globalVariableService.editMode.subscribe(
             i => { 

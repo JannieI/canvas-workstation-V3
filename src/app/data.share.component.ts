@@ -21,7 +21,7 @@ import { datasourcePermission }       from './models';
 
 @Component({
     selector: 'data-share',
-    templateUrl: './datas.share.component.html',
+    templateUrl: './data.share.component.html',
     styleUrls: ['./data.share.component.css']
 })
 export class DatasourceShareComponent implements OnInit {
