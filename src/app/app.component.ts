@@ -578,6 +578,10 @@ export class AppComponent implements OnInit {
     clickMenuShapeLinks() {
         console.log('clickMenuShapeLinks')
 
+        // TODO - make use of commont link form, but pass info about caller.  IF too 
+        //        complicated, then split into 2
+
+        this.showModalWidgetLinks = true;
         // const div = this.renderer2.createElement('div');
         // const svg = this.renderer2.createElement('svg');
         // const circle = this.renderer2.createElement('circle');
