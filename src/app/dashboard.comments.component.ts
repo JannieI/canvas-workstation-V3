@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
-import { dashboardComment }           from './models';
+import { canvasComment }              from './models';
 
 @Component({
     selector: 'dashboard-comments',
@@ -30,9 +30,9 @@ export class DashboardCommentsComponent implements OnInit {
     @Input() currentWidgetSpec: any;
     @Output() formDashboardCommentsClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: Partial<dashboard>[];
-    dashboardComments: dashboardComment[];
+    canvasComments: canvasComment[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -41,12 +41,12 @@ export class DashboardCommentsComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.dashboardComments = this.globalVariableService.dashboardComments;
+        this.canvasComments = this.globalVariableService.canvasComments;
     }
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formDashboardCommentsClosed.emit(action);
     }
 }

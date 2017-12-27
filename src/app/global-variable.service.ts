@@ -16,7 +16,6 @@ import { dashboardTag }               from './models';
 import { dashboardTheme }             from './models';
 import { dashboardTemplate }          from './models';
 import { dashboardSchedule }          from './models';
-import { dashboardComment }           from './models';
 import { dashboardPermission }        from './models';
 import { dataQualityIssue}            from './models'
 import { datasourceFilter}            from './models'
@@ -807,17 +806,6 @@ const dataQualityIssues: dataQualityIssue[] =
         loggedOn: '2017/01/01',
         solvedBy: 'GordonL',
         solvedOn: '2017/01/01',
-    }
-]
-
-const dashboardComments: dashboardComment[] =
-[
-    {
-        id: 1,
-        dashboardID: 42,
-        comment: 'We need to investigate the quality of the data',
-        creator: 'GerhardD',
-        createdOn: '2017/01/01'
     }
 ]
 
@@ -1742,7 +1730,6 @@ export class GlobalVariableService {
     dashboardThemes: dashboardTheme[] = dashboardThemes;
     dashboardTemplates: dashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: dashboardSchedule[] = dashboardSchedules;
-    dashboardComments: dashboardComment[] = dashboardComments;
     duplicateDashboard = new BehaviorSubject<boolean>(false);    
     editMode = new BehaviorSubject<boolean>(false);
     shapeButtonsAvailable: buttonBarAvailable[] = shapeButtonsAvailable;
