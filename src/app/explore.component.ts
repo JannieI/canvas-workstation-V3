@@ -166,6 +166,7 @@ export class ExploreComponent {
     localWidgets: canvasWidget[];
     localTrash: canvasWidget[] = [];
     currentDatasources: currentDatasource[];
+    currentTabName: string = 'Summary';
     description: string = 'A simple bar chart with embedded data.';
     circleRadius: number = 20;
     data: any = [
@@ -188,7 +189,6 @@ export class ExploreComponent {
     presentation: boolean;
     showMainMenu: boolean;
     isFirstTimePresentation: boolean;
-    secondTab: Boolean = false;
     sideNavWidth: string = '350';
     sideNavMinWidth: string = '18';
     sideNaveButtonText: string = 'Select Data';
@@ -205,7 +205,7 @@ export class ExploreComponent {
     statusBarRunning: string = '';
     statusBarCancelRefresh: string = '';
     statusBarMessages: string = '';
-    templateInUse: string = "Template Used";
+    templateInUse: string = 'Tmpl Used';
     viewEditMode: string = 'Edit Mode';
     widgetBorder: string = '1px black solid';
 
@@ -549,8 +549,33 @@ export class ExploreComponent {
             'top', (80 + widgetMoveX).toString() + "px");
     }
 
-    addNewTab() {
-        this.secondTab = ! this.secondTab;
+    clickAddTab() {
+        this.showNewTab = true;
+    }
+    clickShowFirstTab() {
+        this.currentTabName = 'Summary'
+    }
+
+    clickShowPreviousTab() {
+        if (this.currentTabName == 'Summary') {this.currentTabName = 'Headcount'}
+        else if (this.currentTabName == 'Headcount') {this.currentTabName = 'Western Europe'}
+        else if (this.currentTabName == 'Western Europe') {this.currentTabName = 'New Budget'}
+        else if (this.currentTabName == 'New Budget') {this.currentTabName = 'Summary'};
+
+    }
+
+    clickShowNextTab() {
+        console.log('wft')
+        if (this.currentTabName == 'Summary') {this.currentTabName = 'New Budget'}
+        else if (this.currentTabName == 'New Budget') {this.currentTabName = 'Western Europe'}
+        else if (this.currentTabName == 'Western Europe') {this.currentTabName = 'Headcount'}
+        else if (this.currentTabName == 'Headcount') {this.currentTabName = 'Summary'};
+
+    }
+
+    clickShowLastTab() {
+        this.currentTabName = 'Headcount'
+        console.log(this.currentTabName)
     }
 
     clickCloseModel() {
@@ -590,11 +615,6 @@ export class ExploreComponent {
         console.log('createVegaLiteSpec', vlSpecsNew)
 
         return vlSpecsNew;
-    }
-
-    clickAddTab() {
-        this.showNewTab = true;
-        console.log('sss')
     }
 
     clickClosePresentation() {
@@ -740,10 +760,10 @@ export class ExploreComponent {
     }
 
     clickStatusTemplate() {
-        if (this.templateInUse == 'Template Used') {
+        if (this.templateInUse == 'Tmpl Used') {
             this.templateInUse = 'Tmpl Disabled ';
         } else {
-            this.templateInUse = 'Template Used';
+            this.templateInUse = 'Tmpl Used';
         }
     }
 }

@@ -166,26 +166,24 @@
     <span class="statusBarText statusBarTextBorder">
         Tabs :
     </span>
-    <span class="statusBarText statusBarTextBorder" title="Click to Add a new Tab">
+    <span class="statusBarText statusBarTextBorder" title="Click to show first Tab">
         <clr-icon shape="angle-double left" size="12"
-            (click)="clickAddTab()"></clr-icon>
+            (click)="clickShowFirstTab()"></clr-icon>
     </span>
-    <span class="statusBarText statusBarTextBorder" title="Click to Add a new Tab">
+    <span class="statusBarText statusBarTextBorder" title="Click to show previous Tab">
         <clr-icon shape="angle left" size="12"
-            (click)="clickAddTab()"></clr-icon>
+            (click)="clickShowPreviousTab()"></clr-icon>
     </span>
 
-    <span class="statusBarText statusBarTextBorder" title="Tab: Summary of Sales"
-        (click)="clickAddTab()">
-        <b>Summary</b>
+    <span class="statusBarText statusBarTextBorder" title="Current Tab"
+        (click)="clickShowNextTab()">
+        <b>{{ currentTabName }}</b>
     </span>
-    <span class="statusBarText statusBarTextBorder" title="Click to Add a new Tab">
-        <clr-icon shape="angle right" size="12"
-            (click)="clickAddTab()"></clr-icon>
+    <span class="statusBarText statusBarTextBorder" (click)="clickShowNextTab()" title="Click to show next Tab ">
+        <clr-icon shape="angle right" size="12"></clr-icon>
     </span>
-    <span class="statusBarText statusBarTextBorder" title="Click to Add a new Tab">
-        <clr-icon shape="angle-double right" size="12"
-            (click)="clickAddTab()"></clr-icon>
+    <span class="statusBarText statusBarTextBorder" (click)="clickShowLastTab()" title="Click show last Tab">
+        <clr-icon shape="angle-double right" size="12"></clr-icon>
     </span>
 
     <span class="statusBarText statusBarTextBorder" title="Tab: Detail costing YTD"
