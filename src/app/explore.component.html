@@ -159,13 +159,35 @@
     <span class="statusBarText" title="Current Dashboard">
         Analysis of Value Traded 2017 ...
     </span>
-    <span class="statusBarText">
+
+
+
+
+    <span class="statusBarText statusBarTextBorder">
         Tabs :
     </span>
+    <span class="statusBarText statusBarTextBorder" title="Click to Add a new Tab">
+        <clr-icon shape="angle-double left" size="12"
+            (click)="clickAddTab()"></clr-icon>
+    </span>
+    <span class="statusBarText statusBarTextBorder" title="Click to Add a new Tab">
+        <clr-icon shape="angle left" size="12"
+            (click)="clickAddTab()"></clr-icon>
+    </span>
+
     <span class="statusBarText statusBarTextBorder" title="Tab: Summary of Sales"
         (click)="clickAddTab()">
         <b>Summary</b>
     </span>
+    <span class="statusBarText statusBarTextBorder" title="Click to Add a new Tab">
+        <clr-icon shape="angle right" size="12"
+            (click)="clickAddTab()"></clr-icon>
+    </span>
+    <span class="statusBarText statusBarTextBorder" title="Click to Add a new Tab">
+        <clr-icon shape="angle-double right" size="12"
+            (click)="clickAddTab()"></clr-icon>
+    </span>
+
     <span class="statusBarText statusBarTextBorder" title="Tab: Detail costing YTD"
         *ngIf="secondTab" (click)="clickAddTab()">
         Detail Costs
@@ -175,6 +197,10 @@
         <clr-icon shape="plus" size="12"
             (click)="clickAddTab()"></clr-icon>
     </span>
+
+
+
+
     <span class="statusBarText" title="How long ago the Dashboard layout was updated">
         Updated: 1d
     </span>
