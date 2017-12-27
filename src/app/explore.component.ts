@@ -205,7 +205,7 @@ export class ExploreComponent {
     statusBarRunning: string = '';
     statusBarCancelRefresh: string = '';
     statusBarMessages: string = '';
-
+    templateInUse: string = "Template Used";
     viewEditMode: string = 'Edit Mode';
     widgetBorder: string = '1px black solid';
 
@@ -739,7 +739,13 @@ export class ExploreComponent {
     clickMenuWidgetDelete() {
     }
 
-
+    clickStatusTemplate() {
+        if (this.templateInUse == 'Template Used') {
+            this.templateInUse = 'Tmpl Disabled ';
+        } else {
+            this.templateInUse = 'Template Used';
+        }
+    }
 }
 
 
