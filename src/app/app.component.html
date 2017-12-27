@@ -602,10 +602,6 @@
                     <button type="button" clrDropdownItem (click)="clickMenuCollaborateActivityAdd()">
                         Add Activity
                     </button>
-
-                    <a clrDropdownItem (click)="showCollaborate = !showCollaborate">
-                        Old Messages ...
-                    </a>
                 </clr-dropdown-menu>
             </clr-dropdown>
 
@@ -1033,16 +1029,6 @@ class="formPopupDashboard"
     [currentWidgetSpec]="currentWidgetSpec"
     (formCollaborateActivityAddClosed)="handleCloseCollaborateActivityAdd($event)">Load ActivityAdd ...
 </collaborate-activityadd>
-
-
-<!-- Overlay: Collaborate -->
-<collaborate
-    class="formCollaborate"
-    *ngIf="showCollaborate"
-    [currentWidgetSpec]="currentWidgetSpec"
-    (formCollaborateClosed)="handleCloseCollaborate($event)">Load Collaborate form ...
-    >
-</collaborate>
 
 
 <div class="modal modalBox" *ngIf="showModalWidgetRefresh">

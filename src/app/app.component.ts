@@ -55,7 +55,6 @@ export class AppComponent implements OnInit {
     // showImage: boolean = false;
     // showTextBox: boolean = false;
     // showRectangle: boolean = false;
-    showCollaborate: boolean = false;
     showGrid: boolean;
     showModalLanding: boolean;  // Show Landing Page
     showModalDashboardNew: boolean = false;
@@ -176,11 +175,6 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetEditor() {
         this.showModalWidgetEditor = false;
-    }
-
-    handleCloseCollaborate() {
-        this.showCollaborate = false;
-        console.log('handleCloseCollaborate')
     }
 
     handleCloseDashboardNew(action) {

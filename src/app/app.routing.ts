@@ -12,7 +12,6 @@ import { HomeComponent }              from './home.component';
 import { HelpComponent }              from './help.component';
 import { LandingComponent }           from './landing.component';
 import { PresentComponent }           from './present.component';
-import { CollaborateComponent }       from './collaborate.component';
 import { WidgetExpandComponent }      from './widget.expand.component';
 
 // Own Services
@@ -22,7 +21,6 @@ import { GlobalVariableService }      from './global-variable.service';
 export const ROUTES: Routes = [
     {path: '', redirectTo: 'explore', pathMatch: 'full'},
     {path: 'home',          component: HomeComponent},
-    {path: 'collaborate',   component: CollaborateComponent},
     {path: 'data',          component: DataPopupComponent},
     {path: 'explore',       component: ExploreComponent},
     {path: 'help',          component: HelpComponent},

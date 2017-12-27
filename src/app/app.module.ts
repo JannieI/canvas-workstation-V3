@@ -66,7 +66,6 @@ import { ShapeEditComponent }         from './shape.edit.component';
 import { PresentComponent }           from './present.component';
 import { HelpComponent }              from './help.component';
 
-import { CollaborateComponent }       from './collaborate.component';
 import { CollaborateAlertsComponent } from './collaborate.alerts.component';
 import { CollaborateMessagesComponent }     from './collaborate.messages.component';
 import { CollaborateActivitiesComponent }   from './collaborate.activities.component';
@@ -140,7 +139,6 @@ import { MyNgIfDirective }              from './test.ngif.directive';
         ShapeEditComponent,
         ShapeDeleteComponent,
 
-        CollaborateComponent,
         CollaborateAlertsComponent,
         CollaborateMessagesComponent,
         CollaborateActivitiesComponent,
