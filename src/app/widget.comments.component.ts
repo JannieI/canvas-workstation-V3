@@ -18,21 +18,21 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
-import { widgetNote }                 from './models';
+import { canvasComment }              from './models';
 
 @Component({
-    selector: 'widget-notes',
-    templateUrl: './widget.notes.component.html',
-    styleUrls: ['./widget.notes.component.css']
+    selector: 'widget-comments',
+    templateUrl: './widget.comments.component.html',
+    styleUrls: ['./widget.comments.component.css']
 })
-export class WidgetNotesComponent implements OnInit {
+export class WidgetCommentsComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
-    @Output() formWidgetNotesClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formWidgetCommentsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
     dashboards: Partial<dashboard>[];
-    widgetNotes: widgetNote[];
+    canvasComments: canvasComment[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -41,12 +41,12 @@ export class WidgetNotesComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.widgetNotes = this.globalVariableService.widgetNotes;
+        this.canvasComments = this.globalVariableService.canvasComments;
     }
 
     clickClose(action: string) {
         console.log('clickClose')
         
-		this.formWidgetNotesClosed.emit(action);
+		this.formWidgetCommentsClosed.emit(action);
     }
 }

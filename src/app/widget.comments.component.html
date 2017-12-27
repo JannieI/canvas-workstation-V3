@@ -14,12 +14,12 @@
                         <clr-dg-column>Add</clr-dg-column>
                         <clr-dg-column>Edit</clr-dg-column>
                         <clr-dg-column>Delete</clr-dg-column>
-                        <clr-dg-column>id</clr-dg-column>
-                        <clr-dg-column>noteText</clr-dg-column>
-                        <clr-dg-column>updatedBy</clr-dg-column>
-                        <clr-dg-column>updatedOn</clr-dg-column>
+                        <clr-dg-column>ID</clr-dg-column>
+                        <clr-dg-column>Comment</clr-dg-column>
+                        <clr-dg-column>Creator</clr-dg-column>
+                        <clr-dg-column>CreatedOn</clr-dg-column>
     
-                        <clr-dg-row *ngFor="let row of widgetNotes">
+                        <clr-dg-row *ngFor="let row of canvasComments">
                             <clr-dg-cell>
                                 <clr-icon shape="plus" class="selectIcon1" size="12"></clr-icon>
                             </clr-dg-cell>
@@ -30,9 +30,9 @@
                                 <clr-icon shape="times" class="selectIcon1" size="12"></clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.noteText}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.updatedBy}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.updatedOn}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.comment}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.creator}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
                         </clr-dg-row>
     
                     </clr-datagrid>

@@ -311,8 +311,8 @@
                         <button type="button" clrDropdownItem (click)="clickMenuWidgetCheckpoints()">
                             Checkpoints
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetNotes()">
-                            Notes
+                        <button type="button" clrDropdownItem (click)="clickMenuWidgetComments()">
+                            Comments
                         </button>
                         <button type="button" clrDropdownItem (click)="clickMenuWidgetLinks()">
                             Links
@@ -992,11 +992,11 @@ class="formPopupDashboard"
 
 
 <!-- Modal: widget links -->
-<widget-notes
-    *ngIf="showModalWidgetNotes"
+<widget-comments
+    *ngIf="showModalWidgetComments"
     [currentWidgetSpec]="currentWidgetSpec"
-    (formWidgetNotesClosed)="handleCloseWidgetNotes($event)">Load Widget Notes ...
-</widget-notes>
+    (formWidgetCommentsClosed)="handleCloseWidgetComments($event)">Load Widget Comments ...
+</widget-comments>
 
 
 <!-- Modal: Alerts -->

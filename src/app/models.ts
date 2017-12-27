@@ -1,4 +1,14 @@
 // ALL models (schema) are kept here
+
+export class canvasComment {
+    id: number;
+    dashboardID: number;
+    widgetID: number;
+    comment: string;
+    creator: string;
+    createdOn: string;
+}
+
 export class canvasShape {
     imageAlt: string;                      // alt in img tag
     imageHeigt: number;                    // in px
@@ -145,15 +155,6 @@ export class canvasAlert {
     read: boolean;
     alertText: string;
     alertData?: any;    //type of data, table name, field names, field values
-}
-
-export class widgetNote {
-    id: number;
-    dashboardID: number;
-    widgetID: number;
-    noteText: string;
-    updatedBy: string;
-    updatedOn: string;
 }
 
 export class widgetLinkedDashboard {

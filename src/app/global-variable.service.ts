@@ -23,7 +23,7 @@ import { datasourceFilter}            from './models'
 import { datasourcePermission}        from './models'
 import { buttonBarAvailable}          from './models'
 import { buttonBarSelected }          from './models';
-import { widgetNote }                 from './models';
+import { canvasComment }              from './models';
 import { canvasAlert }                from './models';
 import { canvasMessage }              from './models';
 import { canvasActivity }             from './models';
@@ -521,15 +521,15 @@ const canvasAlerts: canvasAlert[] =
     }
 ];
 
-const widgetNotes: widgetNote[] = 
+const canvasComments: canvasComment[] = 
 [
     {
         id: 1,
         dashboardID: 2,
         widgetID: 4,
-        noteText: 'Checkpoints show more detail',
-        updatedBy: 'MarcoD',
-        updatedOn: '2017/01/01'
+        comment: 'Checkpoints show more detail',
+        creator: 'MarcoD',
+        createdOn: '2017/01/01'
     }
 ]
 const shapeButtonsAvailable: buttonBarAvailable[] =
@@ -1746,7 +1746,7 @@ export class GlobalVariableService {
     duplicateDashboard = new BehaviorSubject<boolean>(false);    
     editMode = new BehaviorSubject<boolean>(false);
     shapeButtonsAvailable: buttonBarAvailable[] = shapeButtonsAvailable;
-    widgetNotes: widgetNote[] = widgetNotes;
+    canvasComments: canvasComment[] = canvasComments;
     shapeButtonsSelected: buttonBarSelected[] = shapeButtonsSelected;
     statusBarRunning = new BehaviorSubject<string>('No Query running');
     statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');

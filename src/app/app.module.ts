@@ -51,7 +51,7 @@ import { WidgetLinksComponent }       from './widget.links.component';
 import { WidgetExpandComponent }      from './widget.expand.component';
 import { WidgetExportComponent }      from './widget.export.component';
 import { WidgetDeleteComponent }      from './widget.delete.component';
-import { WidgetNotesComponent }       from './widget.notes.component';
+import { WidgetCommentsComponent }    from './widget.comments.component';
 
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
@@ -134,7 +134,7 @@ import { MyNgIfDirective }              from './test.ngif.directive';
         WidgetExpandComponent,
         WidgetExportComponent,
         WidgetDeleteComponent,
-        WidgetNotesComponent,
+        WidgetCommentsComponent,
 
         ShapeEditComponent,
         ShapeDeleteComponent,
