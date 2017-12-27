@@ -1,0 +1,80 @@
+<div class="modal modalBox">
+        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+            <div class="modal-content modalContent">
+    
+                <div class="overall">
+                    <div class="closeButton">
+                        <button type="button" class="closeButton" (click)="clickClose()">
+                            X
+                        </button>
+                    </div>
+    
+                    Add Activity
+                    <form>
+                        <section>
+                            <div class="form-group">
+                                <label for="selects_4">Select a printer:</label>
+                                <div class="select">
+                                    <select id="selects_3"
+                                        (change)="clickSelectStep($event)"
+                                        >
+                                        <option>Local HP</option>
+                                        <option>Network Toshiba</option>
+                                        <option>Beast 2nd floor</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <div class="form-group">
+                                <label for="selects_4">Select a page size:</label>
+                                <div class="select">
+                                    <select id="selects_3"
+                                        (change)="clickSelectStep($event)"
+                                        >
+                                        <option>A3</option>
+                                        <option>A4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <div class="form-group">
+                                <label for="selects_4">Select a format:</label>
+                                <div class="select">
+                                    <select id="selects_3"
+                                        (change)="clickSelectStep($event)"
+                                        >
+                                        <option>Single page</option>
+                                        <option>Widget per page</option>
+                                        <option>Auto layout</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                            <div class="form-group">
+                                <label for="selects_4">Select colour:</label>
+                                <div class="select">
+                                    <select id="selects_3"
+                                        (change)="clickSelectStep($event)"
+                                        >
+                                        <option>Black and White</option>
+                                        <option>Full colour</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose('Close')"
+                            >
+                            Print
+                        </button>
+    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

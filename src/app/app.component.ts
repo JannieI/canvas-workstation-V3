@@ -98,6 +98,7 @@ export class AppComponent implements OnInit {
     showFav: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalCollaborateAlerts: boolean = false;
+    showModalCollaborateActivityAdd: boolean = false;
     showModalCollaborateMessages: boolean = false;
     showModalCollaborateActivities: boolean = false;
     showModalUserMyProfile: boolean = false;
@@ -319,6 +320,10 @@ export class AppComponent implements OnInit {
 
     handleCloseCollaborateAlerts() {
         this.showModalCollaborateAlerts = false;
+    }
+
+    handleCloseCollaborateActivityAdd() {
+        this.showModalCollaborateActivityAdd = false;
     }
 
     handleCloseCollaborateMessages() {
@@ -687,6 +692,10 @@ export class AppComponent implements OnInit {
 
     clickMenuCollaborateAlerts() {
         this.showModalCollaborateAlerts = true;
+    }
+
+    clickMenuCollaborateActivityAdd() {
+        this.showModalCollaborateActivityAdd = true;
     }
 
     clickMenuCollaborateMessages() {

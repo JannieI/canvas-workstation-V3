@@ -599,7 +599,7 @@
                     <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
                         Send Email
                     </button>
-                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
+                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateActivityAdd()">
                         Add Activity
                     </button>
 
@@ -1024,6 +1024,15 @@ class="formPopupDashboard"
     [currentWidgetSpec]="currentWidgetSpec"
     (formCollaborateActivitiesClosed)="handleCloseCollaborateActivities($event)">Load Activities ...
 </collaborate-activities>
+
+
+<!-- Modal: ActivityAdd -->
+<collaborate-activityadd
+    class="formPopupDashboard"
+    *ngIf="showModalCollaborateActivityAdd"
+    [currentWidgetSpec]="currentWidgetSpec"
+    (formCollaborateActivityAddClosed)="handleCloseCollaborateActivityAdd($event)">Load ActivityAdd ...
+</collaborate-activityadd>
 
 
 <!-- Overlay: Collaborate -->

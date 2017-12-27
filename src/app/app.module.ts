@@ -70,6 +70,7 @@ import { CollaborateComponent }       from './collaborate.component';
 import { CollaborateAlertsComponent } from './collaborate.alerts.component';
 import { CollaborateMessagesComponent }     from './collaborate.messages.component';
 import { CollaborateActivitiesComponent }   from './collaborate.activities.component';
+import { CollaborateActivityAddComponent }  from './collaborate.activityadd.component';
 
 import { LoginComponent}              from './login.component';
 import { MyProfileComponent }         from './myprofile.component';
@@ -143,6 +144,7 @@ import { MyNgIfDirective }              from './test.ngif.directive';
         CollaborateAlertsComponent,
         CollaborateMessagesComponent,
         CollaborateActivitiesComponent,
+        CollaborateActivityAddComponent,
 
         MyProfileComponent,
         PreferencesComponent,
