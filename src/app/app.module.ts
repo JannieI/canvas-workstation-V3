@@ -63,7 +63,6 @@ import { DatasourceShareComponent }   from './data.share.component';
 
 import { ShapeEditComponent }         from './shape.edit.component';
 
-import { PresentComponent }           from './present.component';
 import { HelpComponent }              from './help.component';
 
 import { CollaborateAlertsComponent } from './collaborate.alerts.component';
@@ -97,7 +96,6 @@ import { MyNgIfDirective }              from './test.ngif.directive';
         HomeComponent,
         HelpComponent,
         LandingComponent,
-        PresentComponent,
 
         DashboardNewComponent,
         DashboardOpenComponent,
