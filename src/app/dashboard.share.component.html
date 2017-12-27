@@ -9,9 +9,38 @@
 
                 Share Dashboard
                 <div class="propertyLine">
-                    Add a user or group and specify View or Edit permissions.  To change 
-                    existing permissions, double click the View / Edit cell in the grid below.
+                    <i>
+                        Indicate who can access this Dashboard, and how.  The options are Private 
+                        (only accesable to myself), Public (all users can view and edit it) or
+                        Access List (list of users and groups shown below, each with View or 
+                        Edit permissions.  To change existing permissions, double click the 
+                        View / Edit cell in the grid below.
+                    </i>
                 </div>
+                <form>
+                    <section>
+                        <div class="form-group">
+                            <label for="selects_4">Dashboard access is:</label>
+                            <div class="select">
+                                <select id="selects_3"
+                                    >
+                                    <option>Private</option>
+                                    <option>Public</option>
+                                    <option>Access List</option>
+                                </select>
+                            </div>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickClose('Close')"
+                                >
+                                Save
+                            </button>
+                        </div>
+                    </section>
+                </form>
+
+
                 <div class="propertyLine">
                     <input type="text" id="formFields_7" placeholder="User ID">
                     <input type="text" id="formFields_7" placeholder="Group ID">
