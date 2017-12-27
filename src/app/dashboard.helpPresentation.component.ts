@@ -26,18 +26,13 @@ import { GlobalVariableService}       from './global-variable.service';
 export class DashboardHelpPresentationComponent implements OnInit {
 
     @Output() formDashboardHelpPresentationClosed: EventEmitter<string> = new EventEmitter();
-    
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
 
     ngOnInit() {
-    }
-
-    clickClose(action: string) {
-        console.log('clickClose')
-		this.formDashboardHelpPresentationClosed.emit(action);
     }
 
     clickGotIt() {
