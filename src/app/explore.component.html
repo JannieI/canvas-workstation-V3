@@ -160,10 +160,7 @@
         Analysis of Value Traded 2017 ...
     </span>
 
-
-
-
-    <span class="statusBarText statusBarTextBorder">
+    <span class="statusBarText statusBarTextBorder" (click)="clickListTabs()">
         Tabs :
     </span>
     <span class="statusBarText statusBarTextBorder" title="Click to show first Tab">
@@ -186,18 +183,10 @@
         <clr-icon shape="angle-double right" size="12"></clr-icon>
     </span>
 
-    <span class="statusBarText statusBarTextBorder" title="Tab: Detail costing YTD"
-        *ngIf="secondTab" (click)="clickAddTab()">
-        Detail Costs
-    </span>
-
     <span class="statusBarText statusBarTextBorder" title="Click to Add a new Tab">
         <clr-icon shape="plus" size="12"
             (click)="clickAddTab()"></clr-icon>
     </span>
-
-
-
 
     <span class="statusBarText" title="How long ago the Dashboard layout was updated">
         Updated: 1d
@@ -747,4 +736,11 @@
             </div>
         </div>
     </section>
+</div>
+
+<div class="tabList" *ngIf="showTabList">
+    <div class="tabListItem" (click)="showTabList=!showTabList">Summary</div>
+    <div class="tabListItem" (click)="showTabList=!showTabList">New Budget</div>
+    <div class="tabListItem" (click)="showTabList=!showTabList">Western Europe</div>
+    <div class="tabListItem" (click)="showTabList=!showTabList">Headcount</div>
 </div>

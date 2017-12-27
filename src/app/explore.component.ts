@@ -201,7 +201,7 @@ export class ExploreComponent {
     showShapes: boolean = true;
     showType: boolean = false;
     showTypeIcon: boolean = true;
-
+    showTabList: boolean = false;
     statusBarRunning: string = '';
     statusBarCancelRefresh: string = '';
     statusBarMessages: string = '';
@@ -549,9 +549,14 @@ export class ExploreComponent {
             'top', (80 + widgetMoveX).toString() + "px");
     }
 
+    clickListTabs() {
+        this.showTabList = true;
+    }
+
     clickAddTab() {
         this.showNewTab = true;
     }
+
     clickShowFirstTab() {
         this.currentTabName = 'Summary'
     }

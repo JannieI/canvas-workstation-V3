@@ -34,7 +34,7 @@
     }
 
 .statusBar {
-    background-color: #192b35;;;
+    background-color: #192b35;
     bottom: 0;
     color: rgb(197, 194, 194);
     display: inline-block;
@@ -309,4 +309,18 @@
     border: 1px solid gray;
     margin: 1px;
     padding: 2px;
+}
+
+.tabList {
+    background-color: #192b35;
+    bottom: 1.1rem;
+    color:  white;
+    display: inline-block;
+    left: 8.2rem;
+    position: absolute;
+    width: 4rem;
+}
+
+.tabListItem {
+    border: white;
 }
