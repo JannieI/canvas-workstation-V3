@@ -232,14 +232,13 @@ export class DataPopupComponent implements OnInit {
         let newData: currentDatasource =  {
             id: 1,
             type: 'CSV File',
-            name: 'Stocks.csv',
+            name: 'Stocks Numba2.csv',
             description: 'Hard coded name',
             createdBy: 'Me',
             createdOn: '2017/01/01',
             refreshedBy: 'JohnM',
             refreshedOn: '2017/01/01',
             parameters: 'None'
-
         };
         this.isFirstTimeData = false;
         this.showDataPreview = true;

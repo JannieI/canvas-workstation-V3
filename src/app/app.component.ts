@@ -299,10 +299,6 @@ export class AppComponent implements OnInit {
     handleCloseWidgetLinks() {
         this.showModalWidgetLinks = false;
     }
-
-    handleCloseWidgetRefresh() {
-        this.showModalWidgetRefresh = false;
-    }
     
     handleCloseWidgetDuplicate() {
         this.showModalWidgetDuplicate = false;

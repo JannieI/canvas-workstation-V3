@@ -1008,7 +1008,20 @@ const backgroundcolors: CSScolor[] =
     }
 ];
 
-const currentDatasources: currentDatasource [] = [];
+const currentDatasources: currentDatasource [] = 
+[
+    {
+        id: 1,
+        type: 'CSV File',
+        name: 'Stocks.csv',
+        description: 'Hard coded name',
+        createdBy: 'Me',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: 'None'
+    }
+];
 
 const datasources: currentDatasource [] =
 [
