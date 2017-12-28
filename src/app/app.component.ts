@@ -12,9 +12,6 @@ import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 
-// Renderer eksperiment
-import { Renderer2 }                   from '@angular/core';
-
 // Own Services
 import { GlobalVariableService }      from './global-variable.service';
 
@@ -120,18 +117,14 @@ export class AppComponent implements OnInit {
         @Inject(DOCUMENT) private document: Document,
         private renderer: Renderer,
         private router: Router,
-
-
-        // Renderer eksperiment
-        private el: ElementRef,
-        private renderer2: Renderer2,
         
     ) {
     }
     
     ngOnInit() {
+        // Intial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        
+
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
@@ -167,7 +160,10 @@ export class AppComponent implements OnInit {
         
     }   
 
-    handleCloseModal() {
+    handleCloseModalLanding() {
+        // Close Modal form Landing page
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
+
         this.showModalLanding = false;
         this.document.body.style.backgroundImage ='../images/BarChart.png';
         
