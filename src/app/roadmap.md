@@ -69,7 +69,7 @@ This document describes items for later versions of Canvas.
 4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
    for March last year, or compare all to last year ... NB
 5. Also, easy way to jump to previous period:  loaded at start with data ??
-6. 
+6. Reuse open Dashboard code between Open & Rename, if possible
 7. 
 8. 
 9. Test printing - and see if pagelayout can be changed
