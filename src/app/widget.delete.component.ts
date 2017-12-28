@@ -28,6 +28,7 @@ import { GlobalVariableService }      from './global-variable.service';
 export class WidgetDeleteComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
+    @Input() nrWidgetsSelected: number;
     @Output() formWidgetDeleteClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph

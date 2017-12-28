@@ -127,7 +127,7 @@ This document describes items for later versions of Canvas.
 11.When resize Widget => add resize graph as well.
 12.Fix bug: graph moves inside another when Dragging - had this in v1 ...
 13.Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
-14.
+14.Bug fix: delete does not remove the Widget !
 
 
 **Shapes**
