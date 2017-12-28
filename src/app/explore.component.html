@@ -171,38 +171,82 @@
     [style.zindex]="row.containerZindex"
     [style.box-shadow]="row.containerBoxshadow"
     #shapeContainter>
-    <div class="widgetButtonBar">
-        <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
-        <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="cursor-hand" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon>
-        <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
+    <div class="widgetButtonBar2">
+        <clr-icon
+            shape="link"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetLinks(i)"
+            title="Show Links"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+            shape="copy"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetDuplicate(i)"
+            title="Duplicate this Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+            shape="deploy"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuArrangeBack(i)"
+            title="Move Widget back"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+            shape="block"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuArrangeFront(i)"
+            title="Move Widget forward"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+            shape="trash"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetDelete(i)"
+            title="Delete this Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+            shape="cursor-arrow"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickSelect(i)"
+            title="Select this Widget"
+            >
+        </clr-icon>
     </div>
-    <div class="shape2">
-        <div #shape>
-            {{ row.type }} new ...  
-            <div
-                #dragCircle
-                class="aCircle"
-                (dragstart)="dragStartCircle($event)"
-                (dragend)="dragEndCircle($event)"
-                draggable="true"
-                >
-                <svg 
-                    height="100" 
-                    width="100" >
-                    <circle #circle 
-                        [style.cx]="row.cx"
-                        [style.cy]="row.cy" 
-                        [style.r]="row.r" 
-                        [attr.stroke]="row.stroke"
-                        [attr.stroke-width]="3" 
-                        [attr.fill]="row.fill" 
-                    />
-                </svg>
-            </div>
+
+
+    <div class="shape2"
+        [style.zindex]="row.containerZindex + 1"
+        >
+        <div
+            #dragCircle
+            class="aCircle2"
+            (dragstart)="dragStartCircle($event)"
+            (dragend)="dragEndCircle($event)"
+            draggable="true"
+            [style.zindex]="row.containerZindex + 2"
+            >
+            <svg 
+                height="100" 
+                width="100" >
+                <circle #circle2 
+                    [style.cx]="row.cx"
+                    [style.cy]="row.cy" 
+                    [style.r]="row.r" 
+                    [attr.stroke]="row.stroke"
+                    [attr.stroke-width]="3" 
+                    [attr.fill]="row.fill" 
+                    [style.zindex]="row.containerZindex + 3"
+                />
+            </svg>
         </div>
     </div>
 </div>

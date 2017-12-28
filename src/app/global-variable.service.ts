@@ -61,7 +61,7 @@ const localShapes: canvasShape[] =
         hyperlinkDashboardTabID: 0,
 
         // Container
-        containerBackgroundcolor: 'gray',
+        containerBackgroundcolor: 'red',
         containerBorder: '2px dotted black',
         containerBoxshadow: '4px gray',
         containerColor: '',
@@ -91,7 +91,7 @@ const localShapes: canvasShape[] =
 
         // shape
         cx: '30',
-        cy: '30',
+        cy: '0',
         r: '20',
         stroke: 'black',
         strokeWidth: '3',
@@ -198,11 +198,11 @@ const localWidgets: canvasWidget[] =
         containerHeight: 320,
         containerLeft: 50,
         containerWidgetTitle: 'Title 1',
-        containerTop: 140,
+        containerTop: 440,      // was 140
         containerWidth: 250,
         containerZindex: 50,
         titleText: '',
-        titleBackgroundColor: '',
+        titleBackgroundColor: '#192b35',
         titleBorder: '',
         titleColor: '',
         titleFontsize: 1,

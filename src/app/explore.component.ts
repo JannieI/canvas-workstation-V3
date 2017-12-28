@@ -156,12 +156,13 @@ export class ExploreComponent {
     @ViewChildren('widget')             childrenWidgets: QueryList<ElementRef>;
     @ViewChildren('widgetContainter')   widgetContainters: QueryList<ElementRef>;
 
-    @ViewChildren('widgetContainter2')   widgetContainters2: QueryList<ElementRef>;
-    @ViewChildren('widget2')             childrenWidgets2: QueryList<ElementRef>;
+    @ViewChildren('widgetContainter2') widgetContainters2: QueryList<ElementRef>;
+    @ViewChildren('widget2')           childrenWidgets2: QueryList<ElementRef>;
     
-    @ViewChildren('shape')             shape: QueryList<ElementRef>; 
-    @ViewChildren('circle')            circle: QueryList<ElementRef>; 
-    rowcx=50;
+    @ViewChildren('shapeContainter2')   shapeContainter2: QueryList<ElementRef>; 
+    @ViewChildren('shape')             shape2: QueryList<ElementRef>; 
+    @ViewChildren('circle2')            circle2: QueryList<ElementRef>; 
+
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     localDashboards: dl.spec.TopLevelExtendedSpec[];
     localShapes: canvasShape[];
@@ -274,22 +275,28 @@ export class ExploreComponent {
         // );
         this.localDashboards = this.globalVariableService.localDashboards;
         this.globalVariableService.localShapes.subscribe(
-            i => this.localShapes = i
+            i => {
+                    this.localShapes = i;
+                    if (this.shapeContainter2 !== undefined) {
+                        this.refreshShapes2()
+                        console.log ('refreshShap2 done')
+                    }
+                 }
         );
         this.globalVariableService.localWidgets.subscribe(
             i => {
                 this.localWidgets = i.filter(f => f.isTrashed == false)
-                console.log('i', i)
 
-                for (var k = 0; k < 1; k++) {
-                    console.log('this.localWidgets k', this.localWidgets, k)
-                    console.log('this.childrenWidgets2', this.childrenWidgets2)
-                    console.log('this.widgetContainters2', this.widgetContainters2)
-                }
+                // for (var k = 0; k < 1; k++) {
+                //     console.log('this.localWidgets k', this.localWidgets, k)
+                //     console.log('this.childrenWidgets2', this.childrenWidgets2)
+                //     console.log('this.widgetContainters2', this.widgetContainters2)
+                // }
                 if (this.childrenWidgets2 !== undefined) {
-                    console.log('refreshLLWW now', this.childrenWidgets2.toArray().length)
+                    // console.log('refreshLLWW now', this.childrenWidgets2.toArray().length)
                     this.refreshWidgets2();
-                    console.log ('refeshLLWW done')
+                    this.refreshShapes2()
+                    console.log ('refeshWidgets2 done')
                 }
             }
         );
@@ -322,22 +329,17 @@ export class ExploreComponent {
         
 
         // Loop on the graph ElementRefs, and set properties ala widget[].properties
-        if (this.shape.toArray().length > 0) {
-            for (var i = 0; i < this.shape.toArray().length; i++) {
-                console.log('shape', this.shape.toArray()[i].nativeElement)
-            } 
-        };
-        if (this.circle.toArray().length > 0) {
-            for (var i = 0; i < this.circle.toArray().length; i++) {
+        if (this.shapeContainter2.toArray().length > 0) {
+            for (var i = 0; i < this.circle2.toArray().length; i++) {
 
-                console.log(this.localShapes[i])
+                console.log('localShapes', this.localShapes[i].shapeType)
                 // Testing
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cx', '50')
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cy', '50')
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'r', '40')
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke', 'orange')
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke-width', '2')
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
+                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cx', '50')
+                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cy', '50')
+                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'r', '40')
+                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'stroke', 'orange')
+                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'stroke-width', '2')
+                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'fill', 'none')
 
 
 
@@ -350,7 +352,7 @@ export class ExploreComponent {
                 // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
 
                 // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
-                console.log('circle', this.circle.toArray()[i].nativeElement)
+                console.log('circle2', this.circle2.toArray()[i].nativeElement)
             } 
         };
 
@@ -360,10 +362,10 @@ export class ExploreComponent {
 
     }
 
-    ngOnChanges() {
-        console.log('ngOnChanges()', this.childrenWidgets2.toArray().length)
-        this.refreshWidgets2();
-    }
+    // ngOnChanges() {
+    //     console.log('ngOnChanges()', this.childrenWidgets2.toArray().length)
+    //     this.refreshWidgets2();
+    // }
 
     refreshWidgets() {
         // let definition = vlTemplateSpec13;
@@ -417,6 +419,39 @@ export class ExploreComponent {
         //     .finalize();
         //     this.renderer.setElementStyle(this.dragWidget.nativeElement,
         //         'left', "200px");
+    }
+
+    refreshShapes2() {
+
+        console.log('refreshShapes2 starting now ...', this.shapeContainter2.toArray().length)
+        // Loop on the graph ElementRefs, and set properties ala widget[].properties
+        if (this.shapeContainter2.toArray().length > 0) {
+            for (var i = 0; i < this.circle2.toArray().length; i++) {
+
+                console.log('localShapes', this.localShapes[i].shapeType)
+                // Testing
+                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cx', '50')
+                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cy', '50')
+                this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'r', '40')
+                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'stroke', 'orange')
+                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'stroke-width', '2')
+                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'fill', 'none')
+
+
+
+                // Now set in css
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cx', '50')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cy', '50')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'r', '40')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke', 'orange')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke-width', '2')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
+
+                // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
+                console.log('circle2', this.circle2.toArray()[i].nativeElement)
+            } 
+        };
+        
     }
 
     refreshWidgets2() {

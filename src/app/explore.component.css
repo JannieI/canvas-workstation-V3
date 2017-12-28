@@ -337,15 +337,24 @@
     display: inline-block;
     /* height: 100px; */
     /* left:100px; */
+    margin: 0;
+    padding: 0;
     position: absolute;
+    /* background-color: #192b35; */
     /* width: 100px; */
+
 }
 .shapeContainer2:hover {
     border: 1px dotted black;
 }
+.aCircle2 {
+    background-color: #192b35;
+    border: 1px solid green;
+    display: inline-block;
+}
 .shape2 {
     /* border: 1px dotted gray; */
     display: inline-block;
-    height: 180px;
-    width: 200px;
+    /* height: 180px;
+    width: 200px; */
 }
