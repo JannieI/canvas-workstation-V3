@@ -7,9 +7,8 @@
     padding-right: 0;
     position: absolute;
     top: 5px;
-    z-index: 20;
+    z-index: 70;
 }
-
 
 .helpMessagePresentation {
     background-color: rgb(204, 204, 245);
@@ -48,7 +47,7 @@
     text-align: left;
     vertical-align: middle;
     width: 100%;
-    z-index: 20;
+    z-index: 60;
 }
 
 .statusBarTextBorder {
@@ -78,7 +77,7 @@
     border-radius: 5px;
     left: 20px;
     width: 16rem;
-    z-index: 100;
+    z-index: 60;
 }
 
 .graphy {
@@ -183,7 +182,7 @@
     /* display: block; */
     opacity: 1;
     border: 1px solid gray;
-    z-index: 1;
+    z-index: 50;
 }
 .buttonBarIcon2 {
     margin: 1px;
@@ -269,7 +268,7 @@
     position: absolute;
     top: 2.5rem;
     width: 100%;
-    z-index: 999;
+    z-index: 20;
 }
 
 .widgetButtonBar {
