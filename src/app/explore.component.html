@@ -160,7 +160,7 @@
 
 
 <!-- Eksperimental! -->
-<div *ngFor="let row of localShapes" class="shapeContainer2"
+<div *ngFor="let row of localShapes; let i = index" class="shapeContainer2"
     [style.left.px]="row.containerLeft"
     [style.top.px]="row.containerTop"
     [style.border]="row.isSelected? '2px solid black' : '2px solid red'"
@@ -182,7 +182,7 @@
     </div>
     <div class="shape2">
         <div #shape>
-            {{ row.type }}
+            {{ row.type }} new ...  
             <div
                 #dragCircle
                 class="aCircle"
@@ -190,10 +190,17 @@
                 (dragend)="dragEndCircle($event)"
                 draggable="true"
                 >
-                <svg height="100" width="100" >
-                    <circle #circle [attr.cx]="50"
-                    [attr.cy]="50" [attr.r]="circleRadius" [attr.stroke]="blue"
-                    [attr.stroke-width]="2" [style.fill]="none" />
+                <svg 
+                    height="100" 
+                    width="100" >
+                    <circle #circle 
+                        [style.cx]="row.cx"
+                        [style.cy]="row.cy" 
+                        [style.r]="row.r" 
+                        [attr.stroke]="row.stroke"
+                        [attr.stroke-width]="3" 
+                        [attr.fill]="row.fill" 
+                    />
                 </svg>
             </div>
         </div>

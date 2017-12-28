@@ -61,15 +61,15 @@ const canvasShapes: canvasShape[] =
         hyperlinkDashboardTabID: 0,
 
         // Container
-        containerBackgroundcolor: '',
-        containerBorder: '',
-        containerBoxshadow: '',
+        containerBackgroundcolor: 'gray',
+        containerBorder: '2px dotted black',
+        containerBoxshadow: '4px gray',
         containerColor: '',
         containerFontsize: 0,
         containerHeight: 100,
-        containerLeft: 0,
+        containerLeft: 100,
         containerWidgetTitle: '',
-        containerTop: 0,
+        containerTop: 90,
         containerWidth: 100,
         containerZindex: 50,
 
@@ -80,8 +80,8 @@ const canvasShapes: canvasShape[] =
         titleColor: '',
         titleFontsize: 0,
         titleFontWeight: '',
-        titleHeight: 0,
-        titleLeft: 0,
+        titleHeight: 120,
+        titleLeft: 20,
         titleMargin: '',
         titlePadding: '',
         titlePosition: '',
@@ -90,12 +90,12 @@ const canvasShapes: canvasShape[] =
         titleWidth: 0,
 
         // shape
-        cx: '50',
-        cy: '50',
-        r: '40',
-        stroke: 'red',
-        strokeWidth: '1',
-        fill: 'none',
+        cx: '30',
+        cy: '30',
+        r: '20',
+        stroke: 'black',
+        strokeWidth: '3',
+        fill: 'pink',
 
         // Created, updated and refreshed
         widgetCreatedOn: '',
@@ -1854,6 +1854,7 @@ export class GlobalVariableService {
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
     canvasMessages: canvasMessage[] =  canvasMessages;
     localWidgets = new BehaviorSubject< canvasWidget[]>(localWidgets);
+    canvasShapes = new BehaviorSubject< canvasShape[]>(canvasShapes);
     dashboardPermissions: dashboardPermission[] = dashboardPermissions;
     datasourcePermissions: datasourcePermission[] = datasourcePermissions;
     localTrash = new BehaviorSubject< canvasWidget[]>([]);

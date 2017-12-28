@@ -21,10 +21,11 @@ import { ViewChildren }               from '@angular/core';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { dashboard }                  from './models'
+import { canvasShape }                from './models'
 import { canvasWidget }               from './models'
-import { datasource }                 from './models'
 import { currentDatasource }          from './models'
+import { dashboard }                  from './models'
+import { datasource }                 from './models'
 
 // Vega, Vega-Lite
 import { compile }                    from 'vega-lite';
@@ -39,21 +40,21 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 // Own Components
 
 // Constants
-const localShapes: any[] =
-[ 
-    {
-        type: "circle",
-        variable: "#dragCircle",
-        height: "100",
-        width: "100",
-        cx: "50", 
-        cy: "50", 
-        r: "40", 
-        stroke: "red", 
-        strokewidth: "1", 
-        fill: "none"
-    }
-]
+// const localShapes: any[] =
+// [ 
+//     {
+//         type: "circle",
+//         variable: "#dragCircle",
+//         height: "100",
+//         width: "100",
+//         cx: "50", 
+//         cy: "50", 
+//         r: "40", 
+//         stroke: "red", 
+//         strokewidth: "1", 
+//         fill: "none"
+//     }
+// ]
 
 const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec =
 {
@@ -163,7 +164,7 @@ export class ExploreComponent {
     rowcx=50;
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     localDashboards: dl.spec.TopLevelExtendedSpec[];
-    localShapes: any[] = localShapes;
+    localShapes: canvasShape[];
     localWidgets: canvasWidget[];
     localTrash: canvasWidget[] = [];
     currentDatasources: currentDatasource[];
@@ -272,6 +273,7 @@ export class ExploreComponent {
         //     i => this.localDashboards
         // );
         this.localDashboards = this.globalVariableService.localDashboards;
+        this.globalVariableService.
         this.globalVariableService.localWidgets.subscribe(
             i => {
                 this.localWidgets = i.filter(f => f.isTrashed == false)
@@ -325,19 +327,27 @@ export class ExploreComponent {
         };
         if (this.circle.toArray().length > 0) {
             for (var i = 0; i < this.circle.toArray().length; i++) {
-                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cx', '50')
-                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cy', '50')
-                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'r', '40')
-                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke', 'orange')
-                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke-width', '2')
-                this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
-                // console.log('circle', this.circle.toArray()[i].nativeElement.cx.SVGAnimatedLength)
-                // circle SVGAnimatedLength 
-                // {baseVal: SVGLength, animVal: SVGLength}
-                // animVal: SVGLength 
-                // {unitType: 1, value: 50, valueInSpecifiedUnits: 50, valueAsString: "50"}
-                // baseVal: SVGLength {unitType: 1, value: 50, valueInSpecifiedUnits: 50, valueAsString: "50"}__proto__: SVGAnimatedLength
-                this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
+
+                console.log(this.localShapes[i])
+                // Testing
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cx', '50')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cy', '50')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'r', '40')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke', 'orange')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke-width', '2')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
+
+
+
+                // Now set in css
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cx', '50')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cy', '50')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'r', '40')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke', 'orange')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke-width', '2')
+                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
+
+                // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
                 console.log('circle', this.circle.toArray()[i].nativeElement)
             } 
         };
