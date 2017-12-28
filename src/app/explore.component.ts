@@ -155,6 +155,7 @@ export class ExploreComponent {
     @ViewChildren('widget')             childrenWidgets: QueryList<ElementRef>;
     @ViewChildren('widgetContainter')   widgetContainters: QueryList<ElementRef>;
 
+    @ViewChildren('widgetContainter2')   widgetContainters2: QueryList<ElementRef>;
     @ViewChildren('widget2')             childrenWidgets2: QueryList<ElementRef>;
     
     @ViewChildren('shape')             shape: QueryList<ElementRef>; 
@@ -272,7 +273,21 @@ export class ExploreComponent {
         // );
         this.localDashboards = this.globalVariableService.localDashboards;
         this.globalVariableService.localWidgets.subscribe(
-            i => this.localWidgets = i.filter(f => f.isTrashed == false)
+            i => {
+                this.localWidgets = i.filter(f => f.isTrashed == false)
+                console.log('i', i)
+
+                for (var k = 0; k < 1; k++) {
+                    console.log('this.localWidgets k', this.localWidgets, k)
+                    console.log('this.childrenWidgets2', this.childrenWidgets2)
+                    console.log('this.widgetContainters2', this.widgetContainters2)
+                }
+                if (this.childrenWidgets2 !== undefined) {
+                    console.log('refreshLLWW now', this.childrenWidgets2.toArray().length)
+                    this.refreshWidgets2();
+                    console.log ('refeshLLWW done')
+                }
+            }
         );
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
@@ -283,7 +298,18 @@ export class ExploreComponent {
                     this.currentDatasources = i
                  }
         );
-
+        this.globalVariableService.refreshDashboard.subscribe(
+            i => { 
+                    if (i) 
+                        {
+                            console.log('i', i)
+                            console.log('refreshWW now', this.childrenWidgets2.toArray().length)
+                            this.refreshWidgets2();
+                            console.log ('refeshWW done')
+                        }
+                    else {console.log('no refreshWW')}
+            }
+        )
     }
 
     ngAfterViewInit() {
@@ -318,9 +344,25 @@ export class ExploreComponent {
 
         // this.refreshWidgets();
         this.refreshWidgets2();
+        
 
     }
 
+    ngOnChanges() {
+        console.log('ngOnChanges()', this.childrenWidgets2.toArray().length)
+        this.refreshWidgets2();
+    }
+
+    // ngDoCheck() {
+    //     console.log('ngDoCheck()')
+    // }
+    // ngAfterContentChecked() {
+    //     console.log('ngAfterContentChecked()')
+    // }
+    ngAfterViewChecked() {
+        console.log('ngAfterViewChecked()', this.childrenWidgets2.toArray().length)
+    }
+      
     refreshWidgets() {
         // let definition = vlTemplateSpec13;
         // let specification = compile(definition).spec;
@@ -376,12 +418,12 @@ export class ExploreComponent {
     }
 
     refreshWidgets2() {
-        console.log('refreshWidgets 2 started')
+        console.log(' ...START refreshWidgets2', this.childrenWidgets2.toArray().length)
         for (var i: number = 0; i < this.childrenWidgets2.toArray().length; i++) {
-            console.log('refreshWidgets loop i', i)
+            // console.log('refreshWidgets loop i', i)
             let definition = this.localWidgets[i].graphSpecification;
             let specification = compile(definition).spec;
-            console.log('spec 2', specification)
+            // console.log('spec 2', specification)
             let view = new View(parse(specification));
             view.renderer('svg') 
                 .initialize( this.childrenWidgets2.toArray()[i].nativeElement)
@@ -389,7 +431,7 @@ export class ExploreComponent {
                 .hover()
                 .run()
                 .finalize();
-            console.log('refreshWidgets loop end')
+            // console.log('refreshWidgets loop end')
         }
     }
 
@@ -563,17 +605,17 @@ export class ExploreComponent {
 
     clickShowPreviousTab() {
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Headcount'}
-        else if (this.currentTabName == 'Headcount') {this.currentTabName = 'Western Europe'}
-        else if (this.currentTabName == 'Western Europe') {this.currentTabName = 'New Budget'}
-        else if (this.currentTabName == 'New Budget') {this.currentTabName = 'Summary'};
+        else if (this.currentTabName == 'Headcount') {this.currentTabName = 'Europe'}
+        else if (this.currentTabName == 'Europe') {this.currentTabName = 'Budget'}
+        else if (this.currentTabName == 'Budget') {this.currentTabName = 'Summary'};
 
     }
 
     clickShowNextTab() {
         console.log('wft')
-        if (this.currentTabName == 'Summary') {this.currentTabName = 'New Budget'}
-        else if (this.currentTabName == 'New Budget') {this.currentTabName = 'Western Europe'}
-        else if (this.currentTabName == 'Western Europe') {this.currentTabName = 'Headcount'}
+        if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
+        else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}
+        else if (this.currentTabName == 'Europe') {this.currentTabName = 'Headcount'}
         else if (this.currentTabName == 'Headcount') {this.currentTabName = 'Summary'};
 
     }

@@ -31,7 +31,7 @@ import { canvasWidget }               from './models';
 import * as dl from 'datalib';
 
 // import { CanvasUser }                 from './model.user';
-const datasourcePermissions: datasourcePermission[] = 
+const datasourcePermissions: datasourcePermission[] =
 [
     {
         id: 1,
@@ -59,7 +59,7 @@ const datasourcePermissions: datasourcePermission[] =
     }
 ];
 
-const dashboardPermissions: dashboardPermission[] = 
+const dashboardPermissions: dashboardPermission[] =
 [
     {
         id: 1,
@@ -91,31 +91,31 @@ const localWidgets: canvasWidget[] =
 [
     {
         isTrashed: false,
-        dashboardID: 1,                
-        dashboardTabID: 1,             
-        dashboardTabName: '',          
+        dashboardID: 1,
+        dashboardTabID: 1,
+        dashboardTabName: '',
         id: 1,
         name: 'barchart for start',
         description: 'bla-bla-bla',
         grammar: '',
         version: 1,
         isSelected: false,
-        isLiked: false,     
+        isLiked: false,
         datasetID: 1,
-        dataParameters: 
-        [ 
+        dataParameters:
+        [
             {
                 "field": '',
                 "value": '',
             }
         ],
-        reportID: 1,                   
-        reportName: '',                
-        rowLimit: 1,                   
-        addRestRow: false,             
-        size: '',                      
-        hyperlinkDashboardID: 1,       
-        hyperlinkDashboardTabID: 1,    
+        reportID: 1,
+        reportName: '',
+        rowLimit: 1,
+        addRestRow: false,
+        size: '',
+        hyperlinkDashboardID: 1,
+        hyperlinkDashboardTabID: 1,
         containerBackgroundcolor: 'transparent',
         containerBorder: '2px solid black',
         containerBoxshadow: '2px 2px gray',
@@ -127,25 +127,25 @@ const localWidgets: canvasWidget[] =
         containerTop: 140,
         containerWidth: 250,
         containerZindex: 20,
-        titleText: '',    
+        titleText: '',
         titleBackgroundColor: '',
         titleBorder: '',
         titleColor: '',
-        titleFontsize: 1, 
+        titleFontsize: 1,
         titleFontWeight: '',
-        titleHeight: 1,   
-        titleLeft: 1,     
+        titleHeight: 1,
+        titleLeft: 1,
         titleMargin: '',
         titlePadding: '',
         titlePosition: '',
         titleTextAlign: '',
-        titleTop: 1,           
-        titleWidth: 1,         
-        graphType: '',         
-        graphHeight: 1,        
-        graphLeft: 1,          
-        graphTop: 1,           
-        graphWidth: 1,         
+        titleTop: 1,
+        titleWidth: 1,
+        graphType: '',
+        graphHeight: 1,
+        graphLeft: 1,
+        graphTop: 1,
+        graphWidth: 1,
         graphGraphPadding: 1,
         graphHasSignals: false,
         graphXcolumn: '',
@@ -161,15 +161,15 @@ const localWidgets: canvasWidget[] =
             }
         },
         tableColor: '',
-        tableCols: 1, 
-        tableHeight: 1, 
+        tableCols: 1,
+        tableHeight: 1,
         tableHideHeader: false,
-        tableLeft: 1, 
-        tableRows: 1, 
-        tableTop: 1, 
-        tableWidth: 1, 
+        tableLeft: 1,
+        tableRows: 1,
+        tableTop: 1,
+        tableWidth: 1,
         refreshMode: '',
-        refreshFrequency: 1, 
+        refreshFrequency: 1,
         widgetRefreshedOn: '',
         widgetRefreshedBy: '',
         widgetCreatedOn: '',
@@ -179,31 +179,31 @@ const localWidgets: canvasWidget[] =
     },
     {
         isTrashed: false,
-        dashboardID: 1,                
-        dashboardTabID: 1,             
-        dashboardTabName: '',          
+        dashboardID: 1,
+        dashboardTabID: 1,
+        dashboardTabName: '',
         id: 2,
         name: 'scatter for start',
         description: 'bla-bla-bla',
         grammar: '',
         version: 1,
         isSelected: false,
-        isLiked: false,     
+        isLiked: false,
         datasetID: 1,
-        dataParameters: 
-        [ 
+        dataParameters:
+        [
             {
                 "field": '',
                 "value": '',
             }
         ],
-        reportID: 1,                   
-        reportName: '',                
-        rowLimit: 1,                   
-        addRestRow: false,             
-        size: '',                      
-        hyperlinkDashboardID: 1,       
-        hyperlinkDashboardTabID: 1,    
+        reportID: 1,
+        reportName: '',
+        rowLimit: 1,
+        addRestRow: false,
+        size: '',
+        hyperlinkDashboardID: 1,
+        hyperlinkDashboardTabID: 1,
         containerBackgroundcolor: 'transparent',
         containerBorder: '',
         containerBoxshadow: '2px 2px gray',
@@ -215,25 +215,25 @@ const localWidgets: canvasWidget[] =
         containerTop: 140,
         containerWidth: 250,
         containerZindex: 20,
-        titleText: '',    
+        titleText: '',
         titleBackgroundColor: '',
         titleBorder: '',
         titleColor: '',
-        titleFontsize: 1, 
+        titleFontsize: 1,
         titleFontWeight: '',
-        titleHeight: 1,   
-        titleLeft: 1,     
+        titleHeight: 1,
+        titleLeft: 1,
         titleMargin: '',
         titlePadding: '',
         titlePosition: '',
         titleTextAlign: '',
-        titleTop: 1,           
-        titleWidth: 1,         
-        graphType: '',         
-        graphHeight: 1,        
-        graphLeft: 1,          
-        graphTop: 1,           
-        graphWidth: 1,         
+        titleTop: 1,
+        titleWidth: 1,
+        graphType: '',
+        graphHeight: 1,
+        graphLeft: 1,
+        graphTop: 1,
+        graphWidth: 1,
         graphGraphPadding: 1,
         graphHasSignals: false,
         graphXcolumn: '',
@@ -249,15 +249,15 @@ const localWidgets: canvasWidget[] =
             }
         },
         tableColor: '',
-        tableCols: 1, 
-        tableHeight: 1, 
+        tableCols: 1,
+        tableHeight: 1,
         tableHideHeader: false,
-        tableLeft: 1, 
-        tableRows: 1, 
-        tableTop: 1, 
-        tableWidth: 1, 
+        tableLeft: 1,
+        tableRows: 1,
+        tableTop: 1,
+        tableWidth: 1,
         refreshMode: '',
-        refreshFrequency: 1, 
+        refreshFrequency: 1,
         widgetRefreshedOn: '',
         widgetRefreshedBy: '',
         widgetCreatedOn: '',
@@ -267,31 +267,31 @@ const localWidgets: canvasWidget[] =
     },
     {
         isTrashed: false,
-        dashboardID: 1,                
-        dashboardTabID: 1,             
-        dashboardTabName: '',          
+        dashboardID: 1,
+        dashboardTabID: 1,
+        dashboardTabName: '',
         id: 3,
         name: 'barchart for start',
         description: 'bla-bla-bla',
         grammar: '',
         version: 1,
         isSelected: false,
-        isLiked: false,     
+        isLiked: false,
         datasetID: 1,
-        dataParameters: 
-        [ 
+        dataParameters:
+        [
             {
                 "field": '',
                 "value": '',
             }
         ],
-        reportID: 1,                   
-        reportName: '',                
-        rowLimit: 1,                   
-        addRestRow: false,             
-        size: '',                      
-        hyperlinkDashboardID: 1,       
-        hyperlinkDashboardTabID: 1,    
+        reportID: 1,
+        reportName: '',
+        rowLimit: 1,
+        addRestRow: false,
+        size: '',
+        hyperlinkDashboardID: 1,
+        hyperlinkDashboardTabID: 1,
         containerBackgroundcolor: 'transparent',
         containerBorder: '',
         containerBoxshadow: '',
@@ -303,25 +303,25 @@ const localWidgets: canvasWidget[] =
         containerTop: 140,
         containerWidth: 420,
         containerZindex: 20,
-        titleText: '',    
+        titleText: '',
         titleBackgroundColor: '',
         titleBorder: '',
         titleColor: '',
-        titleFontsize: 1, 
+        titleFontsize: 1,
         titleFontWeight: '',
-        titleHeight: 1,   
-        titleLeft: 1,     
+        titleHeight: 1,
+        titleLeft: 1,
         titleMargin: '',
         titlePadding: '',
         titlePosition: '',
         titleTextAlign: '',
-        titleTop: 1,           
-        titleWidth: 1,         
-        graphType: '',         
-        graphHeight: 1,        
-        graphLeft: 1,          
-        graphTop: 1,           
-        graphWidth: 1,         
+        titleTop: 1,
+        titleWidth: 1,
+        graphType: '',
+        graphHeight: 1,
+        graphLeft: 1,
+        graphTop: 1,
+        graphWidth: 1,
         graphGraphPadding: 1,
         graphHasSignals: false,
         graphXcolumn: '',
@@ -349,15 +349,15 @@ const localWidgets: canvasWidget[] =
             }
         },
         tableColor: '',
-        tableCols: 1, 
-        tableHeight: 1, 
+        tableCols: 1,
+        tableHeight: 1,
         tableHideHeader: false,
-        tableLeft: 1, 
-        tableRows: 1, 
-        tableTop: 1, 
-        tableWidth: 1, 
+        tableLeft: 1,
+        tableRows: 1,
+        tableTop: 1,
+        tableWidth: 1,
         refreshMode: '',
-        refreshFrequency: 1, 
+        refreshFrequency: 1,
         widgetRefreshedOn: '',
         widgetRefreshedBy: '',
         widgetCreatedOn: '',
@@ -365,76 +365,101 @@ const localWidgets: canvasWidget[] =
         widgetUpdatedOn: '',
         widgetUpdatedBy: '',
     }
+];
 
-    // ,
-    // {
-    //     id: 2,
-    //     name: 'line chart',
-    //     description: 'bla-bla-bla',
-    //     isSelected: false,
-    //     datasetID: 1,
-    //     containerBackgroundcolor: 'transparent',
-    //     containerBorder: '',
-    //     containerBoxshadow: '',
-    //     containerColor: 'orange',
-    //     containerFontsize: 12,
-    //     containerHeight: 300,
-    //     containerLeft: 350,
-    //     containerWidgetTitle: 'Title Line',
-    //     containerTop: 140,
-    //     containerWidth: 250,
-    //     containerZindex: 20,
-    //     graphSpecification: {
-    //         "data": {"url": "../assets/vega-datasets/cars.json"},
-    //         "mark": "bar",
-    //         "encoding": {
-    //             "x": {"field": "Horsepower", "type": "quantitative"},
-    //             "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-    //         }
-    //     }
+const localWidgets1: canvasWidget =
 
-    // },
-    // {
-    //     id: 3,
-    //     name: 'line chart',
-    //     description: 'bla-bla-bla',
-    //     isSelected: false,
-    //     datasetID: 1,
-    //     containerBackgroundcolor: 'transparent',
-    //     containerBorder: '',
-    //     containerBoxshadow: '',
-    //     containerColor: 'orange',
-    //     containerFontsize: 12,
-    //     containerHeight: 300,
-    //     containerLeft: 650,
-    //     containerWidgetTitle: 'Title Line',
-    //     containerTop: 140,
-    //     containerWidth: 430,
-    //     containerZindex: 20,
-    //     graphSpecification: {
-    //         "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
-    //         "mark": "bar",
-    //         "encoding": {
-    //           "x": {
-    //             "timeUnit": "month",
-    //             "field": "date",
-    //             "type": "ordinal"
-    //           },
-    //           "y": {
-    //             "aggregate": "count",
-    //             "field": "*",
-    //             "type": "quantitative"
-    //           },
-    //           "color": {
-    //             "field": "weather",
-    //             "type": "nominal"
-    //           }
-    //         }
-    //     }
-    // }
-]
+    {
+        isTrashed: false,
+        dashboardID: 4,
+        dashboardTabID: 1,
+        dashboardTabName: '',
+        id: 4,
+        name: 'barchart for start',
+        description: 'bla-bla-bla',
+        grammar: '',
+        version: 1,
+        isSelected: false,
+        isLiked: false,
+        datasetID: 1,
+        dataParameters:
+        [
+            {
+                "field": '',
+                "value": '',
+            }
+        ],
+        reportID: 1,
+        reportName: '',
+        rowLimit: 1,
+        addRestRow: false,
+        size: '',
+        hyperlinkDashboardID: 1,
+        hyperlinkDashboardTabID: 1,
+        containerBackgroundcolor: 'transparent',
+        containerBorder: '2px solid black',
+        containerBoxshadow: '2px 2px gray',
+        containerColor: 'transparent',
+        containerFontsize: 12,
+        containerHeight: 320,
+        containerLeft: 1000,
+        containerWidgetTitle: 'Title 1',
+        containerTop: 260,
+        containerWidth: 250,
+        containerZindex: 20,
+        titleText: '',
+        titleBackgroundColor: '',
+        titleBorder: '',
+        titleColor: '',
+        titleFontsize: 1,
+        titleFontWeight: '',
+        titleHeight: 1,
+        titleLeft: 1,
+        titleMargin: '',
+        titlePadding: '',
+        titlePosition: '',
+        titleTextAlign: '',
+        titleTop: 1,
+        titleWidth: 1,
+        graphType: '',
+        graphHeight: 1,
+        graphLeft: 1,
+        graphTop: 1,
+        graphWidth: 1,
+        graphGraphPadding: 1,
+        graphHasSignals: false,
+        graphXcolumn: '',
+        graphYcolumn: '',
+        graphFillColor: '',
+        graphHoverColor: '',
+        graphSpecification: {
+            "data": {"url": "../assets/vega-datasets/cars.json"},
+            "mark": "point",
+            "encoding": {
+                "x": {"field": "Horsepower", "type": "quantitative"},
+                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+            }
+        },
+        tableColor: '',
+        tableCols: 1,
+        tableHeight: 1,
+        tableHideHeader: false,
+        tableLeft: 1,
+        tableRows: 1,
+        tableTop: 1,
+        tableWidth: 1,
+        refreshMode: '',
+        refreshFrequency: 1,
+        widgetRefreshedOn: '',
+        widgetRefreshedBy: '',
+        widgetCreatedOn: '',
+        widgetCreatedBy: '',
+        widgetUpdatedOn: '',
+        widgetUpdatedBy: '',
+    };
+
 const canvasMessages: canvasMessage[] =
-[ 
+[
     {
         id: 1,
         sentBy: 'GinaU',
@@ -488,8 +513,8 @@ const  canvasActivities: canvasActivity[] =
     }
 ];
 
-const canvasAlerts: canvasAlert[] = 
-[ 
+const canvasAlerts: canvasAlert[] =
+[
     {
         id: 1,
         sentOn: '2017/01/01',
@@ -520,7 +545,7 @@ const canvasAlerts: canvasAlert[] =
     }
 ];
 
-const canvasComments: canvasComment[] = 
+const canvasComments: canvasComment[] =
 [
     {
         id: 1,
@@ -762,7 +787,7 @@ const localDashboards: dl.spec.TopLevelExtendedSpec[] =
             "type": "nominal"
           }
         }
-    }  
+    }
 ];
 
 const datasourceFilters: datasourceFilter[] =
@@ -1008,7 +1033,7 @@ const backgroundcolors: CSScolor[] =
     }
 ];
 
-const currentDatasources: currentDatasource [] = 
+const currentDatasources: currentDatasource [] =
 [
     {
         id: 1,
@@ -1743,7 +1768,8 @@ export class GlobalVariableService {
     dashboardThemes: dashboardTheme[] = dashboardThemes;
     dashboardTemplates: dashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: dashboardSchedule[] = dashboardSchedules;
-    duplicateDashboard = new BehaviorSubject<boolean>(false);    
+    duplicateDashboard = new BehaviorSubject<boolean>(false);
+    refreshDashboard = new BehaviorSubject<boolean>(false);
     editMode = new BehaviorSubject<boolean>(false);
     shapeButtonsAvailable: buttonBarAvailable[] = shapeButtonsAvailable;
     canvasComments: canvasComment[] = canvasComments;
@@ -1911,6 +1937,7 @@ export class GlobalVariableService {
             }
         })))
     }
+
     currentDatasourceAdd(newData: currentDatasource) {
 
         let arr: currentDatasource[] = this.currentDatasources.value;
@@ -1918,6 +1945,16 @@ export class GlobalVariableService {
         console.log('arr', arr)
         this.currentDatasources.next(arr)
         console.log('yy', this.currentDatasources.value)
+    }
+
+    dashboardRecent() {
+
+        let arr: canvasWidget[] = this.localWidgets.value;
+        arr.push(localWidgets1);
+        console.log('arr', arr);
+        this.localWidgets.next(arr);
+        // console.log('yy', this.localWidgets.value);
+        // this.refreshDashboard.next(true);
     }
 
 }

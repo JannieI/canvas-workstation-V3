@@ -15,7 +15,6 @@ import { ViewChild }                  from '@angular/core';
 // Renderer eksperiment
 import { Renderer2 }                   from '@angular/core';
 
-
 // Own Services
 import { GlobalVariableService }      from './global-variable.service';
 
@@ -759,6 +758,11 @@ export class AppComponent implements OnInit {
     
         // this.renderer.setElementStyle(this.dragWidget.nativeElement,
         //     'top', (80 + widgetMoveX).toString() + "px");
+    }
+
+    showRecentDashboard(index: number) {
+        this.globalVariableService.dashboardRecent();
+        // this.globalVariableService.refreshDashboard.next(true);
     }
 
 }

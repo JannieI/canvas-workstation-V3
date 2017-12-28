@@ -88,7 +88,7 @@ This document describes items for later versions of Canvas.
 15.Import: check security, particularly for the Datasource.  Also, is the access rights
    stored with the text file (security risk)?  Also, can / should it over-write an
    existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
-16.
+16.Fix bug: Recent Dashboard refreshes 1 cycly too late 
 17.
 
 
@@ -126,6 +126,7 @@ This document describes items for later versions of Canvas.
    separate SINGLE bar => just make visible ...  OR  duplicate div and border around Widget
 11.When resize Widget => add resize graph as well.
 12.Fix bug: graph moves inside another when Dragging - had this in v1 ...
+13.
 
 
 **Shapes**

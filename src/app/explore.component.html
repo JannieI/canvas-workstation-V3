@@ -160,7 +160,8 @@
         Analysis of Value Traded 2017 ...
     </span>
 
-    <span class="statusBarText statusBarTextBorder" (click)="clickListTabs()">
+    <span class="statusBarText statusBarTextBorder" title="Click to show Tab List"
+        (click)="clickListTabs()">
         Tabs :
     </span>
     <span class="statusBarText statusBarTextBorder" title="Click to show first Tab">
@@ -704,10 +705,9 @@
     <div class="widget"
         [style.height.px]="row.containerHeight - 35"
         [style.width.px]="row.containerWidth"
+        #widget2
         >
-        <div #widget2>
-            Here: {{ row.name }}
-        </div>
+        {{ row.id }}
     </div>
 </div>
 
@@ -740,7 +740,7 @@
 
 <div class="tabList" *ngIf="showTabList">
     <div class="tabListItem" (click)="showTabList=!showTabList">Summary</div>
-    <div class="tabListItem" (click)="showTabList=!showTabList">New Budget</div>
-    <div class="tabListItem" (click)="showTabList=!showTabList">Western Europe</div>
+    <div class="tabListItem" (click)="showTabList=!showTabList">Budget</div>
+    <div class="tabListItem" (click)="showTabList=!showTabList">Europe</div>
     <div class="tabListItem" (click)="showTabList=!showTabList">Headcount</div>
 </div>
