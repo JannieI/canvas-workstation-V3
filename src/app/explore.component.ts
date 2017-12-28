@@ -209,6 +209,7 @@ export class ExploreComponent {
     showTypeIcon: boolean = true;
     showDashboardDescription: boolean = false;
     showTabList: boolean = false;
+    showSlicer: boolean = true;
     statusBarRunning: string = '';
     statusBarCancelRefresh: string = '';
     statusBarMessages: string = '';
@@ -863,6 +864,10 @@ export class ExploreComponent {
         } else {
             this.templateInUse = 'Tmpl Used';
         }
+    }
+
+    clickSlicerDelete() {
+        this.showSlicer = false;
     }
 }
 

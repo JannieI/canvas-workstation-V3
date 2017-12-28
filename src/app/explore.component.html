@@ -816,9 +816,13 @@
 
 
 <!-- Dummy Slicer -->
-<div class="slicer">
+<div class="slicer" *ngIf="showSlicer">
     <section class="form-block" title="Filter the Budget dataset on Make of Car">
-        <div class="slicerLabel"><b>Filter: Make</b></div>
+        <div class="slicerLabel">
+            <b>Filter: Make
+                <clr-icon shape="times" (click)="clickSlicerDelete()"></clr-icon>
+            </b>
+        </div>
         <div class="form-group">
             <div class="select multiple">
                 <select id="selects_5" multiple>
