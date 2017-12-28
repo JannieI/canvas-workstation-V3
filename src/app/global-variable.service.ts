@@ -198,7 +198,7 @@ const localWidgets: canvasWidget[] =
         containerHeight: 320,
         containerLeft: 50,
         containerWidgetTitle: 'Title 1',
-        containerTop: 440,      // was 140
+        containerTop: 240,      // was 140
         containerWidth: 250,
         containerZindex: 50,
         titleText: '',
