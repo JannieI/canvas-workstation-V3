@@ -433,7 +433,7 @@ export class ExploreComponent {
                 // Testing
                 // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cx', '50')
                 // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cy', '50')
-                this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'r', '40')
+                this.renderer2.setStyle(this.circle2.toArray()[i].nativeElement,'r', '40')
                 // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'stroke', 'orange')
                 // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'stroke-width', '2')
                 // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'fill', 'none')

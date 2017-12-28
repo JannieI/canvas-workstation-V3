@@ -361,9 +361,10 @@
     border: 1px dotted black;
 }
 .aCircle2 {
-    background-color: #192b35;
-    border: 1px solid green;
+    background-color: transparent;
     display: inline-block;
+    margin-top: -59px;
+    margin-left: -2px;
 }
 .shape2 {
     /* border: 1px dotted gray; */

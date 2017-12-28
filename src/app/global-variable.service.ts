@@ -62,8 +62,8 @@ const localShapes: canvasShape[] =
 
         // Container
         containerBackgroundcolor: 'red',
-        containerBorder: '2px dotted black',
-        containerBoxshadow: '4px gray',
+        containerBorder: '',
+        containerBoxshadow: '',
         containerColor: '',
         containerFontsize: 0,
         containerHeight: 100,
@@ -90,12 +90,12 @@ const localShapes: canvasShape[] =
         titleWidth: 0,
 
         // shape
-        cx: '30',
-        cy: '0',
-        r: '20',
+        cx: '50',
+        cy: '50',
+        r: '40',
         stroke: 'black',
         strokeWidth: '3',
-        fill: 'pink',
+        fill: 'none',
 
         // Created, updated and refreshed
         widgetCreatedOn: '',
