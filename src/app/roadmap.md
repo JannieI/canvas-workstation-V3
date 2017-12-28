@@ -127,12 +127,16 @@ This document describes items for later versions of Canvas.
 11.When resize Widget => add resize graph as well.
 12.Fix bug: graph moves inside another when Dragging - had this in v1 ...
 13.Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
+14.Bug Fix: after unselect Widget, border is red.  See ? : if-statement ...
 
 
 **Shapes**
 1. Add ability to use data in a textbox: aggregation : dataset : fieldname, where
    aggregation = {sum, min, max, average, first, last}, dataset is an existing one, and
    fieldname is a final column name.
+2. Fix bug: circle flickers when hover over menu
+3. Generate all shapes from data - not only circle which is static html at moment
+
 
 
 **Presentation**
@@ -149,6 +153,11 @@ This document describes items for later versions of Canvas.
 7. Embed objects like voice recording, video and urls - can jump to web, show movie, etc!
 8. 
 9. Make sure access rights are still respected at all levels: Dashboard, Widget, Datasource
+
+
+**Slicers**
+1. Make moveable!
+2. Make look and feel customisable
 
 
 **Scheduler**

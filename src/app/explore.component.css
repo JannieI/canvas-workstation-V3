@@ -372,3 +372,22 @@
     /* height: 180px;
     width: 200px; */
 }
+
+
+
+
+/* Testing Arrows */
+.arrow {
+    background-color: transparent;
+    border-top: 30px solid red;
+    border-left: 30px solid white;;
+    border-right: 30px solid white;
+    border-bottom: 30px solid white;
+    position: absolute;
+    top:80px;
+    left:80px;
+    width: 1px;
+    height: 40px;
+    background:#000;
+}
+
