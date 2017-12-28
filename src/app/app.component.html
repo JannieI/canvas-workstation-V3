@@ -578,12 +578,12 @@
         </div>
 
         <div class="header-actions">
-            <clr-dropdown class="dropdown bottom-right">
+            <clr-dropdown class="dropdown">
                 <button class="nav-icon" clrDropdownTrigger>
                 <clr-icon shape="share"></clr-icon>
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
-                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
                     <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlerts()">
                         Alerts
                     </button>
@@ -606,12 +606,12 @@
                 </clr-dropdown-menu>
             </clr-dropdown>
 
-            <clr-dropdown class="dropdown bottom-right">
+            <clr-dropdown class="dropdown">
                 <button class="nav-icon" clrDropdownTrigger>
                 <clr-icon shape="user" class="is-solid has-alert"></clr-icon>
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
-                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
                     <a clrDropdownItem (click)="clickMenuUserLogin()">Login</a>
                     <a clrDropdownItem (click)="clickMenuUserMyProfile()">My Profile</a>
                     <a clrDropdownItem (click)="clickMenuUserPreferences()">Preferences</a>
