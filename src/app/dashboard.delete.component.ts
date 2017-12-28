@@ -46,4 +46,9 @@ export class DashboardDeleteComponent implements OnInit {
         
 		this.formDashboardDeleteClosed.emit(action);
     }
+
+    clickDelete(index: number) {
+        console.log('clickDelete', index)
+        // this.globalVariableService.deleteWidget(index);
+    }
 }

@@ -2031,4 +2031,17 @@ export class GlobalVariableService {
         // this.refreshDashboard.next(true);
     }
 
+    dashboardDelete(index: number) {
+        console.log('dashboardDelete', index)
+        let arr: canvasWidget[] = this.localWidgets.value.filter(
+            i => { 
+                    if (i.id == index) { i.isTrashed = true}
+                }
+        );
+        console.log('arr', arr)
+        this.localWidgets.next(arr);
+        // console.log('yy', this.localWidgets.value);
+        // this.refreshDashboard.next(true);
+    }
+
 }

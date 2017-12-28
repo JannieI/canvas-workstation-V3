@@ -26,9 +26,10 @@
                     <clr-dg-column>Creator</clr-dg-column>
                     <clr-dg-column>#Opened</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let row of dashboards">
+                    <clr-dg-row *ngFor="let row of dashboards; let i = index">
                         <clr-dg-cell>
-                            <clr-icon shape="times" class="selectIcon1" size="12"></clr-icon>
+                            <clr-icon shape="times" class="selectIcon1" size="12" 
+                                (click)="clickDelete(i)"></clr-icon>
                         </clr-dg-cell>
                         <clr-dg-cell>{{row.state}}</clr-dg-cell>
                         <clr-dg-cell>{{row.name}}</clr-dg-cell>
