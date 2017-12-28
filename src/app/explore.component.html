@@ -161,15 +161,14 @@
 
 <!-- Eksperimental! -->
 <div *ngFor="let row of localShapes; let i = index" class="shapeContainer2"
+    [style.background-color]="row.containerBackgroundColor"
+    [style.border]="row.isSelected? '2px solid red' : row.isSelected"
+    [style.box-shadow]="row.containerBoxshadow"
+    [style.height.px]="row.containerHeight"
     [style.left.px]="row.containerLeft"
     [style.top.px]="row.containerTop"
-    [style.border]="row.isSelected? '2px solid black' : '2px solid red'"
-    [style.background-color]="row.containerBackgroundColor"
-    [style.border]="row.containerBorder"
-    [style.height.px]="row.containerHeight"
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
-    [style.box-shadow]="row.containerBoxshadow"
     #shapeContainter2>
     <div class="widgetButtonBar2">
         <clr-icon
@@ -656,15 +655,14 @@
 <!-- Testing new Widget stuffies -->
 <div *ngFor="let row of localWidgets; let i = index" class="widgetContainer2"
     #widgetContainter2
+    [style.background-color]="row.containerBackgroundColor"
+    [style.border]="row.isSelected? '2px solid red' : row.containerBorder"
+    [style.box-shadow]="row.containerBoxshadow"
+    [style.height.px]="row.containerHeight"
     [style.left.px]="row.containerLeft"
     [style.top.px]="row.containerTop"
-    [style.border]="row.isSelected? '2px solid black' : '2px solid red'"
-    [style.background-color]="row.containerBackgroundColor"
-    [style.border]="row.containerBorder"
-    [style.height.px]="row.containerHeight"
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
-    [style.box-shadow]="row.containerBoxshadow"
     >
     <div class="widgetButtonBar2">
         <clr-icon
@@ -873,8 +871,13 @@
 </svg>
 
 
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="svg-triangle" width='100' height='100'>
-<path d="M 50,5 95,97.5 5,97.5 z"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="svg-triangle" width='100' height='100'
+    (dragstart)="dragStartArrow($event)"
+    (dragend)="dragEndArrow($event)"
+    draggable="true"
+    #redArrow
+    >
+    <path d="M 50,5 95,97.5 5,97.5 z"/>
 </svg>
 
 

@@ -156,13 +156,16 @@ export class ExploreComponent {
     @ViewChildren('widget')             childrenWidgets: QueryList<ElementRef>;
     @ViewChildren('widgetContainter')   widgetContainters: QueryList<ElementRef>;
 
-    @ViewChildren('widgetContainter2') widgetContainters2: QueryList<ElementRef>;
-    @ViewChildren('widget2')           childrenWidgets2: QueryList<ElementRef>;
+    @ViewChildren('widgetContainter2')  widgetContainters2: QueryList<ElementRef>;
+    @ViewChildren('widget2')            childrenWidgets2: QueryList<ElementRef>;
     
     @ViewChildren('shapeContainter2')   shapeContainter2: QueryList<ElementRef>; 
-    @ViewChildren('shape')             shape2: QueryList<ElementRef>; 
+    @ViewChildren('shape')              shape2: QueryList<ElementRef>; 
     @ViewChildren('circle2')            circle2: QueryList<ElementRef>; 
 
+    @ViewChildren('redArrow')           redArrow: ElementRef; 
+
+    
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     localDashboards: dl.spec.TopLevelExtendedSpec[];
     localShapes: canvasShape[];
@@ -628,6 +631,13 @@ export class ExploreComponent {
         this.renderer.setElementStyle(this.dragWidget.nativeElement,
             'top', (80 + widgetMoveX).toString() + "px");
     }
+  
+    dragStartArrow (ev: DragEvent) {}
+    dragEndArrow(ev: DragEvent) {
+        this.renderer2.setStyle(this.redArrow.nativeElement, 'left', '100px')
+        console.log(ev.x)
+    }
+
     clickDashboardDescription() {
         this.showDashboardDescription = true;
     }
