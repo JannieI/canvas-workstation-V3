@@ -130,6 +130,8 @@ export class AppComponent implements OnInit {
     }
     
     ngOnInit() {
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );

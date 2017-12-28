@@ -1823,7 +1823,7 @@ export class GlobalVariableService {
     // showSystemConfigButtons: boolean = true;       // Menu option called = True: SystemConfiguration, False: System Info
     // sessionDateTimeLoggedin: string = '';
     // sessionDashboardTabID: number = null;          // Tab ID to load when form opens, -1 = none
-    sessionDebugging: boolean = false;
+    sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     // sessionLoadOnOpenDashboardID: number = null;   // Dashboard to load when form opens, 0 = none
     // sessionLoadOnOpenDashboardName: string = '';   // Dashboard to load when form opens, '' = none
