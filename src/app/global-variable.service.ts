@@ -27,10 +27,84 @@ import { canvasAlert }                from './models';
 import { canvasMessage }              from './models';
 import { canvasActivity }             from './models';
 import { canvasWidget }               from './models';
+import { canvasShape }                from './models';
 
 import * as dl from 'datalib';
 
 // import { CanvasUser }                 from './model.user';
+const canvasShapes: canvasShape[] =
+[
+    {
+
+        // Type
+        shapeType: 'circle',
+
+        // Trashed
+        isTrashed: false,
+
+        // Not needed when Widget is inside a Dashboard
+        dashboardID: 0,
+        dashboardTabID: 0,
+        dashboardTabName: '',
+
+        // Identification and Description
+        id: 0,
+        name: '',
+        description: '',
+        version: 0,
+
+        // @Runtime
+        isSelected: false,
+
+        // Links
+        hyperlinkDashboardID: 0,
+        hyperlinkDashboardTabID: 0,
+
+        // Container
+        containerBackgroundcolor: '',
+        containerBorder: '',
+        containerBoxshadow: '',
+        containerColor: '',
+        containerFontsize: 0,
+        containerHeight: 100,
+        containerLeft: 0,
+        containerWidgetTitle: '',
+        containerTop: 0,
+        containerWidth: 100,
+        containerZindex: 50,
+
+        // Title
+        titleText: '',
+        titleBackgroundColor: '',
+        titleBorder: '',
+        titleColor: '',
+        titleFontsize: 0,
+        titleFontWeight: '',
+        titleHeight: 0,
+        titleLeft: 0,
+        titleMargin: '',
+        titlePadding: '',
+        titlePosition: '',
+        titleTextAlign: '',
+        titleTop: 0,
+        titleWidth: 0,
+
+        // shape
+        cx: '50',
+        cy: '50',
+        r: '40',
+        stroke: 'red',
+        strokeWidth: '1',
+        fill: 'none',
+
+        // Created, updated and refreshed
+        widgetCreatedOn: '',
+        widgetCreatedBy: '',
+        widgetUpdatedOn: '',
+        widgetUpdatedBy: '',
+    }
+]
+
 const datasourcePermissions: datasourcePermission[] =
 [
     {
@@ -368,7 +442,6 @@ const localWidgets: canvasWidget[] =
 ];
 
 const localWidgets1: canvasWidget =
-
     {
         isTrashed: false,
         dashboardID: 4,

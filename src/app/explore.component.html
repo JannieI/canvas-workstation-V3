@@ -121,7 +121,7 @@
     </div>
 </div>
 
-
+<!-- Working one - LEAVE !!! -->
 <div *ngIf="showShapes">
     <div *ngFor="let row of localShapes" class="shapeContainer"
         #shapeContainter>
@@ -150,6 +150,51 @@
                         [attr.stroke-width]="2" [style.fill]="none" />
                     </svg>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Eksperimental! -->
+<div *ngFor="let row of localShapes" class="shapeContainer2"
+    [style.left.px]="row.containerLeft"
+    [style.top.px]="row.containerTop"
+    [style.border]="row.isSelected? '2px solid black' : '2px solid red'"
+    [style.background-color]="row.containerBackgroundColor"
+    [style.border]="row.containerBorder"
+    [style.height.px]="row.containerHeight"
+    [style.width.px]="row.containerWidth"
+    [style.zindex]="row.containerZindex"
+    [style.box-shadow]="row.containerBoxshadow"
+    #shapeContainter>
+    <div class="widgetButtonBar">
+        <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
+        <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="cursor-hand" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon>
+        <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
+    </div>
+    <div class="shape2">
+        <div #shape>
+            {{ row.type }}
+            <div
+                #dragCircle
+                class="aCircle"
+                (dragstart)="dragStartCircle($event)"
+                (dragend)="dragEndCircle($event)"
+                draggable="true"
+                >
+                <svg height="100" width="100" >
+                    <circle #circle [attr.cx]="50"
+                    [attr.cy]="50" [attr.r]="circleRadius" [attr.stroke]="blue"
+                    [attr.stroke-width]="2" [style.fill]="none" />
+                </svg>
             </div>
         </div>
     </div>
@@ -519,28 +564,28 @@
 </div> -->
 
 <div class="bgGrid" *ngIf="showGrid">
-    <svg width="100%" height="100%">
+    <svg width="100%" height="100%" class="bgGridSvg">
 
         <!-- Create mask that we'll use to define a slight gradient -->
-        <mask maskUnits="userSpaceOnUse" id="fade">
-        <!-- Here's that slight gradient -->
-        <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
-            <stop offset ="0" style="stop-color: #FFFFFF" />
-            <stop offset ="1" style="stop-color: #000000" />
-        </linearGradient>
-        <!-- The canvas for our mask -->
-        <rect fill="url(#gradient)" width="100%" height="100%" />
+        <mask maskUnits="userSpaceOnUse" id="fade" class="bgGridSvg">
+            <!-- Here's that slight gradient -->
+            <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%" class="bgGridSvg">
+                <stop offset ="0" style="stop-color: #FFFFFF" />
+                <stop offset ="1" style="stop-color: #000000" />
+            </linearGradient>
+            <!-- The canvas for our mask -->
+            <rect fill="url(#gradient)" width="100%" height="100%" class="bgGridSvg" />
         </mask>
 
         <!-- Let's define the pattern -->
         <!-- The width and height should be double the circle radius we plan to use -->
-        <pattern id="pattern-circles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-        <!-- Now let's draw the circle -->
-        <!-- We're going to define the `fill` in the CSS for flexible use -->
-        <circle mask="url(#fade)" cx="1" cy="1" r="1" />
+        <pattern id="pattern-circles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse" class="bgGridSvg">
+            <!-- Now let's draw the circle -->
+            <!-- We're going to define the `fill` in the CSS for flexible use -->
+            <circle mask="url(#fade)" cx="1" cy="1" r="1" class="bgGridSvg" />
         </pattern>
         <!-- The canvas with our applied pattern -->
-        <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)" />
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)" class="bgGridSvg" />
 
     </svg>
 </div>

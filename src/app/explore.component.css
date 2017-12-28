@@ -207,6 +207,7 @@
 .shapeContainer:hover {
     border: 1px dotted black;
 }
+
 .widgetContainer:focus {
     border: 1px dotted black;
 }
@@ -270,6 +271,9 @@
     width: 100%;
     z-index: 20;
 }
+    .bgGridSvg {
+        z-index: 20;
+    }
 
 .widgetButtonBar {
     border: 1px solid gray;
@@ -326,4 +330,22 @@
 .tabListItem {
     border: white;
     padding-left: 5px;
+}
+
+.shapeContainer2 {
+    /* border: 1px dotted gray; */
+    display: inline-block;
+    /* height: 100px; */
+    /* left:100px; */
+    position: absolute;
+    /* width: 100px; */
+}
+.shapeContainer2:hover {
+    border: 1px dotted black;
+}
+.shape2 {
+    /* border: 1px dotted gray; */
+    display: inline-block;
+    height: 180px;
+    width: 200px;
 }

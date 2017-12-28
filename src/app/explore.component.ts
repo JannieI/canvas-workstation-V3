@@ -353,16 +353,6 @@ export class ExploreComponent {
         this.refreshWidgets2();
     }
 
-    // ngDoCheck() {
-    //     console.log('ngDoCheck()')
-    // }
-    // ngAfterContentChecked() {
-    //     console.log('ngAfterContentChecked()')
-    // }
-    ngAfterViewChecked() {
-        console.log('ngAfterViewChecked()', this.childrenWidgets2.toArray().length)
-    }
-      
     refreshWidgets() {
         // let definition = vlTemplateSpec13;
         // let specification = compile(definition).spec;

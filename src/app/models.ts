@@ -1,4 +1,74 @@
 // ALL models (schema) are kept here
+export class canvasShape {
+
+    // Type
+    shapeType: string;
+
+    // Trashed
+    isTrashed: boolean;
+
+    // Not needed when Widget is inside a Dashboard
+    dashboardID: number;                   // FK to DashboardID to which widget belongs
+    dashboardTabID: number;               // FK to Tab where the widget lives
+    dashboardTabName: string;             // FK to Tab Name where widget lives
+
+    // Identification and Description
+    id: number;
+    name: string;
+    description: string;
+    version: number;
+
+    // @Runtime
+    isSelected: boolean;
+
+    // Links
+    hyperlinkDashboardID: number;           // Optional Widget ID to jump to
+    hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
+
+    // Container
+    containerBackgroundcolor: string;
+    containerBorder: string;
+    containerBoxshadow: string;
+    containerColor: string;
+    containerFontsize: number;
+    containerHeight: number;
+    containerLeft: number;
+    containerWidgetTitle: string;         // Title at top of container
+    containerTop: number;
+    containerWidth: number;
+    containerZindex: number;
+
+    // Title
+    titleText: string;                     // with HTML & keywords (##today##)
+    titleBackgroundColor: string;
+    titleBorder: string;
+    titleColor: string;
+    titleFontsize: number;                 // in px
+    titleFontWeight: string;
+    titleHeight: number;                   // in px
+    titleLeft: number;                     // in px
+    titleMargin: string;
+    titlePadding: string;
+    titlePosition: string;
+    titleTextAlign: string;
+    titleTop: number;                      // in px
+    titleWidth: number;                    // in px: 0 means it adapts to container
+
+    // shape
+    cx: string;                             // circle svg cx in px - ie '50' without dimension
+    cy: string;                             // circle svg cy
+    r: string;                              // circle svg radius
+    stroke: string;                         // colour of line
+    strokeWidth: string;                    // line thickness in px
+    fill: string;                           // fill / inside (ie of circle)   
+
+    // Created, updated and refreshed
+    widgetCreatedOn: string;              // Created on
+    widgetCreatedBy: string;              // Created by
+    widgetUpdatedOn: string;              // Updated on
+    widgetUpdatedBy: string;              // Updated by    
+
+}
 
 export class canvasComment {
     id: number;
@@ -7,16 +77,6 @@ export class canvasComment {
     comment: string;
     creator: string;
     createdOn: string;
-}
-
-export class canvasShape {
-    imageAlt: string;                      // alt in img tag
-    imageHeigt: number;                    // in px
-    imageLeft: number;                     // in px
-    imageSource: string;                   // Path (folder + filename) <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
-    imageTop: number;                      // in px
-    imageWidth: number;                    // in px
-    
 }
 
 export class canvasWidget {
