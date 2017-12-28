@@ -317,6 +317,19 @@
     padding: 2px;
 }
 
+.dashboardDescription {
+    background-color: #192b35;
+    border-radius: 3px;
+    bottom: 1.1rem;
+    color:  white;
+    display: inline-block;
+    left: 1.2rem;
+    overflow: hidden;
+    padding: 4px;
+    position: absolute;
+    width: 12rem;
+}
+
 .tabList {
     background-color: #192b35;
     bottom: 1.1rem;

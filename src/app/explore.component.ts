@@ -204,6 +204,7 @@ export class ExploreComponent {
     showShapes: boolean = true;
     showType: boolean = false;
     showTypeIcon: boolean = true;
+    showDashboardDescription: boolean = false;
     showTabList: boolean = false;
     statusBarRunning: string = '';
     statusBarCancelRefresh: string = '';
@@ -626,6 +627,9 @@ export class ExploreComponent {
 
         this.renderer.setElementStyle(this.dragWidget.nativeElement,
             'top', (80 + widgetMoveX).toString() + "px");
+    }
+    clickDashboardDescription() {
+        this.showDashboardDescription = true;
     }
 
     clickListTabs() {

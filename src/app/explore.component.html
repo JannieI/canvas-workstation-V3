@@ -252,7 +252,8 @@
 </div>
 
 <div class="statusBar" *ngIf="showMainMenu">
-    <span class="statusBarText" title="Current Dashboard">
+    <span class="statusBarText statusBarTextBorder" title="Current Dashboard"
+        (click)="clickDashboardDescription()">
         Analysis of Value Traded 2017 ...
     </span>
 
@@ -839,4 +840,17 @@
     <div class="tabListItem" (click)="showTabList=!showTabList">Budget</div>
     <div class="tabListItem" (click)="showTabList=!showTabList">Europe</div>
     <div class="tabListItem" (click)="showTabList=!showTabList">Headcount</div>
+</div>
+
+
+<div class="dashboardDescription" *ngIf="showDashboardDescription">
+    <div> This Dashboard is a Summary of bla-bla-bla ...</div>
+    <button
+        type="button"
+        class="btn btn-link"
+        (click)="showDashboardDescription=!showDashboardDescription"
+        >
+        Close
+    </button>
+
 </div>
