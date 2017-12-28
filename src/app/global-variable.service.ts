@@ -32,7 +32,7 @@ import { canvasShape }                from './models';
 import * as dl from 'datalib';
 
 // import { CanvasUser }                 from './model.user';
-const canvasShapes: canvasShape[] =
+const localShapes: canvasShape[] =
 [
     {
 
@@ -1854,7 +1854,7 @@ export class GlobalVariableService {
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
     canvasMessages: canvasMessage[] =  canvasMessages;
     localWidgets = new BehaviorSubject< canvasWidget[]>(localWidgets);
-    canvasShapes = new BehaviorSubject< canvasShape[]>(canvasShapes);
+    localShapes = new BehaviorSubject< canvasShape[]>(localShapes);
     dashboardPermissions: dashboardPermission[] = dashboardPermissions;
     datasourcePermissions: datasourcePermission[] = datasourcePermissions;
     localTrash = new BehaviorSubject< canvasWidget[]>([]);

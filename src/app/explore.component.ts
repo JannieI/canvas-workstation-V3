@@ -273,7 +273,9 @@ export class ExploreComponent {
         //     i => this.localDashboards
         // );
         this.localDashboards = this.globalVariableService.localDashboards;
-        this.globalVariableService.
+        this.globalVariableService.localShapes.subscribe(
+            i => this.localShapes = i
+        );
         this.globalVariableService.localWidgets.subscribe(
             i => {
                 this.localWidgets = i.filter(f => f.isTrashed == false)
