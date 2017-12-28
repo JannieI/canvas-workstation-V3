@@ -89,6 +89,7 @@ export class AppComponent implements OnInit {
     showModalDataShare: boolean = false;
     showModalShapeEdit: boolean = false;
     showModalShapeDelete: boolean = false;
+    showTestArrows: boolean = false;
     showFav: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalCollaborateAlerts: boolean = false;
@@ -547,11 +548,11 @@ export class AppComponent implements OnInit {
     }        
 
     clickMenuEditUndo() {
-
+        this.showTestArrows = false;
     }
 
     clickMenuEditRedo() {
-
+        this.showTestArrows = true;
     }
 
     clickMenuEditSelectAll() {
