@@ -33,7 +33,6 @@ import { currentDatasource }          from './models'
 })
 export class AppComponent implements OnInit {
 
-    @ViewChild('dragCircle', {read: ElementRef}) dragCircle: ElementRef;  //Vega graph
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
 
     editMode: boolean;
@@ -574,37 +573,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuShapeLinks() {
-        console.log('clickMenuShapeLinks')
-
-        // TODO - make use of commont link form, but pass info about caller.  IF too 
-        //        complicated, then split into 2
-
         this.showModalWidgetLinks = true;
-        // const div = this.renderer2.createElement('div');
-        // const svg = this.renderer2.createElement('svg');
-        // const circle = this.renderer2.createElement('circle');
-        // const text = this.renderer2.createText('Hallo World !');
-        // // const rect = this.renderer2.createElement('rect')
-         
-        // this.renderer2.appendChild(div, text);
-        // // this.renderer2.appendChild(svg, circle);
-        // // this.renderer2.appendChild(rect, text);
-        // // this.renderer2.appendChild(svg, this.dragCircle);
-
-        // // this.renderer2.appendChild(svg, rect);
-        // this.renderer2.appendChild(div, svg);
-        // this.renderer2.appendChild(this.el.nativeElement, div);
-        
-        
-        // this.renderer2.addClass(div, 'aCircle');
-        // this.renderer2.addClass(svg, 'aCircleDet');
-        // this.renderer2.addClass(circle, 'aCircleDet');
-
-        // this.renderer2.setAttribute(circle, 'id', 'circle1' );
-
-        // svg.innerHTML = '<circle cx="50" cy="50" r="30" stroke="green" stroke-width="2" fill="none" />'
-        // console.log('svg', svg)
-  
     }
     
     clickMenuShapeDelete() {
@@ -731,33 +700,6 @@ export class AppComponent implements OnInit {
     
     clickMenuUserLogout() {
         this.showModalDashboardLogout = true;
-    }
-
-    dragStartCircle(ev: DragEvent) {
-        this.moveStartX = ev.x;
-        this.moveStartY = ev.y;
-        console.log('dragStartWidget', ev, this.moveStartX)
-    }
-
-    dragEndCircle(ev: DragEvent) {
-        this.moveEndX = ev.x;
-        this.moveEndY = ev.y;
-        this.moveOffsetX = this.moveEndX - this.moveStartX;
-        this.moveOffsetY = this.moveEndY - this.moveStartY;
-        this.moveLastX = this.moveLastX + this.moveOffsetX;
-        this.moveLastY = this.moveLastY + this.moveOffsetY;
-        console.log('dragEndWidget', ev, (this.moveLastY));
-        // this.renderer.setElementStyle(
-        //     this.dragCircle.nativeElement,'background-color', 'orange'
-        // );
-
-        this.renderer.setElementStyle(this.dragCircle.nativeElement,
-            'left', (this.moveLastX) + 'px');
-        this.renderer.setElementStyle(this.dragCircle.nativeElement,
-            'top', (this.moveLastY) + 'px');
-    
-        // this.renderer.setElementStyle(this.dragWidget.nativeElement,
-        //     'top', (80 + widgetMoveX).toString() + "px");
     }
 
     showRecentDashboard(index: number) {
