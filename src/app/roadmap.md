@@ -131,9 +131,7 @@ This document describes items for later versions of Canvas.
 
 
 **Shapes**
-1. Add ability to use data in a textbox: aggregation : dataset : fieldname, where
-   aggregation = {sum, min, max, average, first, last}, dataset is an existing one, and
-   fieldname is a final column name.
+1. 
 2. Fix bug: circle flickers when hover over menu
 3. Generate all shapes from data - not only circle which is static html at moment
 
@@ -175,7 +173,7 @@ This document describes items for later versions of Canvas.
 **General**
 1. Add cursor style and size on menu: needs a custome .png file, IE needs .cur ...
 2. Consider if Transformations can do Group By - for now it is either in the SQL, or Vega
-
+3. Shape Textbox using data fields: can it have parameters, what if Dataset deleted, can it sort, 
 
 **Data**
 1. Consider linking Slicers many Datasets - this depends on how we can do this 

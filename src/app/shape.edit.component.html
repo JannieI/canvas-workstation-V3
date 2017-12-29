@@ -72,8 +72,26 @@
                                     <option>Testing</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="propertyLine">
+                            <div class="select">
+                                    <select id="selects_3"
+                                        (change)="clickSelectShape($event)"
+                                        >
+                                        <option>Date</option>
+                                        <option>Value</option>
+                                        <option>Type field</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="select">
+                                <select id="selects_3"
+                                    (change)="clickSelectShape($event)"
+                                    >
+                                    <option>Sum</option>
+                                    <option>Average</option>
+                                    <option>First, etc ...</option>
+                                </select>
+                            </div>
+                            <div class="propertyLine">
                             Text Font:
                             <input type="text" id="formFields_7" placeholder="Font Size">
                             <input type="text" id="formFields_7" placeholder="Font Family">
