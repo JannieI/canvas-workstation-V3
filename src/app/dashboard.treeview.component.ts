@@ -90,15 +90,7 @@ export class DashboardTreeviewComponent implements OnInit {
         }
     ];
     
-    
-
-
-
-
-
-
-
-	constructor(
+    constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}

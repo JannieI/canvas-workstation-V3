@@ -111,52 +111,38 @@ This document describes items for later versions of Canvas.
 
 
 **Widget**
-1. Issue: what happens if Treeview expand gt Modal height !?
-2. Issue: how to call WidgetEdit, etc from explore NOT duplicating code ...
-3. Border on select
+1. 
+2. Issue: how to call code ~WidgetEdit, etc from explore NOT duplicating code ...
+3. 
 4. Fix bug: isTrash => Widget does not disappear !
 5. Fix bug and Duplicate Widget correctly
 6. Fix bug: [style.border]="row.isSelected? '2px solid black' : '2px solid red'" does not work
 7. Flag visible if it has a Note, Data Quality issues
-8. Consider Widget Templates - could be a way to make graphs easier, or standardise the
-   look and feel in the company ...
-9. Quick Widget: when creating Dataset, click a button to get a best guess Wizard - Make this
-   really easy.
+8. 
 10.Issue - button bar is at top of Widget => moves graph down, messes up things.  Either totally
    separate SINGLE bar => just make visible ...  OR  duplicate div and border around Widget
-11.When resize Widget => add resize graph as well.
+11.Issue - When resize Widget => add resize graph as well.
 12.Fix bug: graph moves inside another when Dragging - had this in v1 ...
 13.Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
 14.Bug fix: delete does not remove the Widget !
 
 
 **Shapes**
-1. 
-2. Fix bug: circle flickers when hover over menu
-3. Generate all shapes from data - not only circle which is static html at moment
+1. Fix bug: circle flickers when hover over menu
+2. Generate all shapes from data - not only circle which is static html at moment
 
 
 
 **Presentation**
 1. See if can print, and if so: allow different layouts and formats, for example one 
    Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
-2. Recording: store the name, show the actions (ie show Dashboard 1, then 2 etc) in an 
-   Explorer (tree) view.
-3. 
-4. 
-5. Allow annotations - highligh, arrows, etc ... !?
-6. Add Easy Explore option: can look at other things while in presentation mode ??  Not 
-   sure if this makes sense ....  if want to look at different data, just open the relevant 
-   Dashboard in view-only, or create a temp one quicky ...
-7. Embed objects like voice recording, video and urls - can jump to web, show movie, etc!
-8. 
-9. Make sure access rights are still respected at all levels: Dashboard, Widget, Datasource
+2. Issue: Make sure access rights are still respected at all levels: Dashboard, Widget, Datasource
 
 
 **Slicers**
 1. Make moveable!
 2. Make look and feel customisable
-3. X top right to close (and how to show later?)
+3. X top right to close (and how to show later?)  Can make temporary invisible?
 
 
 **Scheduler**
@@ -168,20 +154,37 @@ This document describes items for later versions of Canvas.
 
 
 
-## Near Future
+## Near Future ++
 
-**General**
+++General++
 1. Add cursor style and size on menu: needs a custome .png file, IE needs .cur ...
 2. Consider if Transformations can do Group By - for now it is either in the SQL, or Vega
-3. Shape Textbox using data fields: can it have parameters, what if Dataset deleted, can it sort, 
 
-**Data**
+
+++Shapes++
+3. Shape Textbox using data fields: can it have parameters, what if Dataset deleted, can it sort,
+
+
+++Widgets++
+4. Consider Widget Templates - could be a way to make graphs easier, or standardise the
+   look and feel in the company ...
+5. Quick Widget: when creating Dataset, click a button to get a best guess Wizard - Make this
+   really easy.  Maybe even use templates or predefined graphs, or very basic ones.
+
+
+++Data++
 1. Consider linking Slicers many Datasets - this depends on how we can do this 
    technically.  If not too complex, we should as this is quite powerful to drive the 
    whole Dashboard from a single Widget.
 
-   
-**Status Bar**
+
+++Presentations++
+1. Allow annotations - highligh, arrows, etc ... !?
+2. Have text boxes like Powerpoint - title, text, bulletted and numbered items .... with formatting ...
+3. Embed objects like voice recording, video and urls - can jump to web, show movie, etc!
+
+
+++Status Bar++
 1. Make status bar customisable - can choose what to show.  Plus, ... if too many (and 
    what happens then?)
 
