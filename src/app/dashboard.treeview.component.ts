@@ -18,7 +18,10 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { dashboard }                  from './models';
-import { dashboardSnapshot }                 from './models';
+import { dashboardSnapshot }          from './models';
+
+// Data
+import { httpFake }                   from './data/dashboards'
 
 @Component({
     selector: 'dashboard-treeview',
@@ -32,9 +35,6 @@ export class DashboardTreeviewComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Partial<dashboard>[];
-
-
-
 
     rootDirectory: any[] = [
         {
@@ -93,6 +93,7 @@ export class DashboardTreeviewComponent implements OnInit {
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private httpFake: httpFake,
 	) {}
 
     ngOnInit() {
@@ -100,8 +101,6 @@ export class DashboardTreeviewComponent implements OnInit {
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
-
 		this.formDashboardTreeviewClosed.emit(action);
     }
 }

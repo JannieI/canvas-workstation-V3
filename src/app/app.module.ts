@@ -84,13 +84,18 @@ import { AuthGuard }                  from './authguard.service';
 import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService }      from './global-function.service';
 
+// Data
+import { httpFake }                   from './data/dashboards'
+
 // Testing
 import { DelayDirective }             from './test.delay.directive';
 import { CardComponent }              from './test.app.card.component';
-import { MyNgIfDirective }              from './test.ngif.directive';
+import { MyNgIfDirective }            from './test.ngif.directive';
 
 @NgModule({
     declarations: [
+
+        // Main
         AppComponent,
         ExploreComponent,
         HomeComponent,
@@ -169,6 +174,9 @@ import { MyNgIfDirective }              from './test.ngif.directive';
         AuthGuard,
         GlobalVariableService,
         GlobalFunctionService,
+
+        // Data
+        httpFake,
 
     ],
     bootstrap: [AppComponent]

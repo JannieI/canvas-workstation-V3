@@ -329,7 +329,7 @@ export class ExploreComponent {
     }
 
     ngAfterViewInit() {
-        console.log('Explore ngOnViewInit')
+        console.log('Explore ngOnViewInit', this.localShapes)
         
         
 

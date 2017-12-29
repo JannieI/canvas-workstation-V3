@@ -10,7 +10,7 @@ import { datasource }                 from './models';
 import { CSScolor }                   from './models';
 import { transformation }             from './models';
 import { field }                      from './models';
-import { dashboardSnapshot }                   from './models';
+import { dashboardSnapshot }          from './models';
 import { fieldMetadata }              from './models';
 import { dashboardTag }               from './models';
 import { dashboardTheme }             from './models';
@@ -29,81 +29,12 @@ import { canvasActivity }             from './models';
 import { canvasWidget }               from './models';
 import { canvasShape }                from './models';
 
-import * as dl from 'datalib';
+// Data
+import { httpFake }                   from './data/dashboards'
+
+import * as dl                        from 'datalib';
 
 // import { CanvasUser }                 from './model.user';
-const localShapes: canvasShape[] =
-[
-    {
-
-        // Type
-        shapeType: 'circle',
-
-        // Trashed
-        isTrashed: false,
-
-        // Not needed when Widget is inside a Dashboard
-        dashboardID: 0,
-        dashboardTabID: 0,
-        dashboardTabName: '',
-
-        // Identification and Description
-        id: 0,
-        name: '',
-        description: '',
-        version: 0,
-
-        // @Runtime
-        isSelected: false,
-
-        // Links
-        hyperlinkDashboardID: 0,
-        hyperlinkDashboardTabID: 0,
-
-        // Container
-        containerBackgroundcolor: 'red',
-        containerBorder: '',
-        containerBoxshadow: '',
-        containerColor: '',
-        containerFontsize: 0,
-        containerHeight: 100,
-        containerLeft: 100,
-        containerWidgetTitle: '',
-        containerTop: 90,
-        containerWidth: 100,
-        containerZindex: 50,
-
-        // Title
-        titleText: '',
-        titleBackgroundColor: '',
-        titleBorder: '',
-        titleColor: '',
-        titleFontsize: 0,
-        titleFontWeight: '',
-        titleHeight: 120,
-        titleLeft: 20,
-        titleMargin: '',
-        titlePadding: '',
-        titlePosition: '',
-        titleTextAlign: '',
-        titleTop: 0,
-        titleWidth: 0,
-
-        // shape
-        cx: '50',
-        cy: '50',
-        r: '40',
-        stroke: 'black',
-        strokeWidth: '3',
-        fill: 'none',
-
-        // Created, updated and refreshed
-        widgetCreatedOn: '',
-        widgetCreatedBy: '',
-        widgetUpdatedOn: '',
-        widgetUpdatedBy: '',
-    }
-]
 
 const datasourcePermissions: datasourcePermission[] =
 [
@@ -1854,7 +1785,9 @@ export class GlobalVariableService {
     widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
     canvasMessages: canvasMessage[] =  canvasMessages;
     localWidgets = new BehaviorSubject< canvasWidget[]>(localWidgets);
-    localShapes = new BehaviorSubject< canvasShape[]>(localShapes);
+    // localShapes = new BehaviorSubject< canvasShape[]>(localShapes);
+    localShapes = new BehaviorSubject< canvasShape[]>(null);
+    
     dashboardPermissions: dashboardPermission[] = dashboardPermissions;
     datasourcePermissions: datasourcePermission[] = datasourcePermissions;
     localTrash = new BehaviorSubject< canvasWidget[]>([]);
@@ -1992,7 +1925,10 @@ export class GlobalVariableService {
     currentMessage = this.messageSource.asObservable();
     menuCreateDisabled = new BehaviorSubject<boolean>(true);
 
-    constructor() { }
+    constructor(httpFake: httpFake) {
+        this.localShapes = new BehaviorSubject< canvasShape[]>(httpFake.getLocalShapes());
+        
+     }
 
     changeMessage(message: string) {
         console.log('changeMessage', message)
