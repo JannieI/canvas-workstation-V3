@@ -18,6 +18,9 @@ export class canvasShape {
     description: string;
     version: number;
 
+    // Data related - only for Textboxes
+    datasetID?: number;
+    
     // @Runtime
     isSelected: boolean;
 
