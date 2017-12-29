@@ -62,6 +62,18 @@
                             <input type="text" id="formFields_7" placeholder="The brown fox ...">
                         </div>
                         <div class="propertyLine">
+                            Data:
+                            <div class="select">
+                                <select id="selects_3"
+                                    (change)="clickSelectShape($event)"
+                                    >
+                                    <option>Budget</option>
+                                    <option>Sales</option>
+                                    <option>Testing</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="propertyLine">
                             Text Font:
                             <input type="text" id="formFields_7" placeholder="Font Size">
                             <input type="text" id="formFields_7" placeholder="Font Family">

@@ -6,7 +6,7 @@ This document describes items for later versions of Canvas.
 
 
 **Global / Overall issues / Settings**
-1. Include internasionalisation - different languages
+1. 
 2. Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
 3. Use style.css for standard items, ie class="helpMessage"
 4. Standardize date format shown - as selected by the user, stored as settings
@@ -18,7 +18,7 @@ This document describes items for later versions of Canvas.
 
 **UI / ideas**
 1. See where and how to use tooltips on buttons (ie HTML title="" or via Clarity)
-2. Try keyboard shortcuts via access-key.  If it works, make customisable
+2. 
 3. GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.
 4. Review whether as beautiful as Simplus
 5. Test on different configs: screen resolution, 2 screens
@@ -32,8 +32,8 @@ This document describes items for later versions of Canvas.
 3. Make sure terminology is consitent: Datasource -> Transform -> Dataset
 4. Do we store more than one version of a dataset - say one dated 'calced on .,/,,/,,' ?
    This could be useful for comparisons, or required in some cases.
-5. Add start-row-number (ala Fredd files)
-6. Can Transformations do Group By !?
+5. 
+6. 
 7. Combinations - needs proper design.  Union can be any number, picked from a list of
    existing Datasets.  Datasets added after the Union has been defined, has to be added
    manually.  Datasets can also be removed from the Union.  Can also delete a Union.
@@ -88,12 +88,12 @@ This document describes items for later versions of Canvas.
 15.Import: check security, particularly for the Datasource.  Also, is the access rights
    stored with the text file (security risk)?  Also, can / should it over-write an
    existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
-16.Fix bug: Recent Dashboard refreshes 1 cycly too late 
+16.Fix bug: Recent Dashboard refreshes 1 cycle too late 
 17.
 
 
 **Dashboard Tabs**
-4. Tab Description - maybe make this a tooltip as well.
+1. 
 
 
 **Templates**
@@ -174,6 +174,7 @@ This document describes items for later versions of Canvas.
 
 **General**
 1. Add cursor style and size on menu: needs a custome .png file, IE needs .cur ...
+2. Consider if Transformations can do Group By - for now it is either in the SQL, or Vega
 
 
 **Data**
