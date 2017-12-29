@@ -1804,6 +1804,7 @@ export class GlobalVariableService {
     isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
     isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
 
+    slicerHeader = new BehaviorSubject<string>('Filer: Make')
 
     presentation = new BehaviorSubject<boolean>(false);
     showGrid = new BehaviorSubject<boolean>(false);

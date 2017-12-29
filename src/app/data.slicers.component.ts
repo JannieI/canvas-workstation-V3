@@ -8,18 +8,13 @@ import { Output }                     from '@angular/core';
 import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
- 
+
 // Our models
 import { currentDatasource }          from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
-
-// Functions
-
-
-
 
 @Component({
     selector: 'data-slicers',
@@ -47,9 +42,12 @@ import { GlobalVariableService }      from './global-variable.service';
 
     }
 
-
   	clickClose(action: string) {
 	  	this.formDataSlicersClosed.emit(action);
         }
 
+    clickSave() {
+      this.globalVariableService.slicerHeader.next('Changed')
+	  	this.formDataSlicersClosed.emit('Saved');
+    }
   }

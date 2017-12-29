@@ -49,10 +49,12 @@ This document describes items for later versions of Canvas.
 3. Global var with userLoggedIn
 4. What and how is cached locally - and how refreshed
 5. Finalise group membership / roles
+6. Where system settings like Security Model ?
 
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc
+2. Add fields for Dashboard Properties to New / Edit !
 4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
    for March last year, or compare all to last year ... NB
 5. Also, easy way to jump to previous period:  loaded at start with data ??
@@ -72,8 +74,9 @@ This document describes items for later versions of Canvas.
    stored with the text file (security risk)?  Also, can / should it over-write an
    existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
 16.Fix bug: Recent Dashboard refreshes 1 cycle too late 
-17.
-
+17.Fix Bug: grid shows on top of widgets -> cannot click them
+18.StatusBar must not grow beyond screen width, or to double line
+19.Where are QA process and forms?
 
 **Dashboard Tabs**
 1. 
@@ -94,6 +97,7 @@ This document describes items for later versions of Canvas.
 
 **Widget**
 1. Issue: how to call code ~WidgetEdit, etc from explore NOT duplicating code ...
+2. Add fields for Widget Properties to New / Edit !
 3. Fix bug: isTrash => Widget does not disappear !
 5. Fix bug and Duplicate Widget correctly
 6. Fix bug: [style.border]="row.isSelected? '2px solid black' : '2px solid red'" does not work
@@ -109,7 +113,8 @@ This document describes items for later versions of Canvas.
 **Shapes**
 1. Fix bug: circle flickers when hover over menu
 2. Generate all shapes from data - not only circle which is static html at moment
-
+3. Add a DragHandle and Resize handle to popup menu.  This way it is simpler - just hover to make the buttons appear, drag and voila.  Similarly, consider removing the Drag and Resize handles from the Dashboard if this works.  
+4. Keep Select button on Shape - make red border like Dashboard + can group/ungroup + can move/align/etc together with Widgets.  Make this code DRY.
 
 
 **Presentation**

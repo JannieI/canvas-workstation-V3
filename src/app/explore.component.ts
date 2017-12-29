@@ -226,6 +226,7 @@ export class ExploreComponent {
     startY: number;
     showModalWidgetEditor: boolean = false;
     hasDatasources: boolean;
+    slicerHeader: string;
 
     constructor(
         private globalVariableService: GlobalVariableService,
@@ -325,7 +326,10 @@ export class ExploreComponent {
                         }
                     else {console.log('no refreshWW')}
             }
-        )
+        );
+        this.globalVariableService.slicerHeader.subscribe(
+            i => this.slicerHeader = i
+        );
     }
 
     ngAfterViewInit() {
