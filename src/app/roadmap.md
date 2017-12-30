@@ -34,9 +34,9 @@ This document describes items for later versions of Canvas.
 5. Combinations - needs proper design.  Union can be any number, picked from a list of
    existing Datasets.  Datasets added after the Union has been defined, has to be added
    manually.  Datasets can also be removed from the Union.  Can also delete a Union.
-8. Add Remove Dataset logic and UI.  When removing a Dataset, it validates that not used
+8. When removing a Dataset, it validates that not used
    in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all
-   resultsets stored for it must be removed as well.
+   resultsets stored for it must be removed as well, or not?
 9. Data Quality issues: add place to add detail values.  An overall statement can say all
    data has an issue, but a specific one must identify the column(s) and row(s) affected,
    thus given the IDs or key values.
