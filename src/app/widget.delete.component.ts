@@ -10,8 +10,8 @@ import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { currentDatasource }          from './models';
-import { canvasWidget }               from './models';
+import { CurrentDatasource }          from './models';
+import { CanvasWidget }               from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -34,8 +34,8 @@ export class WidgetDeleteComponent implements OnInit {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @ViewChild('myCanvas', {read: ElementRef}) myCanvas: ElementRef;  //Vega graph
 
-    localTrash: canvasWidget[];
-    localWidgets: canvasWidget[];
+    localTrash: CanvasWidget[];
+    localWidgets: CanvasWidget[];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,

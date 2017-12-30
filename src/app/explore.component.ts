@@ -21,11 +21,11 @@ import { ViewChildren }               from '@angular/core';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { canvasShape }                from './models'
-import { canvasWidget }               from './models'
-import { currentDatasource }          from './models'
-import { dashboard }                  from './models'
-import { datasource }                 from './models'
+import { CanvasShape }                from './models'
+import { CanvasWidget }               from './models'
+import { CurrentDatasource }          from './models'
+import { Dashboard }                  from './models'
+import { Datasource }                 from './models'
 
 // Vega, Vega-Lite
 import { compile }                    from 'vega-lite';
@@ -168,10 +168,10 @@ export class ExploreComponent {
     
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     localDashboards: dl.spec.TopLevelExtendedSpec[];
-    localShapes: canvasShape[];
-    localWidgets: canvasWidget[];
-    localTrash: canvasWidget[] = [];
-    currentDatasources: currentDatasource[];
+    localShapes: CanvasShape[];
+    localWidgets: CanvasWidget[];
+    localTrash: CanvasWidget[] = [];
+    currentDatasources: CurrentDatasource[];
     currentTabName: string = 'Summary';
     description: string = 'A simple bar chart with embedded data.';
     circleRadius: number = 20;
@@ -184,7 +184,7 @@ export class ExploreComponent {
         {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
         ];
     temp: number[] = [0];
-    dashboards: Partial<dashboard>[];
+    dashboards: Partial<Dashboard>[];
     editMode: boolean;
     graphType: string = 'BarChart';
     graphTypeFile: string = '../images/BarChart.png';

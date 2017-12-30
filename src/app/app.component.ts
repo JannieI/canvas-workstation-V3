@@ -19,9 +19,9 @@ import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService } 	  from './global-function.service';
 
 // Our Models
-import { field }                      from './models'
-import { canvasWidget }               from './models'
-import { currentDatasource }          from './models'
+import { Field }                      from './models'
+import { CanvasWidget }               from './models'
+import { CurrentDatasource }          from './models'
 
 @Component({
     selector: 'my-app',
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
     editMode: boolean;
     hasDatasources: boolean = false;
     editMenuText: string;
-    fields: field[];
+    fields: Field[];
     menuCreateDisabled: boolean;
     moveStartX: number;
     moveStartY: number;
@@ -105,9 +105,9 @@ export class AppComponent implements OnInit {
     showModalUserOffline: boolean = false;
     currentWidgetSpec: string = "{...}";
 
-    localTrash: canvasWidget[];
-    localWidgets: canvasWidget[];
-    currentDatasources: currentDatasource[];
+    localTrash: CanvasWidget[];
+    localWidgets: CanvasWidget[];
+    currentDatasources: CurrentDatasource[];
 
     // Testings ....
     test: number[] = [1,2,3,4,5,6];

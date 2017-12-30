@@ -10,7 +10,7 @@ import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { currentDatasource }          from './models';
+import { CurrentDatasource }          from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -872,7 +872,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     graphColor: string[];
 
     clickedButtonAggregateNo: boolean = false;
-    currentDatasources: currentDatasource[];
+    currentDatasources: CurrentDatasource[];
     dataFieldNames: string[];
 
     constructor(

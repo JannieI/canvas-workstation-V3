@@ -17,8 +17,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
-import { dashboardTemplate }          from './models';
+import { Dashboard }                  from './models';
+import { DashboardTemplate }          from './models';
 
 @Component({
     selector: 'dashboard-template',
@@ -31,8 +31,8 @@ export class DashboardTemplateComponent implements OnInit {
     @Output() formDashboardTemplateClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<dashboard>[];
-    dashboardTemplates: dashboardTemplate[];
+    dashboards: Partial<Dashboard>[];
+    dashboardTemplates: DashboardTemplate[];
    
 
 	constructor(

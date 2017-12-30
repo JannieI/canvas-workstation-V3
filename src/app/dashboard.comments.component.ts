@@ -17,8 +17,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
-import { canvasComment }              from './models';
+import { Dashboard }                  from './models';
+import { CanvasComment }              from './models';
 
 @Component({
     selector: 'dashboard-comments',
@@ -31,8 +31,8 @@ export class DashboardCommentsComponent implements OnInit {
     @Output() formDashboardCommentsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<dashboard>[];
-    canvasComments: canvasComment[];
+    dashboards: Partial<Dashboard>[];
+    canvasComments: CanvasComment[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

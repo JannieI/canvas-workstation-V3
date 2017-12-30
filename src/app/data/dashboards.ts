@@ -1,7 +1,7 @@
 // Temporary service to define all data
-import { canvasShape }                from '../models';
+import { CanvasShape }                from '../models';
 
-const localShapes: canvasShape[] =
+const localShapes: CanvasShape[] =
 [
     {
 
@@ -75,7 +75,7 @@ const localShapes: canvasShape[] =
 ]
 
 export class httpFake {
-    localShapes: canvasShape[] = localShapes;
+    localShapes: CanvasShape[] = localShapes;
 
     getProperties() {
         // TODO - Make this work correctly 

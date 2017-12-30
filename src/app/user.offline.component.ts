@@ -17,7 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
+import { Dashboard }                  from './models';
 
 const selectDashboards: any = [
     { 
@@ -38,7 +38,7 @@ export class UserOfflineComponent implements OnInit {
     @Output() formUserOfflineClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<dashboard>[];
+    dashboards: Partial<Dashboard>[];
     selectDashboards: any = selectDashboards;
 
 

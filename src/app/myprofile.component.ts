@@ -17,7 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
+import { Dashboard }                  from './models';
 
 @Component({
     selector: 'myprofile',
@@ -30,7 +30,7 @@ export class MyProfileComponent implements OnInit {
     @Output() formDashboardMyProfileClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: Partial<dashboard>[];
+    dashboards: Partial<Dashboard>[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

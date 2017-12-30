@@ -17,10 +17,10 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
-import { dashboardTag }               from './models';
-import { buttonBarAvailable}          from './models'
-import { buttonBarSelected }          from './models';
+import { Dashboard }                  from './models';
+import { DashboardTag }               from './models';
+import { ButtonBarAvailable}          from './models'
+import { ButtonBarSelected }          from './models';
 
 @Component({
     selector: 'shape-buttonbar',
@@ -33,10 +33,10 @@ export class UserShapeButtonBarComponent implements OnInit {
     @Output() formUserShapeButtonBarClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: Partial<dashboard>[];
-    dashboardTags: dashboardTag[];
-    shapeButtonsAvailable: buttonBarAvailable[];
-    shapeButtonsSelected: buttonBarSelected[];
+    dashboards: Partial<Dashboard>[];
+    dashboardTags: DashboardTag[];
+    shapeButtonsAvailable: ButtonBarAvailable[];
+    shapeButtonsSelected: ButtonBarSelected[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -57,7 +57,7 @@ export class UserShapeButtonBarComponent implements OnInit {
     }
 
     clickAdd() {
-        let x: buttonBarSelected = {
+        let x: ButtonBarSelected = {
             id: 12,
             buttonText: 'new one Added',
             description: '',

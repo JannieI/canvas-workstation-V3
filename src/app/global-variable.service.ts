@@ -3,31 +3,31 @@ import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
 
 // Our Models
-import { currentDatasource }          from './models';
-import { currentTransformation }      from './models';
-import { dashboard }                  from './models';
-import { datasource }                 from './models';
+import { CurrentDatasource }          from './models';
+import { CurrentTransformation }      from './models';
+import { Dashboard }                  from './models';
+import { Datasource }                 from './models';
 import { CSScolor }                   from './models';
-import { transformation }             from './models';
-import { field }                      from './models';
-import { dashboardSnapshot }          from './models';
-import { fieldMetadata }              from './models';
-import { dashboardTag }               from './models';
-import { dashboardTheme }             from './models';
-import { dashboardTemplate }          from './models';
-import { dashboardSchedule }          from './models';
-import { dashboardPermission }        from './models';
-import { dataQualityIssue}            from './models'
-import { datasourceFilter}            from './models'
-import { datasourcePermission}        from './models'
-import { buttonBarAvailable}          from './models'
-import { buttonBarSelected }          from './models';
-import { canvasComment }              from './models';
-import { canvasAlert }                from './models';
-import { canvasMessage }              from './models';
-import { canvasActivity }             from './models';
-import { canvasWidget }               from './models';
-import { canvasShape }                from './models';
+import { Transformation }             from './models';
+import { Field }                      from './models';
+import { DashboardSnapshot }          from './models';
+import { FieldMetadata }              from './models';
+import { DashboardTag }               from './models';
+import { DashboardTheme }             from './models';
+import { DashboardTemplate }          from './models';
+import { DashboardSchedule }          from './models';
+import { DashboardPermission }        from './models';
+import { DataQualityIssue}            from './models'
+import { DatasourceFilter}            from './models'
+import { DatasourcePermission}        from './models'
+import { ButtonBarAvailable}          from './models'
+import { ButtonBarSelected }          from './models';
+import { CanvasComment }              from './models';
+import { CanvasAlert }                from './models';
+import { CanvasMessage }              from './models';
+import { CanvasActivity }             from './models';
+import { CanvasWidget }               from './models';
+import { CanvasShape }                from './models';
 import { Combination }                from './models';
 import { CombinationDetail }          from './models';
 
@@ -58,7 +58,7 @@ const combinationDetails: CombinationDetail[] =
     }
 ];
 
-const datasourcePermissions: datasourcePermission[] =
+const datasourcePermissions: DatasourcePermission[] =
 [
     {
         id: 1,
@@ -86,7 +86,7 @@ const datasourcePermissions: datasourcePermission[] =
     }
 ];
 
-const dashboardPermissions: dashboardPermission[] =
+const dashboardPermissions: DashboardPermission[] =
 [
     {
         id: 1,
@@ -114,7 +114,7 @@ const dashboardPermissions: dashboardPermission[] =
     }
 ];
 
-const localWidgets: canvasWidget[] =
+const localWidgets: CanvasWidget[] =
 [
     {
         isTrashed: false,
@@ -394,7 +394,7 @@ const localWidgets: canvasWidget[] =
     }
 ];
 
-const localWidgets1: canvasWidget =
+const localWidgets1: CanvasWidget =
     {
         isTrashed: false,
         dashboardID: 4,
@@ -484,7 +484,7 @@ const localWidgets1: canvasWidget =
         widgetUpdatedBy: '',
     };
 
-const canvasMessages: canvasMessage[] =
+const canvasMessages: CanvasMessage[] =
 [
     {
         id: 1,
@@ -525,7 +525,7 @@ const canvasMessages: canvasMessage[] =
 ];
 
 // Constants - to be replaced with DB access
-const  canvasActivities: canvasActivity[] =
+const  canvasActivities: CanvasActivity[] =
 [
     {
         id: 1,
@@ -539,7 +539,7 @@ const  canvasActivities: canvasActivity[] =
     }
 ];
 
-const canvasAlerts: canvasAlert[] =
+const canvasAlerts: CanvasAlert[] =
 [
     {
         id: 1,
@@ -571,7 +571,7 @@ const canvasAlerts: canvasAlert[] =
     }
 ];
 
-const canvasComments: canvasComment[] =
+const canvasComments: CanvasComment[] =
 [
     {
         id: 1,
@@ -582,7 +582,7 @@ const canvasComments: canvasComment[] =
         createdOn: '2017/01/01'
     }
 ]
-const shapeButtonsAvailable: buttonBarAvailable[] =
+const shapeButtonsAvailable: ButtonBarAvailable[] =
 [
     {
         id: 1,
@@ -642,7 +642,7 @@ const shapeButtonsAvailable: buttonBarAvailable[] =
     }
 ]
 
-const shapeButtonsSelected: buttonBarSelected[] =
+const shapeButtonsSelected: ButtonBarSelected[] =
 [
     {
         id: 1,
@@ -652,7 +652,7 @@ const shapeButtonsSelected: buttonBarSelected[] =
     }
 ]
 
-const widgetButtonsAvailable: buttonBarAvailable[] =
+const widgetButtonsAvailable: ButtonBarAvailable[] =
 [
     {
         id: 1,
@@ -768,7 +768,7 @@ const widgetButtonsAvailable: buttonBarAvailable[] =
     }
 ]
 
-const widgetButtonsSelected: buttonBarSelected[] =
+const widgetButtonsSelected: ButtonBarSelected[] =
 [
     {
         id: 1,
@@ -816,7 +816,7 @@ const localDashboards: dl.spec.TopLevelExtendedSpec[] =
     }
 ];
 
-const datasourceFilters: datasourceFilter[] =
+const datasourceFilters: DatasourceFilter[] =
 [
     {
         id: 1,
@@ -832,7 +832,7 @@ const datasourceFilters: datasourceFilter[] =
     }
 ]
 
-const dataQualityIssues: dataQualityIssue[] =
+const dataQualityIssues: DataQualityIssue[] =
 [
     {
         id: 1,
@@ -860,7 +860,7 @@ const dataQualityIssues: dataQualityIssue[] =
     }
 ]
 
-const dashboardSchedules: dashboardSchedule[] =
+const dashboardSchedules: DashboardSchedule[] =
 [
     {
         id: 1,
@@ -934,7 +934,7 @@ const dashboardSchedules: dashboardSchedule[] =
     }
 ];
 
-const dashboardThemes: dashboardTheme[] =
+const dashboardThemes: DashboardTheme[] =
 [
     {
         id: 1,
@@ -943,7 +943,7 @@ const dashboardThemes: dashboardTheme[] =
     }
 ]
 
-const dashboardTemplates: dashboardTemplate[] =
+const dashboardTemplates: DashboardTemplate[] =
 [
     {
         id: 1,
@@ -952,7 +952,7 @@ const dashboardTemplates: dashboardTemplate[] =
     }
 ]
 
-const dashboardTags: dashboardTag[] =
+const dashboardTags: DashboardTag[] =
 [
     {
         id: 1,
@@ -971,7 +971,7 @@ const dashboardTags: dashboardTag[] =
     }
 ];
 
-const snapshots: dashboardSnapshot[] =
+const snapshots: DashboardSnapshot[] =
 [
     {
         id: 1,
@@ -987,7 +987,7 @@ const snapshots: dashboardSnapshot[] =
     }
 ]
 
-const dashboards: Partial<dashboard>[] =
+const dashboards: Partial<Dashboard>[] =
 [
     {
         id: 1,
@@ -1059,7 +1059,7 @@ const backgroundcolors: CSScolor[] =
     }
 ];
 
-const currentDatasources: currentDatasource [] =
+const currentDatasources: CurrentDatasource [] =
 [
     {
         id: 1,
@@ -1074,7 +1074,7 @@ const currentDatasources: currentDatasource [] =
     }
 ];
 
-const datasources: currentDatasource [] =
+const datasources: CurrentDatasource [] =
 [
     {
         id: 1,
@@ -1286,7 +1286,7 @@ const datasources: currentDatasource [] =
 
 ];
 
-const fields: field[] =
+const fields: Field[] =
 [
     {
         id: 1,
@@ -1326,7 +1326,7 @@ const fields: field[] =
     }
 ];
 
-const fieldsMetadata: fieldMetadata[] =
+const fieldsMetadata: FieldMetadata[] =
 [
     {
         name: 'DateTrade',
@@ -1514,7 +1514,7 @@ const fieldsMetadata: fieldMetadata[] =
     // ];
 // End of list
 
-const transformationsFormat: transformation[] =
+const transformationsFormat: Transformation[] =
 [
     {
         id: 1,
@@ -1536,7 +1536,7 @@ const transformationsFormat: transformation[] =
     }
 ];
 
-const currentTransformations: currentTransformation[] =
+const currentTransformations: CurrentTransformation[] =
 [
     {
         id: 1,
@@ -1549,7 +1549,7 @@ const currentTransformations: currentTransformation[] =
     }
 ]
 
-const transformationsFill: transformation[] =
+const transformationsFill: Transformation[] =
 [
     {
         id: 2,
@@ -1571,7 +1571,7 @@ const transformationsFill: transformation[] =
     }
 ];
 
-const transformationsGeo: transformation[] =
+const transformationsGeo: Transformation[] =
 [
     {
         id: 21,
@@ -1587,7 +1587,7 @@ const transformationsGeo: transformation[] =
     }
 ];
 
-const transformationsReplace: transformation[] =
+const transformationsReplace: Transformation[] =
 [
     {
         id: 5,
@@ -1603,7 +1603,7 @@ const transformationsReplace: transformation[] =
     }
 ];
 
-const transformationsAddColumn: transformation[] =
+const transformationsAddColumn: Transformation[] =
 [
     {
         id: 7,
@@ -1625,7 +1625,7 @@ const transformationsAddColumn: transformation[] =
     }
 ];
 
-const transformationsTrim: transformation[] =
+const transformationsTrim: Transformation[] =
 [
     {
         id: 12,
@@ -1647,7 +1647,7 @@ const transformationsTrim: transformation[] =
     }
 ];
 
-const transformationsPortion: transformation[] =
+const transformationsPortion: Transformation[] =
 [
     {
         id: 11,
@@ -1675,7 +1675,7 @@ const transformationsPortion: transformation[] =
     },
 ];
 
-const dataServer: datasource[] =
+const dataServer: Datasource[] =
 [
     {
         id: 1,
@@ -1733,7 +1733,7 @@ const dataServer: datasource[] =
     }
 ];
 
-const dataRecent: datasource[] =
+const dataRecent: Datasource[] =
 [
     {
         id: 1,
@@ -1749,7 +1749,7 @@ const dataRecent: datasource[] =
     }
 ];
 
-const dataSample: datasource[] =
+const dataSample: Datasource[] =
 [
     {
         id: 1,
@@ -1773,48 +1773,48 @@ const dataSample: datasource[] =
 
 @Injectable()
 export class GlobalVariableService {
-    dashboardTags: dashboardTag[] = dashboardTags;
+    dashboardTags: DashboardTag[] = dashboardTags;
     dataGetFromSwitch = new BehaviorSubject<string>('File');
-    snapshots: dashboardSnapshot[] = snapshots;
-    dashboards: Partial<dashboard>[] = dashboards;
-    currentTransformations: currentTransformation[] = currentTransformations;
+    snapshots: DashboardSnapshot[] = snapshots;
+    dashboards: Partial<Dashboard>[] = dashboards;
+    currentTransformations: CurrentTransformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;
-    currentDatasources = new BehaviorSubject<currentDatasource[]>(currentDatasources);
-    datasources: currentDatasource[] = datasources;
-    dataQualityIssues: dataQualityIssue[] = dataQualityIssues;
+    currentDatasources = new BehaviorSubject<CurrentDatasource[]>(currentDatasources);
+    datasources: CurrentDatasource[] = datasources;
+    dataQualityIssues: DataQualityIssue[] = dataQualityIssues;
     localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     // localDashboards = new BehaviorSubject<dl.spec.TopLevelExtendedSpec[]>(localDashboards);
-    datasourceFilters: datasourceFilter[] = datasourceFilters;
-    transformationsFormat: transformation[] = transformationsFormat;
-    fields: field[] = fields;
-    fieldsMetadata: fieldMetadata[] = fieldsMetadata;
-    dataServer: datasource[] = dataServer;
-    dataRecent: datasource[] = dataRecent;
-    dataSample: datasource[] = dataSample;
-    dashboardThemes: dashboardTheme[] = dashboardThemes;
-    dashboardTemplates: dashboardTemplate[] = dashboardTemplates;
-    dashboardSchedules: dashboardSchedule[] = dashboardSchedules;
+    datasourceFilters: DatasourceFilter[] = datasourceFilters;
+    transformationsFormat: Transformation[] = transformationsFormat;
+    fields: Field[] = fields;
+    fieldsMetadata: FieldMetadata[] = fieldsMetadata;
+    dataServer: Datasource[] = dataServer;
+    dataRecent: Datasource[] = dataRecent;
+    dataSample: Datasource[] = dataSample;
+    dashboardThemes: DashboardTheme[] = dashboardThemes;
+    dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
+    dashboardSchedules: DashboardSchedule[] = dashboardSchedules;
     duplicateDashboard = new BehaviorSubject<boolean>(false);
     refreshDashboard = new BehaviorSubject<boolean>(false);
     editMode = new BehaviorSubject<boolean>(false);
-    shapeButtonsAvailable: buttonBarAvailable[] = shapeButtonsAvailable;
-    canvasComments: canvasComment[] = canvasComments;
-    shapeButtonsSelected: buttonBarSelected[] = shapeButtonsSelected;
+    shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
+    canvasComments: CanvasComment[] = canvasComments;
+    shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
     statusBarRunning = new BehaviorSubject<string>('No Query running');
     statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
     statusBarMessages = new BehaviorSubject<string>('1 Message');
-    widgetButtonsAvailable: buttonBarAvailable[] = widgetButtonsAvailable;
-    widgetButtonsSelected: buttonBarSelected[] = widgetButtonsSelected;
-    canvasMessages: canvasMessage[] =  canvasMessages;
-    localWidgets = new BehaviorSubject< canvasWidget[]>(localWidgets);
+    widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
+    widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
+    canvasMessages: CanvasMessage[] =  canvasMessages;
+    localWidgets = new BehaviorSubject< CanvasWidget[]>(localWidgets);
     // localShapes = new BehaviorSubject< canvasShape[]>(localShapes);
-    localShapes = new BehaviorSubject< canvasShape[]>(null);
+    localShapes = new BehaviorSubject< CanvasShape[]>(null);
     
-    dashboardPermissions: dashboardPermission[] = dashboardPermissions;
-    datasourcePermissions: datasourcePermission[] = datasourcePermissions;
-    localTrash = new BehaviorSubject< canvasWidget[]>([]);
-    canvasActivities: canvasActivity[] = canvasActivities;
-    canvasAlerts: canvasAlert[] = canvasAlerts;
+    dashboardPermissions: DashboardPermission[] = dashboardPermissions;
+    datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
+    localTrash = new BehaviorSubject< CanvasWidget[]>([]);
+    canvasActivities: CanvasActivity[] = canvasActivities;
+    canvasAlerts: CanvasAlert[] = canvasAlerts;
 
     showModalLanding: boolean = false;  // Shows Landing page
     showMainMenu = new BehaviorSubject<boolean>(true);
@@ -1949,7 +1949,7 @@ export class GlobalVariableService {
     menuCreateDisabled = new BehaviorSubject<boolean>(true);
 
     constructor(httpFake: httpFake) {
-        this.localShapes = new BehaviorSubject< canvasShape[]>(httpFake.getLocalShapes());
+        this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
         
      }
 
@@ -1971,9 +1971,9 @@ export class GlobalVariableService {
         })))
     }
 
-    currentDatasourceAdd(newData: currentDatasource) {
+    currentDatasourceAdd(newData: CurrentDatasource) {
 
-        let arr: currentDatasource[] = this.currentDatasources.value;
+        let arr: CurrentDatasource[] = this.currentDatasources.value;
         arr.push(newData);
         console.log('arr', arr)
         this.currentDatasources.next(arr)
@@ -1982,7 +1982,7 @@ export class GlobalVariableService {
 
     dashboardRecent() {
 
-        let arr: canvasWidget[] = this.localWidgets.value;
+        let arr: CanvasWidget[] = this.localWidgets.value;
         arr.push(localWidgets1);
         console.log('arr', arr);
         this.localWidgets.next(arr);
@@ -1992,7 +1992,7 @@ export class GlobalVariableService {
 
     dashboardDelete(index: number) {
         console.log('dashboardDelete', index)
-        let arr: canvasWidget[] = this.localWidgets.value.filter(
+        let arr: CanvasWidget[] = this.localWidgets.value.filter(
             i => { 
                     if (i.id == index) { i.isTrashed = true}
                 }

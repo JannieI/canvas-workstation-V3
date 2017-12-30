@@ -17,7 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { datasourcePermission }       from './models';
+import { DatasourcePermission }       from './models';
 
 @Component({
     selector: 'data-share',
@@ -30,7 +30,7 @@ export class DatasourceShareComponent implements OnInit {
     @Output() formDataShareClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDatasource: boolean = false;
-    datasourcePermissions: datasourcePermission[];
+    datasourcePermissions: DatasourcePermission[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

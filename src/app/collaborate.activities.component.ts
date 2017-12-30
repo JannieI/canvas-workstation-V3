@@ -17,8 +17,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
-import { canvasActivity }             from './models';
+import { Dashboard }                  from './models';
+import { CanvasActivity }             from './models';
 
 @Component({
     selector: 'collaborate-activities',
@@ -31,8 +31,8 @@ export class CollaborateActivitiesComponent implements OnInit {
     @Output() formCollaborateActivitiesClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<dashboard>[];
-    canvasActivities: canvasActivity[];
+    dashboards: Partial<Dashboard>[];
+    canvasActivities: CanvasActivity[];
    
 
 	constructor(

@@ -18,13 +18,13 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { currentDatasource }          from './models';
-import { transformation }             from './models';
-import { field }                      from './models';
-import { fieldMetadata }              from './models';
-import { currentTransformation }      from './models';
-import { dataQualityIssue }           from './models';
-import { datasourceFilter}            from './models'
+import { CurrentDatasource }          from './models';
+import { Transformation }             from './models';
+import { Field }                      from './models';
+import { FieldMetadata }              from './models';
+import { CurrentTransformation }      from './models';
+import { DataQualityIssue }           from './models';
+import { DatasourceFilter}            from './models'
 
 // Vega
 import * as dl from 'datalib';
@@ -81,8 +81,8 @@ export class DataPopupComponent implements OnInit {
     @ViewChild('typeTransformationDropdown') typeTransformationDropdown: ElementRef;
     @ViewChild('transformations') transformations: ElementRef;
 
-    currentDatasources: currentDatasource[];
-    datasources: currentDatasource[];
+    currentDatasources: CurrentDatasource[];
+    datasources: CurrentDatasource[];
 
     finalFields: any = finalFields;
     currentData: any = [];
@@ -91,9 +91,9 @@ export class DataPopupComponent implements OnInit {
     dataFieldTypes: string[] = [];
     dataUniqueInColumn: string[] = [];
     pageSize: number = 4;
-    dataQualityIssues: dataQualityIssue[];
-    datasourceFilters: datasourceFilter[];
-    currentTransformations: currentTransformation[];
+    dataQualityIssues: DataQualityIssue[];
+    datasourceFilters: DatasourceFilter[];
+    currentTransformations: CurrentTransformation[];
     currentDataset: string = '';
     draggedField: string = '';
     fileName: string = 'stocks.csv';
@@ -136,8 +136,8 @@ export class DataPopupComponent implements OnInit {
         ]
 
     errorMessage: string = "";
-    fields: field[];
-    fieldsMetadata: fieldMetadata[];
+    fields: Field[];
+    fieldsMetadata: FieldMetadata[];
     isFirstTimeData: boolean;
     selectorDetailColumnEnd: string = '12';
     selectedFile: boolean = true;
@@ -149,7 +149,7 @@ export class DataPopupComponent implements OnInit {
     showPivot: boolean = false;
     showView: boolean = false;
     showSelectField: boolean = false;
-    transformationsFormat: transformation[];
+    transformationsFormat: Transformation[];
     showTransformDetail: boolean = false;
     transformationDescription: string = '';
     selectedExistingDS: boolean = false;
@@ -229,7 +229,7 @@ export class DataPopupComponent implements OnInit {
     clickFileAdd(action: string) {
         // Datasource
         console.log('DATASOURCE start:')
-        let newData: currentDatasource =  {
+        let newData: CurrentDatasource =  {
             id: 1,
             type: 'CSV File',
             name: 'Stocks Numba2.csv',
@@ -361,7 +361,7 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickFileAddTransformation() {
-        let newTransformation: currentTransformation = {
+        let newTransformation: CurrentTransformation = {
             id: 2,
             category: 'Format',
             name: 'Format Date',

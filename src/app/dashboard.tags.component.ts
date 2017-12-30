@@ -17,8 +17,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
-import { dashboardTag }               from './models';
+import { Dashboard }                  from './models';
+import { DashboardTag }               from './models';
 
 @Component({
     selector: 'dashboard-tags',
@@ -31,8 +31,8 @@ export class DashboardTagsComponent implements OnInit {
     @Output() formDashboardTagsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: Partial<dashboard>[];
-    dashboardTags: dashboardTag[];
+    dashboards: Partial<Dashboard>[];
+    dashboardTags: DashboardTag[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

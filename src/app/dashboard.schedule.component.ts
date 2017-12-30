@@ -17,8 +17,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
-import { dashboardSchedule }          from './models';
+import { Dashboard }                  from './models';
+import { DashboardSchedule }          from './models';
 
 @Component({
     selector: 'dashboard-schedule',
@@ -31,8 +31,8 @@ export class DashboardScheduleComponent implements OnInit {
     @Output() formDashboardScheduleClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<dashboard>[];
-    dashboardSchedules: dashboardSchedule[];
+    dashboards: Partial<Dashboard>[];
+    dashboardSchedules: DashboardSchedule[];
    
 
 	constructor(

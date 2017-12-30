@@ -17,8 +17,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
-import { dashboardSnapshot }                 from './models';
+import { Dashboard }                  from './models';
+import { DashboardSnapshot }                 from './models';
 
 @Component({
     selector: 'dashboard-subscribe',
@@ -31,7 +31,7 @@ export class DashboardSubscribeComponent implements OnInit {
     @Output() formDashboardSubscribeClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<dashboard>[];
+    dashboards: Partial<Dashboard>[];
     subscriptions = [
         {
             view: true,

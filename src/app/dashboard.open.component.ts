@@ -17,7 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
+import { Dashboard }                  from './models';
 
 @Component({
     selector: 'dashboard-open',
@@ -30,7 +30,7 @@ export class DashboardOpenComponent implements OnInit {
     @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: Partial<dashboard>[];
+    dashboards: Partial<Dashboard>[];
     isFirstTimeDashboardOpen: boolean;
     showAdvancedFilters: boolean = false;
     

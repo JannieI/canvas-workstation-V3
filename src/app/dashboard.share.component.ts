@@ -17,8 +17,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
-import { dashboardPermission }        from './models';
+import { Dashboard }                  from './models';
+import { DashboardPermission }        from './models';
 
 @Component({
     selector: 'dashboard-share',
@@ -31,8 +31,8 @@ export class DashboardShareComponent implements OnInit {
     @Output() formDashboardShareClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<dashboard>[];
-    dashboardPermissions: dashboardPermission[];
+    dashboards: Partial<Dashboard>[];
+    dashboardPermissions: DashboardPermission[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

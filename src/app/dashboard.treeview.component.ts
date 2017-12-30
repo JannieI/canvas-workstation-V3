@@ -17,8 +17,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
-import { dashboardSnapshot }          from './models';
+import { Dashboard }                  from './models';
+import { DashboardSnapshot }          from './models';
 
 // Data
 import { httpFake }                   from './data/dashboards'
@@ -34,7 +34,7 @@ export class DashboardTreeviewComponent implements OnInit {
     @Output() formDashboardTreeviewClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<dashboard>[];
+    dashboards: Partial<Dashboard>[];
 
     rootDirectory: any[] = [
         {

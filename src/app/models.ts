@@ -14,7 +14,7 @@ export class CombinationDetail {
     rhFieldName: string;
 }
 
-export class canvasShape {
+export class CanvasShape {
 
     // Type
     shapeType: string;
@@ -88,7 +88,7 @@ export class canvasShape {
 
 }
 
-export class canvasComment {
+export class CanvasComment {
     id: number;
     dashboardID: number;
     widgetID: number;
@@ -97,7 +97,7 @@ export class canvasComment {
     createdOn: string;
 }
 
-export class canvasWidget {
+export class CanvasWidget {
 
     // Trashed
     isTrashed: boolean;
@@ -202,7 +202,7 @@ export class canvasWidget {
 
 }
 
-export class canvasActivity {
+export class CanvasActivity {
     id: number;
     createdBy: string;
     createdOn: string;
@@ -213,7 +213,7 @@ export class canvasActivity {
     activityComments: string[];
 }
 
-export class canvasMessage {
+export class CanvasMessage {
     id: number;
     sentBy: string;
     sentOn: string;
@@ -226,7 +226,7 @@ export class canvasMessage {
     dashboardID: number;
 }
 
-export class canvasAlert {
+export class CanvasAlert {
     id: number;
     sentOn: string;
     recipient: string;
@@ -235,7 +235,7 @@ export class canvasAlert {
     alertData?: any;    //type of data, table name, field names, field values
 }
 
-export class widgetLinkedDashboard {
+export class WidgetLinkedDashboard {
     id: number;
     sourceDashboardID: number;
     sourceWidgetID: number;
@@ -243,7 +243,7 @@ export class widgetLinkedDashboard {
     destinationWidgetID: number;
 }
 
-export class buttonBarAvailable {
+export class ButtonBarAvailable {
     id: number;
     buttonText: string;
     description: string;
@@ -251,21 +251,21 @@ export class buttonBarAvailable {
     isDefault: boolean;
 }
 
-export class buttonBarSelected {
+export class ButtonBarSelected {
     id: number;
     buttonText: string;
     description: string;
     sortOrder: number;
 }
 
-export class datasourceFilter {
+export class DatasourceFilter {
     id: number;
     fieldName: string;
     operator: string;
     filterValue: string | number;
 }
 
-export class dataQualityIssue {
+export class DataQualityIssue {
     id: number;
     status: string;
     name: string;
@@ -278,14 +278,14 @@ export class dataQualityIssue {
     solvedOn: string;
 }
 
-export class datasource {
+export class Datasource {
     id: number;
     name: string;
     type: string;
     description;
 }
 
-export class currentDatasource {
+export class CurrentDatasource {
     id: number;
     type: string;
     name: string;
@@ -297,7 +297,7 @@ export class currentDatasource {
     parameters: string;
 }
 
-export class datasourcePermission {
+export class DatasourcePermission {
     id: number;
     datasourceID: number;
     userID: string;        // 1 of usr/grp filled in, one blank
@@ -307,7 +307,7 @@ export class datasourcePermission {
 }
 
 // Dashboard
-export class dashboard {
+export class Dashboard {
 
     // Identification and description
     id: number;
@@ -349,32 +349,32 @@ export class dashboard {
     permissions: string[];
 }
 
-export class dashboardTag {
+export class DashboardTag {
     id: number;
     dashboardID: number;
     tag: string;
 }
 
-export class dashboardTemplate {
+export class DashboardTemplate {
     id: number;
     name: string;
     description: string;
 }
 
-export class dashboardTheme {
+export class DashboardTheme {
     id: number;
     name: string;
     description: string;
 }
 
-export class dashboardSnapshot {
+export class DashboardSnapshot {
     id: number;
     dashboardID: number;
     name: string;
     comment: string;
 }
 
-export class dashboardSchedule {
+export class DashboardSchedule {
     id: number;
     dashboardID: number;
     name: string;
@@ -389,7 +389,7 @@ export class dashboardSchedule {
     EndsOn: string;        // Date
 }
 
-export class dashboardPermission {
+export class DashboardPermission {
     id: number;
     dashboardID: number;
     userID: string;        // 1 of usr/grp filled in, one blank
@@ -403,14 +403,14 @@ export class CSScolor {
     name: string;
 }
 
-export class transformation {
+export class Transformation {
     id: number;
     category: string;
     name: string;
     description: string;
 }
 
-export class currentTransformation {
+export class CurrentTransformation {
     id: number;
     category: string;
     name: string;
@@ -420,7 +420,7 @@ export class currentTransformation {
     parameters: string;
 }
 
-export class field {
+export class Field {
     id: number;
     name: string;
     type: string;
@@ -430,7 +430,7 @@ export class field {
     order: string;
 }
 
-export class fieldMetadata{
+export class FieldMetadata{
     name: string;
     type: string;
     description: string;

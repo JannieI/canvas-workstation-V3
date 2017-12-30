@@ -17,10 +17,10 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { dashboard }                  from './models';
-import { dashboardTag }               from './models';
-import { buttonBarAvailable}          from './models'
-import { buttonBarSelected }          from './models';
+import { Dashboard }                  from './models';
+import { DashboardTag }               from './models';
+import { ButtonBarAvailable}          from './models'
+import { ButtonBarSelected }          from './models';
 import { WidgetCheckpointsComponent } from 'app/widget.checkpoints.component';
 
 @Component({
@@ -34,10 +34,10 @@ export class UserWidgetButtonBarComponent implements OnInit {
     @Output() formUserWidgetButtonBarClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
-    dashboards: Partial<dashboard>[];
-    dashboardTags: dashboardTag[];
-    widgetButtonsAvailable: buttonBarAvailable[];
-    widgetButtonsSelected: buttonBarSelected[];
+    dashboards: Partial<Dashboard>[];
+    dashboardTags: DashboardTag[];
+    widgetButtonsAvailable: ButtonBarAvailable[];
+    widgetButtonsSelected: ButtonBarSelected[];
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -57,7 +57,7 @@ export class UserWidgetButtonBarComponent implements OnInit {
     }
 
     clickAdd() {
-        let x: buttonBarSelected = {
+        let x: ButtonBarSelected = {
             id: 12,
             buttonText: 'new one Added',
             description: '',
