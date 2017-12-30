@@ -31,9 +31,7 @@ This document describes items for later versions of Canvas.
 2. Is heading 'Existing Dataset' = ... DataSOURCES ?
 3. Make sure terminology is consitent: Datasource -> Transform -> Dataset
 4. 
-5. Combinations - needs proper design.  Union can be any number, picked from a list of
-   existing Datasets.  Datasets added after the Union has been defined, has to be added
-   manually.  Datasets can also be removed from the Union.  Can also delete a Union.
+5. 
 8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or not?
 9. Data Quality issues: add place to add detail values.  An overall statement can say all data has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
 11.Determine which transformations live on server and which on client, and whether some/all

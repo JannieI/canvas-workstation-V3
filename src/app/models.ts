@@ -321,7 +321,7 @@ export class Dashboard {
     password: string;
     refreshMode: string;
     refreshTimer: number;
-    defaultTabID;
+    defaultTabID: number;
     defaultExportFileType: string;
     url: string;
     qaRequired: boolean;
