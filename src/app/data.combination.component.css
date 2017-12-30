@@ -43,24 +43,36 @@ p {
     .gridFieldLH {
         grid-column-start: 1;
         grid-column-end: 11;
-        grid-row-start: 7;
-        grid-row-end: 11;
+        grid-row-start: 6;
+        grid-row-end: 10;
     }
     .gridFieldRH {
         grid-column-start: 11;
         grid-column-end: 21;
-        grid-row-start: 7;
-        grid-row-end: 11;
+        grid-row-start: 6;
+        grid-row-end: 10;
     }
     .gridFieldFooter {
         grid-column-start: 1;
         grid-column-end: 21;
-        grid-row-start: 13;
-        grid-row-end: 14;
+        grid-row-start: 10;
+        grid-row-end: 11;
     }
     .gridFieldTable {
+        border: 1px solid gray;
         grid-column-start: 1;
         grid-column-end: 21;
-        grid-row-start: 14;
+        grid-row-start: 12;
         grid-row-end: 21;
+        height: 7rem;
+        padding: 10px;
+        overflow: auto;
+        width: 100%;
     }
+
+.buttonSave {
+    grid-column-start: 19;
+    grid-column-end: 21;
+    grid-row-start: 9;
+    grid-row-end: 10;
+}

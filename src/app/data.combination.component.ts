@@ -70,7 +70,7 @@ export class DataCombinationComponent implements OnInit {
         if (ev.target.value == 'Join') { this.selectedJoin = true };
     }
 
-    clickSaveFile() {
+    clickSave() {
     }
 
     clickGotIt() {
