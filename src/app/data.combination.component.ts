@@ -35,6 +35,10 @@ export class DataCombinationComponent implements OnInit {
     showTeam: boolean = false;
     showQArequired: boolean = false;
     dashboards: Partial<dashboard>[];
+    selectedUnion: boolean = true;
+    selectedIntersect: boolean = false;
+    selectedMinus: boolean = false;
+    selectedJoin: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -54,23 +58,12 @@ export class DataCombinationComponent implements OnInit {
 		this.formDataCombinationClosed.emit(action);
     }
 
-    clickSecurityMode(mode: any) {
-        console.log('mode', mode.srcElement.value)
-        if (mode.srcElement.value == 'No Security') {
-            this.showNoSecurity = true;
-            this.showTeam = false;
-            this.showQArequired = false;
-        }
-        if (mode.srcElement.value == 'Team') {
-            this.showNoSecurity = false;
-            this.showTeam = true;
-            this.showQArequired = false;
-        }
-        if (mode.srcElement.value == 'QA required') {
-            this.showNoSecurity = false;
-            this.showTeam = false;
-            this.showQArequired = true;
-        }
+    clickSelectStep(ev) {
+        console.log('Clicked: ', ev.target.value)
+        if (ev.target.value == 'Union') { this.selectedUnion = true };
+        if (ev.target.value == 'Intersect') { this.selectedIntersect = true };
+        if (ev.target.value == 'Minus') { this.selectedMinus = true };
+        if (ev.target.value == 'Join') { this.selectedJoin = true };
     }
 
     clickSaveFile() {

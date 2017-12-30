@@ -28,16 +28,14 @@
                     <div  *ngIf="!isFirstTimeDataCombination">
                         <div class="gridFieldHeader">
                             Select Combination type:
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Union</option>
-                                    <option>Intersect</option>
-                                    <option>Minus</option>
-                                    <option>Join</option>
-                                </select>
-                            </div>
+                            <select class="select" id="selects_3"
+                                (change)="clickSelectStep($event)"
+                                >
+                                <option>Union</option>
+                                <option>Intersect</option>
+                                <option>Minus</option>
+                                <option>Join</option>
+                            </select>
                             <div class="propertyLine" *ngIf="selectedUnion">
                                 <b>Union</b> - appends (at the bottom) any number of Datasets, showing 
                                 all the records in them.  The Datasets must have the same number 
