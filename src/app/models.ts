@@ -1,4 +1,19 @@
 // ALL models (schema) are kept here
+export class Combination {
+    combinationID: number;
+    dashboardID: number;
+    type: string;                       // ie Union
+}
+
+export class CombinationDetail {
+    combinationDetailID: number;
+    combinationID: number;
+    lhDatasourceID: number;
+    lhFieldName: string;
+    rhDatasourceID: number;
+    rhFieldName: string;
+}
+
 export class canvasShape {
 
     // Type
@@ -88,9 +103,9 @@ export class canvasWidget {
     isTrashed: boolean;
 
     // Not needed when Widget is inside a Dashboard
-    dashboardID: number;                   // FK to DashboardID to which widget belongs
-    dashboardTabID: number;               // FK to Tab where the widget lives
-    dashboardTabName: string;             // FK to Tab Name where widget lives
+    dashboardID: number;                // FK to DashboardID to which widget belongs
+    dashboardTabID: number;             // FK to Tab where the widget lives
+    dashboardTabName: string;           // FK to Tab Name where widget lives
 
     // Identification and Description
     id: number;

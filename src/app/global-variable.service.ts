@@ -28,6 +28,8 @@ import { canvasMessage }              from './models';
 import { canvasActivity }             from './models';
 import { canvasWidget }               from './models';
 import { canvasShape }                from './models';
+import { Combination }                from './models';
+import { CombinationDetail }          from './models';
 
 // Data
 import { httpFake }                   from './data/dashboards'
@@ -35,6 +37,26 @@ import { httpFake }                   from './data/dashboards'
 import * as dl                        from 'datalib';
 
 // import { CanvasUser }                 from './model.user';
+const combinations: Combination[] =
+[
+    {
+        combinationID: 1,
+        dashboardID: 1,
+        type: 'Union'
+    }
+];
+
+const combinationDetails: CombinationDetail[] =
+[ 
+    {
+        combinationDetailID: 1,
+        combinationID: 2,
+        lhDatasourceID: 3,
+        lhFieldName: 'TradeType',
+        rhDatasourceID: 4,
+        rhFieldName: 'TradeType'
+    }
+];
 
 const datasourcePermissions: datasourcePermission[] =
 [
