@@ -19,13 +19,13 @@
                             refreshed.  There are different types of combinations:
                         </div>
                         <div class="propertyLine">
-                            <b>Got it</b> <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboardSave">
+                            <b>Got it</b> <input type="checkbox" (click)="clickGotIt()">
                             (You can make this message re-appear with the <i>Preferences</i> option under your
                             User icon <clr-icon shape="user"></clr-icon> on the menu top right.)
                         </div> 
                     </div>
 
-                    <div  *ngIf="!isFirstTimeDataCombination">
+                    <div class="gridOverall" *ngIf="!isFirstTimeDataCombination">
                         <div class="gridFieldHeader">
                             Select Combination type:
                             <select class="select" id="selects_3"
@@ -56,86 +56,56 @@
 
                         </div>
                         <div class="gridFieldLH">
-                            <form>
-                                <section>
-                                    <div class="form-group">
-                                        <label for="selects_4">Select Dataset:</label>
-                                        <div class="select">
-                                            <select id="selects_3"
-                                                (change)="clickSelectStep($event)"
-                                                >
-                                                <option>Budget</option>
-                                                <option>Sales forecast</option>
-                                                <option>Factory output</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="selects_4">Select Field:</label>
-                                        <div class="select">
-                                            <select id="selects_3"
-                                                (change)="clickSelectStep($event)"
-                                                >
-                                                <option>TradeData</option>
-                                                <option>Broker</option>
-                                                <option>TradeType</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </section>
-                            </form>
-                        </div>
-
-                        <div class="gridFilterDropAreaFields">
-                            <b>Field filters:</b>
-                            <div class="gridFilterFieldValues">
-                                <label for="selects_2">Field:</label>
-                                <div class="select">
-                                    <select id="selects_2">
-                                        <option *ngFor="let row of dataFieldNames">
-                                            {{ row }}
-                                        </option>
-                                    </select>
-                                </div>
-                                <label for="selects_1">Operator:</label>
-                                <div class="select">
-                                    <select id="selects_1"
-                                        >
-                                        <option>
-                                            Equal
-                                        </option>
-                                        <option>
-                                            Less than
-                                        </option>
-                                        <option>
-                                            Greater than
-                                        </option>
-                                        <option>
-                                            Not Equal
-                                        </option>
-                                        <option>
-                                            Equal or Less than
-                                        </option>
-                                        <option>
-                                            Equal or Greater than
-                                        </option>
-                                    </select>
-                                </div>
-                                Filter value:
-                                <input type="text" id="formFields_7"
-                                    placeholder="Filter value"
+                            <div class="propertyLine">
+                                <b>Left Hand:</b>
+                            </div>
+                            <div class="propertyLine">
+                                Select Dataset:
+                                <select class="select" id="selects_3"
+                                    (change)="clickSelectStep($event)"
                                     >
-                                When: Pre/Post
-                                <button
-                                    type="button"
-                                    class="btn btn-sedondary"
-                                    (click)="clickFileSaveTransformation()"
+                                    <option>Budget</option>
+                                    <option>Sales forecast</option>
+                                    <option>Factory output</option>
+                                </select>
+                            </div>
+                            <div class="propertyLine">
+                                Select Field:
+                                <select class="select" id="selects_3"
+                                    (change)="clickSelectStep($event)"
                                     >
-                                    Add
-                                </button>
+                                    <option>TradeData</option>
+                                    <option>Broker</option>
+                                    <option>TradeType</option>
+                                </select>
                             </div>
                         </div>
-
+                        <div class="gridFieldRH">
+                            <div class="propertyLine">
+                                <b>Right Hand:</b>
+                            </div>
+                            <div class="propertyLine">
+                                Select Dataset:
+                                <select class="select" id="selects_3"
+                                    (change)="clickSelectStep($event)"
+                                    >
+                                    <option>Budget 2</option>
+                                    <option>Sales forecast</option>
+                                    <option>Factory output</option>
+                                </select>
+                            </div>
+                            <div class="propertyLine">
+                                Select Field:
+                                <select class="select" id="selects_3"
+                                    (change)="clickSelectStep($event)"
+                                    >
+                                    <option>TradeData 2</option>
+                                    <option>Broker</option>
+                                    <option>TradeType</option>
+                                </select>
+                            </div>
+                        </div>
+    
                         <div class="gridFieldTable">
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column>Delete</clr-dg-column>

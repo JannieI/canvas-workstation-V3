@@ -38,19 +38,19 @@ p {
         grid-column-start: 1;
         grid-column-end: 21;
         grid-row-start: 1;
-        grid-row-end: 3;
+        grid-row-end: 4;
     }
     .gridFieldLH {
         grid-column-start: 1;
         grid-column-end: 11;
-        grid-row-start: 5;
-        grid-row-end: 13;
+        grid-row-start: 7;
+        grid-row-end: 11;
     }
     .gridFieldRH {
         grid-column-start: 11;
         grid-column-end: 21;
-        grid-row-start: 5;
-        grid-row-end: 13;
+        grid-row-start: 7;
+        grid-row-end: 11;
     }
     .gridFieldFooter {
         grid-column-start: 1;
