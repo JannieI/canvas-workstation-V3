@@ -49,7 +49,7 @@ This document describes items for later versions of Canvas.
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc
-2. Add fields for Dashboard Properties to New / Edit !
+2. 
 4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
    for March last year, or compare all to last year ... NB
 5. Also, easy way to jump to previous period:  loaded at start with data ??
