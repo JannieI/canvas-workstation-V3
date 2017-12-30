@@ -119,16 +119,20 @@
                         <div class="gridFieldTable">
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column>Delete</clr-dg-column>
-                                <clr-dg-column>Field Name</clr-dg-column>
-                                <clr-dg-column>Operator</clr-dg-column>
-                                <clr-dg-column>Filter Value</clr-dg-column>
+                                <clr-dg-column>Type</clr-dg-column>
+                                <clr-dg-column>LH DS</clr-dg-column>
+                                <clr-dg-column>LH Field</clr-dg-column>
+                                <clr-dg-column>RH DS</clr-dg-column>
+                                <clr-dg-column>RH Field</clr-dg-column>
 
-                                <clr-dg-row *ngFor="let row of datasourceFilters">
+                                <clr-dg-row>
                                     <clr-dg-cell><clr-icon shape="times"></clr-icon></clr-dg-cell>
-                                    <clr-dg-cell>{{row.fieldName}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.operator}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.filterValue}}</clr-dg-cell>
-                                </clr-dg-row>
+                                    <clr-dg-cell>Union</clr-dg-cell>
+                                    <clr-dg-cell>Budget Jan</clr-dg-cell>
+                                    <clr-dg-cell>Cost Center</clr-dg-cell>
+                                    <clr-dg-cell>Budget Feb</clr-dg-cell>
+                                    <clr-dg-cell>Cost Center</clr-dg-cell>
+                                    </clr-dg-row>
                             </clr-datagrid>
                         </div>
                     </div>
