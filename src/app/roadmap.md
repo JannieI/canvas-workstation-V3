@@ -42,7 +42,6 @@ This document describes items for later versions of Canvas.
    thus given the IDs or key values.
 11.Determine which transformations live on server and which on client, and whether some/all
    lives on both.
-12.Enhance Filters: add Before-Transformation / After-Transformations are performed - best of both world.  Also, add row limits: Start-At (0 = top, -1 = bottom), Limit = nr of rows to read.
    
 
 **Admin module**
