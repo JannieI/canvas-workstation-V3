@@ -23,6 +23,7 @@ This document describes items for later versions of Canvas.
 5. Test on different configs: screen resolution, 2 screens
 6. Test on different devices, ie Tablet and Phone
 7. Install at user as pilot, may Liaan ...
+8. Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure there is a preference to switch it back on manually.
 
 
 **Data**
@@ -41,6 +42,7 @@ This document describes items for later versions of Canvas.
    thus given the IDs or key values.
 11.Determine which transformations live on server and which on client, and whether some/all
    lives on both.
+12.Enhance Filters: add Before-Transformation / After-Transformations are performed - best of both world.  Also, add row limits: Start-At (0 = top, -1 = bottom), Limit = nr of rows to read.
    
 
 **Admin module**
@@ -135,4 +137,3 @@ This document describes items for later versions of Canvas.
 3. How are users notified and also when scheduler is down
 4. How is dataset stored - per Dashboard as more than one can be linked ..
 5. 
-

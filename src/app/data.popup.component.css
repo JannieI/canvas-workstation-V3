@@ -227,34 +227,50 @@
         width: 100%;
     }
 
-    .gridFilterDropArea {
+    .gridFilterDropAreaFields {
         grid-auto-rows: 0.8rem;
         grid-column-start: 5;
         grid-column-end: 21;
         grid-row-start: 1;
-        grid-row-end: 11;
+        grid-row-end: 4;
         padding: 10px;
     }
 
-    .gridFilterNames {
-        margin-left: 20px;
-        height: 15rem;
-        overflow: auto;
-        width: 100%;
-    }
+        .gridFilterFieldValues {
+            margin-left: 20px;
+            height: 15rem;
+            overflow: auto;
+            width: 100%;
+        }
 
-    .gridFilterResult {
+    .gridFilterResultFields {
         border: 1px solid gray;
         grid-column-start: 5;
         grid-column-end: 21;
-        grid-row-start: 10;
-        grid-row-end: 25;
-        height: 11rem;
+        grid-row-start: 5;
+        grid-row-end: 20;
+        height: 12rem;
+        margin-left: 10px;
         padding: 10px;
         overflow: auto;
         width: 100%;
     }
 
+    .gridFilterDropAreaTable {
+        grid-auto-rows: 0.8rem;
+        grid-column-start: 5;
+        grid-column-end: 21;
+        grid-row-start: 20;
+        grid-row-end: 23;
+        padding: 10px;
+    }
+
+        .gridFilterTable {
+            margin-left: 20px;
+            height: 15rem;
+            overflow: auto;
+            width: 100%;
+        }
 
 .gridTransform {
     border-top: 2px solid black;

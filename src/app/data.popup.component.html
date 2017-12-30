@@ -237,19 +237,11 @@
                             </clr-datagrid>
 
                         </div>
-                        <div class="gridFilterDropArea">
-                            <b>Create a filter:</b>
-                            <div>
-                                Select a single field.  Then select the Operator, and enter
-                                the filter value that must be applied to it.  More than one
-                                filter can be added per field.  All filters (on the same or
-                                different fields will be combined with AND logic).  The list of
-                                existing filters is shown at the bottom of the page:
-                            </div>
-                            <br>
-                            <div class="gridFilterNames">
+                        <div class="gridFilterDropAreaFields">
+                            <b>Field filters:</b>
+                            <div class="gridFilterFieldValues">
                                 <label for="selects_2">Field:</label>
-                                <div class="select ">
+                                <div class="select">
                                     <select id="selects_2">
                                         <option *ngFor="let row of dataFieldNames">
                                             {{ row }}
@@ -293,9 +285,8 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="gridFilterResult">
-                            
-                            <span class="gridHeading"><b>Existing filters:</b></span>
+                        <div class="gridFilterResultFields">
+                           
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column>Delete</clr-dg-column>
                                 <clr-dg-column>Field Name</clr-dg-column>
@@ -310,6 +301,26 @@
                                 </clr-dg-row>
                             </clr-datagrid>
 
+                        </div>
+                        <div class="gridFilterDropAreaTable">
+                            <b>Table filters:</b>
+                            <div class="gridFilterTable">
+                                Start row (0 = top, -1 = bottom):
+                                <input type="text" id="formFields_7"
+                                    placeholder="0"
+                                    >
+                                Limit to Nr Rows (0 = all):
+                                <input type="text" id="formFields_7"
+                                    placeholder="0"
+                                    >
+                                <button
+                                    type="button"
+                                    class="btn btn-sedondary"
+                                    (click)="clickFileSaveTransformation()"
+                                    >
+                                    Save
+                                </button>
+                            </div>
                         </div>
                     </div>
 

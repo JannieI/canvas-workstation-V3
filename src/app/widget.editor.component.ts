@@ -1111,6 +1111,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
 
+        
         vlSpecsNew['data']['values'] = [
             {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
             {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
