@@ -28,6 +28,7 @@ This document describes items for later versions of Canvas.
 
 **Data**
 1. Define Canvas datatype = TS ones?
+2. Is heading 'Existing Dataset' = ... DataSOURCES ?
 3. Make sure terminology is consitent: Datasource -> Transform -> Dataset
 4. Do we store more than one version of a dataset - say one dated 'calced on .,/,,/,,' ?
    This could be useful for comparisons, or required in some cases.
@@ -65,19 +66,14 @@ This document describes items for later versions of Canvas.
 11.Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
    at any point in the past.  It must be clearly marked for the user.  Must also be able to
    search the list, and see a list of undo actions.
-14.The SPEC contains all Widgets - this has a serious design implication that Widgets are
-   not standalone items, and connect be shared.  The reasons are: it will be difficult
-   to manage this, particularly over datasources and changes that users can do, the 
-   Dashboard is a selfcontained unit, access rights have to be extended to Widgets, and
-   there are no surprises (when someone changes a Widget that I reference in my Dashboard) 
-   = master of my own destiny.
+14.The SPEC does NOT contain all Widgets - this allows Widgets to be standalone items, and can easily be connected to more than one Dashboard in future, if we decide so (not adivised as your Dashboard may suddenly change without warning).
 15.Import: check security, particularly for the Datasource.  Also, is the access rights
    stored with the text file (security risk)?  Also, can / should it over-write an
    existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
 16.Fix bug: Recent Dashboard refreshes 1 cycle too late 
 17.Fix Bug: grid shows on top of widgets -> cannot click them
 18.StatusBar must not grow beyond screen width, or to double line
-19.Where are QA process and forms?
+19.
 
 **Dashboard Tabs**
 1. 
