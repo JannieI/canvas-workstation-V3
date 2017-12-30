@@ -16,66 +16,144 @@
                             sales regions, you can combine them into a new Dataset to show
                             information from both in the same graph.  These combinations
                             are refreshed automatically when the underlying Dataset is
-                            refreshed.
-                        </div>
-                        <div class="propertyLine">
-                            There are different types of combinations:
-                        </div>
-                        <div class="propertyLine">
-                            Union - appends (at the bottom) any number of Datasets, showing 
-                            all the records in them.  The Datasets must have the same number 
-                            of columns, and corresponding datatype (ie numbers).  Any number 
-                            of Datasets can be added.
-                        </div>
-                        <div class="propertyLine">
-                            Intersect - shows only records that exist in both Datasets, based
-                            on a mutual column.
-                        </div>
-                        <div class="propertyLine">
-                            Minus - shows only records that exist one Dataset, based on a mutual
-                            column.
-                        </div>
-                        <div class="propertyLine">
-                            Join - joins (to right) two Datasets together on a mutual column.
+                            refreshed.  There are different types of combinations:
                         </div>
                         <div class="propertyLine">
                             <b>Got it</b> <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboardSave">
                             (You can make this message re-appear with the <i>Preferences</i> option under your
                             User icon <clr-icon shape="user"></clr-icon> on the menu top right.)
-                        </div>
+                        </div> 
                     </div>
 
-                    <form>
-                        <section>
-                            <div class="form-group">
-                                <label for="selects_4">Select Combination type:</label>
+                    <div  *ngIf="!isFirstTimeDataCombination">
+                        <div class="gridFieldHeader">
+                            Select Combination type:
+                            <div class="select">
+                                <select id="selects_3"
+                                    (change)="clickSelectStep($event)"
+                                    >
+                                    <option>Union</option>
+                                    <option>Intersect</option>
+                                    <option>Minus</option>
+                                    <option>Join</option>
+                                </select>
+                            </div>
+                            <div class="propertyLine" *ngIf="selectedUnion">
+                                <b>Union</b> - appends (at the bottom) any number of Datasets, showing 
+                                all the records in them.  The Datasets must have the same number 
+                                of columns, and corresponding datatype (ie numbers).  Any number 
+                                of Datasets can be added.
+                            </div>
+                            <div class="propertyLine" *ngIf="selectedIntersect">
+                                <b>Intersect</b> - shows only records that exist in both Datasets, based
+                                on a mutual column.
+                            </div>
+                            <div class="propertyLine" *ngIf="selectedMinus">
+                                <b>Minus</b> - shows only records that exist one Dataset, based on a mutual
+                                column.
+                            </div>
+                            <div class="propertyLine" *ngIf="selectedJoin">
+                                <b>Join</b> - joins (to right) two Datasets together on a mutual column.
+                            </div>
+
+                        </div>
+                        <div class="gridFieldLH">
+                            <form>
+                                <section>
+                                    <div class="form-group">
+                                        <label for="selects_4">Select Dataset:</label>
+                                        <div class="select">
+                                            <select id="selects_3"
+                                                (change)="clickSelectStep($event)"
+                                                >
+                                                <option>Budget</option>
+                                                <option>Sales forecast</option>
+                                                <option>Factory output</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="selects_4">Select Field:</label>
+                                        <div class="select">
+                                            <select id="selects_3"
+                                                (change)="clickSelectStep($event)"
+                                                >
+                                                <option>TradeData</option>
+                                                <option>Broker</option>
+                                                <option>TradeType</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </section>
+                            </form>
+                        </div>
+
+                        <div class="gridFilterDropAreaFields">
+                            <b>Field filters:</b>
+                            <div class="gridFilterFieldValues">
+                                <label for="selects_2">Field:</label>
                                 <div class="select">
-                                    <select id="selects_3"
-                                        (change)="clickSelectStep($event)"
-                                        >
-                                        <option>Union</option>
-                                        <option>Intersect</option>
-                                        <option>Minus</option>
-                                        <option>Join</option>
+                                    <select id="selects_2">
+                                        <option *ngFor="let row of dataFieldNames">
+                                            {{ row }}
+                                        </option>
                                     </select>
                                 </div>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="form-group">
-                                <label for="selects_4">Select Field:</label>
+                                <label for="selects_1">Operator:</label>
                                 <div class="select">
-                                    <select id="selects_3"
-                                        (change)="clickSelectStep($event)"
+                                    <select id="selects_1"
                                         >
-                                        <option>TradeData</option>
-                                        <option>Broker</option>
-                                        <option>TradeType</option>
+                                        <option>
+                                            Equal
+                                        </option>
+                                        <option>
+                                            Less than
+                                        </option>
+                                        <option>
+                                            Greater than
+                                        </option>
+                                        <option>
+                                            Not Equal
+                                        </option>
+                                        <option>
+                                            Equal or Less than
+                                        </option>
+                                        <option>
+                                            Equal or Greater than
+                                        </option>
                                     </select>
                                 </div>
+                                Filter value:
+                                <input type="text" id="formFields_7"
+                                    placeholder="Filter value"
+                                    >
+                                When: Pre/Post
+                                <button
+                                    type="button"
+                                    class="btn btn-sedondary"
+                                    (click)="clickFileSaveTransformation()"
+                                    >
+                                    Add
+                                </button>
                             </div>
-                        </section>
-                    </form>
+                        </div>
+
+                        <div class="gridFieldTable">
+                            <clr-datagrid class="fieldsDataGrid">
+                                <clr-dg-column>Delete</clr-dg-column>
+                                <clr-dg-column>Field Name</clr-dg-column>
+                                <clr-dg-column>Operator</clr-dg-column>
+                                <clr-dg-column>Filter Value</clr-dg-column>
+
+                                <clr-dg-row *ngFor="let row of datasourceFilters">
+                                    <clr-dg-cell><clr-icon shape="times"></clr-icon></clr-dg-cell>
+                                    <clr-dg-cell>{{row.fieldName}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.operator}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.filterValue}}</clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
+                    </div>
 
                 </div>
             </div>

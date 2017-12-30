@@ -290,7 +290,6 @@
                             </div>
                         </div>
                         <div class="gridFilterResultFields">
-                           
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column>Delete</clr-dg-column>
                                 <clr-dg-column>Field Name</clr-dg-column>
@@ -304,7 +303,6 @@
                                     <clr-dg-cell>{{row.filterValue}}</clr-dg-cell>
                                 </clr-dg-row>
                             </clr-datagrid>
-
                         </div>
                         <div class="gridFilterDropAreaTable">
                             <b>Table filters:</b>
@@ -354,7 +352,7 @@
                                     </div>
                                 </div>
                                 <br>
-                                Optionally save all the current transformations (shown on the left) 
+                                Optionally save all the current transformations (shown on the left)
                                 as a Transformation-Set for future use:
                                 <div class="gridTransformNewNames">
                                         <input type="text" id="formFields_7"
@@ -410,7 +408,7 @@
                                 <br>
                                 <br>
                                 <i>Note: When creating Calculated Fields, use a subset of TypeScript syntax in the
-                                    formulas.  It is possible to use IF-THEN-ELSE statements, but it 
+                                    formulas.  It is possible to use IF-THEN-ELSE statements, but it
                                     is not possible to use callbacks.  Fields existing in the Dataset (
                                     original or calculated) can be referenced by wrapping them in [], for
                                     example [TradeDate] - 1 where TradeDate is an existing field.
@@ -721,7 +719,7 @@
                                 </i>
                                 <br> <br>
                                 <div>
-                                        
+
                                     <clr-datagrid>
                                         <clr-dg-column>FieldName</clr-dg-column>
                                         <clr-dg-column>DataType</clr-dg-column>
@@ -736,7 +734,7 @@
                                             <clr-dg-cell>{{ row.transformed }}</clr-dg-cell>
                                         </clr-dg-row>
                                     </clr-datagrid>
-    
+
                                 </div>
                             </div>
 
