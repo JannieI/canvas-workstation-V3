@@ -872,7 +872,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     graphColor: string[];
 
     clickedButtonAggregateNo: boolean = false;
-    currentDatasources: Datasource[];
     dataFieldNames: string[];
 
     constructor(
