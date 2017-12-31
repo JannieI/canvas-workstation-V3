@@ -360,6 +360,15 @@ export class CanvasWidget {
 
 }
 
+export class WidgetCheckpoint {
+    id: number;
+    dashboardID: number;
+    widgetID: number;
+    widgetSpec: any;
+    creator: string;
+    createdOn: string;
+}
+
 export class WidgetLinkedDashboard {
     id: number;
     sourceDashboardID: number;
