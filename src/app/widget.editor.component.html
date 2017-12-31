@@ -32,7 +32,7 @@
                                 class="datasourceDropdown"
                                 >
 
-                                <div *ngFor="let cd of currentDatasources; let i = index"
+                                <div *ngFor="let cd of datasources; let i = index"
                                     (click)="clickDatasource(i, cd.name)"
                                     clrDropdownItem
                                     class="datasourceDropdown"
@@ -42,7 +42,7 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="selectedDatasource">
-                            Fields for: {{ currentDatasources[0].name }}
+                            Fields for: {{ datasources[0].name }}
                         </div>
 
                         <div>

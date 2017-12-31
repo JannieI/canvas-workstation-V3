@@ -868,7 +868,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     graphColor: string[];
 
     clickedButtonAggregateNo: boolean = false;
-    currentDatasources: Datasource[];
+    datasources: Datasource[];
     dataFieldNames: string[];
     draggedField: string = '';
     dragoverCol: boolean = false;
@@ -892,7 +892,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     ngOnInit() {
         this.globalVariableService.datasources.subscribe(
-          i => this.currentDatasources = i
+          i => this.datasources = i
         );
         this.dataFieldNames = ['symbol', 'date', 'price', 'Month', 'Trades'];
         this.globalVariableService.presentation.subscribe(
