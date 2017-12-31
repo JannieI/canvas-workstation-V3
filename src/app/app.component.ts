@@ -107,7 +107,7 @@ export class AppComponent implements OnInit {
 
     localTrash: CanvasWidget[];
     localWidgets: CanvasWidget[];
-    currentDatasources: Datasource[];
+    datasources: Datasource[];
 
     // Testings ....
     test: number[] = [1,2,3,4,5,6];
@@ -149,7 +149,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.datasources.subscribe(
             i => {
                     if (i.length > 0) { this.hasDatasources = true} else {this.hasDatasources = false}
-                    this.currentDatasources = i
+                    this.datasources = i
                  }
         );
         this.globalVariableService.editMode.subscribe(
@@ -483,7 +483,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetNew() {
-        if (this.currentDatasources.length == 0) {
+        if (this.datasources.length == 0) {
             alert('Please add a Dataset first: Data -> From File')
         } else {
             this.showModalWidgetEditor = true;
@@ -491,7 +491,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetEdit() {
-        if (this.currentDatasources.length == 0) {
+        if (this.datasources.length == 0) {
             alert('Please add a Dataset first: Data -> From File')
         } else {
             this.showModalWidgetEditor = true;
