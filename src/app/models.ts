@@ -142,14 +142,6 @@ export class Transformation {
     category: string;
     name: string;
     description: string;
-}
-
-export class CurrentTransformation {
-    id: number;
-    category: string;
-    name: string;
-    description: string;
-    fieldID: number;
     fieldName: string;
     parameters: string;
 }

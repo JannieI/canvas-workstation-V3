@@ -21,7 +21,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 // Our Models
 import { Field }                      from './models'
 import { CanvasWidget }               from './models'
-import { Datasource }          from './models'
+import { Datasource }                 from './models'
 
 @Component({
     selector: 'my-app',

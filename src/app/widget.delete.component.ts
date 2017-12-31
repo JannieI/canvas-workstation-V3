@@ -10,7 +10,7 @@ import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { Datasource }          from './models';
+import { Datasource }                 from './models';
 import { CanvasWidget }               from './models';
 
 // Our Services

@@ -18,11 +18,10 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { Datasource }          from './models';
+import { Datasource }                 from './models';
 import { Transformation }             from './models';
 import { Field }                      from './models';
 import { FieldMetadata }              from './models';
-import { CurrentTransformation }      from './models';
 import { DataQualityIssue }           from './models';
 import { DatasourceFilter}            from './models'
 
@@ -93,7 +92,7 @@ export class DataPopupComponent implements OnInit {
     pageSize: number = 4;
     dataQualityIssues: DataQualityIssue[];
     datasourceFilters: DatasourceFilter[];
-    currentTransformations: CurrentTransformation[];
+    currentTransformations: Transformation[];
     currentDataset: string = '';
     draggedField: string = '';
     fileName: string = 'stocks.csv';
@@ -361,12 +360,12 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickFileAddTransformation() {
-        let newTransformation: CurrentTransformation = {
+        let newTransformation: Transformation = {
             id: 2,
+            datasourceID: 12,
             category: 'Format',
             name: 'Format Date',
             description: 'bla-bla-bla',
-            fieldID: 21,
             fieldName: 'Trader',
             parameters: "param1=a"
         };

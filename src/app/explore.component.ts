@@ -23,7 +23,6 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { CanvasShape }                from './models'
 import { CanvasWidget }               from './models'
-import { Datasource }          from './models'
 import { Dashboard }                  from './models'
 import { Datasource }                 from './models'
 

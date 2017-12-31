@@ -3,8 +3,6 @@ import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
 
 // Our Models
-import { Datasource }          from './models';
-import { CurrentTransformation }      from './models';
 import { Dashboard }                  from './models';
 import { Datasource }                 from './models';
 import { CSScolor }                   from './models';
@@ -764,32 +762,41 @@ const transformationsFormat: Transformation[] =
         datasourceID: 12,
         category: 'Column-level',
         name: 'FormatDate',
-        description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.'
+        description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 16,
         datasourceID: 12,
         category: 'Column-level',
         name: 'DatePart',
-        description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second'
+        description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 20,
         datasourceID: 12,
         category: 'Column-level',
         name: 'FormatNumber',
-        description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’'
+        description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’',
+        fieldName: 'Date',
+        parameters: ''
+
     }
 ];
 
-const currentTransformations: CurrentTransformation[] =
+const currentTransformations: Transformation[] =
 [
     {
         id: 1,
+        datasourceID: 12,
         category: 'Format',
         name: 'FillBlanks',
         description: 'bla-bla-bla',
-        fieldID: 231,
         fieldName: 'Region',
         parameters: ""
     }
@@ -803,21 +810,30 @@ const transformationsFill: Transformation[] =
         datasourceID: 12,
         category: 'Column-level',
         name: 'FillBlanks',
-        description: '(columnName, newValue)'
+        description: '(columnName, newValue)',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 3,
         datasourceID: 12,
         category: 'Column-level',
         name: 'FillNull',
-        description: '(columnName, newValue)'
+        description: '(columnName, newValue)',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 4,
         datasourceID: 12,
         category: 'ColucurrentTransformationsmn-level',
         name: 'FillBlankAndNull',
-        description: '(columnName, newValue)'
+        description: '(columnName, newValue)',
+        fieldName: 'Date',
+        parameters: ''
+
     }
 ];
 
@@ -829,14 +845,20 @@ const transformationsGeo: Transformation[] =
         datasourceID: 12,
         category: 'Column-level',
         name: 'AddLatitude',
-        description: '(reference-columnName, new-columnName), add a new column with latitude, based on the information in the reference-columnName'
+        description: '(reference-columnName, new-columnName), add a new column with latitude, based on the information in the reference-columnName',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 22,
         datasourceID: 12,
         category: 'Column-level',
         name: 'AddLongitude',
-        description: '(reference-columnName, new-columnName), add a new column with longitude, based on the information in the reference-columnName'
+        description: '(reference-columnName, new-columnName), add a new column with longitude, based on the information in the reference-columnName',
+        fieldName: 'Date',
+        parameters: ''
+
     }
 ];
 
@@ -848,14 +870,20 @@ const transformationsReplace: Transformation[] =
         datasourceID: 12,
         category: 'Column-level',
         name: 'ReplaceNumbers',
-        description: '(columnName, from, to, newValue)'
+        description: '(columnName, from, to, newValue)',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 6,
         datasourceID: 12,
         category: 'Column-level',
         name: 'ReplaceString',
-        description: '(columnName, oldValue, newValue)'
+        description: '(columnName, oldValue, newValue)',
+        fieldName: 'Date',
+        parameters: ''
+
     }
 ];
 
@@ -867,21 +895,30 @@ const transformationsAddColumn: Transformation[] =
         datasourceID: 12,
         category: 'Column-level',
         name: 'AppendColumn',
-        description: '(newColumnName, dataType, fillValue)'
+        description: '(newColumnName, dataType, fillValue)',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 10,
         datasourceID: 12,
         category: 'Column-level',
         name: 'CalcColumn',
-        description: '(newColumnName, columnOne, columnTwo, Operator, fillValue)'
+        description: '(newColumnName, columnOne, columnTwo, Operator, fillValue)',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 17,
         datasourceID: 12,
         category: 'Column-level',
         name: 'Concatenate',
-        description: '(columnNameOne, ColumnNameTwo)'
+        description: '(columnNameOne, ColumnNameTwo)',
+        fieldName: 'Date',
+        parameters: ''
+
     }
 ];
 
@@ -893,21 +930,30 @@ const transformationsTrim: Transformation[] =
         datasourceID: 12,
         category: 'Column-level',
         name: 'LeftTrim',
-        description: '(columnName)'
+        description: '(columnName)',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 13,
         datasourceID: 12,
         category: 'Column-level',
         name: 'RightTrim',
-        description: '(columnName)'
+        description: '(columnName)',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 14,
         datasourceID: 12,
         category: 'Column-level',
         name: 'Trim',
-        description: '(columnName), which combines LeftTrim and RightTrim'
+        description: '(columnName), which combines LeftTrim and RightTrim',
+        fieldName: 'Date',
+        parameters: ''
+
     }
 ];
 
@@ -919,28 +965,39 @@ const transformationsPortion: Transformation[] =
         datasourceID: 12,
         category: 'Column-level',
         name: 'Substring',
-        description: '(columnName, startPosition, length)'
+        description: '(columnName, startPosition, length)',
+        fieldName: 'Date',
+        parameters: ''
     },
     {
         id: 15,
         datasourceID: 12,
         category: 'Column-level',
         name: 'RightSubstring',
-        description: '(columnName, startPosition, length) is similar to Substring, but startPosition is counted from the right.'
+        description: '(columnName, startPosition, length) is similar to Substring, but startPosition is counted from the right.',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 16,
         datasourceID: 12,
         category: 'Column-level',
         name: 'DatePart',
-        description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second'
+        description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second',
+        fieldName: 'Date',
+        parameters: ''
+
     },
     {
         id: 18,
         datasourceID: 12,
         category: 'Column-level',
         name: 'ConcatenateColumn',
-        description: '(columnName, preString, postString) will append strings to the front or back of a column'
+        description: '(columnName, preString, postString) will append strings to the front or back of a column',
+        fieldName: 'Date',
+        parameters: ''
+
     },
 ];
 
@@ -948,57 +1005,110 @@ const dataServer: Datasource[] =
 [
     {
         id: 1,
-        name: 'World Indices',
         type: 'Xls File',
-        description: ''
+        name: 'World Indices',
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
     },
     {
         id: 1,
         name: 'SP Companies*',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     },
     {
         id: 1,
         name: 'Stock prices TEMP',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     },
     {
         id: 1,
         name: 'Trades per Year',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     },
     {
         id: 1,
         name: 'Bond volume trades',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     },
     {
         id: 1,
         name: 'Trades by Trade Type',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     },
     {
         id: 1,
         name: 'YTD Expenditure by Cost Center',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     },
     {
         id: 1,
         name: 'Headcount',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     },
     {
         id: 1,
         name: 'Customer List',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     }
 ];
 
@@ -1008,13 +1118,25 @@ const dataRecent: Datasource[] =
         id: 1,
         name: 'CPI figures',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     },
     {
         id: 1,
         name: 'GDP by Country',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     }
 ];
 
@@ -1024,19 +1146,37 @@ const dataSample: Datasource[] =
         id: 1,
         name: 'Bicycle trips in Rome',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     },
     {
         id: 1,
         name: 'Vega Airport Dataset',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     },
     {
         id: 1,
         name: 'Test1',
         type: 'Xls File',
-        description: ''
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     }
 ];
 
@@ -1845,7 +1985,7 @@ export class GlobalVariableService {
     dataGetFromSwitch = new BehaviorSubject<string>('File');
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
     dashboards: Partial<Dashboard>[] = dashboards;
-    currentTransformations: CurrentTransformation[] = currentTransformations;
+    currentTransformations: Transformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;
     currentDatasources = new BehaviorSubject<Datasource[]>(currentDatasources);
     datasources: Datasource[] = datasources;
