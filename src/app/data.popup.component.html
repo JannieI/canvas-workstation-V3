@@ -195,7 +195,7 @@
                                 <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column>
 
                                 <clr-dg-row
-                                    *ngFor="let row of currentDatasources | filterDSType:'server'"
+                                    *ngFor="let row of datasources | filterDSType:'server'"
                                     (click)="clickDatasourceRow(row.name)"
                                     >
                                     <clr-dg-cell>

@@ -80,7 +80,6 @@ export class DataPopupComponent implements OnInit {
     @ViewChild('typeTransformationDropdown') typeTransformationDropdown: ElementRef;
     @ViewChild('transformations') transformations: ElementRef;
 
-    currentDatasources: Datasource[];
     datasources: Datasource[];
 
     finalFields: any = finalFields;
@@ -188,9 +187,9 @@ export class DataPopupComponent implements OnInit {
 
         // Load global variables
         this.globalVariableService.datasources.subscribe(
-            i => this.currentDatasources = i
+            i => this.datasources = i
         );
-       if (this.currentDatasources.length > 0) {
+       if (this.datasources.length > 0) {
             this.isFirstTimeData = false;
         } else {
             this.isFirstTimeData = false;
@@ -244,8 +243,7 @@ export class DataPopupComponent implements OnInit {
         this.currentDataset = this.fileName;
         
         this.globalVariableService.datasourceAdd(newData);
-        // this.currentDatasources.push(newData);
-        console.log('     currentDatasources', this.currentDatasources)
+        console.log('     datasources', this.datasources)
     }
 
     clickFileSelect(action: string) {
