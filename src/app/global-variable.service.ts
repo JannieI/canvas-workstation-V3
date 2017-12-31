@@ -1568,7 +1568,7 @@ const dashboardTags: DashboardTag[] =
     }
 ];
 
-const snapshots: DashboardSnapshot[] =
+const dashboardSnapshots: DashboardSnapshot[] =
 [
     {
         id: 1,
@@ -1805,7 +1805,7 @@ const dashboards: Partial<Dashboard>[] =
 export class GlobalVariableService {
     dashboardTags: DashboardTag[] = dashboardTags;
     dataGetFromSwitch = new BehaviorSubject<string>('File');
-    snapshots: DashboardSnapshot[] = snapshots;
+    dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
     dashboards: Partial<Dashboard>[] = dashboards;
     currentTransformations: CurrentTransformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;

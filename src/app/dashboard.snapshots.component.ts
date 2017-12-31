@@ -32,7 +32,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
-    snapshots: DashboardSnapshot[];
+    dashboardSnapshots: DashboardSnapshot[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -41,7 +41,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.snapshots = this.globalVariableService.snapshots;
+        this.dashboardSnapshots = this.globalVariableService.dashboardSnapshots;
     }
 
     clickClose(action: string) {
