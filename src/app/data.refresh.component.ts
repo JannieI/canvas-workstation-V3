@@ -30,7 +30,7 @@ export class DataRefreshComponent implements OnInit {
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
-    currentDatasources: Datasource[];
+    datasources: Datasource[];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -41,7 +41,7 @@ export class DataRefreshComponent implements OnInit {
 
     ngOnInit() {
         this.globalVariableService.datasources.subscribe(
-            i => this.currentDatasources = i
+            i => this.datasources = i
         );
     }
 
