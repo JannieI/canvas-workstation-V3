@@ -190,6 +190,21 @@
                                 2. SQL (later with editor)
                                 Must be able to see / list paramters, and also to add
                                 parameter values.
+                            <span class="gridHeading" (click)="clickTest()">Existing Datasets</span>
+                            <clr-datagrid class="fieldsDataGrid">
+                                <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column>
+
+                                <clr-dg-row
+                                    *ngFor="let row of currentDatasources | filterDS:'xxstocks.csv'"
+                                    (click)="clickDatasourceRow(row.name)"
+                                    >
+                                    <clr-dg-cell>
+                                        <clr-icon shape="times"></clr-icon>
+                                        {{row.name}}
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+
                         </div>
 
                         <div class="gridIdentifyDataPreview">

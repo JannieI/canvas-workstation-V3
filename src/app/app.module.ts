@@ -79,6 +79,8 @@ import { SystemSettingsComponent }    from './systemsettings.component';
 import { UserOfflineComponent}        from './user.offline.component';
 import { LogoutComponent}             from './logout.component';
 
+import { FilterPipe }                 from './pipe.filter.component';
+
 // Our Services
 import { AuthGuard }                  from './authguard.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -159,6 +161,8 @@ import { MyNgIfDirective }            from './test.ngif.directive';
         CardComponent,
         DelayDirective,
         MyNgIfDirective,
+
+        FilterPipe,
     ],
     imports: [
         BrowserAnimationsModule,
