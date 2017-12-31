@@ -243,7 +243,7 @@ export class DataPopupComponent implements OnInit {
         this.showDataPreview = true;
         this.currentDataset = this.fileName;
         
-        this.globalVariableService.currentDatasourceAdd(newData);
+        this.globalVariableService.datasourceAdd(newData);
         // this.currentDatasources.push(newData);
         console.log('     currentDatasources', this.currentDatasources)
     }

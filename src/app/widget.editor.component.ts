@@ -902,8 +902,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     ngAfterViewInit() {
 
-        // this.currentDatasources = this.globalVariableService.currentDatasources;
-        // console.log('this.currentDatasources', this.currentDatasources)
         let definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);
         // let definition = vlTemplateSpec1
         // let definition = vlTemplateSpec2;

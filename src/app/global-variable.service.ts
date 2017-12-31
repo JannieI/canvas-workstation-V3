@@ -2309,7 +2309,7 @@ export class GlobalVariableService {
         })))
     }
 
-    currentDatasourceAdd(newData: Datasource) {
+    datasourceAdd(newData: Datasource) {
 
         let arr: Datasource[] = this.datasources.value;
         arr.push(newData);
