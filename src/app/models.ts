@@ -58,7 +58,9 @@ export class CanvasAlert {
 export class CanvasComment {
     id: number;
     dashboardID: number;
+    dashboardTabID?: number;
     widgetID: number;
+    shapeID: number;
     comment: string;
     creator: string;
     createdOn: string;
