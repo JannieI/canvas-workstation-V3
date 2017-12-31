@@ -91,6 +91,7 @@ export class DatasourceFilter {
 
 export class DataQualityIssue {
     id: number;
+    datasourceID: number;
     status: string;
     name: string;
     type: string;

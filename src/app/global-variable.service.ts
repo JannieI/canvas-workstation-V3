@@ -717,6 +717,7 @@ const dataQualityIssues: DataQualityIssue[] =
 [
     {
         id: 1,
+        datasourceID: 12,
         status: 'Open',
         name: 'Missing Data',
         type: 'Data',
@@ -729,6 +730,7 @@ const dataQualityIssues: DataQualityIssue[] =
     },
     {
         id: 2,
+        datasourceID: 12,
         status: '',
         name: 'Invalid Entries',
         type: 'Process',
