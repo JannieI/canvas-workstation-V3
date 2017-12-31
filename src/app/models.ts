@@ -133,6 +133,7 @@ export class DatasourcePermission {
 
 export class Transformation {
     id: number;
+    datasourceID: number;
     category: string;
     name: string;
     description: string;

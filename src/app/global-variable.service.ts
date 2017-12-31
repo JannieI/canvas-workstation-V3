@@ -747,18 +747,21 @@ const transformationsFormat: Transformation[] =
 [
     {
         id: 1,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'FormatDate',
         description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.'
     },
     {
         id: 16,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'DatePart',
         description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second'
     },
     {
         id: 20,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'FormatNumber',
         description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’'
@@ -783,18 +786,21 @@ const transformationsFill: Transformation[] =
 [
     {
         id: 2,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'FillBlanks',
         description: '(columnName, newValue)'
     },
     {
         id: 3,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'FillNull',
         description: '(columnName, newValue)'
     },
     {
         id: 4,
+        datasourceID: 12,
         category: 'ColucurrentTransformationsmn-level',
         name: 'FillBlankAndNull',
         description: '(columnName, newValue)'
@@ -806,12 +812,14 @@ const transformationsGeo: Transformation[] =
 [
     {
         id: 21,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'AddLatitude',
         description: '(reference-columnName, new-columnName), add a new column with latitude, based on the information in the reference-columnName'
     },
     {
         id: 22,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'AddLongitude',
         description: '(reference-columnName, new-columnName), add a new column with longitude, based on the information in the reference-columnName'
@@ -823,12 +831,14 @@ const transformationsReplace: Transformation[] =
 [
     {
         id: 5,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'ReplaceNumbers',
         description: '(columnName, from, to, newValue)'
     },
     {
         id: 6,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'ReplaceString',
         description: '(columnName, oldValue, newValue)'
@@ -840,18 +850,21 @@ const transformationsAddColumn: Transformation[] =
 [
     {
         id: 7,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'AppendColumn',
         description: '(newColumnName, dataType, fillValue)'
     },
     {
         id: 10,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'CalcColumn',
         description: '(newColumnName, columnOne, columnTwo, Operator, fillValue)'
     },
     {
         id: 17,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'Concatenate',
         description: '(columnNameOne, ColumnNameTwo)'
@@ -863,18 +876,21 @@ const transformationsTrim: Transformation[] =
 [
     {
         id: 12,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'LeftTrim',
         description: '(columnName)'
     },
     {
         id: 13,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'RightTrim',
         description: '(columnName)'
     },
     {
         id: 14,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'Trim',
         description: '(columnName), which combines LeftTrim and RightTrim'
@@ -886,24 +902,28 @@ const transformationsPortion: Transformation[] =
 [
     {
         id: 11,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'Substring',
         description: '(columnName, startPosition, length)'
     },
     {
         id: 15,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'RightSubstring',
         description: '(columnName, startPosition, length) is similar to Substring, but startPosition is counted from the right.'
     },
     {
         id: 16,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'DatePart',
         description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second'
     },
     {
         id: 18,
+        datasourceID: 12,
         category: 'Column-level',
         name: 'ConcatenateColumn',
         description: '(columnName, preString, postString) will append strings to the front or back of a column'
