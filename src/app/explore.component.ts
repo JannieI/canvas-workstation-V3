@@ -170,7 +170,7 @@ export class ExploreComponent {
     localShapes: CanvasShape[];
     localWidgets: CanvasWidget[];
     localTrash: CanvasWidget[] = [];
-    currentDatasources: Datasource[];
+    datasources: Datasource[];
     currentTabName: string = 'Summary';
     description: string = 'A simple bar chart with embedded data.';
     circleRadius: number = 20;
@@ -311,7 +311,7 @@ export class ExploreComponent {
         this.globalVariableService.datasources.subscribe(
             i => {
                     if (i.length > 0) { this.hasDatasources = true} else {this.hasDatasources = false}
-                    this.currentDatasources = i
+                    this.datasources = i
                  }
         );
         this.globalVariableService.refreshDashboard.subscribe(
@@ -817,7 +817,7 @@ export class ExploreComponent {
     }
 
     clickWidgetEdit() {
-        if (this.currentDatasources.length == 0) {
+        if (this.datasources.length == 0) {
             alert('Please add a Dataset first: Data -> From File')
         } else {
             this.showModalWidgetEditor = true;
