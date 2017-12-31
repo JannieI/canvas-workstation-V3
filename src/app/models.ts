@@ -112,6 +112,16 @@ export class Datasource {
     description;
 }
 
+export class DataPivot {
+    id: number;
+    datasourceID: number;
+    columnFieldName: string;
+    rowFieldName: string;
+    aggregateFieldName: string;
+    aggregateType: string;              // Sum, Average, etc
+    refreshAlways: boolean;             // If True, will refresh after each change to rows, cols, etc
+}
+
 export class CurrentDatasource {
     id: number;
     type: string;
