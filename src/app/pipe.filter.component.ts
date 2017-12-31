@@ -3,8 +3,9 @@
 import { Pipe }                       from '@angular/core';
 import { PipeTransform }              from '@angular/core';
 
-@Pipe({ name: "filterDS" })
-  export class FilterPipe implements PipeTransform {
+// Filters DS = Datasource on Type
+@Pipe({ name: "filterDSType" })
+  export class PipeFilterDSType implements PipeTransform {
     transform(arr: string[], searchValue: string) { 
         console.log('in custom filter!')
       if (!searchValue) return arr;

@@ -637,10 +637,124 @@ const datasources: Datasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 1,
+        type: 'Server',
+        subType: 'MSSQL',
+        name: 'World Indices',
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+    },
+    {
+        id: 1,
+        name: 'SP Companies*',
+        type: 'Server',
+        subType: 'MSSQL',
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
+    },
+    {
+        id: 1,
+        name: 'Stock prices TEMP',
+        type: 'Server',
+        subType: 'MSSQL',
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
+    },
+    {
+        id: 1,
+        name: 'Trades per Year',
+        type: 'Server',
+        subType: 'MSSQL',
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
+    },
+    {
+        id: 1,
+        name: 'Bond volume trades',
+        type: 'Server',
+        subType: 'MSSQL',
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
+    },
+    {
+        id: 1,
+        name: 'Trades by Trade Type',
+        type: 'Server',
+        subType: 'MSSQL',
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
+    },
+    {
+        id: 1,
+        name: 'YTD Expenditure by Cost Center',
+        type: 'Server',
+        subType: 'MSSQL',
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
+    },
+    {
+        id: 1,
+        name: 'Headcount',
+        type: 'Server',
+        subType: 'MSSQL',
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
+    },
+    {
+        id: 1,
+        name: 'Customer List',
+        type: 'Server',
+        subType: 'MSSQL',
+        description: '',
+        createdBy: '',
+        createdOn: '',
+        refreshedBy: '',
+        refreshedOn: '',
+        parameters: ''
+
     }
-
 ];
-
 const fields: Field[] =
 [
     {
@@ -1001,116 +1115,6 @@ const transformationsPortion: Transformation[] =
     },
 ];
 
-const dataServer: Datasource[] =
-[
-    {
-        id: 1,
-        type: 'Xls File',
-        name: 'World Indices',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-    },
-    {
-        id: 1,
-        name: 'SP Companies*',
-        type: 'Xls File',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    },
-    {
-        id: 1,
-        name: 'Stock prices TEMP',
-        type: 'Xls File',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    },
-    {
-        id: 1,
-        name: 'Trades per Year',
-        type: 'Xls File',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    },
-    {
-        id: 1,
-        name: 'Bond volume trades',
-        type: 'Xls File',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    },
-    {
-        id: 1,
-        name: 'Trades by Trade Type',
-        type: 'Xls File',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    },
-    {
-        id: 1,
-        name: 'YTD Expenditure by Cost Center',
-        type: 'Xls File',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    },
-    {
-        id: 1,
-        name: 'Headcount',
-        type: 'Xls File',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    },
-    {
-        id: 1,
-        name: 'Customer List',
-        type: 'Xls File',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    }
-];
 
 const dataRecent: Datasource[] =
 [
@@ -1996,7 +2000,6 @@ export class GlobalVariableService {
     transformationsFormat: Transformation[] = transformationsFormat;
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
-    dataServer: Datasource[] = dataServer;
     dataRecent: Datasource[] = dataRecent;
     dataSample: Datasource[] = dataSample;
     dashboardThemes: DashboardTheme[] = dashboardThemes;

@@ -79,7 +79,7 @@ import { SystemSettingsComponent }    from './systemsettings.component';
 import { UserOfflineComponent}        from './user.offline.component';
 import { LogoutComponent}             from './logout.component';
 
-import { FilterPipe }                 from './pipe.filter.component';
+import { PipeFilterDSType }           from './pipe.filter.component';
 
 // Our Services
 import { AuthGuard }                  from './authguard.service';
@@ -162,7 +162,7 @@ import { MyNgIfDirective }            from './test.ngif.directive';
         DelayDirective,
         MyNgIfDirective,
 
-        FilterPipe,
+        PipeFilterDSType,
     ],
     imports: [
         BrowserAnimationsModule,
