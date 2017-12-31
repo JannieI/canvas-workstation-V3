@@ -414,7 +414,7 @@ const datasourcePermissions: DatasourcePermission[] =
     }
 ];
 
-const currentDatasources: Datasource [] =
+const datasources: Datasource [] =
 [
     {
         id: 1,
@@ -428,11 +428,7 @@ const currentDatasources: Datasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: 'None'
-    }
-];
-
-const datasources: Datasource [] =
-[
+    },
     {
         id: 1,
         name: 'My Expenses',
@@ -2123,8 +2119,7 @@ export class GlobalVariableService {
     dashboards: Partial<Dashboard>[] = dashboards;
     currentTransformations: Transformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;
-    currentDatasources = new BehaviorSubject<Datasource[]>(currentDatasources);
-    datasources: Datasource[] = datasources;
+    datasources = new BehaviorSubject<Datasource[]>(datasources);
     dataQualityIssues: DataQualityIssue[] = dataQualityIssues;
     localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     // localDashboards = new BehaviorSubject<dl.spec.TopLevelExtendedSpec[]>(localDashboards);
@@ -2316,11 +2311,11 @@ export class GlobalVariableService {
 
     currentDatasourceAdd(newData: Datasource) {
 
-        let arr: Datasource[] = this.currentDatasources.value;
+        let arr: Datasource[] = this.datasources.value;
         arr.push(newData);
         console.log('arr', arr)
-        this.currentDatasources.next(arr)
-        console.log('yy', this.currentDatasources.value)
+        this.datasources.next(arr)
+        console.log('yy', this.datasources.value)
     }
 
     dashboardRecent() {

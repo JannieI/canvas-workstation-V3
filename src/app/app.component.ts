@@ -146,7 +146,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.localWidgets.subscribe(
             i => this.localWidgets = i
         );
-        this.globalVariableService.currentDatasources.subscribe(
+        this.globalVariableService.datasources.subscribe(
             i => {
                     if (i.length > 0) { this.hasDatasources = true} else {this.hasDatasources = false}
                     this.currentDatasources = i

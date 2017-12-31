@@ -18,15 +18,12 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Functions
 
-
-
-
 @Component({
     selector: 'data-refresh',
     templateUrl: './data.refresh.component.html',
     styleUrls: ['./data.refresh.component.css']
-  })
-  export class DataRefreshComponent implements OnInit {
+})
+export class DataRefreshComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
     @Output() formDataRefreshClosed: EventEmitter<string> = new EventEmitter();
@@ -43,18 +40,13 @@ import { GlobalVariableService }      from './global-variable.service';
     ) {}
 
     ngOnInit() {
-      this.currentDatasources = this.globalVariableService.datasources.filter(
-        ds => ds.id < 3
-      );
+        this.globalVariableService.datasources.subscribe(
+            i => this.currentDatasources = i
+        );
     }
-
-    ngAfterViewInit() {
-
-    }
-
 
   	clickClose(action: string) {
-	  	this.formDataRefreshClosed.emit(action);
-        }
+  	  	this.formDataRefreshClosed.emit(action);
+    }
 
   }

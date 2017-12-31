@@ -891,7 +891,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     ) {}
 
     ngOnInit() {
-        this.globalVariableService.currentDatasources.subscribe(
+        this.globalVariableService.datasources.subscribe(
           i => this.currentDatasources = i
         );
         this.dataFieldNames = ['symbol', 'date', 'price', 'Month', 'Trades'];

@@ -187,9 +187,7 @@ export class DataPopupComponent implements OnInit {
 	ngOnInit() {
 
         // Load global variables
-        this.datasources = this.globalVariableService.datasources
-        .filter(d => d.id <= 14);
-        this.globalVariableService.currentDatasources.subscribe(
+        this.globalVariableService.datasources.subscribe(
             i => this.currentDatasources = i
         );
        if (this.currentDatasources.length > 0) {

@@ -308,7 +308,7 @@ export class ExploreComponent {
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
         );
-        this.globalVariableService.currentDatasources.subscribe(
+        this.globalVariableService.datasources.subscribe(
             i => {
                     if (i.length > 0) { this.hasDatasources = true} else {this.hasDatasources = false}
                     this.currentDatasources = i

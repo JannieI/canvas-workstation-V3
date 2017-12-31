@@ -21,58 +21,62 @@ import { GlobalVariableService }      from './global-variable.service';
 @Component({
     templateUrl: './widget.expand.component.html',
     styleUrls: ['./widget.expand.component.css']
-  })
-  export class WidgetExpandComponent implements OnInit {
+})
+export class WidgetExpandComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
     // @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
-    currentData = [
-      {
-        Name: 'Jay',
-        Type: 'Origon',
-        Description: 'bla-bla',
-        CreatedBy: 'aasdf',
-        CreatedOn: 'on',
-        RefreshedBy: 'by',
-        RefreshedOn: '2/2'
-      },
-      {
-        Name: 'Jay',
-        Type: 'Origon',
-        Description: 'bla-bla',
-        CreatedBy: 'aasdf',
-        CreatedOn: 'on',
-        RefreshedBy: 'by',
-        RefreshedOn: '2/2'
-      },
-      {
-        Name: 'Jay',
-        Type: 'Origon',
-        Description: 'bla-bla',
-        CreatedBy: 'aasdf',
-        CreatedOn: 'on',
-        RefreshedBy: 'by',
-        RefreshedOn: '2/2'
-      },
-      {
-        Name: 'Jay',
-        Type: 'Origon',
-        Description: 'bla-bla',
-        CreatedBy: 'aasdf',
-        CreatedOn: 'on',
-        RefreshedBy: 'by',
-        RefreshedOn: '2/2'
-      }
+    currentData = 
+    [
+        {
+          Name: 'Jay',
+          Type: 'Origon',
+          Description: 'bla-bla',
+          CreatedBy: 'aasdf',
+          CreatedOn: 'on',
+          RefreshedBy: 'by',
+          RefreshedOn: '2/2'
+        },
+        {
+          Name: 'Jay',
+          Type: 'Origon',
+          Description: 'bla-bla',
+          CreatedBy: 'aasdf',
+          CreatedOn: 'on',
+          RefreshedBy: 'by',
+          RefreshedOn: '2/2'
+        },
+        {
+          Name: 'Jay',
+          Type: 'Origon',
+          Description: 'bla-bla',
+          CreatedBy: 'aasdf',
+          CreatedOn: 'on',
+          RefreshedBy: 'by',
+          RefreshedOn: '2/2'
+        },
+        {
+          Name: 'Jay',
+          Type: 'Origon',
+          Description: 'bla-bla',
+          CreatedBy: 'aasdf',
+          CreatedOn: 'on',
+          RefreshedBy: 'by',
+          RefreshedOn: '2/2'
+        }
     ];
+    
     datasources: Datasource[];
-    dataFieldNames: string[] = [
-      'Name',
-      'Type',
-      'Description',
-      'CreatedBy',
-      'CreatedOn',
-      'RefreshedBy',
-      'RefreshedOn'
+    
+    dataFieldNames: string[] = 
+    [
+        'Name',
+        'Type',
+        'Description',
+        'CreatedBy',
+        'CreatedOn',
+        'RefreshedBy',
+        'RefreshedOn'
     ]
 
     constructor(
@@ -83,17 +87,14 @@ import { GlobalVariableService }      from './global-variable.service';
     ) {}
 
     ngOnInit() {
-      this.datasources = this.globalVariableService.datasources
-        .filter(d => d.id <= 13);
-    }
-
-    ngAfterViewInit() {
-
+        this.globalVariableService.datasources.subscribe(
+            i => this.datasources = i
+        );
     }
 
   	clickClose(action: string) {
-      // this.formWidgetExpandClosed.emit(action);
-      this.router.navigate(['explore'])
-        }
+        // this.formWidgetExpandClosed.emit(action);
+        this.router.navigate(['explore'])
+    }
 
-  }
+}
