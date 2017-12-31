@@ -18,7 +18,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { CurrentDatasource }          from './models';
+import { Datasource }          from './models';
 import { Transformation }             from './models';
 import { Field }                      from './models';
 import { FieldMetadata }              from './models';
@@ -81,8 +81,8 @@ export class DataPopupComponent implements OnInit {
     @ViewChild('typeTransformationDropdown') typeTransformationDropdown: ElementRef;
     @ViewChild('transformations') transformations: ElementRef;
 
-    currentDatasources: CurrentDatasource[];
-    datasources: CurrentDatasource[];
+    currentDatasources: Datasource[];
+    datasources: Datasource[];
 
     finalFields: any = finalFields;
     currentData: any = [];
@@ -229,7 +229,7 @@ export class DataPopupComponent implements OnInit {
     clickFileAdd(action: string) {
         // Datasource
         console.log('DATASOURCE start:')
-        let newData: CurrentDatasource =  {
+        let newData: Datasource =  {
             id: 1,
             type: 'CSV File',
             name: 'Stocks Numba2.csv',

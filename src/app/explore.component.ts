@@ -23,7 +23,7 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { CanvasShape }                from './models'
 import { CanvasWidget }               from './models'
-import { CurrentDatasource }          from './models'
+import { Datasource }          from './models'
 import { Dashboard }                  from './models'
 import { Datasource }                 from './models'
 
@@ -171,7 +171,7 @@ export class ExploreComponent {
     localShapes: CanvasShape[];
     localWidgets: CanvasWidget[];
     localTrash: CanvasWidget[] = [];
-    currentDatasources: CurrentDatasource[];
+    currentDatasources: Datasource[];
     currentTabName: string = 'Summary';
     description: string = 'A simple bar chart with embedded data.';
     circleRadius: number = 20;

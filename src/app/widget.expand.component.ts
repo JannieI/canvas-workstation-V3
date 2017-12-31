@@ -10,7 +10,7 @@ import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { CurrentDatasource }          from './models';
+import { Datasource }          from './models';
 
 // Our Services
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -64,7 +64,7 @@ import { GlobalVariableService }      from './global-variable.service';
         RefreshedOn: '2/2'
       }
     ];
-    datasources: CurrentDatasource[];
+    datasources: Datasource[];
     dataFieldNames: string[] = [
       'Name',
       'Type',

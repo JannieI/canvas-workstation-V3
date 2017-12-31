@@ -21,7 +21,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 // Our Models
 import { Field }                      from './models'
 import { CanvasWidget }               from './models'
-import { CurrentDatasource }          from './models'
+import { Datasource }          from './models'
 
 @Component({
     selector: 'my-app',
@@ -107,7 +107,7 @@ export class AppComponent implements OnInit {
 
     localTrash: CanvasWidget[];
     localWidgets: CanvasWidget[];
-    currentDatasources: CurrentDatasource[];
+    currentDatasources: Datasource[];
 
     // Testings ....
     test: number[] = [1,2,3,4,5,6];

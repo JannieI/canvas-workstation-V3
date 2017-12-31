@@ -3,7 +3,7 @@ import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
 
 // Our Models
-import { CurrentDatasource }          from './models';
+import { Datasource }          from './models';
 import { CurrentTransformation }      from './models';
 import { Dashboard }                  from './models';
 import { Datasource }                 from './models';
@@ -416,7 +416,7 @@ const datasourcePermissions: DatasourcePermission[] =
     }
 ];
 
-const currentDatasources: CurrentDatasource [] =
+const currentDatasources: Datasource [] =
 [
     {
         id: 1,
@@ -431,7 +431,7 @@ const currentDatasources: CurrentDatasource [] =
     }
 ];
 
-const datasources: CurrentDatasource [] =
+const datasources: Datasource [] =
 [
     {
         id: 1,
@@ -647,6 +647,7 @@ const fields: Field[] =
 [
     {
         id: 1,
+        datasourceID: 12,
         name: 'DateTrade',
         type: 'Date',
         format: '',
@@ -656,6 +657,7 @@ const fields: Field[] =
     },
     {
         id: 2,
+        datasourceID: 12,
         name: 'Share',
         type: 'Text',
         format: '',
@@ -665,6 +667,7 @@ const fields: Field[] =
     },
     {
         id: 3,
+        datasourceID: 12,
         name: 'Volume',
         type: 'Number',
         format: 'Integer',
@@ -674,6 +677,7 @@ const fields: Field[] =
     },
     {
         id: 4,
+        datasourceID: 12,
         name: 'Value',
         type: 'Number',
         format: '2 decimals',
@@ -686,6 +690,8 @@ const fields: Field[] =
 const fieldsMetadata: FieldMetadata[] =
 [
     {
+        id: 4,
+        datasourceID: 12,
         name: 'DateTrade',
         type: 'Date',
         description: 'Date on which trade when through trading system',
@@ -693,6 +699,8 @@ const fieldsMetadata: FieldMetadata[] =
         explainedBy: ''
     },
     {
+        id: 4,
+        datasourceID: 12,
         name: 'Share',
         type: 'String',
         description: 'Name of share (stock) that traded, ie Anglo American plc',
@@ -700,6 +708,8 @@ const fieldsMetadata: FieldMetadata[] =
         explainedBy: 'Bar of new Listings per Month'
     },
     {
+        id: 4,
+        datasourceID: 12,
         name: 'Volume',
         type: 'Number',
         description: 'Number of instruments traded.  Single counted, excluding BR, YT trade types.',
@@ -707,6 +717,8 @@ const fieldsMetadata: FieldMetadata[] =
         explainedBy: 'Pie of Trades by Broker'
     },
     {
+        id: 4,
+        datasourceID: 12,
         name: 'Value',
         type: 'Number',
         description: 'Value in Rand of the instruments traded, based on Volume and Price.',
@@ -1835,8 +1847,8 @@ export class GlobalVariableService {
     dashboards: Partial<Dashboard>[] = dashboards;
     currentTransformations: CurrentTransformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;
-    currentDatasources = new BehaviorSubject<CurrentDatasource[]>(currentDatasources);
-    datasources: CurrentDatasource[] = datasources;
+    currentDatasources = new BehaviorSubject<Datasource[]>(currentDatasources);
+    datasources: Datasource[] = datasources;
     dataQualityIssues: DataQualityIssue[] = dataQualityIssues;
     localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     // localDashboards = new BehaviorSubject<dl.spec.TopLevelExtendedSpec[]>(localDashboards);
@@ -2027,9 +2039,9 @@ export class GlobalVariableService {
         })))
     }
 
-    currentDatasourceAdd(newData: CurrentDatasource) {
+    currentDatasourceAdd(newData: Datasource) {
 
-        let arr: CurrentDatasource[] = this.currentDatasources.value;
+        let arr: Datasource[] = this.currentDatasources.value;
         arr.push(newData);
         console.log('arr', arr)
         this.currentDatasources.next(arr)

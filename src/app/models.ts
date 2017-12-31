@@ -105,13 +105,6 @@ export class DataQualityIssue {
     solvedOn: string;
 }
 
-export class Datasource {
-    id: number;
-    name: string;
-    type: string;
-    description;
-}
-
 export class DataPivot {
     id: number;
     datasourceID: number;
@@ -122,7 +115,7 @@ export class DataPivot {
     refreshAlways: boolean;             // If True, will refresh after each change to rows, cols, etc
 }
 
-export class CurrentDatasource {
+export class Datasource {
     id: number;
     type: string;
     name: string;
