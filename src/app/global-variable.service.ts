@@ -776,6 +776,7 @@ const currentTransformations: CurrentTransformation[] =
     }
 ]
 
+// TODO - check why this is not used
 const transformationsFill: Transformation[] =
 [
     {
@@ -798,6 +799,7 @@ const transformationsFill: Transformation[] =
     }
 ];
 
+// TODO - check why this is not used
 const transformationsGeo: Transformation[] =
 [
     {
@@ -814,6 +816,7 @@ const transformationsGeo: Transformation[] =
     }
 ];
 
+// TODO - check why this is not used
 const transformationsReplace: Transformation[] =
 [
     {
@@ -830,6 +833,7 @@ const transformationsReplace: Transformation[] =
     }
 ];
 
+// TODO - check why this is not used
 const transformationsAddColumn: Transformation[] =
 [
     {
@@ -852,6 +856,7 @@ const transformationsAddColumn: Transformation[] =
     }
 ];
 
+// TODO - check why this is not used
 const transformationsTrim: Transformation[] =
 [
     {
@@ -874,6 +879,7 @@ const transformationsTrim: Transformation[] =
     }
 ];
 
+// TODO - check why this is not used
 const transformationsPortion: Transformation[] =
 [
     {

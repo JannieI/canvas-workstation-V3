@@ -1,4 +1,71 @@
 // ALL models (schema) are kept here
+
+// Setup / Settings / General
+export class ButtonBarAvailable {
+    id: number;
+    buttonText: string;
+    description: string;
+    sortOrder: number;
+    isDefault: boolean;
+}
+
+export class ButtonBarSelected {
+    id: number;
+    buttonText: string;
+    description: string;
+    sortOrder: number;
+}
+
+export class CSScolor {
+    name: string;
+}
+
+
+// Messages / Activities / Alerts / Comments
+export class CanvasActivity {
+    id: number;
+    createdBy: string;
+    createdOn: string;
+    activityType: string;
+    activityStatus: string;
+    linkedDashboardList: string[];
+    activityText: string;
+    activityComments: string[];
+}
+
+export class CanvasMessage {
+    id: number;
+    sentBy: string;
+    sentOn: string;
+    toUsers: string[];      // Original list
+    toGroups: string[];     // Original list
+    recipient: string;      // Independant message, deduced from to lists
+    read: boolean;
+    subject: string;
+    body: string;
+    dashboardID: number;
+}
+
+export class CanvasAlert {
+    id: number;
+    sentOn: string;
+    recipient: string;
+    read: boolean;
+    alertText: string;
+    alertData?: any;    //type of data, table name, field names, field values
+}
+
+export class CanvasComment {
+    id: number;
+    dashboardID: number;
+    widgetID: number;
+    comment: string;
+    creator: string;
+    createdOn: string;
+}
+
+
+// Data
 export class Combination {
     combinationID: number;
     dashboardID: number;
@@ -14,6 +81,91 @@ export class CombinationDetail {
     rhFieldName: string;
 }
 
+export class DatasourceFilter {
+    id: number;
+    fieldName: string;
+    operator: string;
+    filterValue: string | number;
+}
+
+export class DataQualityIssue {
+    id: number;
+    status: string;
+    name: string;
+    type: string;
+    description;
+    nrIssues: number;
+    loggedBy: string;
+    loggedOn: string;
+    solvedBy: string;
+    solvedOn: string;
+}
+
+export class Datasource {
+    id: number;
+    name: string;
+    type: string;
+    description;
+}
+
+export class CurrentDatasource {
+    id: number;
+    type: string;
+    name: string;
+    description: string;
+    createdBy: string;
+    createdOn: string;
+    refreshedBy: string;
+    refreshedOn: string;
+    parameters: string;
+}
+
+export class DatasourcePermission {
+    id: number;
+    datasourceID: number;
+    userID: string;        // 1 of usr/grp filled in, one blank
+    groupID: string;
+    canView: boolean;
+    canEdit: boolean;    
+}
+
+export class Transformation {
+    id: number;
+    category: string;
+    name: string;
+    description: string;
+}
+
+export class CurrentTransformation {
+    id: number;
+    category: string;
+    name: string;
+    description: string;
+    fieldID: number;
+    fieldName: string;
+    parameters: string;
+}
+
+export class Field {
+    id: number;
+    name: string;
+    type: string;
+    format: string;
+    filter: string;
+    calc: string;
+    order: string;
+}
+
+export class FieldMetadata{
+    name: string;
+    type: string;
+    description: string;
+    keyField: boolean;
+    explainedBy: string
+}
+
+
+// Dashboard
 export class CanvasShape {
 
     // Type
@@ -86,15 +238,6 @@ export class CanvasShape {
     widgetUpdatedOn: string;              // Updated on
     widgetUpdatedBy: string;              // Updated by    
 
-}
-
-export class CanvasComment {
-    id: number;
-    dashboardID: number;
-    widgetID: number;
-    comment: string;
-    creator: string;
-    createdOn: string;
 }
 
 export class CanvasWidget {
@@ -202,39 +345,6 @@ export class CanvasWidget {
 
 }
 
-export class CanvasActivity {
-    id: number;
-    createdBy: string;
-    createdOn: string;
-    activityType: string;
-    activityStatus: string;
-    linkedDashboardList: string[];
-    activityText: string;
-    activityComments: string[];
-}
-
-export class CanvasMessage {
-    id: number;
-    sentBy: string;
-    sentOn: string;
-    toUsers: string[];      // Original list
-    toGroups: string[];     // Original list
-    recipient: string;      // Independant message, deduced from to lists
-    read: boolean;
-    subject: string;
-    body: string;
-    dashboardID: number;
-}
-
-export class CanvasAlert {
-    id: number;
-    sentOn: string;
-    recipient: string;
-    read: boolean;
-    alertText: string;
-    alertData?: any;    //type of data, table name, field names, field values
-}
-
 export class WidgetLinkedDashboard {
     id: number;
     sourceDashboardID: number;
@@ -243,70 +353,6 @@ export class WidgetLinkedDashboard {
     destinationWidgetID: number;
 }
 
-export class ButtonBarAvailable {
-    id: number;
-    buttonText: string;
-    description: string;
-    sortOrder: number;
-    isDefault: boolean;
-}
-
-export class ButtonBarSelected {
-    id: number;
-    buttonText: string;
-    description: string;
-    sortOrder: number;
-}
-
-export class DatasourceFilter {
-    id: number;
-    fieldName: string;
-    operator: string;
-    filterValue: string | number;
-}
-
-export class DataQualityIssue {
-    id: number;
-    status: string;
-    name: string;
-    type: string;
-    description;
-    nrIssues: number;
-    loggedBy: string;
-    loggedOn: string;
-    solvedBy: string;
-    solvedOn: string;
-}
-
-export class Datasource {
-    id: number;
-    name: string;
-    type: string;
-    description;
-}
-
-export class CurrentDatasource {
-    id: number;
-    type: string;
-    name: string;
-    description: string;
-    createdBy: string;
-    createdOn: string;
-    refreshedBy: string;
-    refreshedOn: string;
-    parameters: string;
-}
-
-export class DatasourcePermission {
-    id: number;
-    datasourceID: number;
-    userID: string;        // 1 of usr/grp filled in, one blank
-    groupID: string;
-    canView: boolean;
-    canEdit: boolean;    
-}
-
-// Dashboard
 export class Dashboard {
 
     // Identification and description
@@ -403,44 +449,4 @@ export class DashboardPermission {
     groupID: string;
     canView: boolean;
     canEdit: boolean;    
-}
-
-// CSS Color
-export class CSScolor {
-    name: string;
-}
-
-export class Transformation {
-    id: number;
-    category: string;
-    name: string;
-    description: string;
-}
-
-export class CurrentTransformation {
-    id: number;
-    category: string;
-    name: string;
-    description: string;
-    fieldID: number;
-    fieldName: string;
-    parameters: string;
-}
-
-export class Field {
-    id: number;
-    name: string;
-    type: string;
-    format: string;
-    filter: string;
-    calc: string;
-    order: string;
-}
-
-export class FieldMetadata{
-    name: string;
-    type: string;
-    description: string;
-    keyField: boolean;
-    explainedBy: string
 }
