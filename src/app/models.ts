@@ -118,6 +118,8 @@ export class DataPivot {
 export class Datasource {
     id: number;
     type: string;
+    subType: string;
+    typeVersion: string;
     name: string;
     description: string;
     createdBy: string;

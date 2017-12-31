@@ -230,8 +230,10 @@ export class DataPopupComponent implements OnInit {
         console.log('DATASOURCE start:')
         let newData: Datasource =  {
             id: 1,
-            type: 'CSV File',
-            name: 'Stocks Numba2.csv',
+            type: 'File',
+            subType: 'CSV',
+            typeVersion: 'Comma-Separated',
+                name: 'Stocks Numba2.csv',
             description: 'Hard coded name',
             createdBy: 'Me',
             createdOn: '2017/01/01',
