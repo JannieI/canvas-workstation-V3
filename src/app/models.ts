@@ -431,14 +431,6 @@ export class WidgetCheckpoint {
     createdOn: string;
 }
 
-export class WidgetLinkedDashboard {
-    id: number;
-    sourceDashboardID: number;
-    sourceWidgetID: number;
-    destinationDashboardID: number;
-    destinationWidgetID: number;
-}
-
 export class Dashboard {
 
     // Identification and description
