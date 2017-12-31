@@ -1163,7 +1163,7 @@ const transformationsPortion: Transformation[] =
 ];
 
 
-const dataRecent: Datasource[] =
+const datasourceRecent: Datasource[] =
 [
     {
         id: 1,
@@ -1195,7 +1195,7 @@ const dataRecent: Datasource[] =
     }
 ];
 
-const dataSample: Datasource[] =
+const datasourceSample: Datasource[] =
 [
     {
         id: 1,
@@ -2057,8 +2057,8 @@ export class GlobalVariableService {
     transformationsFormat: Transformation[] = transformationsFormat;
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
-    dataRecent: Datasource[] = dataRecent;
-    dataSample: Datasource[] = dataSample;
+    dataRecent: Datasource[] = datasourceRecent;
+    dataSample: Datasource[] = datasourceSample;
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: DashboardSchedule[] = dashboardSchedules;
