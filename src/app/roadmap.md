@@ -24,6 +24,7 @@ This document describes items for later versions of Canvas.
 6. Test on different devices, ie Tablet and Phone
 7. Install at user as pilot, may Liaan ...
 8. Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure there is a preference to switch it back on manually.
+9. Some models like Shape has dashboardTabName - suggest we delete this
 
 
 **Data**
