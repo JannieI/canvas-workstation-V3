@@ -163,6 +163,7 @@ export class CurrentTransformation {
 
 export class Field {
     id: number;
+    datasourceID: number;
     name: string;
     type: string;
     format: string;
@@ -172,6 +173,8 @@ export class Field {
 }
 
 export class FieldMetadata{
+    id: number;
+    datasourceID: number;
     name: string;
     type: string;
     description: string;
@@ -240,7 +243,6 @@ export class CanvasSlicer {
 
 }
 
-
 export class CanvasShape {
 
     // Type
@@ -308,10 +310,10 @@ export class CanvasShape {
     fill: string;                           // fill / inside (ie of circle)   
 
     // Created, updated and refreshed
-    widgetCreatedOn: string;              // Created on
-    widgetCreatedBy: string;              // Created by
-    widgetUpdatedOn: string;              // Updated on
-    widgetUpdatedBy: string;              // Updated by    
+    shapeCreatedOn: string;                 // Created on
+    shapeCreatedBy: string;                 // Created by
+    shapeUpdatedOn: string;                 // Updated on
+    shapeUpdatedBy: string;                 // Updated by    
 
 }
 

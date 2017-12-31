@@ -67,10 +67,10 @@ const localShapes: CanvasShape[] =
         fill: 'none',
 
         // Created, updated and refreshed
-        widgetCreatedOn: '',
-        widgetCreatedBy: '',
-        widgetUpdatedOn: '',
-        widgetUpdatedBy: '',
+        shapeCreatedOn: '',
+        shapeCreatedBy: '',
+        shapeUpdatedOn: '',
+        shapeUpdatedBy: '',
     }
 ]
 
