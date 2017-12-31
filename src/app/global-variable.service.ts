@@ -1457,6 +1457,7 @@ const dashboardSchedules: DashboardSchedule[] =
     {
         id: 1,
         dashboardID: 12,
+        datasourceID: 0,
         name: 'Daily',
         description: '7 Days a weeks, forever',
         repeats: 'Daily',
@@ -1471,6 +1472,7 @@ const dashboardSchedules: DashboardSchedule[] =
     {
         id: 2,
         dashboardID: 12,
+        datasourceID: 0,
         name: 'Weekday (M-F)',
         description: 'Mon-Fri for 10 times',
         repeats: 'Weekday (M-F)',
@@ -1485,6 +1487,7 @@ const dashboardSchedules: DashboardSchedule[] =
     {
         id: 3,
         dashboardID: 12,
+        datasourceID: 0,
         name: 'Weekly',
         description: 'Every second week on Tuesday and Friday',
         repeats: 'Weekly',
@@ -1499,6 +1502,7 @@ const dashboardSchedules: DashboardSchedule[] =
     {
         id: 4,
         dashboardID: 12,
+        datasourceID: 0,
         name: 'Monthly',
         description: 'Quarterly for one year',
         repeats: 'Monthly',
@@ -1513,6 +1517,7 @@ const dashboardSchedules: DashboardSchedule[] =
     {
         id: 1,
         dashboardID: 12,
+        datasourceID: 0,
         name: 'Yearly',
         description: 'Annualy forever',
         repeats: 'Yearly',

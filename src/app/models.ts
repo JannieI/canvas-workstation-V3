@@ -430,6 +430,7 @@ export class DashboardSnapshot {
 export class DashboardSchedule {
     id: number;
     dashboardID: number;
+    datasourceID: number;
     name: string;
     description: string;
     repeats: string;       // Daily, Weekday (M-F), Weekly, Monthly, Yearly
