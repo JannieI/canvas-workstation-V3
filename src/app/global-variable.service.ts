@@ -1882,6 +1882,81 @@ const dashboards: Partial<Dashboard>[] =
     }
 ];
 
+const dashboardsRecent: Partial<Dashboard>[] =
+[
+    {
+        id: 1,
+        state: 'Draft',
+        version: 1,
+        name: 'Market Overview',
+        description: 'Economic indicator summary',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 4
+    }
+];
+
+
+const dashboardsSample: Partial<Dashboard>[] =
+[
+    {
+        id: 1,
+        state: 'Complete',
+        version: 1,
+        name: 'Economic Overview',
+        description: 'Sample Economic indicator summary',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 4
+    },
+    {
+        id: 2,
+        state: 'Complete',
+        version: 1,
+        name: 'Costing Summary',
+        description: 'Sample Costing Summary',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 0
+    },
+    {
+        id: 3,
+        state: 'Complete',
+        version: 1,
+        name: 'Home Budget',
+        description: 'Sample Home Budget',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 21
+    },
+    {
+        id: 4,
+        state: 'Complete',
+        version: 1,
+        name: 'Bitcoin sales',
+        description: 'Sample Bitcoin sales',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 4
+    },
+    {
+        id: 5,
+        state: 'Complete',
+        version: 1,
+        name: 'Sample Cycling routes',
+        description: 'Cycling routes',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 14
+    }
+];
+
 
 // Old, Full list
     // const transformations: transformation[] =
@@ -2057,8 +2132,8 @@ export class GlobalVariableService {
     transformationsFormat: Transformation[] = transformationsFormat;
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
-    dataRecent: Datasource[] = datasourceRecent;
-    dataSample: Datasource[] = datasourceSample;
+    datasourceRecent: Datasource[] = datasourceRecent;
+    datasourceSample: Datasource[] = datasourceSample;
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: DashboardSchedule[] = dashboardSchedules;
