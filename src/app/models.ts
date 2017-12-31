@@ -83,6 +83,7 @@ export class CombinationDetail {
 
 export class DatasourceFilter {
     id: number;
+    datasourceID: number;
     fieldName: string;
     operator: string;
     filterValue: string | number;

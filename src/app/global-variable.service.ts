@@ -1008,12 +1008,14 @@ const datasourceFilters: DatasourceFilter[] =
 [
     {
         id: 1,
+        datasourceID: 12,
         fieldName: 'symbol',
         operator: 'Equal',
         filterValue: 'MSFT'
     },
     {
         id: 1,
+        datasourceID: 12,
         fieldName: 'price',
         operator: 'GreaterEqual',
         filterValue: '100'
