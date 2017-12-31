@@ -33,11 +33,19 @@ export class DashboardSnapshotsComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
     dashboardSnapshots: DashboardSnapshot[];
+    selectedRow : Number;
+    setClickedRow : Function;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-	) {}
+	) {
+
+        this.setClickedRow = function(index){
+            this.selectedRow = index;
+        }
+
+    }
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
