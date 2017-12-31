@@ -36,7 +36,335 @@ import { httpFake }                   from './data/dashboards'
 
 import * as dl                        from 'datalib';
 
-// import { CanvasUser }                 from './model.user';
+// Loaded at Startup
+// *****************
+
+// Data
+
+
+// Dashboard
+
+// Loaded on Request
+// *****************
+
+// Setup / Settings / General
+const backgroundcolors: CSScolor[] =
+[
+    {
+        name: 'transparent'
+    },
+    {
+        name: 'beige'
+    },
+    {
+        name: 'white'
+    }
+];
+
+const shapeButtonsAvailable: ButtonBarAvailable[] =
+[
+    {
+        id: 1,
+        buttonText: 'Edit',
+        description: 'Open the edit form to edit the Widget, for example the graph type.',
+        sortOrder: 1,
+        isDefault: true
+    },
+    {
+        id: 2,
+        buttonText: 'Duplicate',
+        description: 'Duplicates the current Shape with a new name (adding ... Copy n).  The Dataset is not duplicated.',
+        sortOrder: 2,
+        isDefault: true
+    },
+    {
+        id: 3,
+        buttonText: 'Backward',
+        description: 'Send the selected Widget backwards.',
+        sortOrder: 3,
+        isDefault: true
+    },
+    {
+        id: 4,
+        buttonText: 'Forward',
+        description: 'Bring the selected Widget forward.',
+        sortOrder: 4,
+        isDefault: true
+    },
+    {
+        id: 5,
+        buttonText: 'Delete',
+        description: 'Delete the selected Widget.',
+        sortOrder: 5,
+        isDefault: true
+    },
+    {
+        id: 6,
+        buttonText: 'Background toggle',
+        description: 'Toggle the background of the selected Shape on / of.',
+        sortOrder: 6,
+        isDefault: true
+    },
+    {
+        id: 7,
+        buttonText: 'Increase size',
+        description: 'Increase the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
+        sortOrder: 7,
+        isDefault: true
+    },
+    {
+        id: 8,
+        buttonText: 'Decrease',
+        description: 'Decrease the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
+        sortOrder: 8,
+        isDefault: true
+    }
+]
+
+const shapeButtonsSelected: ButtonBarSelected[] =
+[
+    {
+        id: 1,
+        buttonText: 'Edit',
+        description: 'Open the edit form to edit the Shape, for example the color of a circle.',
+        sortOrder: 1
+    }
+]
+
+const widgetButtonsAvailable: ButtonBarAvailable[] =
+[
+    {
+        id: 1,
+        buttonText: 'Edit',
+        description: 'Open the edit form to edit the Widget, for example the graph type.',
+        sortOrder: 1,
+        isDefault: true
+    },
+    {
+        id: 2,
+        buttonText: 'Refresh',
+        description: 'Refresh the data linked to the current Widget.',
+        sortOrder: 2,
+        isDefault: false
+    },
+    {
+        id: 3,
+        buttonText: 'Expand',
+        description: 'Open a separate window showing all the data in the Dataset linked to the Widget.',
+        sortOrder: 3,
+        isDefault: false
+    },
+    {
+        id: 4,
+        buttonText: 'Duplicate',
+        description: 'Duplicates the current Widget with a new name (adding ... Copy n).  The Dataset is not duplicated.',
+        sortOrder: 4,
+        isDefault: false
+    },
+    {
+        id: 5,
+        buttonText: 'Backward',
+        description: 'Send the selected Widget backwards.',
+        sortOrder: 5,
+        isDefault: false
+    },
+    {
+        id: 6,
+        buttonText: 'Forward',
+        description: 'Bring the selected Widget forward.',
+        sortOrder: 6,
+        isDefault: false
+    },
+    {
+        id: 7,
+        buttonText: 'Notes',
+        description: 'Show the notes linked to the selected Widget.',
+        sortOrder: 7,
+        isDefault: false
+    },
+    {
+        id: 8,
+        buttonText: 'Data Quality',
+        description: 'Show a form with Data Quality issues pertaining to the Dataset linked to the selected Widget.',
+        sortOrder: 8,
+        isDefault: false
+    },
+    {
+        id: 9,
+        buttonText: 'Save Checkpoint',
+        description: 'Save the current layout of the selected Widget as a Checkpoint.',
+        sortOrder: 9,
+        isDefault: false
+    },
+    {
+        id: 10,
+        buttonText: 'Delete',
+        description: 'Delete the selected Widget.',
+        sortOrder: 10,
+        isDefault: false
+    },
+    {
+        id: 11,
+        buttonText: 'Export png',
+        description: 'Export the graph of the selected Widget as a .png file, which is a static image.',
+        sortOrder: 11,
+        isDefault: false
+    },
+    {
+        id: 12,
+        buttonText: 'Tags',
+        description: 'Show the tags associated with the selected Widget.',
+        sortOrder: 12,
+        isDefault: false
+    },
+    {
+        id: 13,
+        buttonText: 'Border toggle',
+        description: 'Toggle the border around the selected Widget between none, gray and black.  The line is 1px solid.',
+        sortOrder: 13,
+        isDefault: false
+    },
+    {
+        id: 14,
+        buttonText: 'Links',
+        description: 'Show a form with links from and to the selected Widget.  New links can be added here.',
+        sortOrder: 14,
+        isDefault: false
+    },
+    {
+        id: 15,
+        buttonText: 'Increase size',
+        description: 'Increase the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
+        sortOrder: 15,
+        isDefault: false
+    },
+    {
+        id: 16,
+        buttonText: 'Decrease',
+        description: 'Decrease the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
+        sortOrder: 16,
+        isDefault: false
+    }
+]
+
+const widgetButtonsSelected: ButtonBarSelected[] =
+[
+    {
+        id: 1,
+        buttonText: 'Edit',
+        description: 'Open the edit form to edit the Widget, for example the graph type.',
+        sortOrder: 1,
+    },
+    {
+        id: 2,
+        buttonText: 'Refresh',
+        description: 'Refresh the data linked to the current Widget.',
+        sortOrder: 2,
+    }
+]
+
+
+// Messages / Activities / Alerts / Comments
+const  canvasActivities: CanvasActivity[] =
+[
+    {
+        id: 1,
+        createdBy: 'AlexanderB',
+        createdOn: '2017/01/01',
+        activityType: 'Action',
+        activityStatus: 'Open',
+        linkedDashboardList: [],
+        activityText: 'Refactor Widget for coal levels',
+        activityComments: ['2017/01/01 @BorisN Levels in tenk 1-A checked and good']
+    }
+];
+
+const canvasAlerts: CanvasAlert[] =
+[
+    {
+        id: 1,
+        sentOn: '2017/01/01',
+        recipient: 'BonitaS',
+        read: false,
+        alertText: 'Schedule Weekly reports failed',
+    },
+    {
+        id: 2,
+        sentOn: '2017/01/01',
+        recipient: 'AlisonW',
+        read: true,
+        alertText: 'Please log out for maintenance',
+    },
+    {
+        id: 3,
+        sentOn: '2017/01/01',
+        recipient: 'GavinO',
+        read: false,
+        alertText: 'Longrunning query finished',
+    },
+    {
+        id: 4,
+        sentOn: '2017/01/01',
+        recipient: 'WendyA',
+        read: true,
+        alertText: 'Query xyz failed',
+    }
+];
+
+const canvasMessages: CanvasMessage[] =
+[
+    {
+        id: 1,
+        sentBy: 'GinaU',
+        sentOn: '2017/01/01',
+        toUsers: ['GinaU'],
+        toGroups: [''],
+        recipient: '',
+        read: false,
+        subject: 'Please QA attached Dashboard',
+        body: 'I have amended the graph type for marketing expenses',
+        dashboardID: 12
+    },
+    {
+        id: 2,
+        sentBy: 'PeterJ',
+        sentOn: '2017/01/01',
+        toUsers: [''],
+        toGroups: ['Admin'],
+        recipient: 'QuintinY',
+        read: true,
+        subject: 'Admin cleanup',
+        body: 'Cleanout old users',
+        dashboardID: null
+    },
+    {
+        id: 3,
+        sentBy: 'RubinV',
+        sentOn: '2017/01/01',
+        toUsers: [''],
+        toGroups: ['Admin'],
+        recipient: 'YasserK',
+        read: false,
+        subject: 'Admin cleanup',
+        body: 'Cleanout old users',
+        dashboardID: null
+    }
+];
+
+const canvasComments: CanvasComment[] =
+[
+    {
+        id: 1,
+        dashboardID: 2,
+        widgetID: 4,
+        comment: 'Checkpoints show more detail',
+        creator: 'MarcoD',
+        createdOn: '2017/01/01'
+    }
+]
+
+
+// Data
 const combinations: Combination[] =
 [
     {
@@ -86,6 +414,608 @@ const datasourcePermissions: DatasourcePermission[] =
     }
 ];
 
+const currentDatasources: CurrentDatasource [] =
+[
+    {
+        id: 1,
+        type: 'CSV File',
+        name: 'Stocks.csv',
+        description: 'Hard coded name',
+        createdBy: 'Me',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: 'None'
+    }
+];
+
+const datasources: CurrentDatasource [] =
+[
+    {
+        id: 1,
+        name: 'My Expenses',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 2,
+        name: 'Bitcoin Trades',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 3,
+        name: 'My Budget',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 4,
+        name: 'Bicycle Sales',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 5,
+        name: 'Bond Valuation',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 6,
+        name: 'Auditors',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 7,
+        name: 'Student Marks',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 8,
+        name: 'Security Breaches',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 9,
+        name: 'Milk Proteins',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 10,
+        name: 'Malaria Cases',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 11,
+        name: 'Investments',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 12,
+        name: 'Bridge Maintenance',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 13,
+        name: 'Parts in storage',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 14,
+        name: 'Customer Complaints',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 15,
+        name: 'Issues',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 16,
+        name: 'Tickets',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    },
+    {
+        id: 17,
+        name: 'Clothing lines',
+        type: 'Xls File',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    },
+    {
+        id: 18,
+        name: 'Shoe Sales',
+        type: 'Database - PostgreSQL',
+        description: 'Trades from Bitcoin Exchange',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+    }
+
+];
+
+const fields: Field[] =
+[
+    {
+        id: 1,
+        name: 'DateTrade',
+        type: 'Date',
+        format: '',
+        filter: '',
+        calc: '',
+        order: 'Asc 1'
+    },
+    {
+        id: 2,
+        name: 'Share',
+        type: 'Text',
+        format: '',
+        filter:  '',
+        calc:  '',
+        order: ''
+    },
+    {
+        id: 3,
+        name: 'Volume',
+        type: 'Number',
+        format: 'Integer',
+        filter: '',
+        calc:  '',
+        order: ''
+    },
+    {
+        id: 4,
+        name: 'Value',
+        type: 'Number',
+        format: '2 decimals',
+        filter: '> 1m',
+        calc: 'Volume * 10',
+        order: ''
+    }
+];
+
+const fieldsMetadata: FieldMetadata[] =
+[
+    {
+        name: 'DateTrade',
+        type: 'Date',
+        description: 'Date on which trade when through trading system',
+        keyField: false,
+        explainedBy: ''
+    },
+    {
+        name: 'Share',
+        type: 'String',
+        description: 'Name of share (stock) that traded, ie Anglo American plc',
+        keyField: true,
+        explainedBy: 'Bar of new Listings per Month'
+    },
+    {
+        name: 'Volume',
+        type: 'Number',
+        description: 'Number of instruments traded.  Single counted, excluding BR, YT trade types.',
+        keyField: false,
+        explainedBy: 'Pie of Trades by Broker'
+    },
+    {
+        name: 'Value',
+        type: 'Number',
+        description: 'Value in Rand of the instruments traded, based on Volume and Price.',
+        keyField: false,
+        explainedBy: 'Custom Query: TradeAttribution'
+    }
+];
+
+const dataQualityIssues: DataQualityIssue[] =
+[
+    {
+        id: 1,
+        status: 'Open',
+        name: 'Missing Data',
+        type: 'Data',
+        description: 'bla-bla-bla',
+        nrIssues: 0,
+        loggedBy: 'AstonK',
+        loggedOn: '2017/01/01',
+        solvedBy: '',
+        solvedOn: '',
+    },
+    {
+        id: 2,
+        status: '',
+        name: 'Invalid Entries',
+        type: 'Process',
+        description: 'bla-bla-bla',
+        nrIssues: 12,
+        loggedBy: 'BarbaraR',
+        loggedOn: '2017/01/01',
+        solvedBy: 'GordonL',
+        solvedOn: '2017/01/01',
+    }
+]
+
+const transformationsFormat: Transformation[] =
+[
+    {
+        id: 1,
+        category: 'Column-level',
+        name: 'FormatDate',
+        description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.'
+    },
+    {
+        id: 16,
+        category: 'Column-level',
+        name: 'DatePart',
+        description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second'
+    },
+    {
+        id: 20,
+        category: 'Column-level',
+        name: 'FormatNumber',
+        description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’'
+    }
+];
+
+const currentTransformations: CurrentTransformation[] =
+[
+    {
+        id: 1,
+        category: 'Format',
+        name: 'FillBlanks',
+        description: 'bla-bla-bla',
+        fieldID: 231,
+        fieldName: 'Region',
+        parameters: ""
+    }
+]
+
+const transformationsFill: Transformation[] =
+[
+    {
+        id: 2,
+        category: 'Column-level',
+        name: 'FillBlanks',
+        description: '(columnName, newValue)'
+    },
+    {
+        id: 3,
+        category: 'Column-level',
+        name: 'FillNull',
+        description: '(columnName, newValue)'
+    },
+    {
+        id: 4,
+        category: 'ColucurrentTransformationsmn-level',
+        name: 'FillBlankAndNull',
+        description: '(columnName, newValue)'
+    }
+];
+
+const transformationsGeo: Transformation[] =
+[
+    {
+        id: 21,
+        category: 'Column-level',
+        name: 'AddLatitude',
+        description: '(reference-columnName, new-columnName), add a new column with latitude, based on the information in the reference-columnName'
+    },
+    {
+        id: 22,
+        category: 'Column-level',
+        name: 'AddLongitude',
+        description: '(reference-columnName, new-columnName), add a new column with longitude, based on the information in the reference-columnName'
+    }
+];
+
+const transformationsReplace: Transformation[] =
+[
+    {
+        id: 5,
+        category: 'Column-level',
+        name: 'ReplaceNumbers',
+        description: '(columnName, from, to, newValue)'
+    },
+    {
+        id: 6,
+        category: 'Column-level',
+        name: 'ReplaceString',
+        description: '(columnName, oldValue, newValue)'
+    }
+];
+
+const transformationsAddColumn: Transformation[] =
+[
+    {
+        id: 7,
+        category: 'Column-level',
+        name: 'AppendColumn',
+        description: '(newColumnName, dataType, fillValue)'
+    },
+    {
+        id: 10,
+        category: 'Column-level',
+        name: 'CalcColumn',
+        description: '(newColumnName, columnOne, columnTwo, Operator, fillValue)'
+    },
+    {
+        id: 17,
+        category: 'Column-level',
+        name: 'Concatenate',
+        description: '(columnNameOne, ColumnNameTwo)'
+    }
+];
+
+const transformationsTrim: Transformation[] =
+[
+    {
+        id: 12,
+        category: 'Column-level',
+        name: 'LeftTrim',
+        description: '(columnName)'
+    },
+    {
+        id: 13,
+        category: 'Column-level',
+        name: 'RightTrim',
+        description: '(columnName)'
+    },
+    {
+        id: 14,
+        category: 'Column-level',
+        name: 'Trim',
+        description: '(columnName), which combines LeftTrim and RightTrim'
+    }
+];
+
+const transformationsPortion: Transformation[] =
+[
+    {
+        id: 11,
+        category: 'Column-level',
+        name: 'Substring',
+        description: '(columnName, startPosition, length)'
+    },
+    {
+        id: 15,
+        category: 'Column-level',
+        name: 'RightSubstring',
+        description: '(columnName, startPosition, length) is similar to Substring, but startPosition is counted from the right.'
+    },
+    {
+        id: 16,
+        category: 'Column-level',
+        name: 'DatePart',
+        description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second'
+    },
+    {
+        id: 18,
+        category: 'Column-level',
+        name: 'ConcatenateColumn',
+        description: '(columnName, preString, postString) will append strings to the front or back of a column'
+    },
+];
+
+const dataServer: Datasource[] =
+[
+    {
+        id: 1,
+        name: 'World Indices',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'SP Companies*',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Stock prices TEMP',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Trades per Year',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Bond volume trades',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Trades by Trade Type',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'YTD Expenditure by Cost Center',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Headcount',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Customer List',
+        type: 'Xls File',
+        description: ''
+    }
+];
+
+const dataRecent: Datasource[] =
+[
+    {
+        id: 1,
+        name: 'CPI figures',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'GDP by Country',
+        type: 'Xls File',
+        description: ''
+    }
+];
+
+const dataSample: Datasource[] =
+[
+    {
+        id: 1,
+        name: 'Bicycle trips in Rome',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Vega Airport Dataset',
+        type: 'Xls File',
+        description: ''
+    },
+    {
+        id: 1,
+        name: 'Test1',
+        type: 'Xls File',
+        description: ''
+    }
+];
+
+const datasourceFilters: DatasourceFilter[] =
+[
+    {
+        id: 1,
+        fieldName: 'symbol',
+        operator: 'Equal',
+        filterValue: 'MSFT'
+    },
+    {
+        id: 1,
+        fieldName: 'price',
+        operator: 'GreaterEqual',
+        filterValue: '100'
+    }
+]
+
+
+// Dashboard
 const dashboardPermissions: DashboardPermission[] =
 [
     {
@@ -484,306 +1414,6 @@ const localWidgets1: CanvasWidget =
         widgetUpdatedBy: '',
     };
 
-const canvasMessages: CanvasMessage[] =
-[
-    {
-        id: 1,
-        sentBy: 'GinaU',
-        sentOn: '2017/01/01',
-        toUsers: ['GinaU'],
-        toGroups: [''],
-        recipient: '',
-        read: false,
-        subject: 'Please QA attached Dashboard',
-        body: 'I have amended the graph type for marketing expenses',
-        dashboardID: 12
-    },
-    {
-        id: 2,
-        sentBy: 'PeterJ',
-        sentOn: '2017/01/01',
-        toUsers: [''],
-        toGroups: ['Admin'],
-        recipient: 'QuintinY',
-        read: true,
-        subject: 'Admin cleanup',
-        body: 'Cleanout old users',
-        dashboardID: null
-    },
-    {
-        id: 3,
-        sentBy: 'RubinV',
-        sentOn: '2017/01/01',
-        toUsers: [''],
-        toGroups: ['Admin'],
-        recipient: 'YasserK',
-        read: false,
-        subject: 'Admin cleanup',
-        body: 'Cleanout old users',
-        dashboardID: null
-    }
-];
-
-// Constants - to be replaced with DB access
-const  canvasActivities: CanvasActivity[] =
-[
-    {
-        id: 1,
-        createdBy: 'AlexanderB',
-        createdOn: '2017/01/01',
-        activityType: 'Action',
-        activityStatus: 'Open',
-        linkedDashboardList: [],
-        activityText: 'Refactor Widget for coal levels',
-        activityComments: ['2017/01/01 @BorisN Levels in tenk 1-A checked and good']
-    }
-];
-
-const canvasAlerts: CanvasAlert[] =
-[
-    {
-        id: 1,
-        sentOn: '2017/01/01',
-        recipient: 'BonitaS',
-        read: false,
-        alertText: 'Schedule Weekly reports failed',
-    },
-    {
-        id: 2,
-        sentOn: '2017/01/01',
-        recipient: 'AlisonW',
-        read: true,
-        alertText: 'Please log out for maintenance',
-    },
-    {
-        id: 3,
-        sentOn: '2017/01/01',
-        recipient: 'GavinO',
-        read: false,
-        alertText: 'Longrunning query finished',
-    },
-    {
-        id: 4,
-        sentOn: '2017/01/01',
-        recipient: 'WendyA',
-        read: true,
-        alertText: 'Query xyz failed',
-    }
-];
-
-const canvasComments: CanvasComment[] =
-[
-    {
-        id: 1,
-        dashboardID: 2,
-        widgetID: 4,
-        comment: 'Checkpoints show more detail',
-        creator: 'MarcoD',
-        createdOn: '2017/01/01'
-    }
-]
-const shapeButtonsAvailable: ButtonBarAvailable[] =
-[
-    {
-        id: 1,
-        buttonText: 'Edit',
-        description: 'Open the edit form to edit the Widget, for example the graph type.',
-        sortOrder: 1,
-        isDefault: true
-    },
-    {
-        id: 2,
-        buttonText: 'Duplicate',
-        description: 'Duplicates the current Shape with a new name (adding ... Copy n).  The Dataset is not duplicated.',
-        sortOrder: 2,
-        isDefault: true
-    },
-    {
-        id: 3,
-        buttonText: 'Backward',
-        description: 'Send the selected Widget backwards.',
-        sortOrder: 3,
-        isDefault: true
-    },
-    {
-        id: 4,
-        buttonText: 'Forward',
-        description: 'Bring the selected Widget forward.',
-        sortOrder: 4,
-        isDefault: true
-    },
-    {
-        id: 5,
-        buttonText: 'Delete',
-        description: 'Delete the selected Widget.',
-        sortOrder: 5,
-        isDefault: true
-    },
-    {
-        id: 6,
-        buttonText: 'Background toggle',
-        description: 'Toggle the background of the selected Shape on / of.',
-        sortOrder: 6,
-        isDefault: true
-    },
-    {
-        id: 7,
-        buttonText: 'Increase size',
-        description: 'Increase the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
-        sortOrder: 7,
-        isDefault: true
-    },
-    {
-        id: 8,
-        buttonText: 'Decrease',
-        description: 'Decrease the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
-        sortOrder: 8,
-        isDefault: true
-    }
-]
-
-const shapeButtonsSelected: ButtonBarSelected[] =
-[
-    {
-        id: 1,
-        buttonText: 'Edit',
-        description: 'Open the edit form to edit the Shape, for example the color of a circle.',
-        sortOrder: 1
-    }
-]
-
-const widgetButtonsAvailable: ButtonBarAvailable[] =
-[
-    {
-        id: 1,
-        buttonText: 'Edit',
-        description: 'Open the edit form to edit the Widget, for example the graph type.',
-        sortOrder: 1,
-        isDefault: true
-    },
-    {
-        id: 2,
-        buttonText: 'Refresh',
-        description: 'Refresh the data linked to the current Widget.',
-        sortOrder: 2,
-        isDefault: false
-    },
-    {
-        id: 3,
-        buttonText: 'Expand',
-        description: 'Open a separate window showing all the data in the Dataset linked to the Widget.',
-        sortOrder: 3,
-        isDefault: false
-    },
-    {
-        id: 4,
-        buttonText: 'Duplicate',
-        description: 'Duplicates the current Widget with a new name (adding ... Copy n).  The Dataset is not duplicated.',
-        sortOrder: 4,
-        isDefault: false
-    },
-    {
-        id: 5,
-        buttonText: 'Backward',
-        description: 'Send the selected Widget backwards.',
-        sortOrder: 5,
-        isDefault: false
-    },
-    {
-        id: 6,
-        buttonText: 'Forward',
-        description: 'Bring the selected Widget forward.',
-        sortOrder: 6,
-        isDefault: false
-    },
-    {
-        id: 7,
-        buttonText: 'Notes',
-        description: 'Show the notes linked to the selected Widget.',
-        sortOrder: 7,
-        isDefault: false
-    },
-    {
-        id: 8,
-        buttonText: 'Data Quality',
-        description: 'Show a form with Data Quality issues pertaining to the Dataset linked to the selected Widget.',
-        sortOrder: 8,
-        isDefault: false
-    },
-    {
-        id: 9,
-        buttonText: 'Save Checkpoint',
-        description: 'Save the current layout of the selected Widget as a Checkpoint.',
-        sortOrder: 9,
-        isDefault: false
-    },
-    {
-        id: 10,
-        buttonText: 'Delete',
-        description: 'Delete the selected Widget.',
-        sortOrder: 10,
-        isDefault: false
-    },
-    {
-        id: 11,
-        buttonText: 'Export png',
-        description: 'Export the graph of the selected Widget as a .png file, which is a static image.',
-        sortOrder: 11,
-        isDefault: false
-    },
-    {
-        id: 12,
-        buttonText: 'Tags',
-        description: 'Show the tags associated with the selected Widget.',
-        sortOrder: 12,
-        isDefault: false
-    },
-    {
-        id: 13,
-        buttonText: 'Border toggle',
-        description: 'Toggle the border around the selected Widget between none, gray and black.  The line is 1px solid.',
-        sortOrder: 13,
-        isDefault: false
-    },
-    {
-        id: 14,
-        buttonText: 'Links',
-        description: 'Show a form with links from and to the selected Widget.  New links can be added here.',
-        sortOrder: 14,
-        isDefault: false
-    },
-    {
-        id: 15,
-        buttonText: 'Increase size',
-        description: 'Increase the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
-        sortOrder: 15,
-        isDefault: false
-    },
-    {
-        id: 16,
-        buttonText: 'Decrease',
-        description: 'Decrease the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
-        sortOrder: 16,
-        isDefault: false
-    }
-]
-
-const widgetButtonsSelected: ButtonBarSelected[] =
-[
-    {
-        id: 1,
-        buttonText: 'Edit',
-        description: 'Open the edit form to edit the Widget, for example the graph type.',
-        sortOrder: 1,
-    },
-    {
-        id: 2,
-        buttonText: 'Refresh',
-        description: 'Refresh the data linked to the current Widget.',
-        sortOrder: 2,
-    }
-]
-
 const localDashboards: dl.spec.TopLevelExtendedSpec[] =
 [
     {
@@ -815,50 +1445,6 @@ const localDashboards: dl.spec.TopLevelExtendedSpec[] =
         }
     }
 ];
-
-const datasourceFilters: DatasourceFilter[] =
-[
-    {
-        id: 1,
-        fieldName: 'symbol',
-        operator: 'Equal',
-        filterValue: 'MSFT'
-    },
-    {
-        id: 1,
-        fieldName: 'price',
-        operator: 'GreaterEqual',
-        filterValue: '100'
-    }
-]
-
-const dataQualityIssues: DataQualityIssue[] =
-[
-    {
-        id: 1,
-        status: 'Open',
-        name: 'Missing Data',
-        type: 'Data',
-        description: 'bla-bla-bla',
-        nrIssues: 0,
-        loggedBy: 'AstonK',
-        loggedOn: '2017/01/01',
-        solvedBy: '',
-        solvedOn: '',
-    },
-    {
-        id: 2,
-        status: '',
-        name: 'Invalid Entries',
-        type: 'Process',
-        description: 'bla-bla-bla',
-        nrIssues: 12,
-        loggedBy: 'BarbaraR',
-        loggedOn: '2017/01/01',
-        solvedBy: 'GordonL',
-        solvedOn: '2017/01/01',
-    }
-]
 
 const dashboardSchedules: DashboardSchedule[] =
 [
@@ -1046,317 +1632,6 @@ const dashboards: Partial<Dashboard>[] =
     }
 ];
 
-const backgroundcolors: CSScolor[] =
-[
-    {
-        name: 'transparent'
-    },
-    {
-        name: 'beige'
-    },
-    {
-        name: 'white'
-    }
-];
-
-const currentDatasources: CurrentDatasource [] =
-[
-    {
-        id: 1,
-        type: 'CSV File',
-        name: 'Stocks.csv',
-        description: 'Hard coded name',
-        createdBy: 'Me',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: 'None'
-    }
-];
-
-const datasources: CurrentDatasource [] =
-[
-    {
-        id: 1,
-        name: 'My Expenses',
-        type: 'Xls File',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
-    },
-    {
-        id: 2,
-        name: 'Bitcoin Trades',
-        type: 'Database - PostgreSQL',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 3,
-        name: 'My Budget',
-        type: 'Xls File',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
-    },
-    {
-        id: 4,
-        name: 'Bicycle Sales',
-        type: 'Database - PostgreSQL',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 5,
-        name: 'Bond Valuation',
-        type: 'Xls File',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
-    },
-    {
-        id: 6,
-        name: 'Auditors',
-        type: 'Database - PostgreSQL',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 7,
-        name: 'Student Marks',
-        type: 'Xls File',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
-    },
-    {
-        id: 8,
-        name: 'Security Breaches',
-        type: 'Database - PostgreSQL',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 9,
-        name: 'Milk Proteins',
-        type: 'Xls File',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
-    },
-    {
-        id: 10,
-        name: 'Malaria Cases',
-        type: 'Database - PostgreSQL',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 11,
-        name: 'Investments',
-        type: 'Xls File',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
-    },
-    {
-        id: 12,
-        name: 'Bridge Maintenance',
-        type: 'Database - PostgreSQL',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 13,
-        name: 'Parts in storage',
-        type: 'Xls File',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
-    },
-    {
-        id: 14,
-        name: 'Customer Complaints',
-        type: 'Database - PostgreSQL',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 15,
-        name: 'Issues',
-        type: 'Xls File',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
-    },
-    {
-        id: 16,
-        name: 'Tickets',
-        type: 'Database - PostgreSQL',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 17,
-        name: 'Clothing lines',
-        type: 'Xls File',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
-    },
-    {
-        id: 18,
-        name: 'Shoe Sales',
-        type: 'Database - PostgreSQL',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    }
-
-];
-
-const fields: Field[] =
-[
-    {
-        id: 1,
-        name: 'DateTrade',
-        type: 'Date',
-        format: '',
-        filter: '',
-        calc: '',
-        order: 'Asc 1'
-    },
-    {
-        id: 2,
-        name: 'Share',
-        type: 'Text',
-        format: '',
-        filter:  '',
-        calc:  '',
-        order: ''
-    },
-    {
-        id: 3,
-        name: 'Volume',
-        type: 'Number',
-        format: 'Integer',
-        filter: '',
-        calc:  '',
-        order: ''
-    },
-    {
-        id: 4,
-        name: 'Value',
-        type: 'Number',
-        format: '2 decimals',
-        filter: '> 1m',
-        calc: 'Volume * 10',
-        order: ''
-    }
-];
-
-const fieldsMetadata: FieldMetadata[] =
-[
-    {
-        name: 'DateTrade',
-        type: 'Date',
-        description: 'Date on which trade when through trading system',
-        keyField: false,
-        explainedBy: ''
-    },
-    {
-        name: 'Share',
-        type: 'String',
-        description: 'Name of share (stock) that traded, ie Anglo American plc',
-        keyField: true,
-        explainedBy: 'Bar of new Listings per Month'
-    },
-    {
-        name: 'Volume',
-        type: 'Number',
-        description: 'Number of instruments traded.  Single counted, excluding BR, YT trade types.',
-        keyField: false,
-        explainedBy: 'Pie of Trades by Broker'
-    },
-    {
-        name: 'Value',
-        type: 'Number',
-        description: 'Value in Rand of the instruments traded, based on Volume and Price.',
-        keyField: false,
-        explainedBy: 'Custom Query: TradeAttribution'
-    }
-];
 
 // Old, Full list
     // const transformations: transformation[] =
@@ -1514,262 +1789,6 @@ const fieldsMetadata: FieldMetadata[] =
     // ];
 // End of list
 
-const transformationsFormat: Transformation[] =
-[
-    {
-        id: 1,
-        category: 'Column-level',
-        name: 'FormatDate',
-        description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.'
-    },
-    {
-        id: 16,
-        category: 'Column-level',
-        name: 'DatePart',
-        description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second'
-    },
-    {
-        id: 20,
-        category: 'Column-level',
-        name: 'FormatNumber',
-        description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’'
-    }
-];
-
-const currentTransformations: CurrentTransformation[] =
-[
-    {
-        id: 1,
-        category: 'Format',
-        name: 'FillBlanks',
-        description: 'bla-bla-bla',
-        fieldID: 231,
-        fieldName: 'Region',
-        parameters: ""
-    }
-]
-
-const transformationsFill: Transformation[] =
-[
-    {
-        id: 2,
-        category: 'Column-level',
-        name: 'FillBlanks',
-        description: '(columnName, newValue)'
-    },
-    {
-        id: 3,
-        category: 'Column-level',
-        name: 'FillNull',
-        description: '(columnName, newValue)'
-    },
-    {
-        id: 4,
-        category: 'ColucurrentTransformationsmn-level',
-        name: 'FillBlankAndNull',
-        description: '(columnName, newValue)'
-    }
-];
-
-const transformationsGeo: Transformation[] =
-[
-    {
-        id: 21,
-        category: 'Column-level',
-        name: 'AddLatitude',
-        description: '(reference-columnName, new-columnName), add a new column with latitude, based on the information in the reference-columnName'
-    },
-    {
-        id: 22,
-        category: 'Column-level',
-        name: 'AddLongitude',
-        description: '(reference-columnName, new-columnName), add a new column with longitude, based on the information in the reference-columnName'
-    }
-];
-
-const transformationsReplace: Transformation[] =
-[
-    {
-        id: 5,
-        category: 'Column-level',
-        name: 'ReplaceNumbers',
-        description: '(columnName, from, to, newValue)'
-    },
-    {
-        id: 6,
-        category: 'Column-level',
-        name: 'ReplaceString',
-        description: '(columnName, oldValue, newValue)'
-    }
-];
-
-const transformationsAddColumn: Transformation[] =
-[
-    {
-        id: 7,
-        category: 'Column-level',
-        name: 'AppendColumn',
-        description: '(newColumnName, dataType, fillValue)'
-    },
-    {
-        id: 10,
-        category: 'Column-level',
-        name: 'CalcColumn',
-        description: '(newColumnName, columnOne, columnTwo, Operator, fillValue)'
-    },
-    {
-        id: 17,
-        category: 'Column-level',
-        name: 'Concatenate',
-        description: '(columnNameOne, ColumnNameTwo)'
-    }
-];
-
-const transformationsTrim: Transformation[] =
-[
-    {
-        id: 12,
-        category: 'Column-level',
-        name: 'LeftTrim',
-        description: '(columnName)'
-    },
-    {
-        id: 13,
-        category: 'Column-level',
-        name: 'RightTrim',
-        description: '(columnName)'
-    },
-    {
-        id: 14,
-        category: 'Column-level',
-        name: 'Trim',
-        description: '(columnName), which combines LeftTrim and RightTrim'
-    }
-];
-
-const transformationsPortion: Transformation[] =
-[
-    {
-        id: 11,
-        category: 'Column-level',
-        name: 'Substring',
-        description: '(columnName, startPosition, length)'
-    },
-    {
-        id: 15,
-        category: 'Column-level',
-        name: 'RightSubstring',
-        description: '(columnName, startPosition, length) is similar to Substring, but startPosition is counted from the right.'
-    },
-    {
-        id: 16,
-        category: 'Column-level',
-        name: 'DatePart',
-        description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second'
-    },
-    {
-        id: 18,
-        category: 'Column-level',
-        name: 'ConcatenateColumn',
-        description: '(columnName, preString, postString) will append strings to the front or back of a column'
-    },
-];
-
-const dataServer: Datasource[] =
-[
-    {
-        id: 1,
-        name: 'World Indices',
-        type: 'Xls File',
-        description: ''
-    },
-    {
-        id: 1,
-        name: 'SP Companies*',
-        type: 'Xls File',
-        description: ''
-    },
-    {
-        id: 1,
-        name: 'Stock prices TEMP',
-        type: 'Xls File',
-        description: ''
-    },
-    {
-        id: 1,
-        name: 'Trades per Year',
-        type: 'Xls File',
-        description: ''
-    },
-    {
-        id: 1,
-        name: 'Bond volume trades',
-        type: 'Xls File',
-        description: ''
-    },
-    {
-        id: 1,
-        name: 'Trades by Trade Type',
-        type: 'Xls File',
-        description: ''
-    },
-    {
-        id: 1,
-        name: 'YTD Expenditure by Cost Center',
-        type: 'Xls File',
-        description: ''
-    },
-    {
-        id: 1,
-        name: 'Headcount',
-        type: 'Xls File',
-        description: ''
-    },
-    {
-        id: 1,
-        name: 'Customer List',
-        type: 'Xls File',
-        description: ''
-    }
-];
-
-const dataRecent: Datasource[] =
-[
-    {
-        id: 1,
-        name: 'CPI figures',
-        type: 'Xls File',
-        description: ''
-    },
-    {
-        id: 1,
-        name: 'GDP by Country',
-        type: 'Xls File',
-        description: ''
-    }
-];
-
-const dataSample: Datasource[] =
-[
-    {
-        id: 1,
-        name: 'Bicycle trips in Rome',
-        type: 'Xls File',
-        description: ''
-    },
-    {
-        id: 1,
-        name: 'Vega Airport Dataset',
-        type: 'Xls File',
-        description: ''
-    },
-    {
-        id: 1,
-        name: 'Test1',
-        type: 'Xls File',
-        description: ''
-    }
-];
 
 @Injectable()
 export class GlobalVariableService {

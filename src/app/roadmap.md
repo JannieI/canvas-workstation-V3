@@ -68,9 +68,6 @@ This document describes items for later versions of Canvas.
 18.StatusBar must not grow beyond screen width, or to double line
 19.
 
-**Dashboard Tabs**
-1. 
-
 
 **Templates**
 1. Loading a template - make sure to respect security / rights + all is read-only
@@ -80,9 +77,6 @@ This document describes items for later versions of Canvas.
 4. If this gets too complicated, only use Shapes on Templates.
 5. Ensure Templates are on different layers / z-index
 
-
-**Alerts/Activities/Messages**
-1. Must be easy to access (1 button) and use
 
 
 **Widget**
