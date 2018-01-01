@@ -234,7 +234,7 @@ export class DataPopupComponent implements OnInit {
             type: 'File',
             subType: 'CSV',
             typeVersion: 'Comma-Separated',
-                name: 'Stocks Numba2.csv',
+                name: 'Stocks.csv',
             description: 'Hard coded name',
             createdBy: 'Me',
             createdOn: '2017/01/01',
@@ -245,6 +245,9 @@ export class DataPopupComponent implements OnInit {
         this.isFirstTimeData = false;
         this.showDataPreview = true;
         this.currentDataset = this.fileName;
+
+        this.globalVariableService.currentDatasourceAdd(newData);
+        console.log('     currentDatasources', this.currentDatasources)
 
         this.globalVariableService.datasourceAdd(newData);
         console.log('     datasources', this.datasources)

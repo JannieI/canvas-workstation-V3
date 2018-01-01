@@ -2336,10 +2336,31 @@ export class GlobalVariableService {
         })))
     }
 
-    datasourceAdd(newData: Datasource) {
+    currentDatasourceAdd(newData: Datasource) {
+        let arr: Datasource[] = this.currentDatasources.value;
+        arr.push(newData);
+        console.log('arr', arr)
+        this.currentDatasources.next(arr)
+        console.log('yy', this.currentDatasources.value)
+    }
 
+    datasourceAdd(newData: Datasource) {
         let arr: Datasource[] = this.datasources.value;
         arr.push(newData);
+        console.log('arr', arr)
+        this.datasources.next(arr)
+        console.log('yy', this.datasources.value)
+    }
+
+    currentDatasourceDelete(index: number) {
+        let arr: Datasource[] = this.currentDatasources.value.splice(index,1);
+        console.log('arr', arr)
+        this.currentDatasources.next(arr)
+        console.log('yy', this.currentDatasources.value)
+    }
+
+    datasourceDelete(index: number) {
+        let arr: Datasource[] = this.datasources.value.splice(index,1);
         console.log('arr', arr)
         this.datasources.next(arr)
         console.log('yy', this.datasources.value)
