@@ -26,7 +26,6 @@ import { Dashboard }                  from './models';
 })
 export class DashboardDeleteComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardDeleteClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  

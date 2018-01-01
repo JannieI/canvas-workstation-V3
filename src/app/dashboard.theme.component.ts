@@ -27,7 +27,6 @@ import { DashboardTheme }             from './models';
 })
 export class DashboardThemeComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardThemeClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;

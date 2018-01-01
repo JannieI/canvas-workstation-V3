@@ -26,7 +26,6 @@ import { Dashboard }                  from './models';
 })
 export class DashboardDescriptionComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardDescriptionClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;

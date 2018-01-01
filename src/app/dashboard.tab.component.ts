@@ -25,7 +25,6 @@ import { GlobalVariableService }      from './global-variable.service';
   })
   export class DashboardTabComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardTabClosed: EventEmitter<string> = new EventEmitter();
 
 

@@ -27,7 +27,6 @@ import { DashboardSnapshot }                 from './models';
 })
 export class DashboardSubscribeComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardSubscribeClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;

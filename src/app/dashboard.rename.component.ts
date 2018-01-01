@@ -20,7 +20,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 })
 export class DashboardRenameComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardRenameClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  

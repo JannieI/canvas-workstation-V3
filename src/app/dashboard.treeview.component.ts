@@ -30,7 +30,6 @@ import { httpFake }                   from './data/dashboards'
 })
 export class DashboardTreeviewComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardTreeviewClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;

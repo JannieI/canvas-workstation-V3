@@ -27,7 +27,6 @@ import { DashboardSchedule }          from './models';
 })
 export class DashboardScheduleComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardScheduleClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;

@@ -26,7 +26,6 @@ import { Dashboard }                  from './models';
 })
 export class DashboardSaveComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardSaveClosed: EventEmitter<string> = new EventEmitter();
 
     isFirstTimeDashboardSave: boolean;

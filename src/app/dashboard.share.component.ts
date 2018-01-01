@@ -27,7 +27,6 @@ import { DashboardPermission }        from './models';
 })
 export class DashboardShareComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardShareClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;

@@ -644,7 +644,6 @@
 <dashboard-new
     class="formPopupDashboard"
     *ngIf="showModalDashboardNew"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardNewClosed)="handleCloseDashboardNew($event)">Load New Dashboard ...
 </dashboard-new>
 
@@ -653,7 +652,6 @@
 <dashboard-open
     class="formPopupDashboard"
     *ngIf="showModalDashboardOpen"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardOpenClosed)="handleCloseDashboardOpen($event)">Load Open Dashboard ...
 </dashboard-open>
 
@@ -662,17 +660,15 @@
 <dashboard-save
     class="formPopupDashboard"
     *ngIf="showModalDashboardSave"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardSaveClosed)="handleCloseDashboardSave($event)">Load Save Dashboard ...
 </dashboard-save>
 
 
 <!-- Modal: discard Dashboard -->
 <dashboard-discard
-class="formPopupDashboard"
-*ngIf="showModalDashboardDiscard"
-[currentWidgetSpec]="currentWidgetSpec"
-(formDashboardDiscardClosed)="handleCloseDashboardDiscard($event)">Load Discard Dashboard ...
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardDiscard"
+    (formDashboardDiscardClosed)="handleCloseDashboardDiscard($event)">Load Discard Dashboard ...
 </dashboard-discard>
 
 
@@ -680,7 +676,6 @@ class="formPopupDashboard"
 <dashboard-rename
     class="formPopupDashboard"
     *ngIf="showModalDashboardRename"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardRenameClosed)="handleCloseDashboardRename($event)">Load Rename Dashboard ...
 </dashboard-rename>
 
@@ -689,7 +684,6 @@ class="formPopupDashboard"
 <dashboard-details
     class="formPopupDashboard"
     *ngIf="showModalDashboardDetails"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardDetailsClosed)="handleCloseDashboardDetails($event)">Load Dashboard Details ...
 </dashboard-details>
 
@@ -698,7 +692,6 @@ class="formPopupDashboard"
 <dashboard-description
     class="formPopupDashboard"
     *ngIf="showModalDashboardDescription"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardDescriptionClosed)="handleCloseDashboardDescription($event)">Load Dashboard Description ...
 </dashboard-description>
 
@@ -707,7 +700,6 @@ class="formPopupDashboard"
 <dashboard-snapshots
     class="formPopupDashboard"
     *ngIf="showModalDashboardSnapshots"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardSnapshotsClosed)="handleCloseDashboardSnapshots($event)">Load Snapshots Dashboard ...
 </dashboard-snapshots>
 
@@ -716,7 +708,6 @@ class="formPopupDashboard"
 <dashboard-share
     class="formPopupDashboard"
     *ngIf="showModalDashboardShare"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardShareClosed)="handleCloseDashboardShare($event)">Load Share Dashboard ...
 </dashboard-share>
 
@@ -725,7 +716,6 @@ class="formPopupDashboard"
 <dashboard-import
     class="formPopupDashboard"
     *ngIf="showModalDashboardImport"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardImportClosed)="handleCloseDashboardImport($event)">Load Import Dashboard ...
 </dashboard-import>
 
@@ -734,7 +724,6 @@ class="formPopupDashboard"
 <dashboard-tags
     class="formPopupDashboard"
     *ngIf="showModalDashboardTags"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardTagsClosed)="handleCloseDashboardTags($event)">Load Dashboard Tags ...
 </dashboard-tags>
 
@@ -743,7 +732,6 @@ class="formPopupDashboard"
 <dashboard-settings
     class="formPopupDashboard"
     *ngIf="showModalDashboardSettings"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardSettingsClosed)="handleCloseDashboardSettings($event)">Load Dashboard Settings ...
 </dashboard-settings>
 
@@ -752,7 +740,6 @@ class="formPopupDashboard"
 <dashboard-theme
     class="formPopupDashboard"
     *ngIf="showModalDashboardTheme"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardThemeClosed)="handleCloseDashboardTheme($event)">Load Dashboard Theme ...
 </dashboard-theme>
 
@@ -761,7 +748,6 @@ class="formPopupDashboard"
 <dashboard-template
     class="formPopupDashboard"
     *ngIf="showModalDashboardTemplate"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardTemplateClosed)="handleCloseDashboardTemplate($event)">Load Dashboard Template ...
 </dashboard-template>
 
@@ -770,7 +756,6 @@ class="formPopupDashboard"
 <dashboard-schedule
     class="formPopupDashboard"
     *ngIf="showModalDashboardSchedule"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardScheduleClosed)="handleCloseDashboardSchedule($event)">Load Dashboard Schedule ...
 </dashboard-schedule>
 
@@ -779,7 +764,6 @@ class="formPopupDashboard"
 <dashboard-delete
     class="formPopupDashboard"
     *ngIf="showModalDashboardDelete"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardDeleteClosed)="handleCloseDashboardDelete($event)">Load Dashboard Delete ...
 </dashboard-delete>
 
@@ -788,7 +772,6 @@ class="formPopupDashboard"
 <dashboard-treeview
     class="formPopupDashboard"
     *ngIf="showModalDashboardTreeview"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardTreeviewClosed)="handleCloseDashboardTreeview($event)">Load Dashboard Treeview ...
 </dashboard-treeview>
 
@@ -797,9 +780,24 @@ class="formPopupDashboard"
 <dashboard-subscribe
     class="formPopupDashboard"
     *ngIf="showModalDashboardSubscribe"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardSubscribeClosed)="handleCloseDashboardSubscribe($event)">Load Dashboard Subscribe ...
 </dashboard-subscribe>
+
+
+<!-- Modal: Comments -->
+<dashboard-comments
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardComments"
+    (formDashboardCommentsClosed)="handleCloseDashboardComments($event)">Load Comments ...
+</dashboard-comments>
+
+
+<!-- Modal: widget checkpoints -->
+<dashboard-print
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardPrint"
+    (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Dashboard Print Checkpoints ...
+</dashboard-print>
 
 
 <!-- Modal: Widget Export -->
@@ -915,15 +913,6 @@ class="formPopupDashboard"
 </preferences>
 
 
-<!-- Modal: Comments -->
-<dashboard-comments
-    class="formPopupDashboard"
-    *ngIf="showModalDashboardComments"
-    [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardCommentsClosed)="handleCloseDashboardComments($event)">Load Comments ...
-</dashboard-comments>
-
-
 <!-- Modal: data refresh all -->
 <data-slicers
     *ngIf="showModalDataSlicers"
@@ -954,14 +943,6 @@ class="formPopupDashboard"
     [currentWidgetSpec]="currentWidgetSpec"
     (formDataShareClosed)="handleCloseDataShare($event)">Share All Data ...
 </data-share>
-
-
-<!-- Modal: widget checkpoints -->
-<dashboard-print
-    *ngIf="showModalDashboardPrint"
-    [currentWidgetSpec]="currentWidgetSpec"
-    (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Dashboard Print Checkpoints ...
-</dashboard-print>
 
 
 <!-- Modal: widget editor -->

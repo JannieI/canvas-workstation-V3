@@ -25,7 +25,6 @@ import { GlobalVariableService}       from './global-variable.service';
 })
 export class DashboardDiscardComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardDiscardClosed: EventEmitter<string> = new EventEmitter();
 
     isFirstTimeDashboardDiscard: boolean;

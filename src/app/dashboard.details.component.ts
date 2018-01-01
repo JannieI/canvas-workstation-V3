@@ -20,7 +20,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 })
 export class DashboardDetailsComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardDetailsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  

@@ -27,7 +27,6 @@ import { DashboardTag }               from './models';
 })
 export class DashboardTagsComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardTagsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
