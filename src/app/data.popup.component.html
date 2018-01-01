@@ -130,7 +130,6 @@
                             </clr-datagrid>
                         </div>
 
-
                         <div class="gridIdentifyDataIDfile" *ngIf="dataGetFromSwitch==='File'">
                             <span>Please enter file name and location:</span>
                             <input type="text" id="formFields_7"
@@ -146,15 +145,6 @@
                                 </button>
                             <br>
                             Excel Worksheet:
-
-                            <!-- <div [ngSwitch]="dataGetFromSwitch">
-                                <div *ngSwitchCase="'File'">
-                                    File stuffies
-                                </div>
-                                <div *ngSwitchCase="'Server'">
-                                    Servers rule
-                                </div>
-                            </div> -->
                             <span class="select">
                                 <select id="selects_3" class="selectBox">
                                     <option>New York</option>
@@ -183,15 +173,16 @@
                             </button>
                         </div>
 
-                        <div class="gridIdentifyDataIDfile" *ngIf="dataGetFromSwitch==='Server'">
+                        <div class="gridIdentifyDataIDserver" *ngIf="dataGetFromSwitch==='Server'">
+                            <div class="gridIdentifyDataServerTop">
                                 Server stuffies:
                                 Query can be via:
                                 1. Stored on server
                                 2. SQL (later with editor)
                                 Must be able to see / list paramters, and also to add
                                 parameter values.
-                            <span class="gridHeading" (click)="clickTest()">Existing Datasets</span>
-                            <clr-datagrid class="fieldsDataGrid">
+                            </div>
+                            <clr-datagrid class="gridIdentifyDataServerList">
                                 <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column>
 
                                 <clr-dg-row
@@ -204,10 +195,9 @@
                                     </clr-dg-cell>
                                 </clr-dg-row>
                             </clr-datagrid>
-
                         </div>
 
-                        <div class="gridIdentifyDataPreview">
+                        <div class="gridIdentifyDataPreview" *ngIf="dataGetFromSwitch==='File'">
 
                                 <!-- [style.width.px]="sideNavWidth"
                                 [style.min-width.rem]="sideNavMinWidth" -->

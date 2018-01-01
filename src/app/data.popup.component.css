@@ -187,8 +187,47 @@
         grid-column-end: 21;
         grid-row-start: 1;
         grid-row-end: 11;
+        height: 12rem;
         padding: 10px;
+        overflow: auto;
+        width: 100%;
     }
+
+    .gridIdentifyDataIDserver {
+        border: none;
+        grid-column-start: 5;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 21;
+        height: 21rem;
+        padding: 10px;
+        overflow: auto;
+        width: 100%;
+
+    }
+
+        .gridIdentifyDataServerTop {
+            border: none;
+            grid-column-start: 5;
+            grid-column-end: 21;
+            grid-row-start: 1;
+            grid-row-end: 8;
+            height: 8rem;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .gridIdentifyDataServerList {
+            border: none;
+            grid-column-start: 5;
+            grid-column-end: 21;
+            grid-row-start: 8;
+            grid-row-end: 25;
+            height: 11rem;
+            overflow: scroll;
+            padding: 10px;
+            width: 100%;
+        }
 
     .gridIdentifyDataPreview {
         border: none;
