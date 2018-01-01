@@ -226,6 +226,7 @@ export class ExploreComponent {
     showModalWidgetEditor: boolean = false;
     hasDatasources: boolean;
     slicerHeader: string;
+    showModalDashboardOpen: boolean = false;
 
     constructor(
         private globalVariableService: GlobalVariableService,
@@ -234,8 +235,11 @@ export class ExploreComponent {
     ) {}
 
     ngOnInit() {
-        console.log('Explore ngOnInit');
-
+        console.log('Explore ngOnInit', this.globalVariableService.openDashboardFormOnStartup)
+        if (this.globalVariableService.openDashboardFormOnStartup) {
+            this.showModalDashboardOpen = true;
+        };
+        
         // Load global variables
         this.globalVariableService.currentMessage.subscribe(
             message => this.message = message
@@ -370,10 +374,9 @@ export class ExploreComponent {
 
     }
 
-    // ngOnChanges() {
-    //     console.log('ngOnChanges()', this.childrenWidgets2.toArray().length)
-    //     this.refreshWidgets2();
-    // }
+    handleCloseDashboardOpen(ev) {
+        this.showModalDashboardOpen = false;
+    }
 
     refreshWidgets() {
         // let definition = vlTemplateSpec13;

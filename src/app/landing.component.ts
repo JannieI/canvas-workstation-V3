@@ -98,7 +98,7 @@ export class LandingComponent implements OnInit {
 
 	clickOpenExisting() {
 		this.globalVariableService.openDashboardFormOnStartup = true;
-		this.router.navigate(['/home']);
+		this.router.navigate(['/explore']);
 	}
 	
 }

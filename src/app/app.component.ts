@@ -125,10 +125,6 @@ export class AppComponent implements OnInit {
     
     ngOnInit() {
         // Intial
-        console.log('app', this.globalVariableService.openDashboardFormOnStartup)
-        if (this.globalVariableService.openDashboardFormOnStartup) {
-            this.showModalDashboardOpen = true;
-        };
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.menuCreateDisabled.subscribe(

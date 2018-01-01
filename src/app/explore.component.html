@@ -858,4 +858,9 @@
 </div>
 
 
-
+<!-- Modal: open Dashboard -->
+<dashboard-open
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardOpen"
+    (formDashboardOpenClosed)="handleCloseDashboardOpen($event)">Load Open Dashboard ...
+</dashboard-open>
