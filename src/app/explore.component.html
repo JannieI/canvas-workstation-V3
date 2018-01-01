@@ -170,7 +170,9 @@
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
     #shapeContainter2>
-    <div class="widgetButtonBar2">
+    <div class="widgetButtonBar2"
+        [style.zindex]="row.containerZindex + 2"
+        >
         <clr-icon
             shape="link"
             size="20"
@@ -222,27 +224,24 @@
     </div>
 
 
-    <div class="shape2"
-        [style.zindex]="row.containerZindex"
-        >
+    <div class="shape2">
         <div
             #dragCircle
             class="aCircle2"
             (dragstart)="dragStartCircle($event)"
             (dragend)="dragEndCircle($event)"
             draggable="true"
-            [style.zindex]="row.containerZindex"
             >
-            <svg 
-                height="100" 
+            <svg
+                height="100"
                 width="100" >
-                <circle #circle2 
+                <circle #circle2
                     [style.cx]="row.cx"
-                    [style.cy]="row.cy" 
-                    [style.r]="row.r" 
+                    [style.cy]="row.cy"
+                    [style.r]="row.r"
                     [attr.stroke]="row.stroke"
-                    [attr.stroke-width]="3" 
-                    [attr.fill]="row.fill" 
+                    [attr.stroke-width]="3"
+                    [attr.fill]="row.fill"
                     [style.zindex]="row.containerZindex"
                 />
             </svg>
@@ -313,12 +312,12 @@
     <span class="statusBarText" title="Canvas version">
       V 1.02
     </span>
-    <span 
-        class="statusBarText" 
+    <span
+        class="statusBarText"
         title="Indicates if a Template is being used (which is readonly)"
         (click)="clickStatusTemplate()"
         >
-      {{ templateInUse }} 
+      {{ templateInUse }}
     </span>
 </div>
 

@@ -6,7 +6,7 @@ This document describes items for later versions of Canvas.
 
 
 **Global / Overall issues / Settings**
-1. 
+1. Test everything with 1000 - ie Dashboards, Widgets per D, etc - to check performance and to see it form layout (ie grids sizes) will copy with large volume
 2. Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
 3. Use style.css for standard items, ie class="helpMessage"
 4. Standardize date format shown - as selected by the user, stored as settings

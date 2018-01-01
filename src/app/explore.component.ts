@@ -40,17 +40,17 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
 // Constants
 // const localShapes: any[] =
-// [ 
+// [
 //     {
 //         type: "circle",
 //         variable: "#dragCircle",
 //         height: "100",
 //         width: "100",
-//         cx: "50", 
-//         cy: "50", 
-//         r: "40", 
-//         stroke: "red", 
-//         strokewidth: "1", 
+//         cx: "50",
+//         cy: "50",
+//         r: "40",
+//         stroke: "red",
+//         strokewidth: "1",
 //         fill: "none"
 //     }
 // ]
@@ -157,14 +157,14 @@ export class ExploreComponent {
 
     @ViewChildren('widgetContainter2')  widgetContainters2: QueryList<ElementRef>;
     @ViewChildren('widget2')            childrenWidgets2: QueryList<ElementRef>;
-    
-    @ViewChildren('shapeContainter2')   shapeContainter2: QueryList<ElementRef>; 
-    @ViewChildren('shape')              shape2: QueryList<ElementRef>; 
-    @ViewChildren('circle2')            circle2: QueryList<ElementRef>; 
 
-    @ViewChildren('redArrow')           redArrow: ElementRef; 
+    @ViewChildren('shapeContainter2')   shapeContainter2: QueryList<ElementRef>;
+    @ViewChildren('shape')              shape2: QueryList<ElementRef>;
+    @ViewChildren('circle2')            circle2: QueryList<ElementRef>;
 
-    
+    @ViewChildren('redArrow')           redArrow: ElementRef;
+
+
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     localDashboards: dl.spec.TopLevelExtendedSpec[];
     localShapes: CanvasShape[];
@@ -239,7 +239,7 @@ export class ExploreComponent {
         if (this.globalVariableService.openDashboardFormOnStartup) {
             this.showModalDashboardOpen = true;
         };
-        
+
         // Load global variables
         this.globalVariableService.currentMessage.subscribe(
             message => this.message = message
@@ -319,8 +319,8 @@ export class ExploreComponent {
                  }
         );
         this.globalVariableService.refreshDashboard.subscribe(
-            i => { 
-                    if (i) 
+            i => {
+                    if (i)
                         {
                             console.log('i', i)
                             console.log('refreshWW now', this.childrenWidgets2.toArray().length)
@@ -337,8 +337,8 @@ export class ExploreComponent {
 
     ngAfterViewInit() {
         console.log('Explore ngOnViewInit', this.localShapes)
-        
-        
+
+
 
         // Loop on the graph ElementRefs, and set properties ala widget[].properties
         if (this.shapeContainter2.toArray().length > 0) {
@@ -365,12 +365,12 @@ export class ExploreComponent {
 
                 // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
                 console.log('circle2', this.circle2.toArray()[i].nativeElement)
-            } 
+            }
         };
 
         // this.refreshWidgets();
         this.refreshWidgets2();
-        
+
 
     }
 
@@ -411,7 +411,7 @@ export class ExploreComponent {
                         this.widgetContainters.toArray()[i].nativeElement,
                         'z-index', '4');
                 }
-                view.renderer('svg') 
+                view.renderer('svg')
                     .initialize( this.childrenWidgets.toArray()[i].nativeElement)
                     .width(180)
                     .hover()
@@ -460,9 +460,9 @@ export class ExploreComponent {
 
                 // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
                 console.log('circle2', this.circle2.toArray()[i].nativeElement)
-            } 
+            }
         };
-        
+
     }
 
     refreshWidgets2() {
@@ -473,7 +473,7 @@ export class ExploreComponent {
             let specification = compile(definition).spec;
             // console.log('spec 2', specification)
             let view = new View(parse(specification));
-            view.renderer('svg') 
+            view.renderer('svg')
                 .initialize( this.childrenWidgets2.toArray()[i].nativeElement)
                 .width(180)
                 .hover()
@@ -531,7 +531,7 @@ export class ExploreComponent {
         // Set the dropEffect to move
         ev.dataTransfer.dropEffect = "move"
     }
-    
+
     drop_handler(ev) {
         ev.preventDefault();
         // Get the id of the target and add the moved element to the target's DOM
@@ -638,7 +638,7 @@ export class ExploreComponent {
         this.renderer.setElementStyle(this.dragWidget.nativeElement,
             'top', (80 + widgetMoveX).toString() + "px");
     }
-  
+
     dragStartArrow (ev: DragEvent) {}
     dragEndArrow(ev: DragEvent) {
         this.renderer2.setStyle(this.redArrow.nativeElement, 'left', '100px')
@@ -748,14 +748,14 @@ export class ExploreComponent {
         this.startY = event.clientY;
     }
     clickDragEnd(event, index: number) {
-        console.log('clickDragEnd', index, event.clientX, event.clientY, 
-        'was', this.localWidgets[index].containerLeft, 
+        console.log('clickDragEnd', index, event.clientX, event.clientY,
+        'was', this.localWidgets[index].containerLeft,
         'diff', event.clientX - this.startX,
         'new', this.localWidgets[index].containerLeft + event.clientX - this.startX)
 
         let moveX: number = event.clientX - this.startX;
         let moveY: number = event.clientY - this.startY;
-        
+
         let newX: number = this.localWidgets[index].containerLeft + moveX;
         let newY: number = this.localWidgets[index].containerTop + moveY;
 
@@ -765,10 +765,10 @@ export class ExploreComponent {
         if (newY < 15) {
             newY = 15;
         }
-        
+
         this.localWidgets[index].containerLeft = newX;
         this.localWidgets[index].containerTop = newY;
-        
+
     }
     clickDragKeydown(event, id: number) {
         console.log('clickDragKeydown', id)
@@ -788,14 +788,14 @@ export class ExploreComponent {
         this.startY = event.clientY;
     }
     clickResizeEnd(event, index: number) {
-        console.log('clickResizeEnd', index, event.clientX, event.clientY, 
-        'was', this.localWidgets[index].containerWidth, 
+        console.log('clickResizeEnd', index, event.clientX, event.clientY,
+        'was', this.localWidgets[index].containerWidth,
         'diff', event.clientX - this.startX,
         'new', this.localWidgets[index].containerWidth + event.clientX - this.startX)
 
         let moveX: number = event.clientX - this.startX;
         let moveY: number = event.clientY - this.startY;
-        
+
         let newX: number = this.localWidgets[index].containerWidth + moveX;
         let newY: number = this.localWidgets[index].containerHeight + moveY;
 
@@ -805,7 +805,7 @@ export class ExploreComponent {
         if (newY < 50) {
             newY = 50;
         }
-        
+
         this.localWidgets[index].containerWidth = newX;
         this.localWidgets[index].containerHeight = newY;
     }
