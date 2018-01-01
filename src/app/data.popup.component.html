@@ -24,7 +24,7 @@
                                 Identify
                             </button>
                         </div>
-                        <div class="titleChevron1">
+                        <div class="titleChevron1" *ngIf="currentDS">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -33,7 +33,7 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titleFilter titleBox">
+                        <div class="titleFilter titleBox" *ngIf="currentDS">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -43,7 +43,7 @@
                                 Filter
                             </button>
                         </div>
-                        <div class="titleChevron2">
+                        <div class="titleChevron2" *ngIf="currentDS">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -52,7 +52,7 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titleTransform titleBox">
+                        <div class="titleTransform titleBox" *ngIf="currentDS">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -62,7 +62,7 @@
                                 Transform
                             </button>
                         </div>
-                        <div class="titleChevron3">
+                        <div class="titleChevron3" *ngIf="currentDS">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -71,7 +71,7 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titlePivot titleBox">
+                        <div class="titlePivot titleBox" *ngIf="currentDS">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -81,7 +81,7 @@
                                 Pivot
                             </button>
                         </div>
-                        <div class="titleChevron4">
+                        <div class="titleChevron4" *ngIf="currentDS">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -113,10 +113,24 @@
                     </div>
 
                     <div class="gridIdentifyData" *ngIf="showIdentifyFile">
+                        <div class="gridIdentifyCurrentDS"
+                            [style.background-color]="currentDS? 'lightgray' : 'white'"
+                            (click)="clickDS()"
+                            >
+                            Current
+                            <clr-icon shape="check" *ngIf="currentDS"></clr-icon>
+                        </div>
+                        <div class="gridIdentifyAllDS"
+                            [style.background-color]="!currentDS? 'lightgray' : 'white'"
+                            (click)="clickDS()"
+                            >
+                            Show All
+                            <clr-icon shape="check" *ngIf="!currentDS"></clr-icon>
+                        </div>
                         <div class="gridIdentifyDataExisting">
-                            <span class="gridHeading" (click)="clickTest()">Existing Datasets</span>
+                            <!-- <span class="gridHeading" (click)="clickTest()">Existing Datasets</span> -->
                             <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column>
+                                <!-- <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column> -->
 
                                 <clr-dg-row
                                     *ngFor="let row of datasources"

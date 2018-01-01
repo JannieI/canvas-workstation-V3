@@ -176,6 +176,7 @@ export class DataPopupComponent implements OnInit {
     changeVar: number = 2;
     isEditMode: boolean = false;
     dataGetFromSwitch: string = 'File';
+    currentDS: boolean = true;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -660,6 +661,9 @@ export class DataPopupComponent implements OnInit {
         console.log(result);
     }
 
+    clickDS() {
+        this.currentDS = !this.currentDS;
+    }
 }
 
 

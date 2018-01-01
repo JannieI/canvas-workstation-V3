@@ -170,6 +170,37 @@
     padding-top: 5px;
 }
 
+    .gridIdentifyCurrentDS {
+        border: 1px solid black;
+        border-radius: 3px;
+        display: inline-flex;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        height: 1rem;
+        margin: 2px;
+        padding-left: 5px;
+        text-align: center;
+        z-index: 1;
+    }
+
+
+    .gridIdentifyAllDS {
+        border: 1px solid black;
+        border-radius: 3px;
+        display: inline-flex;
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        height: 1rem;
+        margin: 2px;
+        padding-left: 5px;
+        text-align: center;
+        z-index: 1;
+    }
+
     .gridIdentifyDataExisting {
         border: 1px solid gray;
         border-radius: 4px;
