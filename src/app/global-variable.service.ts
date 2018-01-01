@@ -2117,6 +2117,7 @@ export class GlobalVariableService {
     dataGetFromSwitch = new BehaviorSubject<string>('File');
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
     dashboardsSample: Partial<Dashboard>[] = dashboardsSample;
+    dashboardsRecent: Partial<Dashboard>[] = dashboardsRecent;
     dashboards: Partial<Dashboard>[] = dashboards;
     currentTransformations: Transformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;

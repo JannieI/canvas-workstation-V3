@@ -61,8 +61,7 @@ export class LandingComponent implements OnInit {
 	@Output() formLandingClosed: EventEmitter<string> = new EventEmitter();
 	
 	sampleDashboards: Partial<Dashboard>[] = this.globalVariableService.dashboardsSample;
-	recentDashboards: object[] = recentDashboards;
-	firstTimeUser: boolean = true;
+	recentDashboards: Partial<Dashboard>[] = this.globalVariableService.dashboardsRecent;
 	showModel: boolean = true;
 
 	constructor(
@@ -82,10 +81,6 @@ export class LandingComponent implements OnInit {
 
 	loadExistingSpecification() {
 		console.log('start loadExistingSpecification')
-	}
-
-	toggleFirstTime() {
-		this.firstTimeUser = !this.firstTimeUser;
 	}
 
 	promptDeleteRecent(fileToDelete: string) {

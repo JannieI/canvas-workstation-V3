@@ -39,11 +39,6 @@
 						<div>
 							<a href="#">Documentaion</a>
 						</div>
-						<div class="checkbox">
-							<input type="checkbox" id="checkrads_2"
-								(click)="firstTimeUser=!firstTimeUser">
-							<label for="checkrads_2"></label>
-						</div>
 				</div>
 
 				</div>
@@ -65,21 +60,17 @@
 					</div>
 
 					<h3>Recent Dashboards</h3>
-					<div *ngIf="!firstTimeUser">
-
-						<div *ngFor="let dash of recentDashboards">
-							<a (click)="loadExistingSpecification()"
-								class="nav-link" href="#"
-								[routerLink]="['/explore']" routerLinkActive="active"
-								>
-								{{dash.name}}
-								<clr-icon
-									(click)="promptDeleteRecent(file.name)"
-									shape="trash">
-								</clr-icon>
-							</a>
-						</div>
-
+					<div *ngFor="let row of recentDashboards">
+						<a (click)="loadExistingSpecification()"
+							class="nav-link" href="#"
+							[routerLink]="['/explore']" routerLinkActive="active"
+							>
+							<clr-icon
+								(click)="promptDeleteRecent(file.name)"
+								shape="trash">
+							</clr-icon>
+							{{row.name}}
+						</a>
 					</div>
 					<br>
 					<div>
