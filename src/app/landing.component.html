@@ -60,16 +60,17 @@
 					</div>
 
 					<h3>Recent Dashboards</h3>
-					<div *ngFor="let row of recentDashboards">
-						<a (click)="loadExistingSpecification()"
-							class="nav-link" href="#"
-							[routerLink]="['/explore']" routerLinkActive="active"
+					<div *ngFor="let row of recentDashboards; let i = index">
+						<a 
+							class="nav-link" 
 							>
 							<clr-icon
-								(click)="promptDeleteRecent(file.name)"
+								(click)="promptDeleteRecent(i)"
 								shape="trash">
 							</clr-icon>
-							{{row.name}}
+							<span (click)="loadExistingSpecification()">
+								{{row.name}}
+							</span>
 						</a>
 					</div>
 					<br>

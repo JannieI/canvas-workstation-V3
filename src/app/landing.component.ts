@@ -80,11 +80,12 @@ export class LandingComponent implements OnInit {
 	}
 
 	loadExistingSpecification() {
-		console.log('start loadExistingSpecification')
+		console.log('start loadExistingSpecification');
+		this.router.navigate(['/explore']);
 	}
 
-	promptDeleteRecent(fileToDelete: string) {
-		console.log("Prompt and then delete from list")
+	promptDeleteRecent(index: number) {
+		console.log("Prompt and then delete from list", index)
 	}
 
 	clickClose(action: string) {
