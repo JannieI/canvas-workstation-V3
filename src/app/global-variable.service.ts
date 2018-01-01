@@ -414,6 +414,24 @@ const datasourcePermissions: DatasourcePermission[] =
     }
 ];
 
+const currentDatasources: Datasource [] =
+[
+    {
+        id: 1,
+        name: 'My Expenses',
+        type: 'File',
+        subType: 'Excel',
+        typeVersion: '2010',
+        description: 'Personal expenses, with info per budget type.',
+        createdBy: 'JohnM',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
+
+    }
+];
+
 const datasources: Datasource [] =
 [
     {
@@ -441,7 +459,6 @@ const datasources: Datasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
     },
     {
         id: 2,
@@ -468,7 +485,6 @@ const datasources: Datasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
     },
     {
         id: 4,
@@ -495,7 +511,6 @@ const datasources: Datasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
     },
     {
         id: 6,
@@ -522,7 +537,6 @@ const datasources: Datasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
     },
     {
         id: 8,
@@ -549,7 +563,6 @@ const datasources: Datasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
     },
     {
         id: 10,
@@ -576,7 +589,6 @@ const datasources: Datasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
     },
     {
         id: 12,
@@ -603,7 +615,6 @@ const datasources: Datasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
     },
     {
         id: 14,
@@ -630,7 +641,6 @@ const datasources: Datasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
     },
     {
         id: 16,
@@ -657,7 +667,6 @@ const datasources: Datasource [] =
         refreshedBy: 'JohnM',
         refreshedOn: '2017/01/01',
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-
     },
     {
         id: 18,
@@ -697,7 +706,6 @@ const datasources: Datasource [] =
         refreshedBy: '',
         refreshedOn: '',
         parameters: ''
-
     },
     {
         id: 1,
@@ -711,7 +719,6 @@ const datasources: Datasource [] =
         refreshedBy: '',
         refreshedOn: '',
         parameters: ''
-
     },
     {
         id: 1,
@@ -725,7 +732,6 @@ const datasources: Datasource [] =
         refreshedBy: '',
         refreshedOn: '',
         parameters: ''
-
     },
     {
         id: 1,
@@ -739,7 +745,6 @@ const datasources: Datasource [] =
         refreshedBy: '',
         refreshedOn: '',
         parameters: ''
-
     },
     {
         id: 1,
@@ -753,7 +758,6 @@ const datasources: Datasource [] =
         refreshedBy: '',
         refreshedOn: '',
         parameters: ''
-
     },
     {
         id: 1,
@@ -767,7 +771,6 @@ const datasources: Datasource [] =
         refreshedBy: '',
         refreshedOn: '',
         parameters: ''
-
     },
     {
         id: 1,
@@ -781,7 +784,6 @@ const datasources: Datasource [] =
         refreshedBy: '',
         refreshedOn: '',
         parameters: ''
-
     },
     {
         id: 1,
@@ -795,9 +797,9 @@ const datasources: Datasource [] =
         refreshedBy: '',
         refreshedOn: '',
         parameters: ''
-
     }
 ];
+
 const fields: Field[] =
 [
     {
@@ -2145,6 +2147,7 @@ export class GlobalVariableService {
     currentTransformations: Transformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;
     datasources = new BehaviorSubject<Datasource[]>(datasources);
+    currentDatasources = new BehaviorSubject<Datasource[]>(currentDatasources);
     dataQualityIssues: DataQualityIssue[] = dataQualityIssues;
     localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     datasourceFilters: DatasourceFilter[] = datasourceFilters;

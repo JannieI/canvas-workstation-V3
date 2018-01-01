@@ -127,7 +127,23 @@
                             Show All
                             <clr-icon shape="check" *ngIf="!currentDS"></clr-icon>
                         </div>
-                        <div class="gridIdentifyDataExisting">
+                        <div class="gridIdentifyDataExisting" *ngIf="currentDS">
+                            <!-- <span class="gridHeading" (click)="clickTest()">Existing Datasets</span> -->
+                            <clr-datagrid class="fieldsDataGrid">
+                                <!-- <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column> -->
+
+                                <clr-dg-row
+                                    *ngFor="let row of currentDatasources"
+                                    (click)="clickDatasourceRow(row.name)"
+                                    >
+                                    <clr-dg-cell>
+                                        <clr-icon shape="times"></clr-icon>
+                                        {{row.name}}
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
+                        <div class="gridIdentifyDataExisting" *ngIf="!currentDS">
                             <!-- <span class="gridHeading" (click)="clickTest()">Existing Datasets</span> -->
                             <clr-datagrid class="fieldsDataGrid">
                                 <!-- <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column> -->

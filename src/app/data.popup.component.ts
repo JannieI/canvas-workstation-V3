@@ -81,7 +81,7 @@ export class DataPopupComponent implements OnInit {
     @ViewChild('transformations') transformations: ElementRef;
 
     datasources: Datasource[];
-
+    currentDatasources: Datasource[];
     finalFields: any = finalFields;
     currentData: any = [];
     dataArray: any;
@@ -195,6 +195,9 @@ export class DataPopupComponent implements OnInit {
         } else {
             this.isFirstTimeData = false;
         }
+        this.globalVariableService.currentDatasources.subscribe(
+            i => this.currentDatasources = i
+        );
         this.transformationsFormat = this.globalVariableService.transformationsFormat;
         this.currentTransformations = this.globalVariableService.currentTransformations;
         this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
