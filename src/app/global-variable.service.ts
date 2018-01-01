@@ -1884,12 +1884,34 @@ const dashboardsRecent: Partial<Dashboard>[] =
         id: 1,
         state: 'Draft',
         version: 1,
-        name: 'Market Overview',
-        description: 'Economic indicator summary',
+        name: 'European Indices',
+        description: 'European Indices',
         nrWidgets: 1,
         nrRecords: 12,
         creator: 'JonathanS',
         nrTimesOpened: 4
+    },
+    {
+        id: 1,
+        state: 'Complete',
+        version: 1,
+        name: 'Regional Sales',
+        description: 'Regional Sales',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 4
+    },
+    {
+        id: 2,
+        state: 'Complete',
+        version: 1,
+        name: 'Student Summary',
+        description: 'Students per subject',
+        nrWidgets: 1,
+        nrRecords: 12,
+        creator: 'JonathanS',
+        nrTimesOpened: 0
     }
 ];
 
@@ -2124,7 +2146,6 @@ export class GlobalVariableService {
     datasources = new BehaviorSubject<Datasource[]>(datasources);
     dataQualityIssues: DataQualityIssue[] = dataQualityIssues;
     localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
-    // localDashboards = new BehaviorSubject<dl.spec.TopLevelExtendedSpec[]>(localDashboards);
     datasourceFilters: DatasourceFilter[] = datasourceFilters;
     transformationsFormat: Transformation[] = transformationsFormat;
     fields: Field[] = fields;
@@ -2343,4 +2364,7 @@ export class GlobalVariableService {
         // this.refreshDashboard.next(true);
     }
 
+    dashboardRecentDelete(index: number) {
+        let arr = this.dashboardsRecent.splice(index, 1);
+    }
 }

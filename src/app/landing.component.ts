@@ -86,6 +86,7 @@ export class LandingComponent implements OnInit {
 
 	promptDeleteRecent(index: number) {
 		console.log("Prompt and then delete from list", index)
+		this.globalVariableService.dashboardRecentDelete(index);
 	}
 
 	clickClose(action: string) {
