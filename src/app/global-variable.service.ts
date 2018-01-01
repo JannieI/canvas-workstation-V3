@@ -1223,7 +1223,7 @@ const datasourceSample: Datasource[] =
     },
     {
         id: 1,
-        name: 'Test1',
+        name: 'Home Budget',
         type: 'File',
         subType: 'Excel',
         typeVersion: '2007',
@@ -2116,6 +2116,7 @@ export class GlobalVariableService {
     dashboardTags: DashboardTag[] = dashboardTags;
     dataGetFromSwitch = new BehaviorSubject<string>('File');
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
+    dashboardsSample: Partial<Dashboard>[] = dashboardsSample;
     dashboards: Partial<Dashboard>[] = dashboards;
     currentTransformations: Transformation[] = currentTransformations;
     backgroundcolors: CSScolor[] = backgroundcolors;

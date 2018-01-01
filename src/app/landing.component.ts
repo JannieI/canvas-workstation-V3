@@ -10,23 +10,25 @@ import { Output }                     from '@angular/core';
 import { Router }                     from '@angular/router';
 
 // Our Functions
-import { GlobalFunctionService } 		  from './global-function.service';
+import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
+import { Datasource } 				  from 'app/models';
+import { Dashboard } 				  from 'app/models';
 
-const sampleDashboards = [
-  	{
-  		name: "Headcount for management pack",
-  	},
-  	{
-  		name: "Presentation to Bitvest on listings value preposition",
-  	},
-  	{
-  		name: "Settlement window analysis",
-  	},
-  	{
-  		name: "Cost breakdown for Finance Department"
-  	}
-]
+// const sampleDashboards = [
+//   	{
+//   		name: "Headcount for management pack",
+//   	},
+//   	{
+//   		name: "Presentation to Bitvest on listings value preposition",
+//   	},
+//   	{
+//   		name: "Settlement window analysis",
+//   	},
+//   	{
+//   		name: "Cost breakdown for Finance Department"
+//   	}
+// ]
 
 const recentDashboards = [
 		{
@@ -58,7 +60,7 @@ export class LandingComponent implements OnInit {
 
 	@Output() formLandingClosed: EventEmitter<string> = new EventEmitter();
 	
-	sampleDashboards: object[] = sampleDashboards;
+	sampleDashboards: Partial<Dashboard>[] = this.globalVariableService.dashboardsSample;
 	recentDashboards: object[] = recentDashboards;
 	firstTimeUser: boolean = true;
 	showModel: boolean = true;

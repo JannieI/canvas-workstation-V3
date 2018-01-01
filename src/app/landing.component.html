@@ -40,7 +40,7 @@
 							<a href="#">Documentaion</a>
 						</div>
 						<div class="checkbox">
-							<input type="checkbox" id="checkrads_2" 
+							<input type="checkbox" id="checkrads_2"
 								(click)="firstTimeUser=!firstTimeUser">
 							<label for="checkrads_2"></label>
 						</div>
@@ -49,20 +49,16 @@
 				</div>
 
 				<div class="col-xs-6">
-				
+
 					<h3>Sample Dashboards</h3>
 					<div>
 
-						<div *ngFor="let dash of sampleDashboards">
+						<div *ngFor="let row of sampleDashboards">
 							<a
 								(click)="loadExistingSpecification()"
 								class="nav-link" href="#"
 								[routerLink]="['/explore']" routerLinkActive="active">
-								{{dash.name}}
-								<clr-icon
-									(click)="promptDeleteRecent(file.name)"
-									shape="trash">
-								</clr-icon>
+								{{row.name}}
 							</a>
 						</div>
 						<br><br>
@@ -83,7 +79,7 @@
 								</clr-icon>
 							</a>
 						</div>
-						
+
 					</div>
 					<br>
 					<div>
