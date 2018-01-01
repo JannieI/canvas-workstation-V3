@@ -24,25 +24,25 @@
                                 clrDropdownTrigger
                                 >
                                 More Datasources
+                                <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
                             </button>
-                            <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
                             <clr-dropdown-menu
                                 clrPosition="bottom-left"
                                 *clrIfOpen
                                 class="datasourceDropdown"
                                 >
 
-                                <div *ngFor="let cd of datasources; let i = index"
-                                    (click)="clickDatasource(i, cd.name)"
+                                <div *ngFor="let row of currentDatasources; let i = index"
+                                    (click)="clickDatasource(i, row.name)"
                                     clrDropdownItem
                                     class="datasourceDropdown"
                                     >
-                                    {{ cd.name }}
+                                    {{ row.name }}
                                 </div>
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="selectedDatasource">
-                            Fields for: {{ datasources[0].name }}
+                            Fields for: {{ currentDatasources[0].name }}
                         </div>
 
                         <div>
