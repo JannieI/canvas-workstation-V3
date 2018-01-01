@@ -95,5 +95,10 @@ export class LandingComponent implements OnInit {
 			this.router.navigate(['/data']);
 		}
 	}
+
+	clickOpenExisting() {
+		this.globalVariableService.openDashboardFormOnStartup = true;
+		this.router.navigate(['/home']);
+	}
 	
 }

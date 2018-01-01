@@ -17,7 +17,6 @@ import { ClarityModule }              from 'clarity-angular';
 
 // Own Components
 import { AppComponent }               from './app.component';
-import { HomeComponent }              from './home.component';
 import { LandingComponent }           from './landing.component';
 
 import { ExploreComponent }           from './explore.component';
@@ -100,7 +99,6 @@ import { MyNgIfDirective }            from './test.ngif.directive';
         // Main
         AppComponent,
         ExploreComponent,
-        HomeComponent,
         HelpComponent,
         LandingComponent,
 

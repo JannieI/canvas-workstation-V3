@@ -2135,6 +2135,7 @@ const dashboardsSample: Partial<Dashboard>[] =
 
 @Injectable()
 export class GlobalVariableService {
+    openDashboardFormOnStartup: boolean = false;
     dashboardTags: DashboardTag[] = dashboardTags;
     dataGetFromSwitch = new BehaviorSubject<string>('File');
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;

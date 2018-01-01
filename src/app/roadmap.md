@@ -68,7 +68,7 @@ This document describes items for later versions of Canvas.
 16.Fix bug: Recent Dashboard refreshes 1 cycle too late 
 17.Fix Bug: grid shows on top of widgets -> cannot click them
 18.StatusBar must not grow beyond screen width, or to double line
-19.Make sure Sample Dashboards have readonly view rights to all.  Also, these are never shown by default.  On the open form, there must be a specific param to filter them and can then open them.
+19.
 
 
 **Templates**
