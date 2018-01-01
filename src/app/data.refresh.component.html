@@ -19,7 +19,7 @@
                         <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column>
 
                         <clr-dg-row
-                            *clrDgItems="let row of datasources" [clrDgItem]="row"
+                            *clrDgItems="let row of currentDatasources" [clrDgItem]="row"
                             (click)="clickDatasourceRow(row.name)"
                             >
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
