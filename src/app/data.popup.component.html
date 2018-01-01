@@ -104,7 +104,7 @@
                             <button
                                 type="button"
                                 class="btn btn-secondary titleButton"
-                                (click)="clickFileAdd('Add')"
+                                (click)="clickDSAdd('Add')"
                                 >
                                 Add
                             </button>
@@ -133,11 +133,11 @@
                                 <!-- <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column> -->
 
                                 <clr-dg-row
-                                    *ngFor="let row of currentDatasources"
+                                    *ngFor="let row of currentDatasources; let i = index"
                                     (click)="clickDatasourceRow(row.name)"
                                     >
                                     <clr-dg-cell>
-                                        <clr-icon shape="times"></clr-icon>
+                                        <clr-icon shape="times" (click)="clickCurrentDSDelete(i)"></clr-icon>
                                         {{row.name}}
                                     </clr-dg-cell>
                                 </clr-dg-row>
@@ -153,7 +153,6 @@
                                     (click)="clickDatasourceRow(row.name)"
                                     >
                                     <clr-dg-cell>
-                                        <clr-icon shape="times"></clr-icon>
                                         {{row.name}}
                                     </clr-dg-cell>
                                 </clr-dg-row>

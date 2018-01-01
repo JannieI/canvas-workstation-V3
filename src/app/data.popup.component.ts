@@ -226,7 +226,7 @@ export class DataPopupComponent implements OnInit {
         // alert('Later: File component to browse ...')
     }
 
-    clickFileAdd(action: string) {
+    clickDSAdd(action: string) {
         // Datasource
         console.log('DATASOURCE start:')
         let newData: Datasource =  {
@@ -251,6 +251,10 @@ export class DataPopupComponent implements OnInit {
 
         this.globalVariableService.datasourceAdd(newData);
         console.log('     datasources', this.datasources)
+    }
+
+    clickCurrentDSDelete(index: number) {
+        this.globalVariableService.currentDatasourceDelete(index);
     }
 
     clickFileSelect(action: string) {

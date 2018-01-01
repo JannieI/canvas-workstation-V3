@@ -2353,16 +2353,17 @@ export class GlobalVariableService {
     }
 
     currentDatasourceDelete(index: number) {
+        console.log('str', index, this.currentDatasources.value)
         let arr: Datasource[] = this.currentDatasources.value.splice(index,1);
         console.log('arr', arr)
-        this.currentDatasources.next(arr)
-        console.log('yy', this.currentDatasources.value)
+        this.currentDatasources.next( this.currentDatasources.value)
+        console.log('end', this.currentDatasources.value)
     }
 
     datasourceDelete(index: number) {
         let arr: Datasource[] = this.datasources.value.splice(index,1);
         console.log('arr', arr)
-        this.datasources.next(arr)
+        this.datasources.next(this.datasources.value)
         console.log('yy', this.datasources.value)
     }
 
