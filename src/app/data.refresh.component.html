@@ -2,17 +2,18 @@
 	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
 
-            <div class="overall">
+            <div class="gridOverall">
                 <div class="closeButton">
                     <button type="button" class="closeButton" (click)="clickClose()">
                         X
                     </button>
                 </div>
-
-                Refresh all datasources in the existing Dashboard.  In case of very
-				large datasets, this may take a while.  Data will be refreshed 
-				automatically when changes are Saved.
-                <form>
+                <div class="gridTop">
+                    Refresh all datasources in the existing Dashboard.  In case of very
+                    large datasets, this may take a while.  Data will be refreshed
+                    automatically when changes are Saved.
+                </div>
+                <form class="gridTable">
                     <span class="gridHeading" (click)="clickTest()">Existing Datasets</span>
                     <clr-datagrid class="fieldsDataGrid"  [(clrDgSingleSelected)]="selectedUser">
                         <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column>
@@ -31,7 +32,7 @@
                         >
                         Refresh
                     </button>
-                    
+
                 </form>
             </div>
         </div>
