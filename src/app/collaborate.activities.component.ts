@@ -27,7 +27,6 @@ import { CanvasActivity }             from './models';
 })
 export class CollaborateActivitiesComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formCollaborateActivitiesClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;

@@ -25,7 +25,6 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class DataRefreshComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDataRefreshClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph

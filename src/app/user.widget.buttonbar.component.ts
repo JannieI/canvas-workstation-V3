@@ -30,7 +30,6 @@ import { WidgetCheckpointsComponent } from 'app/widget.checkpoints.component';
 })
 export class UserWidgetButtonBarComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formUserWidgetButtonBarClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  

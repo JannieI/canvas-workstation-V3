@@ -26,7 +26,6 @@ import { Dashboard }                  from './models';
 })
 export class PreferencesComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardPreferencesClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  

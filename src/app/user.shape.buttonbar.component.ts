@@ -29,7 +29,6 @@ import { ButtonBarSelected }          from './models';
 })
 export class UserShapeButtonBarComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formUserShapeButtonBarClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  

@@ -26,7 +26,6 @@ import { Dashboard }                  from './models';
 })
 export class DataCombinationComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDataCombinationClosed: EventEmitter<string> = new EventEmitter();
 
     isFirstTimeDataCombination: boolean;

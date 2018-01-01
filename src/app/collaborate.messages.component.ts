@@ -27,7 +27,6 @@ import { CanvasMessage }              from './models';
 })
 export class CollaborateMessagesComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formCollaborateMessagesClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;

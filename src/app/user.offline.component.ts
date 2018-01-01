@@ -34,7 +34,6 @@ const selectDashboards: any = [
 })
 export class UserOfflineComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formUserOfflineClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;

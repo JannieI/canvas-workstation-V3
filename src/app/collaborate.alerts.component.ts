@@ -27,7 +27,6 @@ import { CanvasAlert }                from './models';
 })
 export class CollaborateAlertsComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formCollaborateAlertsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;

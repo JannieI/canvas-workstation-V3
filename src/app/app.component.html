@@ -841,7 +841,6 @@
 <login
     class="formPopupDashboard"
     *ngIf="showModalDashboardLogin"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formUserLoginClosed)="handleCloseUserLogin($event)">Load Login ...
 </login>
 
@@ -850,7 +849,6 @@
 <widget-buttonbar
     class="formPopupUserWidgetButtonBar"
     *ngIf="showModalUserWidgetButtonBar"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formUserWidgetButtonBarClosed)="handleCloseUserWidgetButtonBar($event)">
     Load Widget Button Bar ...
 </widget-buttonbar>
@@ -860,7 +858,6 @@
 <shape-buttonbar
     class="formPopupUserShapeButtonBar"
     *ngIf="showModalUserShapeButtonBar"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formUserShapeButtonBarClosed)="handleCloseUserShapeButtonBar($event)">
     Load Shape Button Bar ...
 </shape-buttonbar>
@@ -870,7 +867,6 @@
 <systemsettings
     class="formPopupDashboard"
     *ngIf="showModalUserSystemSettings"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardSystemSettingsClosed)="handleCloseUserSystemSettings($event)">
     Load System Settings ...
 </systemsettings>
@@ -880,7 +876,6 @@
 <user-offline
     class="formPopupDashboard"
     *ngIf="showModalUserOffline"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formUserOfflineClosed)="handleCloseUserOffline($event)">
     Load Offline Mode ...
 </user-offline>
@@ -890,7 +885,6 @@
 <logout
     class="formPopupDashboard"
     *ngIf="showModalDashboardLogout"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formUserLogoutClosed)="handleCloseUserLogout($event)">Load Logout ...
 </logout>
 
@@ -899,7 +893,6 @@
 <myprofile
     class="formPopupDashboard"
     *ngIf="showModalUserMyProfile"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardMyProfileClosed)="handleCloseUserdMyProfile($event)">Load My Profile ...
 </myprofile>
 
@@ -908,7 +901,6 @@
 <preferences
     class="formPopupDashboard"
     *ngIf="showModalUserPreferences"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDashboardPreferencesClosed)="handleCloseUserPreferences($event)">Load Preferences ...
 </preferences>
 
@@ -924,7 +916,6 @@
 <!-- Modal: data refresh all -->
 <data-combination
     *ngIf="showModalDataCombination"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDataCombinationClosed)="handleCloseDataCombination($event)">Load Data Combination ...
 </data-combination>
 
@@ -932,7 +923,6 @@
 <!-- Modal: data refresh all -->
 <data-refresh
     *ngIf="showModalDataRefresh"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDataRefreshClosed)="handleCloseDataRefresh($event)">Refresh All Data ...
 </data-refresh>
 
@@ -940,7 +930,6 @@
 <!-- Modal: data Share -->
 <data-share
     *ngIf="showModalDataShare"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDataShareClosed)="handleCloseDataShare($event)">Share All Data ...
 </data-share>
 
@@ -981,7 +970,6 @@
 <collaborate-alerts
     class="formPopupDashboard"
     *ngIf="showModalCollaborateAlerts"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formCollaborateAlertsClosed)="handleCloseCollaborateAlerts($event)">Load Alerts ...
 </collaborate-alerts>
 
@@ -990,7 +978,6 @@
 <collaborate-messages
     class="formPopupDashboard"
     *ngIf="showModalCollaborateMessages"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formCollaborateMessagesClosed)="handleCloseCollaborateMessages($event)">Load Messages ...
 </collaborate-messages>
 
@@ -999,7 +986,6 @@
 <collaborate-activities
     class="formPopupDashboard"
     *ngIf="showModalCollaborateActivities"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formCollaborateActivitiesClosed)="handleCloseCollaborateActivities($event)">Load Activities ...
 </collaborate-activities>
 
@@ -1008,7 +994,6 @@
 <collaborate-activityadd
     class="formPopupDashboard"
     *ngIf="showModalCollaborateActivityAdd"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formCollaborateActivityAddClosed)="handleCloseCollaborateActivityAdd($event)">Load ActivityAdd ...
 </collaborate-activityadd>
 

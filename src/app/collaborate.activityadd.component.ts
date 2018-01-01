@@ -28,7 +28,6 @@ import { GlobalVariableService }      from './global-variable.service';
   })
   export class CollaborateActivityAddComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formCollaborateActivityAddClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph

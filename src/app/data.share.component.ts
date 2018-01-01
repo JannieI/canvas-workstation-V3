@@ -26,7 +26,6 @@ import { DatasourcePermission }       from './models';
 })
 export class DatasourceShareComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDataShareClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDatasource: boolean = false;

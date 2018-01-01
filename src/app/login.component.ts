@@ -26,7 +26,6 @@ import { Dashboard }                  from './models';
 })
 export class LoginComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formUserLoginClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  

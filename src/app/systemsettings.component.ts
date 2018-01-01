@@ -26,7 +26,6 @@ import { Dashboard }                  from './models';
 })
 export class SystemSettingsComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDashboardSystemSettingsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;  
