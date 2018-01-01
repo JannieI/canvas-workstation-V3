@@ -1,5 +1,5 @@
 .modalBox {
-	background-color: rgba(0,0,0,0.4); 
+	background-color: rgba(0,0,0,0.4);
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
@@ -65,7 +65,7 @@
         margin-bottom: 0;
         text-align: left;
     }
-    
+
     .shapeBottomShape {
         align-content: center;
         grid-column-start: 7;

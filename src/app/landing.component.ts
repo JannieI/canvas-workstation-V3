@@ -59,7 +59,7 @@ const recentDashboards = [
 export class LandingComponent implements OnInit {
 
 	@Output() formLandingClosed: EventEmitter<string> = new EventEmitter();
-	
+
 	sampleDashboards: Partial<Dashboard>[] = this.globalVariableService.dashboardsSample;
 	recentDashboards: Partial<Dashboard>[] = this.globalVariableService.dashboardsRecent;
 	showModel: boolean = true;
@@ -100,5 +100,5 @@ export class LandingComponent implements OnInit {
 		this.globalVariableService.openDashboardFormOnStartup = true;
 		this.router.navigate(['/explore']);
 	}
-	
+
 }

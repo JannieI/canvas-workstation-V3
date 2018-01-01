@@ -98,6 +98,6 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSave() {
-		this.formShapeEditClosed.emit('saved');        
+		this.formShapeEditClosed.emit('saved');
     }
 }

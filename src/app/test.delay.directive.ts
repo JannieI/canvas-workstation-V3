@@ -8,7 +8,7 @@ export class DelayDirective {
     private templateRef: TemplateRef<any>,
     private viewContainerRef: ViewContainerRef
   ) { }
-  
+
   @Input()
     appDelay(time: number): void {
     setTimeout(

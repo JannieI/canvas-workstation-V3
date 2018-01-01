@@ -28,11 +28,11 @@ export class DashboardOpenComponent implements OnInit {
 
     @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
     isFirstTimeDashboardOpen: boolean;
     showAdvancedFilters: boolean = false;
-    
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -47,7 +47,7 @@ export class DashboardOpenComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formDashboardOpenClosed.emit(action);
     }
 

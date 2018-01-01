@@ -1,12 +1,12 @@
 <div class="modal modalBox">
         <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
-    
+
                 <div>
                     <button type="button" class="closeButton" (click)="clickClose()">
                         X
                     </button>
-    
+
                     Widget Notes
                     <div class="propertyLine">
                     </div>
@@ -18,7 +18,7 @@
                         <clr-dg-column>Comment</clr-dg-column>
                         <clr-dg-column>Creator</clr-dg-column>
                         <clr-dg-column>CreatedOn</clr-dg-column>
-    
+
                         <clr-dg-row *ngFor="let row of canvasComments">
                             <clr-dg-cell>
                                 <clr-icon shape="plus" class="selectIcon1" size="12"></clr-icon>
@@ -34,11 +34,10 @@
                             <clr-dg-cell>{{row.creator}}</clr-dg-cell>
                             <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
                         </clr-dg-row>
-    
+
                     </clr-datagrid>
-    
+
                 </div>
             </div>
         </div>
     </div>
-    

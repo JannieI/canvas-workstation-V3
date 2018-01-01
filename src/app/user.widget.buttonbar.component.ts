@@ -32,7 +32,7 @@ export class UserWidgetButtonBarComponent implements OnInit {
 
     @Output() formUserWidgetButtonBarClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
     dashboardTags: DashboardTag[];
     widgetButtonsAvailable: ButtonBarAvailable[];
@@ -51,7 +51,7 @@ export class UserWidgetButtonBarComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formUserWidgetButtonBarClosed.emit(action);
     }
 

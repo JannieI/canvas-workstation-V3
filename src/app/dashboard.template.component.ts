@@ -32,7 +32,7 @@ export class DashboardTemplateComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
     dashboardTemplates: DashboardTemplate[];
-   
+
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

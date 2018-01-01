@@ -28,7 +28,7 @@ export class MyProfileComponent implements OnInit {
 
     @Output() formDashboardMyProfileClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
 
 	constructor(
@@ -42,7 +42,7 @@ export class MyProfileComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formDashboardMyProfileClosed.emit(action);
     }
 

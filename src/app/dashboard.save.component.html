@@ -24,14 +24,14 @@
                         <div class="propertyLine">
                             With the <b>No Security</b> model, all users have full access to all
                             Dashboards.  In a sense, all users have Admin rights to them.  Anyone
-                            can create a Dashboard, and all Dashboards can be viewed and editted 
+                            can create a Dashboard, and all Dashboards can be viewed and editted
                             by all users.  This model is ideal for standalone installations (where
-                            there is only one user) or small teams with a high level of trust.  
+                            there is only one user) or small teams with a high level of trust.
                         </div>
                         <div class="propertyLine">
-                            Note that while editing a Dashboard, changes are never applied to the 
+                            Note that while editing a Dashboard, changes are never applied to the
                             original. A separate Draft copy is created.  This copy is visible
-                            only to the editor, while all other users will see only the original.  
+                            only to the editor, while all other users will see only the original.
                             The editor can use snapshots (see File -> Snapshots menu item) to
                             store interim copies.  The editor may role back to a previously stored
                             snapshot at any time.  When the Draft copy is created, the system
@@ -41,15 +41,15 @@
                         <div class="propertyLine">
                             During editing, all changes are saved automatically to the Draft copy
                             without any input from the editor.  Once changes have been finalised
-                            and the editor wants to make these available to other users, he clicks 
-                            the Save button.  The Save button will replace the original copy with 
-                            the Draft copy, and remove the Draft copy (and snapshots). 
+                            and the editor wants to make these available to other users, he clicks
+                            the Save button.  The Save button will replace the original copy with
+                            the Draft copy, and remove the Draft copy (and snapshots).
                         </div>
                         <div class="propertyLine">
-                            Also, only one user at a time may edit a Dashboard. Once changes 
-                            have started, the editor can Discard these changes (which will 
-                            simply delete the Draft copy and all snapshots). In order to 
-                            allocate rights to individual users or groups, the Team security 
+                            Also, only one user at a time may edit a Dashboard. Once changes
+                            have started, the editor can Discard these changes (which will
+                            simply delete the Draft copy and all snapshots). In order to
+                            allocate rights to individual users or groups, the Team security
                             model must be used.
                         </div>
                         <div class="propertyLine">
@@ -61,28 +61,28 @@
 
                     <div class="helpMessage" *ngIf="showTeam  &&  isFirstTimeDashboardSave">
                         <div class="propertyLine">
-                            With the <b>Team Security</b> model, any user can create a Dashboard.  
+                            With the <b>Team Security</b> model, any user can create a Dashboard.
                             The creator of the Dashboard has full access (View and Edit) to it.
-                            Other users have no rights to this Dashboard, and thus cannot view or 
-                            edit it.  They must be explicitly granted View or Edit rights by the 
-                            creator of the Dashboard.  This model is ideal small to medium 
+                            Other users have no rights to this Dashboard, and thus cannot view or
+                            edit it.  They must be explicitly granted View or Edit rights by the
+                            creator of the Dashboard.  This model is ideal small to medium
                             size teams.
                         </div>
                         <div class="propertyLine">
-                            The creator can grant two types of rights to others: View and Edit.  View 
-                            rights allow a user to see a Dashboard, while Edit rights allow 
-                            changes to a Dashboard.  Rights can be allocated to individual 
-                            users, or to groups.  Rights are accumulative, and there is no 
-                            exclusion of rights.  If a user belongs to two groups, and View 
+                            The creator can grant two types of rights to others: View and Edit.  View
+                            rights allow a user to see a Dashboard, while Edit rights allow
+                            changes to a Dashboard.  Rights can be allocated to individual
+                            users, or to groups.  Rights are accumulative, and there is no
+                            exclusion of rights.  If a user belongs to two groups, and View
                             rights were granted to one of the groups, the user will have this
-                            right.  Users, groups and group membership aremanaged in the Admin 
+                            right.  Users, groups and group membership aremanaged in the Admin
                             module.
                         </div>
                         <div class="propertyLine">
-                            Note that while editing a Dashboard, changes are never applied to the 
+                            Note that while editing a Dashboard, changes are never applied to the
                             original. A separate Draft copy is created.  This copy is visible
                             only to the editor, while all other users will see only the original
-                            copy (with a State of Locked to indicate that someone is editing it).  
+                            copy (with a State of Locked to indicate that someone is editing it).
                             The editor can use snapshots (see File -> Snapshots menu item) to
                             store interim copies.  The editor may role back to a previously stored
                             snapshot at any time.  When the Draft copy is created, the system
@@ -92,14 +92,14 @@
                         <div class="propertyLine">
                             During editing, all changes are saved automatically to the Draft copy
                             without any input from the editor.  Once changes have been finalised
-                            and the editor wants to make these available to other users, he clicks 
-                            the Save button.  The Save button will replace the original copy with 
-                            the Draft copy, and remove the Draft copy (and snapshots). 
+                            and the editor wants to make these available to other users, he clicks
+                            the Save button.  The Save button will replace the original copy with
+                            the Draft copy, and remove the Draft copy (and snapshots).
                         </div>
                         <div class="propertyLine">
-                            Also, only one user at a time may edit a Dashboard. Once changes 
-                            have started, the editor can Discard these changes (which will 
-                            simply delete the Draft copy and all snapshots). In order to 
+                            Also, only one user at a time may edit a Dashboard. Once changes
+                            have started, the editor can Discard these changes (which will
+                            simply delete the Draft copy and all snapshots). In order to
                             allow for Dashboard changes to be Quality Assured, the <i>QA required</i>
                             security model must be used.
                         </div>
@@ -114,37 +114,37 @@
 
                         <div class="propertyLine">
                             The <b>QA required Security</b> model is similar to the Team
-                            security model in that rights are assigned specifically, but is 
+                            security model in that rights are assigned specifically, but is
                             more powerful.  This model is ideal for medium to large size teams.
                         </div>
                         <div class="propertyLine">
-                            The following Roles are allocated at the group level: 
+                            The following Roles are allocated at the group level:
                             <div class="propertyLine">
                                 Group Administrator: can add or delete group members, and
-                                assign Roles to its members.  
+                                assign Roles to its members.
                             </div>
                             <div class="propertyLine">
-                                DashboardBuilder: can create Draft Dashboards for the group, 
+                                DashboardBuilder: can create Draft Dashboards for the group,
                                 and assign it to the group.  These Dashboards cannot be Saved,
-                                so it is not visible to the group until QAed. The user must 
+                                so it is not visible to the group until QAed. The user must
                                 request a QA from a user with the DashboardQA Role.  Remember
-                                that a user can always create, edit and view a personal Dashboard 
+                                that a user can always create, edit and view a personal Dashboard
                                 (which is only visible to himself).
                             </div>
                             <div class="propertyLine">
-                                DashboardQA: can QA Draft Dashboards created by a 
-                                DashboardBuilder.  When a DashboardBuilder has requested a 
-                                Dashboard to be QAed, the State will change to Pending.  A 
+                                DashboardQA: can QA Draft Dashboards created by a
+                                DashboardBuilder.  When a DashboardBuilder has requested a
+                                Dashboard to be QAed, the State will change to Pending.  A
                                 message will also be send to the DashboardQA user for action.
                                 This user can also have the DashboardBuilder
                                 Role, which means that she can create, edit and save Dashboards
-                                without quality assurance from other users. 
+                                without quality assurance from other users.
                             </div>
-                                
+
                         </div>
                         <div class="propertyLine">
                             Note that the following functionality is the same as for the Team
-                            security model: Draft copies, Snapshots, Discard and Contention 
+                            security model: Draft copies, Snapshots, Discard and Contention
                             (only one user can edit a Dashboard at a point in time).
 
                         </div>
@@ -158,8 +158,8 @@
                     <div>
                         <br>
                         All changes made to the Dashboard are saved automatically (with no user
-                        input required).  Other users cannot yet see these changes.  Click the 
-                        <i>Save</i> button below to make all changes available to all users.  All 
+                        input required).  Other users cannot yet see these changes.  Click the
+                        <i>Save</i> button below to make all changes available to all users.  All
                         datasources in the Dashboard will also be refreshed.
                         <div class="propertyLine" *ngIf="showQArequired">
                             Request QA:

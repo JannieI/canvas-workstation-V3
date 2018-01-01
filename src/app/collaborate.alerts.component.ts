@@ -32,7 +32,7 @@ export class CollaborateAlertsComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
     canvasAlerts: CanvasAlert[];
-   
+
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

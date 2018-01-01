@@ -135,7 +135,7 @@ export class DatasourcePermission {
     userID: string;        // 1 of usr/grp filled in, one blank
     groupID: string;
     canView: boolean;
-    canEdit: boolean;    
+    canEdit: boolean;
 }
 
 export class Transformation {
@@ -226,7 +226,7 @@ export class CanvasSlicer {
     slicerCreatedOn: string;              // Created on
     slicerCreatedBy: string;              // Created by
     slicerUpdatedOn: string;              // Updated on
-    slicerUpdatedBy: string;              // Updated by    
+    slicerUpdatedBy: string;              // Updated by
 
 }
 
@@ -251,7 +251,7 @@ export class CanvasShape {
 
     // Data related - only for Textboxes
     datasetID?: number;
-    
+
     // @Runtime
     isSelected: boolean;
 
@@ -294,13 +294,13 @@ export class CanvasShape {
     r: string;                              // circle svg radius
     stroke: string;                         // colour of line
     strokeWidth: string;                    // line thickness in px
-    fill: string;                           // fill / inside (ie of circle)   
+    fill: string;                           // fill / inside (ie of circle)
 
     // Created, updated and refreshed
     shapeCreatedOn: string;                 // Created on
     shapeCreatedBy: string;                 // Created by
     shapeUpdatedOn: string;                 // Updated on
-    shapeUpdatedBy: string;                 // Updated by    
+    shapeUpdatedBy: string;                 // Updated by
 
 }
 
@@ -327,8 +327,8 @@ export class CanvasWidget {
 
     // Data related
     datasetID: number;
-    dataParameters: 
-    [ 
+    dataParameters:
+    [
         {
             "field": string;
             "value": string;
@@ -405,7 +405,7 @@ export class CanvasWidget {
     widgetCreatedOn: string;              // Created on
     widgetCreatedBy: string;              // Created by
     widgetUpdatedOn: string;              // Updated on
-    widgetUpdatedBy: string;              // Updated by    
+    widgetUpdatedBy: string;              // Updated by
 
 }
 
@@ -441,7 +441,7 @@ export class Dashboard {
     backgroundColor: string;
     backgroundImage: string;
     templateDashboardID: number;
-    
+
     // Creation, update and refresh
     creator: string;
     dateCreated: string;
@@ -449,7 +449,7 @@ export class Dashboard {
     dateEdited: string;
     refresher: string;
     dateRefreshed: string;
-    
+
     // 2nd normal form
     nrWidgets: number;
     nrShapes: number;
@@ -514,5 +514,5 @@ export class DashboardPermission {
     userID: string;        // 1 of usr/grp filled in, one blank
     groupID: string;
     canView: boolean;
-    canEdit: boolean;    
+    canEdit: boolean;
 }

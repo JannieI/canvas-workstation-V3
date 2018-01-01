@@ -22,7 +22,7 @@ export class DashboardRenameComponent implements OnInit {
 
     @Output() formDashboardRenameClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
 
     ngOnInit() {
 
@@ -30,7 +30,7 @@ export class DashboardRenameComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formDashboardRenameClosed.emit(action);
     }
 }

@@ -1,31 +1,31 @@
 <div class="modal modalBox">
         <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
-    
+
                 <div>
                     <button type="button" class="closeButton" (click)="clickClose()">
                         X
                     </button>
-    
+
                     Dashboard Subscriptions
                     <div class="propertyLine">
                         You will be notified via a CanvasMessage or via email if the specified
                         event takes place on a Dashboard.  The subscription events are toggle
-                        switched - click in the required event column, or just click again to 
+                        switched - click in the required event column, or just click again to
                         unsubscribe.
-                    </div>                            
+                    </div>
                     <div class="propertyLine">
                         Snapshot the current Dashboard:
                         <input type="text" id="formFields_7" placeholder="Dashboard name">
                         <input type="text" id="formFields_7" placeholder="My Subscriptions">
-                        <button 
-                            type="button" 
-                            class="btn btn-secondary" 
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
                             >
                             Filter
                         </button>
                     </div>
-    
+
                     <clr-datagrid>
                         <clr-dg-column>View</clr-dg-column>
                         <clr-dg-column>EditMode</clr-dg-column>
@@ -33,9 +33,9 @@
                         <clr-dg-column>Delete</clr-dg-column>
                         <clr-dg-column>Dashboard</clr-dg-column>
                         <clr-dg-column>Notify</clr-dg-column>
-    
+
                         <clr-dg-row *ngFor="let row of subscriptions">
-                                
+
                             <clr-dg-cell>
                                 <clr-icon *ngIf="row.view" shape="check" class="selectIcon1" size="12"></clr-icon>
                             </clr-dg-cell>
@@ -55,11 +55,10 @@
                                 {{ row.notify }}
                             </clr-dg-cell>
                         </clr-dg-row>
-    
+
                     </clr-datagrid>
-    
-                </div>  
-            </div>  
-        </div>  
-    </div>  
-    
+
+                </div>
+            </div>
+        </div>
+    </div>

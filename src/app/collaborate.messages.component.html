@@ -1,20 +1,20 @@
 <div class="modal modalBox">
         <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
-    
+
                 <div>
                     <button type="button" class="closeButton" (click)="clickClose()">
                         X
                     </button>
-    
+
                     Messages
                     <div class="propertyLine">
                         Filter on:
                         <input type="text" id="formFields_7" placeholder="Daterange">
                         <input type="text" id="formFields_7" placeholder="Text">
-                        <button 
-                            type="button" 
-                            class="btn btn-secondary" 
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
                             (click)="clickClose('Close')"
                             >
                             Filter
@@ -32,7 +32,7 @@
                         <clr-dg-column>Subject</clr-dg-column>
                         <clr-dg-column>Body</clr-dg-column>
                         <clr-dg-column>DashboardID</clr-dg-column>
-    
+
                         <clr-dg-row *ngFor="let row of canvasMessages">
                             <clr-dg-cell>{{row.id}}</clr-dg-cell>
                             <clr-dg-cell>{{row.sentBy}}</clr-dg-cell>
@@ -45,11 +45,10 @@
                             <clr-dg-cell>{{row.body}}</clr-dg-cell>
                             <clr-dg-cell>{{row.dashboardID}}</clr-dg-cell>
                         </clr-dg-row>
-    
+
                     </clr-datagrid>
-    
-                </div>  
-            </div>  
-        </div>  
-    </div>  
-    
+
+                </div>
+            </div>
+        </div>
+    </div>

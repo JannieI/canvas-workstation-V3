@@ -32,7 +32,7 @@ export class DashboardScheduleComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
     dashboardSchedules: DashboardSchedule[];
-   
+
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

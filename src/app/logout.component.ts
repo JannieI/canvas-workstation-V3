@@ -28,7 +28,7 @@ export class LogoutComponent implements OnInit {
 
     @Output() formUserLogoutClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
 
 	constructor(
@@ -42,7 +42,7 @@ export class LogoutComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formUserLogoutClosed.emit(action);
     }
 

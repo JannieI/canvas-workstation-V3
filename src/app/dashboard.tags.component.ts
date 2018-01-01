@@ -29,7 +29,7 @@ export class DashboardTagsComponent implements OnInit {
 
     @Output() formDashboardTagsClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
     dashboardTags: DashboardTag[];
 
@@ -45,7 +45,7 @@ export class DashboardTagsComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formDashboardTagsClosed.emit(action);
     }
 

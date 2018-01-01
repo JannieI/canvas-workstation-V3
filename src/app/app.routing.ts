@@ -24,13 +24,13 @@ export const ROUTES: Routes = [
     {path: 'expand',        component: WidgetExpandComponent},
 
     // {
-    //     path: 'getdata', 
-    //     component: GetDataComponent, 
-    //     canActivate: [AuthGuard], 
+    //     path: 'getdata',
+    //     component: GetDataComponent,
+    //     canActivate: [AuthGuard],
     //     canDeactivate: [AuthGuard]
     // },
     {path: '**', component: LandingComponent},
-    
+
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(ROUTES);

@@ -1,4 +1,4 @@
-/* 
+/*
  * Main Component, with menu
  */
 
@@ -119,10 +119,10 @@ export class AppComponent implements OnInit {
         @Inject(DOCUMENT) private document: Document,
         private renderer: Renderer,
         private router: Router,
-        
+
     ) {
     }
-    
+
     ngOnInit() {
         // Intial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -153,14 +153,14 @@ export class AppComponent implements OnInit {
                  }
         );
         this.globalVariableService.editMode.subscribe(
-            i => { 
+            i => {
                     this.editMode = i;
-                    if (!i) {this.editMenuText = 'Edit Mode'} 
-                    else {this.editMenuText = 'View Mode'}; 
+                    if (!i) {this.editMenuText = 'Edit Mode'}
+                    else {this.editMenuText = 'View Mode'};
                  }
         );
-        
-    }   
+
+    }
 
     handleCloseModalLanding() {
         // Close Modal form Landing page
@@ -168,7 +168,7 @@ export class AppComponent implements OnInit {
 
         this.showModalLanding = false;
         this.document.body.style.backgroundImage ='../images/BarChart.png';
-        
+
     }
 
     handleCloseWidgetEditor() {
@@ -225,7 +225,7 @@ export class AppComponent implements OnInit {
     handleCloseDashboardTheme() {
         this.showModalDashboardTheme = false;
     }
-    
+
     handleCloseDashboardTemplate() {
         this.showModalDashboardTemplate = false;
     }
@@ -256,7 +256,7 @@ export class AppComponent implements OnInit {
     handleCloseShapeDelete() {
         this.showModalShapeDelete = false;
     }
-    
+
     handleCloseDashboardComments() {
         this.showModalDashboardComments = false;
     }
@@ -268,11 +268,11 @@ export class AppComponent implements OnInit {
     handleCloseDataSlicers() {
         this.showModalDataSlicers = false;
     }
-    
+
     handleCloseDataCombination() {
         this.showModalDataCombination = false;
     }
-    
+
     handleCloseDataRefresh() {
         this.showModalDataRefresh = false;
     }
@@ -284,19 +284,19 @@ export class AppComponent implements OnInit {
     handleCloseWidgetCheckpoints() {
         this.showModalWidgetCheckpoints = false;
     }
-    
+
     handleCloseWidgetComments() {
         this.showModalWidgetComments = false;
     }
-    
+
     handleCloseWidgetLinks() {
         this.showModalWidgetLinks = false;
     }
-    
+
     handleCloseWidgetDuplicate() {
         this.showModalWidgetDuplicate = false;
     }
-    
+
     handleCloseWidgetExpand() {
         this.showModalWidgetExpand = false;
     }
@@ -321,7 +321,7 @@ export class AppComponent implements OnInit {
     handleCloseCollaborateMessages() {
         this.showModalCollaborateMessages = false;
     }
-    
+
     handleCloseCollaborateActivities() {
         this.showModalCollaborateActivities = false;
     }
@@ -345,7 +345,7 @@ export class AppComponent implements OnInit {
     handleCloseUserWidgetButtonBar(action) {
         this.showModalUserWidgetButtonBar = false;
     }
-    
+
     handleCloseUserShapeButtonBar(action) {
         this.showModalUserShapeButtonBar = false;
     }
@@ -384,7 +384,7 @@ export class AppComponent implements OnInit {
         console.log('open')
         this.showModalDashboardSave = true;
     }
-    
+
     clickDashboardSnapshots() {
         this.showModalDashboardSnapshots = true;
     }
@@ -392,7 +392,7 @@ export class AppComponent implements OnInit {
     clickDashboardImport() {
         this.showModalDashboardImport = true;
     }
-    
+
 
     clickDashboardRename() {
         this.showModalDashboardRename = true;
@@ -547,7 +547,7 @@ export class AppComponent implements OnInit {
     clickMenuWidgetDelete() {
         this.nrWidgetsSelected = this.localWidgets.filter(i => i.isSelected == true).length;
         this.showModalWidgetDelete = true;
-    }        
+    }
 
     clickMenuEditUndo() {
         this.showTestArrows = false;
@@ -568,7 +568,7 @@ export class AppComponent implements OnInit {
     clickMenuShapeNew() {
         this.showModalShapeEdit = true;
     }
-    
+
     clickMenuShapeEdit() {
         this.showModalShapeEdit = true;
     }
@@ -576,7 +576,7 @@ export class AppComponent implements OnInit {
     clickMenuShapeLinks() {
         this.showModalWidgetLinks = true;
     }
-    
+
     clickMenuShapeDelete() {
         this.showModalShapeDelete = true;
     }
@@ -595,7 +595,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuViewSnapToGrid() {
-        
+
     }
 
     clickMenuViewZoom() {
@@ -603,53 +603,53 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuArrangeBackward() {
-        
+
     }
 
     clickMenuArrangeForward() {
-        
+
     }
 
     clickMenuArrangeBack() {
-        
+
     }
 
     clickMenuArrangeFront() {
-        
+
     }
 
     clickMenuArrangeAlignCenterPageDown() {
-        
+
     }
 
     clickMenuArrangeAlignCenterPageRight() {
-        
+
     }
 
     clickMenuArrangeGroup() {
-        
+
     }
 
     clickMenuArrangeUnGroup() {
-        
+
     }
 
     clickMenuArrangeDistributeVertical() {
-        
+
     }
 
     clickMenuArrangeDistributeHorisontal() {
-        
+
     }
 
     clickMenuArrangeSameSize() {
-        
+
     }
 
     clickMenuHelpDemo() {
         this.router.navigate(['/help']);
     }
-    
+
     // clickMenuPreferences Messages etc
 
 
@@ -682,7 +682,7 @@ export class AppComponent implements OnInit {
     clickMenuUserPreferences() {
         this.showModalUserPreferences = true;
     }
-    
+
     clickMenuUserWidgetButtonBar() {
         this.showModalUserWidgetButtonBar = true;
     }
@@ -698,7 +698,7 @@ export class AppComponent implements OnInit {
     clickMenuUserOffline() {
         this.showModalUserOffline = true;
     }
-    
+
     clickMenuUserLogout() {
         this.showModalDashboardLogout = true;
     }

@@ -32,7 +32,7 @@ export class DashboardThemeComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
     dashboardThemes: DashboardTheme[];
-   
+
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

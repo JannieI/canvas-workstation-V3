@@ -31,7 +31,7 @@ export class DashboardSettingsComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
-   
+
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

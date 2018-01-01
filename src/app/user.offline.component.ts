@@ -20,7 +20,7 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Dashboard }                  from './models';
 
 const selectDashboards: any = [
-    { 
+    {
         id: 1,
         dashboardName: 'Fruit exports',
         dataLevel: 'data/schema'

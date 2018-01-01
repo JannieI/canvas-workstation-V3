@@ -22,7 +22,7 @@ export class DashboardDetailsComponent implements OnInit {
 
     @Output() formDashboardDetailsClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
 
     ngOnInit() {
 
@@ -30,7 +30,7 @@ export class DashboardDetailsComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formDashboardDetailsClosed.emit(action);
     }
 }

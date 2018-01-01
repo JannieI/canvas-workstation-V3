@@ -375,7 +375,7 @@ const combinations: Combination[] =
 ];
 
 const combinationDetails: CombinationDetail[] =
-[ 
+[
     {
         combinationDetailID: 1,
         combinationID: 2,
@@ -421,7 +421,7 @@ const datasources: Datasource [] =
         type: 'File',
         subType: 'CSV',
         typeVersion: 'Comma-Separator',
-        name: 'Stocks.csv',
+        name: 'Stocks4.csv',
         description: 'Hard coded name',
         createdBy: 'Me',
         createdOn: '2017/01/01',
@@ -2171,7 +2171,7 @@ export class GlobalVariableService {
     localWidgets = new BehaviorSubject< CanvasWidget[]>(localWidgets);
     // localShapes = new BehaviorSubject< canvasShape[]>(localShapes);
     localShapes = new BehaviorSubject< CanvasShape[]>(null);
-    
+
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
     localTrash = new BehaviorSubject< CanvasWidget[]>([]);
@@ -2312,7 +2312,7 @@ export class GlobalVariableService {
 
     constructor(httpFake: httpFake) {
         this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
-        
+
      }
 
     changeMessage(message: string) {
@@ -2355,7 +2355,7 @@ export class GlobalVariableService {
     dashboardDelete(index: number) {
         console.log('dashboardDelete', index)
         let arr: CanvasWidget[] = this.localWidgets.value.filter(
-            i => { 
+            i => {
                     if (i.id == index) { i.isTrashed = true}
                 }
         );

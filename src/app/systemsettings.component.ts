@@ -28,7 +28,7 @@ export class SystemSettingsComponent implements OnInit {
 
     @Output() formDashboardSystemSettingsClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
 
 	constructor(
@@ -42,7 +42,7 @@ export class SystemSettingsComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formDashboardSystemSettingsClosed.emit(action);
     }
 

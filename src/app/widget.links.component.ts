@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
- 
+
 @Component({
     selector: 'widget-links',
     templateUrl: './widget.links.component.html',
@@ -29,11 +29,11 @@ export class WidgetLinksComponent implements OnInit {
     @Input() currentWidgetSpec: any;
     @Output() formWidgetLinksClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
     isFirstTimeDashboardOpen: boolean;
     showAdvancedFilters: boolean = false;
-    
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -48,7 +48,7 @@ export class WidgetLinksComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formWidgetLinksClosed.emit(action);
     }
 

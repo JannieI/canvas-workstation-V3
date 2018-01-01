@@ -32,7 +32,7 @@ export class CollaborateActivitiesComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
     canvasActivities: CanvasActivity[];
-   
+
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

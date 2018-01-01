@@ -32,7 +32,7 @@ export class AuthGuard implements OnInit, CanActivate {
         // If not logged in, bail
 
         let oldRouterPath: string = state.url[0]['path'];
-        
+
         if (oldRouterPath == 'getdata') {
             console.log ('here')
         };

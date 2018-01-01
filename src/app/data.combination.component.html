@@ -1,12 +1,12 @@
 <div class="modal modalBox">
         <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
-    
+
                 <div>
                     <button type="button" class="closeButton" (click)="clickClose()">
                         X
                     </button>
-    
+
                     Combinations of Datasets
 
                     <div class="helpMessage" *ngIf="isFirstTimeDataCombination">
@@ -22,7 +22,7 @@
                             <b>Got it</b> <input type="checkbox" (click)="clickGotIt()">
                             (You can make this message re-appear with the <i>Preferences</i> option under your
                             User icon <clr-icon shape="user"></clr-icon> on the menu top right.)
-                        </div> 
+                        </div>
                     </div>
 
                     <div class="gridOverall" *ngIf="!isFirstTimeDataCombination">
@@ -37,9 +37,9 @@
                                 <option>Join</option>
                             </select>
                             <div class="propertyLine" *ngIf="selectedUnion">
-                                <b>Union</b> - appends (at the bottom) any number of Datasets, showing 
-                                all the records in them.  The Datasets must have the same number 
-                                of columns, and corresponding datatype (ie numbers).  Any number 
+                                <b>Union</b> - appends (at the bottom) any number of Datasets, showing
+                                all the records in them.  The Datasets must have the same number
+                                of columns, and corresponding datatype (ie numbers).  Any number
                                 of Datasets can be added.
                             </div>
                             <div class="propertyLine" *ngIf="selectedIntersect">
@@ -115,7 +115,7 @@
                             </button>
                         </div>
 
-    
+
                         <div class="gridFieldTable">
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-column>Delete</clr-dg-column>
@@ -140,4 +140,3 @@
                 </div>
             </div>
         </div>
-    

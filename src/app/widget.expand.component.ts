@@ -26,7 +26,7 @@ export class WidgetExpandComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
     // @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
-    currentData = 
+    currentData =
     [
         {
           Name: 'Jay',
@@ -65,10 +65,10 @@ export class WidgetExpandComponent implements OnInit {
           RefreshedOn: '2/2'
         }
     ];
-    
+
     datasources: Datasource[];
-    
-    dataFieldNames: string[] = 
+
+    dataFieldNames: string[] =
     [
         'Name',
         'Type',

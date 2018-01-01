@@ -14,8 +14,8 @@
                     moved to Trash (retaining its permissions).  There is an option on the
                     Open Dashboard form to retrieve a Dashboards previously moved to Trash
                     - provided that one had access to it at the time it was trashed.
-                    
-                </div>                                
+
+                </div>
                 <clr-datagrid>
                     <clr-dg-column>Delete</clr-dg-column>
                     <clr-dg-column>State</clr-dg-column>
@@ -28,7 +28,7 @@
 
                     <clr-dg-row *ngFor="let row of dashboards; let i = index">
                         <clr-dg-cell>
-                            <clr-icon shape="times" class="selectIcon1" size="12" 
+                            <clr-icon shape="times" class="selectIcon1" size="12"
                                 (click)="clickDelete(i)"></clr-icon>
                         </clr-dg-cell>
                         <clr-dg-cell>{{row.state}}</clr-dg-cell>
@@ -42,7 +42,7 @@
 
                 </clr-datagrid>
 
-            </div>  
-        </div>  
-    </div>  
-</div>  
+            </div>
+        </div>
+    </div>
+</div>

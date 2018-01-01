@@ -33,12 +33,12 @@ This document describes items for later versions of Canvas.
 2. Is heading 'Existing Dataset' = ... DataSOURCES ?
 3. Make sure terminology is consitent: Datasource -> Transform -> Dataset
 4. I used FieldNames (string) in ie Pivot - is that okay?
-5. 
+5.
 8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or not?
 9. Data Quality issues: add place to add detail values.  An overall statement can say all data has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
 11.Determine which transformations live on server and which on client, and whether some/all
    lives on both.
-   
+
 
 **Admin module**
 1. Users, groups, permissions
@@ -51,7 +51,7 @@ This document describes items for later versions of Canvas.
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc
-2. 
+2.
 4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
    for March last year, or compare all to last year ... NB
 5. Also, easy way to jump to previous period:  loaded at start with data ??
@@ -65,7 +65,7 @@ This document describes items for later versions of Canvas.
 15.Import: check security, particularly for the Datasource.  Also, is the access rights
    stored with the text file (security risk)?  Also, can / should it over-write an
    existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
-16.Fix bug: Recent Dashboard refreshes 1 cycle too late 
+16.Fix bug: Recent Dashboard refreshes 1 cycle too late
 17.Fix Bug: grid shows on top of widgets -> cannot click them
 18.StatusBar must not grow beyond screen width, or to double line
 19.
@@ -74,7 +74,7 @@ This document describes items for later versions of Canvas.
 **Templates**
 1. Loading a template - make sure to respect security / rights + all is read-only
 3. Add Datasources to Dashboard, but flag them as invisible.  Thus, Dashboard can use them
-   in Template only, and user cannot use them.  If the user needs that Datasource, he can 
+   in Template only, and user cannot use them.  If the user needs that Datasource, he can
    add it, in which case it will be duplicated, one invisible.
 4. If this gets too complicated, only use Shapes on Templates.
 5. Ensure Templates are on different layers / z-index
@@ -99,12 +99,12 @@ This document describes items for later versions of Canvas.
 **Shapes**
 1. Fix bug: circle flickers when hover over menu
 2. Generate all shapes from data - not only circle which is static html at moment
-3. Add a DragHandle and Resize handle to popup menu.  This way it is simpler - just hover to make the buttons appear, drag and voila.  Similarly, consider removing the Drag and Resize handles from the Dashboard if this works.  
+3. Add a DragHandle and Resize handle to popup menu.  This way it is simpler - just hover to make the buttons appear, drag and voila.  Similarly, consider removing the Drag and Resize handles from the Dashboard if this works.
 4. Keep Select button on Shape - make red border like Dashboard + can group/ungroup + can move/align/etc together with Widgets.  Make this code DRY.
 
 
 **Presentation**
-1. See if can print, and if so: allow different layouts and formats, for example one 
+1. See if can print, and if so: allow different layouts and formats, for example one
    Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
 2. Issue: Make sure access rights are still respected at all levels: Dashboard, Widget, Datasource
 
@@ -120,4 +120,4 @@ This document describes items for later versions of Canvas.
 2. How does standalone work - does it have a schedule?
 3. How are users notified and also when scheduler is down
 4. How is dataset stored - per Dashboard as more than one can be linked ..
-5. 
+5.

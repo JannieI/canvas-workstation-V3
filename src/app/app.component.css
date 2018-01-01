@@ -80,7 +80,7 @@
     height: 110px;
     left: 20px;
     opacity: .5;
-    overflow: auto; 
+    overflow: auto;
     position: absolute;
     resize: none;
     top: 80px;
@@ -96,7 +96,7 @@
     height: 110px;
     left: 200px;
     opacity: .5;
-    overflow: auto; 
+    overflow: auto;
     position: absolute;
     resize: none;
     top: 200px;
@@ -112,7 +112,7 @@
     height: 110px;
     left: 400px;
     opacity: .5;
-    overflow: auto; 
+    overflow: auto;
     position: absolute;
     resize: none;
     top: 300px;
@@ -128,7 +128,7 @@
     height: 100px;
     left: 1000px;
     opacity: .5;
-    overflow: auto; 
+    overflow: auto;
     position: absolute;
     resize: none;
     text-align: center;

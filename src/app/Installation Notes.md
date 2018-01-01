@@ -8,12 +8,12 @@ are case sensitive).  The following will create a folder under Projects called c
 
     `Run git clone https://github.com/JannieI/canvas-workstation.git`
 
-Change to that folder with 
+Change to that folder with
     `cd canvas-workstation`
 
 
 2. Ensure node is installed, and at the correct version:
-Make sure you have node.js installed version 5 or higher.  Determine the version with 
+Make sure you have node.js installed version 5 or higher.  Determine the version with
     `node -v`
 
 If needed, install the new version (Ubutu):
@@ -25,7 +25,7 @@ If needed, install the new version (Ubutu):
 
 
 3. Ensure npm is installed, and at the correct version:
-Make sure you have NPM installed version 3 or higher.  Determine the version with 
+Make sure you have NPM installed version 3 or higher.  Determine the version with
     `npm -v`
 
 If needed, install the new version (sudo provides Admin user rights on Ubutu, and installs
@@ -38,10 +38,10 @@ On WINDOWS ONLY install global dependencies:
     `npm install -g webpack webpack-dev-server typescript`
 
 
-5. Install dependencies: 
+5. Install dependencies:
 When you clone the folder above, it contains a file called package.json.  This specifies
-the dependant software and their versions to npm.  Run 
-    `npm install` 
+the dependant software and their versions to npm.  Run
+    `npm install`
 
 
 6. Install Vega-Lite:
@@ -260,4 +260,4 @@ the dependant software and their versions to npm.  Run
     }
     `
 
-## 
+##

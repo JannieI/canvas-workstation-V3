@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
     @Output() formUserLoginClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
 
 	constructor(
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formUserLoginClosed.emit(action);
     }
 

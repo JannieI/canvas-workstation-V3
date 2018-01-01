@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright Clarity Analytics.  All rights reserved
  *
  * Main Module, with menu
@@ -184,5 +184,5 @@ import { MyNgIfDirective }            from './test.ngif.directive';
     bootstrap: [AppComponent]
 })
 export class AppModule {
-    
+
 }

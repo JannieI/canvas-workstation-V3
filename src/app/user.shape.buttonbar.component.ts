@@ -31,7 +31,7 @@ export class UserShapeButtonBarComponent implements OnInit {
 
     @Output() formUserShapeButtonBarClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
     dashboardTags: DashboardTag[];
     shapeButtonsAvailable: ButtonBarAvailable[];
@@ -51,7 +51,7 @@ export class UserShapeButtonBarComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formUserShapeButtonBarClosed.emit(action);
     }
 

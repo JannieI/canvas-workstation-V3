@@ -10,23 +10,23 @@
                 Open an existing Dashboard
 
                 <div class="helpMessage" *ngIf="isFirstTimeDashboardOpen">
-                    <b>Help</b> message: use the filters at the top to narrow down the list of 
-                    Dashboards displayed in the grid below.  Opening a Dashboard is 
+                    <b>Help</b> message: use the filters at the top to narrow down the list of
+                    Dashboards displayed in the grid below.  Opening a Dashboard is
                     done in View mode by default.  Click <i>File -> Edit</i> to change to Edit
-                    mode after a Dashboard has been opened. This will create a Draft copy, 
-                    leaving the original unchanged.  Only the editor can see the Draft copy.  
-                    Subsequently opening this Dashboard will open it in Edit mode, ready for 
-                    editing. 
+                    mode after a Dashboard has been opened. This will create a Draft copy,
+                    leaving the original unchanged.  Only the editor can see the Draft copy.
+                    Subsequently opening this Dashboard will open it in Edit mode, ready for
+                    editing.
                     <br><br>
-                    <b>Got it</b> <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboardOpen"> 
-                    (You can make this message re-appear with the <i>Preferences</i> option under your 
-                    User icon <clr-icon shape="user"></clr-icon> in the top right menu.) 
+                    <b>Got it</b> <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboardOpen">
+                    (You can make this message re-appear with the <i>Preferences</i> option under your
+                    User icon <clr-icon shape="user"></clr-icon> in the top right menu.)
                 </div>
 
                 <div>Filters:</div>
-                Show Advanced filters <input type="checkbox" [checked]="showAdvancedFilters" 
-                    (click)="clickShowAdvancedFilters()" [checked]="!isFirstTimeDashboardOpen"> 
-                Restore from Trash (rights will be checked) <input type="checkbox"> 
+                Show Advanced filters <input type="checkbox" [checked]="showAdvancedFilters"
+                    (click)="clickShowAdvancedFilters()" [checked]="!isFirstTimeDashboardOpen">
+                Restore from Trash (rights will be checked) <input type="checkbox">
                 <div *ngIf="showAdvancedFilters">
                     <div class="propertyLine">
                         Origin:
@@ -56,31 +56,31 @@
 
                     <div class="propertyLine">
                         <span>
-                            Created by: 
+                            Created by:
                             <input type="text" id="formFields_7" placeholder="User">
                             </span>
                         <span>
-                            Status: 
+                            Status:
                             <input type="text" id="formFields_7" placeholder="Draft, Pending, Complete">
                         </span>>
                         <span>
-                            Uses data: 
+                            Uses data:
                             <input type="text" id="formFields_7" placeholder="Datasource">
                             <input type="text" id="formFields_7" placeholder="Field">
                         </span>
                     </div>
                     <div class="propertyLine">
                         <span>
-                            Tags: 
+                            Tags:
                             <input type="text" id="formFields_7" placeholder="By tag">
                         </span>
                         <span class="propertyLine">
-                            My fav: 
+                            My fav:
                             <input type="text" id="formFields_7" placeholder="My fav only">
                         </span>
                     </div>
                     <div class="propertyLine">
-                        Last Modified / Editted: 
+                        Last Modified / Editted:
                         <input type="text" id="formFields_7" placeholder="Last wk/mnth">
                         <input type="text" id="formFields_7" placeholder="By user / By Me">
                     </div>
@@ -100,7 +100,7 @@
                     <span>
                         <button type="button" class="btn btn-secondary" (click)="clickClose('Close')">Import</button>
                     </span>
-                </div>                                
+                </div>
                 <clr-datagrid>
                     <clr-dg-column>View</clr-dg-column>
                     <clr-dg-column>Edit</clr-dg-column>
@@ -130,7 +130,7 @@
 
                 </clr-datagrid>
 
-            </div>  
-        </div>  
-    </div>  
-</div>  
+            </div>
+        </div>
+    </div>
+</div>

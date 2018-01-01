@@ -1,0 +1,833 @@
+.closeButton {
+    background-color: transparent;
+    border: none;
+    float: left;
+    z-index: 11;
+}
+
+.gridHeading {
+    padding: 5px;
+}
+
+.datagrid {
+    margin: 0px !important;
+    margin-top: 0px !important;
+    padding: 0 !important;
+}
+
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-auto-rows: 0.8rem;
+    margin-top: 2px;
+}
+
+.gridTitleContainer {
+    grid-column-start: 1;
+    grid-column-end: 21;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: repeat(35, 1fr);
+    grid-auto-rows: 0.8rem;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+    .titleBox {
+        border: 1px solid gray;
+        border-radius: 3px;
+        box-shadow: 2px 2px gray;
+        margin: 3px;
+        padding: 0;
+    }
+
+    .titleButton{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .titleCurrent {
+        border: none;
+        font-size: 1rem;
+        grid-column-start: 1;
+        grid-column-end: 35;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: center;
+    }
+
+    .titleFirsttimeMessage {
+        font-size: 0.6rem;
+    }
+
+    .titleIdentify {
+        border: 1px solid gray;
+        grid-column-start: 2;
+        grid-column-end: 7;
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    .titleChevron1 {
+        border: none;
+        grid-column-start: 7;
+        grid-column-end: 8;
+        grid-row-start: 3;
+        grid-row-end: 5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titleFilter {
+        border: 1px solid gray;
+        grid-column-start: 8;
+        grid-column-end: 13;
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    .titleChevron2 {
+        border: none;
+        grid-column-start: 13;
+        grid-column-end: 14;
+        grid-row-start: 3;
+        grid-row-end: 5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titleTransform {
+        border: 1px solid gray;
+        grid-column-start: 14;
+        grid-column-end: 19;
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    .titleChevron3 {
+        border: none;
+        grid-column-start: 19;
+        grid-column-end: 20;
+        grid-row-start: 3;
+        grid-row-end: 5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titlePivot {
+        border: 1px solid gray;
+        grid-column-start: 20;
+        grid-column-end: 25;
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    .titleChevron4 {
+        border: none;
+        grid-column-start: 25;
+        grid-column-end: 26;
+        grid-row-start: 3;
+        grid-row-end: 5;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titleView {
+        border: 1px solid gray;
+        grid-column-start: 26;
+        grid-column-end: 31;
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    .titleButtonDiv {
+        border: none;
+        grid-column-start: 33;
+        grid-column-end: 34;
+        grid-row-start: 3;
+        grid-row-end: 5;
+        margin-bottom: 2px;
+        padding: 0;
+    }
+
+    .titleButton {
+        margin-top: 2px;
+    }
+
+.gridIdentifyData {
+    border-top: 2px solid black;
+    grid-column-start: 1;
+    grid-column-end: 21;
+    grid-row-start: 6;
+    grid-row-end: 30;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-auto-rows: 0.8rem;
+    margin-top: 0;
+    padding-top: 5px;
+}
+
+    .gridIdentifyDataExisting {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 1;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 25;
+        overflow-y: hidden;
+        width: 100%;
+    }
+
+    .gridIdentifyDataIDfile {
+        border: none;
+        grid-column-start: 5;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 11;
+        height: 12rem;
+        padding: 10px;
+        overflow: auto;
+        width: 100%;
+    }
+
+    .gridIdentifyDataIDserver {
+        border: none;
+        grid-column-start: 5;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 21;
+        height: 21rem;
+        padding: 10px;
+        overflow: auto;
+        width: 100%;
+
+    }
+
+        .gridIdentifyDataServerTop {
+            border: none;
+            grid-column-start: 5;
+            grid-column-end: 21;
+            grid-row-start: 1;
+            grid-row-end: 8;
+            height: 8rem;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .gridIdentifyDataServerList {
+            border: none;
+            grid-column-start: 5;
+            grid-column-end: 21;
+            grid-row-start: 8;
+            grid-row-end: 25;
+            height: 11rem;
+            overflow: scroll;
+            padding: 10px;
+            width: 100%;
+        }
+
+    .gridIdentifyDataPreview {
+        border: none;
+        grid-column-start: 5;
+        grid-column-end: 21;
+        grid-row-start: 8;
+        grid-row-end: 25;
+        height: 11rem;
+        overflow: scroll;
+        padding: 10px;
+        width: 100%;
+    }
+
+
+.gridFilter {
+    border-top: 2px solid black;
+    grid-column-start: 1;
+    grid-column-end: 21;
+    grid-row-start: 6;
+    grid-row-end: 30;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-auto-rows: 0.8rem;
+    margin-top: 0;
+    padding-top: 5px;
+}
+
+    .gridFilterFields {
+        border: 1px solid gray;
+        grid-column-start: 1;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 25;
+        height: 19rem;
+        overflow: auto;
+        width: 100%;
+    }
+
+    .gridFilterDropAreaFields {
+        grid-auto-rows: 0.8rem;
+        grid-column-start: 5;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 4;
+        padding: 10px;
+    }
+
+        .gridFilterFieldValues {
+            margin-left: 20px;
+            height: 15rem;
+            overflow: auto;
+            width: 100%;
+        }
+
+    .gridFilterResultFields {
+        border: 1px solid gray;
+        grid-column-start: 5;
+        grid-column-end: 21;
+        grid-row-start: 5;
+        grid-row-end: 20;
+        height: 12rem;
+        margin-left: 10px;
+        padding: 10px;
+        overflow: auto;
+        width: 100%;
+    }
+
+    .gridFilterDropAreaTable {
+        grid-auto-rows: 0.8rem;
+        grid-column-start: 5;
+        grid-column-end: 21;
+        grid-row-start: 20;
+        grid-row-end: 23;
+        padding: 10px;
+    }
+
+        .gridFilterTable {
+            margin-left: 20px;
+            height: 15rem;
+            overflow: auto;
+            width: 100%;
+        }
+
+.gridTransform {
+    border-top: 2px solid black;
+    grid-column-start: 1;
+    grid-column-end: 21;
+    grid-row-start: 6;
+    grid-row-end: 30;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-auto-rows: 0.8rem;
+    margin-top: 0;
+    padding-top: 5px;
+}
+
+    .gridTransformTransformations {
+        border: 1px solid gray;
+        grid-column-start: 1;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 25;
+        height: 19rem;
+        overflow: auto;
+        width: 100%;
+    }
+
+    .gridTransformNew {
+        border: none;
+        grid-column-start: 5;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 11;
+        padding: 10px;
+    }
+
+        .transformationSet {
+            background-color: lightgray;
+            border: 1px solid gray;
+            border-radius: 5px;
+            padding:  5px !important;
+        }
+
+    .gridTransformNewNames {
+        margin-left: 20px;
+    }
+
+    .gridTransformExisting {
+        border: none;
+        grid-column-start: 5;
+        grid-column-end: 21;
+        grid-row-start: 13;
+        grid-row-end: 25;
+        padding: 10px;
+    }
+
+.gridPivot {
+    border-top: 2px solid black;
+    grid-column-start: 1;
+    grid-column-end: 21;
+    grid-row-start: 6;
+    grid-row-end: 30;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-auto-rows: 0.8rem;
+    margin-top: 0;
+    padding-top: 5px;
+}
+
+    .gridPivotFields {
+        border: 1px solid gray;
+        grid-column-start: 1;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 25;
+        height: 19rem;
+        overflow: auto;
+        width: 100%;
+    }
+
+    .gridPivotDropArea {
+        display: grid;
+        grid-template-columns: repeat(20, 1fr);
+        grid-auto-rows: 0.8rem;
+        grid-column-start: 6;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 11;
+    }
+
+        .gridPivotDropHeading {
+            grid-column-start: 1;
+            grid-column-end: 21;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+
+        .gridPivotDropLabelX {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 3;
+            grid-row-end: 4;
+        }
+
+        .gridPivotDropFieldX {
+            border: 1px solid gray;
+            border-radius: 4px;
+            grid-column-start: 4;
+            grid-column-end: 11;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            height: 1.1rem;
+            padding-left: 5px;
+        }
+
+        .gridPivotDropLabelY {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 5;
+            grid-row-end: 6;
+        }
+
+        .gridPivotDropFieldY {
+            border: 1px solid gray;
+            border-radius: 4px;
+            grid-column-start: 4;
+            grid-column-end: 11;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            height: 1.1rem;
+            padding-left: 5px;
+        }
+
+        .gridPivotDropLabelAgg {
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 7;
+            grid-row-end: 8;
+        }
+
+        .gridPivotDropFieldAgg {
+            border: 1px solid gray;
+            border-radius: 4px;
+            grid-column-start: 4;
+            grid-column-end: 11;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            height: 1.1rem;
+            padding-left: 5px;
+        }
+
+        .gridPivotDropFieldType {
+            grid-column-start: 12;
+            grid-column-end: 21;
+            grid-row-start: 7;
+            grid-row-end: 8;
+        }
+
+        .gridPivotDropFieldRefresh {
+            grid-column-start: 2;
+            grid-column-end: 21;
+            grid-row-start: 9;
+            grid-row-end: 10;
+        }
+
+    .gridPivotResult {
+        border: 1px solid gray;
+        display: grid;
+        grid-template-columns: repeat(20, 1fr);
+        grid-column-start: 6;
+        grid-column-end: 21;
+        grid-row-start: 12;
+        grid-row-end: 25;
+    }
+
+        .gridPivotResultHeader {
+            grid-column-start: 1;
+            grid-column-end: 21;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            height: 1rem;
+            margin: 0;
+            padding: 0 3px 0 3px;
+            text-align: left;
+        }
+
+        .gridPivotResultCols {
+            display: flex;
+            flex-direction: row;
+            grid-column-start: 2;
+            grid-column-end: 21;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            height: 1rem;
+            margin: 0;
+        }
+
+        .gridPivotResultColumn{
+            text-align: left;
+            border: 1px solid gray;
+            margin: 0;
+            padding: 0 3px 0 3px;
+            width: 3rem;
+        }
+
+        .gridPivotResultRows {
+            align-items: left;
+            grid-column-start: 1;
+            min-height: 1rem;
+            grid-column-end: 21;
+            grid-row-start: 2;
+            grid-row-end: 25;
+            margin: 0;
+            padding: 0 3px 0 3px;
+        }
+
+.gridView {
+    border-top: 2px solid black;
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 21;
+    grid-row-start: 6;
+    grid-row-end: 30;
+    grid-template-columns: repeat(20, 1fr);
+    grid-auto-rows: 0.8rem;
+    margin-top: 0;
+    padding-top: 5px;
+}
+
+    .gridViewSide {
+        border: 1px solid gray;
+        border-radius: 5px;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 25;
+        padding: 8px;
+    }
+
+        .gridViewButton {
+            width: 100%;
+        }
+        .iconButton {
+            border: 1px gray solid;
+            border-radius: 3px;
+            box-shadow: 2px 2px gray;
+            margin: 4px;
+            padding: 0;
+        }
+
+        .iconButton:hover {
+            border: 2px rgb(36, 36, 206) solid;
+        }
+
+    .gridViewRight {
+        border: 1px solid gray;
+        grid-column-start: 4;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 25;
+        margin: 2px;
+        padding-top: 0;
+    }
+
+        .gridViewFieldHeading {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .buttonRefresh {
+            float: right;
+        }
+
+        .gridViewRightOverview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            margin: auto;
+            padding: 10px;
+        }
+
+        .gridViewRightOverviewGraph {
+            margin: 20px;
+        }
+
+        .gridViewSummaryGraphsFields {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+        }
+
+.modalBox {
+    background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	-shadow: 0 2px 2px 0 lightgray;
+}
+
+.modalContent {
+    background-color: rgb(251, 251, 253);
+}
+
+.propertyBox {
+    border: none !important;
+    margin: 0;
+    padding: 10px;
+}
+
+.nav-group {
+    border: none !important;
+}
+
+.sidenav .nav-list {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 0.8rem;
+  }
+
+.menuOptions {
+    border: 1px solid black;
+    border-radius: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.newTransitions {
+    margin-left: 25px;
+}
+
+.currentDataHeader {
+    background-color: rgb(101, 101, 102);
+    border-radius: 4px;
+    color: black;
+    margin: 3px;
+    padding: 3px;
+}
+
+.currentDataIcon{
+    float: right;
+    margin: 4px !important;
+}
+
+.fileSelector {
+    border: none;
+    border-radius: 4px;
+    margin: 0 0 0 0;
+    padding: 0 0 0 15px;
+}
+
+.fileSelectorHeader {
+    margin: 0 0 0 15px !important;
+    padding: 5px !important;
+}
+
+.fileSelectorTop {
+    grid-column-start: 1;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 7;
+    margin: 0 0 0 15px !important;
+    padding: 0 !important;
+}
+
+.fileSelectorDetailArea {
+    border: 1px solid gray;
+    border-radius: 5px;
+
+    margin: 5px;
+}
+
+.datagrid-host .datagrid {
+    margin-top: 0 !important;
+    padding: 0 !important;
+}
+
+.fieldsDataGrid {
+    margin-top: 0 !important;
+    height: 19rem;
+    overflow: auto;
+    width: 100%;
+}
+
+.fieldDataGridFooter {
+    position: absolute;
+    left: 2rem;
+}
+
+.select {
+    display: inline-block;
+}
+
+.propertyLine {
+    margin: 5px;
+}
+
+.fileSelectFieldHelp {
+    grid-column-start: 9;
+    grid-column-end: 13;
+    grid-row-start: 7;
+    grid-row-end: 20;
+    text-align: center;
+}
+
+.fileSelectField {
+    border: 1px solid gray;
+    border-radius: 5px;
+    box-shadow: 2px 2px lightgray;
+    grid-column-start: 9;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 20;
+    margin: 5px;
+    padding: 4px;
+}
+
+.selectFile {
+    width: 12rem !important;
+}
+
+.selectBox {
+    width: 7rem !important;
+}
+
+.selectButton {
+    margin-left: 20px !important;
+}
+
+.clr-tabs .clr-tab-content {
+    margin: 0;
+    padding: 0;
+}
+
+.tabHeadings {
+    background-color: rgb(235, 234, 245);
+}
+
+.wizardButton {
+    text-align: left;
+    width: 100%;
+}
+
+.transformationName {
+    border: 1px solid gray;
+    margin: 2px;
+}
+
+.openTransformation {
+    margin-left: 20px;
+}
+
+.transformationCategoryGrid {
+    margin-left: 20px;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    grid-auto-rows: 0.8rem;
+}
+
+.gridFields {
+    border: 1px dotted gray;
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 20;
+}
+
+.gridColumns {
+    border: 1px dotted gray;
+    grid-column-start: 13;
+    grid-column-end: 25;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+.gridRows {
+    border: 1px dotted gray;
+    grid-column-start: 7;
+    grid-column-end: 13;
+    grid-row-start: 1;
+    grid-row-end: 20;
+}
+
+
+/* Aint working */
+.datagrid {
+    background-color: red !important;
+}
+datagrid-placeholder-container {
+    background-color: red !important;
+}
+
+.datagrid-placeholder-container {
+    background-color: red !important;
+}
+.datagrid-placeholder {
+    background-color: red !important;
+}
+
+.color-square {
+    border-color: 1px solid black;
+    height: 5px;
+    width: 5px;
+    border-radius: 2px;
+    margin: auto;
+    padding: 0;
+}
+
+/* Not working ! */
+.datagrid-cell {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+ }
+.datagrid-fixed-width {
+        flex: 0 0 auto;
+}

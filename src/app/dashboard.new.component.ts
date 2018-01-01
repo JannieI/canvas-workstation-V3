@@ -28,7 +28,7 @@ export class DashboardNewComponent implements OnInit {
 
     @Output() formDashboardNewClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;  
+    showTypeDashboard: boolean = false;
     dashboards: Partial<Dashboard>[];
 
 	constructor(
@@ -42,7 +42,7 @@ export class DashboardNewComponent implements OnInit {
 
     clickClose(action: string) {
         console.log('clickClose')
-        
+
 		this.formDashboardNewClosed.emit(action);
     }
 }

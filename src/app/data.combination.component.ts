@@ -62,7 +62,7 @@ export class DataCombinationComponent implements OnInit {
         this.selectedIntersect = false;
         this.selectedMinus = false;
         this.selectedJoin = false;
-    
+
         if (ev.target.value == 'Union') { this.selectedUnion = true };
         if (ev.target.value == 'Intersect') { this.selectedIntersect = true };
         if (ev.target.value == 'Minus') { this.selectedMinus = true };

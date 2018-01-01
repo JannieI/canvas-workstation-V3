@@ -60,7 +60,7 @@ export class WidgetDeleteComponent implements OnInit {
     drawGrid() {
       // var c = document.getElementById("myCanvas");
       // var ctx = c.getContext("2d");
-      // ctx.clearRect(0, 0, c.width, c.height); 
+      // ctx.clearRect(0, 0, c.width, c.height);
       // var img = document.getElementById("lamp")
       // var pat = ctx.createPattern(img, 'repeat');
       // ctx.rect(0, 0, 150, 100);
@@ -76,13 +76,13 @@ export class WidgetDeleteComponent implements OnInit {
         }
     clickDeleteWidget() {
         console.log('clickDelete')
-        
+
         for (var i = 0; i < this.localWidgets.length; i++) {
             console.log('this.localWidgets.length', i, this.localWidgets[i].isSelected)
             if (this.localWidgets[i].isSelected == true) {
                 this.globalVariableService.deleteWidget(this.localWidgets[i].id);
                 this.localTrash = this.localTrash.concat(this.localWidgets.slice(i,i + 1));
-                this.globalVariableService.deleteWidget(i);        
+                this.globalVariableService.deleteWidget(i);
             }
         }
         console.log('clickDel Trash:', this.localTrash);

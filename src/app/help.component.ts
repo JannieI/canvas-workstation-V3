@@ -1,4 +1,4 @@
-/* 
+/*
  * Help page, including Recently opened Dashboards
  */
 
@@ -12,32 +12,32 @@ import { GlobalFunctionService } 		  from './global-function.service';
 
 const rootDirectory = [
 	{
-		icon: "folder", 
-		name: "dashboards", 
+		icon: "folder",
+		name: "dashboards",
 		files: [
 			{
-				name: "Exco summary of Value traded in 2017", 
+				name: "Exco summary of Value traded in 2017",
 			},
       {
-        name: "Sales in norway.cns", 
+        name: "Sales in norway.cns",
       },
       {
         name: "The rise and fall of bitcoin",
       },
 			{
-				name: "Nominal bond values - detail report", 
+				name: "Nominal bond values - detail report",
 			},
       {
-        name: "Bond trading revenue - draft", 
+        name: "Bond trading revenue - draft",
       },
       {
         name: "Bond trading revenue - v1",
       },
 			{
-				name: "Headcount for management pack", 
+				name: "Headcount for management pack",
 			},
       {
-        name: "Presentation to Bitvest on listings value preposition", 
+        name: "Presentation to Bitvest on listings value preposition",
       },
       {
         name: "Settlement window analysis",
@@ -67,7 +67,7 @@ export class HelpComponent implements OnInit {
 	ngOnInit() {
 		console.log('rootDirectory',rootDirectory)
 	}
-	
+
 	clickBackButton() {
 		this.router.navigate(['/explore']);
 	}

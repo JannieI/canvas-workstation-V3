@@ -26,7 +26,7 @@ import { GlobalVariableService}       from './global-variable.service';
 export class DashboardHelpComponent implements OnInit {
 
     @Output() formDashboardHelpClosed: EventEmitter<string> = new EventEmitter();
-    
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
