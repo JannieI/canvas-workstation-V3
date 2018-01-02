@@ -93,6 +93,7 @@ This document describes items for later versions of Canvas.
 8. Issue - button bar is at top of Widget => moves graph down, messes up things.  Either totally
    separate SINGLE bar => just make visible ...  OR  duplicate div and border around Widget
 9. Advanced box in Widget-Editor: consider and document z-index used here
+10.How to show comparison between current and previous period ?
 11.Issue - When resize Widget => add resize graph as well.
 12.Fix bug: graph moves inside another when Dragging - had this in v1 ...
 13.Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
