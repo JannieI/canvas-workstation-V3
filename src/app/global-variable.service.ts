@@ -414,7 +414,7 @@ const datasourcePermissions: DatasourcePermission[] =
     }
 ];
 
-const currentData =
+const currentDataset =
 [
     {
       Name: 'Jay',
@@ -451,6 +451,64 @@ const currentData =
       CreatedOn: 'on',
       RefreshedBy: 'by',
       RefreshedOn: '2/2'
+    }
+];
+
+const datasets: any[] = 
+[
+    {
+        datasourceID: 1,
+        data: 
+        [
+            {
+              Name: 'Jay',
+              Type: 'Origon',
+              Description: 'bla-bla',
+              CreatedBy: 'aasdf',
+              CreatedOn: 'on',
+              RefreshedBy: 'by',
+              RefreshedOn: '2/2'
+            },
+            {
+              Name: 'Jay',
+              Type: 'Origon',
+              Description: 'bla-bla',
+              CreatedBy: 'aasdf',
+              CreatedOn: 'on',
+              RefreshedBy: 'by',
+              RefreshedOn: '2/2'
+            },
+            {
+              Name: 'Jay',
+              Type: 'Origon',
+              Description: 'bla-bla',
+              CreatedBy: 'aasdf',
+              CreatedOn: 'on',
+              RefreshedBy: 'by',
+              RefreshedOn: '2/2'
+            },
+            {
+              Name: 'Jay',
+              Type: 'Origon',
+              Description: 'bla-bla',
+              CreatedBy: 'aasdf',
+              CreatedOn: 'on',
+              RefreshedBy: 'by',
+              RefreshedOn: '2/2'
+            }
+        ]
+    },
+    {
+        datasourceID: 2,
+        data: 
+        [
+            {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
+            {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
+            {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
+            {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
+            {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
+            {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
+        ]
     }
 ];
 
@@ -476,19 +534,6 @@ const datasources: Datasource [] =
 [
     {
         id: 1,
-        type: 'File',
-        subType: 'CSV',
-        typeVersion: 'Comma-Separator',
-        name: 'Stocks4.csv',
-        description: 'Hard coded name',
-        createdBy: 'Me',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: 'None'
-    },
-    {
-        id: 1,
         name: 'My Expenses',
         type: 'File',
         subType: 'Excel',
@@ -502,6 +547,19 @@ const datasources: Datasource [] =
     },
     {
         id: 2,
+        type: 'File',
+        subType: 'CSV',
+        typeVersion: 'Comma-Separator',
+        name: 'Stocks4.csv',
+        description: 'Hard coded name',
+        createdBy: 'Me',
+        createdOn: '2017/01/01',
+        refreshedBy: 'JohnM',
+        refreshedOn: '2017/01/01',
+        parameters: 'None'
+    },
+    {
+        id: 3,
         name: 'Bitcoin Trades',
         type: 'Server',
         subType: 'PostgreSQL',
@@ -514,7 +572,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 3,
+        id: 4,
         name: 'My Budget',
         type: 'File',
         subType: 'Excel',
@@ -527,7 +585,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 4,
+        id: 5,
         name: 'Bicycle Sales',
         type: 'Server',
         subType: 'PostgreSQL',
@@ -540,7 +598,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 5,
+        id: 6,
         name: 'Bond Valuation',
         type: 'File',
         subType: 'Excel',
@@ -553,7 +611,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 6,
+        id: 7,
         name: 'Auditors',
         type: 'Server',
         subType: 'PostgreSQL',
@@ -566,7 +624,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 7,
+        id: 8,
         name: 'Student Marks',
         type: 'File',
         subType: 'Excel',
@@ -579,7 +637,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 8,
+        id: 9,
         name: 'Security Breaches',
         type: 'Server',
         subType: 'PostgreSQL',
@@ -592,7 +650,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 9,
+        id: 10,
         name: 'Milk Proteins',
         type: 'File',
         subType: 'Excel',
@@ -605,7 +663,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 10,
+        id: 11,
         name: 'Malaria Cases',
         type: 'Server',
         subType: 'PostgreSQL',
@@ -618,7 +676,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 11,
+        id: 12,
         name: 'Investments',
         type: 'File',
         subType: 'Excel',
@@ -631,7 +689,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 12,
+        id: 13,
         name: 'Bridge Maintenance',
         type: 'Server',
         subType: 'PostgreSQL',
@@ -644,7 +702,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 13,
+        id: 14,
         name: 'Parts in storage',
         type: 'File',
         subType: 'Excel',
@@ -657,7 +715,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 14,
+        id: 15,
         name: 'Customer Complaints',
         type: 'Server',
         subType: 'PostgreSQL',
@@ -670,7 +728,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 15,
+        id: 16,
         name: 'Issues',
         type: 'File',
         subType: 'Excel',
@@ -683,7 +741,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 16,
+        id: 17,
         name: 'Tickets',
         type: 'Server',
         subType: 'PostgreSQL',
@@ -696,7 +754,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 17,
+        id: 18,
         name: 'Clothing lines',
         type: 'File',
         subType: 'Excel',
@@ -709,7 +767,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 18,
+        id: 19,
         name: 'Shoe Sales',
         type: 'Server',
         subType: 'PostgreSQL',
@@ -722,7 +780,7 @@ const datasources: Datasource [] =
         parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
     },
     {
-        id: 1,
+        id: 20,
         name: 'World Indices',
         type: 'Server',
         subType: 'MSSQL',
@@ -735,7 +793,7 @@ const datasources: Datasource [] =
         parameters: ''
     },
     {
-        id: 1,
+        id: 21,
         name: 'SP Companies*',
         type: 'Server',
         subType: 'MSSQL',
@@ -748,7 +806,7 @@ const datasources: Datasource [] =
         parameters: ''
     },
     {
-        id: 1,
+        id: 22,
         name: 'Stock prices TEMP',
         type: 'Server',
         subType: 'MSSQL',
@@ -761,7 +819,7 @@ const datasources: Datasource [] =
         parameters: ''
     },
     {
-        id: 1,
+        id: 23,
         name: 'Trades per Year',
         type: 'Server',
         subType: 'MSSQL',
@@ -774,7 +832,7 @@ const datasources: Datasource [] =
         parameters: ''
     },
     {
-        id: 1,
+        id: 24,
         name: 'Bond volume trades',
         type: 'Server',
         subType: 'MSSQL',
@@ -787,7 +845,7 @@ const datasources: Datasource [] =
         parameters: ''
     },
     {
-        id: 1,
+        id: 25,
         name: 'Trades by Trade Type',
         type: 'Server',
         subType: 'MSSQL',
@@ -800,7 +858,7 @@ const datasources: Datasource [] =
         parameters: ''
     },
     {
-        id: 1,
+        id: 26,
         name: 'YTD Expenditure by Cost Center',
         type: 'Server',
         subType: 'MSSQL',
@@ -813,7 +871,7 @@ const datasources: Datasource [] =
         parameters: ''
     },
     {
-        id: 1,
+        id: 27,
         name: 'Headcount',
         type: 'Server',
         subType: 'MSSQL',
@@ -826,7 +884,7 @@ const datasources: Datasource [] =
         parameters: ''
     },
     {
-        id: 1,
+        id: 28,
         name: 'Customer List',
         type: 'Server',
         subType: 'MSSQL',
@@ -2217,7 +2275,7 @@ export class GlobalVariableService {
 
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
-    currentData = currentData;
+    currentData = currentDataset;
     localTrash = new BehaviorSubject< CanvasWidget[]>([]);
     canvasActivities: CanvasActivity[] = canvasActivities;
     canvasAlerts: CanvasAlert[] = canvasAlerts;
