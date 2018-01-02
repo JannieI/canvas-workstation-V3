@@ -100,11 +100,11 @@ export class LandingComponent implements OnInit {
 	clickOpenExisting() {
 		console.log('ai')
 		this.globalVariableService.openDashboardFormOnStartup = true;
-		// let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
-		// 	i => i.dashboardID = 1
-		// );
-		 
-		// this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs)
+		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
+			i => i.dashboardID = 1
+		);
+		console.log('currentDashboardTabs', this.globalVariableService.dashboardTabs.value, currentDashboardTabs)
+		this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs)
 		this.formLandingClosed.emit();
 		this.router.navigate(['/explore']);
 	}

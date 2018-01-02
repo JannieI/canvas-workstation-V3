@@ -2348,7 +2348,7 @@ export class GlobalVariableService {
     localWidgets = new BehaviorSubject< CanvasWidget[]>(localWidgets);
     localShapes = new BehaviorSubject< CanvasShape[]>(null);
     currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
-    dashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
+    dashboardTabs = new BehaviorSubject<DashboardTab[]>(dashboardTabs);
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
     currentDataset: any = currentDataset;

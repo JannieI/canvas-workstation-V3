@@ -671,16 +671,14 @@ export class ExploreComponent {
         else if (this.currentTabName == 'Headcount') {this.currentTabName = 'Europe'}
         else if (this.currentTabName == 'Europe') {this.currentTabName = 'Budget'}
         else if (this.currentTabName == 'Budget') {this.currentTabName = 'Summary'};
-
     }
 
     clickShowNextTab() {
-        console.log('wft', this.globalVariableService.dashboardTabs.value)
+        console.log('wft', this.globalVariableService.currentDashboardTabs.value)
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
         else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}
         else if (this.currentTabName == 'Europe') {this.currentTabName = 'Headcount'}
         else if (this.currentTabName == 'Headcount') {this.currentTabName = 'Summary'};
-
     }
 
     clickShowLastTab() {
