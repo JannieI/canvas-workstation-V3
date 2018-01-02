@@ -24,6 +24,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { CanvasShape }                from './models'
 import { CanvasWidget }               from './models'
 import { Dashboard }                  from './models'
+import { DashboardTab }               from './models'
 import { Datasource }                 from './models'
 
 // Vega, Vega-Lite
@@ -168,6 +169,7 @@ export class ExploreComponent {
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     localDashboards: dl.spec.TopLevelExtendedSpec[];
     localShapes: CanvasShape[];
+    currentDashboardTabs: DashboardTab[];
     localWidgets: CanvasWidget[];
     localTrash: CanvasWidget[] = [];
     datasources: Datasource[];
@@ -283,6 +285,9 @@ export class ExploreComponent {
         //     i => this.localDashboards
         // );
         this.localDashboards = this.globalVariableService.localDashboards;
+        this.globalVariableService.currentDashboardTabs.subscribe(
+            i => this.currentDashboardTabs = i
+        );
         this.globalVariableService.localShapes.subscribe(
             i => {
                     this.localShapes = i;
@@ -670,7 +675,7 @@ export class ExploreComponent {
     }
 
     clickShowNextTab() {
-        console.log('wft')
+        console.log('wft', this.globalVariableService.dashboardTabs.value)
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
         else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}
         else if (this.currentTabName == 'Europe') {this.currentTabName = 'Headcount'}

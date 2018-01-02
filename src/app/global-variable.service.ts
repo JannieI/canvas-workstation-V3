@@ -43,7 +43,9 @@ import * as dl                        from 'datalib';
 
 
 // Dashboard
-const currentDashboardTabs: DashboardTab[] =
+const currentDashboardTabs: DashboardTab[] = [];
+
+const dashboardTabs: DashboardTab[] =
 [
     {
         dashboardID: 1,
@@ -2345,7 +2347,8 @@ export class GlobalVariableService {
     canvasMessages: CanvasMessage[] =  canvasMessages;
     localWidgets = new BehaviorSubject< CanvasWidget[]>(localWidgets);
     localShapes = new BehaviorSubject< CanvasShape[]>(null);
-    currentDashboardTabs = new BehaviorSubject<DashboardTab[]>(null);
+    currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
+    dashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
     currentDataset: any = currentDataset;
@@ -2354,7 +2357,7 @@ export class GlobalVariableService {
     canvasActivities: CanvasActivity[] = canvasActivities;
     canvasAlerts: CanvasAlert[] = canvasAlerts;
 
-    showModalLanding: boolean = false;  // Shows Landing page
+    showModalLanding: boolean = true;  // Shows Landing page
     showMainMenu = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboard = new BehaviorSubject<boolean>(false);
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);

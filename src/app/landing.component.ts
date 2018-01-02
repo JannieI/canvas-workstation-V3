@@ -12,7 +12,7 @@ import { Router }                     from '@angular/router';
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
-import { Datasource } 				  from 'app/models';
+import { Datasource, DashboardTab } 				  from 'app/models';
 import { Dashboard } 				  from 'app/models';
 
 // const sampleDashboards = [
@@ -79,8 +79,9 @@ export class LandingComponent implements OnInit {
 		this.router.navigate(['/data']);
 	}
 
-	loadExistingSpecification() {
+	loadExistingSpecification(action: string) {
 		console.log('start loadExistingSpecification');
+		this.formLandingClosed.emit(action);
 		this.router.navigate(['/explore']);
 	}
 
@@ -97,7 +98,14 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickOpenExisting() {
+		console.log('ai')
 		this.globalVariableService.openDashboardFormOnStartup = true;
+		// let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
+		// 	i => i.dashboardID = 1
+		// );
+		 
+		// this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs)
+		this.formLandingClosed.emit();
 		this.router.navigate(['/explore']);
 	}
 

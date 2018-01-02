@@ -50,7 +50,7 @@
 
 						<div *ngFor="let row of sampleDashboards">
 							<a
-								(click)="loadExistingSpecification()"
+								(click)="loadExistingSpecification('Sample')"
 								class="nav-link" href="#"
 								[routerLink]="['/explore']" routerLinkActive="active">
 								{{row.name}}
@@ -68,7 +68,7 @@
 								(click)="promptDeleteRecent(i)"
 								shape="trash">
 							</clr-icon>
-							<span (click)="loadExistingSpecification()">
+							<span (click)="loadExistingSpecification('Recent')">
 								{{row.name}} ({{ row.state }})
 							</span>
 						</a>
