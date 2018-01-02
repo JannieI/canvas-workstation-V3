@@ -219,37 +219,11 @@ export class DataPopupComponent implements OnInit {
         // alert('Later: File component to browse ...')
     }
 
-    clickDSAdd(action: string) {
-        // Datasource
-        console.log('DATASOURCE start:')
-        let newData: Datasource =  {
-            id: 1,
-            type: 'File',
-            subType: 'CSV',
-            typeVersion: 'Comma-Separated',
-                name: 'Stocks.csv',
-            description: 'Hard coded name',
-            createdBy: 'Me',
-            createdOn: '2017/01/01',
-            refreshedBy: 'JohnM',
-            refreshedOn: '2017/01/01',
-            parameters: 'None'
-        };
-        this.showDataPreview = true;
-        this.currentDatasetName = this.fileName;
-
-        this.globalVariableService.currentDatasourceAdd(newData);
-        console.log('     currentDatasources', this.currentDatasources)
-
-        this.globalVariableService.datasourceAdd(newData);
-        console.log('     datasources', this.datasources)
-    }
-
     clickCurrentDSDelete(index: number) {
         this.globalVariableService.currentDatasourceDelete(index);
     }
 
-    clickFileSelect(action: string) {
+    clickDSSelect(action: string) {
         var csv_data = dl.load({url: './assets/vega-datasets/stocks.csv'});
         let startNow: number;
 
@@ -356,6 +330,47 @@ export class DataPopupComponent implements OnInit {
 
     }
 
+    clickDSAdd(action: string) {
+        // Datasource
+        console.log('DATASOURCE start:')
+        let newData: Datasource =  {
+            id: 1,
+            type: 'File',
+            subType: 'CSV',
+            typeVersion: 'Comma-Separated',
+                name: 'Stocks.csv',
+            description: 'Hard coded name',
+            createdBy: 'Me',
+            createdOn: '2017/01/01',
+            refreshedBy: 'JohnM',
+            refreshedOn: '2017/01/01',
+            parameters: 'None'
+        };
+
+        // Show the preview
+        this.showDataPreview = true;
+
+        // General var with name - used in *ngIF, etc
+        this.currentDatasetName = this.fileName;
+
+        // Add to current DS
+        this.globalVariableService.currentDatasourceAdd(newData);
+
+        // Add to all DS, for later use
+        this.globalVariableService.datasourceAdd(newData);
+
+        // Reset data related to this DS
+        this.datasourceFilters = [];
+        this.currentTransformations = [];
+        this.transformationsFormat = [];
+        this.pivotAgg = [];
+        this.pivotCols = [];
+        this.pivotRows = [];
+        this.pivotResults = [];
+        this.finalFields = [];
+        this.dataQualityIssues = [];
+    }
+
     clickDatasourceRow(dsName: string) {
         this.currentDatasetName = dsName;
         console.log('dsName', dsName, this.filterDataset)
@@ -400,7 +415,6 @@ export class DataPopupComponent implements OnInit {
     clickTransitionFormat() {
         this.showTransitionFormat = true;
     }
-
 
     dragstart_handler(ev) {
         console.log("dragStart", ev, ev.srcElement.innerText);
