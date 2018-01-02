@@ -136,7 +136,6 @@ export class DataPopupComponent implements OnInit {
     errorMessage: string = "";
     fields: Field[];
     fieldsMetadata: FieldMetadata[];
-    isFirstTimeData: boolean;
     selectorDetailColumnEnd: string = '12';
     selectedFile: boolean = true;
     selectedData: string = 'Trades for 2016';
@@ -190,11 +189,6 @@ export class DataPopupComponent implements OnInit {
         this.globalVariableService.datasources.subscribe(
             i => this.datasources = i
         );
-       if (this.datasources.length > 0) {
-            this.isFirstTimeData = false;
-        } else {
-            this.isFirstTimeData = false;
-        }
         this.globalVariableService.currentDatasources.subscribe(
             i => this.currentDatasources = i
         );
@@ -208,7 +202,6 @@ export class DataPopupComponent implements OnInit {
             ds => this.dataGetFromSwitch  = ds
         )
 
-        console.log('this.isFirstTimeData', this.isFirstTimeData, this.dataGetFromSwitch )
     }
 
 
@@ -242,7 +235,6 @@ export class DataPopupComponent implements OnInit {
             refreshedOn: '2017/01/01',
             parameters: 'None'
         };
-        this.isFirstTimeData = false;
         this.showDataPreview = true;
         this.currentDatasetName = this.fileName;
 
@@ -361,7 +353,6 @@ export class DataPopupComponent implements OnInit {
         console.log('        END preview: ', (Date.now() - startNow) / 1000)
 
         this.currentDatasetName = '';
-        this.isFirstTimeData = false;
 
     }
 

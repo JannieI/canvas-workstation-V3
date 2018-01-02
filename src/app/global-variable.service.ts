@@ -1264,7 +1264,6 @@ const transformationsPortion: Transformation[] =
     },
 ];
 
-
 const datasourceRecent: Datasource[] =
 [
     {
@@ -1353,7 +1352,7 @@ const datasourceFilters: DatasourceFilter[] =
         filterValue: 'MSFT'
     },
     {
-        id: 1,
+        id: 2,
         datasourceID: 12,
         fieldName: 'price',
         operator: 'GreaterEqual',

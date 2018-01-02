@@ -266,7 +266,7 @@
         grid-column-end: 21;
         grid-row-start: 8;
         grid-row-end: 25;
-        height: 11rem;
+        height: 14rem;
         overflow: scroll;
         padding: 10px;
         width: 100%;
@@ -721,8 +721,7 @@
 
 .fieldsDataGrid {
     margin-top: 0 !important;
-    height: 19rem;
-    overflow: auto;
+    height: 11rem;
     width: 100%;
 }
 

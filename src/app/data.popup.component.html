@@ -6,11 +6,11 @@
                     X
                 </button>
                 <div class="gridOverall">
-                    <div *ngIf="!isFirstTimeData" class="gridTitleContainer">
+                    <div class="gridTitleContainer">
                         <div class="titleCurrent">
-                            Current Dataset: <b>{{ currentDatasetName }}</b>
+                            Selected Datasource: <b>{{ currentDatasetName }}</b>
                             <span *ngIf="currentDatasetName===''" class="titleFirsttimeMessage">
-                                (Select one (Identify), and then click Add to add this datasource)
+                                (Preview (and Add) a new one, or select an existing one)
                             </span>
                         </div>
 
@@ -24,7 +24,7 @@
                                 Identify
                             </button>
                         </div>
-                        <div class="titleChevron1" *ngIf="currentDS">
+                        <div class="titleChevron1" *ngIf="currentDatasetName">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -33,7 +33,7 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titleFilter titleBox" *ngIf="currentDS">
+                        <div class="titleFilter titleBox" *ngIf="currentDatasetName">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -43,7 +43,7 @@
                                 Filter
                             </button>
                         </div>
-                        <div class="titleChevron2" *ngIf="currentDS">
+                        <div class="titleChevron2" *ngIf="currentDatasetName">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -52,7 +52,7 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titleTransform titleBox" *ngIf="currentDS">
+                        <div class="titleTransform titleBox" *ngIf="currentDatasetName">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -62,7 +62,7 @@
                                 Transform
                             </button>
                         </div>
-                        <div class="titleChevron3" *ngIf="currentDS">
+                        <div class="titleChevron3" *ngIf="currentDatasetName">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -71,7 +71,7 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titlePivot titleBox" *ngIf="currentDS">
+                        <div class="titlePivot titleBox" *ngIf="currentDatasetName">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -81,7 +81,7 @@
                                 Pivot
                             </button>
                         </div>
-                        <div class="titleChevron4" *ngIf="currentDS">
+                        <div class="titleChevron4" *ngIf="currentDatasetName">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -90,7 +90,7 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titleView titleBox">
+                        <div class="titleView titleBox" *ngIf="currentDatasetName">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -98,15 +98,6 @@
                                 [style.background-color]="showView ? 'rgb(211, 211, 247)' : 'transparent'"
                                 >
                                 Summary
-                            </button>
-                        </div>
-                        <div class="titleButtonDiv">
-                            <button
-                                type="button"
-                                class="btn btn-secondary titleButton"
-                                (click)="clickDSAdd('Add')"
-                                >
-                                Add
                             </button>
                         </div>
 
@@ -200,6 +191,15 @@
                                 >
                                 Select
                             </button>
+                        <!-- <div class="titleButtonDiv"> -->
+                            <button *ngIf="currentDatasetName==''"
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickDSAdd('Add')"
+                                >
+                                Add
+                            </button>
+                        <!-- </div> -->
                         </div>
 
                         <div class="gridIdentifyDataIDserver" *ngIf="dataGetFromSwitch==='Server'">

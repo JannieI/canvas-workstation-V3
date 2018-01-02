@@ -85,6 +85,8 @@ This document describes items for later versions of Canvas.
 1. Issue: how to call code ~WidgetEdit, etc from explore NOT duplicating code ...
 2. Add fields for Widget Properties to New / Edit !
 3. Fix bug: isTrash => Widget does not disappear !
+4. Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
+ + Dont show top if now Dataset - rather appropriate Unexpected Error msg
 5. Fix bug and Duplicate Widget correctly
 6. Fix bug: [style.border]="row.isSelected? '2px solid black' : '2px solid red'" does not work
 7. Flag visible if it has a Note, Data Quality issues
