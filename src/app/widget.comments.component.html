@@ -6,29 +6,55 @@
                     <button type="button" class="closeButton" (click)="clickClose()">
                         X
                     </button>
-
-                    Widget Notes
+                    <div class="propertyLine">
+                        <span>
+                            <label for="dashboardName" class="popupLabel">Sender :</label>
+                            <input type="text" id="dashboardName" placeholder="Filter sender/portion">
+                        </span>
+                        <span>
+                            <label for="dashboardName" class="popupLabel">Text :</label>
+                            <input type="text" id="dashboardName" placeholder="Filter comment/portion">
+                        </span>
+                        <span>
+                            <button class="btn btn-secondary"
+                                    type="button"  
+                                    (click)="clickClose('Close')"
+                                    >
+                                    Search
+                            </button>
+                        </span>
+                        <br>
+                        <br>
+                        <span>
+                            <label for="dashboardName" class="popupLabel">To :</label>
+                            <select id="selects_3"
+                                (change)="clickSelectStep($event)"
+                                >
+                                <option>AristaB</option>
+                                <option>IanC</option>
+                                <option>PlumberK</option>
+                            </select>
+                            <label for="dashboardName" class="popupLabel">Text :</label>
+                            <input type="text" id="dashboardName" placeholder="Enter comment">
+                            <button class="btn btn-secondary"
+                                    type="button"  
+                                    (click)="clickClose('Close')"
+                                    >
+                                    Add
+                            </button>
+                        </span>
+                    </div>
+        
+                    Widget Comments
                     <div class="propertyLine">
                     </div>
                     <clr-datagrid>
-                        <clr-dg-column>Add</clr-dg-column>
-                        <clr-dg-column>Edit</clr-dg-column>
-                        <clr-dg-column>Delete</clr-dg-column>
                         <clr-dg-column>ID</clr-dg-column>
                         <clr-dg-column>Comment</clr-dg-column>
                         <clr-dg-column>Creator</clr-dg-column>
                         <clr-dg-column>CreatedOn</clr-dg-column>
 
                         <clr-dg-row *ngFor="let row of canvasComments">
-                            <clr-dg-cell>
-                                <clr-icon shape="plus" class="selectIcon1" size="12"></clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>
-                                <clr-icon shape="pencil" class="selectIcon1" size="12"></clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>
-                                <clr-icon shape="times" class="selectIcon1" size="12"></clr-icon>
-                            </clr-dg-cell>
                             <clr-dg-cell>{{row.id}}</clr-dg-cell>
                             <clr-dg-cell>{{row.comment}}</clr-dg-cell>
                             <clr-dg-cell>{{row.creator}}</clr-dg-cell>
