@@ -33,18 +33,9 @@ export class WidgetExpandComponent implements OnInit {
     //          }
     // );
 
-    datasources: Datasource[];
+    datasources: Datasource[] = [];
 
-    dataFieldNames: string[] =
-    [
-        'Name',
-        'Type',
-        'Description',
-        'CreatedBy',
-        'CreatedOn',
-        'RefreshedBy',
-        'RefreshedOn'
-    ]
+    dataFieldNames: string[] = [];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -57,10 +48,13 @@ export class WidgetExpandComponent implements OnInit {
         this.globalVariableService.datasources.subscribe(
             i => this.datasources = i
         );
-        this.globalVariableService.currentDataset.forEach(
+        this.globalVariableService.datasets.forEach(
             i => {
-                    if (i.datasourceID == 1) { this.currentDataset = i.data }
-                 }
+                    if (i.datasourceID == 2) { 
+                        this.currentDataset = i.data;
+                        this.dataFieldNames = Object.getOwnPropertyNames(i.data[0])
+                    }
+                }
         );
             console.log('currentData', this.currentDataset)
     }

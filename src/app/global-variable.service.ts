@@ -508,12 +508,12 @@ const datasets: any[] =
         datasourceID: 2,
         data: 
         [
-            {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
-            {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
-            {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
-            {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
-            {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
-            {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
+            {Month: "01",Trades: 28}, {Month: "02",Trades: 55},
+            {Month: "03",Trades: 43}, {Month: "04",Trades: 91},
+            {Month: "05",Trades: 81}, {Month: "06",Trades: 53},
+            {Month: "07",Trades: 19}, {Month: "08",Trades: 87},
+            {Month: "09",Trades: 52}, {Month: "10",Trades: 42},
+            {Month: "11",Trades: 62}, {Month: "12",Trades: 82}
         ]
     }
 ];
@@ -2281,7 +2281,8 @@ export class GlobalVariableService {
 
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
-    currentDataset = currentDataset;
+    currentDataset: any = currentDataset;
+    datasets: any = datasets;
     localTrash = new BehaviorSubject< CanvasWidget[]>([]);
     canvasActivities: CanvasActivity[] = canvasActivities;
     canvasAlerts: CanvasAlert[] = canvasAlerts;
