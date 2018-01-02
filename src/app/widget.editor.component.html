@@ -154,11 +154,22 @@
                 </div>
 
                 <div class="colAdvanced" *ngIf="showColFieldAdvancedArea">
-                    <span
-                        >
-                        <label for="dashboardName" class="popupLabel">Aggregate :</label>
+                    <span>
+                        <label for="dashboardName" class="popupLabel">
+                            Field : Country_Of_Origin_Calculated
+                        </label>
+
                         <br>
-                        <button class="popupButton">No</button>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">
+                            Aggregate :
+                        </label>
+                        <button class="popupButton"
+                            (click)="clickedButtonAggregateNo = !clickedButtonAggregateNo"
+                            [style.background-color] = "clickedButtonAggregateNo ? 'darkgray' : 'transparent'"
+
+                            >No
+                        </button>
                         <button class="popupButton">Sum</button>
                         <button class="popupButton">Avg</button>
                         <button class="popupButton">Min</button>
@@ -166,12 +177,31 @@
                         <button class="popupButton">Cnt</button>
 
                         <br>
-                        <label for="dashboardName" class="popupLabel">Bin :</label>
                         <br>
+                        <label for="dashboardName" class="popupLabel">Bin :</label>
                         <button class="popupButton">No</button>
                         <button class="popupButton">Yes</button>
                         <br>
+                        <br>
+                         
+                        <label for="dashboardName" class="popupLabel">Drill down/out :</label>
+                        <button class="popupButton">Year</button>
+                        <button class="popupButton">Qtr</button>
+                        <button class="popupButton">Mth</button>
+                        <button class="popupButton">Day</button>
 
+                        <br>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">Previous period :</label>
+                        <button class="popupButton">Year</button>
+
+                        <br>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">Explantion :</label>
+                        <button>Show</button>
+                        <br>
+                        Shows explanation graph here ...
+                        <br>
                         <button
                             class="btn btn-sm btn-secondary"
                             (click)="clickCloseAdvancedX('Close')">
