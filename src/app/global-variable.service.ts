@@ -365,6 +365,46 @@ const canvasComments: CanvasComment[] =
 
 
 // Data
+
+const finalFields = 
+[
+    {
+        fieldName: 'MonthTraded',
+        dataType: 'string',
+        localName: 'Date',
+        filtered: '2 flters',
+        transformed: ''
+    },
+    {
+        fieldName: 'TradeType',
+        dataType: 'string',
+        localName: '',
+        filtered: '',
+        transformed: ''
+    },
+    {
+        fieldName: 'Volume',
+        dataType: 'number',
+        localName: '',
+        filtered: '1 flters',
+        transformed: '2 transf'
+    },
+    {
+        fieldName: 'Price',
+        dataType: 'number',
+        localName: '',
+        filtered: '',
+        transformed: '6 transf'
+    },
+    {
+        fieldName: 'Value',
+        dataType: 'Calculated: number',
+        localName: '',
+        filtered: '',
+        transformed: '1 transf'
+    }
+];
+
 const combinations: Combination[] =
 [
     {
@@ -2020,7 +2060,6 @@ const dashboardsRecent: Partial<Dashboard>[] =
     }
 ];
 
-
 const dashboardsSample: Partial<Dashboard>[] =
 [
     {
@@ -2295,6 +2334,39 @@ export class GlobalVariableService {
     isFirstTimePresentation = new BehaviorSubject<boolean>(true);
     isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
     isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
+
+    finalFields: any = finalFields;
+    pivotCols: string[];
+    pivotRows: string[];
+    pivotAgg: string[];
+    pivotResults: any[] =
+    [
+        {
+            Date: '2017/01/01',
+            AAPL: 11,
+            AMZN: 26,
+            GOOG: 30,
+            IBM: 47,
+            MSFT: 50
+        },
+        {
+            Date: '2017/01/01',
+            AAPL: 12,
+            AMZN: 25,
+            GOOG: 34,
+            IBM: 49,
+            MSFT: 51
+        },
+        {
+            Date: '2017/01/01',
+            AAPL: 13,
+            AMZN: 24,
+            GOOG: 37,
+            IBM: 48,
+            MSFT: 50
+        }
+    ]
+
 
     slicerHeader = new BehaviorSubject<string>('Filer: Make')
 

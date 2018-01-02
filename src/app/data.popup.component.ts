@@ -29,43 +29,6 @@ import { DatasourceFilter}            from './models'
 import * as dl from 'datalib';
 import { load } from 'datalib';
 
-const finalFields = [
-    {
-        fieldName: 'MonthTraded',
-        dataType: 'string',
-        localName: 'Date',
-        filtered: '2 flters',
-        transformed: ''
-    },
-    {
-        fieldName: 'TradeType',
-        dataType: 'string',
-        localName: '',
-        filtered: '',
-        transformed: ''
-    },
-    {
-        fieldName: 'Volume',
-        dataType: 'number',
-        localName: '',
-        filtered: '1 flters',
-        transformed: '2 transf'
-    },
-    {
-        fieldName: 'Price',
-        dataType: 'number',
-        localName: '',
-        filtered: '',
-        transformed: '6 transf'
-    },
-    {
-        fieldName: 'Value',
-        dataType: 'Calculated: number',
-        localName: '',
-        filtered: '',
-        transformed: '1 transf'
-    }
-];
 
 @Component({
     selector: 'data',
@@ -82,7 +45,6 @@ export class DataPopupComponent implements OnInit {
 
     datasources: Datasource[];
     currentDatasources: Datasource[];
-    finalFields: any = finalFields;
     currentData: any = [];
     dataArray: any;
     dataFieldNames: string[];
@@ -92,19 +54,21 @@ export class DataPopupComponent implements OnInit {
     dataQualityIssues: DataQualityIssue[];
     datasourceFilters: DatasourceFilter[];
     currentTransformations: Transformation[];
+    curentDatasetID: number;
     currentDatasetName: string = '';
     draggedField: string = '';
     fileName: string = 'stocks.csv';
     rowField: string = 'Drag a field here ...';
     colField: string = 'Drag a field here ...';
     aggField: string = 'Drag a field here ...';
-    pivotCols: string[];
-    pivotRows: string[];
-    pivotAgg: string[];
     resultMessage: string = 'Results will be shown here: drag and drop fields, then click Refresh'
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverAgg: boolean = false;
+    finalFields: any = [];
+    pivotCols: string[];
+    pivotRows: string[];
+    pivotAgg: string[];
     pivotResults: any[] =
         [
             {
@@ -374,6 +338,28 @@ export class DataPopupComponent implements OnInit {
     clickDatasourceRow(dsName: string) {
         this.currentDatasetName = dsName;
         console.log('dsName', dsName, this.filterDataset)
+    }
+
+    clickSelectDatasource(i: number, name: string) {
+
+        // Show the preview
+        this.showDataPreview = true;
+
+        // General var with name - used in *ngIF, etc
+        this.curentDatasetID = i;
+        this.currentDatasetName = this.currentDatasources[i].name;
+
+        // Reset data related to this DS
+        this.datasourceFilters = this.globalVariableService.datasourceFilters;
+        this.currentTransformations = this.globalVariableService.currentTransformations;
+        this.transformationsFormat = this.globalVariableService.transformationsFormat;
+        this.pivotAgg = this.globalVariableService.pivotAgg;
+        this.pivotCols = this.globalVariableService.pivotCols;
+        this.pivotRows = this.globalVariableService.pivotRows;
+        this.pivotResults = this.globalVariableService.pivotResults;
+        this.finalFields = this.globalVariableService.finalFields;
+        this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
+        
     }
 
     clickFileAddTransformationDetail() {
