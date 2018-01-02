@@ -417,40 +417,46 @@ const datasourcePermissions: DatasourcePermission[] =
 const currentDataset =
 [
     {
-      Name: 'Jay',
-      Type: 'Origon',
-      Description: 'bla-bla',
-      CreatedBy: 'aasdf',
-      CreatedOn: 'on',
-      RefreshedBy: 'by',
-      RefreshedOn: '2/2'
-    },
-    {
-      Name: 'Jay',
-      Type: 'Origon',
-      Description: 'bla-bla',
-      CreatedBy: 'aasdf',
-      CreatedOn: 'on',
-      RefreshedBy: 'by',
-      RefreshedOn: '2/2'
-    },
-    {
-      Name: 'Jay',
-      Type: 'Origon',
-      Description: 'bla-bla',
-      CreatedBy: 'aasdf',
-      CreatedOn: 'on',
-      RefreshedBy: 'by',
-      RefreshedOn: '2/2'
-    },
-    {
-      Name: 'Jay',
-      Type: 'Origon',
-      Description: 'bla-bla',
-      CreatedBy: 'aasdf',
-      CreatedOn: 'on',
-      RefreshedBy: 'by',
-      RefreshedOn: '2/2'
+        datasourceID: 1,
+        data: 
+        [
+            {
+            Name: 'Jay',
+            Type: 'Origon',
+            Description: 'bla-bla',
+            CreatedBy: 'aasdf',
+            CreatedOn: 'on',
+            RefreshedBy: 'by',
+            RefreshedOn: '2/2'
+            },
+            {
+            Name: 'Jay',
+            Type: 'Origon',
+            Description: 'bla-bla',
+            CreatedBy: 'aasdf',
+            CreatedOn: 'on',
+            RefreshedBy: 'by',
+            RefreshedOn: '2/2'
+            },
+            {
+            Name: 'Jay',
+            Type: 'Origon',
+            Description: 'bla-bla',
+            CreatedBy: 'aasdf',
+            CreatedOn: 'on',
+            RefreshedBy: 'by',
+            RefreshedOn: '2/2'
+            },
+            {
+            Name: 'Jay',
+            Type: 'Origon',
+            Description: 'bla-bla',
+            CreatedBy: 'aasdf',
+            CreatedOn: 'on',
+            RefreshedBy: 'by',
+            RefreshedOn: '2/2'
+            }
+        ]
     }
 ];
 
@@ -2275,7 +2281,7 @@ export class GlobalVariableService {
 
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
-    currentData = currentDataset;
+    currentDataset = currentDataset;
     localTrash = new BehaviorSubject< CanvasWidget[]>([]);
     canvasActivities: CanvasActivity[] = canvasActivities;
     canvasAlerts: CanvasAlert[] = canvasAlerts;

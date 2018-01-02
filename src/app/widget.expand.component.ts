@@ -25,9 +25,13 @@ import { GlobalVariableService }      from './global-variable.service';
 export class WidgetExpandComponent implements OnInit {
 
     @Input() currentWidgetSpec: any;
+    currentDataset;
     // @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
-    currentData = this.globalVariableService.currentData;
-
+    // currentData = this.globalVariableService.currentDataset.forEach(
+    //     i => {
+    //             if (i.datasourceID == 1) { return i.data }
+    //          }
+    // );
 
     datasources: Datasource[];
 
@@ -53,6 +57,12 @@ export class WidgetExpandComponent implements OnInit {
         this.globalVariableService.datasources.subscribe(
             i => this.datasources = i
         );
+        this.globalVariableService.currentDataset.forEach(
+            i => {
+                    if (i.datasourceID == 1) { this.currentDataset = i.data }
+                 }
+        );
+            console.log('currentData', this.currentDataset)
     }
 
   	clickClose(action: string) {
