@@ -15,42 +15,6 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Datasource, DashboardTab } 				  from 'app/models';
 import { Dashboard } 				  from 'app/models';
 
-// const sampleDashboards = [
-//   	{
-//   		name: "Headcount for management pack",
-//   	},
-//   	{
-//   		name: "Presentation to Bitvest on listings value preposition",
-//   	},
-//   	{
-//   		name: "Settlement window analysis",
-//   	},
-//   	{
-//   		name: "Cost breakdown for Finance Department"
-//   	}
-// ]
-
-const recentDashboards = [
-		{
-			name: "Exco summary of Value traded in 2017",
-		},
-		{
-			name: "Sales in Norway"
-		},
-		{
-			name: "The rise and fall of Bitcoin"
-		},
-		{
-			name: "Nominal bond values - detail report"
-		},
-		{
-			name: "Bond trading revenue - draft"
-		},
-		{
-			name: "Bond trading revenue - v1"
-		}
-]
-
 @Component({
   selector: 'landing',
   templateUrl: './landing.component.html',
@@ -85,11 +49,32 @@ export class LandingComponent implements OnInit {
 		this.router.navigate(['/explore']);
 	}
 
+	loadRecentDashboard1(index: number) {
+		console.log('start loadsampleDashboard');
+		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
+			i => i.dashboardID = 1
+		);
+		this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs);
+		this.formLandingClosed.emit();
+		this.router.navigate(['/explore']);
+	}
+
+	loadRecentDashboard(index: number) {
+		console.log('start loadRecentDashboard', index);
+		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
+			i => i.dashboardID = 1
+		);
+
+		this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs);
+		this.formLandingClosed.emit();
+		this.router.navigate(['/explore']);
+	}
+
 	promptDeleteRecent(index: number) {
 		console.log("Prompt and then delete from list", index)
 		this.globalVariableService.dashboardRecentDelete(index);
 	}
-
+	
 	clickClose(action: string) {
 		this.formLandingClosed.emit(action);
 		if (action !== 'OpenExisting') {
