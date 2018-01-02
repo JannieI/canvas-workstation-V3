@@ -24,7 +24,7 @@ export class LandingComponent implements OnInit {
 
 	@Output() formLandingClosed: EventEmitter<string> = new EventEmitter();
 
-	sampleDashboards: Partial<Dashboard>[] = this.globalVariableService.dashboardsSample;
+	sampleDashboards: Partial<Dashboard>[] = this.globalVariableService.dashboardsSamples;
 	recentDashboards: Partial<Dashboard>[] = this.globalVariableService.dashboardsRecent;
 	showModel: boolean = true;
 
@@ -49,12 +49,22 @@ export class LandingComponent implements OnInit {
 		this.router.navigate(['/explore']);
 	}
 
-	loadRecentDashboard1(index: number) {
-		console.log('start loadsampleDashboard');
+	loadsampleDashboard(index: number) {
+		console.log('start loadsampleDashboard', index);
+
+		// Load the current Dashboard
+		let currentDashboards = this.globalVariableService.dashboardsSamples.filter(
+			i => i.id == index
+		)
+		this.globalVariableService.currentDashboards = currentDashboards;
+
+		// Load the current DashboardTab
 		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
 			i => i.dashboardID = 1
 		);
 		this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs);
+
+		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();
 		this.router.navigate(['/explore']);
 	}

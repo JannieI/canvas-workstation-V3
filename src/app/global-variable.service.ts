@@ -1384,7 +1384,7 @@ const datasourceSample: Datasource[] =
 
     },
     {
-        id: 1,
+        id: 2,
         name: 'Vega Airport Dataset',
         type: 'File',
         subType: 'Excel',
@@ -1398,7 +1398,7 @@ const datasourceSample: Datasource[] =
 
     },
     {
-        id: 1,
+        id: 3,
         name: 'Home Budget',
         type: 'File',
         subType: 'Excel',
@@ -2091,7 +2091,7 @@ const dashboardsRecent: Partial<Dashboard>[] =
     }
 ];
 
-const dashboardsSample: Partial<Dashboard>[] =
+const dashboardsSamples: Partial<Dashboard>[] =
 [
     {
         id: 1,
@@ -2315,7 +2315,7 @@ export class GlobalVariableService {
     dataGetFromSwitch = new BehaviorSubject<string>('File');
     currentDashboards: Partial<Dashboard>[] = [];
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
-    dashboardsSample: Partial<Dashboard>[] = dashboardsSample;
+    dashboardsSamples: Partial<Dashboard>[] = dashboardsSamples;
     dashboardsRecent: Partial<Dashboard>[] = dashboardsRecent;
     dashboards: Partial<Dashboard>[] = dashboards;
     currentTransformations: Transformation[] = currentTransformations;
