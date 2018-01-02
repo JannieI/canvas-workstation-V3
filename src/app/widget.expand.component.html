@@ -54,49 +54,4 @@
             </tr>
         </tbody>
     </table>
-
-    <!-- New v1 -->
-    <!-- <div>
-        <clr-datagrid class="fieldsDataGrid">
-
-            <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-            <clr-dg-row *ngFor="let row of currentData">
-
-                <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                        {{ row[col] }}
-                </clr-dg-cell>
-            </clr-dg-row>
-
-            <clr-dg-footer>
-                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                of {{pagination.totalItems}} rows
-                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
-            </clr-dg-footer>
-
-        </clr-datagrid>
-    </div> -->
-
-    <!-- Original -->
-    <!-- <clr-datagrid class="fieldsDataGrid">
-        <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column>
-        <clr-dg-column [clrDgField]="'filterDataset'">Type</clr-dg-column>
-        <clr-dg-column [clrDgField]="'filterDataset'">Description</clr-dg-column>
-        <clr-dg-column [clrDgField]="'filterDataset'">CreatedBy</clr-dg-column>
-        <clr-dg-column [clrDgField]="'filterDataset'">CreatedOn</clr-dg-column>
-        <clr-dg-column [clrDgField]="'filterDataset'">RefreshedBy</clr-dg-column>
-        <clr-dg-column [clrDgField]="'filterDataset'">RefreshedOn</clr-dg-column>
-
-        <clr-dg-row
-            *ngFor="let row of datasources"
-            >
-            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-            <clr-dg-cell>{{row.type}}</clr-dg-cell>
-            <clr-dg-cell>{{row.description}}</clr-dg-cell>
-            <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
-            <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-            <clr-dg-cell>{{row.refreshedBy}}</clr-dg-cell>
-            <clr-dg-cell>{{row.refreshedOn}}</clr-dg-cell>
-        </clr-dg-row>
-    </clr-datagrid> -->
-
 </div>

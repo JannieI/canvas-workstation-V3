@@ -414,6 +414,46 @@ const datasourcePermissions: DatasourcePermission[] =
     }
 ];
 
+const currentData =
+[
+    {
+      Name: 'Jay',
+      Type: 'Origon',
+      Description: 'bla-bla',
+      CreatedBy: 'aasdf',
+      CreatedOn: 'on',
+      RefreshedBy: 'by',
+      RefreshedOn: '2/2'
+    },
+    {
+      Name: 'Jay',
+      Type: 'Origon',
+      Description: 'bla-bla',
+      CreatedBy: 'aasdf',
+      CreatedOn: 'on',
+      RefreshedBy: 'by',
+      RefreshedOn: '2/2'
+    },
+    {
+      Name: 'Jay',
+      Type: 'Origon',
+      Description: 'bla-bla',
+      CreatedBy: 'aasdf',
+      CreatedOn: 'on',
+      RefreshedBy: 'by',
+      RefreshedOn: '2/2'
+    },
+    {
+      Name: 'Jay',
+      Type: 'Origon',
+      Description: 'bla-bla',
+      CreatedBy: 'aasdf',
+      CreatedOn: 'on',
+      RefreshedBy: 'by',
+      RefreshedOn: '2/2'
+    }
+];
+
 const currentDatasources: Datasource [] =
 [
     {
@@ -2177,6 +2217,7 @@ export class GlobalVariableService {
 
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
+    currentData = currentData;
     localTrash = new BehaviorSubject< CanvasWidget[]>([]);
     canvasActivities: CanvasActivity[] = canvasActivities;
     canvasAlerts: CanvasAlert[] = canvasAlerts;
