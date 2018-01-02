@@ -175,8 +175,8 @@ const widgetButtonsAvailable: ButtonBarAvailable[] =
     },
     {
         id: 7,
-        buttonText: 'Notes',
-        description: 'Show the notes linked to the selected Widget.',
+        buttonText: 'Comments',
+        description: 'Show the comments linked to the selected Widget.',
         sortOrder: 7,
         isDefault: false
     },

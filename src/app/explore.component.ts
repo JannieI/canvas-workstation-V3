@@ -834,7 +834,7 @@ export class ExploreComponent {
     clickWidgetCheckpoints() {
     }
 
-    clickMenuWidgetNotes() {
+    clickMenuWidgetComments() {
     }
 
     clickMenuWidgetLinks() {

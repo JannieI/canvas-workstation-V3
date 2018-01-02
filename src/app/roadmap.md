@@ -57,7 +57,7 @@ This document describes items for later versions of Canvas.
 5. Also, easy way to jump to previous period:  loaded at start with data ??
 6. Reuse open Dashboard code between Open & Rename, if possible
 7. Test printing - and see if pagelayout can be changed
-10.View all Comments and notes at once, with filter on messageText and Sender/Receiver
+10.View all Comments at once, with filter on messageText and Sender/Receiver
 11.Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
    at any point in the past.  It must be clearly marked for the user.  Must also be able to
    search the list, and see a list of undo actions.
