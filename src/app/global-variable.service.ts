@@ -3,23 +3,25 @@ import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
 
 // Our Models
-import { Dashboard }                  from './models';
-import { Datasource }                 from './models';
+import { ButtonBarAvailable}          from './models'
+import { ButtonBarSelected }          from './models';
 import { CSScolor }                   from './models';
-import { Transformation }             from './models';
-import { Field }                      from './models';
+import { Dashboard }                  from './models';
+import { DashboardTab }               from './models';
 import { DashboardSnapshot }          from './models';
-import { FieldMetadata }              from './models';
 import { DashboardTag }               from './models';
 import { DashboardTheme }             from './models';
 import { DashboardTemplate }          from './models';
 import { DashboardSchedule }          from './models';
 import { DashboardPermission }        from './models';
+
+import { Datasource }                 from './models';
+import { Transformation }             from './models';
+import { Field }                      from './models';
+import { FieldMetadata }              from './models';
 import { DataQualityIssue}            from './models'
 import { DatasourceFilter}            from './models'
 import { DatasourcePermission}        from './models'
-import { ButtonBarAvailable}          from './models'
-import { ButtonBarSelected }          from './models';
 import { CanvasComment }              from './models';
 import { CanvasAlert }                from './models';
 import { CanvasMessage }              from './models';
@@ -41,7 +43,34 @@ import * as dl                        from 'datalib';
 
 
 // Dashboard
+const currentDashboardTabs: DashboardTab[] =
+[
+    {
+        dashboardID: 1,
+        dashboardTabID: 1,
+        name: 'Summary',
+        color: ''
+    },
+    {
+        dashboardID: 1,
+        dashboardTabID: 1,
+        name: 'Headcount',
+        color: ''
+    },
+    {
+        dashboardID: 1,
+        dashboardTabID: 1,
+        name: 'Europe',
+        color: ''
+    },
+    {
+        dashboardID: 1,
+        dashboardTabID: 1,
+        name: 'Budget',
+        color: ''
+    }
 
+]
 // Loaded on Request
 // *****************
 
@@ -2282,6 +2311,7 @@ export class GlobalVariableService {
     openDashboardFormOnStartup: boolean = false;
     dashboardTags: DashboardTag[] = dashboardTags;
     dataGetFromSwitch = new BehaviorSubject<string>('File');
+    currentDashboards: Partial<Dashboard>[] = [];
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
     dashboardsSample: Partial<Dashboard>[] = dashboardsSample;
     dashboardsRecent: Partial<Dashboard>[] = dashboardsRecent;
@@ -2314,9 +2344,8 @@ export class GlobalVariableService {
     widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
     canvasMessages: CanvasMessage[] =  canvasMessages;
     localWidgets = new BehaviorSubject< CanvasWidget[]>(localWidgets);
-    // localShapes = new BehaviorSubject< canvasShape[]>(localShapes);
     localShapes = new BehaviorSubject< CanvasShape[]>(null);
-
+    currentDashboardTabs = new BehaviorSubject<DashboardTab[]>(null);
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
     currentDataset: any = currentDataset;
