@@ -26,11 +26,11 @@
         background: rgb(231, 230, 230);
         border: 1px solid black;
         grid-column-start: 4;
-        grid-column-end: 9;
-        grid-row-start: 10;
-        grid-row-end: 20;
+        grid-column-end: 10;
+        grid-row-start: 4;
+        grid-row-end: 23;
         margin-bottom: 0;
-        padding: 10px;
+        padding: 5px;
         text-align: left;
         z-index: 9000
     }
