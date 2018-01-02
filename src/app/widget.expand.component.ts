@@ -36,7 +36,8 @@ export class WidgetExpandComponent implements OnInit {
     datasources: Datasource[] = [];
 
     dataFieldNames: string[] = [];
-
+    currentDatasetLength: number;
+    
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -48,15 +49,17 @@ export class WidgetExpandComponent implements OnInit {
         this.globalVariableService.datasources.subscribe(
             i => this.datasources = i
         );
+        console.log(this.globalVariableService.datasets)
         this.globalVariableService.datasets.forEach(
-            i => {
-                    if (i.datasourceID == 2) { 
+            i => 
+                {
+                    if (i.datasourceID == 3) { 
                         this.currentDataset = i.data;
+                        this.currentDatasetLength = this.currentDataset.length
                         this.dataFieldNames = Object.getOwnPropertyNames(i.data[0])
                     }
                 }
         );
-            console.log('currentData', this.currentDataset)
     }
 
   	clickClose(action: string) {

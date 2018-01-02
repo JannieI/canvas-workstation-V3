@@ -8,8 +8,8 @@
                 <div class="gridOverall">
                     <div *ngIf="!isFirstTimeData" class="gridTitleContainer">
                         <div class="titleCurrent">
-                            Current Dataset: <b>{{ currentDataset }}</b>
-                            <span *ngIf="currentDataset===''" class="titleFirsttimeMessage">
+                            Current Dataset: <b>{{ currentDatasetName }}</b>
+                            <span *ngIf="currentDatasetName===''" class="titleFirsttimeMessage">
                                 (Select one (Identify), and then click Add to add this datasource)
                             </span>
                         </div>

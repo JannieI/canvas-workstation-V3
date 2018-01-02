@@ -92,7 +92,7 @@ export class DataPopupComponent implements OnInit {
     dataQualityIssues: DataQualityIssue[];
     datasourceFilters: DatasourceFilter[];
     currentTransformations: Transformation[];
-    currentDataset: string = '';
+    currentDatasetName: string = '';
     draggedField: string = '';
     fileName: string = 'stocks.csv';
     rowField: string = 'Drag a field here ...';
@@ -244,7 +244,7 @@ export class DataPopupComponent implements OnInit {
         };
         this.isFirstTimeData = false;
         this.showDataPreview = true;
-        this.currentDataset = this.fileName;
+        this.currentDatasetName = this.fileName;
 
         this.globalVariableService.currentDatasourceAdd(newData);
         console.log('     currentDatasources', this.currentDatasources)
@@ -274,6 +274,13 @@ export class DataPopupComponent implements OnInit {
                 console.log('')
                 console.log('LOAD start:')
                 this.currentData = currentData;
+                this.globalVariableService.datasets.push(
+                    {
+                        datasourceID : 3,
+                        data: currentData
+                    }
+                );
+                console.log(this.globalVariableService.currentDataset)
                 currentData = [];
                 console.log('     data rows', this.currentData.length)
                 console.log('     END load: ', (Date.now() - startNow) / 1000)
@@ -353,13 +360,13 @@ export class DataPopupComponent implements OnInit {
         this.showDataPreview = !this.showDataPreview;
         console.log('        END preview: ', (Date.now() - startNow) / 1000)
 
-        this.currentDataset = '';
+        this.currentDatasetName = '';
         this.isFirstTimeData = false;
 
     }
 
     clickDatasourceRow(dsName: string) {
-        this.currentDataset = dsName;
+        this.currentDatasetName = dsName;
         console.log('dsName', dsName, this.filterDataset)
     }
 
