@@ -2299,7 +2299,8 @@ const dashboardsSamples: Partial<Dashboard>[] =
 @Injectable()
 export class GlobalVariableService {
 
-    // Permanent data - lated to come from http
+
+    // Permanent data - later to come from http
     backgroundcolors: CSScolor[] = backgroundcolors;
     shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
     canvasComments: CanvasComment[] = canvasComments;
@@ -2362,20 +2363,26 @@ export class GlobalVariableService {
         }
     ]
 
+
     // Data for current Dashboard and Datasources: only some models are loaded
-    currentDashboards: Partial<Dashboard>[] = [];
-    currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
-    private messageSource = new BehaviorSubject<string>("default message");
-   
-    currentMessage = this.messageSource.asObservable();
     currentDatasources = new BehaviorSubject<Datasource[]>(currentDatasources);
     currentDataset: any = currentDataset;
     currentTransformations: Transformation[] = currentTransformations;
 
+    currentDashboards: Partial<Dashboard>[] = [];
+    currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
+
+    private messageSource = new BehaviorSubject<string>("default message");
+    currentMessage = this.messageSource.asObservable();
     
     
     // Global vars that guide all interactions
+    // ***************************************
+    // Modes and Display
     editMode = new BehaviorSubject<boolean>(false);
+    presentationMode = new BehaviorSubject<boolean>(false);
+    showGrid = new BehaviorSubject<boolean>(false);
+    // First time user
     isFirstTimeDashboard = new BehaviorSubject<boolean>(false);
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
@@ -2383,19 +2390,21 @@ export class GlobalVariableService {
     isFirstTimePresentation = new BehaviorSubject<boolean>(true);
     isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
     isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
-    presentationMode = new BehaviorSubject<boolean>(false);
+    // Menu-related
     menuCreateDisabled = new BehaviorSubject<boolean>(true);
+    showMainMenu = new BehaviorSubject<boolean>(true);
+    // Opening forms
     openDashboardFormOnStartup: boolean = false;
+    showModalLanding: boolean = true;  // Shows Landing page
+    // Session
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
-    showGrid = new BehaviorSubject<boolean>(false);
-    showModalLanding: boolean = true;  // Shows Landing page
-    showMainMenu = new BehaviorSubject<boolean>(true);
+    widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
+    // StatusBar
     statusBarRunning = new BehaviorSubject<string>('No Query running');
     statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
     statusBarMessages = new BehaviorSubject<string>('1 Message');
-    widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
 
 
     // Temp vars
@@ -2409,11 +2418,9 @@ export class GlobalVariableService {
     refreshDashboard = new BehaviorSubject<boolean>(false);
 
 
-
-
     // Company related variables
-    // companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig
-    // companyLogo: string = '';                                   // Optional file name, set in SystemConfig
+    companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig
+    companyLogo: string = '';                                   // Optional file name, set in SystemConfig
 
     // System-wide related variables, set at Installation
     // systemConfigurationID: number = -1;

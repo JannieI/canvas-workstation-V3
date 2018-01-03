@@ -32,6 +32,7 @@ export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
 
+    companyName: string = this.globalVariableService.companyName;
     editMode: boolean;
     hasDatasources: boolean = false;
     editMenuText: string;
