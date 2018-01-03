@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
     moveLastX: number = 0;
     moveLastY: number = 0;
     nrWidgetsSelected: number = 0;
-    presentation: boolean;
+    presentationMode: boolean;
     // showCircle: boolean = false;
     // showImage: boolean = false;
     // showTextBox: boolean = false;
@@ -130,8 +130,8 @@ export class AppComponent implements OnInit {
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
-        this.globalVariableService.presentation.subscribe(
-            pres => this.presentation = pres
+        this.globalVariableService.presentationMode.subscribe(
+            pres => this.presentationMode = pres
         );
         this.globalVariableService.showGrid.subscribe(
             sG => this.showGrid = sG
@@ -592,7 +592,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuViewPresentation() {
-        this.globalVariableService.presentation.next(!this.presentation);
+        this.globalVariableService.presentationMode.next(!this.presentationMode);
         this.globalVariableService.showMainMenu.next(false);
     }
 

@@ -876,7 +876,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     dragoverColor: boolean = false;
     filterPivotFields: string = '';
     opened: boolean = true;
-    presentation: boolean;
+    presentationMode: boolean;
     showRowFieldAdvanced: boolean = false;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
@@ -895,8 +895,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
           i => this.currentDatasources = i
         );
         this.dataFieldNames = ['symbol', 'date', 'price', 'Month', 'Trades'];
-        this.globalVariableService.presentation.subscribe(
-            pres => this.presentation = pres
+        this.globalVariableService.presentationMode.subscribe(
+            pres => this.presentationMode = pres
         );
     }
 

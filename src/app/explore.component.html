@@ -1,4 +1,4 @@
-<div class="presentationButton dropdown" *ngIf="presentation">
+<div class="presentationButton dropdown" *ngIf="presentationMode">
     <clr-dropdown>
         <button type="button" clrDropdownTrigger>
             <clr-icon shape="bars"></clr-icon>
@@ -75,7 +75,7 @@
 
 <!-- Overlay: Dashboard Help for Presentation -->
 <dashboard-helpPresentation
-    *ngIf="isFirstTimePresentation  &&  presentation"
+    *ngIf="isFirstTimePresentation  &&  presentationMode"
     (formDashboardHelpPresentationClosed)="handleCloseDashboardHelpPresentation($event)">Load Help form ...
     >
 </dashboard-helpPresentation>
@@ -181,7 +181,7 @@
             title="Show Links"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="copy"
             size="20"
             class="buttonBarIcon"
@@ -189,7 +189,7 @@
             title="Duplicate this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="deploy"
             size="20"
             class="buttonBarIcon"
@@ -197,7 +197,7 @@
             title="Move Widget back"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="block"
             size="20"
             class="buttonBarIcon"
@@ -205,7 +205,7 @@
             title="Move Widget forward"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="trash"
             size="20"
             class="buttonBarIcon"
@@ -213,7 +213,7 @@
             title="Delete this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="cursor-arrow"
             size="20"
             class="buttonBarIcon"
@@ -672,7 +672,7 @@
             title="Edit Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation"
+        <clr-icon *ngIf="!presentationMode"
             shape="pop-out"
             size="20"
             class="buttonBarIcon"
@@ -680,7 +680,7 @@
             title="Show Checkpoints"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation"
+        <clr-icon *ngIf="!presentationMode"
             shape="note"
             size="20"
             class="buttonBarIcon"
@@ -696,7 +696,7 @@
             title="Show Links"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation"
+        <clr-icon *ngIf="!presentationMode"
             shape="refresh"
             size="20"
             class="buttonBarIcon"
@@ -704,7 +704,7 @@
             title="Refresh Dataset for this Widget only"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="copy"
             size="20"
             class="buttonBarIcon"
@@ -712,7 +712,7 @@
             title="Duplicate this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation"
+        <clr-icon *ngIf="!presentationMode"
             shape="pop-out"
             size="20"
             class="buttonBarIcon"
@@ -720,7 +720,7 @@
             title="Expand the Dataset for this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation"
+        <clr-icon *ngIf="!presentationMode"
             shape="export"
             size="20"
             class="buttonBarIcon"
@@ -728,7 +728,7 @@
             title="Export the Dataset for this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="deploy"
             size="20"
             class="buttonBarIcon"
@@ -736,7 +736,7 @@
             title="Move Widget back"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="block"
             size="20"
             class="buttonBarIcon"
@@ -744,7 +744,7 @@
             title="Move Widget forward"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="trash"
             size="20"
             class="buttonBarIcon"
@@ -752,7 +752,7 @@
             title="Delete this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="!presentation  &&  hasDatasources"
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="cursor-arrow"
             size="20"
             class="buttonBarIcon"

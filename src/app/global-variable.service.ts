@@ -2383,7 +2383,7 @@ export class GlobalVariableService {
     isFirstTimePresentation = new BehaviorSubject<boolean>(true);
     isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
     isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
-    presentation = new BehaviorSubject<boolean>(false);
+    presentationMode = new BehaviorSubject<boolean>(false);
     menuCreateDisabled = new BehaviorSubject<boolean>(true);
     openDashboardFormOnStartup: boolean = false;
     sessionDebugging: boolean = true;

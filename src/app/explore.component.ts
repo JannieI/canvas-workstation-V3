@@ -193,7 +193,7 @@ export class ExploreComponent {
     menuCreateDisabled: boolean = false;
     message: string;
     open: Boolean = false;
-    presentation: boolean;
+    presentationMode: boolean;
     showMainMenu: boolean;
     isFirstTimePresentation: boolean;
     sideNavWidth: string = '350';
@@ -252,8 +252,8 @@ export class ExploreComponent {
         this.globalVariableService.isFirstTimeDashboard.subscribe(
             i => this.isFirstTimeDashboard = i
         )
-        this.globalVariableService.presentation.subscribe(
-            pres => this.presentation = pres
+        this.globalVariableService.presentationMode.subscribe(
+            pres => this.presentationMode = pres
         );
         this.globalVariableService.showMainMenu.subscribe(
             sm => this.showMainMenu = sm
@@ -728,7 +728,7 @@ export class ExploreComponent {
     clickClosePresentation() {
         console.log('kkk')
         this.globalVariableService.showMainMenu.next(true);
-        this.globalVariableService.presentation.next(false);
+        this.globalVariableService.presentationMode.next(false);
     }
 
     handleCloseDashboardTab() {
@@ -841,7 +841,7 @@ export class ExploreComponent {
     }
 
     clickMenuWidgetLinks() {
-        if (this.presentation) {
+        if (this.presentationMode) {
             alert ('Jumping to Linked Dashboard ...')
         }
     }
