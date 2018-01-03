@@ -2618,7 +2618,13 @@ export class GlobalVariableService {
             } else {
 
                 // Load
-                this.widgets = currentData;
+                if (dashboardID == 0) {
+                    this.widgets = currentData;
+                } else {
+                    this.widgets = currentData.filter(
+                        i => i.dashboardID == dashboardID
+                    )
+                }
                 currentData = [];
                 console.log('loaded Widgets', this.widgets);
             }
