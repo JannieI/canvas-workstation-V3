@@ -36,46 +36,6 @@ import { httpFake }                   from './data/dashboards'
 
 import * as dl                        from 'datalib';
 
-// Loaded at Startup
-// *****************
-
-// Data
-
-
-// Dashboard
-const currentDashboardTabs: DashboardTab[] = [];
-
-const dashboardTabs: DashboardTab[] =
-[
-    {
-        dashboardID: 1,
-        dashboardTabID: 1,
-        name: 'Summary',
-        color: ''
-    },
-    {
-        dashboardID: 1,
-        dashboardTabID: 1,
-        name: 'Headcount',
-        color: ''
-    },
-    {
-        dashboardID: 1,
-        dashboardTabID: 1,
-        name: 'Europe',
-        color: ''
-    },
-    {
-        dashboardID: 1,
-        dashboardTabID: 1,
-        name: 'Budget',
-        color: ''
-    }
-
-]
-// Loaded on Request
-// *****************
-
 // Setup / Settings / General
 const backgroundcolors: CSScolor[] =
 [
@@ -396,7 +356,6 @@ const canvasComments: CanvasComment[] =
 
 
 // Data
-
 const finalFields = 
 [
     {
@@ -1433,6 +1392,35 @@ const datasourceFilters: DatasourceFilter[] =
 
 
 // Dashboard
+const dashboardTabs: DashboardTab[] =
+[
+    {
+        dashboardID: 1,
+        dashboardTabID: 1,
+        name: 'Summary',
+        color: ''
+    },
+    {
+        dashboardID: 1,
+        dashboardTabID: 1,
+        name: 'Headcount',
+        color: ''
+    },
+    {
+        dashboardID: 1,
+        dashboardTabID: 1,
+        name: 'Europe',
+        color: ''
+    },
+    {
+        dashboardID: 1,
+        dashboardTabID: 1,
+        name: 'Budget',
+        color: ''
+    }
+
+]
+
 const dashboardPermissions: DashboardPermission[] =
 [
     {
@@ -2310,63 +2298,38 @@ const dashboardsSamples: Partial<Dashboard>[] =
 
 @Injectable()
 export class GlobalVariableService {
-    openDashboardFormOnStartup: boolean = false;
+
+    // Permanent data - lated to come from http
+    backgroundcolors: CSScolor[] = backgroundcolors;
+    shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
+    canvasComments: CanvasComment[] = canvasComments;
+    widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
+    canvasMessages: CanvasMessage[] =  canvasMessages;
+    canvasActivities: CanvasActivity[] = canvasActivities;
+    canvasAlerts: CanvasAlert[] = canvasAlerts;
+
+    dashboards: Partial<Dashboard>[] = dashboards;
+    dashboardTabs = new BehaviorSubject<DashboardTab[]>(dashboardTabs);
+    dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     dashboardTags: DashboardTag[] = dashboardTags;
-    dataGetFromSwitch = new BehaviorSubject<string>('File');
-    currentDashboards: Partial<Dashboard>[] = [];
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
     dashboardsSamples: Partial<Dashboard>[] = dashboardsSamples;
     dashboardsRecent: Partial<Dashboard>[] = dashboardsRecent;
-    dashboards: Partial<Dashboard>[] = dashboards;
-    currentTransformations: Transformation[] = currentTransformations;
-    backgroundcolors: CSScolor[] = backgroundcolors;
+    dashboardThemes: DashboardTheme[] = dashboardThemes;
+    dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
+    dashboardSchedules: DashboardSchedule[] = dashboardSchedules;
+    
     datasources = new BehaviorSubject<Datasource[]>(datasources);
-    currentDatasources = new BehaviorSubject<Datasource[]>(currentDatasources);
-    dataQualityIssues: DataQualityIssue[] = dataQualityIssues;
-    localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     datasourceFilters: DatasourceFilter[] = datasourceFilters;
+    datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
+    dataQualityIssues: DataQualityIssue[] = dataQualityIssues;
     transformationsFormat: Transformation[] = transformationsFormat;
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
     datasourceRecent: Datasource[] = datasourceRecent;
     datasourceSample: Datasource[] = datasourceSample;
-    dashboardThemes: DashboardTheme[] = dashboardThemes;
-    dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
-    dashboardSchedules: DashboardSchedule[] = dashboardSchedules;
-    duplicateDashboard = new BehaviorSubject<boolean>(false);
-    refreshDashboard = new BehaviorSubject<boolean>(false);
-    editMode = new BehaviorSubject<boolean>(false);
-    shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
-    canvasComments: CanvasComment[] = canvasComments;
-    shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
-    statusBarRunning = new BehaviorSubject<string>('No Query running');
-    statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
-    statusBarMessages = new BehaviorSubject<string>('1 Message');
-    widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
-    widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
-    canvasMessages: CanvasMessage[] =  canvasMessages;
-    localWidgets = new BehaviorSubject< CanvasWidget[]>(localWidgets);
-    localShapes = new BehaviorSubject< CanvasShape[]>(null);
-    currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
-    dashboardTabs = new BehaviorSubject<DashboardTab[]>(dashboardTabs);
-    dashboardPermissions: DashboardPermission[] = dashboardPermissions;
-    datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
-    currentDataset: any = currentDataset;
     datasets: any = datasets;
-    localTrash = new BehaviorSubject< CanvasWidget[]>([]);
-    canvasActivities: CanvasActivity[] = canvasActivities;
-    canvasAlerts: CanvasAlert[] = canvasAlerts;
-
-    showModalLanding: boolean = true;  // Shows Landing page
-    showMainMenu = new BehaviorSubject<boolean>(true);
-    isFirstTimeDashboard = new BehaviorSubject<boolean>(false);
-    isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
-    isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
-    isFirstTimeDashboardDiscard = new BehaviorSubject<boolean>(true);
-    isFirstTimePresentation = new BehaviorSubject<boolean>(true);
-    isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
-    isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
-
+    slicerHeader = new BehaviorSubject<string>('Filer: Make')
     finalFields: any = finalFields;
     pivotCols: string[];
     pivotRows: string[];
@@ -2399,12 +2362,55 @@ export class GlobalVariableService {
         }
     ]
 
+    // Data for current Dashboard and Datasources: only some models are loaded
+    currentDashboards: Partial<Dashboard>[] = [];
+    currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
+    private messageSource = new BehaviorSubject<string>("default message");
+   
+    currentMessage = this.messageSource.asObservable();
+    currentDatasources = new BehaviorSubject<Datasource[]>(currentDatasources);
+    currentDataset: any = currentDataset;
+    currentTransformations: Transformation[] = currentTransformations;
 
-    slicerHeader = new BehaviorSubject<string>('Filer: Make')
-
+    
+    
+    // Global vars that guide all interactions
+    editMode = new BehaviorSubject<boolean>(false);
+    isFirstTimeDashboard = new BehaviorSubject<boolean>(false);
+    isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
+    isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
+    isFirstTimeDashboardDiscard = new BehaviorSubject<boolean>(true);
+    isFirstTimePresentation = new BehaviorSubject<boolean>(true);
+    isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
+    isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
     presentation = new BehaviorSubject<boolean>(false);
+    menuCreateDisabled = new BehaviorSubject<boolean>(true);
+    openDashboardFormOnStartup: boolean = false;
+    sessionDebugging: boolean = true;
+    sessionLogging: boolean = false;
+    shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
     showGrid = new BehaviorSubject<boolean>(false);
-    xlOpenGetDataWizard: boolean = false;                          // Open/Not the Get Data Wizard
+    showModalLanding: boolean = true;  // Shows Landing page
+    showMainMenu = new BehaviorSubject<boolean>(true);
+    statusBarRunning = new BehaviorSubject<string>('No Query running');
+    statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
+    statusBarMessages = new BehaviorSubject<string>('1 Message');
+    widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
+
+
+    // Temp vars
+    localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
+    localWidgets = new BehaviorSubject< CanvasWidget[]>(localWidgets);
+    localShapes = new BehaviorSubject< CanvasShape[]>(null);
+    localTrash = new BehaviorSubject< CanvasWidget[]>([]);
+
+    dataGetFromSwitch = new BehaviorSubject<string>('File');
+    duplicateDashboard = new BehaviorSubject<boolean>(false);
+    refreshDashboard = new BehaviorSubject<boolean>(false);
+
+
+
+
     // Company related variables
     // companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig
     // companyLogo: string = '';                                   // Optional file name, set in SystemConfig
@@ -2427,8 +2433,6 @@ export class GlobalVariableService {
     // showSystemConfigButtons: boolean = true;       // Menu option called = True: SystemConfiguration, False: System Info
     // sessionDateTimeLoggedin: string = '';
     // sessionDashboardTabID: number = null;          // Tab ID to load when form opens, -1 = none
-    sessionDebugging: boolean = true;
-    sessionLogging: boolean = false;
     // sessionLoadOnOpenDashboardID: number = null;   // Dashboard to load when form opens, 0 = none
     // sessionLoadOnOpenDashboardName: string = '';   // Dashboard to load when form opens, '' = none
 
@@ -2518,9 +2522,6 @@ export class GlobalVariableService {
     // lastWidgetLeft: number = 25;
     // lastWidgetTop: number = 80;
 
-    private messageSource = new BehaviorSubject<string>("default message");
-    currentMessage = this.messageSource.asObservable();
-    menuCreateDisabled = new BehaviorSubject<boolean>(true);
 
     constructor(httpFake: httpFake) {
         this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
