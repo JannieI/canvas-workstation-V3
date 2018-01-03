@@ -2459,36 +2459,36 @@ export class GlobalVariableService {
     // testEnvironmentName: string = '';                           // Spaces = in PROD
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
-    // dirtyDataTextAlignDropdown: boolean = true;
-    // dirtyDataBorderDropdown: boolean = true;
-    // dirtyDataBoxShadowDropdown: boolean = true;
-    // dirtyDataBackgroundImageDropdown: boolean = true;
-    // dirtyDataDashboardTab: boolean = true;
-    // dirtyDataCanvasMessage: boolean = true;
-    // dirtyDataCanvasMessageRecipient: boolean = true;
-    // dirtyDataDashboardTag: boolean = true;
-    // dirtyDataDashboardTagMembership: boolean = true;
-    // dirtyDataDashboard: boolean = true;
-    // dirtyDataDatasource: boolean = true;
-    // dirtyDataFilter: boolean = true;
-    // dirtyDataFontSizeDropdown: boolean = true;
-    // dirtyDataFontWeightDropdown: boolean = true;
-    // dirtyDataGraphType: boolean = true;
-    // dirtyDataGridSizeDropdown: boolean = true;
-    // dirtyDataGroup: boolean = true;
-    // dirtyDataImageSourceDropdown: boolean = true;
-    // dirtyDataPackageTask: boolean = true;
-    // dirtyDataReport: boolean = true;
-    // dirtyDataReportWidgetSet: boolean = true;
-    // dirtyDataReportHistory: boolean = true;
-    // dirtyDataSystemConfiguration: boolean = true;
-    // dirtyDataTextMarginDropdown: boolean = true;
-    // dirtyDataTextPaddingDropdown: boolean = true;
-    // dirtyDataTextPositionDropdown: boolean = true;
-    // dirtyDataWidget: boolean = true;
-    // dirtyDataWidgetTemplate: boolean = true;
-    // dirtyDataWidgetType: boolean = true;
-    // dirtyDataUser: boolean = true;
+    isDirtyWidgets: boolean = true;
+    // isDirtyTextAlignDropdown: boolean = true;
+    // isDirtyBorderDropdown: boolean = true;
+    // isDirtyBoxShadowDropdown: boolean = true;
+    // isDirtyBackgroundImageDropdown: boolean = true;
+    // isDirtyDashboardTab: boolean = true;
+    // isDirtyCanvasMessage: boolean = true;
+    // isDirtyCanvasMessageRecipient: boolean = true;
+    // isDirtyDashboardTag: boolean = true;
+    // isDirtyDashboardTagMembership: boolean = true;
+    // isDirtyDashboard: boolean = true;
+    // isDirtyDatasource: boolean = true;
+    // isDirtyFilter: boolean = true;
+    // isDirtyFontSizeDropdown: boolean = true;
+    // isDirtyFontWeightDropdown: boolean = true;
+    // isDirtyGraphType: boolean = true;
+    // isDirtyGridSizeDropdown: boolean = true;
+    // isDirtyGroup: boolean = true;
+    // isDirtyImageSourceDropdown: boolean = true;
+    // isDirtyPackageTask: boolean = true;
+    // isDirtyReport: boolean = true;
+    // isDirtyReportWidgetSet: boolean = true;
+    // isDirtyReportHistory: boolean = true;
+    // isDirtySystemConfiguration: boolean = true;
+    // isDirtyTextMarginDropdown: boolean = true;
+    // isDirtyTextPaddingDropdown: boolean = true;
+    // isDirtyTextPositionDropdown: boolean = true;
+    // isDirtyWidgetTemplate: boolean = true;
+    // isDirtyWidgetType: boolean = true;
+    // isDirtyUser: boolean = true;
 
     // System & operation config
     // averageWarningRuntime: number = 0;
@@ -2616,28 +2616,37 @@ export class GlobalVariableService {
         let arr = this.dashboardsRecent.splice(index, 1);
     }
 
-    getAllWidgets(dashboardID: number): CanvasWidget[] {
-        // dashboardID = 0  =>  All
-        let filePath: string = './assets/data.widgets.json';
-        let returnWidgets: any;
-        dl.json({url: filePath}, {}, (err, currentData) => {
-            if (err) {
-              console.log('error on load', err);
-            } else {
+    getAllWidgets(dashboardID: number = null): CanvasWidget[] {
+        // Gets all W for one / all D
+        // If not cached, get from File
+        // If dirty, get from File
+        // getAllWidgets()   =>  Returns All
+        console.log('this.widgets', this.widgets, this.isDirtyWidgets)
 
-                // Load
-                if (dashboardID == 0) {
-                    this.widgets = currentData;
+        // Get first time or if dirty
+        if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+            this.isDirtyWidgets = false;
+            console.log('refresh it')
+            let filePath: string = './assets/data.widgets.json';
+            dl.json({url: filePath}, {}, (err, currentData) => {
+                if (err) {
+                console.log('error on load', err);
                 } else {
-                    this.widgets = currentData.filter(
-                        i => i.dashboardID == dashboardID
-                    )
+
+                    // Load
+                    if (dashboardID == null) {
+                        this.widgets = currentData;
+                        console.log('loaded All Widgets', this.widgets);
+                    } else {
+                        this.widgets = currentData.filter(
+                            i => i.dashboardID == dashboardID
+                        )
+                        console.log('loaded some Widgets', this.widgets);
+                    }
                 }
-                returnWidgets = currentData;
-                console.log('loaded Widgets', this.widgets);
-            }
-        });
-        return returnWidgets;
+            });
+        }
+        return this.widgets;
 
     }
 
@@ -2653,11 +2662,11 @@ export class GlobalVariableService {
 
     }
     
-    getAlldashboardsRecent() {
+    getAlldashboardsRecent(length: number) {
 
     }
 
-    getAlldashboardsSamples() {
+    getAlldashboardsSamples(length: number) {
 
     }
     
@@ -2681,67 +2690,78 @@ export class GlobalVariableService {
 
     }
 
-    getAllcurrentDashboards() {
+    getAllCurrentDashboards(dashboardID: number) {
+        // Get current D, including any Templates
 
     }
 
-    getAllcurrentDashboardTabs() {
+    getAllCurrentDashboardTabs(dashboardID: number) {
+        // Get all Tabs for current D
 
     }
 
-    getAllcurrentWidgets() {
+    getAllCurrentWidgets(dashboardID: number) {
+        // Get all W for current D
 
     }
 
-    getAllcurrentShapes() {
+    getAllcurrentShapes(dashboardID: number) {
+        // Get all S for current D
 
     }
 
-    getAllcurrentSlicers() {
+    getAllcurrentSlicers(datasourceID: number) {
+        // Get all Sl for current DS
 
     }
 
-    getAlldatasourceFilters() {
+    getAlldatasourceFilters(datasourceID: number) {
+        // Get all F for a DS
 
     }
 
-    getAlldatasourcePermissions() {
+    getAlldatasourcePermissions(datasourceID: number) {
+        // Get P for a dS
 
     }
 
-    getAlldataQualityIssues() {
+    getAlldataQualityIssues(datasourceID: number) {
+        // Get dQ for one or more DS
+    }
+
+    getAlltransformationsFormat(datasourceID: number) {
+        // Get TsFmt for a DS
 
     }
 
-    getAlltransformationsFormat() {
+    getAllfields(datasourceID: number) {
+        // Get all F for a DS
 
     }
 
-    getAllfields() {
+    getAllfieldsMetadata(datasourceID: number) {
+        // Get Fmdata for a DS
 
     }
 
-    getAllfieldsMetadata() {
+    getAlldashboards(dashboardIDs: number[]) {
+        // Get all / some D
 
     }
 
-    getAlldashboards() {
+    getAlldashboardTabs(dashboardIDs: number[]) {
 
     }
 
-    getAlldashboardTabs() {
+    getAlldashboardPermissions(dashboardIDs: number[]) {
 
     }
 
-    getAlldashboardPermissions() {
+    getAlldashboardTags(dashboardIDs: number[]) {
 
     }
 
-    getAlldashboardTags() {
-
-    }
-
-    getAlldashboardSnapshots() {
+    getAlldashboardSnapshots(dashboardIDs: number[]) {
 
     }
 
@@ -2749,19 +2769,15 @@ export class GlobalVariableService {
 
     }
 
-    getAlldashboardTemplates() {
+    getAlldashboardTemplates(dashboardIDs: number[]) {
 
     }
 
-    getAlldashboardSchedules() {
+    getAlldashboardSchedules(dashboardIDs: number[]) {
 
     }
 
-    getAllwidgets() {
-
-    }
-
-    getAllshapes() {
+    getAllshapes(dashboardIDs: number[]) {
 
     }
 
