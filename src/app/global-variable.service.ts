@@ -3,7 +3,7 @@ import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
 
 // Our Models
-import { ButtonBarAvailable}          from './models'
+import { ButtonBarAvailable, CanvasSlicer}          from './models'
 import { ButtonBarSelected }          from './models';
 import { CSScolor }                   from './models';
 import { Dashboard }                  from './models';
@@ -2320,6 +2320,8 @@ export class GlobalVariableService {
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: DashboardSchedule[] = dashboardSchedules;
     widgets: CanvasWidget[] = [];
+    shapes: CanvasShape[] = [];
+    slicers: CanvasSlicer[] = [];
     
     datasources = new BehaviorSubject<Datasource[]>(datasources);
     datasourceFilters: DatasourceFilter[] = datasourceFilters;
@@ -2372,7 +2374,10 @@ export class GlobalVariableService {
 
     currentDashboards: Partial<Dashboard>[] = [];
     currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
-    currentWidgets: CanvasWidget[];
+    currentWidgets = new BehaviorSubject<CanvasWidget[]>([]);
+    currentShapes = new BehaviorSubject<CanvasShape[]>([]);
+    currentSlicers = new BehaviorSubject<CanvasSlicer[]>([]);
+
     private messageSource = new BehaviorSubject<string>("default message");
     currentMessage = this.messageSource.asObservable();
     
@@ -2610,8 +2615,10 @@ export class GlobalVariableService {
         let arr = this.dashboardsRecent.splice(index, 1);
     }
 
-    widgetsGet(dashboardID: number) {
+    widgetsGet(dashboardID: number): CanvasWidget[] {
+        // dashboardID = 0  =>  All
         let filePath: string = './assets/data.widgets.json';
+        let returnWidgets: any;
         dl.json({url: filePath}, {}, (err, currentData) => {
             if (err) {
               console.log('error on load', err);
@@ -2625,10 +2632,11 @@ export class GlobalVariableService {
                         i => i.dashboardID == dashboardID
                     )
                 }
-                currentData = [];
+                returnWidgets = currentData;
                 console.log('loaded Widgets', this.widgets);
             }
         });
+        return returnWidgets;
 
     }
 }
