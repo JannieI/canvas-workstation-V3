@@ -2367,11 +2367,12 @@ export class GlobalVariableService {
     ]
 
 
-    // Data for current Dashboard and Datasources: only some models are loaded
+    // Data for CURRENT Dashboard and Datasources: only some models are loaded
     currentDatasources = new BehaviorSubject<Datasource[]>(currentDatasources);
+    currentDatasourcePermissions: DatasourcePermission[] = [];
     currentDataset: any = currentDataset;
     currentTransformations: Transformation[] = currentTransformations;
-
+    currentDatasourceFilters: DatasourceFilter[] = [];
     currentDashboards: Partial<Dashboard>[] = [];
     currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
     currentWidgets = new BehaviorSubject<CanvasWidget[]>([]);
@@ -2401,7 +2402,7 @@ export class GlobalVariableService {
     showMainMenu = new BehaviorSubject<boolean>(true);
     // Opening forms
     openDashboardFormOnStartup: boolean = false;
-    showModalLanding: boolean = true;  // Shows Landing page
+    showModalLanding: boolean = false;  // Shows Landing page
     // Session
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
@@ -2615,7 +2616,7 @@ export class GlobalVariableService {
         let arr = this.dashboardsRecent.splice(index, 1);
     }
 
-    widgetsGet(dashboardID: number): CanvasWidget[] {
+    getAllWidgets(dashboardID: number): CanvasWidget[] {
         // dashboardID = 0  =>  All
         let filePath: string = './assets/data.widgets.json';
         let returnWidgets: any;
@@ -2639,4 +2640,134 @@ export class GlobalVariableService {
         return returnWidgets;
 
     }
+
+    getAlldatasources(datasourceID: number) {
+
+    }
+
+    getAlldatasourceRecent(length: number) {
+
+    }
+    
+    getAlldatasourceSample(length: number) {
+
+    }
+    
+    getAlldashboardsRecent() {
+
+    }
+
+    getAlldashboardsSamples() {
+
+    }
+    
+    getAllcurrentDatasources() {
+
+    }
+    
+    getAllcurrentDatasourcePermissions() {
+
+    }
+
+    getAllcurrentDataset(datasourceID: number) {
+
+    }
+
+    getAllcurrentTransformations(datasourceID: number) {
+
+    }
+
+    getAllcurrentDatasourceFilters(datasourceID: number) {
+
+    }
+
+    getAllcurrentDashboards() {
+
+    }
+
+    getAllcurrentDashboardTabs() {
+
+    }
+
+    getAllcurrentWidgets() {
+
+    }
+
+    getAllcurrentShapes() {
+
+    }
+
+    getAllcurrentSlicers() {
+
+    }
+
+    getAlldatasourceFilters() {
+
+    }
+
+    getAlldatasourcePermissions() {
+
+    }
+
+    getAlldataQualityIssues() {
+
+    }
+
+    getAlltransformationsFormat() {
+
+    }
+
+    getAllfields() {
+
+    }
+
+    getAllfieldsMetadata() {
+
+    }
+
+    getAlldashboards() {
+
+    }
+
+    getAlldashboardTabs() {
+
+    }
+
+    getAlldashboardPermissions() {
+
+    }
+
+    getAlldashboardTags() {
+
+    }
+
+    getAlldashboardSnapshots() {
+
+    }
+
+    getAlldashboardThemes() {
+
+    }
+
+    getAlldashboardTemplates() {
+
+    }
+
+    getAlldashboardSchedules() {
+
+    }
+
+    getAllwidgets() {
+
+    }
+
+    getAllshapes() {
+
+    }
+
+    getAllslicers() {
+
+    }
+
+
 }
