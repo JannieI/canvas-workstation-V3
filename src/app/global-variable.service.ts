@@ -2319,6 +2319,7 @@ export class GlobalVariableService {
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: DashboardSchedule[] = dashboardSchedules;
+    widgets: CanvasWidget[] = [];
     
     datasources = new BehaviorSubject<Datasource[]>(datasources);
     datasourceFilters: DatasourceFilter[] = datasourceFilters;
@@ -2371,7 +2372,7 @@ export class GlobalVariableService {
 
     currentDashboards: Partial<Dashboard>[] = [];
     currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
-
+    currentWidgets: CanvasWidget[];
     private messageSource = new BehaviorSubject<string>("default message");
     currentMessage = this.messageSource.asObservable();
     
@@ -2490,8 +2491,6 @@ export class GlobalVariableService {
     // defaultReportFilters: string = '';
     // environment: string = '';
     // frontendColorScheme: string = '';
-    // growlSticky: boolean = false;
-    // growlLife: number = 3000;
     // gridSize: number = 3;
     // snapToGrid: boolean = true;
 
@@ -2609,5 +2608,21 @@ export class GlobalVariableService {
 
     dashboardRecentDelete(index: number) {
         let arr = this.dashboardsRecent.splice(index, 1);
+    }
+
+    widgetsGet(dashboardID: number) {
+        let filePath: string = './assets/data.widgets.json';
+        dl.json({url: filePath}, {}, (err, currentData) => {
+            if (err) {
+              console.log('error on load', err);
+            } else {
+
+                // Load
+                this.widgets = currentData;
+                currentData = [];
+                console.log('loaded Widgets', this.widgets);
+            }
+        });
+
     }
 }

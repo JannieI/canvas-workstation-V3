@@ -675,6 +675,7 @@ export class ExploreComponent {
 
     clickShowNextTab() {
         console.log('wft', this.globalVariableService.currentDashboardTabs.value)
+        this.globalVariableService.widgetGet(1);
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
         else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}
         else if (this.currentTabName == 'Europe') {this.currentTabName = 'Headcount'}
