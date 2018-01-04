@@ -685,12 +685,10 @@ export class ExploreComponent {
         // this.globalVariableService.currentWidgets.next(this.globalVariableService.getAllWidgets());
         // console.log('Next 1 widgets: ', this.globalVariableService.widgets)
 
-        this.globalVariableService.getWidgets()
-            .then(console.log('P data'))
+        this.globalVariableService.getWidgets(1)
+            .then(data => {console.log('P data', data) })
             // .then( data => {console.log('P data', data) })
             // .catch(err  => {console.log('error', err)})
-
-        console.log('after getW', this.globalVariableService.widgets)
  
         // Working
         // this.globalVariableService.get('getWidgets', null, 1);

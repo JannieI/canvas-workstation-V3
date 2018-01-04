@@ -2309,12 +2309,13 @@ export class GlobalVariableService {
 
     // Permanent data - later to come from http
     backgroundcolors: CSScolor[] = backgroundcolors;
-    shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
-    canvasComments: CanvasComment[] = canvasComments;
-    widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
-    canvasMessages: CanvasMessage[] =  canvasMessages;
     canvasActivities: CanvasActivity[] = canvasActivities;
     canvasAlerts: CanvasAlert[] = canvasAlerts;
+    canvasComments: CanvasComment[] = canvasComments;
+    canvasMessages: CanvasMessage[] =  canvasMessages;
+    filePath: string;
+    shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
+    widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
 
     dashboards: Partial<Dashboard>[] = dashboards;
     dashboardTabs = new BehaviorSubject<DashboardTab[]>(dashboardTabs);
@@ -2626,7 +2627,7 @@ export class GlobalVariableService {
         let arr = this.dashboardsRecent.splice(index, 1);
     }
 
-    getWidgets(dashboardID: number = null): any {
+    getWidgets(dashboardID: number = null): Promise<any> {
         // Description: Gets all W for one / all D
 
         // Parames:
@@ -2638,20 +2639,32 @@ export class GlobalVariableService {
         // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
         //        getWidgets()   =>  Returns All W
         let url: string = 'getWidgets';
-        let promise = new Promise<CanvasWidget[]>((resolve, reject) => {
-            this.get('getWidgets', null, 1)
-            resolve()
+        this.filePath = './assets/data.widgets.json';
+
+        return new Promise<CanvasWidget[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get('getWidgets', null, 1)
+                    .then(data => {
+                        
+                        // Load
+                        if (dashboardID == null) {
+                            this.widgets = data;
+                            console.log('getWidgets 1', data)
+                        } else {
+                            this.widgets = data.filter(
+                                i => i.dashboardID == dashboardID
+                            )
+                            console.log('getWidgets 2', data)
+                        }
+                        this.isDirtyWidgets = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(data);
+                    });
+            };
         });
-        return promise;
-                // this.get(url, null, 1)
-                //     .then( data => {
-                //         console.log(url + ': got data!');
-                //     } )
-                //     .catch(error => {
-                //         console.log(url + ': Failed: ', error.message || error );
-                //     })
-                // })
-                // .then(data => { return data });
         
         // Working - old copy
             // console.log('this.widgets', this.widgets, this.isDirtyWidgets)
@@ -2700,50 +2713,20 @@ export class GlobalVariableService {
     //         .catch(this.handleError);
     // }
 
-    get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): any {
+    get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
+        // Generic GET data, later to be replaced with http
 
-        if (url == 'getWidgets') {
-
-            let promise = new Promise((resolve, reject) => {
-                // Get first time or if dirty
-                if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
-                    this.isDirtyWidgets = false;
-                    this.statusBarRunning.next(this.QueryRunningMessage);
-                    let filePath: string = './assets/data.widgets.json';
-                    
-                    dl.json({url: filePath}, {}, (err, currentData) => {
-                        if (err) {
-                            reject(err)
-                            console.log('Error on DATALIB load ', err);
-                        } else {
-
-                            // Slow down in Dev ...
-                            // this.sleep(100);
-
-                            // Load
-                            if (dashboardID == null) {
-                                this.widgets = currentData;
-                                this.statusBarRunning.next(this.NoQueryRunningMessage);
-                                console.log('   ' + url + ' Loaded All Widgets');
-                            } else {
-                                this.widgets = currentData.filter(
-                                    i => i.dashboardID == dashboardID
-                                )
-                                this.statusBarRunning.next(this.NoQueryRunningMessage);
-                                
-                                console.log('   ' + url + ' Loaded some Widgets');
-                            }
-                            resolve( this.widgets)
-                        }
-                    });
+        return new Promise((resolve, reject) => {
+            // Get from source - files for now ...
+            dl.json({url: this.filePath}, {}, (err, currentData) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(currentData);
                 }
-            
-            })
-                .then(
-                    (data) => { return data },
-                    (err)  => { return err }
-                );
-        }
+                });
+            }
+        );
     }
     // addUser(user: User) {
     //       return this.post<EazlUser>('users',workingUser)
