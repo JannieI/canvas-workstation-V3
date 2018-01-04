@@ -2627,44 +2627,42 @@ export class GlobalVariableService {
         let arr = this.dashboardsRecent.splice(index, 1);
     }
 
-    getWidgets(dashboardID: number = null): Promise<any> {
-        // Description: Gets all W for one / all D
+    getCurrentWidgets(dashboardID: number): Promise<CanvasWidget[]> {
+        // Description: Gets all W for a D
 
         // Parames:
-        //   dashboardID - optional
+        //   dashboardID 
 
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
         
         // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
-        //        getWidgets()   =>  Returns All W
-        let url: string = 'getWidgets';
-        this.filePath = './assets/data.widgets.json';
-
-        return new Promise<CanvasWidget[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
-                this.get('getWidgets', null, 1)
+        
+        // Refresh from source at start, or if dirty
+        if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+            return new Promise<CanvasWidget[]>((resolve, reject) => {
+                this.getWidgets()
                     .then(data => {
-                        
-                        // Load
-                        if (dashboardID == null) {
-                            this.widgets = data;
-                            console.log('getWidgets 1', data)
-                        } else {
-                            this.widgets = data.filter(
-                                i => i.dashboardID == dashboardID
-                            )
-                            console.log('getWidgets 2', data)
-                        }
-                        this.isDirtyWidgets = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+                        this.currentWidgets.next(data);
+                        console.log('getWidgets 1', data)
                         resolve(data);
-                    });
-            };
-        });
+                        
+                })
+             })
+        } else {
+            return new Promise<CanvasWidget[]>((resolve, reject) => {
+                let returnData: CanvasWidget[];
+                returnData = this.widgets.filter(
+                        i => i.dashboardID == dashboardID
+                    )
+                this.currentWidgets.next(returnData);
+                console.log('getWidgets 1', returnData)
+                resolve(returnData);
+            });
+        };
         
         // Working - old copy
             // console.log('this.widgets', this.widgets, this.isDirtyWidgets)
@@ -2692,6 +2690,36 @@ export class GlobalVariableService {
             // }
             // return this.widgets;
         //
+
+    }
+
+    getWidgets(): Promise<CanvasWidget[]> {
+        // Description: Gets all W
+
+        // Returns: this.widgets array, unless:
+        //   If not cached or if dirty, get from File
+        
+        // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
+        //        getWidgets()   =>  Returns All W
+        let url: string = 'getWidgets';
+        this.filePath = './assets/data.widgets.json';
+
+        return new Promise<CanvasWidget[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get('getWidgets')
+                    .then(data => {
+                        this.widgets = data;
+                        this.isDirtyWidgets = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.widgets);
+                    });
+            } else {
+                resolve(this.widgets);
+            }
+        });
 
     }
 
