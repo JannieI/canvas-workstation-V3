@@ -2679,30 +2679,21 @@ export class GlobalVariableService {
     //         .catch(this.handleError);
     // }
 
-    get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
+    get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): any {
 
         if (url == 'getAllDashboards') {
 
-            // To reject promise change value of CONDITION to false
-            let CONDITION = true;
-
-            // Data passed when the promise is resolved
-            let DATA = 'hello world';
-
-            // Error passed when the promise is rejected
-            let ERROR = new Error('Ooops!');
-
-            let promise =
-            new Promise((resolve, reject) => {
-            // do some async stuff
+            let promise = new Promise((resolve, reject) => {
                 // Get first time or if dirty
                 if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
                     this.isDirtyWidgets = false;
                     console.log('refresh it')
                     let filePath: string = './assets/data.widgets.json';
+                    
                     dl.json({url: filePath}, {}, (err, currentData) => {
                         if (err) {
-                        console.log('error on load', err);
+                            reject(err)
+                            console.log('error on load', err);
                         } else {
 
                             // Load
@@ -2715,18 +2706,17 @@ export class GlobalVariableService {
                                 )
                                 console.log('loaded some Widgets', this.widgets);
                             }
+                            resolve(this.widgets)
                         }
                     });
                 }
             
-            if (CONDITION) resolve(this.widgets);
-            else reject(ERROR);
             })
-            .then(
-            (data) => { console.log('Got data'); },
-            (err) => { console.log('Error in getData', err); }
-            );
-            return promise;
+                .then(
+                    (data) => { console.log('Got data', data); return data },
+                    (err) => { console.log('Error in getData', err); return err }
+                );
+            // return promise
 
         }
     }
