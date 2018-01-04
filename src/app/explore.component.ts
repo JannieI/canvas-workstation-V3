@@ -677,15 +677,14 @@ export class ExploreComponent {
 
     clickShowNextTab() {
         console.log('Next START widgets: ', this.globalVariableService.widgets)
-
-        console.log('Next 0 Tabs: ', this.globalVariableService.currentDashboardTabs.value)
+        // this.isDirtyWidgets = 
+        console.log('   Next 0 Tabs: ', this.globalVariableService.currentDashboardTabs.value)
 
         // this.globalVariableService.currentWidgets.next(this.globalVariableService.getAllWidgets());
         // console.log('Next 1 widgets: ', this.globalVariableService.widgets)
 
         this.globalVariableService.get('getAllDashboards', null, 1);
-        // this.globalFunctionService.sleep(2000);
-        console.log('Next 2 widgets: ', this.globalVariableService.widgets)
+        console.log('   Next 2 widgets: ', this.globalVariableService.widgets)
 
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
         else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}

@@ -2304,7 +2304,7 @@ const dashboardsSamples: Partial<Dashboard>[] =
 export class GlobalVariableService {
 
     // Constants
-    NoQueryRunningMessage: string = 'No Query running';
+    NoQueryRunningMessage: string = 'No Query';
     QueryRunningMessage: string = 'Query running...';
 
     // Permanent data - later to come from http
@@ -2697,30 +2697,29 @@ export class GlobalVariableService {
                 if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
                     this.isDirtyWidgets = false;
                     this.statusBarRunning.next(this.QueryRunningMessage);
-                    console.log('refresh it');
                     let filePath: string = './assets/data.widgets.json';
                     
                     dl.json({url: filePath}, {}, (err, currentData) => {
                         if (err) {
                             reject(err)
-                            console.log('error on load', err);
+                            console.log('Error on DATALIB load ', err);
                         } else {
 
                             // Slow down in Dev ...
-                            this.sleep(3000);
+                            this.sleep(4000);
 
                             // Load
                             if (dashboardID == null) {
                                 this.widgets = currentData;
                                 this.statusBarRunning.next(this.NoQueryRunningMessage);
-                                console.log('loaded All Widgets', this.widgets);
+                                console.log('   getAllDashboards Loaded All Widgets');
                             } else {
                                 this.widgets = currentData.filter(
                                     i => i.dashboardID == dashboardID
                                 )
                                 this.statusBarRunning.next(this.NoQueryRunningMessage);
                                 
-                                console.log('loaded some Widgets', this.widgets);
+                                console.log('   getAllDashboards Loaded some Widgets');
                             }
                             resolve( this.widgets)
                         }
@@ -2732,8 +2731,6 @@ export class GlobalVariableService {
                     (data) => { return data },
                     (err)  => { return err }
                 );
-            // return promise
-
         }
     }
     // addUser(user: User) {
@@ -2889,10 +2886,20 @@ export class GlobalVariableService {
 
     }
 
-    sleep(milliseconds) {
-        var start = new Date().getTime();
-        for (var i = 0; i < 1e7; i++) {
+    sleep(milliseconds: number) {
+        console.log('sleeping ...', milliseconds);
+        var start: number = new Date().getTime();
+        console.log('  start', start, new Date().getTime())
+        for (var counter = 0; counter < 3600001; counter++) {
+            let mod:number = counter%60000;
+            // TODO - remove this console.log BUT at moment sleep increments counter * 60000
+            console.log(counter, mod);
+            if (mod == 0) {     
+                console.log ('Minutes elapsed ', counter, mod )
+            }
             if ((new Date().getTime() - start) > milliseconds){
+                console.log('  end', start, new Date().getTime())
+                
                 break;
             }
         }
