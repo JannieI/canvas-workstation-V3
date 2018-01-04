@@ -2046,40 +2046,112 @@ const dashboards: Partial<Dashboard>[] =
     }
 ];
 
-const dashboardsRecent: Partial<Dashboard>[] =
+const dashboardsRecent: Dashboard[] =
 [
     {
         id: 1,
-        state: 'Draft',
         version: 1,
+        state: 'Draft',
+        code: 'EU Indices',
         name: 'European Indices',
         description: 'European Indices',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 4
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     },
     {
         id: 1,
-        state: 'Complete',
         version: 1,
+        state: 'Complete',
+        code: 'Reg Sales',
         name: 'Regional Sales',
         description: 'Regional Sales',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 4
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     },
     {
         id: 2,
-        state: 'Complete',
         version: 1,
+        state: 'Complete',
+        code: 'Students',
         name: 'Student Summary',
         description: 'Students per subject',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 0
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     }
 ];
 
@@ -2442,7 +2514,7 @@ export class GlobalVariableService {
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     dashboardTags: DashboardTag[] = dashboardTags;
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
-    dashboardsSamples: Partial<Dashboard>[] = dashboardsSamples;
+    dashboardsSamples: Dashboard[] = dashboardsSamples;
     dashboardsRecent: Partial<Dashboard>[] = dashboardsRecent;
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
@@ -2501,7 +2573,7 @@ export class GlobalVariableService {
     currentDataset: any = currentDataset;
     currentTransformations: Transformation[] = currentTransformations;
     currentDatasourceFilters: DatasourceFilter[] = [];
-    currentDashboards: Partial<Dashboard>[] = [];
+    currentDashboards: Dashboard[] = [];
     currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
     currentWidgets = new BehaviorSubject<CanvasWidget[]>([]);
     currentShapes = new BehaviorSubject<CanvasShape[]>([]);
