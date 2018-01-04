@@ -2659,37 +2659,10 @@ export class GlobalVariableService {
                         i => i.dashboardID == dashboardID
                     )
                 this.currentWidgets.next(returnData);
-                console.log('getWidgets 1', returnData)
+                console.log('getWidgets 2', returnData)
                 resolve(returnData);
             });
         };
-        
-        // Working - old copy
-            // console.log('this.widgets', this.widgets, this.isDirtyWidgets)
-            // // Get first time or if dirty
-            // if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
-            //     this.isDirtyWidgets = false;
-            //     console.log('refresh it')
-            //     let filePath: string = './assets/data.widgets.json';
-            //     dl.json({url: filePath}, {}, (err, currentData) => {
-            //         if (err) {
-            //         console.log('error on load', err);
-            //         } else {
-            //             // Load
-            //             if (dashboardID == null) {
-            //                 this.widgets = currentData;
-            //                 console.log('loaded All Widgets', this.widgets);
-            //             } else {
-            //                 this.widgets = currentData.filter(
-            //                     i => i.dashboardID == dashboardID
-            //                 )
-            //                 console.log('loaded some Widgets', this.widgets);
-            //             }
-            //         }
-            //     });
-            // }
-            // return this.widgets;
-        //
 
     }
 
@@ -2723,24 +2696,6 @@ export class GlobalVariableService {
 
     }
 
-
-    // get<T>(route: string, data?: Object): Observable<any> {
-    //     // Get from http
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'get-http', '@Start');
-
-    //     return this.http.get(this.prepareRoute(route), this.httpOptions)
-    //         .map(this.parseResponse)
-    //         .catch(this.handleError);
-    // }
-    // post<T>(route: string, data: Object): Observable<any> {
-    //     // Post to http
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'post-http', '@Start');
-
-    //     return this.http.post(this.prepareRoute(route), JSON.stringify(data), this.httpOptions)
-    //         .map(this.parseResponse)
-    //         .catch(this.handleError);
-    // }
-
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
 
@@ -2756,23 +2711,6 @@ export class GlobalVariableService {
             }
         );
     }
-    // addUser(user: User) {
-    //       return this.post<EazlUser>('users',workingUser)
-    //             .toPromise()
-    //             .then( eazlUser => {
-    //             } )
-    //             .catch(error => {
-    //                 this.globalVariableService.growlGlobalMessage.next({
-    //                     severity: 'warn',
-    //                     summary:  'Add User',
-    //                     detail:   'Unsuccessful in adding user to the database'
-    //                 });
-    //                 error.message || error
-    //             })
-    // }
-
-
-
 
     getAlldatasources(datasourceID: number) {
 
