@@ -70,26 +70,31 @@ export class LandingComponent implements OnInit {
 			this.globalVariableService.dashboardsSamples[index - 1].id;
 		console.log('id', index, this.globalVariableService.currentDashboardID)
 
-		// Load the current Dashboard
+		// Load the current Dashboard, and Optional template
 		let currentDashboards: Dashboard[] = [];
 		currentDashboards.push(this.globalVariableService.dashboardsSamples[index - 1]);
 		if (currentDashboards[0].templateDashboardID != 0) {
-			currentDashboards.push(this.globalVariableService.dashboards.filter(
-				i => i.dashboardID = currentDashboards[0].id
-			
-			))
+			let templeteDashboard: Dashboard[] = null;
+
+			templeteDashboard = this.globalVariableService.dashboards.filter(
+				i => i.id = currentDashboards[0].templateDashboardID
+			);
+
+			if (templeteDashboard == null) {
+				alert('Dashboard template id does not exist in Dashboards')
+			} else {
+				currentDashboards.push(templeteDashboard[0]);
+			}
 		}
-		this.globalVariableService.currentDashboards 
-		 currentDashboards;
+
 		// Load the current DashboardTab
 		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
-			i => i.dashboardID = 1
+			i => i.dashboardID = this.globalVariableService.currentDashboardID
 		);
 		this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs);
 
 		// Load Widgets, Shapes and Slicers
-		// this.globalVariableService.currentWidgets.next(this.globalVariableService.getWidgets());
-        this.globalVariableService.getCurrentWidgets(1);
+        this.globalVariableService.getCurrentWidgets(this.globalVariableService.currentDashboardID);
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();

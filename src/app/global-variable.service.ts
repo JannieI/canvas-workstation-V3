@@ -1987,7 +1987,7 @@ const dashboardSnapshots: DashboardSnapshot[] =
     }
 ]
 
-const dashboards: Partial<Dashboard>[] =
+const dashboards: Dashboard[] =
 [
     {
         id: 1,
@@ -2629,7 +2629,7 @@ export class GlobalVariableService {
     shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
     widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
 
-    dashboards: Partial<Dashboard>[] = dashboards;
+    dashboards: Dashboard[] = dashboards;
     dashboardTabs = new BehaviorSubject<DashboardTab[]>(dashboardTabs);
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     dashboardTags: DashboardTag[] = dashboardTags;
