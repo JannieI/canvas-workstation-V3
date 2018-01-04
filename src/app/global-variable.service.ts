@@ -35,6 +35,7 @@ import { CombinationDetail }          from './models';
 import { httpFake }                   from './data/dashboards'
 
 import * as dl                        from 'datalib';
+import { Observable }                 from 'rxjs/Observable';
 
 // Setup / Settings / General
 const backgroundcolors: CSScolor[] =
@@ -356,7 +357,7 @@ const canvasComments: CanvasComment[] =
 
 
 // Data
-const finalFields = 
+const finalFields =
 [
     {
         fieldName: 'MonthTraded',
@@ -448,7 +449,7 @@ const currentDataset =
 [
     {
         datasourceID: 1,
-        data: 
+        data:
         [
             {
             Name: 'Jay',
@@ -490,11 +491,11 @@ const currentDataset =
     }
 ];
 
-const datasets: any[] = 
+const datasets: any[] =
 [
     {
         datasourceID: 1,
-        data: 
+        data:
         [
             {
               Name: 'Jay',
@@ -536,7 +537,7 @@ const datasets: any[] =
     },
     {
         datasourceID: 2,
-        data: 
+        data:
         [
             {Month: "01",Trades: 28}, {Month: "02",Trades: 55},
             {Month: "03",Trades: 43}, {Month: "04",Trades: 91},
@@ -2322,7 +2323,7 @@ export class GlobalVariableService {
     widgets: CanvasWidget[] = [];
     shapes: CanvasShape[] = [];
     slicers: CanvasSlicer[] = [];
-    
+
     datasources = new BehaviorSubject<Datasource[]>(datasources);
     datasourceFilters: DatasourceFilter[] = datasourceFilters;
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
@@ -2381,8 +2382,8 @@ export class GlobalVariableService {
 
     private messageSource = new BehaviorSubject<string>("default message");
     currentMessage = this.messageSource.asObservable();
-    
-    
+
+
     // Global vars that guide all interactions
     // ***************************************
     // Modes and Display
@@ -2650,6 +2651,92 @@ export class GlobalVariableService {
 
     }
 
+
+    // get<T>(route: string, data?: Object): Observable<any> {
+    //     // Get from http
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'get-http', '@Start');
+
+    //     return this.http.get(this.prepareRoute(route), this.httpOptions)
+    //         .map(this.parseResponse)
+    //         .catch(this.handleError);
+    // }
+    // post<T>(route: string, data: Object): Observable<any> {
+    //     // Post to http
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'post-http', '@Start');
+
+    //     return this.http.post(this.prepareRoute(route), JSON.stringify(data), this.httpOptions)
+    //         .map(this.parseResponse)
+    //         .catch(this.handleError);
+    // }
+
+    get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number) {
+
+        if (url == 'getAllDashboards') {
+
+            // To reject promise change value of CONDITION to false
+            let CONDITION = true;
+
+            // Data passed when the promise is resolved
+            let DATA = 'hello world';
+
+            // Error passed when the promise is rejected
+            let ERROR = new Error('Ooops!');
+
+            let promise =
+            new Promise((resolve, reject) => {
+            // do some async stuff
+                // Get first time or if dirty
+                if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+                    this.isDirtyWidgets = false;
+                    console.log('refresh it')
+                    let filePath: string = './assets/data.widgets.json';
+                    dl.json({url: filePath}, {}, (err, currentData) => {
+                        if (err) {
+                        console.log('error on load', err);
+                        } else {
+
+                            // Load
+                            if (dashboardID == null) {
+                                this.widgets = currentData;
+                                console.log('loaded All Widgets', this.widgets);
+                            } else {
+                                this.widgets = currentData.filter(
+                                    i => i.dashboardID == dashboardID
+                                )
+                                console.log('loaded some Widgets', this.widgets);
+                            }
+                        }
+                    });
+                }
+            
+            if (CONDITION) resolve(this.widgets);
+            else reject(ERROR);
+            })
+            .then(
+            (data) => { console.log(data); },
+            (err) => { console.log(err); }
+            );
+
+        }
+    }
+    // addUser(user: User) {
+    //       return this.post<EazlUser>('users',workingUser)
+    //             .toPromise()
+    //             .then( eazlUser => {
+    //             } )
+    //             .catch(error => {
+    //                 this.globalVariableService.growlGlobalMessage.next({
+    //                     severity: 'warn',
+    //                     summary:  'Add User',
+    //                     detail:   'Unsuccessful in adding user to the database'
+    //                 });
+    //                 error.message || error
+    //             })
+    // }
+
+
+
+
     getAlldatasources(datasourceID: number) {
 
     }
@@ -2657,11 +2744,11 @@ export class GlobalVariableService {
     getAlldatasourceRecent(length: number) {
 
     }
-    
+
     getAlldatasourceSample(length: number) {
 
     }
-    
+
     getAlldashboardsRecent(length: number) {
 
     }
@@ -2669,11 +2756,11 @@ export class GlobalVariableService {
     getAlldashboardsSamples(length: number) {
 
     }
-    
+
     getAllcurrentDatasources() {
 
     }
-    
+
     getAllcurrentDatasourcePermissions() {
 
     }

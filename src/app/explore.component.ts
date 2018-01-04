@@ -674,11 +674,18 @@ export class ExploreComponent {
     }
 
     clickShowNextTab() {
-        console.log('wft', this.globalVariableService.currentDashboardTabs.value)
+        console.log('Next START widgets: ', this.globalVariableService.widgets)
 
-        console.log('testing gv.getW')
-        this.globalVariableService.currentWidgets.next(this.globalVariableService.getAllWidgets());
-        console.log('xx', this.globalVariableService.widgets)
+        console.log('Next 0 Tabs: ', this.globalVariableService.currentDashboardTabs.value)
+
+        // this.globalVariableService.currentWidgets.next(this.globalVariableService.getAllWidgets());
+        // console.log('Next 1 widgets: ', this.globalVariableService.widgets)
+
+        this.globalVariableService.get('getAllDashboards', null, 1);
+        setTimeout(function(){
+            console.log('Next 2 widgets: ', this.globalVariableService.widgets)
+        }, 2000);
+
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
         else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}
         else if (this.currentTabName == 'Europe') {this.currentTabName = 'Headcount'}
