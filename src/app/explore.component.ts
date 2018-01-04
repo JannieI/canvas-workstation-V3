@@ -682,20 +682,6 @@ export class ExploreComponent {
         // this.isDirtyWidgets = 
         console.log('   Next 0 Tabs: ', this.globalVariableService.currentDashboardTabs.value)
 
-        // this.globalVariableService.currentWidgets.next(this.globalVariableService.getAllWidgets());
-        // console.log('Next 1 widgets: ', this.globalVariableService.widgets)
-
-        // this.globalVariableService.getWidgets()
-        //     .then(data => {console.log('P all W', data) })
-            // .then( data => {console.log('P data', data) })
-            // .catch(err  => {console.log('error', err)})
-        this.globalVariableService.getCurrentWidgets(1)
-            .then(data => {console.log('P current W', data) })
- 
-        // Working
-        // this.globalVariableService.get('getWidgets', null, 1);
-        // console.log('   Next 2 widgets: ', this.globalVariableService.widgets)
-
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
         else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}
         else if (this.currentTabName == 'Europe') {this.currentTabName = 'Headcount'}

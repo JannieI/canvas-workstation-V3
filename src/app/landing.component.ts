@@ -66,7 +66,7 @@ export class LandingComponent implements OnInit {
 
 		// Load Widgets, Shapes and Slicers
 		// this.globalVariableService.currentWidgets.next(this.globalVariableService.getWidgets());
-        this.globalVariableService.get('getWidgets', null, 1);
+        this.globalVariableService.getCurrentWidgets(1);
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();
