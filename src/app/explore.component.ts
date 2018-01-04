@@ -340,6 +340,8 @@ export class ExploreComponent {
         this.globalVariableService.slicerHeader.subscribe(
             i => this.slicerHeader = i
         );
+
+        console.log('explore start', this.globalVariableService.widgets);
     }
 
     ngAfterViewInit() {
@@ -683,8 +685,16 @@ export class ExploreComponent {
         // this.globalVariableService.currentWidgets.next(this.globalVariableService.getAllWidgets());
         // console.log('Next 1 widgets: ', this.globalVariableService.widgets)
 
-        this.globalVariableService.get('getAllDashboards', null, 1);
-        console.log('   Next 2 widgets: ', this.globalVariableService.widgets)
+        this.globalVariableService.getWidgets()
+            .then(console.log('P data'))
+            // .then( data => {console.log('P data', data) })
+            // .catch(err  => {console.log('error', err)})
+
+        console.log('after getW', this.globalVariableService.widgets)
+ 
+        // Working
+        // this.globalVariableService.get('getWidgets', null, 1);
+        // console.log('   Next 2 widgets: ', this.globalVariableService.widgets)
 
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
         else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}

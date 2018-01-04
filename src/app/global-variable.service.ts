@@ -2626,47 +2626,59 @@ export class GlobalVariableService {
         let arr = this.dashboardsRecent.splice(index, 1);
     }
 
-    getAllWidgets(dashboardID: number = null): CanvasWidget[] {
-        // Gets all W for one / all D
-        // If not cached, get from File
-        // If dirty, get from File
-        // getAllWidgets()   =>  Returns All
+    getWidgets(dashboardID: number = null): any {
+        // Description: Gets all W for one / all D
 
-        this.get('getAllDashboards', null, 1)
-                .then( data => {
-                    console.log('getAllWidgets got data!');
-                } )
-                .catch(error => {
-                    console.log('Warning - getAllWidgets failed: ', error.message || error );
-                })
-        return this.widgets;
+        // Parames:
+        //   dashboardID - optional
 
-
+        // Returns: this.widgets array, unless:
+        //   If not cached or if dirty, get from File
+        
+        // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
+        //        getWidgets()   =>  Returns All W
+        let url: string = 'getWidgets';
+        let promise = new Promise<CanvasWidget[]>((resolve, reject) => {
+            this.get('getWidgets', null, 1)
+            resolve()
+        });
+        return promise;
+                // this.get(url, null, 1)
+                //     .then( data => {
+                //         console.log(url + ': got data!');
+                //     } )
+                //     .catch(error => {
+                //         console.log(url + ': Failed: ', error.message || error );
+                //     })
+                // })
+                // .then(data => { return data });
+        
         // Working - old copy
-        // console.log('this.widgets', this.widgets, this.isDirtyWidgets)
-        // // Get first time or if dirty
-        // if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
-        //     this.isDirtyWidgets = false;
-        //     console.log('refresh it')
-        //     let filePath: string = './assets/data.widgets.json';
-        //     dl.json({url: filePath}, {}, (err, currentData) => {
-        //         if (err) {
-        //         console.log('error on load', err);
-        //         } else {
-        //             // Load
-        //             if (dashboardID == null) {
-        //                 this.widgets = currentData;
-        //                 console.log('loaded All Widgets', this.widgets);
-        //             } else {
-        //                 this.widgets = currentData.filter(
-        //                     i => i.dashboardID == dashboardID
-        //                 )
-        //                 console.log('loaded some Widgets', this.widgets);
-        //             }
-        //         }
-        //     });
-        // }
-        // return this.widgets;
+            // console.log('this.widgets', this.widgets, this.isDirtyWidgets)
+            // // Get first time or if dirty
+            // if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+            //     this.isDirtyWidgets = false;
+            //     console.log('refresh it')
+            //     let filePath: string = './assets/data.widgets.json';
+            //     dl.json({url: filePath}, {}, (err, currentData) => {
+            //         if (err) {
+            //         console.log('error on load', err);
+            //         } else {
+            //             // Load
+            //             if (dashboardID == null) {
+            //                 this.widgets = currentData;
+            //                 console.log('loaded All Widgets', this.widgets);
+            //             } else {
+            //                 this.widgets = currentData.filter(
+            //                     i => i.dashboardID == dashboardID
+            //                 )
+            //                 console.log('loaded some Widgets', this.widgets);
+            //             }
+            //         }
+            //     });
+            // }
+            // return this.widgets;
+        //
 
     }
 
@@ -2690,7 +2702,7 @@ export class GlobalVariableService {
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): any {
 
-        if (url == 'getAllDashboards') {
+        if (url == 'getWidgets') {
 
             let promise = new Promise((resolve, reject) => {
                 // Get first time or if dirty
@@ -2706,20 +2718,20 @@ export class GlobalVariableService {
                         } else {
 
                             // Slow down in Dev ...
-                            this.sleep(4000);
+                            // this.sleep(100);
 
                             // Load
                             if (dashboardID == null) {
                                 this.widgets = currentData;
                                 this.statusBarRunning.next(this.NoQueryRunningMessage);
-                                console.log('   getAllDashboards Loaded All Widgets');
+                                console.log('   ' + url + ' Loaded All Widgets');
                             } else {
                                 this.widgets = currentData.filter(
                                     i => i.dashboardID == dashboardID
                                 )
                                 this.statusBarRunning.next(this.NoQueryRunningMessage);
                                 
-                                console.log('   getAllDashboards Loaded some Widgets');
+                                console.log('   ' + url + ' Loaded some Widgets');
                             }
                             resolve( this.widgets)
                         }
