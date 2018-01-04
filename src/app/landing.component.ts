@@ -52,10 +52,26 @@ export class LandingComponent implements OnInit {
 	loadsampleDashboard(index: number) {
 		console.log('start loadsampleDashboard', index);
 
+		// Check that we have data
+		if (this.globalVariableService.dashboardsSamples == []  ||  
+			this.globalVariableService.dashboards == []) {
+				this.globalVariableService.statusBarMessages.next(
+					'Still loading ...'
+				);
+				return;
+		};
+
+		// Check we have an index
+		if (index < 1) {
+			alert('Error: index < 1');
+			return;
+		}
+		this.globalVariableService.currentDashboardID = 
+			this.globalVariableService.dashboardsSamples[index - 1].id;
+		console.log('id', index, this.globalVariableService.currentDashboardID)
+
 		// Load the current Dashboard
-		let currentDashboards = this.globalVariableService.dashboardsSamples.filter(
-			i => i.id == index
-		)
+		let currentDashboards = this.globalVariableService.dashboardsSamples[index - 1];
 		this.globalVariableService.currentDashboards = currentDashboards;
 
 		// Load the current DashboardTab

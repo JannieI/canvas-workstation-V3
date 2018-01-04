@@ -2083,62 +2083,182 @@ const dashboardsRecent: Partial<Dashboard>[] =
     }
 ];
 
-const dashboardsSamples: Partial<Dashboard>[] =
+const dashboardsSamples: Dashboard[] =
 [
     {
         id: 1,
-        state: 'Complete',
         version: 1,
+        state: 'Complete',
+        code: 'Econ Overview',
         name: 'Economic Overview',
         description: 'Sample Economic indicator summary',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 4
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     },
     {
         id: 2,
-        state: 'Complete',
         version: 1,
+        state: 'Complete',
+        code: 'Costing',
         name: 'Costing Summary',
         description: 'Sample Costing Summary',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 0
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     },
     {
         id: 3,
-        state: 'Complete',
         version: 1,
+        state: 'Complete',
+        code: 'Budget',
         name: 'Home Budget',
         description: 'Sample Home Budget',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 21
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     },
     {
         id: 4,
-        state: 'Complete',
         version: 1,
+        state: 'Complete',
+        code: 'Bitcoin',
         name: 'Bitcoin sales',
         description: 'Sample Bitcoin sales',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 4
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     },
     {
         id: 5,
-        state: 'Complete',
         version: 1,
+        state: 'Complete',
+        code: 'Cycling',
         name: 'Sample Cycling routes',
         description: 'Cycling routes',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 14
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     }
 ];
 
@@ -2410,8 +2530,9 @@ export class GlobalVariableService {
     showMainMenu = new BehaviorSubject<boolean>(true);
     // Opening forms
     openDashboardFormOnStartup: boolean = false;
-    showModalLanding: boolean = false;  // Shows Landing page
+    showModalLanding: boolean = true;  // Shows Landing page
     // Session
+    currentDashboardID: number = null;
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
