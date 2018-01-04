@@ -24,8 +24,8 @@ export class LandingComponent implements OnInit {
 
 	@Output() formLandingClosed: EventEmitter<string> = new EventEmitter();
 
-	sampleDashboards: Partial<Dashboard>[] = this.globalVariableService.dashboardsSamples;
-	recentDashboards: Partial<Dashboard>[] = this.globalVariableService.dashboardsRecent;
+	sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
+	recentDashboards: Dashboard[] = this.globalVariableService.dashboardsRecent;
 	showModel: boolean = true;
 
 	constructor(
@@ -71,9 +71,16 @@ export class LandingComponent implements OnInit {
 		console.log('id', index, this.globalVariableService.currentDashboardID)
 
 		// Load the current Dashboard
-		let currentDashboards = this.globalVariableService.dashboardsSamples[index - 1];
-		this.globalVariableService.currentDashboards = currentDashboards;
-
+		let currentDashboards: Dashboard[] = [];
+		currentDashboards.push(this.globalVariableService.dashboardsSamples[index - 1]);
+		if (currentDashboards[0].templateDashboardID != 0) {
+			currentDashboards.push(this.globalVariableService.dashboards.filter(
+				i => i.dashboardID = currentDashboards[0].id
+			
+			))
+		}
+		this.globalVariableService.currentDashboards 
+		 currentDashboards;
 		// Load the current DashboardTab
 		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
 			i => i.dashboardID = 1

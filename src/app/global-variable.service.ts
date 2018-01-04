@@ -1993,56 +1993,176 @@ const dashboards: Partial<Dashboard>[] =
         id: 1,
         state: 'Draft',
         version: 1,
+        code: 'Mkt Overview',
         name: 'Market Overview',
         description: 'Economic indicator summary',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 4
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     },
     {
         id: 2,
         state: 'Pending',
         version: 1,
+        code: 'Costing',
         name: 'Costing Summary',
         description: 'Costing Summary',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 0
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     },
     {
         id: 3,
         state: 'Complete',
         version: 1,
+        code: 'Budget',
         name: 'Home Budget',
         description: 'Home Budget',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 21
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     },
     {
         id: 4,
         state: 'Complete',
         version: 1,
+        code: 'Bitcoin',
         name: 'Bitcoin sales',
         description: 'Bitcoin sales',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 4
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     },
     {
         id: 5,
         state: 'Pending',
         version: 1,
+        code: 'Cycling',
         name: 'Cycling routes',
         description: 'Cycling routes',
-        nrWidgets: 1,
-        nrRecords: 12,
+
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: true,
+    
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+    
         creator: 'JonathanS',
-        nrTimesOpened: 14
+        dateCreated: '',
+        editor: 'JonathanS',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+            
+        nrWidgets: 1,
+        nrShapes: 0,
+        nrRecords: 12,
+        nrTimesOpened: 0,
+        tabs: [2],
+        tags: [],
+        permissions: []
     }
 ];
 
@@ -2515,7 +2635,7 @@ export class GlobalVariableService {
     dashboardTags: DashboardTag[] = dashboardTags;
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
     dashboardsSamples: Dashboard[] = dashboardsSamples;
-    dashboardsRecent: Partial<Dashboard>[] = dashboardsRecent;
+    dashboardsRecent: Dashboard[] = dashboardsRecent;
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: DashboardSchedule[] = dashboardSchedules;
