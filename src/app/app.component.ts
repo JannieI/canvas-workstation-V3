@@ -523,7 +523,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetRefresh() {
         this.showModalWidgetRefresh = true;
-        this.globalVariableService.statusBarRunning.next('Query Running');
+        this.globalVariableService.statusBarRunning.next(this.globalVariableService.NoQueryRunningMessage);
         this.globalVariableService.statusBarCancelRefresh.next('Cancel');
     }
 

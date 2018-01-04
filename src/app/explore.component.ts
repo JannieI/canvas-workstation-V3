@@ -19,7 +19,7 @@ import { ViewChildren }               from '@angular/core';
 
 // Our Services
 import { GlobalVariableService }      from './global-variable.service';
-import { GlobalFunctionService }      from './global-function.service';
+// import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
 import { CanvasShape }                from './models'
@@ -232,7 +232,7 @@ export class ExploreComponent {
     showModalDashboardOpen: boolean = false;
 
     constructor(
-        private globalFunctionService: GlobalFunctionService,
+        // private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         private renderer: Renderer,
         private renderer2: Renderer2,
@@ -684,7 +684,7 @@ export class ExploreComponent {
         // console.log('Next 1 widgets: ', this.globalVariableService.widgets)
 
         this.globalVariableService.get('getAllDashboards', null, 1);
-        this.globalFunctionService.sleep(2000);
+        // this.globalFunctionService.sleep(2000);
         console.log('Next 2 widgets: ', this.globalVariableService.widgets)
 
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}

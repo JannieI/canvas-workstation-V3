@@ -2,6 +2,9 @@
 import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
 
+// Our Serives
+import { GlobalFunctionService }      from './global-function.service';
+
 // Our Models
 import { ButtonBarAvailable, CanvasSlicer}          from './models'
 import { ButtonBarSelected }          from './models';
@@ -2300,6 +2303,9 @@ const dashboardsSamples: Partial<Dashboard>[] =
 @Injectable()
 export class GlobalVariableService {
 
+    // Constants
+    NoQueryRunningMessage: string = 'No Query running';
+    QueryRunningMessage: string = 'Query running...';
 
     // Permanent data - later to come from http
     backgroundcolors: CSScolor[] = backgroundcolors;
@@ -2410,7 +2416,7 @@ export class GlobalVariableService {
     shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
     widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
     // StatusBar
-    statusBarRunning = new BehaviorSubject<string>('No Query running');
+    statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);
     statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
     statusBarMessages = new BehaviorSubject<string>('1 Message');
 
@@ -2536,7 +2542,10 @@ export class GlobalVariableService {
     // lastWidgetTop: number = 80;
 
 
-    constructor(httpFake: httpFake) {
+    constructor(        
+        // private globalFunctionService: GlobalFunctionService,
+        httpFake: httpFake
+    ) {
         this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
 
      }
@@ -2687,7 +2696,8 @@ export class GlobalVariableService {
                 // Get first time or if dirty
                 if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
                     this.isDirtyWidgets = false;
-                    console.log('refresh it')
+                    this.statusBarRunning.next(this.QueryRunningMessage);
+                    console.log('refresh it');
                     let filePath: string = './assets/data.widgets.json';
                     
                     dl.json({url: filePath}, {}, (err, currentData) => {
@@ -2696,25 +2706,31 @@ export class GlobalVariableService {
                             console.log('error on load', err);
                         } else {
 
+                            // Slow down in Dev ...
+                            this.sleep(3000);
+
                             // Load
                             if (dashboardID == null) {
                                 this.widgets = currentData;
+                                this.statusBarRunning.next(this.NoQueryRunningMessage);
                                 console.log('loaded All Widgets', this.widgets);
                             } else {
                                 this.widgets = currentData.filter(
                                     i => i.dashboardID == dashboardID
                                 )
+                                this.statusBarRunning.next(this.NoQueryRunningMessage);
+                                
                                 console.log('loaded some Widgets', this.widgets);
                             }
-                            resolve(this.widgets)
+                            resolve( this.widgets)
                         }
                     });
                 }
             
             })
                 .then(
-                    (data) => { console.log('Got data', data); return data },
-                    (err) => { console.log('Error in getData', err); return err }
+                    (data) => { return data },
+                    (err)  => { return err }
                 );
             // return promise
 
@@ -2873,5 +2889,12 @@ export class GlobalVariableService {
 
     }
 
-
+    sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
+    }
 }
