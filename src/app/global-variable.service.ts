@@ -2552,7 +2552,7 @@ export class GlobalVariableService {
         // private globalFunctionService: GlobalFunctionService,
         httpFake: httpFake
     ) {
-        this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
+        this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapesLocalShapes());
         this.currentDashboardID.subscribe(
             i => {
                     // Dont refresh at initialise: landing page will decide which ID to load ...
