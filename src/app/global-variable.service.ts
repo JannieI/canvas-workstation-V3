@@ -6,7 +6,9 @@ import { Injectable }                 from '@angular/core';
 import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
-import { ButtonBarAvailable, CanvasSlicer, DashboardRecent}          from './models'
+import { ButtonBarAvailable }         from './models'
+import { CanvasSlicer}                from './models'
+import { DashboardRecent}             from './models'
 import { ButtonBarSelected }          from './models';
 import { CSScolor }                   from './models';
 import { Dashboard }                  from './models';
@@ -2785,8 +2787,8 @@ export class GlobalVariableService {
 
     }
 
-    getDashboardsRecent(): Promise<number[]> {
-        // Description: Gets all Recent D
+    getDashboardsRecentList(userID: string): Promise<number[]> {
+        // Description: Gets a LIST of Recent D
 
         // Returns: this.dashboardsRecent array, unless:
         //   If not cached or if dirty, get from File
@@ -2801,9 +2803,8 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        // TODO - fix hard coding
                         let temp: DashboardRecent[] = data.filter(
-                            i => i.userID == 'Jannie'
+                            i => i.userID == userID
                         );
                         if (temp.length == 0) {
                             this.dashboardsRecent = [];
@@ -2819,6 +2820,43 @@ export class GlobalVariableService {
                 resolve(this.dashboardsRecent);
             }
         });
+
+    }
+
+    getDashboardsRecent(userID: string): Promise<Dashboard[]> {
+        // Description: Gets all Recent D
+
+        // Returns: this.widgets array, unless:
+        //   If not cached or if dirty, get from File
+        
+        // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
+        
+        // Refresh from source at start, or if dirty
+        if ( (this.widgets == [])  ||  (this.isDirtyDashboardsRecent) ) {
+            return new Promise<Dashboard[]>((resolve, reject) => {
+                this.getDashboardsRecentList(userID)
+                    .then(data => {
+                        let returnData: Dashboard[];
+                        for (var i = 0; i < this.dashboards.length; i++) {
+                            if (data.indexOf(this.dashboards[i].id) != -1) {
+                                returnData.push(this.dashboards[i]);
+                            }
+                        }
+                        resolve(returnData);
+                                
+                })
+             })
+        } else {
+            return new Promise<Dashboard[]>((resolve, reject) => {
+                let returnData: Dashboard[];
+                for (var i = 0; i < this.dashboards.length; i++) {
+                    if (this.dashboardsRecent.indexOf(this.dashboards[i].id) != -1) {
+                        returnData.push(this.dashboards[i]);
+                    }
+                }
+                resolve(returnData);
+            });
+        };
 
     }
 
