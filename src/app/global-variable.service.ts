@@ -2171,118 +2171,6 @@ const dashboards: Dashboard[] =
     }
 ];
 
-const dashboardsRecent: Dashboard[] =
-[
-    {
-        id: 1,
-        version: 1,
-        state: 'Draft',
-        code: 'EU Indices',
-        name: 'European Indices',
-        description: 'European Indices',
-
-        password: '',
-        refreshMode: '',
-        refreshTimer: 0,
-        defaultTabID: 0,
-        defaultExportFileType: '',
-        url: '',
-        qaRequired: true,
-        isSample: true,
-
-        backgroundColor: '',
-        backgroundImage: '',
-        templateDashboardID: 0,
-    
-        creator: 'JonathanS',
-        dateCreated: '',
-        editor: 'JonathanS',
-        dateEdited: '',
-        refresher: '',
-        dateRefreshed: '',
-            
-        nrWidgets: 1,
-        nrShapes: 0,
-        nrRecords: 12,
-        nrTimesOpened: 0,
-        tabs: [2],
-        tags: [],
-        permissions: []
-    },
-    {
-        id: 1,
-        version: 1,
-        state: 'Complete',
-        code: 'Reg Sales',
-        name: 'Regional Sales',
-        description: 'Regional Sales',
-
-        password: '',
-        refreshMode: '',
-        refreshTimer: 0,
-        defaultTabID: 0,
-        defaultExportFileType: '',
-        url: '',
-        qaRequired: true,
-        isSample: true,
-    
-        backgroundColor: '',
-        backgroundImage: '',
-        templateDashboardID: 0,
-    
-        creator: 'JonathanS',
-        dateCreated: '',
-        editor: 'JonathanS',
-        dateEdited: '',
-        refresher: '',
-        dateRefreshed: '',
-            
-        nrWidgets: 1,
-        nrShapes: 0,
-        nrRecords: 12,
-        nrTimesOpened: 0,
-        tabs: [2],
-        tags: [],
-        permissions: []
-    },
-    {
-        id: 2,
-        version: 1,
-        state: 'Complete',
-        code: 'Students',
-        name: 'Student Summary',
-        description: 'Students per subject',
-
-        password: '',
-        refreshMode: '',
-        refreshTimer: 0,
-        defaultTabID: 0,
-        defaultExportFileType: '',
-        url: '',
-        qaRequired: true,
-        isSample: true,
-    
-        backgroundColor: '',
-        backgroundImage: '',
-        templateDashboardID: 0,
-    
-        creator: 'JonathanS',
-        dateCreated: '',
-        editor: 'JonathanS',
-        dateEdited: '',
-        refresher: '',
-        dateRefreshed: '',
-            
-        nrWidgets: 1,
-        nrShapes: 0,
-        nrRecords: 12,
-        nrTimesOpened: 0,
-        tabs: [2],
-        tags: [],
-        permissions: []
-    }
-];
-
 // Old, Full list
     // const transformations: transformation[] =
     // [
@@ -2896,6 +2784,19 @@ export class GlobalVariableService {
 
     }
 
+
+    getDashboardsRecent(length: number): Promise<Dashboard[]> {
+        let temp: Dashboard[];
+        for (var i = 0; i < this.dashboards.length; i++) {
+            if (this.dashboardRecent.indexOf(this.dashboards[i].id) != -1) {
+                temp.push(this.dashboards[i]);
+            }
+        };
+        return new Promise<Dashboard[]>((resolve, reject) => { 
+            resolve(temp)
+        });
+    }
+
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
 
@@ -2921,10 +2822,6 @@ export class GlobalVariableService {
     }
 
     getAlldatasourceSample(length: number) {
-
-    }
-
-    getAlldashboardsRecent(length: number) {
 
     }
 
