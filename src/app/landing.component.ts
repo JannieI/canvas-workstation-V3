@@ -24,19 +24,28 @@ export class LandingComponent implements OnInit {
 
 	@Output() formLandingClosed: EventEmitter<string> = new EventEmitter();
 
-	sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
+	// sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
 	recentDashboards: Dashboard[] = this.globalVariableService.dashboardsRecent;
+	sampleDashboards: Promise<Dashboard[]>;
 	showModel: boolean = true;
 
 	constructor(
 		private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 		private router: Router
-	) {}
+	) {
+		// this.globalVariableService.getDashboardSamples()
+		// 	.then(data => this.sampleDashboards = data);
+		this.sampleDashboards = this.globalVariableService.getDashboardSamples()
+
+		}
 
 	ngOnInit() {
 	}
 
+	ngAfterViewInit() {
+		console.log('af', this.sampleDashboards)
+	}
 	clickButtonData() {
 		console.log('clickButtonData')
 		this.globalVariableService.changeMenuCreateDisabled(true);
@@ -53,7 +62,7 @@ export class LandingComponent implements OnInit {
 		console.log('start loadsampleDashboard', index);
 
 		// Check that we have data
-		if (this.globalVariableService.dashboardsSamples == []  ||  
+		if (this.globalVariableService.dashboardsSamples == []  ||
 			this.globalVariableService.dashboards == []) {
 				this.globalVariableService.statusBarMessages.next(
 					'Still loading ...'
@@ -66,7 +75,7 @@ export class LandingComponent implements OnInit {
 			alert('Error: index < 1');
 			return;
 		}
-		this.globalVariableService.currentDashboardID = 
+		this.globalVariableService.currentDashboardID =
 			this.globalVariableService.dashboardsSamples[index - 1].id;
 		console.log('id', index, this.globalVariableService.currentDashboardID)
 
@@ -116,7 +125,7 @@ export class LandingComponent implements OnInit {
 		console.log("Prompt and then delete from list", index)
 		this.globalVariableService.dashboardRecentDelete(index);
 	}
-	
+
 	clickClose(action: string) {
 		this.formLandingClosed.emit(action);
 		if (action !== 'OpenExisting') {

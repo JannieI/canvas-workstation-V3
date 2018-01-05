@@ -2275,184 +2275,184 @@ const dashboardsRecent: Dashboard[] =
     }
 ];
 
-const dashboardsSamples: Dashboard[] =
-[
-    {
-        id: 1,
-        version: 1,
-        state: 'Complete',
-        code: 'Econ Overview',
-        name: 'Economic Overview',
-        description: 'Sample Economic indicator summary',
+// const dashboardsSamples: Dashboard[] =
+// [
+//     {
+//         id: 1,
+//         version: 1,
+//         state: 'Complete',
+//         code: 'Econ Overview',
+//         name: 'Economic Overview',
+//         description: 'Sample Economic indicator summary',
 
-        password: '',
-        refreshMode: '',
-        refreshTimer: 0,
-        defaultTabID: 0,
-        defaultExportFileType: '',
-        url: '',
-        qaRequired: true,
+//         password: '',
+//         refreshMode: '',
+//         refreshTimer: 0,
+//         defaultTabID: 0,
+//         defaultExportFileType: '',
+//         url: '',
+//         qaRequired: true,
     
-        backgroundColor: '',
-        backgroundImage: '',
-        templateDashboardID: 0,
+//         backgroundColor: '',
+//         backgroundImage: '',
+//         templateDashboardID: 0,
     
-        creator: 'JonathanS',
-        dateCreated: '',
-        editor: 'JonathanS',
-        dateEdited: '',
-        refresher: '',
-        dateRefreshed: '',
+//         creator: 'JonathanS',
+//         dateCreated: '',
+//         editor: 'JonathanS',
+//         dateEdited: '',
+//         refresher: '',
+//         dateRefreshed: '',
             
-        nrWidgets: 1,
-        nrShapes: 0,
-        nrRecords: 12,
-        nrTimesOpened: 0,
-        tabs: [2],
-        tags: [],
-        permissions: []
-    },
-    {
-        id: 2,
-        version: 1,
-        state: 'Complete',
-        code: 'Costing',
-        name: 'Costing Summary',
-        description: 'Sample Costing Summary',
+//         nrWidgets: 1,
+//         nrShapes: 0,
+//         nrRecords: 12,
+//         nrTimesOpened: 0,
+//         tabs: [2],
+//         tags: [],
+//         permissions: []
+//     },
+//     {
+//         id: 2,
+//         version: 1,
+//         state: 'Complete',
+//         code: 'Costing',
+//         name: 'Costing Summary',
+//         description: 'Sample Costing Summary',
 
-        password: '',
-        refreshMode: '',
-        refreshTimer: 0,
-        defaultTabID: 0,
-        defaultExportFileType: '',
-        url: '',
-        qaRequired: true,
+//         password: '',
+//         refreshMode: '',
+//         refreshTimer: 0,
+//         defaultTabID: 0,
+//         defaultExportFileType: '',
+//         url: '',
+//         qaRequired: true,
     
-        backgroundColor: '',
-        backgroundImage: '',
-        templateDashboardID: 0,
+//         backgroundColor: '',
+//         backgroundImage: '',
+//         templateDashboardID: 0,
     
-        creator: 'JonathanS',
-        dateCreated: '',
-        editor: 'JonathanS',
-        dateEdited: '',
-        refresher: '',
-        dateRefreshed: '',
+//         creator: 'JonathanS',
+//         dateCreated: '',
+//         editor: 'JonathanS',
+//         dateEdited: '',
+//         refresher: '',
+//         dateRefreshed: '',
             
-        nrWidgets: 1,
-        nrShapes: 0,
-        nrRecords: 12,
-        nrTimesOpened: 0,
-        tabs: [2],
-        tags: [],
-        permissions: []
-    },
-    {
-        id: 3,
-        version: 1,
-        state: 'Complete',
-        code: 'Budget',
-        name: 'Home Budget',
-        description: 'Sample Home Budget',
+//         nrWidgets: 1,
+//         nrShapes: 0,
+//         nrRecords: 12,
+//         nrTimesOpened: 0,
+//         tabs: [2],
+//         tags: [],
+//         permissions: []
+//     },
+//     {
+//         id: 3,
+//         version: 1,
+//         state: 'Complete',
+//         code: 'Budget',
+//         name: 'Home Budget',
+//         description: 'Sample Home Budget',
 
-        password: '',
-        refreshMode: '',
-        refreshTimer: 0,
-        defaultTabID: 0,
-        defaultExportFileType: '',
-        url: '',
-        qaRequired: true,
+//         password: '',
+//         refreshMode: '',
+//         refreshTimer: 0,
+//         defaultTabID: 0,
+//         defaultExportFileType: '',
+//         url: '',
+//         qaRequired: true,
     
-        backgroundColor: '',
-        backgroundImage: '',
-        templateDashboardID: 0,
+//         backgroundColor: '',
+//         backgroundImage: '',
+//         templateDashboardID: 0,
     
-        creator: 'JonathanS',
-        dateCreated: '',
-        editor: 'JonathanS',
-        dateEdited: '',
-        refresher: '',
-        dateRefreshed: '',
+//         creator: 'JonathanS',
+//         dateCreated: '',
+//         editor: 'JonathanS',
+//         dateEdited: '',
+//         refresher: '',
+//         dateRefreshed: '',
             
-        nrWidgets: 1,
-        nrShapes: 0,
-        nrRecords: 12,
-        nrTimesOpened: 0,
-        tabs: [2],
-        tags: [],
-        permissions: []
-    },
-    {
-        id: 4,
-        version: 1,
-        state: 'Complete',
-        code: 'Bitcoin',
-        name: 'Bitcoin sales',
-        description: 'Sample Bitcoin sales',
+//         nrWidgets: 1,
+//         nrShapes: 0,
+//         nrRecords: 12,
+//         nrTimesOpened: 0,
+//         tabs: [2],
+//         tags: [],
+//         permissions: []
+//     },
+//     {
+//         id: 4,
+//         version: 1,
+//         state: 'Complete',
+//         code: 'Bitcoin',
+//         name: 'Bitcoin sales',
+//         description: 'Sample Bitcoin sales',
 
-        password: '',
-        refreshMode: '',
-        refreshTimer: 0,
-        defaultTabID: 0,
-        defaultExportFileType: '',
-        url: '',
-        qaRequired: true,
+//         password: '',
+//         refreshMode: '',
+//         refreshTimer: 0,
+//         defaultTabID: 0,
+//         defaultExportFileType: '',
+//         url: '',
+//         qaRequired: true,
     
-        backgroundColor: '',
-        backgroundImage: '',
-        templateDashboardID: 0,
+//         backgroundColor: '',
+//         backgroundImage: '',
+//         templateDashboardID: 0,
     
-        creator: 'JonathanS',
-        dateCreated: '',
-        editor: 'JonathanS',
-        dateEdited: '',
-        refresher: '',
-        dateRefreshed: '',
+//         creator: 'JonathanS',
+//         dateCreated: '',
+//         editor: 'JonathanS',
+//         dateEdited: '',
+//         refresher: '',
+//         dateRefreshed: '',
             
-        nrWidgets: 1,
-        nrShapes: 0,
-        nrRecords: 12,
-        nrTimesOpened: 0,
-        tabs: [2],
-        tags: [],
-        permissions: []
-    },
-    {
-        id: 5,
-        version: 1,
-        state: 'Complete',
-        code: 'Cycling',
-        name: 'Sample Cycling routes',
-        description: 'Cycling routes',
+//         nrWidgets: 1,
+//         nrShapes: 0,
+//         nrRecords: 12,
+//         nrTimesOpened: 0,
+//         tabs: [2],
+//         tags: [],
+//         permissions: []
+//     },
+//     {
+//         id: 5,
+//         version: 1,
+//         state: 'Complete',
+//         code: 'Cycling',
+//         name: 'Sample Cycling routes',
+//         description: 'Cycling routes',
 
-        password: '',
-        refreshMode: '',
-        refreshTimer: 0,
-        defaultTabID: 0,
-        defaultExportFileType: '',
-        url: '',
-        qaRequired: true,
+//         password: '',
+//         refreshMode: '',
+//         refreshTimer: 0,
+//         defaultTabID: 0,
+//         defaultExportFileType: '',
+//         url: '',
+//         qaRequired: true,
     
-        backgroundColor: '',
-        backgroundImage: '',
-        templateDashboardID: 0,
+//         backgroundColor: '',
+//         backgroundImage: '',
+//         templateDashboardID: 0,
     
-        creator: 'JonathanS',
-        dateCreated: '',
-        editor: 'JonathanS',
-        dateEdited: '',
-        refresher: '',
-        dateRefreshed: '',
+//         creator: 'JonathanS',
+//         dateCreated: '',
+//         editor: 'JonathanS',
+//         dateEdited: '',
+//         refresher: '',
+//         dateRefreshed: '',
             
-        nrWidgets: 1,
-        nrShapes: 0,
-        nrRecords: 12,
-        nrTimesOpened: 0,
-        tabs: [2],
-        tags: [],
-        permissions: []
-    }
-];
+//         nrWidgets: 1,
+//         nrShapes: 0,
+//         nrRecords: 12,
+//         nrTimesOpened: 0,
+//         tabs: [2],
+//         tags: [],
+//         permissions: []
+//     }
+// ];
 
 
 // Old, Full list
@@ -2634,7 +2634,7 @@ export class GlobalVariableService {
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     dashboardTags: DashboardTag[] = dashboardTags;
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
-    dashboardsSamples: Dashboard[] = dashboardsSamples;
+    dashboardsSamples: Dashboard[] = [];
     dashboardsRecent: Dashboard[] = dashboardsRecent;
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
@@ -2781,6 +2781,7 @@ export class GlobalVariableService {
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     isDirtyWidgets: boolean = true;
+    isDirtyDashboardSamples: boolean = true;
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -2995,7 +2996,7 @@ export class GlobalVariableService {
             // Refresh from source at start, or if dirty
             if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
-                this.get('getWidgets')
+                this.get(url)
                     .then(data => {
                         this.widgets = data;
                         this.isDirtyWidgets = false;
@@ -3004,6 +3005,34 @@ export class GlobalVariableService {
                     });
             } else {
                 resolve(this.widgets);
+            }
+        });
+
+    }
+
+    getDashboardSamples(): Promise<Dashboard[]> {
+        // Description: Gets all Sample D
+
+        // Returns: this.dashboardsSamples array, unless:
+        //   If not cached or if dirty, get from File
+        
+        let url: string = 'getDashboardSamples';
+        this.filePath = './assets/data.dashboardSamples.json';
+
+        return new Promise<Dashboard[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboardsSamples == [])  ||  (this.isDirtyDashboardSamples) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dashboardsSamples = data;
+                        this.isDirtyDashboardSamples = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.dashboardsSamples);
+                    });
+            } else {
+                resolve(this.dashboardsSamples);
             }
         });
 

@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
+    
     }
 
     clickClose(action: string) {
