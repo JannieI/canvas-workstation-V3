@@ -468,6 +468,11 @@ export class DashboardTab {
     color: string;
 }
 
+export class DashboardRecent {
+    userID: string;
+    dashboardID: number[];
+}
+
 export class DashboardTag {
     id: number;
     dashboardID: number;

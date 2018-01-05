@@ -2350,7 +2350,7 @@ export class GlobalVariableService {
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     dashboardTags: DashboardTag[] = dashboardTags;
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
-    dashboardsRecent: Dashboard[] = dashboardsRecent;
+    dashboardsRecent: number[] = [];
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: DashboardSchedule[] = dashboardSchedules;
@@ -2784,6 +2784,7 @@ export class GlobalVariableService {
 
     }
 
+    data.dashboardsRecent.json
 
     getDashboardsRecent(length: number): Promise<Dashboard[]> {
         let temp: Dashboard[];
