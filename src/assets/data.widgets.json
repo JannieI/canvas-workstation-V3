@@ -89,7 +89,7 @@
     },
     {
         "isTrashed": false,
-        "dashboardID": 2,
+        "dashboardID": 1,
         "dashboardTabID": 1,
         "dashboardTabName": "",
         "id": 2,
@@ -177,7 +177,7 @@
     },
     {
         "isTrashed": false,
-        "dashboardID": 3,
+        "dashboardID": 2,
         "dashboardTabID": 1,
         "dashboardTabName": "",
         "id": 3,

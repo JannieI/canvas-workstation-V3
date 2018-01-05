@@ -30,7 +30,7 @@ export class CollaborateMessagesComponent implements OnInit {
     @Output() formCollaborateMessagesClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<Dashboard>[];
+    dashboards: Dashboard[];
     canvasMessages: CanvasMessage[];
 
 

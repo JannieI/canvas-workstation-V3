@@ -30,7 +30,7 @@ export class DashboardTagsComponent implements OnInit {
     @Output() formDashboardTagsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<Dashboard>[];
+    dashboards: Dashboard[];
     dashboardTags: DashboardTag[];
 
 	constructor(

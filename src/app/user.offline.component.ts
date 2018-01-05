@@ -37,7 +37,7 @@ export class UserOfflineComponent implements OnInit {
     @Output() formUserOfflineClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<Dashboard>[];
+    dashboards: Dashboard[];
     selectDashboards: any = selectDashboards;
 
 

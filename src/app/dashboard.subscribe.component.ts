@@ -30,7 +30,7 @@ export class DashboardSubscribeComponent implements OnInit {
     @Output() formDashboardSubscribeClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<Dashboard>[];
+    dashboards: Dashboard[];
     subscriptions = [
         {
             view: true,

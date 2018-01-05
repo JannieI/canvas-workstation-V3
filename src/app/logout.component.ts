@@ -29,7 +29,7 @@ export class LogoutComponent implements OnInit {
     @Output() formUserLogoutClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<Dashboard>[];
+    dashboards: Dashboard[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

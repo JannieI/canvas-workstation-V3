@@ -33,7 +33,7 @@ export class DataCombinationComponent implements OnInit {
     showNoSecurity: boolean = true;
     showTeam: boolean = false;
     showQArequired: boolean = false;
-    dashboards: Partial<Dashboard>[];
+    dashboards: Dashboard[];
     selectedUnion: boolean = true;
     selectedIntersect: boolean = false;
     selectedMinus: boolean = false;

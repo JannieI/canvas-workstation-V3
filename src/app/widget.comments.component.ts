@@ -31,7 +31,7 @@ export class WidgetCommentsComponent implements OnInit {
     @Output() formWidgetCommentsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Partial<Dashboard>[];
+    dashboards: Dashboard[];
     canvasComments: CanvasComment[];
 
 	constructor(
