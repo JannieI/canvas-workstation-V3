@@ -2632,16 +2632,6 @@ export class GlobalVariableService {
         console.log('yy', this.datasources.value)
     }
 
-    dashboardRecent() {
-
-        let arr: CanvasWidget[] = this.localWidgets.value;
-        arr.push(localWidgets1);
-        console.log('arr', arr);
-        this.localWidgets.next(arr);
-        // console.log('yy', this.localWidgets.value);
-        // this.refreshDashboard.next(true);
-    }
-
     dashboardDelete(index: number) {
         console.log('dashboardDelete', index)
         let arr: CanvasWidget[] = this.localWidgets.value.filter(
@@ -2655,7 +2645,7 @@ export class GlobalVariableService {
         // this.refreshDashboard.next(true);
     }
 
-    dashboardRecentDelete(index: number) {
+    deleteDashboardRecent(index: number) {
         let arr = this.dashboardsRecent.splice(index, 1);
     }
 

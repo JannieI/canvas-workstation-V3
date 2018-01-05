@@ -715,8 +715,6 @@ export class AppComponent implements OnInit {
     }
 
     showRecentDashboard(index: number) {
-        this.globalVariableService.dashboardRecent();
-        // this.globalVariableService.refreshDashboard.next(true);
     }
 
 }
