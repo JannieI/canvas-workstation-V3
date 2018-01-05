@@ -2564,9 +2564,7 @@ export class GlobalVariableService {
         this.getCurrentDashboards(dashboardID);
 
 		// Load the current DashboardTab
-        this.currentDashboardTabs.next(this.dashboardTabs
-            .filter(i => i.dashboardID = dashboardID
-		));
+        this.getCurrentDashboardTabs(dashboardID)
 
 		// Load Widgets, Shapes and Slicers
         this.getCurrentWidgets(dashboardID);
@@ -2700,6 +2698,45 @@ export class GlobalVariableService {
 
                 console.log('getCurrentDashboards 2', currentDashboards)
                 resolve(currentDashboards);
+            });
+        };
+
+    }
+
+    getCurrentDashboardTabs(dashboardID: number): Promise<DashboardTab[]> {
+        // Description: Gets all W for current D
+
+        // Parames:
+        //   dashboardID 
+
+        // Returns: this.currentWidgets array, unless:
+        //   If not cached or if dirty, get from File
+        
+        // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
+        
+        // Refresh from source at start, or if dirty
+        if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+            return new Promise<DashboardTab[]>((resolve, reject) => {
+                this.getDashboardTabs()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+                        this.currentDashboardTabs.next(data);
+                        console.log('getCurrentDashboardTabs 1', data)
+                        resolve(data);
+                        
+                })
+             })
+        } else {
+            return new Promise<DashboardTab[]>((resolve, reject) => {
+                let returnData: DashboardTab[];
+                returnData = this.dashboardTabs.filter(
+                        i => i.dashboardID == dashboardID
+                    )
+                this.currentDashboardTabs.next(returnData);
+                console.log('getCurrentDashboardTabs 2', returnData)
+                resolve(returnData);
             });
         };
 
