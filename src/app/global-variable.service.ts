@@ -2553,7 +2553,7 @@ export class GlobalVariableService {
         // private globalFunctionService: GlobalFunctionService,
         httpFake: httpFake
     ) {
-        this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapesLocalShapes());
+        this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
         this.currentDashboardID.subscribe(
             i => {
                     // Dont refresh at initialise: landing page will decide which ID to load ...
@@ -2573,10 +2573,13 @@ export class GlobalVariableService {
 		// Load the current DashboardTab
         this.getCurrentDashboardTabs(dashboardID)
 
-		// Load Widgets, Shapes and Slicers
+		// Load Widgets
         this.getCurrentWidgets(dashboardID);
 
         // Load Shapes
+        this.getCurrentShapes(dashboardID);
+
+        // Load Slicers
     }
 
     changeMessage(message: string) {
@@ -3040,13 +3043,41 @@ export class GlobalVariableService {
             return new Promise<CanvasShape[]>((resolve, reject) => {
                 let returnData: CanvasShape[];
                 returnData = this.shapes.filter(
-                        i => i.dashboardID == dashboardID
-                    )
+                    i => i.dashboardID == dashboardID
+                );
                 this.currentShapes.next(returnData);
                 console.log('getCurrentShapes 2', returnData)
                 resolve(returnData);
             });
         };
+
+    }
+
+    getShapes(): Promise<CanvasShape[]> {
+        // Description: Gets all S
+
+        // Returns: this.shapes array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getShapes';
+        this.filePath = './assets/data.shapes.json';
+
+        return new Promise<CanvasShape[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.shapes == [])  ||  (this.isDirtyShapes) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.shapes = data;
+                        this.isDirtyShapes = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.shapes);
+                    });
+            } else {
+                resolve(this.shapes);
+            }
+        });
 
     }
 
@@ -3096,26 +3127,6 @@ export class GlobalVariableService {
     }
 
     getAllcurrentDatasourceFilters(datasourceID: number) {
-
-    }
-
-    getAllCurrentDashboardTabs(dashboardID: number) {
-        // Get all Tabs for current D
-
-    }
-
-    getAllCurrentWidgets(dashboardID: number) {
-        // Get all W for current D
-
-    }
-
-    getAllcurrentShapes(dashboardID: number) {
-        // Get all S for current D
-
-    }
-
-    getAllcurrentSlicers(datasourceID: number) {
-        // Get all Sl for current DS
 
     }
 
@@ -3178,14 +3189,6 @@ export class GlobalVariableService {
     }
 
     getAlldashboardSchedules(dashboardIDs: number[]) {
-
-    }
-
-    getAllshapes(dashboardIDs: number[]) {
-
-    }
-
-    getAllslicers() {
 
     }
 

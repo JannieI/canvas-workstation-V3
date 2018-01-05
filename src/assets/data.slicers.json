@@ -1,0 +1,51 @@
+[
+    {
+
+        "slicerType": "dropdown",
+
+        "isTrashed": false,
+
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+
+        "id": 0,
+        "name": "",
+        "description": "",
+        "version": 0,
+
+        "datasetID": 0,
+        "fieldName": "",
+
+        "containerBackgroundcolor": "",
+        "containerBorder": "",
+        "containerBoxshadow": "",
+        "containerColor": "",
+        "containerFontsize": 0,
+        "containerHeight": 0,
+        "containerLeft": 0,
+        "containerWidgetTitle": "",
+        "containerTop": 0,
+        "containerWidth": 0,
+        "containerZindex": 0,
+
+        "titleText": "",
+        "titleBackgroundColor": "",
+        "titleBorder": "",
+        "titleColor": "",
+        "titleFontsize": 0,
+        "titleFontWeight": "",
+        "titleHeight": 0,
+        "titleLeft": 0,
+        "titleMargin": "",
+        "titlePadding": "",
+        "titlePosition": "",
+        "titleTextAlign": "",
+        "titleTop": 0,
+        "titleWidth": 0,
+
+        "slicerCreatedOn": "",
+        "slicerCreatedBy": "",
+        "slicerUpdatedOn": "",
+        "slicerUpdatedBy": ""
+    }
+]
