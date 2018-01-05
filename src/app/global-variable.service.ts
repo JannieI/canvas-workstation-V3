@@ -2381,7 +2381,7 @@ export class GlobalVariableService {
     currentDataset: any = currentDataset;
     currentTransformations: Transformation[] = currentTransformations;
     currentDatasourceFilters: DatasourceFilter[] = [];
-    currentDashboards: Dashboard[] = [];
+    currentDashboards = new BehaviorSubject<Dashboard[]>([]);
     currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
     currentWidgets = new BehaviorSubject<CanvasWidget[]>([]);
     currentShapes = new BehaviorSubject<CanvasShape[]>([]);
@@ -2561,22 +2561,7 @@ export class GlobalVariableService {
         // Refreshes all info related to current D
 
 		// Load the current Dashboard, and Optional template
-		let currentDashboards: Dashboard[] = [];
-		currentDashboards.push(this.dashboards[dashboardID]);
-		if (currentDashboards[0].templateDashboardID != 0) {
-			let templeteDashboard: Dashboard[] = null;
-
-			templeteDashboard = this.dashboards.filter(
-				i => i.id = currentDashboards[0].templateDashboardID
-			);
-
-			if (templeteDashboard == null) {
-				alert('Dashboard template id does not exist in Dashboards')
-			} else {
-				currentDashboards.push(templeteDashboard[0]);
-			}
-		}
-        this.currentDashboards = currentDashboards;
+        this.getCurrentDashboards(dashboardID);
 
 		// Load the current DashboardTab
         this.currentDashboardTabs.next(this.dashboardTabs
@@ -2653,13 +2638,80 @@ export class GlobalVariableService {
         let arr = this.dashboardsRecent.splice(index, 1);
     }
 
-    getCurrentWidgets(dashboardID: number): Promise<CanvasWidget[]> {
-        // Description: Gets all W for a D
+
+    getCurrentDashboards(dashboardID: number): Promise<Dashboard[]> {
+        // Description: Gets current D (and optional Template)
 
         // Parames:
         //   dashboardID 
 
-        // Returns: this.widgets array, unless:
+        // Returns: this.currentDashboards array, unless:
+        //   If not cached or if dirty, get from File
+        
+        // Refresh from source at start, or if dirty
+        if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
+            return new Promise<Dashboard[]>((resolve, reject) => {
+                this.getDashboards()
+                    .then(data => {
+
+                        // Load the current Dashboard, and Optional template
+                        let currentDashboards: Dashboard[] = [];
+                        currentDashboards.push(this.dashboards[dashboardID]);
+                        if (currentDashboards[0].templateDashboardID != 0) {
+                            let templeteDashboard: Dashboard[] = null;
+
+                            templeteDashboard = this.dashboards.filter(
+                                i => i.id = currentDashboards[0].templateDashboardID
+                            );
+
+                            if (templeteDashboard == null) {
+                                alert('Dashboard template id does not exist in Dashboards Array')
+                            } else {
+                                currentDashboards.push(templeteDashboard[0]);
+                            }
+                        }
+                        this.currentDashboards.next(currentDashboards);
+
+                        console.log('getCurrentDashboards 1', data)
+                        resolve(currentDashboards);
+                        
+                })
+             })
+        } else {
+            return new Promise<Dashboard[]>((resolve, reject) => {
+
+                // Load the current Dashboard, and Optional template
+                let currentDashboards: Dashboard[] = [];
+                currentDashboards.push(this.dashboards[dashboardID]);
+                if (currentDashboards[0].templateDashboardID != 0) {
+                    let templeteDashboard: Dashboard[] = null;
+
+                    templeteDashboard = this.dashboards.filter(
+                        i => i.id = currentDashboards[0].templateDashboardID
+                    );
+
+                    if (templeteDashboard == null) {
+                        alert('Dashboard template id does not exist in Dashboards Array')
+                    } else {
+                        currentDashboards.push(templeteDashboard[0]);
+                    }
+                }
+                this.currentDashboards.next(currentDashboards);
+
+                console.log('getCurrentDashboards 2', currentDashboards)
+                resolve(currentDashboards);
+            });
+        };
+
+    }
+
+    getCurrentWidgets(dashboardID: number): Promise<CanvasWidget[]> {
+        // Description: Gets all W for current D
+
+        // Parames:
+        //   dashboardID 
+
+        // Returns: this.currentWidgets array, unless:
         //   If not cached or if dirty, get from File
         
         // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
@@ -2673,7 +2725,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentWidgets.next(data);
-                        console.log('getWidgets 1', data)
+                        console.log('getCurrentWidgets 1', data)
                         resolve(data);
                         
                 })
@@ -2685,7 +2737,7 @@ export class GlobalVariableService {
                         i => i.dashboardID == dashboardID
                     )
                 this.currentWidgets.next(returnData);
-                console.log('getWidgets 2', returnData)
+                console.log('getCurrentWidgets 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2898,11 +2950,6 @@ export class GlobalVariableService {
     }
 
     getAllcurrentDatasourceFilters(datasourceID: number) {
-
-    }
-
-    getAllCurrentDashboards(dashboardID: number) {
-        // Get current D, including any Templates
 
     }
 
