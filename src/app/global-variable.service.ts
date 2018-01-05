@@ -2554,7 +2554,7 @@ export class GlobalVariableService {
         this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
         this.currentDashboardID.subscribe(
             i => {
-                    console.log('fuuuuc', i)
+                    // Dont refresh at initialise: landing page will decide which ID to load ...
                     if (i != null) {
                         this.refreshCurrentDashboardInfo(i);
                     };
@@ -2653,7 +2653,6 @@ export class GlobalVariableService {
 
         // Returns: this.currentDashboards array, unless:
         //   If not cached or if dirty, get from File
-        console.log('xx 0', dashboardID)
         
         // Refresh from source at start, or if dirty
         if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
@@ -2721,18 +2720,16 @@ export class GlobalVariableService {
     }
 
     getCurrentDashboardTabs(dashboardID: number): Promise<DashboardTab[]> {
-        // Description: Gets all W for current D
+        // Description: Gets all T for current D
 
         // Parames:
         //   dashboardID 
 
-        // Returns: this.currentWidgets array, unless:
+        // Returns: this.currentDashboardTabs array, unless:
         //   If not cached or if dirty, get from File
         
-        // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
-        
         // Refresh from source at start, or if dirty
-        if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+        if ( (this.dashboardTabs == [])  ||  (this.isDirtydashboardTabs) ) {
             return new Promise<DashboardTab[]>((resolve, reject) => {
                 this.getDashboardTabs()
                     .then(data => {
@@ -2831,9 +2828,7 @@ export class GlobalVariableService {
 
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
-        
-        // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
-        //        getWidgets()   =>  Returns All W
+
         let url: string = 'getWidgets';
         this.filePath = './assets/data.widgets.json';
 
@@ -2931,7 +2926,6 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => { 
-                        console.log('this.dashboardsRecent 1', data)
                         this.dashboardsRecent = [];
                         // TODO - http must be sorted => include in Options ...
                         let temp: DashboardRecent[] = data.filter(
@@ -2940,7 +2934,7 @@ export class GlobalVariableService {
                         temp.forEach( j => {
                             this.dashboardsRecent.push(j.dashboardID)
                         });
-                        console.log('dashboardsRecent', this.dashboardsRecent)
+                        console.log('dashboardsRecent 1', this.dashboardsRecent)
                         this.isDirtyDashboardsRecent = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         resolve(this.dashboardsRecent);
@@ -2956,23 +2950,21 @@ export class GlobalVariableService {
     getDashboardsRecent(userID: string): Promise<Dashboard[]> {
         // Description: Gets all Recent D
 
-        // Returns: this.widgets array, unless:
+        // Returns: recent [D] array, unless:
         //   If not cached or if dirty, get from File
         
-        // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
-        
         // Refresh from source at start, or if dirty
-        if ( (this.widgets == [])  ||  (this.isDirtyDashboardsRecent) ) {
+        if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 this.getDashboardsRecentList(userID)
                     .then(data => {
-                        console.log('data', data)
                         let returnData: Dashboard[] = [];
                         for (var i = 0; i < this.dashboards.length; i++) {
                             if (data.indexOf(this.dashboards[i].id) != -1) {
                                 returnData.push(this.dashboards[i]);
                             }
                         }
+                        console.log('getDashboardsRecent 1', returnData)
                         resolve(returnData);
                                 
                 })
@@ -2985,6 +2977,7 @@ export class GlobalVariableService {
                         returnData.push(this.dashboards[i]);
                     }
                 }
+                console.log('getDashboardsRecent 2', returnData)
                 resolve(returnData);
             });
         };
