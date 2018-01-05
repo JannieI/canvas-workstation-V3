@@ -1846,25 +1846,6 @@ const dashboardTemplates: DashboardTemplate[] =
     }
 ]
 
-const dashboardTags: DashboardTag[] =
-[
-    {
-        id: 1,
-        dashboardID: 12,
-        tag: 'budget2017'
-    },
-    {
-        id: 2,
-        dashboardID: 12,
-        tag: 'savings'
-    },
-    {
-        id: 3,
-        dashboardID: 12,
-        tag: 'projectAard'
-    }
-];
-
 const dashboardSnapshots: DashboardSnapshot[] =
 [
     {
@@ -2244,7 +2225,7 @@ export class GlobalVariableService {
     dashboardsRecent: number[];
     dashboardSchedules: DashboardSchedule[] = [];
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
-    dashboardTags: DashboardTag[] = dashboardTags;
+    dashboardTags: DashboardTag[] = [];
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
@@ -2309,6 +2290,7 @@ export class GlobalVariableService {
     currentShapes = new BehaviorSubject<CanvasShape[]>([]);
     currentSlicers = new BehaviorSubject<CanvasSlicer[]>([]);
     currentDashboardSchedules = new BehaviorSubject<DashboardSchedule[]>([]);
+    currentDashboardTags = new BehaviorSubject<DashboardTag[]>([]);
 
     private messageSource = new BehaviorSubject<string>("default message");
     currentMessage = this.messageSource.asObservable();
@@ -2398,6 +2380,7 @@ export class GlobalVariableService {
     isDirtyShapes: boolean = true;
     isDirtySlicers: boolean = true;
     isDirtyDashboardSchedules: boolean = true;
+    isDirtyDashboardTags: boolean = true;
 
 
     // isDirtyTextAlignDropdown: boolean = true;
@@ -2696,7 +2679,7 @@ export class GlobalVariableService {
         // Returns: this.dashboardTabs array, unless:
         //   If not cached or if dirty, get from File
 
-        let url: string = 'getWidgets';
+        let url: string = 'getDashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
 
         return new Promise<DashboardTab[]>((resolve, reject) => {
@@ -2850,7 +2833,7 @@ export class GlobalVariableService {
         // Returns: this.dashboardsRecent array, unless:
         //   If not cached or if dirty, get from File
 
-        let url: string = 'getDashboards';
+        let url: string = 'getDashboardsRecentList';
         this.filePath = './assets/data.dashboardsRecent.json';
 
         return new Promise<number[]>((resolve, reject) => {
@@ -3107,6 +3090,34 @@ export class GlobalVariableService {
                 resolve(returnData);
             });
         };
+    }
+
+    getDashboardTags(): Promise<DashboardTag[]> {
+        // Description: Gets all Sch
+
+        // Returns: this.dashboardTags array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDashboardTags';
+        this.filePath = './assets/data.dashboardTags.json';
+
+        return new Promise<DashboardTag[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboardTags == [])  ||  (this.isDirtyDashboardTags) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dashboardTags = data;
+                        this.isDirtyDashboardTags = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.dashboardTags);
+                    });
+            } else {
+                resolve(this.dashboardTags);
+            }
+        });
+
     }
 
 
