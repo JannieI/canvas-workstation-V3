@@ -1819,20 +1819,7 @@ const dashboardTemplates: DashboardTemplate[] =
 ]
 
 const dashboardSnapshots: DashboardSnapshot[] =
-[
-    {
-        id: 1,
-        dashboardID: 1,
-        name: 'Rough layut',
-        comment: ''
-    },
-    {
-        id: 2,
-        dashboardID: 1,
-        name: 'Costing done',
-        comment: 'Still need to confirm figures'
-    }
-]
+
 
 const dashboards: Dashboard[] =
 [
@@ -3228,6 +3215,42 @@ export class GlobalVariableService {
 
     }
 
+    getCurrentDashboardSnapshots(dashboardID: number): Promise<DashboardSnapshot[]> {
+        // Description: Gets all Sch for current D
+
+        // Parames:
+        //   dashboardID
+
+        // Returns: this.getDashboardSnapshots array, unless:
+        //   If not cached or if dirty, get from File
+
+        // Refresh from source at start, or if dirty
+        if ( (this.dashboardSnapshots == [])  ||  (this.isDirtyDashboardSnapshots) ) {
+            return new Promise<DashboardSnapshot[]>((resolve, reject) => {
+                this.dashboardSnapshots()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+                        this.dashboardSnapshots.next(data);
+                        console.log('getgetDashboardSnapshots 1', data)
+                        resolve(data);
+                })
+             })
+        } else {
+            return new Promise<DashboardSnapshot[]>((resolve, reject) => {
+                let returnData: DashboardSnapshot[];
+                returnData = this.dashboardSnapshots.filter(
+                    i => i.dashboardID == dashboardID
+                );
+                this.dashboardSnapshots.next(returnData);
+                console.log('getgetDashboardSnapshots 2', returnData)
+                resolve(returnData);
+            });
+        };
+    }
+    
+
 
 
 
@@ -3301,18 +3324,6 @@ export class GlobalVariableService {
 
     getAllfieldsMetadata(datasourceID: number) {
         // Get Fmdata for a DS
-
-    }
-
-    getAlldashboardPermissions(dashboardIDs: number[]) {
-
-    }
-
-    getAlldashboardTags(dashboardIDs: number[]) {
-
-    }
-
-    getAlldashboardSnapshots(dashboardIDs: number[]) {
 
     }
 
