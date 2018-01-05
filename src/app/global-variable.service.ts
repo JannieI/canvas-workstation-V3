@@ -1398,9 +1398,6 @@ const datasourceFilters: DatasourceFilter[] =
 
 
 // Dashboard
-const dashboardPermissions: DashboardPermission[] =
-;
-
 const localWidgets: CanvasWidget[] =
 [
     {
@@ -2199,8 +2196,8 @@ export class GlobalVariableService {
     dashboardTabs: DashboardTab[] = [];
     dashboardsRecent: number[];
     dashboardSchedules: DashboardSchedule[] = [];
-    dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     dashboardTags: DashboardTag[] = [];
+    dashboardPermissions: DashboardPermission[] = [];
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
@@ -2266,7 +2263,7 @@ export class GlobalVariableService {
     currentSlicers = new BehaviorSubject<CanvasSlicer[]>([]);
     currentDashboardSchedules = new BehaviorSubject<DashboardSchedule[]>([]);
     currentDashboardTags = new BehaviorSubject<DashboardTag[]>([]);
-
+    currentDashboardPermissions = new BehaviorSubject<DashboardPermission[]>([]);
     private messageSource = new BehaviorSubject<string>("default message");
     currentMessage = this.messageSource.asObservable();
 
@@ -2356,7 +2353,7 @@ export class GlobalVariableService {
     isDirtySlicers: boolean = true;
     isDirtyDashboardSchedules: boolean = true;
     isDirtyDashboardTags: boolean = true;
-
+    isDirtyDashboardPermissions: boolean = true;
 
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
@@ -3131,6 +3128,34 @@ export class GlobalVariableService {
                 resolve(returnData);
             });
         };
+    }
+
+    getDashboardPermissions(): Promise<DashboardPermission[]> {
+        // Description: Gets all P
+
+        // Returns: this.dashboardPermissions array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDashboardPermissions';
+        this.filePath = './assets/data.dashboardPermissions.json';
+
+        return new Promise<DashboardPermission[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboardPermissions == [])  ||  (this.isDirtyDashboardPermissions) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dashboardPermissions = data;
+                        this.isDirtyDashboardPermissions = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.dashboardPermissions);
+                    });
+            } else {
+                resolve(this.dashboardPermissions);
+            }
+        });
+
     }
 
 
