@@ -1399,32 +1399,7 @@ const datasourceFilters: DatasourceFilter[] =
 
 // Dashboard
 const dashboardPermissions: DashboardPermission[] =
-[
-    {
-        id: 1,
-        dashboardID: 1,
-        userID: 'KilmarE',
-        groupID: '',
-        canView: true,
-        canEdit: false,
-    },
-    {
-        id: 2,
-        dashboardID: 1,
-        userID: 'UweH',
-        groupID: '',
-        canView: false,
-        canEdit: true,
-    },
-    {
-        id: 3,
-        dashboardID: 1,
-        userID: 'IgnusO',
-        groupID: '',
-        canView: true,
-        canEdit: true,
-    }
-];
+;
 
 const localWidgets: CanvasWidget[] =
 [
@@ -2493,6 +2468,9 @@ export class GlobalVariableService {
 
         // Load Dashboard Schedules
         this.getCurrentDashboardSchedules(dashboardID);
+
+        // Load Dashboard Tags
+        this.getCurrentDashboardTags(dashboardID);
         
     }
 
