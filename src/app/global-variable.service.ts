@@ -6,7 +6,7 @@ import { Injectable }                 from '@angular/core';
 import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
-import { ButtonBarAvailable, CanvasSlicer}          from './models'
+import { ButtonBarAvailable, CanvasSlicer, DashboardRecent}          from './models'
 import { ButtonBarSelected }          from './models';
 import { CSScolor }                   from './models';
 import { Dashboard }                  from './models';
@@ -2497,6 +2497,7 @@ export class GlobalVariableService {
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     isDirtyWidgets: boolean = true;
     isDirtyDashboards: boolean = true;
+    isDirtyDashboardsRecent: boolean = true;
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -2784,18 +2785,41 @@ export class GlobalVariableService {
 
     }
 
-    data.dashboardsRecent.json
+    getDashboardsRecent(): Promise<number[]> {
+        // Description: Gets all Recent D
 
-    getDashboardsRecent(length: number): Promise<Dashboard[]> {
-        let temp: Dashboard[];
-        for (var i = 0; i < this.dashboards.length; i++) {
-            if (this.dashboardRecent.indexOf(this.dashboards[i].id) != -1) {
-                temp.push(this.dashboards[i]);
+        // Returns: this.dashboardsRecent array, unless:
+        //   If not cached or if dirty, get from File
+        
+        let url: string = 'getDashboards';
+        this.filePath = './assets/data.dashboardsRecent.json';
+
+        return new Promise<number[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboardsRecent == [])  ||  (this.isDirtyDashboardsRecent) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        // TODO - fix hard coding
+                        let temp: DashboardRecent[] = data.filter(
+                            i => i.userID == 'Jannie'
+                        );
+                        if (temp.length == 0) {
+                            this.dashboardsRecent = [];
+                        } else {
+                            this.dashboardsRecent = temp[0].dashboardID;
+                        }
+                
+                        this.isDirtyDashboardsRecent = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.dashboardsRecent);
+                    });
+            } else {
+                resolve(this.dashboardsRecent);
             }
-        };
-        return new Promise<Dashboard[]>((resolve, reject) => { 
-            resolve(temp)
         });
+
     }
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
@@ -2815,10 +2839,6 @@ export class GlobalVariableService {
     }
 
     getAlldatasources(datasourceID: number) {
-
-    }
-
-    getAlldatasourceRecent(length: number) {
 
     }
 
