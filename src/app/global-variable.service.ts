@@ -3158,6 +3158,41 @@ export class GlobalVariableService {
 
     }
 
+    getCurrentDashboardPermissions(dashboardID: number): Promise<DashboardPermission[]> {
+        // Description: Gets all Sch for current D
+
+        // Parames:
+        //   dashboardID
+
+        // Returns: this.currentDashboardPermissions array, unless:
+        //   If not cached or if dirty, get from File
+
+        // Refresh from source at start, or if dirty
+        if ( (this.dashboardPermissions == [])  ||  (this.isDirtyDashboardPermissions) ) {
+            return new Promise<DashboardPermission[]>((resolve, reject) => {
+                this.getDashboardPermissions()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+                        this.currentDashboardPermissions.next(data);
+                        console.log('getCurrentDashboardPermissions 1', data)
+                        resolve(data);
+                })
+             })
+        } else {
+            return new Promise<DashboardPermission[]>((resolve, reject) => {
+                let returnData: DashboardPermission[];
+                returnData = this.dashboardPermissions.filter(
+                    i => i.dashboardID == dashboardID
+                );
+                this.currentDashboardPermissions.next(returnData);
+                console.log('getCurrentDashboardPermissions 2', returnData)
+                resolve(returnData);
+            });
+        };
+    }
+
 
 
 
