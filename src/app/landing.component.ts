@@ -44,7 +44,6 @@ export class LandingComponent implements OnInit {
 	}
 
 	ngAfterViewInit() {
-		console.log('af', this.sampleDashboards)
 	}
 	clickButtonData() {
 		console.log('clickButtonData')

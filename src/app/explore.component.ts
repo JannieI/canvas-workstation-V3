@@ -341,19 +341,15 @@ export class ExploreComponent {
             i => this.slicerHeader = i
         );
 
-        console.log('explore start', this.globalVariableService.widgets);
     }
 
     ngAfterViewInit() {
         console.log('Explore ngOnViewInit', this.localShapes)
 
-
-
         // Loop on the graph ElementRefs, and set properties ala widget[].properties
         if (this.shapeContainter2.toArray().length > 0) {
             for (var i = 0; i < this.circle2.toArray().length; i++) {
 
-                console.log('localShapes', this.localShapes[i].shapeType)
                 // Testing
                 // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cx', '50')
                 // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cy', '50')
@@ -373,7 +369,8 @@ export class ExploreComponent {
                 // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
 
                 // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
-                console.log('circle2', this.circle2.toArray()[i].nativeElement)
+                
+                // console.log('circle2', this.circle2.toArray()[i].nativeElement)
             }
         };
 
@@ -448,7 +445,6 @@ export class ExploreComponent {
         if (this.shapeContainter2.toArray().length > 0) {
             for (var i = 0; i < this.circle2.toArray().length; i++) {
 
-                console.log('localShapes', this.localShapes[i].shapeType)
                 // Testing
                 // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cx', '50')
                 // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cy', '50')
@@ -468,7 +464,8 @@ export class ExploreComponent {
                 // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
 
                 // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
-                console.log('circle2', this.circle2.toArray()[i].nativeElement)
+                
+                // console.log('circle2', this.circle2.toArray()[i].nativeElement)
             }
         };
 

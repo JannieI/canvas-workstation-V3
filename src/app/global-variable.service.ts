@@ -2806,10 +2806,11 @@ export class GlobalVariableService {
                         console.log('this.dashboardsRecent 1', data)
                         this.dashboardsRecent = [];
                         // TODO - http must be sorted => include in Options ...
-                        data.filter(
+                        let temp: DashboardRecent[] = data.filter(
                             i => i.userID == userID
-                        ).forEach( j => {
-                            this.dashboardsRecent.push(data[j].dashboardID)
+                        )
+                        temp.forEach( j => {
+                            this.dashboardsRecent.push(j.dashboardID)
                         });
                         console.log('dashboardsRecent', this.dashboardsRecent)
                         this.isDirtyDashboardsRecent = false;
@@ -2817,6 +2818,7 @@ export class GlobalVariableService {
                         resolve(this.dashboardsRecent);
                     });
             } else {
+                console.log('this.dashboardsRecent 2', this.dashboardsRecent)
                 resolve(this.dashboardsRecent);
             }
         });
@@ -2837,9 +2839,9 @@ export class GlobalVariableService {
                 this.getDashboardsRecentList(userID)
                     .then(data => {
                         console.log('data', data)
-                        let returnData: Dashboard[];
+                        let returnData: Dashboard[] = [];
                         for (var i = 0; i < this.dashboards.length; i++) {
-                            if (this.dashboardsRecent.indexOf(this.dashboards[i].id) != -1) {
+                            if (data.indexOf(this.dashboards[i].id) != -1) {
                                 returnData.push(this.dashboards[i]);
                             }
                         }
