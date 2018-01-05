@@ -2242,12 +2242,12 @@ export class GlobalVariableService {
     dashboards: Dashboard[] = dashboards;
     dashboardTabs: DashboardTab[] = [];
     dashboardsRecent: number[];
+    dashboardSchedules: DashboardSchedule[] = [];
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     dashboardTags: DashboardTag[] = dashboardTags;
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
-    dashboardSchedules: DashboardSchedule[] = dashboardSchedules;
     widgets: CanvasWidget[] = [];
     shapes: CanvasShape[] = [];
     slicers: CanvasSlicer[] = [];
@@ -2308,6 +2308,7 @@ export class GlobalVariableService {
     currentWidgets = new BehaviorSubject<CanvasWidget[]>([]);
     currentShapes = new BehaviorSubject<CanvasShape[]>([]);
     currentSlicers = new BehaviorSubject<CanvasSlicer[]>([]);
+    currentSchedules = new BehaviorSubject<DashboardSchedule[]>([]);
 
     private messageSource = new BehaviorSubject<string>("default message");
     currentMessage = this.messageSource.asObservable();
@@ -2396,7 +2397,7 @@ export class GlobalVariableService {
     isDirtyWidgets: boolean = true;
     isDirtyShapes: boolean = true;
     isDirtySlicers: boolean = true;
-    
+    isDirtySchedules: boolean = true;
 
 
     // isDirtyTextAlignDropdown: boolean = true;
@@ -3043,6 +3044,34 @@ export class GlobalVariableService {
                 resolve(returnData);
             });
         };
+
+    }
+
+    getSchedules(): Promise<DashboardSchedule[]> {
+        // Description: Gets all Sl
+
+        // Returns: this.dashboardSchedules array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getSchedules';
+        this.filePath = './assets/data.dashboardSchedules.json';
+
+        return new Promise<DashboardSchedule[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboardSchedules == [])  ||  (this.isDirtySchedules) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dashboardSchedules = data;
+                        this.isDirtySchedules = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.dashboardSchedules);
+                    });
+            } else {
+                resolve(this.dashboardSchedules);
+            }
+        });
 
     }
 
