@@ -462,8 +462,8 @@ export class Dashboard {
 }
 
 export class DashboardTab {
+    id: number;
     dashboardID: number;                  // FK to DashboardID to which widget belongs
-    dashboardTabID: number;               // FK to Tab where the widget lives
     name: string;
     color: string;
 }

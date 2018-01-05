@@ -1,0 +1,27 @@
+[
+    {
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "name": "Summary",
+        "color": ""
+    },
+    {
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "name": "Headcount",
+        "color": ""
+    },
+    {
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "name": "Europe",
+        "color": ""
+    },
+    {
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "name": "Budget",
+        "color": ""
+    }
+
+]

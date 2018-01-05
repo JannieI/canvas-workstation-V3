@@ -68,34 +68,8 @@ export class LandingComponent implements OnInit {
 				return;
 		};
 
-		this.globalVariableService.currentDashboardID = dashboardID;
-		console.log('id', dashboardID, this.globalVariableService.currentDashboardID)
-
-		// Load the current Dashboard, and Optional template
-		let currentDashboards: Dashboard[] = [];
-		currentDashboards.push(this.globalVariableService.dashboards[dashboardID]);
-		if (currentDashboards[0].templateDashboardID != 0) {
-			let templeteDashboard: Dashboard[] = null;
-
-			templeteDashboard = this.globalVariableService.dashboards.filter(
-				i => i.id = currentDashboards[0].templateDashboardID
-			);
-
-			if (templeteDashboard == null) {
-				alert('Dashboard template id does not exist in Dashboards')
-			} else {
-				currentDashboards.push(templeteDashboard[0]);
-			}
-		}
-
-		// Load the current DashboardTab
-		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
-			i => i.dashboardID = this.globalVariableService.currentDashboardID
-		);
-		this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs);
-
-		// Load Widgets, Shapes and Slicers
-        this.globalVariableService.getCurrentWidgets(this.globalVariableService.currentDashboardID);
+		// Load the dashboardID - Observable that will refresh all needed for current D
+		this.globalVariableService.currentDashboardID.next(dashboardID);
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();

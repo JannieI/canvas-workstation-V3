@@ -1398,35 +1398,6 @@ const datasourceFilters: DatasourceFilter[] =
 
 
 // Dashboard
-const dashboardTabs: DashboardTab[] =
-[
-    {
-        dashboardID: 1,
-        dashboardTabID: 1,
-        name: 'Summary',
-        color: ''
-    },
-    {
-        dashboardID: 1,
-        dashboardTabID: 1,
-        name: 'Headcount',
-        color: ''
-    },
-    {
-        dashboardID: 1,
-        dashboardTabID: 1,
-        name: 'Europe',
-        color: ''
-    },
-    {
-        dashboardID: 1,
-        dashboardTabID: 1,
-        name: 'Budget',
-        color: ''
-    }
-
-]
-
 const dashboardPermissions: DashboardPermission[] =
 [
     {
@@ -2441,7 +2412,7 @@ export class GlobalVariableService {
     openDashboardFormOnStartup: boolean = false;
     showModalLanding: boolean = true;  // Shows Landing page
     // Session
-    currentDashboardID: number = null;
+    currentDashboardID = new BehaviorSubject<number>(null);
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
@@ -2580,8 +2551,42 @@ export class GlobalVariableService {
         httpFake: httpFake
     ) {
         this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
-
+        this.currentDashboardID.subscribe(
+            i => {console.log('fuuuuc', i)
+                this.refreshCurrentDashboardInfo(i);
+        });
      }
+
+    refreshCurrentDashboardInfo(dashboardID: number) {
+        // Refreshes all info related to current D
+
+		// Load the current Dashboard, and Optional template
+		let currentDashboards: Dashboard[] = [];
+		currentDashboards.push(this.dashboards[dashboardID]);
+		if (currentDashboards[0].templateDashboardID != 0) {
+			let templeteDashboard: Dashboard[] = null;
+
+			templeteDashboard = this.dashboards.filter(
+				i => i.id = currentDashboards[0].templateDashboardID
+			);
+
+			if (templeteDashboard == null) {
+				alert('Dashboard template id does not exist in Dashboards')
+			} else {
+				currentDashboards.push(templeteDashboard[0]);
+			}
+		}
+        this.currentDashboards = currentDashboards;
+
+		// Load the current DashboardTab
+		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
+			i => i.dashboardID = 1  //* this.globalVariableService.currentDashboardID
+		);
+		this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs);
+
+		// Load Widgets, Shapes and Slicers
+        //* this.globalVariableService.getCurrentWidgets(this.globalVariableService.currentDashboardID);
+    }
 
     changeMessage(message: string) {
         console.log('changeMessage', message)
