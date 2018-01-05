@@ -62,21 +62,19 @@ export class LandingComponent implements OnInit {
 		console.log('start loadsampleDashboard', dashboardID);
 
 		// Check that we have data
-		if (this.globalVariableService.dashboardsSamples == []  ||
-			this.globalVariableService.dashboards == []) {
+		if (this.globalVariableService.dashboards == []) {
 				this.globalVariableService.statusBarMessages.next(
-					'Still loading ...'
+					'D still loading ...'
 				);
 				return;
 		};
 
-		this.globalVariableService.currentDashboardID =
-			this.globalVariableService.dashboardsSamples[dashboardID].id;
+		this.globalVariableService.currentDashboardID = dashboardID;
 		console.log('id', dashboardID, this.globalVariableService.currentDashboardID)
 
 		// Load the current Dashboard, and Optional template
 		let currentDashboards: Dashboard[] = [];
-		currentDashboards.push(this.globalVariableService.dashboardsSamples[dashboardID]);
+		currentDashboards.push(this.globalVariableService.dashboards[dashboardID]);
 		if (currentDashboards[0].templateDashboardID != 0) {
 			let templeteDashboard: Dashboard[] = null;
 

@@ -682,11 +682,11 @@ export class ExploreComponent {
         // this.isDirtyWidgets = 
         console.log('   Next 0 Tabs: ', this.globalVariableService.currentDashboardTabs.value)
 
-        console.log(this.globalVariableService.dashboardsSamples)
-        this.globalVariableService.getDashboardSamples()
-            .then( data =>
-                console.log(this.globalVariableService.dashboardsSamples)
-            )
+        // console.log(this.globalVariableService.dashboardsSamples)
+        // this.globalVariableService.getDashboardSamples()
+        //     .then( data =>
+        //         console.log(this.globalVariableService.dashboardsSamples)
+        //     )
         
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
         else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}

@@ -2188,7 +2188,8 @@ const dashboardsRecent: Dashboard[] =
         defaultExportFileType: '',
         url: '',
         qaRequired: true,
-    
+        isSample: true,
+
         backgroundColor: '',
         backgroundImage: '',
         templateDashboardID: 0,
@@ -2223,6 +2224,7 @@ const dashboardsRecent: Dashboard[] =
         defaultExportFileType: '',
         url: '',
         qaRequired: true,
+        isSample: true,
     
         backgroundColor: '',
         backgroundImage: '',
@@ -2258,6 +2260,7 @@ const dashboardsRecent: Dashboard[] =
         defaultExportFileType: '',
         url: '',
         qaRequired: true,
+        isSample: true,
     
         backgroundColor: '',
         backgroundImage: '',
@@ -2459,7 +2462,6 @@ export class GlobalVariableService {
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     dashboardTags: DashboardTag[] = dashboardTags;
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
-    dashboardsSamples: Dashboard[] = [];
     dashboardsRecent: Dashboard[] = dashboardsRecent;
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
@@ -2606,7 +2608,7 @@ export class GlobalVariableService {
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     isDirtyWidgets: boolean = true;
-    isDirtyDashboardSamples: boolean = true;
+    isDirtyDashboards: boolean = true;
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -2835,31 +2837,62 @@ export class GlobalVariableService {
 
     }
 
-    getDashboardSamples(): Promise<Dashboard[]> {
-        // Description: Gets all Sample D
+    getDashboards(): Promise<Dashboard[]> {
+        // Description: Gets all D
 
-        // Returns: this.dashboardsSamples array, unless:
+        // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
         
-        let url: string = 'getDashboardSamples';
-        this.filePath = './assets/data.dashboardSamples.json';
+        let url: string = 'getDashboards';
+        this.filePath = './assets/data.dashboards.json';
 
         return new Promise<Dashboard[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboardsSamples == [])  ||  (this.isDirtyDashboardSamples) ) {
+            if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.dashboardsSamples = data;
-                        this.isDirtyDashboardSamples = false;
+                        this.dashboards = data;
+                        this.isDirtyDashboards = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        resolve(this.dashboardsSamples);
+                        resolve(this.dashboards);
                     });
             } else {
-                resolve(this.dashboardsSamples);
+                resolve(this.dashboards);
             }
         });
+
+    }
+
+    getDashboardSamples(): Promise<Dashboard[]> {
+        // Description: Gets all Sample D
+
+        // Returns: an array extracted from [D], unless:
+        //   If D not cached or if dirty, get from File
+        
+        // Refresh from source at start, or if dirty
+        if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
+            return new Promise<Dashboard[]>((resolve, reject) => {
+                this.getDashboards()
+                    .then(data => {
+                        data = data.filter(
+                            i => (i.isSample)
+                        );
+                        console.log('getDashboardSamples 1', data)
+                        resolve(data);
+                        
+                })
+            })
+        } else {
+            return new Promise<Dashboard[]>((resolve, reject) => {
+                let data: Dashboard[] = this.dashboards.filter(
+                    i => (i.isSample)
+                )
+                console.log('getDashboardSamples 2', data)
+                resolve(data);
+            });
+        };
 
     }
 
@@ -2892,10 +2925,6 @@ export class GlobalVariableService {
     }
 
     getAlldashboardsRecent(length: number) {
-
-    }
-
-    getAlldashboardsSamples(length: number) {
 
     }
 
