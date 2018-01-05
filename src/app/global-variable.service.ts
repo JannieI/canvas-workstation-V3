@@ -2469,10 +2469,11 @@ export class GlobalVariableService {
     // testEnvironmentName: string = '';                           // Spaces = in PROD
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
-    isDirtyWidgets: boolean = true;
     isDirtyDashboards: boolean = true;
     isDirtydashboardTabs: boolean = true;
     isDirtyDashboardsRecent: boolean = true;
+    isDirtyWidgets: boolean = true;
+    isDirtyShapes: boolean = true;
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -2982,6 +2983,40 @@ export class GlobalVariableService {
         };
 
     }
+
+    getShapes(): Promise<CanvasShape[]> {
+        // Description: Gets all S
+
+        // Returns: this.shapes array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getShapes';
+        this.filePath = './assets/data.shapes.json';
+
+        return new Promise<CanvasShape[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.shapes == [])  ||  (this.isDirtyShapes) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.shapes = data;
+                        this.isDirtyShapes = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.shapes);
+                    });
+            } else {
+                resolve(this.shapes);
+            }
+        });
+
+    }
+
+
+
+
+
+
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
