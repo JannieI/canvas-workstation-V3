@@ -1801,13 +1801,7 @@ const localDashboards: dl.spec.TopLevelExtendedSpec[] =
 ];
 
 const dashboardThemes: DashboardTheme[] =
-[
-    {
-        id: 1,
-        name: 'Theme basic',
-        description: 'bla-bla-bla'
-    }
-]
+
 
 const dashboardTemplates: DashboardTemplate[] =
 [
@@ -2459,6 +2453,8 @@ export class GlobalVariableService {
         // Load Dashboard Permissions
         this.getCurrentDashboardPermissions(dashboardID);
         
+        // Load Dashboard Snapshots
+        this.getCurrentDashboardSnapshots(dashboardID);
     }
 
     changeMessage(message: string) {
