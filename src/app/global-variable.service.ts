@@ -2308,7 +2308,7 @@ export class GlobalVariableService {
     currentWidgets = new BehaviorSubject<CanvasWidget[]>([]);
     currentShapes = new BehaviorSubject<CanvasShape[]>([]);
     currentSlicers = new BehaviorSubject<CanvasSlicer[]>([]);
-    currentSchedules = new BehaviorSubject<DashboardSchedule[]>([]);
+    currentDashboardSchedules = new BehaviorSubject<DashboardSchedule[]>([]);
 
     private messageSource = new BehaviorSubject<string>("default message");
     currentMessage = this.messageSource.asObservable();
@@ -2392,12 +2392,12 @@ export class GlobalVariableService {
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     isDirtyDashboards: boolean = true;
-    isDirtydashboardTabs: boolean = true;
+    isDirtyDashboardTabs: boolean = true;
     isDirtyDashboardsRecent: boolean = true;
     isDirtyWidgets: boolean = true;
     isDirtyShapes: boolean = true;
     isDirtySlicers: boolean = true;
-    isDirtySchedules: boolean = true;
+    isDirtyDashboardSchedules: boolean = true;
 
 
     // isDirtyTextAlignDropdown: boolean = true;
@@ -2660,7 +2660,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
 
         // Refresh from source at start, or if dirty
-        if ( (this.dashboardTabs == [])  ||  (this.isDirtydashboardTabs) ) {
+        if ( (this.dashboardTabs == [])  ||  (this.isDirtyDashboardTabs) ) {
             return new Promise<DashboardTab[]>((resolve, reject) => {
                 this.getDashboardTabs()
                     .then(data => {
@@ -2699,12 +2699,12 @@ export class GlobalVariableService {
         return new Promise<DashboardTab[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboardTabs == [])  ||  (this.isDirtydashboardTabs) ) {
+            if ( (this.dashboardTabs == [])  ||  (this.isDirtyDashboardTabs) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardTabs = data;
-                        this.isDirtydashboardTabs = false;
+                        this.isDirtyDashboardTabs = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         resolve(this.dashboardTabs);
                     });
@@ -2944,15 +2944,13 @@ export class GlobalVariableService {
     }
 
     getCurrentShapes(dashboardID: number): Promise<CanvasShape[]> {
-        // Description: Gets all W for current D
+        // Description: Gets all S for current D
 
         // Parames:
         //   dashboardID
 
         // Returns: this.currentShapes array, unless:
         //   If not cached or if dirty, get from File
-
-        // Usage: getShapes(1)  =>  Returns W for DashboardID = 1
 
         // Refresh from source at start, or if dirty
         if ( (this.shapes == [])  ||  (this.isDirtyShapes) ) {
@@ -3010,15 +3008,13 @@ export class GlobalVariableService {
     }
 
     getCurrentSlicers(dashboardID: number): Promise<CanvasSlicer[]> {
-        // Description: Gets all W for current D
+        // Description: Gets all Sl for current D
 
         // Parames:
         //   dashboardID
 
         // Returns: this.currentSlicers array, unless:
         //   If not cached or if dirty, get from File
-
-        // Usage: getSlicers(1)  =>  Returns W for DashboardID = 1
 
         // Refresh from source at start, or if dirty
         if ( (this.slicers == [])  ||  (this.isDirtySlicers) ) {
@@ -3047,8 +3043,8 @@ export class GlobalVariableService {
 
     }
 
-    getSchedules(): Promise<DashboardSchedule[]> {
-        // Description: Gets all Sl
+    getDashboardSchedules(): Promise<DashboardSchedule[]> {
+        // Description: Gets all Sch
 
         // Returns: this.dashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
@@ -3059,12 +3055,12 @@ export class GlobalVariableService {
         return new Promise<DashboardSchedule[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboardSchedules == [])  ||  (this.isDirtySchedules) ) {
+            if ( (this.dashboardSchedules == [])  ||  (this.isDirtyDashboardSchedules) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardSchedules = data;
-                        this.isDirtySchedules = false;
+                        this.isDirtyDashboardSchedules = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         resolve(this.dashboardSchedules);
                     });
@@ -3073,6 +3069,41 @@ export class GlobalVariableService {
             }
         });
 
+    }
+
+    getCurrentDashboardSchedules(dashboardID: number): Promise<DashboardSchedule[]> {
+        // Description: Gets all Sch for current D
+
+        // Parames:
+        //   dashboardID
+
+        // Returns: this.currentDashboardSchedules array, unless:
+        //   If not cached or if dirty, get from File
+
+        // Refresh from source at start, or if dirty
+        if ( (this.dashboardSchedules == [])  ||  (this.isDirtyDashboardSchedules) ) {
+            return new Promise<DashboardSchedule[]>((resolve, reject) => {
+                this.getDashboardSchedules()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+                        this.currentDashboardSchedules.next(data);
+                        console.log('getCurrentDashboardSchedules 1', data)
+                        resolve(data);
+                })
+             })
+        } else {
+            return new Promise<DashboardSchedule[]>((resolve, reject) => {
+                let returnData: DashboardSchedule[];
+                returnData = this.dashboardSchedules.filter(
+                    i => i.dashboardID == dashboardID
+                );
+                this.currentDashboardSchedules.next(returnData);
+                console.log('getCurrentDashboardSchedules 2', returnData)
+                resolve(returnData);
+            });
+        };
     }
 
 
