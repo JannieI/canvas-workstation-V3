@@ -3085,6 +3085,43 @@ export class GlobalVariableService {
 
     }
 
+    getCurrentSlicers(dashboardID: number): Promise<CanvasSlicer[]> {
+        // Description: Gets all W for current D
+
+        // Parames:
+        //   dashboardID
+
+        // Returns: this.currentSlicers array, unless:
+        //   If not cached or if dirty, get from File
+
+        // Usage: getSlicers(1)  =>  Returns W for DashboardID = 1
+
+        // Refresh from source at start, or if dirty
+        if ( (this.slicers == [])  ||  (this.isDirtySlicers) ) {
+            return new Promise<CanvasSlicer[]>((resolve, reject) => {
+                this.getSlicers()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+                        this.currentSlicers.next(data);
+                        console.log('getCurrentSlicers 1', data)
+                        resolve(data);
+                })
+             })
+        } else {
+            return new Promise<CanvasSlicer[]>((resolve, reject) => {
+                let returnData: CanvasSlicer[];
+                returnData = this.slicers.filter(
+                    i => i.dashboardID == dashboardID
+                );
+                this.currentSlicers.next(returnData);
+                console.log('getCurrentSlicers 2', returnData)
+                resolve(returnData);
+            });
+        };
+
+    }
 
 
 
