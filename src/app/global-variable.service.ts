@@ -2319,7 +2319,7 @@ export class GlobalVariableService {
     widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
 
     dashboards: Dashboard[] = dashboards;
-    dashboardTabs = new BehaviorSubject<DashboardTab[]>(dashboardTabs);
+    dashboardTabs: DashboardTab[] = [];
     dashboardsRecent: number[];
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     dashboardTags: DashboardTag[] = dashboardTags;
@@ -2579,13 +2579,12 @@ export class GlobalVariableService {
         this.currentDashboards = currentDashboards;
 
 		// Load the current DashboardTab
-		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
-			i => i.dashboardID = 1  //* this.globalVariableService.currentDashboardID
-		);
-		this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs);
+        this.currentDashboardTabs.next(this.dashboardTabs
+            .filter(i => i.dashboardID = dashboardID
+		));
 
 		// Load Widgets, Shapes and Slicers
-        //* this.globalVariableService.getCurrentWidgets(this.globalVariableService.currentDashboardID);
+        this.getCurrentWidgets(dashboardID);
     }
 
     changeMessage(message: string) {
