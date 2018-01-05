@@ -1,68 +1,68 @@
 [
     {
+        "id": 1,
         "dashboardID": 1,
-        "dashboardTabID": 1,
         "name": "Summary",
         "color": ""
     },
     {
-        "dashboardID": 2,
-        "dashboardTabID": 1,
+        "id": 2,
+        "dashboardID": 1,
         "name": "Headcount",
         "color": ""
     },
     {
+        "id": 3,
+        "dashboardID": 1,
+        "name": "Europe",
+        "color": ""
+    },
+    {
+        "id": 4,
+        "dashboardID": 1,
+        "name": "Budget",
+        "color": ""
+    },
+    {
+        "id": 5,
+        "dashboardID": 2,
+        "name": "Europe",
+        "color": ""
+    },
+    {
+        "id": 6,
         "dashboardID": 3,
-        "dashboardTabID": 1,
-        "name": "Europe",
+        "name": "Budget",
         "color": ""
     },
     {
+        "id": 7,
         "dashboardID": 4,
-        "dashboardTabID": 1,
-        "name": "Budget",
+        "name": "Europe",
         "color": ""
     },
     {
+        "id": 8,
         "dashboardID": 5,
-        "dashboardTabID": 2,
-        "name": "Europe",
+        "name": "Budget",
         "color": ""
     },
     {
+        "id": 9,
         "dashboardID": 6,
-        "dashboardTabID": 3,
-        "name": "Budget",
-        "color": ""
-    },
-    {
-        "dashboardID": 7,
-        "dashboardTabID": 4,
-        "name": "Europe",
-        "color": ""
-    },
-    {
-        "dashboardID": 8,
-        "dashboardTabID": 5,
-        "name": "Budget",
-        "color": ""
-    },
-    {
-        "dashboardID": 9,
-        "dashboardTabID": 6,
         "name": "Budget",
         "color": ""
     }
     ,
     {
-        "dashboardID": 10,
-        "dashboardTabID": 7,
+        "id": 10,
+        "dashboardID": 7,
         "name": "Budget",
         "color": ""
     },
     {
-        "dashboardID": 11,
-        "dashboardTabID": 8,
+        "id": 11,
+        "dashboardID": 8,
         "name": "Budget",
         "color": ""
     }

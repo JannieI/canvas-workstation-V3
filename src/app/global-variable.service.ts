@@ -2553,9 +2553,13 @@ export class GlobalVariableService {
     ) {
         this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
         this.currentDashboardID.subscribe(
-            i => {console.log('fuuuuc', i)
-                this.refreshCurrentDashboardInfo(i);
-        });
+            i => {
+                    console.log('fuuuuc', i)
+                    if (i != null) {
+                        this.refreshCurrentDashboardInfo(i);
+                    };
+                 }
+        );
      }
 
     refreshCurrentDashboardInfo(dashboardID: number) {
@@ -2569,6 +2573,9 @@ export class GlobalVariableService {
 
 		// Load Widgets, Shapes and Slicers
         this.getCurrentWidgets(dashboardID);
+
+        console.log('refreshCurrentDashboardInfo', this.currentDashboards.value, 
+            this.currentDashboardTabs.value, this.currentWidgets.value)
     }
 
     changeMessage(message: string) {
@@ -2646,6 +2653,7 @@ export class GlobalVariableService {
 
         // Returns: this.currentDashboards array, unless:
         //   If not cached or if dirty, get from File
+        console.log('xx 0', dashboardID)
         
         // Refresh from source at start, or if dirty
         if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
@@ -2655,19 +2663,24 @@ export class GlobalVariableService {
 
                         // Load the current Dashboard, and Optional template
                         let currentDashboards: Dashboard[] = [];
-                        currentDashboards.push(this.dashboards[dashboardID]);
-                        if (currentDashboards[0].templateDashboardID != 0) {
-                            let templeteDashboard: Dashboard[] = null;
+                        currentDashboards = this.dashboards.filter(
+                            i => i.id == dashboardID
+                        );
 
-                            templeteDashboard = this.dashboards.filter(
-                                i => i.id = currentDashboards[0].templateDashboardID
-                            );
+                        if (currentDashboards.length > 0) {
+                            if (currentDashboards[0].templateDashboardID != 0) {
+                                let templeteDashboard: Dashboard[] = null;
 
-                            if (templeteDashboard == null) {
-                                alert('Dashboard template id does not exist in Dashboards Array')
-                            } else {
-                                currentDashboards.push(templeteDashboard[0]);
-                            }
+                                templeteDashboard = this.dashboards.filter(
+                                    i => i.id == currentDashboards[0].templateDashboardID
+                                );
+
+                                if (templeteDashboard == null) {
+                                    alert('Dashboard template id does not exist in Dashboards Array')
+                                } else {
+                                    currentDashboards.push(templeteDashboard[0]);
+                                }
+                            };
                         }
                         this.currentDashboards.next(currentDashboards);
 
@@ -2681,12 +2694,15 @@ export class GlobalVariableService {
 
                 // Load the current Dashboard, and Optional template
                 let currentDashboards: Dashboard[] = [];
-                currentDashboards.push(this.dashboards[dashboardID]);
+                currentDashboards = this.dashboards.filter(
+                    i => i.id == dashboardID
+                );
+        
                 if (currentDashboards[0].templateDashboardID != 0) {
                     let templeteDashboard: Dashboard[] = null;
 
                     templeteDashboard = this.dashboards.filter(
-                        i => i.id = currentDashboards[0].templateDashboardID
+                        i => i.id == currentDashboards[0].templateDashboardID
                     );
 
                     if (templeteDashboard == null) {
@@ -2742,7 +2758,6 @@ export class GlobalVariableService {
         };
 
     }
-
     
     getDashboardTabs(): Promise<DashboardTab[]> {
         // Description: Gets all T
