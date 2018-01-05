@@ -2349,10 +2349,10 @@ export class GlobalVariableService {
 
     dashboards: Dashboard[] = dashboards;
     dashboardTabs = new BehaviorSubject<DashboardTab[]>(dashboardTabs);
+    dashboardsRecent: number[];
     dashboardPermissions: DashboardPermission[] = dashboardPermissions;
     dashboardTags: DashboardTag[] = dashboardTags;
     dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
-    dashboardsRecent: number[] = [];
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
     dashboardSchedules: DashboardSchedule[] = dashboardSchedules;
@@ -2799,19 +2799,19 @@ export class GlobalVariableService {
         return new Promise<number[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboardsRecent == [])  ||  (this.isDirtyDashboardsRecent) ) {
+            if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        let temp: DashboardRecent[] = data.filter(
+                    .then(data => { 
+                        console.log('this.dashboardsRecent 1', data)
+                        this.dashboardsRecent = [];
+                        // TODO - http must be sorted => include in Options ...
+                        data.filter(
                             i => i.userID == userID
-                        );
-                        if (temp.length == 0) {
-                            this.dashboardsRecent = [];
-                        } else {
-                            this.dashboardsRecent = temp[0].dashboardID;
-                        }
-                
+                        ).forEach( j => {
+                            this.dashboardsRecent.push(data[j].dashboardID)
+                        });
+                        console.log('dashboardsRecent', this.dashboardsRecent)
                         this.isDirtyDashboardsRecent = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         resolve(this.dashboardsRecent);
@@ -2836,9 +2836,10 @@ export class GlobalVariableService {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 this.getDashboardsRecentList(userID)
                     .then(data => {
+                        console.log('data', data)
                         let returnData: Dashboard[];
                         for (var i = 0; i < this.dashboards.length; i++) {
-                            if (data.indexOf(this.dashboards[i].id) != -1) {
+                            if (this.dashboardsRecent.indexOf(this.dashboards[i].id) != -1) {
                                 returnData.push(this.dashboards[i]);
                             }
                         }

@@ -25,7 +25,7 @@ export class LandingComponent implements OnInit {
 	@Output() formLandingClosed: EventEmitter<string> = new EventEmitter();
 
 	// sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
-	recentDashboards: Dashboard[] = this.globalVariableService.dashboardsRecent;
+	recentDashboards: Promise<Dashboard[]>;
 	sampleDashboards: Promise<Dashboard[]>;
 	showModel: boolean = true;
 
@@ -37,7 +37,7 @@ export class LandingComponent implements OnInit {
 		// this.globalVariableService.getDashboardSamples()
 		// 	.then(data => this.sampleDashboards = data);
 		this.sampleDashboards = this.globalVariableService.getDashboardSamples()
-
+		this.recentDashboards = this.globalVariableService.getDashboardsRecent('JannieI');
 		}
 
 	ngOnInit() {

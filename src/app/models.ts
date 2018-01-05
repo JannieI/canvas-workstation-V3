@@ -267,26 +267,26 @@ export class CanvasShape {
     containerFontsize: number;
     containerHeight: number;
     containerLeft: number;
-    containerWidgetTitle: string;         // Title at top of container
+    containerWidgetTitle: string;           // Title at top of container
     containerTop: number;
     containerWidth: number;
     containerZindex: number;
 
     // Title
-    titleText: string;                     // with HTML & keywords (##today##)
+    titleText: string;                      // with HTML & keywords (##today##)
     titleBackgroundColor: string;
     titleBorder: string;
     titleColor: string;
-    titleFontsize: number;                 // in px
+    titleFontsize: number;                  // in px
     titleFontWeight: string;
-    titleHeight: number;                   // in px
-    titleLeft: number;                     // in px
+    titleHeight: number;                    // in px
+    titleLeft: number;                      // in px
     titleMargin: string;
     titlePadding: string;
     titlePosition: string;
     titleTextAlign: string;
-    titleTop: number;                      // in px
-    titleWidth: number;                    // in px: 0 means it adapts to container
+    titleTop: number;                       // in px
+    titleWidth: number;                     // in px: 0 means it adapts to container
 
     // shape
     cx: string;                             // circle svg cx in px - ie '50' without dimension
@@ -322,7 +322,7 @@ export class CanvasWidget {
     version: number;
 
     // @Runtime
-    isLiked: boolean;                      // @RunTime: True if Widget is liked by me
+    isLiked: boolean;                   // @RunTime: True if Widget is liked by me
     isSelected: boolean;
 
     // Data related
@@ -334,15 +334,15 @@ export class CanvasWidget {
             "value": string;
         }
     ]
-    reportID: number;                      // FK to report (query / data).  -1: dont load any report data
-    reportName: string;                    // Report (query) name in Eazl (DS implied)
-    rowLimit: number;                      // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
-    addRestRow: boolean;                  // True means add a row to  = SUM(rest)
-    size: string;                           // Small, Medium, Large ito data loading
+    reportID: number;                   // FK to report (query / data).  -1: dont load any report data
+    reportName: string;                 // Report (query) name in Eazl (DS implied)
+    rowLimit: number;                   // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
+    addRestRow: boolean;                // True means add a row to  = SUM(rest)
+    size: string;                       // Small, Medium, Large ito data loading
 
     // Links
-    hyperlinkDashboardID: number;           // Optional Widget ID to jump to
-    hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
+    hyperlinkDashboardID: number;       // Optional Widget ID to jump to
+    hyperlinkDashboardTabID: number;    // Optional Tab Nr to jump to
 
     // Container
     containerBackgroundcolor: string;
@@ -352,33 +352,33 @@ export class CanvasWidget {
     containerFontsize: number;
     containerHeight: number;
     containerLeft: number;
-    containerWidgetTitle: string;         // Title at top of container
+    containerWidgetTitle: string;       // Title at top of container
     containerTop: number;
     containerWidth: number;
     containerZindex: number;
 
     // Title
-    titleText: string;                     // with HTML & keywords (##today##)
+    titleText: string;                  // with HTML & keywords (##today##)
     titleBackgroundColor: string;
     titleBorder: string;
     titleColor: string;
-    titleFontsize: number;                 // in px
+    titleFontsize: number;              // in px
     titleFontWeight: string;
-    titleHeight: number;                   // in px
-    titleLeft: number;                     // in px
+    titleHeight: number;                // in px
+    titleLeft: number;                  // in px
     titleMargin: string;
     titlePadding: string;
     titlePosition: string;
     titleTextAlign: string;
-    titleTop: number;                      // in px
-    titleWidth: number;                    // in px: 0 means it adapts to container
+    titleTop: number;                   // in px
+    titleWidth: number;                 // in px: 0 means it adapts to container
 
     // Graph
-    graphType: string;                     // bar, pie, etc
-    graphHeight: number;                   // in px
-    graphLeft: number;                     // in px
-    graphTop: number;                      // in px
-    graphWidth: number;                    // in px
+    graphType: string;                  // bar, pie, etc
+    graphHeight: number;                // in px
+    graphLeft: number;                  // in px
+    graphTop: number;                   // in px
+    graphWidth: number;                 // in px
     graphGraphPadding: number;
     graphHasSignals: boolean;
     graphXcolumn: string;
@@ -388,24 +388,24 @@ export class CanvasWidget {
     graphSpecification: any;
 
     // Table - to be determined later ...
-    tableColor: string;                    // Text color
-    tableCols: number;                     // Nr of cols, 0 means all
-    tableHeight: number;                   // in px, cuts of rest if bigger than this
+    tableColor: string;                 // Text color
+    tableCols: number;                  // Nr of cols, 0 means all
+    tableHeight: number;                // in px, cuts of rest if bigger than this
     tableHideHeader: boolean;
-    tableLeft: number;                     // in px
-    tableRows: number;                     // Nr of rows in the data, excluding header: 0 means all
-    tableTop: number;                      // in px
-    tableWidth: number;                    // in px, cuts of rest if bigger than this
+    tableLeft: number;                  // in px
+    tableRows: number;                  // Nr of rows in the data, excluding header: 0 means all
+    tableTop: number;                   // in px
+    tableWidth: number;                 // in px, cuts of rest if bigger than this
 
     // Created, updated and refreshed
-    refreshMode: string;                   // Manual, OnOpen, Repeatedly
-    refreshFrequency: number;              // Nr of seconds if RefreshMode = Repeatedly
-    widgetRefreshedOn: string;            // Data Refreshed on
-    widgetRefreshedBy: string;            // Date Refreshed by
-    widgetCreatedOn: string;              // Created on
-    widgetCreatedBy: string;              // Created by
-    widgetUpdatedOn: string;              // Updated on
-    widgetUpdatedBy: string;              // Updated by
+    refreshMode: string;                // Manual, OnOpen, Repeatedly
+    refreshFrequency: number;           // Nr of seconds if RefreshMode = Repeatedly
+    widgetRefreshedOn: string;          // Data Refreshed on
+    widgetRefreshedBy: string;          // Date Refreshed by
+    widgetCreatedOn: string;            // Created on
+    widgetCreatedBy: string;            // Created by
+    widgetUpdatedOn: string;            // Updated on
+    widgetUpdatedBy: string;            // Updated by
 
 }
 
@@ -470,7 +470,8 @@ export class DashboardTab {
 
 export class DashboardRecent {
     userID: string;
-    dashboardID: number[];
+    dashboardID: number;
+    accessed: string;                   // Last dateTime opened
 }
 
 export class DashboardTag {
@@ -504,14 +505,14 @@ export class DashboardSchedule {
     datasourceID: number;
     name: string;
     description: string;
-    repeats: string;       // Daily, Weekday (M-F), Weekly, Monthly, Yearly
-    repeatsEvery: number;  //   X                     X        X        X
-    repeatsOn: string[];   // Weekly:  (M, T, W, ... S)
-    repeatsFor: string;    // Monthly: DayOfWeek, DayOfMonth
-    startsOn: string;      // Date
+    repeats: string;                    // Daily, Weekday (M-F), Weekly, Monthly, Yearly
+    repeatsEvery: number;               //   X                     X        X        X
+    repeatsOn: string[];                // Weekly:  (M, T, W, ... S)
+    repeatsFor: string;                 // Monthly: DayOfWeek, DayOfMonth
+    startsOn: string;                   // Date
     EndsNever: boolean;
-    EndsAfter: number;     // n times
-    EndsOn: string;        // Date
+    EndsAfter: number;                  // n times
+    EndsOn: string;                     // Date
 }
 
 export class DashboardPermission {

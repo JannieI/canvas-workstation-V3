@@ -58,7 +58,7 @@
 					
 
 					<h3>Recent Dashboards</h3>
-					<div *ngFor="let row of recentDashboards; let i = index">
+					<div *ngFor="let row of recentDashboards | async">
 						<a
 							class="nav-link"
 							>
