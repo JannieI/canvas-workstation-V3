@@ -2264,6 +2264,8 @@ export class GlobalVariableService {
     currentDashboardSchedules = new BehaviorSubject<DashboardSchedule[]>([]);
     currentDashboardTags = new BehaviorSubject<DashboardTag[]>([]);
     currentDashboardPermissions = new BehaviorSubject<DashboardPermission[]>([]);
+    currentDashboardSnapshots = new BehaviorSubject<DashboardSnapshot[]>([]);
+    
     private messageSource = new BehaviorSubject<string>("default message");
     currentMessage = this.messageSource.asObservable();
 
@@ -2354,7 +2356,8 @@ export class GlobalVariableService {
     isDirtyDashboardSchedules: boolean = true;
     isDirtyDashboardTags: boolean = true;
     isDirtyDashboardPermissions: boolean = true;
-
+    isDirtyDashboardSnapshots: boolean = true;
+    
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -2468,6 +2471,9 @@ export class GlobalVariableService {
 
         // Load Dashboard Tags
         this.getCurrentDashboardTags(dashboardID);
+        
+        // Load Dashboard Permissions
+        this.getCurrentDashboardPermissions(dashboardID);
         
     }
 
@@ -3192,7 +3198,35 @@ export class GlobalVariableService {
             });
         };
     }
+    Snapshot
 
+    getDashboardSnapshots(): Promise<DashboardSnapshot[]> {
+        // Description: Gets all P
+
+        // Returns: this.dashboardSnapshots array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDashboardSnapshots';
+        this.filePath = './assets/data.dashboardSnapshots.json';
+
+        return new Promise<DashboardSnapshot[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboardSnapshots == [])  ||  (this.isDirtyDashboardSnapshots) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dashboardSnapshots = data;
+                        this.isDirtyDashboardSnapshots = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.dashboardSnapshots);
+                    });
+            } else {
+                resolve(this.dashboardSnapshots);
+            }
+        });
+
+    }
 
 
 
