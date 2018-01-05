@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "dashboardID": 12,
+        "tag": "budget2017"
+    },
+    {
+        "id": 2,
+        "dashboardID": 12,
+        "tag": "savings"
+    },
+    {
+        "id": 3,
+        "dashboardID": 12,
+        "tag": "projectAard"
+    }
+]

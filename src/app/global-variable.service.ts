@@ -2507,6 +2507,9 @@ export class GlobalVariableService {
 
         // Load Slicers
         this.getCurrentSlicers(dashboardID);
+
+        // Load Dashboard Schedules
+        this.getCurrentDashboardSchedules(dashboardID);
         
     }
 
