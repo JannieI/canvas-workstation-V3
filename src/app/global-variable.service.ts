@@ -1800,8 +1800,6 @@ const localDashboards: dl.spec.TopLevelExtendedSpec[] =
     }
 ];
 
-const dashboardThemes: DashboardTheme[] =
-
 
 const dashboardTemplates: DashboardTemplate[] =
 [
@@ -2177,7 +2175,7 @@ export class GlobalVariableService {
     dashboardTags: DashboardTag[] = [];
     dashboardPermissions: DashboardPermission[] = [];
     dashboardSnapshots: DashboardSnapshot[] = [];
-    dashboardThemes: DashboardTheme[] = dashboardThemes;
+    dashboardThemes: DashboardTheme[] = [];
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
     widgets: CanvasWidget[] = [];
     shapes: CanvasShape[] = [];
@@ -2243,7 +2241,7 @@ export class GlobalVariableService {
     currentDashboardTags = new BehaviorSubject<DashboardTag[]>([]);
     currentDashboardPermissions = new BehaviorSubject<DashboardPermission[]>([]);
     currentDashboardSnapshots = new BehaviorSubject<DashboardSnapshot[]>([]);
-    
+    currentDashboardThemes = new BehaviorSubject<DashboardTheme[]>([]);
     private messageSource = new BehaviorSubject<string>("default message");
     currentMessage = this.messageSource.asObservable();
 
@@ -2335,7 +2333,8 @@ export class GlobalVariableService {
     isDirtyDashboardTags: boolean = true;
     isDirtyDashboardPermissions: boolean = true;
     isDirtyDashboardSnapshots: boolean = true;
-    
+    isDirtyDashboardThemes: boolean = true;
+
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -3243,8 +3242,36 @@ export class GlobalVariableService {
         };
     }
     
+    getDashboardThemes(): Promise<DashboardTheme[]> {
+        // Description: Gets all Sn
+
+        // Returns: this.dashboardThemes array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDashboardThemes';
+        this.filePath = './assets/data.dashboardThemes.json';
+
+        return new Promise<DashboardTheme[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboardThemes == [])  ||  (this.isDirtyDashboardThemes) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dashboardThemes = data;
+                        this.isDirtyDashboardThemes = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.dashboardThemes);
+                    });
+            } else {
+                resolve(this.dashboardThemes);
+            }
+        });
+
+    }
 
 
+    
 
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
@@ -3317,10 +3344,6 @@ export class GlobalVariableService {
 
     getAllfieldsMetadata(datasourceID: number) {
         // Get Fmdata for a DS
-
-    }
-
-    getAlldashboardThemes() {
 
     }
 
