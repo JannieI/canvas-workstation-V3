@@ -1978,18 +1978,18 @@ const dashboards: Dashboard[] =
         url: '',
         qaRequired: true,
         isSample: true,
-    
+
         backgroundColor: '',
         backgroundImage: '',
         templateDashboardID: 0,
-    
+
         creator: 'JonathanS',
         dateCreated: '',
         editor: 'JonathanS',
         dateEdited: '',
         refresher: '',
         dateRefreshed: '',
-            
+
         nrWidgets: 1,
         nrShapes: 0,
         nrRecords: 12,
@@ -2014,18 +2014,18 @@ const dashboards: Dashboard[] =
         url: '',
         qaRequired: true,
         isSample: true,
-    
+
         backgroundColor: '',
         backgroundImage: '',
         templateDashboardID: 0,
-    
+
         creator: 'JonathanS',
         dateCreated: '',
         editor: 'JonathanS',
         dateEdited: '',
         refresher: '',
         dateRefreshed: '',
-            
+
         nrWidgets: 1,
         nrShapes: 0,
         nrRecords: 12,
@@ -2050,18 +2050,18 @@ const dashboards: Dashboard[] =
         url: '',
         qaRequired: true,
         isSample: true,
-    
+
         backgroundColor: '',
         backgroundImage: '',
         templateDashboardID: 0,
-    
+
         creator: 'JonathanS',
         dateCreated: '',
         editor: 'JonathanS',
         dateEdited: '',
         refresher: '',
         dateRefreshed: '',
-            
+
         nrWidgets: 1,
         nrShapes: 0,
         nrRecords: 12,
@@ -2086,18 +2086,18 @@ const dashboards: Dashboard[] =
         url: '',
         qaRequired: true,
         isSample: true,
-    
+
         backgroundColor: '',
         backgroundImage: '',
         templateDashboardID: 0,
-    
+
         creator: 'JonathanS',
         dateCreated: '',
         editor: 'JonathanS',
         dateEdited: '',
         refresher: '',
         dateRefreshed: '',
-            
+
         nrWidgets: 1,
         nrShapes: 0,
         nrRecords: 12,
@@ -2122,18 +2122,18 @@ const dashboards: Dashboard[] =
         url: '',
         qaRequired: true,
         isSample: true,
-    
+
         backgroundColor: '',
         backgroundImage: '',
         templateDashboardID: 0,
-    
+
         creator: 'JonathanS',
         dateCreated: '',
         editor: 'JonathanS',
         dateEdited: '',
         refresher: '',
         dateRefreshed: '',
-            
+
         nrWidgets: 1,
         nrShapes: 0,
         nrRecords: 12,
@@ -2474,6 +2474,10 @@ export class GlobalVariableService {
     isDirtyDashboardsRecent: boolean = true;
     isDirtyWidgets: boolean = true;
     isDirtyShapes: boolean = true;
+    isDirtySlicers: boolean = true;
+    
+
+
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -2549,7 +2553,7 @@ export class GlobalVariableService {
     // lastWidgetTop: number = 80;
 
 
-    constructor(        
+    constructor(
         // private globalFunctionService: GlobalFunctionService,
         httpFake: httpFake
     ) {
@@ -2652,11 +2656,11 @@ export class GlobalVariableService {
         // Description: Gets current D (and optional Template)
 
         // Parames:
-        //   dashboardID 
+        //   dashboardID
 
         // Returns: this.currentDashboards array, unless:
         //   If not cached or if dirty, get from File
-        
+
         // Refresh from source at start, or if dirty
         if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
@@ -2688,7 +2692,7 @@ export class GlobalVariableService {
 
                         console.log('getCurrentDashboards 1', data)
                         resolve(currentDashboards);
-                        
+
                 })
              })
         } else {
@@ -2699,7 +2703,7 @@ export class GlobalVariableService {
                 currentDashboards = this.dashboards.filter(
                     i => i.id == dashboardID
                 );
-        
+
                 if (currentDashboards[0].templateDashboardID != 0) {
                     let templeteDashboard: Dashboard[] = null;
 
@@ -2726,11 +2730,11 @@ export class GlobalVariableService {
         // Description: Gets all T for current D
 
         // Parames:
-        //   dashboardID 
+        //   dashboardID
 
         // Returns: this.currentDashboardTabs array, unless:
         //   If not cached or if dirty, get from File
-        
+
         // Refresh from source at start, or if dirty
         if ( (this.dashboardTabs == [])  ||  (this.isDirtydashboardTabs) ) {
             return new Promise<DashboardTab[]>((resolve, reject) => {
@@ -2742,7 +2746,7 @@ export class GlobalVariableService {
                         this.currentDashboardTabs.next(data);
                         console.log('getCurrentDashboardTabs 1', data)
                         resolve(data);
-                        
+
                 })
              })
         } else {
@@ -2758,13 +2762,13 @@ export class GlobalVariableService {
         };
 
     }
-    
+
     getDashboardTabs(): Promise<DashboardTab[]> {
         // Description: Gets all T
 
         // Returns: this.dashboardTabs array, unless:
         //   If not cached or if dirty, get from File
-        
+
         let url: string = 'getWidgets';
         this.filePath = './assets/data.dashboardTabs.json';
 
@@ -2791,13 +2795,13 @@ export class GlobalVariableService {
         // Description: Gets all W for current D
 
         // Parames:
-        //   dashboardID 
+        //   dashboardID
 
         // Returns: this.currentWidgets array, unless:
         //   If not cached or if dirty, get from File
-        
+
         // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
-        
+
         // Refresh from source at start, or if dirty
         if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
             return new Promise<CanvasWidget[]>((resolve, reject) => {
@@ -2809,7 +2813,7 @@ export class GlobalVariableService {
                         this.currentWidgets.next(data);
                         console.log('getCurrentWidgets 1', data)
                         resolve(data);
-                        
+
                 })
              })
         } else {
@@ -2859,7 +2863,7 @@ export class GlobalVariableService {
 
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
-        
+
         let url: string = 'getDashboards';
         this.filePath = './assets/data.dashboards.json';
 
@@ -2887,7 +2891,7 @@ export class GlobalVariableService {
 
         // Returns: an array extracted from [D], unless:
         //   If D not cached or if dirty, get from File
-        
+
         // Refresh from source at start, or if dirty
         if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
@@ -2898,7 +2902,7 @@ export class GlobalVariableService {
                         );
                         console.log('getDashboardSamples 1', data)
                         resolve(data);
-                        
+
                 })
             })
         } else {
@@ -2918,7 +2922,7 @@ export class GlobalVariableService {
 
         // Returns: this.dashboardsRecent array, unless:
         //   If not cached or if dirty, get from File
-        
+
         let url: string = 'getDashboards';
         this.filePath = './assets/data.dashboardsRecent.json';
 
@@ -2928,7 +2932,7 @@ export class GlobalVariableService {
             if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
-                    .then(data => { 
+                    .then(data => {
                         this.dashboardsRecent = [];
                         // TODO - http must be sorted => include in Options ...
                         let temp: DashboardRecent[] = data.filter(
@@ -2955,7 +2959,7 @@ export class GlobalVariableService {
 
         // Returns: recent [D] array, unless:
         //   If not cached or if dirty, get from File
-        
+
         // Refresh from source at start, or if dirty
         if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
@@ -2969,7 +2973,7 @@ export class GlobalVariableService {
                         }
                         console.log('getDashboardsRecent 1', returnData)
                         resolve(returnData);
-                                
+
                 })
              })
         } else {
@@ -3019,13 +3023,13 @@ export class GlobalVariableService {
         // Description: Gets all W for current D
 
         // Parames:
-        //   dashboardID 
+        //   dashboardID
 
         // Returns: this.currentShapes array, unless:
         //   If not cached or if dirty, get from File
-        
+
         // Usage: getShapes(1)  =>  Returns W for DashboardID = 1
-        
+
         // Refresh from source at start, or if dirty
         if ( (this.shapes == [])  ||  (this.isDirtyShapes) ) {
             return new Promise<CanvasShape[]>((resolve, reject) => {
@@ -3053,29 +3057,29 @@ export class GlobalVariableService {
 
     }
 
-    getShapes(): Promise<CanvasShape[]> {
-        // Description: Gets all S
+    getSlicers(): Promise<CanvasSlicer[]> {
+        // Description: Gets all Sl
 
-        // Returns: this.shapes array, unless:
+        // Returns: this.Slicers array, unless:
         //   If not cached or if dirty, get from File
 
-        let url: string = 'getShapes';
-        this.filePath = './assets/data.shapes.json';
+        let url: string = 'getSlicers';
+        this.filePath = './assets/data.slicers.json';
 
-        return new Promise<CanvasShape[]>((resolve, reject) => {
+        return new Promise<CanvasSlicer[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.shapes == [])  ||  (this.isDirtyShapes) ) {
+            if ( (this.slicers == [])  ||  (this.isDirtySlicers) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.shapes = data;
-                        this.isDirtyShapes = false;
+                        this.slicers = data;
+                        this.isDirtySlicers = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        resolve(this.shapes);
+                        resolve(this.slicers);
                     });
             } else {
-                resolve(this.shapes);
+                resolve(this.slicers);
             }
         });
 
@@ -3200,12 +3204,12 @@ export class GlobalVariableService {
             let mod:number = counter%60000;
             // TODO - remove this console.log BUT at moment sleep increments counter * 60000
             console.log(counter, mod);
-            if (mod == 0) {     
+            if (mod == 0) {
                 console.log ('Minutes elapsed ', counter, mod )
             }
             if ((new Date().getTime() - start) > milliseconds){
                 console.log('  end', start, new Date().getTime())
-                
+
                 break;
             }
         }
