@@ -76,14 +76,22 @@ export class LandingComponent implements OnInit {
 		this.router.navigate(['/explore']);
 	}
 
-	loadRecentDashboard(index: number) {
-		console.log('start loadRecentDashboard', index);
-		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs
-			.filter(i => i.dashboardID = 1
-		);
+	loadRecentDashboard(dashboardID: number) {
+		console.log('start loadRecentDashboard', dashboardID);
 
-		this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs);
-		this.formLandingClosed.emit();
+		// Check that we have data
+		if (this.globalVariableService.dashboards == []) {
+			this.globalVariableService.statusBarMessages.next(
+				'D still loading ...'
+			);
+			return;
+	};
+
+	// Load the dashboardID - Observable that will refresh all needed for current D
+	this.globalVariableService.currentDashboardID.next(dashboardID);
+
+	// Close modal, and show the Dashboard
+	this.formLandingClosed.emit();
 		this.router.navigate(['/explore']);
 	}
 

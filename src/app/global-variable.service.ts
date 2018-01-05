@@ -2381,6 +2381,7 @@ export class GlobalVariableService {
     currentDataset: any = currentDataset;
     currentTransformations: Transformation[] = currentTransformations;
     currentDatasourceFilters: DatasourceFilter[] = [];
+
     currentDashboards = new BehaviorSubject<Dashboard[]>([]);
     currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
     currentWidgets = new BehaviorSubject<CanvasWidget[]>([]);
@@ -2574,8 +2575,7 @@ export class GlobalVariableService {
 		// Load Widgets, Shapes and Slicers
         this.getCurrentWidgets(dashboardID);
 
-        console.log('refreshCurrentDashboardInfo', this.currentDashboards.value, 
-            this.currentDashboardTabs.value, this.currentWidgets.value)
+        // Load Shapes
     }
 
     changeMessage(message: string) {
@@ -2643,7 +2643,6 @@ export class GlobalVariableService {
     deleteDashboardRecent(index: number) {
         let arr = this.dashboardsRecent.splice(index, 1);
     }
-
 
     getCurrentDashboards(dashboardID: number): Promise<Dashboard[]> {
         // Description: Gets current D (and optional Template)
