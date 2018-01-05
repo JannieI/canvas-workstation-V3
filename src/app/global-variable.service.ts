@@ -3120,6 +3120,41 @@ export class GlobalVariableService {
 
     }
 
+    getCurrentDashboardTags(dashboardID: number): Promise<DashboardTag[]> {
+        // Description: Gets all Sch for current D
+
+        // Parames:
+        //   dashboardID
+
+        // Returns: this.currentDashboardTags array, unless:
+        //   If not cached or if dirty, get from File
+
+        // Refresh from source at start, or if dirty
+        if ( (this.dashboardTags == [])  ||  (this.isDirtyDashboardTags) ) {
+            return new Promise<DashboardTag[]>((resolve, reject) => {
+                this.getDashboardTags()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+                        this.currentDashboardTags.next(data);
+                        console.log('getCurrentDashboardTags 1', data)
+                        resolve(data);
+                })
+             })
+        } else {
+            return new Promise<DashboardTag[]>((resolve, reject) => {
+                let returnData: DashboardTag[];
+                returnData = this.dashboardTags.filter(
+                    i => i.dashboardID == dashboardID
+                );
+                this.currentDashboardTags.next(returnData);
+                console.log('getCurrentDashboardTags 2', returnData)
+                resolve(returnData);
+            });
+        };
+    }
+
 
 
 
