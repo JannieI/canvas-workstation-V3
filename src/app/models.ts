@@ -436,6 +436,7 @@ export class Dashboard {
     defaultExportFileType: string;
     url: string;
     qaRequired: boolean;
+    isSample: boolean;              // True if this is a sample
 
     // Overlay looks
     backgroundColor: string;

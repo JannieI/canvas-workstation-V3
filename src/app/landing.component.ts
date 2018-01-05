@@ -58,8 +58,8 @@ export class LandingComponent implements OnInit {
 		this.router.navigate(['/explore']);
 	}
 
-	loadsampleDashboard(index: number) {
-		console.log('start loadsampleDashboard', index);
+	loadsampleDashboard(dashboardID: number) {
+		console.log('start loadsampleDashboard', dashboardID);
 
 		// Check that we have data
 		if (this.globalVariableService.dashboardsSamples == []  ||
@@ -70,18 +70,13 @@ export class LandingComponent implements OnInit {
 				return;
 		};
 
-		// Check we have an index
-		if (index < 1) {
-			alert('Error: index < 1');
-			return;
-		}
 		this.globalVariableService.currentDashboardID =
-			this.globalVariableService.dashboardsSamples[index - 1].id;
-		console.log('id', index, this.globalVariableService.currentDashboardID)
+			this.globalVariableService.dashboardsSamples[dashboardID].id;
+		console.log('id', dashboardID, this.globalVariableService.currentDashboardID)
 
 		// Load the current Dashboard, and Optional template
 		let currentDashboards: Dashboard[] = [];
-		currentDashboards.push(this.globalVariableService.dashboardsSamples[index - 1]);
+		currentDashboards.push(this.globalVariableService.dashboardsSamples[dashboardID]);
 		if (currentDashboards[0].templateDashboardID != 0) {
 			let templeteDashboard: Dashboard[] = null;
 
