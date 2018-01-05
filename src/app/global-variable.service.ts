@@ -2470,6 +2470,7 @@ export class GlobalVariableService {
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     isDirtyWidgets: boolean = true;
     isDirtyDashboards: boolean = true;
+    isDirtydashboardTabs: boolean = true;
     isDirtyDashboardsRecent: boolean = true;
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
@@ -2739,6 +2740,35 @@ export class GlobalVariableService {
                 resolve(returnData);
             });
         };
+
+    }
+
+    
+    getDashboardTabs(): Promise<DashboardTab[]> {
+        // Description: Gets all T
+
+        // Returns: this.dashboardTabs array, unless:
+        //   If not cached or if dirty, get from File
+        
+        let url: string = 'getWidgets';
+        this.filePath = './assets/data.dashboardTabs.json';
+
+        return new Promise<DashboardTab[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboardTabs == [])  ||  (this.isDirtydashboardTabs) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dashboardTabs = data;
+                        this.isDirtydashboardTabs = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.dashboardTabs);
+                    });
+            } else {
+                resolve(this.dashboardTabs);
+            }
+        });
 
     }
 
