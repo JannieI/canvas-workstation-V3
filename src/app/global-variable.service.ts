@@ -1818,9 +1818,6 @@ const dashboardTemplates: DashboardTemplate[] =
     }
 ]
 
-const dashboardSnapshots: DashboardSnapshot[] =
-
-
 const dashboards: Dashboard[] =
 [
     {
@@ -2185,7 +2182,7 @@ export class GlobalVariableService {
     dashboardSchedules: DashboardSchedule[] = [];
     dashboardTags: DashboardTag[] = [];
     dashboardPermissions: DashboardPermission[] = [];
-    dashboardSnapshots: DashboardSnapshot[] = dashboardSnapshots;
+    dashboardSnapshots: DashboardSnapshot[] = [];
     dashboardThemes: DashboardTheme[] = dashboardThemes;
     dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
     widgets: CanvasWidget[] = [];
@@ -2533,7 +2530,7 @@ export class GlobalVariableService {
     getCurrentDashboards(dashboardID: number): Promise<Dashboard[]> {
         // Description: Gets current D (and optional Template)
 
-        // Parames:
+        // Params:
         //   dashboardID
 
         // Returns: this.currentDashboards array, unless:
@@ -2607,7 +2604,7 @@ export class GlobalVariableService {
     getCurrentDashboardTabs(dashboardID: number): Promise<DashboardTab[]> {
         // Description: Gets all T for current D
 
-        // Parames:
+        // Params:
         //   dashboardID
 
         // Returns: this.currentDashboardTabs array, unless:
@@ -2672,7 +2669,7 @@ export class GlobalVariableService {
     getCurrentWidgets(dashboardID: number): Promise<CanvasWidget[]> {
         // Description: Gets all W for current D
 
-        // Parames:
+        // Params:
         //   dashboardID
 
         // Returns: this.currentWidgets array, unless:
@@ -2900,7 +2897,7 @@ export class GlobalVariableService {
     getCurrentShapes(dashboardID: number): Promise<CanvasShape[]> {
         // Description: Gets all S for current D
 
-        // Parames:
+        // Params:
         //   dashboardID
 
         // Returns: this.currentShapes array, unless:
@@ -2964,7 +2961,7 @@ export class GlobalVariableService {
     getCurrentSlicers(dashboardID: number): Promise<CanvasSlicer[]> {
         // Description: Gets all Sl for current D
 
-        // Parames:
+        // Params:
         //   dashboardID
 
         // Returns: this.currentSlicers array, unless:
@@ -3028,7 +3025,7 @@ export class GlobalVariableService {
     getCurrentDashboardSchedules(dashboardID: number): Promise<DashboardSchedule[]> {
         // Description: Gets all Sch for current D
 
-        // Parames:
+        // Params:
         //   dashboardID
 
         // Returns: this.currentDashboardSchedules array, unless:
@@ -3091,7 +3088,7 @@ export class GlobalVariableService {
     getCurrentDashboardTags(dashboardID: number): Promise<DashboardTag[]> {
         // Description: Gets all Sch for current D
 
-        // Parames:
+        // Params:
         //   dashboardID
 
         // Returns: this.currentDashboardTags array, unless:
@@ -3154,7 +3151,7 @@ export class GlobalVariableService {
     getCurrentDashboardPermissions(dashboardID: number): Promise<DashboardPermission[]> {
         // Description: Gets all Sch for current D
 
-        // Parames:
+        // Params:
         //   dashboardID
 
         // Returns: this.currentDashboardPermissions array, unless:
@@ -3188,7 +3185,7 @@ export class GlobalVariableService {
     Snapshot
 
     getDashboardSnapshots(): Promise<DashboardSnapshot[]> {
-        // Description: Gets all P
+        // Description: Gets all Sn
 
         // Returns: this.dashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
@@ -3216,9 +3213,9 @@ export class GlobalVariableService {
     }
 
     getCurrentDashboardSnapshots(dashboardID: number): Promise<DashboardSnapshot[]> {
-        // Description: Gets all Sch for current D
+        // Description: Gets all Sn for current D
 
-        // Parames:
+        // Params:
         //   dashboardID
 
         // Returns: this.getDashboardSnapshots array, unless:
@@ -3227,12 +3224,12 @@ export class GlobalVariableService {
         // Refresh from source at start, or if dirty
         if ( (this.dashboardSnapshots == [])  ||  (this.isDirtyDashboardSnapshots) ) {
             return new Promise<DashboardSnapshot[]>((resolve, reject) => {
-                this.dashboardSnapshots()
+                this.getDashboardSnapshots()
                     .then(data => {
                         data = data.filter(
                             i => i.dashboardID == dashboardID
                         );
-                        this.dashboardSnapshots.next(data);
+                        this.currentDashboardSnapshots.next(data);
                         console.log('getgetDashboardSnapshots 1', data)
                         resolve(data);
                 })
@@ -3243,7 +3240,7 @@ export class GlobalVariableService {
                 returnData = this.dashboardSnapshots.filter(
                     i => i.dashboardID == dashboardID
                 );
-                this.dashboardSnapshots.next(returnData);
+                this.currentDashboardSnapshots.next(returnData);
                 console.log('getgetDashboardSnapshots 2', returnData)
                 resolve(returnData);
             });
