@@ -657,34 +657,7 @@ const fieldsMetadata: FieldMetadata[] =
 ];
 
 const dataQualityIssues: DataQualityIssue[] =
-[
-    {
-        id: 1,
-        datasourceID: 12,
-        status: 'Open',
-        name: 'Missing Data',
-        type: 'Data',
-        description: 'bla-bla-bla',
-        nrIssues: 0,
-        loggedBy: 'AstonK',
-        loggedOn: '2017/01/01',
-        solvedBy: '',
-        solvedOn: '',
-    },
-    {
-        id: 2,
-        datasourceID: 12,
-        status: '',
-        name: 'Invalid Entries',
-        type: 'Process',
-        description: 'bla-bla-bla',
-        nrIssues: 12,
-        loggedBy: 'BarbaraR',
-        loggedOn: '2017/01/01',
-        solvedBy: 'GordonL',
-        solvedOn: '2017/01/01',
-    }
-]
+
 
 const transformationsFormat: Transformation[] =
 [
@@ -1824,9 +1797,11 @@ export class GlobalVariableService {
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
     currentDatasources = new BehaviorSubject<Datasource[]>([]);
     currentTransformations = new BehaviorSubject<Transformation[]>([]);
+    currentDatasourceFilters = new BehaviorSubject<DatasourceFilter[]>([]);
     currentDatasourcePermissions: DatasourcePermission[] = [];
-    currentDataset: any = currentDataset;
-    currentDatasourceFilters: DatasourceFilter[] = [];
+
+
+    currentDataset: any = currentDataset;       //  !!
 
     currentDashboards = new BehaviorSubject<Dashboard[]>([]);
     currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
@@ -2073,6 +2048,13 @@ export class GlobalVariableService {
 
         // Load Current DatTransformationsasources
         this.getCurrentTransformations(1);     
+
+        // Load DatasourceFilters
+        this.getDatasourceFilters();     
+
+        // Load Current DatasourceFilters
+        this.getCurrentDatasourceFilters(1);     
+
 
 
     }
@@ -3078,7 +3060,7 @@ export class GlobalVariableService {
             // Refresh from source at start, or if dirty
             if ( (this.currentTransformations.value == [])  ||  (this.isDirtyTransformations) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
-                this.get(url)
+                this.getTransformations()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
@@ -3114,15 +3096,47 @@ export class GlobalVariableService {
                         this.datasourceFilters = data;
                         this.isDirtyDatasourceFilters = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('getDatasourceFilters 1', this.datasourceFilters)
                         resolve(this.datasourceFilters);
                     });
             } else {
+                console.log('getDatasourceFilters 2', this.datasourceFilters)
                 resolve(this.datasourceFilters);
             }
         });
 
     }
 
+    getCurrentDatasourceFilters(datasourceID: number): Promise<DatasourceFilter[]> {
+        // Description: Gets Tr for current DS
+
+        // Returns: this.currentDatasourceFilters.value array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDatasourceFilters';
+        this.filePath = './assets/data.datasourceFilters.json';
+
+        return new Promise<DatasourceFilter[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.currentDatasourceFilters.value == [])  ||  (this.isDirtyDatasourceFilters) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        data = data.filter(
+                            i => i.datasourceID == datasourceID
+                        );
+                        this.currentDatasourceFilters.next(data);
+                        console.log('getCurrentDatasourceFilters 1', datasourceID, data)
+                        resolve(data);
+                    });
+            } else {
+                console.log('getCurrentDatasourceFilters 2', datasourceID, this.currentDatasourceFilters.value)
+                resolve(this.currentDatasourceFilters.value);
+            }
+        });
+
+    }
    
         
 
@@ -3156,15 +3170,6 @@ export class GlobalVariableService {
     }
 
     getAllcurrentDataset(datasourceID: number) {
-
-    }
-
-    getAllcurrentDatasourceFilters(datasourceID: number) {
-
-    }
-
-    getAlldatasourceFilters(datasourceID: number) {
-        // Get all F for a DS
 
     }
 
