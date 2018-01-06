@@ -656,9 +656,6 @@ const fieldsMetadata: FieldMetadata[] =
     }
 ];
 
-const dataQualityIssues: DataQualityIssue[] =
-
-
 const transformationsFormat: Transformation[] =
 [
     {
@@ -1753,7 +1750,7 @@ export class GlobalVariableService {
     transformations: Transformation[] = [];
     datasourceFilters: DatasourceFilter[] = [];
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
-    dataQualityIssues: DataQualityIssue[] = dataQualityIssues;
+    dataQualityIssues: DataQualityIssue[] = [];
     transformationsFormat: Transformation[] = transformationsFormat;
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
@@ -1798,6 +1795,8 @@ export class GlobalVariableService {
     currentDatasources = new BehaviorSubject<Datasource[]>([]);
     currentTransformations = new BehaviorSubject<Transformation[]>([]);
     currentDatasourceFilters = new BehaviorSubject<DatasourceFilter[]>([]);
+    currentDataQualityIssues = new BehaviorSubject<DataQualityIssue[]>([]);
+    
     currentDatasourcePermissions: DatasourcePermission[] = [];
 
 
@@ -1908,6 +1907,7 @@ export class GlobalVariableService {
     isDirtyDatasources: boolean = true;
     isDirtyTransformations: boolean = true;
     isDirtyDatasourceFilters: boolean = true;
+    isDirtyDataQualityIssues: boolean = true;
 
 
 
@@ -2055,7 +2055,10 @@ export class GlobalVariableService {
         // Load Current DatasourceFilters
         this.getCurrentDatasourceFilters(1);     
 
+        // Load DataQualityIssue
+        this.getDataQualityIssues();     
 
+        
 
     }
 
@@ -3137,8 +3140,39 @@ export class GlobalVariableService {
         });
 
     }
-   
-        
+    
+    getDataQualityIssues(): Promise<DataQualityIssue[]> {
+        // Description: Gets all Tr
+
+        // Returns: this.dataQualityIssues array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDataQualityIssues';
+        this.filePath = './assets/data.dataQualityIssues.json';
+
+        return new Promise<DataQualityIssue[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dataQualityIssues == [])  ||  (this.isDirtyDataQualityIssues) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dataQualityIssues = data;
+                        this.isDirtyDataQualityIssues = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('getDataQualityIssues 1', this.dataQualityIssues)
+                        resolve(this.dataQualityIssues);
+                    });
+            } else {
+                console.log('getDataQualityIssues 2', this.dataQualityIssues)
+                resolve(this.dataQualityIssues);
+            }
+        });
+
+    }
+
+    
+
 
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
@@ -3176,10 +3210,6 @@ export class GlobalVariableService {
     getAlldatasourcePermissions(datasourceID: number) {
         // Get P for a dS
 
-    }
-
-    getAlldataQualityIssues(datasourceID: number) {
-        // Get dQ for one or more DS
     }
 
     getAlltransformationsFormat(datasourceID: number) {
