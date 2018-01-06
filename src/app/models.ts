@@ -326,6 +326,7 @@ export class CanvasWidget {
     isSelected: boolean;
 
     // Data related
+    datasourceID: number;
     datasetID: number;
     dataParameters:
     [

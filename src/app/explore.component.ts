@@ -319,12 +319,12 @@ export class ExploreComponent {
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
         );
-        this.globalVariableService.datasources.subscribe(
-            i => {
-                    if (i.length > 0) { this.hasDatasources = true} else {this.hasDatasources = false}
-                    this.datasources = i
-                 }
-        );
+        this.datasources = this.globalVariableService.datasources;
+        if ( this.datasources.length > 0) { 
+            this.hasDatasources = true
+        } else {
+            this.hasDatasources = false
+        };
         this.globalVariableService.refreshDashboard.subscribe(
             i => {
                     if (i)

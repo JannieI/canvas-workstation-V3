@@ -46,9 +46,7 @@ export class WidgetExpandComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.globalVariableService.datasources.subscribe(
-            i => this.datasources = i
-        );
+        this.datasources = this.globalVariableService.datasources;
         console.log(this.globalVariableService.datasets)
         this.globalVariableService.datasets.forEach(
             i => 

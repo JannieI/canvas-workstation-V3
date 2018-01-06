@@ -1044,6 +1044,7 @@ const localWidgets: CanvasWidget[] =
         version: 1,
         isSelected: false,
         isLiked: false,
+        datasourceID: 1,
         datasetID: 1,
         dataParameters:
         [
@@ -1132,6 +1133,7 @@ const localWidgets: CanvasWidget[] =
         version: 1,
         isSelected: false,
         isLiked: false,
+        datasourceID: 1,
         datasetID: 1,
         dataParameters:
         [
@@ -1220,6 +1222,7 @@ const localWidgets: CanvasWidget[] =
         version: 1,
         isSelected: false,
         isLiked: false,
+        datasourceID: 1,
         datasetID: 1,
         dataParameters:
         [
@@ -1323,6 +1326,7 @@ const localWidgets1: CanvasWidget =
         version: 1,
         isSelected: false,
         isLiked: false,
+        datasourceID: 1,
         datasetID: 1,
         dataParameters:
         [
@@ -2087,6 +2091,8 @@ export class GlobalVariableService {
         // Load Dashboard Templates
         this.getDashboardTemplates();
 
+        // Load Datasources
+        this.getDatasources();        
     }
 
     changeMessage(message: string) {
@@ -2959,7 +2965,7 @@ export class GlobalVariableService {
     }
 
     getDatasources(): Promise<Datasource[]> {
-        // Description: Gets all D
+        // Description: Gets all DS
 
         // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
@@ -2978,6 +2984,46 @@ export class GlobalVariableService {
                         this.isDirtyDatasources = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         resolve(this.datasources);
+                    });
+            } else {
+                resolve(this.datasources);
+            }
+        });
+
+    }
+
+    getCurrentDatasources(dashboardID: number): Promise<Datasource[]> {
+        // Description: Gets DS for current D
+
+        // Params: dashboardID = current D
+
+        // Returns: this.datasources array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDatasources';
+        this.filePath = './assets/data.datasources.json';
+
+        return new Promise<Datasource[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            // TODO - What if databoards empty or diry - is that okay?
+            if ( (this.datasources == [])  ||  (this.isDirtyDatasources) ) {
+                this.getDatasources()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+                        this.datasources = data;
+                        if ( (this.widgets = [])  ||  (this.isDirtyWidgets)) {
+                            this.getWidgets()
+                                .then(
+                                    w => {
+                                        this.isDirtyDatasources = false;
+                                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                                        resolve(this.datasources);
+                                    }
+                                )
+                        }
                     });
             } else {
                 resolve(this.datasources);

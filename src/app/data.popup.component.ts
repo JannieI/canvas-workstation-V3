@@ -150,9 +150,7 @@ export class DataPopupComponent implements OnInit {
 	ngOnInit() {
 
         // Load global variables
-        this.globalVariableService.datasources.subscribe(
-            i => this.datasources = i
-        );
+        this.datasources = this.globalVariableService.datasources;
         this.globalVariableService.currentDatasources.subscribe(
             i => this.currentDatasources = i
         );
