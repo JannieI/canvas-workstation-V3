@@ -573,372 +573,7 @@ const currentDatasources: Datasource [] =
 ];
 
 const datasources: Datasource [] =
-[
-    {
-        id: 1,
-        name: 'My Expenses',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2010',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 2,
-        type: 'File',
-        subType: 'CSV',
-        typeVersion: 'Comma-Separator',
-        name: 'Stocks4.csv',
-        description: 'Hard coded name',
-        createdBy: 'Me',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: 'None'
-    },
-    {
-        id: 3,
-        name: 'Bitcoin Trades',
-        type: 'Server',
-        subType: 'PostgreSQL',
-        typeVersion: '',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 4,
-        name: 'My Budget',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2010',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 5,
-        name: 'Bicycle Sales',
-        type: 'Server',
-        subType: 'PostgreSQL',
-        typeVersion: '',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 6,
-        name: 'Bond Valuation',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2010',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 7,
-        name: 'Auditors',
-        type: 'Server',
-        subType: 'PostgreSQL',
-        typeVersion: '',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 8,
-        name: 'Student Marks',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2010',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 9,
-        name: 'Security Breaches',
-        type: 'Server',
-        subType: 'PostgreSQL',
-        typeVersion: '',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 10,
-        name: 'Milk Proteins',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2010',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 11,
-        name: 'Malaria Cases',
-        type: 'Server',
-        subType: 'PostgreSQL',
-        typeVersion: '',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 12,
-        name: 'Investments',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2010',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 13,
-        name: 'Bridge Maintenance',
-        type: 'Server',
-        subType: 'PostgreSQL',
-        typeVersion: '',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 14,
-        name: 'Parts in storage',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2010',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 15,
-        name: 'Customer Complaints',
-        type: 'Server',
-        subType: 'PostgreSQL',
-        typeVersion: '',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 16,
-        name: 'Issues',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2010',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 17,
-        name: 'Tickets',
-        type: 'Server',
-        subType: 'PostgreSQL',
-        typeVersion: '',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 18,
-        name: 'Clothing lines',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2010',
-        description: 'Personal expenses, with info per budget type.',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 19,
-        name: 'Shoe Sales',
-        type: 'Server',
-        subType: 'PostgreSQL',
-        typeVersion: '',
-        description: 'Trades from Bitcoin Exchange',
-        createdBy: 'JohnM',
-        createdOn: '2017/01/01',
-        refreshedBy: 'JohnM',
-        refreshedOn: '2017/01/01',
-        parameters: ' "databaseType": "sqlite", "table": "trades", "username": "admin", "password", "root" '
-    },
-    {
-        id: 20,
-        name: 'World Indices',
-        type: 'Server',
-        subType: 'MSSQL',
-        typeVersion: 'SQL 2016',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-    },
-    {
-        id: 21,
-        name: 'SP Companies*',
-        type: 'Server',
-        subType: 'MSSQL',
-        typeVersion: 'SQL 2016',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-    },
-    {
-        id: 22,
-        name: 'Stock prices TEMP',
-        type: 'Server',
-        subType: 'MSSQL',
-        typeVersion: 'SQL 2016',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-    },
-    {
-        id: 23,
-        name: 'Trades per Year',
-        type: 'Server',
-        subType: 'MSSQL',
-        typeVersion: 'SQL 2016',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-    },
-    {
-        id: 24,
-        name: 'Bond volume trades',
-        type: 'Server',
-        subType: 'MSSQL',
-        typeVersion: 'SQL 2016',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-    },
-    {
-        id: 25,
-        name: 'Trades by Trade Type',
-        type: 'Server',
-        subType: 'MSSQL',
-        typeVersion: 'SQL 2016',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-    },
-    {
-        id: 26,
-        name: 'YTD Expenditure by Cost Center',
-        type: 'Server',
-        subType: 'MSSQL',
-        typeVersion: 'SQL 2016',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-    },
-    {
-        id: 27,
-        name: 'Headcount',
-        type: 'Server',
-        subType: 'MSSQL',
-        typeVersion: 'SQL 2016',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-    },
-    {
-        id: 28,
-        name: 'Customer List',
-        type: 'Server',
-        subType: 'MSSQL',
-        typeVersion: 'SQL 2016',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-    }
-];
+;
 
 const fields: Field[] =
 [
@@ -1800,15 +1435,6 @@ const localDashboards: dl.spec.TopLevelExtendedSpec[] =
     }
 ];
 
-const dashboardTemplates: DashboardTemplate[] =
-[
-    {
-        id: 1,
-        name: 'Corporate Logo and Name',
-        description: 'bla-bla-bla'
-    }
-]
-
 const dashboards: Dashboard[] =
 [
     {
@@ -2175,7 +1801,7 @@ export class GlobalVariableService {
     dashboardPermissions: DashboardPermission[] = [];
     dashboardSnapshots: DashboardSnapshot[] = [];
     dashboardThemes: DashboardTheme[] = [];
-    dashboardTemplates: DashboardTemplate[] = dashboardTemplates;
+    dashboardTemplates: DashboardTemplate[] = [];
     widgets: CanvasWidget[] = [];
     shapes: CanvasShape[] = [];
     slicers: CanvasSlicer[] = [];
@@ -2456,6 +2082,10 @@ export class GlobalVariableService {
         
         // Load Dashboard Snapshots
         this.getCurrentDashboardSnapshots(dashboardID);
+
+        // Load Dashboard Templates
+        this.getDashboardTemplates();
+
     }
 
     changeMessage(message: string) {
@@ -2522,6 +2152,34 @@ export class GlobalVariableService {
 
     deleteDashboardRecent(index: number) {
         let arr = this.dashboardsRecent.splice(index, 1);
+    }
+
+    getDashboards(): Promise<Dashboard[]> {
+        // Description: Gets all D
+
+        // Returns: this.dashboards array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDashboards';
+        this.filePath = './assets/data.dashboards.json';
+
+        return new Promise<Dashboard[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dashboards = data;
+                        this.isDirtyDashboards = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.dashboards);
+                    });
+            } else {
+                resolve(this.dashboards);
+            }
+        });
+
     }
 
     getCurrentDashboards(dashboardID: number): Promise<Dashboard[]> {
@@ -2598,6 +2256,34 @@ export class GlobalVariableService {
 
     }
 
+    getDashboardTabs(): Promise<DashboardTab[]> {
+        // Description: Gets all T
+
+        // Returns: this.dashboardTabs array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDashboardTabs';
+        this.filePath = './assets/data.dashboardTabs.json';
+
+        return new Promise<DashboardTab[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboardTabs == [])  ||  (this.isDirtyDashboardTabs) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dashboardTabs = data;
+                        this.isDirtyDashboardTabs = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.dashboardTabs);
+                    });
+            } else {
+                resolve(this.dashboardTabs);
+            }
+        });
+
+    }
+
     getCurrentDashboardTabs(dashboardID: number): Promise<DashboardTab[]> {
         // Description: Gets all T for current D
 
@@ -2635,29 +2321,29 @@ export class GlobalVariableService {
 
     }
 
-    getDashboardTabs(): Promise<DashboardTab[]> {
-        // Description: Gets all T
+    getWidgets(): Promise<CanvasWidget[]> {
+        // Description: Gets all W
 
-        // Returns: this.dashboardTabs array, unless:
+        // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
 
-        let url: string = 'getDashboardTabs';
-        this.filePath = './assets/data.dashboardTabs.json';
+        let url: string = 'getWidgets';
+        this.filePath = './assets/data.widgets.json';
 
-        return new Promise<DashboardTab[]>((resolve, reject) => {
+        return new Promise<CanvasWidget[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboardTabs == [])  ||  (this.isDirtyDashboardTabs) ) {
+            if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.dashboardTabs = data;
-                        this.isDirtyDashboardTabs = false;
+                        this.widgets = data;
+                        this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        resolve(this.dashboardTabs);
+                        resolve(this.widgets);
                     });
             } else {
-                resolve(this.dashboardTabs);
+                resolve(this.widgets);
             }
         });
 
@@ -2699,62 +2385,6 @@ export class GlobalVariableService {
                 resolve(returnData);
             });
         };
-
-    }
-
-    getWidgets(): Promise<CanvasWidget[]> {
-        // Description: Gets all W
-
-        // Returns: this.widgets array, unless:
-        //   If not cached or if dirty, get from File
-
-        let url: string = 'getWidgets';
-        this.filePath = './assets/data.widgets.json';
-
-        return new Promise<CanvasWidget[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
-                this.get(url)
-                    .then(data => {
-                        this.widgets = data;
-                        this.isDirtyWidgets = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        resolve(this.widgets);
-                    });
-            } else {
-                resolve(this.widgets);
-            }
-        });
-
-    }
-
-    getDashboards(): Promise<Dashboard[]> {
-        // Description: Gets all D
-
-        // Returns: this.dashboards array, unless:
-        //   If not cached or if dirty, get from File
-
-        let url: string = 'getDashboards';
-        this.filePath = './assets/data.dashboards.json';
-
-        return new Promise<Dashboard[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
-                this.get(url)
-                    .then(data => {
-                        this.dashboards = data;
-                        this.isDirtyDashboards = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        resolve(this.dashboards);
-                    });
-            } else {
-                resolve(this.dashboards);
-            }
-        });
 
     }
 
@@ -3179,7 +2809,6 @@ export class GlobalVariableService {
             });
         };
     }
-    Snapshot
 
     getDashboardSnapshots(): Promise<DashboardSnapshot[]> {
         // Description: Gets all Sn
@@ -3280,51 +2909,79 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
 
         // Refresh from source at start, or if dirty
-        if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
+        if ( this.dashboards == []  ||  (this.isDirtyDashboards) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 this.getDashboards()
                     .then(data => {
-                        let arrTemplateIDs: number[];
-                        data.filter(
-                            i => {
-                                    if (i.templateDashboardID != 0  &&  
-                                        i.templateDashboardID != null) {
-                                        arrTemplateIDs.push(i.templateDashboardID)
-                                    }
-                                }
-                        );
-                        let returnData: Dashboard[] = [];
+                        let arrTemplateIDs: number[] = [];
                         for (var i = 0; i < data.length; i++) {
-                            if (arrTemplateIDs.indexOf(data[i].id) != -1) {
-                                returnData.push(data[i]);
+                            if (data[i].templateDashboardID != 0  &&  
+                                data[i].templateDashboardID != null) {
+                                arrTemplateIDs.push(data[i].templateDashboardID)
                             }
                         }
-                        console.log('getDashboardsRecent 1', returnData)
+                        let returnData: Dashboard[] = [];
+                        if (arrTemplateIDs.length > 0) {
+                            for (var i = 0; i < data.length; i++) {
+                                if (arrTemplateIDs.indexOf(data[i].id) != -1) {
+                                    returnData.push(data[i]);
+                                }
+                            }
+                        }
+                        console.log('getDashboardTemplates 1', returnData)
                         resolve(returnData);
                     });
             });
         } else {
             return new Promise<Dashboard[]>((resolve, reject) => {
-                let arrTemplateIDs: number[];
-                this.dashboards.filter(
-                    i => {
-                            if (i.templateDashboardID != 0  &&  
-                                i.templateDashboardID != null) {
-                                arrTemplateIDs.push(i.templateDashboardID)
-                            }
-                        }
-                );
-                let returnData: Dashboard[] = [];
+                let arrTemplateIDs: number[] = [];
                 for (var i = 0; i < this.dashboards.length; i++) {
-                    if (arrTemplateIDs.indexOf(this.dashboards[i].id) != -1) {
-                        returnData.push(this.dashboards[i]);
+                    if (this.dashboards[i].templateDashboardID != 0  &&  
+                        this.dashboards[i].templateDashboardID != null) {
+                        arrTemplateIDs.push(this.dashboards[i].templateDashboardID)
                     }
                 }
-                console.log('getDashboardsRecent 1', returnData)
+                let returnData: Dashboard[] = [];
+                if (arrTemplateIDs.length > 0) {
+                    for (var i = 0; i < this.dashboards.length; i++) {
+                        if (arrTemplateIDs.indexOf(this.dashboards[i].id) != -1) {
+                            returnData.push(this.dashboards[i]);
+                        }
+                    }
+                }
+                console.log('getDashboardTemplates 2', returnData)
                 resolve(returnData);
 
             });
         };
+
+    }
+
+    getDashboards(): Promise<Dashboard[]> {
+        // Description: Gets all D
+
+        // Returns: this.dashboards array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDashboards';
+        this.filePath = './assets/data.dashboards.json';
+
+        return new Promise<Dashboard[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dashboards = data;
+                        this.isDirtyDashboards = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.dashboards);
+                    });
+            } else {
+                resolve(this.dashboards);
+            }
+        });
 
     }
 
