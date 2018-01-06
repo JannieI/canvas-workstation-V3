@@ -24,9 +24,11 @@ import { Datasource }                 from './models';
 import { Transformation }             from './models';
 import { Field }                      from './models';
 import { FieldMetadata }              from './models';
-import { DataQualityIssue}            from './models'
-import { DatasourceFilter}            from './models'
-import { DatasourcePermission}        from './models'
+import { DataQualityIssue}            from './models';
+import { DatasourceFilter}            from './models';
+import { DatasourcePermission}        from './models';
+import { DatasourcePivot }            from './models';
+
 import { CanvasComment }              from './models';
 import { CanvasAlert }                from './models';
 import { CanvasMessage }              from './models';
@@ -1426,8 +1428,9 @@ export class GlobalVariableService {
     datasources: Datasource[] = [];
     transformations: Transformation[] = [];
     datasourceFilters: DatasourceFilter[] = [];
-    datasourcePermissions: DatasourcePermission[] = [];
     dataQualityIssues: DataQualityIssue[] = [];
+    datasourcePermissions: DatasourcePermission[] = [];
+    datasourcePivots: DatasourcePivot[] = [];
     transformationsFormat: Transformation[] = transformationsFormat;
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
@@ -1442,6 +1445,7 @@ export class GlobalVariableService {
     currentDatasourceFilters = new BehaviorSubject<DatasourceFilter[]>([]);
     currentDataQualityIssues = new BehaviorSubject<DataQualityIssue[]>([]);
     currentDatasourcePermissions = new BehaviorSubject<DatasourcePermission[]>([]);
+    currentDatasourcePivots = new BehaviorSubject<DatasourcePivot[]>([]);
 
 
     currentDataset: any = currentDataset;       //  !!
@@ -1553,6 +1557,7 @@ export class GlobalVariableService {
     isDirtyDatasourceFilters: boolean = true;
     isDirtyDataQualityIssues: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
+    isDirtyDatasourcePivots: boolean = true;
 
 
     // isDirtyTextAlignDropdown: boolean = true;
@@ -1710,6 +1715,9 @@ export class GlobalVariableService {
 
         // Load Current DatasourcePermissions
         this.getCurrentDatasourcePermissions(1);     
+
+        // Load DatasourcePivots
+        this.getDatasourcePivots();     
 
         
         
@@ -2913,9 +2921,35 @@ export class GlobalVariableService {
         });
 
     }
-    
-    
+  
+    getDatasourcePivots(): Promise<DatasourcePivot[]> {
+        // Description: Gets all DS-P
 
+        // Returns: this.datasourcePivots array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDatasourcePivots';
+        this.filePath = './assets/data.datasourcePivots.json';
+
+        return new Promise<DatasourcePivot[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.datasourcePivots == [])  ||  (this.isDirtyDatasourcePivots) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.datasourcePivots = data;
+                        this.isDirtyDatasourcePivots = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('getDatasourcePivots 1', this.datasourcePivots)
+                        resolve(this.datasourcePivots);
+                    });
+            } else {
+                console.log('getDatasourcePivots 2', this.datasourcePivots)
+                resolve(this.datasourcePivots);
+            }
+        });
+    }
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
