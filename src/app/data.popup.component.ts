@@ -352,10 +352,10 @@ export class DataPopupComponent implements OnInit {
         // Reset data related to this DS
         this.datasourceFilters = this.globalVariableService.datasourceFilters;
         this.transformationsFormat = this.globalVariableService.transformationsFormat;
-        this.pivotAgg = this.globalVariableService.pivotAgg;
-        this.pivotCols = this.globalVariableService.pivotCols;
-        this.pivotRows = this.globalVariableService.pivotRows;
-        this.pivotResults = this.globalVariableService.pivotResults;
+        this.pivotAgg = [];
+        this.pivotCols = [];
+        this.pivotRows = [];
+        this.pivotResults = []
         this.finalFields = this.globalVariableService.finalFields;
         this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
         

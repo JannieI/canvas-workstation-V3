@@ -1434,36 +1434,6 @@ export class GlobalVariableService {
     datasets: any = datasets;
     slicerHeader = new BehaviorSubject<string>('Filer: Make')
     finalFields: any = finalFields;
-    pivotCols: string[];
-    pivotRows: string[];
-    pivotAgg: string[];
-    pivotResults: any[] =
-    [
-        {
-            Date: '2017/01/01',
-            AAPL: 11,
-            AMZN: 26,
-            GOOG: 30,
-            IBM: 47,
-            MSFT: 50
-        },
-        {
-            Date: '2017/01/01',
-            AAPL: 12,
-            AMZN: 25,
-            GOOG: 34,
-            IBM: 49,
-            MSFT: 51
-        },
-        {
-            Date: '2017/01/01',
-            AAPL: 13,
-            AMZN: 24,
-            GOOG: 37,
-            IBM: 48,
-            MSFT: 50
-        }
-    ]
 
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
@@ -2990,10 +2960,6 @@ export class GlobalVariableService {
 
     }
 
-    getAllfieldsMetadata(datasourceID: number) {
-        // Get Fmdata for a DS
-
-    }
 
     sleep(milliseconds: number) {
         console.log('sleeping ...', milliseconds);
