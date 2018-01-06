@@ -572,9 +572,6 @@ const currentDatasources: Datasource [] =
     }
 ];
 
-const datasources: Datasource [] =
-;
-
 const fields: Field[] =
 [
     {
@@ -1806,7 +1803,7 @@ export class GlobalVariableService {
     shapes: CanvasShape[] = [];
     slicers: CanvasSlicer[] = [];
 
-    datasources = new BehaviorSubject<Datasource[]>(datasources);
+    datasources: Datasource[] = [];
     datasourceFilters: DatasourceFilter[] = datasourceFilters;
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
     dataQualityIssues: DataQualityIssue[] = dataQualityIssues;
@@ -1851,7 +1848,7 @@ export class GlobalVariableService {
 
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
-    currentDatasources = new BehaviorSubject<Datasource[]>(currentDatasources);
+    currentDatasources = new BehaviorSubject<Datasource[]>([]);
     currentDatasourcePermissions: DatasourcePermission[] = [];
     currentDataset: any = currentDataset;
     currentTransformations: Transformation[] = currentTransformations;
@@ -1959,6 +1956,10 @@ export class GlobalVariableService {
     isDirtyDashboardPermissions: boolean = true;
     isDirtyDashboardSnapshots: boolean = true;
     isDirtyDashboardThemes: boolean = true;
+    isDirtyDatasources: boolean = true;
+
+
+
 
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
@@ -2115,11 +2116,11 @@ export class GlobalVariableService {
     }
 
     datasourceAdd(newData: Datasource) {
-        let arr: Datasource[] = this.datasources.value;
+        let arr: Datasource[] = this.datasources;
         arr.push(newData);
         console.log('arr', arr)
-        this.datasources.next(arr)
-        console.log('yy', this.datasources.value)
+        this.datasources = arr;
+        console.log('yy', this.datasources)
     }
 
     currentDatasourceDelete(index: number) {
@@ -2131,10 +2132,10 @@ export class GlobalVariableService {
     }
 
     datasourceDelete(index: number) {
-        let arr: Datasource[] = this.datasources.value.splice(index,1);
+        let arr: Datasource[] = this.datasources.splice(index,1);
         console.log('arr', arr)
-        this.datasources.next(this.datasources.value)
-        console.log('yy', this.datasources.value)
+        this.datasources = this.datasources;
+        console.log('yy', this.datasources)
     }
 
     dashboardDelete(index: number) {
@@ -2957,29 +2958,29 @@ export class GlobalVariableService {
 
     }
 
-    getDashboards(): Promise<Dashboard[]> {
+    getDatasources(): Promise<Datasource[]> {
         // Description: Gets all D
 
-        // Returns: this.dashboards array, unless:
+        // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
 
-        let url: string = 'getDashboards';
-        this.filePath = './assets/data.dashboards.json';
+        let url: string = 'getDatasources';
+        this.filePath = './assets/data.datasources.json';
 
-        return new Promise<Dashboard[]>((resolve, reject) => {
+        return new Promise<Datasource[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
+            if ( (this.datasources == [])  ||  (this.isDirtyDatasources) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.dashboards = data;
-                        this.isDirtyDashboards = false;
+                        this.datasources = data;
+                        this.isDirtyDatasources = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        resolve(this.dashboards);
+                        resolve(this.datasources);
                     });
             } else {
-                resolve(this.dashboards);
+                resolve(this.datasources);
             }
         });
 
