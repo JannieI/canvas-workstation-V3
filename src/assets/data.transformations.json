@@ -7,5 +7,174 @@
         "description": "bla-bla-bla",
         "fieldName": "Region",
         "parameters": ""
+    },
+    {
+        "id": 2,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "FillBlanks",
+        "description": "(columnName, newValue)",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 3,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "FillNull",
+        "description": "(columnName, newValue)",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 4,
+        "datasourceID": 12,
+        "category": "ColucurrentTransformationsmn-level",
+        "name": "FillBlankAndNull",
+        "description": "(columnName, newValue)",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 5,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "ReplaceNumbers",
+        "description": "(columnName, from, to, newValue)",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 6,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "ReplaceString",
+        "description": "(columnName, oldValue, newValue)",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 7,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "AppendColumn",
+        "description": "(newColumnName, dataType, fillValue)",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 10,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "CalcColumn",
+        "description": "(newColumnName, columnOne, columnTwo, Operator, fillValue)",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 11,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "Substring",
+        "description": "(columnName, startPosition, length)",
+        "fieldName": "Date",
+        "parameters": ""
+    },
+    {
+        "id": 12,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "LeftTrim",
+        "description": "(columnName)",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 13,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "RightTrim",
+        "description": "(columnName)",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 14,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "Trim",
+        "description": "(columnName), which combines LeftTrim and RightTrim",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 15,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "RightSubstring",
+        "description": "(columnName, startPosition, length) is similar to Substring, but startPosition is counted from the right.",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 16,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "DatePart",
+        "description": "(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 17,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "Concatenate",
+        "description": "(columnNameOne, ColumnNameTwo)",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 18,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "ConcatenateColumn",
+        "description": "(columnName, preString, postString) will append strings to the front or back of a column",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 21,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "AddLatitude",
+        "description": "(reference-columnName, new-columnName), add a new column with latitude, based on the information in the reference-columnName",
+        "fieldName": "Date",
+        "parameters": ""
+
+    },
+    {
+        "id": 22,
+        "datasourceID": 12,
+        "category": "Column-level",
+        "name": "AddLongitude",
+        "description": "(reference-columnName, new-columnName), add a new column with longitude, based on the information in the reference-columnName",
+        "fieldName": "Date",
+        "parameters": ""
+
     }
 ]
