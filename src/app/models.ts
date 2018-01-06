@@ -105,7 +105,7 @@ export class DataQualityIssue {
     solvedOn: string;
 }
 
-export class DataPivot {
+export class DatasourcePivot {
     id: number;
     datasourceID: number;
     columnFieldName: string;

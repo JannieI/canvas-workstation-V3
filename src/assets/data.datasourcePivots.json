@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "datasourceID": 1,
+        "columnFieldName": "",
+        "rowFieldName": "",
+        "aggregateFieldName": "",
+        "aggregateType": "",
+        "refreshAlways": false
+    }
+]
