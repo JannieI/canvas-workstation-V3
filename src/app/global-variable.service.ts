@@ -423,32 +423,7 @@ const combinationDetails: CombinationDetail[] =
 ];
 
 const datasourcePermissions: DatasourcePermission[] =
-[
-    {
-        id: 1,
-        datasourceID: 1,
-        userID: 'KilmarE',
-        groupID: '',
-        canView: true,
-        canEdit: false,
-    },
-    {
-        id: 2,
-        datasourceID: 1,
-        userID: 'UweH',
-        groupID: '',
-        canView: false,
-        canEdit: true,
-    },
-    {
-        id: 3,
-        datasourceID: 1,
-        userID: 'IgnusO',
-        groupID: '',
-        canView: true,
-        canEdit: true,
-    }
-];
+;
 
 const currentDataset =
 [
@@ -2058,8 +2033,11 @@ export class GlobalVariableService {
         // Load DataQualityIssue
         this.getDataQualityIssues();     
 
-        
+        // Load Current DataQualityIssue
+        this.getCurrentDataQualityIssues(1);     
 
+        
+        
     }
 
     changeMessage(message: string) {
@@ -3124,7 +3102,7 @@ export class GlobalVariableService {
             // Refresh from source at start, or if dirty
             if ( (this.currentDatasourceFilters.value == [])  ||  (this.isDirtyDatasourceFilters) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
-                this.get(url)
+                this.getDatasourceFilters()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
@@ -3168,9 +3146,39 @@ export class GlobalVariableService {
                 resolve(this.dataQualityIssues);
             }
         });
-
     }
 
+    getCurrentDataQualityIssues(datasourceID: number): Promise<DataQualityIssue[]> {
+        // Description: Gets Tr for current DS
+
+        // Returns: this.dataQualityIssues.value array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDataQualityIssues';
+        this.filePath = './assets/data.dataQualityIssues.json';
+
+        return new Promise<DataQualityIssue[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.currentDataQualityIssues.value == [])  ||  (this.isDirtyDataQualityIssues) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.getDataQualityIssues()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.datasourceID == datasourceID
+                        );
+                        this.currentDataQualityIssues.next(data);
+                        console.log('getCurrentDataQualityIssues 1', datasourceID, data)
+                        resolve(data);
+                    });
+            } else {
+                console.log('getCurrentDataQualityIssues 2', datasourceID, this.currentDataQualityIssues.value)
+                resolve(this.currentDataQualityIssues.value);
+            }
+        });
+
+    }
+    
     
 
 
