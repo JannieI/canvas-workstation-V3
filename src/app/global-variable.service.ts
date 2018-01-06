@@ -997,9 +997,6 @@ const datasourceSample: Datasource[] =
     }
 ];
 
-const datasourceFilters: DatasourceFilter[] =
-
-
 
 // Dashboard
 const localWidgets: CanvasWidget[] =
@@ -1780,6 +1777,7 @@ export class GlobalVariableService {
     slicers: CanvasSlicer[] = [];
 
     datasources: Datasource[] = [];
+    transformations: Transformation[] = [];
     datasourceFilters: DatasourceFilter[] = datasourceFilters;
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
     dataQualityIssues: DataQualityIssue[] = dataQualityIssues;
@@ -2068,6 +2066,9 @@ export class GlobalVariableService {
 
         // Load Current Datasources
         this.getCurrentDatasources(dashboardID);     
+
+        // Load DatTransformationsasources
+        this.getTransformations();     
 
         // Load Current DatTransformationsasources
         this.getCurrentTransformations(1);     
@@ -3032,6 +3033,34 @@ export class GlobalVariableService {
                 console.log('getCurrentDatasources 1', returnData);
 }
         });
+    }
+
+    getTransformations(): Promise<Transformation[]> {
+        // Description: Gets all Tr
+
+        // Returns: this.transformations array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getTransformations';
+        this.filePath = './assets/data.transformations.json';
+
+        return new Promise<Transformation[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.transformations == [])  ||  (this.isDirtyTransformations) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.transformations = data;
+                        this.isDirtyTransformations = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.transformations);
+                    });
+            } else {
+                resolve(this.transformations);
+            }
+        });
+
     }
 
     getCurrentTransformations(datasourceID: number): Promise<Transformation[]> {
