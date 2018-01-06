@@ -2092,7 +2092,11 @@ export class GlobalVariableService {
         this.getDashboardTemplates();
 
         // Load Datasources
-        this.getDatasources();        
+        this.getDatasources();     
+
+        // Load Current Datasources
+        this.getCurrentDatasources(dashboardID);     
+        
     }
 
     changeMessage(message: string) {
@@ -3007,29 +3011,51 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             // TODO - What if databoards empty or diry - is that okay?
-            if ( (this.datasources == [])  ||  (this.isDirtyDatasources) ) {
+            if ( (this.datasources == [])  ||  (this.isDirtyDatasources)  ||
+                 (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
                 this.getDatasources()
-                    .then(data => {
-                        data = data.filter(
-                            i => i.dashboardID == dashboardID
-                        );
-                        this.datasources = data;
-                        if ( (this.widgets = [])  ||  (this.isDirtyWidgets)) {
-                            this.getWidgets()
-                                .then(
-                                    w => {
+                    .then(ds => 
+                        {
+                            this.getCurrentWidgets(dashboardID)
+                                .then( w => 
+                                    {
+                                        let ids: number[] = [];
+                                        for (var i = 0; i < w.length; i++) {
+                                            if (ids.indexOf(w[i].datasourceID) < 0) {
+                                                ids.push(w[i].datasourceID)
+                                            }
+                                        };
+                                        let returnData: Datasource[] = [];
+                                        for (var i = 0; i < ds.length; i++) {
+                                            if (ids.indexOf(ds[i].id) >= 0) {
+                                                returnData.push(ds[i]);
+                                            };
+                                        };
                                         this.isDirtyDatasources = false;
                                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                                        resolve(this.datasources);
+                                        console.log('getCurrentDatasources 1', returnData);
                                     }
-                                )
+                                );
                         }
-                    });
+                    )
             } else {
-                resolve(this.datasources);
-            }
+                let ids: number[] = [];
+                for (var i = 0; i < this.currentWidgets.value.length; i++) {
+                    if (ids.indexOf(this.currentWidgets.value[i].datasourceID) < 0) {
+                        ids.push(this.currentWidgets.value[i].datasourceID)
+                    }
+                };
+                let returnData: Datasource[] = [];
+                for (var i = 0; i < this.datasources.length; i++) {
+                    if (ids.indexOf(this.datasources[i].id) >= 0) {
+                        returnData.push(this.datasources[i]);
+                    };
+                };
+                this.isDirtyDatasources = false;
+                this.statusBarRunning.next(this.NoQueryRunningMessage);
+                console.log('getCurrentDatasources 1', returnData);
+}
         });
-
     }
 
     
