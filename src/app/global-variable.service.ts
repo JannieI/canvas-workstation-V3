@@ -721,17 +721,7 @@ const transformationsFormat: Transformation[] =
 ];
 
 const currentTransformations: Transformation[] =
-[
-    {
-        id: 1,
-        datasourceID: 12,
-        category: 'Format',
-        name: 'FillBlanks',
-        description: 'bla-bla-bla',
-        fieldName: 'Region',
-        parameters: ""
-    }
-]
+
 
 // TODO - check why this is not used
 const transformationsFill: Transformation[] =
