@@ -1800,7 +1800,6 @@ const localDashboards: dl.spec.TopLevelExtendedSpec[] =
     }
 ];
 
-
 const dashboardTemplates: DashboardTemplate[] =
 [
     {
@@ -2241,7 +2240,7 @@ export class GlobalVariableService {
     currentDashboardTags = new BehaviorSubject<DashboardTag[]>([]);
     currentDashboardPermissions = new BehaviorSubject<DashboardPermission[]>([]);
     currentDashboardSnapshots = new BehaviorSubject<DashboardSnapshot[]>([]);
-    currentDashboardThemes = new BehaviorSubject<DashboardTheme[]>([]);
+
     private messageSource = new BehaviorSubject<string>("default message");
     currentMessage = this.messageSource.asObservable();
 
@@ -2427,6 +2426,9 @@ export class GlobalVariableService {
 
     refreshCurrentDashboardInfo(dashboardID: number) {
         // Refreshes all info related to current D
+        
+        // Load Dashboard Themes
+        this.getDashboardThemes();
 
 		// Load the current Dashboard, and Optional template
         this.getCurrentDashboards(dashboardID);
@@ -3225,7 +3227,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSnapshots.next(data);
-                        console.log('getgetDashboardSnapshots 1', data)
+                        console.log('getDashboardSnapshots 1', data)
                         resolve(data);
                 })
              })
@@ -3236,14 +3238,14 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardSnapshots.next(returnData);
-                console.log('getgetDashboardSnapshots 2', returnData)
+                console.log('getDashboardSnapshots 2', returnData)
                 resolve(returnData);
             });
         };
     }
     
     getDashboardThemes(): Promise<DashboardTheme[]> {
-        // Description: Gets all Sn
+        // Description: Gets all Th
 
         // Returns: this.dashboardThemes array, unless:
         //   If not cached or if dirty, get from File
@@ -3261,6 +3263,7 @@ export class GlobalVariableService {
                         this.dashboardThemes = data;
                         this.isDirtyDashboardThemes = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('getDashboardThemes')
                         resolve(this.dashboardThemes);
                     });
             } else {
@@ -3269,7 +3272,61 @@ export class GlobalVariableService {
         });
 
     }
+    
+    getDashboardTemplates(): Promise<Dashboard[]> {
+        // Description: Gets all Tpl
 
+        // Returns: recent [D] array, unless:
+        //   If not cached or if dirty, get from File
+
+        // Refresh from source at start, or if dirty
+        if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
+            return new Promise<Dashboard[]>((resolve, reject) => {
+                this.getDashboards()
+                    .then(data => {
+                        let arrTemplateIDs: number[];
+                        data.filter(
+                            i => {
+                                    if (i.templateDashboardID != 0  &&  
+                                        i.templateDashboardID != null) {
+                                        arrTemplateIDs.push(i.templateDashboardID)
+                                    }
+                                }
+                        );
+                        let returnData: Dashboard[] = [];
+                        for (var i = 0; i < data.length; i++) {
+                            if (arrTemplateIDs.indexOf(data[i].id) != -1) {
+                                returnData.push(data[i]);
+                            }
+                        }
+                        console.log('getDashboardsRecent 1', returnData)
+                        resolve(returnData);
+                    });
+            });
+        } else {
+            return new Promise<Dashboard[]>((resolve, reject) => {
+                let arrTemplateIDs: number[];
+                this.dashboards.filter(
+                    i => {
+                            if (i.templateDashboardID != 0  &&  
+                                i.templateDashboardID != null) {
+                                arrTemplateIDs.push(i.templateDashboardID)
+                            }
+                        }
+                );
+                let returnData: Dashboard[] = [];
+                for (var i = 0; i < this.dashboards.length; i++) {
+                    if (arrTemplateIDs.indexOf(this.dashboards[i].id) != -1) {
+                        returnData.push(this.dashboards[i]);
+                    }
+                }
+                console.log('getDashboardsRecent 1', returnData)
+                resolve(returnData);
+
+            });
+        };
+
+    }
 
     
 
@@ -3344,10 +3401,6 @@ export class GlobalVariableService {
 
     getAllfieldsMetadata(datasourceID: number) {
         // Get Fmdata for a DS
-
-    }
-
-    getAlldashboardTemplates(dashboardIDs: number[]) {
 
     }
 
