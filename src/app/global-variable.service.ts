@@ -2035,6 +2035,9 @@ export class GlobalVariableService {
         // Load DatasourcePermissions
         this.getDatasourcePermissions();     
 
+        // Load Current DatasourcePermissions
+        this.getCurrentDatasourcePermissions(1);     
+
         
         
     }
@@ -2994,7 +2997,7 @@ export class GlobalVariableService {
                 this.isDirtyDatasources = false;
                 this.statusBarRunning.next(this.NoQueryRunningMessage);
                 console.log('getCurrentDatasources 1', returnData);
-}
+            }
         });
     }
 
@@ -3058,7 +3061,7 @@ export class GlobalVariableService {
     }
 
     getDatasourceFilters(): Promise<DatasourceFilter[]> {
-        // Description: Gets all Tr
+        // Description: Gets all F
 
         // Returns: this.datasourceFilters array, unless:
         //   If not cached or if dirty, get from File
@@ -3088,7 +3091,7 @@ export class GlobalVariableService {
     }
 
     getCurrentDatasourceFilters(datasourceID: number): Promise<DatasourceFilter[]> {
-        // Description: Gets Tr for current DS
+        // Description: Gets F for current DS
 
         // Returns: this.currentDatasourceFilters.value array, unless:
         //   If not cached or if dirty, get from File
@@ -3119,7 +3122,7 @@ export class GlobalVariableService {
     }
     
     getDataQualityIssues(): Promise<DataQualityIssue[]> {
-        // Description: Gets all Tr
+        // Description: Gets all dQual
 
         // Returns: this.dataQualityIssues array, unless:
         //   If not cached or if dirty, get from File
@@ -3148,7 +3151,7 @@ export class GlobalVariableService {
     }
 
     getCurrentDataQualityIssues(datasourceID: number): Promise<DataQualityIssue[]> {
-        // Description: Gets Tr for current DS
+        // Description: Gets dQual for current DS
 
         // Returns: this.dataQualityIssues.value array, unless:
         //   If not cached or if dirty, get from File
@@ -3179,7 +3182,7 @@ export class GlobalVariableService {
     }
       
     getDatasourcePermissions(): Promise<DatasourcePermission[]> {
-        // Description: Gets all Tr
+        // Description: Gets all DS-P
 
         // Returns: this.datasourcePermissions array, unless:
         //   If not cached or if dirty, get from File
@@ -3207,6 +3210,36 @@ export class GlobalVariableService {
         });
     }
  
+    getCurrentDatasourcePermissions(datasourceID: number): Promise<DatasourcePermission[]> {
+        // Description: Gets DS-P for current DS
+
+        // Returns: this..datasourcePermissions.value array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDatasourcePermissions';
+        this.filePath = './assets/data..datasourcePermissions.json';
+
+        return new Promise<DatasourcePermission[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.currentDatasourcePermissions.value == [])  ||  (this.isDirtyDatasourcePermissions) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.getDatasourcePermissions()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.datasourceID == datasourceID
+                        );
+                        this.currentDatasourcePermissions.next(data);
+                        console.log('getCurrentDatasourcePermissions 1', datasourceID, data)
+                        resolve(data);
+                    });
+            } else {
+                console.log('getCurrentDatasourcePermissions 2', datasourceID, this.currentDatasourcePermissions.value)
+                resolve(this.currentDatasourcePermissions.value);
+            }
+        });
+
+    }
     
     
 
