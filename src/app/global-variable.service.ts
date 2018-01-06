@@ -422,9 +422,6 @@ const combinationDetails: CombinationDetail[] =
     }
 ];
 
-const datasourcePermissions: DatasourcePermission[] =
-;
-
 const currentDataset =
 [
     {
@@ -1724,7 +1721,7 @@ export class GlobalVariableService {
     datasources: Datasource[] = [];
     transformations: Transformation[] = [];
     datasourceFilters: DatasourceFilter[] = [];
-    datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
+    datasourcePermissions: DatasourcePermission[] = [];
     dataQualityIssues: DataQualityIssue[] = [];
     transformationsFormat: Transformation[] = transformationsFormat;
     fields: Field[] = fields;
@@ -1771,8 +1768,7 @@ export class GlobalVariableService {
     currentTransformations = new BehaviorSubject<Transformation[]>([]);
     currentDatasourceFilters = new BehaviorSubject<DatasourceFilter[]>([]);
     currentDataQualityIssues = new BehaviorSubject<DataQualityIssue[]>([]);
-    
-    currentDatasourcePermissions: DatasourcePermission[] = [];
+    currentDatasourcePermissions = new BehaviorSubject<DatasourcePermission[]>([]);
 
 
     currentDataset: any = currentDataset;       //  !!
@@ -1883,7 +1879,7 @@ export class GlobalVariableService {
     isDirtyTransformations: boolean = true;
     isDirtyDatasourceFilters: boolean = true;
     isDirtyDataQualityIssues: boolean = true;
-
+    isDirtyDatasourcePermissions: boolean = true;
 
 
     // isDirtyTextAlignDropdown: boolean = true;
@@ -2030,11 +2026,14 @@ export class GlobalVariableService {
         // Load Current DatasourceFilters
         this.getCurrentDatasourceFilters(1);     
 
-        // Load DataQualityIssue
+        // Load DataQualityIssues
         this.getDataQualityIssues();     
 
         // Load Current DataQualityIssue
         this.getCurrentDataQualityIssues(1);     
+
+        // Load DatasourcePermissions
+        this.getDatasourcePermissions();     
 
         
         
@@ -3178,9 +3177,38 @@ export class GlobalVariableService {
         });
 
     }
-    
-    
+      
+    getDatasourcePermissions(): Promise<DatasourcePermission[]> {
+        // Description: Gets all Tr
 
+        // Returns: this.datasourcePermissions array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDatasourcePermissions';
+        this.filePath = './assets/data.datasourcePermissions.json';
+
+        return new Promise<DatasourcePermission[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.datasourcePermissions == [])  ||  (this.isDirtyDatasourcePermissions) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.datasourcePermissions = data;
+                        this.isDirtyDatasourcePermissions = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('getDatasourcePermissions 1', this.datasourcePermissions)
+                        resolve(this.datasourcePermissions);
+                    });
+            } else {
+                console.log('getDatasourcePermissions 2', this.datasourcePermissions)
+                resolve(this.datasourcePermissions);
+            }
+        });
+    }
+ 
+    
+    
 
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
