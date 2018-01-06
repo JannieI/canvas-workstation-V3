@@ -1716,8 +1716,8 @@ export class GlobalVariableService {
         // Load Current DatasourcePermissions
         this.getCurrentDatasourcePermissions(1);     
 
-        // Load DatasourcePivots
-        this.getDatasourcePivots();     
+        // Load Current DatasourcePivots
+        this.getCurrentDatasourcePivots(1);     
 
         
         
@@ -2894,7 +2894,7 @@ export class GlobalVariableService {
     getCurrentDatasourcePermissions(datasourceID: number): Promise<DatasourcePermission[]> {
         // Description: Gets DS-P for current DS
 
-        // Returns: this..datasourcePermissions.value array, unless:
+        // Returns: this.datasourcePermissions.value array, unless:
         //   If not cached or if dirty, get from File
 
         let url: string = 'getDatasourcePermissions';
@@ -2950,6 +2950,43 @@ export class GlobalVariableService {
             }
         });
     }
+ 
+    getCurrentDatasourcePivots(datasourceID: number): Promise<DatasourcePivot[]> {
+        // Description: Gets DS-P for current DS
+
+        // Returns: this.datasourcePivots.value array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getDatasourcePivots';
+        this.filePath = './assets/data..datasourcePivots.json';
+
+        return new Promise<DatasourcePivot[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.currentDatasourcePivots.value == [])  ||  (this.isDirtyDatasourcePivots) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.getDatasourcePivots()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.datasourceID == datasourceID
+                        );
+                        this.currentDatasourcePivots.next(data);
+                        console.log('getCurrentDatasourcePivots 1', datasourceID, data)
+                        resolve(data);
+                    });
+            } else {
+                console.log('getCurrentDatasourcePivots 2', datasourceID, this.currentDatasourcePivots.value)
+                resolve(this.currentDatasourcePivots.value);
+            }
+        });
+
+    }
+  
+
+
+
+
+
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http

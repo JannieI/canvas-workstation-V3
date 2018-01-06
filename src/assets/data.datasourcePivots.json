@@ -7,5 +7,14 @@
         "aggregateFieldName": "",
         "aggregateType": "",
         "refreshAlways": false
+    },
+    {
+        "id": 1,
+        "datasourceID": 2,
+        "columnFieldName": "",
+        "rowFieldName": "",
+        "aggregateFieldName": "",
+        "aggregateType": "",
+        "refreshAlways": false
     }
 ]
