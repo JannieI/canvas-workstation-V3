@@ -1778,7 +1778,7 @@ export class GlobalVariableService {
 
     datasources: Datasource[] = [];
     transformations: Transformation[] = [];
-    datasourceFilters: DatasourceFilter[] = datasourceFilters;
+    datasourceFilters: DatasourceFilter[] = [];
     datasourcePermissions: DatasourcePermission[] = datasourcePermissions;
     dataQualityIssues: DataQualityIssue[] = dataQualityIssues;
     transformationsFormat: Transformation[] = transformationsFormat;
@@ -1932,6 +1932,7 @@ export class GlobalVariableService {
     isDirtyDashboardThemes: boolean = true;
     isDirtyDatasources: boolean = true;
     isDirtyTransformations: boolean = true;
+    isDirtyDatasourceFilters: boolean = true;
 
 
 
@@ -3094,36 +3095,35 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentTransformations(datasourceID: number): Promise<Transformation[]> {
-        // Description: Gets Tr for current DS
+    getDatasourceFilters(): Promise<DatasourceFilter[]> {
+        // Description: Gets all Tr
 
-        // Returns: this.currentTransformations.value array, unless:
+        // Returns: this.datasourceFilters array, unless:
         //   If not cached or if dirty, get from File
 
-        let url: string = 'getTransformations';
-        this.filePath = './assets/data.transformations.json';
+        let url: string = 'getDatasourceFilters';
+        this.filePath = './assets/data.datasourceFilters.json';
 
-        return new Promise<Transformation[]>((resolve, reject) => {
+        return new Promise<DatasourceFilter[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.currentTransformations.value == [])  ||  (this.isDirtyTransformations) ) {
+            if ( (this.datasourceFilters == [])  ||  (this.isDirtyDatasourceFilters) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        data = data.filter(
-                            i => i.datasourceID == datasourceID
-                        );
-                        this.currentTransformations.next(data);
-                        console.log('getCurrentTransformations 1', datasourceID, data)
-                        resolve(data);
+                        this.datasourceFilters = data;
+                        this.isDirtyDatasourceFilters = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        resolve(this.datasourceFilters);
                     });
             } else {
-                console.log('getCurrentTransformations 2', datasourceID, this.currentTransformations.value)
-                resolve(this.currentTransformations.value);
+                resolve(this.datasourceFilters);
             }
         });
 
     }
+
+   
         
 
 
