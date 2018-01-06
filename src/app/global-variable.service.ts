@@ -676,52 +676,6 @@ const datasourceRecent: Datasource[] =
     }
 ];
 
-const datasourceSample: Datasource[] =
-[
-    {
-        id: 1,
-        name: 'Bicycle trips in Rome',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2007',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    },
-    {
-        id: 2,
-        name: 'Vega Airport Dataset',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2007',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    },
-    {
-        id: 3,
-        name: 'Home Budget',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2007',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    }
-];
-
 
 // Dashboard
 const localWidgets: CanvasWidget[] =
@@ -1510,7 +1464,6 @@ export class GlobalVariableService {
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
     datasourceRecent: Datasource[] = datasourceRecent;
-    datasourceSample: Datasource[] = datasourceSample;
     datasets: any = datasets;
     slicerHeader = new BehaviorSubject<string>('Filer: Make')
     finalFields: any = finalFields;
@@ -3044,10 +2997,6 @@ export class GlobalVariableService {
     }
 
     getAlldatasources(datasourceID: number) {
-
-    }
-
-    getAlldatasourceSample(length: number) {
 
     }
 
