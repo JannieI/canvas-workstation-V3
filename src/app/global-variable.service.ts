@@ -644,38 +644,6 @@ const transformationsFormat: Transformation[] =
     }
 ];
 
-const datasourceRecent: Datasource[] =
-[
-    {
-        id: 1,
-        name: 'CPI figures',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2007',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    },
-    {
-        id: 1,
-        name: 'GDP by Country',
-        type: 'File',
-        subType: 'Excel',
-        typeVersion: '2007',
-        description: '',
-        createdBy: '',
-        createdOn: '',
-        refreshedBy: '',
-        refreshedOn: '',
-        parameters: ''
-
-    }
-];
-
 
 // Dashboard
 const localWidgets: CanvasWidget[] =
@@ -1463,7 +1431,6 @@ export class GlobalVariableService {
     transformationsFormat: Transformation[] = transformationsFormat;
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
-    datasourceRecent: Datasource[] = datasourceRecent;
     datasets: any = datasets;
     slicerHeader = new BehaviorSubject<string>('Filer: Make')
     finalFields: any = finalFields;
