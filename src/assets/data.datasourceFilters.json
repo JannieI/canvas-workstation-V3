@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "datasourceID": 1,
+        "fieldName": "symbol",
+        "operator": "Equal",
+        "filterValue": "MSFT"
+    },
+    {
+        "id": 2,
+        "datasourceID": 2,
+        "fieldName": "price",
+        "operator": "GreaterEqual",
+        "filterValue": "100"
+    }
+]

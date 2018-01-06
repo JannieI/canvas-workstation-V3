@@ -998,22 +998,7 @@ const datasourceSample: Datasource[] =
 ];
 
 const datasourceFilters: DatasourceFilter[] =
-[
-    {
-        id: 1,
-        datasourceID: 12,
-        fieldName: 'symbol',
-        operator: 'Equal',
-        filterValue: 'MSFT'
-    },
-    {
-        id: 2,
-        datasourceID: 12,
-        fieldName: 'price',
-        operator: 'GreaterEqual',
-        filterValue: '100'
-    }
-]
+
 
 
 // Dashboard
@@ -3079,8 +3064,39 @@ export class GlobalVariableService {
         });
 
     }
-    
-    Transformations
+
+    getCurrentTransformations(datasourceID: number): Promise<Transformation[]> {
+        // Description: Gets Tr for current DS
+
+        // Returns: this.currentTransformations.value array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getTransformations';
+        this.filePath = './assets/data.transformations.json';
+
+        return new Promise<Transformation[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.currentTransformations.value == [])  ||  (this.isDirtyTransformations) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        data = data.filter(
+                            i => i.datasourceID == datasourceID
+                        );
+                        this.currentTransformations.next(data);
+                        console.log('getCurrentTransformations 1', datasourceID, data)
+                        resolve(data);
+                    });
+            } else {
+                console.log('getCurrentTransformations 2', datasourceID, this.currentTransformations.value)
+                resolve(this.currentTransformations.value);
+            }
+        });
+
+    }
+        
+
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
