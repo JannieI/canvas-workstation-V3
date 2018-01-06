@@ -155,7 +155,9 @@ export class DataPopupComponent implements OnInit {
             i => this.currentDatasources = i
         );
         this.transformationsFormat = this.globalVariableService.transformationsFormat;
-        this.currentTransformations = this.globalVariableService.currentTransformations;
+        this.globalVariableService.currentTransformations.subscribe(
+            i => this.currentTransformations = i
+        );
         this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
         this.datasourceFilters = this.globalVariableService.datasourceFilters;
         this.fields = this.globalVariableService.fields;
@@ -349,7 +351,6 @@ export class DataPopupComponent implements OnInit {
 
         // Reset data related to this DS
         this.datasourceFilters = this.globalVariableService.datasourceFilters;
-        this.currentTransformations = this.globalVariableService.currentTransformations;
         this.transformationsFormat = this.globalVariableService.transformationsFormat;
         this.pivotAgg = this.globalVariableService.pivotAgg;
         this.pivotCols = this.globalVariableService.pivotCols;

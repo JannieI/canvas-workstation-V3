@@ -720,9 +720,6 @@ const transformationsFormat: Transformation[] =
     }
 ];
 
-const currentTransformations: Transformation[] =
-
-
 // TODO - check why this is not used
 const transformationsFill: Transformation[] =
 [
@@ -1843,9 +1840,9 @@ export class GlobalVariableService {
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
     currentDatasources = new BehaviorSubject<Datasource[]>([]);
+    currentTransformations = new BehaviorSubject<Transformation[]>([]);
     currentDatasourcePermissions: DatasourcePermission[] = [];
     currentDataset: any = currentDataset;
-    currentTransformations: Transformation[] = currentTransformations;
     currentDatasourceFilters: DatasourceFilter[] = [];
 
     currentDashboards = new BehaviorSubject<Dashboard[]>([]);
@@ -1951,7 +1948,7 @@ export class GlobalVariableService {
     isDirtyDashboardSnapshots: boolean = true;
     isDirtyDashboardThemes: boolean = true;
     isDirtyDatasources: boolean = true;
-
+    isDirtyTransformations: boolean = true;
 
 
 
@@ -2086,7 +2083,11 @@ export class GlobalVariableService {
 
         // Load Current Datasources
         this.getCurrentDatasources(dashboardID);     
-        
+
+        // Load Current DatTransformationsasources
+        this.getCurrentTransformations(1);     
+
+
     }
 
     changeMessage(message: string) {
@@ -3048,8 +3049,38 @@ export class GlobalVariableService {
         });
     }
 
-    
+    getCurrentTransformations(datasourceID: number): Promise<Transformation[]> {
+        // Description: Gets Tr for current DS
 
+        // Returns: this.currentTransformations.value array, unless:
+        //   If not cached or if dirty, get from File
+
+        let url: string = 'getTransformations';
+        this.filePath = './assets/data.transformations.json';
+
+        return new Promise<Transformation[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.currentTransformations.value == [])  ||  (this.isDirtyTransformations) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        data = data.filter(
+                            i => i.datasourceID == datasourceID
+                        );
+                        this.currentTransformations.next(data);
+                        console.log('getCurrentTransformations 1', datasourceID, data)
+                        resolve(data);
+                    });
+            } else {
+                console.log('getCurrentTransformations 2', datasourceID, this.currentTransformations.value)
+                resolve(this.currentTransformations.value);
+            }
+        });
+
+    }
+    
+    Transformations
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
@@ -3075,19 +3106,11 @@ export class GlobalVariableService {
 
     }
 
-    getAllcurrentDatasources() {
-
-    }
-
     getAllcurrentDatasourcePermissions() {
 
     }
 
     getAllcurrentDataset(datasourceID: number) {
-
-    }
-
-    getAllcurrentTransformations(datasourceID: number) {
 
     }
 
