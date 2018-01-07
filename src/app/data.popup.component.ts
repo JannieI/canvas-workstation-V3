@@ -137,7 +137,6 @@ export class DataPopupComponent implements OnInit {
     filterTransformation: string = '';
     filterPivotFields: string = '';
     changeVar: number = 2;
-    isEditMode: boolean = false;
     dataGetFromSwitch: string = 'File';
     currentDS: boolean = true;
 

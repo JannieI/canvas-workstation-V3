@@ -184,11 +184,11 @@ export class ExploreComponent {
 
     ngOnInit() {
         console.log('Explore ngOnInit', this.globalVariableService.openDashboardFormOnStartup)
+
+        // Load global variables
         if (this.globalVariableService.openDashboardFormOnStartup) {
             this.showModalDashboardOpen = true;
         };
-
-        // Load global variables
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
@@ -567,7 +567,6 @@ export class ExploreComponent {
     }
 
     clickClosePresentation() {
-        console.log('kkk')
         this.globalVariableService.showMainMenu.next(true);
         this.globalVariableService.presentationMode.next(false);
     }
