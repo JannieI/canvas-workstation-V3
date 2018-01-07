@@ -149,9 +149,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 export class ExploreComponent {
     @Input() menuOptionSelected: string;
 
-    @ViewChild('vis', {read: ElementRef}) vis: ElementRef;  //Vega graph
-    @ViewChild('visReal', {read: ElementRef}) visReal: ElementRef;  //Vega graph
-    @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
 
     @ViewChildren('widgetContainter')  widgetContainters: QueryList<ElementRef>;
@@ -569,14 +566,7 @@ export class ExploreComponent {
 
     clickShowNextTab() {
         console.log('Next START widgets: ', this.globalVariableService.widgets)
-        // this.isDirtyWidgets = 
         console.log('   Next 0 Tabs: ', this.globalVariableService.currentDashboardTabs.value)
-
-        // console.log(this.globalVariableService.dashboardsSamples)
-        // this.globalVariableService.getDashboardSamples()
-        //     .then( data =>
-        //         console.log(this.globalVariableService.dashboardsSamples)
-        //     )
         
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
         else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}
@@ -679,8 +669,6 @@ export class ExploreComponent {
     clickDragKeydown(event, id: number) {
         console.log('clickDragKeydown', id)
     }
-
-
 
     clickResizeMouseDown(event, id: number) {
         console.log('clickResizeMouseDown', id)
