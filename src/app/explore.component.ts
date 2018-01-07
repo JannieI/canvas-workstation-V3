@@ -76,10 +76,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     "transform": "",
 
     "description": "",
-    "data":
-        {
-            "values": ""
-        },
+    "data": "",
     "mark":
         {
             "type": "",  //bar circle square tick line area point rule text
@@ -358,7 +355,16 @@ export class ExploreComponent {
             //         "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
             //     }
             // }
-            let definition = this.createVegaLiteSpec();
+            let definition = this.createVegaLiteSpec(
+                this.localWidgets[i].graphDescription,
+                this.localWidgets[i].graphMark,
+                this.localWidgets[i].graphXfield,
+                this.localWidgets[i].graphYfield,
+                this.localWidgets[i].graphTitle,
+                this.localWidgets[i].graphXtype,
+                this.localWidgets[i].graphYtype,
+                this.localWidgets[i].graphUrl
+            );
             let specification = compile(definition).spec;
             // console.log('spec 2', specification)
             let view = new View(parse(specification));
@@ -541,8 +547,8 @@ export class ExploreComponent {
     createVegaLiteSpec(
         graphDescription: string = 'First bar chart.',
         graphMark: string = 'bar',
-        graphXfield: string = 'Month',
-        graphYfield: string = 'Trades',
+        graphXfield: string = 'Horsepower',
+        graphYfield: string = 'Miles_per_Gallon',
         graphTitle: string = 'Average Trading',
         graphXtype: string = 'quantitative',
         graphYtype: string = 'quantitative',
@@ -550,19 +556,26 @@ export class ExploreComponent {
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
 
-        vlSpecsNew['data']['values'] = [
-            {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
-            {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
-            {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
-            {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
-            {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
-            {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
-        ];
+        // vlSpecsNew['data']['values'] = [
+        //     {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
+        //     {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
+        //     {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
+        //     {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
+        //     {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
+        //     {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
+        // ];
+        vlSpecsNew['data'] = {"url": "../assets/vega-datasets/cars.json"};
         vlSpecsNew['description'] = graphDescription;
         vlSpecsNew['mark']['type'] = graphMark;
         vlSpecsNew['encoding']['x']['field'] = graphXfield;
+        vlSpecsNew['encoding']['x']['type'] = graphXtype;
         vlSpecsNew['encoding']['y']['field'] = graphYfield;
+        vlSpecsNew['encoding']['y']['type'] = graphYtype;
         vlSpecsNew['title']['text'] = graphTitle;
+
+        vlSpecsNew['encoding']['x']['axis']['title'] = 'x-axis';
+        vlSpecsNew['encoding']['y']['axis']['title'] = 'y-axis';
+
         console.log('createVegaLiteSpec', vlSpecsNew)
 
         return vlSpecsNew;

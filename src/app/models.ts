@@ -393,7 +393,7 @@ export class CanvasWidget {
     graphYfield?: string;
     graphYtype?: string;
     graphTitle?: string;
-    graphGraphmark?: string;
+    graphMark?: string;
     graphUrl?: string;
     graphData?: any;
 
