@@ -1,3 +1,4 @@
+/* Presentation Button */
 .presentationButton {
     background-color: rgb(212, 209, 209);
     color: white;
@@ -10,6 +11,8 @@
     z-index: 70;
 }
 
+
+/* Status Bar */
 .statusBar {
     background-color: #192b35;
     bottom: 0;
@@ -28,43 +31,28 @@
     z-index: 60;
 }
 
-.statusBarTextBorder {
-    border-top: 1px solid rgb(129, 128, 128);
-    border-left: 1px solid rgb(129, 128, 128);
-    border-right: 2px solid rgb(75, 74, 74);
-    border-bottom: 2px solid rgb(75, 74, 74);
-    color: white !important;
-}
+    .statusBarTextBorder {
+        border-top: 1px solid rgb(129, 128, 128);
+        border-left: 1px solid rgb(129, 128, 128);
+        border-right: 2px solid rgb(75, 74, 74);
+        border-bottom: 2px solid rgb(75, 74, 74);
+        color: white !important;
+    }
 
-.statusBarText {
-    background-color: #293841;;;
-    bottom: 0.5rem !important;
-    height: 0.6rem !important;
-    margin: 0 2px 0 2px !important;
-    padding: 0 5px 0 5px !important;
-}
+    .statusBarText {
+        background-color: #293841;;;
+        bottom: 0.5rem !important;
+        height: 0.6rem !important;
+        margin: 0 2px 0 2px !important;
+        padding: 0 5px 0 5px !important;
+    }
 
-.statusBarText:hover {
-    color: white !important;
-}
+    .statusBarText:hover {
+        color: white !important;
+    }
 
-.newTab {
-    background: rgb(236, 235, 235);
-    bottom: 0;
-    border: 1px solid black;
-    border-radius: 5px;
-    left: 20px;
-    width: 16rem;
-    z-index: 60;
-}
-
-.widget {
-    /* border: 1px dotted gray; */
-    display: inline-block;
-    height: 180px;
-    width: 200px;
-}
-
+   
+/* Widgets */
 .widgetContainer {
     /* border: 1px dotted gray; */
     display: inline-block;
@@ -75,35 +63,58 @@
     padding: 0;
     margin: 0;
 }
-.widgetContainer:hover {
-    border: 1px dotted black !important;
-}
 
-.widgetSelectedDrag {
-    background-color: transparent;
-    border: none !important;
-    float: right;
-    top: 0;
-}
-.widgetSelectedDrag:hover {
-    background-color: darkgray;
-    border-right: 2px solid black !important;
-    border-top: 2px solid black !important;
-    color: white;
-}
+    .widgetContainer:hover {
+        border: 1px dotted black !important;
+    }
 
-.widgetSelectedResize {
-    background-color: transparent;
-    border: none !important;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-}
-.widgetSelectedResize:hover {
-    background-color: darkgray;
-    border-bottom: 2px solid black !important;
-    border-right: 2px solid black !important;
-    color: white;
+    .widgetContainer:focus {
+        border: 1px dotted black;
+    }
+
+    .widget {
+        /* border: 1px dotted gray; */
+        display: inline-block;
+        height: 180px;
+        width: 200px;
+    }
+
+    .widgetSelectedDrag {
+        background-color: transparent;
+        border: none !important;
+        float: right;
+        top: 0;
+    }
+
+    .widgetSelectedDrag:hover {
+        background-color: darkgray;
+        border-right: 2px solid black !important;
+        border-top: 2px solid black !important;
+        color: white;
+    }
+
+    .widgetSelectedResize {
+        background-color: transparent;
+        border: none !important;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+    }
+
+    .widgetSelectedResize:hover {
+        background-color: darkgray;
+        border-bottom: 2px solid black !important;
+        border-right: 2px solid black !important;
+        color: white;
+    }
+
+
+/* Palette */
+.buttonBarIcon {
+    background-color: rgb(233, 230, 230);
+    border: 1px solid gray;
+    margin: 1px;
+    padding: 2px;
 }
 
 .widgetButtonBar {
@@ -125,25 +136,8 @@
     z-index: 50;
 }
 
-.widget2 {
-    /* border: 1px dotted gray; */
-    display: inline-block;
-}
-.widgetGraph2 {
-    background-color: #293841;
-}
 
-.widgetContainer:focus {
-    border: 1px dotted black;
-}
-
-.shape {
-    /* border: 1px dotted gray; */
-    display: inline-block;
-    height: 180px;
-    width: 200px;
-}
-
+/* Slicers */
 .slicer {
     border: '1px solid gray';
     position: absolute;
@@ -163,30 +157,8 @@
         border-radius: 5px !important;
     }
 
-.dashboardDropdown {
-    width: 12rem !important;
-}
 
-.popupLabel {
-    font-size: .5rem !important;
-    margin: 0 0 0 10px !important;
-    width: 3rem !important;
-}
-
-.popupInput {
-    font-size: .5rem !important;
-    margin: 0 0 0 10px !important;
-    width: 9rem !important;
-}
-
-.popupButton {
-    background-color: rgb(172, 169, 169);
-    border: none;
-    font-size: .6rem !important;
-    margin: 5px 0 0 10px !important;
-    width: 4rem !important;
-}
-
+/* Grid */
 .bgGrid {
     border: 1px solid gray;
     height: 100%;
@@ -200,6 +172,8 @@
         z-index: 20;
     }
 
+
+/* Dashboards and Tabs */
 .dashboardDescription {
     background-color: #192b35;
     border-radius: 3px;
@@ -212,22 +186,34 @@
     position: absolute;
     width: 12rem;
 }
+ 
+    .newTab {
+        background: rgb(236, 235, 235);
+        bottom: 0;
+        border: 1px solid black;
+        border-radius: 5px;
+        left: 20px;
+        width: 16rem;
+        z-index: 60;
+    }
 
-.tabList {
-    background-color: #192b35;
-    bottom: 1.1rem;
-    color:  white;
-    display: inline-block;
-    left: 8.2rem;
-    position: absolute;
-    width: 4rem;
-}
+    .tabList {
+        background-color: #192b35;
+        bottom: 1.1rem;
+        color:  white;
+        display: inline-block;
+        left: 8.2rem;
+        position: absolute;
+        width: 4rem;
+    }
 
-.tabListItem {
-    border: white;
-    padding-left: 5px;
-}
+    .tabListItem {
+        border: white;
+        padding-left: 5px;
+    }
 
+
+/* Shapes */
 .shapeContainer {
     /* border: 1px dotted gray; */
     display: inline-block;
@@ -240,23 +226,23 @@
     /* width: 100px; */
 
 }
-.shapeContainer:hover {
-    border: 1px dotted black;
-}
-.aCircle2 {
-    background-color: transparent;
-    display: inline-block;
-    margin-top: -59px;
-    margin-left: -2px;
-}
-.shape2 {
-    /* border: 1px dotted gray; */
-    display: inline-block;
-    /* height: 180px;
-    width: 200px; */
-}
+    .shapeContainer:hover {
+        border: 1px dotted black;
+    }
 
+    .aCircle2 {
+        background-color: transparent;
+        display: inline-block;
+        margin-top: -59px;
+        margin-left: -2px;
+    }
 
+    .shape {
+        /* border: 1px dotted gray; */
+        display: inline-block;
+        /* height: 180px;
+        width: 200px; */
+    }
 
 
 /* Testing Arrows */
