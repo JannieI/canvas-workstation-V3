@@ -170,11 +170,6 @@ export class AppComponent implements OnInit {
         this.showModalLanding = false;
         this.document.body.style.backgroundImage ='../images/BarChart.png';
         if (this.globalVariableService.openDashboardFormOnStartup == true) {
-            // let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs.value.filter(
-            // 	i => i.dashboardID = 1
-            // );
-             
-            // this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs)
             console.log('here!')
             this.showModalDashboardOpen = true;
             this.router.navigate(['/explore']);
@@ -529,7 +524,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetDuplicate() {
         this.showModalWidgetDuplicate = true;
-        this.globalVariableService.duplicateDashboard.next(true);
+        this.globalVariableService.duplicateWidget.next(true);
     }
 
     clickMenuWidgetExpand() {

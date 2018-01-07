@@ -218,13 +218,6 @@ export class ExploreComponent {
         this.globalVariableService.statusBarMessages.subscribe(
             i => this.statusBarMessages = i
         )
-
-        this.globalVariableService.duplicateDashboard.subscribe(
-            i => this.duplicateWidget(i)
-        );
-        // this.globalVariableService.localDashboards.subscribe(
-        //     i => this.localDashboards
-        // );
         this.localDashboards = this.globalVariableService.localDashboards;
         this.globalVariableService.currentDashboardTabs.subscribe(
             i => this.currentDashboardTabs = i
@@ -238,18 +231,15 @@ export class ExploreComponent {
                     }
                  }
         );
-        this.globalVariableService.localWidgets.subscribe(
+        this.globalVariableService.currentWidgets.subscribe(
             i => {
+                console.log('Explore refresh Widgets', i)
+                if (i == undefined) {console.log('undef')}
+                if (i == []) {console.log('[]')}
                 this.localWidgets = i.filter(f => f.isTrashed == false)
-
-                // for (var k = 0; k < 1; k++) {
-                //     console.log('this.localWidgets k', this.localWidgets, k)
-                //     console.log('this.childrenWidgets', this.childrenWidgets)
-                //     console.log('this.widgetContainters', this.widgetContainters)
-                // }
                 if (this.childrenWidgets !== undefined) {
                     // console.log('refreshLLWW now', this.childrenWidgets.toArray().length)
-                    this.refreshWidgets2();
+                    this.refreshWidgets();
                     this.refreshShapes2()
                     console.log ('refeshWidgets2 done')
                 }
@@ -270,7 +260,7 @@ export class ExploreComponent {
                         {
                             console.log('i', i)
                             console.log('refreshWW now', this.childrenWidgets.toArray().length)
-                            this.refreshWidgets2();
+                            this.refreshWidgets();
                             console.log ('refeshWW done')
                         }
                     else {console.log('no refreshWW')}
@@ -313,7 +303,7 @@ export class ExploreComponent {
             }
         };
 
-        this.refreshWidgets2();
+        this.refreshWidgets();
     }
 
     handleCloseDashboardOpen(ev) {
@@ -353,11 +343,22 @@ export class ExploreComponent {
 
     }
 
-    refreshWidgets2() {
-        console.log(' ...START refreshWidgets2', this.childrenWidgets.toArray().length)
+    refreshWidgets() {
+        console.log(' ...START refreshWidgets', this.childrenWidgets.toArray().length)
+        console.log('  W', this.localWidgets)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
-            // console.log('refreshWidgets loop i', i)
-            let definition = this.localWidgets[i].graphSpecification;
+            console.log('refreshWidgets loop i', i, this.localWidgets[i].graphSpecification)
+            // let definition = this.localWidgets[i].graphSpecification;
+
+            let definition: dl.spec.TopLevelExtendedSpec = {
+                "data": {"url": "../assets/vega-datasets/cars.json"},
+                "mark": "point",
+                "encoding": {
+                    "x": {"field": "Horsepower", "type": "quantitative"},
+                    "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+                }
+            }
+            definition = this.createVegaLiteSpec();
             let specification = compile(definition).spec;
             // console.log('spec 2', specification)
             let view = new View(parse(specification));

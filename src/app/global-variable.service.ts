@@ -1500,7 +1500,7 @@ export class GlobalVariableService {
     localTrash = new BehaviorSubject< CanvasWidget[]>([]);
 
     dataGetFromSwitch = new BehaviorSubject<string>('File');
-    duplicateDashboard = new BehaviorSubject<boolean>(false);
+    duplicateWidget = new BehaviorSubject<boolean>(false);
     refreshDashboard = new BehaviorSubject<boolean>(false);
 
 
@@ -1649,7 +1649,8 @@ export class GlobalVariableService {
 
     refreshCurrentDashboardInfo(dashboardID: number) {
         // Refreshes all info related to current D
-        
+        console.log('Refreshing D id = ', dashboardID)
+
         // Load Dashboard Themes
         this.getDashboardThemes();
 
@@ -1773,8 +1774,6 @@ export class GlobalVariableService {
         );
         console.log('arr', arr)
         this.localWidgets.next(arr);
-        // console.log('yy', this.localWidgets.value);
-        // this.refreshDashboard.next(true);
     }
 
     deleteDashboardRecent(index: number) {
@@ -2985,7 +2984,7 @@ export class GlobalVariableService {
 
         return new Promise((resolve, reject) => {
             // Get from source - files for now ...
-            dl.json({url: this.filePath}, {}, (err, currentData) => {
+            dl.json({url: this.filePath}, {children: 'graphSpecification'}, (err, currentData) => {
                 if (err) {
                     reject(err)
                 } else {
