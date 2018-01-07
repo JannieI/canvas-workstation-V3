@@ -1460,9 +1460,6 @@ export class GlobalVariableService {
     currentDashboardPermissions = new BehaviorSubject<DashboardPermission[]>([]);
     currentDashboardSnapshots = new BehaviorSubject<DashboardSnapshot[]>([]);
 
-    private messageSource = new BehaviorSubject<string>("default message");
-    currentMessage = this.messageSource.asObservable();
-
 
     // Global vars that guide all interactions
     // ***************************************
@@ -1721,11 +1718,6 @@ export class GlobalVariableService {
 
         
         
-    }
-
-    changeMessage(message: string) {
-        console.log('changeMessage', message)
-        this.messageSource.next(message)
     }
 
     changeMenuCreateDisabled(value: boolean) {

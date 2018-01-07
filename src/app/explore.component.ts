@@ -154,7 +154,6 @@ export class ExploreComponent {
     localTrash: CanvasWidget[] = [];
     localWidgets: CanvasWidget[];
     menuCreateDisabled: boolean = false;
-    message: string;
     open: Boolean = false;
     presentationMode: boolean;
     showDashboardDescription: boolean = false;
@@ -190,9 +189,6 @@ export class ExploreComponent {
         };
 
         // Load global variables
-        this.globalVariableService.currentMessage.subscribe(
-            message => this.message = message
-        );
         this.globalVariableService.menuCreateDisabled.subscribe(
             menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
         );
