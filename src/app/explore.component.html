@@ -84,6 +84,7 @@
 
 <!-- Shapes -->
 <div *ngFor="let row of localShapes; let i = index" class="shapeContainer"
+    #shapeContainter
     [style.background-color]="row.containerBackgroundColor"
     [style.border]="row.isSelected? '2px solid red' : row.isSelected"
     [style.box-shadow]="row.containerBoxshadow"
@@ -92,9 +93,8 @@
     [style.top.px]="row.containerTop"
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
-    #shapeContainter>
-    <div class="widgetButtonBar2"
-        [style.zindex]="row.containerZindex + 2"
+    >
+    <div class="widgetButtonBar"
         >
         <clr-icon
             shape="link"

@@ -41,18 +41,6 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 // Own Components
 
 // Constants
-
-
-const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec =
-{
-  "data": {"url": "../assets/vega-datasets/cars.json"},
-  "mark": "point",
-  "encoding": {
-    "x": {"field": "Horsepower", "type": "quantitative"},
-    "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-  }
-};
-
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
