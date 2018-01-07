@@ -10,28 +10,6 @@
     z-index: 70;
 }
 
-.helpMessagePresentation {
-    background-color: rgb(204, 204, 245);
-    border: 1px solid gray;
-    border-radius: 5px;
-    background-color: rgb(204, 204, 245);
-    left: 5px;
-    margin: 5px 15px 5px 55px;
-    padding: 5px;
-}
-
-.helpMessage {
-    background-color: rgb(204, 204, 245);
-    border: 1px solid gray;
-    border-radius: 5px;
-    background-color: rgb(204, 204, 245);
-    margin: 5px 15px 5px 35px;
-}
-
-    .helpMessageDiv {
-        padding-left: 20px;
-    }
-
 .statusBar {
     background-color: #192b35;
     bottom: 0;
@@ -80,50 +58,12 @@
     z-index: 60;
 }
 
-.graphy {
-    display: inline;
-    left: 100px;
-    position: absolute;
-    top: 180px;
-}
-
-.graphy:hover {
-    border: 1px dotted gray;
-    color: black !important;
-}
-
-.widgetContainer {
-    /* border: 1px dotted gray; */
-    display: inline-block;
-    height: 200px;
-    left:400px;
-    position: absolute;
-    width: 250px;
-}
-
-.widgetContainer:hover {
-    border: 1px dotted black;
-}
-.widgetContainer:visited {
-    border: 1px dotted black;
-}
-
 .widget {
     /* border: 1px dotted gray; */
     display: inline-block;
     height: 180px;
     width: 200px;
 }
-
-.widgetHandle {
-    color: transparent;
-}
-
-.widgetHandle:hover {
-    color: black;
-}
-
-
 
 .widgetContainer {
     /* border: 1px dotted gray; */
@@ -184,28 +124,13 @@
     border: 1px solid gray;
     z-index: 50;
 }
-/* .buttonBarIcon {
-    margin: 1px;
-    padding: 2px;
-} */
+
 .widget2 {
     /* border: 1px dotted gray; */
     display: inline-block;
 }
 .widgetGraph2 {
     background-color: #293841;
-}
-
-.shapeContainer {
-    /* border: 1px dotted gray; */
-    display: inline-block;
-    height: 100px;
-    left:1100px;
-    position: absolute;
-    width: 100px;
-}
-.shapeContainer:hover {
-    border: 1px dotted black;
 }
 
 .widgetContainer:focus {
@@ -275,48 +200,6 @@
         z-index: 20;
     }
 
-.widgetButtonBar {
-    border: 1px solid gray;
-    /* display: none; */
-    opacity: 0.0;
-    -webkit-transition: all 500ms ease-in-out;
-    -moz-transition: all 500ms ease-in-out;
-    -ms-transition: all 500ms ease-in-out;
-    -o-transition: all 500ms ease-in-out;
-    transition: all 500ms ease-in-out;
-}
-
-.widgetButtonBar:hover {
-    /* display: block; */
-    opacity: 1;
-    border: 1px solid gray;
-}
-
-#stuff {
-    opacity: 0.0;
-    -webkit-transition: all 500ms ease-in-out;
-    -moz-transition: all 500ms ease-in-out;
-    -ms-transition: all 500ms ease-in-out;
-    -o-transition: all 500ms ease-in-out;
-    transition: all 500ms ease-in-out;
-}
-#hover {
-    width:80px;
-    height:20px;
-    background-color:green;
-    margin-bottom:15px;
-}
-#hover:hover + #stuff {
-    opacity: 1.0;
-}
-
-.buttonBarIcon {
-    background-color: rgb(233, 230, 230);
-    border: 1px solid gray;
-    margin: 1px;
-    padding: 2px;
-}
-
 .dashboardDescription {
     background-color: #192b35;
     border-radius: 3px;
@@ -345,7 +228,7 @@
     padding-left: 5px;
 }
 
-.shapeContainer2 {
+.shapeContainer {
     /* border: 1px dotted gray; */
     display: inline-block;
     /* height: 100px; */
@@ -357,7 +240,7 @@
     /* width: 100px; */
 
 }
-.shapeContainer2:hover {
+.shapeContainer:hover {
     border: 1px dotted black;
 }
 .aCircle2 {

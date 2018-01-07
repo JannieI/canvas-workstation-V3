@@ -1,3 +1,4 @@
+<!-- Presentation Button -->
 <div class="presentationButton dropdown" *ngIf="presentationMode">
     <clr-dropdown>
         <button type="button" clrDropdownTrigger>
@@ -80,8 +81,9 @@
     >
 </dashboard-helpPresentation>
 
+
 <!-- Shapes -->
-<div *ngFor="let row of localShapes; let i = index" class="shapeContainer2"
+<div *ngFor="let row of localShapes; let i = index" class="shapeContainer"
     [style.background-color]="row.containerBackgroundColor"
     [style.border]="row.isSelected? '2px solid red' : row.isSelected"
     [style.box-shadow]="row.containerBoxshadow"
@@ -170,6 +172,8 @@
     </div>
 </div>
 
+
+<!-- Status Bar -->
 <div class="statusBar" *ngIf="showMainMenu">
     <span class="statusBarText statusBarTextBorder" title="Current Dashboard"
         (click)="clickDashboardDescription()">
@@ -243,6 +247,7 @@
 </div>
 
 
+<!-- Grid -->
 <div class="bgGrid" *ngIf="showGrid">
     <svg width="100%" height="100%" class="bgGridSvg">
 
@@ -270,15 +275,13 @@
     </svg>
 </div>
 
+
 <!-- Modal: New Tab -->
 <dashboard-tab
     class="formPopupDashboard"
     *ngIf="showNewTab"
     (formDashboardTabClosed)="handleCloseDashboardTab($event)">Load Dashboard Tab ...
 </dashboard-tab>
-
-
-
 
 
 <!-- Testing new Widget stuffies -->
@@ -466,6 +469,8 @@
     </section>
 </div>
 
+
+<!-- Tab List -->
 <div class="tabList" *ngIf="showTabList">
     <div class="tabListItem" (click)="showTabList=!showTabList">Summary</div>
     <div class="tabListItem" (click)="showTabList=!showTabList">Budget</div>
@@ -474,6 +479,7 @@
 </div>
 
 
+<!-- Dashboard Description -->
 <div class="dashboardDescription" *ngIf="showDashboardDescription">
     <div> This Dashboard is a Summary of bla-bla-bla ...</div>
     <button
