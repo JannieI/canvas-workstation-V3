@@ -543,7 +543,15 @@ export class ExploreComponent {
         mark: string = 'bar',
         xfield: string = 'Month',
         yfield: string = 'Trades',
-        title: string = 'Average Trading'): dl.spec.TopLevelExtendedSpec {
+        title: string = 'Average Trading',
+        graphDescription: string = '',
+        graphXfield: string = 'Horsepower',
+        graphXtype: string = 'quantitative',
+        graphYfield: string = 'Miles_per_Gallon',
+        graphYtype: string = 'quantitative',
+        graphTitle: string = 'W 1',
+        graphGraphmark: string = 'point',
+        graphUrl: string = '',): dl.spec.TopLevelExtendedSpec {
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
 
