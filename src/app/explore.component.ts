@@ -148,7 +148,7 @@ export class ExploreComponent {
     localDashboards: dl.spec.TopLevelExtendedSpec[];
     localShapes: CanvasShape[];
     localTrash: CanvasWidget[] = [];
-    localWidgets: CanvasWidget[];
+    currentWidgets: CanvasWidget[];
     menuCreateDisabled: boolean = false;
     open: Boolean = false;
     presentationMode: boolean;
@@ -233,7 +233,7 @@ export class ExploreComponent {
                 console.log('Explore refresh Widgets', i)
                 if (i == undefined) {console.log('undef')}
                 if (i == []) {console.log('[]')}
-                this.localWidgets = i.filter(f => f.isTrashed == false)
+                this.currentWidgets = i.filter(f => f.isTrashed == false)
                 if (this.childrenWidgets !== undefined) {
                     // console.log('refreshLLWW now', this.childrenWidgets.toArray().length)
                     this.refreshWidgets();
@@ -342,45 +342,35 @@ export class ExploreComponent {
 
     refreshWidgets() {
         console.log(' ...START refreshWidgets', this.childrenWidgets.toArray().length)
-        console.log('  W', this.localWidgets)
+        console.log('  W', this.currentWidgets)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
-            console.log('refreshWidgets loop i', i, this.localWidgets[i].graphSpecification)
-            // let definition = this.localWidgets[i].graphSpecification;
-
-            // let definition: dl.spec.TopLevelExtendedSpec = {
-            //     "data": {"url": "../assets/vega-datasets/cars.json"},
-            //     "mark": "point",
-            //     "encoding": {
-            //         "x": {"field": "Horsepower", "type": "quantitative"},
-            //         "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-            //     }
-            // }
-            console.log(i,this.localWidgets[i],
-                this.localWidgets[i].graphDescription,
-                this.localWidgets[i].graphMark,
-                this.localWidgets[i].graphXfield,
-                this.localWidgets[i].graphYfield,
-                this.localWidgets[i].graphTitle,
-                this.localWidgets[i].graphXtype,
-                this.localWidgets[i].graphYtype,
-                this.localWidgets[i].graphUrl)
+            console.log('refreshWidgets loop i', i, this.currentWidgets[i].graphSpecification)
+            console.log(i,this.currentWidgets[i],
+                this.currentWidgets[i].graphDescription,
+                this.currentWidgets[i].graphMark,
+                this.currentWidgets[i].graphXfield,
+                this.currentWidgets[i].graphYfield,
+                this.currentWidgets[i].graphTitle,
+                this.currentWidgets[i].graphXtype,
+                this.currentWidgets[i].graphYtype,
+                this.currentWidgets[i].graphUrl)
 
             
             let definition = this.createVegaLiteSpec(
-                this.localWidgets[i].graphDescription,
-                this.localWidgets[i].graphMark,
-                this.localWidgets[i].graphXfield,
-                this.localWidgets[i].graphYfield,
-                this.localWidgets[i].graphTitle,
-                this.localWidgets[i].graphXtype,
-                this.localWidgets[i].graphYtype,
-                this.localWidgets[i].graphUrl,
-                this.localWidgets[i].graphXtimeUnit,
-                this.localWidgets[i].graphXaggregate,
-                this.localWidgets[i].graphYtimeUnit,
-                this.localWidgets[i].graphYaggregate,
-                this.localWidgets[i].colorField,
-                this.localWidgets[i].colorType,
+                this.currentWidgets[i].graphDescription,
+                this.currentWidgets[i].graphMark,
+                this.currentWidgets[i].graphXfield,
+                this.currentWidgets[i].graphYfield,
+                this.currentWidgets[i].graphTitle,
+                this.currentWidgets[i].graphXtype,
+                this.currentWidgets[i].graphYtype,
+                this.currentWidgets[i].graphUrl,
+                this.currentWidgets[i].graphXtimeUnit,
+                this.currentWidgets[i].graphXaggregate,
+                this.currentWidgets[i].graphYtimeUnit,
+                this.currentWidgets[i].graphYaggregate,
+                this.currentWidgets[i].colorField,
+                this.currentWidgets[i].colorType,
             );
             let specification = compile(definition).spec;
             // console.log('spec 2', specification)
@@ -630,7 +620,7 @@ export class ExploreComponent {
     }
 
     clickSelect(i: number) {
-        this.localWidgets[i].isSelected = !this.localWidgets[i].isSelected;
+        this.currentWidgets[i].isSelected = !this.currentWidgets[i].isSelected;
     }
 
     clickDragMouseDown(event, id: number) {
@@ -646,15 +636,15 @@ export class ExploreComponent {
     }
     clickDragEnd(event, index: number) {
         console.log('clickDragEnd', index, event.clientX, event.clientY,
-        'was', this.localWidgets[index].containerLeft,
+        'was', this.currentWidgets[index].containerLeft,
         'diff', event.clientX - this.startX,
-        'new', this.localWidgets[index].containerLeft + event.clientX - this.startX)
+        'new', this.currentWidgets[index].containerLeft + event.clientX - this.startX)
 
         let moveX: number = event.clientX - this.startX;
         let moveY: number = event.clientY - this.startY;
 
-        let newX: number = this.localWidgets[index].containerLeft + moveX;
-        let newY: number = this.localWidgets[index].containerTop + moveY;
+        let newX: number = this.currentWidgets[index].containerLeft + moveX;
+        let newY: number = this.currentWidgets[index].containerTop + moveY;
 
         if (newX < 0) {
             newX = 0;
@@ -663,8 +653,8 @@ export class ExploreComponent {
             newY = 15;
         }
 
-        this.localWidgets[index].containerLeft = newX;
-        this.localWidgets[index].containerTop = newY;
+        this.currentWidgets[index].containerLeft = newX;
+        this.currentWidgets[index].containerTop = newY;
 
     }
     clickDragKeydown(event, id: number) {
@@ -684,15 +674,15 @@ export class ExploreComponent {
     }
     clickResizeEnd(event, index: number) {
         console.log('clickResizeEnd', index, event.clientX, event.clientY,
-        'was', this.localWidgets[index].containerWidth,
+        'was', this.currentWidgets[index].containerWidth,
         'diff', event.clientX - this.startX,
-        'new', this.localWidgets[index].containerWidth + event.clientX - this.startX)
+        'new', this.currentWidgets[index].containerWidth + event.clientX - this.startX)
 
         let moveX: number = event.clientX - this.startX;
         let moveY: number = event.clientY - this.startY;
 
-        let newX: number = this.localWidgets[index].containerWidth + moveX;
-        let newY: number = this.localWidgets[index].containerHeight + moveY;
+        let newX: number = this.currentWidgets[index].containerWidth + moveX;
+        let newY: number = this.currentWidgets[index].containerHeight + moveY;
 
         if (newX < 80) {
             newX = 80;
@@ -701,8 +691,8 @@ export class ExploreComponent {
             newY = 50;
         }
 
-        this.localWidgets[index].containerWidth = newX;
-        this.localWidgets[index].containerHeight = newY;
+        this.currentWidgets[index].containerWidth = newX;
+        this.currentWidgets[index].containerHeight = newY;
     }
     clickResizeKeydown(event, id: number) {
         console.log('clickResizeKeydown', id)

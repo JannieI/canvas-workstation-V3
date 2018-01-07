@@ -284,7 +284,7 @@
 
 
 <!-- Testing new Widget stuffies -->
-<div *ngFor="let row of localWidgets; let i = index" class="widgetContainer"
+<div *ngFor="let row of currentWidgets; let i = index" class="widgetContainer"
     #widgetContainter
     [style.background-color]="row.containerBackgroundColor"
     [style.border]="row.isSelected? '2px solid red' : row.containerBorder"
