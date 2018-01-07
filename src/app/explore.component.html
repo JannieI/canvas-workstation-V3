@@ -92,7 +92,7 @@
     [style.top.px]="row.containerTop"
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
-    #shapeContainter2>
+    #shapeContainter>
     <div class="widgetButtonBar2"
         [style.zindex]="row.containerZindex + 2"
         >
@@ -149,7 +149,6 @@
 
     <div class="shape">
         <div
-            #dragCircle
             class="aCircle2"
             (dragstart)="dragStartCircle($event)"
             (dragend)="dragEndCircle($event)"

@@ -41,21 +41,7 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 // Own Components
 
 // Constants
-// const localShapes: any[] =
-// [
-//     {
-//         type: "circle",
-//         variable: "#dragCircle",
-//         height: "100",
-//         width: "100",
-//         cx: "50",
-//         cy: "50",
-//         r: "40",
-//         stroke: "red",
-//         strokewidth: "1",
-//         fill: "none"
-//     }
-// ]
+
 
 const vlTemplateSpec13: dl.spec.TopLevelExtendedSpec =
 {
@@ -147,82 +133,48 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 })
 
 export class ExploreComponent {
-    @Input() menuOptionSelected: string;
-
-    @ViewChild('typeDropdown') typeDropdown: ElementRef;
 
     @ViewChildren('widgetContainter')  widgetContainters: QueryList<ElementRef>;
     @ViewChildren('widget')            childrenWidgets: QueryList<ElementRef>;
-
-    @ViewChildren('shapeContainter2')   shapeContainter2: QueryList<ElementRef>;
+    @ViewChildren('shapeContainter')   shapeContainter: QueryList<ElementRef>;
     @ViewChildren('circle2')            circle2: QueryList<ElementRef>;
 
-    @ViewChildren('redArrow')           redArrow: ElementRef;
-
-
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
+    currentDashboardTabs: DashboardTab[];
+    currentTabName: string = 'Summary';
+    dashboards: Dashboard[];
+    datasources: Datasource[];
+    description: string = 'A simple bar chart with embedded data.';
+    editMode: boolean;
+    hasDatasources: boolean;
+    isFirstTimeDashboard: boolean;
+    isFirstTimePresentation: boolean;
     localDashboards: dl.spec.TopLevelExtendedSpec[];
     localShapes: CanvasShape[];
-    currentDashboardTabs: DashboardTab[];
-    localWidgets: CanvasWidget[];
     localTrash: CanvasWidget[] = [];
-    datasources: Datasource[];
-    currentTabName: string = 'Summary';
-    description: string = 'A simple bar chart with embedded data.';
-    circleRadius: number = 20;
-    data: any = [
-        {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
-        {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
-        {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
-        {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
-        {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
-        {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
-        ];
-    temp: number[] = [0];
-    dashboards: Dashboard[];
-    editMode: boolean;
-    graphType: string = 'BarChart';
-    graphTypeFile: string = '../images/BarChart.png';
-    isFirstTimeDashboard: boolean;
+    localWidgets: CanvasWidget[];
     menuCreateDisabled: boolean = false;
     message: string;
     open: Boolean = false;
     presentationMode: boolean;
-    showMainMenu: boolean;
-    isFirstTimePresentation: boolean;
-    sideNavWidth: string = '350';
-    sideNavMinWidth: string = '18';
-    sideNaveButtonText: string = 'Select Data';
-
-    showAdvancedField: boolean = false;
-    showContainerHeader: boolean = false;
-    showGrid: boolean;
-    showModalOpenDashboard: boolean = false;
-    showNewTab: boolean = false;
-    showShapes: boolean = true;
-    showType: boolean = false;
-    showTypeIcon: boolean = true;
     showDashboardDescription: boolean = false;
-    showTabList: boolean = false;
+    showGrid: boolean;
+    showMainMenu: boolean;
+    showModalDashboardOpen: boolean = false;
+    showModalOpenDashboard: boolean = false;
+    showModalWidgetEditor: boolean = false;
+    showNewTab: boolean = false;
     showSlicer: boolean = true;
+    showTabList: boolean = false;
+    slicerHeader: string;
+    startX: number;
+    startY: number;
     statusBarRunning: string = '';
     statusBarCancelRefresh: string = '';
     statusBarMessages: string = '';
     templateInUse: string = 'Tmpl Used';
-    viewEditMode: string = 'Edit Mode';
-    widgetBorder: string = '1px black solid';
-
-    widgetStartX: number = 0;
-    widgetStartY: number = 0;
-    widgetEndX: number = 0;
-    widgetEndY: number = 0;
-
-    startX: number;
-    startY: number;
-    showModalWidgetEditor: boolean = false;
-    hasDatasources: boolean;
-    slicerHeader: string;
-    showModalDashboardOpen: boolean = false;
+    
+    temp: number[] = [0];
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -286,7 +238,7 @@ export class ExploreComponent {
         this.globalVariableService.localShapes.subscribe(
             i => {
                     this.localShapes = i;
-                    if (this.shapeContainter2 !== undefined) {
+                    if (this.shapeContainter !== undefined) {
                         this.refreshShapes2()
                         console.log ('refreshShap2 done')
                     }
@@ -340,7 +292,7 @@ export class ExploreComponent {
         console.log('Explore ngOnViewInit', this.localShapes)
 
         // Loop on the graph ElementRefs, and set properties ala widget[].properties
-        if (this.shapeContainter2.toArray().length > 0) {
+        if (this.shapeContainter.toArray().length > 0) {
             for (var i = 0; i < this.circle2.toArray().length; i++) {
 
                 // Testing
@@ -376,9 +328,9 @@ export class ExploreComponent {
 
     refreshShapes2() {
 
-        console.log('refreshShapes2 starting now ...', this.shapeContainter2.toArray().length)
+        console.log('refreshShapes2 starting now ...', this.shapeContainter.toArray().length)
         // Loop on the graph ElementRefs, and set properties ala widget[].properties
-        if (this.shapeContainter2.toArray().length > 0) {
+        if (this.shapeContainter.toArray().length > 0) {
             for (var i = 0; i < this.circle2.toArray().length; i++) {
 
                 // Testing
