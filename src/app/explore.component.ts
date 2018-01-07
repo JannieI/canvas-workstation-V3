@@ -384,59 +384,59 @@ export class ExploreComponent {
         this.showModalDashboardOpen = false;
     }
 
-    refreshWidgets() {
-        // let definition = vlTemplateSpec13;
-        // let specification = compile(definition).spec;
-        // let view = new View(parse(specification));
-        console.log('refreshWidgets started')
-        if (this.childrenWidgets.toArray().length > 0) {
-            for (var i: number = 0; i < this.localDashboards.length; i++) {
-                console.log('refreshWidgets loop i', i)
-                let definition = this.localDashboards[i];
-                let specification = compile(definition).spec;
-                let view = new View(parse(specification));
-                let leftpx: number = 300;
-                console.log('refreshWidgets childrenWidgets', this.childrenWidgets.toArray()[i])
-                console.log('refreshWidgets widgetContainters', this.widgetContainters.toArray()[i])
-                // console.log('refreshWidgets nativeEl', this.childrenWidgets.toArray()[i].nativeElement)
-                // this.renderer.setElementAttribute(
-                //     this.childrenWidgets.toArray()[i].nativeElement,
-                //     'id', '2');
-                // this.renderer.setElementStyle(
-                //     this.childrenWidgets.toArray()[i].nativeElement,
-                //     'top',  '80px');
-                if (i == 0) {
-                    this.renderer.setElementStyle(
-                        this.widgetContainters.toArray()[i].nativeElement,
-                        'left', +(leftpx * (1 + i) ) + 'px');
-                } else {
-                    this.renderer.setElementStyle(
-                        this.widgetContainters.toArray()[i].nativeElement,
-                        'left', +(leftpx * (1 + i) ) + 'px');
-                    this.renderer.setElementStyle(
-                        this.widgetContainters.toArray()[i].nativeElement,
-                        'z-index', '4');
-                }
-                view.renderer('svg')
-                    .initialize( this.childrenWidgets.toArray()[i].nativeElement)
-                    .width(180)
-                    .hover()
-                    .run()
-                    .finalize();
-                console.log('refreshWidgets loop end')
-            }
-        }
+    // refreshWidgets() {
+    //     // let definition = vlTemplateSpec13;
+    //     // let specification = compile(definition).spec;
+    //     // let view = new View(parse(specification));
+    //     console.log('refreshWidgets started')
+    //     if (this.childrenWidgets.toArray().length > 0) {
+    //         for (var i: number = 0; i < this.localDashboards.length; i++) {
+    //             console.log('refreshWidgets loop i', i)
+    //             let definition = this.localDashboards[i];
+    //             let specification = compile(definition).spec;
+    //             let view = new View(parse(specification));
+    //             let leftpx: number = 300;
+    //             console.log('refreshWidgets childrenWidgets', this.childrenWidgets.toArray()[i])
+    //             console.log('refreshWidgets widgetContainters', this.widgetContainters.toArray()[i])
+    //             // console.log('refreshWidgets nativeEl', this.childrenWidgets.toArray()[i].nativeElement)
+    //             // this.renderer.setElementAttribute(
+    //             //     this.childrenWidgets.toArray()[i].nativeElement,
+    //             //     'id', '2');
+    //             // this.renderer.setElementStyle(
+    //             //     this.childrenWidgets.toArray()[i].nativeElement,
+    //             //     'top',  '80px');
+    //             if (i == 0) {
+    //                 this.renderer.setElementStyle(
+    //                     this.widgetContainters.toArray()[i].nativeElement,
+    //                     'left', +(leftpx * (1 + i) ) + 'px');
+    //             } else {
+    //                 this.renderer.setElementStyle(
+    //                     this.widgetContainters.toArray()[i].nativeElement,
+    //                     'left', +(leftpx * (1 + i) ) + 'px');
+    //                 this.renderer.setElementStyle(
+    //                     this.widgetContainters.toArray()[i].nativeElement,
+    //                     'z-index', '4');
+    //             }
+    //             view.renderer('svg')
+    //                 .initialize( this.childrenWidgets.toArray()[i].nativeElement)
+    //                 .width(180)
+    //                 .hover()
+    //                 .run()
+    //                 .finalize();
+    //             console.log('refreshWidgets loop end')
+    //         }
+    //     }
 
-        // view.renderer('svg')
-        //     .width(350)
-        //     .height(260)
-        //     .initialize(this.dragWidget.nativeElement)
-        //     .hover()
-        //     .run()
-        //     .finalize();
-        //     this.renderer.setElementStyle(this.dragWidget.nativeElement,
-        //         'left', "200px");
-    }
+    //     // view.renderer('svg')
+    //     //     .width(350)
+    //     //     .height(260)
+    //     //     .initialize(this.dragWidget.nativeElement)
+    //     //     .hover()
+    //     //     .run()
+    //     //     .finalize();
+    //     //     this.renderer.setElementStyle(this.dragWidget.nativeElement,
+    //     //         'left', "200px");
+    // }
 
     refreshShapes2() {
 

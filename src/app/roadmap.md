@@ -33,7 +33,7 @@ This document describes items for later versions of Canvas.
 2. Is heading 'Existing Dataset' = ... DataSOURCES ?
 3. Make sure terminology is consitent: Datasource -> Transform -> Dataset
 4. I used FieldNames (string) in ie Pivot - is that okay?
-5.
+5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields, FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
 8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or not?
 9. Data Quality issues: add place to add detail values.  An overall statement can say all data has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
 11.Determine which transformations live on server and which on client, and whether some/all
