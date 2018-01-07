@@ -81,7 +81,7 @@
 </dashboard-helpPresentation>
 
 
-<span
+<!-- <span
     class="graphy"
     [style.color] = "showContainerHeader ? 'black' : 'transparent'"
     (click)="clickWidget($event)"
@@ -100,29 +100,10 @@
         <span #visReal>
         </span>
     </div>
-</span>
-
-<!-- <div>
-    <div *ngFor="let ds of localDashboards" class="widgetContainer"
-        #widgetContainter>
-        <div class="widgetButtonBar">
-            <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
-            <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon>
-            <clr-icon shape="cursor-hand" size="20" class="buttonBarIcon"></clr-icon>
-            <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon>
-            <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon>
-            <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon>
-            <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
-        </div>
-        <div class="widget">
-            <div #widget>
-            </div>
-        </div>
-    </div>
-</div> -->
+</span> -->
 
 <!-- Working one - LEAVE !!! -->
-<div *ngIf="showShapes">
+<!-- <div *ngIf="showShapes">
     <div *ngFor="let row of localShapes" class="shapeContainer"
         #shapeContainter>
         <div class="widgetButtonBar">
@@ -153,13 +134,13 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 
 
 
-<!-- Eksperimental! -->
+<!-- Shapes -->
 <div *ngFor="let row of localShapes; let i = index" class="shapeContainer2"
     [style.background-color]="row.containerBackgroundColor"
     [style.border]="row.isSelected? '2px solid red' : row.isSelected"
@@ -653,7 +634,7 @@
 
 <!-- Testing new Widget stuffies -->
 <div *ngFor="let row of localWidgets; let i = index" class="widgetContainer2"
-    #widgetContainter2
+    #widgetContainter
     [style.background-color]="row.containerBackgroundColor"
     [style.border]="row.isSelected? '2px solid red' : row.containerBorder"
     [style.box-shadow]="row.containerBoxshadow"
@@ -799,7 +780,7 @@
     <div class="widget"
         [style.height.px]="row.containerHeight - 35"
         [style.width.px]="row.containerWidth"
-        #widget2
+        #widget
         >
         {{ row.id }}
     </div>

@@ -154,11 +154,10 @@ export class ExploreComponent {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
 
-    @ViewChildren('widgetContainter2')  widgetContainters2: QueryList<ElementRef>;
-    @ViewChildren('widget2')            childrenWidgets2: QueryList<ElementRef>;
+    @ViewChildren('widgetContainter')  widgetContainters: QueryList<ElementRef>;
+    @ViewChildren('widget')            childrenWidgets: QueryList<ElementRef>;
 
     @ViewChildren('shapeContainter2')   shapeContainter2: QueryList<ElementRef>;
-    @ViewChildren('shape')              shape2: QueryList<ElementRef>;
     @ViewChildren('circle2')            circle2: QueryList<ElementRef>;
 
     @ViewChildren('redArrow')           redArrow: ElementRef;
@@ -302,11 +301,11 @@ export class ExploreComponent {
 
                 // for (var k = 0; k < 1; k++) {
                 //     console.log('this.localWidgets k', this.localWidgets, k)
-                //     console.log('this.childrenWidgets2', this.childrenWidgets2)
-                //     console.log('this.widgetContainters2', this.widgetContainters2)
+                //     console.log('this.childrenWidgets', this.childrenWidgets)
+                //     console.log('this.widgetContainters', this.widgetContainters)
                 // }
-                if (this.childrenWidgets2 !== undefined) {
-                    // console.log('refreshLLWW now', this.childrenWidgets2.toArray().length)
+                if (this.childrenWidgets !== undefined) {
+                    // console.log('refreshLLWW now', this.childrenWidgets.toArray().length)
                     this.refreshWidgets2();
                     this.refreshShapes2()
                     console.log ('refeshWidgets2 done')
@@ -327,7 +326,7 @@ export class ExploreComponent {
                     if (i)
                         {
                             console.log('i', i)
-                            console.log('refreshWW now', this.childrenWidgets2.toArray().length)
+                            console.log('refreshWW now', this.childrenWidgets.toArray().length)
                             this.refreshWidgets2();
                             console.log ('refeshWW done')
                         }
@@ -412,15 +411,15 @@ export class ExploreComponent {
     }
 
     refreshWidgets2() {
-        console.log(' ...START refreshWidgets2', this.childrenWidgets2.toArray().length)
-        for (var i: number = 0; i < this.childrenWidgets2.toArray().length; i++) {
+        console.log(' ...START refreshWidgets2', this.childrenWidgets.toArray().length)
+        for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
             // console.log('refreshWidgets loop i', i)
             let definition = this.localWidgets[i].graphSpecification;
             let specification = compile(definition).spec;
             // console.log('spec 2', specification)
             let view = new View(parse(specification));
             view.renderer('svg')
-                .initialize( this.childrenWidgets2.toArray()[i].nativeElement)
+                .initialize( this.childrenWidgets.toArray()[i].nativeElement)
                 .width(180)
                 .hover()
                 .run()
@@ -431,7 +430,7 @@ export class ExploreComponent {
 
     duplicateWidget(duplicate: boolean) {
         if (duplicate) {
-            console.log('duplicateWidget', this.childrenWidgets2.toArray().length)
+            console.log('duplicateWidget', this.childrenWidgets.toArray().length)
             this.localDashboards.push(this.localDashboards[0]);
             console.log('Add to array ...', this.localDashboards)
         }
@@ -545,26 +544,26 @@ export class ExploreComponent {
         return;
     }
 
-    dragStartWidget(ev: DragEvent) {
-        this.widgetStartX = ev.clientX;
-        this.widgetStartY = ev.clientY;
-        console.log('dragStartWidget', ev,this.widgetStartX, this.widgetStartY)
+    // dragStartWidget(ev: DragEvent) {
+    //     this.widgetStartX = ev.clientX;
+    //     this.widgetStartY = ev.clientY;
+    //     console.log('dragStartWidget', ev,this.widgetStartX, this.widgetStartY)
 
-    }
+    // }
 
-    dragEndWidget(ev: DragEvent) {
-        this.widgetEndX = ev.clientX;
-        this.widgetEndY = ev.clientY;
-        let widgetMoveX = this.widgetEndX - this.widgetStartX;
-        let widgetMoveY = this.widgetEndY - this.widgetStartY;
-        console.log('dragEndWidget',  this.widgetStartX, this.widgetEndX,widgetMoveX, widgetMoveY, this.visReal.nativeElement['left'])
+    // dragEndWidget(ev: DragEvent) {
+    //     this.widgetEndX = ev.clientX;
+    //     this.widgetEndY = ev.clientY;
+    //     let widgetMoveX = this.widgetEndX - this.widgetStartX;
+    //     let widgetMoveY = this.widgetEndY - this.widgetStartY;
+    //     console.log('dragEndWidget',  this.widgetStartX, this.widgetEndX,widgetMoveX, widgetMoveY, this.visReal.nativeElement['left'])
 
-        this.renderer.setElementStyle(this.dragWidget.nativeElement,
-            'left', (500 + widgetMoveX).toString() + "px");
+    //     this.renderer.setElementStyle(this.dragWidget.nativeElement,
+    //         'left', (500 + widgetMoveX).toString() + "px");
 
-        this.renderer.setElementStyle(this.dragWidget.nativeElement,
-            'top', (80 + widgetMoveX).toString() + "px");
-    }
+    //     this.renderer.setElementStyle(this.dragWidget.nativeElement,
+    //         'top', (80 + widgetMoveX).toString() + "px");
+    // }
 
     dragStartArrow (ev: DragEvent) {}
     dragEndArrow(ev: DragEvent) {
