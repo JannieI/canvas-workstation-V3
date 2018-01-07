@@ -125,7 +125,7 @@
 
 
 
-.widgetContainer2 {
+.widgetContainer {
     /* border: 1px dotted gray; */
     display: inline-block;
     /* height: 200px; */
@@ -135,7 +135,7 @@
     padding: 0;
     margin: 0;
 }
-.widgetContainer2:hover {
+.widgetContainer:hover {
     border: 1px dotted black !important;
 }
 
@@ -166,7 +166,7 @@
     color: white;
 }
 
-.widgetButtonBar2 {
+.widgetButtonBar {
     border: 1px solid gray;
     display: inline-block;
     opacity: 0.0;
@@ -178,16 +178,16 @@
     overflow: hidden;
     /* width: 80%; */
 }
-.widgetButtonBar2:hover {
+.widgetButtonBar:hover {
     /* display: block; */
     opacity: 1;
     border: 1px solid gray;
     z-index: 50;
 }
-.buttonBarIcon2 {
+/* .buttonBarIcon {
     margin: 1px;
     padding: 2px;
-}
+} */
 .widget2 {
     /* border: 1px dotted gray; */
     display: inline-block;

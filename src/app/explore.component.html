@@ -80,45 +80,6 @@
     >
 </dashboard-helpPresentation>
 
-
-<!-- Working one - LEAVE !!! -->
-<!-- <div *ngIf="showShapes">
-    <div *ngFor="let row of localShapes" class="shapeContainer"
-        #shapeContainter>
-        <div class="widgetButtonBar">
-            <clr-icon shape="plus" size="20" class="buttonBarIcon" (click)="clickWidgetEdit()"></clr-icon>
-            <clr-icon shape="filter-grid" size="20" class="buttonBarIcon"></clr-icon>
-            <clr-icon shape="cursor-hand" size="20" class="buttonBarIcon"></clr-icon>
-            <clr-icon shape="pop-out" size="20" class="buttonBarIcon"></clr-icon>
-            <clr-icon shape="pencil" size="20" class="buttonBarIcon"></clr-icon>
-            <clr-icon shape="pin" size="20" class="buttonBarIcon"></clr-icon>
-            <clr-icon shape="copy" size="20" class="buttonBarIcon"></clr-icon>
-        </div>
-        <div class="shape">
-            <div #shape>
-                {{ row.type }}
-                <div
-                    #dragCircle
-                    class="aCircle"
-                    (dragstart)="dragStartCircle($event)"
-                    (dragend)="dragEndCircle($event)"
-                    draggable="true"
-                    >
-                    <svg height="100" width="100" >
-                        <circle #circle [attr.cx]="50"
-                        [attr.cy]="50" [attr.r]="circleRadius" [attr.stroke]="blue"
-                        [attr.stroke-width]="2" [style.fill]="none" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-
-
-
 <!-- Shapes -->
 <div *ngFor="let row of localShapes; let i = index" class="shapeContainer2"
     [style.background-color]="row.containerBackgroundColor"
@@ -282,297 +243,6 @@
 </div>
 
 
-<!-- <div class="bgGrid" *ngIf="showGrid">
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-    <div>
-        <h1>.</h1>
-    </div>
-</div> -->
-
 <div class="bgGrid" *ngIf="showGrid">
     <svg width="100%" height="100%" class="bgGridSvg">
 
@@ -612,7 +282,7 @@
 
 
 <!-- Testing new Widget stuffies -->
-<div *ngFor="let row of localWidgets; let i = index" class="widgetContainer2"
+<div *ngFor="let row of localWidgets; let i = index" class="widgetContainer"
     #widgetContainter
     [style.background-color]="row.containerBackgroundColor"
     [style.border]="row.isSelected? '2px solid red' : row.containerBorder"
@@ -623,7 +293,7 @@
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
     >
-    <div class="widgetButtonBar2">
+    <div class="widgetButtonBar">
         <clr-icon
             shape="pencil"
             size="20"
@@ -732,7 +402,7 @@
         <clr-icon
             shape="cursor-hand"
             size="20"
-            class="buttonBarIcon2"
+            class="buttonBarIcon"
             title="Drag handle to move Widget around"
             draggable="true"
             >
@@ -749,7 +419,7 @@
         <clr-icon class="widgetSelectedResize"
             shape="resize left"
             size="20"
-            class="buttonBarIcon2"
+            class="buttonBarIcon"
             title="Resize handle to change Widget container size"
             draggable="true"
             >
