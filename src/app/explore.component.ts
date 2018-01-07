@@ -371,69 +371,12 @@ export class ExploreComponent {
             }
         };
 
-        // this.refreshWidgets();
         this.refreshWidgets2();
-
-
     }
 
     handleCloseDashboardOpen(ev) {
         this.showModalDashboardOpen = false;
     }
-
-    // refreshWidgets() {
-    //     // let definition = vlTemplateSpec13;
-    //     // let specification = compile(definition).spec;
-    //     // let view = new View(parse(specification));
-    //     console.log('refreshWidgets started')
-    //     if (this.childrenWidgets.toArray().length > 0) {
-    //         for (var i: number = 0; i < this.localDashboards.length; i++) {
-    //             console.log('refreshWidgets loop i', i)
-    //             let definition = this.localDashboards[i];
-    //             let specification = compile(definition).spec;
-    //             let view = new View(parse(specification));
-    //             let leftpx: number = 300;
-    //             console.log('refreshWidgets childrenWidgets', this.childrenWidgets.toArray()[i])
-    //             console.log('refreshWidgets widgetContainters', this.widgetContainters.toArray()[i])
-    //             // console.log('refreshWidgets nativeEl', this.childrenWidgets.toArray()[i].nativeElement)
-    //             // this.renderer.setElementAttribute(
-    //             //     this.childrenWidgets.toArray()[i].nativeElement,
-    //             //     'id', '2');
-    //             // this.renderer.setElementStyle(
-    //             //     this.childrenWidgets.toArray()[i].nativeElement,
-    //             //     'top',  '80px');
-    //             if (i == 0) {
-    //                 this.renderer.setElementStyle(
-    //                     this.widgetContainters.toArray()[i].nativeElement,
-    //                     'left', +(leftpx * (1 + i) ) + 'px');
-    //             } else {
-    //                 this.renderer.setElementStyle(
-    //                     this.widgetContainters.toArray()[i].nativeElement,
-    //                     'left', +(leftpx * (1 + i) ) + 'px');
-    //                 this.renderer.setElementStyle(
-    //                     this.widgetContainters.toArray()[i].nativeElement,
-    //                     'z-index', '4');
-    //             }
-    //             view.renderer('svg')
-    //                 .initialize( this.childrenWidgets.toArray()[i].nativeElement)
-    //                 .width(180)
-    //                 .hover()
-    //                 .run()
-    //                 .finalize();
-    //             console.log('refreshWidgets loop end')
-    //         }
-    //     }
-
-    //     // view.renderer('svg')
-    //     //     .width(350)
-    //     //     .height(260)
-    //     //     .initialize(this.dragWidget.nativeElement)
-    //     //     .hover()
-    //     //     .run()
-    //     //     .finalize();
-    //     //     this.renderer.setElementStyle(this.dragWidget.nativeElement,
-    //     //         'left', "200px");
-    // }
 
     refreshShapes2() {
 
@@ -488,30 +431,11 @@ export class ExploreComponent {
 
     duplicateWidget(duplicate: boolean) {
         if (duplicate) {
-            console.log('duplicateWidget', this.childrenWidgets.toArray().length)
+            console.log('duplicateWidget', this.childrenWidgets2.toArray().length)
             this.localDashboards.push(this.localDashboards[0]);
-            // this.refreshWidgets();
             console.log('Add to array ...', this.localDashboards)
         }
     }
-//*     onMouseButton(event: MouseEvent): void {
-//*         this.isMouseDown = event.buttons === 1;
-//*     }
-//*
-//*     onMouseMove(event: MouseEvent): void {
-//*
-//*         if (this.isMouseDown && this.isInsideBoundary(event)) {
-//*         this.renderer2.setStyle(this.draggable, 'left', event.clientX - (draggableWidth / 2) + 'px');
-//*         this.renderer2.setStyle(this.draggable, 'top', event.clientY - (draggableHeight / 2) + 'px');
-//*         }
-//*     }
-//*
-//*     isInsideBoundary(event: MouseEvent) {
-//*         return event.clientX > this.boundary.left &&
-//*         event.clientX < this.boundary.right &&
-//*         event.clientY > this.boundary.top &&
-//*         event.clientY < this.boundary.bottom;
-//*     }
 
     allowDrop(event) {
         event.preventDefault();
