@@ -71,6 +71,15 @@
                 "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
             }
         },
+        "graphDescription": "",
+        "graphXfield": "Horsepower",
+        "graphXtype": "quantitative",
+        "graphYfield": "Miles_per_Gallon",
+        "graphYtype": "quantitative",
+        "graphTitle": "W 1",
+        "graphGraphmark": "point",
+        "graphUrl": "../assets/vega-datasets/cars.json",
+        "graphData": "",
         "tableColor": "",
         "tableCols": 1,
         "tableHeight": 1,
