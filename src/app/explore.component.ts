@@ -355,6 +355,17 @@ export class ExploreComponent {
             //         "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
             //     }
             // }
+            console.log(i,this.localWidgets[i],
+                this.localWidgets[i].graphDescription,
+                this.localWidgets[i].graphMark,
+                this.localWidgets[i].graphXfield,
+                this.localWidgets[i].graphYfield,
+                this.localWidgets[i].graphTitle,
+                this.localWidgets[i].graphXtype,
+                this.localWidgets[i].graphYtype,
+                this.localWidgets[i].graphUrl)
+
+            
             let definition = this.createVegaLiteSpec(
                 this.localWidgets[i].graphDescription,
                 this.localWidgets[i].graphMark,
@@ -363,7 +374,13 @@ export class ExploreComponent {
                 this.localWidgets[i].graphTitle,
                 this.localWidgets[i].graphXtype,
                 this.localWidgets[i].graphYtype,
-                this.localWidgets[i].graphUrl
+                this.localWidgets[i].graphUrl,
+                this.localWidgets[i].graphXtimeUnit,
+                this.localWidgets[i].graphXaggregate,
+                this.localWidgets[i].graphYtimeUnit,
+                this.localWidgets[i].graphYaggregate,
+                this.localWidgets[i].colorField,
+                this.localWidgets[i].colorType,
             );
             let specification = compile(definition).spec;
             // console.log('spec 2', specification)
@@ -545,14 +562,21 @@ export class ExploreComponent {
     }
 
     createVegaLiteSpec(
-        graphDescription: string = 'First bar chart.',
-        graphMark: string = 'bar',
-        graphXfield: string = 'Horsepower',
-        graphYfield: string = 'Miles_per_Gallon',
-        graphTitle: string = 'Average Trading',
-        graphXtype: string = 'quantitative',
-        graphYtype: string = 'quantitative',
-        graphUrl: string = '',): dl.spec.TopLevelExtendedSpec {
+        graphDescription: string = '',
+        graphMark: string = '',
+        graphXfield: string = '',
+        graphYfield: string = '',
+        graphTitle: string = '',
+        graphXtype: string = '',
+        graphYtype: string = '',
+        graphUrl: string = '',
+        graphXtimeUnit: string = '',
+        graphXaggregate: string = '',
+        graphYtimeUnit: string = '',
+        graphYaggregate: string = '',
+        colorField: string = '',
+        colorType: string = ''
+        ): dl.spec.TopLevelExtendedSpec {
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
 
@@ -564,17 +588,32 @@ export class ExploreComponent {
         //     {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
         //     {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
         // ];
-        vlSpecsNew['data'] = {"url": "../assets/vega-datasets/cars.json"};
+        vlSpecsNew['data'] = {"url": graphUrl};
         vlSpecsNew['description'] = graphDescription;
         vlSpecsNew['mark']['type'] = graphMark;
+
         vlSpecsNew['encoding']['x']['field'] = graphXfield;
         vlSpecsNew['encoding']['x']['type'] = graphXtype;
+        vlSpecsNew['encoding']['x']['axis']['title'] = 'x-axis';
+        vlSpecsNew['encoding']['x']['timeUnit'] = graphXtimeUnit;
+        vlSpecsNew['encoding']['x']['aggregate'] = graphXaggregate;
+
         vlSpecsNew['encoding']['y']['field'] = graphYfield;
         vlSpecsNew['encoding']['y']['type'] = graphYtype;
+        vlSpecsNew['encoding']['y']['axis']['title'] = 'y-axis';
+        vlSpecsNew['encoding']['y']['timeUnit'] = graphYtimeUnit;
+        vlSpecsNew['encoding']['y']['aggregate'] = graphYaggregate;
+
         vlSpecsNew['title']['text'] = graphTitle;
 
-        vlSpecsNew['encoding']['x']['axis']['title'] = 'x-axis';
-        vlSpecsNew['encoding']['y']['axis']['title'] = 'y-axis';
+        if (colorField != '') {
+            vlSpecsNew['encoding']['color'] = {
+                "field": colorField,
+                "type": colorType
+              }
+        }
+
+    
 
         console.log('createVegaLiteSpec', vlSpecsNew)
 

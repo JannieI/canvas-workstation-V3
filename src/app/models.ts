@@ -388,14 +388,22 @@ export class CanvasWidget {
     graphHoverColor: string;
     graphSpecification: any;
     graphDescription?: string;
+    graphXaggregate?: string;
+    graphXtimeUnit?: string;
     graphXfield?: string;
     graphXtype?: string;
+
+    graphYaggregate?: string;
+    graphYtimeUnit?: string;
     graphYfield?: string;
     graphYtype?: string;
+
     graphTitle?: string;
     graphMark?: string;
     graphUrl?: string;
     graphData?: any;
+    colorField?: string;
+    colorType?: string;
 
     // Table - to be determined later ...
     tableColor: string;                 // Text color
