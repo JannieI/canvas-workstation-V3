@@ -154,9 +154,6 @@ export class ExploreComponent {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
 
-    @ViewChildren('widget')             childrenWidgets: QueryList<ElementRef>;
-    @ViewChildren('widgetContainter')   widgetContainters: QueryList<ElementRef>;
-
     @ViewChildren('widgetContainter2')  widgetContainters2: QueryList<ElementRef>;
     @ViewChildren('widget2')            childrenWidgets2: QueryList<ElementRef>;
 
