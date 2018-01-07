@@ -544,33 +544,6 @@ export class ExploreComponent {
         return;
     }
 
-    // dragStartWidget(ev: DragEvent) {
-    //     this.widgetStartX = ev.clientX;
-    //     this.widgetStartY = ev.clientY;
-    //     console.log('dragStartWidget', ev,this.widgetStartX, this.widgetStartY)
-
-    // }
-
-    // dragEndWidget(ev: DragEvent) {
-    //     this.widgetEndX = ev.clientX;
-    //     this.widgetEndY = ev.clientY;
-    //     let widgetMoveX = this.widgetEndX - this.widgetStartX;
-    //     let widgetMoveY = this.widgetEndY - this.widgetStartY;
-    //     console.log('dragEndWidget',  this.widgetStartX, this.widgetEndX,widgetMoveX, widgetMoveY, this.visReal.nativeElement['left'])
-
-    //     this.renderer.setElementStyle(this.dragWidget.nativeElement,
-    //         'left', (500 + widgetMoveX).toString() + "px");
-
-    //     this.renderer.setElementStyle(this.dragWidget.nativeElement,
-    //         'top', (80 + widgetMoveX).toString() + "px");
-    // }
-
-    dragStartArrow (ev: DragEvent) {}
-    dragEndArrow(ev: DragEvent) {
-        this.renderer2.setStyle(this.redArrow.nativeElement, 'left', '100px')
-        console.log(ev.x)
-    }
-
     clickDashboardDescription() {
         this.showDashboardDescription = true;
     }
