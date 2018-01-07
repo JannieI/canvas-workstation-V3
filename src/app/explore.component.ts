@@ -142,7 +142,6 @@ export class ExploreComponent {
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     currentDashboardTabs: DashboardTab[];
     currentTabName: string = 'Summary';
-    dashboards: Dashboard[];
     datasources: Datasource[];
     description: string = 'A simple bar chart with embedded data.';
     editMode: boolean;
@@ -201,7 +200,6 @@ export class ExploreComponent {
         this.globalVariableService.showMainMenu.subscribe(
             sm => this.showMainMenu = sm
         );
-        this.dashboards = this.globalVariableService.dashboards;
         this.globalVariableService.editMode.subscribe(
             i => this.editMode = i
         )
