@@ -350,15 +350,15 @@ export class ExploreComponent {
             console.log('refreshWidgets loop i', i, this.localWidgets[i].graphSpecification)
             // let definition = this.localWidgets[i].graphSpecification;
 
-            let definition: dl.spec.TopLevelExtendedSpec = {
-                "data": {"url": "../assets/vega-datasets/cars.json"},
-                "mark": "point",
-                "encoding": {
-                    "x": {"field": "Horsepower", "type": "quantitative"},
-                    "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-                }
-            }
-            definition = this.createVegaLiteSpec();
+            // let definition: dl.spec.TopLevelExtendedSpec = {
+            //     "data": {"url": "../assets/vega-datasets/cars.json"},
+            //     "mark": "point",
+            //     "encoding": {
+            //         "x": {"field": "Horsepower", "type": "quantitative"},
+            //         "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+            //     }
+            // }
+            let definition = this.createVegaLiteSpec();
             let specification = compile(definition).spec;
             // console.log('spec 2', specification)
             let view = new View(parse(specification));
@@ -539,18 +539,13 @@ export class ExploreComponent {
     }
 
     createVegaLiteSpec(
-        description: string = 'First bar chart.',
-        mark: string = 'bar',
-        xfield: string = 'Month',
-        yfield: string = 'Trades',
-        title: string = 'Average Trading',
-        graphDescription: string = '',
-        graphXfield: string = 'Horsepower',
+        graphDescription: string = 'First bar chart.',
+        graphMark: string = 'bar',
+        graphXfield: string = 'Month',
+        graphYfield: string = 'Trades',
+        graphTitle: string = 'Average Trading',
         graphXtype: string = 'quantitative',
-        graphYfield: string = 'Miles_per_Gallon',
         graphYtype: string = 'quantitative',
-        graphTitle: string = 'W 1',
-        graphGraphmark: string = 'point',
         graphUrl: string = '',): dl.spec.TopLevelExtendedSpec {
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
@@ -563,11 +558,11 @@ export class ExploreComponent {
             {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
             {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
         ];
-        vlSpecsNew['description'] = description;
-        vlSpecsNew['mark']['type'] = mark;
-        vlSpecsNew['encoding']['x']['field'] = xfield;
-        vlSpecsNew['encoding']['y']['field'] = yfield;
-        vlSpecsNew['title']['text'] = title;
+        vlSpecsNew['description'] = graphDescription;
+        vlSpecsNew['mark']['type'] = graphMark;
+        vlSpecsNew['encoding']['x']['field'] = graphXfield;
+        vlSpecsNew['encoding']['y']['field'] = graphYfield;
+        vlSpecsNew['title']['text'] = graphTitle;
         console.log('createVegaLiteSpec', vlSpecsNew)
 
         return vlSpecsNew;
