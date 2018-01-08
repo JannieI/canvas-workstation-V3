@@ -52,7 +52,6 @@ export class LandingComponent implements OnInit {
 	}
 	clickButtonData() {
 		console.log('clickButtonData')
-		this.globalVariableService.changeMenuCreateDisabled(true);
 		this.router.navigate(['/data']);
 	}
 

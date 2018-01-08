@@ -280,7 +280,6 @@ export class DataPopupComponent implements OnInit {
             }
           });
 
-        this.globalVariableService.menuCreateDisabled.next(false);
 
         // Preview
         console.log('')
@@ -301,7 +300,7 @@ export class DataPopupComponent implements OnInit {
             type: 'File',
             subType: 'CSV',
             typeVersion: 'Comma-Separated',
-                name: 'Stocks.csv',
+            name: 'Stocks.csv',
             description: 'Hard coded name',
             createdBy: 'Me',
             createdOn: '2017/01/01',

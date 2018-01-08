@@ -1476,7 +1476,6 @@ export class GlobalVariableService {
     isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
     isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
     // Menu-related
-    menuCreateDisabled = new BehaviorSubject<boolean>(true);
     showMainMenu = new BehaviorSubject<boolean>(true);
     // Opening forms
     openDashboardFormOnStartup: boolean = false;
@@ -1716,10 +1715,6 @@ export class GlobalVariableService {
 
         
         
-    }
-
-    changeMenuCreateDisabled(value: boolean) {
-        this.menuCreateDisabled.next(value);
     }
 
     deleteWidget(index: number) {

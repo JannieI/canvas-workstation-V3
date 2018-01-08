@@ -137,7 +137,6 @@ export class ExploreComponent {
     localShapes: CanvasShape[];
     localTrash: CanvasWidget[] = [];
     currentWidgets: CanvasWidget[];
-    menuCreateDisabled: boolean = false;
     open: Boolean = false;
     presentationMode: boolean;
     showDashboardDescription: boolean = false;
@@ -173,9 +172,6 @@ export class ExploreComponent {
         if (this.globalVariableService.openDashboardFormOnStartup) {
             this.showModalDashboardOpen = true;
         };
-        this.globalVariableService.menuCreateDisabled.subscribe(
-            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
-        );
         this.globalVariableService.isFirstTimeDashboard.subscribe(
             i => this.isFirstTimeDashboard = i
         )

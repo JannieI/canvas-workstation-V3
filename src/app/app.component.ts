@@ -37,7 +37,6 @@ export class AppComponent implements OnInit {
     hasDatasources: boolean = false;
     editMenuText: string;
     fields: Field[];
-    menuCreateDisabled: boolean;
     moveStartX: number;
     moveStartY: number;
     moveEndX: number;
@@ -126,9 +125,6 @@ export class AppComponent implements OnInit {
         // Intial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.menuCreateDisabled.subscribe(
-            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
-        );
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
         );
