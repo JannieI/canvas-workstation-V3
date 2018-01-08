@@ -2775,25 +2775,29 @@ export class GlobalVariableService {
         let url: string = 'getDatasourceFilters';
         this.filePath = './assets/data.datasourceFilters.json';
 
-        return new Promise<DatasourceFilter[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.currentDatasourceFilters.value == [])  ||  (this.isDirtyDatasourceFilters) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+        if ( (this.currentDatasourceFilters.value == [])  ||  (this.isDirtyDatasourceFilters) ) {
+            return new Promise<DatasourceFilter[]>((resolve, reject) => {
                 this.getDatasourceFilters()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourceFilters.next(data);
-                        console.log('getCurrentDatasourceFilters 1', datasourceID, data)
+                        console.log('getDatasourceFilters 1', data)
                         resolve(data);
-                    });
-            } else {
-                console.log('getCurrentDatasourceFilters 2', datasourceID, this.currentDatasourceFilters.value)
-                resolve(this.currentDatasourceFilters.value);
-            }
-        });
+                })
+             })
+        } else {
+            return new Promise<DatasourceFilter[]>((resolve, reject) => {
+                let returnData: DatasourceFilter[];
+                returnData = this.datasourceFilters.filter(
+                    i => i.datasourceID == datasourceID
+                );
+                this.currentDatasourceFilters.next(returnData);
+                console.log('getDatasourceFilters 2', returnData)
+                resolve(returnData);
+            });
+        };
 
     }
     
