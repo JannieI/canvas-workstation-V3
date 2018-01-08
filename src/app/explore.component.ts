@@ -218,12 +218,8 @@ export class ExploreComponent {
         );
         this.globalVariableService.currentWidgets.subscribe(
             i => {
-                console.log('Explore refresh Widgets', i)
-                if (i == undefined) {console.log('undef')}
-                if (i == []) {console.log('[]')}
                 this.currentWidgets = i.filter(f => f.isTrashed == false)
                 if (this.childrenWidgets !== undefined) {
-                    // console.log('refreshLLWW now', this.childrenWidgets.toArray().length)
                     this.refreshWidgets();
                     this.refreshShapes2()
                     console.log ('refeshWidgets2 done')
@@ -243,8 +239,6 @@ export class ExploreComponent {
             i => {
                     if (i)
                         {
-                            console.log('i', i)
-                            console.log('refreshWW now', this.childrenWidgets.toArray().length)
                             this.refreshWidgets();
                             console.log ('refeshWW done')
                         }
@@ -330,19 +324,7 @@ export class ExploreComponent {
 
     refreshWidgets() {
         console.log(' ...START refreshWidgets', this.childrenWidgets.toArray().length)
-        console.log('  W', this.currentWidgets)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
-            console.log('refreshWidgets loop i', i, this.currentWidgets[i].graphSpecification)
-            console.log(i,this.currentWidgets[i],
-                this.currentWidgets[i].graphDescription,
-                this.currentWidgets[i].graphMark,
-                this.currentWidgets[i].graphXfield,
-                this.currentWidgets[i].graphYfield,
-                this.currentWidgets[i].graphTitle,
-                this.currentWidgets[i].graphXtype,
-                this.currentWidgets[i].graphYtype,
-                this.currentWidgets[i].graphUrl)
-
             
             let definition = this.createVegaLiteSpec(
                 this.currentWidgets[i].graphDescription,

@@ -1688,7 +1688,7 @@ export class GlobalVariableService {
         this.getDatasources();     
 
         // Load Current Datasources
-        this.getCurrentDatasources(dashboardID);     
+        this.getCurrentDatasources(dashboardID)
 
         // Load DatTransformationsasources
         this.getTransformations();     
@@ -2647,6 +2647,7 @@ export class GlobalVariableService {
                                             };
                                         };
                                         this.isDirtyDatasources = false;
+                                        this.currentDatasources.next(returnData);
                                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                                         console.log('getCurrentDatasources 1', returnData);
                                     }
@@ -2667,6 +2668,7 @@ export class GlobalVariableService {
                     };
                 };
                 this.isDirtyDatasources = false;
+                this.currentDatasources.next(returnData);
                 this.statusBarRunning.next(this.NoQueryRunningMessage);
                 console.log('getCurrentDatasources 1', returnData);
             }

@@ -147,6 +147,7 @@ export class AppComponent implements OnInit {
         );
         this.globalVariableService.currentDatasources.subscribe(
             i => {
+                    console.log('currentDatasource', i.length)
                     if (i.length > 0) { this.hasDatasources = true} else {this.hasDatasources = false}
                     this.currentDatasources = i
                  }
@@ -158,7 +159,6 @@ export class AppComponent implements OnInit {
                     else {this.editMenuText = 'View Mode'};
                  }
         );
-
     }
 
     handleCloseModalLanding() {
