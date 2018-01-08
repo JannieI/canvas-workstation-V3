@@ -562,7 +562,7 @@ export class ExploreComponent {
 
         vlSpecsNew['title']['text'] = graphTitle;
 
-        if (colorField != '') {
+        if (colorField != ''  && colorField != null) {
             vlSpecsNew['encoding']['color'] = {
                 "field": colorField,
                 "type": colorType
