@@ -1874,7 +1874,6 @@ export class GlobalVariableService {
                     }
                 }
                 this.currentDashboards.next(currentDashboards);
-
                 console.log('getCurrentDashboards 2', currentDashboards)
                 resolve(currentDashboards);
             });
@@ -2712,26 +2711,29 @@ export class GlobalVariableService {
         let url: string = 'getTransformations';
         this.filePath = './assets/data.transformations.json';
 
-        return new Promise<Transformation[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.currentTransformations.value == [])  ||  (this.isDirtyTransformations) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+        if ( (this.currentTransformations.value == [])  ||  (this.isDirtyTransformations) ) {
+            return new Promise<Transformation[]>((resolve, reject) => {
                 this.getTransformations()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
                         this.currentTransformations.next(data);
-                        console.log('getCurrentTransformations 1', datasourceID, data)
+                        console.log('getTransformations 1', data)
                         resolve(data);
-                    });
-            } else {
-                console.log('getCurrentTransformations 2', datasourceID, this.currentTransformations.value)
-                resolve(this.currentTransformations.value);
-            }
-        });
-
+                })
+             })
+        } else {
+            return new Promise<Transformation[]>((resolve, reject) => {
+                let returnData: Transformation[];
+                returnData = this.transformations.filter(
+                    i => i.datasourceID == datasourceID
+                );
+                this.currentTransformations.next(returnData);
+                console.log('getTransformations 2', returnData)
+                resolve(returnData);
+            });
+        };
     }
 
     getDatasourceFilters(): Promise<DatasourceFilter[]> {
