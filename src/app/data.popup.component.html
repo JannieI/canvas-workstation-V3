@@ -9,7 +9,7 @@
                     <div class="gridTitleContainer">
                         <div class="titleCurrent">
                             Selected Datasource: <b>{{ currentDatasetName }}</b>
-                            <span *ngIf="currentDatasetName===''" class="titleFirsttimeMessage">
+                            <span *ngIf="showTopSteps" class="titleFirsttimeMessage">
                                 (Preview (and Add) a new one, or select an existing one)
                             </span>
                         </div>
@@ -24,7 +24,7 @@
                                 Identify
                             </button>
                         </div>
-                        <div class="titleChevron1" *ngIf="currentDatasetName">
+                        <div class="titleChevron1" *ngIf="showTopSteps">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -33,7 +33,7 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titleFilter titleBox" *ngIf="currentDatasetName">
+                        <div class="titleFilter titleBox" *ngIf="showTopSteps">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -43,7 +43,7 @@
                                 Filter
                             </button>
                         </div>
-                        <div class="titleChevron2" *ngIf="currentDatasetName">
+                        <div class="titleChevron2" *ngIf="showTopSteps">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -52,7 +52,7 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titleTransform titleBox" *ngIf="currentDatasetName">
+                        <div class="titleTransform titleBox" *ngIf="showTopSteps">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -62,7 +62,7 @@
                                 Transform
                             </button>
                         </div>
-                        <div class="titleChevron3" *ngIf="currentDatasetName">
+                        <div class="titleChevron3" *ngIf="showTopSteps">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -71,7 +71,7 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titlePivot titleBox" *ngIf="currentDatasetName">
+                        <div class="titlePivot titleBox" *ngIf="showTopSteps">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -81,7 +81,7 @@
                                 Pivot
                             </button>
                         </div>
-                        <div class="titleChevron4" *ngIf="currentDatasetName">
+                        <div class="titleChevron4" *ngIf="showTopSteps">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -90,7 +90,7 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titleView titleBox" *ngIf="currentDatasetName">
+                        <div class="titleView titleBox" *ngIf="showTopSteps">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -181,7 +181,7 @@
                             <br>
                             Start at:
                             <input type="text" id="formFields_7" placeholder="Start on line nr">
-                            <br><br>
+                            <br>
                             Name of Dataset in this Dashboard:
                             <input type="text" id="formFields_7" placeholder="Dataset Name">
                             <button
@@ -192,7 +192,7 @@
                                 Preview
                             </button>
                         <!-- <div class="titleButtonDiv"> -->
-                            <button *ngIf="currentDatasetName===''"
+                            <button *ngIf="showAddButton"
                                 type="button"
                                 class="btn btn-secondary"
                                 (click)="clickDSAdd('Add')"
@@ -226,11 +226,7 @@
                             </clr-datagrid>
                       </div>
 
-                        <div class="gridIdentifyDataPreview" *ngIf="dataGetFromSwitch==='File'">
-
-                                <!-- [style.width.px]="sideNavWidth"
-                                [style.min-width.rem]="sideNavMinWidth" -->
-
+                        <div class="gridIdentifyDataPreview">
                             <div *ngIf="showDataPreview">
                                 <clr-datagrid class="fieldsDataGrid">
 

@@ -103,9 +103,11 @@ export class DataPopupComponent implements OnInit {
     selectorDetailColumnEnd: string = '12';
     selectedFile: boolean = true;
     selectedData: string = 'Trades for 2016';
+    showAddButton: boolean = false;
     showDataPreview: boolean = false;
     showIdentifyFile: boolean = true;
     showFilter: boolean = false;
+    showTopSteps: boolean = false;
     showTransform: boolean = false;
     showPivot: boolean = false;
     showView: boolean = false;
@@ -280,15 +282,17 @@ export class DataPopupComponent implements OnInit {
             }
           });
 
-
         // Preview
         console.log('')
         console.log('PREVIEW start:')
         startNow = Date.now()
-        this.showDataPreview = !this.showDataPreview;
+        this.showDataPreview = true; //!this.showDataPreview;
         console.log('        END preview: ', (Date.now() - startNow) / 1000)
 
         this.currentDatasetName = '';
+
+        // Show Add button
+        this.showAddButton = true;
 
     }
 
@@ -308,10 +312,7 @@ export class DataPopupComponent implements OnInit {
             refreshedOn: '2017/01/01',
             parameters: 'None'
         };
-
-        // Show the preview
-        this.showDataPreview = true;
-
+        
         // General var with name - used in *ngIF, etc
         this.currentDatasetName = this.fileName;
 
@@ -331,17 +332,30 @@ export class DataPopupComponent implements OnInit {
         this.pivotResults = [];
         this.finalFields = [];
         this.dataQualityIssues = [];
+
+        // Show the preview
+        this.showDataPreview = true;
+
+        // Show the top steps
+        this.showTopSteps = true;
+
+        // UnShow Add button
+        this.showAddButton = false;
     }
 
     clickDatasourceRow(dsName: string) {
         this.currentDatasetName = dsName;
+        
+        // Show the top steps
+        this.showTopSteps = true;
+
+        // UnShow Add button
+        this.showAddButton = false;
+
         console.log('dsName', dsName, this.filterDataset)
     }
 
     clickSelectDatasource(i: number, name: string) {
-
-        // Show the preview
-        this.showDataPreview = true;
 
         // General var with name - used in *ngIF, etc
         this.curentDatasetID = i;
@@ -356,7 +370,16 @@ export class DataPopupComponent implements OnInit {
         this.pivotResults = []
         this.finalFields = this.globalVariableService.finalFields;
         this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
+
+        // Show the preview
+        this.showDataPreview = true;
         
+        // Show the top steps
+        this.showTopSteps = true;
+
+        // UnShow Add button
+        this.showAddButton = false;
+
     }
 
     clickFileAddTransformationDetail() {

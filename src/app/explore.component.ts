@@ -321,7 +321,7 @@ export class ExploreComponent {
     refreshWidgets() {
         console.log(' ...START refreshWidgets', this.childrenWidgets.toArray().length)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
-            
+            console.log('this.currentWidgets[i].colorField', this.currentWidgets[i].colorField)
             let definition = this.createVegaLiteSpec(
                 this.currentWidgets[i].graphDescription,
                 this.currentWidgets[i].graphMark,

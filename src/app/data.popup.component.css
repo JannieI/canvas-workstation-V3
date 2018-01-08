@@ -264,9 +264,9 @@
         border: none;
         grid-column-start: 5;
         grid-column-end: 21;
-        grid-row-start: 8;
+        grid-row-start: 9;
         grid-row-end: 25;
-        height: 14rem;
+        height: 13rem;
         overflow: scroll;
         padding: 10px;
         width: 100%;
