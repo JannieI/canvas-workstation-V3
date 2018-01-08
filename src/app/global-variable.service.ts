@@ -2962,25 +2962,29 @@ export class GlobalVariableService {
         let url: string = 'getDatasourcePivots';
         this.filePath = './assets/data..datasourcePivots.json';
 
-        return new Promise<DatasourcePivot[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.currentDatasourcePivots.value == [])  ||  (this.isDirtyDatasourcePivots) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+        if ( (this.currentDatasourcePivots.value == [])  ||  (this.isDirtyDatasourcePivots) ) {
+            return new Promise<DatasourcePivot[]>((resolve, reject) => {
                 this.getDatasourcePivots()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePivots.next(data);
-                        console.log('getCurrentDatasourcePivots 1', datasourceID, data)
+                        console.log('getDatasourcePivotss 1', data)
                         resolve(data);
-                    });
-            } else {
-                console.log('getCurrentDatasourcePivots 2', datasourceID, this.currentDatasourcePivots.value)
-                resolve(this.currentDatasourcePivots.value);
-            }
-        });
+                })
+             })
+        } else {
+            return new Promise<DatasourcePivot[]>((resolve, reject) => {
+                let returnData: DatasourcePivot[];
+                returnData = this.datasourcePivots.filter(
+                    i => i.datasourceID == datasourceID
+                );
+                this.currentDatasourcePivots.next(returnData);
+                console.log('getDatasourcePivotss 2', returnData)
+                resolve(returnData);
+            });
+        };
 
     }
   
