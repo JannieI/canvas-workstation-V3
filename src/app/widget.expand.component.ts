@@ -24,7 +24,6 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetExpandComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     currentDataset;
     // @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
     // currentData = this.globalVariableService.currentDataset.forEach(

@@ -855,7 +855,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
   })
   export class WidgetEditorComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formWidgetEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph

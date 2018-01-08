@@ -28,7 +28,6 @@ import { GlobalVariableService }      from './global-variable.service';
   })
   export class WidgetExportComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formWidgetExportClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph

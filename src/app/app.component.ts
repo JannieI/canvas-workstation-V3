@@ -104,7 +104,6 @@ export class AppComponent implements OnInit {
     showModalUserShapeButtonBar: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
-    currentWidgetSpec: string = "{...}";
 
     localTrash: CanvasWidget[];
     localWidgets: CanvasWidget[];

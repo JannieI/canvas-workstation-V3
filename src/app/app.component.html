@@ -792,11 +792,11 @@
 </dashboard-comments>
 
 
-<!-- Modal: widget checkpoints -->
+<!-- Modal: Dashboard Print -->
 <dashboard-print
     class="formPopupDashboard"
     *ngIf="showModalDashboardPrint"
-    (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Dashboard Print Checkpoints ...
+    (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Dashboard Print ...
 </dashboard-print>
 
 
@@ -804,7 +804,6 @@
 <widget-export
     class="formPopupDashboard"
     *ngIf="showModalWidgetExport"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formWidgetExportClosed)="handleCloseWidgetExport($event)">Load Widget Export ...
 </widget-export>
 
@@ -813,7 +812,6 @@
 <widget-delete
     class="formPopupDashboard"
     *ngIf="showModalWidgetDelete"
-    [currentWidgetSpec]="currentWidgetSpec"
     [nrWidgetsSelected]="nrWidgetsSelected"
     (formWidgetDeleteClosed)="handleCloseWidgetDelete($event)">Load Widget Delete ...
 </widget-delete>
@@ -823,7 +821,6 @@
 <shape-edit
     class="formPopupDashboard"
     *ngIf="showModalShapeEdit"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formShapeEditClosed)="handleCloseShapeEdit($event)">Load Shape Edit ...
 </shape-edit>
 
@@ -908,7 +905,6 @@
 <!-- Modal: data refresh all -->
 <data-slicers
     *ngIf="showModalDataSlicers"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formDataSlicersClosed)="handleCloseDataSlicers($event)">Load Data Slicers ...
 </data-slicers>
 
@@ -937,7 +933,6 @@
 <!-- Modal: widget editor -->
 <widget-editor
     *ngIf="showModalWidgetEditor"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Widget Editor ...
 </widget-editor>
 
@@ -945,7 +940,6 @@
 <!-- Modal: widget checkpoints -->
 <widget-checkpoints
     *ngIf="showModalWidgetCheckpoints"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formWidgetCheckpointsClosed)="handleCloseWidgetCheckpoints($event)">Load Widget Checkpoints ...
 </widget-checkpoints>
 
@@ -953,7 +947,6 @@
 <!-- Modal: widget links -->
 <widget-links
     *ngIf="showModalWidgetLinks"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formWidgetLinksClosed)="handleCloseWidgetLinks($event)">Load Widget Links ...
 </widget-links>
 
@@ -961,7 +954,6 @@
 <!-- Modal: widget Comments -->
 <widget-comments
     *ngIf="showModalWidgetComments"
-    [currentWidgetSpec]="currentWidgetSpec"
     (formWidgetCommentsClosed)="handleCloseWidgetComments($event)">Load Widget Comments ...
 </widget-comments>
 

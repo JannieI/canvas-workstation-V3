@@ -20,7 +20,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 })
 export class ShapeEditComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formShapeEditClosed: EventEmitter<string> = new EventEmitter();
 
     showTextBox: boolean = true;

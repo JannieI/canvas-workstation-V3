@@ -26,7 +26,6 @@ import { Dashboard }                  from './models';
 })
 export class WidgetLinksComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formWidgetLinksClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;

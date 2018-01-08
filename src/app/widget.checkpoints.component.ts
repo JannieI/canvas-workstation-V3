@@ -859,7 +859,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
   })
   export class WidgetCheckpointsComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formWidgetCheckpointsClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph

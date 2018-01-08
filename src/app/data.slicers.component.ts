@@ -23,7 +23,6 @@ import { GlobalVariableService }      from './global-variable.service';
   })
   export class DataSlicersComponent implements OnInit {
 
-    @Input() currentWidgetSpec: any;
     @Output() formDataSlicersClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
