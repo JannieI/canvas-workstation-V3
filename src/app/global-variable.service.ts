@@ -722,6 +722,22 @@ const localWidgets: CanvasWidget[] =
                 "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
             }
         },
+        graphDescription: "",
+        graphXaggregate: "",
+        graphXtimeUnit: "",
+        graphXfield: "Horsepower",
+        graphXtype: "quantitative",
+        graphYtimeUnit: "",
+        graphYaggregate: "",
+        graphYfield: "Miles_per_Gallon",
+        graphYtype: "quantitative",
+        graphTitle: "graphTitle",
+        graphMark: "bar",
+        graphUrl: "../assets/vega-datasets/cars.json",
+        colorField: "",
+        colorType: "",
+        graphData: "",
+
         tableColor: '',
         tableCols: 1,
         tableHeight: 1,
@@ -811,6 +827,21 @@ const localWidgets: CanvasWidget[] =
                 "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
             }
         },
+        graphDescription: "",
+        graphXaggregate: "",
+        graphXtimeUnit: "",
+        graphXfield: "Horsepower",
+        graphXtype: "quantitative",
+        graphYtimeUnit: "",
+        graphYaggregate: "",
+        graphYfield: "Miles_per_Gallon",
+        graphYtype: "quantitative",
+        graphTitle: "graphTitle",
+        graphMark: "bar",
+        graphUrl: "../assets/vega-datasets/cars.json",
+        colorField: "",
+        colorType: "",
+        graphData: "",
         tableColor: '',
         tableCols: 1,
         tableHeight: 1,
@@ -912,6 +943,21 @@ const localWidgets: CanvasWidget[] =
               }
             }
         },
+        graphDescription: "",
+        graphXtimeUnit: "",
+        graphXaggregate: "",
+        graphXfield: "Horsepower",
+        graphXtype: "quantitative",
+        graphYtimeUnit: "",
+        graphYaggregate: "",
+        graphYfield: "Miles_per_Gallon",
+        graphYtype: "quantitative",
+        graphTitle: "graphTitle",
+        graphMark: "bar",
+        graphUrl: "../assets/vega-datasets/cars.json",
+        colorField: "",
+        colorType: "",
+        graphData: "",
         tableColor: '',
         tableCols: 1,
         tableHeight: 1,
@@ -1004,6 +1050,21 @@ const localWidgets1: CanvasWidget =
                 "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
             }
         },
+        graphDescription: "",
+        graphXtimeUnit: "",
+        graphXaggregate: "",
+        graphXfield: "Horsepower",
+        graphXtype: "quantitative",
+        graphYtimeUnit: "",
+        graphYaggregate: "",
+        graphYfield: "Miles_per_Gallon",
+        graphYtype: "quantitative",
+        graphTitle: "graphTitle",
+        graphMark: "bar",
+        graphUrl: "../assets/vega-datasets/cars.json",
+        colorField: "",
+        colorType: "",
+        graphData: "",
         tableColor: '',
         tableCols: 1,
         tableHeight: 1,
@@ -2901,7 +2962,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePermissions.next(data);
-                        console.log('getDatasourcePermissionss 1', data)
+                        console.log('getDatasourcePermissions 1', data)
                         resolve(data);
                 })
              })
@@ -2912,7 +2973,7 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDatasourcePermissions.next(returnData);
-                console.log('getDatasourcePermissionss 2', returnData)
+                console.log('getDatasourcePermissions 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2965,7 +3026,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePivots.next(data);
-                        console.log('getDatasourcePivotss 1', data)
+                        console.log('getDatasourcePivots 1', data)
                         resolve(data);
                 })
              })
@@ -2976,7 +3037,7 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDatasourcePivots.next(returnData);
-                console.log('getDatasourcePivotss 2', returnData)
+                console.log('getDatasourcePivots 2', returnData)
                 resolve(returnData);
             });
         };

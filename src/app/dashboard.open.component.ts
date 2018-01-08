@@ -59,4 +59,8 @@ export class DashboardOpenComponent implements OnInit {
         this.showAdvancedFilters = !this.showAdvancedFilters;
     }
 
+    clickOpenView(id: number) {
+        console.log('id', id)
+        this.globalVariableService.currentDashboardID.next(id);
+    }
 }

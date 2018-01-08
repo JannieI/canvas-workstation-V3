@@ -113,7 +113,7 @@
                     <clr-dg-column>#Opened</clr-dg-column>
 
                     <clr-dg-row *ngFor="let row of dashboards">
-                        <clr-dg-cell>
+                        <clr-dg-cell (click)="clickOpenView(row.id)">
                             <clr-icon shape="eye" class="selectIcon1" size="12"></clr-icon>
                         </clr-dg-cell>
                         <clr-dg-cell>
