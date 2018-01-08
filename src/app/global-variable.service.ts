@@ -2798,7 +2798,6 @@ export class GlobalVariableService {
                 resolve(returnData);
             });
         };
-
     }
     
     getDataQualityIssues(): Promise<DataQualityIssue[]> {
@@ -2899,25 +2898,29 @@ export class GlobalVariableService {
         let url: string = 'getDatasourcePermissions';
         this.filePath = './assets/data..datasourcePermissions.json';
 
-        return new Promise<DatasourcePermission[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.currentDatasourcePermissions.value == [])  ||  (this.isDirtyDatasourcePermissions) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+        if ( (this.currentDatasourcePermissions.value == [])  ||  (this.isDirtyDatasourcePermissions) ) {
+            return new Promise<DatasourcePermission[]>((resolve, reject) => {
                 this.getDatasourcePermissions()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePermissions.next(data);
-                        console.log('getCurrentDatasourcePermissions 1', datasourceID, data)
+                        console.log('getDatasourcePermissionss 1', data)
                         resolve(data);
-                    });
-            } else {
-                console.log('getCurrentDatasourcePermissions 2', datasourceID, this.currentDatasourcePermissions.value)
-                resolve(this.currentDatasourcePermissions.value);
-            }
-        });
+                })
+             })
+        } else {
+            return new Promise<DatasourcePermission[]>((resolve, reject) => {
+                let returnData: DatasourcePermission[];
+                returnData = this.datasourcePermissions.filter(
+                    i => i.datasourceID == datasourceID
+                );
+                this.currentDatasourcePermissions.next(returnData);
+                console.log('getDatasourcePermissionss 2', returnData)
+                resolve(returnData);
+            });
+        };
 
     }
   
