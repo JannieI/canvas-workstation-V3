@@ -1684,9 +1684,6 @@ export class GlobalVariableService {
         // Load Dashboard Templates
         this.getDashboardTemplates();
 
-        // Load Datasources
-        this.getDatasources();     
-
         // Load Current Datasources
         this.getCurrentDatasources(dashboardID)
 

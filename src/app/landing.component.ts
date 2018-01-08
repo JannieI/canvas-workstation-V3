@@ -34,9 +34,14 @@ export class LandingComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
 		private router: Router
 	) {
-		// this.globalVariableService.getDashboardSamples()
-		// 	.then(data => this.sampleDashboards = data);
-		this.sampleDashboards = this.globalVariableService.getDashboardSamples()
+
+		// Load Startup info:
+		//Datasources
+        this.globalVariableService.getDatasources();     
+		// Sample Dashboards
+		this.sampleDashboards = this.globalVariableService.getDashboardSamples();
+		// Recent Dashboards
+		// TODO - remove hardcoded userID and make data cater for >1 user
 		this.recentDashboards = this.globalVariableService.getDashboardsRecent('JannieI');
 		}
 
