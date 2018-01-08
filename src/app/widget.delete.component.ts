@@ -27,14 +27,15 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetDeleteComponent implements OnInit {
 
-    @Input() nrWidgetsSelected: number;
+    // @Input() nrWidgetsSelected: number;
     @Output() formWidgetDeleteClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @ViewChild('myCanvas', {read: ElementRef}) myCanvas: ElementRef;  //Vega graph
 
+    currentWidgets: CanvasWidget[];
     localTrash: CanvasWidget[];
-    localWidgets: CanvasWidget[];
+    nrWidgetsSelected: number = 0;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -44,8 +45,11 @@ export class WidgetDeleteComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.globalVariableService.localWidgets.subscribe(
-            i => this.localWidgets = i
+        this.globalVariableService.currentWidgets.subscribe(
+            i => {
+                    this.currentWidgets = i;
+                    this.nrWidgetsSelected = i.filter(j => j.isSelected == true).length;
+            }
         );
           this.globalVariableService.localTrash.subscribe(
         i => this.localTrash = i
@@ -76,11 +80,11 @@ export class WidgetDeleteComponent implements OnInit {
     clickDeleteWidget() {
         console.log('clickDelete')
 
-        for (var i = 0; i < this.localWidgets.length; i++) {
-            console.log('this.localWidgets.length', i, this.localWidgets[i].isSelected)
-            if (this.localWidgets[i].isSelected == true) {
-                this.globalVariableService.deleteWidget(this.localWidgets[i].id);
-                this.localTrash = this.localTrash.concat(this.localWidgets.slice(i,i + 1));
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            console.log('this.currentWidgets.length', i, this.currentWidgets[i].isSelected)
+            if (this.currentWidgets[i].isSelected == true) {
+                this.globalVariableService.deleteWidget(this.currentWidgets[i].id);
+                this.localTrash = this.localTrash.concat(this.currentWidgets.slice(i,i + 1));
                 this.globalVariableService.deleteWidget(i);
             }
         }

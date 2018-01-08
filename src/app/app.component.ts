@@ -46,7 +46,6 @@ export class AppComponent implements OnInit {
     moveOffsetY: number;
     moveLastX: number = 0;
     moveLastY: number = 0;
-    nrWidgetsSelected: number = 0;
     presentationMode: boolean;
     // showCircle: boolean = false;
     // showImage: boolean = false;
@@ -550,7 +549,6 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetDelete() {
-        this.nrWidgetsSelected = this.localWidgets.filter(i => i.isSelected == true).length;
         this.showModalWidgetDelete = true;
     }
 
