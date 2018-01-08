@@ -2838,26 +2838,29 @@ export class GlobalVariableService {
         let url: string = 'getDataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
 
-        return new Promise<DataQualityIssue[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.currentDataQualityIssues.value == [])  ||  (this.isDirtyDataQualityIssues) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+        if ( (this.currentDataQualityIssues.value == [])  ||  (this.isDirtyDataQualityIssues) ) {
+            return new Promise<DataQualityIssue[]>((resolve, reject) => {
                 this.getDataQualityIssues()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDataQualityIssues.next(data);
-                        console.log('getCurrentDataQualityIssues 1', datasourceID, data)
+                        console.log('getDataQualityIssuess 1', data)
                         resolve(data);
-                    });
-            } else {
-                console.log('getCurrentDataQualityIssues 2', datasourceID, this.currentDataQualityIssues.value)
-                resolve(this.currentDataQualityIssues.value);
-            }
-        });
-
+                })
+             })
+        } else {
+            return new Promise<DataQualityIssue[]>((resolve, reject) => {
+                let returnData: DataQualityIssue[];
+                returnData = this.dataQualityIssues.filter(
+                    i => i.datasourceID == datasourceID
+                );
+                this.currentDataQualityIssues.next(returnData);
+                console.log('getDataQualityIssuess 2', returnData)
+                resolve(returnData);
+            });
+        };
     }
       
     getDatasourcePermissions(): Promise<DatasourcePermission[]> {
