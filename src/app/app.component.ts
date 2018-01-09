@@ -119,9 +119,12 @@ export class AppComponent implements OnInit {
         private router: Router,
 
     ) {
+        console.log('App constructor')
     }
 
     ngOnInit() {
+        console.log('App ngOnInit start')
+
         // Intial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
@@ -138,12 +141,12 @@ export class AppComponent implements OnInit {
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
         );
-        this.globalVariableService.localWidgets.subscribe(
+        this.globalVariableService.currentWidgets.subscribe(
             i => this.localWidgets = i
         );
         this.globalVariableService.currentDatasources.subscribe(
             i => {
-                    console.log('currentDatasource', i.length)
+                    console.log('App ngOnInit currentDatasource', i.length)
                     if (i.length > 0) { this.hasDatasources = true} else {this.hasDatasources = false}
                     this.currentDatasources = i
                  }
@@ -164,7 +167,7 @@ export class AppComponent implements OnInit {
         this.showModalLanding = false;
         this.document.body.style.backgroundImage ='../images/BarChart.png';
         if (this.globalVariableService.openDashboardFormOnStartup == true) {
-            console.log('here!')
+        console.log('App handleCloseModalLanding')
             this.showModalDashboardOpen = true;
             this.router.navigate(['/explore']);
         }
@@ -306,7 +309,7 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseWidgetDelete() {
-        console.log('Trashed Widgets', this.localTrash)
+        console.log('App handleCloseWidgetDelete', this.localTrash)
         this.showModalWidgetDelete = false;
     }
 
@@ -359,12 +362,12 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardNew() {
-        console.log('open')
+        console.log('App clickDashboardNew')
         this.showModalDashboardNew = true;
     }
 
     clickDashboardOpen() {
-        console.log('open')
+        console.log('App clickDashboardOpen')
         this.showModalDashboardOpen = true;
     }
 
@@ -381,7 +384,7 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardSave() {
-        console.log('open')
+        console.log('App clickDashboardSave')
         this.showModalDashboardSave = true;
     }
 
@@ -447,13 +450,13 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDataFromFile() {
-        console.log('menuDataFromFile')
+        console.log('App clickMenuDataFromFile')
         this.globalVariableService.dataGetFromSwitch.next('File');
         this.router.navigate(['/data']);
     }
 
     clickMenuDataFromServer() {
-        console.log('clickMenuDataFromServer')
+        console.log('App clickMenuDataFromServer')
         this.globalVariableService.dataGetFromSwitch.next('Server');
         this.router.navigate(['/data']);
     }
@@ -674,7 +677,7 @@ export class AppComponent implements OnInit {
 
 
     clickMenuUserMyProfile() {
-        console.log('ddd')
+        console.log('App clickMenuUserMyProfile')
         this.showModalUserMyProfile = true;
     }
 

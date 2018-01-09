@@ -38,6 +38,7 @@ export class LandingComponent implements OnInit {
 		private router: Router
 	) {
 
+		console.log('Landing constructor')
 		// Load Startup info:
 		//Datasources
         this.globalVariableService.getDatasources();     
@@ -54,18 +55,18 @@ export class LandingComponent implements OnInit {
 	ngAfterViewInit() {
 	}
 	clickButtonData() {
-		console.log('clickButtonData')
+		console.log('Landing clickButtonData')
 		this.router.navigate(['/data']);
 	}
 
 	loadExistingSpecification(action: string) {
-		console.log('start loadExistingSpecification');
+		console.log('Landing start loadExistingSpecification');
 		this.formLandingClosed.emit(action);
 		this.router.navigate(['/explore']);
 	}
 
 	loadsampleDashboard(dashboardID: number) {
-		console.log('start loadsampleDashboard', dashboardID);
+		console.log('Landing start loadsampleDashboard', dashboardID);
 
 		// Check that we have data
 		if (this.globalVariableService.dashboards == []) {
@@ -84,7 +85,7 @@ export class LandingComponent implements OnInit {
 	}
 
 	loadRecentDashboard(dashboardID: number) {
-		console.log('start loadRecentDashboard', dashboardID);
+		console.log('Landing start loadRecentDashboard', dashboardID);
 
 		// Check that we have data
 		if (this.globalVariableService.dashboards == []) {
@@ -103,7 +104,7 @@ export class LandingComponent implements OnInit {
 	}
 
 	promptDeleteRecent(index: number) {
-		console.log("Prompt and then delete from list", index)
+		console.log("Landing promptDeleteRecent TODO Prompt and then delete from list", index)
 		this.globalVariableService.deleteDashboardRecent(index);
 	}
 
@@ -115,12 +116,12 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickOpenExisting() {
-		console.log('ai')
+		console.log('Landing clickOpenExisting')
 		this.globalVariableService.openDashboardFormOnStartup = true;
 		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs
 			.filter(i => i.dashboardID = 1
 		);
-		console.log('currentDashboardTabs', this.globalVariableService.dashboardTabs, currentDashboardTabs)
+		console.log('Landing clickOpenExisting', this.globalVariableService.dashboardTabs, currentDashboardTabs)
 		this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs)
 		this.formLandingClosed.emit();
 		this.router.navigate(['/explore']);
