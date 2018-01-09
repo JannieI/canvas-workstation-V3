@@ -124,7 +124,6 @@ export class ExploreComponent {
     @ViewChildren('shapeContainter')   shapeContainter: QueryList<ElementRef>;
     @ViewChildren('circle2')            circle2: QueryList<ElementRef>;
 
-    // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     currentDashboardTabs: DashboardTab[];
     currentTabName: string = 'Summary';
     datasources: Datasource[];
@@ -134,7 +133,7 @@ export class ExploreComponent {
     isFirstTimeDashboard: boolean;
     isFirstTimePresentation: boolean;
     localDashboards: dl.spec.TopLevelExtendedSpec[];
-    localShapes: CanvasShape[];
+    currentShapes: CanvasShape[];
     localTrash: CanvasWidget[] = [];
     currentWidgets: CanvasWidget[];
     open: Boolean = false;
@@ -203,9 +202,9 @@ export class ExploreComponent {
         this.globalVariableService.currentDashboardTabs.subscribe(
             i => this.currentDashboardTabs = i
         );
-        this.globalVariableService.localShapes.subscribe(
+        this.globalVariableService.currentShapes.subscribe(
             i => {
-                    this.localShapes = i;
+                    this.currentShapes = i;
                     if (this.shapeContainter !== undefined) {
                         this.refreshShapes2()
                         console.log ('Explore ngOnInit refreshShap2 done')
@@ -247,7 +246,7 @@ export class ExploreComponent {
     }
 
     ngAfterViewInit() {
-        console.log('Explore ngOnViewInit', this.localShapes)
+        console.log('Explore ngOnViewInit', this.currentShapes)
 
         // Loop on the graph ElementRefs, and set properties ala widget[].properties
         if (this.shapeContainter.toArray().length > 0) {

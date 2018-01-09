@@ -1556,7 +1556,7 @@ export class GlobalVariableService {
     // Temp vars
     localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     localWidgets = new BehaviorSubject< CanvasWidget[]>(localWidgets);
-    localShapes = new BehaviorSubject< CanvasShape[]>(null);
+    // localShapes = new BehaviorSubject< CanvasShape[]>(null);
     localTrash = new BehaviorSubject< CanvasWidget[]>([]);
 
     dataGetFromSwitch = new BehaviorSubject<string>('File');
@@ -1696,7 +1696,7 @@ export class GlobalVariableService {
         // private globalFunctionService: GlobalFunctionService,
         httpFake: httpFake
     ) {
-        this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
+        // this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
         this.currentDashboardID.subscribe(
             i => {
                     // Dont refresh at initialise: landing page will decide which ID to load ...

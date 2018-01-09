@@ -184,7 +184,7 @@
 
 
 <!-- Shapes -->
-<div *ngFor="let row of localShapes; let i = index" class="shapeContainer"
+<div *ngFor="let row of currentShapes; let i = index" class="shapeContainer"
     #shapeContainter
     [style.background-color]="row.containerBackgroundColor"
     [style.border]="row.isSelected? '2px solid red' : row.isSelected"

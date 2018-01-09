@@ -78,7 +78,7 @@ export class httpFake {
     localShapes: CanvasShape[] = localShapes;
 
     getProperties() {
-        // TODO - Make this work correctly 
+        // TODO - Make this work correctly
         // Returns list of properties in object
         return Object.getOwnPropertyNames(localShapes);
     }
@@ -103,7 +103,7 @@ export class httpFake {
                     [Object.getOwnPropertyNames(localShapes)[i]] )
             }
         }
-            
+
         return fields;
     }
 }
