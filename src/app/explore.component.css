@@ -156,111 +156,121 @@
     border: 1px solid lightgray;
     z-index: 71;
     margin: 0;
-    padding: 4px;
+    padding: 0;
     bottom: 100px;
     position: absolute;
     right: 30px;
     display: grid;
     min-width: 120px;
-    grid-template-columns: 8px 1fr 18px 1fr 8px;
-    grid-template-rows: 8px 1fr 18px 1fr 8px;
+    height: 195px;
+    width: 160px;
+    grid-template-columns: 5px 15px 1fr 20px 1fr 15px 5px;
+    grid-template-rows: 5px 15px 5px 1fr 20px 1fr 15px 5px;
 }
+    .slicerContainerDragHandle {
+        grid-column-start: 1;
+        grid-column-end: 8;
+        grid-row-start: 2;
+        grid-row-end: 4;
+        margin: 0;
+        padding: 0;
+    }
     .slicerContainerTopLeftHandle {
         grid-column-start: 1;
-        grid-column-end: 2;
+        grid-column-end: 3;
         grid-row-start: 1;
         grid-row-end: 2;
-        margin: 0 0 3px 0;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
     .slicerContainerTopHandle {
-        grid-column-start: 3;
-        grid-column-end: 4;
+        grid-column-start: 4;
+        grid-column-end: 5;
         grid-row-start: 1;
         grid-row-end: 2;
-        margin: 0 0 3px 0;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
     .slicerContainerTopRightHandle {
-        grid-column-start: 5;
-        grid-column-end: 6;
+        grid-column-start: 6;
+        grid-column-end: 8;
         grid-row-start: 1;
         grid-row-end: 2;
-        margin: 0 0 3px 0;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
     .slicerContainerRightTopHandle {
-        grid-column-start: 5;
-        grid-column-end: 6;
+        grid-column-start: 7;
+        grid-column-end: 8;
         grid-row-start: 1;
-        grid-row-end: 2;
-        margin: 0 0 0 3px;
+        grid-row-end: 3;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
     .slicerContainerRightHandle {
-        grid-column-start: 5;
-        grid-column-end: 6;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 0 0 0 3px;
+        grid-column-start: 7;
+        grid-column-end: 8;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
     .slicerContainerRightBottomHandle {
-        grid-column-start: 5;
-        grid-column-end: 6;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 0 0 0 3px;
+        grid-column-start: 7;
+        grid-column-end: 8;
+        grid-row-start: 7;
+        grid-row-end: 9;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
     .slicerContainerBottomRightHandle {
-        grid-column-start: 5;
-        grid-column-end: 6;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 3px 0 0 0;
+        grid-column-start: 6;
+        grid-column-end: 8;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
     .slicerContainerBottomHandle {
-        grid-column-start: 3;
-        grid-column-end: 4;
-        grid-row-start: 5;
-        grid-row-end: 5;
-        margin: 3px 0 0 0;
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
     .slicerContainerBottomLeftHandle {
         grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 3px 0 0 0;
+        grid-column-end: 3;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
     .slicerContainerLeftBottomHandle {
         grid-column-start: 1;
         grid-column-end: 2;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 0 3px 0 0;
+        grid-row-start: 7;
+        grid-row-end: 9;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
     .slicerContainerLeftHandle {
         grid-column-start: 1;
         grid-column-end: 2;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 0 3px 0 0;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
@@ -268,24 +278,24 @@
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 1;
-        grid-row-end: 2;
-        margin: 0 3px 0 0;
+        grid-row-end: 3;
+        margin: 0;
         padding: 0;
         background-color: #929699;
     }
     .slicer {
         border: '1px solid gray';
-        grid-column-start: 2;
-        grid-column-end: 5;
-        grid-row-start: 2;
-        grid-row-end: 5;
+        grid-column-start: 3;
+        grid-column-end: 6;
+        grid-row-start: 4;
+        grid-row-end: 7;
         margin:0;
         padding: 0;
         z-index: 70;
         background-color: lightgray;
     }
     .slicer:hover {
-        background-color: #192b35;
+        background-color: lightgray;
     }
         .slicerLabel {
             background-color: black;
