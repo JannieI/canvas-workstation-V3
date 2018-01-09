@@ -104,7 +104,6 @@ export class AppComponent implements OnInit {
     showModalUserOffline: boolean = false;
 
     localTrash: CanvasWidget[];
-    localWidgets: CanvasWidget[];
     currentDatasources: Datasource[];
 
     // Testings ....
@@ -140,9 +139,6 @@ export class AppComponent implements OnInit {
         );
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
-        );
-        this.globalVariableService.currentWidgets.subscribe(
-            i => this.localWidgets = i
         );
         this.globalVariableService.currentDatasources.subscribe(
             i => {
