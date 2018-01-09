@@ -208,7 +208,7 @@ export class ExploreComponent {
                     this.localShapes = i;
                     if (this.shapeContainter !== undefined) {
                         this.refreshShapes2()
-                        console.log ('refreshShap2 done')
+                        console.log ('Explore ngOnInit refreshShap2 done')
                     }
                  }
         );
@@ -218,7 +218,7 @@ export class ExploreComponent {
                 if (this.childrenWidgets !== undefined) {
                     this.refreshWidgets();
                     this.refreshShapes2()
-                    console.log ('refeshWidgets2 done', i)
+                    console.log ('Explore ngOnInit refeshWidgets2 done', i)
                 }
             }
         );
@@ -236,9 +236,9 @@ export class ExploreComponent {
                     if (i)
                         {
                             this.refreshWidgets();
-                            console.log ('refeshWW done')
+                            console.log ('Explore ngOnInit refeshWW done')
                         }
-                    else {console.log('no refreshWW')}
+                    else {console.log('Explore ngOnInit no refreshWW')}
             }
         );
         this.globalVariableService.slicerHeader.subscribe(
@@ -273,7 +273,7 @@ export class ExploreComponent {
 
                 // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
                 
-                // console.log('circle2', this.circle2.toArray()[i].nativeElement)
+                // console.log('Explore ngAfterViewInit circle2', this.circle2.toArray()[i].nativeElement)
             }
         };
 
@@ -286,7 +286,7 @@ export class ExploreComponent {
 
     refreshShapes2() {
 
-        console.log('refreshShapes2 starting now ...', this.shapeContainter.toArray().length)
+        console.log('Explore refreshShapes2 starting now ...', this.shapeContainter.toArray().length)
         // Loop on the graph ElementRefs, and set properties ala widget[].properties
         if (this.shapeContainter.toArray().length > 0) {
             for (var i = 0; i < this.circle2.toArray().length; i++) {
@@ -311,17 +311,17 @@ export class ExploreComponent {
 
                 // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
                 
-                // console.log('circle2', this.circle2.toArray()[i].nativeElement)
+                // console.log('Explore refreshShapes2 circle2', this.circle2.toArray()[i].nativeElement)
             }
         };
 
     }
 
     refreshWidgets() {
-        console.log('refreshWidgets')
-        console.log(' ...START children.length', this.childrenWidgets.toArray().length)
+        console.log('Explore refreshWidgets')
+        console.log('Explore refreshWidgets ...START children.length', this.childrenWidgets.toArray().length)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
-            console.log('this.currentWidgets[i].graphColorField', this.currentWidgets[i].graphColorField)
+            console.log('Explore refreshWidgets this.currentWidgets[i].graphColorField', this.currentWidgets[i].graphColorField)
             let definition = this.createVegaLiteSpec(
                 this.currentWidgets[i].graphDescription,
                 this.currentWidgets[i].graphMark,
@@ -339,8 +339,8 @@ export class ExploreComponent {
                 this.currentWidgets[i].graphColorType,
             );
             let specification = compile(definition).spec;
-            console.log(' ... specification', specification)
-            // console.log('spec 2', specification)
+            console.log('Explore refreshWidgets ... specification', specification)
+            // console.log('Explore refreshWidgets spec 2', specification)
             let view = new View(parse(specification));
             view.renderer('svg')
                 .initialize( this.childrenWidgets.toArray()[i].nativeElement)
@@ -348,15 +348,15 @@ export class ExploreComponent {
                 .hover()
                 .run()
                 .finalize();
-            // console.log('refreshWidgets loop end')
+            // console.log('Explore refreshWidgets refreshWidgets loop end')
         }
     }
 
     duplicateWidget(duplicate: boolean) {
         if (duplicate) {
-            console.log('duplicateWidget', this.childrenWidgets.toArray().length)
+            console.log('Explore duplicateWidget', this.childrenWidgets.toArray().length)
             this.localDashboards.push(this.localDashboards[0]);
-            console.log('Add to array ...', this.localDashboards)
+            console.log('Explore duplicateWidget Add to array ...', this.localDashboards)
         }
     }
 
@@ -365,18 +365,18 @@ export class ExploreComponent {
     }
 
     dragstart_handler(ev) {
-        // console.log("dragStart");
+        // console.log("Explore dragstart_handler");
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
-        // console.log('drag_start')
+        // console.log('Explore dragstart_handler')
     }
 
     dragend_handler(ev) {
-        console.log('dragend_handler', ev.dataTransfer.dropEffect)
+        console.log('Explore dragend_handler', ev.dataTransfer.dropEffect)
     }
 
     dragover_handler(ev) {
-        console.log('dragover_handler')
+        console.log('Explore dragover_handler')
         ev.preventDefault();
         // Set the dropEffect to move
         ev.dataTransfer.dropEffect = "move"
@@ -387,7 +387,7 @@ export class ExploreComponent {
         // Get the id of the target and add the moved element to the target's DOM
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
-        console.log('drop_handler dropped !!')
+        console.log('Explore drop_handler dropped !!')
     }
 
     vlSpecs: dl.spec.TopLevelExtendedSpec[] = [
@@ -436,34 +436,6 @@ export class ExploreComponent {
         }
     ];
 
-    //         // Load and parse a CSV file. Datalib does type inference for you.
-    //         // The result is an array of JavaScript objects with named values.
-    //         // Parsed dates are stored as UNIX timestamp values.
-    //         // var data = dl.csv('http://vega.github.io/datalib/data/stocks.csv');
-
-    //         // Show summary statistics for each column of the data table.
-    //         // console.log(dl.format.summary(data));
-
-    //         // Compute mean and standard deviation by ticker symbol.
-    //         // var rollup = dl.groupby('symbol')
-    //         // .summarize({'price': ['mean', 'stdev']})
-    //         // .execute(data);
-    //         // console.log(dl.format.table(rollup));
-
-    //         // Compute correlation measures between price and date.
-    //         // console.log(
-    //         // dl.cor(data, 'price', 'date'),      // Pearson product-moment correlation
-    //         // dl.cor.rank(data, 'price', 'date'), // Spearman rank correlation
-    //         // dl.cor.dist(data, 'price', 'date')  // Distance correlation
-    //         // );
-
-    //         // Compute mutual information distance between years and binned price.
-    //         // var bin_price = dl.$bin(data, 'price'); // returns binned price values
-    //         // var year_date = dl.$year('date');       // returns year from date field
-    //         // var counts = dl.groupby(year_date, bin_price).count().execute(data);
-    //         // console.log(dl.mutual.dist(counts, 'bin_price', 'year_date', 'count'));
-    // }
-
     clickWidget(ev) {
         return;
     }
@@ -492,8 +464,8 @@ export class ExploreComponent {
     }
 
     clickShowNextTab() {
-        console.log('Next START widgets: ', this.globalVariableService.widgets)
-        console.log('   Next 0 Tabs: ', this.globalVariableService.currentDashboardTabs.value)
+        console.log('Explore clickShowNextTab Next START widgets: ', this.globalVariableService.widgets)
+        console.log('Explore clickShowNextTab    Next 0 Tabs: ', this.globalVariableService.currentDashboardTabs.value)
         
         if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
         else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}
@@ -503,7 +475,7 @@ export class ExploreComponent {
 
     clickShowLastTab() {
         this.currentTabName = 'Headcount'
-        console.log(this.currentTabName)
+        console.log('Explore clickShowLastTab',this.currentTabName)
     }
 
     clickCloseModel() {
@@ -602,18 +574,18 @@ export class ExploreComponent {
     }
 
     clickDragMouseDown(event, id: number) {
-        console.log('clickDragMouseDown', id)
+        console.log('Explore clickDragMouseDown', id)
     }
     clickDragMouseUp(event, id: number) {
-        console.log('clickDragMouseUp')
+        console.log('Explore clickDragMouseUp')
     }
     clickDragStart(event, id: number) {
-        console.log('clickDragStart', id, event.clientX, event.clientY)
+        console.log('Explore clickDragStart', id, event.clientX, event.clientY)
         this.startX = event.clientX;
         this.startY = event.clientY;
     }
     clickDragEnd(event, index: number) {
-        console.log('clickDragEnd', index, event.clientX, event.clientY,
+        console.log('Explore clickDragEnd', index, event.clientX, event.clientY,
         'was', this.currentWidgets[index].containerLeft,
         'diff', event.clientX - this.startX,
         'new', this.currentWidgets[index].containerLeft + event.clientX - this.startX)
@@ -636,22 +608,22 @@ export class ExploreComponent {
 
     }
     clickDragKeydown(event, id: number) {
-        console.log('clickDragKeydown', id)
+        console.log('Explore clickDragKeydown', id)
     }
 
     clickResizeMouseDown(event, id: number) {
-        console.log('clickResizeMouseDown', id)
+        console.log('Explore clickResizeMouseDown', id)
     }
     clickResizeMouseUp(event, id: number) {
-        console.log('clickResizeMouseUp')
+        console.log('Explore clickResizeMouseUp')
     }
     clickResizeStart(event, id: number) {
-        console.log('clickResizeStart', id, event.clientX, event.clientY)
+        console.log('Explore clickResizeStart', id, event.clientX, event.clientY)
         this.startX = event.clientX;
         this.startY = event.clientY;
     }
     clickResizeEnd(event, index: number) {
-        console.log('clickResizeEnd', index, event.clientX, event.clientY,
+        console.log('Explore clickResizeEnd', index, event.clientX, event.clientY,
         'was', this.currentWidgets[index].containerWidth,
         'diff', event.clientX - this.startX,
         'new', this.currentWidgets[index].containerWidth + event.clientX - this.startX)
@@ -673,7 +645,7 @@ export class ExploreComponent {
         this.currentWidgets[index].containerHeight = newY;
     }
     clickResizeKeydown(event, id: number) {
-        console.log('clickResizeKeydown', id)
+        console.log('Explore clickResizeKeydown', id)
     }
 
     handleCloseDashboardHelp() {

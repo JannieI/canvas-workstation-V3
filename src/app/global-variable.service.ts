@@ -1709,7 +1709,7 @@ export class GlobalVariableService {
 
     refreshCurrentDashboardInfo(dashboardID: number) {
         // Refreshes all info related to current D
-        console.log('Refreshing D id = ', dashboardID)
+        console.log('Global-Variables refreshCurrentDashboardInfo D id = ', dashboardID)
 
         // Load Dashboard Themes
         this.getDashboardThemes();
@@ -1782,7 +1782,7 @@ export class GlobalVariableService {
         this.localWidgets.forEach( i => (i.forEach( e => {
             if (e.id == index) {
                 e.isTrashed = true;
-                console.log('Deleted id:', e.id)
+                console.log('Global-Variables deleteWidget id:', e.id)
             }
         })))
     }
@@ -1790,42 +1790,42 @@ export class GlobalVariableService {
     currentDatasourceAdd(newData: Datasource) {
         let arr: Datasource[] = this.currentDatasources.value;
         arr.push(newData);
-        console.log('arr', arr)
+        console.log('Global-Variables currentDatasourceAdd arr', arr)
         this.currentDatasources.next(arr)
-        console.log('yy', this.currentDatasources.value)
+        console.log('Global-Variables currentDatasourceAdd yy', this.currentDatasources.value)
     }
 
     datasourceAdd(newData: Datasource) {
         let arr: Datasource[] = this.datasources;
         arr.push(newData);
-        console.log('arr', arr)
+        console.log('Global-Variables datasourceAdd arr', arr)
         this.datasources = arr;
-        console.log('yy', this.datasources)
+        console.log('Global-Variables datasourceAdd yy', this.datasources)
     }
 
     currentDatasourceDelete(index: number) {
         console.log('str', index, this.currentDatasources.value)
         let arr: Datasource[] = this.currentDatasources.value.splice(index,1);
-        console.log('arr', arr)
+        console.log('Global-Variables currentDatasourceDelete arr', arr)
         this.currentDatasources.next( this.currentDatasources.value)
-        console.log('end', this.currentDatasources.value)
+        console.log('Global-Variables currentDatasourceDelete end', this.currentDatasources.value)
     }
 
     datasourceDelete(index: number) {
         let arr: Datasource[] = this.datasources.splice(index,1);
-        console.log('arr', arr)
+        console.log('Global-Variables datasourceDelete arr', arr)
         this.datasources = this.datasources;
-        console.log('yy', this.datasources)
+        console.log('Global-Variables datasourceDelete yy', this.datasources)
     }
 
     dashboardDelete(index: number) {
-        console.log('dashboardDelete', index)
+        console.log('Global-Variables dashboardDelete', index)
         let arr: CanvasWidget[] = this.localWidgets.value.filter(
             i => {
                     if (i.id == index) { i.isTrashed = true}
                 }
         );
-        console.log('arr', arr)
+        console.log('Global-Variables dashboardDelete arr', arr)
         this.localWidgets.next(arr);
     }
 
@@ -1899,7 +1899,7 @@ export class GlobalVariableService {
                         }
                         this.currentDashboards.next(currentDashboards);
 
-                        console.log('getCurrentDashboards 1', data)
+                        console.log('Global-Variables getCurrentDashboards 1', data)
                         resolve(currentDashboards);
 
                 })
@@ -1927,7 +1927,7 @@ export class GlobalVariableService {
                     }
                 }
                 this.currentDashboards.next(currentDashboards);
-                console.log('getCurrentDashboards 2', currentDashboards)
+                console.log('Global-Variables getCurrentDashboards 2', currentDashboards)
                 resolve(currentDashboards);
             });
         };
@@ -1980,7 +1980,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardTabs.next(data);
-                        console.log('getCurrentDashboardTabs 1', data)
+                        console.log('Global-Variables getCurrentDashboardTabs 1', data)
                         resolve(data);
 
                 })
@@ -1992,7 +1992,7 @@ export class GlobalVariableService {
                         i => i.dashboardID == dashboardID
                     )
                 this.currentDashboardTabs.next(returnData);
-                console.log('getCurrentDashboardTabs 2', returnData)
+                console.log('Global-Variables getCurrentDashboardTabs 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2047,7 +2047,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentWidgets.next(data);
-                        console.log('getCurrentWidgets 1', data)
+                        console.log('Global-Variables getCurrentWidgets 1', data)
                         resolve(data);
 
                 })
@@ -2059,7 +2059,7 @@ export class GlobalVariableService {
                         i => i.dashboardID == dashboardID
                     )
                 this.currentWidgets.next(returnData);
-                console.log('getCurrentWidgets 2', returnData)
+                console.log('Global-Variables getCurrentWidgets 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2080,7 +2080,7 @@ export class GlobalVariableService {
                         data = data.filter(
                             i => (i.isSample)
                         );
-                        console.log('getDashboardSamples 1', data)
+                        console.log('Global-Variables getDashboardSamples 1', data)
                         resolve(data);
 
                 })
@@ -2090,7 +2090,7 @@ export class GlobalVariableService {
                 let data: Dashboard[] = this.dashboards.filter(
                     i => (i.isSample)
                 )
-                console.log('getDashboardSamples 2', data)
+                console.log('Global-Variables getDashboardSamples 2', data)
                 resolve(data);
             });
         };
@@ -2121,13 +2121,13 @@ export class GlobalVariableService {
                         temp.forEach( j => {
                             this.dashboardsRecent.push(j.dashboardID)
                         });
-                        console.log('dashboardsRecent 1', this.dashboardsRecent)
+                        console.log('Global-Variables dashboardsRecent 1', this.dashboardsRecent)
                         this.isDirtyDashboardsRecent = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         resolve(this.dashboardsRecent);
                     });
             } else {
-                console.log('this.dashboardsRecent 2', this.dashboardsRecent)
+                console.log('Global-Variables this.dashboardsRecent 2', this.dashboardsRecent)
                 resolve(this.dashboardsRecent);
             }
         });
@@ -2151,7 +2151,7 @@ export class GlobalVariableService {
                                 returnData.push(this.dashboards[i]);
                             }
                         }
-                        console.log('getDashboardsRecent 1', returnData)
+                        console.log('Global-Variables getDashboardsRecent 1', returnData)
                         resolve(returnData);
 
                 })
@@ -2164,7 +2164,7 @@ export class GlobalVariableService {
                         returnData.push(this.dashboards[i]);
                     }
                 }
-                console.log('getDashboardsRecent 2', returnData)
+                console.log('Global-Variables getDashboardsRecent 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2217,7 +2217,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentShapes.next(data);
-                        console.log('getCurrentShapes 1', data)
+                        console.log('Global-Variables getCurrentShapes 1', data)
                         resolve(data);
                 })
              })
@@ -2228,7 +2228,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentShapes.next(returnData);
-                console.log('getCurrentShapes 2', returnData)
+                console.log('Global-Variables getCurrentShapes 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2281,7 +2281,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentSlicers.next(data);
-                        console.log('getCurrentSlicers 1', data)
+                        console.log('Global-Variables getCurrentSlicers 1', data)
                         resolve(data);
                 })
              })
@@ -2292,7 +2292,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentSlicers.next(returnData);
-                console.log('getCurrentSlicers 2', returnData)
+                console.log('Global-Variables getCurrentSlicers 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2345,7 +2345,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSchedules.next(data);
-                        console.log('getCurrentDashboardSchedules 1', data)
+                        console.log('Global-Variables getCurrentDashboardSchedules 1', data)
                         resolve(data);
                 })
              })
@@ -2356,7 +2356,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardSchedules.next(returnData);
-                console.log('getCurrentDashboardSchedules 2', returnData)
+                console.log('Global-Variables getCurrentDashboardSchedules 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2408,7 +2408,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardTags.next(data);
-                        console.log('getCurrentDashboardTags 1', data)
+                        console.log('Global-Variables getCurrentDashboardTags 1', data)
                         resolve(data);
                 })
              })
@@ -2419,7 +2419,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardTags.next(returnData);
-                console.log('getCurrentDashboardTags 2', returnData)
+                console.log('Global-Variables getCurrentDashboardTags 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2471,7 +2471,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardPermissions.next(data);
-                        console.log('getCurrentDashboardPermissions 1', data)
+                        console.log('Global-Variables getCurrentDashboardPermissions 1', data)
                         resolve(data);
                 })
              })
@@ -2482,7 +2482,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardPermissions.next(returnData);
-                console.log('getCurrentDashboardPermissions 2', returnData)
+                console.log('Global-Variables getCurrentDashboardPermissions 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2534,7 +2534,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSnapshots.next(data);
-                        console.log('getDashboardSnapshots 1', data)
+                        console.log('Global-Variables getDashboardSnapshots 1', data)
                         resolve(data);
                 })
              })
@@ -2545,7 +2545,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardSnapshots.next(returnData);
-                console.log('getDashboardSnapshots 2', returnData)
+                console.log('Global-Variables getDashboardSnapshots 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2570,7 +2570,7 @@ export class GlobalVariableService {
                         this.dashboardThemes = data;
                         this.isDirtyDashboardThemes = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('getDashboardThemes')
+                        console.log('Global-Variables getDashboardThemes')
                         resolve(this.dashboardThemes);
                     });
             } else {
@@ -2606,7 +2606,7 @@ export class GlobalVariableService {
                                 }
                             }
                         }
-                        console.log('getDashboardTemplates 1', returnData)
+                        console.log('Global-Variables getDashboardTemplates 1', returnData)
                         resolve(returnData);
                     });
             });
@@ -2627,7 +2627,7 @@ export class GlobalVariableService {
                         }
                     }
                 }
-                console.log('getDashboardTemplates 2', returnData)
+                console.log('Global-Variables getDashboardTemplates 2', returnData)
                 resolve(returnData);
 
             });
@@ -2701,7 +2701,7 @@ export class GlobalVariableService {
                                         this.isDirtyDatasources = false;
                                         this.currentDatasources.next(returnData);
                                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                                        console.log('getCurrentDatasources 1', returnData);
+                                        console.log('Global-Variables getCurrentDatasources 1', returnData);
                                     }
                                 );
                         }
@@ -2722,7 +2722,7 @@ export class GlobalVariableService {
                 this.isDirtyDatasources = false;
                 this.currentDatasources.next(returnData);
                 this.statusBarRunning.next(this.NoQueryRunningMessage);
-                console.log('getCurrentDatasources 1', returnData);
+                console.log('Global-Variables getCurrentDatasources 1', returnData);
             }
         });
     }
@@ -2772,7 +2772,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentTransformations.next(data);
-                        console.log('getTransformations 1', data)
+                        console.log('Global-Variables getTransformations 1', data)
                         resolve(data);
                 })
              })
@@ -2783,7 +2783,7 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentTransformations.next(returnData);
-                console.log('getTransformations 2', returnData)
+                console.log('Global-Variables getTransformations 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2808,11 +2808,11 @@ export class GlobalVariableService {
                         this.datasourceFilters = data;
                         this.isDirtyDatasourceFilters = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('getDatasourceFilters 1', this.datasourceFilters)
+                        console.log('Global-Variables getDatasourceFilters 1', this.datasourceFilters)
                         resolve(this.datasourceFilters);
                     });
             } else {
-                console.log('getDatasourceFilters 2', this.datasourceFilters)
+                console.log('Global-Variables getDatasourceFilters 2', this.datasourceFilters)
                 resolve(this.datasourceFilters);
             }
         });
@@ -2836,7 +2836,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourceFilters.next(data);
-                        console.log('getDatasourceFilters 1', data)
+                        console.log('Global-Variables getDatasourceFilters 1', data)
                         resolve(data);
                 })
              })
@@ -2847,7 +2847,7 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDatasourceFilters.next(returnData);
-                console.log('getDatasourceFilters 2', returnData)
+                console.log('Global-Variables getDatasourceFilters 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2872,11 +2872,11 @@ export class GlobalVariableService {
                         this.dataQualityIssues = data;
                         this.isDirtyDataQualityIssues = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('getDataQualityIssues 1', this.dataQualityIssues)
+                        console.log('Global-Variables getDataQualityIssues 1', this.dataQualityIssues)
                         resolve(this.dataQualityIssues);
                     });
             } else {
-                console.log('getDataQualityIssues 2', this.dataQualityIssues)
+                console.log('Global-Variables getDataQualityIssues 2', this.dataQualityIssues)
                 resolve(this.dataQualityIssues);
             }
         });
@@ -2899,7 +2899,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDataQualityIssues.next(data);
-                        console.log('getDataQualityIssuess 1', data)
+                        console.log('Global-Variables getDataQualityIssuess 1', data)
                         resolve(data);
                 })
              })
@@ -2910,7 +2910,7 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDataQualityIssues.next(returnData);
-                console.log('getDataQualityIssuess 2', returnData)
+                console.log('Global-Variables getDataQualityIssuess 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2935,11 +2935,11 @@ export class GlobalVariableService {
                         this.datasourcePermissions = data;
                         this.isDirtyDatasourcePermissions = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('getDatasourcePermissions 1', this.datasourcePermissions)
+                        console.log('Global-Variables getDatasourcePermissions 1', this.datasourcePermissions)
                         resolve(this.datasourcePermissions);
                     });
             } else {
-                console.log('getDatasourcePermissions 2', this.datasourcePermissions)
+                console.log('Global-Variables getDatasourcePermissions 2', this.datasourcePermissions)
                 resolve(this.datasourcePermissions);
             }
         });
@@ -2962,7 +2962,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePermissions.next(data);
-                        console.log('getDatasourcePermissions 1', data)
+                        console.log('Global-Variables getDatasourcePermissions 1', data)
                         resolve(data);
                 })
              })
@@ -2973,7 +2973,7 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDatasourcePermissions.next(returnData);
-                console.log('getDatasourcePermissions 2', returnData)
+                console.log('Global-Variables getDatasourcePermissions 2', returnData)
                 resolve(returnData);
             });
         };
@@ -2999,11 +2999,11 @@ export class GlobalVariableService {
                         this.datasourcePivots = data;
                         this.isDirtyDatasourcePivots = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('getDatasourcePivots 1', this.datasourcePivots)
+                        console.log('Global-Variables getDatasourcePivots 1', this.datasourcePivots)
                         resolve(this.datasourcePivots);
                     });
             } else {
-                console.log('getDatasourcePivots 2', this.datasourcePivots)
+                console.log('Global-Variables getDatasourcePivots 2', this.datasourcePivots)
                 resolve(this.datasourcePivots);
             }
         });
@@ -3026,7 +3026,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePivots.next(data);
-                        console.log('getDatasourcePivots 1', data)
+                        console.log('Global-Variables getDatasourcePivots 1', data)
                         resolve(data);
                 })
              })
@@ -3037,7 +3037,7 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDatasourcePivots.next(returnData);
-                console.log('getDatasourcePivots 2', returnData)
+                console.log('Global-Variables getDatasourcePivots 2', returnData)
                 resolve(returnData);
             });
         };
@@ -3095,7 +3095,7 @@ export class GlobalVariableService {
 
 
     sleep(milliseconds: number) {
-        console.log('sleeping ...', milliseconds);
+        console.log('Global-Variables sleeping ...', milliseconds);
         var start: number = new Date().getTime();
         console.log('  start', start, new Date().getTime())
         for (var counter = 0; counter < 3600001; counter++) {
@@ -3103,7 +3103,7 @@ export class GlobalVariableService {
             // TODO - remove this console.log BUT at moment sleep increments counter * 60000
             console.log(counter, mod);
             if (mod == 0) {
-                console.log ('Minutes elapsed ', counter, mod )
+                console.log ('   Minutes elapsed ', counter, mod )
             }
             if ((new Date().getTime() - start) > milliseconds){
                 console.log('  end', start, new Date().getTime())

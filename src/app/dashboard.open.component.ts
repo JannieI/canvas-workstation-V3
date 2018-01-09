@@ -46,7 +46,7 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        console.log('DashboardOpen clickClose')
 
 		this.formDashboardOpenClosed.emit(action);
     }
@@ -60,14 +60,14 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     clickOpenView(id: number) {
-        console.log('View D id', id)
+        console.log('DashboardOpen clickOpenView id', id)
         this.globalVariableService.currentDashboardID.next(id);
         this.globalVariableService.editMode.next(false);
 		this.formDashboardOpenClosed.emit('View');
     }
 
     clickOpenEdit(id: number) {
-        console.log('Edit D id', id)
+        console.log('DashboardOpen clickOpenEdit id', id)
         this.globalVariableService.currentDashboardID.next(id);
         this.globalVariableService.editMode.next(true);
 		this.formDashboardOpenClosed.emit('View');

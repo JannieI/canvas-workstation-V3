@@ -192,17 +192,17 @@ export class DataPopupComponent implements OnInit {
         let startNow: number;
 
         startNow = Date.now()
-        console.log('LOAD data start:')
+        console.log('DataPopup clickDSPreview LOAD data start:')
         let fileFolder: string = './assets/vega-datasets/';
         let filePath: string = fileFolder + this.fileName;
         dl.csv({url: filePath}, {}, (err, currentData) => {
             if (err) {
-              console.log('error on load', err)
+              console.log('DataPopup clickDSPreview error on load', err)
             } else {
 
                 // Load
                 console.log('')
-                console.log('LOAD start:')
+                console.log('DataPopup clickDSPreview LOAD start:')
                 this.currentData = currentData;
                 this.globalVariableService.datasets.push(
                     {
@@ -212,42 +212,42 @@ export class DataPopupComponent implements OnInit {
                 );
                 console.log(this.globalVariableService.currentDataset)
                 currentData = [];
-                console.log('     data rows', this.currentData.length)
-                console.log('     END load: ', (Date.now() - startNow) / 1000)
+                console.log('DataPopup clickDSPreview      data rows', this.currentData.length)
+                console.log('DataPopup clickDSPreview      END load: ', (Date.now() - startNow) / 1000)
 
                 // Fields
                 console.log('')
-                console.log('FIELDS start:')
+                console.log('DataPopup clickDSPreview FIELDS start:')
                 startNow = Date.now()
                 var dataTypes = dl.type.all(this.currentData)
                 this.dataFieldNames = Object.keys(dataTypes);
-                console.log('     fields', this.dataFieldNames)
+                console.log('DataPopup clickDSPreview      fields', this.dataFieldNames)
                 for (var i = 0; i < this.dataFieldNames.length; i++) {
                     console.log('     ', i, this.dataFieldNames[i])
                 }
-                console.log('     END fields: ', (Date.now() - startNow) / 1000)
+                console.log('DataPopup clickDSPreview      END fields: ', (Date.now() - startNow) / 1000)
 
                 // Types
                 console.log('')
-                console.log('TYPES start:')
+                console.log('DataPopup clickDSPreview TYPES start:')
                 startNow = Date.now()
-                console.log('     types');
+                console.log('DataPopup clickDSPreview      types');
                 for (var i = 0; i < this.dataFieldNames.length; i++) {
                     this.dataFieldTypes.push(dataTypes[ this.dataFieldNames[i] ] );
-                    console.log('     ', i, this.dataFieldTypes[i])
+                    console.log('DataPopup clickDSPreview      ', i, this.dataFieldTypes[i])
                 }
-                console.log('     END types: ', (Date.now() - startNow) / 1000)
+                console.log('DataPopup clickDSPreview      END types: ', (Date.now() - startNow) / 1000)
 
                 // Sort
                 console.log('')
-                console.log('SORT start:')
+                console.log('DataPopup clickDSPreview SORT start:')
                 startNow = Date.now()
                 this.currentData.sort(dl.comparator(['+symbol', '-price']));
-                console.log('     END sort: ', (Date.now() - startNow) / 1000)
+                console.log('DataPopup clickDSPreview      END sort: ', (Date.now() - startNow) / 1000)
 
                 // Group By
                 console.log('')
-                console.log('GROUPBY start:')
+                console.log('DataPopup clickDSPreview GROUPBY start:')
                 startNow = Date.now()
                 this.dataArray = dl.groupby('symbol')
                     .summarize( [
@@ -255,37 +255,37 @@ export class DataPopupComponent implements OnInit {
                         {name: 'price',  ops: ['sum', 'median'], as: ['s', 'm']}
                         ] )
                     .execute(this.currentData);
-                console.log('     groupby', this.dataArray)
-                console.log('     END groupby: ', (Date.now() - startNow) / 1000)
+                console.log('DataPopup clickDSPreview      groupby', this.dataArray)
+                console.log('DataPopup clickDSPreview      END groupby: ', (Date.now() - startNow) / 1000)
 
                 // Get Unique Symbols
                 console.log('')
-                console.log('UNIQUE start:')
+                console.log('DataPopup clickDSPreview UNIQUE start:')
                 startNow = Date.now()
                 var dataUniqueInColumn = dl.unique(this.currentData);
-                console.log('     unique', dataUniqueInColumn)
-                console.log('     END unique: ', (Date.now() - startNow) / 1000)
+                console.log('DataPopup clickDSPreview      unique', dataUniqueInColumn)
+                console.log('DataPopup clickDSPreview      END unique: ', (Date.now() - startNow) / 1000)
 
                 // Get Unique Symbols 2
                 console.log('')
-                console.log('UNIQUE 2 start:')
+                console.log('DataPopup clickDSPreview UNIQUE 2 start:')
                 startNow = Date.now()
                 dataUniqueInColumn = dl.groupby('symbol')
                     .summarize( [
                         {name: 'symbol', ops: ['values']}
                         ] )
                     .execute(this.currentData);
-                console.log('     unique', dataUniqueInColumn)
-                console.log('     END unique: ', (Date.now() - startNow) / 1000)
+                console.log('DataPopup clickDSPreview      unique', dataUniqueInColumn)
+                console.log('DataPopup clickDSPreview      END unique: ', (Date.now() - startNow) / 1000)
 
             }
           });
 
         // Preview
         console.log('')
-        console.log('PREVIEW start:')
+        console.log('DataPopup clickDSPreview PREVIEW start:')
         startNow = Date.now()
-        console.log('        END preview: ', (Date.now() - startNow) / 1000)
+        console.log('DataPopup clickDSPreview         END preview: ', (Date.now() - startNow) / 1000)
         
         // No DS currently selected
         this.currentDatasetName = '';
@@ -299,7 +299,7 @@ export class DataPopupComponent implements OnInit {
 
     clickDSAdd(action: string) {
         // Datasource
-        console.log('DATASOURCE start:')
+        console.log('DataPopup clickDSAdd start:')
         let newData: Datasource =  {
             id: 1,
             type: 'File',
@@ -353,7 +353,7 @@ export class DataPopupComponent implements OnInit {
         // UnShow Add button
         this.showAddButton = false;
 
-        console.log('dsName', dsName, this.filterDataset)
+        console.log('DataPopup clickDatasourceRow dsName', dsName, this.filterDataset)
     }
 
     clickSelectDatasource(i: number, name: string) {
@@ -402,7 +402,7 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickFileSaveTransformation() {
-        console.log('Saved the name for next time ...')
+        console.log('DataPopup clickFileSaveTransformation Saved the name for next time ...')
     }
 
     clickClose(action: string) {
@@ -424,46 +424,46 @@ export class DataPopupComponent implements OnInit {
     }
 
     dragstart_handler(ev) {
-        console.log("dragStart", ev, ev.srcElement.innerText);
+        console.log("DataPopup dragstart_handler", ev, ev.srcElement.innerText);
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = ev.srcElement.innerText;
-        console.log('drag_start for ', this.draggedField)
+        console.log('DataPopup dragstart_handler for ', this.draggedField)
     }
 
     dragstart_handlerCol(ev) {
-        console.log("dragStart", ev, ev.srcElement.innerText);
+        console.log("DataPopup dragstart_handlerCol", ev, ev.srcElement.innerText);
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = ev.srcElement.innerText;
         this.colField = '';
-        console.log('drag_start for ', this.draggedField)
+        console.log('DataPopup dragstart_handlerCol for ', this.draggedField)
     }
 
     dragstart_handlerRow(ev) {
-        console.log("dragStart", ev, ev.srcElement.innerText);
+        console.log("DataPopup dragstart_handlerRow", ev, ev.srcElement.innerText);
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = ev.srcElement.innerText;
         this.rowField = '';
-        console.log('drag_start for ', this.draggedField)
+        console.log('DataPopup dragstart_handlerRow for ', this.draggedField)
     }
 
     dragstart_handlerAgg(ev) {
-        console.log("dragStart", ev, ev.srcElement.innerText);
+        console.log("DataPopup dragstart_handlerAgg", ev, ev.srcElement.innerText);
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = ev.srcElement.innerText;
         this.aggField = '';
-        console.log('drag_start for ', this.draggedField)
+        console.log('DataPopup dragstart_handlerAgg for ', this.draggedField)
     }
 
     dragend_handler(ev) {
-        console.log('dragend_handler', ev.dataTransfer.dropEffect)
+        console.log('DataPopup dragend_handler', ev.dataTransfer.dropEffect)
     }
 
     dragover_handler(ev, actionName: string) {
-        console.log('dragover_handler', ev, ev.srcElement.innerText)
+        console.log('DataPopup dragover_handler', ev, ev.srcElement.innerText)
         ev.preventDefault();
         this.transitionFieldName = 'Added the field to transition: '
         this.transitionAction = actionName;
@@ -513,7 +513,7 @@ export class DataPopupComponent implements OnInit {
         var data = ev.dataTransfer.getData("text");
         // ev.target.appendChild(document.getElementById(data));
         this.rowField = this.draggedField;
-        console.log('drop_handler dropped !!', ev.srcElement.innerText)
+        console.log('DataPopup drop_handlerRow dropped !!', ev.srcElement.innerText)
 
         // Pivot Rows
         this.pivotRows = [];
@@ -526,7 +526,7 @@ export class DataPopupComponent implements OnInit {
             this.pivotRows.push(pC[i].symbol)
         }
         this.resultMessage = '';
-        console.log('this.pivotRows', this.pivotRows)
+        console.log('DataPopup drop_handlerRow this.pivotRows', this.pivotRows)
 
     }
 
@@ -538,7 +538,7 @@ export class DataPopupComponent implements OnInit {
         var data = ev.dataTransfer.getData("text");
         // ev.target.appendChild(document.getElementById(data));
         this.colField = this.draggedField;
-        console.log('drop_handler dropped !!', ev.srcElement.innerText)
+        console.log('DataPopup drop_handlerCol dropped !!', ev.srcElement.innerText)
 
         // Pivot Cols
         this.pivotCols = ['Date'];
@@ -552,7 +552,7 @@ export class DataPopupComponent implements OnInit {
         }
         this.resultMessage = '';
         this.dragoverCol = false;
-        console.log('this.pivotCols', this.pivotCols)
+        console.log('DataPopup drop_handlerCol this.pivotCols', this.pivotCols)
     }
 
     drop_handlerAgg(ev) {
@@ -563,7 +563,7 @@ export class DataPopupComponent implements OnInit {
         var data = ev.dataTransfer.getData("text");
         // ev.target.appendChild(document.getElementById(data));
         this.aggField = this.draggedField;
-        console.log('drop_handler dropped !!', ev.srcElement.innerText)
+        console.log('DataPopup drop_handlerAgg dropped !!', ev.srcElement.innerText)
     }
 
     drop_pivot(ev) {
@@ -571,11 +571,11 @@ export class DataPopupComponent implements OnInit {
 
         var data = ev.dataTransfer.getData("text");
         ev.target.appendChild(document.getElementById(data));
-        console.log('drop_handler dropped !!')
+        console.log('DataPopup drop_pivot dropped !!')
     }
 
     dragover_pivot(ev) {
-        console.log('dragover_pivot')
+        console.log('DataPopup dragover_pivot')
         ev.preventDefault();
         // Set the dropEffect to move
         ev.dataTransfer.dropEffect = "move"
@@ -626,11 +626,11 @@ export class DataPopupComponent implements OnInit {
     }
 
     changedInput(newValue: any) {
-        console.log('changedInput: Old-New', this.changeVar, newValue)
+        console.log('DataPopup changedInput: Old-New', this.changeVar, newValue)
     }
 
     clickViewOptions(area: string) {
-        console.log('area', area)
+        console.log('DataPopup clickViewOptions area', area)
 
         if (area == 'gridViewOverview') {
             this.gridViewOverview = true;
@@ -684,10 +684,10 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickTest() {
-        console.log('currentData', this.currentData[0])
+        console.log('DataPopup clickTest currentData', this.currentData[0])
         let result: any;
         result = this.globalFunctionService.convertArrayToPivot(this.currentData);
-        console.log(result);
+        console.log('DataPopup clickTest',result);
     }
 
     clickDS() {
