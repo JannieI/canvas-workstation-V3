@@ -20,9 +20,6 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Dashboard }                  from './models';
 import { DashboardSnapshot }          from './models';
 
-// Data
-import { httpFake }                   from './data/dashboards'
-
 @Component({
     selector: 'dashboard-treeview',
     templateUrl: './dashboard.treeview.component.html',
@@ -92,7 +89,6 @@ export class DashboardTreeviewComponent implements OnInit {
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private httpFake: httpFake,
 	) {}
 
     ngOnInit() {

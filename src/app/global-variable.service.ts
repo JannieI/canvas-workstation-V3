@@ -38,9 +38,6 @@ import { CanvasShape }                from './models';
 import { Combination }                from './models';
 import { CombinationDetail }          from './models';
 
-// Data
-import { httpFake }                   from './data/dashboards'
-
 import * as dl                        from 'datalib';
 import { Observable }                 from 'rxjs/Observable';
 
@@ -1083,37 +1080,37 @@ const localWidgets1: CanvasWidget =
         widgetUpdatedBy: '',
     };
 
-const localDashboards: dl.spec.TopLevelExtendedSpec[] =
-[
-    {
-        "data": {"url": "../assets/vega-datasets/cars.json"},
-        "mark": "point",
-        "encoding": {
-            "x": {"field": "Horsepower", "type": "quantitative"},
-            "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-        }
-    },
-    {
-        "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
-        "mark": "bar",
-        "encoding": {
-          "x": {
-            "timeUnit": "month",
-            "field": "date",
-            "type": "ordinal"
-          },
-          "y": {
-            "aggregate": "count",
-            "field": "*",
-            "type": "quantitative"
-          },
-          "color": {
-            "field": "weather",
-            "type": "nominal"
-          }
-        }
-    }
-];
+// const localDashboards: dl.spec.TopLevelExtendedSpec[] =
+// [
+//     {
+//         "data": {"url": "../assets/vega-datasets/cars.json"},
+//         "mark": "point",
+//         "encoding": {
+//             "x": {"field": "Horsepower", "type": "quantitative"},
+//             "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+//         }
+//     },
+//     {
+//         "data": {"url": "../assets/vega-datasets/seattle-weather.csv"},
+//         "mark": "bar",
+//         "encoding": {
+//           "x": {
+//             "timeUnit": "month",
+//             "field": "date",
+//             "type": "ordinal"
+//           },
+//           "y": {
+//             "aggregate": "count",
+//             "field": "*",
+//             "type": "quantitative"
+//           },
+//           "color": {
+//             "field": "weather",
+//             "type": "nominal"
+//           }
+//         }
+//     }
+// ];
 
 const dashboards: Dashboard[] =
 [
@@ -1554,7 +1551,7 @@ export class GlobalVariableService {
 
 
     // Temp vars
-    localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
+    // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     localWidgets = new BehaviorSubject< CanvasWidget[]>(localWidgets);
     // localShapes = new BehaviorSubject< CanvasShape[]>(null);
     localTrash = new BehaviorSubject< CanvasWidget[]>([]);
@@ -1694,7 +1691,6 @@ export class GlobalVariableService {
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
-        httpFake: httpFake
     ) {
         // this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
         this.currentDashboardID.subscribe(
