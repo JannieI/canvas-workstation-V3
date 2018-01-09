@@ -82,8 +82,9 @@
     .widgetSelectedDrag {
         background-color: transparent;
         border: none !important;
-        float: right;
         top: 0;
+        position: absolute;
+        right: 0;
     }
 
     .widgetSelectedDrag:hover {
@@ -150,24 +151,152 @@
 
 
 /* Slicers */
-.slicer {
-    border: '1px solid gray';
+.slicerContainer {
+    background-color: transparent;
+    border: 1px solid lightgray;
+    z-index: 71;
+    margin: 0;
+    padding: 4px;
+    bottom: 100px;
     position: absolute;
     right: 30px;
-    bottom: 100px;
-    background-color: lightgray;
+    display: grid;
+    min-width: 120px;
+    grid-template-columns: 8px 1fr 18px 1fr 8px;
+    grid-template-rows: 8px 1fr 18px 1fr 8px;
 }
-
-    .slicerLabel {
-        background-color: black;
-        color: white;
-        text-align: center;
+    .slicerContainerTopLeftHandle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 0 0 3px 0;
+        padding: 0;
+        background-color: #929699;
     }
-
-    .form-block {
-        border: 1px solid black !important;
-        border-radius: 5px !important;
+    .slicerContainerTopHandle {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 0 0 3px 0;
+        padding: 0;
+        background-color: #929699;
     }
+    .slicerContainerTopRightHandle {
+        grid-column-start: 5;
+        grid-column-end: 6;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 0 0 3px 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .slicerContainerRightTopHandle {
+        grid-column-start: 5;
+        grid-column-end: 6;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 0 0 0 3px;
+        padding: 0;
+        background-color: #929699;
+    }
+    .slicerContainerRightHandle {
+        grid-column-start: 5;
+        grid-column-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 0 0 0 3px;
+        padding: 0;
+        background-color: #929699;
+    }
+    .slicerContainerRightBottomHandle {
+        grid-column-start: 5;
+        grid-column-end: 6;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 0 0 0 3px;
+        padding: 0;
+        background-color: #929699;
+    }
+    .slicerContainerBottomRightHandle {
+        grid-column-start: 5;
+        grid-column-end: 6;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 3px 0 0 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .slicerContainerBottomHandle {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 5;
+        grid-row-end: 5;
+        margin: 3px 0 0 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .slicerContainerBottomLeftHandle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 3px 0 0 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .slicerContainerLeftBottomHandle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 0 3px 0 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .slicerContainerLeftHandle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 0 3px 0 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .slicerContainerLeftTopHandle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 0 3px 0 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .slicer {
+        border: '1px solid gray';
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row-start: 2;
+        grid-row-end: 5;
+        margin:0;
+        padding: 0;
+        z-index: 70;
+        background-color: lightgray;
+    }
+    .slicer:hover {
+        background-color: #192b35;
+    }
+        .slicerLabel {
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        .form-block {
+            border: 1px solid black !important;
+            border-radius: 5px !important;
+        }
 
 
 /* Grid */

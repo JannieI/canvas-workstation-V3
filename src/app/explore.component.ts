@@ -156,7 +156,8 @@ export class ExploreComponent {
     templateInUse: string = 'Tmpl Used';
     
     temp: number[] = [0];
-
+    showSlicerContainer: boolean = false;
+    
     constructor(
         // private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -709,6 +710,10 @@ export class ExploreComponent {
 
     clickSlicerDelete() {
         this.showSlicer = false;
+    }
+
+    clickSlicer() {
+        this.showSlicerContainer = true;
     }
 }
 

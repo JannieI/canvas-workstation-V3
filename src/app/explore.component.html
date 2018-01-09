@@ -396,7 +396,7 @@
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
     >
-    <div class="widgetButtonBar">
+    <span class="widgetButtonBar">
         <clr-icon
             shape="pencil"
             size="20"
@@ -493,9 +493,9 @@
             title="Select this Widget"
             >
         </clr-icon>
-    </div>
+    </span>
 
-    <div class="widgetSelectedDrag" *ngIf="row.isSelected"
+    <span class="widgetSelectedDrag" *ngIf="row.isSelected"
         (mousedown)="clickDragMouseDown($event, i)"
         (mouseup)="clickDragMouseUp($event, i)"
         (dragstart)="clickDragStart($event, i)"
@@ -510,7 +510,7 @@
             draggable="true"
             >
         </clr-icon>
-    </div>
+    </span>
 
     <span class="widgetSelectedResize" *ngIf="row.isSelected"
         (mousedown)="clickResizeMouseDown($event, i)"
@@ -547,27 +547,80 @@
 
 
 <!-- Dummy Slicer -->
-<div class="slicer" *ngIf="showSlicer">
-    <section class="form-block" title="Filter the Budget dataset on Make of Car">
-        <div class="slicerLabel">
-            <b>{{ slicerHeader }}
-                <clr-icon shape="times" (click)="clickSlicerDelete()"></clr-icon>
-            </b>
-        </div>
-        <div class="form-group">
-            <div class="select multiple">
-                <select id="selects_5" multiple>
-                    <option>Volvo</option>
-                    <option>Kia</option>
-                    <option>Honda</option>
-                    <option>Jeep</option>
-                    <option>BMW</option>
-                </select>
-            </div>
-        </div>
-    </section>
-</div>
+<div class="slicerContainer" 
+    [style.border]="showSlicerContainer? '1px solid gray' : 'transparent'"
+    draggable="true"
+    >
+    <div class="slicerContainerTopLeftHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerTopHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerTopRightHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerRightTopHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerRightHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerRightBottomHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerBottomRightHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerBottomLeftHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerBottomHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerLeftBottomHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerLeftHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerLeftTopHandle"
+        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        >
+    </div>
 
+    <div class="slicer" *ngIf="showSlicer">
+        <section class="form-block" title="Filter the Budget dataset on Make of Car">
+            <div class="slicerLabel" (click)="clickSlicer()">
+                <b>{{ slicerHeader }}
+                    <clr-icon shape="times" (click)="clickSlicerDelete()"></clr-icon>
+                </b>
+            </div>
+            <div class="form-group">
+                <div class="select multiple">
+                    <select id="selects_5" multiple>
+                        <option>Volvo</option>
+                        <option>Kia</option>
+                        <option>Honda</option>
+                        <option>Jeep</option>
+                        <option>BMW</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
 
 <!-- Tab List -->
 <div class="tabList" *ngIf="showTabList">
