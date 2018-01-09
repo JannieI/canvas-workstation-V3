@@ -132,7 +132,7 @@ export class ExploreComponent {
     hasDatasources: boolean;
     isFirstTimeDashboard: boolean;
     isFirstTimePresentation: boolean;
-    localDashboards: dl.spec.TopLevelExtendedSpec[];
+    // localDashboards: dl.spec.TopLevelExtendedSpec[];
     currentShapes: CanvasShape[];
     localTrash: CanvasWidget[] = [];
     currentWidgets: CanvasWidget[];
@@ -198,7 +198,7 @@ export class ExploreComponent {
         this.globalVariableService.statusBarMessages.subscribe(
             i => this.statusBarMessages = i
         )
-        this.localDashboards = this.globalVariableService.localDashboards;
+        // this.localDashboards = this.globalVariableService.localDashboards;
         this.globalVariableService.currentDashboardTabs.subscribe(
             i => this.currentDashboardTabs = i
         );
@@ -354,8 +354,9 @@ export class ExploreComponent {
     duplicateWidget(duplicate: boolean) {
         if (duplicate) {
             console.log('Explore duplicateWidget', this.childrenWidgets.toArray().length)
-            this.localDashboards.push(this.localDashboards[0]);
-            console.log('Explore duplicateWidget Add to array ...', this.localDashboards)
+            // this.localDashboards.push(this.localDashboards[0]);
+            // TODO - fix and add to correct Array
+            console.log('Explore duplicateWidget Add to array ...');
         }
     }
 
