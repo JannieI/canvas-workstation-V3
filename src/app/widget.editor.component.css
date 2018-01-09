@@ -161,7 +161,7 @@
         text-align: center;
     }
 
-    .colorField {
+    .graphColorField {
         grid-column-start: 16;
         grid-column-end: 19;
         grid-row-start: 2;

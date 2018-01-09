@@ -12,11 +12,8 @@ import { Router }                     from '@angular/router';
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
-
-// Our Models
-import { Datasource } 				  from './models';
-import { DashboardTab } 			  from './models';
-import { Dashboard } 				  from './models';
+import { Datasource, DashboardTab } 				  from 'app/models';
+import { Dashboard } 				  from 'app/models';
 
 @Component({
   selector: 'landing',
@@ -37,14 +34,9 @@ export class LandingComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
 		private router: Router
 	) {
-
-		// Load Startup info:
-		//Datasources
-        this.globalVariableService.getDatasources();     
-		// Sample Dashboards
-		this.sampleDashboards = this.globalVariableService.getDashboardSamples();
-		// Recent Dashboards
-		// TODO - remove hardcoded userID and make data cater for >1 user
+		// this.globalVariableService.getDashboardSamples()
+		// 	.then(data => this.sampleDashboards = data);
+		this.sampleDashboards = this.globalVariableService.getDashboardSamples()
 		this.recentDashboards = this.globalVariableService.getDashboardsRecent('JannieI');
 		}
 
@@ -55,6 +47,7 @@ export class LandingComponent implements OnInit {
 	}
 	clickButtonData() {
 		console.log('clickButtonData')
+		this.globalVariableService.changeMenuCreateDisabled(true);
 		this.router.navigate(['/data']);
 	}
 

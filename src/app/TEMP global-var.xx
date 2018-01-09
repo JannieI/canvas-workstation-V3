@@ -722,22 +722,6 @@ const localWidgets: CanvasWidget[] =
                 "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
             }
         },
-        graphDescription: "",
-        graphXaggregate: "",
-        graphXtimeUnit: "",
-        graphXfield: "Horsepower",
-        graphXtype: "quantitative",
-        graphYtimeUnit: "",
-        graphYaggregate: "",
-        graphYfield: "Miles_per_Gallon",
-        graphYtype: "quantitative",
-        graphTitle: "graphTitle",
-        graphMark: "bar",
-        graphUrl: "../assets/vega-datasets/cars.json",
-        graphColorField: "",
-        graphColorType: "",
-        graphData: "",
-
         tableColor: '',
         tableCols: 1,
         tableHeight: 1,
@@ -827,21 +811,6 @@ const localWidgets: CanvasWidget[] =
                 "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
             }
         },
-        graphDescription: "",
-        graphXaggregate: "",
-        graphXtimeUnit: "",
-        graphXfield: "Horsepower",
-        graphXtype: "quantitative",
-        graphYtimeUnit: "",
-        graphYaggregate: "",
-        graphYfield: "Miles_per_Gallon",
-        graphYtype: "quantitative",
-        graphTitle: "graphTitle",
-        graphMark: "bar",
-        graphUrl: "../assets/vega-datasets/cars.json",
-        graphColorField: "",
-        graphColorType: "",
-        graphData: "",
         tableColor: '',
         tableCols: 1,
         tableHeight: 1,
@@ -943,21 +912,6 @@ const localWidgets: CanvasWidget[] =
               }
             }
         },
-        graphDescription: "",
-        graphXtimeUnit: "",
-        graphXaggregate: "",
-        graphXfield: "Horsepower",
-        graphXtype: "quantitative",
-        graphYtimeUnit: "",
-        graphYaggregate: "",
-        graphYfield: "Miles_per_Gallon",
-        graphYtype: "quantitative",
-        graphTitle: "graphTitle",
-        graphMark: "bar",
-        graphUrl: "../assets/vega-datasets/cars.json",
-        graphColorField: "",
-        graphColorType: "",
-        graphData: "",
         tableColor: '',
         tableCols: 1,
         tableHeight: 1,
@@ -1050,21 +1004,6 @@ const localWidgets1: CanvasWidget =
                 "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
             }
         },
-        graphDescription: "",
-        graphXtimeUnit: "",
-        graphXaggregate: "",
-        graphXfield: "Horsepower",
-        graphXtype: "quantitative",
-        graphYtimeUnit: "",
-        graphYaggregate: "",
-        graphYfield: "Miles_per_Gallon",
-        graphYtype: "quantitative",
-        graphTitle: "graphTitle",
-        graphMark: "bar",
-        graphUrl: "../assets/vega-datasets/cars.json",
-        graphColorField: "",
-        graphColorType: "",
-        graphData: "",
         tableColor: '',
         tableCols: 1,
         tableHeight: 1,
@@ -1537,6 +1476,7 @@ export class GlobalVariableService {
     isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
     isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
     // Menu-related
+    menuCreateDisabled = new BehaviorSubject<boolean>(true);
     showMainMenu = new BehaviorSubject<boolean>(true);
     // Opening forms
     openDashboardFormOnStartup: boolean = false;
@@ -1743,9 +1683,12 @@ export class GlobalVariableService {
 
         // Load Dashboard Templates
         this.getDashboardTemplates();
-        
+
+        // Load Datasources
+        this.getDatasources();     
+
         // Load Current Datasources
-        this.getCurrentDatasources(dashboardID)
+        this.getCurrentDatasources(dashboardID);     
 
         // Load DatTransformationsasources
         this.getTransformations();     
@@ -1776,6 +1719,10 @@ export class GlobalVariableService {
 
         
         
+    }
+
+    changeMenuCreateDisabled(value: boolean) {
+        this.menuCreateDisabled.next(value);
     }
 
     deleteWidget(index: number) {
@@ -1927,6 +1874,7 @@ export class GlobalVariableService {
                     }
                 }
                 this.currentDashboards.next(currentDashboards);
+
                 console.log('getCurrentDashboards 2', currentDashboards)
                 resolve(currentDashboards);
             });
@@ -2699,7 +2647,6 @@ export class GlobalVariableService {
                                             };
                                         };
                                         this.isDirtyDatasources = false;
-                                        this.currentDatasources.next(returnData);
                                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                                         console.log('getCurrentDatasources 1', returnData);
                                     }
@@ -2720,7 +2667,6 @@ export class GlobalVariableService {
                     };
                 };
                 this.isDirtyDatasources = false;
-                this.currentDatasources.next(returnData);
                 this.statusBarRunning.next(this.NoQueryRunningMessage);
                 console.log('getCurrentDatasources 1', returnData);
             }
@@ -2764,29 +2710,26 @@ export class GlobalVariableService {
         let url: string = 'getTransformations';
         this.filePath = './assets/data.transformations.json';
 
-        if ( (this.currentTransformations.value == [])  ||  (this.isDirtyTransformations) ) {
-            return new Promise<Transformation[]>((resolve, reject) => {
+        return new Promise<Transformation[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.currentTransformations.value == [])  ||  (this.isDirtyTransformations) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
                 this.getTransformations()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
                         this.currentTransformations.next(data);
-                        console.log('getTransformations 1', data)
+                        console.log('getCurrentTransformations 1', datasourceID, data)
                         resolve(data);
-                })
-             })
-        } else {
-            return new Promise<Transformation[]>((resolve, reject) => {
-                let returnData: Transformation[];
-                returnData = this.transformations.filter(
-                    i => i.datasourceID == datasourceID
-                );
-                this.currentTransformations.next(returnData);
-                console.log('getTransformations 2', returnData)
-                resolve(returnData);
-            });
-        };
+                    });
+            } else {
+                console.log('getCurrentTransformations 2', datasourceID, this.currentTransformations.value)
+                resolve(this.currentTransformations.value);
+            }
+        });
+
     }
 
     getDatasourceFilters(): Promise<DatasourceFilter[]> {
@@ -2828,29 +2771,26 @@ export class GlobalVariableService {
         let url: string = 'getDatasourceFilters';
         this.filePath = './assets/data.datasourceFilters.json';
 
-        if ( (this.currentDatasourceFilters.value == [])  ||  (this.isDirtyDatasourceFilters) ) {
-            return new Promise<DatasourceFilter[]>((resolve, reject) => {
+        return new Promise<DatasourceFilter[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.currentDatasourceFilters.value == [])  ||  (this.isDirtyDatasourceFilters) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
                 this.getDatasourceFilters()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourceFilters.next(data);
-                        console.log('getDatasourceFilters 1', data)
+                        console.log('getCurrentDatasourceFilters 1', datasourceID, data)
                         resolve(data);
-                })
-             })
-        } else {
-            return new Promise<DatasourceFilter[]>((resolve, reject) => {
-                let returnData: DatasourceFilter[];
-                returnData = this.datasourceFilters.filter(
-                    i => i.datasourceID == datasourceID
-                );
-                this.currentDatasourceFilters.next(returnData);
-                console.log('getDatasourceFilters 2', returnData)
-                resolve(returnData);
-            });
-        };
+                    });
+            } else {
+                console.log('getCurrentDatasourceFilters 2', datasourceID, this.currentDatasourceFilters.value)
+                resolve(this.currentDatasourceFilters.value);
+            }
+        });
+
     }
     
     getDataQualityIssues(): Promise<DataQualityIssue[]> {
@@ -2891,29 +2831,26 @@ export class GlobalVariableService {
         let url: string = 'getDataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
 
-        if ( (this.currentDataQualityIssues.value == [])  ||  (this.isDirtyDataQualityIssues) ) {
-            return new Promise<DataQualityIssue[]>((resolve, reject) => {
+        return new Promise<DataQualityIssue[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.currentDataQualityIssues.value == [])  ||  (this.isDirtyDataQualityIssues) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
                 this.getDataQualityIssues()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDataQualityIssues.next(data);
-                        console.log('getDataQualityIssuess 1', data)
+                        console.log('getCurrentDataQualityIssues 1', datasourceID, data)
                         resolve(data);
-                })
-             })
-        } else {
-            return new Promise<DataQualityIssue[]>((resolve, reject) => {
-                let returnData: DataQualityIssue[];
-                returnData = this.dataQualityIssues.filter(
-                    i => i.datasourceID == datasourceID
-                );
-                this.currentDataQualityIssues.next(returnData);
-                console.log('getDataQualityIssuess 2', returnData)
-                resolve(returnData);
-            });
-        };
+                    });
+            } else {
+                console.log('getCurrentDataQualityIssues 2', datasourceID, this.currentDataQualityIssues.value)
+                resolve(this.currentDataQualityIssues.value);
+            }
+        });
+
     }
       
     getDatasourcePermissions(): Promise<DatasourcePermission[]> {
@@ -2954,29 +2891,25 @@ export class GlobalVariableService {
         let url: string = 'getDatasourcePermissions';
         this.filePath = './assets/data..datasourcePermissions.json';
 
-        if ( (this.currentDatasourcePermissions.value == [])  ||  (this.isDirtyDatasourcePermissions) ) {
-            return new Promise<DatasourcePermission[]>((resolve, reject) => {
+        return new Promise<DatasourcePermission[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.currentDatasourcePermissions.value == [])  ||  (this.isDirtyDatasourcePermissions) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
                 this.getDatasourcePermissions()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePermissions.next(data);
-                        console.log('getDatasourcePermissions 1', data)
+                        console.log('getCurrentDatasourcePermissions 1', datasourceID, data)
                         resolve(data);
-                })
-             })
-        } else {
-            return new Promise<DatasourcePermission[]>((resolve, reject) => {
-                let returnData: DatasourcePermission[];
-                returnData = this.datasourcePermissions.filter(
-                    i => i.datasourceID == datasourceID
-                );
-                this.currentDatasourcePermissions.next(returnData);
-                console.log('getDatasourcePermissions 2', returnData)
-                resolve(returnData);
-            });
-        };
+                    });
+            } else {
+                console.log('getCurrentDatasourcePermissions 2', datasourceID, this.currentDatasourcePermissions.value)
+                resolve(this.currentDatasourcePermissions.value);
+            }
+        });
 
     }
   
@@ -3018,29 +2951,25 @@ export class GlobalVariableService {
         let url: string = 'getDatasourcePivots';
         this.filePath = './assets/data..datasourcePivots.json';
 
-        if ( (this.currentDatasourcePivots.value == [])  ||  (this.isDirtyDatasourcePivots) ) {
-            return new Promise<DatasourcePivot[]>((resolve, reject) => {
+        return new Promise<DatasourcePivot[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.currentDatasourcePivots.value == [])  ||  (this.isDirtyDatasourcePivots) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
                 this.getDatasourcePivots()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePivots.next(data);
-                        console.log('getDatasourcePivots 1', data)
+                        console.log('getCurrentDatasourcePivots 1', datasourceID, data)
                         resolve(data);
-                })
-             })
-        } else {
-            return new Promise<DatasourcePivot[]>((resolve, reject) => {
-                let returnData: DatasourcePivot[];
-                returnData = this.datasourcePivots.filter(
-                    i => i.datasourceID == datasourceID
-                );
-                this.currentDatasourcePivots.next(returnData);
-                console.log('getDatasourcePivots 2', returnData)
-                resolve(returnData);
-            });
-        };
+                    });
+            } else {
+                console.log('getCurrentDatasourcePivots 2', datasourceID, this.currentDatasourcePivots.value)
+                resolve(this.currentDatasourcePivots.value);
+            }
+        });
 
     }
   

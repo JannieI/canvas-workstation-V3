@@ -400,8 +400,8 @@ export class CanvasWidget {
     graphMark: string;
     graphUrl: string;
     graphData: any;
-    colorField: string;
-    colorType: string;
+    graphColorField: string;
+    graphColorType: string;
 
     // Table - to be determined later ...
     tableColor: string;                 // Text color

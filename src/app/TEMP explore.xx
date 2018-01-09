@@ -137,6 +137,7 @@ export class ExploreComponent {
     localShapes: CanvasShape[];
     localTrash: CanvasWidget[] = [];
     currentWidgets: CanvasWidget[];
+    menuCreateDisabled: boolean = false;
     open: Boolean = false;
     presentationMode: boolean;
     showDashboardDescription: boolean = false;
@@ -172,6 +173,9 @@ export class ExploreComponent {
         if (this.globalVariableService.openDashboardFormOnStartup) {
             this.showModalDashboardOpen = true;
         };
+        this.globalVariableService.menuCreateDisabled.subscribe(
+            menuCreateDisabled => this.menuCreateDisabled = menuCreateDisabled
+        );
         this.globalVariableService.isFirstTimeDashboard.subscribe(
             i => this.isFirstTimeDashboard = i
         )
@@ -214,11 +218,15 @@ export class ExploreComponent {
         );
         this.globalVariableService.currentWidgets.subscribe(
             i => {
+                console.log('Explore refresh Widgets', i)
+                if (i == undefined) {console.log('undef')}
+                if (i == []) {console.log('[]')}
                 this.currentWidgets = i.filter(f => f.isTrashed == false)
                 if (this.childrenWidgets !== undefined) {
+                    // console.log('refreshLLWW now', this.childrenWidgets.toArray().length)
                     this.refreshWidgets();
                     this.refreshShapes2()
-                    console.log ('refeshWidgets2 done', i)
+                    console.log ('refeshWidgets2 done')
                 }
             }
         );
@@ -235,6 +243,8 @@ export class ExploreComponent {
             i => {
                     if (i)
                         {
+                            console.log('i', i)
+                            console.log('refreshWW now', this.childrenWidgets.toArray().length)
                             this.refreshWidgets();
                             console.log ('refeshWW done')
                         }
@@ -244,6 +254,7 @@ export class ExploreComponent {
         this.globalVariableService.slicerHeader.subscribe(
             i => this.slicerHeader = i
         );
+
     }
 
     ngAfterViewInit() {
@@ -318,10 +329,21 @@ export class ExploreComponent {
     }
 
     refreshWidgets() {
-        console.log('refreshWidgets')
-        console.log(' ...START children.length', this.childrenWidgets.toArray().length)
+        console.log(' ...START refreshWidgets', this.childrenWidgets.toArray().length)
+        console.log('  W', this.currentWidgets)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
-            console.log('this.currentWidgets[i].graphColorField', this.currentWidgets[i].graphColorField)
+            console.log('refreshWidgets loop i', i, this.currentWidgets[i].graphSpecification)
+            console.log(i,this.currentWidgets[i],
+                this.currentWidgets[i].graphDescription,
+                this.currentWidgets[i].graphMark,
+                this.currentWidgets[i].graphXfield,
+                this.currentWidgets[i].graphYfield,
+                this.currentWidgets[i].graphTitle,
+                this.currentWidgets[i].graphXtype,
+                this.currentWidgets[i].graphYtype,
+                this.currentWidgets[i].graphUrl)
+
+            
             let definition = this.createVegaLiteSpec(
                 this.currentWidgets[i].graphDescription,
                 this.currentWidgets[i].graphMark,
@@ -335,11 +357,10 @@ export class ExploreComponent {
                 this.currentWidgets[i].graphXaggregate,
                 this.currentWidgets[i].graphYtimeUnit,
                 this.currentWidgets[i].graphYaggregate,
-                this.currentWidgets[i].graphColorField,
-                this.currentWidgets[i].graphColorType,
+                this.currentWidgets[i].colorField,
+                this.currentWidgets[i].colorType,
             );
             let specification = compile(definition).spec;
-            console.log(' ... specification', specification)
             // console.log('spec 2', specification)
             let view = new View(parse(specification));
             view.renderer('svg')
@@ -531,25 +552,9 @@ export class ExploreComponent {
         graphXaggregate: string = '',
         graphYtimeUnit: string = '',
         graphYaggregate: string = '',
-        graphColorField: string = '',
-        graphColorType: string = ''
+        colorField: string = '',
+        colorType: string = ''
         ): dl.spec.TopLevelExtendedSpec {
-
-        // Exclude nulls, as dl lib reads "" as null
-        if (graphDescription == null) { graphDescription = ''};
-        if (graphMark == null) { graphMark = ''};
-        if (graphXfield == null) { graphXfield = ''};
-        if (graphYfield == null) { graphYfield = ''};
-        if (graphTitle == null) { graphTitle = ''};
-        if (graphXtype == null) { graphXtype = ''};
-        if (graphYtype == null) { graphYtype = ''};
-        if (graphUrl == null) { graphUrl = ''};
-        if (graphXtimeUnit == null) { graphXtimeUnit = ''};
-        if (graphXaggregate == null) { graphXaggregate = ''};
-        if (graphYtimeUnit == null) { graphYtimeUnit = ''};
-        if (graphYaggregate == null) { graphYaggregate = ''};
-        if (graphColorField == null) { graphColorField = ''};
-        if (graphColorType == null) { graphColorType = ''};
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
 
@@ -579,12 +584,17 @@ export class ExploreComponent {
 
         vlSpecsNew['title']['text'] = graphTitle;
 
-        if (graphColorField != ''  && graphColorField != null) {
+        if (colorField != '') {
             vlSpecsNew['encoding']['color'] = {
-                "field": graphColorField,
-                "type": graphColorType
+                "field": colorField,
+                "type": colorType
               }
         }
+
+    
+
+        console.log('createVegaLiteSpec', vlSpecsNew)
+
         return vlSpecsNew;
     }
 

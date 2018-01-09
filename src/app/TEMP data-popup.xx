@@ -103,11 +103,9 @@ export class DataPopupComponent implements OnInit {
     selectorDetailColumnEnd: string = '12';
     selectedFile: boolean = true;
     selectedData: string = 'Trades for 2016';
-    showAddButton: boolean = false;
     showDataPreview: boolean = false;
     showIdentifyFile: boolean = true;
     showFilter: boolean = false;
-    showTopSteps: boolean = false;
     showTransform: boolean = false;
     showPivot: boolean = false;
     showView: boolean = false;
@@ -169,6 +167,7 @@ export class DataPopupComponent implements OnInit {
 
     }
 
+
     clickField() {
         if (this.showSelectField) {
             this.showSelectField = false;
@@ -187,7 +186,7 @@ export class DataPopupComponent implements OnInit {
         this.globalVariableService.currentDatasourceDelete(index);
     }
 
-    clickDSPreview(action: string) {
+    clickDSSelect(action: string) {
         var csv_data = dl.load({url: './assets/vega-datasets/stocks.csv'});
         let startNow: number;
 
@@ -281,20 +280,17 @@ export class DataPopupComponent implements OnInit {
             }
           });
 
+        this.globalVariableService.menuCreateDisabled.next(false);
+
         // Preview
         console.log('')
         console.log('PREVIEW start:')
         startNow = Date.now()
+        this.showDataPreview = !this.showDataPreview;
         console.log('        END preview: ', (Date.now() - startNow) / 1000)
-        
-        // No DS currently selected
-        this.currentDatasetName = '';
-        
-        // Show the Preview button
-        this.showDataPreview = true; //!this.showDataPreview;
 
-        // Show Add button
-        this.showAddButton = true;
+        this.currentDatasetName = '';
+
     }
 
     clickDSAdd(action: string) {
@@ -305,7 +301,7 @@ export class DataPopupComponent implements OnInit {
             type: 'File',
             subType: 'CSV',
             typeVersion: 'Comma-Separated',
-            name: 'Stocks.csv',
+                name: 'Stocks.csv',
             description: 'Hard coded name',
             createdBy: 'Me',
             createdOn: '2017/01/01',
@@ -313,7 +309,10 @@ export class DataPopupComponent implements OnInit {
             refreshedOn: '2017/01/01',
             parameters: 'None'
         };
-        
+
+        // Show the preview
+        this.showDataPreview = true;
+
         // General var with name - used in *ngIF, etc
         this.currentDatasetName = this.fileName;
 
@@ -333,30 +332,17 @@ export class DataPopupComponent implements OnInit {
         this.pivotResults = [];
         this.finalFields = [];
         this.dataQualityIssues = [];
-
-        // Show the preview
-        this.showDataPreview = true;
-
-        // Show the top steps
-        this.showTopSteps = true;
-
-        // UnShow Add button
-        this.showAddButton = false;
     }
 
     clickDatasourceRow(dsName: string) {
         this.currentDatasetName = dsName;
-        
-        // Show the top steps
-        this.showTopSteps = true;
-
-        // UnShow Add button
-        this.showAddButton = false;
-
         console.log('dsName', dsName, this.filterDataset)
     }
 
     clickSelectDatasource(i: number, name: string) {
+
+        // Show the preview
+        this.showDataPreview = true;
 
         // General var with name - used in *ngIF, etc
         this.curentDatasetID = i;
@@ -371,16 +357,7 @@ export class DataPopupComponent implements OnInit {
         this.pivotResults = []
         this.finalFields = this.globalVariableService.finalFields;
         this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
-
-        // Show the preview
-        this.showDataPreview = true;
         
-        // Show the top steps
-        this.showTopSteps = true;
-
-        // UnShow Add button
-        this.showAddButton = false;
-
     }
 
     clickFileAddTransformationDetail() {
@@ -694,5 +671,4 @@ export class DataPopupComponent implements OnInit {
         this.currentDS = !this.currentDS;
     }
 }
-
 

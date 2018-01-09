@@ -48,4 +48,8 @@ export class DataRefreshComponent implements OnInit {
   	  	this.formDataRefreshClosed.emit(action);
     }
 
+    clickDatasourceRow(id: number) {
+        
+    }
+
   }

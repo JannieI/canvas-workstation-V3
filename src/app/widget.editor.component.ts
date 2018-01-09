@@ -861,7 +861,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     rowField: string = 'Drag a field here ...';
     colField: string = 'Drag a field here ...';
-    colorField: string = 'Drag a field here ...';
+    graphColorField: string = 'Drag a field here ...';
     graphCols: string[];
     graphRows: string[];
     graphColor: string[];
@@ -1026,8 +1026,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         var data = ev.dataTransfer.getData("text");
         // ev.target.appendChild(document.getElementById(data));
-        this.colorField = this.draggedField;
-        console.log('drop_handler dropped !!', this.colorField )
+        this.graphColorField = this.draggedField;
+        console.log('drop_handler dropped !!', this.graphColorField )
 
         let definition = this.createVegaLiteSpec(
             undefined,
