@@ -258,6 +258,10 @@ export class ExploreComponent {
         this.globalVariableService.slicerHeader.subscribe(
             i => this.slicerHeader = i
         );
+        this.globalVariableService.menuActionResize.subscribe(
+            i => { if(i) {this.clickMenuAlignTop()}}
+        );
+        
     }
 
     ngAfterViewInit() {
@@ -734,9 +738,9 @@ export class ExploreComponent {
         console.log(this.currentSlicers, index)
         this.currentSlicers[index].isSelected = !this.currentSlicers[index].isSelected;
         if (this.currentSlicers[index].isSelected ) {
-            this.selectedSlicers.push(index);
+            this.selectedSlicers.push(id);
         } else {
-            this.selectedSlicers.splice(this.selectedSlicers.indexOf(index), 1)
+            this.selectedSlicers.splice(this.selectedSlicers.indexOf(id), 1)
         }
         console.log('clickSlicer', this.selectedSlicers)
     }
@@ -786,7 +790,20 @@ export class ExploreComponent {
     }
 
     clickMenuAlignTop() {
-        console.log('Wow')
+        console.log('clickMenuAlignTop start');
+        let firstTop: number = null;
+        this.currentSlicers.forEach(
+            i => {
+                if (this.selectedSlicers.indexOf(i.id) >= 0) {
+                    if (firstTop == null) {
+                        firstTop = i.containerTop;
+                    } else {
+                        i.containerTop = firstTop;
+                    }
+                }
+            }
+        )
+        console.log('clickMenuAlignTop', this.currentSlicers);
     }
 }
 

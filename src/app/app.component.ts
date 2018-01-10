@@ -616,6 +616,10 @@ export class AppComponent implements OnInit {
 
     }
 
+    clickMenuArrangeAligTop() {
+        this.globalVariableService.menuActionResize.next(true);
+    }
+
     clickMenuArrangeAlignCenterPageDown() {
 
     }
