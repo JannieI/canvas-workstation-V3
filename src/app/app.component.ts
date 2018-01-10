@@ -556,12 +556,11 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuEditSelectAll() {
-        this.globalVariableService.menuActionSelectAll.next(false);
-
+        this.globalVariableService.menuActionSelectAll.next(true);
     }
 
     clickMenuEditSelectNone() {
-
+        this.globalVariableService.menuActionSelectAll.next(false);
     }
 
     clickMenuShapeNew() {
