@@ -1537,7 +1537,7 @@ export class GlobalVariableService {
     showMainMenu = new BehaviorSubject<boolean>(true);
     // Opening forms
     openDashboardFormOnStartup: boolean = false;
-    showModalLanding: boolean = false;  // Shows Landing page
+    showModalLanding: boolean = true;  // Shows Landing page
     // Session
     currentDashboardID = new BehaviorSubject<number>(null);
     sessionDebugging: boolean = true;

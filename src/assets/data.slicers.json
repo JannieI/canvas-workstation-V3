@@ -8,7 +8,7 @@
         "dashboardID": 1,
         "dashboardTabID": 1,
 
-        "id": 0,
+        "id": 1,
         "name": "",
         "description": "",
         "version": 0,
@@ -18,19 +18,19 @@
 
         "isSelected": false,
 
-        "containerBackgroundcolor": "",
+        "containerBackgroundcolor": "yellow",
         "containerBorder": "",
         "containerBoxshadow": "",
         "containerColor": "",
         "containerFontsize": 0,
-        "containerHeight": 0,
-        "containerLeft": 0,
+        "containerHeight": 180,
+        "containerLeft": 220,
         "containerWidgetTitle": "",
-        "containerTop": 0,
-        "containerWidth": 0,
-        "containerZindex": 0,
+        "containerTop": 80,
+        "containerWidth": 140,
+        "containerZindex": 70,
 
-        "titleText": "",
+        "titleText": "First Slicer",
         "titleBackgroundColor": "",
         "titleBorder": "",
         "titleColor": "",
@@ -49,5 +49,56 @@
         "slicerCreatedBy": "",
         "slicerUpdatedOn": "",
         "slicerUpdatedBy": ""
+    },
+    {
+
+    "slicerType": "dropdown",
+
+    "isTrashed": false,
+
+    "dashboardID": 1,
+    "dashboardTabID": 1,
+
+    "id": 1,
+    "name": "",
+    "description": "",
+    "version": 0,
+
+    "datasetID": 0,
+    "fieldName": "",
+
+    "isSelected": false,
+
+    "containerBackgroundcolor": "yellow",
+    "containerBorder": "",
+    "containerBoxshadow": "",
+    "containerColor": "",
+    "containerFontsize": 0,
+    "containerHeight": 180,
+    "containerLeft": 410,
+    "containerWidgetTitle": "",
+    "containerTop": 80,
+    "containerWidth": 140,
+    "containerZindex": 70,
+
+    "titleText": "First Slicer",
+    "titleBackgroundColor": "",
+    "titleBorder": "",
+    "titleColor": "",
+    "titleFontsize": 0,
+    "titleFontWeight": "",
+    "titleHeight": 0,
+    "titleLeft": 0,
+    "titleMargin": "",
+    "titlePadding": "",
+    "titlePosition": "",
+    "titleTextAlign": "",
+    "titleTop": 0,
+    "titleWidth": 0,
+
+    "slicerCreatedOn": "",
+    "slicerCreatedBy": "",
+    "slicerUpdatedOn": "",
+    "slicerUpdatedBy": ""
     }
 ]

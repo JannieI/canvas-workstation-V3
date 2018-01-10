@@ -22,7 +22,7 @@ import { GlobalVariableService }      from './global-variable.service';
 // import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
-import { CanvasShape }                from './models'
+import { CanvasShape, CanvasSlicer }                from './models'
 import { CanvasWidget }               from './models'
 import { Dashboard }                  from './models'
 import { DashboardTab }               from './models'
@@ -136,6 +136,7 @@ export class ExploreComponent {
     currentShapes: CanvasShape[];
     localTrash: CanvasWidget[] = [];
     currentWidgets: CanvasWidget[];
+    currentSlicers: CanvasSlicer[];
     open: Boolean = false;
     presentationMode: boolean;
     showDashboardDescription: boolean = false;
@@ -222,6 +223,14 @@ export class ExploreComponent {
                     this.refreshWidgets();
                     this.refreshShapes2()
                     console.log ('Explore ngOnInit refeshWidgets2 done', i)
+                }
+            }
+        );
+        this.globalVariableService.currentSlicers.subscribe(
+            i => {
+                this.currentSlicers = i.filter(f => f.isTrashed == false)
+                if (this.childrenWidgets !== undefined) {
+                    console.log ('Explore ngOnInit got Slicers', i)
                 }
             }
         );

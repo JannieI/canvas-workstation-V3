@@ -550,7 +550,7 @@
 <div class="slicerContainer" *ngFor="let row of currentSlicers; let i = index"
     #slicerContainer
     [style.background-color]="row.containerBackgroundColor"
-    [style.border]="row.isSelected? '1px solid white' : 'transparent'"
+    [style.border]="row.isSelected? '1px solid black' : 'black'"
     [style.box-shadow]="row.containerBoxshadow"
     [style.height.px]="row.containerHeight"
     [style.left.px]="row.containerLeft"
@@ -558,7 +558,7 @@
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
     >
-    
+    {{ row.id }}
     <div class="slicerContainerDragHandle"
         draggable="true"
         [style.background-color]="showSlicerContainer? 'rgb(238, 236, 236)' : 'transparent'"
