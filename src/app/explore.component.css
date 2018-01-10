@@ -351,12 +351,13 @@
         color:  white;
         display: inline-block;
         left: 8.2rem;
+        padding: 4px;
         position: absolute;
         width: 4rem;
     }
 
     .tabListItem {
-        border: white;
+        border: 1px solid white;
         padding-left: 5px;
     }
 
