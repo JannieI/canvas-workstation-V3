@@ -737,8 +737,8 @@ export class ExploreComponent {
         this.showSlicerContainer = !this.showSlicerContainer;
     }
 
-    clickResizeDown(ev: MouseEvent) {
-        console.log('clickResizeDown', this.slicerWidth, ev);
+    clickResizeDown(ev: MouseEvent, index: number) {
+        console.log('clickResizeDown', this.currentSlicers[index].containerLeft, ev);
         this.startX = ev.x;
         this.startY = ev.y;
         
@@ -751,10 +751,14 @@ export class ExploreComponent {
         
     }
 
-    clickResizeUp(ev: MouseEvent) {
-        this.slicerWidth = this.slicerWidth - this.startX + ev.x;
-        this.slicerButtons = (this.slicerWidth - 50) / 22;
-        console.log('clickResizeUp width buttons ev x-move', this.slicerWidth, this.slicerButtons, ev, 0 - this.startX + ev.x);
+    clickResizeUp(ev: MouseEvent, index: number) {
+        this.currentSlicers[index].containerWidth = 
+            this.currentSlicers[index].containerWidth - this.startX + ev.x;
+        this.currentSlicers[index].nrButtons = 
+            (this.currentSlicers[index].containerWidth - 50) / 22;
+        console.log('clickResizeUp width buttons ev x-move', 
+            this.currentSlicers[index].containerWidth, this.currentSlicers[index].nrButtons, 
+            ev, 0 - this.startX + ev.x);
     }
 
     clickResizeUpDummy(ev: MouseEvent) {

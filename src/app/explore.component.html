@@ -562,7 +562,7 @@
         draggable="true"
         [style.background-color]="row.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
         >
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 1"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 1"
             shape="pencil"
             size="20"
             class="buttonBarIcon"
@@ -570,7 +570,7 @@
             title="Edit Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 1"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 1"
             shape="pop-out"
             size="20"
             class="buttonBarIcon"
@@ -578,7 +578,7 @@
             title="Show Checkpoints"
             >
         </clr-icon>
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 2"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 2"
             shape="note"
             size="20"
             class="buttonBarIcon"
@@ -586,7 +586,7 @@
             title="Show Comments"
             >
         </clr-icon>
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 3"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 3"
             shape="link"
             size="20"
             class="buttonBarIcon"
@@ -594,7 +594,7 @@
             title="Show Links"
             >
         </clr-icon>
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 4"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 4"
             shape="refresh"
             size="20"
             class="buttonBarIcon"
@@ -602,7 +602,7 @@
             title="Refresh Dataset for this Widget only"
             >
         </clr-icon>
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 5  &&  hasDatasources"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 5  &&  hasDatasources"
             shape="copy"
             size="20"
             class="buttonBarIcon"
@@ -610,7 +610,7 @@
             title="Duplicate this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 6"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 6"
             shape="pop-out"
             size="20"
             class="buttonBarIcon"
@@ -618,7 +618,7 @@
             title="Expand the Dataset for this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 7"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 7"
             shape="export"
             size="20"
             class="buttonBarIcon"
@@ -626,7 +626,7 @@
             title="Export the Dataset for this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 8  &&  hasDatasources"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 8  &&  hasDatasources"
             shape="deploy"
             size="20"
             class="buttonBarIcon"
@@ -634,7 +634,7 @@
             title="Move Widget back"
             >
         </clr-icon>
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 9  &&  hasDatasources"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 9  &&  hasDatasources"
             shape="block"
             size="20"
             class="buttonBarIcon"
@@ -642,7 +642,7 @@
             title="Move Widget forward"
             >
         </clr-icon>
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 10  &&  hasDatasources"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 10  &&  hasDatasources"
             shape="trash"
             size="20"
             class="buttonBarIcon"
@@ -650,7 +650,7 @@
             title="Delete this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 11  &&  hasDatasources"
+        <clr-icon *ngIf="row.isSelected  &&  row.nrButtons > 11  &&  hasDatasources"
             shape="cursor-arrow"
             size="20"
             class="buttonBarIcon"
@@ -700,9 +700,9 @@
     </div>
     <div class="slicerContainerRightHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeDown($event)"
-        (mouseup)="clickResizeUp($event)"
-        (dragend)="clickResizeUp($event)"
+        (mousedown)="clickResizeDown($event, i)"
+        (mouseup)="clickResizeUp($event, i)"
+        (dragend)="clickResizeUp($event, i)"
         draggable="true"       
         >
     </div>

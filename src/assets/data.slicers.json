@@ -17,6 +17,7 @@
         "fieldName": "",
 
         "isSelected": false,
+        "nrButtons": 5,
 
         "containerBackgroundcolor": "yellow",
         "containerBorder": "",
@@ -68,6 +69,7 @@
     "fieldName": "",
 
     "isSelected": false,
+    "nrButtons": 5,
 
     "containerBackgroundcolor": "yellow",
     "containerBorder": "",

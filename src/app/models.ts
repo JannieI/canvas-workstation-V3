@@ -195,6 +195,7 @@ export class CanvasSlicer {
 
     // @Runtime
     isSelected: boolean;
+    nrButtons: number;
 
     // Container
     containerBackgroundcolor: string;
