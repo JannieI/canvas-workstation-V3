@@ -154,34 +154,35 @@
 .slicerContainer {
     background-color: transparent;
     border: 1px solid lightgray;
-    z-index: 71;
-    margin: 0;
-    padding: 0;
     bottom: 100px;
-    position: absolute;
-    left: 830px;
     display: grid;
-    min-width: 120px;
     grid-template-columns: 3px 7px 1fr 16px 1fr 7px 3px;
     grid-template-rows: 3px 7px 3px 1fr 16px 1fr 7px 3px;
+    left: 830px;
+    margin: 0;
+    min-width: 165px;
+    padding: 0;
+    position: absolute;
+    z-index: 71;
 }
     .slicerContainerDragHandle {
+        background-color: rgb(238, 236, 236);
         grid-column-start: 3;
         grid-column-end: 6;
         grid-row-start: 3;
         grid-row-end: 7;
         margin: 3px !important;
         margin: 0;
+        min-width: 140px;
         padding: 0;
-        background-color: rgb(238, 236, 236);
         z-index: 69;
     }
     .slicer {
+        background-color: lightgray;
         border: '1px solid gray';
         margin: 12px 0 0 0;
         padding: 0;
         z-index: 70;
-        background-color: lightgray;
     }
     .slicer:hover {
         background-color: lightgray;

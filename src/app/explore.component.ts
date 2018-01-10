@@ -716,7 +716,7 @@ export class ExploreComponent {
     }
 
     clickSlicer() {
-        this.showSlicerContainer = true;
+        this.showSlicerContainer = !this.showSlicerContainer;
     }
 
     clickResizeDown(ev: MouseEvent) {
