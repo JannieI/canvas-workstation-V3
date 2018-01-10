@@ -816,6 +816,13 @@ export class ExploreComponent {
             this.currentSlicers.forEach(
                 i => i.isSelected = false
             )
+        } else  {
+            this.currentSlicers.forEach(
+                i => {
+                        i.isSelected = true;
+                        this.selectedSlicers.push(i.id);
+                }
+            )
         }
     }
 }
