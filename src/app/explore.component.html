@@ -558,12 +558,11 @@
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
     >
-    {{ row.id }}
     <div class="slicerContainerDragHandle"
         draggable="true"
-        [style.background-color]="showSlicerContainer? 'rgb(238, 236, 236)' : 'transparent'"
+        [style.background-color]="row.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
         >
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 1"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 1"
             shape="pencil"
             size="20"
             class="buttonBarIcon"
@@ -571,7 +570,7 @@
             title="Edit Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 1"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 1"
             shape="pop-out"
             size="20"
             class="buttonBarIcon"
@@ -579,7 +578,7 @@
             title="Show Checkpoints"
             >
         </clr-icon>
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 2"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 2"
             shape="note"
             size="20"
             class="buttonBarIcon"
@@ -587,7 +586,7 @@
             title="Show Comments"
             >
         </clr-icon>
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 3"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 3"
             shape="link"
             size="20"
             class="buttonBarIcon"
@@ -595,7 +594,7 @@
             title="Show Links"
             >
         </clr-icon>
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 4"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 4"
             shape="refresh"
             size="20"
             class="buttonBarIcon"
@@ -603,7 +602,7 @@
             title="Refresh Dataset for this Widget only"
             >
         </clr-icon>
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 5  &&  hasDatasources"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 5  &&  hasDatasources"
             shape="copy"
             size="20"
             class="buttonBarIcon"
@@ -611,7 +610,7 @@
             title="Duplicate this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 6"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 6"
             shape="pop-out"
             size="20"
             class="buttonBarIcon"
@@ -619,7 +618,7 @@
             title="Expand the Dataset for this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 7"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 7"
             shape="export"
             size="20"
             class="buttonBarIcon"
@@ -627,7 +626,7 @@
             title="Export the Dataset for this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 8  &&  hasDatasources"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 8  &&  hasDatasources"
             shape="deploy"
             size="20"
             class="buttonBarIcon"
@@ -635,7 +634,7 @@
             title="Move Widget back"
             >
         </clr-icon>
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 9  &&  hasDatasources"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 9  &&  hasDatasources"
             shape="block"
             size="20"
             class="buttonBarIcon"
@@ -643,7 +642,7 @@
             title="Move Widget forward"
             >
         </clr-icon>
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 10  &&  hasDatasources"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 10  &&  hasDatasources"
             shape="trash"
             size="20"
             class="buttonBarIcon"
@@ -651,7 +650,7 @@
             title="Delete this Widget"
             >
         </clr-icon>
-        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 11  &&  hasDatasources"
+        <clr-icon *ngIf="row.isSelected  &&  slicerButtons > 11  &&  hasDatasources"
             shape="cursor-arrow"
             size="20"
             class="buttonBarIcon"
@@ -661,10 +660,10 @@
         </clr-icon>
         
         <div class="slicer" *ngIf="showSlicer"
-            [style.z-index]="showSlicerContainer?  '68' : '70'" 
+            [style.z-index]="row.isSelected?  '68' : '70'" 
             >
             <section class="form-block" title="Filter the Budget dataset on Make of Car">
-                <div class="slicerLabel" (click)="clickSlicer()">
+                <div class="slicerLabel" (click)="clickSlicer(i)">
                     <b>{{ slicerHeader }}
                         <clr-icon shape="times" (click)="clickSlicerDelete()"></clr-icon>
                     </b>
@@ -684,23 +683,23 @@
         </div>
     </div>
     <div class="slicerContainerTopLeftHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         >
     </div>
     <div class="slicerContainerTopHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         >
     </div>
     <div class="slicerContainerTopRightHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         >
     </div>
     <div class="slicerContainerRightTopHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         >
     </div>
     <div class="slicerContainerRightHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeDown($event)"
         (mouseup)="clickResizeUp($event)"
         (dragend)="clickResizeUp($event)"
@@ -708,31 +707,31 @@
         >
     </div>
     <div class="slicerContainerRightBottomHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         >
     </div>
     <div class="slicerContainerBottomRightHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         >
     </div>
     <div class="slicerContainerBottomLeftHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         >
     </div>
     <div class="slicerContainerBottomHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         >
     </div>
     <div class="slicerContainerLeftBottomHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         >
     </div>
     <div class="slicerContainerLeftHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         >
     </div>
     <div class="slicerContainerLeftTopHandle"
-        [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         >
     </div>
 

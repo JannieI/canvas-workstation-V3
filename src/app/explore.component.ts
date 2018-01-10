@@ -728,8 +728,9 @@ export class ExploreComponent {
         this.showSlicer = false;
     }
 
-    clickSlicer() {
-        this.showSlicerContainer = !this.showSlicerContainer;
+    clickSlicer(index: number) {
+        console.log(this.currentSlicers, index)
+        this.currentSlicers[index].isSelected = !this.currentSlicers[index].isSelected;
     }
 
     clickSlicerDummy() {
