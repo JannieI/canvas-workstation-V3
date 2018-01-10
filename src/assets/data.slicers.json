@@ -16,6 +16,8 @@
         "datasetID": 0,
         "fieldName": "",
 
+        "isSelected": false,
+
         "containerBackgroundcolor": "",
         "containerBorder": "",
         "containerBoxshadow": "",
