@@ -156,25 +156,45 @@
     border: 1px solid lightgray;
     z-index: 71;
     margin: 0;
-    padding: 0;
+    padding: 2px;
     bottom: 100px;
     position: absolute;
     right: 30px;
     display: grid;
     min-width: 120px;
-    height: 195px;
-    width: 160px;
-    grid-template-columns: 5px 15px 1fr 20px 1fr 15px 5px;
-    grid-template-rows: 5px 15px 5px 1fr 20px 1fr 15px 5px;
+    grid-template-columns: 4px 12px 1fr 16px 1fr 12px 4px;
+    grid-template-rows: 4px 12px 4px 1fr 16px 1fr 12px 4px;
 }
     .slicerContainerDragHandle {
-        grid-column-start: 1;
-        grid-column-end: 8;
+        grid-column-start: 2;
+        grid-column-end: 7;
         grid-row-start: 2;
-        grid-row-end: 4;
+        grid-row-end: 8;
         margin: 0;
         padding: 0;
+        background-color: rgb(247, 243, 243);
+        z-index: 69;
     }
+    .slicer {
+        border: '1px solid gray';
+        margin: 12px 2px 2px 2px;
+        padding: 0;
+        z-index: 70;
+        background-color: lightgray;
+    }
+    .slicer:hover {
+        background-color: lightgray;
+    }
+        .slicerLabel {
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        .form-block {
+            border: 1px solid black !important;
+            border-radius: 5px !important;
+        }
+
     .slicerContainerTopLeftHandle {
         grid-column-start: 1;
         grid-column-end: 3;
@@ -283,30 +303,6 @@
         padding: 0;
         background-color: #929699;
     }
-    .slicer {
-        border: '1px solid gray';
-        grid-column-start: 3;
-        grid-column-end: 6;
-        grid-row-start: 4;
-        grid-row-end: 7;
-        margin:0;
-        padding: 0;
-        z-index: 70;
-        background-color: lightgray;
-    }
-    .slicer:hover {
-        background-color: lightgray;
-    }
-        .slicerLabel {
-            background-color: black;
-            color: white;
-            text-align: center;
-        }
-
-        .form-block {
-            border: 1px solid black !important;
-            border-radius: 5px !important;
-        }
 
 
 /* Grid */
