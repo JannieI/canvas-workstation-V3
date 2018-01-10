@@ -26,6 +26,8 @@ This document describes items for later versions of Canvas.
 8. Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure there is a preference to switch it back on manually.
 9. Some models like Shape has dashboardTabName - suggest we delete this
 10.Consider highlight of selected row in Snapshots.  If good, apply to all Grids.  Better: consider a GRID-COMPONENT ...
+11.It should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
+12.It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
 
 
 **Data**
@@ -51,7 +53,7 @@ This document describes items for later versions of Canvas.
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc
-2.
+2. Open: all Ds using a given Template
 4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
    for March last year, or compare all to last year ... NB
 5. Also, easy way to jump to previous period:  loaded at start with data ??
@@ -73,11 +75,13 @@ This document describes items for later versions of Canvas.
 
 **Templates**
 1. Loading a template - make sure to respect security / rights + all is read-only
+2. D used as Templates may include templates already!  This is to simplify things, and a string of dependencies - it is thus restricted to one level.  A T can be used in may D, no issue.
 3. Add Datasources to Dashboard, but flag them as invisible.  Thus, Dashboard can use them
    in Template only, and user cannot use them.  If the user needs that Datasource, he can
    add it, in which case it will be duplicated, one invisible.
 4. If this gets too complicated, only use Shapes on Templates.
 5. Ensure Templates are on different layers / z-index
+6. When a T is changed, the user is warned which Ds use it - he can see their names and maybe even open them.
 
 
 

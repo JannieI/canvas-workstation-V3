@@ -261,6 +261,9 @@ export class ExploreComponent {
         this.globalVariableService.menuActionResize.subscribe(
             i => { if(i) {this.clickMenuAlignTop()}}
         );
+        this.globalVariableService.menuActionSelectAll.subscribe(
+            i => this.clickMenuSelectAll(i)
+        );
         
     }
 
@@ -804,6 +807,16 @@ export class ExploreComponent {
             }
         )
         console.log('clickMenuAlignTop', this.currentSlicers);
+    }
+
+    clickMenuSelectAll(value: boolean) {
+        console.log('clickMenuSelectAll', value)
+        if (!value) {
+            this.selectedSlicers = [];
+            this.currentSlicers.forEach(
+                i => i.isSelected = false
+            )
+        }
     }
 }
 
