@@ -193,6 +193,9 @@ export class CanvasSlicer {
     datasetID: number;
     fieldName: string;
 
+    // @Runtime
+    isSelected: boolean;
+
     // Container
     containerBackgroundcolor: string;
     containerBorder: string;

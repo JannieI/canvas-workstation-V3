@@ -182,7 +182,6 @@
         border: '1px solid gray';
         margin: 2px 0 0 0;
         padding: 0;
-        z-index: 70;
     }
     .slicer:hover {
         background-color: lightgray;

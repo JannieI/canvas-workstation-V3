@@ -157,9 +157,9 @@ export class ExploreComponent {
     
     temp: number[] = [0];
     showSlicerContainer: boolean = false;
-    slicerHeight: number = 160;
+    slicerHeight: number = 178;
     slicerWidth: number = 160;
-    slicerButtons: number = 3;
+    slicerButtons: number = 5;
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -715,7 +715,15 @@ export class ExploreComponent {
         this.showSlicer = false;
     }
 
+    clickSlicerDeleteDummy() {
+        this.showSlicer = false;
+    }
+
     clickSlicer() {
+        this.showSlicerContainer = !this.showSlicerContainer;
+    }
+
+    clickSlicerDummy() {
         this.showSlicerContainer = !this.showSlicerContainer;
     }
 
@@ -726,12 +734,24 @@ export class ExploreComponent {
         
     }
 
+    clickResizeDownDummy(ev: MouseEvent) {
+        console.log('clickResizeDown', this.slicerWidth, ev);
+        this.startX = ev.x;
+        this.startY = ev.y;
+        
+    }
+
     clickResizeUp(ev: MouseEvent) {
         this.slicerWidth = this.slicerWidth - this.startX + ev.x;
-        this.slicerButtons = (this.slicerWidth - 46) / 22;
+        this.slicerButtons = (this.slicerWidth - 50) / 22;
         console.log('clickResizeUp width buttons ev x-move', this.slicerWidth, this.slicerButtons, ev, 0 - this.startX + ev.x);
     }
 
+    clickResizeUpDummy(ev: MouseEvent) {
+        this.slicerWidth = this.slicerWidth - this.startX + ev.x;
+        this.slicerButtons = (this.slicerWidth - 50) / 22;
+        console.log('clickResizeUp width buttons ev x-move', this.slicerWidth, this.slicerButtons, ev, 0 - this.startX + ev.x);
+    }
 }
 
 
