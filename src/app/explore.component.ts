@@ -134,9 +134,9 @@ export class ExploreComponent {
     isFirstTimePresentation: boolean;
     // localDashboards: dl.spec.TopLevelExtendedSpec[];
     currentShapes: CanvasShape[];
-    localTrash: CanvasWidget[] = [];
     currentWidgets: CanvasWidget[];
     currentSlicers: CanvasSlicer[];
+    localTrash: CanvasWidget[] = [];
     open: Boolean = false;
     presentationMode: boolean;
     showDashboardDescription: boolean = false;
@@ -824,6 +824,12 @@ export class ExploreComponent {
                 }
             )
         }
+    }
+
+    selectDashboardTab(index: number) {
+        console.log('selectDashboardTab', index)
+        this.showTabList=!this.showTabList;
+        this.currentTabName = this.currentDashboardTabs[index].name;
     }
 }
 

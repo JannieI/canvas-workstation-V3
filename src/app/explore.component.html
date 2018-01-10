@@ -926,10 +926,11 @@
 
 <!-- Tab List -->
 <div class="tabList" *ngIf="showTabList">
-    <div class="tabListItem" (click)="showTabList=!showTabList">Summary</div>
-    <div class="tabListItem" (click)="showTabList=!showTabList">Budget</div>
-    <div class="tabListItem" (click)="showTabList=!showTabList">Europe</div>
-    <div class="tabListItem" (click)="showTabList=!showTabList">Headcount</div>
+    <div class="tabListItem" *ngFor="let row of currentDashboardTabs; let i = index" 
+        (click)="selectDashboardTab(i)"
+        >
+        {{row.name}}
+    </div>
     <button
         type="button"
         class="btn btn-link"
