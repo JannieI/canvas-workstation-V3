@@ -663,9 +663,8 @@
             [style.z-index]="row.isSelected?  '68' : '70'" 
             >
             <section class="form-block" title="Filter the Budget dataset on Make of Car">
-                <div class="slicerLabel" (click)="clickSlicer(i)">
+                <div class="slicerLabel" (click)="clickSlicer(i, row.id)">
                     <b>{{ slicerHeader }}
-                        <clr-icon shape="times" (click)="clickSlicerDelete()"></clr-icon>
                     </b>
                 </div>
                 <div class="form-group">

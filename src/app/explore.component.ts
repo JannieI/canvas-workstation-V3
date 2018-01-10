@@ -40,6 +40,10 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
 // Own Components
 
+interface selectedSlicers { type: string;
+    index: number;
+}
+
 // Constants
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
 {
@@ -161,6 +165,8 @@ export class ExploreComponent {
     slicerHeight: number = 178;
     slicerWidth: number = 160;
     slicerButtons: number = 5;
+    selectedSlicers: selectedSlicers[] = []
+
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -728,9 +734,21 @@ export class ExploreComponent {
         this.showSlicer = false;
     }
 
-    clickSlicer(index: number) {
+    clickSlicer(index: number, id: number) {
         console.log(this.currentSlicers, index)
         this.currentSlicers[index].isSelected = !this.currentSlicers[index].isSelected;
+        if (this.currentSlicers[index].isSelected ) {
+            this.selectedSlicers.push(
+                { type: 'slicer',
+                  index: index
+                }
+            )
+        } else {
+            this.selectedSlicers = this.selectedSlicers.filter(
+                i => i.index != index
+            )
+        }
+        console.log('clickSlicer', this.selectedSlicers)
     }
 
     clickSlicerDummy() {
@@ -752,10 +770,20 @@ export class ExploreComponent {
     }
 
     clickResizeUp(ev: MouseEvent, index: number) {
+        console.log('clickResizeUp starts index', index)
+
+        // Reset current and globalVar values
         this.currentSlicers[index].containerWidth = 
             this.currentSlicers[index].containerWidth - this.startX + ev.x;
+        this.globalVariableService.currentSlicers.value[index].containerWidth =   
+            this.currentSlicers[index].containerWidth;    
+                
+        // console.log('clickResizeUp this.globalVariableService.currentSlicers[index].value',
+        //     index, this.globalVariableService.currentSlicers.value[index])
+
         this.currentSlicers[index].nrButtons = 
             (this.currentSlicers[index].containerWidth - 50) / 22;
+
         console.log('clickResizeUp width buttons ev x-move', 
             this.currentSlicers[index].containerWidth, this.currentSlicers[index].nrButtons, 
             ev, 0 - this.startX + ev.x);
@@ -765,6 +793,10 @@ export class ExploreComponent {
         this.slicerWidth = this.slicerWidth - this.startX + ev.x;
         this.slicerButtons = (this.slicerWidth - 50) / 22;
         console.log('clickResizeUp width buttons ev x-move', this.slicerWidth, this.slicerButtons, ev, 0 - this.startX + ev.x);
+    }
+
+    clickMenuAlignTop() {
+        console.log('Wow')
     }
 }
 
