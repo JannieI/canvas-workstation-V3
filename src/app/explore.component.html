@@ -557,6 +557,15 @@
         draggable="true"
         [style.background-color]="showSlicerContainer? 'rgb(238, 236, 236)' : 'transparent'"
         >
+        <clr-icon *ngIf="showSlicerContainer"
+            shape="pencil"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickWidgetEdit(i)"
+            title="Edit Widget"
+            >
+        </clr-icon>
+        
         <div class="slicer" *ngIf="showSlicer">
             <section class="form-block" title="Filter the Budget dataset on Make of Car">
                 <div class="slicerLabel" (click)="clickSlicer()">

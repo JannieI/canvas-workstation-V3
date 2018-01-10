@@ -180,7 +180,7 @@
     .slicer {
         background-color: lightgray;
         border: '1px solid gray';
-        margin: 12px 0 0 0;
+        margin: 2px 0 0 0;
         padding: 0;
         z-index: 70;
     }
