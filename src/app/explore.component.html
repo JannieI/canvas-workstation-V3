@@ -549,11 +549,13 @@
 <!-- Dummy Slicer -->
 <div class="slicerContainer" 
     [style.border]="showSlicerContainer? '1px solid white' : 'transparent'"
+    [style.height.px]="slicerHeight"
+    [style.width.px]="slicerWidth"
     >
     
     <div class="slicerContainerDragHandle"
         draggable="true"
-        [style.background-color]="showSlicerContainer? '#bfc1c4' : 'transparent'"
+        [style.background-color]="showSlicerContainer? 'rgb(238, 236, 236)' : 'transparent'"
         >
         <div class="slicer" *ngIf="showSlicer">
             <section class="form-block" title="Filter the Budget dataset on Make of Car">
@@ -594,6 +596,10 @@
     </div>
     <div class="slicerContainerRightHandle"
         [style.background-color]="showSlicerContainer? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event)"
+        (mouseup)="clickResizeUp($event)"
+        (dragend)="clickResizeUp($event)"
+        draggable="true"       
         >
     </div>
     <div class="slicerContainerRightBottomHandle"

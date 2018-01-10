@@ -156,28 +156,29 @@
     border: 1px solid lightgray;
     z-index: 71;
     margin: 0;
-    padding: 2px;
+    padding: 0;
     bottom: 100px;
     position: absolute;
-    right: 30px;
+    left: 830px;
     display: grid;
     min-width: 120px;
-    grid-template-columns: 4px 12px 1fr 16px 1fr 12px 4px;
-    grid-template-rows: 4px 12px 4px 1fr 16px 1fr 12px 4px;
+    grid-template-columns: 3px 7px 1fr 16px 1fr 7px 3px;
+    grid-template-rows: 3px 7px 3px 1fr 16px 1fr 7px 3px;
 }
     .slicerContainerDragHandle {
-        grid-column-start: 2;
-        grid-column-end: 7;
-        grid-row-start: 2;
-        grid-row-end: 8;
+        grid-column-start: 3;
+        grid-column-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 7;
+        margin: 3px !important;
         margin: 0;
         padding: 0;
-        background-color: rgb(247, 243, 243);
+        background-color: rgb(238, 236, 236);
         z-index: 69;
     }
     .slicer {
         border: '1px solid gray';
-        margin: 12px 2px 2px 2px;
+        margin: 12px 0 0 0;
         padding: 0;
         z-index: 70;
         background-color: lightgray;

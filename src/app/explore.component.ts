@@ -157,7 +157,10 @@ export class ExploreComponent {
     
     temp: number[] = [0];
     showSlicerContainer: boolean = false;
-    
+    slicerHeight: number = 160;
+    slicerWidth: number = 160;
+
+
     constructor(
         // private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -715,6 +718,19 @@ export class ExploreComponent {
     clickSlicer() {
         this.showSlicerContainer = true;
     }
+
+    clickResizeDown(ev: MouseEvent) {
+        console.log('clickResizeDown', this.slicerWidth, ev);
+        this.startX = ev.x;
+        this.startY = ev.y;
+        
+    }
+
+    clickResizeUp(ev: MouseEvent) {
+        this.slicerWidth = this.slicerWidth - this.startX + ev.x;
+        console.log('clickResizeUp', this.slicerWidth, ev, 0 - this.startX + ev.x);
+    }
+
 }
 
 
