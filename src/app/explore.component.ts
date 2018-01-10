@@ -40,10 +40,6 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
 // Own Components
 
-interface selectedSlicers { type: string;
-    index: number;
-}
-
 // Constants
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
 {
@@ -165,7 +161,7 @@ export class ExploreComponent {
     slicerHeight: number = 178;
     slicerWidth: number = 160;
     slicerButtons: number = 5;
-    selectedSlicers: selectedSlicers[] = []
+    selectedSlicers: number[] = []
 
 
     constructor(
@@ -738,15 +734,9 @@ export class ExploreComponent {
         console.log(this.currentSlicers, index)
         this.currentSlicers[index].isSelected = !this.currentSlicers[index].isSelected;
         if (this.currentSlicers[index].isSelected ) {
-            this.selectedSlicers.push(
-                { type: 'slicer',
-                  index: index
-                }
-            )
+            this.selectedSlicers.push(index);
         } else {
-            this.selectedSlicers = this.selectedSlicers.filter(
-                i => i.index != index
-            )
+            this.selectedSlicers.splice(this.selectedSlicers.indexOf(index), 1)
         }
         console.log('clickSlicer', this.selectedSlicers)
     }
