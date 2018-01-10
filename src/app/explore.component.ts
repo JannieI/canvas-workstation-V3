@@ -159,7 +159,7 @@ export class ExploreComponent {
     showSlicerContainer: boolean = false;
     slicerHeight: number = 160;
     slicerWidth: number = 160;
-
+    slicerButtons: number = 3;
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -728,7 +728,8 @@ export class ExploreComponent {
 
     clickResizeUp(ev: MouseEvent) {
         this.slicerWidth = this.slicerWidth - this.startX + ev.x;
-        console.log('clickResizeUp', this.slicerWidth, ev, 0 - this.startX + ev.x);
+        this.slicerButtons = (this.slicerWidth - 46) / 22;
+        console.log('clickResizeUp width buttons ev x-move', this.slicerWidth, this.slicerButtons, ev, 0 - this.startX + ev.x);
     }
 
 }

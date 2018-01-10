@@ -557,12 +557,100 @@
         draggable="true"
         [style.background-color]="showSlicerContainer? 'rgb(238, 236, 236)' : 'transparent'"
         >
-        <clr-icon *ngIf="showSlicerContainer"
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 1"
             shape="pencil"
             size="20"
             class="buttonBarIcon"
             (click)="clickWidgetEdit(i)"
             title="Edit Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 1"
+            shape="pop-out"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickWidgetCheckpoints(i)"
+            title="Show Checkpoints"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 2"
+            shape="note"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetComments(i)"
+            title="Show Comments"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 3"
+            shape="link"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetLinks(i)"
+            title="Show Links"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 4"
+            shape="refresh"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetRefresh(i)"
+            title="Refresh Dataset for this Widget only"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 5  &&  hasDatasources"
+            shape="copy"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetDuplicate(i)"
+            title="Duplicate this Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 6"
+            shape="pop-out"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetExpand(i)"
+            title="Expand the Dataset for this Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 7"
+            shape="export"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetExport(i)"
+            title="Export the Dataset for this Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 8  &&  hasDatasources"
+            shape="deploy"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuArrangeBack(i)"
+            title="Move Widget back"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 9  &&  hasDatasources"
+            shape="block"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuArrangeFront(i)"
+            title="Move Widget forward"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 10  &&  hasDatasources"
+            shape="trash"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetDelete(i)"
+            title="Delete this Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="showSlicerContainer  &&  slicerButtons > 11  &&  hasDatasources"
+            shape="cursor-arrow"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickSelect(i)"
+            title="Select this Widget"
             >
         </clr-icon>
         
