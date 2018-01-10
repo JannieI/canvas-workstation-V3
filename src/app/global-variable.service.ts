@@ -1540,6 +1540,7 @@ export class GlobalVariableService {
     showModalLanding: boolean = true;  // Shows Landing page
     // Session
     currentDashboardID = new BehaviorSubject<number>(null);
+    currentDashboardTabID = new BehaviorSubject<number>(1);
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;

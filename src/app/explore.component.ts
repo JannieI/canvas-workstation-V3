@@ -475,29 +475,28 @@ export class ExploreComponent {
     }
 
     clickShowFirstTab() {
-        this.currentTabName = 'Summary'
+        this.currentTabName = this.currentDashboardTabs[0].name;
     }
 
     clickShowPreviousTab() {
-        if (this.currentTabName == 'Summary') {this.currentTabName = 'Headcount'}
-        else if (this.currentTabName == 'Headcount') {this.currentTabName = 'Europe'}
-        else if (this.currentTabName == 'Europe') {this.currentTabName = 'Budget'}
-        else if (this.currentTabName == 'Budget') {this.currentTabName = 'Summary'};
+        let x: number = this.globalVariableService.currentDashboardTabID.value - 1;
+        if (x < 0) { x = this.currentDashboardTabs.length - 1 };
+        this.globalVariableService.currentDashboardTabID.next(x);
+        this.currentTabName = this.currentDashboardTabs[x].name;
     }
 
     clickShowNextTab() {
-        console.log('Explore clickShowNextTab Next START widgets: ', this.globalVariableService.widgets)
-        console.log('Explore clickShowNextTab    Next 0 Tabs: ', this.globalVariableService.currentDashboardTabs.value)
-        
-        if (this.currentTabName == 'Summary') {this.currentTabName = 'Budget'}
-        else if (this.currentTabName == 'Budget') {this.currentTabName = 'Europe'}
-        else if (this.currentTabName == 'Europe') {this.currentTabName = 'Headcount'}
-        else if (this.currentTabName == 'Headcount') {this.currentTabName = 'Summary'};
+        console.log('Explore clickShowNextTab', this.globalVariableService.currentDashboardTabID.value)
+        let x: number = this.globalVariableService.currentDashboardTabID.value + 1;
+        if (x >= this.currentDashboardTabs.length) { x = 0 };
+        this.globalVariableService.currentDashboardTabID.next(x);
+        this.currentTabName = this.currentDashboardTabs[x].name;
     }
 
     clickShowLastTab() {
-        this.currentTabName = 'Headcount'
         console.log('Explore clickShowLastTab',this.currentTabName)
+        this.currentTabName = this.currentDashboardTabs[
+            this.currentDashboardTabs.length - 1].name;        
     }
 
     clickCloseModel() {
