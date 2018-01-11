@@ -1539,7 +1539,7 @@ export class GlobalVariableService {
     openDashboardFormOnStartup: boolean = false;
     showModalLanding: boolean = true;  // Shows Landing page
     // Session
-    currentDashboardID = new BehaviorSubject<number>(null);
+    currentDashboardID:number = 0; // = new BehaviorSubject<number>(null);
     currentDashboardTabID = new BehaviorSubject<number>(1);
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
@@ -1697,19 +1697,19 @@ export class GlobalVariableService {
         // private globalFunctionService: GlobalFunctionService,
     ) {
         // this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
-        this.currentDashboardID.subscribe(
-            i => {
-                    // Dont refresh at initialise: landing page will decide which ID to load ...
-                    if (i != null) {
-                        this.refreshCurrentDashboardInfo(i, 1);
-                    };
-                 }
-        );
+        // this.currentDashboardID.subscribe(
+        //     i => {
+        //             // Dont refresh at initialise: landing page will decide which ID to load ...
+        //             if (i != null) {
+        //                 this.refreshCurrentDashboardInfo(i, 1);
+        //             };
+        //          }
+        // );
      }
 
     refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number) {
         // Refreshes all info related to current D
-        console.log('Global-Variables refreshCurrentDashboardInfo D id = ', dashboardID)
+        console.log('Global-Variables refreshCurrentDashboardInfo D,T id = ', dashboardID, dashboardTabID)
 
         // Load Dashboard Themes
         this.getDashboardThemes();

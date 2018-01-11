@@ -491,6 +491,7 @@ export class ExploreComponent {
         if (x >= this.currentDashboardTabs.length) { x = 0 };
         this.globalVariableService.currentDashboardTabID.next(x);
         this.currentTabName = this.currentDashboardTabs[x].name;
+        this.globalVariableService.refreshCurrentDashboardInfo(1,x)
     }
 
     clickShowLastTab() {

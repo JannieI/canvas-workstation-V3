@@ -77,7 +77,8 @@ export class LandingComponent implements OnInit {
 		};
 
 		// Load the dashboardID - Observable that will refresh all needed for current D
-		this.globalVariableService.currentDashboardID.next(dashboardID);
+		// this.globalVariableService.currentDashboardID.next(dashboardID);
+		this.globalVariableService.refreshCurrentDashboardInfo(dashboardID, 1);
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();
@@ -96,7 +97,8 @@ export class LandingComponent implements OnInit {
 	};
 
 	// Load the dashboardID - Observable that will refresh all needed for current D
-	this.globalVariableService.currentDashboardID.next(dashboardID);
+	// this.globalVariableService.currentDashboardID.next(dashboardID);
+	this.globalVariableService.refreshCurrentDashboardInfo(dashboardID, 1);
 
 	// Close modal, and show the Dashboard
 	this.formLandingClosed.emit();
