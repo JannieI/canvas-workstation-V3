@@ -205,7 +205,7 @@ export class CanvasSlicer {
     containerFontsize: number;
     containerHeight: number;
     containerLeft: number;
-    containerWidgetTitle: string;         // Title at top of container
+    containerTitle: string;         // Title at top of container
     containerTop: number;
     containerWidth: number;
     containerZindex: number;

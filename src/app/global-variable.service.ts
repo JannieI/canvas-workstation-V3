@@ -1027,7 +1027,6 @@ export class GlobalVariableService {
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
     datasets: any = datasets;
-    slicerHeader = new BehaviorSubject<string>('Filer: Make')
     finalFields: any = finalFields;
 
 
@@ -1085,7 +1084,7 @@ export class GlobalVariableService {
     // StatusBar
     statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);
     statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
-    statusBarMessages = new BehaviorSubject<string>('1 Message');
+    statusBarMessages = new BehaviorSubject<string>('1 Msg');
 
 
     // Temp vars

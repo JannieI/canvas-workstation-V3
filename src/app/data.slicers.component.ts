@@ -46,7 +46,6 @@ import { GlobalVariableService }      from './global-variable.service';
         }
 
     clickSave() {
-      this.globalVariableService.slicerHeader.next('Changed')
 	  	this.formDataSlicersClosed.emit('Saved');
     }
   }

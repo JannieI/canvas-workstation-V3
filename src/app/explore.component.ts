@@ -148,7 +148,6 @@ export class ExploreComponent {
     showNewTab: boolean = false;
     showSlicer: boolean = true;
     showTabList: boolean = false;
-    slicerHeader: string;
     startX: number;
     startY: number;
     statusBarRunning: string = '';
@@ -224,9 +223,6 @@ export class ExploreComponent {
 
                         };
             }
-        );
-        this.globalVariableService.slicerHeader.subscribe(
-            i => this.slicerHeader = i
         );
         this.globalVariableService.menuActionResize.subscribe(
             i => { if(i) {this.clickMenuAlignTop()}}
