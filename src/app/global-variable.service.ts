@@ -1074,7 +1074,7 @@ export class GlobalVariableService {
     showModalLanding: boolean = true;  // Shows Landing page
     // Session
     currentDashboardID:number = 0; // = new BehaviorSubject<number>(null);
-    currentDashboardTabID = new BehaviorSubject<number>(1);
+    currentDashboardTabID:number = 0; //  = new BehaviorSubject<number>(1);
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
@@ -1308,7 +1308,9 @@ export class GlobalVariableService {
         // Load Current DatasourcePivots
         this.getCurrentDatasourcePivots(1);     
 
-        
+        // Reset Global Vars
+        this.currentDashboardID = dashboardID;
+        this.currentDashboardTabID = dashboardTabID;
         
     }
 
@@ -1598,7 +1600,9 @@ export class GlobalVariableService {
             return new Promise<CanvasWidget[]>((resolve, reject) => {
                 let returnData: CanvasWidget[];
                 returnData = this.widgets.filter(
-                        i => i.dashboardID == dashboardID
+                        i => i.dashboardID == dashboardID  &&
+                        (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
+
                     )
                 this.currentWidgets.next(returnData);
                 console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, returnData)
@@ -1773,7 +1777,9 @@ export class GlobalVariableService {
             return new Promise<CanvasShape[]>((resolve, reject) => {
                 let returnData: CanvasShape[];
                 returnData = this.shapes.filter(
-                    i => i.dashboardID == dashboardID
+                    i => i.dashboardID == dashboardID  &&
+                    (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
+
                 );
                 this.currentShapes.next(returnData);
                 console.log('Global-Variables getCurrentShapes 2', dashboardID, 
@@ -1843,7 +1849,9 @@ export class GlobalVariableService {
             return new Promise<CanvasSlicer[]>((resolve, reject) => {
                 let returnData: CanvasSlicer[];
                 returnData = this.slicers.filter(
-                    i => i.dashboardID == dashboardID
+                    i => i.dashboardID == dashboardID  &&
+                    (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
+
                 );
                 this.currentSlicers.next(returnData);
                 console.log('Global-Variables getCurrentSlicers 2', dashboardID, dashboardTabID, returnData)

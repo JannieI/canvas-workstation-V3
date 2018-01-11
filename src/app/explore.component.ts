@@ -222,9 +222,11 @@ export class ExploreComponent {
             i => {
                 this.currentWidgets = i.filter(f => f.isTrashed == false)
                 if (this.childrenWidgets !== undefined) {
-                    this.refreshWidgets();
-                    this.refreshShapes2()
-                    console.log ('Explore ngOnInit refeshWidgets2 done', i)
+                    if (this.currentWidgets != undefined) {
+                        // this.refreshWidgets();
+                        this.refreshShapes2()
+                        console.log ('Explore ngOnInit refeshWidgets2 done', i);
+                    }
                 }
             }
         );
@@ -249,7 +251,7 @@ export class ExploreComponent {
             i => {
                     if (i)
                         {
-                            this.refreshWidgets();
+                            // this.refreshWidgets();
                             console.log ('Explore ngOnInit refeshWW done')
                         }
                     else {console.log('Explore ngOnInit no refreshWW')}
@@ -342,6 +344,7 @@ export class ExploreComponent {
         console.log('Explore refreshWidgets')
         console.log('Explore refreshWidgets ...START children.length', this.childrenWidgets.toArray().length)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
+            if (this.currentWidgets[i] == undefined) {alert('this.currentWidgets[i] is UNDEFINED')}
             console.log('Explore refreshWidgets this.currentWidgets[i].graphColorField', this.currentWidgets[i].graphColorField)
             let definition = this.createVegaLiteSpec(
                 this.currentWidgets[i].graphDescription,
@@ -479,19 +482,20 @@ export class ExploreComponent {
     }
 
     clickShowPreviousTab() {
-        let x: number = this.globalVariableService.currentDashboardTabID.value - 1;
+        let x: number = this.globalVariableService.currentDashboardTabID - 1;
         if (x < 0) { x = this.currentDashboardTabs.length - 1 };
-        this.globalVariableService.currentDashboardTabID.next(x);
+        // this.globalVariableService.currentDashboardTabID.next(x);
         this.currentTabName = this.currentDashboardTabs[x].name;
+        this.globalVariableService.refreshCurrentDashboardInfo(1, x)
     }
 
     clickShowNextTab() {
-        console.log('Explore clickShowNextTab', this.globalVariableService.currentDashboardTabID.value)
-        let x: number = this.globalVariableService.currentDashboardTabID.value + 1;
+        console.log('Explore clickShowNextTab', this.globalVariableService.currentDashboardTabID)
+        let x: number = this.globalVariableService.currentDashboardTabID + 1;
         if (x >= this.currentDashboardTabs.length) { x = 0 };
-        this.globalVariableService.currentDashboardTabID.next(x);
+        // this.globalVariableService.currentDashboardTabID.next(x);
         this.currentTabName = this.currentDashboardTabs[x].name;
-        this.globalVariableService.refreshCurrentDashboardInfo(1,x)
+        this.globalVariableService.refreshCurrentDashboardInfo(1, x)
     }
 
     clickShowLastTab() {
