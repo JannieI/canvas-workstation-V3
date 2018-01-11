@@ -1701,13 +1701,13 @@ export class GlobalVariableService {
             i => {
                     // Dont refresh at initialise: landing page will decide which ID to load ...
                     if (i != null) {
-                        this.refreshCurrentDashboardInfo(i);
+                        this.refreshCurrentDashboardInfo(i, 1);
                     };
                  }
         );
      }
 
-    refreshCurrentDashboardInfo(dashboardID: number) {
+    refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number) {
         // Refreshes all info related to current D
         console.log('Global-Variables refreshCurrentDashboardInfo D id = ', dashboardID)
 
@@ -1721,13 +1721,13 @@ export class GlobalVariableService {
         this.getCurrentDashboardTabs(dashboardID)
 
 		// Load Widgets
-        this.getCurrentWidgets(dashboardID);
+        this.getCurrentWidgets(dashboardID, dashboardTabID);
 
         // Load Shapes
-        this.getCurrentShapes(dashboardID);
+        this.getCurrentShapes(dashboardID, dashboardTabID);
 
         // Load Slicers
-        this.getCurrentSlicers(dashboardID);
+        this.getCurrentSlicers(dashboardID, dashboardTabID);
 
         // Load Dashboard Schedules
         this.getCurrentDashboardSchedules(dashboardID);
@@ -2027,11 +2027,12 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentWidgets(dashboardID: number): Promise<CanvasWidget[]> {
+    getCurrentWidgets(dashboardID: number, dashboardTabID: number): Promise<CanvasWidget[]> {
         // Description: Gets all W for current D
 
         // Params:
         //   dashboardID
+        //   dashboardTabID (0 => all Tabs)
 
         // Returns: this.currentWidgets array, unless:
         //   If not cached or if dirty, get from File
@@ -2044,7 +2045,8 @@ export class GlobalVariableService {
                 this.getWidgets()
                     .then(data => {
                         data = data.filter(
-                            i => i.dashboardID == dashboardID
+                            i => i.dashboardID == dashboardID  &&
+                                 (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
                         );
                         this.currentWidgets.next(data);
                         console.log('Global-Variables getCurrentWidgets 1', data)
@@ -2199,11 +2201,12 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentShapes(dashboardID: number): Promise<CanvasShape[]> {
+    getCurrentShapes(dashboardID: number, dashboardTabID: number): Promise<CanvasShape[]> {
         // Description: Gets all S for current D
 
         // Params:
         //   dashboardID
+        //   dashboardTabID (0 => all Tabs)
 
         // Returns: this.currentShapes array, unless:
         //   If not cached or if dirty, get from File
@@ -2214,7 +2217,9 @@ export class GlobalVariableService {
                 this.getShapes()
                     .then(data => {
                         data = data.filter(
-                            i => i.dashboardID == dashboardID
+                            i => i.dashboardID == dashboardID  &&
+                            (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
+
                         );
                         this.currentShapes.next(data);
                         console.log('Global-Variables getCurrentShapes 1', data)
@@ -2263,11 +2268,12 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentSlicers(dashboardID: number): Promise<CanvasSlicer[]> {
+    getCurrentSlicers(dashboardID: number, dashboardTabID: number): Promise<CanvasSlicer[]> {
         // Description: Gets all Sl for current D
 
         // Params:
         //   dashboardID
+        //   dashboardTabID (0 => all Tabs)
 
         // Returns: this.currentSlicers array, unless:
         //   If not cached or if dirty, get from File
@@ -2278,7 +2284,9 @@ export class GlobalVariableService {
                 this.getSlicers()
                     .then(data => {
                         data = data.filter(
-                            i => i.dashboardID == dashboardID
+                            i => i.dashboardID == dashboardID  &&
+                            (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
+
                         );
                         this.currentSlicers.next(data);
                         console.log('Global-Variables getCurrentSlicers 1', data)
@@ -2683,7 +2691,7 @@ export class GlobalVariableService {
                 this.getDatasources()
                     .then(ds => 
                         {
-                            this.getCurrentWidgets(dashboardID)
+                            this.getCurrentWidgets(dashboardID, 0)
                                 .then( w => 
                                     {
                                         let ids: number[] = [];
