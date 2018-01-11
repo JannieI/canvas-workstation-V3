@@ -1235,15 +1235,47 @@ export class GlobalVariableService {
         //     i => {
         //             // Dont refresh at initialise: landing page will decide which ID to load ...
         //             if (i != null) {
-        //                 this.refreshCurrentDashboardInfo(i, 1);
+        //                 this.refreshCurrentDashboard(i, 1);
         //             };
         //          }
         // );
      }
 
-    refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number) {
+     refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number): 
+        Promise<boolean> {
         // Refreshes all info related to current D
+        // Returns True if all worked, False if something went wrong
         console.log('Global-Variables refreshCurrentDashboardInfo D,T id = ', dashboardID, dashboardTabID)
+
+        // Load the current Dashboard, and Optional template.  The dependants are stakced
+        // in a Promise chain, to ensure we have all or nothing ...
+        return new Promise<boolean>((resolve, reject) => {
+            this.getCurrentDashboards(dashboardID).then( i => 
+                // Load the current DashboardTab
+                this.getCurrentDashboardTabs(dashboardID).then(j =>
+                    // Load Widgets
+                    this.getCurrentWidgets(dashboardID, dashboardTabID).then(k =>
+                        // Load Shapes
+                        this.getCurrentShapes(dashboardID, dashboardTabID).then(l =>
+                            // Load Slicers
+                            this.getCurrentSlicers(dashboardID, dashboardTabID).then(m =>
+                                // Reset Global Vars
+                                {
+                                    this.currentDashboardID = dashboardID
+                                    this.currentDashboardTabID = dashboardTabID
+                                    resolve(true)
+                                }
+                            )
+                        )
+                    )
+                )
+            );
+        });
+    }
+
+    refreshCurrentDashboard(dashboardID: number, dashboardTabID: number) {
+        // Refreshes all info related to current D
+        console.log('Global-Variables refreshCurrentDashboard D,T id = ', dashboardID, dashboardTabID)
 
         // Load Dashboard Themes
         this.getDashboardThemes();

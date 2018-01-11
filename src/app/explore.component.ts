@@ -17,6 +17,7 @@ import { Renderer2 }                  from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 import { ViewChildren }               from '@angular/core';
 
+import { Observable} from 'rxjs'
 // Our Services
 import { GlobalVariableService }      from './global-variable.service';
 // import { GlobalFunctionService }      from './global-function.service';
@@ -112,6 +113,114 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         }
 };
 
+const tempWidget: CanvasWidget[] = [
+    {
+        "isTrashed": false,
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "dashboardTabName": "",
+        "id": 1,
+        "name": "barchart for start",
+        "description": "bla-bla-bla",
+        "grammar": "",
+        "version": 1,
+        "isSelected": false,
+        "isLiked": false,
+        "datasourceID": 1,
+        "datasetID": 1,
+        "dataParameters":
+        [
+            {
+                "field": "",
+                "value": ""
+            }
+        ],
+        "reportID": 1,
+        "reportName": "",
+        "rowLimit": 1,
+        "addRestRow": false,
+        "size": "",
+        "hyperlinkDashboardID": 1,
+        "hyperlinkDashboardTabID": 1,
+        "containerBackgroundcolor": "transparent",
+        "containerBorder": "2px solid black",
+        "containerBoxshadow": "2px 2px gray",
+        "containerColor": "transparent",
+        "containerFontsize": 12,
+        "containerHeight": 320,
+        "containerLeft": 50,
+        "containerWidgetTitle": "Title 1",
+        "containerTop": 240,      
+        "containerWidth": 250,
+        "containerZindex": 50,
+        "titleText": "",
+        "titleBackgroundColor": "#192b35",
+        "titleBorder": "",
+        "titleColor": "",
+        "titleFontsize": 1,
+        "titleFontWeight": "",
+        "titleHeight": 1,
+        "titleLeft": 1,
+        "titleMargin": "",
+        "titlePadding": "",
+        "titlePosition": "",
+        "titleTextAlign": "",
+        "titleTop": 1,
+        "titleWidth": 1,
+        "graphType": "",
+        "graphHeight": 1,
+        "graphLeft": 1,
+        "graphTop": 1,
+        "graphWidth": 1,
+        "graphGraphPadding": 1,
+        "graphHasSignals": false,
+        "graphXcolumn": "",
+        "graphYcolumn": "",
+        "graphFillColor": "",
+        "graphHoverColor": "",
+        "graphSpecification": {
+            "data": {"url": "../assets/vega-datasets/cars.json"},
+            "mark": "point",
+            "encoding": {
+                "x": {"field": "Horsepower", "type": "quantitative"},
+                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+            }
+        },
+        "graphDescription": "",
+        "graphXaggregate": "",
+        "graphXtimeUnit": "",
+        "graphYaggregate": "",
+        "graphYtimeUnit": "",
+
+        "graphXfield": "Horsepower",
+        "graphXtype": "quantitative",
+        "graphYfield": "Miles_per_Gallon",
+        "graphYtype": "quantitative",
+        "graphTitle": "graphTitle",
+        "graphMark": "bar",
+        "graphUrl": "../assets/vega-datasets/cars.json",
+        "graphColorField": "",
+        "graphColorType": "",
+        "graphData": "",
+        "tableColor": "",
+        "tableCols": 1,
+        "tableHeight": 1,
+        "tableHideHeader": false,
+        "tableLeft": 1,
+        "tableRows": 1,
+        "tableTop": 1,
+        "tableWidth": 1,
+        "refreshMode": "",
+        "refreshFrequency": 1,
+        "widgetRefreshedOn": "",
+        "widgetRefreshedBy": "",
+        "widgetCreatedOn": "",
+        "widgetCreatedBy": "",
+        "widgetUpdatedOn": "",
+        "widgetUpdatedBy": ""
+    }
+]
+
 @Component({
     styleUrls: ['./explore.component.css'],
     templateUrl: './explore.component.html'
@@ -124,7 +233,7 @@ export class ExploreComponent {
     @ViewChildren('shapeContainter')   shapeContainter: QueryList<ElementRef>;
     @ViewChildren('circle2')            circle2: QueryList<ElementRef>;
 
-    currentDashboardTabs: DashboardTab[];
+    currentDashboardTabs: DashboardTab[] = [];
     currentTabName: string = 'Summary';
     datasources: Datasource[];
     description: string = 'A simple bar chart with embedded data.';
@@ -133,9 +242,10 @@ export class ExploreComponent {
     isFirstTimeDashboard: boolean;
     isFirstTimePresentation: boolean;
     // localDashboards: dl.spec.TopLevelExtendedSpec[];
-    currentShapes: CanvasShape[];
-    currentWidgets: CanvasWidget[];
-    currentSlicers: CanvasSlicer[];
+    currentShapes: CanvasShape[] = [];
+    currentWidgets: CanvasWidget[] = [];
+    // currentWidgets: Observable<Array<CanvasWidget>>
+    currentSlicers: CanvasSlicer[] = [];
     localTrash: CanvasWidget[] = [];
     open: Boolean = false;
     presentationMode: boolean;
@@ -205,39 +315,41 @@ export class ExploreComponent {
         this.globalVariableService.statusBarMessages.subscribe(
             i => this.statusBarMessages = i
         )
+
         // this.localDashboards = this.globalVariableService.localDashboards;
-        this.globalVariableService.currentDashboardTabs.subscribe(
-            i => this.currentDashboardTabs = i
-        );
-        this.globalVariableService.currentShapes.subscribe(
-            i => {
-                    this.currentShapes = i;
-                    if (this.shapeContainter !== undefined) {
-                        this.refreshShapes2()
-                        console.log ('Explore ngOnInit refreshShap2 done')
-                    }
-                 }
-        );
-        this.globalVariableService.currentWidgets.subscribe(
-            i => {
-                this.currentWidgets = i.filter(f => f.isTrashed == false)
-                if (this.childrenWidgets !== undefined) {
-                    if (this.currentWidgets != undefined) {
-                        // this.refreshWidgets();
-                        this.refreshShapes2()
-                        console.log ('Explore ngOnInit refeshWidgets2 done', i);
-                    }
-                }
-            }
-        );
-        this.globalVariableService.currentSlicers.subscribe(
-            i => {
-                this.currentSlicers = i.filter(f => f.isTrashed == false)
-                if (this.childrenWidgets !== undefined) {
-                    console.log ('Explore ngOnInit got Slicers', i)
-                }
-            }
-        );
+
+        // this.globalVariableService.currentDashboardTabs.subscribe(
+        //     i => this.currentDashboardTabs = i
+        // );
+        // this.globalVariableService.currentShapes.subscribe(
+        //     i => {
+        //             this.currentShapes = i;
+        //             if (this.shapeContainter !== undefined) {
+        //                 this.refreshShapes2()
+        //                 console.log ('Explore ngOnInit refreshShap2 done')
+        //             }
+        //          }
+        // );
+        // this.globalVariableService.currentWidgets.subscribe(
+        //     i => {
+        //         this.currentWidgets = i.filter(f => f.isTrashed == false)
+        //         if (this.childrenWidgets !== undefined) {
+        //             if (this.currentWidgets != undefined) {
+        //                 // this.refreshWidgets();
+        //                 this.refreshShapes2()
+        //                 console.log ('Explore ngOnInit refeshWidgets2 done', i);
+        //             }
+        //         }
+        //     }
+        // );
+        // this.globalVariableService.currentSlicers.subscribe(
+        //     i => {
+        //         this.currentSlicers = i.filter(f => f.isTrashed == false)
+        //         if (this.childrenWidgets !== undefined) {
+        //             console.log ('Explore ngOnInit got Slicers', i)
+        //         }
+        //     }
+        // );
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
         );
@@ -249,12 +361,14 @@ export class ExploreComponent {
         };
         this.globalVariableService.refreshDashboard.subscribe(
             i => {
+                    console.log ('Explore ngOnInit refreshDashboard', i)
                     if (i)
                         {
                             // this.refreshWidgets();
-                            console.log ('Explore ngOnInit refeshWW done')
-                        }
-                    else {console.log('Explore ngOnInit no refreshWW')}
+                            this.refreshDashboardInfo(1, 1);
+                            this.globalVariableService.refreshDashboard.next(false);
+
+                        };
             }
         );
         this.globalVariableService.slicerHeader.subscribe(
@@ -266,9 +380,31 @@ export class ExploreComponent {
         this.globalVariableService.menuActionSelectAll.subscribe(
             i => this.clickMenuSelectAll(i)
         );
-        
+
+        // console.log('The big moment ...')
+        // this.globalVariableService.refreshCurrentDashboardInfo(1,1)
+        //     .then (i => this.refreshWidgets() 
+        // );
+
     }
 
+    // ngAfterViewChecked(){
+    //     // For Testing
+    //     console.log('Explore ngAfterViewChecked W, Sl', this.currentWidgets, 
+    //         this.widgetContainters.toArray())
+    // }
+
+    refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
+        this.globalVariableService.refreshCurrentDashboardInfo(1,1).then (i => 
+            {
+                console.log('The big moment ...')
+                this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs.value;
+                this.currentWidgets = this.globalVariableService.currentWidgets.value;
+                this.currentShapes = this.globalVariableService.currentShapes.value;
+                this.currentSlicers = this.globalVariableService.currentSlicers.value;
+                this.refreshWidgets();
+            } );
+    }
     ngAfterViewInit() {
         console.log('Explore ngOnViewInit', this.currentShapes)
 
@@ -300,7 +436,7 @@ export class ExploreComponent {
             }
         };
 
-        this.refreshWidgets();
+        this.refreshDashboardInfo(1, 1)
     }
 
     handleCloseDashboardOpen(ev) {
@@ -342,7 +478,9 @@ export class ExploreComponent {
 
     refreshWidgets() {
         console.log('Explore refreshWidgets')
-        console.log('Explore refreshWidgets ...START children.length', this.childrenWidgets.toArray().length)
+        
+        console.log('Explore refreshWidgets ...START children.length', this.childrenWidgets.toArray(),
+    this.widgetContainters.toArray(), this.currentWidgets)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
             if (this.currentWidgets[i] == undefined) {alert('this.currentWidgets[i] is UNDEFINED')}
             console.log('Explore refreshWidgets this.currentWidgets[i].graphColorField', this.currentWidgets[i].graphColorField)
@@ -486,7 +624,7 @@ export class ExploreComponent {
         if (x < 0) { x = this.currentDashboardTabs.length - 1 };
         // this.globalVariableService.currentDashboardTabID.next(x);
         this.currentTabName = this.currentDashboardTabs[x].name;
-        this.globalVariableService.refreshCurrentDashboardInfo(1, x)
+        this.globalVariableService.refreshCurrentDashboard(1, x)
     }
 
     clickShowNextTab() {
@@ -495,7 +633,7 @@ export class ExploreComponent {
         if (x >= this.currentDashboardTabs.length) { x = 0 };
         // this.globalVariableService.currentDashboardTabID.next(x);
         this.currentTabName = this.currentDashboardTabs[x].name;
-        this.globalVariableService.refreshCurrentDashboardInfo(1, x)
+        this.globalVariableService.refreshCurrentDashboard(1, x)
     }
 
     clickShowLastTab() {
@@ -778,34 +916,38 @@ export class ExploreComponent {
     clickMenuAlignTop() {
         console.log('clickMenuAlignTop start');
         let firstTop: number = null;
-        this.currentSlicers.forEach(
-            i => {
-                if (this.selectedSlicers.indexOf(i.id) >= 0) {
-                    if (firstTop == null) {
-                        firstTop = i.containerTop;
-                    } else {
-                        i.containerTop = firstTop;
+        if (this.currentSlicers != undefined) {
+            this.currentSlicers.forEach(
+                i => {
+                    if (this.selectedSlicers.indexOf(i.id) >= 0) {
+                        if (firstTop == null) {
+                            firstTop = i.containerTop;
+                        } else {
+                            i.containerTop = firstTop;
+                        }
                     }
                 }
-            }
-        )
+            )
+        };
         console.log('clickMenuAlignTop', this.currentSlicers);
-    }
+    }   
 
     clickMenuSelectAll(value: boolean) {
         console.log('clickMenuSelectAll', value)
-        if (!value) {
-            this.selectedSlicers = [];
-            this.currentSlicers.forEach(
-                i => i.isSelected = false
-            )
-        } else  {
-            this.currentSlicers.forEach(
-                i => {
-                        i.isSelected = true;
-                        this.selectedSlicers.push(i.id);
-                }
-            )
+        if (this.currentSlicers != undefined) {
+            if (!value) {
+                this.selectedSlicers = [];
+                this.currentSlicers.forEach(
+                    i => i.isSelected = false
+                )
+            } else  {
+                this.currentSlicers.forEach(
+                    i => {
+                            i.isSelected = true;
+                            this.selectedSlicers.push(i.id);
+                    }
+                )
+            };
         }
     }
 

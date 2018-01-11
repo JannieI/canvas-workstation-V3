@@ -62,7 +62,7 @@ export class DashboardOpenComponent implements OnInit {
     clickOpenView(dashboardID: number) {
         console.log('DashboardOpen clickOpenView id', dashboardID)
         // this.globalVariableService.currentDashboardID.next(id);
-		this.globalVariableService.refreshCurrentDashboardInfo(dashboardID, 1);
+		this.globalVariableService.refreshCurrentDashboard(dashboardID, 1);
         this.globalVariableService.editMode.next(false);
 		this.formDashboardOpenClosed.emit('View');
     }
@@ -70,7 +70,7 @@ export class DashboardOpenComponent implements OnInit {
     clickOpenEdit(dashboardID: number) {
         console.log('DashboardOpen clickOpenEdit id', dashboardID)
         // this.globalVariableService.currentDashboardID.next(id);
-		this.globalVariableService.refreshCurrentDashboardInfo(dashboardID, 1);
+		this.globalVariableService.refreshCurrentDashboard(dashboardID, 1);
         this.globalVariableService.editMode.next(true);
 		this.formDashboardOpenClosed.emit('View');
     }

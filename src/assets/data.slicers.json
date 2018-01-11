@@ -25,7 +25,7 @@
         "containerColor": "",
         "containerFontsize": 0,
         "containerHeight": 180,
-        "containerLeft": 220,
+        "containerLeft": 200,
         "containerWidgetTitle": "",
         "containerTop": 80,
         "containerWidth": 140,
@@ -58,7 +58,7 @@
     "isTrashed": false,
 
     "dashboardID": 1,
-    "dashboardTabID": 1,
+    "dashboardTabID": 2,
 
     "id": 2,
     "name": "",
@@ -77,9 +77,9 @@
     "containerColor": "",
     "containerFontsize": 0,
     "containerHeight": 180,
-    "containerLeft": 410,
+    "containerLeft": 650,
     "containerWidgetTitle": "",
-    "containerTop": 90,
+    "containerTop": 80,
     "containerWidth": 140,
     "containerZindex": 70,
 

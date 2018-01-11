@@ -78,7 +78,8 @@ export class LandingComponent implements OnInit {
 
 		// Load the dashboardID - Observable that will refresh all needed for current D
 		// this.globalVariableService.currentDashboardID.next(dashboardID);
-		this.globalVariableService.refreshCurrentDashboardInfo(dashboardID, 1);
+		// this.globalVariableService.refreshCurrentDashboard(dashboardID, 1);
+		this.globalVariableService.refreshDashboard.next(true);
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();
@@ -88,21 +89,15 @@ export class LandingComponent implements OnInit {
 	loadRecentDashboard(dashboardID: number) {
 		console.log('Landing start loadRecentDashboard', dashboardID);
 
-		// Check that we have data
-		if (this.globalVariableService.dashboards == []) {
-			this.globalVariableService.statusBarMessages.next(
-				'D still loading ...'
-			);
-			return;
-	};
+		this.globalVariableService.refreshDashboard.next(true);
+		
+		// Load the dashboardID - Observable that will refresh all needed for current D
+		// this.globalVariableService.currentDashboardID.next(dashboardID);
+		// this.globalVariableService.refreshCurrentDashboard(dashboardID, 1);
 
-	// Load the dashboardID - Observable that will refresh all needed for current D
-	// this.globalVariableService.currentDashboardID.next(dashboardID);
-	this.globalVariableService.refreshCurrentDashboardInfo(dashboardID, 1);
-
-	// Close modal, and show the Dashboard
-	this.formLandingClosed.emit();
-		this.router.navigate(['/explore']);
+		// Close modal, and show the Dashboard
+		this.formLandingClosed.emit();
+			this.router.navigate(['/explore']);
 	}
 
 	promptDeleteRecent(index: number) {
