@@ -113,114 +113,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         }
 };
 
-const tempWidget: CanvasWidget[] = [
-    {
-        "isTrashed": false,
-        "dashboardID": 1,
-        "dashboardTabID": 1,
-        "dashboardTabName": "",
-        "id": 1,
-        "name": "barchart for start",
-        "description": "bla-bla-bla",
-        "grammar": "",
-        "version": 1,
-        "isSelected": false,
-        "isLiked": false,
-        "datasourceID": 1,
-        "datasetID": 1,
-        "dataParameters":
-        [
-            {
-                "field": "",
-                "value": ""
-            }
-        ],
-        "reportID": 1,
-        "reportName": "",
-        "rowLimit": 1,
-        "addRestRow": false,
-        "size": "",
-        "hyperlinkDashboardID": 1,
-        "hyperlinkDashboardTabID": 1,
-        "containerBackgroundcolor": "transparent",
-        "containerBorder": "2px solid black",
-        "containerBoxshadow": "2px 2px gray",
-        "containerColor": "transparent",
-        "containerFontsize": 12,
-        "containerHeight": 320,
-        "containerLeft": 50,
-        "containerWidgetTitle": "Title 1",
-        "containerTop": 240,      
-        "containerWidth": 250,
-        "containerZindex": 50,
-        "titleText": "",
-        "titleBackgroundColor": "#192b35",
-        "titleBorder": "",
-        "titleColor": "",
-        "titleFontsize": 1,
-        "titleFontWeight": "",
-        "titleHeight": 1,
-        "titleLeft": 1,
-        "titleMargin": "",
-        "titlePadding": "",
-        "titlePosition": "",
-        "titleTextAlign": "",
-        "titleTop": 1,
-        "titleWidth": 1,
-        "graphType": "",
-        "graphHeight": 1,
-        "graphLeft": 1,
-        "graphTop": 1,
-        "graphWidth": 1,
-        "graphGraphPadding": 1,
-        "graphHasSignals": false,
-        "graphXcolumn": "",
-        "graphYcolumn": "",
-        "graphFillColor": "",
-        "graphHoverColor": "",
-        "graphSpecification": {
-            "data": {"url": "../assets/vega-datasets/cars.json"},
-            "mark": "point",
-            "encoding": {
-                "x": {"field": "Horsepower", "type": "quantitative"},
-                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-            }
-        },
-        "graphDescription": "",
-        "graphXaggregate": "",
-        "graphXtimeUnit": "",
-        "graphYaggregate": "",
-        "graphYtimeUnit": "",
-
-        "graphXfield": "Horsepower",
-        "graphXtype": "quantitative",
-        "graphYfield": "Miles_per_Gallon",
-        "graphYtype": "quantitative",
-        "graphTitle": "graphTitle",
-        "graphMark": "bar",
-        "graphUrl": "../assets/vega-datasets/cars.json",
-        "graphColorField": "",
-        "graphColorType": "",
-        "graphData": "",
-        "tableColor": "",
-        "tableCols": 1,
-        "tableHeight": 1,
-        "tableHideHeader": false,
-        "tableLeft": 1,
-        "tableRows": 1,
-        "tableTop": 1,
-        "tableWidth": 1,
-        "refreshMode": "",
-        "refreshFrequency": 1,
-        "widgetRefreshedOn": "",
-        "widgetRefreshedBy": "",
-        "widgetCreatedOn": "",
-        "widgetCreatedBy": "",
-        "widgetUpdatedOn": "",
-        "widgetUpdatedBy": ""
-    }
-]
-
 @Component({
     styleUrls: ['./explore.component.css'],
     templateUrl: './explore.component.html'
@@ -241,10 +133,8 @@ export class ExploreComponent {
     hasDatasources: boolean;
     isFirstTimeDashboard: boolean;
     isFirstTimePresentation: boolean;
-    // localDashboards: dl.spec.TopLevelExtendedSpec[];
     currentShapes: CanvasShape[] = [];
     currentWidgets: CanvasWidget[] = [];
-    // currentWidgets: Observable<Array<CanvasWidget>>
     currentSlicers: CanvasSlicer[] = [];
     localTrash: CanvasWidget[] = [];
     open: Boolean = false;
@@ -315,41 +205,6 @@ export class ExploreComponent {
         this.globalVariableService.statusBarMessages.subscribe(
             i => this.statusBarMessages = i
         )
-
-        // this.localDashboards = this.globalVariableService.localDashboards;
-
-        // this.globalVariableService.currentDashboardTabs.subscribe(
-        //     i => this.currentDashboardTabs = i
-        // );
-        // this.globalVariableService.currentShapes.subscribe(
-        //     i => {
-        //             this.currentShapes = i;
-        //             if (this.shapeContainter !== undefined) {
-        //                 this.refreshShapes2()
-        //                 console.log ('Explore ngOnInit refreshShap2 done')
-        //             }
-        //          }
-        // );
-        // this.globalVariableService.currentWidgets.subscribe(
-        //     i => {
-        //         this.currentWidgets = i.filter(f => f.isTrashed == false)
-        //         if (this.childrenWidgets !== undefined) {
-        //             if (this.currentWidgets != undefined) {
-        //                 // this.refreshWidgets();
-        //                 this.refreshShapes2()
-        //                 console.log ('Explore ngOnInit refeshWidgets2 done', i);
-        //             }
-        //         }
-        //     }
-        // );
-        // this.globalVariableService.currentSlicers.subscribe(
-        //     i => {
-        //         this.currentSlicers = i.filter(f => f.isTrashed == false)
-        //         if (this.childrenWidgets !== undefined) {
-        //             console.log ('Explore ngOnInit got Slicers', i)
-        //         }
-        //     }
-        // );
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
         );
@@ -364,7 +219,6 @@ export class ExploreComponent {
                     console.log ('Explore ngOnInit refreshDashboard', i)
                     if (i)
                         {
-                            // this.refreshWidgets();
                             this.refreshDashboardInfo(1, 1);
                             this.globalVariableService.refreshDashboard.next(false);
 
@@ -380,11 +234,6 @@ export class ExploreComponent {
         this.globalVariableService.menuActionSelectAll.subscribe(
             i => this.clickMenuSelectAll(i)
         );
-
-        // console.log('The big moment ...')
-        // this.globalVariableService.refreshCurrentDashboardInfo(1,1)
-        //     .then (i => this.refreshWidgets() 
-        // );
 
     }
 
@@ -411,16 +260,6 @@ export class ExploreComponent {
         // Loop on the graph ElementRefs, and set properties ala widget[].properties
         if (this.shapeContainter.toArray().length > 0) {
             for (var i = 0; i < this.circle2.toArray().length; i++) {
-
-                // Testing
-                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cx', '50')
-                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cy', '50')
-                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'r', '40')
-                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'stroke', 'orange')
-                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'stroke-width', '2')
-                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'fill', 'none')
-
-
 
                 // Now set in css
                 // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cx', '50')
@@ -450,15 +289,7 @@ export class ExploreComponent {
         if (this.shapeContainter.toArray().length > 0) {
             for (var i = 0; i < this.circle2.toArray().length; i++) {
 
-                // Testing
-                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cx', '50')
-                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'cy', '50')
                 this.renderer2.setStyle(this.circle2.toArray()[i].nativeElement,'r', '40')
-                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'stroke', 'orange')
-                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'stroke-width', '2')
-                // this.renderer2.setAttribute(this.circle2.toArray()[i].nativeElement,'fill', 'none')
-
-
 
                 // Now set in css
                 // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cx', '50')
