@@ -737,10 +737,6 @@ export class ExploreComponent {
         this.showSlicer = false;
     }
 
-    clickSlicerDeleteDummy() {
-        this.showSlicer = false;
-    }
-
     clickSlicer(index: number, id: number) {
         console.log(this.currentSlicers, index)
         this.currentSlicers[index].isSelected = !this.currentSlicers[index].isSelected;
@@ -752,19 +748,8 @@ export class ExploreComponent {
         console.log('clickSlicer', this.selectedSlicers)
     }
 
-    clickSlicerDummy() {
-        this.showSlicerContainer = !this.showSlicerContainer;
-    }
-
     clickResizeDown(ev: MouseEvent, index: number) {
         console.log('clickResizeDown', this.currentSlicers[index].containerLeft, ev);
-        this.startX = ev.x;
-        this.startY = ev.y;
-        
-    }
-
-    clickResizeDownDummy(ev: MouseEvent) {
-        console.log('clickResizeDown', this.slicerWidth, ev);
         this.startX = ev.x;
         this.startY = ev.y;
         
@@ -788,12 +773,6 @@ export class ExploreComponent {
         console.log('clickResizeUp width buttons ev x-move', 
             this.currentSlicers[index].containerWidth, this.currentSlicers[index].nrButtons, 
             ev, 0 - this.startX + ev.x);
-    }
-
-    clickResizeUpDummy(ev: MouseEvent) {
-        this.slicerWidth = this.slicerWidth - this.startX + ev.x;
-        this.slicerButtons = (this.slicerWidth - 50) / 22;
-        console.log('clickResizeUp width buttons ev x-move', this.slicerWidth, this.slicerButtons, ev, 0 - this.startX + ev.x);
     }
 
     clickMenuAlignTop() {
