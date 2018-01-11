@@ -309,7 +309,7 @@ export class ExploreComponent {
 
     refreshWidgets() {
         console.log('Explore refreshWidgets')
-        
+
         console.log('Explore refreshWidgets ...START children.length', this.childrenWidgets.toArray(),
     this.widgetContainters.toArray(), this.currentWidgets)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
