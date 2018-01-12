@@ -700,3 +700,9 @@
     *ngIf="showModalDashboardOpen"
     (formDashboardOpenClosed)="handleCloseDashboardOpen($event)">Load Open Dashboard ...
 </dashboard-open>
+
+
+<!-- Modal: landing page -->
+<landing *ngIf="showModalLanding"
+    (formLandingClosed)="handleCloseModalLanding()">Load Landing page ...
+</landing>

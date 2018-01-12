@@ -144,6 +144,7 @@ export class ExploreComponent {
     showGrid: boolean;
     showMainMenu: boolean;
     showModalDashboardOpen: boolean = false;
+    showModalLanding: boolean = true;
     showModalOpenDashboard: boolean = false;
     showModalWidgetEditor: boolean = false;
     showNewTab: boolean = false;
@@ -248,23 +249,6 @@ export class ExploreComponent {
     //         this.widgetContainters.toArray())
     // }
 
-        refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'refreshDashboardInfo', '@Start');
-
-        if (dashboardTabID < 0) { dashboardTabID = 0};
-
-        this.globalVariableService.refreshCurrentDashboardInfo(1, dashboardTabID).then (i => 
-            {
-                console.log('The big moment ...')
-                this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs.value;
-                this.currentWidgets = this.globalVariableService.currentWidgets.value;
-                this.currentShapes = this.globalVariableService.currentShapes.value;
-                this.currentSlicers = this.globalVariableService.currentSlicers.value;
-                this.refreshWidgets();
-            } );
-    }
-
     ngAfterViewInit() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
@@ -291,6 +275,23 @@ export class ExploreComponent {
 
         this.refreshDashboardInfo(this.globalVariableService.currentDashboardID,
             this.globalVariableService.currentDashboardTabID)
+    }
+
+    refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'refreshDashboardInfo', '@Start');
+
+        if (dashboardTabID < 1) { dashboardTabID = 1};
+
+        this.globalVariableService.refreshCurrentDashboardInfo(1, dashboardTabID).then (i => 
+            {
+                console.log('The big moment ...')
+                this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs.value;
+                this.currentWidgets = this.globalVariableService.currentWidgets.value;
+                this.currentShapes = this.globalVariableService.currentShapes.value;
+                this.currentSlicers = this.globalVariableService.currentSlicers.value;
+                this.refreshWidgets();
+            } );
     }
 
     handleCloseDashboardOpen(ev) {
@@ -994,6 +995,14 @@ export class ExploreComponent {
         console.log('selectDashboardTab', index)
         this.showTabList=!this.showTabList;
         this.currentTabName = this.currentDashboardTabs[index].name;
+    }
+
+    handleCloseModalLanding() {
+        // Close Modal form Landing page
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
+
+        this.showModalLanding = false;
+
     }
 }
 
