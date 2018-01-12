@@ -364,6 +364,19 @@
         padding-left: 5px;
     }
 
+    .dashboardTabDescription {
+        background-color: #192b35;
+        border-radius: 3px;
+        bottom: 1.1rem;
+        color:  white;
+        display: inline-block;
+        left: 11rem;
+        overflow: hidden;
+        padding: 4px;
+        position: absolute;
+        width: 12rem;
+    }
+
 
 /* Shapes */
 .shapeContainer {

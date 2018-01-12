@@ -140,6 +140,7 @@ export class ExploreComponent {
     open: Boolean = false;
     presentationMode: boolean;
     showDashboardDescription: boolean = false;
+    showDashboardTabDescription: boolean = false;
     showGrid: boolean;
     showMainMenu: boolean;
     showModalDashboardOpen: boolean = false;
@@ -524,6 +525,13 @@ export class ExploreComponent {
             this.globalVariableService.currentDashboardTabID);
     }
 
+    clickShowTabDescription() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDescription', '@Start');
+
+        this.showDashboardTabDescription = true;
+        
+    }
     clickShowNextTab() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNextTab', '@Start');
