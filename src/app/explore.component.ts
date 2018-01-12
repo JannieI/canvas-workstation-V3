@@ -219,10 +219,14 @@ export class ExploreComponent {
         };
         this.globalVariableService.refreshDashboard.subscribe(
             i => {
-                    console.log ('Explore ngOnInit refreshDashboard', i)
+                    console.log ('Explore ngOnInit refreshDashboard', 
+                        this.globalVariableService.currentDashboardID,
+                        this.globalVariableService.currentDashboardTabID)
                     if (i)
                         {
-                            this.refreshDashboardInfo(1, 1);
+                            this.refreshDashboardInfo(
+                                this.globalVariableService.currentDashboardID,
+                                this.globalVariableService.currentDashboardTabID);
                             this.globalVariableService.refreshDashboard.next(false);
 
                         };
@@ -247,6 +251,8 @@ export class ExploreComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshDashboardInfo', '@Start');
 
+        if (dashboardTabID < 0) { dashboardTabID = 0};
+        
         this.globalVariableService.refreshCurrentDashboardInfo(1, dashboardTabID).then (i => 
             {
                 console.log('The big moment ...')
@@ -281,7 +287,8 @@ export class ExploreComponent {
             }
         };
 
-        this.refreshDashboardInfo(1, 1)
+        this.refreshDashboardInfo(this.globalVariableService.currentDashboardID,
+            this.globalVariableService.currentDashboardTabID)
     }
 
     handleCloseDashboardOpen(ev) {
@@ -504,7 +511,8 @@ export class ExploreComponent {
         // this.globalVariableService.currentDashboardTabID.next(x);
         this.currentTabName = this.currentDashboardTabs[x].name;
         // this.globalVariableService.refreshCurrentDashboard(1, x)
-        this.refreshDashboardInfo(1, x)
+        this.refreshDashboardInfo(this.globalVariableService.currentDashboardID,
+            this.globalVariableService.currentDashboardTabID);
     }
 
     clickShowNextTab() {
@@ -517,7 +525,8 @@ export class ExploreComponent {
         // this.globalVariableService.currentDashboardTabID.next(x);
         this.currentTabName = this.currentDashboardTabs[x].name;
         // this.globalVariableService.refreshCurrentDashboard(1, x)
-        this.refreshDashboardInfo(1, x)
+        this.refreshDashboardInfo(this.globalVariableService.currentDashboardID,
+            this.globalVariableService.currentDashboardTabID);
     }
 
     clickShowLastTab() {
