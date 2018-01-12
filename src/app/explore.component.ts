@@ -240,7 +240,7 @@ export class ExploreComponent {
     // }
 
     refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
-        this.globalVariableService.refreshCurrentDashboardInfo(1,1).then (i => 
+        this.globalVariableService.refreshCurrentDashboardInfo(1, dashboardTabID).then (i => 
             {
                 console.log('The big moment ...')
                 this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs.value;
@@ -451,7 +451,8 @@ export class ExploreComponent {
         if (x < 0) { x = this.currentDashboardTabs.length - 1 };
         // this.globalVariableService.currentDashboardTabID.next(x);
         this.currentTabName = this.currentDashboardTabs[x].name;
-        this.globalVariableService.refreshCurrentDashboard(1, x)
+        // this.globalVariableService.refreshCurrentDashboard(1, x)
+        this.refreshDashboardInfo(1, x)
     }
 
     clickShowNextTab() {
@@ -460,7 +461,8 @@ export class ExploreComponent {
         if (x >= this.currentDashboardTabs.length) { x = 0 };
         // this.globalVariableService.currentDashboardTabID.next(x);
         this.currentTabName = this.currentDashboardTabs[x].name;
-        this.globalVariableService.refreshCurrentDashboard(1, x)
+        // this.globalVariableService.refreshCurrentDashboard(1, x)
+        this.refreshDashboardInfo(1, x)
     }
 
     clickShowLastTab() {

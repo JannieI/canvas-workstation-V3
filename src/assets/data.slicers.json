@@ -32,7 +32,7 @@
         "containerZindex": 70,
 
         "titleText": "First Slicer",
-        "titleBackgroundColor": "",
+        "titleBackgroundColor": "brown",
         "titleBorder": "",
         "titleColor": "",
         "titleFontsize": 0,
@@ -58,7 +58,7 @@
     "isTrashed": false,
 
     "dashboardID": 1,
-    "dashboardTabID": 2,
+    "dashboardTabID": 1,
 
     "id": 2,
     "name": "",

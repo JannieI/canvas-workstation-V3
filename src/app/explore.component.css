@@ -167,10 +167,10 @@
 }
     .slicerContainerDragHandle {
         background-color: rgb(238, 236, 236);
-        grid-column-start: 3;
-        grid-column-end: 6;
-        grid-row-start: 3;
-        grid-row-end: 7;
+        grid-column-start: 2;
+        grid-column-end: 7;
+        grid-row-start: 2;
+        grid-row-end: 8;
         margin: 3px !important;
         margin: 0;
         min-width: 140px;
@@ -187,7 +187,6 @@
         background-color: lightgray;
     }
         .slicerLabel {
-            background-color: black;
             color: white;
             text-align: center;
         }
@@ -195,6 +194,10 @@
             border: 1px solid black !important;
             border-radius: 5px !important;
         }
+        /* .select { */
+            /* height: 2rem !important; */
+            /* overflow: scroll; */
+        /* } */
 
     .slicerContainerTopLeftHandle {
         grid-column-start: 1;
