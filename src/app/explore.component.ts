@@ -247,12 +247,12 @@ export class ExploreComponent {
     //         this.widgetContainters.toArray())
     // }
 
-    refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
+        refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshDashboardInfo', '@Start');
 
         if (dashboardTabID < 0) { dashboardTabID = 0};
-        
+
         this.globalVariableService.refreshCurrentDashboardInfo(1, dashboardTabID).then (i => 
             {
                 console.log('The big moment ...')
@@ -263,6 +263,7 @@ export class ExploreComponent {
                 this.refreshWidgets();
             } );
     }
+
     ngAfterViewInit() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
@@ -332,35 +333,38 @@ export class ExploreComponent {
         console.log('Explore refreshWidgets ...START children.length', this.childrenWidgets.toArray(),
             this.widgetContainters.toArray(), this.currentWidgets)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
-            if (this.currentWidgets[i] == undefined) {alert('this.currentWidgets[i] is UNDEFINED')}
-            console.log('Explore refreshWidgets this.currentWidgets[i].graphColorField', this.currentWidgets[i].graphColorField)
-            let definition = this.createVegaLiteSpec(
-                this.currentWidgets[i].graphDescription,
-                this.currentWidgets[i].graphMark,
-                this.currentWidgets[i].graphXfield,
-                this.currentWidgets[i].graphYfield,
-                this.currentWidgets[i].graphTitle,
-                this.currentWidgets[i].graphXtype,
-                this.currentWidgets[i].graphYtype,
-                this.currentWidgets[i].graphUrl,
-                this.currentWidgets[i].graphXtimeUnit,
-                this.currentWidgets[i].graphXaggregate,
-                this.currentWidgets[i].graphYtimeUnit,
-                this.currentWidgets[i].graphYaggregate,
-                this.currentWidgets[i].graphColorField,
-                this.currentWidgets[i].graphColorType,
-            );
-            let specification = compile(definition).spec;
-            console.log('Explore refreshWidgets ... specification', specification)
-            // console.log('Explore refreshWidgets spec 2', specification)
-            let view = new View(parse(specification));
-            view.renderer('svg')
-                .initialize( this.childrenWidgets.toArray()[i].nativeElement)
-                .width(180)
-                .hover()
-                .run()
-                .finalize();
-            // console.log('Explore refreshWidgets refreshWidgets loop end')
+            if (this.currentWidgets[i] != undefined) {
+                console.log('Explore refreshWidgets' ,i)
+                let definition = this.createVegaLiteSpec(
+                    this.currentWidgets[i].graphDescription,
+                    this.currentWidgets[i].graphMark,
+                    this.currentWidgets[i].graphXfield,
+                    this.currentWidgets[i].graphYfield,
+                    this.currentWidgets[i].graphTitle,
+                    this.currentWidgets[i].graphXtype,
+                    this.currentWidgets[i].graphYtype,
+                    this.currentWidgets[i].graphUrl,
+                    this.currentWidgets[i].graphXtimeUnit,
+                    this.currentWidgets[i].graphXaggregate,
+                    this.currentWidgets[i].graphYtimeUnit,
+                    this.currentWidgets[i].graphYaggregate,
+                    this.currentWidgets[i].graphColorField,
+                    this.currentWidgets[i].graphColorType,
+                );
+                let specification = compile(definition).spec;
+                console.log('Explore refreshWidgets ... specification', specification)
+                // console.log('Explore refreshWidgets spec 2', specification)
+                let view = new View(parse(specification));
+                view.renderer('svg')
+                    .initialize( this.childrenWidgets.toArray()[i].nativeElement)
+                    .width(180)
+                    .hover()
+                    .run()
+                    .finalize();
+                // console.log('Explore refreshWidgets refreshWidgets loop end')
+            } else {
+                console.log('this.currentWidgets[i] is UNDEFINED' + i)
+            }
         }
     }
 
@@ -506,11 +510,16 @@ export class ExploreComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowPreviousTab', '@Start');
 
-        let x: number = this.globalVariableService.currentDashboardTabID - 1;
+        let x: number = 0;
+        for (var i = 0; i < this.currentDashboardTabs.length; i++) {
+            if (this.currentDashboardTabs[i].id == 
+                this.globalVariableService.currentDashboardTabID) { 
+                    x = i - 1;
+            };
+        }
         if (x < 0) { x = this.currentDashboardTabs.length - 1 };
-        // this.globalVariableService.currentDashboardTabID.next(x);
         this.currentTabName = this.currentDashboardTabs[x].name;
-        // this.globalVariableService.refreshCurrentDashboard(1, x)
+        this.globalVariableService.currentDashboardTabID = this.currentDashboardTabs[x].id;
         this.refreshDashboardInfo(this.globalVariableService.currentDashboardID,
             this.globalVariableService.currentDashboardTabID);
     }
@@ -519,12 +528,17 @@ export class ExploreComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNextTab', '@Start');
 
-        console.log('Explore clickShowNextTab', this.globalVariableService.currentDashboardTabID)
-        let x: number = this.globalVariableService.currentDashboardTabID + 1;
-        if (x >= this.currentDashboardTabs.length) { x = 0 };
-        // this.globalVariableService.currentDashboardTabID.next(x);
+
+        let x: number = 0;
+        for (var i = 0; i < this.currentDashboardTabs.length; i++) {
+            if (this.currentDashboardTabs[i].id == 
+                this.globalVariableService.currentDashboardTabID) { 
+                    x = i + 1;
+            };
+        }
+        if (x >= this.currentDashboardTabs.length) { x = 0};
         this.currentTabName = this.currentDashboardTabs[x].name;
-        // this.globalVariableService.refreshCurrentDashboard(1, x)
+        this.globalVariableService.currentDashboardTabID = this.currentDashboardTabs[x].id;
         this.refreshDashboardInfo(this.globalVariableService.currentDashboardID,
             this.globalVariableService.currentDashboardTabID);
     }
