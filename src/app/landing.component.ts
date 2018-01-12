@@ -60,8 +60,8 @@ export class LandingComponent implements OnInit {
 		this.router.navigate(['/data']);
 	}
 
-	loadsampleDashboard(dashboardID: number) {
-		console.log('Landing start loadsampleDashboard', dashboardID);
+	clickOpenSampleDashboard(dashboardID: number) {
+		console.log('Landing start clickOpenSampleDashboard', dashboardID);
 
 		// Check that we have data
 		if (this.globalVariableService.dashboards == []) {
@@ -81,8 +81,8 @@ export class LandingComponent implements OnInit {
 		// this.router.navigate(['/explore']);
 	}
 
-	loadRecentDashboard(dashboardID: number) {
-		console.log('Landing start loadRecentDashboard', dashboardID);
+	clickOpenRecentDashboard(dashboardID: number) {
+		console.log('Landing start clickOpenRecentDashboard', dashboardID);
 		
 		// Set ids and then signal that the Dashboard must be refreshed
 		this.globalVariableService.currentDashboardID = dashboardID;
