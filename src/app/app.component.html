@@ -905,14 +905,21 @@
 </preferences>
 
 
-<!-- Modal: data refresh all -->
+<!-- Modal: data Slicers -->
 <data-slicers
     *ngIf="showModalDataSlicers"
     (formDataSlicersClosed)="handleCloseDataSlicers($event)">Load Data Slicers ...
 </data-slicers>
 
 
-<!-- Modal: data refresh all -->
+<!-- Modal: data Combination -->
+<data
+    *ngIf="showModalData"
+    (formDataPopupClosed)="handleCloseData($event)">Load Data ...
+</data>
+
+
+<!-- Modal: data Combination -->
 <data-combination
     *ngIf="showModalDataCombination"
     (formDataCombinationClosed)="handleCloseDataCombination($event)">Load Data Combination ...

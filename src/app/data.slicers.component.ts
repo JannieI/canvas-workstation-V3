@@ -38,14 +38,13 @@ import { GlobalVariableService }      from './global-variable.service';
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-    }
+      }
 
     ngAfterViewInit() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
-
-    }
+      }
 
   	clickClose(action: string) {
         // 

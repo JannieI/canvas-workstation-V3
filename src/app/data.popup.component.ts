@@ -438,8 +438,8 @@ export class DataPopupComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        // this.formDataPopupClosed.emit(action);
-        this.router.navigate(['/explore']);
+        this.formDataPopupClosed.emit(action);
+        // this.router.navigate(['/explore']);
 
     }
 

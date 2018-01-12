@@ -83,6 +83,7 @@ export class AppComponent implements OnInit {
     showModalWidgetExport: boolean = false;
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
+    showModalData: boolean = false;
     showModalDataSlicers: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
@@ -339,6 +340,13 @@ export class AppComponent implements OnInit {
         this.showModalDataSlicers = false;
     }
 
+    handleCloseData() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
+
+        this.showModalData = false;
+    }
+    
     handleCloseDataCombination() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCombination', '@Start');
@@ -650,7 +658,8 @@ export class AppComponent implements OnInit {
 
         console.log('App clickMenuDataFromFile')
         this.globalVariableService.dataGetFromSwitch.next('File');
-        this.router.navigate(['/data']);
+        this.showModalData = true;
+        // this.router.navigate(['/data']);
     }
 
     clickMenuDataFromServer() {
