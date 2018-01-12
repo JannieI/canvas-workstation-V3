@@ -35,17 +35,29 @@ import { GlobalVariableService }      from './global-variable.service';
     ) {}
 
     ngOnInit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
     }
 
     ngAfterViewInit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+
 
     }
 
   	clickClose(action: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
 	  	this.formDataSlicersClosed.emit(action);
         }
 
     clickSave() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
 	  	this.formDataSlicersClosed.emit('Saved');
     }
   }
