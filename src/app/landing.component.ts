@@ -54,15 +54,10 @@ export class LandingComponent implements OnInit {
 
 	ngAfterViewInit() {
 	}
+
 	clickButtonData() {
 		console.log('Landing clickButtonData')
 		this.router.navigate(['/data']);
-	}
-
-	loadExistingSpecification(action: string) {
-		console.log('Landing start loadExistingSpecification');
-		this.formLandingClosed.emit(action);
-		this.router.navigate(['/explore']);
 	}
 
 	loadsampleDashboard(dashboardID: number) {
@@ -83,7 +78,7 @@ export class LandingComponent implements OnInit {
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();
-		this.router.navigate(['/explore']);
+		// this.router.navigate(['/explore']);
 	}
 
 	loadRecentDashboard(dashboardID: number) {
