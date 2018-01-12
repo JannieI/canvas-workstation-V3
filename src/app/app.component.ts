@@ -125,9 +125,6 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Intial
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
         );
@@ -173,140 +170,140 @@ export class AppComponent implements OnInit {
 
     handleCloseWidgetEditor() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
         this.showModalWidgetEditor = false;
     }
 
     handleCloseDashboardNew(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardNew', '@Start');
 
         this.showModalDashboardNew = false;
     }
 
     handleCloseDashboardOpen(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardOpen', '@Start');
 
         this.showModalDashboardOpen = false;
     }
 
     handleCloseDashboardSave(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSave', '@Start');
 
         this.showModalDashboardSave = false;
     }
 
     handleCloseDashboardSnapshots() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSnapshots', '@Start');
 
         this.showModalDashboardSnapshots = false;
     }
 
     handleCloseDashboardShare() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardShare', '@Start');
 
         this.showModalDashboardShare = false;
     }
 
     handleCloseDashboardImport() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardImport', '@Start');
 
         this.showModalDashboardImport = false;
     }
 
     handleCloseDashboardDiscard() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDiscard', '@Start');
 
         this.showModalDashboardDiscard = false;
     }
 
     handleCloseDashboardRename(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardRename', '@Start');
 
         this.showModalDashboardRename = false;
     }
 
     handleCloseDashboardDetails(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDetails', '@Start');
 
         this.showModalDashboardDetails = false;
     }
 
     handleCloseDashboardDescription() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDescription', '@Start');
 
         this.showModalDashboardDescription = false;
     }
 
     handleCloseDashboardTags() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTags', '@Start');
 
         this.showModalDashboardTags = false;
     }
 
     handleCloseDashboardSettings() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSettings', '@Start');
 
         this.showModalDashboardSettings = false;
     }
 
     handleCloseDashboardTheme() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTheme', '@Start');
 
         this.showModalDashboardTheme = false;
     }
 
     handleCloseDashboardTemplate() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTemplate', '@Start');
 
         this.showModalDashboardTemplate = false;
     }
 
     handleCloseDashboardSchedule() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSchedule', '@Start');
 
         this.showModalDashboardSchedule = false;
     }
 
     handleCloseDashboardDelete() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDelete', '@Start');
 
         this.showModalDashboardDelete = false;
     }
 
     handleCloseDashboardTreeview(){
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTreeview', '@Start');
 
         this.showModalDashboardTreeview = false;
     }
 
     handleCloseDashboardSubscribe() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSubscribe', '@Start');
 
         this.showModalDashboardSubscribe = false;
     }
 
     handleCloseShapeEdit(action: string) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeEdit', '@Start');
 
         this.showModalShapeEdit = false;
         if (action == 'saved') {
@@ -316,98 +313,98 @@ export class AppComponent implements OnInit {
 
     handleCloseShapeDelete() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeDelete', '@Start');
 
         this.showModalShapeDelete = false;
     }
 
     handleCloseDashboardComments() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardComments', '@Start');
 
         this.showModalDashboardComments = false;
     }
 
     handleCloseDashboardPrint() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardPrint', '@Start');
 
         this.showModalDashboardPrint = false;
     }
 
     handleCloseDataSlicers() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSlicers', '@Start');
 
         this.showModalDataSlicers = false;
     }
 
     handleCloseDataCombination() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCombination', '@Start');
 
         this.showModalDataCombination = false;
     }
 
     handleCloseDataRefresh() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataRefresh', '@Start');
 
         this.showModalDataRefresh = false;
     }
 
     handleCloseDataShare() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataShare', '@Start');
 
         this.showModalDataShare = false;
     }
 
     handleCloseWidgetCheckpoints() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetCheckpoints', '@Start');
 
         this.showModalWidgetCheckpoints = false;
     }
 
     handleCloseWidgetComments() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetComments', '@Start');
 
         this.showModalWidgetComments = false;
     }
 
     handleCloseWidgetLinks() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetLinks', '@Start');
 
         this.showModalWidgetLinks = false;
     }
 
     handleCloseWidgetDuplicate() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDuplicate', '@Start');
 
         this.showModalWidgetDuplicate = false;
     }
 
     handleCloseWidgetExpand() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExpand', '@Start');
 
         this.showModalWidgetExpand = false;
     }
 
     handleCloseWidgetExport() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExport', '@Start');
 
         this.showModalWidgetExport = false;
     }
 
     handleCloseWidgetDelete() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDelete', '@Start');
 
         console.log('App handleCloseWidgetDelete', this.localTrash)
         this.showModalWidgetDelete = false;
@@ -415,91 +412,91 @@ export class AppComponent implements OnInit {
 
     handleCloseCollaborateAlerts() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateAlerts', '@Start');
 
         this.showModalCollaborateAlerts = false;
     }
 
     handleCloseCollaborateActivityAdd() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivityAdd', '@Start');
 
         this.showModalCollaborateActivityAdd = false;
     }
 
     handleCloseCollaborateMessages() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateMessages', '@Start');
 
         this.showModalCollaborateMessages = false;
     }
 
     handleCloseCollaborateActivities() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivities', '@Start');
 
         this.showModalCollaborateActivities = false;
     }
 
     handleCloseUserLogin(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserLogin', '@Start');
 
         this.showModalDashboardLogin = false;
     }
 
     handleCloseUserLogout(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserLogout', '@Start');
 
         this.showModalDashboardLogout = false;
     }
 
     handleCloseUserPreferences(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserPreferences', '@Start');
 
         this.showModalUserPreferences = false;
     }
 
     handleCloseUserdMyProfile(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserdMyProfile', '@Start');
 
         this.showModalUserMyProfile = false;
     }
 
     handleCloseUserWidgetButtonBar(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserWidgetButtonBar', '@Start');
 
         this.showModalUserWidgetButtonBar = false;
     }
 
     handleCloseUserShapeButtonBar(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserShapeButtonBar', '@Start');
 
         this.showModalUserShapeButtonBar = false;
     }
 
     handleCloseUserSystemSettings(action) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserSystemSettings', '@Start');
 
         this.showModalUserSystemSettings = false;
     }
 
     handleCloseUserOffline() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserOffline', '@Start');
 
         this.showModalUserOffline = false;
     }
 
     clickDashboardNew() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardNew', '@Start');
 
         console.log('App clickDashboardNew')
         this.showModalDashboardNew = true;
@@ -507,7 +504,7 @@ export class AppComponent implements OnInit {
 
     clickDashboardOpen() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardOpen', '@Start');
 
         console.log('App clickDashboardOpen')
         this.showModalDashboardOpen = true;
@@ -515,28 +512,28 @@ export class AppComponent implements OnInit {
 
     clickDashboardEdit() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardEdit', '@Start');
 
         this.globalVariableService.editMode.next(!this.editMode);
     }
 
     clickDashboardDiscard() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDiscard', '@Start');
 
         this.showModalDashboardDiscard = true;
     }
 
     clickDashboardShare() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
 
         this.showModalDashboardShare = true;
     }
 
     clickDashboardSave() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSave', '@Start');
 
         console.log('App clickDashboardSave')
         this.showModalDashboardSave = true;
@@ -544,112 +541,112 @@ export class AppComponent implements OnInit {
 
     clickDashboardSnapshots() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSnapshots', '@Start');
 
         this.showModalDashboardSnapshots = true;
     }
 
     clickDashboardImport() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardImport', '@Start');
 
         this.showModalDashboardImport = true;
     }
 
     clickDashboardRename() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardRename', '@Start');
 
         this.showModalDashboardRename = true;
     }
 
     clickMenuFileDetails() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuFileDetails', '@Start');
 
         this.showModalDashboardDetails = true;
     }
 
     clickMenuDashboardDetailDescription() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDescription', '@Start');
 
         this.showModalDashboardDescription = true;
     }
 
     clickMenuDashboardDetailTags() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTags', '@Start');
 
         this.showModalDashboardTags = true;
     }
 
     clickMenuDashboardDetailSettings() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailSettings', '@Start');
 
         this.showModalDashboardSettings = true;
     }
 
     clickMenuDashboardDetailComments() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailComments', '@Start');
 
         this.showModalDashboardComments = true;
     }
 
     clickMenuDashboardDetailTheme() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTheme', '@Start');
 
         this.showModalDashboardTheme = true;
     }
 
     clickMenuDashboardDetailTemplate() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTemplate', '@Start');
 
         this.showModalDashboardTemplate = true;
     }
 
     clickMenuDashboardDetailSchedule() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailSchedule', '@Start');
 
         this.showModalDashboardSchedule = true;
     }
 
     clickMenuDashboardPrint() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardPrint', '@Start');
 
         this.showModalDashboardPrint = true;
     }
 
     clickMenuDashboardDelete() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDelete', '@Start');
 
         this.showModalDashboardDelete = true;
     }
 
     clickMenuDashboardTreeview() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardTreeview', '@Start');
 
         this.showModalDashboardTreeview = true;
     }
 
     clickMenuDashboardSubscribe() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardSubscribe', '@Start');
 
         this.showModalDashboardSubscribe = true;
     }
 
     clickMenuDataFromFile() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
 
         console.log('App clickMenuDataFromFile')
         this.globalVariableService.dataGetFromSwitch.next('File');
@@ -658,7 +655,7 @@ export class AppComponent implements OnInit {
 
     clickMenuDataFromServer() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromServer', '@Start');
 
         console.log('App clickMenuDataFromServer')
         this.globalVariableService.dataGetFromSwitch.next('Server');
@@ -667,28 +664,28 @@ export class AppComponent implements OnInit {
 
     clickMenuDataCombinations(){
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinations', '@Start');
 
         this.showModalDataCombination = true;
     }
 
     clickMenuDataSlicerAdd() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerAdd', '@Start');
 
         this.showModalDataSlicers = true;
     }
 
     clickMenuDataSlicerEdit() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerEdit', '@Start');
 
         this.showModalDataSlicers = true;
     }
 
     clickMenuDataSlicerDelete() {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerDelete', '@Start');
 
     }
 
