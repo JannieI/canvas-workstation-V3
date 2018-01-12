@@ -149,6 +149,8 @@ export class DataPopupComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+        // Initialise
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load global variables
         this.datasources = this.globalVariableService.datasources;
@@ -170,6 +172,8 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickField() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickField', '@Start');
         if (this.showSelectField) {
             this.showSelectField = false;
             this.selectorDetailColumnEnd = '12';
@@ -180,14 +184,23 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickFileBrowse() {
-        // alert('Later: File component to browse ...')
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
+
+        // TODO alert('Later: File component to browse ...')
     }
 
     clickCurrentDSDelete(index: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDSDelete', '@Start');
+
         this.globalVariableService.currentDatasourceDelete(index);
     }
 
     clickDSPreview(action: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
+
         var csv_data = dl.load({url: './assets/vega-datasets/stocks.csv'});
         let startNow: number;
 
@@ -286,10 +299,10 @@ export class DataPopupComponent implements OnInit {
         console.log('DataPopup clickDSPreview PREVIEW start:')
         startNow = Date.now()
         console.log('DataPopup clickDSPreview         END preview: ', (Date.now() - startNow) / 1000)
-        
+
         // No DS currently selected
         this.currentDatasetName = '';
-        
+
         // Show the Preview button
         this.showDataPreview = true; //!this.showDataPreview;
 
@@ -298,8 +311,10 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickDSAdd(action: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         // Datasource
-        console.log('DataPopup clickDSAdd start:')
         let newData: Datasource =  {
             id: 1,
             type: 'File',
@@ -313,7 +328,7 @@ export class DataPopupComponent implements OnInit {
             refreshedOn: '2017/01/01',
             parameters: 'None'
         };
-        
+
         // General var with name - used in *ngIF, etc
         this.currentDatasetName = this.fileName;
 
@@ -345,8 +360,11 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickDatasourceRow(dsName: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasourceRow', '@Start');
+
         this.currentDatasetName = dsName;
-        
+
         // Show the top steps
         this.showTopSteps = true;
 
@@ -357,6 +375,8 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickSelectDatasource(i: number, name: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectDatasource', '@Start');
 
         // General var with name - used in *ngIF, etc
         this.curentDatasetID = i;
@@ -374,7 +394,7 @@ export class DataPopupComponent implements OnInit {
 
         // Show the preview
         this.showDataPreview = true;
-        
+
         // Show the top steps
         this.showTopSteps = true;
 
@@ -384,11 +404,17 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickFileAddTransformationDetail() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileAddTransformationDetail', '@Start');
+
         this.transformationDescription = 'Format date, ie YYYY/MM/DD'
         this.showTransformDetail = true;
     }
 
     clickFileAddTransformation() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileAddTransformation', '@Start');
+
         let newTransformation: Transformation = {
             id: 2,
             datasourceID: 12,
@@ -402,28 +428,46 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickFileSaveTransformation() {
-        console.log('DataPopup clickFileSaveTransformation Saved the name for next time ...')
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileSaveTransformation', '@Start');
+
+        // TODO - add code to Save the name for next time ...
     }
 
     clickClose(action: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         // this.formDataPopupClosed.emit(action);
         this.router.navigate(['/explore']);
 
     }
 
     clickRefreshPivot() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshPivot', '@Start');
+
         this.resultMessage = ''
     }
 
     clickRefreshSummary() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshSummary', '@Start');
+
         alert('clickRefreshSummary')
     }
 
     clickTransitionFormat() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransitionFormat', '@Start');
+
         this.showTransitionFormat = true;
     }
 
     dragstart_handler(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragstart_handler', '@Start');
+
         console.log("DataPopup dragstart_handler", ev, ev.srcElement.innerText);
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
@@ -432,6 +476,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     dragstart_handlerCol(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragstart_handlerCol', '@Start');
+
         console.log("DataPopup dragstart_handlerCol", ev, ev.srcElement.innerText);
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
@@ -441,6 +488,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     dragstart_handlerRow(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragstart_handlerRow', '@Start');
+
         console.log("DataPopup dragstart_handlerRow", ev, ev.srcElement.innerText);
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
@@ -450,6 +500,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     dragstart_handlerAgg(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragstart_handlerAgg', '@Start');
+
         console.log("DataPopup dragstart_handlerAgg", ev, ev.srcElement.innerText);
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
@@ -459,10 +512,16 @@ export class DataPopupComponent implements OnInit {
     }
 
     dragend_handler(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragend_handler', '@Start');
+
         console.log('DataPopup dragend_handler', ev.dataTransfer.dropEffect)
     }
 
     dragover_handler(ev, actionName: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnIdragover_handlernit', '@Start');
+
         console.log('DataPopup dragover_handler', ev, ev.srcElement.innerText)
         ev.preventDefault();
         this.transitionFieldName = 'Added the field to transition: '
@@ -470,6 +529,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     dragover_handlerColEnter(ev, actionName: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerColEnter', '@Start');
+
         ev.preventDefault();
         this.dragoverCol = true;
         this.dragoverRow = false;
@@ -477,11 +539,17 @@ export class DataPopupComponent implements OnInit {
     }
 
     dragover_handlerColLeave(ev, actionName: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerColLeave', '@Start');
+
         ev.preventDefault();
         this.dragoverCol = false;
     }
 
     dragover_handlerRowEnter(ev, actionName: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerRowEnter', '@Start');
+
         ev.preventDefault();
         this.dragoverCol = false;
         this.dragoverRow = true;
@@ -489,11 +557,17 @@ export class DataPopupComponent implements OnInit {
     }
 
     dragover_handlerRowLeave(ev, actionName: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerRowLeave', '@Start');
+
         ev.preventDefault();
         this.dragoverRow = false;
     }
 
     dragover_handlerAggEnter(ev, actionName: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerAggEnter', '@Start');
+
         ev.preventDefault();
         this.dragoverCol = false;
         this.dragoverRow = false;
@@ -501,11 +575,17 @@ export class DataPopupComponent implements OnInit {
     }
 
     dragover_handlerAggLeave(ev, actionName: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerAggLeave', '@Start');
+
         ev.preventDefault();
         this.dragoverAgg = false;
     }
 
     drop_handlerRow(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'drop_handlerRow', '@Start');
+
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
@@ -531,6 +611,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     drop_handlerCol(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'drop_handlerCol', '@Start');
+
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
@@ -556,6 +639,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     drop_handlerAgg(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'drop_handlerAgg', '@Start');
+
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
@@ -567,6 +653,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     drop_pivot(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'drop_pivot', '@Start');
+
         ev.preventDefault();
 
         var data = ev.dataTransfer.getData("text");
@@ -575,6 +664,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     dragover_pivot(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_pivot', '@Start');
+
         console.log('DataPopup dragover_pivot')
         ev.preventDefault();
         // Set the dropEffect to move
@@ -582,7 +674,11 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickShowIdentifyFile() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowIdentifyFile', '@Start');
+        
         this.showIdentifyFile = true;
+
         this.showFilter = false;
         this.showTransform = false;
         this.showPivot = false;
@@ -590,6 +686,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickShowFilter() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFilter', '@Start');
+
         this.showIdentifyFile = false;
         this.showFilter = true;
         this.showTransform = false;
@@ -598,6 +697,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickShowTransform() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowTransform', '@Start');
+
         this.showIdentifyFile = false;
         this.showFilter = false;
         this.showTransform = true;
@@ -606,6 +708,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickShowPivot() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowPivot', '@Start');
+
         this.showIdentifyFile = false;
         this.showFilter = false;
         this.showTransform = false;
@@ -614,6 +719,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickShowView() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowView', '@Start');
+
         this.showIdentifyFile = false;
         this.showFilter = false;
         this.showTransform = false;
@@ -622,14 +730,23 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickShowIdentity() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowIdentity', '@Start');
+
         this.showIdentifyFile = true;
     }
 
     changedInput(newValue: any) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'changedInput', '@Start');
+
         console.log('DataPopup changedInput: Old-New', this.changeVar, newValue)
     }
 
     clickViewOptions(area: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewOptions', '@Start');
+
         console.log('DataPopup clickViewOptions area', area)
 
         if (area == 'gridViewOverview') {
@@ -684,6 +801,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickTest() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('DataPopup clickTest currentData', this.currentData[0])
         let result: any;
         result = this.globalFunctionService.convertArrayToPivot(this.currentData);
@@ -691,6 +811,9 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickDS() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDS', '@Start');
+
         this.currentDS = !this.currentDS;
     }
 }

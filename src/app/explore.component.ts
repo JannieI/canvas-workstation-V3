@@ -20,7 +20,7 @@ import { ViewChildren }               from '@angular/core';
 import { Observable} from 'rxjs'
 // Our Services
 import { GlobalVariableService }      from './global-variable.service';
-// import { GlobalFunctionService }      from './global-function.service';
+import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
 import { CanvasShape, CanvasSlicer }                from './models'
@@ -165,12 +165,16 @@ export class ExploreComponent {
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
+        private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         private renderer: Renderer,
         private renderer2: Renderer2,
     ) {}
 
     ngOnInit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore ngOnInit', this.globalVariableService.openDashboardFormOnStartup)
 
         // Load global variables
@@ -240,6 +244,9 @@ export class ExploreComponent {
     // }
 
     refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.globalVariableService.refreshCurrentDashboardInfo(1, dashboardTabID).then (i => 
             {
                 console.log('The big moment ...')
@@ -251,6 +258,9 @@ export class ExploreComponent {
             } );
     }
     ngAfterViewInit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore ngOnViewInit', this.currentShapes)
 
         // Loop on the graph ElementRefs, and set properties ala widget[].properties
@@ -275,10 +285,15 @@ export class ExploreComponent {
     }
 
     handleCloseDashboardOpen(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.showModalDashboardOpen = false;
     }
 
     refreshShapes2() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
 
         console.log('Explore refreshShapes2 starting now ...', this.shapeContainter.toArray().length)
         // Loop on the graph ElementRefs, and set properties ala widget[].properties
@@ -304,10 +319,11 @@ export class ExploreComponent {
     }
 
     refreshWidgets() {
-        console.log('Explore refreshWidgets')
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
 
         console.log('Explore refreshWidgets ...START children.length', this.childrenWidgets.toArray(),
-    this.widgetContainters.toArray(), this.currentWidgets)
+            this.widgetContainters.toArray(), this.currentWidgets)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
             if (this.currentWidgets[i] == undefined) {alert('this.currentWidgets[i] is UNDEFINED')}
             console.log('Explore refreshWidgets this.currentWidgets[i].graphColorField', this.currentWidgets[i].graphColorField)
@@ -342,6 +358,9 @@ export class ExploreComponent {
     }
 
     duplicateWidget(duplicate: boolean) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         if (duplicate) {
             console.log('Explore duplicateWidget', this.childrenWidgets.toArray().length)
             // this.localDashboards.push(this.localDashboards[0]);
@@ -351,10 +370,16 @@ export class ExploreComponent {
     }
 
     allowDrop(event) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         event.preventDefault();
     }
 
     dragstart_handler(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         // console.log("Explore dragstart_handler");
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
@@ -362,10 +387,16 @@ export class ExploreComponent {
     }
 
     dragend_handler(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore dragend_handler', ev.dataTransfer.dropEffect)
     }
 
     dragover_handler(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore dragover_handler')
         ev.preventDefault();
         // Set the dropEffect to move
@@ -373,6 +404,9 @@ export class ExploreComponent {
     }
 
     drop_handler(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         ev.preventDefault();
         // Get the id of the target and add the moved element to the target's DOM
         var data = ev.dataTransfer.getData("text");
@@ -427,26 +461,44 @@ export class ExploreComponent {
     ];
 
     clickWidget(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         return;
     }
 
     clickDashboardDescription() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.showDashboardDescription = true;
     }
 
     clickListTabs() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.showTabList = true;
     }
 
     clickAddTab() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.showNewTab = true;
     }
 
     clickShowFirstTab() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.currentTabName = this.currentDashboardTabs[0].name;
     }
 
     clickShowPreviousTab() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         let x: number = this.globalVariableService.currentDashboardTabID - 1;
         if (x < 0) { x = this.currentDashboardTabs.length - 1 };
         // this.globalVariableService.currentDashboardTabID.next(x);
@@ -456,6 +508,9 @@ export class ExploreComponent {
     }
 
     clickShowNextTab() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore clickShowNextTab', this.globalVariableService.currentDashboardTabID)
         let x: number = this.globalVariableService.currentDashboardTabID + 1;
         if (x >= this.currentDashboardTabs.length) { x = 0 };
@@ -466,20 +521,32 @@ export class ExploreComponent {
     }
 
     clickShowLastTab() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore clickShowLastTab',this.currentTabName)
         this.currentTabName = this.currentDashboardTabs[
             this.currentDashboardTabs.length - 1].name;        
     }
 
     clickCloseModel() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.showModalOpenDashboard = false;
     }
 
     clickDeleteTab() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         alert ('Cannot delete last remaining Tab')
     }
 
     clickGotIt() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.globalVariableService.isFirstTimeDashboard.next(false);
     }
 
@@ -499,6 +566,8 @@ export class ExploreComponent {
         graphColorField: string = '',
         graphColorType: string = ''
         ): dl.spec.TopLevelExtendedSpec {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
 
         // Exclude nulls, as dl lib reads "" as null
         if (graphDescription == null) { graphDescription = ''};
@@ -554,30 +623,51 @@ export class ExploreComponent {
     }
 
     clickClosePresentation() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.globalVariableService.showMainMenu.next(true);
         this.globalVariableService.presentationMode.next(false);
     }
 
     handleCloseDashboardTab() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.showNewTab = false;
     }
 
     clickSelect(i: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.currentWidgets[i].isSelected = !this.currentWidgets[i].isSelected;
     }
 
     clickDragMouseDown(event, id: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore clickDragMouseDown', id)
     }
     clickDragMouseUp(event, id: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore clickDragMouseUp')
     }
     clickDragStart(event, id: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore clickDragStart', id, event.clientX, event.clientY)
         this.startX = event.clientX;
         this.startY = event.clientY;
     }
     clickDragEnd(event, index: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore clickDragEnd', index, event.clientX, event.clientY,
         'was', this.currentWidgets[index].containerLeft,
         'diff', event.clientX - this.startX,
@@ -601,14 +691,23 @@ export class ExploreComponent {
 
     }
     clickDragKeydown(event, id: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore clickDragKeydown', id)
     }
 
     clickResizeMouseDown(event, id: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore clickResizeMouseDown', id)
     }
     clickResizeMouseUp(event, id: number) {
-        console.log('Explore clickResizeMouseUp')
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
+        console.log('Explore clickResizeMouseUp', id)
     }
     clickResizeStart(event, id: number) {
         console.log('Explore clickResizeStart', id, event.clientX, event.clientY)
@@ -616,6 +715,9 @@ export class ExploreComponent {
         this.startY = event.clientY;
     }
     clickResizeEnd(event, index: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore clickResizeEnd', index, event.clientX, event.clientY,
         'was', this.currentWidgets[index].containerWidth,
         'diff', event.clientX - this.startX,
@@ -638,16 +740,28 @@ export class ExploreComponent {
         this.currentWidgets[index].containerHeight = newY;
     }
     clickResizeKeydown(event, id: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('Explore clickResizeKeydown', id)
     }
 
     handleCloseDashboardHelp() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
     }
 
     handleCloseDashboardHelpPresentation() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
     }
 
     clickWidgetEdit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         if (this.datasources.length == 0) {
             alert('Please add a Dataset first: Data -> From File')
         } else {
@@ -656,43 +770,79 @@ export class ExploreComponent {
     }
 
     handleCloseWidgetEditor() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.showModalWidgetEditor = false;
     }
 
     clickWidgetCheckpoints() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
     }
 
     clickMenuWidgetComments() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
     }
 
     clickMenuWidgetLinks() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         if (this.presentationMode) {
             alert ('Jumping to Linked Dashboard ...')
         }
     }
 
     clickMenuWidgetRefresh() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
     }
 
     clickMenuWidgetDuplicate() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
     }
 
     clickMenuWidgetExpand() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
     }
 
     clickMenuWidgetExport() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
     }
 
     clickMenuArrangeBack() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
     }
 
     clickMenuArrangeFront() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
     }
 
     clickMenuWidgetDelete() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
     }
 
     clickStatusTemplate() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         if (this.templateInUse == 'Tmpl Used') {
             this.templateInUse = 'Tmpl Disabled ';
         } else {
@@ -701,10 +851,16 @@ export class ExploreComponent {
     }
 
     clickSlicerDelete() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         this.showSlicer = false;
     }
 
     clickSlicer(index: number, id: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log(this.currentSlicers, index)
         this.currentSlicers[index].isSelected = !this.currentSlicers[index].isSelected;
         if (this.currentSlicers[index].isSelected ) {
@@ -716,6 +872,9 @@ export class ExploreComponent {
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
         console.log('clickResizeDown', this.currentSlicers[index].containerLeft, ev);
         this.startX = ev.x;
         this.startY = ev.y;
