@@ -26,6 +26,7 @@ import { Dashboard }                  from './models';
 })
 export class DashboardOpenComponent implements OnInit {
 
+    @Input() test: boolean;
     @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
@@ -42,11 +43,14 @@ export class DashboardOpenComponent implements OnInit {
         this.dashboards = this.globalVariableService.dashboards;
         this.globalVariableService.isFirstTimeDashboard.subscribe(
             i => this.isFirstTimeDashboardOpen = i
-        )
+        );
+        console.log('test', this.test)
     }
 
     clickClose(action: string) {
-        console.log('DashboardOpen clickClose')
+        this.test = true;
+
+        console.log('DashboardOpen clickClose', this.test)
 
 		this.formDashboardOpenClosed.emit(action);
     }

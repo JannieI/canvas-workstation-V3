@@ -166,6 +166,8 @@ export class ExploreComponent {
     selectedSlicers: number[] = []
 
 
+    test:boolean = false;
+
     constructor(
         // private globalFunctionService: GlobalFunctionService,
         private globalFunctionService: GlobalFunctionService,
@@ -1017,6 +1019,7 @@ export class ExploreComponent {
     handleCloseDashboardOpen(ev) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardOpen', '@Start');
+        console.log('handleCloseDashboardOpen 1', this.test)
 
         this.showModalDashboardOpen = false;
     }

@@ -703,6 +703,7 @@
 <!-- Modal: open Dashboard -->
 <dashboard-open
     class="formPopupDashboard"
+    [(test)]="test"
     *ngIf="showModalDashboardOpen"
     (formDashboardOpenClosed)="handleCloseDashboardOpen($event)">Load Open Dashboard ...
 </dashboard-open>
