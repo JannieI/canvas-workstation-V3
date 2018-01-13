@@ -1456,30 +1456,29 @@ export class GlobalVariableService {
 
                         // Load the current Dashboard, and Optional template
                         // let currentDashboards: Dashboard[] = [];
-                        // currentDashboards = this.dashboards.filter(
-                        //     i => i.id == dashboardID
-                        // );
+                        this.currentDashboards = this.dashboards.filter(
+                            i => i.id == dashboardID
+                        );
 
-                        // if (currentDashboards.length > 0) {
-                        //     if (currentDashboards[0].templateDashboardID != 0) {
-                        //         let templeteDashboard: Dashboard[] = null;
+                        if (this.currentDashboards.length > 0) {
+                            if (this.currentDashboards[0].templateDashboardID != 0) {
+                                let templeteDashboard: Dashboard[] = null;
 
-                        //         templeteDashboard = this.dashboards.filter(
-                        //             i => i.id == currentDashboards[0].templateDashboardID
-                        //         );
+                                templeteDashboard = this.dashboards.filter(
+                                    i => i.id == this.currentDashboards[0].templateDashboardID
+                                );
 
-                        //         if (templeteDashboard == null) {
-                        //             alert('Dashboard template id does not exist in Dashboards Array')
-                        //         } else {
-                        //             currentDashboards.push(templeteDashboard[0]);
-                        //         }
-                        //     };
-                        // }
+                                if (templeteDashboard == null) {
+                                    alert('Dashboard template id does not exist in Dashboards Array')
+                                } else {
+                                    this.currentDashboards.push(templeteDashboard[0]);
+                                }
+                            };
+                        }
                         // this.currentDashboards.next(currentDashboards);
-                        this.currentDashboards.push(currentDashboards);
 
                         console.log('Global-Variables getCurrentDashboards 1', dashboardID, data)
-                        resolve(currentDashboards);
+                        resolve(this.currentDashboards);
 
                 })
              })
@@ -1487,27 +1486,27 @@ export class GlobalVariableService {
             return new Promise<Dashboard[]>((resolve, reject) => {
 
                 // Load the current Dashboard, and Optional template
-                let currentDashboards: Dashboard[] = [];
-                currentDashboards = this.dashboards.filter(
+                // let currentDashboards: Dashboard[] = [];
+                this.currentDashboards = this.dashboards.filter(
                     i => i.id == dashboardID
                 );
 
-                if (currentDashboards[0].templateDashboardID != 0) {
+                if (this.currentDashboards[0].templateDashboardID != 0) {
                     let templeteDashboard: Dashboard[] = null;
 
                     templeteDashboard = this.dashboards.filter(
-                        i => i.id == currentDashboards[0].templateDashboardID
+                        i => i.id == this.currentDashboards[0].templateDashboardID
                     );
 
                     if (templeteDashboard == null) {
                         alert('Dashboard template id does not exist in Dashboards Array')
                     } else {
-                        currentDashboards.push(templeteDashboard[0]);
+                        this.currentDashboards.push(templeteDashboard[0]);
                     }
                 }
-                this.currentDashboards.next(currentDashboards);
-                console.log('Global-Variables getCurrentDashboards 2', dashboardID, currentDashboards)
-                resolve(currentDashboards);
+                // this.currentDashboards.next(currentDashboards);
+                console.log('Global-Variables getCurrentDashboards 2', dashboardID, this.currentDashboards)
+                resolve(this.currentDashboards);
             });
         };
 
@@ -1560,7 +1559,7 @@ export class GlobalVariableService {
                         data = data.filter(
                             i => i.dashboardID == dashboardID
                         );
-                        this.currentDashboardTabs.next(data);
+                        this.currentDashboardTabs = data;
                         console.log('Global-Variables getCurrentDashboardTabs 1', dashboardID, data)
                         resolve(data);
 
@@ -1572,7 +1571,7 @@ export class GlobalVariableService {
                 returnData = this.dashboardTabs.filter(
                         i => i.dashboardID == dashboardID
                     )
-                this.currentDashboardTabs.next(returnData);
+                this.currentDashboardTabs = returnData;
                 console.log('Global-Variables getCurrentDashboardTabs 2', dashboardID, returnData)
                 resolve(returnData);
             });
@@ -1631,7 +1630,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID  &&
                                  (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
                         );
-                        this.currentWidgets.next(data);
+                        this.currentWidgets = data;
                         console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID, data)
                         resolve(data);
 
@@ -1645,7 +1644,7 @@ export class GlobalVariableService {
                         (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
 
                     )
-                this.currentWidgets.next(returnData);
+                this.currentWidgets = returnData;
                 console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, returnData)
                 resolve(returnData);
             });
@@ -1808,7 +1807,7 @@ export class GlobalVariableService {
                             (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
 
                         );
-                        this.currentShapes.next(data);
+                        this.currentShapes = data;
                         console.log('Global-Variables getCurrentShapes 1', dashboardID, 
                             dashboardTabID, data)
                         resolve(data);
@@ -1822,7 +1821,7 @@ export class GlobalVariableService {
                     (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
 
                 );
-                this.currentShapes.next(returnData);
+                this.currentShapes = returnData;
                 console.log('Global-Variables getCurrentShapes 2', dashboardID, 
                     dashboardTabID, returnData)
                 resolve(returnData);
@@ -1881,7 +1880,7 @@ export class GlobalVariableService {
                             (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
 
                         );
-                        this.currentSlicers.next(data);
+                        this.currentSlicers = data;
                         console.log('Global-Variables getCurrentSlicers 1', dashboardID, dashboardTabID, data)
                         resolve(data);
                 })
@@ -1894,7 +1893,7 @@ export class GlobalVariableService {
                     (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
 
                 );
-                this.currentSlicers.next(returnData);
+                this.currentSlicers = returnData;
                 console.log('Global-Variables getCurrentSlicers 2', dashboardID, dashboardTabID, returnData)
                 resolve(returnData);
             });
@@ -1949,7 +1948,7 @@ export class GlobalVariableService {
                         data = data.filter(
                             i => i.dashboardID == dashboardID
                         );
-                        this.currentDashboardSchedules.next(data);
+                        this.currentDashboardSchedules = data;
                         console.log('Global-Variables getCurrentDashboardSchedules 1', 
                             dashboardID, data)
                         resolve(data);
@@ -1961,7 +1960,7 @@ export class GlobalVariableService {
                 returnData = this.dashboardSchedules.filter(
                     i => i.dashboardID == dashboardID
                 );
-                this.currentDashboardSchedules.next(returnData);
+                this.currentDashboardSchedules = returnData;
                 console.log('Global-Variables getCurrentDashboardSchedules 2', 
                     dashboardID, returnData)
                 resolve(returnData);
@@ -2016,7 +2015,7 @@ export class GlobalVariableService {
                         data = data.filter(
                             i => i.dashboardID == dashboardID
                         );
-                        this.currentDashboardTags.next(data);
+                        this.currentDashboardTags = data;
                         console.log('Global-Variables getCurrentDashboardTags 1', 
                             dashboardID, data)
                         resolve(data);
@@ -2028,7 +2027,7 @@ export class GlobalVariableService {
                 returnData = this.dashboardTags.filter(
                     i => i.dashboardID == dashboardID
                 );
-                this.currentDashboardTags.next(returnData);
+                this.currentDashboardTags = returnData;
                 console.log('Global-Variables getCurrentDashboardTags 2', dashboardID)
                 resolve(returnData);
             });
@@ -2082,7 +2081,7 @@ export class GlobalVariableService {
                         data = data.filter(
                             i => i.dashboardID == dashboardID
                         );
-                        this.currentDashboardPermissions.next(data);
+                        this.currentDashboardPermissions =data;
                         console.log('Global-Variables getCurrentDashboardPermissions 1', 
                             dashboardID, data)
                         resolve(data);
@@ -2094,7 +2093,7 @@ export class GlobalVariableService {
                 returnData = this.dashboardPermissions.filter(
                     i => i.dashboardID == dashboardID
                 );
-                this.currentDashboardPermissions.next(returnData);
+                this.currentDashboardPermissions =returnData;
                 console.log('Global-Variables getCurrentDashboardPermissions 2', dashboardID)
                 resolve(returnData);
             });
@@ -2148,7 +2147,7 @@ export class GlobalVariableService {
                         data = data.filter(
                             i => i.dashboardID == dashboardID
                         );
-                        this.currentDashboardSnapshots.next(data);
+                        this.currentDashboardSnapshots = data;
                         console.log('Global-Variables getDashboardSnapshots 1', 
                             dashboardID, data)
                         resolve(data);
@@ -2160,7 +2159,7 @@ export class GlobalVariableService {
                 returnData = this.dashboardSnapshots.filter(
                     i => i.dashboardID == dashboardID
                 );
-                this.currentDashboardSnapshots.next(returnData);
+                this.currentDashboardSnapshots = returnData;
                 console.log('Global-Variables getDashboardSnapshots 2', dashboardID)
                 resolve(returnData);
             });
