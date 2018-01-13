@@ -931,7 +931,7 @@ export class ExploreComponent {
         // Reset current and globalVar values
         this.currentSlicers[index].containerWidth = 
             this.currentSlicers[index].containerWidth - this.startX + ev.x;
-        this.globalVariableService.currentSlicers.value[index].containerWidth =   
+        this.globalVariableService.currentSlicers[index].containerWidth =   
             this.currentSlicers[index].containerWidth;    
                 
         // console.log('clickResizeUp this.globalVariableService.currentSlicers[index].value',

@@ -80,14 +80,17 @@ export class WidgetDeleteComponent implements OnInit {
     clickDeleteWidget() {
         console.log('clickDelete')
 
-        for (var i = 0; i < this.currentWidgets.length; i++) {
-            console.log('this.currentWidgets.length', i, this.currentWidgets[i].isSelected)
-            if (this.currentWidgets[i].isSelected == true) {
-                this.globalVariableService.deleteWidget(this.currentWidgets[i].id);
-                this.localTrash = this.localTrash.concat(this.currentWidgets.slice(i,i + 1));
-                this.globalVariableService.deleteWidget(i);
-            }
-        }
+        // for (var i = 0; i < this.currentWidgets.length; i++) {
+        //     console.log('this.currentWidgets.length', i, this.currentWidgets[i].isSelected)
+        //     if (this.currentWidgets[i].isSelected == true) {
+        //         this.globalVariableService.deleteWidget(this.currentWidgets[i].id);
+        //         this.localTrash = this.localTrash.concat(this.currentWidgets.slice(i,i + 1));
+        //         this.globalVariableService.deleteWidget(i);
+        //     }
+        // }
+        this.globalVariableService.deleteWidget(this.currentWidgets.id);
+        this.localTrash = this.localTrash.concat(this.currentWidgets);
+
         console.log('clickDel Trash:', this.localTrash);
         this.globalVariableService.localTrash.next(this.localTrash);
         this.formWidgetDeleteClosed.emit('Deleted');

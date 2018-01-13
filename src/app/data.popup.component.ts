@@ -165,7 +165,11 @@ export class DataPopupComponent implements OnInit {
                 this.datasourceFilters = this.globalVariableService.datasourceFilters;
                 this.fields = this.globalVariableService.fields;
                 this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
-                this.dataGetFromSwitch = this.globalVariableService.dataGetFromSwitch;
+                this.globalVariableService.dataGetFromSwitch.subscribe(
+                    i => {
+                            this.dataGetFromSwitch
+                    }
+                )
             }
         )
 
