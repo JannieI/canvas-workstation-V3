@@ -164,7 +164,7 @@ export class ExploreComponent {
     slicerWidth: number = 160;
     slicerButtons: number = 5;
     selectedSlicers: number[] = []
-
+    loggedIntoServerText: string;
 
     test:boolean = false;
 
@@ -249,6 +249,17 @@ export class ExploreComponent {
         this.globalVariableService.menuActionSelectAll.subscribe(
             i => this.clickMenuSelectAll(i)
         );
+        this.globalVariableService.loggedIntoServer.subscribe(
+            i => 
+            {
+                console.log(i)
+                if(i) {
+                    this.loggedIntoServerText = 'Server'
+                } else {
+                    this.loggedIntoServerText = 'Local'
+                }
+            }
+        )
 
     }
 

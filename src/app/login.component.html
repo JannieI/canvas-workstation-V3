@@ -8,39 +8,46 @@
                 </button>
 
                 Login
+                <form>
+                    <section>
+                            <div class="select">
+                                <select id="selects_3"
+                                    (change)="clickLocalServer($event)"
+                                    >
+                                    <option>Local</option>
+                                    <option>Server</option>
+                                </select>
+                            </div>
+                    </section>
+                    <section>
 
-
-                Logout
-
-                <div>
-                    <br>
-                    <div class="propertyLine">
-                        <input type="text" id="formFields_7" placeholder="UserName">
-                    </div>
-                    <br>
-                    <div class="propertyLine">
-                        <input type="text" id="formFields_7" placeholder="Password">
-                  </div>
-                    <br>
-                    <div class="propertyLine">
-                        <input type="text" id="formFields_7" placeholder="ServerName/Local">
-                    </div>
-                    <br>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm"
-                        (click)="clickClose()"
-                        >
-                        Cancel
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm"
-                        (click)="clickClose()"
-                        >
-                        Logout
-                    </button>
-                </div>
+                        <div>
+                            <br>
+                            <div class="propertyLine">
+                                <input type="text" id="formFields_7" placeholder="UserName">
+                            </div>
+                            <br>
+                            <div class="propertyLine">
+                                <input type="text" id="formFields_7" placeholder="Password">
+                        </div>
+                            <br>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                (click)="clickClose()"
+                                >
+                                Cancel
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                (click)="clickClose()"
+                                >
+                                Login
+                            </button>
+                        </div>
+                    </section>
+                </form>
             </div>
         </div>
     </div>

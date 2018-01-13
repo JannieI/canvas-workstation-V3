@@ -36,15 +36,28 @@ export class LoginComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
     
     }
 
     clickClose(action: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         console.log('clickClose')
 
 		this.formUserLoginClosed.emit(action);
     }
 
+    clickLocalServer() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickLocalServer', '@Start');
 
+        this.globalVariableService.loggedIntoServer.next(
+            !this.globalVariableService.loggedIntoServer.value
+        )
+    }
 }
