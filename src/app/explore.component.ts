@@ -181,7 +181,12 @@ export class ExploreComponent {
         console.log('Explore ngOnInit', this.globalVariableService.openDashboardFormOnStartup)
 
         // Load global variables
-        this.showModalLanding = this.globalVariableService.showModalLanding;
+        this.globalVariableService.showModalLanding.subscribe(
+            i => this.showModalLanding = i
+        );
+        this.globalVariableService.showModalData.subscribe(
+            i => this.showModalData = i
+        );
         if (this.globalVariableService.openDashboardFormOnStartup) {
             this.showModalDashboardOpen = true;
         };
@@ -996,7 +1001,7 @@ export class ExploreComponent {
         // Close Modal form Landing page
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
 
-        this.showModalLanding = false;
+        this.globalVariableService.showModalLanding.next(false);
         // if (this.globalVariableService.openDashboardFormOnStartup) {
         //     console.log('handleCloseModalLanding 1')
         //     this.showModalDashboardOpen = true;
@@ -1019,7 +1024,7 @@ export class ExploreComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
 
-        this.showModalData = false;
+        this.globalVariableService.showModalData.next(false);
     }
 }
 

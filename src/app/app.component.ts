@@ -340,12 +340,12 @@ export class AppComponent implements OnInit {
         this.showModalDataSlicers = false;
     }
 
-    handleCloseData() {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
+    // handleCloseData() {
+    //     // 
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
 
-        this.showModalData = false;
-    }
+    //     this.showModalData = false;
+    // }
     
     handleCloseDataCombination() {
         // 
@@ -658,7 +658,8 @@ export class AppComponent implements OnInit {
 
         console.log('App clickMenuDataFromFile')
         this.globalVariableService.dataGetFromSwitch.next('File');
-        this.showModalData = true;
+        this.globalVariableService.showModalData.next(true);
+        // this.showModalData = true;
         // this.router.navigate(['/data']);
     }
 
