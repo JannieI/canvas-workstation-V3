@@ -61,25 +61,26 @@ export class DashboardOpenComponent implements OnInit {
 
     clickOpenView(dashboardID: number) {
         console.log('DashboardOpen clickOpenView id', dashboardID)
-        // this.globalVariableService.currentDashboardID.next(id);
-		// this.globalVariableService.refreshCurrentDashboard(dashboardID, 1);
+
         this.globalVariableService.editMode.next(false);
+
         // Set ids and then signal that the Dashboard must be refreshed
         this.globalVariableService.currentDashboardID = dashboardID;
         this.globalVariableService.currentDashboardTabID = 1;
         this.globalVariableService.refreshDashboard.next(true);
+
         this.formDashboardOpenClosed.emit('View');
     }
 
     clickOpenEdit(dashboardID: number) {
         console.log('DashboardOpen clickOpenEdit id', dashboardID)
-        // this.globalVariableService.currentDashboardID.next(id);
-		// this.globalVariableService.refreshCurrentDashboard(dashboardID, 1);
+
+        this.globalVariableService.editMode.next(true);
+
         // Set ids and then signal that the Dashboard must be refreshed
         this.globalVariableService.currentDashboardID = dashboardID;
         this.globalVariableService.currentDashboardTabID = 1;
         this.globalVariableService.refreshDashboard.next(true);
-        this.globalVariableService.editMode.next(true);
 		this.formDashboardOpenClosed.emit('View');
     }
 }
