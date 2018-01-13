@@ -50,7 +50,7 @@
     position: absolute;
     left: 0;
     top: 4.5em;
-    z-index: 22;
+    z-index: 100;
 }
 
 .aCircleRect {

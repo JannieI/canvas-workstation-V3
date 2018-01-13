@@ -11,6 +11,15 @@
     z-index: 70;
 }
 
+/* Modals */
+.formPopupDashboard {
+    background-color: white;
+    border: 1px solid gray;
+    position: absolute;
+    left: 0;
+    top: 4.5em;
+    z-index: 100;
+}
 
 /* Status Bar */
 .statusBar {
