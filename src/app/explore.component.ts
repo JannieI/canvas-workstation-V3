@@ -1002,15 +1002,16 @@ export class ExploreComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
 
         this.globalVariableService.showModalLanding.next(false);
-        // if (this.globalVariableService.openDashboardFormOnStartup) {
-        //     console.log('handleCloseModalLanding 1')
-        //     this.showModalDashboardOpen = true;
-        // };
 
-        // if (this.globalVariableService.openNewDashboardFormOnStartup) {
-        //     console.log('handleCloseModalLanding 2')
-        //     this.showModalData = true;
-        // };
+        if (this.globalVariableService.openDashboardFormOnStartup) {
+            console.log('handleCloseModalLanding 1')
+            this.showModalDashboardOpen = true;
+        };
+
+        if (this.globalVariableService.openNewDashboardFormOnStartup) {
+            console.log('handleCloseModalLanding 2')
+            this.showModalData = true;
+        };
     }
 
     handleCloseDashboardOpen(ev) {

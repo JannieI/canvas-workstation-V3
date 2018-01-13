@@ -105,7 +105,6 @@ export class AppComponent implements OnInit {
     showModalUserOffline: boolean = false;
 
     localTrash: CanvasWidget[];
-    currentDatasources: Datasource[];
 
     // Testings ....
     test: number[] = [1,2,3,4,5,6];
@@ -139,12 +138,8 @@ export class AppComponent implements OnInit {
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
         );
-        this.globalVariableService.currentDatasources.subscribe(
-            i => {
-                    console.log('App ngOnInit currentDatasource', i.length)
-                    if (i.length > 0) { this.hasDatasources = true} else {this.hasDatasources = false}
-                    this.currentDatasources = i
-                 }
+        this.globalVariableService.hasDatasources.subscribe(
+            i => this.hasDatasources = i
         );
         this.globalVariableService.editMode.subscribe(
             i => {
@@ -669,7 +664,8 @@ export class AppComponent implements OnInit {
 
         console.log('App clickMenuDataFromServer')
         this.globalVariableService.dataGetFromSwitch.next('Server');
-        this.router.navigate(['/data']);
+        // this.router.navigate(['/data']);
+        this.globalVariableService.showModalData.next(true);
     }
 
     clickMenuDataCombinations(){
@@ -717,22 +713,14 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
-        if (this.currentDatasources.length == 0) {
-            alert('Please add a Dataset first: Data -> From File')
-        } else {
-            this.showModalWidgetEditor = true;
-        };
+        this.showModalWidgetEditor = true;
     }
 
     clickMenuWidgetEdit() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
-        if (this.currentDatasources.length == 0) {
-            alert('Please add a Dataset first: Data -> From File')
-        } else {
-            this.showModalWidgetEditor = true;
-        };
+        this.showModalWidgetEditor = true;
     }
 
     clickMenuWidgetCheckpoints() {
