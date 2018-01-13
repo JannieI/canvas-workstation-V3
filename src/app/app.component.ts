@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
     // showTextBox: boolean = false;
     // showRectangle: boolean = false;
     showGrid: boolean;
-    showModalLanding: boolean;  // Show Landing Page
+    // showModalLanding: boolean;  // Show Landing Page
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
@@ -132,7 +132,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.showGrid.subscribe(
             sG => this.showGrid = sG
         );
-        this.showModalLanding = this.globalVariableService.showModalLanding;
+        // this.showModalLanding = this.globalVariableService.showModalLanding;
         this.globalVariableService.showMainMenu.subscribe(
             sm => this.showMainMenu = sm
         );
@@ -155,19 +155,19 @@ export class AppComponent implements OnInit {
         );
     }
 
-    handleCloseModalLanding() {
-        // Close Modal form Landing page
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
+    // handleCloseModalLanding() {
+    //     // Close Modal form Landing page
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
 
-        this.showModalLanding = false;
-        this.document.body.style.backgroundImage ='../images/BarChart.png';
-        if (this.globalVariableService.openDashboardFormOnStartup == true) {
-        console.log('App handleCloseModalLanding')
-            this.showModalDashboardOpen = true;
-            this.router.navigate(['/explore']);
-        }
+    //     this.showModalLanding = false;
+    //     this.document.body.style.backgroundImage ='../images/BarChart.png';
+    //     if (this.globalVariableService.openDashboardFormOnStartup == true) {
+    //     console.log('App handleCloseModalLanding')
+    //         this.showModalDashboardOpen = true;
+    //         this.router.navigate(['/explore']);
+    //     }
 
-    }
+    // }
 
     handleCloseWidgetEditor() {
         // 

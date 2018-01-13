@@ -50,17 +50,28 @@ export class LandingComponent implements OnInit {
 		}
 
 	ngOnInit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 	}
 
 	ngAfterViewInit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+
 	}
 
 	clickButtonData() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickButtonData', '@Start');
+
 		console.log('Landing clickButtonData')
 		this.router.navigate(['/data']);
 	}
 
 	clickOpenSampleDashboard(dashboardID: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenSampleDashboard', '@Start');
+
 		console.log('Landing start clickOpenSampleDashboard', dashboardID);
 
 		// Check that we have data
@@ -82,6 +93,9 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickOpenRecentDashboard(dashboardID: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenRecentDashboard', '@Start');
+
 		console.log('Landing start clickOpenRecentDashboard', dashboardID);
 		
 		// Set ids and then signal that the Dashboard must be refreshed
@@ -91,31 +105,53 @@ export class LandingComponent implements OnInit {
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();
-			this.router.navigate(['/explore']);
+			// this.router.navigate(['/explore']);
 	}
 
 	promptDeleteRecent(index: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'promptDeleteRecent', '@Start');
+
 		console.log("Landing promptDeleteRecent TODO Prompt and then delete from list", index)
 		this.globalVariableService.deleteDashboardRecent(index);
 	}
 
 	clickClose(action: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
 		this.formLandingClosed.emit(action);
-		if (action !== 'OpenExisting') {
-			this.router.navigate(['/data']);
-		}
+		// if (action !== 'OpenExisting') {
+		// 	this.router.navigate(['/data']);
+		// }
 	}
 
 	clickOpenExisting() {
-		console.log('Landing clickOpenExisting')
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenExisting', '@Start');
+
 		this.globalVariableService.openDashboardFormOnStartup = true;
-		let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs
-			.filter(i => i.dashboardID = 1
-		);
-		console.log('Landing clickOpenExisting', this.globalVariableService.dashboardTabs, currentDashboardTabs)
-		this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs)
+		// let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs
+		// 	.filter(i => i.dashboardID = 1
+		// );
+		// console.log('Landing clickOpenExisting', this.globalVariableService.dashboardTabs, currentDashboardTabs)
+		// this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs)
 		this.formLandingClosed.emit();
-		this.router.navigate(['/explore']);
+		// this.router.navigate(['/explore']);
+	}
+
+	clickOpenNewDashboard() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenNewDashboard', '@Start');
+
+		this.globalVariableService.openNewDashboardFormOnStartup = true;
+		// let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs
+		// 	.filter(i => i.dashboardID = 1
+		// );
+		// console.log('Landing clickOpenNewDashboard', this.globalVariableService.dashboardTabs, currentDashboardTabs)
+		// this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs)
+		this.formLandingClosed.emit();
+		// this.router.navigate(['/explore']);
 	}
 
 }

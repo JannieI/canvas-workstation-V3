@@ -694,6 +694,12 @@
 </div>
 
 
+<!-- Modal: landing page -->
+<landing *ngIf="showModalLanding"
+    (formLandingClosed)="handleCloseModalLanding()">Load Landing page ...
+</landing>
+
+
 <!-- Modal: open Dashboard -->
 <dashboard-open
     class="formPopupDashboard"
@@ -702,7 +708,8 @@
 </dashboard-open>
 
 
-<!-- Modal: landing page -->
-<landing *ngIf="showModalLanding"
-    (formLandingClosed)="handleCloseModalLanding()">Load Landing page ...
-</landing>
+<!-- Modal: data Combination -->
+<data
+    *ngIf="showModalData"
+    (formDataPopupClosed)="handleCloseData($event)">Load Data ...
+</data>

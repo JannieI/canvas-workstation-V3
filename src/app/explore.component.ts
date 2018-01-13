@@ -143,6 +143,7 @@ export class ExploreComponent {
     showDashboardTabDescription: boolean = false;
     showGrid: boolean;
     showMainMenu: boolean;
+    showModalData: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalLanding: boolean = true;
     showModalOpenDashboard: boolean = false;
@@ -180,6 +181,7 @@ export class ExploreComponent {
         console.log('Explore ngOnInit', this.globalVariableService.openDashboardFormOnStartup)
 
         // Load global variables
+        this.showModalLanding = this.globalVariableService.showModalLanding;
         if (this.globalVariableService.openDashboardFormOnStartup) {
             this.showModalDashboardOpen = true;
         };
@@ -292,13 +294,6 @@ export class ExploreComponent {
                 this.currentSlicers = this.globalVariableService.currentSlicers.value;
                 this.refreshWidgets();
             } );
-    }
-
-    handleCloseDashboardOpen(ev) {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardOpen', '@Start');
-
-        this.showModalDashboardOpen = false;
     }
 
     refreshShapes2() {
@@ -1002,7 +997,29 @@ export class ExploreComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
 
         this.showModalLanding = false;
+        // if (this.globalVariableService.openDashboardFormOnStartup) {
+        //     console.log('handleCloseModalLanding 1')
+        //     this.showModalDashboardOpen = true;
+        // };
 
+        // if (this.globalVariableService.openNewDashboardFormOnStartup) {
+        //     console.log('handleCloseModalLanding 2')
+        //     this.showModalData = true;
+        // };
+    }
+
+    handleCloseDashboardOpen(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardOpen', '@Start');
+
+        this.showModalDashboardOpen = false;
+    }
+
+    handleCloseData(ev) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
+
+        this.showModalData = false;
     }
 }
 
