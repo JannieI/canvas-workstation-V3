@@ -8,6 +8,7 @@
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
+import { Input }                     from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Router }                     from '@angular/router';
@@ -37,13 +38,14 @@ import { load } from 'datalib';
 })
 export class DataPopupComponent implements OnInit {
 
+    @Input() datasources: Datasource[];
     @Output() formDataPopupClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
     @ViewChild('typeTransformationDropdown') typeTransformationDropdown: ElementRef;
     @ViewChild('transformations') transformations: ElementRef;
 
-    datasources: Datasource[];
+    // datasources: Datasource[];
     currentDatasources: Datasource[];
     currentData: any = [];
     dataArray: any;
@@ -153,20 +155,18 @@ export class DataPopupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load global variables
-        this.datasources = this.globalVariableService.datasources;
-        this.globalVariableService.currentDatasources.subscribe(
-            i => this.currentDatasources = i
-        );
-        this.transformationsFormat = this.globalVariableService.transformationsFormat;
-        this.globalVariableService.currentTransformations.subscribe(
-            i => this.currentTransformations = i
-        );
-        this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
-        this.datasourceFilters = this.globalVariableService.datasourceFilters;
-        this.fields = this.globalVariableService.fields;
-        this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
-        this.globalVariableService.dataGetFromSwitch.subscribe(
-            ds => this.dataGetFromSwitch  = ds
+        this.globalVariableService.datasourceToEditID.subscribe(
+            i => {
+                this.datasources = this.globalVariableService.datasources;
+                this.currentDatasources = this.globalVariableService.currentDatasources;
+                this.transformationsFormat = this.globalVariableService.transformationsFormat;
+                this.currentTransformations = this.globalVariableService.currentTransformations;
+                this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
+                this.datasourceFilters = this.globalVariableService.datasourceFilters;
+                this.fields = this.globalVariableService.fields;
+                this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
+                this.dataGetFromSwitch = this.globalVariableService.dataGetFromSwitch;
+            }
         )
 
     }

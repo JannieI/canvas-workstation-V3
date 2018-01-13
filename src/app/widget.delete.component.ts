@@ -51,9 +51,9 @@ export class WidgetDeleteComponent implements OnInit {
                     this.nrWidgetsSelected = this.globalVariableService.currentWidgets.length;
             }
         );
-    this.globalVariableService.localTrash.subscribe(
-        i => this.localTrash = i
-    );
+        this.globalVariableService.localTrash.subscribe(
+            i => this.localTrash = i
+        );
     }
 
     ngAfterViewInit() {

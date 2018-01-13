@@ -1076,7 +1076,8 @@ export class GlobalVariableService {
     currentDashboardTabID:number = 0; //  = new BehaviorSubject<number>(1);
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
-    widgetToEditID = new BehaviorSubject<CanvasWidget>(null);
+    widgetToEditID = new BehaviorSubject<number>(null);
+    datasourceToEditID = new BehaviorSubject<number>(null);
     shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
     widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
     menuActionResize = new BehaviorSubject<boolean>(false);
@@ -2317,7 +2318,7 @@ export class GlobalVariableService {
                                             };
                                         };
                                         this.isDirtyDatasources = false;
-                                        this.currentDatasources.next(returnData);
+                                        this.currentDatasources = returnData;
                                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                                         console.log('Global-Variables getCurrentDatasources 1', 
                                             dashboardID, returnData);
@@ -2327,9 +2328,9 @@ export class GlobalVariableService {
                     )
             } else {
                 let ids: number[] = [];
-                for (var i = 0; i < this.currentWidgets.value.length; i++) {
-                    if (ids.indexOf(this.currentWidgets.value[i].datasourceID) < 0) {
-                        ids.push(this.currentWidgets.value[i].datasourceID)
+                for (var i = 0; i < this.currentWidgets.length; i++) {
+                    if (ids.indexOf(this.currentWidgets[i].datasourceID) < 0) {
+                        ids.push(this.currentWidgets[i].datasourceID)
                     }
                 };
                 let returnData: Datasource[] = [];
@@ -2339,7 +2340,7 @@ export class GlobalVariableService {
                     };
                 };
                 this.isDirtyDatasources = false;
-                this.currentDatasources.next(returnData);
+                this.currentDatasources = returnData;
                 this.statusBarRunning.next(this.NoQueryRunningMessage);
                 console.log('Global-Variables getCurrentDatasources 2', dashboardID);
             }
@@ -2385,14 +2386,14 @@ export class GlobalVariableService {
         let url: string = 'getTransformations';
         this.filePath = './assets/data.transformations.json';
 
-        if ( (this.currentTransformations.value == [])  ||  (this.isDirtyTransformations) ) {
+        if ( (this.currentTransformations == [])  ||  (this.isDirtyTransformations) ) {
             return new Promise<Transformation[]>((resolve, reject) => {
                 this.getTransformations()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
-                        this.currentTransformations.next(data);
+                        this.currentTransformations = data;
                         console.log('Global-Variables getTransformations 1', datasourceID, data)
                         resolve(data);
                 })
@@ -2403,7 +2404,7 @@ export class GlobalVariableService {
                 returnData = this.transformations.filter(
                     i => i.datasourceID == datasourceID
                 );
-                this.currentTransformations.next(returnData);
+                this.currentTransformations = returnData;
                 console.log('Global-Variables getTransformations 2', datasourceID, returnData)
                 resolve(returnData);
             });
@@ -2449,14 +2450,14 @@ export class GlobalVariableService {
         let url: string = 'getDatasourceFilters';
         this.filePath = './assets/data.datasourceFilters.json';
 
-        if ( (this.currentDatasourceFilters.value == [])  ||  (this.isDirtyDatasourceFilters) ) {
+        if ( (this.currentDatasourceFilters == [])  ||  (this.isDirtyDatasourceFilters) ) {
             return new Promise<DatasourceFilter[]>((resolve, reject) => {
                 this.getDatasourceFilters()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
-                        this.currentDatasourceFilters.next(data);
+                        this.currentDatasourceFilters = data;
                         console.log('Global-Variables getDatasourceFilters 1', datasourceID, data)
                         resolve(data);
                 })
@@ -2467,7 +2468,7 @@ export class GlobalVariableService {
                 returnData = this.datasourceFilters.filter(
                     i => i.datasourceID == datasourceID
                 );
-                this.currentDatasourceFilters.next(returnData);
+                this.currentDatasourceFilters = returnData;
                 console.log('Global-Variables getDatasourceFilters 2', datasourceID)
                 resolve(returnData);
             });
@@ -2512,14 +2513,14 @@ export class GlobalVariableService {
         let url: string = 'getDataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
 
-        if ( (this.currentDataQualityIssues.value == [])  ||  (this.isDirtyDataQualityIssues) ) {
+        if ( (this.currentDataQualityIssues == [])  ||  (this.isDirtyDataQualityIssues) ) {
             return new Promise<DataQualityIssue[]>((resolve, reject) => {
                 this.getDataQualityIssues()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
-                        this.currentDataQualityIssues.next(data);
+                        this.currentDataQualityIssues = data;
                         console.log('Global-Variables getDataQualityIssuess 1', 
                             datasourceID, data)
                         resolve(data);
@@ -2531,7 +2532,7 @@ export class GlobalVariableService {
                 returnData = this.dataQualityIssues.filter(
                     i => i.datasourceID == datasourceID
                 );
-                this.currentDataQualityIssues.next(returnData);
+                this.currentDataQualityIssues = returnData;
                 console.log('Global-Variables getDataQualityIssuess 2', datasourceID, returnData)
                 resolve(returnData);
             });
@@ -2576,14 +2577,14 @@ export class GlobalVariableService {
         let url: string = 'getDatasourcePermissions';
         this.filePath = './assets/data..datasourcePermissions.json';
 
-        if ( (this.currentDatasourcePermissions.value == [])  ||  (this.isDirtyDatasourcePermissions) ) {
+        if ( (this.currentDatasourcePermissions == [])  ||  (this.isDirtyDatasourcePermissions) ) {
             return new Promise<DatasourcePermission[]>((resolve, reject) => {
                 this.getDatasourcePermissions()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
-                        this.currentDatasourcePermissions.next(data);
+                        this.currentDatasourcePermissions = data;
                         console.log('Global-Variables getDatasourcePermissions 1', datasourceID, data)
                         resolve(data);
                 })
@@ -2594,7 +2595,7 @@ export class GlobalVariableService {
                 returnData = this.datasourcePermissions.filter(
                     i => i.datasourceID == datasourceID
                 );
-                this.currentDatasourcePermissions.next(returnData);
+                this.currentDatasourcePermissions = returnData;
                 console.log('Global-Variables getDatasourcePermissions 2', datasourceID)
                 resolve(returnData);
             });
@@ -2640,14 +2641,14 @@ export class GlobalVariableService {
         let url: string = 'getDatasourcePivots';
         this.filePath = './assets/data..datasourcePivots.json';
 
-        if ( (this.currentDatasourcePivots.value == [])  ||  (this.isDirtyDatasourcePivots) ) {
+        if ( (this.currentDatasourcePivots == [])  ||  (this.isDirtyDatasourcePivots) ) {
             return new Promise<DatasourcePivot[]>((resolve, reject) => {
                 this.getDatasourcePivots()
                     .then(data => {
                         data = data.filter(
                             i => i.datasourceID == datasourceID
                         );
-                        this.currentDatasourcePivots.next(data);
+                        this.currentDatasourcePivots = data;
                         console.log('Global-Variables getDatasourcePivots 1', datasourceID, data)
                         resolve(data);
                 })
@@ -2658,7 +2659,7 @@ export class GlobalVariableService {
                 returnData = this.datasourcePivots.filter(
                     i => i.datasourceID == datasourceID
                 );
-                this.currentDatasourcePivots.next(returnData);
+                this.currentDatasourcePivots = returnData;
                 console.log('Global-Variables getDatasourcePivots 2', datasourceID, returnData)
                 resolve(returnData);
             });
