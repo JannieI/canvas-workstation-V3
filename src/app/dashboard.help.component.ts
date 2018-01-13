@@ -8,7 +8,6 @@ import { EventEmitter }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Router }                     from '@angular/router';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';

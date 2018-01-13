@@ -6,7 +6,6 @@ import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Renderer }                   from '@angular/core';
-import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
@@ -41,7 +40,6 @@ export class WidgetDeleteComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         private renderer: Renderer,
-        private router: Router,
     ) {}
 
     ngOnInit() {
