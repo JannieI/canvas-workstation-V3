@@ -1031,25 +1031,22 @@ export class GlobalVariableService {
 
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
-    currentDatasources = new BehaviorSubject<Datasource[]>([]);
-    currentTransformations = new BehaviorSubject<Transformation[]>([]);
-    currentDatasourceFilters = new BehaviorSubject<DatasourceFilter[]>([]);
-    currentDataQualityIssues = new BehaviorSubject<DataQualityIssue[]>([]);
-    currentDatasourcePermissions = new BehaviorSubject<DatasourcePermission[]>([]);
-    currentDatasourcePivots = new BehaviorSubject<DatasourcePivot[]>([]);
-
-
-    currentDataset: any = currentDataset;       //  !!
-
-    currentDashboards = new BehaviorSubject<Dashboard[]>([]);
-    currentDashboardTabs = new BehaviorSubject<DashboardTab[]>([]);
-    currentWidgets = new BehaviorSubject<CanvasWidget[]>([]);
-    currentShapes = new BehaviorSubject<CanvasShape[]>([]);
-    currentSlicers = new BehaviorSubject<CanvasSlicer[]>([]);
-    currentDashboardSchedules = new BehaviorSubject<DashboardSchedule[]>([]);
-    currentDashboardTags = new BehaviorSubject<DashboardTag[]>([]);
-    currentDashboardPermissions = new BehaviorSubject<DashboardPermission[]>([]);
-    currentDashboardSnapshots = new BehaviorSubject<DashboardSnapshot[]>([]);
+    currentDatasources: Datasource[] = [];
+    currentTransformations: Transformation[] = [];
+    currentDatasourceFilters: DatasourceFilter[] = [];
+    currentDataQualityIssues: DataQualityIssue[] = [];
+    currentDatasourcePermissions: DatasourcePermission[] = [];
+    currentDatasourcePivots: DatasourcePivot[] = [];
+    currentDataset: any = currentDataset;
+    currentDashboards: Dashboard[] = [];
+    currentDashboardTabs: DashboardTab[] = [];
+    currentWidgets: CanvasWidget[] = [];
+    currentShapes: CanvasShape[] = [];
+    currentSlicers: CanvasSlicer[] = [];
+    currentDashboardSchedules: DashboardSchedule[] = [];
+    currentDashboardTags: DashboardTag[] = [];
+    currentDashboardPermissions: DashboardPermission[] = [];
+    currentDashboardSnapshots: DashboardSnapshot[] = [];
 
 
     // Global vars that guide all interactions
@@ -1079,6 +1076,7 @@ export class GlobalVariableService {
     currentDashboardTabID:number = 0; //  = new BehaviorSubject<number>(1);
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
+    widgetToEditID = new BehaviorSubject<CanvasWidget>(null);
     shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
     widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
     menuActionResize = new BehaviorSubject<boolean>(false);
@@ -1358,27 +1356,30 @@ export class GlobalVariableService {
     }
 
     currentDatasourceAdd(newData: Datasource) {
-        let arr: Datasource[] = this.currentDatasources.value;
-        arr.push(newData);
-        console.log('Global-Variables currentDatasourceAdd arr', arr)
-        this.currentDatasources.next(arr)
-        console.log('Global-Variables currentDatasourceAdd yy', this.currentDatasources.value)
+        // let arr: Datasource[] = this.currentDatasources;
+        // arr.push(newData);
+        // console.log('Global-Variables currentDatasourceAdd arr', arr)
+        // this.currentDatasources.next(arr)
+        this.currentDatasources.push(newData);
+        console.log('Global-Variables currentDatasourceAdd yy', this.currentDatasources)
     }
 
     datasourceAdd(newData: Datasource) {
-        let arr: Datasource[] = this.datasources;
-        arr.push(newData);
-        console.log('Global-Variables datasourceAdd arr', arr)
-        this.datasources = arr;
+        // let arr: Datasource[] = this.datasources;
+        // arr.push(newData);
+        // console.log('Global-Variables datasourceAdd arr', arr)
+        // this.datasources = arr;
+        this.datasources.push(newData);
         console.log('Global-Variables datasourceAdd yy', this.datasources)
     }
 
     currentDatasourceDelete(index: number) {
-        console.log('str', index, this.currentDatasources.value)
-        let arr: Datasource[] = this.currentDatasources.value.splice(index,1);
-        console.log('Global-Variables currentDatasourceDelete arr', arr)
-        this.currentDatasources.next( this.currentDatasources.value)
-        console.log('Global-Variables currentDatasourceDelete end', this.currentDatasources.value)
+        // console.log('str', index, this.currentDatasources)
+        // let arr: Datasource[] = this.currentDatasources.splice(index,1);
+        // console.log('Global-Variables currentDatasourceDelete arr', arr)
+        // this.currentDatasources.next( this.currentDatasources)
+        this.currentDatasources.splice(index,1)
+        console.log('Global-Variables currentDatasourceDelete end', this.currentDatasources)
     }
 
     datasourceDelete(index: number) {
@@ -1389,14 +1390,19 @@ export class GlobalVariableService {
     }
 
     dashboardDelete(index: number) {
-        console.log('Global-Variables dashboardDelete', index)
-        let arr: CanvasWidget[] = this.currentWidgets.value.filter(
+        // console.log('Global-Variables dashboardDelete', index)
+        // let arr: CanvasWidget[] = this.currentWidgets.filter(
+        //     i => {
+        //             if (i.id == index) { i.isTrashed = true}
+        //         }
+        // );
+        // console.log('Global-Variables dashboardDelete arr', arr)
+        // this.currentWidgets.next(arr);
+        for (var i = 0; i < this.currentWidgets.length; i++) {
             i => {
                     if (i.id == index) { i.isTrashed = true}
                 }
-        );
-        console.log('Global-Variables dashboardDelete arr', arr)
-        this.currentWidgets.next(arr);
+        }
     }
 
     deleteDashboardRecent(index: number) {
@@ -1449,27 +1455,28 @@ export class GlobalVariableService {
                     .then(data => {
 
                         // Load the current Dashboard, and Optional template
-                        let currentDashboards: Dashboard[] = [];
-                        currentDashboards = this.dashboards.filter(
-                            i => i.id == dashboardID
-                        );
+                        // let currentDashboards: Dashboard[] = [];
+                        // currentDashboards = this.dashboards.filter(
+                        //     i => i.id == dashboardID
+                        // );
 
-                        if (currentDashboards.length > 0) {
-                            if (currentDashboards[0].templateDashboardID != 0) {
-                                let templeteDashboard: Dashboard[] = null;
+                        // if (currentDashboards.length > 0) {
+                        //     if (currentDashboards[0].templateDashboardID != 0) {
+                        //         let templeteDashboard: Dashboard[] = null;
 
-                                templeteDashboard = this.dashboards.filter(
-                                    i => i.id == currentDashboards[0].templateDashboardID
-                                );
+                        //         templeteDashboard = this.dashboards.filter(
+                        //             i => i.id == currentDashboards[0].templateDashboardID
+                        //         );
 
-                                if (templeteDashboard == null) {
-                                    alert('Dashboard template id does not exist in Dashboards Array')
-                                } else {
-                                    currentDashboards.push(templeteDashboard[0]);
-                                }
-                            };
-                        }
-                        this.currentDashboards.next(currentDashboards);
+                        //         if (templeteDashboard == null) {
+                        //             alert('Dashboard template id does not exist in Dashboards Array')
+                        //         } else {
+                        //             currentDashboards.push(templeteDashboard[0]);
+                        //         }
+                        //     };
+                        // }
+                        // this.currentDashboards.next(currentDashboards);
+                        this.currentDashboards.push(currentDashboards);
 
                         console.log('Global-Variables getCurrentDashboards 1', dashboardID, data)
                         resolve(currentDashboards);

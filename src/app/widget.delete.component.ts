@@ -33,7 +33,7 @@ export class WidgetDeleteComponent implements OnInit {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @ViewChild('myCanvas', {read: ElementRef}) myCanvas: ElementRef;  //Vega graph
 
-    currentWidgets: CanvasWidget[];
+    currentWidgets: CanvasWidget;
     localTrash: CanvasWidget[];
     nrWidgetsSelected: number = 0;
 
@@ -45,13 +45,13 @@ export class WidgetDeleteComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.globalVariableService.currentWidgets.subscribe(
+        this.globalVariableService.widgetToEditID.subscribe(
             i => {
-                    this.currentWidgets = i;
-                    this.nrWidgetsSelected = i.filter(j => j.isSelected == true).length;
+                    this.currentWidgets = this.globalVariableService.currentWidgets[i];
+                    this.nrWidgetsSelected = this.globalVariableService.currentWidgets.length;
             }
         );
-          this.globalVariableService.localTrash.subscribe(
+    this.globalVariableService.localTrash.subscribe(
         i => this.localTrash = i
     );
     }

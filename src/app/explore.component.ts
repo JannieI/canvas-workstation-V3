@@ -293,10 +293,10 @@ export class ExploreComponent {
         this.globalVariableService.refreshCurrentDashboardInfo(1, dashboardTabID).then (i => 
             {
                 console.log('The big moment ...')
-                this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs.value;
-                this.currentWidgets = this.globalVariableService.currentWidgets.value;
-                this.currentShapes = this.globalVariableService.currentShapes.value;
-                this.currentSlicers = this.globalVariableService.currentSlicers.value;
+                this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs;
+                this.currentWidgets = this.globalVariableService.currentWidgets;
+                this.currentShapes = this.globalVariableService.currentShapes;
+                this.currentSlicers = this.globalVariableService.currentSlicers;
                 this.refreshWidgets();
             } );
     }
