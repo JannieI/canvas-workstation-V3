@@ -25,11 +25,12 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class DataRefreshComponent implements OnInit {
 
+    @Input() currentDatasources: Datasource[];
     @Output() formDataRefreshClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
-    currentDatasources: Datasource[];
+    // currentDatasources: Datasource[];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -39,9 +40,9 @@ export class DataRefreshComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.globalVariableService.currentDatasources.subscribe(
-            i => this.currentDatasources = i
-        );
+        // this.globalVariableService.currentDatasources.subscribe(
+        //     i => this.currentDatasources = i
+        // );
     }
 
   	clickClose(action: string) {

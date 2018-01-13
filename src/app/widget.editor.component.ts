@@ -855,6 +855,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
   })
   export class WidgetEditorComponent implements OnInit {
 
+    @Input() currentDatasources: Datasource[];
     @Output() formWidgetEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
@@ -867,7 +868,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     graphColor: string[];
 
     clickedButtonAggregateNo: boolean = false;
-    currentDatasources: Datasource[];
+    // currentDatasources: Datasource[];
     dataFieldNames: string[];
     draggedField: string = '';
     dragoverCol: boolean = false;
@@ -890,9 +891,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     ) {}
 
     ngOnInit() {
-        this.globalVariableService.currentDatasources.subscribe(
-          i => this.currentDatasources = i
-        );
+        // this.globalVariableService.currentDatasources.subscribe(
+        //   i => this.currentDatasources = i
+        // );
         this.dataFieldNames = ['symbol', 'date', 'price', 'Month', 'Trades'];
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
