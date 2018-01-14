@@ -1263,17 +1263,20 @@ export class GlobalVariableService {
                             this.getCurrentSlicers(dashboardID, dashboardTabID).then(m =>
                                 // Load Permissions for D
                                 this.getCurrentDashboardPermissions(dashboardID).then( o =>
-                                    // Reset Global Vars
-                                    {
-                                        this.currentDashboardID = dashboardID
-                                        this.currentDashboardTabID = dashboardTabID
-                                        if (this.currentWidgets.length > 0) {
-                                            this.hasDatasources.next(true);
-                                        } else {
-                                            this.hasDatasources.next(false);
+                                    // Load Snapshots
+                                    this.getCurrentDashboardSnapshots(dashboardID).then( p =>
+                                        // Reset Global Vars
+                                        {
+                                            this.currentDashboardID = dashboardID
+                                            this.currentDashboardTabID = dashboardTabID
+                                            if (this.currentWidgets.length > 0) {
+                                                this.hasDatasources.next(true);
+                                            } else {
+                                                this.hasDatasources.next(false);
+                                            }
+                                            resolve(true)
                                         }
-                                        resolve(true)
-                                    }
+                                    )
                                 )
                             )
                         )
