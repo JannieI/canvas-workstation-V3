@@ -1253,36 +1253,32 @@ export class GlobalVariableService {
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
             this.getCurrentDashboards(dashboardID).then( i => 
-                // Load the current DashboardTab
-                this.getCurrentDashboardTabs(dashboardID).then(j =>
-                    // Load Widgets
-                    this.getCurrentWidgets(dashboardID, dashboardTabID).then(k =>
-                        // Load Shapes
-                        this.getCurrentShapes(dashboardID, dashboardTabID).then(l =>
-                            // Load Slicers
-                            this.getCurrentSlicers(dashboardID, dashboardTabID).then(m =>
-                                // Load Permissions for D
-                                this.getCurrentDashboardPermissions(dashboardID).then( o =>
-                                    // Load Snapshots
-                                    this.getCurrentDashboardSnapshots(dashboardID).then( p =>
-                                        // Reset Global Vars
-                                        {
-                                            this.currentDashboardID = dashboardID
-                                            this.currentDashboardTabID = dashboardTabID
-                                            if (this.currentWidgets.length > 0) {
-                                                this.hasDatasources.next(true);
-                                            } else {
-                                                this.hasDatasources.next(false);
-                                            }
-                                            resolve(true)
-                                        }
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            );
+            // Load the current DashboardTab
+            this.getCurrentDashboardTabs(dashboardID).then(j =>
+            // Load Widgets
+            this.getCurrentWidgets(dashboardID, dashboardTabID).then(k =>
+            // Load Shapes
+            this.getCurrentShapes(dashboardID, dashboardTabID).then(l =>
+            // Load Slicers
+            this.getCurrentSlicers(dashboardID, dashboardTabID).then(m =>
+            // Load Permissions for D
+            this.getCurrentDashboardPermissions(dashboardID).then( o =>
+            // Load Snapshots
+            this.getCurrentDashboardSnapshots(dashboardID).then( p =>
+            // Load Tags for D
+            this.getCurrentDashboardTags(dashboardID).then(q =>
+                // Reset Global Vars
+                {
+                    this.currentDashboardID = dashboardID
+                    this.currentDashboardTabID = dashboardTabID
+                    if (this.currentWidgets.length > 0) {
+                        this.hasDatasources.next(true);
+                    } else {
+                        this.hasDatasources.next(false);
+                    }
+                    resolve(true)
+                }
+            ))))))));
         });
     }
 
