@@ -1446,7 +1446,11 @@ export class GlobalVariableService {
         //
         console.log('Global-Variables deleteDashboardRecent ...');
         
-        let arr = this.dashboardsRecent.splice(index, 1);
+        let i: number = this.dashboardsRecent.indexOf(index);
+        if (i >= 0) {
+            this.dashboardsRecent.splice(i , 1);
+        };
+        console.log(i,  this.dashboardsRecent)
     }
 
     getDashboards(): Promise<Dashboard[]> {
@@ -1954,7 +1958,7 @@ export class GlobalVariableService {
                         this.dashboardSchedules = data;
                         this.isDirtyDashboardSchedules = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        getconsole.log('Global-Variables getDashboardSchedules 1')
+                        console.log('Global-Variables getDashboardSchedules 1')
                         resolve(this.dashboardSchedules);
                     });
             } else {
