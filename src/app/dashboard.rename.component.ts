@@ -11,6 +11,10 @@ import { Output }                     from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
+
+// Our Models
+import { Dashboard } from 'app/models';
 
 @Component({
     selector: 'dashboard-rename',
@@ -22,9 +26,16 @@ export class DashboardRenameComponent implements OnInit {
     @Output() formDashboardRenameClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
+    dashboards: Dashboard[];
+
+    constructor(
+        // private globalFunctionService: GlobalFunctionService,
+        private globalFunctionService: GlobalFunctionService,
+        private globalVariableService: GlobalVariableService,
+    ) {}
 
     ngOnInit() {
-
+        this.dashboards = this.globalVariableService.dashboards;
     }
 
     clickClose(action: string) {
