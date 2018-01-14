@@ -3,7 +3,6 @@ import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
 
 // Our Serives
-import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
 import { ButtonBarAvailable }         from './models'
@@ -1230,17 +1229,7 @@ export class GlobalVariableService {
 
 
     constructor(
-        // private globalFunctionService: GlobalFunctionService,
     ) {
-        // this.localShapes = new BehaviorSubject< CanvasShape[]>(httpFake.getLocalShapes());
-        // this.currentDashboardID.subscribe(
-        //     i => {
-        //             // Dont refresh at initialise: landing page will decide which ID to load ...
-        //             if (i != null) {
-        //                 this.refreshCurrentDashboard(i, 1);
-        //             };
-        //          }
-        // );
      }
 
      refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number): 
@@ -1278,33 +1267,32 @@ export class GlobalVariableService {
         });
     }
 
-    refreshCurrentDatasourceInfo(datasourceID: number): 
-    Promise<boolean> {
-    // Refreshes all info related to current DS
-    // Returns True if all worked, False if something went wrong
-    console.log('Global-Variables refreshCurrentDashboardInfo D,T id = ', datasourceID)
+    refreshCurrentDatasourceInfo(datasourceID: number): Promise<boolean> {
+        // Refreshes all info related to current DS
+        // Returns True if all worked, False if something went wrong
+        console.log('Global-Variables refreshCurrentDashboardInfo D,T id = ', datasourceID)
 
-    // Load the current Dashboard, and Optional template.  The dependants are stakced
-    // in a Promise chain, to ensure we have all or nothing ...
-    return new Promise<boolean>((resolve, reject) => {
-        this.getCurrentDatasources(datasourceID).then( i => 
-        // Load the current Filters
-        this.getCurrentDatasourceFilters(datasourceID).then(j =>
-        // Load Permissions for DS
-        this.getCurrentDatasourcePermissions(datasourceID).then(k =>
-        // Load Transformations
-        this.getCurrentTransformations(datasourceID).then(l =>
-        // Load Pivots
-        this.getCurrentDatasourcePivots(datasourceID).then(m =>
-        // Load dataQuality Issues
-        this.getCurrentDataQualityIssues(datasourceID).then( o =>
-            // Reset Global Vars
-            {
-                resolve(true)
-            }
-    ))))));
-    });
-}
+        // Load the current Dashboard, and Optional template.  The dependants are stakced
+        // in a Promise chain, to ensure we have all or nothing ...
+        return new Promise<boolean>((resolve, reject) => {
+            this.getCurrentDatasources(datasourceID).then( i => 
+            // Load the current Filters
+            this.getCurrentDatasourceFilters(datasourceID).then(j =>
+            // Load Permissions for DS
+            this.getCurrentDatasourcePermissions(datasourceID).then(k =>
+            // Load Transformations
+            this.getCurrentTransformations(datasourceID).then(l =>
+            // Load Pivots
+            this.getCurrentDatasourcePivots(datasourceID).then(m =>
+            // Load dataQuality Issues
+            this.getCurrentDataQualityIssues(datasourceID).then( o =>
+                // Reset Global Vars
+                {
+                    resolve(true)
+                }
+        ))))));
+        });
+    }
 
     refreshCurrentDashboard(dashboardID: number, dashboardTabID: number) {
         // Refreshes all info related to current D
@@ -2721,32 +2709,6 @@ export class GlobalVariableService {
         );
     }
 
-    getAlldatasources(datasourceID: number) {
-
-    }
-
-    getAllcurrentDatasourcePermissions() {
-
-    }
-
-    getAllcurrentDataset(datasourceID: number) {
-
-    }
-
-    getAlldatasourcePermissions(datasourceID: number) {
-        // Get P for a dS
-
-    }
-
-    getAlltransformationsFormat(datasourceID: number) {
-        // Get TsFmt for a DS
-
-    }
-
-    getAllfields(datasourceID: number) {
-        // Get all F for a DS
-
-    }
 
 
     sleep(milliseconds: number) {

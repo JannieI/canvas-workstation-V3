@@ -155,9 +155,9 @@ export class DataPopupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load global variables
+        this.datasources = this.globalVariableService.datasources;
         this.globalVariableService.datasourceToEditID.subscribe(
             i => {
-                this.datasources = this.globalVariableService.datasources;
                 this.currentDatasources = this.globalVariableService.currentDatasources;
                 this.transformationsFormat = this.globalVariableService.transformationsFormat;
                 this.currentTransformations = this.globalVariableService.currentTransformations;

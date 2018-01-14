@@ -36,10 +36,15 @@ This document describes items for later versions of Canvas.
 3. Make sure terminology is consitent: Datasource -> Transform -> Dataset
 4. I used FieldNames (string) in ie Pivot - is that okay?
 5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields, FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
+6. Check Definition of DS = source, location, authentication, F, Tr, Pv etc.  Dataset is just the data, with an ID / url to find it.
 8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or not?
 9. Data Quality issues: add place to add detail values.  An overall statement can say all data has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
 11.Determine which transformations live on server and which on client, and whether some/all
    lives on both.
+12.Remember usage - and can sort by popular ones or show it for all relevant objects
+13.Allow own profile pic upload!
+14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
+15.Telegram interface with bot ...
 
 
 **Admin module**
@@ -49,6 +54,8 @@ This document describes items for later versions of Canvas.
 4. What and how is cached locally - and how refreshed
 5. Finalise group membership / roles
 6. Where system settings like Security Model ?
+7. Add UserID to ALL data and code -> where needed ...
+
 
 
 **Dashboard**
@@ -59,6 +66,7 @@ This document describes items for later versions of Canvas.
 5. Also, easy way to jump to previous period:  loaded at start with data ??
 6. Reuse open Dashboard code between Open & Rename, if possible
 7. Test printing - and see if pagelayout can be changed
+8. Startup D: should this be settable as a pref, or should we always display the Landing page?
 10.View all Comments at once, with filter on messageText and Sender/Receiver
 11.Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
    at any point in the past.  It must be clearly marked for the user.  Must also be able to
@@ -102,6 +110,11 @@ This document describes items for later versions of Canvas.
 12.Fix bug: graph moves inside another when Dragging - had this in v1 ...
 13.Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
 14.Bug fix: delete does not remove the Widget !
+15.Cross hair with showing values on axis - ie crypto trading websites!
+16.Show a Viz on the tooltip - this could be our explain ... !
+17.Annotate on Widget - our shapes with text and emojis, like the Tableau
+18.Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
+19.Fix bug - grid sits on TOP of everything!!
 
 
 **Shapes**
