@@ -30,7 +30,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
-    dashboardSnapshots: DashboardSnapshot[];
+    currentDashboardSnapshots: DashboardSnapshot[];
     selectedRow : Number;
     setClickedRow : Function;
 
@@ -47,7 +47,9 @@ export class DashboardSnapshotsComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.dashboardSnapshots = this.globalVariableService.dashboardSnapshots;
+        this.globalVariableService.getCurrentDashboardSnapshots(
+            this.globalVariableService.currentDashboardID).then
+              (i => this.currentDashboardSnapshots = i);
     }
 
     clickClose(action: string) {
