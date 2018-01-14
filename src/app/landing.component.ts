@@ -108,12 +108,15 @@ export class LandingComponent implements OnInit {
 			// this.router.navigate(['/explore']);
 	}
 
-	promptDeleteRecent(index: number) {
+	deleteRecent(index: number) {
         // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'promptDeleteRecent', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteRecent', '@Start');
 
-		console.log("Landing promptDeleteRecent TODO Prompt and then delete from list", index)
+		// Delete from temp array, refresh
 		this.globalVariableService.deleteDashboardRecent(index);
+		this.recentDashboards = this.globalVariableService.getDashboardsRecent(
+			this.globalVariableService.userID
+		);
 	}
 
 	clickClose(action: string) {

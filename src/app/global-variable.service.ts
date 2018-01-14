@@ -1082,6 +1082,7 @@ export class GlobalVariableService {
     widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
     menuActionResize = new BehaviorSubject<boolean>(false);
     menuActionSelectAll = new BehaviorSubject<boolean>(false);
+    userID: string = 'JannieI';  // TODO - unHardCode
     
     // StatusBar
     statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);
@@ -1206,7 +1207,7 @@ export class GlobalVariableService {
     //         name: 'black',
     //         code: '#000000'
     //     };
-    // lastBoxShadow: SelectedItem =
+    // lastBoxShadow: SelectedItem =new Promise<boolean>((resolve, reject) => {
     //     {
     //         id:1,
     //         name: ''
@@ -1442,15 +1443,22 @@ export class GlobalVariableService {
         }
     }
 
-    deleteDashboardRecent(index: number) {
+    deleteDashboardRecent(index: number): Promise<boolean> {
         //
         console.log('Global-Variables deleteDashboardRecent ...');
         
-        let i: number = this.dashboardsRecent.indexOf(index);
-        if (i >= 0) {
-            this.dashboardsRecent.splice(i , 1);
-        };
-        console.log(i,  this.dashboardsRecent)
+        // Update data
+        return new Promise<boolean>((resolve, reject) => {
+            let i: number = this.dashboardsRecent.indexOf(index);
+            if (i >= 0) {
+                this.dashboardsRecent.splice(i , 1);
+            };
+
+            // Refresh temp array
+            this.getDashboardsRecentList(this.userID).then(
+                i => resolve(true)
+            )
+        });
     }
 
     getDashboards(): Promise<Dashboard[]> {
