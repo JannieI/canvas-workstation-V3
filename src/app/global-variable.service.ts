@@ -1799,7 +1799,7 @@ export class GlobalVariableService {
              })
         } else {
             return new Promise<Dashboard[]>((resolve, reject) => {
-                let returnData: Dashboard[];
+                let returnData: Dashboard[] = [];
                 for (var i = 0; i < this.dashboards.length; i++) {
                     if (this.dashboardsRecent.indexOf(this.dashboards[i].id) != -1) {
                         returnData.push(this.dashboards[i]);
