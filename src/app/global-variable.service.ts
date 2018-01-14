@@ -1265,8 +1265,6 @@ export class GlobalVariableService {
             this.getCurrentDashboardPermissions(dashboardID).then( o =>
             // Load Snapshots
             this.getCurrentDashboardSnapshots(dashboardID).then( p =>
-            // Load Tags for D
-            this.getCurrentDashboardTags(dashboardID).then(q =>
                 // Reset Global Vars
                 {
                     this.currentDashboardID = dashboardID
@@ -1278,7 +1276,7 @@ export class GlobalVariableService {
                     }
                     resolve(true)
                 }
-            ))))))));
+        )))))));
         });
     }
 

@@ -28,7 +28,7 @@
                                         draggable="true"
                                         (dragstart)="dragstart_handler($event)"
                                         (dragend)="dragend_handler($event)"
-                                        *ngFor="let row of dashboardTags"
+                                        *ngFor="let row of currentDashboardTags"
                                         id="dragtarget"
                                         >
                                         {{ row.tag }}

@@ -29,8 +29,7 @@ export class DashboardTagsComponent implements OnInit {
     @Output() formDashboardTagsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
-    dashboardTags: DashboardTag[];
+    currentDashboardTags: DashboardTag[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -38,8 +37,9 @@ export class DashboardTagsComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards;
-        this.dashboardTags = this.globalVariableService.dashboardTags;
+        this.globalVariableService.getCurrentDashboardTags(
+            this.globalVariableService.currentDashboardID).then
+              (i => this.currentDashboardTags = i);
     }
 
     clickClose(action: string) {
