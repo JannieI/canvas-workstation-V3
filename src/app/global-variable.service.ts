@@ -1270,7 +1270,7 @@ export class GlobalVariableService {
     refreshCurrentDatasourceInfo(datasourceID: number): Promise<boolean> {
         // Refreshes all info related to current DS
         // Returns True if all worked, False if something went wrong
-        console.log('Global-Variables refreshCurrentDashboardInfo D,T id = ', datasourceID)
+        console.log('Global-Variables refreshCurrentDatasourceInfo D,T id = ', datasourceID)
 
         // Load the current Dashboard, and Optional template.  The dependants are stakced
         // in a Promise chain, to ensure we have all or nothing ...
@@ -1369,7 +1369,7 @@ export class GlobalVariableService {
 
     deleteWidget(index: number) {
         //
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables deleteWidget ...');
         
         this.widgets.forEach( e => {
             if (e.id == index) {
@@ -1381,7 +1381,7 @@ export class GlobalVariableService {
 
     currentDatasourceAdd(newData: Datasource) {
         //
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables currentDatasourceAdd ...');
         
         // let arr: Datasource[] = this.currentDatasources;
         // arr.push(newData);
@@ -1393,7 +1393,7 @@ export class GlobalVariableService {
 
     datasourceAdd(newData: Datasource) {
         //
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables datasourceAdd ...');
 
         // let arr: Datasource[] = this.datasources;
         // arr.push(newData);
@@ -1405,7 +1405,7 @@ export class GlobalVariableService {
 
     currentDatasourceDelete(index: number) {
         //
-        console.log('str', index, this.currentDatasources)
+        console.log('Global-Variables datasourceDelete', index, this.currentDatasources)
 
         // let arr: Datasource[] = this.currentDatasources.splice(index,1);
         // console.log('Global-Variables currentDatasourceDelete arr', arr)
@@ -1416,7 +1416,7 @@ export class GlobalVariableService {
 
     datasourceDelete(index: number) {
         //
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables datasourceDelete ...');
         
         let arr: Datasource[] = this.datasources.splice(index,1);
         console.log('Global-Variables datasourceDelete arr', arr)
@@ -1444,7 +1444,7 @@ export class GlobalVariableService {
 
     deleteDashboardRecent(index: number) {
         //
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables deleteDashboardRecent ...');
         
         let arr = this.dashboardsRecent.splice(index, 1);
     }
@@ -1453,7 +1453,7 @@ export class GlobalVariableService {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDashboards ...');
 
         let url: string = 'getDashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1485,7 +1485,7 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboards array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentDashboards ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
@@ -1555,7 +1555,7 @@ export class GlobalVariableService {
         // Description: Gets all T
         // Returns: this.dashboardTabs array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDashboardTabs ...');
 
         let url: string = 'getDashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
@@ -1587,7 +1587,7 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardTabs array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentDashboardTabs ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardTabs == [])  ||  (this.isDirtyDashboardTabs) ) {
@@ -1621,7 +1621,7 @@ export class GlobalVariableService {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getWidgets ...');
 
         let url: string = 'getWidgets';
         this.filePath = './assets/data.widgets.json';
@@ -1655,7 +1655,7 @@ export class GlobalVariableService {
         // Returns: this.currentWidgets array, unless:
         //   If not cached or if dirty, get from File
         // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentWidgets ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
@@ -1692,7 +1692,7 @@ export class GlobalVariableService {
         // Description: Gets all Sample D
         // Returns: an array extracted from [D], unless:
         //   If D not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDashboardSamples ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
@@ -1723,7 +1723,7 @@ export class GlobalVariableService {
         // Description: Gets a LIST of Recent D
         // Returns: this.dashboardsRecent array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDashboardsRecentList ...');
 
         let url: string = 'getDashboardsRecentList';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -1760,7 +1760,7 @@ export class GlobalVariableService {
         // Description: Gets all Recent D
         // Returns: recent [D] array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDashboardsRecent ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
@@ -1797,7 +1797,7 @@ export class GlobalVariableService {
         // Description: Gets all S
         // Returns: this.shapes array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getShapes ...');
 
         let url: string = 'getShapes';
         this.filePath = './assets/data.shapes.json';
@@ -1830,7 +1830,7 @@ export class GlobalVariableService {
         //   dashboardTabID (0 => all Tabs)
         // Returns: this.currentShapes array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentShapes ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.shapes == [])  ||  (this.isDirtyShapes) ) {
@@ -1869,7 +1869,7 @@ export class GlobalVariableService {
         // Description: Gets all Sl
         // Returns: this.Slicers array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getSlicers ...');
 
         let url: string = 'getSlicers';
         this.filePath = './assets/data.slicers.json';
@@ -1902,7 +1902,7 @@ export class GlobalVariableService {
         //   dashboardTabID (0 => all Tabs)
         // Returns: this.currentSlicers array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentSlicers ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.slicers == [])  ||  (this.isDirtySlicers) ) {
@@ -1939,7 +1939,7 @@ export class GlobalVariableService {
         // Description: Gets all Sch
         // Returns: this.dashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDashboardSchedules ...');
 
         let url: string = 'getSchedules';
         this.filePath = './assets/data.dashboardSchedules.json';
@@ -1954,7 +1954,7 @@ export class GlobalVariableService {
                         this.dashboardSchedules = data;
                         this.isDirtyDashboardSchedules = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getDashboardSchedules 1')
+                        getconsole.log('Global-Variables getDashboardSchedules 1')
                         resolve(this.dashboardSchedules);
                     });
             } else {
@@ -1971,7 +1971,7 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentDashboardSchedules ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardSchedules == [])  ||  (this.isDirtyDashboardSchedules) ) {
@@ -2003,9 +2003,9 @@ export class GlobalVariableService {
 
     getDashboardTags(): Promise<DashboardTag[]> {
         // Description: Gets all Sch
-        // Returns: this.dashboardTags array, unless:
+        // Returns: this.dashboardTagsget array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDashboardTags ...');
 
         let url: string = 'getDashboardTags';
         this.filePath = './assets/data.dashboardTags.json';
@@ -2037,9 +2037,9 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardTags array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentDashboardTags ...');
 
-        // Refresh from source at start, or if dirty
+        // Refresh frogetm source at start, or if dirty
         if ( (this.dashboardTags == [])  ||  (this.isDirtyDashboardTags) ) {
             return new Promise<DashboardTag[]>((resolve, reject) => {
                 this.getDashboardTags()
@@ -2070,7 +2070,7 @@ export class GlobalVariableService {
         // Description: Gets all P
         // Returns: this.dashboardPermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDashboardPermissions ...');
 
         let url: string = 'getDashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -2102,7 +2102,7 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardPermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentDashboardPermissions ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardPermissions == [])  ||  (this.isDirtyDashboardPermissions) ) {
@@ -2135,7 +2135,7 @@ export class GlobalVariableService {
         // Description: Gets all Sn
         // Returns: this.dashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDashboardSnapshots ...');
 
         let url: string = 'getDashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
@@ -2167,7 +2167,7 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.getDashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentDashboardSnapshots ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardSnapshots == [])  ||  (this.isDirtyDashboardSnapshots) ) {
@@ -2200,7 +2200,7 @@ export class GlobalVariableService {
         // Description: Gets all Th
         // Returns: this.dashboardThemes array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDashboardThemes ...');
 
         let url: string = 'getDashboardThemes';
         this.filePath = './assets/data.dashboardThemes.json';
@@ -2231,7 +2231,7 @@ export class GlobalVariableService {
         // Returns: recent [D] array, unless:
         //   If not cached or if dirty, get from File
         // Refresh from source at start, or if dirty
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDashboardTemplates ...');
 
         if ( this.dashboards == []  ||  (this.isDirtyDashboards) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
@@ -2285,7 +2285,7 @@ export class GlobalVariableService {
         // Description: Gets all DS
         // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDatasources ...');
 
         let url: string = 'getDatasources';
         this.filePath = './assets/data.datasources.json';
@@ -2316,7 +2316,7 @@ export class GlobalVariableService {
         // Params: dashboardID = current D
         // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentDatasources ...');
 
         let url: string = 'getDatasources';
         this.filePath = './assets/data.datasources.json';
@@ -2379,7 +2379,7 @@ export class GlobalVariableService {
         // Description: Gets all Tr
         // Returns: this.transformations array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getTransformations ...');
 
         let url: string = 'getTransformations';
         this.filePath = './assets/data.transformations.json';
@@ -2409,7 +2409,7 @@ export class GlobalVariableService {
         // Description: Gets Tr for current DS
         // Returns: this.currentTransformations.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentTransformations ...');
 
         let url: string = 'getTransformations';
         this.filePath = './assets/data.transformations.json';
@@ -2443,7 +2443,7 @@ export class GlobalVariableService {
         // Description: Gets all F
         // Returns: this.datasourceFilters array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDatasourceFilters ...');
 
         let url: string = 'getDatasourceFilters';
         this.filePath = './assets/data.datasourceFilters.json';
@@ -2473,7 +2473,7 @@ export class GlobalVariableService {
         // Description: Gets F for current DS
         // Returns: this.currentDatasourceFilters.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentDatasourceFilters ...');
 
         let url: string = 'getDatasourceFilters';
         this.filePath = './assets/data.datasourceFilters.json';
@@ -2507,7 +2507,7 @@ export class GlobalVariableService {
         // Description: Gets all dQual
         // Returns: this.dataQualityIssues array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDataQualityIssues ...');
 
         let url: string = 'getDataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
@@ -2536,7 +2536,7 @@ export class GlobalVariableService {
         // Description: Gets dQual for current DS
         // Returns: this.dataQualityIssues.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentDataQualityIssues ...');
 
         let url: string = 'getDataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
@@ -2571,7 +2571,7 @@ export class GlobalVariableService {
         // Description: Gets all DS-P
         // Returns: this.datasourcePermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDatasourcePermissions ...');
 
         let url: string = 'getDatasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
@@ -2600,7 +2600,7 @@ export class GlobalVariableService {
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePermissions.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentDatasourcePermissions ...');
 
         let url: string = 'getDatasourcePermissions';
         this.filePath = './assets/data..datasourcePermissions.json';
@@ -2635,7 +2635,7 @@ export class GlobalVariableService {
         // Description: Gets all DS-P
         // Returns: this.datasourcePivots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getDatasourcePivots ...');
 
         let url: string = 'getDatasourcePivots';
         this.filePath = './assets/data.datasourcePivots.json';
@@ -2664,7 +2664,7 @@ export class GlobalVariableService {
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePivots.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables getCurrentDatasourcePivots ...');
 
         let url: string = 'getDatasourcePivots';
         this.filePath = './assets/data..datasourcePivots.json';
@@ -2722,7 +2722,7 @@ export class GlobalVariableService {
 
     sleep(milliseconds: number) {
         // 
-        console.log('Global-Variables sleeping ...', milliseconds);
+        console.log('Global-Variables sleep ...', milliseconds);
         var start: number = new Date().getTime();
         console.log('  start', start, new Date().getTime())
         for (var counter = 0; counter < 3600001; counter++) {
