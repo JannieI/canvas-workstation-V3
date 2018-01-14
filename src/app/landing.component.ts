@@ -113,10 +113,12 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteRecent', '@Start');
 
 		// Delete from temp array, refresh
-		this.globalVariableService.deleteDashboardRecent(index);
-		this.recentDashboards = this.globalVariableService.getDashboardsRecent(
-			this.globalVariableService.userID
-		);
+		this.globalVariableService.deleteDashboardRecent(index).then(
+			i => {
+				this.recentDashboards = this.globalVariableService.getDashboardsRecent(
+				this.globalVariableService.userID
+			);
+		})
 	}
 
 	clickClose(action: string) {
