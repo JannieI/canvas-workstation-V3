@@ -30,7 +30,7 @@ export class DashboardScheduleComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
-    dashboardSchedules: DashboardSchedule[];
+    currentDashboardSchedules: DashboardSchedule[];
 
 
 	constructor(
@@ -40,7 +40,9 @@ export class DashboardScheduleComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.dashboardSchedules = this.globalVariableService.dashboardSchedules;
+        this.globalVariableService.getCurrentDashboardSchedules(
+            this.globalVariableService.currentDashboardID).then
+              (i => this.currentDashboardSchedules = i);
     }
 
     clickClose(action: string) {
