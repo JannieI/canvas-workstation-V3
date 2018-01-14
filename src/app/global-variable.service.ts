@@ -1278,6 +1278,34 @@ export class GlobalVariableService {
         });
     }
 
+    refreshCurrentDatasourceInfo(datasourceID: number): 
+    Promise<boolean> {
+    // Refreshes all info related to current DS
+    // Returns True if all worked, False if something went wrong
+    console.log('Global-Variables refreshCurrentDashboardInfo D,T id = ', datasourceID)
+
+    // Load the current Dashboard, and Optional template.  The dependants are stakced
+    // in a Promise chain, to ensure we have all or nothing ...
+    return new Promise<boolean>((resolve, reject) => {
+        this.getCurrentDatasources(datasourceID).then( i => 
+        // Load the current Filters
+        this.getCurrentDatasourceFilters(datasourceID).then(j =>
+        // Load Permissions for DS
+        this.getCurrentDatasourcePermissions(datasourceID).then(k =>
+        // Load Transformations
+        this.getCurrentTransformations(datasourceID).then(l =>
+        // Load Pivots
+        this.getCurrentDatasourcePivots(datasourceID).then(m =>
+        // Load dataQuality Issues
+        this.getCurrentDataQualityIssues(datasourceID).then( o =>
+            // Reset Global Vars
+            {
+                resolve(true)
+            }
+    ))))));
+    });
+}
+
     refreshCurrentDashboard(dashboardID: number, dashboardTabID: number) {
         // Refreshes all info related to current D
         console.log('Global-Variables refreshCurrentDashboard D,T id = ', dashboardID, dashboardTabID)
