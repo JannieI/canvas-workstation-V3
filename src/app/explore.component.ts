@@ -232,6 +232,11 @@ export class ExploreComponent {
                         this.globalVariableService.currentDashboardTabID)
                     if (i)
                         {
+                            // Add to Recently used
+                            this.globalVariableService.addDashboardRecent(
+                                this.globalVariableService.currentDashboardID
+                            )
+                            // Refresh D and related info
                             this.refreshDashboardInfo(
                                 this.globalVariableService.currentDashboardID,
                                 this.globalVariableService.currentDashboardTabID);

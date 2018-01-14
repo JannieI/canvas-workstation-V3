@@ -1443,6 +1443,13 @@ export class GlobalVariableService {
         }
     }
 
+    addDashboardRecent(id: number) {
+        //
+        console.log('Global-Variables addDashboardRecent ...');
+
+        // TODO - put to DB
+    }
+
     deleteDashboardRecent(index: number): Promise<boolean> {
         //
         console.log('Global-Variables deleteDashboardRecent ...');
