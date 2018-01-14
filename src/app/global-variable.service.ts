@@ -1265,6 +1265,11 @@ export class GlobalVariableService {
                                 {
                                     this.currentDashboardID = dashboardID
                                     this.currentDashboardTabID = dashboardTabID
+                                    if (this.currentWidgets.length > 0) {
+                                        this.hasDatasources.next(true);
+                                    } else {
+                                        this.hasDatasources.next(false);
+                                    }
                                     resolve(true)
                                 }
                             )

@@ -442,6 +442,11 @@ export class DataPopupComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
+        // TODO - fix this hard coding later
+        this.globalVariableService.currentDashboardID = 1;
+		this.globalVariableService.currentDashboardTabID = 1;
+		this.globalVariableService.refreshDashboard.next(true);
+
         this.formDataPopupClosed.emit(action);
         // this.router.navigate(['/explore']);
 
