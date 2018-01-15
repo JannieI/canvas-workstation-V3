@@ -143,6 +143,7 @@ export class DataPopupComponent implements OnInit {
     changeVar: number = 2;
     dataGetFromSwitch: string = 'File';
     currentDS: boolean = true;
+    existingDSName: string;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -350,6 +351,7 @@ export class DataPopupComponent implements OnInit {
 
         // General var with name - used in *ngIF, etc
         this.currentDatasetName = this.fileName;
+        this.existingDSName = '';
 
         // Add to current DS
         this.globalVariableService.currentDatasourceAdd(newData);
@@ -382,10 +384,11 @@ export class DataPopupComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasourceRow', '@Start');
 
-        this.currentDatasetName = dsName;
+        this.currentDatasetName = '';
+        this.existingDSName = dsName;
 
         // Show the top steps
-        this.showTopSteps = true;
+        this.showTopSteps = false;
 
         // UnShow Add button
         this.showAddButton = false;
@@ -393,11 +396,11 @@ export class DataPopupComponent implements OnInit {
         console.log('DataPopup clickDatasourceRow dsName', dsName, this.filterDataset)
     }
 
-    clickSelectDatasource(i: number, name: string) {
+    clickCurrentDatasource(i: number, name: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectDatasource', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDatasource', '@Start');
 
-        // General var with name - used in *ngIF, etc
+        // General var with name - used in *ngIf, etc
         this.curentDatasetID = i;
         this.currentDatasetName = this.currentDatasources[i].name;
 

@@ -125,7 +125,7 @@
 
                                 <clr-dg-row
                                     *ngFor="let row of currentDatasources; let i = index"
-                                    (click)="clickSelectDatasource(i, row.name)"
+                                    (click)="clickCurrentDatasource(i, row.name)"
                                     >
                                     <clr-dg-cell>
                                         <clr-icon shape="times" (click)="clickCurrentDSDelete(i)"></clr-icon>
@@ -151,6 +151,7 @@
                         </div>
 
                         <div class="gridIdentifyDataIDfile" *ngIf="dataGetFromSwitch==='File'">
+                            
                             <span>Please enter file name and location:</span>
                             <input type="text" id="formFields_7"
                                 placeholder="Folder/FileName"
@@ -183,7 +184,7 @@
                             <input type="text" id="formFields_7" placeholder="Start on line nr">
                             <br>
                             Name of Dataset in this Dashboard:
-                            <input type="text" id="formFields_7" placeholder="Dataset Name">
+                            <input type="text" id="formFields_7"> {{ existingDSName }}
                             <button
                                 type="button"
                                 class="btn btn-secondary selectButton"
