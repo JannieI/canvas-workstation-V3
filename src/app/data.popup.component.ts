@@ -143,7 +143,7 @@ export class DataPopupComponent implements OnInit {
     changeVar: number = 2;
     dataGetFromSwitch: string = 'File';
     currentDS: boolean = true;
-    existingDSName: string;
+    existingDSName: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -156,24 +156,8 @@ export class DataPopupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load global variables
+        this.datasources = this.globalVariableService.datasources;
         console.log(this.currentDatasources)
-        this.globalVariableService.refreshCurrentDatasourceInfo(1).then(
-            i => {
-                    this.datasources = this.globalVariableService.datasources;
-                    this.currentDatasources = this.globalVariableService.currentDatasources;
-                    this.transformationsFormat = this.globalVariableService.transformationsFormat;
-                    this.currentTransformations = this.globalVariableService.currentTransformations;
-                    this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
-                    this.datasourceFilters = this.globalVariableService.datasourceFilters;
-                    this.fields = this.globalVariableService.fields;
-                    this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
-                    this.globalVariableService.dataGetFromSwitch.subscribe(
-                        i => {
-                                this.dataGetFromSwitch
-                        }
-                    )
-                }
-        )
 
     }
 
@@ -351,12 +335,14 @@ export class DataPopupComponent implements OnInit {
         };
 
         // General var with name - used in *ngIF, etc
+        console.log(this.fileName, this.existingDSName)
         if (this.existingDSName == '') {
             this.currentDatasetName = this.fileName;
         } else {
             this.currentDatasetName = this.existingDSName;
         }
         this.existingDSName = '';
+        console.log(this.fileName, this.existingDSName)
 
         // Add to current DS
         this.globalVariableService.currentDatasourceAdd(newData);
@@ -407,13 +393,30 @@ export class DataPopupComponent implements OnInit {
         console.log('DataPopup clickDatasourceRow dsName', dsName, this.filterDataset)
     }
 
-    clickCurrentDatasource(i: number, name: string) {
+    clickCurrentDatasource(id: number, index: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDatasource', '@Start');
 
+        this.globalVariableService.refreshCurrentDatasourceInfo(id).then(
+            i => {
+                    this.currentDatasources = this.globalVariableService.currentDatasources;
+                    this.transformationsFormat = this.globalVariableService.transformationsFormat;
+                    this.currentTransformations = this.globalVariableService.currentTransformations;
+                    this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
+                    this.datasourceFilters = this.globalVariableService.datasourceFilters;
+                    this.fields = this.globalVariableService.fields;
+                    this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
+                    this.globalVariableService.dataGetFromSwitch.subscribe(
+                        i => {
+                                this.dataGetFromSwitch
+                        }
+                    )
+                }
+        )
+
         // General var with name - used in *ngIf, etc
-        this.curentDatasetID = i;
-        this.currentDatasetName = this.currentDatasources[i].name;
+        this.curentDatasetID = index;
+        this.currentDatasetName = this.currentDatasources[index].name;
 
         // Reset data related to this DS
         this.datasourceFilters = this.globalVariableService.datasourceFilters;

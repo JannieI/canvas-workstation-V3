@@ -125,7 +125,7 @@
 
                                 <clr-dg-row
                                     *ngFor="let row of currentDatasources; let i = index"
-                                    (click)="clickCurrentDatasource(i, row.name)"
+                                    (click)="clickCurrentDatasource(row.id, i)"
                                     >
                                     <clr-dg-cell>
                                         <clr-icon shape="times" (click)="clickCurrentDSDelete(i)"></clr-icon>
