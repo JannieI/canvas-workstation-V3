@@ -127,6 +127,23 @@ export class Datasource {
     refreshedBy: string;
     refreshedOn: string;
     parameters: string;
+
+    // Location and authentication
+    folder: string;
+    fileName: string;
+    excelWorksheet: string;
+    transposeOnLoad: boolean;
+    startLineNr: number;                // 1 = first = default
+    resourceUserName: string;
+    resourcePassword: string;
+    serverName: string;
+    serverIP: string;
+    serverPort: string;
+    database: string;
+    logFoler: string;
+    logfileName: string;
+    language: string;
+    serverOptions: string;
 }
 
 export class DatasourcePermission {

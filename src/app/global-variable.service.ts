@@ -1389,7 +1389,7 @@ export class GlobalVariableService {
         // console.log('Global-Variables currentDatasourceAdd arr', arr)
         // this.currentDatasources.next(arr)
         this.currentDatasources.push(newData);
-        console.log('Global-Variables currentDatasourceAdd yy', this.currentDatasources)
+        console.log('Global-Variables currentDatasourceAdd after push', this.currentDatasources)
     }
 
     datasourceAdd(newData: Datasource) {
@@ -1401,7 +1401,7 @@ export class GlobalVariableService {
         // console.log('Global-Variables datasourceAdd arr', arr)
         // this.datasources = arr;
         this.datasources.push(newData);
-        console.log('Global-Variables datasourceAdd yy', this.datasources)
+        console.log('Global-Variables datasourceAdd after push', this.datasources)
     }
 
     currentDatasourceDelete(index: number) {
