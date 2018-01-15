@@ -199,7 +199,7 @@
             color: white;
             text-align: center;
         }
-        .form-block {
+        .slicerBlock {
             border: 1px solid black !important;
             border-radius: 5px !important;
         }
@@ -207,6 +207,10 @@
             /* height: 2rem !important; */
             /* overflow: scroll; */
         /* } */
+        .slicerOption {
+            border-bottom: 1px solid gray !important;
+        }
+
 
     .slicerContainerTopLeftHandle {
         grid-column-start: 1;

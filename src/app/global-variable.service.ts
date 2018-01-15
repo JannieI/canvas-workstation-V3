@@ -1885,7 +1885,7 @@ export class GlobalVariableService {
     }
 
     getDataset(datasetID: number): Promise<any> {
-        // Description: Gets all Sl
+        // Description: Gets a Dataset
         // Returns: data 
         // TODO - fix this for caching, multiple sets ... including DIRTY-ness
         console.log('Global-Variables getDataset ...');
@@ -1895,8 +1895,12 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
-            this.get(url)
+            this.getTree(url)
                 .then(data => {
+                    data.forEach(i => {if( i => i.id == datasetID) {console.log(i.data) }});
+                    data = data.filter( i => i.id == datasetID);
+                    
+                    console.log('x', data)
                     resolve(data);
             });
         });
@@ -1953,8 +1957,19 @@ export class GlobalVariableService {
                         );
                         this.currentSlicers = data;
                         this.currentSlicers.forEach(
-                            i => i.data = ['a', 'b']
+                            i => {
+                                    i.data = ['Apple', 'Google', 'Tesla']
+                                    console.log('datasetid', i.datasetID)
+                                    //i.data = ['a', 'b']
+                                    // this.getDataset(i.datasetID).then(
+                                    //     j => {
+                                    //         console.log('j', j)
+                                    //         i.data = j.data;
+                                    //     }
+                                    // )
+                                }
                         )
+                        
                         console.log('Global-Variables getCurrentSlicers 1', dashboardID, dashboardTabID, data)
                         resolve(data);
                 })
@@ -1974,6 +1989,58 @@ export class GlobalVariableService {
         };
 
     }
+
+    // getCurrentSlicers(dashboardID: number, dashboardTabID: number): Promise<CanvasSlicer[]> {
+    //     // Description: Gets all Sl for current D
+    //     // Params:
+    //     //   dashboardID
+    //     //   dashboardTabID (0 => all Tabs)
+    //     // Returns: this.currentSlicers array, unless:
+    //     //   If not cached or if dirty, get from File
+    //     console.log('Global-Variables getCurrentSlicers ...');
+
+    //     // Refresh from source at start, or if dirty
+    //     if ( (this.slicers == [])  ||  (this.isDirtySlicers) ) {
+    //         return new Promise<CanvasSlicer[]>((resolve, reject) => {
+    //             this.getSlicers()
+    //                 .then(data => {
+    //                     data = data.filter(
+    //                         i => i.dashboardID == dashboardID  &&
+    //                         (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
+
+    //                     );
+    //                     this.currentSlicers = data;
+    //                     this.currentSlicers.forEach(
+    //                         i => {
+    //                                 console.log('datasetid', i.datasetID)
+    //                                 //i.data = ['a', 'b']
+    //                                 this.getDataset(i.datasetID).then(
+    //                                     j => {
+    //                                         console.log('j', j)
+    //                                         i.data = j.data;
+    //                                     }
+    //                                 )
+    //                             }
+    //                     )
+    //                     console.log('Global-Variables getCurrentSlicers 1', dashboardID, dashboardTabID, data)
+    //                     resolve(data);
+    //             })
+    //          })
+    //     } else {
+    //         return new Promise<CanvasSlicer[]>((resolve, reject) => {
+    //             let returnData: CanvasSlicer[];
+    //             returnData = this.slicers.filter(
+    //                 i => i.dashboardID == dashboardID  &&
+    //                 (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
+
+    //             );
+    //             this.currentSlicers = returnData;
+    //             console.log('Global-Variables getCurrentSlicers 2', dashboardID, dashboardTabID, returnData)
+    //             resolve(returnData);
+    //         });
+    //     };
+
+    // }
 
     getDashboardSchedules(): Promise<DashboardSchedule[]> {
         // Description: Gets all Sch
@@ -2736,7 +2803,27 @@ export class GlobalVariableService {
     }
   
 
+    getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
+        // Generic GET data, later to be replaced with http
+        console.log('Global-Variables get ...');
 
+        return new Promise((resolve, reject) => {
+            // Get from source - files for now ...
+            dl.json({url: this.filePath}, {}, (err, currentData) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    currentData.forEach(j => 
+                        j.data = ['Algeria','Kenya','Congo']
+                    )
+                    console.log('currentData', currentData);
+                    // TODO - fix reading [] with dl !!!
+                    resolve(currentData);
+                }
+                });
+            }
+        );
+    }
 
 
 

@@ -552,6 +552,7 @@
     [style.background-color]="row.containerBackgroundColor"
     [style.border]="row.isSelected? '1px solid black' : 'black'"
     [style.box-shadow]="row.containerBoxshadow"
+    [style.font-size.px]="row.containerFontsize"
     [style.height.px]="row.containerHeight"
     [style.left.px]="row.containerLeft"
     [style.top.px]="row.containerTop"
@@ -565,16 +566,16 @@
         <div class="slicer" *ngIf="showSlicer"
             [style.z-index]="row.isSelected?  '68' : '70'"
             >
-            <section class="form-block" title="Filter the Budget dataset on Make of Car">
+            <section class="slicerBlock" title="Filter the Budget dataset on Make of Car">
                 <div class="slicerLabel" (click)="clickSlicer(i, row.id)"
-                [style.background-color]="row.titleBackgroundColor">
+                [style.background-color]="row.containerBackgroundcolor">
                     <b>{{ row.containerTitle }}
                     </b>
                 </div>
                 <div class="form-group">
                     <div class="select multiple">
                         <select id="selects_5" multiple>
-                            <option *ngFor="let d of row.data; let i = index">
+                            <option *ngFor="let d of row.data; let i = index" class="slicerOption">
                                 {{ d }}
                             </option>
                         </select>
