@@ -1884,6 +1884,24 @@ export class GlobalVariableService {
 
     }
 
+    getDataset(datasetID: number): Promise<any> {
+        // Description: Gets all Sl
+        // Returns: data 
+        // TODO - fix this for caching, multiple sets ... including DIRTY-ness
+        console.log('Global-Variables getDataset ...');
+
+        let url: string = 'getDataset';
+        this.filePath = './assets/data.datasets.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            this.get(url)
+                .then(data => {
+                    resolve(data);
+            });
+        });
+    }
+
     getSlicers(): Promise<CanvasSlicer[]> {
         // Description: Gets all Sl
         // Returns: this.Slicers array, unless:
