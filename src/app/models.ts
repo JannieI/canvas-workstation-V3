@@ -68,6 +68,11 @@ export class CanvasComment {
 
 
 // Data
+export class Dataset {
+    id: number;
+    data: any;
+}
+
 export class Combination {
     combinationID: number;
     dashboardID: number;
