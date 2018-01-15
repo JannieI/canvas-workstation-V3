@@ -156,22 +156,23 @@ export class DataPopupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load global variables
-        this.datasources = this.globalVariableService.datasources;
-        this.globalVariableService.datasourceToEditID.subscribe(
+        console.log(this.currentDatasources)
+        this.globalVariableService.refreshCurrentDatasourceInfo(1).then(
             i => {
-                this.currentDatasources = this.globalVariableService.currentDatasources;
-                this.transformationsFormat = this.globalVariableService.transformationsFormat;
-                this.currentTransformations = this.globalVariableService.currentTransformations;
-                this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
-                this.datasourceFilters = this.globalVariableService.datasourceFilters;
-                this.fields = this.globalVariableService.fields;
-                this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
-                this.globalVariableService.dataGetFromSwitch.subscribe(
-                    i => {
-                            this.dataGetFromSwitch
-                    }
-                )
-            }
+                    this.datasources = this.globalVariableService.datasources;
+                    this.currentDatasources = this.globalVariableService.currentDatasources;
+                    this.transformationsFormat = this.globalVariableService.transformationsFormat;
+                    this.currentTransformations = this.globalVariableService.currentTransformations;
+                    this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
+                    this.datasourceFilters = this.globalVariableService.datasourceFilters;
+                    this.fields = this.globalVariableService.fields;
+                    this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
+                    this.globalVariableService.dataGetFromSwitch.subscribe(
+                        i => {
+                                this.dataGetFromSwitch
+                        }
+                    )
+                }
         )
 
     }

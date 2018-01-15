@@ -1242,7 +1242,7 @@ export class GlobalVariableService {
         // Load the current Dashboard, and Optional template.  The dependants are stakced
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
-            this.getCurrentDashboards(dashboardID).then( i => 
+            this.getCurrentDashboard(dashboardID).then( i => 
             // Load the current DashboardTab
             this.getCurrentDashboardTabs(dashboardID).then(j =>
             // Load Widgets
@@ -1276,7 +1276,7 @@ export class GlobalVariableService {
         // Load the current Dashboard, and Optional template.  The dependants are stakced
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
-            this.getCurrentDatasources(datasourceID).then( i => 
+            this.getCurrentDatasource(datasourceID).then( i => 
             // Load the current Filters
             this.getCurrentDatasourceFilters(datasourceID).then(j =>
             // Load Permissions for DS
@@ -1303,7 +1303,7 @@ export class GlobalVariableService {
         this.getDashboardThemes();
 
 		// Load the current Dashboard, and Optional template
-        this.getCurrentDashboards(dashboardID);
+        this.getCurrentDashboard(dashboardID);
 
 		// Load the current DashboardTab
         this.getCurrentDashboardTabs(dashboardID)
@@ -1333,7 +1333,7 @@ export class GlobalVariableService {
         this.getDashboardTemplates();
         
         // Load Current Datasources
-        this.getCurrentDatasources(dashboardID)
+        this.getCurrentDatasource(dashboardID)
 
         // Load DatTransformationsasources
         this.getTransformations();     
@@ -1498,7 +1498,7 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentDashboards(dashboardID: number): Promise<Dashboard[]> {
+    getCurrentDashboard(dashboardID: number): Promise<Dashboard[]> {
         // Description: Gets current D (and optional Template)
         // Params:
         //   dashboardID
@@ -2330,7 +2330,7 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentDatasources(dashboardID: number): Promise<Datasource[]> {
+    getCurrentDatasource(dashboardID: number): Promise<Datasource[]> {
         // Description: Gets DS for current D
         // Params: dashboardID = current D
         // Returns: this.datasources array, unless:
