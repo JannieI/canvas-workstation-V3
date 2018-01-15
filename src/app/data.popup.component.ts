@@ -350,12 +350,19 @@ export class DataPopupComponent implements OnInit {
         };
 
         // General var with name - used in *ngIF, etc
-        this.currentDatasetName = this.fileName;
+        if (this.existingDSName == '') {
+            this.currentDatasetName = this.fileName;
+        } else {
+            this.currentDatasetName = this.existingDSName;
+        }
         this.existingDSName = '';
 
         // Add to current DS
         this.globalVariableService.currentDatasourceAdd(newData);
 
+        // Show current Tab
+        this.currentDS = true;
+        
         // Add to all DS, for later use
         this.globalVariableService.datasourceAdd(newData);
 
@@ -386,6 +393,9 @@ export class DataPopupComponent implements OnInit {
 
         this.currentDatasetName = '';
         this.existingDSName = dsName;
+
+        // Show the preview
+        this.showDataPreview = false;
 
         // Show the top steps
         this.showTopSteps = false;
