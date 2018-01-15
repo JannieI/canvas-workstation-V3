@@ -10,7 +10,22 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
     },
     {
         "id": 2,
@@ -23,7 +38,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": "None"
+        "parameters": "None",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 3,
@@ -36,7 +67,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 4,
@@ -49,7 +96,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 5,
@@ -62,7 +125,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 6,
@@ -75,7 +154,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 7,
@@ -88,7 +183,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 8,
@@ -101,7 +212,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 9,
@@ -114,7 +241,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 10,
@@ -127,7 +270,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 11,
@@ -140,7 +299,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 12,
@@ -153,7 +328,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 13,
@@ -166,7 +357,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 14,
@@ -179,7 +386,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 15,
@@ -192,7 +415,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 16,
@@ -205,7 +444,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 17,
@@ -218,7 +473,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 18,
@@ -231,7 +502,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 19,
@@ -244,7 +531,23 @@
         "createdOn": "2017/01/01",
         "refreshedBy": "JohnM",
         "refreshedOn": "2017/01/01",
-        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root "
+        "parameters": " databaseType: sqlite, table: trades, username: admin, password, root ",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 20,
@@ -257,7 +560,23 @@
         "createdOn": "",
         "refreshedBy": "",
         "refreshedOn": "",
-        "parameters": ""
+        "parameters": "",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 21,
@@ -270,7 +589,23 @@
         "createdOn": "",
         "refreshedBy": "",
         "refreshedOn": "",
-        "parameters": ""
+        "parameters": "",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 22,
@@ -283,7 +618,23 @@
         "createdOn": "",
         "refreshedBy": "",
         "refreshedOn": "",
-        "parameters": ""
+        "parameters": "",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 23,
@@ -296,7 +647,23 @@
         "createdOn": "",
         "refreshedBy": "",
         "refreshedOn": "",
-        "parameters": ""
+        "parameters": "",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 24,
@@ -309,7 +676,23 @@
         "createdOn": "",
         "refreshedBy": "",
         "refreshedOn": "",
-        "parameters": ""
+        "parameters": "",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 25,
@@ -322,7 +705,23 @@
         "createdOn": "",
         "refreshedBy": "",
         "refreshedOn": "",
-        "parameters": ""
+        "parameters": "",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 26,
@@ -335,7 +734,23 @@
         "createdOn": "",
         "refreshedBy": "",
         "refreshedOn": "",
-        "parameters": ""
+        "parameters": "",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 27,
@@ -348,7 +763,23 @@
         "createdOn": "",
         "refreshedBy": "",
         "refreshedOn": "",
-        "parameters": ""
+        "parameters": "",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     },
     {
         "id": 28,
@@ -361,6 +792,22 @@
         "createdOn": "",
         "refreshedBy": "",
         "refreshedOn": "",
-        "parameters": ""
+        "parameters": "",
+        "folder": "",
+        "fileName": "",
+        "excelWorksheet": "",
+        "transposeOnLoad": "false",
+        "startLineNr": "1",
+        "resourceUserName": "",
+        "resourcePassword": "",
+        "serverName": "",
+        "serverIP": "",
+        "serverPort": "",
+        "database": "",
+        "logFoler": "",
+        "logfileName": "",
+        "language": "",
+        "serverOptions": ""
+
     }
 ]

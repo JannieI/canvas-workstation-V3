@@ -330,7 +330,7 @@ export class DataPopupComponent implements OnInit {
             createdOn: '2017/01/01',
             refreshedBy: 'JohnM',
             refreshedOn: '2017/01/01',
-            parameters: 'None'
+            parameters: 'None',
             folder: '',
             fileName: '',
             excelWorksheet: '',
@@ -345,8 +345,7 @@ export class DataPopupComponent implements OnInit {
             logFoler: '',
             logfileName: '',
             language: '',
-            serverOptions: '',
-        
+            serverOptions: ''
         };
 
         // General var with name - used in *ngIF, etc
