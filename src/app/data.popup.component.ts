@@ -46,7 +46,7 @@ export class DataPopupComponent implements OnInit {
     @ViewChild('transformations') transformations: ElementRef;
 
     // datasources: Datasource[];
-    currentDatasources: Datasource[];
+    currentDatasources: Datasource[] = [];
     currentData: any = [];
     dataArray: any;
     dataFieldNames: string[];
@@ -155,7 +155,21 @@ export class DataPopupComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Load global variables
+        // Load from global variables
+        let arr: number[] = [];
+        this.globalVariableService.currentWidgets.forEach(
+            i => {
+                if (arr.indexOf(i.datasourceID) < 0) {
+                    arr.push(i.datasourceID)
+                }
+            }
+        );
+
+        for (var i = 0; i < arr.length; i++) {
+            this.currentDatasources.push(
+                this.globalVariableService.datasources[i]
+            )
+        }
         this.datasources = this.globalVariableService.datasources;
         console.log(this.currentDatasources)
 
