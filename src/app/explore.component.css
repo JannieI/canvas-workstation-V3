@@ -249,6 +249,7 @@
         background-color: #929699;
     }
     .slicerContainerRightHandle {
+        cursor: ew-resize;
         grid-column-start: 7;
         grid-column-end: 8;
         grid-row-start: 5;
