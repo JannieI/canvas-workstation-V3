@@ -559,128 +559,8 @@ export class ExploreComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNextTab', '@Start');
         let x: CanvasWidget = this.globalVariableService.currentWidgets[2]
         this.currentWidgets.pop();
-        this.currentWidgets.push(x)
-            // {
-            //     "isTrashed": false,
-            //     "dashboardID": 1,
-            //     "dashboardTabID": 1,
-            //     "dashboardTabName": "",
-            //     "id": 3,
-            //     "name": "barchart for start",
-            //     "description": "bla-bla-bla",
-            //     "grammar": "",
-            //     "version": 1,
-            //     "isSelected": false,
-            //     "isLiked": false,
-            //     "datasourceID": 1,
-            //     "datasetID": 1,
-            //     "dataParameters":
-            //     [
-            //         {
-            //             "field": "",
-            //             "value": ""
-            //         }
-            //     ],
-            //     "reportID": 1,
-            //     "reportName": "",
-            //     "rowLimit": 1,
-            //     "addRestRow": false,
-            //     "size": "",
-            //     "hyperlinkDashboardID": 1,
-            //     "hyperlinkDashboardTabID": 1,
-            //     "containerBackgroundcolor": "transparent",
-            //     "containerBorder": "2px solid black",
-            //     "containerBoxshadow": "2px 2px gray",
-            //     "containerColor": "transparent",
-            //     "containerFontsize": 12,
-            //     "containerHeight": 320,
-            //     "containerLeft": 700,
-            //     "containerWidgetTitle": "Title 1",
-            //     "containerTop": 240,      
-            //     "containerWidth": 250,
-            //     "containerZindex": 50,
-            //     "titleText": "",
-            //     "titleBackgroundColor": "#192b35",
-            //     "titleBorder": "",
-            //     "titleColor": "",
-            //     "titleFontsize": 1,
-            //     "titleFontWeight": "",
-            //     "titleHeight": 1,
-            //     "titleLeft": 1,
-            //     "titleMargin": "",
-            //     "titlePadding": "",
-            //     "titlePosition": "",
-            //     "titleTextAlign": "",
-            //     "titleTop": 1,
-            //     "titleWidth": 1,
-            //     "graphType": "",
-            //     "graphHeight": 1,
-            //     "graphLeft": 1,
-            //     "graphTop": 1,
-            //     "graphWidth": 1,
-            //     "graphGraphPadding": 1,
-            //     "graphHasSignals": false,
-            //     "graphXcolumn": "",
-            //     "graphYcolumn": "",
-            //     "graphFillColor": "",
-            //     "graphHoverColor": "",
-            //     "graphSpecification": {
-            //         "data": {"url": "../assets/vega-datasets/cars.json"},
-            //         "mark": "point",
-            //         "encoding": {
-            //             "x": {"field": "Horsepower", "type": "quantitative"},
-            //             "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-            //         }
-            //     },
-            //     "graphDescription": "",
-            //     "graphXaggregate": "",
-            //     "graphXtimeUnit": "",
-            //     "graphXfield": "Horsepower",
-            //     "graphXtype": "quantitative",
-            //     "graphYaggregate": "",
-            //     "graphYtimeUnit": "",
-            //     "graphYfield": "Miles_per_Gallon",
-            //     "graphYtype": "quantitative",
-            //     "graphTitle": "graphTitle",
-            //     "graphMark": "bar",
-            //     "graphUrl": "../assets/vega-datasets/cars.json",
-            //     "graphColorField": "",
-            //     "graphColorType": "",
-            //     "graphData": "",
-            //     "tableColor": "",
-            //     "tableCols": 1,
-            //     "tableHeight": 1,
-            //     "tableHideHeader": false,
-            //     "tableLeft": 1,
-            //     "tableRows": 1,
-            //     "tableTop": 1,
-            //     "tableWidth": 1,
-            //     "refreshMode": "",
-            //     "refreshFrequency": 1,
-            //     "widgetRefreshedOn": "",
-            //     "widgetRefreshedBy": "",
-            //     "widgetCreatedOn": "",
-            //     "widgetCreatedBy": "",
-            //     "widgetUpdatedOn": "",
-            //     "widgetUpdatedBy": ""
-            // }
-        
-        // this.currentWidgets = this.globalVariableService.currentWidgets
-        // this.currentWidgets.concat(this.globalVariableService.widgets[2]);
+        this.currentWidgets.push(x);
         console.log(this.currentWidgets, this.globalVariableService.widgets[2])
-        // let x: number = 0;
-        // for (var i = 0; i < this.currentDashboardTabs.length; i++) {
-        //     if (this.currentDashboardTabs[i].id == 
-        //         this.globalVariableService.currentDashboardTabID) { 
-        //             x = i + 1;
-        //     };
-        // }
-        // if (x >= this.currentDashboardTabs.length) { x = 0};
-        // this.currentTabName = this.currentDashboardTabs[x].name;
-        // this.globalVariableService.currentDashboardTabID = this.currentDashboardTabs[x].id;
-
-        // this.refreshDashboardInfo(this.globalVariableService.currentDashboardID,
-        //     this.globalVariableService.currentDashboardTabID);
     }
 
     clickShowLastTab() {
@@ -749,15 +629,6 @@ export class ExploreComponent {
         if (graphColorType == null) { graphColorType = ''};
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
-
-        // vlSpecsNew['data']['values'] = [
-        //     {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
-        //     {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
-        //     {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
-        //     {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
-        //     {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
-        //     {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
-        // ];
         vlSpecsNew['data'] = {"url": graphUrl};
         vlSpecsNew['description'] = graphDescription;
         vlSpecsNew['mark']['type'] = graphMark;
