@@ -214,6 +214,7 @@ export class CanvasSlicer {
     // Data related
     datasetID: number;
     fieldName: string;
+    data: string[];
 
     // @Runtime
     isSelected: boolean;

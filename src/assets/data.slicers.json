@@ -15,6 +15,7 @@
 
         "datasetID": 20,
         "fieldName": "",
+        "data": [],
 
         "isSelected": false,
         "nrButtons": 5,
@@ -67,6 +68,7 @@
 
     "datasetID": 21,
     "fieldName": "",
+    "data": [],
 
     "isSelected": false,
     "nrButtons": 5,

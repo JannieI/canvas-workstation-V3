@@ -8,5 +8,20 @@
                 {"Month": "E", "Profit": 8}, {"Month": "E", "Profit": 4}, {"Month": "E", "Profit": 7}
               ]
             }
+    },
+    {
+        "id": 20,
+        "data": [
+            "Blue",
+            "Gray"
+        ]
+    },
+    {
+        "id": 21,
+        "data": [
+            "Action",
+            "Silence"
+        ]
     }
+
 ]
