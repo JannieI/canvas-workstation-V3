@@ -499,7 +499,9 @@ export class ExploreComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDescription', '@Start');
 
+        this.showTabList = false;
         this.showDashboardDescription = true;
+        this.showDashboardTabDescription = false;  
     }
 
     clickListTabs() {
@@ -507,6 +509,8 @@ export class ExploreComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickListTabs', '@Start');
 
         this.showTabList = true;
+        this.showDashboardDescription = false;
+        this.showDashboardTabDescription = false;
     }
 
     clickAddTab() {
@@ -545,7 +549,9 @@ export class ExploreComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDescription', '@Start');
 
+        this.showTabList = false;
         this.showDashboardTabDescription = true;
+        this.showDashboardDescription = false;
         
     }
     clickShowNextTab() {
