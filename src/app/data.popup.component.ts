@@ -368,6 +368,7 @@ export class DataPopupComponent implements OnInit {
         this.globalVariableService.datasourceAdd(newData);
 
         // Reset data related to this DS
+        this.currentDatasources.push(newData);
         this.datasourceFilters = [];
         this.currentTransformations = [];
         this.transformationsFormat = [];
