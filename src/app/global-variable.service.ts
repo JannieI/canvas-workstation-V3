@@ -1934,6 +1934,9 @@ export class GlobalVariableService {
 
                         );
                         this.currentSlicers = data;
+                        this.currentSlicers.forEach(
+                            i => i.data = ['a', 'b']
+                        )
                         console.log('Global-Variables getCurrentSlicers 1', dashboardID, dashboardTabID, data)
                         resolve(data);
                 })

@@ -574,11 +574,9 @@
                 <div class="form-group">
                     <div class="select multiple">
                         <select id="selects_5" multiple>
-                            <option>Volvo</option>
-                            <option>Kia</option>
-                            <option>Honda</option>
-                            <option>Jeep</option>
-                            <option>BMW</option>
+                            <option *ngFor="let d of row.data; let i = index">
+                                {{ d }}
+                            </option>
                         </select>
                     </div>
                 </div>
