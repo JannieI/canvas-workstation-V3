@@ -62,7 +62,7 @@ export class DashboardOpenComponent implements OnInit {
     clickShowAdvancedFilters() {
         this.showAdvancedFilters = !this.showAdvancedFilters;
         if (this.showAdvancedFilters) {
-            this.records = 4
+            this.records = 3
         } else {
             this.records = 10
         };
