@@ -35,15 +35,16 @@
                             (click)="clickClose('Close')">
                             Search
                         </button>
+                        <button type="button" class="btn btn-secondary" 
+                            (click)="clickShowAdvancedFilters()"
+                            [style.background-color]="showAdvancedFilters? 'white' : 'lightgray'">
+                            Filters
+                        </button>
                     </span>
     
                 </div>
 
-                <div>Filters:</div>
-                Show Advanced filters <input type="checkbox" [checked]="showAdvancedFilters"
-                    (click)="clickShowAdvancedFilters()" [checked]="!isFirstTimeDashboardOpen">
-                Restore from Trash (rights will be checked) <input type="checkbox">
-                <div *ngIf="showAdvancedFilters">
+                <div *ngIf="showAdvancedFilters" class="propertyLine">
                     <div class="propertyLine">
                         Schedule:
                         <input type="text" id="formFields_7" placeholder="Send to">
