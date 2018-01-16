@@ -28,10 +28,11 @@ export class DashboardOpenComponent implements OnInit {
     @Input() test: boolean;
     @Output() formDashboardOpenClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
     isFirstTimeDashboardOpen: boolean;
+    records: number = 10;
     showAdvancedFilters: boolean = false;
+    showTypeDashboard: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -60,6 +61,11 @@ export class DashboardOpenComponent implements OnInit {
 
     clickShowAdvancedFilters() {
         this.showAdvancedFilters = !this.showAdvancedFilters;
+        if (this.showAdvancedFilters) {
+            this.records = 4
+        } else {
+            this.records = 10
+        };
     }
 
     clickOpenView(dashboardID: number) {
