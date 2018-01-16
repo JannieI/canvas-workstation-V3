@@ -31,17 +31,17 @@
                         <input type="text" id="dashboardName" placeholder="Enter dashboard/portion">
                     </span>
                     <span>
-                        <button type="button" class="btn btn-secondary" 
+                        <button type="button" class="btn btn-secondary"
                             (click)="clickClose('Close')">
                             Search
                         </button>
-                        <button type="button" class="btn btn-secondary" 
+                        <button type="button" class="btn btn-secondary"
                             (click)="clickShowAdvancedFilters()"
                             [style.background-color]="showAdvancedFilters? 'white' : 'lightgray'">
                             Filters
                         </button>
                     </span>
-    
+
                 </div>
 
                 <div *ngIf="showAdvancedFilters" class="propertyLine">
@@ -107,7 +107,7 @@
                     <clr-dg-column>Creator</clr-dg-column>
                     <clr-dg-column>#Opened</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let row of dashboards">
+                    <clr-dg-row *clrDgItems="let row of dashboards">
                         <clr-dg-cell (click)="clickOpenView(row.id)">
                             <clr-icon shape="eye" class="selectIcon1" size="12"></clr-icon>
                         </clr-dg-cell>
@@ -122,7 +122,11 @@
                         <clr-dg-cell>{{row.creator}}</clr-dg-cell>
                         <clr-dg-cell>{{row.nrTimesOpened}}</clr-dg-cell>
                     </clr-dg-row>
-
+                    <clr-dg-footer>
+                        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                        of {{pagination.totalItems}} dashboards
+                        <clr-dg-pagination #pagination [clrDgPageSize]="3"></clr-dg-pagination>
+                    </clr-dg-footer>
                 </clr-datagrid>
 
             </div>
