@@ -306,11 +306,11 @@ export class DataPopupComponent implements OnInit {
 
         // Datasource
         let newData: Datasource =  {
-            id: 1,
+            id: 100,
+            name: 'Stocks.csv',
             type: 'File',
             subType: 'CSV',
             typeVersion: 'Comma-Separated',
-            name: 'Stocks.csv',
             description: 'Hard coded name',
             createdBy: 'Me',
             createdOn: '2017/01/01',
@@ -335,14 +335,12 @@ export class DataPopupComponent implements OnInit {
         };
 
         // General var with name - used in *ngIF, etc
-        console.log(this.fileName, this.existingDSName)
         if (this.existingDSName == '') {
             this.currentDatasetName = this.fileName;
         } else {
             this.currentDatasetName = this.existingDSName;
         }
         this.existingDSName = '';
-        console.log(this.fileName, this.existingDSName)
 
         // Add to current DS
         this.globalVariableService.currentDatasourceAdd(newData);
@@ -354,7 +352,7 @@ export class DataPopupComponent implements OnInit {
         this.globalVariableService.datasourceAdd(newData);
 
         // Reset data related to this DS
-        this.currentDatasources.push(newData);
+        // this.currentDatasources.push(newData);
         this.datasourceFilters = [];
         this.currentTransformations = [];
         this.transformationsFormat = [];

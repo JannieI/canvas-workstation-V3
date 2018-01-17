@@ -29,10 +29,10 @@
     },
     {
         "id": 2,
+        "name": "Stocks4.csv",
         "type": "File",
         "subType": "CSV",
         "typeVersion": "Comma-Separator",
-        "name": "Stocks4.csv",
         "description": "Hard coded name",
         "createdBy": "Me",
         "createdOn": "2017/01/01",
