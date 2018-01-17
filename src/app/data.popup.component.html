@@ -119,10 +119,7 @@
                             <clr-icon shape="check" *ngIf="!currentDS"></clr-icon>
                         </div>
                         <div class="gridIdentifyDataExisting" *ngIf="currentDS">
-                            <!-- <span class="gridHeading" (click)="clickTest()">Existing Datasets</span> -->
                             <clr-datagrid class="fieldsDataGrid">
-                                <!-- <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column> -->
-
                                 <clr-dg-row
                                     *ngFor="let row of currentDatasources; let i = index"
                                     (click)="clickCurrentDatasource(row.id, i)"
@@ -135,10 +132,7 @@
                             </clr-datagrid>
                         </div>
                         <div class="gridIdentifyDataExisting" *ngIf="!currentDS">
-                            <!-- <span class="gridHeading" (click)="clickTest()">Existing Datasets</span> -->
                             <clr-datagrid class="fieldsDataGrid">
-                                <!-- <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column> -->
-
                                 <clr-dg-row
                                     *ngFor="let row of datasources"
                                     (click)="clickDatasourceRow(row.name)"
@@ -151,7 +145,6 @@
                         </div>
 
                         <div class="gridIdentifyDataIDfile" *ngIf="dataGetFromSwitch==='File'">
-                            
                             <span>Please enter file name and location:</span>
                             <input type="text" id="formFields_7"
                                 placeholder="Folder/FileName"
@@ -192,7 +185,6 @@
                                 >
                                 Preview
                             </button>
-                        <!-- <div class="titleButtonDiv"> -->
                             <button *ngIf="showAddButton"
                                 type="button"
                                 class="btn btn-secondary"
@@ -200,7 +192,6 @@
                                 >
                                 Add
                             </button>
-                        <!-- </div> -->
                         </div>
 
                         <div class="gridIdentifyDataIDserver" *ngIf="dataGetFromSwitch==='Server'">

@@ -1243,7 +1243,7 @@ export class GlobalVariableService {
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
             this.getCurrentDashboard(dashboardID).then( i => 
-            // Load the current DashboardTab
+            // Load the DashboardTabs
             this.getCurrentDashboardTabs(dashboardID).then(j =>
             // Load Widgets
             this.getCurrentWidgets(dashboardID, dashboardTabID).then(k =>
@@ -1253,6 +1253,8 @@ export class GlobalVariableService {
             this.getCurrentSlicers(dashboardID, dashboardTabID).then(m =>
             // Load Permissions for D
             this.getCurrentDashboardPermissions(dashboardID).then( o =>
+            // Load DS
+            this.getCurrentDatasource(dashboardID).then(p =>
                 // Reset Global Vars
                 {
                     this.currentDashboardID = dashboardID
@@ -1264,7 +1266,7 @@ export class GlobalVariableService {
                     }
                     resolve(true)
                 }
-        ))))));
+        )))))));
         });
     }
 
