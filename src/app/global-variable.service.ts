@@ -1254,7 +1254,7 @@ export class GlobalVariableService {
             // Load Permissions for D
             this.getCurrentDashboardPermissions(dashboardID).then( o =>
             // Load DS
-            // this.getCurrentDatasource(dashboardID).then(p =>
+            this.getCurrentDatasource(dashboardID).then(p =>
                 // Reset Global Vars
                 {
                     this.currentDashboardID = dashboardID
@@ -1266,7 +1266,7 @@ export class GlobalVariableService {
                     }
                     resolve(true)
                 }
-        ))))));
+        )))))));
         });
     }
 
@@ -2455,6 +2455,7 @@ export class GlobalVariableService {
                             this.statusBarRunning.next(this.NoQueryRunningMessage);
                             console.log('Global-Variables getCurrentDatasources 1', 
                                 dashboardID, returnData);
+                            resolve(returnData);
                         }
                     )
             } else {
@@ -2473,7 +2474,8 @@ export class GlobalVariableService {
                 this.isDirtyDatasources = false;
                 this.currentDatasources = returnData;
                 this.statusBarRunning.next(this.NoQueryRunningMessage);
-                console.log('Global-Variables getCurrentDatasources 2', dashboardID);
+                console.log('Global-Variables getCurrentDatasources 2', dashboardID, this.currentDatasources);
+                resolve(returnData);
             }
         });
     }
