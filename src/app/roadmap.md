@@ -10,7 +10,9 @@ This document describes items for later versions of Canvas.
 2. Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
 3. Use style.css for standard items, ie class="helpMessage"
 4. Standardize date format shown - as selected by the user, stored as settings
-
+5. Add a TABLE widget - similar look and feel as Simplus UI with filters, etc - maybe SlickDataGrid?
+6. Landing page: disable Menu & Statusbar?
+7. Setting min Grid width - wait for Clarity Bug fix
 
 **API**
 1. Have flexible field selection: ie ..."fields": [A, B, F]
@@ -134,6 +136,8 @@ This document describes items for later versions of Canvas.
 1. Make moveable!
 2. Make look and feel customisable
 3. X top right to close (and how to show later?)  Can make temporary invisible?
+
+
 
 
 **Scheduler**
