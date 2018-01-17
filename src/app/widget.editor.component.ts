@@ -889,9 +889,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     ) {}
 
     ngOnInit() {
-        // this.globalVariableService.currentDatasources.subscribe(
-        //   i => this.currentDatasources = i
-        // );
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
+        this.currentDatasources = this.globalVariableService.currentDatasources;
         this.dataFieldNames = ['symbol', 'date', 'price', 'Month', 'Trades'];
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
@@ -899,6 +900,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     ngAfterViewInit() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
 
         let definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);
         // let definition = vlTemplateSpec1
@@ -927,6 +930,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     renderGraph(definition: any) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
         view.renderer('svg')
@@ -941,32 +947,53 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
   	clickClose(action: string) {
-	  	this.formWidgetEditorClosed.emit(action);
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
+        this.formWidgetEditorClosed.emit(action);
     }
 
     dragstart_handlerField(ev) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = ev.srcElement.innerText;
     }
 
     dragend_handlerField(ev) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         console.log('dragend_handler', ev.dataTransfer.dropEffect)
     }
 
     dragover_handlerCol(ev, actionName: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         ev.preventDefault();
     }
 
     dragover_handlerRow(ev, actionName: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         ev.preventDefault();
     }
 
     dragover_handlerColor(ev, actionName: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         ev.preventDefault();
     }
 
     dragstart_handlerColor(ev) {
-      console.log("dragStart", ev, ev.srcElement.innerText);
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
+        console.log("dragStart", ev, ev.srcElement.innerText);
       // Add the target element's id to the data transfer object
       ev.dataTransfer.setData("text/plain", ev.target.id);
       this.draggedField = ev.srcElement.innerText;
@@ -975,7 +1002,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     drop_handlerCol(ev) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
         ev.preventDefault();
+
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
 
@@ -998,6 +1028,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     drop_handlerRow(ev) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
@@ -1019,6 +1052,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
       }
 
     drop_handlerColor(ev) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
@@ -1039,18 +1075,27 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
       }
 
     dragover_handlerColEnter(ev, actionName: string) {
-      ev.preventDefault();
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
+        ev.preventDefault();
       this.dragoverCol = true;
       this.dragoverRow = false;
       this.dragoverColor = false;
     }
 
     dragover_handlerColLeave(ev, actionName: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         ev.preventDefault();
         this.dragoverCol = false;
     }
 
     dragover_handlerRowEnter(ev, actionName: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
       ev.preventDefault();
       this.dragoverCol = false;
       this.dragoverRow = true;
@@ -1058,44 +1103,71 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     dragover_handlerRowLeave(ev, actionName: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         ev.preventDefault();
         this.dragoverRow = false;
     }
 
     dragover_handlerColorEnter(ev, actionName: string) {
-      ev.preventDefault();
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
+        ev.preventDefault();
       this.dragoverCol = false;
       this.dragoverRow = false;
       this.dragoverColor = true;
     }
 
     dragover_handlerColorLeave(ev, actionName: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         ev.preventDefault();
         this.dragoverColor = false;
     }
 
     clickCloseAdvancedX(action) {
-       this.showColFieldAdvancedArea = false;
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
+        this.showColFieldAdvancedArea = false;
     }
 
     clickApplyAdvancedX(action) {
-      this.showColFieldAdvancedArea = false;
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
+        this.showColFieldAdvancedArea = false;
    }
 
    clickCloseAdvancedY(action) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         this.showRowFieldAdvancedArea = false;
     }
 
     clickApplyAdvancedY(action) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         this.showRowFieldAdvancedArea = false;
     }
 
     rowFieldDropButton(){
-      this.showColFieldAdvancedArea = true;
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
+        this.showColFieldAdvancedArea = true;
    }
 
    clickShowRowFieldAdvanced(){
-      this.showRowFieldAdvancedArea = true;
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
+        this.showRowFieldAdvancedArea = true;
    }
 
     createVegaLiteSpec(
@@ -1104,7 +1176,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         xfield: string = 'Month',
         yfield: string = 'Trades',
         title: string = 'Average Trading'): dl.spec.TopLevelExtendedSpec {
-
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+        
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
 
 
@@ -1128,10 +1202,16 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     clickDatasource(index: number, name: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         console.log (index, name)
     }
 
     clickIcon(graph: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
         this.showType = false;
 
         let definition = this.createVegaLiteSpec(
