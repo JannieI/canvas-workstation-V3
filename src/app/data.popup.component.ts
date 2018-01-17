@@ -155,34 +155,8 @@ export class DataPopupComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        let ids: number[] = [];
-        for (var i = 0; i < this.currentWidgets.length; i++) {
-            if (ids.indexOf(this.currentWidgets[i].datasourceID) < 0) {
-                ids.push(this.currentWidgets[i].datasourceID)
-            }
-        };
-        let returnData: Datasource[] = [];
-        for (var i = 0; i < this.datasources.length; i++) {
-            if (ids.indexOf(this.datasources[i].id) >= 0) {
-                returnData.push(this.datasources[i]);
-            };
-        };
-
         // Load from global variables
-        let arr: number[] = [];
-        this.globalVariableService.currentWidgets.forEach(
-            i => {
-                if (arr.indexOf(i.datasourceID) < 0) {
-                    arr.push(i.datasourceID)
-                }
-            }
-        );
-
-        for (var i = 0; i < arr.length; i++) {
-            this.currentDatasources.push(
-                this.globalVariableService.datasources[i]
-            )
-        }
+        this.currentDatasources = this.globalVariableService.currentDatasources;
         this.datasources = this.globalVariableService.datasources;
     }
 
@@ -328,6 +302,7 @@ export class DataPopupComponent implements OnInit {
     clickDSAdd(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+        console.log('strt', this.currentDatasources)
 
         // Datasource
         let newData: Datasource =  {
@@ -398,6 +373,7 @@ export class DataPopupComponent implements OnInit {
 
         // UnShow Add button
         this.showAddButton = false;
+        console.log('done', this.currentDatasources)
     }
 
     clickDatasourceRow(dsName: string) {

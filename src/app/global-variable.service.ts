@@ -1254,7 +1254,7 @@ export class GlobalVariableService {
             // Load Permissions for D
             this.getCurrentDashboardPermissions(dashboardID).then( o =>
             // Load DS
-            this.getCurrentDatasource(dashboardID).then(p =>
+            // this.getCurrentDatasource(dashboardID).then(p =>
                 // Reset Global Vars
                 {
                     this.currentDashboardID = dashboardID
@@ -1266,7 +1266,7 @@ export class GlobalVariableService {
                     }
                     resolve(true)
                 }
-        )))))));
+        ))))));
         });
     }
 
@@ -2434,33 +2434,27 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             // TODO - What if databoards empty or diry - is that okay?
-            if ( (this.datasources == [])  ||  (this.isDirtyDatasources)  ||
-                 (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+            if ( (this.datasources == [])  ||  (this.isDirtyDatasources) ) {
                 this.getDatasources()
                     .then(ds => 
                         {
-                            this.getCurrentWidgets(dashboardID, 0)
-                                .then( w => 
-                                    {
-                                        let ids: number[] = [];
-                                        for (var i = 0; i < w.length; i++) {
-                                            if (ids.indexOf(w[i].datasourceID) < 0) {
-                                                ids.push(w[i].datasourceID)
-                                            }
-                                        };
-                                        let returnData: Datasource[] = [];
-                                        for (var i = 0; i < ds.length; i++) {
-                                            if (ids.indexOf(ds[i].id) >= 0) {
-                                                returnData.push(ds[i]);
-                                            };
-                                        };
-                                        this.isDirtyDatasources = false;
-                                        this.currentDatasources = returnData;
-                                        this.statusBarRunning.next(this.NoQueryRunningMessage);
-                                        console.log('Global-Variables getCurrentDatasources 1', 
-                                            dashboardID, returnData);
-                                    }
-                                );
+                            let ids: number[] = [];
+                            for (var i = 0; i < this.currentWidgets.length; i++) {
+                                if (ids.indexOf(this.currentWidgets[i].datasourceID) < 0) {
+                                    ids.push(this.currentWidgets[i].datasourceID)
+                                }
+                            };
+                            let returnData: Datasource[] = [];
+                            for (var i = 0; i < ds.length; i++) {
+                                if (ids.indexOf(ds[i].id) >= 0) {
+                                    returnData.push(ds[i]);
+                                };
+                            };
+                            this.isDirtyDatasources = false;
+                            this.currentDatasources = returnData;
+                            this.statusBarRunning.next(this.NoQueryRunningMessage);
+                            console.log('Global-Variables getCurrentDatasources 1', 
+                                dashboardID, returnData);
                         }
                     )
             } else {
