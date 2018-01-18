@@ -805,11 +805,11 @@ export class ExploreComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetEdit', '@Start');
 
-        if (this.datasources.length == 0) {
+        if (!this.hasDatasources) {
             alert('Please add a Dataset first: Data -> From File')
-        } else {
-            this.showModalWidgetEditor = true;
+            return;
         };
+        this.showModalWidgetEditor = true;
     }
 
     handleCloseWidgetEditor() {
