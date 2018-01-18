@@ -1386,17 +1386,16 @@ export class GlobalVariableService {
         //
         console.log('Global-Variables currentDatasourceAdd ...');
         
-        // let arr: Datasource[] = this.currentDatasources;
-        // arr.push(newData);
-        // console.log('Global-Variables currentDatasourceAdd arr', arr)
-        // this.currentDatasources.next(arr)
-        this.currentDatasources.push(newData);
+        if (this.currentDatasources.filter(i => i.id == newData.id).length == 0) {
+            this.currentDatasources.push(newData);
+        } 
         console.log('Global-Variables currentDatasourceAdd after push', this.currentDatasources)
     }
 
     datasourceAdd(newData: Datasource) {
         //
         console.log('Global-Variables datasourceAdd ...');
+
         if (this.datasources.filter(i => i.id == newData.id).length == 0) {
             this.datasources.push(newData);
         } 
