@@ -994,11 +994,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstart_handlerColor', '@Start');
 
         console.log("dragStart", ev, ev.srcElement.innerText);
-      // Add the target element's id to the data transfer object
-      ev.dataTransfer.setData("text/plain", ev.target.id);
-      this.draggedField = ev.srcElement.innerText;
-      this.colField = '';
-      console.log('drag_start for ', this.draggedField)
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+        this.draggedField = ev.srcElement.innerText;
+        this.colField = '';
+        console.log('drag_start for ', this.draggedField)
     }
 
     drop_handlerCol(ev) {
@@ -1079,9 +1079,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerColEnter', '@Start');
 
         ev.preventDefault();
-      this.dragoverCol = true;
-      this.dragoverRow = false;
-      this.dragoverColor = false;
+        this.dragoverCol = true;
+        this.dragoverRow = false;
+        this.dragoverColor = false;
     }
 
     dragover_handlerColLeave(ev, actionName: string) {
@@ -1096,10 +1096,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerRowEnter', '@Start');
 
-      ev.preventDefault();
-      this.dragoverCol = false;
-      this.dragoverRow = true;
-      this.dragoverColor = false;
+        ev.preventDefault();
+        this.dragoverCol = false;
+        this.dragoverRow = true;
+        this.dragoverColor = false;
     }
 
     dragover_handlerRowLeave(ev, actionName: string) {

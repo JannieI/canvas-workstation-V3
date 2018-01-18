@@ -1397,12 +1397,9 @@ export class GlobalVariableService {
     datasourceAdd(newData: Datasource) {
         //
         console.log('Global-Variables datasourceAdd ...');
-
-        // let arr: Datasource[] = this.datasources;
-        // arr.push(newData);
-        // console.log('Global-Variables datasourceAdd arr', arr)
-        // this.datasources = arr;
-        this.datasources.push(newData);
+        if (this.datasources.filter(i => i.id == newData.id).length == 0) {
+            this.datasources.push(newData);
+        } 
         console.log('Global-Variables datasourceAdd after push', this.datasources)
     }
 
