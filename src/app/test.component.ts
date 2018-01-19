@@ -146,6 +146,13 @@ export class TestComponent {
 
         console.log('Explore ngOnInit ...', this.globalVariableService.openDashboardFormOnStartup)
 
+        console.log('Remove this - only for TESTing !!')
+        this.globalVariableService.currentDashboardID = 1;
+        this.globalVariableService.currentDashboardTabID = 1;
+        this.globalVariableService.refreshDashboard.next(true);
+
+        
+        
         // Load global variables
         this.globalVariableService.refreshDashboard.subscribe(i => 
             {

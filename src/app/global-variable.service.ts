@@ -1259,6 +1259,8 @@ export class GlobalVariableService {
             this.getCurrentDashboardPermissions(dashboardID).then( o =>
             // Load DS
             this.getCurrentDatasource(dashboardID).then(p =>
+            // Load TEST
+            this.getTestWidgets().then(q =>
                 // Reset Global Vars
                 {
                     this.currentDashboardID = dashboardID
@@ -1270,7 +1272,7 @@ export class GlobalVariableService {
                     }
                     resolve(true)
                 }
-        )))))));
+        ))))))));
         });
     }
 
@@ -1537,7 +1539,7 @@ export class GlobalVariableService {
                         }
                         // this.currentDashboards.next(currentDashboards);
 
-                        console.log('Global-Variables getCurrentDashboards 1', dashboardID, data)
+                        console.log('Global-Variables getCurrentDashboards 1', dashboardID, this.currentDashboards)
                         resolve(this.currentDashboards);
 
                 })
@@ -2805,26 +2807,26 @@ export class GlobalVariableService {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getWidgets ...');
+        console.log('Global-Variables getWidgets ...', this.testWidgets.length);
 
         let url: string = 'getWidgets';
-        this.filePath = './assets/data.widgets.json';
+        this.filePath = './assets/data.data.testWidget.json';
 
         return new Promise<Widget[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+            if ( (this.testWidgets.length == 0)  ||  (this.isDirtyWidgets) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.widgets = data;
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getWidgets 1', data)
+                        console.log('Global-Variables getTestWidgets 1', data)
                         resolve(this.testWidgets);
                     });
             } else {
-                console.log('Global-Variables getTestWidgets 2')
+                console.log('Global-Variables getTestWidgets 2', this.testWidgets)
                 resolve(this.testWidgets);
             }
         });
