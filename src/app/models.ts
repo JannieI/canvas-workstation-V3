@@ -566,3 +566,138 @@ export class DashboardPermission {
     canView: boolean;
     canEdit: boolean;
 }
+
+export class Widget {
+
+    // Type
+    widgetType: string;                 // Graph, Table, Shape, Slicer
+    widgetSubType: string;              // Type of shape, ie Circle
+
+    // Trashed
+    isTrashed: boolean;
+
+    // Where W lives
+    dashboardID: number;                // FK to DashboardID to which widget belongs
+    dashboardTabID: number;             // FK to Tab where the widget lives
+    dashboardTabName: string;           // FK to Tab Name where widget lives
+
+    // Identification and Description
+    id: number;
+    name: string;
+    description: string;
+    visualGrammar: string;              // Gramar for graphs, default = Vega
+    version: number;
+
+    // Props @Runtime
+    isLiked: boolean;                   // @RunTime: True if Widget is liked by me
+    isSelected: boolean;
+    hasDataQualityIssues: boolean;
+    hasComments: boolean;
+
+    // Links @Runtime
+    hyperlinkDashboardID: number;           // Optional Widget ID to jump to
+    hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
+    
+    // Data related
+    datasourceID: number;
+    datasetID: number;
+    dataParameters:
+    [
+        {
+            "field": string;
+            "value": string;
+        }
+    ]
+    reportID: number;                   // FK to report (query / data).  -1: dont load any report data
+    reportName: string;                 // Report (query) name in Eazl (DS implied)
+    rowLimit: number;                   // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
+    addRestRow: boolean;                // True means add a row to  = SUM(rest)
+    size: string;                       // Small, Medium, Large ito data loading
+
+    // Container
+    containerBackgroundcolor: string;
+    containerBorder: string;
+    containerBoxshadow: string;
+    containerColor: string;
+    containerFontsize: number;
+    containerHeight: number;
+    containerLeft: number;
+    containerWidgetTitle: string;       // Title at top of container
+    containerTop: number;
+    containerWidth: number;
+    containerZindex: number;
+
+    // Title
+    titleText: string;                  // with HTML & keywords (##today##)
+    titleBackgroundColor: string;
+    titleBorder: string;
+    titleColor: string;
+    titleFontsize: number;              // in px
+    titleFontWeight: string;
+    titleHeight: number;                // in px
+    titleLeft: number;                  // in px
+    titleMargin: string;
+    titlePadding: string;
+    titlePosition: string;
+    titleTextAlign: string;
+    titleTop: number;                   // in px
+    titleWidth: number;                 // in px: 0 means it adapts to container
+
+    // Graph
+    graphType: string;                  // bar, pie, etc
+    graphHeight: number;                // in px
+    graphLeft: number;                  // in px
+    graphTop: number;                   // in px
+    graphWidth: number;                 // in px
+    graphGraphPadding: number;
+    graphHasSignals: boolean;
+    graphXcolumn: string;
+    graphYcolumn: string;
+    graphFillColor: string;
+    graphHoverColor: string;
+    graphSpecification: any;
+    graphDescription: string;
+    graphXaggregate: string;
+    graphXtimeUnit: string;
+    graphXfield: string;
+    graphXtype: string;
+    graphYaggregate: string;
+    graphYtimeUnit: string;
+    graphYfield: string;
+    graphYtype: string;
+    graphTitle: string;
+    graphMark: string;
+    graphUrl: string;
+    graphData: any;
+    graphColorField: string;
+    graphColorType: string;
+
+    // Table - to be determined later ...
+    tableColor: string;                 // Text color
+    tableCols: number;                  // Nr of cols, 0 means all
+    tableHeight: number;                // in px, cuts of rest if bigger than this
+    tableHideHeader: boolean;
+    tableLeft: number;                  // in px
+    tableRows: number;                  // Nr of rows in the data, excluding header: 0 means all
+    tableTop: number;                   // in px
+    tableWidth: number;                 // in px, cuts of rest if bigger than this
+
+    // Shape
+    shapeCx: string;                             // circle svg cx in px - ie '50' without dimension
+    shapeCy: string;                             // circle svg cy
+    shapeR: string;                              // circle svg radius
+    shapeStroke: string;                         // colour of line
+    shapeStrokeWidth: string;                    // line thickness in px
+    shapeFill: string;                           // fill / inside (ie of circle)
+    
+    // Created, updated and refreshed
+    refreshMode: string;                // Manual, OnOpen, Repeatedly
+    refreshFrequency: number;           // Nr of seconds if RefreshMode = Repeatedly
+    widgetRefreshedOn: string;          // Data Refreshed on
+    widgetRefreshedBy: string;          // Date Refreshed by
+    widgetCreatedOn: string;            // Created on
+    widgetCreatedBy: string;            // Created by
+    widgetUpdatedOn: string;            // Updated on
+    widgetUpdatedBy: string;            // Updated by
+
+}
