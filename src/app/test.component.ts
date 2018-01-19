@@ -109,6 +109,128 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         }
 };
 
+
+const testWidgets: Widget[] =
+[
+    {
+        "widgetType": "Graph",
+        "widgetSubType": "",
+    
+        "isTrashed": false,
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "dashboardTabName": "",
+        "id": 1,
+        "name": "barchart for start",
+        "description": "bla-bla-bla",
+        "visualGrammar": "",
+        "version": 1,
+        "isSelected": false,
+        "isLiked": false,
+        "hasDataQualityIssues": true,
+        "hasComments": true,
+        "nrButtonsToShow": 3,
+        "hyperlinkDashboardID": 1,
+        "hyperlinkDashboardTabID": 1,
+            
+        "datasourceID": 1,
+        "datasetID": 1,
+        "dataParameters":
+        [
+            {
+                "field": "",
+                "value": ""
+            }
+        ],
+        "reportID": 1,
+        "reportName": "",
+        "rowLimit": 1,
+        "addRestRow": false,
+        "size": "",
+        "containerBackgroundcolor": "transparent",
+        "containerBorder": "2px solid black",
+        "containerBoxshadow": "2px 2px gray",
+        "containerColor": "transparent",
+        "containerFontsize": 12,
+        "containerHeight": 320,
+        "containerLeft": 50,
+        "containerWidgetTitle": "Title 1",
+        "containerTop": 240,      
+        "containerWidth": 250,
+        "containerZindex": 50,
+        "titleText": "",
+        "titleBackgroundColor": "#192b35",
+        "titleBorder": "",
+        "titleColor": "",
+        "titleFontsize": 1,
+        "titleFontWeight": "",
+        "titleHeight": 1,
+        "titleLeft": 1,
+        "titleMargin": "",
+        "titlePadding": "",
+        "titlePosition": "",
+        "titleTextAlign": "",
+        "titleTop": 1,
+        "titleWidth": 1,
+        "graphType": "",
+        "graphHeight": 1,
+        "graphLeft": 1,
+        "graphTop": 1,
+        "graphWidth": 1,
+        "graphGraphPadding": 1,
+        "graphHasSignals": false,
+        "graphXcolumn": "",
+        "graphYcolumn": "",
+        "graphFillColor": "",
+        "graphHoverColor": "",
+        "graphSpecification": {
+            "data": {"url": "../assets/vega-datasets/cars.json"},
+            "mark": "point",
+            "encoding": {
+                "x": {"field": "Horsepower", "type": "quantitative"},
+                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+            }
+        },
+        "graphDescription": "",
+        "graphXaggregate": "",
+        "graphXtimeUnit": "",
+        "graphXfield": "Horsepower",
+        "graphXtype": "quantitative",
+        "graphYaggregate": "",
+        "graphYtimeUnit": "",
+        "graphYfield": "Miles_per_Gallon",
+        "graphYtype": "quantitative",
+        "graphTitle": "graphTitle",
+        "graphMark": "bar",
+        "graphUrl": "../assets/vega-datasets/cars.json",
+        "graphColorField": "",
+        "graphColorType": "",
+        "graphData": "",
+        "tableColor": "",
+        "tableCols": 1,
+        "tableHeight": 1,
+        "tableHideHeader": false,
+        "tableLeft": 1,
+        "tableRows": 1,
+        "tableTop": 1,
+        "tableWidth": 1,
+        "shapeCx": "",
+        "shapeCy": "",
+        "shapeR": "",
+        "shapeStroke": "",
+        "shapeStrokeWidth": "",
+        "shapeFill": "",
+        "refreshMode": "",
+        "refreshFrequency": 1,
+        "widgetRefreshedOn": "",
+        "widgetRefreshedBy": "",
+        "widgetCreatedOn": "",
+        "widgetCreatedBy": "",
+        "widgetUpdatedOn": "",
+        "widgetUpdatedBy": ""
+    }
+]
+
 @Component({
     styleUrls: ['./test.component.css'],
     templateUrl: './test.component.html'
@@ -118,8 +240,6 @@ export class TestComponent {
 
     @ViewChildren('widgetContainter')  widgetContainters: QueryList<ElementRef>;
     @ViewChildren('widget')            childrenWidgets: QueryList<ElementRef>;
-    @ViewChildren('shapeContainter')   shapeContainter: QueryList<ElementRef>;
-    @ViewChildren('circle2')            circle2: QueryList<ElementRef>;
 
     widgets: Widget[] = [];
     startX: number;
@@ -131,6 +251,7 @@ export class TestComponent {
     selectedSlicers: number[] = []
 
     test:boolean = false;
+    currentWidgets: Widget[] = testWidgets;
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -144,38 +265,57 @@ export class TestComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        console.log('Explore ngOnInit ...', this.globalVariableService.openDashboardFormOnStartup)
+        console.log('Explore ngOnInit ...', this.globalVariableService.refreshDashboard.value)
 
         console.log('Remove this - only for TESTing !!')
         this.globalVariableService.currentDashboardID = 1;
         this.globalVariableService.currentDashboardTabID = 1;
-        this.globalVariableService.refreshDashboard.next(true);
 
         
-        
+
         // Load global variables
         this.globalVariableService.refreshDashboard.subscribe(i => 
             {
-                console.log ('Explore ngOnInit refreshDashboard ...', 
+                console.log ('Explore ngOnInit refreshDashboard start ...', 
+                    this.childrenWidgets, 
                     this.globalVariableService.currentDashboardID,
                     this.globalVariableService.currentDashboardTabID)
                 if (i) {
-                    // Add to Recently used
-                    this.globalVariableService.addDashboardRecent(
-                        this.globalVariableService.currentDashboardID
-                    )
+                    console.log ('Explore ngOnInit refreshDashboard refreshing ...', 
+                    this.globalVariableService.currentDashboardID,
+                    this.globalVariableService.currentDashboardTabID)
                     // Refresh D and related info
-                    this.refreshDashboardInfo(
+                    this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardID,
-                        this.globalVariableService.currentDashboardTabID);
-                    this.globalVariableService.refreshDashboard.next(false);
+                        this.globalVariableService.currentDashboardTabID).then (i => 
+                            {
+                                // this.currentWidgets = this.globalVariableService.testWidgets;
+                                console.log('The big moment ...', this.currentWidgets)
+                                this.refreshWidgets();
+                                // Add to Recently used
+                                this.globalVariableService.addDashboardRecent(
+                                    this.globalVariableService.currentDashboardID
+                                )
+                                this.globalVariableService.refreshDashboard.next(false);
+                                
+                            } );
 
                 };
             }
         );
 
+
+
     }
 
+    ngAfterViewInit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+
+        console.log('Explore ngAfterViewInit ...', this.childrenWidgets.toArray(),
+        this.widgetContainters.toArray(), this.currentWidgets)
+        this.refreshWidgets();
+    }
     refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshDashboardInfo', '@Start');
@@ -195,25 +335,39 @@ export class TestComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
 
         console.log('Explore refreshWidgets ...START children.length', this.childrenWidgets.toArray(),
-            this.widgetContainters.toArray(), this.widgets)
+            this.widgetContainters.toArray(), this.currentWidgets)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
-            if (this.widgets[i] != undefined) {
-                console.log('Explore refreshWidgets' ,i)
+            if (this.currentWidgets[i] != undefined) {
+                console.log('Explore refreshWidgets' ,i,                     this.currentWidgets[i].graphDescription,
+                this.currentWidgets[i].graphMark,
+                this.currentWidgets[i].graphXfield,
+                this.currentWidgets[i].graphYfield,
+                this.currentWidgets[i].graphTitle,
+                this.currentWidgets[i].graphXtype,
+                this.currentWidgets[i].graphYtype,
+                this.currentWidgets[i].graphUrl,
+                this.currentWidgets[i].graphXtimeUnit,
+                this.currentWidgets[i].graphXaggregate,
+                this.currentWidgets[i].graphYtimeUnit,
+                this.currentWidgets[i].graphYaggregate,
+                this.currentWidgets[i].graphColorField,
+                this.currentWidgets[i].graphColorType)
+
                 let definition = this.createVegaLiteSpec(
-                    this.widgets[i].graphDescription,
-                    this.widgets[i].graphMark,
-                    this.widgets[i].graphXfield,
-                    this.widgets[i].graphYfield,
-                    this.widgets[i].graphTitle,
-                    this.widgets[i].graphXtype,
-                    this.widgets[i].graphYtype,
-                    this.widgets[i].graphUrl,
-                    this.widgets[i].graphXtimeUnit,
-                    this.widgets[i].graphXaggregate,
-                    this.widgets[i].graphYtimeUnit,
-                    this.widgets[i].graphYaggregate,
-                    this.widgets[i].graphColorField,
-                    this.widgets[i].graphColorType,
+                    this.currentWidgets[i].graphDescription,
+                    this.currentWidgets[i].graphMark,
+                    this.currentWidgets[i].graphXfield,
+                    this.currentWidgets[i].graphYfield,
+                    this.currentWidgets[i].graphTitle,
+                    this.currentWidgets[i].graphXtype,
+                    this.currentWidgets[i].graphYtype,
+                    this.currentWidgets[i].graphUrl,
+                    this.currentWidgets[i].graphXtimeUnit,
+                    this.currentWidgets[i].graphXaggregate,
+                    this.currentWidgets[i].graphYtimeUnit,
+                    this.currentWidgets[i].graphYaggregate,
+                    this.currentWidgets[i].graphColorField,
+                    this.currentWidgets[i].graphColorType,
                 );
                 let specification = compile(definition).spec;
                 console.log('Explore refreshWidgets ... specification', specification)

@@ -517,6 +517,9 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardEdit', '@Start');
 
+        console.log('Fix in appComponent clickDashboardEdit - just TESTing')
+        this.globalVariableService.refreshDashboard.next(true);
+
         this.globalVariableService.editMode.next(!this.editMode);
     }
 

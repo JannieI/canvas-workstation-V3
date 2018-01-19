@@ -16,7 +16,7 @@
         "isLiked": false,
         "hasDataQualityIssues": true,
         "hasComments": true,
-        "nrButtonsToShow": true,
+        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
             

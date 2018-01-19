@@ -2810,7 +2810,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getWidgets ...', this.testWidgets.length);
 
         let url: string = 'getWidgets';
-        this.filePath = './assets/data.data.testWidget.json';
+        this.filePath = './assets/data.testWidget.json';
 
         return new Promise<Widget[]>((resolve, reject) => {
 
@@ -2819,7 +2819,7 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.widgets = data;
+                        this.testWidgets = data;
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         console.log('Global-Variables getTestWidgets 1', data)
