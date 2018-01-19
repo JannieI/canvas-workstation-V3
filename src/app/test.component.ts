@@ -144,27 +144,26 @@ export class TestComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        console.log('Explore ngOnInit', this.globalVariableService.openDashboardFormOnStartup)
+        console.log('Explore ngOnInit ...', this.globalVariableService.openDashboardFormOnStartup)
 
         // Load global variables
-        this.globalVariableService.refreshDashboard.subscribe(
-            i => {
-                    console.log ('Explore ngOnInit refreshDashboard', 
+        this.globalVariableService.refreshDashboard.subscribe(i => 
+            {
+                console.log ('Explore ngOnInit refreshDashboard ...', 
+                    this.globalVariableService.currentDashboardID,
+                    this.globalVariableService.currentDashboardTabID)
+                if (i) {
+                    // Add to Recently used
+                    this.globalVariableService.addDashboardRecent(
+                        this.globalVariableService.currentDashboardID
+                    )
+                    // Refresh D and related info
+                    this.refreshDashboardInfo(
                         this.globalVariableService.currentDashboardID,
-                        this.globalVariableService.currentDashboardTabID)
-                    if (i)
-                        {
-                            // Add to Recently used
-                            this.globalVariableService.addDashboardRecent(
-                                this.globalVariableService.currentDashboardID
-                            )
-                            // Refresh D and related info
-                            this.refreshDashboardInfo(
-                                this.globalVariableService.currentDashboardID,
-                                this.globalVariableService.currentDashboardTabID);
-                            this.globalVariableService.refreshDashboard.next(false);
+                        this.globalVariableService.currentDashboardTabID);
+                    this.globalVariableService.refreshDashboard.next(false);
 
-                        };
+                };
             }
         );
 

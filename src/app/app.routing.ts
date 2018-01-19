@@ -12,6 +12,8 @@ import { HelpComponent }              from './help.component';
 import { LandingComponent }           from './landing.component';
 import { WidgetExpandComponent }      from './widget.expand.component';
 
+import { TestComponent }              from './test.component';
+
 // Own Services
 import { AuthGuard }                  from './authguard.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -20,6 +22,7 @@ export const ROUTES: Routes = [
     {path: '', redirectTo: 'explore', pathMatch: 'full'},
     {path: 'data',          component: DataPopupComponent},
     {path: 'explore',       component: ExploreComponent},
+    {path: 'test',          component: TestComponent},
     {path: 'help',          component: HelpComponent},
     {path: 'expand',        component: WidgetExpandComponent},
 
