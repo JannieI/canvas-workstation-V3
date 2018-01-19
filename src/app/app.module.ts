@@ -89,7 +89,6 @@ import { GlobalFunctionService }      from './global-function.service';
 
 // Testing
 import { DelayDirective }             from './test.delay.directive';
-import { CardComponent }              from './test.app.card.component';
 import { MyNgIfDirective }            from './test.ngif.directive';
 
 @NgModule({
@@ -155,7 +154,6 @@ import { MyNgIfDirective }            from './test.ngif.directive';
         LoginComponent,
         LogoutComponent,
 
-        CardComponent,
         DelayDirective,
         MyNgIfDirective,
 
