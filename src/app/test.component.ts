@@ -179,7 +179,7 @@ export class TestComponent {
         this.globalVariableService.refreshCurrentDashboardInfo(1, dashboardTabID).then (i => 
             {
                 console.log('The big moment ...')
-                this.widgets = this.globalVariableService.currentWidgets;
+                this.widgets = this.globalVariableService.testWidgets;
                 this.refreshWidgets();
             } );
     }
@@ -189,7 +189,7 @@ export class TestComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
 
         console.log('Explore refreshWidgets ...START children.length', this.childrenWidgets.toArray(),
-            this.widgetContainters.toArray(), this.currentWidgets)
+            this.widgetContainters.toArray(), this.widgets)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
             if (this.widgets[i] != undefined) {
                 console.log('Explore refreshWidgets' ,i)

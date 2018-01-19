@@ -37,6 +37,8 @@ import { CanvasShape }                from './models';
 import { Combination }                from './models';
 import { CombinationDetail }          from './models';
 
+import { Widget }                     from './models';
+
 import * as dl                        from 'datalib';
 import { Observable }                 from 'rxjs/Observable';
 
@@ -1015,6 +1017,8 @@ export class GlobalVariableService {
     widgets: CanvasWidget[] = [];
     shapes: CanvasShape[] = [];
     slicers: CanvasSlicer[] = [];
+
+    testWidgets: Widget[] = [];
 
     datasources: Datasource[] = [];
     transformations: Transformation[] = [];
@@ -2796,6 +2800,36 @@ export class GlobalVariableService {
 
     }
   
+
+    getTestWidgets(): Promise<Widget[]> {
+        // Description: Gets all W
+        // Returns: this.widgets array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getWidgets ...');
+
+        let url: string = 'getWidgets';
+        this.filePath = './assets/data.widgets.json';
+
+        return new Promise<Widget[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.widgets = data;
+                        this.isDirtyWidgets = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('Global-Variables getWidgets 1', data)
+                        resolve(this.testWidgets);
+                    });
+            } else {
+                console.log('Global-Variables getTestWidgets 2')
+                resolve(this.testWidgets);
+            }
+        });
+
+    }
 
     getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
