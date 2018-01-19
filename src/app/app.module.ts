@@ -80,6 +80,8 @@ import { LogoutComponent}             from './logout.component';
 
 import { PipeFilterDSType }           from './pipe.filter.component';
 
+import { TestComponent } from './test.component'
+
 // Our Services
 import { AuthGuard }                  from './authguard.service';
 import { GlobalVariableService }      from './global-variable.service';
@@ -158,6 +160,7 @@ import { MyNgIfDirective }            from './test.ngif.directive';
         MyNgIfDirective,
 
         PipeFilterDSType,
+        TestComponent,
     ],
     imports: [
         BrowserAnimationsModule,

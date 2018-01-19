@@ -1,0 +1,153 @@
+<!-- Widgets -->
+<div *ngFor="let row of currentWidgets; let i = index" class="widgetContainer"
+    #widgetContainter
+    [style.background-color]="row.containerBackgroundColor"
+    [style.border]="row.isSelected? '2px solid red' : row.containerBorder"
+    [style.box-shadow]="row.containerBoxshadow"
+    [style.height.px]="row.containerHeight"
+    [style.left.px]="row.containerLeft"
+    [style.top.px]="row.containerTop"
+    [style.width.px]="row.containerWidth"
+    [style.zindex]="row.containerZindex"
+    >
+    <span class="widgetButtonBar">
+        <clr-icon
+            shape="pencil"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickWidgetEdit(i)"
+            title="Edit Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentationMode"
+            shape="pop-out"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickWidgetCheckpoints(i)"
+            title="Show Checkpoints"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentationMode"
+            shape="note"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetComments(i)"
+            title="Show Comments"
+            >
+        </clr-icon>
+        <clr-icon
+            shape="link"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetLinks(i)"
+            title="Show Links"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentationMode"
+            shape="refresh"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetRefresh(i)"
+            title="Refresh Dataset for this Widget only"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
+            shape="copy"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetDuplicate(i)"
+            title="Duplicate this Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentationMode"
+            shape="pop-out"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetExpand(i)"
+            title="Expand the Dataset for this Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentationMode"
+            shape="export"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetExport(i)"
+            title="Export the Dataset for this Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
+            shape="deploy"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuArrangeBack(i)"
+            title="Move Widget back"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
+            shape="block"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuArrangeFront(i)"
+            title="Move Widget forward"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
+            shape="trash"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetDelete(i)"
+            title="Delete this Widget"
+            >
+        </clr-icon>
+        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
+            shape="cursor-arrow"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickSelect(i)"
+            title="Select this Widget"
+            >
+        </clr-icon>
+    </span>
+
+    <span class="widgetSelectedDrag" *ngIf="row.isSelected"
+        (mousedown)="clickDragMouseDown($event, i)"
+        (mouseup)="clickDragMouseUp($event, i)"
+        (dragstart)="clickDragStart($event, i)"
+        (dragend)="clickDragEnd($event, i)"
+        (keydown)="clickDragKeydown($event, i)"
+        >
+        <clr-icon
+            shape="cursor-hand"
+            size="20"
+            class="buttonBarIcon"
+            title="Drag handle to move Widget around"
+            draggable="true"
+            >
+        </clr-icon>
+    </span>
+
+    <span class="widgetSelectedResize" *ngIf="row.isSelected"
+        (mousedown)="clickResizeMouseDown($event, i)"
+        (mouseup)="clickResizeMouseUp($event, i)"
+        (dragstart)="clickResizeStart($event, i)"
+        (dragend)="clickResizeEnd($event, i)"
+        (keydown)="clickResizeKeydown($event, i)"
+        >
+        <clr-icon class="widgetSelectedResize"
+            shape="resize left"
+            size="20"
+            class="buttonBarIcon"
+            title="Resize handle to change Widget container size"
+            draggable="true"
+            >
+        </clr-icon>
+    </span>
+
+    <div class="widget"
+        [style.height.px]="row.containerHeight - 35"
+        [style.width.px]="row.containerWidth"
+        #widget
+        >
+        {{ row.id }}
+    </div>
+</div>
