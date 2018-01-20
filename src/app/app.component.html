@@ -1047,9 +1047,13 @@
 <alert type="danger"></alert>
 <alert type="info"></alert> -->
 
-<widget [widget]="widget" type="success"></widget>
+<!-- <widget [widget]="widget" type="success"></widget>
 <widget [widget]="widget" type="danger"></widget>
-<widget [widget]="widget" type="info"></widget>
+<widget [widget]="widget" type="info"></widget> -->
+
+<widget *ngFor="let row of widgets" [widget]="row" type="info">
+    
+</widget> 
 
 <!-- Testing Arrows -->
 <div *ngIf="showTestArrows">
