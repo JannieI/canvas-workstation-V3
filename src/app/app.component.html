@@ -1000,6 +1000,7 @@
 </collaborate-activityadd>
 
 
+<!-- Model: Widget Refresh -->
 <div class="modal modalBox" *ngIf="showModalWidgetRefresh">
 	<div class="modal-dialog modal-sm" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
@@ -1032,6 +1033,10 @@
     </div>
 </div>
 
+
+<tabs *ngFor="let row of tabs">
+    <tab [title]="row.title"></tab>
+</tabs>
 
 
 <!-- Testing Arrows -->
@@ -1073,3 +1078,4 @@
         stroke-width="8" marker-end="url(#arrowhead)" />
     </svg> -->
 </div>
+

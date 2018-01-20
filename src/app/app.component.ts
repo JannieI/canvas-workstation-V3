@@ -109,6 +109,20 @@ export class AppComponent implements OnInit {
     // Testings ....
     test: number[] = [1,2,3,4,5,6];
     condition: boolean = true;
+    tabs: Array<any> = [
+        {
+            title: 'x',
+            color: 'blue',
+            left: 50
+        },
+        {
+            title: 'y',
+            color: 'red',
+            left: 150
+        }
+    ]
+
+
 
     constructor(
         private globalVariableService: GlobalVariableService,

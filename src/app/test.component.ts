@@ -5,6 +5,7 @@
 // From Angular
 import { AfterViewInit }              from '@angular/core';
 import { Component }                  from '@angular/core';
+import { ContentChildren }            from '@angular/core';
 import { Directive }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
 import { HostBinding }                from '@angular/core';
@@ -251,7 +252,7 @@ export class TestComponent {
     selectedSlicers: number[] = []
 
     test:boolean = false;
-    currentWidgets: Widget[] = testWidgets;
+    currentWidgets: Widget[] = []; //testWidgets;
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -282,6 +283,7 @@ export class TestComponent {
                     this.globalVariableService.currentDashboardTabID)
                 if (i) {
                     console.log ('Explore ngOnInit refreshDashboard refreshing ...', 
+                    this.childrenWidgets, 
                     this.globalVariableService.currentDashboardID,
                     this.globalVariableService.currentDashboardTabID)
                     // Refresh D and related info
@@ -289,8 +291,12 @@ export class TestComponent {
                         this.globalVariableService.currentDashboardID,
                         this.globalVariableService.currentDashboardTabID).then (i => 
                             {
-                                // this.currentWidgets = this.globalVariableService.testWidgets;
-                                console.log('The big moment ...', this.currentWidgets)
+                                this.currentWidgets = this.globalVariableService.testWidgets;
+                                console.log('The big moment ...', this.childrenWidgets, 
+                                this.childrenWidgets.toArray(), 
+                                this.globalVariableService.refreshDashboard.value, 
+                                this.currentWidgets)
+                                // this.ngAfterViewInit();
                                 this.refreshWidgets();
                                 // Add to Recently used
                                 this.globalVariableService.addDashboardRecent(
@@ -312,9 +318,10 @@ export class TestComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
-        console.log('Explore ngAfterViewInit ...', this.childrenWidgets.toArray(),
+        console.log('Explore ngAfterViewInit ...', this.globalVariableService.refreshDashboard.value, 
+        this.childrenWidgets.toArray(),
         this.widgetContainters.toArray(), this.currentWidgets)
-        this.refreshWidgets();
+        // this.refreshWidgets();
     }
     refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
         // 
@@ -334,8 +341,8 @@ export class TestComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
 
-        console.log('Explore refreshWidgets ...START children.length', this.childrenWidgets.toArray(),
-            this.widgetContainters.toArray(), this.currentWidgets)
+        console.log('Explore refreshWidgets ...START children', this.childrenWidgets.toArray(),
+            this.widgetContainters.toArray(), this.currentWidgets.length)
         for (var i: number = 0; i < this.childrenWidgets.toArray().length; i++) {
             if (this.currentWidgets[i] != undefined) {
                 console.log('Explore refreshWidgets' ,i,                     this.currentWidgets[i].graphDescription,
@@ -450,3 +457,28 @@ export class TestComponent {
     }
 
 }
+
+
+@Component({
+    selector: 'tab',
+    template: `
+      <p>{{title}}</p>
+    `,
+  })
+  export class TabComponent {
+    @Input() title;
+  }
+  
+  @Component({
+    selector: 'tabs',
+    template: `
+      <ng-content></ng-content>
+    `,
+  })
+  export class TabsComponent {
+   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>
+   
+   ngAfterContentInit() {
+     this.tabs.forEach(tabInstance => console.log(tabInstance))
+   }
+  }

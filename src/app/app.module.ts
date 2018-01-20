@@ -90,6 +90,11 @@ import { GlobalFunctionService }      from './global-function.service';
 // Testing
 import { DelayDirective }             from './test.delay.directive';
 import { MyNgIfDirective }            from './test.ngif.directive';
+import { TabComponent } from './test.component'
+import { TabsComponent }               from './test.component';
+
+
+
 
 @NgModule({
     declarations: [
@@ -159,6 +164,10 @@ import { MyNgIfDirective }            from './test.ngif.directive';
 
         PipeFilterDSType,
         TestComponent,
+        TabComponent,
+        TabsComponent,
+
+
     ],
     imports: [
         BrowserAnimationsModule,
