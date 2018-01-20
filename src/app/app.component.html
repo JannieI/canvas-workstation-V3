@@ -1035,18 +1035,21 @@
 
 
 <!-- Testings ... -->
-<tabs *ngFor="let row of tabs"
+<!-- <tabs *ngFor="let row of tabs"
     [style.position]="absolute"
     [style.left.px]="100"
     >
     <tab [title]="row.left"
     ></tab>
-</tabs>
+</tabs> -->
 
-<alert></alert>
+<!-- <alert></alert>
 <alert type="danger"></alert>
-<alert type="info"></alert>
+<alert type="info"></alert> -->
 
+<widget [widget]="widget" type="success"></widget>
+<widget [widget]="widget" type="danger"></widget>
+<widget [widget]="widget" type="info"></widget>
 
 <!-- Testing Arrows -->
 <div *ngIf="showTestArrows">

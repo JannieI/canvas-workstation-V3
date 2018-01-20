@@ -459,41 +459,65 @@ export class TestComponent {
 }
 
 
-@Component({
-    selector: 'tab',
-    template: `
-      <p>{{title}}</p>
-    `,
-  })
-  export class TabComponent {
-    @Input() title;
-  }
+// @Component({
+//     selector: 'tab',
+//     template: `
+//       <p>{{title}}</p>
+//     `,
+//   })
+//   export class TabComponent {
+//     @Input() title;
+//   }
   
-  @Component({
-    selector: 'tabs',
-    template: `
-      <ng-content></ng-content>
-    `,
-  })
-  export class TabsComponent {
-   @ContentChildren(TabComponent) tabs: QueryList<TabComponent>
+//   @Component({
+//     selector: 'tabs',
+//     template: `
+//       <ng-content></ng-content>
+//     `,
+//   })
+//   export class TabsComponent {
+//    @ContentChildren(TabComponent) tabs: QueryList<TabComponent>
    
-   ngAfterContentInit() {
-     this.tabs.forEach(tabInstance => console.log(tabInstance))
-   }
-  }
+//    ngAfterContentInit() {
+//      this.tabs.forEach(tabInstance => console.log(tabInstance))
+//    }
+//   }
+
+
+//   @Component({
+//     selector: 'alert',
+//     template: `
+//       <h1 (click)="alert()">{{type}}</h1>
+//     `,
+//   })
+//   export class AlertComponent {
+//     @Input() type: string = "success";
+    
+//     alert() {
+//       console.log("alert", this.type);
+//     }
+//   } 
 
 
   @Component({
-    selector: 'alert',
+    selector: 'widget',
     template: `
-      <h1 (click)="alert()">{{type}}</h1>
+      <h1 (click)="alert()">{{type}}{{left}}</h1>
+      <div class="test" 
+      [style.left.px]="widget.containerLeft"
+      >
+      DIV
+      </div>
     `,
+    styleUrls: ['./test.component.css']
   })
-  export class AlertComponent {
+  export class WidgetComponent {
     @Input() type: string = "success";
+    @Input() widget: Widget;
     
     alert() {
-      console.log("alert");
+      console.log("widget alert @start", this.type, this.widget.datasourceID);
+      this.type = "New!"
+      this.widget.containerLeft = 20;
     }
   } 

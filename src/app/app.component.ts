@@ -25,11 +25,136 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { Field }                      from './models'
 import { CanvasWidget }               from './models'
 import { Datasource }                 from './models'
+import { Widget }                     from './models'
 
 
-import { AlertComponent }               from './test.component';
+// import { AlertComponent }               from './test.component';
+import { WidgetComponent }            from './test.component';
 
-  
+
+const testWidgets: Widget[] =
+[
+    {
+        "widgetType": "Graph",
+        "widgetSubType": "",
+    
+        "isTrashed": false,
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "dashboardTabName": "",
+        "id": 1,
+        "name": "barchart for start",
+        "description": "bla-bla-bla",
+        "visualGrammar": "",
+        "version": 1,
+        "isSelected": false,
+        "isLiked": false,
+        "hasDataQualityIssues": true,
+        "hasComments": true,
+        "nrButtonsToShow": 3,
+        "hyperlinkDashboardID": 1,
+        "hyperlinkDashboardTabID": 1,
+            
+        "datasourceID": 1,
+        "datasetID": 1,
+        "dataParameters":
+        [
+            {
+                "field": "",
+                "value": ""
+            }
+        ],
+        "reportID": 1,
+        "reportName": "",
+        "rowLimit": 1,
+        "addRestRow": false,
+        "size": "",
+        "containerBackgroundcolor": "transparent",
+        "containerBorder": "2px solid black",
+        "containerBoxshadow": "2px 2px gray",
+        "containerColor": "transparent",
+        "containerFontsize": 12,
+        "containerHeight": 320,
+        "containerLeft": 50,
+        "containerWidgetTitle": "Title 1",
+        "containerTop": 240,      
+        "containerWidth": 250,
+        "containerZindex": 50,
+        "titleText": "",
+        "titleBackgroundColor": "#192b35",
+        "titleBorder": "",
+        "titleColor": "",
+        "titleFontsize": 1,
+        "titleFontWeight": "",
+        "titleHeight": 1,
+        "titleLeft": 1,
+        "titleMargin": "",
+        "titlePadding": "",
+        "titlePosition": "",
+        "titleTextAlign": "",
+        "titleTop": 1,
+        "titleWidth": 1,
+        "graphType": "",
+        "graphHeight": 1,
+        "graphLeft": 1,
+        "graphTop": 1,
+        "graphWidth": 1,
+        "graphGraphPadding": 1,
+        "graphHasSignals": false,
+        "graphXcolumn": "",
+        "graphYcolumn": "",
+        "graphFillColor": "",
+        "graphHoverColor": "",
+        "graphSpecification": {
+            "data": {"url": "../assets/vega-datasets/cars.json"},
+            "mark": "point",
+            "encoding": {
+                "x": {"field": "Horsepower", "type": "quantitative"},
+                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+            }
+        },
+        "graphDescription": "",
+        "graphXaggregate": "",
+        "graphXtimeUnit": "",
+        "graphXfield": "Horsepower",
+        "graphXtype": "quantitative",
+        "graphYaggregate": "",
+        "graphYtimeUnit": "",
+        "graphYfield": "Miles_per_Gallon",
+        "graphYtype": "quantitative",
+        "graphTitle": "graphTitle",
+        "graphMark": "bar",
+        "graphUrl": "../assets/vega-datasets/cars.json",
+        "graphColorField": "",
+        "graphColorType": "",
+        "graphData": "",
+        "tableColor": "",
+        "tableCols": 1,
+        "tableHeight": 1,
+        "tableHideHeader": false,
+        "tableLeft": 1,
+        "tableRows": 1,
+        "tableTop": 1,
+        "tableWidth": 1,
+        "shapeCx": "",
+        "shapeCy": "",
+        "shapeR": "",
+        "shapeStroke": "",
+        "shapeStrokeWidth": "",
+        "shapeFill": "",
+        "refreshMode": "",
+        "refreshFrequency": 1,
+        "widgetRefreshedOn": "",
+        "widgetRefreshedBy": "",
+        "widgetCreatedOn": "",
+        "widgetCreatedBy": "",
+        "widgetUpdatedOn": "",
+        "widgetUpdatedBy": ""
+    }
+] 
+
+
+
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
@@ -38,7 +163,8 @@ import { AlertComponent }               from './test.component';
 export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
-    @ViewChildren(AlertComponent) alerts: QueryList<AlertComponent>
+    // @ViewChildren(AlertComponent) alerts: QueryList<AlertComponent>
+    @ViewChildren(WidgetComponent) widgets: QueryList<WidgetComponent>
 
     companyName: string = this.globalVariableService.companyName;
     editMode: boolean;
@@ -117,6 +243,7 @@ export class AppComponent implements OnInit {
     // Testings ....
     test: number[] = [1,2,3,4,5,6];
     condition: boolean = true;
+    left: number = 30;
     tabs: Array<any> = [
         {
             title: 'x',
@@ -129,9 +256,10 @@ export class AppComponent implements OnInit {
             left: 150
         }
     ]
+    widget: Widget = testWidgets[0];
   
     ngAfterViewInit() {
-      this.alerts.forEach(alertInstance => console.log(alertInstance));
+      this.widgets.forEach(alertInstance => console.log(alertInstance));
     }
 
 

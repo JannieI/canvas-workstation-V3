@@ -90,9 +90,10 @@ import { GlobalFunctionService }      from './global-function.service';
 // Testing
 import { DelayDirective }             from './test.delay.directive';
 import { MyNgIfDirective }            from './test.ngif.directive';
-import { TabComponent } from './test.component'
-import { TabsComponent }               from './test.component';
-import { AlertComponent }               from './test.component';
+// import { TabComponent } from './test.component'
+// import { TabsComponent }              from './test.component';
+// import { AlertComponent }             from './test.component';
+import { WidgetComponent }            from './test.component';
 
 
 
@@ -165,9 +166,10 @@ import { AlertComponent }               from './test.component';
 
         PipeFilterDSType,
         TestComponent,
-        TabComponent,
-        TabsComponent,
-        AlertComponent,
+        // TabComponent,
+        // TabsComponent,
+        // AlertComponent,
+        WidgetComponent,
 
 
     ],
