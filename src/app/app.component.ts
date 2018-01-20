@@ -27,19 +27,8 @@ import { CanvasWidget }               from './models'
 import { Datasource }                 from './models'
 
 
-@Component({
-    selector: 'alert',
-    template: `
-      <h1 (click)="alert()">{{type}}</h1>
-    `,
-  })
-  export class AlertComponent {
-    @Input() type: string = "success";
-    
-    alert() {
-      console.log("alert");
-    }
-  }  
+import { AlertComponent }               from './test.component';
+
   
 @Component({
     selector: 'my-app',
@@ -49,6 +38,7 @@ import { Datasource }                 from './models'
 export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
+    @ViewChildren(AlertComponent) alerts: QueryList<AlertComponent>
 
     companyName: string = this.globalVariableService.companyName;
     editMode: boolean;
@@ -139,7 +129,6 @@ export class AppComponent implements OnInit {
             left: 150
         }
     ]
-    @ViewChildren(AlertComponent) alerts: QueryList<AlertComponent>
   
     ngAfterViewInit() {
       this.alerts.forEach(alertInstance => console.log(alertInstance));

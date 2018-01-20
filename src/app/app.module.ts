@@ -92,7 +92,7 @@ import { DelayDirective }             from './test.delay.directive';
 import { MyNgIfDirective }            from './test.ngif.directive';
 import { TabComponent } from './test.component'
 import { TabsComponent }               from './test.component';
-import { AlertComponent }               from './app.component';
+import { AlertComponent }               from './test.component';
 
 
 
