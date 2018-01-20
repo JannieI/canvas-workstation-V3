@@ -7,10 +7,13 @@ import { Component }                  from '@angular/core';
 import { DOCUMENT }                   from '@angular/platform-browser';
 import { ElementRef }                 from '@angular/core';
 import { Inject }                     from "@angular/core";
+import { Input }                      from "@angular/core";
 import { OnInit }                     from '@angular/core';
 import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
+import { ViewChildren }               from '@angular/core';
+import { QueryList }                  from '@angular/core';
 
 // Own Services
 import { GlobalVariableService }      from './global-variable.service';
@@ -23,6 +26,21 @@ import { Field }                      from './models'
 import { CanvasWidget }               from './models'
 import { Datasource }                 from './models'
 
+
+@Component({
+    selector: 'alert',
+    template: `
+      <h1 (click)="alert()">{{type}}</h1>
+    `,
+  })
+  export class AlertComponent {
+    @Input() type: string = "success";
+    
+    alert() {
+      console.log("alert");
+    }
+  }  
+  
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
@@ -121,7 +139,11 @@ export class AppComponent implements OnInit {
             left: 150
         }
     ]
-
+    @ViewChildren(AlertComponent) alerts: QueryList<AlertComponent>
+  
+    ngAfterViewInit() {
+      this.alerts.forEach(alertInstance => console.log(alertInstance));
+    }
 
 
     constructor(

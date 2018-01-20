@@ -1034,9 +1034,18 @@
 </div>
 
 
-<tabs *ngFor="let row of tabs">
-    <tab [title]="row.title"></tab>
+<!-- Testings ... -->
+<tabs *ngFor="let row of tabs"
+    [style.position]="absolute"
+    [style.left.px]="100"
+    >
+    <tab [title]="row.left"
+    ></tab>
 </tabs>
+
+<alert></alert>
+<alert type="danger"></alert>
+<alert type="info"></alert>
 
 
 <!-- Testing Arrows -->

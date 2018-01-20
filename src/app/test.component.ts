@@ -482,3 +482,5 @@ export class TestComponent {
      this.tabs.forEach(tabInstance => console.log(tabInstance))
    }
   }
+
+
