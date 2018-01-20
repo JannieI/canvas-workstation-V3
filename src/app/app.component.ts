@@ -35,7 +35,7 @@ import { WidgetComponent }            from './test.component';
 const testWidgets: Widget[] =
 [
     {
-        "widgetType": "Graph",
+        "widgetType": "Table",
         "widgetSubType": "",
     
         "isTrashed": false,
@@ -75,7 +75,7 @@ const testWidgets: Widget[] =
         "containerColor": "transparent",
         "containerFontsize": 12,
         "containerHeight": 320,
-        "containerLeft": 50,
+        "containerLeft": 220,
         "containerWidgetTitle": "Title 1",
         "containerTop": 240,      
         "containerWidth": 250,
@@ -152,7 +152,7 @@ const testWidgets: Widget[] =
         "widgetUpdatedBy": ""
     },
     {
-        "widgetType": "Graph",
+        "widgetType": "Line",
         "widgetSubType": "",
     
         "isTrashed": false,
@@ -192,7 +192,7 @@ const testWidgets: Widget[] =
         "containerColor": "transparent",
         "containerFontsize": 12,
         "containerHeight": 320,
-        "containerLeft": 150,
+        "containerLeft": 340,
         "containerWidgetTitle": "Title 2",
         "containerTop": 240,      
         "containerWidth": 250,
@@ -270,6 +270,243 @@ const testWidgets: Widget[] =
     }
 ] 
 
+const testWidgets2: Widget[] =
+[
+    {
+        "widgetType": "Table",
+        "widgetSubType": "",
+    
+        "isTrashed": false,
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "dashboardTabName": "",
+        "id": 1,
+        "name": "barchart for start",
+        "description": "bla-bla-bla",
+        "visualGrammar": "",
+        "version": 1,
+        "isSelected": false,
+        "isLiked": false,
+        "hasDataQualityIssues": true,
+        "hasComments": true,
+        "nrButtonsToShow": 3,
+        "hyperlinkDashboardID": 1,
+        "hyperlinkDashboardTabID": 1,
+            
+        "datasourceID": 3,
+        "datasetID": 1,
+        "dataParameters":
+        [
+            {
+                "field": "",
+                "value": ""
+            }
+        ],
+        "reportID": 1,
+        "reportName": "",
+        "rowLimit": 1,
+        "addRestRow": false,
+        "size": "",
+        "containerBackgroundcolor": "transparent",
+        "containerBorder": "2px solid black",
+        "containerBoxshadow": "2px 2px gray",
+        "containerColor": "transparent",
+        "containerFontsize": 12,
+        "containerHeight": 320,
+        "containerLeft": 750,
+        "containerWidgetTitle": "Title 1",
+        "containerTop": 240,      
+        "containerWidth": 250,
+        "containerZindex": 50,
+        "titleText": "",
+        "titleBackgroundColor": "#192b35",
+        "titleBorder": "",
+        "titleColor": "",
+        "titleFontsize": 1,
+        "titleFontWeight": "",
+        "titleHeight": 1,
+        "titleLeft": 1,
+        "titleMargin": "",
+        "titlePadding": "",
+        "titlePosition": "",
+        "titleTextAlign": "",
+        "titleTop": 1,
+        "titleWidth": 1,
+        "graphType": "",
+        "graphHeight": 1,
+        "graphLeft": 1,
+        "graphTop": 1,
+        "graphWidth": 1,
+        "graphGraphPadding": 1,
+        "graphHasSignals": false,
+        "graphXcolumn": "",
+        "graphYcolumn": "",
+        "graphFillColor": "",
+        "graphHoverColor": "",
+        "graphSpecification": {
+            "data": {"url": "../assets/vega-datasets/cars.json"},
+            "mark": "point",
+            "encoding": {
+                "x": {"field": "Horsepower", "type": "quantitative"},
+                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+            }
+        },
+        "graphDescription": "",
+        "graphXaggregate": "",
+        "graphXtimeUnit": "",
+        "graphXfield": "Horsepower",
+        "graphXtype": "quantitative",
+        "graphYaggregate": "",
+        "graphYtimeUnit": "",
+        "graphYfield": "Miles_per_Gallon",
+        "graphYtype": "quantitative",
+        "graphTitle": "graphTitle",
+        "graphMark": "bar",
+        "graphUrl": "../assets/vega-datasets/cars.json",
+        "graphColorField": "",
+        "graphColorType": "",
+        "graphData": "",
+        "tableColor": "",
+        "tableCols": 1,
+        "tableHeight": 1,
+        "tableHideHeader": false,
+        "tableLeft": 1,
+        "tableRows": 1,
+        "tableTop": 1,
+        "tableWidth": 1,
+        "shapeCx": "",
+        "shapeCy": "",
+        "shapeR": "",
+        "shapeStroke": "",
+        "shapeStrokeWidth": "",
+        "shapeFill": "",
+        "refreshMode": "",
+        "refreshFrequency": 1,
+        "widgetRefreshedOn": "",
+        "widgetRefreshedBy": "",
+        "widgetCreatedOn": "",
+        "widgetCreatedBy": "",
+        "widgetUpdatedOn": "",
+        "widgetUpdatedBy": ""
+    },
+    {
+        "widgetType": "Line",
+        "widgetSubType": "",
+    
+        "isTrashed": false,
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "dashboardTabName": "",
+        "id": 2,
+        "name": "barchart for start",
+        "description": "bla-bla-bla",
+        "visualGrammar": "",
+        "version": 1,
+        "isSelected": false,
+        "isLiked": false,
+        "hasDataQualityIssues": true,
+        "hasComments": true,
+        "nrButtonsToShow": 3,
+        "hyperlinkDashboardID": 1,
+        "hyperlinkDashboardTabID": 1,
+            
+        "datasourceID": 4,
+        "datasetID": 1,
+        "dataParameters":
+        [
+            {
+                "field": "",
+                "value": ""
+            }
+        ],
+        "reportID": 1,
+        "reportName": "",
+        "rowLimit": 1,
+        "addRestRow": false,
+        "size": "",
+        "containerBackgroundcolor": "transparent",
+        "containerBorder": "2px solid black",
+        "containerBoxshadow": "2px 2px gray",
+        "containerColor": "transparent",
+        "containerFontsize": 12,
+        "containerHeight": 320,
+        "containerLeft": 450,
+        "containerWidgetTitle": "Title 2",
+        "containerTop": 240,      
+        "containerWidth": 250,
+        "containerZindex": 50,
+        "titleText": "",
+        "titleBackgroundColor": "#192b35",
+        "titleBorder": "",
+        "titleColor": "",
+        "titleFontsize": 1,
+        "titleFontWeight": "",
+        "titleHeight": 1,
+        "titleLeft": 1,
+        "titleMargin": "",
+        "titlePadding": "",
+        "titlePosition": "",
+        "titleTextAlign": "",
+        "titleTop": 1,
+        "titleWidth": 1,
+        "graphType": "",
+        "graphHeight": 1,
+        "graphLeft": 1,
+        "graphTop": 1,
+        "graphWidth": 1,
+        "graphGraphPadding": 1,
+        "graphHasSignals": false,
+        "graphXcolumn": "",
+        "graphYcolumn": "",
+        "graphFillColor": "",
+        "graphHoverColor": "",
+        "graphSpecification": {
+            "data": {"url": "../assets/vega-datasets/cars.json"},
+            "mark": "point",
+            "encoding": {
+                "x": {"field": "Horsepower", "type": "quantitative"},
+                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+            }
+        },
+        "graphDescription": "",
+        "graphXaggregate": "",
+        "graphXtimeUnit": "",
+        "graphXfield": "Horsepower",
+        "graphXtype": "quantitative",
+        "graphYaggregate": "",
+        "graphYtimeUnit": "",
+        "graphYfield": "Miles_per_Gallon",
+        "graphYtype": "quantitative",
+        "graphTitle": "graphTitle",
+        "graphMark": "bar",
+        "graphUrl": "../assets/vega-datasets/cars.json",
+        "graphColorField": "",
+        "graphColorType": "",
+        "graphData": "",
+        "tableColor": "",
+        "tableCols": 1,
+        "tableHeight": 1,
+        "tableHideHeader": false,
+        "tableLeft": 1,
+        "tableRows": 1,
+        "tableTop": 1,
+        "tableWidth": 1,
+        "shapeCx": "",
+        "shapeCy": "",
+        "shapeR": "",
+        "shapeStroke": "",
+        "shapeStrokeWidth": "",
+        "shapeFill": "",
+        "refreshMode": "",
+        "refreshFrequency": 1,
+        "widgetRefreshedOn": "",
+        "widgetRefreshedBy": "",
+        "widgetCreatedOn": "",
+        "widgetCreatedBy": "",
+        "widgetUpdatedOn": "",
+        "widgetUpdatedBy": ""
+    }
+] 
 
 
 @Component({
@@ -1363,10 +1600,17 @@ export class AppComponent implements OnInit {
     }
 
 
+
+
     refreshTest() {
         this.widgets[0].containerLeft = 100;
     }
 
+    clickTest() {
+        this.globalVariableService.getTestWidgets().then(i =>
+            this.widgets = i
+        )
+    }
 
 }
 

@@ -114,7 +114,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 const testWidgets: Widget[] =
 [
     {
-        "widgetType": "Graph",
+        "widgetType": "Table",
         "widgetSubType": "",
     
         "isTrashed": false,
@@ -154,7 +154,7 @@ const testWidgets: Widget[] =
         "containerColor": "transparent",
         "containerFontsize": 12,
         "containerHeight": 320,
-        "containerLeft": 50,
+        "containerLeft": 650,
         "containerWidgetTitle": "Title 1",
         "containerTop": 240,      
         "containerWidth": 250,
@@ -502,11 +502,10 @@ export class TestComponent {
   @Component({
     selector: 'widget',
     template: `
-      <h1 (click)="alert()">{{type}}{{left}}</h1>
       <div class="test" 
       [style.left.px]="widget.containerLeft"
       >
-      DIV
+      {{widget.widgetType}}
       </div>
     `,
     styleUrls: ['./test.component.css']

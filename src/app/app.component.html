@@ -1051,8 +1051,15 @@
 <widget [widget]="widget" type="danger"></widget>
 <widget [widget]="widget" type="info"></widget> -->
 
+<button
+    type="button"
+    class="btn btn-link"
+    (click)="clickTest()"
+    >
+    Refresh
+</button>
 <widget *ngFor="let row of widgets" [widget]="row" type="info">
-    
+
 </widget> 
 
 <!-- Testing Arrows -->

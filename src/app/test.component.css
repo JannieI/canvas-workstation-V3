@@ -58,5 +58,6 @@
 .test {
     display: inline-block !important;
     position: absolute;
-    width: 30px;
+    width: 50px;
+    border: 1px solid gray;
 }
