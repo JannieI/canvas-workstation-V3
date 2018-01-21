@@ -50,6 +50,7 @@
     padding: 4px;
     position: absolute;
     width: 12rem;
+    z-index: 60;
 }
  
     .newTab {
@@ -60,6 +61,7 @@
         left: 20px;
         width: 16rem;
         z-index: 60;
+    z-index: 60;
     }
 
     .tabList {
@@ -71,11 +73,13 @@
         padding: 4px;
         position: absolute;
         width: 4rem;
+        z-index: 60;
     }
 
     .tabListItem {
         border: 1px solid white;
         padding-left: 5px;
+        z-index: 60;
     }
 
     .dashboardTabDescription {
@@ -89,4 +93,5 @@
         padding: 4px;
         position: absolute;
         width: 12rem;
+        z-index: 60;
     }

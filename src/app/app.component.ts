@@ -667,7 +667,10 @@ export class AppComponent implements OnInit {
 
         this.globalVariableService.getWidgets().then(
             // i => this.refreshTest()
-        )
+        );
+        this.globalVariableService.currentDashboardID = 1;
+        this.globalVariableService.currentDashboardTabID = 1;
+        this.globalVariableService.refreshCurrentDashboardInfo(1,1);
 
 
     // this.widgets = testWidgets[0];

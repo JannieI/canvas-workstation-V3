@@ -124,7 +124,6 @@ export class StatusbarComponent {
 
     @Input() editMode: boolean;
     @Input() currentDashboardTabIndex: number;
-    @Input() currentTabName: string;
     @Input() statusBarRunning: string;
     @Input() statusBarCancelRefresh: string;
     @Input() statusBarMessages: string;
@@ -135,6 +134,9 @@ export class StatusbarComponent {
     showDashboardTabDescription: boolean = false;
     showNewTab: boolean = false;
     showTabList: boolean = false;
+    currentDashboardName: string;
+    currentTabName: string;
+
     
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -147,6 +149,7 @@ export class StatusbarComponent {
     ngOnInit() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
     }
 
     // ngAfterViewChecked(){
@@ -158,6 +161,13 @@ export class StatusbarComponent {
     ngAfterViewInit() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+
+        // this.currentDashboardName = this.globalVariableService.currentDashboards[0].name;
+        // this.currentTabName = this.globalVariableService.currentDashboardTabs
+        //     [this.currentDashboardTabIndex].name;
+
+        console.log('onInit', this.globalVariableService.currentDashboards, 
+        this.globalVariableService.currentDashboardTabs, this.currentDashboardTabIndex)
     }
 
     clickDashboardDescription() {
