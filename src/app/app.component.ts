@@ -592,7 +592,7 @@ export class AppComponent implements OnInit {
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
 
-    currentDashboardTabIndex: number = 0;
+    currentDashboardTabIndex: number;
     currentTabName: string = 'Summary';
     statusBarRunning: boolean = false;
     statusBarCancelRefresh: boolean = false;
@@ -668,9 +668,10 @@ export class AppComponent implements OnInit {
         this.globalVariableService.getWidgets().then(
             // i => this.refreshTest()
         );
-        this.globalVariableService.currentDashboardID = 1;
-        this.globalVariableService.currentDashboardTabID = 1;
-        this.globalVariableService.refreshCurrentDashboardInfo(1,1);
+        this.globalVariableService.refreshDashboard.subscribe(i =>
+            this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
+            this.globalVariableService.refreshCurrentDashboardInfo(1,1);
+        )
 
 
     // this.widgets = testWidgets[0];

@@ -1102,7 +1102,7 @@ export class GlobalVariableService {
 
     dataGetFromSwitch = new BehaviorSubject<string>('File');
     duplicateWidget = new BehaviorSubject<boolean>(false);
-    refreshDashboard = new BehaviorSubject<boolean>(false);
+    refreshDashboard = new BehaviorSubject<boolean>(false);     // True to refresh the D now
 
 
     // Company related variables
@@ -1303,9 +1303,9 @@ export class GlobalVariableService {
         });
     }
 
-    refreshCurrentDashboard(dashboardID: number, dashboardTabID: number) {
+    refreshAllInfo(dashboardID: number, dashboardTabID: number) {
         // Refreshes all info related to current D
-        console.log('Global-Variables refreshCurrentDashboard D,T id = ', dashboardID, dashboardTabID)
+        console.log('Global-Variables refreshAllInfo D,T id = ', dashboardID, dashboardTabID)
 
         // Load Dashboard Themes
         this.getDashboardThemes();
