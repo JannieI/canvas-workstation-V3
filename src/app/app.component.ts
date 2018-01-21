@@ -518,7 +518,7 @@ export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
     // @ViewChildren(AlertComponent) alerts: QueryList<AlertComponent>
-    @ViewChildren(WidgetComponent, { read: ElementRef }) widgetsDOM: QueryList<WidgetComponent>
+    // @ViewChildren(WidgetComponent, { read: ElementRef }) widgetsDOM: QueryList<WidgetComponent>
 
     companyName: string = this.globalVariableService.companyName;
     editMode: boolean;
@@ -614,7 +614,7 @@ export class AppComponent implements OnInit {
     widgets: Widget[] = testWidgets;
   
     ngAfterViewInit() {
-      this.widgetsDOM.forEach(alertInstance => console.log(alertInstance));
+    //   this.widgetsDOM.forEach(alertInstance => console.log(alertInstance));
     }
 
 
