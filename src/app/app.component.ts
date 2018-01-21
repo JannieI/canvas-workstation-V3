@@ -1603,13 +1603,24 @@ export class AppComponent implements OnInit {
 
 
     refreshTest() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'refreshTest', '@Start');
         this.widgets[0].containerLeft = 100;
     }
 
     clickTest() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
         this.globalVariableService.getTestWidgets().then(i =>
             this.widgets = i
         )
+    }
+
+    trackWidget(index, row) {
+        // 
+        // this.globalFunctionService.printToConsole(this.constructor.name,'trackWidget', '@Start');
+        console.log('trackWidget', row);
+        return row ? row.id : undefined;
     }
 
 }
