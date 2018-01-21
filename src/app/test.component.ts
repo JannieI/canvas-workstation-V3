@@ -503,8 +503,9 @@ export class TestComponent {
     selector: 'widget',
     template: `
       <div class="test" 
-      [style.left.px]="widget.containerLeft"
-      >
+        [style.left.px]="widget.containerLeft"
+        [ngClass]="{ 'odd': true, 'even': even }"
+        >
       {{widget.widgetType}}
       </div>
     `,
@@ -513,6 +514,8 @@ export class TestComponent {
   export class WidgetComponent {
     @Input() type: string = "success";
     @Input() widget: Widget;
+    @Input() odd: boolean;
+    @Input() even: boolean;
     
     alert() {
       console.log("widget alert @start", this.type, this.widget.datasourceID);

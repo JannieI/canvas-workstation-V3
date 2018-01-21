@@ -1058,9 +1058,14 @@
     >
     Refresh
 </button>
-<widget *ngFor="let row of widgets" [widget]="row" type="info">
+<widget *ngFor="let row of widgets; let even = even; let odd = odd" 
+    [widget]="row" 
+    type="info"
+    [odd]="odd"
+    [even]="even"
+    >
 
-</widget> 
+
 
 <!-- Testing Arrows -->
 <div *ngIf="showTestArrows">
