@@ -671,7 +671,12 @@ export class AppComponent implements OnInit {
         this.globalVariableService.refreshDashboard.subscribe(i => 
             {
                 this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
-                this.globalVariableService.refreshCurrentDashboardInfo(1,1)
+                this.globalVariableService.refreshCurrentDashboardInfo(1,1).then(i => 
+                    {
+                        this.widgets = this.globalVariableService.testWidgets
+                        console.log('Holy Moly')
+                    }
+                )
             }
         )
 
