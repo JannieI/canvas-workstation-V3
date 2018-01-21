@@ -127,6 +127,7 @@ export class StatusbarComponent {
     statusBarMessages: string = '';
     loggedIntoServerText: string;
     templateInUse: string = 'Tmpl Used';
+    editMode: boolean;
 
 
 
@@ -139,7 +140,6 @@ export class StatusbarComponent {
     currentDashboardTabs: DashboardTab[] = [];
     datasources: Datasource[];
     description: string = 'A simple bar chart with embedded data.';
-    editMode: boolean;
     hasDatasources: boolean;
     isFirstTimeDashboard: boolean;
     isFirstTimePresentation: boolean;
