@@ -459,52 +459,21 @@ export class TestComponent {
 }
 
 
-// @Component({
-//     selector: 'tab',
-//     template: `
-//       <p>{{title}}</p>
-//     `,
-//   })
-//   export class TabComponent {
-//     @Input() title;
-//   }
-  
-//   @Component({
-//     selector: 'tabs',
-//     template: `
-//       <ng-content></ng-content>
-//     `,
-//   })
-//   export class TabsComponent {
-//    @ContentChildren(TabComponent) tabs: QueryList<TabComponent>
-   
-//    ngAfterContentInit() {
-//      this.tabs.forEach(tabInstance => console.log(tabInstance))
-//    }
-//   }
-
-
-//   @Component({
-//     selector: 'alert',
-//     template: `
-//       <h1 (click)="alert()">{{type}}</h1>
-//     `,
-//   })
-//   export class AlertComponent {
-//     @Input() type: string = "success";
-    
-//     alert() {
-//       console.log("alert", this.type);
-//     }
-//   } 
+//////////////////////////////////////////////
 
 
   @Component({
     selector: 'widget',
     template: `
       <div class="test" 
+        [style.background-color]="widget.containerBackgroundColor"
+        [style.border]="widget.isSelected? '2px solid red' : widget.containerBorder"
+        [style.box-shadow]="widget.containerBoxshadow"
+        [style.height.px]="widget.containerHeight"
         [style.left.px]="widget.containerLeft"
-        [ngClass]="{ 'odd': true, 'even': even }"
+        [style.top.px]="widget.containerTop"
+        [style.width.px]="widget.containerWidth"
+        [style.zindex]="widget.containerZindex"
         (click)="alert()"
         #widgetDOM
         >
