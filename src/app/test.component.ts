@@ -516,6 +516,8 @@ export class TestComponent {
     @Input() widget: Widget;
     @Input() odd: boolean;
     @Input() even: boolean;
+    @Input() first: boolean;
+    @Input() last: boolean;
     
     alert() {
       console.log("widget alert @start", this.type, this.widget.datasourceID);

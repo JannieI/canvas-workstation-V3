@@ -1058,11 +1058,13 @@
     >
     Refresh
 </button>
-<widget *ngFor="let row of widgets; let even = even; let odd = odd" 
+<widget *ngFor="let row of widgets; let even = even; let odd = odd; let first = first; let last = last" 
     [widget]="row" 
     type="info"
     [odd]="odd"
     [even]="even"
+    [first]="first"
+    [last]="last"
     >
 
 
