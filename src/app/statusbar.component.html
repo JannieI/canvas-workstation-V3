@@ -1,0 +1,127 @@
+<div class="statusBar" *ngIf="showMainMenu">
+    <span class="statusBarText statusBarTextBorder" 
+        title="Current Dashboard"
+        (click)="clickDashboardDescription()">
+        Analysis of Value Traded 2017 ...
+    </span>
+
+    <span class="statusBarText statusBarTextBorder" 
+        title="Click to show Tab List"
+        style="width: 47vw;"
+        (click)="clickListTabs()"
+          >
+        Tabs :
+    </span>
+    <span class="statusBarText statusBarTextBorder" 
+        title="Click to show first Tab"
+        style="width: 28vw;"
+        >
+        <clr-icon shape="angle-double left" 
+            size="12"
+            (click)="clickShowFirstTab()">
+        </clr-icon>
+    </span>
+    <span class="statusBarText statusBarTextBorder" 
+        title="Click to show previous Tab"
+        style="width: 28vw;"
+        >
+        <clr-icon shape="angle left" 
+            size="12"
+            (click)="clickShowPreviousTab()">
+        </clr-icon>
+    </span>
+
+    <span class="statusBarText statusBarTextBorder" 
+        title="Current Tab"
+        style="width: 80vw;"
+        (click)="clickShowTabDescription()"
+        >
+        <b>{{ currentTabName }}</b>
+    </span>
+    <span class="statusBarText statusBarTextBorder" 
+        title="Click to show next Tab "
+        style="width: 28vw;"
+        (click)="clickShowNextTab()" 
+        >
+        <clr-icon shape="angle right" size="12"></clr-icon>
+    </span>
+    <span class="statusBarText statusBarTextBorder" 
+        title="Click show last Tab"
+        style="width: 28vw;"
+        (click)="clickShowLastTab()" 
+        >
+        <clr-icon shape="angle-double right" size="12"></clr-icon>
+    </span>
+
+    <span class="statusBarText statusBarTextBorder" 
+        title="Click to Add a new Tab"
+        style="width: 28vw;"
+        >
+        <clr-icon shape="plus" 
+            size="12"
+            (click)="clickAddTab()">
+        </clr-icon>
+    </span>
+
+    <span class="statusBarText" 
+        title="How long ago the Dashboard layout was updated"
+        style="width: 77vw;"
+        >
+        Updated: 1d
+    </span>
+    <span class="statusBarText" 
+        title="When last all the data in the Dashboard was refresh"
+        style="width: 98vw;"
+        >
+        Refreshed: 08:31
+    </span>
+    <span [ngSwitch]="editMode" class="statusBarText"
+        style="width: 66vw;"
+        >
+        <b    *ngSwitchCase="true" title="Changes can be done in Edit Mode">Edit Mode </b>
+        <span *ngSwitchDefault title="View only mode means no changes can be made">View-Only     </span>
+    </span>
+    <span class="statusBarText" 
+        title="Indicate long-running queries in the background"
+        style="width: 63vw;"
+        >
+        {{ statusBarRunning }}
+    </span>
+    <span class="statusBarText statusBarTextBorder" 
+        title="Click to cancel a running query"
+        style="width: 51vw;"
+        >
+        {{ statusBarCancelRefresh }}
+    </span>
+    <span class="statusBarText" 
+        title="Short message.  If more than one, it will indicate the last one"
+        style="width: 41vw;"
+        >
+      {{ statusBarMessages }}
+    </span>
+    <span class="statusBarText" 
+        title="Working standalone (local) or logged into a server"
+        style="width: 46vw;"
+        >
+        {{ loggedIntoServerText }}
+    </span>
+    <span class="statusBarText" 
+        title="All changes have been saved, or are being saved..."
+        style="width: 66vw;"
+        >
+      Saving.../Saved
+    </span>
+    <span class="statusBarText" 
+        title="Canvas version"
+        style="width: 44vw;"
+        >
+      V 1.02
+    </span>
+    <span class="statusBarText"
+        title="Indicates if a Template is being used (which is readonly)"
+        style="width: 66vw;"
+        (click)="clickStatusTemplate()"
+        >
+      {{ templateInUse }}
+    </span>
+</div>

@@ -90,6 +90,7 @@ import { GlobalFunctionService }      from './global-function.service';
 import { DelayDirective }             from './test.delay.directive';
 import { MyNgIfDirective }            from './test.ngif.directive';
 import { WidgetComponent }            from './test.component';
+import { StatusbarComponent }         from './statusbar.component';
 
 @NgModule({
     declarations: [
@@ -159,6 +160,7 @@ import { WidgetComponent }            from './test.component';
 
         PipeFilterDSType,
         WidgetComponent,
+        StatusbarComponent,
 
 
     ],
