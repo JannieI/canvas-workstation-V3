@@ -668,9 +668,11 @@ export class AppComponent implements OnInit {
         this.globalVariableService.getWidgets().then(
             // i => this.refreshTest()
         );
-        this.globalVariableService.refreshDashboard.subscribe(i =>
-            this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
-            this.globalVariableService.refreshCurrentDashboardInfo(1,1);
+        this.globalVariableService.refreshDashboard.subscribe(i => 
+            {
+                this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
+                this.globalVariableService.refreshCurrentDashboardInfo(1,1)
+            }
         )
 
 
@@ -1631,7 +1633,7 @@ export class AppComponent implements OnInit {
     trackWidget(index, row) {
         // 
         // this.globalFunctionService.printToConsole(this.constructor.name,'trackWidget', '@Start');
-        console.log('trackWidget', row);
+        // console.log('trackWidget', row);
         return row ? row.id : undefined;
     }
 
