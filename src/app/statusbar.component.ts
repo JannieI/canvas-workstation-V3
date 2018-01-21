@@ -123,57 +123,19 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 export class StatusbarComponent {
 
     @Input() editMode: boolean;
-    currentTabName: string = 'Summary';
-    statusBarRunning: string = '';
-    statusBarCancelRefresh: string = '';
-    statusBarMessages: string = '';
-    loggedIntoServerText: string;
-    templateInUse: string = 'Tmpl Used';
+    @Input() currentDashboardTabIndex: number;
+    @Input() currentTabName: string;
+    @Input() statusBarRunning: string;
+    @Input() statusBarCancelRefresh: string;
+    @Input() statusBarMessages: string;
+    @Input() loggedIntoServerText: string;
+    @Input() templateInUse: string;
 
-
-
-
-    @ViewChildren('widgetContainter')  widgetContainters: QueryList<ElementRef>;
-    @ViewChildren('widget')            childrenWidgets: QueryList<ElementRef>;
-    @ViewChildren('shapeContainter')   shapeContainter: QueryList<ElementRef>;
-    @ViewChildren('circle2')            circle2: QueryList<ElementRef>;
-
-    currentDashboardTabs: DashboardTab[] = [];
-    datasources: Datasource[];
-    description: string = 'A simple bar chart with embedded data.';
-    hasDatasources: boolean;
-    isFirstTimeDashboard: boolean;
-    isFirstTimePresentation: boolean;
-    currentShapes: CanvasShape[] = [];
-    currentWidgets: CanvasWidget[] = [];
-    currentSlicers: CanvasSlicer[] = [];
-    localTrash: CanvasWidget[] = [];
-    open: Boolean = false;
-    presentationMode: boolean;
     showDashboardDescription: boolean = false;
     showDashboardTabDescription: boolean = false;
-    showGrid: boolean;
-    showMainMenu: boolean;
-    showModalData: boolean = false;
-    showModalDashboardOpen: boolean = false;
-    showModalLanding: boolean = true;
-    showModalOpenDashboard: boolean = false;
-    showModalWidgetEditor: boolean = false;
     showNewTab: boolean = false;
-    showSlicer: boolean = true;
     showTabList: boolean = false;
-    startX: number;
-    startY: number;
     
-    temp: number[] = [0];
-    showSlicerContainer: boolean = false;
-    slicerHeight: number = 178;
-    slicerWidth: number = 160;
-    slicerButtons: number = 5;
-    selectedSlicers: number[] = []
-
-    test:boolean = false;
-
     constructor(
         // private globalFunctionService: GlobalFunctionService,
         private globalFunctionService: GlobalFunctionService,
@@ -220,7 +182,7 @@ export class StatusbarComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFirstTab', '@Start');
 
-        this.currentTabName = this.currentDashboardTabs[0].name;
+        this.currentTabName = this.globalVariableService.currentDashboardTabs[0].name;
     }
 
     
@@ -229,17 +191,16 @@ export class StatusbarComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowPreviousTab', '@Start');
 
         let x: number = 0;
-        for (var i = 0; i < this.currentDashboardTabs.length; i++) {
-            if (this.currentDashboardTabs[i].id == 
+        for (var i = 0; i < this.globalVariableService.currentDashboardTabs.length; i++) {
+            if (this.currentDashboardTabIndex == 
                 this.globalVariableService.currentDashboardTabID) { 
                     x = i - 1;
             };
         }
-        if (x < 0) { x = this.currentDashboardTabs.length - 1 };
-        this.currentTabName = this.currentDashboardTabs[x].name;
-        this.globalVariableService.currentDashboardTabID = this.currentDashboardTabs[x].id;
-        this.globalVariableService.currentDashboardID =
+        if (x < 0) { x = this.globalVariableService.currentDashboardTabs.length - 1 };
+        this.currentTabName = this.globalVariableService.currentDashboardTabs[x].name;
         this.globalVariableService.currentDashboardTabID = 
+            this.globalVariableService.currentDashboardTabs[x].id;
         this.globalVariableService.refreshDashboard.next(true);
     }
 
@@ -256,10 +217,19 @@ export class StatusbarComponent {
     clickShowNextTab() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNextTab', '@Start');
-        let x: CanvasWidget = this.globalVariableService.currentWidgets[2]
-        this.currentWidgets.pop();
-        this.currentWidgets.push(x);
-        console.log(this.currentWidgets, this.globalVariableService.widgets[2])
+
+        let x: number = 0;
+        for (var i = 0; i < this.globalVariableService.currentDashboardTabs.length; i++) {
+            if (this.currentDashboardTabIndex == 
+                this.globalVariableService.currentDashboardTabID) { 
+                    x = i + 1;
+            };
+        }
+        if (x >= this.globalVariableService.currentDashboardTabs.length) {x = 0 };
+        this.currentTabName = this.globalVariableService.currentDashboardTabs[x].name;
+        this.globalVariableService.currentDashboardTabID = 
+            this.globalVariableService.currentDashboardTabs[x].id;
+        this.globalVariableService.refreshDashboard.next(true);
     }
 
     clickShowLastTab() {
@@ -267,8 +237,8 @@ export class StatusbarComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowLastTab', '@Start');
 
         console.log('Explore clickShowLastTab',this.currentTabName)
-        this.currentTabName = this.currentDashboardTabs[
-            this.currentDashboardTabs.length - 1].name;        
+        this.currentTabName = this.globalVariableService.currentDashboardTabs[
+            this.globalVariableService.currentDashboardTabs.length - 1].name;        
     }
 
     clickAddTab() {
@@ -289,6 +259,12 @@ export class StatusbarComponent {
         }
     }
 
+    handleCloseDashboardTab() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');
+
+        this.showNewTab = false;
+    }
 }
 
 

@@ -37,3 +37,56 @@
         color: white !important;
     }
 
+
+/* Dashboards and Tabs */
+.dashboardDescription {
+    background-color: #192b35;
+    border-radius: 3px;
+    bottom: 1.1rem;
+    color:  white;
+    display: inline-block;
+    left: 1.2rem;
+    overflow: hidden;
+    padding: 4px;
+    position: absolute;
+    width: 12rem;
+}
+ 
+    .newTab {
+        background: rgb(236, 235, 235);
+        bottom: 0;
+        border: 1px solid black;
+        border-radius: 5px;
+        left: 20px;
+        width: 16rem;
+        z-index: 60;
+    }
+
+    .tabList {
+        background-color: #192b35;
+        bottom: 1.1rem;
+        color:  white;
+        display: inline-block;
+        left: 8.2rem;
+        padding: 4px;
+        position: absolute;
+        width: 4rem;
+    }
+
+    .tabListItem {
+        border: 1px solid white;
+        padding-left: 5px;
+    }
+
+    .dashboardTabDescription {
+        background-color: #192b35;
+        border-radius: 3px;
+        bottom: 1.1rem;
+        color:  white;
+        display: inline-block;
+        left: 11rem;
+        overflow: hidden;
+        padding: 4px;
+        position: absolute;
+        width: 12rem;
+    }

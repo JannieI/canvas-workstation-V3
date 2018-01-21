@@ -592,6 +592,14 @@ export class AppComponent implements OnInit {
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
 
+    currentDashboardTabIndex: number = 0;
+    currentTabName: string = 'Summary';
+    statusBarRunning: boolean = false;
+    statusBarCancelRefresh: boolean = false;
+    statusBarMessages: string = '';
+    loggedIntoServerText: string;
+    templateInUse: string = 'Tmpl Used';
+
     localTrash: CanvasWidget[];
 
     // Testings ....
