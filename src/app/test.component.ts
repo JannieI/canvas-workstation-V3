@@ -154,7 +154,7 @@ const testWidgets: Widget[] =
         "containerColor": "transparent",
         "containerFontsize": 12,
         "containerHeight": 320,
-        "containerLeft": 650,
+        "containerLeft": 350,
         "containerWidgetTitle": "Title 1",
         "containerTop": 240,      
         "containerWidth": 250,
@@ -505,8 +505,9 @@ export class TestComponent {
       <div class="test" 
         [style.left.px]="widget.containerLeft"
         [ngClass]="{ 'odd': true, 'even': even }"
+        (click)="alert()"
+        #widgetDOM
         >
-      {{widget.widgetType}}
       </div>
     `,
     styleUrls: ['./test.component.css']
@@ -518,10 +519,127 @@ export class TestComponent {
     @Input() even: boolean;
     @Input() first: boolean;
     @Input() last: boolean;
-    
+    @ViewChild('widgetDOM') widgetDOM;
+
+    constructor(
+        private globalFunctionService: GlobalFunctionService,
+
+    ) {
+        // Initialise
+        this.globalFunctionService.printToConsole(this.constructor.name,'constructor', '@Start');
+
+    }
+    ngOnInit() {
+        // Initialise
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+    }
+    ngAfterViewInit() {
+        // Initialise
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+        console.log('TEST ngAfterViewInit', this.widget, this.widgetDOM)
+        this.refreshWidgets();
+    }
     alert() {
       console.log("widget alert @start", this.type, this.widget.datasourceID);
-      this.type = "New!"
+      this.type = "New!";
+      this.widget.widgetType = "Changed!";
       this.widget.containerLeft = 20;
     }
+
+    refreshWidgets() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
+
+        console.log('TEST refreshWidgets start', this.widgetDOM)
+        let definition = this.createVegaLiteSpec(
+            this.widget.graphDescription,
+            this.widget.graphMark,
+            this.widget.graphXfield,
+            this.widget.graphYfield,
+            this.widget.graphTitle,
+            this.widget.graphXtype,
+            this.widget.graphYtype,
+            this.widget.graphUrl,
+            this.widget.graphXtimeUnit,
+            this.widget.graphXaggregate,
+            this.widget.graphYtimeUnit,
+            this.widget.graphYaggregate,
+            this.widget.graphColorField,
+            this.widget.graphColorType,
+        );
+        let specification = compile(definition).spec;
+        let view = new View(parse(specification));
+        view.renderer('svg')
+            .initialize( this.widgetDOM.nativeElement)
+            .width(180)
+            .hover()
+            .run()
+            .finalize();
+        console.log('TEST refreshWidgets end')
+    }
+
+
+    createVegaLiteSpec(
+        graphDescription: string = '',
+        graphMark: string = '',
+        graphXfield: string = '',
+        graphYfield: string = '',
+        graphTitle: string = '',
+        graphXtype: string = '',
+        graphYtype: string = '',
+        graphUrl: string = '',
+        graphXtimeUnit: string = '',
+        graphXaggregate: string = '',
+        graphYtimeUnit: string = '',
+        graphYaggregate: string = '',
+        graphColorField: string = '',
+        graphColorType: string = ''
+        ): dl.spec.TopLevelExtendedSpec {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
+
+        // Exclude nulls, as dl lib reads "" as null
+        if (graphDescription == null) { graphDescription = ''};
+        if (graphMark == null) { graphMark = ''};
+        if (graphXfield == null) { graphXfield = ''};
+        if (graphYfield == null) { graphYfield = ''};
+        if (graphTitle == null) { graphTitle = ''};
+        if (graphXtype == null) { graphXtype = ''};
+        if (graphYtype == null) { graphYtype = ''};
+        if (graphUrl == null) { graphUrl = ''};
+        if (graphXtimeUnit == null) { graphXtimeUnit = ''};
+        if (graphXaggregate == null) { graphXaggregate = ''};
+        if (graphYtimeUnit == null) { graphYtimeUnit = ''};
+        if (graphYaggregate == null) { graphYaggregate = ''};
+        if (graphColorField == null) { graphColorField = ''};
+        if (graphColorType == null) { graphColorType = ''};
+
+        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
+        vlSpecsNew['data'] = {"url": graphUrl};
+        vlSpecsNew['description'] = graphDescription;
+        vlSpecsNew['mark']['type'] = graphMark;
+
+        vlSpecsNew['encoding']['x']['field'] = graphXfield;
+        vlSpecsNew['encoding']['x']['type'] = graphXtype;
+        vlSpecsNew['encoding']['x']['axis']['title'] = 'x-axis';
+        vlSpecsNew['encoding']['x']['timeUnit'] = graphXtimeUnit;
+        vlSpecsNew['encoding']['x']['aggregate'] = graphXaggregate;
+
+        vlSpecsNew['encoding']['y']['field'] = graphYfield;
+        vlSpecsNew['encoding']['y']['type'] = graphYtype;
+        vlSpecsNew['encoding']['y']['axis']['title'] = 'y-axis';
+        vlSpecsNew['encoding']['y']['timeUnit'] = graphYtimeUnit;
+        vlSpecsNew['encoding']['y']['aggregate'] = graphYaggregate;
+
+        vlSpecsNew['title']['text'] = graphTitle;
+
+        if (graphColorField != ''  && graphColorField != null) {
+            vlSpecsNew['encoding']['color'] = {
+                "field": graphColorField,
+                "type": graphColorType
+              }
+        }
+        return vlSpecsNew;
+    }
+    
   } 
