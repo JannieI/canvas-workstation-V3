@@ -80,7 +80,6 @@ import { LogoutComponent}             from './logout.component';
 
 import { PipeFilterDSType }           from './pipe.filter.component';
 
-import { TestComponent } from './test.component'
 
 // Our Services
 import { AuthGuard }                  from './authguard.service';
@@ -90,9 +89,6 @@ import { GlobalFunctionService }      from './global-function.service';
 // Testing
 import { DelayDirective }             from './test.delay.directive';
 import { MyNgIfDirective }            from './test.ngif.directive';
-// import { TabComponent } from './test.component'
-// import { TabsComponent }              from './test.component';
-// import { AlertComponent }             from './test.component';
 import { WidgetComponent }            from './test.component';
 
 
@@ -165,10 +161,6 @@ import { WidgetComponent }            from './test.component';
         MyNgIfDirective,
 
         PipeFilterDSType,
-        TestComponent,
-        // TabComponent,
-        // TabsComponent,
-        // AlertComponent,
         WidgetComponent,
 
 
