@@ -165,7 +165,7 @@ export class WidgetComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
 
-        console.log('TEST refreshWidgets start', this.widgetDOM)
+        console.log('TEST refreshWidgets start', this.widgetDOM, this.widget)
         let definition = this.createVegaLiteSpec(
             this.widget.graphDescription,
             this.widget.graphMark,

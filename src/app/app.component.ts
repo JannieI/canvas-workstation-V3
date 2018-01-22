@@ -280,6 +280,7 @@ const testWidgets: Widget[] =
 export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
+    @ViewChild('widgetDOM') widgetDOM;
     // @ViewChildren(AlertComponent) alerts: QueryList<AlertComponent>
     // @ViewChildren(WidgetComponent, { read: ElementRef }) widgetsDOM: QueryList<WidgetComponent>
 
@@ -381,8 +382,8 @@ export class AppComponent implements OnInit {
             left: 150
         }
     ]
-    // widget: Widget = testWidgets[0];
-    widgets: Widget[] = testWidgets;
+    // widgets: Widget[] = testWidgets;
+    widgets: Widget[] = [];
   
     ngAfterViewInit() {
     //   this.widgetsDOM.forEach(alertInstance => console.log(alertInstance));
@@ -436,9 +437,10 @@ export class AppComponent implements OnInit {
                 this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
                 this.globalVariableService.refreshCurrentDashboardInfo(1,1).then(i => 
                     {
-                        this.widgets = this.globalVariableService.testWidgets;
+                        this.widgets = this.globalVariableService.widgetsTEST;
                         this.currentDashboardTabIndex =1;
-                        console.log('Holy Moly');
+                        // this.widgetDOM.refreshWidgets();
+                        console.log('Holy Moly', this.widgets);
                     }
                 )
             }
@@ -1394,7 +1396,7 @@ export class AppComponent implements OnInit {
     clickTest() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
-        this.globalVariableService.getTestWidgets().then(i =>
+        this.globalVariableService.getWidgetsTEST().then(i =>
             this.widgets = i
         )
     }

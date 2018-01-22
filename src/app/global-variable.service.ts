@@ -1018,7 +1018,9 @@ export class GlobalVariableService {
     shapes: CanvasShape[] = [];
     slicers: CanvasSlicer[] = [];
 
-    testWidgets: Widget[] = [];
+    widgetsTEST: Widget[] = [];
+    currentWidgetsTEST: Widget[] = [];
+
 
     datasources: Datasource[] = [];
     transformations: Transformation[] = [];
@@ -1260,7 +1262,7 @@ export class GlobalVariableService {
             // Load DS
             this.getCurrentDatasource(dashboardID).then(p =>
             // Load TEST
-            this.getTestWidgets().then(q =>
+            this.getcurrentWidgetsTEST().then(q =>
                 // Reset Global Vars
                 {
                     this.currentDashboardID = dashboardID
@@ -2803,11 +2805,11 @@ export class GlobalVariableService {
     }
   
 
-    getTestWidgets(): Promise<Widget[]> {
+    getWidgetsTEST(): Promise<Widget[]> {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getWidgets ...', this.testWidgets.length);
+        console.log('Global-Variables getWidgets ...', this.widgetsTEST.length);
 
         let url: string = 'getWidgets';
         this.filePath = './assets/data.testWidget.json';
@@ -2815,23 +2817,67 @@ export class GlobalVariableService {
         return new Promise<Widget[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.testWidgets.length == 0)  ||  (this.isDirtyWidgets) ) {
+            if ( (this.widgetsTEST.length == 0)  ||  (this.isDirtyWidgets) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.testWidgets = data;
+                        this.widgetsTEST = data;
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         console.log('Global-Variables getTestWidgets 1', data)
-                        resolve(this.testWidgets);
+                        resolve(this.widgetsTEST);
                     });
             } else {
-                console.log('Global-Variables getTestWidgets 2', this.testWidgets)
-                resolve(this.testWidgets);
+                console.log('Global-Variables getTestWidgets 2', this.widgetsTEST)
+                resolve(this.widgetsTEST);
             }
         });
 
     }
+
+    getCurrentWidgetsTEST(dashboardID: number, dashboardTabID: number): Promise<Widget[]> {
+        // Description: Gets all W for current D
+        // Params:
+        //   dashboardID
+        //   dashboardTabID (0 => all Tabs)
+        // Returns: this.currentWidgets array, unless:
+        //   If not cached or if dirty, get from File
+        // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
+        console.log('Global-Variables getCurrentWidgets ...');
+
+        // Refresh from source at start, or if dirty
+        if ( (this.currentWidgetsTEST == [])  ||  (this.isDirtyWidgets) ) {
+            return new Promise<Widget[]>((resolve, reject) => {
+                this.getWidgetsTEST()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID  &&
+                                 (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
+                        );
+                        this.currentWidgetsTEST = data;
+                        console.log('Global-Variables getCurrentWidgetsTEST 1', dashboardID, dashboardTabID, data)
+                        resolve(data);
+
+                })
+             })
+        } else {
+            return new Promise<Widget[]>((resolve, reject) => {
+                let returnData: Widget[];
+                returnData = this.widgetsTEST.filter(
+                        i => i.dashboardID == dashboardID  &&
+                        (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
+
+                    )
+                this.currentWidgetsTEST = returnData;
+                console.log('Global-Variables getCurrentWidgetsTEST 2', dashboardID, dashboardTabID, returnData)
+                resolve(returnData);
+            });
+        };
+
+    }
+
+
+
 
     getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
