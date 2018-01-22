@@ -280,9 +280,7 @@ const testWidgets: Widget[] =
 export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
-    @ViewChild('widgetDOM') widgetDOM;
-    // @ViewChildren(AlertComponent) alerts: QueryList<AlertComponent>
-    // @ViewChildren(WidgetComponent, { read: ElementRef }) widgetsDOM: QueryList<WidgetComponent>
+    @ViewChildren('widgetDOM')  widgetDOM: QueryList<WidgetComponent>;
 
     companyName: string = this.globalVariableService.companyName;
     editMode: boolean;
@@ -434,15 +432,30 @@ export class AppComponent implements OnInit {
         );
         this.globalVariableService.refreshDashboard.subscribe(i => 
             {
-                this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
-                this.globalVariableService.refreshCurrentDashboardInfo(1,1).then(i => 
-                    {
-                        this.widgets = this.globalVariableService.widgetsTEST;
-                        this.currentDashboardTabIndex =1;
-                        // this.widgetDOM.refreshWidgets();
-                        console.log('Holy Moly', this.widgets);
-                    }
-                )
+                if (i) {
+                    this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
+                    this.globalVariableService.refreshCurrentDashboardInfo(
+                        this.globalVariableService.currentDashboardID,
+                        this.globalVariableService.currentDashboardTabID).then(j => 
+                        {
+                            this.widgets = this.globalVariableService.currentWidgetsTEST;
+                            this.currentDashboardTabIndex = 
+                                this.globalVariableService.currentDashboardTabID;
+                            if (this.widgetDOM != undefined) {
+                                // if (this.widgetDOM.toArray().length != 0) {
+                                    this.widgetDOM.forEach( (i: WidgetComponent) =>
+                                       i.refreshWidgets()
+                                );
+                                    console.log('okay ...', this.widgetDOM)
+                                    // this.widgetDOM.toArray()[0].refreshWidgets();
+                                // }
+                            }
+                            // this.widgetDOM.refreshWidgets();
+                            console.log('Holy Moly', this.currentDashboardTabIndex, 
+                                this.widgets, this.widgetDOM);
+                        }
+                    )
+                }
             }
         )
 
@@ -817,9 +830,6 @@ export class AppComponent implements OnInit {
     clickDashboardEdit() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardEdit', '@Start');
-
-        console.log('Fix in appComponent clickDashboardEdit - just TESTing')
-        this.globalVariableService.refreshDashboard.next(true);
 
         this.globalVariableService.editMode.next(!this.editMode);
     }
@@ -1387,19 +1397,21 @@ export class AppComponent implements OnInit {
 
 
 
-    refreshTest() {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'refreshTest', '@Start');
-        this.widgets[0].containerLeft = 100;
-    }
-
     clickTest() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
-        this.globalVariableService.getWidgetsTEST().then(i =>
-            this.widgets = i
-        )
+
+        console.log('Fix in appComponent clickTest - just TESTing')
+        this.globalVariableService.currentDashboardID = 1;
+        if (this.globalVariableService.currentDashboardTabID == 1) {
+            this.globalVariableService.currentDashboardTabID = 2;
+        } else {
+            this.globalVariableService.currentDashboardTabID = 1;
+        }
+        this.globalVariableService.refreshDashboard.next(true);
+        this.globalVariableService.refreshDashboard.next(false);
     }
+
 
     trackWidget(index, row) {
         // 

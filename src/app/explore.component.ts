@@ -306,7 +306,8 @@ export class ExploreComponent {
 
         if (dashboardTabID < 1) { dashboardTabID = 1};
 
-        this.globalVariableService.refreshCurrentDashboardInfo(1, dashboardTabID).then (i => 
+        this.globalVariableService.refreshCurrentDashboardInfo(
+            dashboardID, dashboardTabID).then (i => 
             {
                 console.log('The big moment ...')
                 this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs;

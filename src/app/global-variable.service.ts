@@ -1309,6 +1309,7 @@ export class GlobalVariableService {
         // Refreshes all info related to current D
         console.log('Global-Variables refreshAllInfo D,T id = ', dashboardID, dashboardTabID)
 
+        console.log('refreshAllInfo FIX DS ids that are hardcoded ...')
         // Load Dashboard Themes
         this.getDashboardThemes();
 
@@ -2751,7 +2752,6 @@ export class GlobalVariableService {
         };
 
     }
-  
 
     getWidgetsTEST(): Promise<Widget[]> {
         // Description: Gets all W

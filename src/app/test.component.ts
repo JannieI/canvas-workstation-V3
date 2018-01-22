@@ -155,6 +155,12 @@ export class WidgetComponent {
         console.log('TEST ngAfterViewInit', this.widget, this.widgetDOM)
         this.refreshWidgets();
     }
+    ngAfterViewChecked() {
+        // Initialise
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
+        console.log('TEST ngAfterViewChecked', this.widget, this.widgetDOM)
+        
+    }
     alert() {
       console.log("widget alert @start", this.widget.datasourceID);
       this.widget.widgetType = "Changed!";
