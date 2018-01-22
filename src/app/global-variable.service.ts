@@ -1996,58 +1996,6 @@ export class GlobalVariableService {
 
     }
 
-    // getCurrentSlicers(dashboardID: number, dashboardTabID: number): Promise<CanvasSlicer[]> {
-    //     // Description: Gets all Sl for current D
-    //     // Params:
-    //     //   dashboardID
-    //     //   dashboardTabID (0 => all Tabs)
-    //     // Returns: this.currentSlicers array, unless:
-    //     //   If not cached or if dirty, get from File
-    //     console.log('Global-Variables getCurrentSlicers ...');
-
-    //     // Refresh from source at start, or if dirty
-    //     if ( (this.slicers.length == 0)  ||  (this.isDirtySlicers) ) {
-    //         return new Promise<CanvasSlicer[]>((resolve, reject) => {
-    //             this.getSlicers()
-    //                 .then(data => {
-    //                     data = data.filter(
-    //                         i => i.dashboardID == dashboardID  &&
-    //                         (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
-
-    //                     );
-    //                     this.currentSlicers = data;
-    //                     this.currentSlicers.forEach(
-    //                         i => {
-    //                                 console.log('datasetid', i.datasetID)
-    //                                 //i.data = ['a', 'b']
-    //                                 this.getDataset(i.datasetID).then(
-    //                                     j => {
-    //                                         console.log('j', j)
-    //                                         i.data = j.data;
-    //                                     }
-    //                                 )
-    //                             }
-    //                     )
-    //                     console.log('Global-Variables getCurrentSlicers 1', dashboardID, dashboardTabID, data)
-    //                     resolve(data);
-    //             })
-    //          })
-    //     } else {
-    //         return new Promise<CanvasSlicer[]>((resolve, reject) => {
-    //             let returnData: CanvasSlicer[];
-    //             returnData = this.slicers.filter(
-    //                 i => i.dashboardID == dashboardID  &&
-    //                 (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
-
-    //             );
-    //             this.currentSlicers = returnData;
-    //             console.log('Global-Variables getCurrentSlicers 2', dashboardID, dashboardTabID, returnData)
-    //             resolve(returnData);
-    //         });
-    //     };
-
-    // }
-
     getDashboardSchedules(): Promise<DashboardSchedule[]> {
         // Description: Gets all Sch
         // Returns: this.dashboardSchedules array, unless:
