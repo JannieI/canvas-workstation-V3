@@ -1486,7 +1486,7 @@ export class GlobalVariableService {
         return new Promise<Dashboard[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
+            if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -1513,7 +1513,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentDashboards ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
+        if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 this.getDashboards()
                     .then(data => {
@@ -1588,7 +1588,7 @@ export class GlobalVariableService {
         return new Promise<DashboardTab[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboardTabs == [])  ||  (this.isDirtyDashboardTabs) ) {
+            if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -1615,7 +1615,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentDashboardTabs ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.dashboardTabs == [])  ||  (this.isDirtyDashboardTabs) ) {
+        if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
             return new Promise<DashboardTab[]>((resolve, reject) => {
                 this.getDashboardTabs()
                     .then(data => {
@@ -1654,7 +1654,7 @@ export class GlobalVariableService {
         return new Promise<CanvasWidget[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+            if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -1683,7 +1683,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentWidgets ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.widgets == [])  ||  (this.isDirtyWidgets) ) {
+        if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
             return new Promise<CanvasWidget[]>((resolve, reject) => {
                 this.getWidgets()
                     .then(data => {
@@ -1720,7 +1720,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getDashboardSamples ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.dashboards == [])  ||  (this.isDirtyDashboards) ) {
+        if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 this.getDashboards()
                     .then(data => {
@@ -1830,7 +1830,7 @@ export class GlobalVariableService {
         return new Promise<CanvasShape[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.shapes == [])  ||  (this.isDirtyShapes) ) {
+            if ( (this.shapes.length == 0)  ||  (this.isDirtyShapes) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -1858,7 +1858,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentShapes ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.shapes == [])  ||  (this.isDirtyShapes) ) {
+        if ( (this.shapes.length == 0)  ||  (this.isDirtyShapes) ) {
             return new Promise<CanvasShape[]>((resolve, reject) => {
                 this.getShapes()
                     .then(data => {
@@ -1924,7 +1924,7 @@ export class GlobalVariableService {
         return new Promise<CanvasSlicer[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.slicers == [])  ||  (this.isDirtySlicers) ) {
+            if ( (this.slicers.length == 0)  ||  (this.isDirtySlicers) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -1952,7 +1952,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentSlicers ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.slicers == [])  ||  (this.isDirtySlicers) ) {
+        if ( (this.slicers.length == 0)  ||  (this.isDirtySlicers) ) {
             return new Promise<CanvasSlicer[]>((resolve, reject) => {
                 this.getSlicers()
                     .then(data => {
@@ -2006,7 +2006,7 @@ export class GlobalVariableService {
     //     console.log('Global-Variables getCurrentSlicers ...');
 
     //     // Refresh from source at start, or if dirty
-    //     if ( (this.slicers == [])  ||  (this.isDirtySlicers) ) {
+    //     if ( (this.slicers.length == 0)  ||  (this.isDirtySlicers) ) {
     //         return new Promise<CanvasSlicer[]>((resolve, reject) => {
     //             this.getSlicers()
     //                 .then(data => {
@@ -2060,7 +2060,7 @@ export class GlobalVariableService {
         return new Promise<DashboardSchedule[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboardSchedules == [])  ||  (this.isDirtyDashboardSchedules) ) {
+            if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -2087,7 +2087,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentDashboardSchedules ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.dashboardSchedules == [])  ||  (this.isDirtyDashboardSchedules) ) {
+        if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
             return new Promise<DashboardSchedule[]>((resolve, reject) => {
                 this.getDashboardSchedules()
                     .then(data => {
@@ -2126,7 +2126,7 @@ export class GlobalVariableService {
         return new Promise<DashboardTag[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboardTags == [])  ||  (this.isDirtyDashboardTags) ) {
+            if ( (this.dashboardTags.length == 0)  ||  (this.isDirtyDashboardTags) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -2153,7 +2153,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentDashboardTags ...');
 
         // Refresh frogetm source at start, or if dirty
-        if ( (this.dashboardTags == [])  ||  (this.isDirtyDashboardTags) ) {
+        if ( (this.dashboardTags.length == 0)  ||  (this.isDirtyDashboardTags) ) {
             return new Promise<DashboardTag[]>((resolve, reject) => {
                 this.getDashboardTags()
                     .then(data => {
@@ -2191,7 +2191,7 @@ export class GlobalVariableService {
         return new Promise<DashboardPermission[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboardPermissions == [])  ||  (this.isDirtyDashboardPermissions) ) {
+            if ( (this.dashboardPermissions.length == 0)  ||  (this.isDirtyDashboardPermissions) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -2218,7 +2218,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentDashboardPermissions ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.dashboardPermissions == [])  ||  (this.isDirtyDashboardPermissions) ) {
+        if ( (this.dashboardPermissions.length == 0)  ||  (this.isDirtyDashboardPermissions) ) {
             return new Promise<DashboardPermission[]>((resolve, reject) => {
                 this.getDashboardPermissions()
                     .then(data => {
@@ -2256,7 +2256,7 @@ export class GlobalVariableService {
         return new Promise<DashboardSnapshot[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboardSnapshots == [])  ||  (this.isDirtyDashboardSnapshots) ) {
+            if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -2283,7 +2283,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentDashboardSnapshots ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.dashboardSnapshots == [])  ||  (this.isDirtyDashboardSnapshots) ) {
+        if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
             return new Promise<DashboardSnapshot[]>((resolve, reject) => {
                 this.getDashboardSnapshots()
                     .then(data => {
@@ -2321,7 +2321,7 @@ export class GlobalVariableService {
         return new Promise<DashboardTheme[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboardThemes == [])  ||  (this.isDirtyDashboardThemes) ) {
+            if ( (this.dashboardThemes.length == 0)  ||  (this.isDirtyDashboardThemes) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -2406,7 +2406,7 @@ export class GlobalVariableService {
         return new Promise<Datasource[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.datasources == [])  ||  (this.isDirtyDatasources) ) {
+            if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -2438,7 +2438,7 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             // TODO - What if databoards empty or diry - is that okay?
-            if ( (this.datasources == [])  ||  (this.isDirtyDatasources) ) {
+            if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
                 this.getDatasources()
                     .then(ds => 
                         {
@@ -2496,7 +2496,7 @@ export class GlobalVariableService {
         return new Promise<Transformation[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.transformations == [])  ||  (this.isDirtyTransformations) ) {
+            if ( (this.transformations.length == 0)  ||  (this.isDirtyTransformations) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -2523,7 +2523,7 @@ export class GlobalVariableService {
         let url: string = 'getTransformations';
         this.filePath = './assets/data.transformations.json';
 
-        if ( (this.currentTransformations == [])  ||  (this.isDirtyTransformations) ) {
+        if ( (this.currentTransformations.length == 0)  ||  (this.isDirtyTransformations) ) {
             return new Promise<Transformation[]>((resolve, reject) => {
                 this.getTransformations()
                     .then(data => {
@@ -2560,7 +2560,7 @@ export class GlobalVariableService {
         return new Promise<DatasourceFilter[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.datasourceFilters == [])  ||  (this.isDirtyDatasourceFilters) ) {
+            if ( (this.datasourceFilters.length == 0)  ||  (this.isDirtyDatasourceFilters) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -2587,7 +2587,7 @@ export class GlobalVariableService {
         let url: string = 'getDatasourceFilters';
         this.filePath = './assets/data.datasourceFilters.json';
 
-        if ( (this.currentDatasourceFilters == [])  ||  (this.isDirtyDatasourceFilters) ) {
+        if ( (this.currentDatasourceFilters.length == 0)  ||  (this.isDirtyDatasourceFilters) ) {
             return new Promise<DatasourceFilter[]>((resolve, reject) => {
                 this.getDatasourceFilters()
                     .then(data => {
@@ -2624,7 +2624,7 @@ export class GlobalVariableService {
         return new Promise<DataQualityIssue[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dataQualityIssues == [])  ||  (this.isDirtyDataQualityIssues) ) {
+            if ( (this.dataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -2650,7 +2650,7 @@ export class GlobalVariableService {
         let url: string = 'getDataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
 
-        if ( (this.currentDataQualityIssues == [])  ||  (this.isDirtyDataQualityIssues) ) {
+        if ( (this.currentDataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
             return new Promise<DataQualityIssue[]>((resolve, reject) => {
                 this.getDataQualityIssues()
                     .then(data => {
@@ -2688,7 +2688,7 @@ export class GlobalVariableService {
         return new Promise<DatasourcePermission[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.datasourcePermissions == [])  ||  (this.isDirtyDatasourcePermissions) ) {
+            if ( (this.datasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -2714,7 +2714,7 @@ export class GlobalVariableService {
         let url: string = 'getDatasourcePermissions';
         this.filePath = './assets/data..datasourcePermissions.json';
 
-        if ( (this.currentDatasourcePermissions == [])  ||  (this.isDirtyDatasourcePermissions) ) {
+        if ( (this.currentDatasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
             return new Promise<DatasourcePermission[]>((resolve, reject) => {
                 this.getDatasourcePermissions()
                     .then(data => {
@@ -2752,7 +2752,7 @@ export class GlobalVariableService {
         return new Promise<DatasourcePivot[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.datasourcePivots == [])  ||  (this.isDirtyDatasourcePivots) ) {
+            if ( (this.datasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
@@ -2778,7 +2778,7 @@ export class GlobalVariableService {
         let url: string = 'getDatasourcePivots';
         this.filePath = './assets/data..datasourcePivots.json';
 
-        if ( (this.currentDatasourcePivots == [])  ||  (this.isDirtyDatasourcePivots) ) {
+        if ( (this.currentDatasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
             return new Promise<DatasourcePivot[]>((resolve, reject) => {
                 this.getDatasourcePivots()
                     .then(data => {
