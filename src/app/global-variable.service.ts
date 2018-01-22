@@ -1262,7 +1262,7 @@ export class GlobalVariableService {
             // Load DS
             this.getCurrentDatasource(dashboardID).then(p =>
             // Load TEST
-            this.getcurrentWidgetsTEST().then(q =>
+            this.getCurrentWidgetsTEST(dashboardID, dashboardTabID).then(q =>
                 // Reset Global Vars
                 {
                     this.currentDashboardID = dashboardID
@@ -2824,11 +2824,11 @@ export class GlobalVariableService {
                         this.widgetsTEST = data;
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getTestWidgets 1', data)
+                        console.log('Global-Variables getWidgetsTEST 1', data)
                         resolve(this.widgetsTEST);
                     });
             } else {
-                console.log('Global-Variables getTestWidgets 2', this.widgetsTEST)
+                console.log('Global-Variables getWidgetsTEST 2', this.widgetsTEST)
                 resolve(this.widgetsTEST);
             }
         });
@@ -2846,7 +2846,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentWidgets ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.currentWidgetsTEST == [])  ||  (this.isDirtyWidgets) ) {
+        if ( (this.currentWidgetsTEST.length == 0)  ||  (this.isDirtyWidgets) ) {
             return new Promise<Widget[]>((resolve, reject) => {
                 this.getWidgetsTEST()
                     .then(data => {
