@@ -101,7 +101,6 @@ const testWidgets: Widget[] =
         "graphWidth": 1,
         "graphGraphPadding": 1,
         "graphHasSignals": false,
-        "graphYcolumn": "",
         "graphFillColor": "",
         "graphHoverColor": "",
         "graphSpecification": {
@@ -217,7 +216,6 @@ const testWidgets: Widget[] =
         "graphWidth": 1,
         "graphGraphPadding": 1,
         "graphHasSignals": false,
-        "graphYcolumn": "",
         "graphFillColor": "",
         "graphHoverColor": "",
         "graphSpecification": {

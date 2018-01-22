@@ -409,7 +409,6 @@ export class CanvasWidget {
     graphWidth: number;                 // in px
     graphGraphPadding: number;
     graphHasSignals: boolean;
-    graphYcolumn: string;
     graphFillColor: string;
     graphHoverColor: string;
     graphSpecification: any;
@@ -651,7 +650,6 @@ export class Widget {
     graphWidth: number;                 // in px
     graphGraphPadding: number;
     graphHasSignals: boolean;
-    graphYcolumn: string;
     graphFillColor: string;
     graphHoverColor: string;
     graphSpecification: any;
