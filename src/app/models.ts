@@ -413,14 +413,20 @@ export class CanvasWidget {
     graphHoverColor: string;
     graphSpecification: any;
     graphDescription: string;
+
+    // X field
     graphXaggregate: string;
     graphXtimeUnit: string;
     graphXfield: string;
     graphXtype: string;
+    graphXaxisTitle: string;
+
+    // Y field
     graphYaggregate: string;
     graphYtimeUnit: string;
     graphYfield: string;
     graphYtype: string;
+
     graphTitle: string;
     graphMark: string;
     graphUrl: string;
@@ -658,6 +664,7 @@ export class Widget {
     graphXtimeUnit: string;
     graphXfield: string;
     graphXtype: string;
+    graphXaxisTitle: string;
     graphYaggregate: string;
     graphYtimeUnit: string;
     graphYfield: string;
