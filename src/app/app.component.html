@@ -1072,7 +1072,8 @@
     >
     Refresh
 </button>
-<widget *ngFor="let row of widgets; 
+
+<!-- <widget *ngFor="let row of widgets; 
     let even = even; let odd = odd; let first = first; let last = last; trackBy: trackWidget" 
     [widget]="row" 
     [odd]="odd"
@@ -1081,8 +1082,11 @@
     [last]="last"
     #widgetDOM
     >
-</widget>
+</widget> -->
 
+<widget #widgetDOM
+    >
+</widget>
 
 <!-- Testing Arrows -->
 <div *ngIf="showTestArrows">

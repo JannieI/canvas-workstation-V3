@@ -113,29 +113,38 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 @Component({
     selector: 'widget',
     template: `
-      <div class="test" 
-        [style.background-color]="widget.containerBackgroundColor"
-        [style.border]="widget.isSelected? '2px solid red' : widget.containerBorder"
-        [style.box-shadow]="widget.containerBoxshadow"
-        [style.height.px]="widget.containerHeight"
-        [style.left.px]="widget.containerLeft"
-        [style.top.px]="widget.containerTop"
-        [style.width.px]="widget.containerWidth"
-        [style.zindex]="widget.containerZindex"
-        (click)="alert()"
-        #widgetDOM
-        >
-      </div>
+    <div *ngIf="widgets" #widgetContainerDOM>    
+        <div class="test" *ngFor="let row of widgets; let even = even; let odd = odd; 
+                let first = first; let last = last; trackBy: trackWidget" 
+            [style.background-color]="widget.containerBackgroundColor"
+            [style.border]="widget.isSelected? '2px solid red' : widget.containerBorder"
+            [style.box-shadow]="widget.containerBoxshadow"
+            [style.height.px]="widget.containerHeight"
+            [style.left.px]="widget.containerLeft"
+            [style.top.px]="widget.containerTop"
+            [style.width.px]="widget.containerWidth"
+            [style.zindex]="widget.containerZindex"
+            (click)="alert()"
+            >
+            <div #widgetDOM>
+            </div>
+        </div>
+    </div>
     `,
     styleUrls: ['./test.component.css']
 })
 export class WidgetComponent {
-    @Input() widget: Widget;
-    @Input() odd: boolean;
-    @Input() even: boolean;
-    @Input() first: boolean;
-    @Input() last: boolean;
-    @ViewChild('widgetDOM') widgetDOM;
+    // @Input() widgets: Widget[];
+    // @Input() odd: boolean;
+    // @Input() even: boolean;
+    // @Input() first: boolean;
+    // @Input() last: boolean;
+    // @ViewChild('widgetDOM') widgetDOM;
+    @ViewChildren('widgetDOM')  widgetDOM: QueryList<ElementRef>;
+    @ViewChildren('widgetContainerDOM')  widgetContainerDOM: QueryList<ElementRef>;
+    
+    widgets: Widget[] = [];
+    widget: Widget;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -153,7 +162,7 @@ export class WidgetComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
         console.log('TEST ngAfterViewInit', this.widget, this.widgetDOM)
-        this.refreshWidgets();
+        // this.refreshWidgets();
     }
 
     alert() {
@@ -162,11 +171,13 @@ export class WidgetComponent {
       this.widget.containerLeft = 20;
     }
 
-    refreshWidgets() {
+    refreshWidgets(widgets: Widget[]) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
-
-        console.log('TEST refreshWidgets start', this.widgetDOM, this.widget)
+        this.widgets = widgets;
+        this.widget = widgets[0]
+        console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), this.widgetDOM, 
+            this.widgetDOM.length, this.widgets, widgets, this.widget)
         let definition = this.createVegaLiteSpec(
             this.widget.graphDescription,
             this.widget.graphMark,
@@ -191,7 +202,7 @@ export class WidgetComponent {
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
         view.renderer('svg')
-            .initialize( this.widgetDOM.nativeElement)
+            .initialize( this.widgetContainerDOM.toArray()[0].nativeElement)
             .width(180)
             .hover()
             .run()

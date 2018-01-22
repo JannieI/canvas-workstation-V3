@@ -280,7 +280,8 @@ const testWidgets: Widget[] =
 export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
-    @ViewChildren('widgetDOM')  widgetDOM: QueryList<WidgetComponent>;
+    // @ViewChildren('widgetDOM')  widgetDOM: QueryList<WidgetComponent>;
+    @ViewChild('widgetDOM')  widgetDOM: WidgetComponent;
 
     companyName: string = this.globalVariableService.companyName;
     editMode: boolean;
@@ -296,12 +297,7 @@ export class AppComponent implements OnInit {
     moveLastX: number = 0;
     moveLastY: number = 0;
     presentationMode: boolean;
-    // showCircle: boolean = false;
-    // showImage: boolean = false;
-    // showTextBox: boolean = false;
-    // showRectangle: boolean = false;
     showGrid: boolean;
-    // showModalLanding: boolean;  // Show Landing Page
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
@@ -384,6 +380,8 @@ export class AppComponent implements OnInit {
     widgets: Widget[] = [];
   
     ngAfterViewInit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
     //   this.widgetsDOM.forEach(alertInstance => console.log(alertInstance));
     }
 
@@ -432,25 +430,31 @@ export class AppComponent implements OnInit {
         // );
         this.globalVariableService.refreshDashboard.subscribe(i => 
             {
+                console.log('okay ...0', i, this.widgetDOM, this.widgets)
+                
                 if (i) {
                     this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardID,
                         this.globalVariableService.currentDashboardTabID).then(j => 
                         {
+                            console.log('o1')
                             this.widgets = this.globalVariableService.currentWidgetsTEST;
+                            console.log('o2', this.widgets)
+                            
                             this.currentDashboardTabIndex = 
                                 this.globalVariableService.currentDashboardTabID;
                             if (this.widgetDOM != undefined) {
-                                // if (this.widgetDOM.toArray().length != 0) {
-                                    this.widgetDOM.forEach( (i: WidgetComponent) =>
-                                       i.refreshWidgets()
-                                );
-                                    console.log('okay ...', this.widgetDOM)
+                                // this.widgetDOM.forEach( (i: WidgetComponent) =>
+                                //     i.refreshWidgets()
+                                // );
+                                    console.log('okay ...1', this.widgetDOM, this.widgets)
+                                    
+                                    this.widgetDOM.refreshWidgets(this.widgets);
+                                    
                                     // this.widgetDOM.toArray()[0].refreshWidgets();
-                                // }
-                            }
-                            // this.widgetDOM.refreshWidgets();
+                                    // console.log('okay ...2', this.widgetDOM, this.widgets)
+                            };
                             console.log('Holy Moly', this.currentDashboardTabIndex, 
                                 this.widgets, this.widgetDOM);
                         }
@@ -1402,6 +1406,12 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
 
         console.log('Fix in appComponent clickTest - just TESTing')
+        // console.log('okay ...3', this.widgetDOM, this.widgetDOM.length)
+        console.log('okay ...3', this.widgetDOM, this.widgets)
+        // this.widgetDOM.forEach( (i: WidgetComponent) =>
+        //     i.refreshWidgets()
+        // );
+
         this.globalVariableService.currentDashboardID = 1;
         if (this.globalVariableService.currentDashboardTabID == 1) {
             this.globalVariableService.currentDashboardTabID = 2;
