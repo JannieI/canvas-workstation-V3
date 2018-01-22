@@ -246,13 +246,13 @@ export class WidgetComponent {
 
         vlSpecsNew['encoding']['x']['field'] = graphXfield;
         vlSpecsNew['encoding']['x']['type'] = graphXtype;
-        vlSpecsNew['encoding']['x']['axis']['title'] = 'x-axis';
+        vlSpecsNew['encoding']['x']['axis']['title'] = graphXaxisTitle;
         vlSpecsNew['encoding']['x']['timeUnit'] = graphXtimeUnit;
         vlSpecsNew['encoding']['x']['aggregate'] = graphXaggregate;
 
         vlSpecsNew['encoding']['y']['field'] = graphYfield;
         vlSpecsNew['encoding']['y']['type'] = graphYtype;
-        vlSpecsNew['encoding']['y']['axis']['title'] = 'y-axis';
+        vlSpecsNew['encoding']['y']['axis']['title'] = graphYaxisTitle;
         vlSpecsNew['encoding']['y']['timeUnit'] = graphYtimeUnit;
         vlSpecsNew['encoding']['y']['aggregate'] = graphYaggregate;
 
