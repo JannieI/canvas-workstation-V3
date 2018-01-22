@@ -426,6 +426,7 @@ export class CanvasWidget {
     graphYtimeUnit: string;
     graphYfield: string;
     graphYtype: string;
+    graphYaxisTitle: string;
 
     graphTitle: string;
     graphMark: string;
@@ -669,6 +670,7 @@ export class Widget {
     graphYtimeUnit: string;
     graphYfield: string;
     graphYtype: string;
+    graphYaxisTitle: string;
     graphTitle: string;
     graphMark: string;
     graphUrl: string;

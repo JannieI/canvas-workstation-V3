@@ -86,6 +86,7 @@
         "graphYtimeUnit": "",
         "graphYfield": "Miles_per_Gallon",
         "graphYtype": "quantitative",
+        "graphYaxisTitle": "y-axis",
         "graphTitle": "graphTitle",
         "graphMark": "bar",
         "graphUrl": "../assets/vega-datasets/cars.json",
