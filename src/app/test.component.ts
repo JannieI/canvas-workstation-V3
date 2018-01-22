@@ -169,16 +169,21 @@ export class WidgetComponent {
         let definition = this.createVegaLiteSpec(
             this.widget.graphDescription,
             this.widget.graphMark,
-            this.widget.graphXfield,
-            this.widget.graphYfield,
-            this.widget.graphTitle,
-            this.widget.graphXtype,
-            this.widget.graphYtype,
-            this.widget.graphUrl,
-            this.widget.graphXtimeUnit,
+
             this.widget.graphXaggregate,
-            this.widget.graphYtimeUnit,
+            this.widget.graphXtimeUnit,
+            this.widget.graphXfield,
+            this.widget.graphXtype,
+            this.widget.graphXaxisTitle,
+
             this.widget.graphYaggregate,
+            this.widget.graphYtimeUnit,
+            this.widget.graphYfield,
+            this.widget.graphYtype,
+            this.widget.graphYaxisTitle,
+            
+            this.widget.graphUrl,
+            this.widget.graphTitle,
             this.widget.graphColorField,
             this.widget.graphColorType,
         );
@@ -197,16 +202,21 @@ export class WidgetComponent {
     createVegaLiteSpec(
         graphDescription: string = '',
         graphMark: string = '',
-        graphXfield: string = '',
-        graphYfield: string = '',
-        graphTitle: string = '',
-        graphXtype: string = '',
-        graphYtype: string = '',
-        graphUrl: string = '',
-        graphXtimeUnit: string = '',
+
         graphXaggregate: string = '',
-        graphYtimeUnit: string = '',
+        graphXtimeUnit: string = '',
+        graphXfield: string = '',
+        graphXtype: string = '',
+        graphXaxisTitle: string = '',
+        
         graphYaggregate: string = '',
+        graphYtimeUnit: string = '',
+        graphYfield: string = '',
+        graphYtype: string = '',
+        graphYaxisTitle: string = '',
+        
+        graphUrl: string = '',
+        graphTitle: string = '',
         graphColorField: string = '',
         graphColorType: string = ''
         ): dl.spec.TopLevelExtendedSpec {

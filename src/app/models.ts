@@ -661,16 +661,21 @@ export class Widget {
     graphHoverColor: string;
     graphSpecification: any;
     graphDescription: string;
+
+    // X axis
     graphXaggregate: string;
     graphXtimeUnit: string;
     graphXfield: string;
     graphXtype: string;
     graphXaxisTitle: string;
+
+    // Y axis
     graphYaggregate: string;
     graphYtimeUnit: string;
     graphYfield: string;
     graphYtype: string;
     graphYaxisTitle: string;
+
     graphTitle: string;
     graphMark: string;
     graphUrl: string;
