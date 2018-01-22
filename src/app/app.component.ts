@@ -427,9 +427,9 @@ export class AppComponent implements OnInit {
                  }
         );
 
-        this.globalVariableService.getWidgets().then(
-            // i => this.refreshTest()
-        );
+        // this.globalVariableService.getWidgets().then(
+        //     // i => this.refreshTest()
+        // );
         this.globalVariableService.refreshDashboard.subscribe(i => 
             {
                 if (i) {

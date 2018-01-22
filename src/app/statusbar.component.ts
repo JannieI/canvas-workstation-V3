@@ -161,13 +161,6 @@ export class StatusbarComponent {
     ngAfterViewInit() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
-
-        // this.currentDashboardName = this.globalVariableService.currentDashboards[0].name;
-        // this.currentTabName = this.globalVariableService.currentDashboardTabs
-        //     [this.currentDashboardTabIndex].name;
-
-        console.log('onInit', this.globalVariableService.currentDashboards, 
-        this.globalVariableService.currentDashboardTabs, this.currentDashboardTabIndex)
     }
 
     clickDashboardDescription() {
