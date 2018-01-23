@@ -1074,43 +1074,12 @@
 </button>
 
 
-<!-- Component with loop here -->
-<!-- <widget *ngFor="let row of widgets; 
-    let even = even; let odd = odd; let first = first; let last = last; trackBy: trackWidget" 
-    [widget]="row" 
-    [odd]="odd"
-    [even]="even"
-    [first]="first"
-    [last]="last"
-    [refreshGraphs]="refreshGraphs"
-    #widgetDOM
-    >
-</widget> -->
-
-
-<!-- Component with loop there -->
+<!-- Widgets -->
 <widget #widgetDOM
     [widgets]="widgets"
     >
 </widget>
 
-
-<!-- Test loop here, no component -->
-<div class="test" *ngFor="let row of widgets; let i = index" 
-    #widgetContainerDOM
-    [style.background-color]="row.containerBackgroundColor"
-    [style.border]="row.isSelected? '2px solid red' : row.containerBorder"
-    [style.box-shadow]="row.containerBoxshadow"
-    [style.height.px]="row.containerHeight"
-    [style.left.px]="row.containerLeft"
-    [style.top.px]="row.containerTop"
-    [style.width.px]="row.containerWidth"
-    [style.zindex]="row.containerZindex"
-    (click)="alert()"
-    >
-    <div #widgetDOM>
-    </div>
-</div>
 
 <!-- Testing Arrows -->
 <div *ngIf="showTestArrows">
