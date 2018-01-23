@@ -1,6 +1,6 @@
-<!-- Widgets -->
-<div *ngFor="let row of currentWidgets; let i = index" class="widgetContainer"
-    #widgetContainter
+<div class="test" *ngFor="let row of widgets; let i = index; let even = even; let odd = odd; 
+        let first = first; let last = last" 
+    #widgetContainerDOM
     [style.background-color]="row.containerBackgroundColor"
     [style.border]="row.isSelected? '2px solid red' : row.containerBorder"
     [style.box-shadow]="row.containerBoxshadow"
@@ -9,17 +9,8 @@
     [style.top.px]="row.containerTop"
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
-    [className]="'odd'"
-    class="odd"
-    [class.odd]="'odd'"
-    [ngClass]="{ 'odd': true, 'even': even }"
+    (click)="alert()"
     >
-  
-    <div class="widget"
-        [style.height.px]="row.containerHeight - 35"
-        [style.width.px]="row.containerWidth"
-        #widget
-        >
-        {{ row.id }}
+    <div #widgetDOM>
     </div>
 </div>

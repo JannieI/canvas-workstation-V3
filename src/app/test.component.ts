@@ -110,27 +110,130 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         }
 };
 
+const startupWidget: Widget[] =
+[
+    {
+        "widgetType": "Graph",
+        "widgetSubType": "",
+    
+        "isTrashed": false,
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "dashboardTabName": "",
+        "id": 1,
+        "name": "barchart for start",
+        "description": "bla-bla-bla",
+        "visualGrammar": "",
+        "version": 1,
+        "isSelected": false,
+        "isLiked": false,
+        "hasDataQualityIssues": true,
+        "hasComments": true,
+        "nrButtonsToShow": 3,
+        "hyperlinkDashboardID": 1,
+        "hyperlinkDashboardTabID": 1,
+            
+        "datasourceID": 1,
+        "datasetID": 1,
+        "dataParameters":
+        [
+            {
+                "field": "",
+                "value": ""
+            }
+        ],
+        "reportID": 1,
+        "reportName": "",
+        "rowLimit": 1,
+        "addRestRow": false,
+        "size": "",
+        "containerBackgroundcolor": "transparent",
+        "containerBorder": "2px solid black",
+        "containerBoxshadow": "2px 2px gray",
+        "containerColor": "transparent",
+        "containerFontsize": 12,
+        "containerHeight": 320,
+        "containerLeft": 50,
+        "containerWidgetTitle": "Title 1",
+        "containerTop": 80,      
+        "containerWidth": 250,
+        "containerZindex": 50,
+        "titleText": "",
+        "titleBackgroundColor": "#192b35",
+        "titleBorder": "",
+        "titleColor": "",
+        "titleFontsize": 1,
+        "titleFontWeight": "",
+        "titleHeight": 1,
+        "titleLeft": 1,
+        "titleMargin": "",
+        "titlePadding": "",
+        "titlePosition": "",
+        "titleTextAlign": "",
+        "titleTop": 1,
+        "titleWidth": 1,
+        "graphType": "",
+        "graphHeight": 1,
+        "graphLeft": 1,
+        "graphTop": 1,
+        "graphWidth": 1,
+        "graphGraphPadding": 1,
+        "graphHasSignals": false,
+        "graphFillColor": "",
+        "graphHoverColor": "",
+        "graphSpecification": {
+            "data": {"url": "../assets/vega-datasets/cars.json"},
+            "mark": "point",
+            "encoding": {
+                "x": {"field": "Horsepower", "type": "quantitative"},
+                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
+            }
+        },
+        "graphDescription": "",
+        "graphXaggregate": "",
+        "graphXtimeUnit": "",
+        "graphXfield": "Horsepower",
+        "graphXtype": "quantitative",
+        "graphXaxisTitle": "x tit",
+        "graphYaggregate": "",
+        "graphYtimeUnit": "",
+        "graphYfield": "Miles_per_Gallon",
+        "graphYtype": "quantitative",
+        "graphYaxisTitle": "One one",
+        "graphTitle": "graphTitle",
+        "graphMark": "bar",
+        "graphUrl": "../assets/vega-datasets/cars.json",
+        "graphColorField": "",
+        "graphColorType": "",
+        "graphData": "",
+        "tableColor": "",
+        "tableCols": 1,
+        "tableHeight": 1,
+        "tableHideHeader": false,
+        "tableLeft": 1,
+        "tableRows": 1,
+        "tableTop": 1,
+        "tableWidth": 1,
+        "shapeCx": "",
+        "shapeCy": "",
+        "shapeR": "",
+        "shapeStroke": "",
+        "shapeStrokeWidth": "",
+        "shapeFill": "",
+        "refreshMode": "",
+        "refreshFrequency": 1,
+        "widgetRefreshedOn": "",
+        "widgetRefreshedBy": "",
+        "widgetCreatedOn": "",
+        "widgetCreatedBy": "",
+        "widgetUpdatedOn": "",
+        "widgetUpdatedBy": ""
+    }
+]
+
 @Component({
     selector: 'widget',
-    template: `
-    <div *ngIf="widgets" #widgetContainerDOM>    
-        <div class="test" *ngFor="let row of widgets; let even = even; let odd = odd; 
-                let first = first; let last = last; trackBy: trackWidget" 
-            [style.background-color]="widget.containerBackgroundColor"
-            [style.border]="widget.isSelected? '2px solid red' : widget.containerBorder"
-            [style.box-shadow]="widget.containerBoxshadow"
-            [style.height.px]="widget.containerHeight"
-            [style.left.px]="widget.containerLeft"
-            [style.top.px]="widget.containerTop"
-            [style.width.px]="widget.containerWidth"
-            [style.zindex]="widget.containerZindex"
-            (click)="alert()"
-            >
-            <div #widgetDOM>
-            </div>
-        </div>
-    </div>
-    `,
+    templateUrl: './test.component.html',
     styleUrls: ['./test.component.css']
 })
 export class WidgetComponent {
@@ -162,6 +265,8 @@ export class WidgetComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
         console.log('TEST ngAfterViewInit', this.widget, this.widgetDOM)
+
+        this.widgets = [];
         // this.refreshWidgets();
     }
 
@@ -176,37 +281,41 @@ export class WidgetComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
         this.widgets = widgets;
         this.widget = widgets[0]
-        console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), this.widgetDOM, 
+        console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), 
+            this.widgetDOM, 
             this.widgetDOM.length, this.widgets, widgets, this.widget)
-        let definition = this.createVegaLiteSpec(
-            this.widget.graphDescription,
-            this.widget.graphMark,
 
-            this.widget.graphXaggregate,
-            this.widget.graphXtimeUnit,
-            this.widget.graphXfield,
-            this.widget.graphXtype,
-            this.widget.graphXaxisTitle,
+        if (this.widgetDOM.length > 0) {
+            let definition = this.createVegaLiteSpec(
+                this.widget.graphDescription,
+                this.widget.graphMark,
 
-            this.widget.graphYaggregate,
-            this.widget.graphYtimeUnit,
-            this.widget.graphYfield,
-            this.widget.graphYtype,
-            this.widget.graphYaxisTitle,
-            
-            this.widget.graphUrl,
-            this.widget.graphTitle,
-            this.widget.graphColorField,
-            this.widget.graphColorType,
-        );
-        let specification = compile(definition).spec;
-        let view = new View(parse(specification));
-        view.renderer('svg')
-            .initialize( this.widgetContainerDOM.toArray()[0].nativeElement)
-            .width(180)
-            .hover()
-            .run()
-            .finalize();
+                this.widget.graphXaggregate,
+                this.widget.graphXtimeUnit,
+                this.widget.graphXfield,
+                this.widget.graphXtype,
+                this.widget.graphXaxisTitle,
+
+                this.widget.graphYaggregate,
+                this.widget.graphYtimeUnit,
+                this.widget.graphYfield,
+                this.widget.graphYtype,
+                this.widget.graphYaxisTitle,
+                
+                this.widget.graphUrl,
+                this.widget.graphTitle,
+                this.widget.graphColorField,
+                this.widget.graphColorType,
+            );
+            let specification = compile(definition).spec;
+            let view = new View(parse(specification));
+            view.renderer('svg')
+                .initialize( this.widgetDOM.toArray()[0].nativeElement)
+                .hover()
+                .run()
+                .finalize();
+            console.log('TEST refreshWidgets render done', specification)
+        }
         console.log('TEST refreshWidgets end')
     }
 

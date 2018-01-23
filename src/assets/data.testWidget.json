@@ -198,7 +198,7 @@
         "graphXtimeUnit": "",
         "graphXfield": "Horsepower",
         "graphXtype": "quantitative",
-        "graphXaxisTitle": "x tit",
+        "graphXaxisTitle": "xtit",
         "graphYaggregate": "",
         "graphYtimeUnit": "",
         "graphYfield": "Miles_per_Gallon",

@@ -27,10 +27,89 @@ import { CanvasWidget }               from './models'
 import { Datasource }                 from './models'
 import { Widget }                     from './models'
 
-
 // import { AlertComponent }               from './test.component';
 import { WidgetComponent }            from './test.component';
 
+// Vega, Vega-Lite
+import { compile }                    from 'vega-lite';
+import { parse }                      from 'vega';
+import { View }                       from 'vega';
+import * as dl from 'datalib';
+import { load } from 'datalib';
+import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
+
+
+// Constants
+const vlTemplate: dl.spec.TopLevelExtendedSpec =
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+
+    // Properties for top-level specification (e.g., standalone single view specifications)
+    "background": "",
+    "padding": "",
+    // "autosize": "",          NB - add these only if needed, blank causes no graph display
+    // "config": "",            NB - add these only if needed, blank causes no graph display
+
+    // Properties for any specifications
+    "title":
+        {
+            "text": "",
+            "anchor": "",
+            "offset": "",
+            "orient": "",
+            "style": ""
+        },
+    "name": "",
+    "transform": "",
+
+    "description": "",
+    "data": "",
+    "mark":
+        {
+            "type": "",  //bar circle square tick line area point rule text
+            "style": "",
+            "clip": ""
+        },
+    "encoding":
+        {
+            "x":
+                {
+                    "aggregate": "",
+                    "field": "",
+                    "type": "ordinal",
+                    "bin": "",
+                    "timeUnit": "",
+                    "axis":
+                    {
+                        "title": ""
+                    },
+                    "scale": "",
+                    "legend": "",
+                    "format": "",
+                    "stack": "",
+                    "sort": "",
+                    "condition": ""
+                },
+            "y":
+                {
+                    "aggregate": "",
+                    "field": "",
+                    "type": "quantitative",
+                    "bin": "",
+                    "timeUnit": "",
+                    "axis":
+                        {
+                            "title": ""
+                        },
+                    "scale": "",
+                    "legend": "",
+                    "format": "",
+                    "stack": "",
+                    "sort": "",
+                    "condition": ""
+                    }
+        }
+};
 
 const testWidgets: Widget[] =
 [
@@ -281,7 +360,10 @@ export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
     // @ViewChildren('widgetDOM')  widgetDOM: QueryList<WidgetComponent>;
-    @ViewChild('widgetDOM')  widgetDOM: WidgetComponent;
+    // @ViewChild('widgetDOM')  widgetDOM: WidgetComponent;
+
+    @ViewChildren('widgetDOM')  widgetDOM: QueryList<ElementRef>;
+    @ViewChildren('widgetContainerDOM')  widgetContainerDOM: QueryList<ElementRef>;
 
     companyName: string = this.globalVariableService.companyName;
     editMode: boolean;
@@ -364,27 +446,10 @@ export class AppComponent implements OnInit {
     test: number[] = [1,2,3,4,5,6];
     condition: boolean = true;
     left: number = 30;
-    tabs: Array<any> = [
-        {
-            title: 'x',
-            color: 'blue',
-            left: 50
-        },
-        {
-            title: 'y',
-            color: 'red',
-            left: 150
-        }
-    ]
+
     // widgets: Widget[] = testWidgets;
     widgets: Widget[] = [];
-  
-    ngAfterViewInit() {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
-    //   this.widgetsDOM.forEach(alertInstance => console.log(alertInstance));
-    }
-
+    widget: Widget;
 
     constructor(
         private globalVariableService: GlobalVariableService,
@@ -400,6 +465,9 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        console.log('ngAfterViewChecked', this.currentDashboardTabIndex, 
+            this.widgets,this.widgetContainerDOM, this.widgetDOM);
 
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
@@ -430,7 +498,7 @@ export class AppComponent implements OnInit {
         // );
         this.globalVariableService.refreshDashboard.subscribe(i => 
             {
-                console.log('okay ...0', i, this.widgetDOM, this.widgets)
+                console.log('okay ...0', i, this.widgetContainerDOM, this.widgetDOM, this.widgets)
                 
                 if (i) {
                     this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
@@ -440,7 +508,7 @@ export class AppComponent implements OnInit {
                         {
                             console.log('o1')
                             this.widgets = this.globalVariableService.currentWidgetsTEST;
-                            console.log('o2', this.widgets)
+                            console.log('o2', this.widgetContainerDOM,this.widgets)
                             
                             this.currentDashboardTabIndex = 
                                 this.globalVariableService.currentDashboardTabID;
@@ -448,15 +516,15 @@ export class AppComponent implements OnInit {
                                 // this.widgetDOM.forEach( (i: WidgetComponent) =>
                                 //     i.refreshWidgets()
                                 // );
-                                    console.log('okay ...1', this.widgetDOM, this.widgets)
+                                    console.log('okay ...1', this.widgetContainerDOM,this.widgetDOM, this.widgets)
                                     
-                                    this.widgetDOM.refreshWidgets(this.widgets);
+                                    this.refreshWidgets();
                                     
                                     // this.widgetDOM.toArray()[0].refreshWidgets();
-                                    // console.log('okay ...2', this.widgetDOM, this.widgets)
+                                    console.log('okay ...2', this.widgetContainerDOM,this.widgetDOM, this.widgets)
                             };
                             console.log('Holy Moly', this.currentDashboardTabIndex, 
-                                this.widgets, this.widgetDOM);
+                                this.widgets,this.widgetContainerDOM, this.widgetDOM);
                         }
                     )
                 }
@@ -466,6 +534,21 @@ export class AppComponent implements OnInit {
 
     // this.widgets = testWidgets[0];
         
+    }
+    ngAfterViewInit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+    //   this.widgetsDOM.forEach(alertInstance => console.log(alertInstance));
+    this.refreshWidgets();
+    console.log('ngAfterViewInit', this.currentDashboardTabIndex, 
+                                this.widgets,this.widgetContainerDOM, this.widgetDOM);
+    }
+    ngAfterViewChecked() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
+    //   this.widgetsDOM.forEach(alertInstance => console.log(alertInstance));
+    console.log('ngAfterViewChecked', this.currentDashboardTabIndex, 
+                                this.widgets,this.widgetContainerDOM, this.widgetDOM);
     }
 
     // handleCloseModalLanding() {
@@ -1428,6 +1511,118 @@ export class AppComponent implements OnInit {
         // this.globalFunctionService.printToConsole(this.constructor.name,'trackWidget', '@Start');
         // console.log('trackWidget', row);
         return row ? row.id : undefined;
+    }
+
+    refreshWidgets() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
+        this.widget = this.widgets[0]
+        console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), 
+            this.widgetDOM, 
+            this.widgetDOM.length, this.widgets, this.widgets, this.widget)
+
+        if (this.widgetDOM.length > 0) {
+            let definition = this.createVegaLiteSpec(
+                this.widget.graphDescription,
+                this.widget.graphMark,
+
+                this.widget.graphXaggregate,
+                this.widget.graphXtimeUnit,
+                this.widget.graphXfield,
+                this.widget.graphXtype,
+                this.widget.graphXaxisTitle,
+
+                this.widget.graphYaggregate,
+                this.widget.graphYtimeUnit,
+                this.widget.graphYfield,
+                this.widget.graphYtype,
+                this.widget.graphYaxisTitle,
+                
+                this.widget.graphUrl,
+                this.widget.graphTitle,
+                this.widget.graphColorField,
+                this.widget.graphColorType,
+            );
+            let specification = compile(definition).spec;
+            let view = new View(parse(specification));
+            view.renderer('svg')
+                .initialize( this.widgetDOM.toArray()[0].nativeElement)
+                .width(180)
+                .hover()
+                .run()
+                .finalize();
+            console.log('TEST refreshWidgets render done', specification)
+        }
+        console.log('TEST refreshWidgets end')
+    }
+
+
+    createVegaLiteSpec(
+        graphDescription: string = '',
+        graphMark: string = '',
+
+        graphXaggregate: string = '',
+        graphXtimeUnit: string = '',
+        graphXfield: string = '',
+        graphXtype: string = '',
+        graphXaxisTitle: string = '',
+        
+        graphYaggregate: string = '',
+        graphYtimeUnit: string = '',
+        graphYfield: string = '',
+        graphYtype: string = '',
+        graphYaxisTitle: string = '',
+        
+        graphUrl: string = '',
+        graphTitle: string = '',
+        graphColorField: string = '',
+        graphColorType: string = ''
+        ): dl.spec.TopLevelExtendedSpec {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
+
+        // Exclude nulls, as dl lib reads "" as null
+        if (graphDescription == null) { graphDescription = ''};
+        if (graphMark == null) { graphMark = ''};
+        if (graphXfield == null) { graphXfield = ''};
+        if (graphYfield == null) { graphYfield = ''};
+        if (graphTitle == null) { graphTitle = ''};
+        if (graphXtype == null) { graphXtype = ''};
+        if (graphYtype == null) { graphYtype = ''};
+        if (graphUrl == null) { graphUrl = ''};
+        if (graphXtimeUnit == null) { graphXtimeUnit = ''};
+        if (graphXaggregate == null) { graphXaggregate = ''};
+        if (graphYtimeUnit == null) { graphYtimeUnit = ''};
+        if (graphYaggregate == null) { graphYaggregate = ''};
+        if (graphColorField == null) { graphColorField = ''};
+        if (graphColorType == null) { graphColorType = ''};
+
+        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
+        vlSpecsNew['data'] = {"url": graphUrl};
+        vlSpecsNew['description'] = graphDescription;
+        vlSpecsNew['mark']['type'] = graphMark;
+
+        vlSpecsNew['encoding']['x']['field'] = graphXfield;
+        vlSpecsNew['encoding']['x']['type'] = graphXtype;
+        vlSpecsNew['encoding']['x']['axis']['title'] = graphXaxisTitle;
+        vlSpecsNew['encoding']['x']['timeUnit'] = graphXtimeUnit;
+        vlSpecsNew['encoding']['x']['aggregate'] = graphXaggregate;
+
+        vlSpecsNew['encoding']['y']['field'] = graphYfield;
+        vlSpecsNew['encoding']['y']['type'] = graphYtype;
+        vlSpecsNew['encoding']['y']['axis']['title'] = graphYaxisTitle;
+        vlSpecsNew['encoding']['y']['timeUnit'] = graphYtimeUnit;
+        vlSpecsNew['encoding']['y']['aggregate'] = graphYaggregate;
+
+        vlSpecsNew['title']['text'] = graphTitle;
+
+        if (graphColorField != ''  && graphColorField != null) {
+            vlSpecsNew['encoding']['color'] = {
+                "field": graphColorField,
+                "type": graphColorType
+              }
+        }
+        return vlSpecsNew;
     }
 
 }
