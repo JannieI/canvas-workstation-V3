@@ -112,8 +112,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
 @Component({
     selector: 'widget',
-    templateUrl: './test.component.html',
-    styleUrls: ['./test.component.css']
+    templateUrl: './widget.component.html',
+    styleUrls: ['./widget.component.css']
 })
 export class WidgetComponent {
     @Input() widgets: Widget[];

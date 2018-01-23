@@ -27,8 +27,7 @@ import { CanvasWidget }               from './models'
 import { Datasource }                 from './models'
 import { Widget }                     from './models'
 
-// import { AlertComponent }               from './test.component';
-import { WidgetComponent }            from './test.component';
+import { WidgetComponent }            from './widget.component';
 
 // Vega, Vega-Lite
 import { compile }                    from 'vega-lite';

@@ -89,7 +89,7 @@ import { GlobalFunctionService }      from './global-function.service';
 // Testing
 import { DelayDirective }             from './test.delay.directive';
 import { MyNgIfDirective }            from './test.ngif.directive';
-import { WidgetComponent }            from './test.component';
+import { WidgetComponent }            from './widget.component';
 import { StatusbarComponent }         from './statusbar.component';
 
 @NgModule({
