@@ -110,145 +110,18 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         }
 };
 
-const startupWidget: Widget[] =
-[
-    {
-        "widgetType": "Graph",
-        "widgetSubType": "",
-    
-        "isTrashed": false,
-        "dashboardID": 1,
-        "dashboardTabID": 1,
-        "dashboardTabName": "",
-        "id": 1,
-        "name": "barchart for start",
-        "description": "bla-bla-bla",
-        "visualGrammar": "",
-        "version": 1,
-        "isSelected": false,
-        "isLiked": false,
-        "hasDataQualityIssues": true,
-        "hasComments": true,
-        "nrButtonsToShow": 3,
-        "hyperlinkDashboardID": 1,
-        "hyperlinkDashboardTabID": 1,
-            
-        "datasourceID": 1,
-        "datasetID": 1,
-        "dataParameters":
-        [
-            {
-                "field": "",
-                "value": ""
-            }
-        ],
-        "reportID": 1,
-        "reportName": "",
-        "rowLimit": 1,
-        "addRestRow": false,
-        "size": "",
-        "containerBackgroundcolor": "transparent",
-        "containerBorder": "2px solid black",
-        "containerBoxshadow": "2px 2px gray",
-        "containerColor": "transparent",
-        "containerFontsize": 12,
-        "containerHeight": 320,
-        "containerLeft": 50,
-        "containerWidgetTitle": "Title 1",
-        "containerTop": 80,      
-        "containerWidth": 250,
-        "containerZindex": 50,
-        "titleText": "",
-        "titleBackgroundColor": "#192b35",
-        "titleBorder": "",
-        "titleColor": "",
-        "titleFontsize": 1,
-        "titleFontWeight": "",
-        "titleHeight": 1,
-        "titleLeft": 1,
-        "titleMargin": "",
-        "titlePadding": "",
-        "titlePosition": "",
-        "titleTextAlign": "",
-        "titleTop": 1,
-        "titleWidth": 1,
-        "graphType": "",
-        "graphHeight": 1,
-        "graphLeft": 1,
-        "graphTop": 1,
-        "graphWidth": 1,
-        "graphGraphPadding": 1,
-        "graphHasSignals": false,
-        "graphFillColor": "",
-        "graphHoverColor": "",
-        "graphSpecification": {
-            "data": {"url": "../assets/vega-datasets/cars.json"},
-            "mark": "point",
-            "encoding": {
-                "x": {"field": "Horsepower", "type": "quantitative"},
-                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-            }
-        },
-        "graphDescription": "",
-        "graphXaggregate": "",
-        "graphXtimeUnit": "",
-        "graphXfield": "Horsepower",
-        "graphXtype": "quantitative",
-        "graphXaxisTitle": "x tit",
-        "graphYaggregate": "",
-        "graphYtimeUnit": "",
-        "graphYfield": "Miles_per_Gallon",
-        "graphYtype": "quantitative",
-        "graphYaxisTitle": "One one",
-        "graphTitle": "graphTitle",
-        "graphMark": "bar",
-        "graphUrl": "../assets/vega-datasets/cars.json",
-        "graphColorField": "",
-        "graphColorType": "",
-        "graphData": "",
-        "tableColor": "",
-        "tableCols": 1,
-        "tableHeight": 1,
-        "tableHideHeader": false,
-        "tableLeft": 1,
-        "tableRows": 1,
-        "tableTop": 1,
-        "tableWidth": 1,
-        "shapeCx": "",
-        "shapeCy": "",
-        "shapeR": "",
-        "shapeStroke": "",
-        "shapeStrokeWidth": "",
-        "shapeFill": "",
-        "refreshMode": "",
-        "refreshFrequency": 1,
-        "widgetRefreshedOn": "",
-        "widgetRefreshedBy": "",
-        "widgetCreatedOn": "",
-        "widgetCreatedBy": "",
-        "widgetUpdatedOn": "",
-        "widgetUpdatedBy": ""
-    }
-]
-
 @Component({
     selector: 'widget',
     templateUrl: './test.component.html',
     styleUrls: ['./test.component.css']
 })
 export class WidgetComponent {
-    // @Input() widgets: Widget[];
-    // @Input() odd: boolean;
-    // @Input() even: boolean;
-    // @Input() first: boolean;
-    // @Input() last: boolean;
-    // @ViewChild('widgetDOM') widgetDOM;
+    @Input() widgets: Widget[];
+    @Input() refreshGraphs: boolean;
+
     @ViewChildren('widgetDOM')  widgetDOM: QueryList<ElementRef>;
     @ViewChildren('widgetContainerDOM')  widgetContainerDOM: QueryList<ElementRef>;
     
-    widgets: Widget[] = [];
-    widget: Widget;
-
     constructor(
         private globalFunctionService: GlobalFunctionService,
 
@@ -264,53 +137,57 @@ export class WidgetComponent {
     ngAfterViewInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
-        console.log('TEST ngAfterViewInit', this.widget, this.widgetDOM)
-
-        this.widgets = [];
-        // this.refreshWidgets();
+        this.refreshGraphs = false;
     }
+    ngAfterViewChecked() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
 
+        if (this.widgetContainerDOM.length > 0  &&  (!this.refreshGraphs) ) {
+            this.refreshGraphs = true;
+            this.refreshWidgets();
+            console.log('ngAfterViewChecked',   
+                this.widgets,this.widgetContainerDOM.length, this.widgetDOM);
+        }
+    }
     alert() {
-      console.log("widget alert @start", this.widget.datasourceID);
-      this.widget.widgetType = "Changed!";
-      this.widget.containerLeft = 20;
+      console.log("widget alert @start", this.widgets[0].datasourceID);
+      this.widgets[0].widgetType = "Changed!";
+      this.widgets[0].containerLeft = 20;
     }
 
-    refreshWidgets(widgets: Widget[]) {
+    refreshWidgets() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
-        this.widgets = widgets;
-        this.widget = widgets[0]
-        console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), 
-            this.widgetDOM, 
-            this.widgetDOM.length, this.widgets, widgets, this.widget)
+        for (var i = 0; i < this.widgetContainerDOM.length; i++) {
+            console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), 
+                this.widgetDOM, this.widgetDOM.length, this.widgets)
 
-        if (this.widgetDOM.length > 0) {
             let definition = this.createVegaLiteSpec(
-                this.widget.graphDescription,
-                this.widget.graphMark,
+                this.widgets[0].graphDescription,
+                this.widgets[0].graphMark,
 
-                this.widget.graphXaggregate,
-                this.widget.graphXtimeUnit,
-                this.widget.graphXfield,
-                this.widget.graphXtype,
-                this.widget.graphXaxisTitle,
+                this.widgets[0].graphXaggregate,
+                this.widgets[0].graphXtimeUnit,
+                this.widgets[0].graphXfield,
+                this.widgets[0].graphXtype,
+                this.widgets[0].graphXaxisTitle,
 
-                this.widget.graphYaggregate,
-                this.widget.graphYtimeUnit,
-                this.widget.graphYfield,
-                this.widget.graphYtype,
-                this.widget.graphYaxisTitle,
+                this.widgets[0].graphYaggregate,
+                this.widgets[0].graphYtimeUnit,
+                this.widgets[0].graphYfield,
+                this.widgets[0].graphYtype,
+                this.widgets[0].graphYaxisTitle,
                 
-                this.widget.graphUrl,
-                this.widget.graphTitle,
-                this.widget.graphColorField,
-                this.widget.graphColorType,
+                this.widgets[0].graphUrl,
+                this.widgets[0].graphTitle,
+                this.widgets[0].graphColorField,
+                this.widgets[0].graphColorType,
             );
             let specification = compile(definition).spec;
             let view = new View(parse(specification));
             view.renderer('svg')
-                .initialize( this.widgetDOM.toArray()[0].nativeElement)
+                .initialize( this.widgetDOM.toArray()[i].nativeElement)
                 .hover()
                 .run()
                 .finalize();

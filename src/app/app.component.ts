@@ -446,7 +446,7 @@ export class AppComponent implements OnInit {
     test: number[] = [1,2,3,4,5,6];
     condition: boolean = true;
     left: number = 30;
-    refreshGraphs: number = 0;
+    refreshGraphs: boolean = false;
 
     // widgets: Widget[] = testWidgets;
     widgets: Widget[] = [];
@@ -494,9 +494,6 @@ export class AppComponent implements OnInit {
                  }
         );
 
-        // this.globalVariableService.getWidgets().then(
-        //     // i => this.refreshTest()
-        // );
         this.globalVariableService.refreshDashboard.subscribe(i => 
             {
                 console.log('okay ...0', i, this.widgetContainerDOM, this.widgetDOM, this.widgets)
@@ -506,54 +503,46 @@ export class AppComponent implements OnInit {
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardID,
                         this.globalVariableService.currentDashboardTabID).then(j => 
-                        {
-                            console.log('o1')
-                            this.widgets = this.globalVariableService.currentWidgetsTEST;
-                            console.log('o2', this.widgetContainerDOM,this.widgets)
+                            {
+                                this.refreshGraphs = false;
+                                this.widgets = this.globalVariableService.currentWidgetsTEST;
+                            }
+                            // {
+                            // console.log('o1')
+                            // this.widgets = this.globalVariableService.currentWidgetsTEST;
+                            // console.log('o2', this.widgetContainerDOM,this.widgets)
                             
-                            this.currentDashboardTabIndex = 
-                                this.globalVariableService.currentDashboardTabID;
-                            if (this.widgetDOM != undefined) {
-                                // this.widgetDOM.forEach( (i: WidgetComponent) =>
-                                //     i.refreshWidgets()
-                                // );
-                                    console.log('okay ...1', this.widgetContainerDOM,this.widgetDOM, this.widgets)
-                                    
-                                    this.refreshWidgets();
-                                    
-                                    // this.widgetDOM.toArray()[0].refreshWidgets();
-                                    console.log('okay ...2', this.widgetContainerDOM,this.widgetDOM, this.widgets)
-                            };
-                            console.log('Holy Moly', this.currentDashboardTabIndex, 
-                                this.widgets,this.widgetContainerDOM, this.widgetDOM);
-                        }
+                            // this.currentDashboardTabIndex = 
+                            //     this.globalVariableService.currentDashboardTabID;
+                            // if (this.widgetDOM != undefined) {
+                            //         console.log('okay ...1', this.widgetContainerDOM,this.widgetDOM, this.widgets)
+                            //         this.refreshWidgets();
+                            //         console.log('okay ...2', this.widgetContainerDOM,this.widgetDOM, this.widgets)
+                            // };
+                            // console.log('Holy Moly', this.currentDashboardTabIndex, 
+                            //     this.widgets,this.widgetContainerDOM, this.widgetDOM);
+                        // }
                     )
                 }
             }
         )
-
-
-    // this.widgets = testWidgets[0];
-        
     }
     ngAfterViewInit() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
-    
-    // console.log('ngAfterViewInit', this.currentDashboardTabIndex, 
-    //                             this.widgets,this.widgetContainerDOM, this.widgetDOM);
     }
-    ngAfterViewChecked() {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
-    //   this.widgetsDOM.forEach(alertInstance => console.log(alertInstance));
-        if (this.widgetContainerDOM.length > 0  &&  (this.refreshGraphs != 1) ) {
-            this.refreshGraphs = 1;
-            this.refreshWidgets();
-            console.log('ngAfterViewChecked', this.currentDashboardTabIndex, 
-            this.widgets,this.widgetContainerDOM.length, this.widgetDOM);
-        }
-    }
+
+    // ngAfterViewChecked() {
+    //     // 
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
+
+    //     if (this.widgetContainerDOM.length > 0  &&  (!this.refreshGraphs) ) {
+    //         this.refreshGraphs = true;
+    //         this.refreshWidgets();
+    //         console.log('ngAfterViewChecked', this.currentDashboardTabIndex, 
+    //         this.widgets,this.widgetContainerDOM.length, this.widgetDOM);
+    //     }
+    // }
 
     // handleCloseModalLanding() {
     //     // Close Modal form Landing page
@@ -1506,7 +1495,7 @@ export class AppComponent implements OnInit {
             this.globalVariableService.currentDashboardTabID = 1;
         }
         this.globalVariableService.refreshDashboard.next(true);
-        this.refreshGraphs = 0;
+        this.refreshGraphs = true;
         this.globalVariableService.refreshDashboard.next(false);
     }
 
@@ -1559,7 +1548,6 @@ export class AppComponent implements OnInit {
                 .finalize();
             console.log('TEST refreshWidgets render done', specification)
         }
-        // if (this.refreshGraphs == 1) { this.refreshGraphs = 0};
         console.log('TEST refreshWidgets end')
     }
 
