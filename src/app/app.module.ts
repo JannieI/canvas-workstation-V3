@@ -91,7 +91,6 @@ import { GlobalFunctionService }      from './global-function.service';
 import { DelayDirective }             from './test.delay.directive';
 import { MyNgIfDirective }            from './test.ngif.directive';
 import { StatusbarComponent }         from './statusbar.component';
-import { MenuHelpComponent }            from './menu-help.component';
 
 @NgModule({
     declarations: [
@@ -162,7 +161,6 @@ import { MenuHelpComponent }            from './menu-help.component';
         PipeFilterDSType,
         WidgetComponent,
         StatusbarComponent,
-        MenuHelpComponent,
 
     ],
     imports: [
