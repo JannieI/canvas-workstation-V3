@@ -446,6 +446,7 @@ export class AppComponent implements OnInit {
     test: number[] = [1,2,3,4,5,6];
     condition: boolean = true;
     left: number = 30;
+    refreshGraphs: number = 0;
 
     // widgets: Widget[] = testWidgets;
     widgets: Widget[] = [];
@@ -538,17 +539,20 @@ export class AppComponent implements OnInit {
     ngAfterViewInit() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
-    //   this.widgetsDOM.forEach(alertInstance => console.log(alertInstance));
-    this.refreshWidgets();
-    console.log('ngAfterViewInit', this.currentDashboardTabIndex, 
-                                this.widgets,this.widgetContainerDOM, this.widgetDOM);
+    
+    // console.log('ngAfterViewInit', this.currentDashboardTabIndex, 
+    //                             this.widgets,this.widgetContainerDOM, this.widgetDOM);
     }
     ngAfterViewChecked() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
     //   this.widgetsDOM.forEach(alertInstance => console.log(alertInstance));
-    console.log('ngAfterViewChecked', this.currentDashboardTabIndex, 
-                                this.widgets,this.widgetContainerDOM, this.widgetDOM);
+        if (this.widgetContainerDOM.length > 0  &&  (this.refreshGraphs != 1) ) {
+            this.refreshGraphs = 1;
+            this.refreshWidgets();
+            console.log('ngAfterViewChecked', this.currentDashboardTabIndex, 
+            this.widgets,this.widgetContainerDOM.length, this.widgetDOM);
+        }
     }
 
     // handleCloseModalLanding() {
@@ -1502,6 +1506,7 @@ export class AppComponent implements OnInit {
             this.globalVariableService.currentDashboardTabID = 1;
         }
         this.globalVariableService.refreshDashboard.next(true);
+        this.refreshGraphs = 0;
         this.globalVariableService.refreshDashboard.next(false);
     }
 
@@ -1516,6 +1521,7 @@ export class AppComponent implements OnInit {
     refreshWidgets() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
+
         this.widget = this.widgets[0]
         console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), 
             this.widgetDOM, 
@@ -1553,6 +1559,7 @@ export class AppComponent implements OnInit {
                 .finalize();
             console.log('TEST refreshWidgets render done', specification)
         }
+        // if (this.refreshGraphs == 1) { this.refreshGraphs = 0};
         console.log('TEST refreshWidgets end')
     }
 
