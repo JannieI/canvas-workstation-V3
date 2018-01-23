@@ -117,7 +117,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 })
 export class WidgetComponent {
     @Input() widgets: Widget[];
-    // @Input() refreshGraphs: boolean;
 
     @ViewChildren('widgetDOM')  widgetDOM: QueryList<ElementRef>;
     @ViewChildren('widgetContainerDOM')  widgetContainerDOM: QueryList<ElementRef>;

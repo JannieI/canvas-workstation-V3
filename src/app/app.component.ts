@@ -197,10 +197,10 @@ export class AppComponent implements OnInit {
     templateInUse: string = 'Tmpl Used';
 
     localTrash: CanvasWidget[];
+    currentWidgets: Widget[] = [];
 
     // Testings ....
     refreshGraphs: boolean = false;
-    widgets: Widget[] = [];
 
     constructor(
         private globalVariableService: GlobalVariableService,
@@ -250,7 +250,7 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.currentDashboardTabID).then(j => 
                             {
                                 this.refreshGraphs = false;
-                                this.widgets = this.globalVariableService.currentWidgetsTEST;
+                                this.currentWidgets = this.globalVariableService.currentWidgetsTEST;
                             }
                     )
                 }
