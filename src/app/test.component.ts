@@ -138,17 +138,7 @@ export class WidgetComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
     }
-    // ngAfterViewChecked() {
-    //     // 
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
-    //     console.log('ngAfterViewChecked', this.refreshGraphs)
-    //     if (this.widgetContainerDOM.length > 0  &&  (!this.refreshGraphs) ) {
-    //         this.refreshGraphs = true;
-    //         this.refreshWidgets();
-    //         console.log('ngAfterViewChecked',   
-    //             this.widgets,this.widgetContainerDOM.length, this.widgetDOM);
-    //     }
-    // }
+
     alert() {
       console.log("widget alert @start", this.widgets[0].datasourceID);
       this.widgets[0].widgetType = "Changed!";
