@@ -2869,7 +2869,72 @@ export class GlobalVariableService {
         );
     }
 
+    refreshCurrentDashboard(
+        refreshingRoutine: string,
+        dashboardID: number, 
+        dashboardTabID?: number, 
+        tabToShow: string = '') {
+        // Refresh the global var currentDashboardInfo, then .next it.
+        // This will refresh the Dashboard on the screen (via .subscribe)
+        // If a dashboardTabID is given, this one will be shown.  Else, it will navigate
+        // to tabToShow, which can be First, Previous, Next, Last.  tabToShow overules
+        // dashboardTabID if tabToShow is given.  It assumes that all the currentD info
+        // has already been collected, and that we have a currentDashboardInfo object
+        // if Previous/Next are parameters.
+        console.log('Global-Variables refreshCurrentDashboard ...');
 
+        // Assume we have all currentD info
+        if (this.currentDashboards.length == 0) {
+            return;
+        }
+        if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&  
+            (this.currentDashboardInfo == null) ) {
+            return;
+        };
+
+        let dt = new Date();  
+        let x: number = 0;
+        let y: number = 0;
+        
+        if (tabToShow != '') {
+            if (tabToShow == 'First') {
+                x = 0;
+            }
+            if (tabToShow == 'Previous') {
+                x = this.currentDashboardInfo.value.currentDashboardTabIndex - 1;
+                if (x < 0) {
+                    x = this.currentDashboardTabs.length - 1;
+                }
+            }
+            if (tabToShow == 'Next') {
+                x = this.currentDashboardInfo.value.currentDashboardTabIndex + 1;
+                if (x >= this.currentDashboardTabs.length) {
+                    x = 0;
+                }
+            }
+            if (tabToShow == 'Last') {
+                x = this.currentDashboardTabs.length - 1;
+                    
+            }
+            y = this.currentDashboardTabs[x].id;
+        } else {
+            y = dashboardTabID;
+            for (var i = 0; i < this.currentDashboardTabs.length; i++) {
+                if (this.currentDashboardTabs[i].id = dashboardTabID) {
+                    x = i;
+                }
+            }
+        }
+
+        this.currentDashboardInfo.next({
+            currentDashboardID: dashboardID,
+            currentDashboardTabID: y,
+            currentDashboardTabIndex: x,
+            refreshingRoutine: 'statusbar-clickShowLastTab',
+            refreshDateTime: dt.toString()
+        });
+
+    }
 
     sleep(milliseconds: number) {
         // 
