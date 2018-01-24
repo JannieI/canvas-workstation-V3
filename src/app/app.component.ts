@@ -187,7 +187,6 @@ export class AppComponent implements OnInit {
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
 
-    currentDashboardTabIndex: number = 0;
     currentTabName: string = 'Summary';
     statusBarRunning: boolean = false;
     statusBarCancelRefresh: boolean = false;
@@ -245,8 +244,6 @@ export class AppComponent implements OnInit {
             i => { 
                 if (i) {
                     console.log('yy')
-                    this.currentDashboardTabIndex = this.globalVariableService.
-                        currentDashboardInfo.value.currentDashboardTabID;
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                         this.globalVariableService.currentDashboardInfo.value.
@@ -254,10 +251,15 @@ export class AppComponent implements OnInit {
                             {
                                 this.refreshGraphs = false;
                                 this.currentTabName = this.globalVariableService.
-                                    currentDashboardTabs[this.currentDashboardTabIndex].name;
+                                    currentDashboardTabs[
+                                        this.globalVariableService.currentDashboardInfo.value.
+                                        currentDashboardTabIndex
+                                    ].name;
                                 this.currentWidgets = this.globalVariableService.
                                     currentWidgetsTEST;
-                                console.log('yy', this.currentTabName, this.currentDashboardTabIndex)
+                                console.log('yy', this.currentTabName, this.globalVariableService.currentDashboardInfo.value.
+                                currentDashboardTabID, '@', this.globalVariableService.currentDashboardInfo.value.
+                                currentDashboardTabIndex)
                             }
                         )
                 }
