@@ -187,7 +187,7 @@ export class AppComponent implements OnInit {
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
 
-    currentDashboardTabIndex: number;
+    currentDashboardTabIndex: number = 0;
     currentTabName: string = 'Summary';
     statusBarRunning: boolean = false;
     statusBarCancelRefresh: boolean = false;
@@ -249,7 +249,11 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.currentDashboardTabID).then(j => 
                             {
                                 this.refreshGraphs = false;
-                                this.currentWidgets = this.globalVariableService.currentWidgetsTEST;
+                                this.currentTabName = this.globalVariableService.
+                                    currentDashboardTabs[this.currentDashboardTabIndex].name;
+                                this.currentWidgets = this.globalVariableService.
+                                    currentWidgetsTEST;
+                                console.log(this.currentTabName, this.currentDashboardTabIndex)
                             }
                     )
                 }

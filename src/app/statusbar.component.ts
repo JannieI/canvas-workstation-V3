@@ -195,7 +195,7 @@ export class StatusbarComponent {
 
         let x: number = 0;
         for (var i = 0; i < this.globalVariableService.currentDashboardTabs.length; i++) {
-            if (this.currentDashboardTabIndex == 
+            if (this.globalVariableService.currentDashboardTabs[i].id == 
                 this.globalVariableService.currentDashboardTabID) { 
                     x = i - 1;
             };
@@ -223,7 +223,7 @@ export class StatusbarComponent {
 
         let x: number = 0;
         for (var i = 0; i < this.globalVariableService.currentDashboardTabs.length; i++) {
-            if (this.currentDashboardTabIndex == 
+            if (this.globalVariableService.currentDashboardTabs[i].id == 
                 this.globalVariableService.currentDashboardTabID) { 
                     x = i + 1;
             };
