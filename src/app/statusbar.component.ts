@@ -131,6 +131,7 @@ export class StatusbarComponent {
     @Input() loggedIntoServerText: string;
     @Input() templateInUse: string;
 
+    dashboardDescription: string;
     showDashboardDescription: boolean = false;
     showDashboardTabDescription: boolean = false;
     showNewTab: boolean = false;
@@ -167,6 +168,7 @@ export class StatusbarComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDescription', '@Start');
 
+        this.dashboardDescription = this.globalVariableService.currentDashboards[0].description;
         this.showTabList = false;
         this.showDashboardDescription = true;
         this.showDashboardTabDescription = false;  
