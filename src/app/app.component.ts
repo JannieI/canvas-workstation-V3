@@ -242,31 +242,50 @@ export class AppComponent implements OnInit {
 
 
         this.globalVariableService.currentDashboardInfo.subscribe(
-            i => { if (i)  console.log('yy', i) }
-        )
-
-
-        this.globalVariableService.refreshDashboard.subscribe(i => 
-            {
+            i => { 
                 if (i) {
-
-                    console.log('xx', this.globalVariableService.currentDashboardInfo)
-                    this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
+                    console.log('yy')
+                    this.currentDashboardTabIndex = this.globalVariableService.
+                        currentDashboardInfo.value.currentDashboardTabID;
                     this.globalVariableService.refreshCurrentDashboardInfo(
-                        this.globalVariableService.currentDashboardID,
-                        this.globalVariableService.currentDashboardTabID).then(j => 
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.
+                            currentDashboardTabID).then(j => 
                             {
                                 this.refreshGraphs = false;
                                 this.currentTabName = this.globalVariableService.
                                     currentDashboardTabs[this.currentDashboardTabIndex].name;
                                 this.currentWidgets = this.globalVariableService.
                                     currentWidgetsTEST;
-                                console.log(this.currentTabName, this.currentDashboardTabIndex)
+                                console.log('yy', this.currentTabName, this.currentDashboardTabIndex)
                             }
-                    )
+                        )
                 }
             }
         )
+
+
+        // this.globalVariableService.refreshDashboard.subscribe(i => 
+        //     {
+        //         if (i) {
+
+        //             console.log('xx', this.globalVariableService.currentDashboardInfo)
+        //             this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
+        //             this.globalVariableService.refreshCurrentDashboardInfo(
+        //                 this.globalVariableService.currentDashboardID,
+        //                 this.globalVariableService.currentDashboardTabID).then(j => 
+        //                     {
+        //                         this.refreshGraphs = false;
+        //                         this.currentTabName = this.globalVariableService.
+        //                             currentDashboardTabs[this.currentDashboardTabIndex].name;
+        //                         this.currentWidgets = this.globalVariableService.
+        //                             currentWidgetsTEST;
+        //                         console.log(this.currentTabName, this.currentDashboardTabIndex)
+        //                     }
+        //             )
+        //         }
+        //     }
+        // )
     }
 
     ngAfterViewInit() {
@@ -1222,7 +1241,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
 
         this.globalVariableService.refreshCurrentDashboard(
-            'statusbar-clickTest', 1, 0, 'First')
+            'statusbar-clickTest', 1, 1, '')
 
         this.globalVariableService.currentDashboardID = 1;
         this.globalVariableService.currentDashboardTabID = 

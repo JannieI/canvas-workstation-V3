@@ -2878,15 +2878,13 @@ export class GlobalVariableService {
         // This will refresh the Dashboard on the screen (via .subscribe)
         // If a dashboardTabID is given, this one will be shown.  Else, it will navigate
         // to tabToShow, which can be First, Previous, Next, Last.  tabToShow overules
-        // dashboardTabID if tabToShow is given.  It assumes that all the currentD info
-        // has already been collected, and that we have a currentDashboardInfo object
-        // if Previous/Next are parameters.
+        // dashboardTabID if tabToShow is given.  It does not assume that all the currentD 
+        // Info has already been collected - to allow for the first time this is called.
+        // It does assume that we have a currentDashboardInfo object if Previous/Next are 
+        // parameters.
         console.log('Global-Variables refreshCurrentDashboard ...');
 
         // Assume we have all currentD info
-        if (this.currentDashboards.length == 0) {
-            return;
-        }
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&  
             (this.currentDashboardInfo == null) ) {
             return;
@@ -2897,6 +2895,10 @@ export class GlobalVariableService {
         let y: number = 0;
         
         if (tabToShow != '') {
+            if (this.currentDashboardTabs.length == 0) {
+                console.log('this.currentDashboardTabs empty');
+                return;
+            }
             if (tabToShow == 'First') {
                 x = 0;
             }
@@ -2919,9 +2921,13 @@ export class GlobalVariableService {
             y = this.currentDashboardTabs[x].id;
         } else {
             y = dashboardTabID;
-            for (var i = 0; i < this.currentDashboardTabs.length; i++) {
-                if (this.currentDashboardTabs[i].id = dashboardTabID) {
-                    x = i;
+            if (this.currentDashboards.length == 0) {
+                x = 0;
+            } else {
+                for (var i = 0; i < this.currentDashboardTabs.length; i++) {
+                    if (this.currentDashboardTabs[i].id = dashboardTabID) {
+                        x = i;
+                    }
                 }
             }
         }
