@@ -96,18 +96,22 @@ export class LandingComponent implements OnInit {
 
 		console.log('Landing start clickOpenSampleDashboard', dashboardID);
 
-		// Check that we have data
-		if (this.globalVariableService.dashboards == []) {
-				this.globalVariableService.statusBarMessages.next(
-					'D still loading ...'
-				);
-				return;
-		};
+		// // Check that we have data
+		// if (this.globalVariableService.dashboards == []) {
+		// 		this.globalVariableService.statusBarMessages.next(
+		// 			'D still loading ...'
+		// 		);
+		// 		return;
+		// };
 
 		// Set ids and then signal that the Dashboard must be refreshed
-		this.globalVariableService.currentDashboardID = dashboardID;
-		this.globalVariableService.currentDashboardTabID = 1;
-		this.globalVariableService.refreshDashboard.next(true);
+		// this.globalVariableService.currentDashboardID = dashboardID;
+		// this.globalVariableService.currentDashboardTabID = 1;
+		// this.globalVariableService.refreshDashboard.next(true);
+
+		this.globalVariableService.refreshCurrentDashboard(
+			'landing-clickOpenRecentDashboard', dashboardID, -1, ''
+		);
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();
