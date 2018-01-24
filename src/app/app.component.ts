@@ -288,12 +288,23 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
 
         this.showModalLanding = false;
-        this.document.body.style.backgroundImage ='../images/BarChart.png';
-        if (this.globalVariableService.openDashboardFormOnStartup == true) {
-        console.log('App handleCloseModalLanding')
+        // this.document.body.style.backgroundImage ='../images/BarChart.png';
+
+        if (this.globalVariableService.openDashboardFormOnStartup) {
+            console.log('handleCloseModalLanding 1')
             this.showModalDashboardOpen = true;
-            this.router.navigate(['/explore']);
-        }
+        };
+
+        if (this.globalVariableService.openNewDashboardFormOnStartup) {
+            console.log('handleCloseModalLanding 2')
+            this.showModalData = true;
+        };
+
+        // if (this.globalVariableService.openDashboardFormOnStartup == true) {
+        // console.log('App handleCloseModalLanding')
+        //     this.showModalDashboardOpen = true;
+        //     this.router.navigate(['/explore']);
+        // }
 
     }
 
@@ -468,12 +479,12 @@ export class AppComponent implements OnInit {
         this.showModalDataSlicers = false;
     }
 
-    // handleCloseData() {
-    //     // 
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
+    handleCloseData() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
 
-    //     this.showModalData = false;
-    // }
+        this.showModalData = false;
+    }
     
     handleCloseDataCombination() {
         // 
