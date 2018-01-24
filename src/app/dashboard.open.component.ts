@@ -40,6 +40,9 @@ export class DashboardOpenComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
         this.globalVariableService.isFirstTimeDashboard.subscribe(
             i => this.isFirstTimeDashboardOpen = i
@@ -48,6 +51,9 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     clickClose(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         this.test = true;
 
         console.log('DashboardOpen clickClose', this.test)
@@ -56,10 +62,16 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     clickGotIt() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
+
         this.globalVariableService.isFirstTimeDashboard.next(false);
     }
 
     clickShowAdvancedFilters() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
+
         this.showAdvancedFilters = !this.showAdvancedFilters;
         if (this.showAdvancedFilters) {
             this.records = 3
@@ -69,19 +81,29 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     clickOpenView(dashboardID: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenView', '@Start');
+
         console.log('DashboardOpen clickOpenView id', dashboardID)
 
         this.globalVariableService.editMode.next(false);
 
         // Set ids and then signal that the Dashboard must be refreshed
-        this.globalVariableService.currentDashboardID = dashboardID;
-        this.globalVariableService.currentDashboardTabID = 1;
-        this.globalVariableService.refreshDashboard.next(true);
+        // this.globalVariableService.currentDashboardID = dashboardID;
+        // this.globalVariableService.currentDashboardTabID = 1;
+        // this.globalVariableService.refreshDashboard.next(true);
 
+		this.globalVariableService.refreshCurrentDashboard(
+			'landing-clickOpenRecentDashboard', dashboardID, -1, ''
+        );
+        
         this.formDashboardOpenClosed.emit('View');
     }
 
     clickOpenEdit(dashboardID: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenEdit', '@Start');
+
         console.log('DashboardOpen clickOpenEdit id', dashboardID)
 
         this.globalVariableService.editMode.next(true);
