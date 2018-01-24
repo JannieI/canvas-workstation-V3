@@ -58,14 +58,12 @@ export class LandingComponent implements OnInit {
 						for (var y = 0; y < this.globalVariableService.dashboards.length; y++) {
 							if (this.globalVariableService.dashboards[y].id ==
 							k[x].dashboardID) {
-								console.log('f')
 								k[x].stateAtRunTime = this.globalVariableService.dashboards[y].state;
 								k[x].nameAtRunTime = this.globalVariableService.dashboards[y].name;
 							}
 						}
 					}
 					this.recentDashboards = k;
-					console.log('fokkit', this.globalVariableService.dashboards.length, k);
 				})
 			})
 		})
