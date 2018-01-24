@@ -1104,7 +1104,7 @@ export class GlobalVariableService {
 
     dataGetFromSwitch = new BehaviorSubject<string>('File');
     duplicateWidget = new BehaviorSubject<boolean>(false);
-    refreshDashboard = new BehaviorSubject<boolean>(false);     // True to refresh the D now
+    // refreshDashboard = new BehaviorSubject<boolean>(false);     // True to refresh the D now
 
 
     // Company related variables

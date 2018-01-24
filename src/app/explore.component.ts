@@ -226,27 +226,27 @@ export class ExploreComponent {
         this.globalVariableService.hasDatasources.subscribe(
             i => this.hasDatasources = i
         );
-        this.globalVariableService.refreshDashboard.subscribe(
-            i => {
-                    console.log ('Explore ngOnInit refreshDashboard', 
-                        this.globalVariableService.currentDashboardID,
-                        this.globalVariableService.currentDashboardTabID)
-                    if (i)
-                        {
-                            // Add to Recently used
-                            this.globalVariableService.addDashboardRecent(
-                                this.globalVariableService.currentDashboardID,
-                                this.globalVariableService.currentDashboardTabID
-                            )
-                            // Refresh D and related info
-                            this.refreshDashboardInfo(
-                                this.globalVariableService.currentDashboardID,
-                                this.globalVariableService.currentDashboardTabID);
-                            this.globalVariableService.refreshDashboard.next(false);
+        // this.globalVariableService.refreshDashboard.subscribe(
+        //     i => {
+        //             console.log ('Explore ngOnInit refreshDashboard', 
+        //                 this.globalVariableService.currentDashboardID,
+        //                 this.globalVariableService.currentDashboardTabID)
+        //             if (i)
+        //                 {
+        //                     // Add to Recently used
+        //                     this.globalVariableService.addDashboardRecent(
+        //                         this.globalVariableService.currentDashboardID,
+        //                         this.globalVariableService.currentDashboardTabID
+        //                     )
+        //                     // Refresh D and related info
+        //                     this.refreshDashboardInfo(
+        //                         this.globalVariableService.currentDashboardID,
+        //                         this.globalVariableService.currentDashboardTabID);
+        //                     this.globalVariableService.refreshDashboard.next(false);
 
-                        };
-            }
-        );
+        //                 };
+        //     }
+        // );
         this.globalVariableService.menuActionResize.subscribe(
             i => { if(i) {this.clickMenuAlignTop()}}
         );
