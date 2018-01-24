@@ -1746,7 +1746,7 @@ export class GlobalVariableService {
     }
 
     getDashboardsRecentList(userID: string): Promise<number[]> {
-        // Description: Gets a LIST of Recent D
+        // Description: Gets a LIST of Recent D, T
         // Returns: this.dashboardsRecent array, unless:
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDashboardsRecentList ...');
@@ -1782,7 +1782,75 @@ export class GlobalVariableService {
 
     }
 
-    getDashboardsRecent(userID: string): Promise<Dashboard[]> {
+    // getDashboardsRecent(userID: string): Promise<Dashboard[]> {
+    //     // Description: Gets all Recent D
+    //     // Returns: recent [D] array, unless:
+    //     //   If not cached or if dirty, get from File
+    //     console.log('Global-Variables getDashboardsRecent ...');
+
+    //     // Refresh from source at start, or if dirty
+    //     if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
+    //         return new Promise<Dashboard[]>((resolve, reject) => {
+    //             this.getDashboardsRecentList(userID)
+    //                 .then(data => {
+    //                     let returnData: Dashboard[] = [];
+    //                     for (var i = 0; i < this.dashboards.length; i++) {
+    //                         if (data.indexOf(this.dashboards[i].id) != -1) {
+    //                             returnData.push(this.dashboards[i]);
+    //                         }
+    //                     }
+    //                     console.log('Global-Variables getDashboardsRecent 1', userID, returnData)
+    //                     resolve(returnData);
+
+    //             })
+    //          })
+    //     } else {
+    //         return new Promise<Dashboard[]>((resolve, reject) => {
+    //             let returnData: Dashboard[] = [];
+    //             for (var i = 0; i < this.dashboards.length; i++) {
+    //                 if (this.dashboardsRecent.indexOf(this.dashboards[i].id) != -1) {
+    //                     returnData.push(this.dashboards[i]);
+    //                 }
+    //             }
+    //             console.log('Global-Variables getDashboardsRecent 2', userID, returnData)
+    //             resolve(returnData);
+    //         });
+    //     };
+
+    // }
+
+    getDashboardSamples(): Promise<Dashboard[]> {
+        // Description: Gets all Sample D
+        // Returns: an array extracted from [D], unless:
+        //   If D not cached or if dirty, get from File
+        console.log('Global-Variables getDashboardSamples ...');
+
+        // Refresh from source at start, or if dirty
+        if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
+            return new Promise<Dashboard[]>((resolve, reject) => {
+                this.getDashboards()
+                    .then(data => {
+                        data = data.filter(
+                            i => (i.isSample)
+                        );
+                        console.log('Global-Variables getDashboardSamples 1', data)
+                        resolve(data);
+
+                })
+            })
+        } else {
+            return new Promise<Dashboard[]>((resolve, reject) => {
+                let data: Dashboard[] = this.dashboards.filter(
+                    i => (i.isSample)
+                )
+                console.log('Global-Variables getDashboardSamples 2', data)
+                resolve(data);
+            });
+        };
+
+    }
+
+    getDashboardsRecentlyUsed(userID: string): Promise<Dashboard[]> {
         // Description: Gets all Recent D
         // Returns: recent [D] array, unless:
         //   If not cached or if dirty, get from File

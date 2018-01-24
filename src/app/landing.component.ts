@@ -46,7 +46,7 @@ export class LandingComponent implements OnInit {
 		this.sampleDashboards = this.globalVariableService.getDashboardSamples();
 		// Recent Dashboards
 		// TODO - remove hardcoded userID and make data cater for >1 user
-		this.recentDashboards = this.globalVariableService.getDashboardsRecent('JannieI');
+		this.recentDashboards = this.globalVariableService.getDashboardsRecentlyUsed('JannieI');
 		}
 
 	ngOnInit() {
@@ -118,7 +118,7 @@ export class LandingComponent implements OnInit {
 		// Delete from temp array, refresh
 		this.globalVariableService.deleteDashboardRecent(index).then(
 			i => {
-				this.recentDashboards = this.globalVariableService.getDashboardsRecent(
+				this.recentDashboards = this.globalVariableService.getDashboardsRecentlyUsed(
 				this.globalVariableService.userID
 			);
 		})
