@@ -5,14 +5,16 @@ import { Injectable }                 from '@angular/core';
 // Our Serives
 
 // Our Models
-import { ButtonBarAvailable }         from './models'
+import { ButtonBarAvailable }         from './models';
 import { ButtonBarSelected }          from './models';
 import { CanvasActivity }             from './models';
 import { CanvasAlert }                from './models';
 import { CanvasComment }              from './models';
 import { CanvasMessage }              from './models';
 import { CanvasShape }                from './models';
-import { CanvasSlicer}                from './models'
+import { CanvasSlicer}                from './models';
+import { CanvasUser}                  from './models';
+
 import { CanvasWidget }               from './models';
 import { Combination }                from './models';
 import { CombinationDetail }          from './models';
@@ -20,7 +22,7 @@ import { CSScolor }                   from './models';
 import { CurrentDashboardInfo }       from './models';
 import { Dashboard }                  from './models';
 import { DashboardPermission }        from './models';
-import { DashboardRecent}             from './models'
+import { DashboardRecent}             from './models';
 import { DashboardSnapshot }          from './models';
 import { DashboardSchedule }          from './models';
 import { DashboardTab }               from './models';
@@ -1077,6 +1079,7 @@ export class GlobalVariableService {
     hasDatasources = new BehaviorSubject<boolean>(false);   // Used to set menu
     showModalLanding = new BehaviorSubject<boolean>(true);  // Shows Landing page
     // Session
+    currentUser: CanvasUser;
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     currentDashboardID:number = 0; // = new BehaviorSubject<number>(null);
     currentDashboardTabID:number = 0; //  = new BehaviorSubject<number>(1);

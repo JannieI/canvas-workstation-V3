@@ -209,7 +209,34 @@ export class AppComponent implements OnInit {
         private router: Router,
 
     ) {
-        console.log('App constructor')
+
+        // TODO - change hard coding & do via login (Server), and Standalone
+        this.globalVariableService.currentUser = {
+            id: 1,
+            userID: 'JannieI',
+            password: '',
+            firstName: '',
+            lastName: '',
+            nickName: '',
+            email: '',
+            workNumber: '',
+            cellNumber: '',
+            groups: ['everyone', 'admin'],
+            isSuperuser: false,
+            isStaff: false,
+            isActive: false,
+            dateJoined: '2017/01/01',
+            lastLogin: '2017/01/01',
+            colorScheme: '',         
+            startupDashboardID: 0,   
+            startupDashboardTabID: 0,
+            gridSize: 3,           
+            environment: '',       
+            profilePicture: '',
+            queryRuntimeWarning: 3,
+            snapToGrid: false    
+        }
+        console.log('Welcome ', this.globalVariableService.currentUser.userID)
     }
 
     ngOnInit() {

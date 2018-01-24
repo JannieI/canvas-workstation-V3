@@ -88,8 +88,8 @@ export class CanvasUser {
     isSuperuser: boolean;
     isStaff: boolean;
     isActive: boolean;
-    dateJoined: Date;
-    lastLogin: Date;
+    dateJoined: string;
+    lastLogin: string;
     colorScheme: string;                    // Color scheme for Canvas - for later use
     startupDashboardID: number;             // Optional Dashboard ID to show at startup
     startupDashboardTabID: number;          // Optional Dashboard Tab ID to show at startup
