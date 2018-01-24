@@ -1242,6 +1242,7 @@ export class GlobalVariableService {
      refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number): 
         Promise<boolean> {
         // Refreshes all info related to current D
+        // dashboardTabID = -1 if unknown, so get first T
         // Returns True if all worked, False if something went wrong
         console.log('Global-Variables refreshCurrentDashboardInfo D,T id = ', dashboardID, dashboardTabID)
 
@@ -1251,30 +1252,34 @@ export class GlobalVariableService {
             this.getCurrentDashboard(dashboardID).then( i => 
             // Load the DashboardTabs
             this.getCurrentDashboardTabs(dashboardID).then(j =>
-            // Load Widgets
-            this.getCurrentWidgets(dashboardID, dashboardTabID).then(k =>
-            // Load Shapes
-            this.getCurrentShapes(dashboardID, dashboardTabID).then(l =>
-            // Load Slicers
-            this.getCurrentSlicers(dashboardID, dashboardTabID).then(m =>
-            // Load Permissions for D
-            this.getCurrentDashboardPermissions(dashboardID).then( o =>
-            // Load DS
-            this.getCurrentDatasource(dashboardID).then(p =>
-            // Load TEST
-            this.getCurrentWidgetsTEST(dashboardID, dashboardTabID).then(q =>
-                // Reset Global Vars
                 {
-                    this.currentDashboardID = dashboardID
-                    this.currentDashboardTabID = dashboardTabID
-                    if (this.currentWidgets.length > 0) {
-                        this.hasDatasources.next(true);
-                    } else {
-                        this.hasDatasources.next(false);
+                    if (dashboardTabID == -1) {
+                        if (j.length > 0) {dashboardTabID = j[0].id}
                     }
-                    resolve(true)
-                }
-        ))))))));
+                    // Load Widgets
+                    this.getCurrentWidgets(dashboardID, dashboardTabID).then(k =>
+                    // Load Shapes
+                    this.getCurrentShapes(dashboardID, dashboardTabID).then(l =>
+                    // Load Slicers
+                    this.getCurrentSlicers(dashboardID, dashboardTabID).then(m =>
+                    // Load Permissions for D
+                    this.getCurrentDashboardPermissions(dashboardID).then( o =>
+                    // Load DS
+                    this.getCurrentDatasource(dashboardID).then(p =>
+                    // Load TEST
+                    this.getCurrentWidgetsTEST(dashboardID, dashboardTabID).then(q =>
+                        // Reset Global Vars
+                        {
+                            this.currentDashboardID = dashboardID
+                            this.currentDashboardTabID = dashboardTabID
+                            if (this.currentWidgets.length > 0) {
+                                this.hasDatasources.next(true);
+                            } else {
+                                this.hasDatasources.next(false);
+                            }
+                            resolve(true)
+                        }
+        ))))))}));
         });
     }
 
