@@ -15,8 +15,9 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { Datasource } 				  from './models';
-import { DashboardTab } 			  from './models';
 import { Dashboard } 				  from './models';
+import { DashboardRecent } 			  from './models';
+import { DashboardTab } 			  from './models';
 
 @Component({
   selector: 'landing',
@@ -30,6 +31,7 @@ export class LandingComponent implements OnInit {
 	// sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
 	recentDashboards: Promise<Dashboard[]>;
 	sampleDashboards: Promise<Dashboard[]>;
+	recentDashboards2: Promise<DashboardRecent>;
 	showModel: boolean = true;
 
 	constructor(
@@ -47,7 +49,20 @@ export class LandingComponent implements OnInit {
 		// Recent Dashboards
 		// TODO - remove hardcoded userID and make data cater for >1 user
 		this.recentDashboards = this.globalVariableService.getDashboardsRecentlyUsed('JannieI');
-		this.globalVariableService.getDashboardsRecent('JannieI');
+		this.recentDashboards2 = this.globalVariableService.getDashboardsRecent(
+			'JannieI').then( i =>
+				return new Promise<DashboardRecent[]>((resolve, reject) => {
+					{
+						for (var j = 0; j < i.length; j++) {
+							for (var k = 0; k < this.globalVariableService.currentDashboards.length; k++) {
+								if (this.globalVariableService.currentDashboards[k].id ==
+								   data[i].id) {
+									   data.
+								   }
+						}
+
+
+		)
 	}
 
 	ngOnInit() {

@@ -531,6 +531,7 @@ export class DashboardRecent {
     dashboardID: number;
     dashboardTabID: number;
     accessed: string;                   // Last dateTime opened
+    statusAtRunTime?: string;
 }
 
 export class DashboardTag {
