@@ -196,6 +196,7 @@ export class AppComponent implements OnInit {
 
     localTrash: CanvasWidget[];
     currentWidgets: Widget[] = [];
+    showModalLanding: boolean;
 
     // Testings ....
     refreshGraphs: boolean = false;
@@ -221,7 +222,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.showGrid.subscribe(
             sG => this.showGrid = sG
         );
-        // this.showModalLanding = this.globalVariableService.showModalLanding;
+        this.showModalLanding = this.globalVariableService.showModalLanding.value;
         this.globalVariableService.showMainMenu.subscribe(
             sm => this.showMainMenu = sm
         );
@@ -305,19 +306,19 @@ export class AppComponent implements OnInit {
         }
     }
 
-    // handleCloseModalLanding() {
-    //     // Close Modal form Landing page
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
+    handleCloseModalLanding() {
+        // Close Modal form Landing page
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
 
-    //     this.showModalLanding = false;
-    //     this.document.body.style.backgroundImage ='../images/BarChart.png';
-    //     if (this.globalVariableService.openDashboardFormOnStartup == true) {
-    //     console.log('App handleCloseModalLanding')
-    //         this.showModalDashboardOpen = true;
-    //         this.router.navigate(['/explore']);
-    //     }
+        this.showModalLanding = false;
+        this.document.body.style.backgroundImage ='../images/BarChart.png';
+        if (this.globalVariableService.openDashboardFormOnStartup == true) {
+        console.log('App handleCloseModalLanding')
+            this.showModalDashboardOpen = true;
+            this.router.navigate(['/explore']);
+        }
 
-    // }
+    }
 
     handleCloseWidgetEditor() {
         // 
