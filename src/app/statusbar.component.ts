@@ -132,6 +132,7 @@ export class StatusbarComponent {
     @Input() templateInUse: string;
 
     dashboardDescription: string;
+    dashboardTabDescription: string;
     showDashboardDescription: boolean = false;
     showDashboardTabDescription: boolean = false;
     showNewTab: boolean = false;
@@ -201,6 +202,10 @@ export class StatusbarComponent {
     clickShowTabDescription() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowTabDescription', '@Start');
+
+        this.dashboardTabDescription = this.globalVariableService.currentDashboardTabs[
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex
+        ].name
 
         this.showTabList = false;
         this.showDashboardTabDescription = true;
