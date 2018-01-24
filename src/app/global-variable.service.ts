@@ -1450,7 +1450,7 @@ export class GlobalVariableService {
         }
     }
 
-    addDashboardRecent(id: number) {
+    addDashboardRecent(dashboardID: number, dashboardTabID: number) {
         //
         console.log('Global-Variables addDashboardRecent ...');
 

@@ -1,24 +1,33 @@
 [
     {
         "userID": "JannieI",
-        "dashboardID": 1
+        "dashboardID": 1,
+        "dashboardTabID": 1
     },
     {
         "userID": "JannieI",
-        "dashboardID": 6
+        "dashboardID": 6,
+        "dashboardTabID": 9
+
     },
     {
         "userID": "OliviaB",
-        "dashboardID": 2
+        "dashboardID": 2,
+        "dashboardTabID": 1
+
     }
     ,
     {
         "userID": "OliviaB",
-        "dashboardID": 7
+        "dashboardID": 7,
+        "dashboardTabID": 1
+
     }
     ,
     {
         "userID": "OliviaB",
-        "dashboardID": 9
+        "dashboardID": 9,
+        "dashboardTabID": 1
+
     }
 ]

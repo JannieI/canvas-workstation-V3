@@ -525,9 +525,11 @@ export class DashboardTab {
     color: string;
 }
 
+// List of Recently opened D
 export class DashboardRecent {
     userID: string;
     dashboardID: number;
+    dashboardTabID: number;
     accessed: string;                   // Last dateTime opened
 }
 
