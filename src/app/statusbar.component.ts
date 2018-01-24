@@ -188,6 +188,10 @@ export class StatusbarComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFirstTab', '@Start');
 
+        this.showTabList = false;
+        this.showDashboardTabDescription = false;
+        this.showDashboardDescription = false;
+
         this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'First');    
     }
 
@@ -195,6 +199,10 @@ export class StatusbarComponent {
     clickShowPreviousTab() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowPreviousTab', '@Start');
+
+        this.showTabList = false;
+        this.showDashboardTabDescription = false;
+        this.showDashboardDescription = false;
 
         this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Previous');    
     }
@@ -205,7 +213,7 @@ export class StatusbarComponent {
 
         this.dashboardTabDescription = this.globalVariableService.currentDashboardTabs[
             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex
-        ].name
+        ].description
 
         this.showTabList = false;
         this.showDashboardTabDescription = true;
@@ -217,12 +225,20 @@ export class StatusbarComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNextTab', '@Start');
 
+        this.showTabList = false;
+        this.showDashboardTabDescription = false;
+        this.showDashboardDescription = false;
+
         this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Next');    
     }
 
     clickShowLastTab() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowLastTab', '@Start');
+
+        this.showTabList = false;
+        this.showDashboardTabDescription = false;
+        this.showDashboardDescription = false;
 
         this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Last');    
     }

@@ -3,28 +3,28 @@
         "id": 1,
         "dashboardID": 1,
         "name": "Summary",
-        "description": "Summary",
+        "description": "Summary stats",
         "color": ""
     },
     {
         "id": 2,
         "dashboardID": 1,
         "name": "Headcount",
-        "description": "Headcount",
+        "description": "Headcount for YTD",
         "color": ""
     },
     {
         "id": 3,
         "dashboardID": 1,
         "name": "Europe",
-        "description": "Europe",
+        "description": "Europe Overview",
         "color": ""
     },
     {
         "id": 4,
         "dashboardID": 1,
         "name": "Budget",
-        "description": "Budget",
+        "description": "My Budget",
         "color": ""
     },
     {
