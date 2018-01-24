@@ -239,9 +239,15 @@ export class StatusbarComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowLastTab', '@Start');
 
-        console.log('Explore clickShowLastTab',this.currentTabName)
-        this.currentTabName = this.globalVariableService.currentDashboardTabs[
-            this.globalVariableService.currentDashboardTabs.length - 1].name;        
+        let dt = new Date();  
+        let x = this.globalVariableService.currentDashboardTabs.length - 1;
+        this.globalVariableService.currentDashboardInfo.next({
+            currentDashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            currentDashboardTabID: this.globalVariableService.currentDashboardTabs[x].id,
+            currentDashboardTabIndex: x,
+            refreshingRoutine: 'statusbar-clickShowLastTab',
+            refreshDateTime: dt.toString()
+        });
     }
 
     clickAddTab() {

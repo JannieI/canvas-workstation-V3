@@ -240,9 +240,17 @@ export class AppComponent implements OnInit {
                  }
         );
 
+
+        this.globalVariableService.currentDashboardInfo.subscribe(
+            i => { if (i)  console.log('yy', i) }
+        )
+
+
         this.globalVariableService.refreshDashboard.subscribe(i => 
             {
                 if (i) {
+
+                    console.log('xx', this.globalVariableService.currentDashboardInfo)
                     this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardID,
@@ -1212,6 +1220,18 @@ export class AppComponent implements OnInit {
     clickTest() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
+
+
+        let dt = new Date();  
+        this.globalVariableService.currentDashboardInfo.next({
+            currentDashboardID: 1,
+            currentDashboardTabID: 1,
+            currentDashboardTabIndex: 0,
+            refreshingRoutine: 'statusbar-clickShowLastTab',
+            refreshDateTime: dt.toString()
+        });
+
+
 
         this.globalVariableService.currentDashboardID = 1;
         this.globalVariableService.currentDashboardTabID = 

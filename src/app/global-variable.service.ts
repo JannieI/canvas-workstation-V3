@@ -1052,7 +1052,7 @@ export class GlobalVariableService {
     currentDashboardPermissions: DashboardPermission[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
 
-    currentDashboardInfo: CurrentDashboardInfo = null;
+    currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
 
     // Global vars that guide all interactions
     // ***************************************

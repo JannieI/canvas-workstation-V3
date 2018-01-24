@@ -5,9 +5,8 @@ export class CurrentDashboardInfo {
     currentDashboardID: number = 0;         // Current D we are working with
     currentDashboardTabID: number = 0;
     currentDashboardTabIndex: number = 0;   // Index in [T]
-    refreshingRoutine: string;              // Routine that called to refresh 
-    refreshDate: string;
-    refreshTime: string;
+    refreshingRoutine: string;              // Component-Function that called to refresh
+    refreshDateTime: string;
 }
 
 export class ButtonBarAvailable {
