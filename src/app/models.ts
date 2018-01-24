@@ -29,7 +29,7 @@ export class CSScolor {
 }
 
 
-// Messages / Activities / Alerts / Comments
+// Messages / Activities / Alerts / Comments / User
 export class CanvasActivity {
     id: number;
     createdBy: string;
@@ -74,6 +74,31 @@ export class CanvasComment {
     createdOn: string;
 }
 
+export class CanvasUser {
+    id: number;
+    userID: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    nickName: string;
+    email: string;
+    workNumber: string;
+    cellNumber: string;
+    groups: string[];
+    isSuperuser: boolean;
+    isStaff: boolean;
+    isActive: boolean;
+    dateJoined: Date;
+    lastLogin: Date;
+    colorScheme: string;                    // Color scheme for Canvas - for later use
+    startupDashboardID: number;             // Optional Dashboard ID to show at startup
+    startupDashboardTabID: number;          // Optional Dashboard Tab ID to show at startup
+    gridSize: number;                       // Size of Grid on Dashboard in px
+    environment: string;                    // Live, Test-Environment-Name
+    profilePicture: string;
+    queryRuntimeWarning: number;            // Minutes: Warn user if a report is known to run longer
+    snapToGrid: boolean;                    // True: snap Widgets to the grid points on Dashboard
+}
 
 // Data
 export class Dataset {
