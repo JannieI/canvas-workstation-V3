@@ -1,6 +1,17 @@
 // ALL models (schema) are kept here
 
 // Setup / Settings / General
+
+// Current D we are working with
+export class currentDashboard {
+    currentDashboardID: number = 0; 
+    currentDashboardTabID: number = 0;
+    currentDashboardTabIndex: number = 0;   // Index in [T]
+    refreshingRoutine: string;              // Routine that called to refresh 
+    refreshDate: string;
+    refreshTime: string;
+}
+
 export class ButtonBarAvailable {
     id: number;
     buttonText: string;
