@@ -186,8 +186,8 @@ export class AppComponent implements OnInit {
     showModalUserShapeButtonBar: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
-
-    currentTabName: string = 'Summary';
+    currentDashboardName: string = '';
+    currentTabName: string = '';
     statusBarRunning: boolean = false;
     statusBarCancelRefresh: boolean = false;
     statusBarMessages: string = '';
@@ -239,7 +239,6 @@ export class AppComponent implements OnInit {
                  }
         );
 
-
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => { 
                 if (i) {
@@ -250,14 +249,15 @@ export class AppComponent implements OnInit {
                             currentDashboardTabID).then(j => 
                             {
                                 this.refreshGraphs = false;
+                                let x: number = this.globalVariableService.currentDashboardInfo.value.
+                                    currentDashboardTabIndex;
+                                this.currentDashboardName = this.globalVariableService.
+                                    currentDashboards[0].name;
                                 this.currentTabName = this.globalVariableService.
-                                    currentDashboardTabs[
-                                        this.globalVariableService.currentDashboardInfo.value.
-                                        currentDashboardTabIndex
-                                    ].name;
+                                    currentDashboardTabs[x].name;
                                 this.currentWidgets = this.globalVariableService.
                                     currentWidgetsTEST;
-                                console.log('yy', this.currentTabName, this.globalVariableService.currentDashboardInfo.value.
+                                console.log('yy', this.currentDashboardName, this.currentTabName, this.globalVariableService.currentDashboardInfo.value.
                                 currentDashboardTabID, '@', this.globalVariableService.currentDashboardInfo.value.
                                 currentDashboardTabIndex)
                             }

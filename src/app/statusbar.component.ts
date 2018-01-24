@@ -123,6 +123,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 export class StatusbarComponent {
 
     @Input() editMode: boolean;
+    @Input() currentDashboardName: string;
     @Input() currentTabName: string;
     @Input() statusBarRunning: string;
     @Input() statusBarCancelRefresh: string;
@@ -134,7 +135,6 @@ export class StatusbarComponent {
     showDashboardTabDescription: boolean = false;
     showNewTab: boolean = false;
     showTabList: boolean = false;
-    currentDashboardName: string;
     // currentTabName: string;
 
     
