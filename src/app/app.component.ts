@@ -1246,16 +1246,16 @@ export class AppComponent implements OnInit {
         this.globalVariableService.refreshCurrentDashboard(
             'statusbar-clickTest', 1, 1, '')
 
-        this.globalVariableService.currentDashboardID = 1;
-        this.globalVariableService.currentDashboardTabID = 
-            this.globalVariableService.currentDashboardTabID + 1;
-        if (this.globalVariableService.currentDashboardTabID >
-                this.globalVariableService.currentDashboardTabs.length) {
-            this.globalVariableService.currentDashboardTabID = 1;
-        }
-        this.globalVariableService.refreshDashboard.next(true);
-        this.refreshGraphs = true;
-        this.globalVariableService.refreshDashboard.next(false);
+        // this.globalVariableService.currentDashboardID = 1;
+        // this.globalVariableService.currentDashboardTabID = 
+        //     this.globalVariableService.currentDashboardTabID + 1;
+        // if (this.globalVariableService.currentDashboardTabID >
+        //         this.globalVariableService.currentDashboardTabs.length) {
+        //     this.globalVariableService.currentDashboardTabID = 1;
+        // }
+        // this.globalVariableService.refreshDashboard.next(true);
+        // this.refreshGraphs = true;
+        // this.globalVariableService.refreshDashboard.next(false);
     }
 
 

@@ -79,7 +79,6 @@ export class LandingComponent implements OnInit {
 	ngAfterViewInit() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
-
 	}
 
 	clickButtonData() {
@@ -96,26 +95,12 @@ export class LandingComponent implements OnInit {
 
 		console.log('Landing start clickOpenSampleDashboard', dashboardID);
 
-		// // Check that we have data
-		// if (this.globalVariableService.dashboards == []) {
-		// 		this.globalVariableService.statusBarMessages.next(
-		// 			'D still loading ...'
-		// 		);
-		// 		return;
-		// };
-
-		// Set ids and then signal that the Dashboard must be refreshed
-		// this.globalVariableService.currentDashboardID = dashboardID;
-		// this.globalVariableService.currentDashboardTabID = 1;
-		// this.globalVariableService.refreshDashboard.next(true);
-
 		this.globalVariableService.refreshCurrentDashboard(
 			'landing-clickOpenRecentDashboard', dashboardID, -1, ''
 		);
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();
-		// this.router.navigate(['/explore']);
 	}
 
 	clickOpenRecentDashboard(dashboardID: number, dashboardTabID: number) {
@@ -124,17 +109,12 @@ export class LandingComponent implements OnInit {
 
 		console.log('Landing start clickOpenRecentDashboard', dashboardID);
 
-		// Set ids and then signal that the Dashboard must be refreshed
-		// this.globalVariableService.currentDashboardID = dashboardID;
-		// this.globalVariableService.currentDashboardTabID = 1;
-		// this.globalVariableService.refreshDashboard.next(true);
         this.globalVariableService.refreshCurrentDashboard(
 			'landing-clickOpenRecentDashboard', dashboardID, dashboardTabID, ''
 		);
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();
-			// this.router.navigate(['/explore']);
 	}
 
 	deleteRecent(index: number) {
@@ -155,9 +135,6 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formLandingClosed.emit(action);
-		// if (action !== 'OpenExisting') {
-		// 	this.router.navigate(['/data']);
-		// }
 	}
 
 	clickOpenExisting() {
@@ -165,13 +142,8 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenExisting', '@Start');
 
 		this.globalVariableService.openDashboardFormOnStartup = true;
-		// let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs
-		// 	.filter(i => i.dashboardID = 1
-		// );
-		// console.log('Landing clickOpenExisting', this.globalVariableService.dashboardTabs, currentDashboardTabs)
-		// this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs)
+
 		this.formLandingClosed.emit();
-		// this.router.navigate(['/explore']);
 	}
 
 	clickOpenNewDashboard() {
@@ -179,13 +151,8 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenNewDashboard', '@Start');
 
 		this.globalVariableService.openNewDashboardFormOnStartup = true;
-		// let currentDashboardTabs: DashboardTab[] = this.globalVariableService.dashboardTabs
-		// 	.filter(i => i.dashboardID = 1
-		// );
-		// console.log('Landing clickOpenNewDashboard', this.globalVariableService.dashboardTabs, currentDashboardTabs)
-		// this.globalVariableService.currentDashboardTabs.next(currentDashboardTabs)
+
 		this.formLandingClosed.emit();
-		// this.router.navigate(['/explore']);
 	}
 
 }
