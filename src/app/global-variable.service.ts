@@ -2872,7 +2872,7 @@ export class GlobalVariableService {
     refreshCurrentDashboard(
         refreshingRoutine: string,
         dashboardID: number, 
-        dashboardTabID?: number, 
+        dashboardTabID: number = 0, 
         tabToShow: string = '') {
         // Refresh the global var currentDashboardInfo, then .next it.
         // This will refresh the Dashboard on the screen (via .subscribe)
@@ -2925,12 +2925,12 @@ export class GlobalVariableService {
                 }
             }
         }
-
+        console.log('xx', x, y)
         this.currentDashboardInfo.next({
             currentDashboardID: dashboardID,
             currentDashboardTabID: y,
             currentDashboardTabIndex: x,
-            refreshingRoutine: 'statusbar-clickShowLastTab',
+            refreshingRoutine: refreshingRoutine,
             refreshDateTime: dt.toString()
         });
 

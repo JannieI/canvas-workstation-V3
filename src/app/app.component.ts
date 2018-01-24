@@ -1221,17 +1221,8 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
 
-
-        let dt = new Date();  
-        this.globalVariableService.currentDashboardInfo.next({
-            currentDashboardID: 1,
-            currentDashboardTabID: 1,
-            currentDashboardTabIndex: 0,
-            refreshingRoutine: 'statusbar-clickShowLastTab',
-            refreshDateTime: dt.toString()
-        });
-
-
+        this.globalVariableService.refreshCurrentDashboard(
+            'statusbar-clickTest', 1, 0, 'First')
 
         this.globalVariableService.currentDashboardID = 1;
         this.globalVariableService.currentDashboardTabID = 
