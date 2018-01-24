@@ -29,9 +29,8 @@ export class LandingComponent implements OnInit {
 	@Output() formLandingClosed: EventEmitter<string> = new EventEmitter();
 
 	// sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
-	recentDashboards: Promise<Dashboard[]>;
-	sampleDashboards: Promise<Dashboard[]>;
-	recentDashboards2: Promise<DashboardRecent>;
+	recentDashboards: DashboardRecent[];
+	sampleDashboards: Dashboard[];
 	showModel: boolean = true;
 
 	constructor(
@@ -42,27 +41,32 @@ export class LandingComponent implements OnInit {
 
 		console.log('Landing constructor')
 		// Load Startup info:
+		
 		//Datasources
-        this.globalVariableService.getDatasources();
-		// Sample Dashboards
-		this.sampleDashboards = this.globalVariableService.getDashboardSamples();
-		// Recent Dashboards
-		// TODO - remove hardcoded userID and make data cater for >1 user
-		this.recentDashboards = this.globalVariableService.getDashboardsRecentlyUsed('JannieI');
-		this.recentDashboards2 = this.globalVariableService.getDashboardsRecent(
-			'JannieI').then( i =>
-				return new Promise<DashboardRecent[]>((resolve, reject) => {
-					{
-						for (var j = 0; j < i.length; j++) {
-							for (var k = 0; k < this.globalVariableService.currentDashboards.length; k++) {
-								if (this.globalVariableService.currentDashboards[k].id ==
-								   data[i].id) {
-									   data.
-								   }
+		this.globalVariableService.getDatasources();
+		
+		// Load D
+		this.globalVariableService.getDashboards().then(i => {
+			// Sample Dashboards
+			this.globalVariableService.getDashboardSamples().then(j => {
+				this.sampleDashboards = j;
+		
+				// Recent D
+				this.globalVariableService.getDashboardsRecent('JannieI').then(k => {
+					for (var x = 0; x < k.length; x++) {
+						k[x].stateAtRunTime = 'Deleted';
+						for (var y = 0; y < this.globalVariableService.currentDashboards.length; y++) {
+							if (this.globalVariableService.currentDashboards[y].id ==
+							k[x].dashboardID) {
+								k[x].stateAtRunTime = this.globalVariableService.currentDashboards[y].state;
+							}
 						}
-
-
-		)
+					}
+					this.recentDashboards = k;
+					console.log('fokkit', k);
+				})
+			})
+		})
 	}
 
 	ngOnInit() {
@@ -134,9 +138,9 @@ export class LandingComponent implements OnInit {
 		// Delete from temp array, refresh
 		this.globalVariableService.deleteDashboardRecent(index).then(
 			i => {
-				this.recentDashboards = this.globalVariableService.getDashboardsRecentlyUsed(
-				this.globalVariableService.userID
-			);
+				// this.recentDashboards = this.globalVariableService.getDashboardsRecentlyUsed(
+			// 	this.globalVariableService.userID
+			// );
 		})
 	}
 
