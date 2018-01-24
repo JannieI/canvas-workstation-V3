@@ -41,16 +41,16 @@ export class LandingComponent implements OnInit {
 
 		console.log('Landing constructor')
 		// Load Startup info:
-		
+
 		//Datasources
 		this.globalVariableService.getDatasources();
-		
+
 		// Load D
 		this.globalVariableService.getDashboards().then(i => {
 			// Sample Dashboards
 			this.globalVariableService.getDashboardSamples().then(j => {
 				this.sampleDashboards = j;
-		
+
 				// Recent D
 				this.globalVariableService.getDashboardsRecent('JannieI').then(k => {
 					for (var x = 0; x < k.length; x++) {
@@ -114,7 +114,7 @@ export class LandingComponent implements OnInit {
 		// this.router.navigate(['/explore']);
 	}
 
-	clickOpenRecentDashboard(dashboardID: number) {
+	clickOpenRecentDashboard(dashboardID: number, dashboardTabID: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenRecentDashboard', '@Start');
 
@@ -125,8 +125,8 @@ export class LandingComponent implements OnInit {
 		// this.globalVariableService.currentDashboardTabID = 1;
 		// this.globalVariableService.refreshDashboard.next(true);
         this.globalVariableService.refreshCurrentDashboard(
-			'landing-clickOpenRecentDashboard', dashboardID, 1, ''
-		);    
+			'landing-clickOpenRecentDashboard', dashboardID, dashboardTabID, ''
+		);
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();
