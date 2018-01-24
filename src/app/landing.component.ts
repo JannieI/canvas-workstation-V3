@@ -55,15 +55,17 @@ export class LandingComponent implements OnInit {
 				this.globalVariableService.getDashboardsRecent('JannieI').then(k => {
 					for (var x = 0; x < k.length; x++) {
 						k[x].stateAtRunTime = 'Deleted';
-						for (var y = 0; y < this.globalVariableService.currentDashboards.length; y++) {
-							if (this.globalVariableService.currentDashboards[y].id ==
+						for (var y = 0; y < this.globalVariableService.dashboards.length; y++) {
+							if (this.globalVariableService.dashboards[y].id ==
 							k[x].dashboardID) {
-								k[x].stateAtRunTime = this.globalVariableService.currentDashboards[y].state;
+								console.log('f')
+								k[x].stateAtRunTime = this.globalVariableService.dashboards[y].state;
+								k[x].nameAtRunTime = this.globalVariableService.dashboards[y].name;
 							}
 						}
 					}
 					this.recentDashboards = k;
-					console.log('fokkit', k);
+					console.log('fokkit', this.globalVariableService.dashboards.length, k);
 				})
 			})
 		})
