@@ -3,54 +3,63 @@
         "id": 1,
         "dashboardID": 1,
         "name": "Summary",
+        "description": "Summary",
         "color": ""
     },
     {
         "id": 2,
         "dashboardID": 1,
         "name": "Headcount",
+        "description": "Headcount",
         "color": ""
     },
     {
         "id": 3,
         "dashboardID": 1,
         "name": "Europe",
+        "description": "Europe",
         "color": ""
     },
     {
         "id": 4,
         "dashboardID": 1,
         "name": "Budget",
+        "description": "Budget",
         "color": ""
     },
     {
         "id": 5,
         "dashboardID": 2,
         "name": "Europe",
+        "description": "Europe",
         "color": ""
     },
     {
         "id": 6,
         "dashboardID": 3,
         "name": "Budget",
+        "description": "Budget",
         "color": ""
     },
     {
         "id": 7,
         "dashboardID": 4,
         "name": "Europe",
+        "description": "Europe",
         "color": ""
     },
     {
         "id": 8,
         "dashboardID": 5,
         "name": "Budget",
+        "description": "Budget",
         "color": ""
     },
     {
         "id": 9,
         "dashboardID": 6,
         "name": "Budget",
+        "description": "Budget",
         "color": ""
     }
     ,
@@ -58,12 +67,14 @@
         "id": 10,
         "dashboardID": 7,
         "name": "Budget",
+        "description": "Budget",
         "color": ""
     },
     {
         "id": 11,
         "dashboardID": 8,
         "name": "Budget",
+        "description": "Budget",
         "color": ""
     }
 ]
