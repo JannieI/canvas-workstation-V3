@@ -41,7 +41,7 @@ export class LandingComponent implements OnInit {
 		console.log('Landing constructor')
 		// Load Startup info:
 		//Datasources
-        this.globalVariableService.getDatasources();     
+        this.globalVariableService.getDatasources();
 		// Sample Dashboards
 		this.sampleDashboards = this.globalVariableService.getDashboardSamples();
 		// Recent Dashboards
@@ -50,18 +50,18 @@ export class LandingComponent implements OnInit {
 		}
 
 	ngOnInit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 	}
 
 	ngAfterViewInit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
 	}
 
 	clickButtonData() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickButtonData', '@Start');
 
 		console.log('Landing clickButtonData')
@@ -69,7 +69,7 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickOpenSampleDashboard(dashboardID: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenSampleDashboard', '@Start');
 
 		console.log('Landing start clickOpenSampleDashboard', dashboardID);
@@ -93,15 +93,18 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickOpenRecentDashboard(dashboardID: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenRecentDashboard', '@Start');
 
 		console.log('Landing start clickOpenRecentDashboard', dashboardID);
-		
+
 		// Set ids and then signal that the Dashboard must be refreshed
-		this.globalVariableService.currentDashboardID = dashboardID;
-		this.globalVariableService.currentDashboardTabID = 1;
-		this.globalVariableService.refreshDashboard.next(true);
+		// this.globalVariableService.currentDashboardID = dashboardID;
+		// this.globalVariableService.currentDashboardTabID = 1;
+		// this.globalVariableService.refreshDashboard.next(true);
+        this.globalVariableService.refreshCurrentDashboard(
+			'landing-clickOpenRecentDashboard', dashboardID, 1, ''
+		);    
 
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit();
@@ -109,7 +112,7 @@ export class LandingComponent implements OnInit {
 	}
 
 	deleteRecent(index: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteRecent', '@Start');
 
 		// Delete from temp array, refresh
@@ -122,7 +125,7 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickClose(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formLandingClosed.emit(action);
@@ -132,7 +135,7 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickOpenExisting() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenExisting', '@Start');
 
 		this.globalVariableService.openDashboardFormOnStartup = true;
@@ -146,7 +149,7 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickOpenNewDashboard() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenNewDashboard', '@Start');
 
 		this.globalVariableService.openNewDashboardFormOnStartup = true;
