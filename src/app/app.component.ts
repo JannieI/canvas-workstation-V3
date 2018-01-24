@@ -1214,10 +1214,10 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
 
         this.globalVariableService.currentDashboardID = 1;
-        if (this.globalVariableService.currentDashboardTabID == 1) {
-            this.globalVariableService.currentDashboardTabID = 2;
-        } else {
+        if (this.globalVariableService.currentDashboardTabID == 0) {
             this.globalVariableService.currentDashboardTabID = 1;
+        } else {
+            this.globalVariableService.currentDashboardTabID = 0;
         }
         this.globalVariableService.refreshDashboard.next(true);
         this.refreshGraphs = true;
