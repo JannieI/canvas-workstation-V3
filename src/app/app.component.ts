@@ -266,29 +266,6 @@ export class AppComponent implements OnInit {
                 }
             }
         )
-
-
-        // this.globalVariableService.refreshDashboard.subscribe(i => 
-        //     {
-        //         if (i) {
-
-        //             console.log('xx', this.globalVariableService.currentDashboardInfo)
-        //             this.currentDashboardTabIndex = this.globalVariableService.currentDashboardTabID
-        //             this.globalVariableService.refreshCurrentDashboardInfo(
-        //                 this.globalVariableService.currentDashboardID,
-        //                 this.globalVariableService.currentDashboardTabID).then(j => 
-        //                     {
-        //                         this.refreshGraphs = false;
-        //                         this.currentTabName = this.globalVariableService.
-        //                             currentDashboardTabs[this.currentDashboardTabIndex].name;
-        //                         this.currentWidgets = this.globalVariableService.
-        //                             currentWidgetsTEST;
-        //                         console.log(this.currentTabName, this.currentDashboardTabIndex)
-        //                     }
-        //             )
-        //         }
-        //     }
-        // )
     }
 
     ngAfterViewInit() {
@@ -945,13 +922,11 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCut', '@Start');
 
-
     }
 
     clickMenuWidgetPaste() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetPaste', '@Start');
-
 
     }
 
@@ -1047,13 +1022,11 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewZoom', '@Start');
 
-
     }
 
     clickMenuArrangeBackward() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBackward', '@Start');
-
 
     }
 
@@ -1061,20 +1034,17 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeForward', '@Start');
 
-
     }
 
     clickMenuArrangeBack() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBack', '@Start');
 
-
     }
 
     clickMenuArrangeFront() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeFront', '@Start');
-
 
     }
 
@@ -1089,13 +1059,11 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterPageDown', '@Start');
 
-
     }
 
     clickMenuArrangeAlignCenterPageRight() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterPageRight', '@Start');
-
 
     }
 
@@ -1103,13 +1071,11 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeGroup', '@Start');
 
-
     }
 
     clickMenuArrangeUnGroup() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeUnGroup', '@Start');
-
 
     }
 
@@ -1117,20 +1083,17 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeVertical', '@Start');
 
-
     }
 
     clickMenuArrangeDistributeHorisontal() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeHorisontal', '@Start');
 
-
     }
 
     clickMenuArrangeSameSize() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
-
 
     }
 
@@ -1245,23 +1208,13 @@ export class AppComponent implements OnInit {
 
         this.globalVariableService.refreshCurrentDashboard(
             'statusbar-clickTest', 1, 1, '')
-
-        // this.globalVariableService.currentDashboardID = 1;
-        // this.globalVariableService.currentDashboardTabID = 
-        //     this.globalVariableService.currentDashboardTabID + 1;
-        // if (this.globalVariableService.currentDashboardTabID >
-        //         this.globalVariableService.currentDashboardTabs.length) {
-        //     this.globalVariableService.currentDashboardTabID = 1;
-        // }
-        // this.globalVariableService.refreshDashboard.next(true);
-        // this.refreshGraphs = true;
-        // this.globalVariableService.refreshDashboard.next(false);
     }
 
 
     trackWidget(index, row) {
         // 
         // this.globalFunctionService.printToConsole(this.constructor.name,'trackWidget', '@Start');
+
         // console.log('trackWidget', row);
         return row ? row.id : undefined;
     }

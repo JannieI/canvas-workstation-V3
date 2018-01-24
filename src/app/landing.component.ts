@@ -39,7 +39,6 @@ export class LandingComponent implements OnInit {
 		private router: Router
 	) {
 
-		console.log('Landing constructor')
 		// Load Startup info:
 
 		//Datasources
@@ -79,19 +78,9 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 	}
 
-	clickButtonData() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickButtonData', '@Start');
-
-		console.log('Landing clickButtonData')
-		this.router.navigate(['/data']);
-	}
-
 	clickOpenSampleDashboard(dashboardID: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenSampleDashboard', '@Start');
-
-		console.log('Landing start clickOpenSampleDashboard', dashboardID);
 
 		this.globalVariableService.refreshCurrentDashboard(
 			'landing-clickOpenRecentDashboard', dashboardID, -1, ''
@@ -104,8 +93,6 @@ export class LandingComponent implements OnInit {
 	clickOpenRecentDashboard(dashboardID: number, dashboardTabID: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenRecentDashboard', '@Start');
-
-		console.log('Landing start clickOpenRecentDashboard', dashboardID);
 
         this.globalVariableService.refreshCurrentDashboard(
 			'landing-clickOpenRecentDashboard', dashboardID, dashboardTabID, ''
