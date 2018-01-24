@@ -47,7 +47,8 @@ export class LandingComponent implements OnInit {
 		// Recent Dashboards
 		// TODO - remove hardcoded userID and make data cater for >1 user
 		this.recentDashboards = this.globalVariableService.getDashboardsRecentlyUsed('JannieI');
-		}
+		this.globalVariableService.getDashboardsRecent('JannieI');
+	}
 
 	ngOnInit() {
         //
