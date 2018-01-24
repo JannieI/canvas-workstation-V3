@@ -6,39 +6,38 @@ import { Injectable }                 from '@angular/core';
 
 // Our Models
 import { ButtonBarAvailable }         from './models'
-import { CanvasSlicer}                from './models'
-import { DashboardRecent}             from './models'
 import { ButtonBarSelected }          from './models';
-import { CSScolor }                   from './models';
-import { Dashboard }                  from './models';
-import { DashboardTab }               from './models';
-import { DashboardSnapshot }          from './models';
-import { DashboardTag }               from './models';
-import { DashboardTheme }             from './models';
-import { DashboardTemplate }          from './models';
-import { DashboardSchedule }          from './models';
-import { DashboardPermission }        from './models';
-
-import { Datasource }                 from './models';
-import { Transformation }             from './models';
-import { Field }                      from './models';
-import { FieldMetadata }              from './models';
-import { DataQualityIssue}            from './models';
-import { DatasourceFilter}            from './models';
-import { DatasourcePermission}        from './models';
-import { DatasourcePivot }            from './models';
-
-import { CanvasComment }              from './models';
-import { CanvasAlert }                from './models';
-import { CanvasMessage }              from './models';
 import { CanvasActivity }             from './models';
-import { CanvasWidget }               from './models';
+import { CanvasAlert }                from './models';
+import { CanvasComment }              from './models';
+import { CanvasMessage }              from './models';
 import { CanvasShape }                from './models';
+import { CanvasSlicer}                from './models'
+import { CanvasWidget }               from './models';
 import { Combination }                from './models';
 import { CombinationDetail }          from './models';
-
+import { CSScolor }                   from './models';
+import { CurrentDashboardInfo }       from './models';
+import { Dashboard }                  from './models';
+import { DashboardPermission }        from './models';
+import { DashboardRecent}             from './models'
+import { DashboardSnapshot }          from './models';
+import { DashboardSchedule }          from './models';
+import { DashboardTab }               from './models';
+import { DashboardTag }               from './models';
+import { DashboardTemplate }          from './models';
+import { DashboardTheme }             from './models';
+import { Datasource }                 from './models';
+import { DatasourceFilter}            from './models';
+import { DataQualityIssue}            from './models';
+import { DatasourcePermission}        from './models';
+import { DatasourcePivot }            from './models';
+import { Field }                      from './models';
+import { FieldMetadata }              from './models';
+import { Transformation }             from './models';
 import { Widget }                     from './models';
 
+// External
 import * as dl                        from 'datalib';
 import { Observable }                 from 'rxjs/Observable';
 
@@ -1053,6 +1052,7 @@ export class GlobalVariableService {
     currentDashboardPermissions: DashboardPermission[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
 
+    currentDashboardInfo: CurrentDashboardInfo = null;
 
     // Global vars that guide all interactions
     // ***************************************

@@ -1,10 +1,8 @@
 // ALL models (schema) are kept here
 
 // Setup / Settings / General
-
-// Current D we are working with
-export class currentDashboard {
-    currentDashboardID: number = 0; 
+export class CurrentDashboardInfo {
+    currentDashboardID: number = 0;         // Current D we are working with
     currentDashboardTabID: number = 0;
     currentDashboardTabIndex: number = 0;   // Index in [T]
     refreshingRoutine: string;              // Routine that called to refresh 
