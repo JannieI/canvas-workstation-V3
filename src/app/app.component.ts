@@ -250,9 +250,9 @@ export class AppComponent implements OnInit {
             sG => this.showGrid = sG
         );
         this.showModalLanding = this.globalVariableService.showModalLanding.value;
-        this.globalVariableService.showMainMenu.subscribe(
-            sm => this.showMainMenu = sm
-        );
+        // this.globalVariableService.showMainMenu.subscribe(
+        //     sm => this.showMainMenu = sm
+        // );
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
         );
@@ -1036,7 +1036,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPresentation', '@Start');
 
         this.globalVariableService.presentationMode.next(!this.presentationMode);
-        this.globalVariableService.showMainMenu.next(false);
+        this.showMainMenu = false;
     }
 
     clickMenuViewPrintPreview(){
@@ -1241,7 +1241,7 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClosePresentation', '@Start');
 
-        this.globalVariableService.showMainMenu.next(true);
+        this.showMainMenu = true;
         this.globalVariableService.presentationMode.next(false);
     }
 

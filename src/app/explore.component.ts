@@ -199,9 +199,9 @@ export class ExploreComponent {
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
         );
-        this.globalVariableService.showMainMenu.subscribe(
-            sm => this.showMainMenu = sm
-        );
+        // this.globalVariableService.showMainMenu.subscribe(
+        //     sm => this.showMainMenu = sm
+        // );
         this.globalVariableService.editMode.subscribe(
             i => this.editMode = i
         )
@@ -663,7 +663,7 @@ export class ExploreComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClosePresentation', '@Start');
 
-        this.globalVariableService.showMainMenu.next(true);
+        // this.globalVariableService.showMainMenu.next(true);
         this.globalVariableService.presentationMode.next(false);
     }
 

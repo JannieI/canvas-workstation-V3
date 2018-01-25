@@ -14,7 +14,6 @@ import { CanvasMessage }              from './models';
 import { CanvasShape }                from './models';
 import { CanvasSlicer}                from './models';
 import { CanvasUser}                  from './models';
-
 import { CanvasWidget }               from './models';
 import { Combination }                from './models';
 import { CombinationDetail }          from './models';
@@ -1071,7 +1070,7 @@ export class GlobalVariableService {
     isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
     isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
     // Menu-related
-    showMainMenu = new BehaviorSubject<boolean>(true);
+    // showMainMenu = new BehaviorSubject<boolean>(true);
     // Opening forms
     openDashboardFormOnStartup: boolean = false;
     openNewDashboardFormOnStartup: boolean = false;
