@@ -1237,6 +1237,13 @@ export class AppComponent implements OnInit {
 
     }
 
+    clickClosePresentation() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClosePresentation', '@Start');
+
+        this.globalVariableService.showMainMenu.next(true);
+        this.globalVariableService.presentationMode.next(false);
+    }
 
 
 

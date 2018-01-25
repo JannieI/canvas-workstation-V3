@@ -630,6 +630,74 @@
         </div>
     </clr-header>
 
+        <!-- Presentation Button -->
+        <div class="presentationButton dropdown" *ngIf="presentationMode">
+            <clr-dropdown>
+                <button type="button" clrDropdownTrigger>
+                    <clr-icon shape="bars"></clr-icon>
+                </button>
+
+                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm"
+                        clrDropdownItem
+                        title="Show the first Dashboard in the presentation"
+                        >
+                        <clr-icon shape="step-forward down" size="20"></clr-icon>
+                        First Dashboard
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        clrDropdownItem
+                        title="Jump to the Next Dashboard"
+                        >
+                        <clr-icon shape="fast-forward" size="20"></clr-icon>
+                        Next Dashboard
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        clrDropdownItem
+                        title="Return to the Previous Dashboard"
+                        >
+                        <clr-icon shape="rewind" size="20"></clr-icon>
+                        Previous Dashboard
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        clrDropdownItem
+                        title="Show the Last Dashboard in the presentation"
+                        >
+                        <clr-icon shape="step-forward" size="20"></clr-icon>
+                        Last Dashboard
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        clrDropdownItem
+                        title="Print all the Dashboards in presentation format"
+                        >
+                        <clr-icon shape="printer" size="20"></clr-icon>
+                        Print ...
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        clrDropdownItem
+                        (click)="clickClosePresentation()"
+                        title="Exit the presentation, and return to the Dashboard page"
+                        >
+                        <clr-icon shape="times" size="20"></clr-icon>
+                        Exit
+                    </button>
+                </clr-dropdown-menu>
+            </clr-dropdown>
+        </div>
+
+
     <div class="content-container">
         <div  class="content-area" >
             <router-outlet ></router-outlet>
@@ -656,6 +724,107 @@
 <landing *ngIf="showModalLanding"
     (formLandingClosed)="handleCloseModalLanding()">Load landing page ...
 </landing>
+
+
+<!-- Palette -->
+<div class="palette" *ngIf="editMode  &&  !presentationMode">
+    <clr-icon
+        shape="pencil"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickWidgetEdit(i)"
+        title="Edit Widget"
+        >
+    </clr-icon>
+    <clr-icon *ngIf="!presentationMode"
+        shape="pop-out"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickWidgetCheckpoints(i)"
+        title="Show Checkpoints"
+        >
+    </clr-icon>
+    <clr-icon *ngIf="!presentationMode"
+        shape="note"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickMenuWidgetComments(i)"
+        title="Show Comments"
+        >
+    </clr-icon>
+    <clr-icon
+        shape="link"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickMenuWidgetLinks(i)"
+        title="Show Links"
+        >
+    </clr-icon>
+    <clr-icon *ngIf="!presentationMode"
+        shape="refresh"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickMenuWidgetRefresh(i)"
+        title="Refresh Dataset for this Widget only"
+        >
+    </clr-icon>
+    <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
+        shape="copy"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickMenuWidgetDuplicate(i)"
+        title="Duplicate this Widget"
+        >
+    </clr-icon>
+    <clr-icon *ngIf="!presentationMode"
+        shape="pop-out"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickMenuWidgetExpand(i)"
+        title="Expand the Dataset for this Widget"
+        >
+    </clr-icon>
+    <clr-icon *ngIf="!presentationMode"
+        shape="export"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickMenuWidgetExport(i)"
+        title="Export the Dataset for this Widget"
+        >
+    </clr-icon>
+    <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
+        shape="deploy"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickMenuArrangeBack(i)"
+        title="Move Widget back"
+        >
+    </clr-icon>
+    <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
+        shape="block"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickMenuArrangeFront(i)"
+        title="Move Widget forward"
+        >
+    </clr-icon>
+    <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
+        shape="trash"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickMenuWidgetDelete(i)"
+        title="Delete this Widget"
+        >
+    </clr-icon>
+    <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
+        shape="cursor-arrow"
+        size="20"
+        class="buttonBarIcon"
+        (click)="clickSelect(i)"
+        title="Select this Widget"
+        >
+    </clr-icon>
+</div>
 
 
 <!-- Modal: new Dashboard -->
