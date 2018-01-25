@@ -705,7 +705,7 @@
     </div>
 
     <!-- Status Bar -->
-    <status-bar
+    <status-bar *ngIf="showMainMenu"
         [editMode]="editMode"
         [currentDashboardName]="currentDashboardName"
         [currentTabName]="currentTabName"
