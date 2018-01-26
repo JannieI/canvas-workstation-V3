@@ -826,7 +826,7 @@ export class AppComponent implements OnInit {
         console.log('App clickMenuDataFromFile')
         this.globalVariableService.dataGetFromSwitch.next('File');
         this.globalVariableService.showModalData.next(true);
-        // this.showModalData = true;
+        this.showModalData = true;
         // this.router.navigate(['/data']);
     }
 

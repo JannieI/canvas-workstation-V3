@@ -116,7 +116,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
 @Component({
     styleUrls: ['./explore.component.css'],
-    templateUrl: './explore.component.html'
+    template: '<h3>Should NOT be here </h3>'
+    // templateUrl: './explore.component.html'
 })
 
 export class ExploreComponent {
