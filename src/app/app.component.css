@@ -25,7 +25,6 @@
     padding: 18px 6px 18px 4px !important;
 }
 
-
 .menuInput {
     font-size: .5rem !important;
     margin: 0 0 0 10px !important;
@@ -156,3 +155,22 @@
 }
 
 
+/* Palette */
+.palette {
+    background-color: #293841;
+    border: 1px solid gray;
+    float: left;
+    margin-left: 0.5rem;
+    padding: 4px;
+    position: absolute;
+    top: 3rem;
+    width: 1.35rem;
+    z-index: 60;
+}
+
+.buttonBarIcon {
+    background-color: rgb(233, 230, 230);
+    border: 1px solid gray;
+    margin: 1px;
+    padding: 2px;
+}

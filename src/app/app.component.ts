@@ -261,6 +261,7 @@ export class AppComponent implements OnInit {
         );
         this.globalVariableService.editMode.subscribe(
             i => {
+                console.log(i, this.presentationMode)
                     this.editMode = i;
                     if (!i) {this.editMenuText = 'Edit Mode'}
                     else {this.editMenuText = 'View Mode'};
