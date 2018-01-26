@@ -544,8 +544,8 @@ export class ExploreComponent {
         if (x < 0) { x = this.currentDashboardTabs.length - 1 };
         this.currentTabName = this.currentDashboardTabs[x].name;
         this.globalVariableService.currentDashboardTabID = this.currentDashboardTabs[x].id;
-        this.refreshDashboardInfo(this.globalVariableService.currentDashboardID,
-            this.globalVariableService.currentDashboardTabID);
+        // this.refreshDashboardInfo(this.globalVariableService.currentDashboardID,
+        //     this.globalVariableService.currentDashboardTabID);
     }
 
     clickShowTabDescription() {

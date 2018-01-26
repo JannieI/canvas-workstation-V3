@@ -19,7 +19,7 @@ import { GlobalVariableService }      from './global-variable.service';
 export const ROUTES: Routes = [
     {path: '', redirectTo: '', pathMatch: 'full'},
     {path: 'data',          component: DataPopupComponent},
-    {path: 'explore',       component: ExploreComponent},
+    // {path: 'explore',       component: ExploreComponent},
     {path: 'help',          component: HelpComponent},
     {path: 'expand',        component: WidgetExpandComponent},
 
