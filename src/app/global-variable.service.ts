@@ -1074,7 +1074,6 @@ export class GlobalVariableService {
     // Opening forms
     openDashboardFormOnStartup: boolean = false;
     openNewDashboardFormOnStartup: boolean = false;
-    showModalData = new BehaviorSubject<boolean>(false);
     hasDatasources = new BehaviorSubject<boolean>(false);   // Used to set menu
     showModalLanding = new BehaviorSubject<boolean>(true);  // Shows Landing page
     // Session

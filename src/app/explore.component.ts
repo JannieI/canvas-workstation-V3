@@ -1032,7 +1032,7 @@ export class ExploreComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
 
-        this.globalVariableService.showModalData.next(false);
+        // this.globalVariableService.showModalData.next(false);
     }
 }
 
