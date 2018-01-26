@@ -4,13 +4,14 @@
     bottom: 0;
     color: rgb(197, 194, 194);
     display: inline-block;
+    
     font-family: Metropolis,Avenir Next,Helvetica Neue,Arial,sans-serif;
     font-size: .45rem;
     height: 1rem !important;;
     margin: 0 !important;
     opacity: 1;
     padding: 0 !important;
-    position: absolute;
+    position: fixed;
     text-align: left;
     vertical-align: middle;
     width: 100%;
