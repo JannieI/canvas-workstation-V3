@@ -152,6 +152,15 @@ export class StatusbarComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Close any open popus when a new D is opened
+        this.globalVariableService.currentDashboardInfo.subscribe(
+            i => { 
+                this.showDashboardDescription = false;
+                this.showDashboardTabDescription = false;
+                this.showNewTab = false;
+                this.showTabList = false;
+            }
+        );
     }
 
     // ngAfterViewChecked(){

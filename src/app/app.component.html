@@ -907,6 +907,14 @@
 </dashboard-import>
 
 
+<!-- Modal: New Tab -->
+<dashboard-tab
+    class="formPopupDashboard"
+    *ngIf="showNewTab"
+    (formDashboardTabClosed)="handleCloseDashboardTab($event)">Load Dashboard Tab ...
+</dashboard-tab>
+
+
 <!-- Modal: Dashboard Tags -->
 <dashboard-tags
     class="formPopupDashboard"
@@ -1018,6 +1026,22 @@
     [currentShapeSpec]="currentShapeSpec"
     (formShapeDeleteClosed)="handleCloseShapeDelete($event)">Load Shape Delete ...
 </shape-delete>
+
+
+<!-- Overlay: Dashboard Help -->
+<dashboard-help
+    *ngIf="isFirstTimeDashboard"
+    (formDashboardHelpClosed)="handleCloseDashboardHelp($event)">Load Help form ...
+    >
+</dashboard-help>
+
+
+<!-- Overlay: Dashboard Help for Presentation -->
+<dashboard-helpPresentation
+    *ngIf="isFirstTimePresentation  &&  presentationMode"
+    (formDashboardHelpPresentationClosed)="handleCloseDashboardHelpPresentation($event)">Load Help form ...
+    >
+</dashboard-helpPresentation>
 
 
 <!-- Modal: Login -->
@@ -1216,6 +1240,35 @@
     </div>
 </div>
 
+
+
+<!-- Grid -->
+<div class="bgGrid" *ngIf="showGrid">
+    <svg width="100%" height="100%" class="bgGridSvg">
+
+        <!-- Create mask that we'll use to define a slight gradient -->
+        <mask maskUnits="userSpaceOnUse" id="fade" class="bgGridSvg">
+            <!-- Here's that slight gradient -->
+            <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%" class="bgGridSvg">
+                <stop offset ="0" style="stop-color: #FFFFFF" />
+                <stop offset ="1" style="stop-color: #000000" />
+            </linearGradient>
+            <!-- The canvas for our mask -->
+            <rect fill="url(#gradient)" width="100%" height="100%" class="bgGridSvg" />
+        </mask>
+
+        <!-- Let's define the pattern -->
+        <!-- The width and height should be double the circle radius we plan to use -->
+        <pattern id="pattern-circles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse" class="bgGridSvg">
+            <!-- Now let's draw the circle -->
+            <!-- We're going to define the `fill` in the CSS for flexible use -->
+            <circle mask="url(#fade)" cx="1" cy="1" r="1" class="bgGridSvg" />
+        </pattern>
+        <!-- The canvas with our applied pattern -->
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)" class="bgGridSvg" />
+
+    </svg>
+</div>
 
 <!-- Testings ... -->
 <!-- <tabs *ngFor="let row of tabs"
