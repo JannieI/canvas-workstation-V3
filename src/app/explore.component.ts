@@ -177,95 +177,95 @@ export class ExploreComponent {
         private renderer2: Renderer2,
     ) {}
 
-    ngOnInit() {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+    // ngOnInit() {
+    //     // 
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        console.log('Explore ngOnInit', this.globalVariableService.openDashboardFormOnStartup)
+    //     console.log('Explore ngOnInit', this.globalVariableService.openDashboardFormOnStartup)
 
-        // Load global variables
-        this.globalVariableService.showModalLanding.subscribe(
-            i => this.showModalLanding = i
-        );
-        this.globalVariableService.showModalData.subscribe(
-            i => this.showModalData = i
-        );
-        if (this.globalVariableService.openDashboardFormOnStartup) {
-            this.showModalDashboardOpen = true;
-        };
-        this.globalVariableService.isFirstTimeDashboard.subscribe(
-            i => this.isFirstTimeDashboard = i
-        )
-        this.globalVariableService.presentationMode.subscribe(
-            pres => this.presentationMode = pres
-        );
-        // this.globalVariableService.showMainMenu.subscribe(
-        //     sm => this.showMainMenu = sm
-        // );
-        this.globalVariableService.editMode.subscribe(
-            i => this.editMode = i
-        )
-        this.globalVariableService.isFirstTimePresentation.subscribe(
-            i => this.isFirstTimePresentation = i
-        );
-        this.globalVariableService.showGrid.subscribe(
-            sG => this.showGrid = sG
-        );
-        this.globalVariableService.statusBarRunning.subscribe(
-            i => this.statusBarRunning = i
-        )
-        this.globalVariableService.statusBarCancelRefresh.subscribe(
-            i => this.statusBarCancelRefresh = i
-        )
-        this.globalVariableService.statusBarMessages.subscribe(
-            i => this.statusBarMessages = i
-        )
-        this.globalVariableService.localTrash.subscribe(
-            i => this.localTrash = i
-        );
-        this.globalVariableService.hasDatasources.subscribe(
-            i => this.hasDatasources = i
-        );
-        // this.globalVariableService.refreshDashboard.subscribe(
-        //     i => {
-        //             console.log ('Explore ngOnInit refreshDashboard', 
-        //                 this.globalVariableService.currentDashboardID,
-        //                 this.globalVariableService.currentDashboardTabID)
-        //             if (i)
-        //                 {
-        //                     // Add to Recently used
-        //                     this.globalVariableService.addDashboardRecent(
-        //                         this.globalVariableService.currentDashboardID,
-        //                         this.globalVariableService.currentDashboardTabID
-        //                     )
-        //                     // Refresh D and related info
-        //                     this.refreshDashboardInfo(
-        //                         this.globalVariableService.currentDashboardID,
-        //                         this.globalVariableService.currentDashboardTabID);
-        //                     this.globalVariableService.refreshDashboard.next(false);
+    //     // Load global variables
+    //     this.globalVariableService.showModalLanding.subscribe(
+    //         i => this.showModalLanding = i
+    //     );
+    //     this.globalVariableService.showModalData.subscribe(
+    //         i => this.showModalData = i
+    //     );
+    //     if (this.globalVariableService.openDashboardFormOnStartup) {
+    //         this.showModalDashboardOpen = true;
+    //     };
+    //     this.globalVariableService.isFirstTimeDashboard.subscribe(
+    //         i => this.isFirstTimeDashboard = i
+    //     )
+    //     this.globalVariableService.presentationMode.subscribe(
+    //         pres => this.presentationMode = pres
+    //     );
+    //     // this.globalVariableService.showMainMenu.subscribe(
+    //     //     sm => this.showMainMenu = sm
+    //     // );
+    //     this.globalVariableService.editMode.subscribe(
+    //         i => this.editMode = i
+    //     )
+    //     this.globalVariableService.isFirstTimePresentation.subscribe(
+    //         i => this.isFirstTimePresentation = i
+    //     );
+    //     this.globalVariableService.showGrid.subscribe(
+    //         sG => this.showGrid = sG
+    //     );
+    //     this.globalVariableService.statusBarRunning.subscribe(
+    //         i => this.statusBarRunning = i
+    //     )
+    //     this.globalVariableService.statusBarCancelRefresh.subscribe(
+    //         i => this.statusBarCancelRefresh = i
+    //     )
+    //     this.globalVariableService.statusBarMessages.subscribe(
+    //         i => this.statusBarMessages = i
+    //     )
+    //     this.globalVariableService.localTrash.subscribe(
+    //         i => this.localTrash = i
+    //     );
+    //     this.globalVariableService.hasDatasources.subscribe(
+    //         i => this.hasDatasources = i
+    //     );
+    //     // this.globalVariableService.refreshDashboard.subscribe(
+    //     //     i => {
+    //     //             console.log ('Explore ngOnInit refreshDashboard', 
+    //     //                 this.globalVariableService.currentDashboardID,
+    //     //                 this.globalVariableService.currentDashboardTabID)
+    //     //             if (i)
+    //     //                 {
+    //     //                     // Add to Recently used
+    //     //                     this.globalVariableService.addDashboardRecent(
+    //     //                         this.globalVariableService.currentDashboardID,
+    //     //                         this.globalVariableService.currentDashboardTabID
+    //     //                     )
+    //     //                     // Refresh D and related info
+    //     //                     this.refreshDashboardInfo(
+    //     //                         this.globalVariableService.currentDashboardID,
+    //     //                         this.globalVariableService.currentDashboardTabID);
+    //     //                     this.globalVariableService.refreshDashboard.next(false);
 
-        //                 };
-        //     }
-        // );
-        this.globalVariableService.menuActionResize.subscribe(
-            i => { if(i) {this.clickMenuAlignTop()}}
-        );
-        this.globalVariableService.menuActionSelectAll.subscribe(
-            i => this.clickMenuSelectAll(i)
-        );
-        this.globalVariableService.loggedIntoServer.subscribe(
-            i => 
-            {
-                console.log(i)
-                if(i) {
-                    this.loggedIntoServerText = 'Server'
-                } else {
-                    this.loggedIntoServerText = 'Local'
-                }
-            }
-        )
+    //     //                 };
+    //     //     }
+    //     // );
+    //     this.globalVariableService.menuActionResize.subscribe(
+    //         i => { if(i) {this.clickMenuAlignTop()}}
+    //     );
+    //     // this.globalVariableService.menuActionSelectAll.subscribe(
+    //     //     i => this.clickMenuSelectAll(i)
+    //     // );
+    //     this.globalVariableService.loggedIntoServer.subscribe(
+    //         i => 
+    //         {
+    //             console.log(i)
+    //             if(i) {
+    //                 this.loggedIntoServerText = 'Server'
+    //             } else {
+    //                 this.loggedIntoServerText = 'Local'
+    //             }
+    //         }
+    //     )
 
-    }
+    // }
 
     // ngAfterViewChecked(){
     //     // For Testing
