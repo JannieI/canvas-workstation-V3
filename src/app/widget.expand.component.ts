@@ -19,23 +19,18 @@ import { GlobalVariableService }      from './global-variable.service';
 // Functions
 
 @Component({
+    selector: 'widget-expand',
     templateUrl: './widget.expand.component.html',
     styleUrls: ['./widget.expand.component.css']
 })
 export class WidgetExpandComponent implements OnInit {
 
     currentDataset;
-    // @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
-    // currentData = this.globalVariableService.currentDataset.forEach(
-    //     i => {
-    //             if (i.datasourceID == 1) { return i.data }
-    //          }
-    // );
+    @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
 
-    datasources: Datasource[] = [];
-
-    dataFieldNames: string[] = [];
     currentDatasetLength: number;
+    datasources: Datasource[] = [];
+    dataFieldNames: string[] = [];
     
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -60,8 +55,8 @@ export class WidgetExpandComponent implements OnInit {
     }
 
   	clickClose(action: string) {
-        // this.formWidgetExpandClosed.emit(action);
-        this.router.navigate(['explore'])
+        this.formWidgetExpandClosed.emit(action);
+        // this.router.navigate(['explore'])
     }
 
 }

@@ -995,6 +995,14 @@
 </dashboard-print>
 
 
+<!-- Modal: Widget Expand -->
+<widget-expand
+    class="formPopupDashboard"
+    *ngIf="showModalWidgetExpand"
+    (formWidgetExpandClosed)="handleCloseWidgetExpand($event)">Load Widget Expand ...
+</widget-expand>
+
+
 <!-- Modal: Widget Export -->
 <widget-export
     class="formPopupDashboard"

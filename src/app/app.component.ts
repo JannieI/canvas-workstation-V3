@@ -938,7 +938,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExpand', '@Start');
 
         this.showModalWidgetExpand = true;
-        this.router.navigate(['/expand']);
+        // this.router.navigate(['/expand']);
     }
 
     clickMenuWidgetExport() {
