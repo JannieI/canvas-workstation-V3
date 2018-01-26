@@ -273,51 +273,51 @@ export class ExploreComponent {
     //         this.widgetContainters.toArray())
     // }
 
-    ngAfterViewInit() {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+    // ngAfterViewInit() {
+    //     // 
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
-        console.log('Explore ngOnViewInit', this.currentShapes)
+    //     console.log('Explore ngOnViewInit', this.currentShapes)
 
-        // Loop on the graph ElementRefs, and set properties ala widget[].properties
-        if (this.shapeContainter.toArray().length > 0) {
-            for (var i = 0; i < this.circle2.toArray().length; i++) {
+    //     // Loop on the graph ElementRefs, and set properties ala widget[].properties
+    //     if (this.shapeContainter.toArray().length > 0) {
+    //         for (var i = 0; i < this.circle2.toArray().length; i++) {
 
-                // Now set in css
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cx', '50')
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cy', '50')
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'r', '40')
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke', 'orange')
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke-width', '2')
-                // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
+    //             // Now set in css
+    //             // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cx', '50')
+    //             // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'cy', '50')
+    //             // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'r', '40')
+    //             // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke', 'orange')
+    //             // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'stroke-width', '2')
+    //             // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
 
-                // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
+    //             // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
                 
-                // console.log('Explore ngAfterViewInit circle2', this.circle2.toArray()[i].nativeElement)
-            }
-        };
+    //             // console.log('Explore ngAfterViewInit circle2', this.circle2.toArray()[i].nativeElement)
+    //         }
+    //     };
 
-        this.refreshDashboardInfo(this.globalVariableService.currentDashboardID,
-            this.globalVariableService.currentDashboardTabID)
-    }
+    //     this.refreshDashboardInfo(this.globalVariableService.currentDashboardID,
+    //         this.globalVariableService.currentDashboardTabID)
+    // }
 
-    refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'refreshDashboardInfo', '@Start');
+    // refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
+    //     // 
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'refreshDashboardInfo', '@Start');
 
-        if (dashboardTabID < 1) { dashboardTabID = 1};
+    //     if (dashboardTabID < 1) { dashboardTabID = 1};
 
-        this.globalVariableService.refreshCurrentDashboardInfo(
-            dashboardID, dashboardTabID).then (i => 
-            {
-                console.log('The big moment ...')
-                this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs;
-                this.currentWidgets = this.globalVariableService.currentWidgets;
-                this.currentShapes = this.globalVariableService.currentShapes;
-                this.currentSlicers = this.globalVariableService.currentSlicers;
-                this.refreshWidgets();
-            } );
-    }
+    //     this.globalVariableService.refreshCurrentDashboardInfo(
+    //         dashboardID, dashboardTabID).then (i => 
+    //         {
+    //             console.log('The big moment ...')
+    //             this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs;
+    //             this.currentWidgets = this.globalVariableService.currentWidgets;
+    //             this.currentShapes = this.globalVariableService.currentShapes;
+    //             this.currentSlicers = this.globalVariableService.currentSlicers;
+    //             this.refreshWidgets();
+    //         } );
+    // }
 
     refreshShapes2() {
         // 
