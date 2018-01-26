@@ -6,11 +6,11 @@ import { ModuleWithProviders }        from '@angular/core/src/metadata/ng_module
 import { Routes, RouterModule }       from '@angular/router';
 
 // Our Components
-import { ExploreComponent }           from './explore.component';
+// import { ExploreComponent }           from './explore.component';
 import { DataPopupComponent }         from './data.popup.component';
 import { HelpComponent }              from './help.component';
 import { LandingComponent }           from './landing.component';
-import { WidgetExpandComponent }      from './widget.expand.component';
+// import { WidgetExpandComponent }      from './widget.expand.component';
 
 // Own Services
 import { AuthGuard }                  from './authguard.service';
@@ -21,7 +21,7 @@ export const ROUTES: Routes = [
     {path: 'data',          component: DataPopupComponent},
     // {path: 'explore',       component: ExploreComponent},
     {path: 'help',          component: HelpComponent},
-    {path: 'expand',        component: WidgetExpandComponent},
+    // {path: 'expand',        component: WidgetExpandComponent},
 
     // {
     //     path: 'getdata',
