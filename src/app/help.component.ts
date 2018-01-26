@@ -69,7 +69,7 @@ export class HelpComponent implements OnInit {
 	}
 
 	clickBackButton() {
-		this.router.navigate(['/explore']);
+		this.router.navigate(['']);
 	}
 
 	loadExistingSpecification() {

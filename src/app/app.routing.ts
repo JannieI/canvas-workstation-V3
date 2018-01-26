@@ -7,7 +7,7 @@ import { Routes, RouterModule }       from '@angular/router';
 
 // Our Components
 // import { ExploreComponent }           from './explore.component';
-import { DataPopupComponent }         from './data.popup.component';
+// import { DataPopupComponent }         from './data.popup.component';
 import { HelpComponent }              from './help.component';
 import { LandingComponent }           from './landing.component';
 // import { WidgetExpandComponent }      from './widget.expand.component';
@@ -18,7 +18,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 export const ROUTES: Routes = [
     {path: '', redirectTo: '', pathMatch: 'full'},
-    {path: 'data',          component: DataPopupComponent},
+    // {path: 'data',          component: DataPopupComponent},
     // {path: 'explore',       component: ExploreComponent},
     {path: 'help',          component: HelpComponent},
     // {path: 'expand',        component: WidgetExpandComponent},

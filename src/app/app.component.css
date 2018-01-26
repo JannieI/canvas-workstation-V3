@@ -3,6 +3,14 @@
     padding: 0;
 }
 
+.containerBg {
+    background-image: url('../images/BarChart.png');
+    background-repeat: repeat;
+}
+.containerBg1 {
+    background-color: red !important    ;
+}
+
 .header-6 {
     margin: 0;
     padding: 0;
