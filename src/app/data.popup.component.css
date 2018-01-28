@@ -385,10 +385,12 @@
     .gridTransformAdd {
         background-color: rgb(196, 191, 191);
         border: 1px solid black;
+        border-radius: 4px;
         grid-column-start: 6;
         grid-column-end: 21;
-        grid-row-start: 15;
-        grid-row-end: 19;
+        grid-row-start: 13;
+        grid-row-end: 21;
+        margin-top: 10px;
         padding: 10px;
         z-index: 71;
     }

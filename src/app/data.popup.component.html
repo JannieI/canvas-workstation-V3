@@ -387,21 +387,22 @@
                                 </button>
                             </div>
 
-                            <b>Create a transformation:</b>
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="addNewTransformation=true"
-                                >
-                                Add
-                            </button>
-
+                            <div  *ngIf="!addNewTransformation">
+                                <b>Create a transformation:</b>
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    (click)="addNewTransformation=true"
+                                    >
+                                    Add
+                                </button>
+                            </div>
 
                             <div class="gridTransformAdd" *ngIf="addNewTransformation">
                             
                                 <div>
-                                    Select a single field and the transformation that must be
-                                    applied to it:
+                                    Select a field and the filter or transformation that must be
+                                    applied to it.  Then complete the input parameters for it:
                                 </div>
                                 <div class="gridTransformNewNames">
                                     <label for="selects_2">Field:</label>
@@ -430,7 +431,14 @@
                                     <button
                                         type="button"
                                         class="btn btn-secondary"
-                                        (click)="clickFileSaveTransformation()"
+                                        (click)="addNewTransformation=false"
+                                        >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        (click)="addNewTransformation=false"
                                         >
                                         Save
                                     </button>
@@ -445,9 +453,7 @@
                                 </div>
                             </div>
 
-
-
-                            <div class="gridTransformationCurrent">
+                            <div class="gridTransformationCurrent" *ngIf="!addNewTransformation">
                                 <clr-datagrid>
                                     <clr-dg-column>Delete</clr-dg-column>
                                     <clr-dg-column>Field Name</clr-dg-column>
