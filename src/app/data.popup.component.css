@@ -66,51 +66,51 @@
     .titleIdentify {
         border: 1px solid gray;
         grid-column-start: 2;
-        grid-column-end: 7;
+        grid-column-end: 8;
         grid-row-start: 3;
         grid-row-end: 5;
     }
 
     .titleChevron1 {
         border: none;
-        grid-column-start: 7;
-        grid-column-end: 8;
-        grid-row-start: 3;
-        grid-row-end: 5;
-        margin: 0;
-        padding: 0;
-    }
-
-    .titleFilter {
-        border: 1px solid gray;
         grid-column-start: 8;
-        grid-column-end: 13;
-        grid-row-start: 3;
-        grid-row-end: 5;
-    }
-
-    .titleChevron2 {
-        border: none;
-        grid-column-start: 13;
-        grid-column-end: 14;
+        grid-column-end: 9;
         grid-row-start: 3;
         grid-row-end: 5;
         margin: 0;
         padding: 0;
     }
+
+    /* .titleFilter {
+        border: 1px solid gray;
+        grid-column-start: 9;
+        grid-column-end: 15;
+        grid-row-start: 3;
+        grid-row-end: 5;
+    } */
+
+    /* .titleChevron2 {
+        border: none;
+        grid-column-start: 15;
+        grid-column-end: 16;
+        grid-row-start: 3;
+        grid-row-end: 5;
+        margin: 0;
+        padding: 0;
+    } */
 
     .titleTransform {
         border: 1px solid gray;
-        grid-column-start: 14;
-        grid-column-end: 19;
+        grid-column-start: 9;
+        grid-column-end: 15;
         grid-row-start: 3;
         grid-row-end: 5;
     }
 
     .titleChevron3 {
         border: none;
-        grid-column-start: 19;
-        grid-column-end: 20;
+        grid-column-start: 15;
+        grid-column-end: 16;
         grid-row-start: 3;
         grid-row-end: 5;
         margin: 0;
@@ -119,16 +119,16 @@
 
     .titlePivot {
         border: 1px solid gray;
-        grid-column-start: 20;
-        grid-column-end: 25;
+        grid-column-start: 16;
+        grid-column-end: 22;
         grid-row-start: 3;
         grid-row-end: 5;
     }
 
     .titleChevron4 {
         border: none;
-        grid-column-start: 25;
-        grid-column-end: 26;
+        grid-column-start: 22;
+        grid-column-end: 23;
         grid-row-start: 3;
         grid-row-end: 5;
         margin: 0;
@@ -137,15 +137,15 @@
 
     .titleView {
         border: 1px solid gray;
-        grid-column-start: 26;
-        grid-column-end: 31;
+        grid-column-start: 23;
+        grid-column-end: 29;
         grid-row-start: 3;
         grid-row-end: 5;
     }
 
     .titleButtonDiv {
         border: none;
-        grid-column-start: 33;
+        grid-column-start: 29;
         grid-column-end: 34;
         grid-row-start: 3;
         grid-row-end: 5;

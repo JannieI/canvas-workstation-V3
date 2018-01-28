@@ -33,7 +33,8 @@
                                 >>
                             </button>
                         </div>
-                        <div class="titleFilter titleBox" *ngIf="showTopSteps">
+
+                        <!-- <div class="titleFilter titleBox" *ngIf="showTopSteps">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -42,8 +43,9 @@
                                 >
                                 Filter
                             </button>
-                        </div>
-                        <div class="titleChevron2" *ngIf="showTopSteps">
+                        </div> -->
+
+                        <!-- <div class="titleChevron2" *ngIf="showTopSteps">
                             <button
                                 type="button"
                                 class="btn btn-link titleButton"
@@ -51,7 +53,8 @@
                                 >
                                 >>
                             </button>
-                        </div>
+                        </div> -->
+
                         <div class="titleTransform titleBox" *ngIf="showTopSteps">
                             <button
                                 type="button"
@@ -242,7 +245,7 @@
                         </div>
 
                     </div>
-
+<!-- 
                     <div class="gridFilter" *ngIf="showFilter">
                         <div class="gridFilterFields">
                             Existing Fields
@@ -346,7 +349,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="gridTransform" *ngIf="showTransform">
                         <div class="gridTransformTransformations">
@@ -457,8 +460,8 @@
                                 <clr-datagrid>
                                     <clr-dg-column>Delete</clr-dg-column>
                                     <clr-dg-column>Field Name</clr-dg-column>
-                                    <clr-dg-column>Operator</clr-dg-column>
-                                    <clr-dg-column>Filter Value</clr-dg-column>
+                                    <clr-dg-column>Transformation</clr-dg-column>
+                                    <clr-dg-column>Input</clr-dg-column>
     
                                     <clr-dg-row *ngFor="let row of datasourceFilters">
                                         <clr-dg-cell><clr-icon shape="times"></clr-icon></clr-dg-cell>
@@ -468,7 +471,6 @@
                                     </clr-dg-row>
                                 </clr-datagrid>
                             </div>
-    
 
                         </div>
                         <div class="gridTransformExisting">
