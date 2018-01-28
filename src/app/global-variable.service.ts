@@ -1111,6 +1111,7 @@ export class GlobalVariableService {
                     this.getCurrentWidgetsTEST(dashboardID, dashboardTabID).then(q =>
                         // Reset Global Vars
                         {
+                            console.log('GV this.currentSlicers', this.currentSlicers)
                             this.currentDashboardID = dashboardID
                             this.currentDashboardTabID = dashboardTabID
                             if (this.currentWidgets.length > 0) {
@@ -1852,7 +1853,7 @@ export class GlobalVariableService {
         //   dashboardTabID (0 => all Tabs)
         // Returns: this.currentSlicers array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentSlicers ...');
+        console.log('Global-Variables getCurrentSlicers ...', this.slicers.length);
 
         // Refresh from source at start, or if dirty
         if ( (this.slicers.length == 0)  ||  (this.isDirtySlicers) ) {

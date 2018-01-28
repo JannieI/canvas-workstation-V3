@@ -159,7 +159,7 @@ export class ExploreComponent {
     statusBarCancelRefresh: string = '';
     statusBarMessages: string = '';
     templateInUse: string = 'Tmpl Used';
-    
+
     temp: number[] = [0];
     showSlicerContainer: boolean = false;
     slicerHeight: number = 178;
@@ -179,7 +179,7 @@ export class ExploreComponent {
     ) {}
 
     // ngOnInit() {
-    //     // 
+    //     //
     //     this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
     //     console.log('Explore ngOnInit', this.globalVariableService.openDashboardFormOnStartup)
@@ -229,7 +229,7 @@ export class ExploreComponent {
     //     );
     //     // this.globalVariableService.refreshDashboard.subscribe(
     //     //     i => {
-    //     //             console.log ('Explore ngOnInit refreshDashboard', 
+    //     //             console.log ('Explore ngOnInit refreshDashboard',
     //     //                 this.globalVariableService.currentDashboardID,
     //     //                 this.globalVariableService.currentDashboardTabID)
     //     //             if (i)
@@ -255,7 +255,7 @@ export class ExploreComponent {
     //     //     i => this.clickMenuSelectAll(i)
     //     // );
     //     this.globalVariableService.loggedIntoServer.subscribe(
-    //         i => 
+    //         i =>
     //         {
     //             console.log(i)
     //             if(i) {
@@ -270,12 +270,12 @@ export class ExploreComponent {
 
     // ngAfterViewChecked(){
     //     // For Testing
-    //     console.log('Explore ngAfterViewChecked W, Sl', this.currentWidgets, 
+    //     console.log('Explore ngAfterViewChecked W, Sl', this.currentWidgets,
     //         this.widgetContainters.toArray())
     // }
 
     // ngAfterViewInit() {
-    //     // 
+    //     //
     //     this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
     //     console.log('Explore ngOnViewInit', this.currentShapes)
@@ -293,7 +293,7 @@ export class ExploreComponent {
     //             // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
 
     //             // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
-                
+
     //             // console.log('Explore ngAfterViewInit circle2', this.circle2.toArray()[i].nativeElement)
     //         }
     //     };
@@ -303,13 +303,13 @@ export class ExploreComponent {
     // }
 
     // refreshDashboardInfo(dashboardID: number, dashboardTabID: number) {
-    //     // 
+    //     //
     //     this.globalFunctionService.printToConsole(this.constructor.name,'refreshDashboardInfo', '@Start');
 
     //     if (dashboardTabID < 1) { dashboardTabID = 1};
 
     //     this.globalVariableService.refreshCurrentDashboardInfo(
-    //         dashboardID, dashboardTabID).then (i => 
+    //         dashboardID, dashboardTabID).then (i =>
     //         {
     //             console.log('The big moment ...')
     //             this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs;
@@ -321,7 +321,7 @@ export class ExploreComponent {
     // }
 
     refreshShapes2() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshShapes2', '@Start');
 
         console.log('Explore refreshShapes2 starting now ...', this.shapeContainter.toArray().length)
@@ -340,7 +340,7 @@ export class ExploreComponent {
                 // this.renderer2.setAttribute(this.circle.toArray()[i].nativeElement,'fill', 'none')
 
                 // this.circle.toArray()[i].nativeElement = '<circle #circle cx="50" cy="50" r="5" stroke="blue" stroke-width="2" fill="none" />'
-                
+
                 // console.log('Explore refreshShapes2 circle2', this.circle2.toArray()[i].nativeElement)
             }
         };
@@ -348,7 +348,7 @@ export class ExploreComponent {
     }
 
     refreshWidgets() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
 
         console.log('Explore refreshWidgets ...START children.length', this.childrenWidgets.toArray(),
@@ -390,7 +390,7 @@ export class ExploreComponent {
     }
 
     duplicateWidget(duplicate: boolean) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'duplicateWidget', '@Start');
 
         if (duplicate) {
@@ -402,14 +402,14 @@ export class ExploreComponent {
     }
 
     allowDrop(event) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'allowDrop', '@Start');
 
         event.preventDefault();
     }
 
     dragstart_handler(ev) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstart_handler', '@Start');
 
         // console.log("Explore dragstart_handler");
@@ -419,14 +419,14 @@ export class ExploreComponent {
     }
 
     dragend_handler(ev) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'dragend_handler', '@Start');
 
         console.log('Explore dragend_handler', ev.dataTransfer.dropEffect)
     }
 
     dragover_handler(ev) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handler', '@Start');
 
         console.log('Explore dragover_handler')
@@ -436,7 +436,7 @@ export class ExploreComponent {
     }
 
     drop_handler(ev) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'drop_handler', '@Start');
 
         ev.preventDefault();
@@ -493,23 +493,23 @@ export class ExploreComponent {
     ];
 
     clickWidget(ev) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
 
         return;
     }
 
     clickDashboardDescription() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDescription', '@Start');
 
         this.showTabList = false;
         this.showDashboardDescription = true;
-        this.showDashboardTabDescription = false;  
+        this.showDashboardTabDescription = false;
     }
 
     clickListTabs() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickListTabs', '@Start');
 
         this.showTabList = true;
@@ -518,27 +518,27 @@ export class ExploreComponent {
     }
 
     clickAddTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddTab', '@Start');
 
         this.showNewTab = true;
     }
 
     clickShowFirstTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFirstTab', '@Start');
 
         this.currentTabName = this.currentDashboardTabs[0].name;
     }
 
     clickShowPreviousTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowPreviousTab', '@Start');
 
         let x: number = 0;
         for (var i = 0; i < this.currentDashboardTabs.length; i++) {
-            if (this.currentDashboardTabs[i].id == 
-                this.globalVariableService.currentDashboardTabID) { 
+            if (this.currentDashboardTabs[i].id ==
+                this.globalVariableService.currentDashboardTabID) {
                     x = i - 1;
             };
         }
@@ -550,16 +550,16 @@ export class ExploreComponent {
     }
 
     clickShowTabDescription() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDescription', '@Start');
 
         this.showTabList = false;
         this.showDashboardTabDescription = true;
         this.showDashboardDescription = false;
-        
+
     }
     clickShowNextTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNextTab', '@Start');
         let x: CanvasWidget = this.globalVariableService.currentWidgets[2]
         this.currentWidgets.pop();
@@ -568,30 +568,30 @@ export class ExploreComponent {
     }
 
     clickShowLastTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowLastTab', '@Start');
 
         console.log('Explore clickShowLastTab',this.currentTabName)
         this.currentTabName = this.currentDashboardTabs[
-            this.currentDashboardTabs.length - 1].name;        
+            this.currentDashboardTabs.length - 1].name;
     }
 
     clickCloseModel() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCloseModel', '@Start');
 
         this.showModalOpenDashboard = false;
     }
 
     clickDeleteTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteTab', '@Start');
 
         alert ('Cannot delete last remaining Tab')
     }
 
     clickGotIt() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
 
         this.globalVariableService.isFirstTimeDashboard.next(false);
@@ -613,7 +613,7 @@ export class ExploreComponent {
         graphColorField: string = '',
         graphColorType: string = ''
         ): dl.spec.TopLevelExtendedSpec {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
 
         // Exclude nulls, as dl lib reads "" as null
@@ -661,7 +661,7 @@ export class ExploreComponent {
     }
 
     clickClosePresentation() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClosePresentation', '@Start');
 
         // this.globalVariableService.showMainMenu.next(true);
@@ -669,35 +669,35 @@ export class ExploreComponent {
     }
 
     handleCloseDashboardTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');
 
         this.showNewTab = false;
     }
 
     clickSelect(i: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelect', '@Start');
 
         this.currentWidgets[i].isSelected = !this.currentWidgets[i].isSelected;
     }
 
     clickDragMouseDown(event, id: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDragMouseDown', '@Start');
 
         console.log('Explore clickDragMouseDown', id)
     }
 
     clickDragMouseUp(event, id: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDragMouseUp', '@Start');
 
         console.log('Explore clickDragMouseUp')
     }
 
     clickDragStart(event, id: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDragStart', '@Start');
 
         console.log('Explore clickDragStart', id, event.clientX, event.clientY)
@@ -706,7 +706,7 @@ export class ExploreComponent {
     }
 
     clickDragEnd(event, index: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDragEnd', '@Start');
 
         console.log('Explore clickDragEnd', index, event.clientX, event.clientY,
@@ -732,28 +732,28 @@ export class ExploreComponent {
 
     }
     clickDragKeydown(event, id: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDragKeydown', '@Start');
 
         console.log('Explore clickDragKeydown', id)
     }
 
     clickResizeMouseDown(event, id: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeMouseDown', '@Start');
 
         console.log('Explore clickResizeMouseDown', id)
     }
 
     clickResizeMouseUp(event, id: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeMouseUp', '@Start');
 
         console.log('Explore clickResizeMouseUp', id)
     }
 
     clickResizeStart(event, id: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeStart', '@Start');
 
         console.log('Explore clickResizeStart', id, event.clientX, event.clientY)
@@ -762,7 +762,7 @@ export class ExploreComponent {
     }
 
     clickResizeEnd(event, index: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeEnd', '@Start');
 
         console.log('Explore clickResizeEnd', index, event.clientX, event.clientY,
@@ -787,26 +787,26 @@ export class ExploreComponent {
         this.currentWidgets[index].containerHeight = newY;
     }
     clickResizeKeydown(event, id: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeKeydown', '@Start');
 
         console.log('Explore clickResizeKeydown', id)
     }
 
     handleCloseDashboardHelp() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardHelp', '@Start');
 
     }
 
     handleCloseDashboardHelpPresentation() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardHelpPresentation', '@Start');
 
     }
 
     clickWidgetEdit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetEdit', '@Start');
 
         if (!this.hasDatasources) {
@@ -817,26 +817,26 @@ export class ExploreComponent {
     }
 
     handleCloseWidgetEditor() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
         this.showModalWidgetEditor = false;
     }
 
     clickWidgetCheckpoints() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetCheckpoints', '@Start');
 
     }
 
     clickMenuWidgetComments() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetComments', '@Start');
 
     }
 
     clickMenuWidgetLinks() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
 
         if (this.presentationMode) {
@@ -845,49 +845,49 @@ export class ExploreComponent {
     }
 
     clickMenuWidgetRefresh() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetRefresh', '@Start');
 
     }
 
     clickMenuWidgetDuplicate() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
 
     }
 
     clickMenuWidgetExpand() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExpand', '@Start');
 
     }
 
     clickMenuWidgetExport() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExport', '@Start');
 
     }
 
     clickMenuArrangeBack() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBack', '@Start');
 
     }
 
     clickMenuArrangeFront() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeFront', '@Start');
 
     }
 
     clickMenuWidgetDelete() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDelete', '@Start');
 
     }
 
     clickStatusTemplate() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickStatusTemplate', '@Start');
 
         if (this.templateInUse == 'Tmpl Used') {
@@ -898,14 +898,14 @@ export class ExploreComponent {
     }
 
     clickSlicerDelete() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerDelete', '@Start');
 
         this.showSlicer = false;
     }
 
     clickSlicer(index: number, id: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicer', '@Start');
 
         console.log(this.currentSlicers, index)
@@ -919,40 +919,40 @@ export class ExploreComponent {
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeDown', '@Start');
 
         console.log('clickResizeDown', this.currentSlicers[index].containerLeft, ev);
         this.startX = ev.x;
         this.startY = ev.y;
-        
+
     }
 
     clickResizeUp(ev: MouseEvent, index: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeUp', '@Start');
 
         console.log('clickResizeUp starts index', index)
 
         // Reset current and globalVar values
-        this.currentSlicers[index].containerWidth = 
+        this.currentSlicers[index].containerWidth =
             this.currentSlicers[index].containerWidth - this.startX + ev.x;
-        this.globalVariableService.currentSlicers[index].containerWidth =   
-            this.currentSlicers[index].containerWidth;    
-                
+        this.globalVariableService.currentSlicers[index].containerWidth =
+            this.currentSlicers[index].containerWidth;
+
         // console.log('clickResizeUp this.globalVariableService.currentSlicers[index].value',
         //     index, this.globalVariableService.currentSlicers.value[index])
 
-        this.currentSlicers[index].nrButtons = 
+        this.currentSlicers[index].nrButtons =
             (this.currentSlicers[index].containerWidth - 50) / 22;
 
-        console.log('clickResizeUp width buttons ev x-move', 
-            this.currentSlicers[index].containerWidth, this.currentSlicers[index].nrButtons, 
+        console.log('clickResizeUp width buttons ev x-move',
+            this.currentSlicers[index].containerWidth, this.currentSlicers[index].nrButtons,
             ev, 0 - this.startX + ev.x);
     }
 
     clickMenuAlignTop() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuAlignTop', '@Start');
 
         let firstTop: number = null;
@@ -970,10 +970,10 @@ export class ExploreComponent {
             )
         };
         console.log('clickMenuAlignTop', this.currentSlicers);
-    }   
+    }
 
     clickMenuSelectAll(value: boolean) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSelectAll', '@Start');
 
         console.log('clickMenuSelectAll', value)
@@ -995,7 +995,7 @@ export class ExploreComponent {
     }
 
     selectDashboardTab(index: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'selectDashboardTab', '@Start');
 
         console.log('selectDashboardTab', index)
@@ -1021,7 +1021,7 @@ export class ExploreComponent {
     }
 
     handleCloseDashboardOpen(ev) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardOpen', '@Start');
         console.log('handleCloseDashboardOpen 1', this.test)
 
@@ -1029,7 +1029,7 @@ export class ExploreComponent {
     }
 
     handleCloseData(ev) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
 
         // this.globalVariableService.showModalData.next(false);

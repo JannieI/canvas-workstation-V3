@@ -27,6 +27,8 @@ import { CanvasWidget }               from './models'
 import { Datasource }                 from './models'
 import { Widget }                     from './models'
 
+import { CanvasSlicer }               from './models'
+
 import { WidgetComponent }            from './widget.component';
 
 // Vega, Vega-Lite
@@ -200,6 +202,12 @@ export class AppComponent implements OnInit {
 
     // Testings ....
     refreshGraphs: boolean = false;
+    currentSlicers: CanvasSlicer[] = [];
+    showSlicer: boolean = true;
+    startX: number;
+    startY: number;
+    selectedSlicers: number[] = []
+
 
     constructor(
         private globalVariableService: GlobalVariableService,
@@ -289,6 +297,10 @@ export class AppComponent implements OnInit {
                                 console.log('yy', this.currentDashboardName, this.currentTabName, this.globalVariableService.currentDashboardInfo.value.
                                 currentDashboardTabID, '@', this.globalVariableService.currentDashboardInfo.value.
                                 currentDashboardTabIndex)
+
+                                // TODO - remove later
+                                this.currentSlicers = this.globalVariableService.currentSlicers;
+                                console.log('this.currentSlicers 1', this.currentSlicers)
                             }
                         )
                 }
@@ -308,6 +320,7 @@ export class AppComponent implements OnInit {
         if (this.widgetDOM != undefined  &&  (!this.refreshGraphs) ) {
             this.refreshGraphs = true;
             this.widgetDOM.refreshWidgets();
+            console.log('this.currentSlicers 2', this.currentSlicers)
         }
     }
 
@@ -1264,6 +1277,56 @@ export class AppComponent implements OnInit {
         // console.log('trackWidget', row);
         return row ? row.id : undefined;
     }
+
+
+
+    clickSlicer(index: number, id: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicer', '@Start');
+
+        console.log(this.currentSlicers, index)
+        this.currentSlicers[index].isSelected = !this.currentSlicers[index].isSelected;
+        if (this.currentSlicers[index].isSelected ) {
+            this.selectedSlicers.push(id);
+        } else {
+            this.selectedSlicers.splice(this.selectedSlicers.indexOf(id), 1)
+        }
+        console.log('clickSlicer', this.selectedSlicers)
+    }
+
+    clickResizeDown(ev: MouseEvent, index: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeDown', '@Start');
+
+        console.log('clickResizeDown', this.currentSlicers[index].containerLeft, ev);
+        this.startX = ev.x;
+        this.startY = ev.y;
+
+    }
+
+    clickResizeUp(ev: MouseEvent, index: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeUp', '@Start');
+
+        console.log('clickResizeUp starts index', index)
+
+        // Reset current and globalVar values
+        this.currentSlicers[index].containerWidth =
+            this.currentSlicers[index].containerWidth - this.startX + ev.x;
+        this.globalVariableService.currentSlicers[index].containerWidth =
+            this.currentSlicers[index].containerWidth;
+
+        // console.log('clickResizeUp this.globalVariableService.currentSlicers[index].value',
+        //     index, this.globalVariableService.currentSlicers.value[index])
+
+        this.currentSlicers[index].nrButtons =
+            (this.currentSlicers[index].containerWidth - 50) / 22;
+
+        console.log('clickResizeUp width buttons ev x-move',
+            this.currentSlicers[index].containerWidth, this.currentSlicers[index].nrButtons,
+            ev, 0 - this.startX + ev.x);
+    }
+
 }
 
 // Naming conventions
