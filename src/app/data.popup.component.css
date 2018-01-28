@@ -362,7 +362,7 @@
     padding-top: 5px;
 }
 
-    .gridTransformTransformations {
+    /* .gridTransformTransformations {
         border: 1px solid gray;
         grid-column-start: 1;
         grid-column-end: 5;
@@ -371,11 +371,11 @@
         height: 19rem;
         overflow: auto;
         width: 100%;
-    }
+    } */
 
     .gridTransformNew {
         border: none;
-        grid-column-start: 5;
+        grid-column-start: 1;
         grid-column-end: 21;
         grid-row-start: 1;
         grid-row-end: 11;
@@ -393,7 +393,7 @@
         background-color: rgb(196, 191, 191);
         border: 1px solid black;
         border-radius: 4px;
-        grid-column-start: 6;
+        grid-column-start: 2;
         grid-column-end: 21;
         grid-row-start: 13;
         grid-row-end: 21;
@@ -409,7 +409,7 @@
 
     .gridTransformExisting {
         border: none;
-        grid-column-start: 5;
+        grid-column-start: 1;
         grid-column-end: 21;
         grid-row-start: 13;
         grid-row-end: 25;
@@ -418,7 +418,7 @@
 
     .gridTransformationCurrent {
         border: 1px solid gray;
-        grid-column-start: 5;
+        grid-column-start: 1;
         grid-column-end: 21;
         grid-row-start: 14;
         grid-row-end: 20;

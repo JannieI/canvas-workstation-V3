@@ -352,7 +352,7 @@
                     </div> -->
 
                     <div class="gridTransform" *ngIf="showTransform">
-                        <div class="gridTransformTransformations">
+                        <!-- <div class="gridTransformTransformations">
 
                             <span class="gridHeading">Added Transformations</span>
                             <clr-datagrid class="fieldsDataGrid">
@@ -363,7 +363,7 @@
                                 </clr-dg-row>
                             </clr-datagrid>
 
-                        </div>
+                        </div> -->
                         <div class="gridTransformNew">
                             <div class="transformationSet">
                                 Select an optional Transformation Set (list of single transformations
@@ -459,15 +459,15 @@
                             <div class="gridTransformationCurrent" *ngIf="!addNewTransformation">
                                 <clr-datagrid>
                                     <clr-dg-column>Delete</clr-dg-column>
-                                    <clr-dg-column>Field Name</clr-dg-column>
                                     <clr-dg-column>Transformation</clr-dg-column>
-                                    <clr-dg-column>Input</clr-dg-column>
+                                    <clr-dg-column>Field Name</clr-dg-column>
+                                    <clr-dg-column>Parameters</clr-dg-column>
     
-                                    <clr-dg-row *ngFor="let row of datasourceFilters">
+                                    <clr-dg-row *ngFor="let row of currentTransformations">
                                         <clr-dg-cell><clr-icon shape="times"></clr-icon></clr-dg-cell>
+                                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
                                         <clr-dg-cell>{{row.fieldName}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.operator}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.filterValue}}</clr-dg-cell>
+                                        <clr-dg-cell>{{row.parameters}}</clr-dg-cell>
                                     </clr-dg-row>
                                 </clr-datagrid>
                             </div>
