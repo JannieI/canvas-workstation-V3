@@ -386,53 +386,84 @@
                                     Save
                                 </button>
                             </div>
-                            <br>
+
                             <b>Create a transformation:</b>
-                            <div>
-                                Select a single field and the transformation that must be
-                                applied to it:
-                            </div>
-                            <div class="gridTransformNewNames">
-                                <label for="selects_2">Field:</label>
-                                <div class="select ">
-                                    <select id="selects_2">
-                                        <option *ngFor="let row of dataFieldNames">
-                                            {{ row }}
-                                        </option>
-                                    </select>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickFileSaveTransformation()"
+                                >
+                                Save
+                            </button>
+
+
+                            <div *ngIf="addNewTransformation">
+                            
+                                <div>
+                                    Select a single field and the transformation that must be
+                                    applied to it:
                                 </div>
-                                <label for="selects_1">Transformation:</label>
-                                <div class="select">
-                                    <select id="selects_1"
-                                        (click)="clickFileAddTransformationDetail()"
-                                        >
-                                        <option *ngFor="let row of transformationsFormat">
-                                                {{ row.name }}
+                                <div class="gridTransformNewNames">
+                                    <label for="selects_2">Field:</label>
+                                    <div class="select ">
+                                        <select id="selects_2">
+                                            <option *ngFor="let row of dataFieldNames">
+                                                {{ row }}
                                             </option>
                                         </select>
+                                    </div>
+                                    <label for="selects_1">Transformation:</label>
+                                    <div class="select">
+                                        <select id="selects_1"
+                                            (click)="clickFileAddTransformationDetail()"
+                                            >
+                                            <option *ngFor="let row of transformationsFormat">
+                                                    {{ row.name }}
+                                                </option>
+                                            </select>
+                                    </div>
+                                    <input type="text" id="formFields_7"
+                                        placeholder="Description of transformation ..."
+                                        [(ngModel)]="transformationDescription"
+                                        class="selectFile"
+                                        >
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        (click)="clickFileSaveTransformation()"
+                                        >
+                                        Save
+                                    </button>
+                                    <br>
+                                    <br>
+                                    <i>Note: When creating Calculated Fields, use a subset of TypeScript syntax in the
+                                        formulas.  It is possible to use IF-THEN-ELSE statements, but it
+                                        is not possible to use callbacks.  Fields existing in the Dataset (
+                                        original or calculated) can be referenced by wrapping them in [], for
+                                        example [TradeDate] - 1 where TradeDate is an existing field.
+                                    </i>
                                 </div>
-                                <input type="text" id="formFields_7"
-                                    placeholder="Description of transformation ..."
-                                    [(ngModel)]="transformationDescription"
-                                    class="selectFile"
-                                    >
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    (click)="clickFileSaveTransformation()"
-                                    >
-                                    Save
-                                </button>
-                                <br>
-                                <br>
-                                <i>Note: When creating Calculated Fields, use a subset of TypeScript syntax in the
-                                    formulas.  It is possible to use IF-THEN-ELSE statements, but it
-                                    is not possible to use callbacks.  Fields existing in the Dataset (
-                                    original or calculated) can be referenced by wrapping them in [], for
-                                    example [TradeDate] - 1 where TradeDate is an existing field.
-                                </i>
                             </div>
-                            <br>
+
+
+
+                            <div class="gridFilterResultFields">
+                                <clr-datagrid class="fieldsDataGrid">
+                                    <clr-dg-column>Delete</clr-dg-column>
+                                    <clr-dg-column>Field Name</clr-dg-column>
+                                    <clr-dg-column>Operator</clr-dg-column>
+                                    <clr-dg-column>Filter Value</clr-dg-column>
+    
+                                    <clr-dg-row *ngFor="let row of datasourceFilters">
+                                        <clr-dg-cell><clr-icon shape="times"></clr-icon></clr-dg-cell>
+                                        <clr-dg-cell>{{row.fieldName}}</clr-dg-cell>
+                                        <clr-dg-cell>{{row.operator}}</clr-dg-cell>
+                                        <clr-dg-cell>{{row.filterValue}}</clr-dg-cell>
+                                    </clr-dg-row>
+                                </clr-datagrid>
+                            </div>
+    
+
                         </div>
                         <div class="gridTransformExisting">
                             <div *ngIf="showTransformDetail">

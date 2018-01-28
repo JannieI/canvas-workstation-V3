@@ -144,6 +144,7 @@ export class DataPopupComponent implements OnInit {
     dataGetFromSwitch: string = 'File';
     currentDS: boolean = true;
     existingDSName: string = '';
+    addNewTransformation: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
