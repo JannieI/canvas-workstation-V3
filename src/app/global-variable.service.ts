@@ -29,7 +29,6 @@ import { DashboardTag }               from './models';
 import { DashboardTemplate }          from './models';
 import { DashboardTheme }             from './models';
 import { Datasource }                 from './models';
-import { DatasourceFilter}            from './models';
 import { DataQualityIssue}            from './models';
 import { DatasourcePermission}        from './models';
 import { DatasourcePivot }            from './models';
@@ -868,7 +867,6 @@ export class GlobalVariableService {
 
     datasources: Datasource[] = [];
     transformations: Transformation[] = [];
-    datasourceFilters: DatasourceFilter[] = [];
     dataQualityIssues: DataQualityIssue[] = [];
     datasourcePermissions: DatasourcePermission[] = [];
     datasourcePivots: DatasourcePivot[] = [];
@@ -882,7 +880,6 @@ export class GlobalVariableService {
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
     currentDatasources: Datasource[] = [];
     currentTransformations: Transformation[] = [];
-    currentDatasourceFilters: DatasourceFilter[] = [];
     currentDataQualityIssues: DataQualityIssue[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
     currentDatasourcePivots: DatasourcePivot[] = [];
@@ -999,7 +996,6 @@ export class GlobalVariableService {
     isDirtyDashboardThemes: boolean = true;
     isDirtyDatasources: boolean = true;
     isDirtyTransformations: boolean = true;
-    isDirtyDatasourceFilters: boolean = true;
     isDirtyDataQualityIssues: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasourcePivots: boolean = true;
@@ -1137,8 +1133,7 @@ export class GlobalVariableService {
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
             this.getCurrentDatasource(datasourceID).then( i => 
-            // Load the current Filters
-            this.getCurrentDatasourceFilters(datasourceID).then(j =>
+
             // Load Permissions for DS
             this.getCurrentDatasourcePermissions(datasourceID).then(k =>
             // Load Transformations
@@ -1151,7 +1146,7 @@ export class GlobalVariableService {
                 {
                     resolve(true)
                 }
-        ))))));
+        )))));
         });
     }
 
@@ -1201,12 +1196,6 @@ export class GlobalVariableService {
 
         // Load Current DatTransformationsasources
         this.getCurrentTransformations(1);     
-
-        // Load DatasourceFilters
-        this.getDatasourceFilters();     
-
-        // Load Current DatasourceFilters
-        this.getCurrentDatasourceFilters(1);     
 
         // Load DataQualityIssues
         this.getDataQualityIssues();     

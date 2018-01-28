@@ -121,14 +121,6 @@ export class CombinationDetail {
     rhFieldName: string;
 }
 
-export class DatasourceFilter {
-    id: number;
-    datasourceID: number;
-    fieldName: string;
-    operator: string;
-    filterValue: string | number;
-}
-
 export class DataQualityIssue {
     id: number;
     datasourceID: number;

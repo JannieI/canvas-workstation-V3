@@ -24,7 +24,6 @@ import { Transformation }             from './models';
 import { Field }                      from './models';
 import { FieldMetadata }              from './models';
 import { DataQualityIssue }           from './models';
-import { DatasourceFilter}            from './models'
 
 // Vega
 import * as dl from 'datalib';
@@ -54,7 +53,6 @@ export class DataPopupComponent implements OnInit {
     dataUniqueInColumn: string[] = [];
     pageSize: number = 4;
     dataQualityIssues: DataQualityIssue[];
-    datasourceFilters: DatasourceFilter[];
     currentTransformations: Transformation[];
     curentDatasetID: number;
     currentDatasetName: string = '';
@@ -354,7 +352,6 @@ export class DataPopupComponent implements OnInit {
 
         // Reset data related to this DS
         // this.currentDatasources.push(newData);
-        this.datasourceFilters = [];
         this.currentTransformations = [];
         this.transformationsFormat = [];
         this.pivotAgg = [];
@@ -404,7 +401,6 @@ export class DataPopupComponent implements OnInit {
                     this.transformationsFormat = this.globalVariableService.transformationsFormat;
                     this.currentTransformations = this.globalVariableService.currentTransformations;
                     this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
-                    this.datasourceFilters = this.globalVariableService.datasourceFilters;
                     this.fields = this.globalVariableService.fields;
                     this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
                     this.globalVariableService.dataGetFromSwitch.subscribe(
@@ -420,7 +416,6 @@ export class DataPopupComponent implements OnInit {
         this.currentDatasetName = this.currentDatasources[index].name;
 
         // Reset data related to this DS
-        this.datasourceFilters = this.globalVariableService.datasourceFilters;
         this.transformationsFormat = this.globalVariableService.transformationsFormat;
         this.pivotAgg = [];
         this.pivotCols = [];
