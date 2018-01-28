@@ -69,6 +69,7 @@
         grid-column-end: 8;
         grid-row-start: 3;
         grid-row-end: 5;
+        
     }
 
     .titleChevron1 {
@@ -154,7 +155,7 @@
     }
 
     .titleButton {
-        margin-top: 2px;
+        margin-top: 0px;
     }
 
 .gridIdentifyData {
