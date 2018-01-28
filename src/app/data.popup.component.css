@@ -272,6 +272,12 @@
         width: 100%;
     }
 
+    .gridIdentifyDataPreviewGrid {
+        margin-top: 0 !important;
+        height: 12rem;
+        width: 100%;
+    }
+
 
 .gridFilter {
     border-top: 2px solid black;
