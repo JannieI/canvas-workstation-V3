@@ -373,22 +373,18 @@
                                         </select>
                                     </div>
                                 </div>
-                                <br>
-                                Optionally save all the current transformations (shown on the left)
-                                as a Transformation-Set for future use:
-                                <div class="gridTransformNewNames">
-                                        <input type="text" id="formFields_7"
-                                        placeholder="Set Name"
-                                        class="selectFile"
-                                        >
-                                    <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        (click)="clickFileSaveTransformation()"
-                                        >
-                                        Save
-                                    </button>
-                                </div>
+                                Save as a Transformation-Set:
+                                <input type="text" id="formFields_7"
+                                    placeholder="Set Name"
+                                    class="selectFile gridTransformNewNames"
+                                    >
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    (click)="clickFileSaveTransformation()"
+                                    >
+                                    Save
+                                </button>
                             </div>
                             <br>
                             <b>Create a transformation:</b>
