@@ -74,7 +74,7 @@
     .titleChevron1 {
         border: none;
         grid-column-start: 8;
-        grid-column-end: 9;
+        grid-column-end: 10;
         grid-row-start: 3;
         grid-row-end: 5;
         margin: 0;
@@ -101,16 +101,16 @@
 
     .titleTransform {
         border: 1px solid gray;
-        grid-column-start: 9;
-        grid-column-end: 15;
+        grid-column-start: 10;
+        grid-column-end: 16;
         grid-row-start: 3;
         grid-row-end: 5;
     }
 
     .titleChevron3 {
         border: none;
-        grid-column-start: 15;
-        grid-column-end: 16;
+        grid-column-start: 16;
+        grid-column-end: 18;
         grid-row-start: 3;
         grid-row-end: 5;
         margin: 0;
@@ -119,16 +119,16 @@
 
     .titlePivot {
         border: 1px solid gray;
-        grid-column-start: 16;
-        grid-column-end: 22;
+        grid-column-start: 18;
+        grid-column-end: 24;
         grid-row-start: 3;
         grid-row-end: 5;
     }
 
     .titleChevron4 {
         border: none;
-        grid-column-start: 22;
-        grid-column-end: 23;
+        grid-column-start: 24;
+        grid-column-end: 26;
         grid-row-start: 3;
         grid-row-end: 5;
         margin: 0;
@@ -137,15 +137,15 @@
 
     .titleView {
         border: 1px solid gray;
-        grid-column-start: 23;
-        grid-column-end: 29;
+        grid-column-start: 26;
+        grid-column-end: 32;
         grid-row-start: 3;
         grid-row-end: 5;
     }
 
     .titleButtonDiv {
         border: none;
-        grid-column-start: 29;
+        grid-column-start: 32;
         grid-column-end: 34;
         grid-row-start: 3;
         grid-row-end: 5;
