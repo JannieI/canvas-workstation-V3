@@ -396,6 +396,19 @@
         padding: 10px;
     }
 
+    .gridTransformationCurrent {
+        border: 1px solid gray;
+        grid-column-start: 5;
+        grid-column-end: 21;
+        grid-row-start: 14;
+        grid-row-end: 20;
+        height: 11rem;
+        margin-left: 10px;
+        padding: 10px;
+        overflow: auto;
+        width: 100%;
+    }
+
 .gridPivot {
     border-top: 2px solid black;
     grid-column-start: 1;
