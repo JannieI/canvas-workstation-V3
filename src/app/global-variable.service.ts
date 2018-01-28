@@ -2399,41 +2399,6 @@ export class GlobalVariableService {
         };
     }
 
-
-    getCurrentDatasourceFilters(datasourceID: number): Promise<DatasourceFilter[]> {
-        // Description: Gets F for current DS
-        // Returns: this.currentDatasourceFilters.value array, unless:
-        //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDatasourceFilters ...');
-
-        let url: string = 'getDatasourceFilters';
-        this.filePath = './assets/data.datasourceFilters.json';
-
-        if ( (this.currentDatasourceFilters.length == 0)  ||  (this.isDirtyDatasourceFilters) ) {
-            return new Promise<DatasourceFilter[]>((resolve, reject) => {
-                this.getDatasourceFilters()
-                    .then(data => {
-                        data = data.filter(
-                            i => i.datasourceID == datasourceID
-                        );
-                        this.currentDatasourceFilters = data;
-                        console.log('Global-Variables getDatasourceFilters 1', datasourceID, data)
-                        resolve(data);
-                })
-             })
-        } else {
-            return new Promise<DatasourceFilter[]>((resolve, reject) => {
-                let returnData: DatasourceFilter[];
-                returnData = this.datasourceFilters.filter(
-                    i => i.datasourceID == datasourceID
-                );
-                this.currentDatasourceFilters = returnData;
-                console.log('Global-Variables getDatasourceFilters 2', datasourceID)
-                resolve(returnData);
-            });
-        };
-    }
-    
     getDataQualityIssues(): Promise<DataQualityIssue[]> {
         // Description: Gets all dQual
         // Returns: this.dataQualityIssues array, unless:
