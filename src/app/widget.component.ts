@@ -152,9 +152,13 @@ export class WidgetComponent {
         console.log("widget clickWidget @start", this.widgets[0].datasourceID);
     }
       
-    refreshWidgets() {
+    refreshWidgets(start: number = -1, end: number = -1) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
+        
+        if (start == -1) { start = 0}
+        if (end == -1) { end = this.widgetContainerDOM.length}
+        console.log('xxx', start, end)
         for (var i = 0; i < this.widgetContainerDOM.length; i++) {
             console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), 
                 this.widgetDOM, this.widgetDOM.length, this.widgets)
@@ -187,8 +191,6 @@ export class WidgetComponent {
             let view = new View(parse(specification));
             view.renderer('svg')
                 .initialize( this.widgetDOM.toArray()[i].nativeElement)
-                // .height(this.widgets[0].containerHeight - 10)
-                // .width(this.widgets[0].containerWidth - 10)
                 .hover()
                 .run()
                 .finalize();
