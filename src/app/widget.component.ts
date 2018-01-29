@@ -141,12 +141,15 @@ export class WidgetComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
     }
 
-    alert() {
-      console.log("widget alert @start", this.widgets[0].datasourceID);
-      this.widgets[0].widgetType = "Changed!";
-      this.widgets[0].containerLeft = 20;
+    clickWidgetContainer(index: number) {
+        console.log("widget clickWidgetContainer @start", this.widgets[0].datasourceID);
+        this.widgets[index].isSelected = !this.widgets[index].isSelected;
     }
 
+    clickWidget(index: number) {
+        console.log("widget clickWidget @start", this.widgets[0].datasourceID);
+    }
+      
     refreshWidgets() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');

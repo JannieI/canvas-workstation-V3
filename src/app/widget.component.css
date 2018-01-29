@@ -1,22 +1,28 @@
 /* Widgets */
 .widgetContainer {
     display: inline-block;
+    display: grid;
+    margin: 0;
+    grid-template-columns: 4px 3px 3px 3px 1fr 16px 1fr 3px 3px 3px 4px;
+    grid-template-rows:    4px 3px 3px 3px 1fr 16px 1fr 3px 3px 3px 4px;
     position: absolute;
     padding: 0;
-    margin: 0;
 }
     .widgetContainer:hover {
-        border: 1px dotted black !important;
+        border: 1px dotted gray !important;
     }
 
     .widgetContainer:focus {
-        border: 1px dotted black;
+        border: 1px dotted gray;
     }
 
     .widget {
         /* border: 1px dotted gray; */
         display: inline-block;
-        margin: 25px 3px 3px 3px;
+        grid-column-start: 3;
+        grid-column-end: 10;
+        grid-row-start: 3;
+        grid-row-end: 10;    
     }
 
     .widgetSelectedDrag {
@@ -52,10 +58,119 @@
 
 
 
+
+
+
+.slicerContainerTopLeftHandle {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerTopHandle {
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerTopRightHandle {
+    grid-column-start: 8;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerRightTopHandle {
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: 5;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+
 .slicerContainerRightHandle {
-    height: 12px;
-    width: 3px;
-    float: right;
-    margin: auto;
+    background-color: #929699;
+    cursor: ew-resize;
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 6;
+    grid-row-end: 7;    
+    margin: 0;
+    padding: 0;
+    z-index: 100;
+}
+
+.slicerContainerRightBottomHandle {
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 8;
+    grid-row-end: 12;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerBottomRightHandle {
+    grid-column-start: 8;
+    grid-column-end: 12;
+    grid-row-start: 11;
+    grid-row-end: 12;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerBottomHandle {
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 11;
+    grid-row-end: 12;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerBottomLeftHandle {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 11;
+    grid-row-end: 12;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerLeftBottomHandle {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 8;
+    grid-row-end: 12;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerLeftHandle {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 6;
+    grid-row-end: 7;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerLeftTopHandle {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 5;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
 }
 
