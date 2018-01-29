@@ -1263,6 +1263,13 @@
 </button>
 
 
+<!-- Widgets WORKING -->
+<!-- <widget #widgetDOM
+    [widgets]="currentWidgets"
+    >
+</widget> -->
+
+
 <!-- Widgets -->
 <widget #widgetDOM
     [widgets]="currentWidgets"
@@ -1271,9 +1278,8 @@
 
 
 
-
-<!-- Slicers -->
-<div class="slicerContainer" *ngFor="let row of currentSlicers; let i = index"
+<!-- Slicers Backup-->
+<!-- <div class="slicerContainer" *ngFor="let row of currentSlicers; let i = index"
     #slicerContainer
     [style.background-color]="row.containerBackgroundColor"
     [style.border]="row.isSelected? '1px solid black' : 'black'"
@@ -1363,9 +1369,101 @@
         >
     </div>
 
+</div> -->
+
+<!-- Slicers -->
+<div class="slicerContainer" *ngFor="let row of currentSlicers; let i = index"
+    #slicerContainer
+    [style.background-color]="row.containerBackgroundColor"
+    [style.border]="row.isSelected? '1px solid black' : 'black'"
+    [style.box-shadow]="row.containerBoxshadow"
+    [style.font-size.px]="row.containerFontsize"
+    [style.height.px]="row.containerHeight"
+    [style.left.px]="row.containerLeft"
+    [style.top.px]="row.containerTop"
+    [style.width.px]="row.containerWidth"
+    [style.zindex]="row.containerZindex"
+    draggable="true"
+    >
+    <div class="slicerContainerDragHandle"
+        draggable="false"
+        [style.background-color]="row.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
+        >
+        <div class="slicer" *ngIf="showSlicer"
+            [style.z-index]="row.isSelected?  '68' : '70'"
+            >
+            <section class="slicerBlock" title="Filter the Budget dataset on Make of Car">
+                <div class="slicerLabel" (click)="clickSlicer(i, row.id)"
+                [style.background-color]="row.containerBackgroundcolor">
+                    <b>{{ row.containerTitle }}
+                    </b>
+                </div>
+                <div class="form-group">
+                    <div class="select multiple">
+                        <select id="selects_5" multiple>
+                            <option *ngFor="let d of row.data; let i = index" class="slicerOption">
+                                {{ d }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="slicerContainerTopLeftHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerTopHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerTopRightHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerRightTopHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerRightHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (mouseup)="clickResizeUp($event, i)"
+        (dragend)="clickResizeUp($event, i)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerRightBottomHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerBottomRightHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerBottomLeftHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerBottomHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerLeftBottomHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerLeftHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        >
+    </div>
+    <div class="slicerContainerLeftTopHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        >
+    </div>
+
 </div>
-
-
 
 
 

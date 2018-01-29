@@ -1,4 +1,4 @@
-<div class="test" *ngFor="let row of widgets; let i = index; let even = even; let odd = odd; 
+<div class="widgetContainer" *ngFor="let row of widgets; let i = index; let even = even; let odd = odd; 
         let first = first; let last = last" 
     #widgetContainerDOM
     [style.background-color]="row.containerBackgroundColor"
@@ -10,7 +10,8 @@
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
     (click)="alert()"
+    draggable="true"
     >
-    <div #widgetDOM>
+    <div #widgetDOM class="widget">
     </div>
 </div>

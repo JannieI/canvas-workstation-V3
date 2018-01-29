@@ -184,6 +184,171 @@
 
 
 /* Slicers */
+/* .slicerContainer {
+    background-color: transparent;
+    border: 1px solid lightgray;
+    bottom: 100px;
+    display: grid;
+    grid-template-columns: 3px 7px 1fr 16px 1fr 7px 3px;
+    grid-template-rows: 3px 7px 3px 1fr 16px 1fr 7px 3px;
+    left: 830px;
+    margin: 0;
+    min-width: 165px;
+    padding: 0;
+    position: absolute;
+    z-index: 51;
+} */
+    /* .slicerContainerDragHandle {
+        grid-column-start: 2;
+        grid-column-end: 7;
+        grid-row-start: 2;
+        grid-row-end: 8;
+        margin: 3px !important;
+        margin: 0;
+        min-width: 140px;
+        padding: 0;
+        z-index: 49;
+    } */
+    /* .slicer {
+        border: '1px solid gray';
+        margin: 2px 0 0 0;
+        padding: 0;
+    } */
+    /* .slicer:hover {
+        background-color: lightgray;
+    } */
+        /* .slicerLabel {
+            color: white;
+            text-align: center;
+        } */
+        /* .slicerBlock {
+            border: 1px solid black !important;
+            border-radius: 5px !important;
+        } */
+        /* .select { */
+            /* height: 2rem !important; */
+            /* overflow: scroll; */
+        /* } */
+        /* .slicerOption {
+            border-bottom: 1px solid gray !important;
+        } */
+
+
+    /* .slicerContainerTopLeftHandle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+    /* .slicerContainerTopHandle {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+    /* .slicerContainerTopRightHandle {
+        grid-column-start: 6;
+        grid-column-end: 8;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+    /* .slicerContainerRightTopHandle {
+        grid-column-start: 7;
+        grid-column-end: 8;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+    /* .slicerContainerRightHandle {
+        cursor: ew-resize;
+        grid-column-start: 7;
+        grid-column-end: 8;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+    /* .slicerContainerRightBottomHandle {
+        grid-column-start: 7;
+        grid-column-end: 8;
+        grid-row-start: 7;
+        grid-row-end: 9;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+    /* .slicerContainerBottomRightHandle {
+        grid-column-start: 6;
+        grid-column-end: 8;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+    /* .slicerContainerBottomHandle {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+    /* .slicerContainerBottomLeftHandle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+    /* .slicerContainerLeftBottomHandle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 7;
+        grid-row-end: 9;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+    /* .slicerContainerLeftHandle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+    /* .slicerContainerLeftTopHandle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    } */
+
+
+
+
+
+
 .slicerContainer {
     background-color: transparent;
     border: 1px solid lightgray;
@@ -199,7 +364,6 @@
     z-index: 51;
 }
     .slicerContainerDragHandle {
-        background-color: rgb(238, 236, 236);
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 2;
@@ -211,8 +375,7 @@
         z-index: 49;
     }
     .slicer {
-        background-color: lightgray;
-        border: '1px solid gray';
+        border: '1px solid red';
         margin: 2px 0 0 0;
         padding: 0;
     }
