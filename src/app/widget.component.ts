@@ -124,6 +124,8 @@ export class WidgetComponent {
     @ViewChildren('widgetContainerDOM')  widgetContainerDOM: QueryList<ElementRef>;
     startX: number;
     startY: number;
+    startWidgetNumber: number;
+    endWidgetNumber: number;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -156,10 +158,19 @@ export class WidgetComponent {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
         
-        if (start == -1) { start = 0}
-        if (end == -1) { end = this.widgetContainerDOM.length}
-        console.log('xxx', start, end)
-        for (var i = 0; i < this.widgetContainerDOM.length; i++) {
+        this.startWidgetNumber = 0;
+        this.endWidgetNumber = this.widgetContainerDOM.length;
+        if (start > -1) { 
+            this.startWidgetNumber = start;
+            if (end > start) { 
+                this.endWidgetNumber = end;
+            } else {
+                this.endWidgetNumber = start + 1;
+            }
+        }
+
+        console.log('xxx', this.startWidgetNumber, this.endWidgetNumber)
+        for (var i = this.startWidgetNumber; i < this.endWidgetNumber; i++) {
             console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), 
                 this.widgetDOM, this.widgetDOM.length, this.widgets)
 
@@ -198,7 +209,6 @@ export class WidgetComponent {
         }
         console.log('TEST refreshWidgets end')
     }
-
 
     createVegaLiteSpec(
         graphDescription: string = '',
@@ -273,7 +283,6 @@ export class WidgetComponent {
         }
         return vlSpecsNew;
     }
-    
 
     clickResizeDown(ev: MouseEvent, index: number) {
         //
@@ -296,6 +305,13 @@ export class WidgetComponent {
             this.widgets[index].containerWidth - this.startX + ev.x;
         this.globalVariableService.currentWidgets[index].containerWidth =
             this.widgets[index].containerWidth;
+
+        this.widgets[index].graphWidth =
+            this.widgets[index].graphWidth - this.startX + ev.x;
+        this.globalVariableService.currentWidgets[index].graphWidth =
+            this.widgets[index].graphWidth;
+
+        this.refreshWidgets(index)
 
         // console.log('clickResizeUp this.globalVariableService.widgets[index].value',
         //     index, this.globalVariableService.widgets.value[index])
