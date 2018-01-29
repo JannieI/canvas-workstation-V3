@@ -120,9 +120,12 @@ export class WidgetComponent {
 
     @ViewChildren('widgetDOM')  widgetDOM: QueryList<ElementRef>;
     @ViewChildren('widgetContainerDOM')  widgetContainerDOM: QueryList<ElementRef>;
-    
+    startX: number;
+    startY: number;
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
+        private globalVariableService: GlobalVariableService,
 
     ) {
         // Initialise
@@ -253,4 +256,37 @@ export class WidgetComponent {
         return vlSpecsNew;
     }
     
+
+    clickResizeDown(ev: MouseEvent, index: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeDown', '@Start');
+
+        console.log('clickResizeDown', this.widgetContainerDOM[index].containerLeft, ev);
+        this.startX = ev.x;
+        this.startY = ev.y;
+
+    }
+
+    clickResizeUp(ev: MouseEvent, index: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeUp', '@Start');
+
+        console.log('clickResizeUp starts index', index)
+
+        // Reset current and globalVar values
+        this.widgetContainerDOM[index].containerWidth =
+            this.widgetContainerDOM[index].containerWidth - this.startX + ev.x;
+        this.globalVariableService.currentWidgets[index].containerWidth =
+            this.widgetContainerDOM[index].containerWidth;
+
+        // console.log('clickResizeUp this.globalVariableService.widgetContainerDOM[index].value',
+        //     index, this.globalVariableService.widgetContainerDOM.value[index])
+
+        this.widgetContainerDOM[index].nrButtons =
+            (this.widgetContainerDOM[index].containerWidth - 50) / 22;
+
+        console.log('clickResizeUp width buttons ev x-move',
+            this.widgetContainerDOM[index].containerWidth, this.widgetContainerDOM[index].nrButtons,
+            ev, 0 - this.startX + ev.x);
+    }
 } 

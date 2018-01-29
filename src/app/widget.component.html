@@ -12,6 +12,17 @@
     (click)="alert()"
     draggable="true"
     >
+
+    <div class="slicerContainerRightHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'red'"
+        (mousedown)="clickResizeDown($event, i)"
+        (mouseup)="clickResizeUp($event, i)"
+        (dragend)="clickResizeUp($event, i)"
+        draggable="true"
+        >
+    </div>
+
+
     <div #widgetDOM class="widget">
     </div>
 </div>

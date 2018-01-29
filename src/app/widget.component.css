@@ -50,3 +50,12 @@
     }
 
 
+
+
+.slicerContainerRightHandle {
+    height: 12px;
+    width: 3px;
+    float: right;
+    margin: auto;
+}
+
