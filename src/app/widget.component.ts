@@ -344,6 +344,11 @@ export class WidgetComponent {
             this.widgets[index].containerLeft - this.startX + ev.x;
         this.globalVariableService.currentWidgets[index].containerLeft =
             this.widgets[index].containerLeft;
-    
+
+        this.widgets[index].containerTop =
+            this.widgets[index].containerTop - this.startY + ev.y;
+        this.globalVariableService.currentWidgets[index].containerTop =
+            this.widgets[index].containerTop;
+
     }
 } 
