@@ -122,6 +122,8 @@ export class WidgetComponent {
 
     @ViewChildren('widgetDOM')  widgetDOM: QueryList<ElementRef>;
     @ViewChildren('widgetContainerDOM')  widgetContainerDOM: QueryList<ElementRef>;
+
+    editMode: boolean;
     startX: number;
     startY: number;
     startWidgetNumber: number;
@@ -139,6 +141,13 @@ export class WidgetComponent {
     ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        this.globalVariableService.editMode.subscribe(i => 
+            {
+                this.editMode = i;
+            }
+        );
+
     }
     ngAfterViewInit() {
         // Initialise
@@ -147,11 +156,20 @@ export class WidgetComponent {
 
     clickWidgetContainer(index: number) {
         console.log("widget clickWidgetContainer @start", this.widgets[0].datasourceID);
+
+        if (!this.editMode) {
+            return;
+        }
+
         this.widgets[index].isSelected = !this.widgets[index].isSelected;
     }
 
     clickWidget(index: number) {
         console.log("widget clickWidget @start", this.widgets[0].datasourceID);
+
+        if (!this.editMode) {
+            return;
+        }
     }
       
     refreshWidgets(start: number = -1, end: number = -1) {
@@ -287,6 +305,10 @@ export class WidgetComponent {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeDown', '@Start');
 
+        if (!this.editMode) {
+            return;
+        }
+
         console.log('clickResizeDown', this.widgets[index].containerLeft, ev);
         this.startX = ev.x;
         this.startY = ev.y;
@@ -298,6 +320,10 @@ export class WidgetComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeUp', '@Start');
 
         console.log('clickResizeUp starts index', index, this.widgetContainerDOM)
+
+        if (!this.editMode) {
+            return;
+        }
 
         // Reset current and globalVar values
         this.widgets[index].containerWidth =
@@ -327,6 +353,10 @@ export class WidgetComponent {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragStart', '@Start');
 
+        if (!this.editMode) {
+            return;
+        }
+
         console.log('clickWidgetContainerDragStart starts index', index, this.widgetContainerDOM)
         this.startX = ev.x;
         this.startY = ev.y;
@@ -336,6 +366,10 @@ export class WidgetComponent {
     clickWidgetContainerDragEnd(ev: MouseEvent, index: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragEnd', '@Start');
+
+        if (!this.editMode) {
+            return;
+        }
 
         console.log('clickWidgetContainerDragEnd starts index', index, this.startX, ev.x)
 
