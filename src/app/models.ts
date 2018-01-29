@@ -103,6 +103,7 @@ export class CanvasUser {
 // Data
 export class Dataset {
     id: number;
+    datasourceID: number;
     data: any;
 }
 

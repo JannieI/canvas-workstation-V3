@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "datasourceID": 1,
         "data": [
                 {"Month": "C", "Profit": 2}, {"Month": "C", "Profit": 7}, {"Month": "C", "Profit": 4},
                 {"Month": "D", "Profit": 1}, {"Month": "D", "Profit": 2}, {"Month": "D", "Profit": 6},
@@ -9,6 +10,7 @@
     },
     {
         "id": 2,
+        "datasourceID": 1,
         "data": [
                 {"Month": "C", "Profit": 2}, {"Month": "C", "Profit": 7}, {"Month": "C", "Profit": 4},
                 {"Month": "D", "Profit": 1}, {"Month": "D", "Profit": 2}, {"Month": "D", "Profit": 6},
@@ -17,6 +19,7 @@
     },
     {
         "id": 20,
+        "datasourceID": 2,
         "data": [
             "Blue",
             "Gray"
@@ -24,6 +27,7 @@
     },
     {
         "id": 21,
+        "datasourceID": 20,
         "data": [
             "Action",
             "Silence"

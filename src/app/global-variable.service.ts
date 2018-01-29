@@ -1809,14 +1809,14 @@ export class GlobalVariableService {
                     if (datasetID == -1) {
                         let ds: number[]=[];
                         data.forEach(i => {
-                            if( i => i.id == datasetID) {
+                            if(i.datasourceID == datasourceID) {
                                 ds.push(i.id)
                             }
                         });
                         if (ds.length > 0) {
                             datasetID = Math.max(...ds);
                         };
-                        console.log('Global-Variables getDatase xx', ds, datasetID)
+                        console.log('Global-Variables getDataset xx', ds, datasourceID, datasetID)
                     };
 
                     data = data.filter(i => i.id == datasetID)
