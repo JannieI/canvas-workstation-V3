@@ -46,6 +46,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     // Properties for top-level specification (e.g., standalone single view specifications)
     "background": "",
     "padding": "",
+    "height": "100",
+    "width": "100",
     // "autosize": "",          NB - add these only if needed, blank causes no graph display
     // "config": "",            NB - add these only if needed, blank causes no graph display
 
@@ -158,30 +160,35 @@ export class WidgetComponent {
                 this.widgetDOM, this.widgetDOM.length, this.widgets)
 
             let definition = this.createVegaLiteSpec(
-                this.widgets[0].graphDescription,
-                this.widgets[0].graphMark,
+                this.widgets[i].graphDescription,
+                this.widgets[i].graphMark,
 
-                this.widgets[0].graphXaggregate,
-                this.widgets[0].graphXtimeUnit,
-                this.widgets[0].graphXfield,
-                this.widgets[0].graphXtype,
-                this.widgets[0].graphXaxisTitle,
+                this.widgets[i].graphXaggregate,
+                this.widgets[i].graphXtimeUnit,
+                this.widgets[i].graphXfield,
+                this.widgets[i].graphXtype,
+                this.widgets[i].graphXaxisTitle,
 
-                this.widgets[0].graphYaggregate,
-                this.widgets[0].graphYtimeUnit,
-                this.widgets[0].graphYfield,
-                this.widgets[0].graphYtype,
-                this.widgets[0].graphYaxisTitle,
-                
-                this.widgets[0].graphUrl,
-                this.widgets[0].graphTitle,
-                this.widgets[0].graphColorField,
-                this.widgets[0].graphColorType,
+                this.widgets[i].graphYaggregate,
+                this.widgets[i].graphYtimeUnit,
+                this.widgets[i].graphYfield,
+                this.widgets[i].graphYtype,
+                this.widgets[i].graphYaxisTitle,
+
+                this.widgets[i].graphHeight,
+                this.widgets[i].graphWidth,
+
+                this.widgets[i].graphUrl,
+                this.widgets[i].graphTitle,
+                this.widgets[i].graphColorField,
+                this.widgets[i].graphColorType,
             );
             let specification = compile(definition).spec;
             let view = new View(parse(specification));
             view.renderer('svg')
                 .initialize( this.widgetDOM.toArray()[i].nativeElement)
+                // .height(this.widgets[0].containerHeight - 10)
+                // .width(this.widgets[0].containerWidth - 10)
                 .hover()
                 .run()
                 .finalize();
@@ -200,12 +207,15 @@ export class WidgetComponent {
         graphXfield: string = '',
         graphXtype: string = '',
         graphXaxisTitle: string = '',
-        
+
         graphYaggregate: string = '',
         graphYtimeUnit: string = '',
         graphYfield: string = '',
         graphYtype: string = '',
         graphYaxisTitle: string = '',
+
+        graphHeight: number = 100,
+        graphWidth: number = 100,
         
         graphUrl: string = '',
         graphTitle: string = '',
@@ -247,6 +257,9 @@ export class WidgetComponent {
         vlSpecsNew['encoding']['y']['axis']['title'] = graphYaxisTitle;
         vlSpecsNew['encoding']['y']['timeUnit'] = graphYtimeUnit;
         vlSpecsNew['encoding']['y']['aggregate'] = graphYaggregate;
+
+        vlSpecsNew['height'] = graphHeight;
+        vlSpecsNew['width'] = graphWidth;
 
         vlSpecsNew['title']['text'] = graphTitle;
 
