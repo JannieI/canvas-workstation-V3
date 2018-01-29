@@ -261,7 +261,7 @@ export class WidgetComponent {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeDown', '@Start');
 
-        console.log('clickResizeDown', this.widgetContainerDOM[index].containerLeft, ev);
+        console.log('clickResizeDown', this.widgets[index].containerLeft, ev);
         this.startX = ev.x;
         this.startY = ev.y;
 
@@ -271,22 +271,22 @@ export class WidgetComponent {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeUp', '@Start');
 
-        console.log('clickResizeUp starts index', index)
+        console.log('clickResizeUp starts index', index, this.widgetContainerDOM)
 
         // Reset current and globalVar values
-        this.widgetContainerDOM[index].containerWidth =
-            this.widgetContainerDOM[index].containerWidth - this.startX + ev.x;
+        this.widgets[index].containerWidth =
+            this.widgets[index].containerWidth - this.startX + ev.x;
         this.globalVariableService.currentWidgets[index].containerWidth =
-            this.widgetContainerDOM[index].containerWidth;
+            this.widgets[index].containerWidth;
 
-        // console.log('clickResizeUp this.globalVariableService.widgetContainerDOM[index].value',
-        //     index, this.globalVariableService.widgetContainerDOM.value[index])
+        // console.log('clickResizeUp this.globalVariableService.widgets[index].value',
+        //     index, this.globalVariableService.widgets.value[index])
 
-        this.widgetContainerDOM[index].nrButtons =
-            (this.widgetContainerDOM[index].containerWidth - 50) / 22;
+        this.widgets[index].nrButtonsToShow =
+            (this.widgets[index].containerWidth - 50) / 22;
 
         console.log('clickResizeUp width buttons ev x-move',
-            this.widgetContainerDOM[index].containerWidth, this.widgetContainerDOM[index].nrButtons,
+            this.widgets[index].containerWidth, this.widgets[index].nrButtonsToShow,
             ev, 0 - this.startX + ev.x);
     }
 } 
