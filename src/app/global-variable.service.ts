@@ -1793,10 +1793,10 @@ export class GlobalVariableService {
 
     }
 
-    getDataset(datasetID: number): Promise<any> {
+    getDataset(datasourceID: number, datasetID: number): Promise<any> {
         // Description: Gets a Dataset
         // Returns: data 
-        // TODO - fix this for caching, multiple sets ... including DIRTY-ness
+        // datasetID is optional, -1 means use the latest for datasourceID
         console.log('Global-Variables getDataset ...');
 
         let url: string = 'getDataset';
@@ -1804,12 +1804,24 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
-            this.getTree(url)
+            this.get(url)
                 .then(data => {
-                    data.forEach(i => {if( i => i.id == datasetID) {console.log(i.data) }});
-                    data = data.filter( i => i.id == datasetID);
+                    if (datasetID == -1) {
+                        let ds: number[]=[];
+                        data.forEach(i => {
+                            if( i => i.id == datasetID) {
+                                ds.push(i.id)
+                            }
+                        });
+                        if (ds.length > 0) {
+                            datasetID = Math.max(...ds);
+                        };
+                        console.log('Global-Variables getDatase xx', ds, datasetID)
+                    };
+
+                    data = data.filter(i => i.id == datasetID)
                     
-                    console.log('x', data)
+                    console.log('Global-Variables getDataset 1', datasourceID, datasetID, data) 
                     resolve(data);
             });
         });
@@ -2645,7 +2657,7 @@ export class GlobalVariableService {
                         data.forEach(w => {
                             console.log('xx', w.datasourceID, w.datasetID)
                             
-                            promiseArray.push(this.getDataset(1));
+                            promiseArray.push(this.getDataset(w.datasourceID, w.datasetID));
                         })
                             
                         this.allWithAsync(...promiseArray)
