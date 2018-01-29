@@ -1269,7 +1269,6 @@ export class GlobalVariableService {
         let arr: Datasource[] = this.datasources.splice(index,1);
         console.log('Global-Variables datasourceDelete arr', arr)
         this.datasources = this.datasources;
-        console.log('Global-Variables datasourceDelete yy', this.datasources)
     }
 
     dashboardDelete(index: number) {
@@ -2641,9 +2640,21 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID  &&
                                  (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
                         );
-                        this.currentWidgetsTEST = data;
-                        console.log('Global-Variables getCurrentWidgetsTEST 1', dashboardID, dashboardTabID, data)
-                        resolve(data);
+
+                        let promiseArray = [];
+                        data.forEach(w => {
+                            console.log('xx', w.datasourceID, w.datasetID)
+                            
+                            promiseArray.push(this.getDataset(1));
+                        })
+                            
+                        this.allWithAsync(...promiseArray)
+                            .then(resolvedData => {
+                                this.currentWidgetsTEST = data;
+                                console.log('Global-Variables getCurrentWidgetsTEST 1', dashboardID, dashboardTabID, data)
+                                resolve(data);
+                            }, 
+                            rejectionReason => console.log('reason:', rejectionReason)) // reason: rejected!
 
                 })
              })
@@ -2663,7 +2674,15 @@ export class GlobalVariableService {
 
     }
 
-
+    allWithAsync = (...listOfPromises) => {
+        return new Promise(async (resolve, reject) => {
+            let results = []
+            for (let promise of listOfPromises.map(Promise.resolve, Promise)) {
+                results.push(await promise.then(async resolvedData => await resolvedData, reject))
+                if (results.length === listOfPromises.length) resolve(results)
+            }
+        })
+    }
 
 
     getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
@@ -2770,7 +2789,7 @@ export class GlobalVariableService {
                 }
             }
         }
-        console.log('xx', x, y)
+
         this.currentDashboardInfo.next({
             currentDashboardID: dashboardID,
             currentDashboardTabID: y,

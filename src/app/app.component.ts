@@ -279,7 +279,6 @@ export class AppComponent implements OnInit {
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => { 
                 if (i) {
-                    console.log('yy')
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                         this.globalVariableService.currentDashboardInfo.value.
@@ -294,9 +293,6 @@ export class AppComponent implements OnInit {
                                     currentDashboardTabs[x].name;
                                 this.currentWidgets = this.globalVariableService.
                                     currentWidgetsTEST;
-                                console.log('yy', this.currentDashboardName, this.currentTabName, this.globalVariableService.currentDashboardInfo.value.
-                                currentDashboardTabID, '@', this.globalVariableService.currentDashboardInfo.value.
-                                currentDashboardTabIndex)
 
                                 // TODO - remove later
                                 this.currentSlicers = this.globalVariableService.currentSlicers;

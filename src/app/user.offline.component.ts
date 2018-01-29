@@ -47,7 +47,6 @@ export class UserOfflineComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        console.log('xx', this.selectDashboards)
     }
 
     clickClose(action: string) {
