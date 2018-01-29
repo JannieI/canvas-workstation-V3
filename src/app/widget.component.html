@@ -11,6 +11,8 @@
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
     (click)="clickWidgetContainer(i)"
+    (dragstart)="clickWidgetContainerDragStart($event, i)"
+    (dragend)="clickWidgetContainerDragEnd($event, i)"
     draggable="true"
     >
 

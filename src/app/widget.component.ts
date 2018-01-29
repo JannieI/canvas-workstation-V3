@@ -169,7 +169,6 @@ export class WidgetComponent {
             }
         }
 
-        console.log('xxx', this.startWidgetNumber, this.endWidgetNumber)
         for (var i = this.startWidgetNumber; i < this.endWidgetNumber; i++) {
             console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), 
                 this.widgetDOM, this.widgetDOM.length, this.widgets)
@@ -322,5 +321,29 @@ export class WidgetComponent {
         console.log('clickResizeUp width buttons ev x-move',
             this.widgets[index].containerWidth, this.widgets[index].nrButtonsToShow,
             ev, 0 - this.startX + ev.x);
+    }
+
+    clickWidgetContainerDragStart(ev: MouseEvent, index: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragStart', '@Start');
+
+        console.log('clickWidgetContainerDragStart starts index', index, this.widgetContainerDOM)
+        this.startX = ev.x;
+        this.startY = ev.y;
+    }
+
+
+    clickWidgetContainerDragEnd(ev: MouseEvent, index: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragEnd', '@Start');
+
+        console.log('clickWidgetContainerDragEnd starts index', index, this.startX, ev.x)
+
+        // Reset current and globalVar values
+        this.widgets[index].containerLeft =
+            this.widgets[index].containerLeft - this.startX + ev.x;
+        this.globalVariableService.currentWidgets[index].containerLeft =
+            this.widgets[index].containerLeft;
+    
     }
 } 
