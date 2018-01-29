@@ -1804,7 +1804,7 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
-            this.get(url)
+            this.getTree(url)
                 .then(data => {
                     if (datasetID == -1) {
                         let ds: number[]=[];
@@ -2697,24 +2697,18 @@ export class GlobalVariableService {
     }
 
 
+    // var tree = dl.treejson('data/flare.json', {children: 'children'});
+
     getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         console.log('Global-Variables get ...');
 
         return new Promise((resolve, reject) => {
             // Get from source - files for now ...
-            dl.json({url: this.filePath}, {}, (err, currentData) => {
-                if (err) {
-                    reject(err)
-                } else {
-                    currentData.forEach(j => 
-                        j.data = ['Algeria','Kenya','Congo']
-                    )
-                    console.log('currentData', currentData);
+            var tree = dl.json(this.filePath, {children: 'data'})
+                    console.log('currentData', tree);
                     // TODO - fix reading [] with dl !!!
-                    resolve(currentData);
-                }
-                });
+                    resolve(tree);
             }
         );
     }
