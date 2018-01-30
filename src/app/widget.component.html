@@ -16,7 +16,7 @@
     draggable="true"
     >
     <span *ngIf="row.hasDataQualityIssues  &&  showDataQuality" class="badge badge-danger widgetBadge1" title="Data Quality issues">1</span>
-    <span *ngIf="row.hasComments" class="badge badge-warning widgetBadge2" title="Comments">6</span>
+    <span *ngIf="row.hasComments  &&  showComments" class="badge badge-warning widgetBadge2" title="Comments">6</span>
 
     <div class="slicerContainerTopLeftHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
