@@ -138,6 +138,7 @@ export class AppComponent implements OnInit {
     presentationMode: boolean;
     showGrid: boolean;
     showDataQuality: boolean;
+    showComments: boolean;
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
@@ -1077,6 +1078,13 @@ export class AppComponent implements OnInit {
         this.showDataQuality = !this.showDataQuality;
     }
 
+    clickMenuViewShowComments() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
+
+        this.showComments = !this.showComments;
+    }
+    
     clickMenuViewSnapToGrid() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewSnapToGrid', '@Start');
