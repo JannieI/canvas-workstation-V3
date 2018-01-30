@@ -207,7 +207,7 @@
         "graphYaxisTitle": "...OneTwo",
         "graphTitle": "graphTitle",
         "graphMark": "bar",
-        "graphMarkColor": "#4682b4",
+        "graphMarkColor": "green",
         "graphUrl": "../assets/vega-datasets/cars.json",
         
         "graphColorField": "",

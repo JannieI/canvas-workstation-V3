@@ -195,7 +195,7 @@ export class WidgetComponent {
             let definition = this.createVegaLiteSpec(
                 this.widgets[i].graphDescription,
                 this.widgets[i].graphMark,
-
+                this.widgets[i].graphMarkColor,
                 this.widgets[i].graphXaggregate,
                 this.widgets[i].graphXtimeUnit,
                 this.widgets[i].graphXfield,
@@ -231,6 +231,7 @@ export class WidgetComponent {
     createVegaLiteSpec(
         graphDescription: string = '',
         graphMark: string = '',
+        graphMarkColor: string = '',
 
         graphXaggregate: string = '',
         graphXtimeUnit: string = '',
@@ -258,6 +259,7 @@ export class WidgetComponent {
         // Exclude nulls, as dl lib reads "" as null
         if (graphDescription == null) { graphDescription = ''};
         if (graphMark == null) { graphMark = ''};
+        if (graphMarkColor == null) { graphMarkColor = ''};
         if (graphXfield == null) { graphXfield = ''};
         if (graphYfield == null) { graphYfield = ''};
         if (graphTitle == null) { graphTitle = ''};
@@ -275,7 +277,7 @@ export class WidgetComponent {
         vlSpecsNew['data'] = {"url": graphUrl};
         vlSpecsNew['description'] = graphDescription;
         vlSpecsNew['mark']['type'] = graphMark;
-        vlSpecsNew['mark']['color'] = 'green';
+        vlSpecsNew['mark']['color'] = graphMarkColor;
 
         vlSpecsNew['encoding']['x']['field'] = graphXfield;
         vlSpecsNew['encoding']['x']['type'] = graphXtype;

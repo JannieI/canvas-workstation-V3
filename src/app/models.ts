@@ -456,7 +456,6 @@ export class CanvasWidget {
 
     graphTitle: string;
     graphMark: string;
-    graphMarkColor: string;
     graphUrl: string;
     graphData: any;
     graphColorField: string;
@@ -710,6 +709,7 @@ export class Widget {
 
     graphTitle: string;
     graphMark: string;
+    graphMarkColor: string;
     graphUrl: string;
     graphData: any;
     graphColorField: string;
