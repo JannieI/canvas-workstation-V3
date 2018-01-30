@@ -26,6 +26,7 @@ export class WidgetExpandComponent implements OnInit {
     @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
 
     currentDatasetLength: number;
+    records: number = 8;
     datasources: Datasource[] = [];
     // TODO - remove hardcoding
     dataFieldNames: string[] = [

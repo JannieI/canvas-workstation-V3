@@ -44,7 +44,7 @@
                         </section>
                     </form>
 
-                    <table>
+                    <!-- <table>
                         <tbody>
                             <tr>
                                 <th *ngFor="let row of dataFieldNames">
@@ -57,7 +57,21 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
+                    <clr-datagrid>
+                        <clr-dg-column *ngFor="let row of dataFieldNames">{{ row }}</clr-dg-column>
+    
+                        <clr-dg-row *clrDgItems="let row of dataset">
+                            <clr-dg-cell *ngFor="let col of dataFieldNames">{{ row[col] }}</clr-dg-cell>
+                        </clr-dg-row>
+                        <clr-dg-footer>
+                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                            of {{pagination.totalItems}} rows
+                            <clr-dg-pagination #pagination [clrDgPageSize]="records"></clr-dg-pagination>
+                        </clr-dg-footer>
+                    </clr-datagrid>
+    
+                    
                 </div>
             </div>
         </div>
