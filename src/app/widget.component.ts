@@ -69,7 +69,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         {
             "type": "",  //bar circle square tick line area point rule text
             "style": "",
-            "clip": ""
+            "clip": "",
+            "color": "#4682b4"
         },
     "encoding":
         {
@@ -274,6 +275,7 @@ export class WidgetComponent {
         vlSpecsNew['data'] = {"url": graphUrl};
         vlSpecsNew['description'] = graphDescription;
         vlSpecsNew['mark']['type'] = graphMark;
+        vlSpecsNew['mark']['color'] = 'green';
 
         vlSpecsNew['encoding']['x']['field'] = graphXfield;
         vlSpecsNew['encoding']['x']['type'] = graphXtype;
