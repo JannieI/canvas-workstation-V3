@@ -17,13 +17,40 @@
         border: 1px dotted gray;
     }
 
+    .widgetBadge1 {
+        grid-column-start: 1;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 5;
+        margin-right: 10px;
+        width: 0.6rem;
+    }
+
+    .widgetBadge2 {
+        grid-column-start: 8;
+        grid-column-end: 12;
+        grid-row-start: 1;
+        grid-row-end: 5;
+        margin-right: 5px;
+        width: 0.6rem;
+    }
+
+    .widgetBadge3 {
+        grid-column-start: 8;
+        grid-column-end: 12;
+        grid-row-start: 1;
+        grid-row-end: 5;
+        float: right;
+        width: 0.6rem;
+    }
+
     .widget {
         /* border: 1px dotted gray; */
         display: inline-block;
         grid-column-start: 3;
         grid-column-end: 10;
         grid-row-start: 3;
-        grid-row-end: 10;    
+        grid-row-end: 10;
     }
 
     .widgetSelectedDrag {
@@ -109,7 +136,7 @@
     grid-column-start: 11;
     grid-column-end: 12;
     grid-row-start: 6;
-    grid-row-end: 7;    
+    grid-row-end: 7;
     margin: 0;
     padding: 0;
     z-index: 100;
