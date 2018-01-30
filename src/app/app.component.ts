@@ -207,6 +207,7 @@ export class AppComponent implements OnInit {
     startX: number;
     startY: number;
     selectedSlicers: number[] = []
+    widgetIndex: number;
 
 
     constructor(
@@ -946,6 +947,7 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExpand', '@Start');
 
+        this.widgetIndex = 0;
         this.showModalWidgetExpand = true;
         // this.router.navigate(['/expand']);
     }

@@ -1001,6 +1001,7 @@
 <widget-expand
     class="formPopupDashboard"
     *ngIf="showModalWidgetExpand"
+    [widgetIndex]="widgetIndex"
     (formWidgetExpandClosed)="handleCloseWidgetExpand($event)">Load Widget Expand ...
 </widget-expand>
 

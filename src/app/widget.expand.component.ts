@@ -1,13 +1,9 @@
 // Angular
 import { Component }                  from '@angular/core';
-import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Renderer }                   from '@angular/core';
-import { Router }                     from '@angular/router';
-import { ViewChild }                  from '@angular/core';
 
 // Our models
 import { Datasource }                 from './models';
@@ -26,6 +22,7 @@ import { GlobalVariableService }      from './global-variable.service';
 export class WidgetExpandComponent implements OnInit {
 
     currentDataset;
+    @Input() widgetIndex: number;
     @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
 
     currentDatasetLength: number;
@@ -35,8 +32,6 @@ export class WidgetExpandComponent implements OnInit {
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private renderer: Renderer,
-        private router: Router,
     ) {}
 
     ngOnInit() {
