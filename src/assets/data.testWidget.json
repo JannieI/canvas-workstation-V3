@@ -238,7 +238,7 @@
         "version": 1,
         "isSelected": false,
         "isLiked": false,
-        "hasDataQualityIssues": true,
+        "hasDataQualityIssues": false,
         "hasComments": true,
         "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,

@@ -414,7 +414,16 @@
                             Show grid
                             <clr-icon shape="check" size="12" *ngIf="showGrid"></clr-icon>
                         </button>
-                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickMenuViewShowDataQuality()">
+                            Show DataQuality
+                            <clr-icon shape="check" size="12" *ngIf="showGrid"></clr-icon>
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuViewShowComments()">
+                            Show Comments
+                            <clr-icon shape="check" size="12" *ngIf="showGrid"></clr-icon>
+                        </button>
+
+
                         <div class="dropdown-divider"></div>
                         <button type="button" clrDropdownItem (click)="clickMenuViewSnapToGrid()">
                             Snap to Grid
