@@ -243,6 +243,30 @@ export class WidgetComponent {
                               "opacity": {"value": 0.7}
                             }
                         }  
+
+                        definition = {
+                            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+                            "data": { "url": "../assets/vega-datasets/github.csv"},
+                            "mark": "circle",
+                            "encoding": {
+                              "y": {
+                                "field": "time",
+                                "type": "ordinal",
+                                "timeUnit": "day"
+                              },
+                              "x": {
+                                "field": "time",
+                                "type": "ordinal",
+                                "timeUnit": "hours"
+                              },
+                              "size": {
+                                "field": "count",
+                                "type": "quantitative",
+                                "aggregate": "sum"
+                              }
+                            }
+                        }
+
                         console.log('definition', definition)
                 } else {
                     definition = this.createVegaLiteSpec(
