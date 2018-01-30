@@ -40,6 +40,9 @@ export class WidgetExpandComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.datasources = this.globalVariableService.datasources;
         console.log(this.globalVariableService.datasets)
         this.globalVariableService.datasets.forEach(
@@ -55,6 +58,9 @@ export class WidgetExpandComponent implements OnInit {
     }
 
   	clickClose(action: string) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         this.formWidgetExpandClosed.emit(action);
     }
 

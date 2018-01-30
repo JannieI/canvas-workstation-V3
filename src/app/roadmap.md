@@ -117,6 +117,7 @@ This document describes items for later versions of Canvas.
 17.Annotate on Widget - our shapes with text and emojis, like the Tableau
 18.Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
 19.Fix bug - grid sits on TOP of everything!!
+20.Serias work to be done - learning Vega and adding ALL features !!!
 
 
 **Shapes**

@@ -1793,10 +1793,11 @@ export class GlobalVariableService {
 
     }
 
-    getDataset(datasourceID: number, datasetID: number): Promise<any> {
+    getDataset(cnt: number, datasourceID: number, datasetID: number): Promise<any> {
         // Description: Gets a Dataset
         // Returns: data 
         // datasetID is optional, -1 means use the latest for datasourceID
+        // cnt = index of Widget in currentWidget array
         console.log('Global-Variables getDataset ...');
 
         let url: string = 'getDataset';
@@ -1829,8 +1830,8 @@ export class GlobalVariableService {
                         .then(dataFile => {
 
                             // Add data to widget
-                            this.currentWidgetsTEST[0].graphUrl = this.filePath;
-                            console.log('Global-Variables getDataset 1', datasourceID, 
+                            this.currentWidgetsTEST[cnt].graphUrl = this.filePath;
+                            console.log('Global-Variables getDataset 1', cnt, datasourceID, 
                                 datasetID, dataFile, dataurl, this.currentWidgetsTEST[0]) 
                             resolve(dataFile);
                         }
@@ -2669,10 +2670,12 @@ export class GlobalVariableService {
 
                         // Build array of promises, each getting data for 1 widget
                         let promiseArray = [];
+                        let cnt: number = 0;
                         data.forEach(w => {
                             console.log('xx', w.datasourceID, w.datasetID)
                             
-                            promiseArray.push(this.getDataset(w.datasourceID, w.datasetID));
+                            promiseArray.push(this.getDataset(cnt, w.datasourceID, w.datasetID));
+                            cnt = cnt + 1;
                         })
                         
                         // Add widget data to local vars
