@@ -21,13 +21,16 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetExpandComponent implements OnInit {
 
-    currentDataset;
+    dataset;
     @Input() widgetIndex: number;
     @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
 
     currentDatasetLength: number;
     datasources: Datasource[] = [];
-    dataFieldNames: string[] = [];
+    // TODO - remove hardcoding
+    dataFieldNames: string[] = [
+        'Acceleration', 'Cylinders', 'Displacement', 'Horsepower', 'Miles_per_Gallon', 'Name', 'Origin', 'Weight_in_lbs', 'Year' 
+    ];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -38,17 +41,23 @@ export class WidgetExpandComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.datasources = this.globalVariableService.datasources;
-        console.log(this.globalVariableService.datasets)
-        this.globalVariableService.datasets.forEach(
-            i =>
-                {
-                    if (i.datasourceID == 3) {
-                        this.currentDataset = i.data;
-                        this.currentDatasetLength = this.currentDataset.length
-                        this.dataFieldNames = Object.getOwnPropertyNames(i.data[0])
-                    }
-                }
+        console.log('xx', this.widgetIndex)
+        this.globalVariableService.filePath = "../assets/vega-datasets/cars.json";
+        this.globalVariableService.get('').then(i => 
+            {
+                this.dataset = i;
+                this.currentDatasetLength = i.length;
+                console.log('xxx', i)
+            }
+            // this.globalVariableService.currentWidgets  this.widgetIndex)
+            // i =>
+            //     {
+            //         if (i.datasourceID == 3) {
+            //             this.currentDataset = i.data;
+            //             this.currentDatasetLength = this.currentDataset.length
+            //             this.dataFieldNames = Object.getOwnPropertyNames(i.data[0])
+            //         }
+            //     }
         );
     }
 

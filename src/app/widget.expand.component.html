@@ -51,7 +51,7 @@
                                     {{row}}
                                 </th>
                             </tr>
-                            <tr *ngFor="let row of currentDataset">
+                            <tr *ngFor="let row of dataset">
                                 <td *ngFor="let col of dataFieldNames; let i = index">
                                     {{ row[col] }}
                                 </td>
