@@ -2,7 +2,7 @@
     {
         "widgetType": "Graph",
         "widgetSubType": "",
-    
+
         "isTrashed": false,
         "dashboardID": 1,
         "dashboardTabID": 1,
@@ -19,7 +19,7 @@
         "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
-            
+
         "datasourceID": 1,
         "datasetID": 4,
         "dataParameters":
@@ -42,7 +42,7 @@
         "containerHeight": 320,
         "containerLeft": 50,
         "containerWidgetTitle": "Title 1",
-        "containerTop": 80,      
+        "containerTop": 80,
         "containerWidth": 250,
         "containerZindex": 50,
         "titleText": "",
@@ -68,14 +68,7 @@
         "graphHasSignals": false,
         "graphFillColor": "",
         "graphHoverColor": "",
-        "graphSpecification": {
-            "data": {"url": "../assets/vega-datasets/cars.json"},
-            "mark": "point",
-            "encoding": {
-                "x": {"field": "Horsepower", "type": "quantitative"},
-                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-            }
-        },
+        "graphSpecification": "",
         "graphDescription": "",
         "graphXaggregate": "",
         "graphXtimeUnit": "",
@@ -117,12 +110,12 @@
         "widgetUpdatedOn": "",
         "widgetUpdatedBy": ""
     },
-   
-   
+
+
     {
         "widgetType": "Graph",
         "widgetSubType": "",
-    
+
         "isTrashed": false,
         "dashboardID": 1,
         "dashboardTabID": 2,
@@ -139,7 +132,7 @@
         "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
-            
+
         "datasourceID": 1,
         "datasetID": -1,
         "dataParameters":
@@ -160,9 +153,9 @@
         "containerColor": "transparent",
         "containerFontsize": 12,
         "containerHeight": 280,
-        "containerLeft": 350,
+        "containerLeft": 620,
         "containerWidgetTitle": "Title 1",
-        "containerTop": 120,      
+        "containerTop": 120,
         "containerWidth": 270,
         "containerZindex": 50,
         "titleText": "",
@@ -188,14 +181,7 @@
         "graphHasSignals": false,
         "graphFillColor": "",
         "graphHoverColor": "",
-        "graphSpecification": {
-            "data": "",
-            "mark": "point",
-            "encoding": {
-                "x": {"field": "Horsepower", "type": "quantitative"},
-                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-            }
-        },
+        "graphSpecification": "",
         "graphDescription": "",
         "graphXaggregate": "",
         "graphXtimeUnit": "",
@@ -211,7 +197,6 @@
         "graphMark": "bar",
         "graphMarkColor": "green",
         "graphUrl": "../assets/vega-datasets/cars.json",
-        
         "graphColorField": "",
         "graphColorType": "",
         "graphData": "",
@@ -241,7 +226,7 @@
     {
         "widgetType": "Graph",
         "widgetSubType": "",
-    
+
         "isTrashed": false,
         "dashboardID": 1,
         "dashboardTabID": 2,
@@ -258,7 +243,7 @@
         "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
-            
+
         "datasourceID": 1,
         "datasetID": -1,
         "dataParameters":
@@ -281,7 +266,7 @@
         "containerHeight": 280,
         "containerLeft": 85,
         "containerWidgetTitle": "Title 1",
-        "containerTop": 100,      
+        "containerTop": 100,
         "containerWidth": 270,
         "containerZindex": 50,
         "titleText": "",
@@ -307,14 +292,7 @@
         "graphHasSignals": false,
         "graphFillColor": "",
         "graphHoverColor": "",
-        "graphSpecification": {
-            "data": "",
-            "mark": "point",
-            "encoding": {
-                "x": {"field": "Horsepower", "type": "quantitative"},
-                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-            }
-        },
+        "graphSpecification": "hard coded in .ts for now",
         "graphDescription": "",
         "graphXaggregate": "",
         "graphXtimeUnit": "",
@@ -330,7 +308,6 @@
         "graphMark": "bar",
         "graphMarkColor": "purple",
         "graphUrl": "../assets/vega-datasets/cars.json",
-        
         "graphColorField": "",
         "graphColorType": "",
         "graphData": "",
@@ -362,7 +339,7 @@
     {
         "widgetType": "Graph",
         "widgetSubType": "",
-    
+
         "isTrashed": false,
         "dashboardID": 2,
         "dashboardTabID": 5,
@@ -379,7 +356,7 @@
         "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
-            
+
         "datasourceID": 1,
         "datasetID": 1,
         "dataParameters":
@@ -402,7 +379,7 @@
         "containerHeight": 320,
         "containerLeft": 650,
         "containerWidgetTitle": "Title 1",
-        "containerTop": 130,      
+        "containerTop": 130,
         "containerWidth": 250,
         "containerZindex": 50,
         "titleText": "",
@@ -428,14 +405,7 @@
         "graphHasSignals": false,
         "graphFillColor": "",
         "graphHoverColor": "",
-        "graphSpecification": {
-            "data": {"url": "../assets/vega-datasets/cars.json"},
-            "mark": "point",
-            "encoding": {
-                "x": {"field": "Horsepower", "type": "quantitative"},
-                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-            }
-        },
+        "graphSpecification": "",
         "graphDescription": "",
         "graphXaggregate": "",
         "graphXtimeUnit": "",
@@ -480,7 +450,7 @@
     {
         "widgetType": "Graph",
         "widgetSubType": "",
-    
+
         "isTrashed": false,
         "dashboardID": 6,
         "dashboardTabID": 1,
@@ -497,7 +467,7 @@
         "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
-            
+
         "datasourceID": 1,
         "datasetID": 1,
         "dataParameters":
@@ -520,7 +490,7 @@
         "containerHeight": 320,
         "containerLeft": 650,
         "containerWidgetTitle": "Title 1",
-        "containerTop": 130,      
+        "containerTop": 130,
         "containerWidth": 250,
         "containerZindex": 50,
         "titleText": "",
@@ -546,14 +516,7 @@
         "graphHasSignals": false,
         "graphFillColor": "",
         "graphHoverColor": "",
-        "graphSpecification": {
-            "data": {"url": "../assets/vega-datasets/cars.json"},
-            "mark": "point",
-            "encoding": {
-                "x": {"field": "Horsepower", "type": "quantitative"},
-                "y": {"field": "Miles_per_Gallon", "type": "quantitative"}
-            }
-        },
+        "graphSpecification": "",
         "graphDescription": "",
         "graphXaggregate": "",
         "graphXtimeUnit": "",

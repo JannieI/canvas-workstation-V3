@@ -192,32 +192,84 @@ export class WidgetComponent {
             console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), 
                 this.widgetDOM, this.widgetDOM.length, this.widgets)
 
+            // String of IF statements that caters for different visualGrammars
             if (this.widgets[i].visualGrammar == 'Vega-Lite') {
 
-                let definition = this.createVegaLiteSpec(
-                    this.widgets[i].graphDescription,
-                    this.widgets[i].graphMark,
-                    this.widgets[i].graphMarkColor,
-                    this.widgets[i].graphXaggregate,
-                    this.widgets[i].graphXtimeUnit,
-                    this.widgets[i].graphXfield,
-                    this.widgets[i].graphXtype,
-                    this.widgets[i].graphXaxisTitle,
+                console.log('this.widgets[i].graphSpecification', this.widgets[i].graphSpecification)
+                // Use the spec inside the Widget, or the properties
+                let definition: any = null;
+                if (this.widgets[i].graphSpecification != ''  &&   
+                    this.widgets[i].graphSpecification != null) {
+                        definition = this.widgets[i].graphSpecification;
 
-                    this.widgets[i].graphYaggregate,
-                    this.widgets[i].graphYtimeUnit,
-                    this.widgets[i].graphYfield,
-                    this.widgets[i].graphYtype,
-                    this.widgets[i].graphYaxisTitle,
+                        // TODO - fix this, as datalib reads children as object object ...
+                        definition = definition.replace(/@/g,'"');
+                        // "data": {"url": "../assets/vega-datasets/cars.json"},
 
-                    this.widgets[i].graphHeight,
-                    this.widgets[i].graphWidth,
+                        definition = {
+                            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+                            "description": "Shows the relationship between horsepower and the numbver of cylinders using tick marks.",
+                            "data": {"url": "../assets/vega-datasets/cars.json"},
+                            "mark": "tick",
+                            "encoding": {
+                              "x": {"field": "Horsepower", "type": "quantitative"},
+                              "y": {"field": "Cylinders", "type": "ordinal"}
+                            }
+                        }
 
-                    this.widgets[i].graphUrl,
-                    this.widgets[i].graphTitle,
-                    this.widgets[i].graphColorField,
-                    this.widgets[i].graphColorType,
-                );
+                        definition = {
+                            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+                            "description": "A bar chart showing the US population distribution of age groups and gender in 2000.",
+                            "data": { "url": "../assets/vega-datasets/population.json"},
+                            "transform": [
+                              {"filter": "datum.year == 2000"},
+                              {"calculate": "datum.sex == 2 ? 'Female' : 'Male'", "as": "gender"}
+                            ],
+                            "mark": "bar",
+                            "encoding": {
+                              "x": {
+                                "field": "age", "type": "ordinal",
+                                "scale": {"rangeStep": 17}
+                              },
+                              "y": {
+                                "aggregate": "sum", "field": "people", "type": "quantitative",
+                                "axis": {"title": "population"},
+                                "stack": null
+                              },
+                              "color": {
+                                "field": "gender", "type": "nominal",
+                                "scale": {"range": ["#e377c2","#1f77b4"]}
+                              },
+                              "opacity": {"value": 0.7}
+                            }
+                        }  
+                        console.log('definition', definition)
+                } else {
+                    definition = this.createVegaLiteSpec(
+                        this.widgets[i].graphDescription,
+                        this.widgets[i].graphMark,
+                        this.widgets[i].graphMarkColor,
+                        this.widgets[i].graphXaggregate,
+                        this.widgets[i].graphXtimeUnit,
+                        this.widgets[i].graphXfield,
+                        this.widgets[i].graphXtype,
+                        this.widgets[i].graphXaxisTitle,
+
+                        this.widgets[i].graphYaggregate,
+                        this.widgets[i].graphYtimeUnit,
+                        this.widgets[i].graphYfield,
+                        this.widgets[i].graphYtype,
+                        this.widgets[i].graphYaxisTitle,
+
+                        this.widgets[i].graphHeight,
+                        this.widgets[i].graphWidth,
+
+                        this.widgets[i].graphUrl,
+                        this.widgets[i].graphTitle,
+                        this.widgets[i].graphColorField,
+                        this.widgets[i].graphColorType,
+                    );
+                }
                 let specification = compile(definition).spec;
                 let view = new View(parse(specification));
                 view.renderer('svg')
@@ -226,7 +278,9 @@ export class WidgetComponent {
                     .run()
                     .finalize();
                 console.log('TEST refreshWidgets render done', specification)
-            } else { alert('The visualGrammar of widget ' + i.toString() + ' is not == Vega-Lite' )}
+            } else { 
+                alert('The visualGrammar of widget ' + i.toString() + ' is not == Vega-Lite' )
+            };
             
         }
         console.log('TEST refreshWidgets end')
