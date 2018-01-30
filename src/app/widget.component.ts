@@ -192,38 +192,42 @@ export class WidgetComponent {
             console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), 
                 this.widgetDOM, this.widgetDOM.length, this.widgets)
 
-            let definition = this.createVegaLiteSpec(
-                this.widgets[i].graphDescription,
-                this.widgets[i].graphMark,
-                this.widgets[i].graphMarkColor,
-                this.widgets[i].graphXaggregate,
-                this.widgets[i].graphXtimeUnit,
-                this.widgets[i].graphXfield,
-                this.widgets[i].graphXtype,
-                this.widgets[i].graphXaxisTitle,
+            if (this.widgets[i].visualGrammar == 'Vega-Lite') {
 
-                this.widgets[i].graphYaggregate,
-                this.widgets[i].graphYtimeUnit,
-                this.widgets[i].graphYfield,
-                this.widgets[i].graphYtype,
-                this.widgets[i].graphYaxisTitle,
+                let definition = this.createVegaLiteSpec(
+                    this.widgets[i].graphDescription,
+                    this.widgets[i].graphMark,
+                    this.widgets[i].graphMarkColor,
+                    this.widgets[i].graphXaggregate,
+                    this.widgets[i].graphXtimeUnit,
+                    this.widgets[i].graphXfield,
+                    this.widgets[i].graphXtype,
+                    this.widgets[i].graphXaxisTitle,
 
-                this.widgets[i].graphHeight,
-                this.widgets[i].graphWidth,
+                    this.widgets[i].graphYaggregate,
+                    this.widgets[i].graphYtimeUnit,
+                    this.widgets[i].graphYfield,
+                    this.widgets[i].graphYtype,
+                    this.widgets[i].graphYaxisTitle,
 
-                this.widgets[i].graphUrl,
-                this.widgets[i].graphTitle,
-                this.widgets[i].graphColorField,
-                this.widgets[i].graphColorType,
-            );
-            let specification = compile(definition).spec;
-            let view = new View(parse(specification));
-            view.renderer('svg')
-                .initialize( this.widgetDOM.toArray()[i].nativeElement)
-                .hover()
-                .run()
-                .finalize();
-            console.log('TEST refreshWidgets render done', specification)
+                    this.widgets[i].graphHeight,
+                    this.widgets[i].graphWidth,
+
+                    this.widgets[i].graphUrl,
+                    this.widgets[i].graphTitle,
+                    this.widgets[i].graphColorField,
+                    this.widgets[i].graphColorType,
+                );
+                let specification = compile(definition).spec;
+                let view = new View(parse(specification));
+                view.renderer('svg')
+                    .initialize( this.widgetDOM.toArray()[i].nativeElement)
+                    .hover()
+                    .run()
+                    .finalize();
+                console.log('TEST refreshWidgets render done', specification)
+            } else { alert('The visualGrammar of widget ' + i.toString() + ' is not == Vega-Lite' )}
+            
         }
         console.log('TEST refreshWidgets end')
     }
