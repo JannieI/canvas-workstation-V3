@@ -1824,10 +1824,14 @@ export class GlobalVariableService {
 
                     // TODO - fix this via reall http
                     let dataurl: string = './assets/data.dataset' + datasetID.toString() + '.json';
-                    this.filePath = './assets/data.dataset' + datasetID.toString() + '.json';
+                    this.filePath = '../assets/data.dataset' + datasetID.toString() + '.json';
                     this.get(dataurl)
                         .then(dataFile => {
-                            console.log('Global-Variables getDataset 1', datasourceID, datasetID, dataFile, dataurl) 
+
+                            // Add data to widget
+                            this.currentWidgetsTEST[0].graphUrl = this.filePath;
+                            console.log('Global-Variables getDataset 1', datasourceID, 
+                                datasetID, dataFile, dataurl, this.currentWidgetsTEST[0]) 
                             resolve(dataFile);
                         }
                     );
@@ -2656,21 +2660,25 @@ export class GlobalVariableService {
             return new Promise<Widget[]>((resolve, reject) => {
                 this.getWidgetsTEST()
                     .then(data => {
+
+                        // Filter the widgets
                         data = data.filter(
                             i => i.dashboardID == dashboardID  &&
                                  (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
                         );
 
+                        // Build array of promises, each getting data for 1 widget
                         let promiseArray = [];
                         data.forEach(w => {
                             console.log('xx', w.datasourceID, w.datasetID)
                             
                             promiseArray.push(this.getDataset(w.datasourceID, w.datasetID));
                         })
-                            
+                        
+                        // Add widget data to local vars
+                        this.currentWidgetsTEST = data;
                         this.allWithAsync(...promiseArray)
                             .then(resolvedData => {
-                                this.currentWidgetsTEST = data;
                                 console.log('Global-Variables getCurrentWidgetsTEST 1', dashboardID, dashboardTabID, data)
                                 resolve(data);
                             }, 
