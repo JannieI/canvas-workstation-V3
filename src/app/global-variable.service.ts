@@ -1804,7 +1804,7 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
-            this.getTree(url)
+            this.get(url)
                 .then(data => {
                     if (datasetID == -1) {
                         let ds: number[]=[];
@@ -1819,10 +1819,18 @@ export class GlobalVariableService {
                         console.log('Global-Variables getDataset xx', ds, datasourceID, datasetID)
                     };
 
-                    data = data.filter(i => i.id == datasetID)
-                    
-                    console.log('Global-Variables getDataset 1', datasourceID, datasetID, data) 
-                    resolve(data);
+                    // Retain only this id
+                    // data = data.filter(i => i.id == datasetID)
+
+                    // TODO - fix this via reall http
+                    let dataurl: string = './assets/data.dataset' + datasetID.toString() + '.json';
+                    this.filePath = './assets/data.dataset' + datasetID.toString() + '.json';
+                    this.get(dataurl)
+                        .then(dataFile => {
+                            console.log('Global-Variables getDataset 1', datasourceID, datasetID, dataFile, dataurl) 
+                            resolve(dataFile);
+                        }
+                    );
             });
         });
     }
@@ -2705,7 +2713,7 @@ export class GlobalVariableService {
 
         return new Promise((resolve, reject) => {
             // Get from source - files for now ...
-            var tree = dl.json(this.filePath, {children: 'data'})
+            var tree = dl.json(this.filePath, {data: 'data'})
                     console.log('currentData', tree);
                     // TODO - fix reading [] with dl !!!
                     resolve(tree);
