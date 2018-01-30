@@ -15,7 +15,7 @@
     (dragend)="clickWidgetContainerDragEnd($event, i)"
     draggable="true"
     >
-    <span *ngIf="row.hasDataQualityIssues" class="badge badge-danger widgetBadge1" title="Data Quality issues">1</span>
+    <span *ngIf="row.hasDataQualityIssues  &&  showDataQuality" class="badge badge-danger widgetBadge1" title="Data Quality issues">1</span>
     <span *ngIf="row.hasComments" class="badge badge-warning widgetBadge2" title="Comments">6</span>
 
     <div class="slicerContainerTopLeftHandle"
