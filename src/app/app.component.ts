@@ -699,6 +699,12 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardEdit', '@Start');
 
+        // Switch off all selections if going to View Mode
+        if (this.editMode) {
+            this.currentWidgets.forEach(i => i.isSelected = false);
+        }
+
+        // Toggle mode
         this.globalVariableService.editMode.next(!this.editMode);
     }
 
