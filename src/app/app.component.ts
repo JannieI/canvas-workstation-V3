@@ -944,6 +944,8 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetRefresh', '@Start');
 
+        if (!this.checkForOnlyOneWidget()) { return};
+
         this.showModalWidgetRefresh = true;
         this.globalVariableService.statusBarRunning.next(this.globalVariableService.NoQueryRunningMessage);
         this.globalVariableService.statusBarCancelRefresh.next('Cancel');
