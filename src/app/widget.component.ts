@@ -165,9 +165,10 @@ export class WidgetComponent {
         console.log("widget clickWidgetContainer @start", this.widgets[0].datasourceID);
 
         if (!this.editMode) {
+            this.globalVariableService.statusBarMessages.next('Not in Edit Mode')
             return;
         }
-
+        this.globalVariableService.statusBarMessages.next('');
         this.widgets[index].isSelected = !this.widgets[index].isSelected;
 
         // If now selected, add to the global selected list - if not already there

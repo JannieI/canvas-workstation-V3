@@ -161,6 +161,9 @@ export class StatusbarComponent {
                 this.showTabList = false;
             }
         );
+        this.globalVariableService.statusBarMessages.subscribe(i => 
+            this.statusBarMessages = i
+        )
     }
 
     // ngAfterViewChecked(){

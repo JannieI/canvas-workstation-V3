@@ -96,12 +96,6 @@
         {{ statusBarCancelRefresh }}
     </span>
     <span class="statusBarText" 
-        title="Short message.  If more than one, it will indicate the last one"
-        style="width: 41vw;"
-        >
-      {{ statusBarMessages }}
-    </span>
-    <span class="statusBarText" 
         title="Working standalone (local) or logged into a server"
         style="width: 46vw;"
         >
@@ -125,6 +119,12 @@
         (click)="clickStatusTemplate()"
         >
       {{ templateInUse }}
+    </span>
+    <span class="statusBarText" 
+        title="Short message.  If more than one, it will indicate the last one"
+        style="width: 41vw;"
+        >
+      {{ statusBarMessages }}
     </span>
 </div>
 
