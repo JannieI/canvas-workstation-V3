@@ -926,6 +926,8 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetComments', '@Start');
 
+        if (!this.checkForOnlyOneWidget()) { return};
+
         this.showModalWidgetComments = true;
     }
 
