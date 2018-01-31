@@ -628,7 +628,7 @@ export class Widget {
     isLiked: boolean;                   // @RunTime: True if Widget is liked by me
     isSelected: boolean;
     hasDataQualityIssues: boolean;
-    hasComments: boolean;
+    nrComments: number;
     nrButtonsToShow: number;
 
     // Links @Runtime
