@@ -171,10 +171,14 @@ export class WidgetComponent {
         this.widgets[index].isSelected = !this.widgets[index].isSelected;
 
         // If now selected, add to the global selected list - if not already there
+        let pos: number = this.globalVariableService.selectedWidgetIDs.indexOf(this.widgets[index].id);
         if (this.widgets[index].isSelected) {
-
-            if (this.globalVariableService.selectedWidgetIDs.indexOf(this.widgets[index].id) < 0) {
+            if (pos < 0) {
                 this.globalVariableService.selectedWidgetIDs.push(this.widgets[index].id);
+            }
+        } else {
+            if (pos >= 0) {
+                this.globalVariableService.selectedWidgetIDs.splice(pos,1);
             }
         }
         
