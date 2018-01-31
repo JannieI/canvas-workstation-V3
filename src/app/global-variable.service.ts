@@ -917,6 +917,8 @@ export class GlobalVariableService {
     openNewDashboardFormOnStartup: boolean = false;
     hasDatasources = new BehaviorSubject<boolean>(false);   // Used to set menu
     showModalLanding = new BehaviorSubject<boolean>(true);  // Shows Landing page
+    selectedWidgetIDs: number[] = [];
+
     // Session
     currentUser: CanvasUser;
     loggedIntoServer = new BehaviorSubject<boolean>(true);

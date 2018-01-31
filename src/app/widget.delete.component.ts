@@ -52,6 +52,7 @@ export class WidgetDeleteComponent implements OnInit {
         this.globalVariableService.localTrash.subscribe(
             i => this.localTrash = i
         );
+        console.log('xx', this.globalVariableService.selectedWidgetIDs)
     }
 
     ngAfterViewInit() {

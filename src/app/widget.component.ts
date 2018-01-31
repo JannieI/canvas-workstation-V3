@@ -122,7 +122,7 @@ export class WidgetComponent {
     @Input() widgets: Widget[];
     @Input() showDataQuality: boolean;
     @Input() showComments: boolean;
-    
+
     @ViewChildren('widgetDOM')  widgetDOM: QueryList<ElementRef>;
     @ViewChildren('widgetContainerDOM')  widgetContainerDOM: QueryList<ElementRef>;
 
@@ -131,6 +131,7 @@ export class WidgetComponent {
     startY: number;
     startWidgetNumber: number;
     endWidgetNumber: number;
+    selectedWidgetIDs: number[] = [];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -153,11 +154,14 @@ export class WidgetComponent {
 
     }
     ngAfterViewInit() {
-        // Initialise
+        // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
     }
 
     clickWidgetContainer(index: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainer', '@Start');
+
         console.log("widget clickWidgetContainer @start", this.widgets[0].datasourceID);
 
         if (!this.editMode) {
@@ -168,11 +172,16 @@ export class WidgetComponent {
     }
 
     clickWidget(index: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
+
         console.log("widget clickWidget @start", this.widgets[0].datasourceID);
 
         if (!this.editMode) {
             return;
         }
+
+        this.globalVariableService.selectedWidgetIDs.push(1)
     }
       
     refreshWidgets(start: number = -1, end: number = -1) {

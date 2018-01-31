@@ -210,6 +210,7 @@ export class AppComponent implements OnInit {
     startY: number;
     selectedSlicers: number[] = []
     widgetIndex: number;
+    selectedWidgetIDs: number[] = [];
 
 
     constructor(
