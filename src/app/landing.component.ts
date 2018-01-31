@@ -87,7 +87,7 @@ export class LandingComponent implements OnInit {
 		);
 
 		// Close modal, and show the Dashboard
-		this.formLandingClosed.emit();
+		this.formLandingClosed.emit('OpenSample');
 	}
 
 	clickOpenRecentDashboard(dashboardID: number, dashboardTabID: number) {
@@ -99,7 +99,7 @@ export class LandingComponent implements OnInit {
 		);
 
 		// Close modal, and show the Dashboard
-		this.formLandingClosed.emit();
+		this.formLandingClosed.emit('OpenRecent');
 	}
 
 	deleteRecent(index: number) {
@@ -128,7 +128,7 @@ export class LandingComponent implements OnInit {
 
 		this.globalVariableService.openDashboardFormOnStartup = true;
 
-		this.formLandingClosed.emit();
+		this.formLandingClosed.emit('OpenExisting');
 	}
 
 	clickOpenNewDashboard() {
@@ -137,7 +137,7 @@ export class LandingComponent implements OnInit {
 
 		this.globalVariableService.openNewDashboardFormOnStartup = true;
 
-		this.formLandingClosed.emit();
+		this.formLandingClosed.emit('New');
 	}
 
 }

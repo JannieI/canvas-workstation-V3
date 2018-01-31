@@ -273,7 +273,7 @@ export class StatusbarComponent {
         }
     }
 
-    handleCloseDashboardTab() {
+    handleCloseDashboardTab(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');
 

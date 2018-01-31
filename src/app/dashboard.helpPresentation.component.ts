@@ -36,6 +36,6 @@ export class DashboardHelpPresentationComponent implements OnInit {
 
     clickGotIt() {
         this.globalVariableService.isFirstTimePresentation.next(false);
-		this.formDashboardHelpPresentationClosed.emit();
+		this.formDashboardHelpPresentationClosed.emit('GotIt');
     }
 }

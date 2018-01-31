@@ -48,6 +48,7 @@ This document describes items for later versions of Canvas.
 13.Allow own profile pic upload!
 14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
 15.Telegram interface with bot ...
+16.Decide on 2nd 
 
 
 **Admin module**

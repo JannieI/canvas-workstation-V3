@@ -324,7 +324,7 @@ export class AppComponent implements OnInit {
         }
     }
 
-    handleCloseModalLanding() {
+    handleCloseModalLanding(action: string) {
         // Close Modal form Landing page
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
 
@@ -349,70 +349,70 @@ export class AppComponent implements OnInit {
 
     }
 
-    handleCloseWidgetEditor() {
+    handleCloseWidgetEditor(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
         this.showModalWidgetEditor = false;
     }
 
-    handleCloseDashboardNew(action) {
+    handleCloseDashboardNew(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardNew', '@Start');
 
         this.showModalDashboardNew = false;
     }
 
-    handleCloseDashboardOpen(action) {
+    handleCloseDashboardOpen(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardOpen', '@Start');
 
         this.showModalDashboardOpen = false;
     }
 
-    handleCloseDashboardSave(action) {
+    handleCloseDashboardSave(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSave', '@Start');
 
         this.showModalDashboardSave = false;
     }
 
-    handleCloseDashboardSnapshots() {
+    handleCloseDashboardSnapshots(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSnapshots', '@Start');
 
         this.showModalDashboardSnapshots = false;
     }
 
-    handleCloseDashboardShare() {
+    handleCloseDashboardShare(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardShare', '@Start');
 
         this.showModalDashboardShare = false;
     }
 
-    handleCloseDashboardImport() {
+    handleCloseDashboardImport(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardImport', '@Start');
 
         this.showModalDashboardImport = false;
     }
 
-    handleCloseDashboardDiscard() {
+    handleCloseDashboardDiscard(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDiscard', '@Start');
 
         this.showModalDashboardDiscard = false;
     }
 
-    handleCloseDashboardRename(action) {
+    handleCloseDashboardRename(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardRename', '@Start');
 
         this.showModalDashboardRename = false;
     }
 
-    handleCloseDashboardDetails(action) {
+    handleCloseDashboardDetails(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDetails', '@Start');
 
@@ -426,56 +426,56 @@ export class AppComponent implements OnInit {
         this.showModalDashboardDescription = false;
     }
 
-    handleCloseDashboardTags() {
+    handleCloseDashboardTags(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTags', '@Start');
 
         this.showModalDashboardTags = false;
     }
 
-    handleCloseDashboardSettings() {
+    handleCloseDashboardSettings(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSettings', '@Start');
 
         this.showModalDashboardSettings = false;
     }
 
-    handleCloseDashboardTheme() {
+    handleCloseDashboardTheme(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTheme', '@Start');
 
         this.showModalDashboardTheme = false;
     }
 
-    handleCloseDashboardTemplate() {
+    handleCloseDashboardTemplate(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTemplate', '@Start');
 
         this.showModalDashboardTemplate = false;
     }
 
-    handleCloseDashboardSchedule() {
+    handleCloseDashboardSchedule(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSchedule', '@Start');
 
         this.showModalDashboardSchedule = false;
     }
 
-    handleCloseDashboardDelete() {
+    handleCloseDashboardDelete(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDelete', '@Start');
 
         this.showModalDashboardDelete = false;
     }
 
-    handleCloseDashboardTreeview(){
+    handleCloseDashboardTreeview(action: string){
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTreeview', '@Start');
 
         this.showModalDashboardTreeview = false;
     }
 
-    handleCloseDashboardSubscribe() {
+    handleCloseDashboardSubscribe(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSubscribe', '@Start');
 
@@ -492,105 +492,105 @@ export class AppComponent implements OnInit {
         }
     }
 
-    handleCloseShapeDelete() {
+    handleCloseShapeDelete(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeDelete', '@Start');
 
         this.showModalShapeDelete = false;
     }
 
-    handleCloseDashboardComments() {
+    handleCloseDashboardComments(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardComments', '@Start');
 
         this.showModalDashboardComments = false;
     }
 
-    handleCloseDashboardPrint() {
+    handleCloseDashboardPrint(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardPrint', '@Start');
 
         this.showModalDashboardPrint = false;
     }
 
-    handleCloseDataSlicers() {
+    handleCloseDataSlicers(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSlicers', '@Start');
 
         this.showModalDataSlicers = false;
     }
 
-    handleCloseData() {
+    handleCloseData(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
 
         this.showModalData = false;
     }
     
-    handleCloseDataCombination() {
+    handleCloseDataCombination(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCombination', '@Start');
 
         this.showModalDataCombination = false;
     }
 
-    handleCloseDataRefresh() {
+    handleCloseDataRefresh(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataRefresh', '@Start');
 
         this.showModalDataRefresh = false;
     }
 
-    handleCloseDataShare() {
+    handleCloseDataShare(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataShare', '@Start');
 
         this.showModalDataShare = false;
     }
 
-    handleCloseWidgetCheckpoints() {
+    handleCloseWidgetCheckpoints(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetCheckpoints', '@Start');
 
         this.showModalWidgetCheckpoints = false;
     }
 
-    handleCloseWidgetComments() {
+    handleCloseWidgetComments(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetComments', '@Start');
 
         this.showModalWidgetComments = false;
     }
 
-    handleCloseWidgetLinks() {
+    handleCloseWidgetLinks(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetLinks', '@Start');
 
         this.showModalWidgetLinks = false;
     }
 
-    handleCloseWidgetDuplicate() {
+    handleCloseWidgetDuplicate(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDuplicate', '@Start');
 
         this.showModalWidgetDuplicate = false;
     }
 
-    handleCloseWidgetExpand() {
+    handleCloseWidgetExpand(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExpand', '@Start');
 
         this.showModalWidgetExpand = false;
     }
 
-    handleCloseWidgetExport() {
+    handleCloseWidgetExport(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExport', '@Start');
 
         this.showModalWidgetExport = false;
     }
 
-    handleCloseWidgetDelete() {
+    handleCloseWidgetDelete(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDelete', '@Start');
 
@@ -598,84 +598,84 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDelete = false;
     }
 
-    handleCloseCollaborateAlerts() {
+    handleCloseCollaborateAlerts(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateAlerts', '@Start');
 
         this.showModalCollaborateAlerts = false;
     }
 
-    handleCloseCollaborateActivityAdd() {
+    handleCloseCollaborateActivityAdd(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivityAdd', '@Start');
 
         this.showModalCollaborateActivityAdd = false;
     }
 
-    handleCloseCollaborateMessages() {
+    handleCloseCollaborateMessages(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateMessages', '@Start');
 
         this.showModalCollaborateMessages = false;
     }
 
-    handleCloseCollaborateActivities() {
+    handleCloseCollaborateActivities(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivities', '@Start');
 
         this.showModalCollaborateActivities = false;
     }
 
-    handleCloseUserLogin(action) {
+    handleCloseUserLogin(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserLogin', '@Start');
 
         this.showModalDashboardLogin = false;
     }
 
-    handleCloseUserLogout(action) {
+    handleCloseUserLogout(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserLogout', '@Start');
 
         this.showModalDashboardLogout = false;
     }
 
-    handleCloseUserPreferences(action) {
+    handleCloseUserPreferences(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserPreferences', '@Start');
 
         this.showModalUserPreferences = false;
     }
 
-    handleCloseUserdMyProfile(action) {
+    handleCloseUserdMyProfile(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserdMyProfile', '@Start');
 
         this.showModalUserMyProfile = false;
     }
 
-    handleCloseUserWidgetButtonBar(action) {
+    handleCloseUserWidgetButtonBar(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserWidgetButtonBar', '@Start');
 
         this.showModalUserWidgetButtonBar = false;
     }
 
-    handleCloseUserShapeButtonBar(action) {
+    handleCloseUserShapeButtonBar(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserShapeButtonBar', '@Start');
 
         this.showModalUserShapeButtonBar = false;
     }
 
-    handleCloseUserSystemSettings(action) {
+    handleCloseUserSystemSettings(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserSystemSettings', '@Start');
 
         this.showModalUserSystemSettings = false;
     }
 
-    handleCloseUserOffline() {
+    handleCloseUserOffline(action: string) {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserOffline', '@Start');
 
