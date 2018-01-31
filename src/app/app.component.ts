@@ -965,6 +965,8 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExpand', '@Start');
 
+        if (!this.checkForOnlyOneWidget()) { return};
+
         this.widgetIndex = 0;
         this.showModalWidgetExpand = true;
         // this.router.navigate(['/expand']);
