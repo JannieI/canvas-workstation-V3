@@ -955,6 +955,8 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
 
+        if (!this.checkForOnlyOneWidget()) { return};
+
         this.showModalWidgetDuplicate = true;
         this.globalVariableService.duplicateWidget.next(true);
     }
