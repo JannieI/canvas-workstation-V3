@@ -908,31 +908,32 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
-        console.log('xx', this.globalVariableService.selectedWidgetIDs)
-        if (this.globalVariableService.selectedWidgetIDs.length == 0) {
-            this.globalVariableService.statusBarMessage.next(
-                {
-                   message: 'No Widget selected',
-                   uiArea: 'StatusBar',
-                   classfication: 'Warning',
-                   timeout: 3000,
-                   defaultMessage: ''
-                }
-            );
-            return;
-        }
-        if (this.globalVariableService.selectedWidgetIDs.length > 1) {
-            this.globalVariableService.statusBarMessage.next(
-                {
-                   message: 'More than 1 Widget selected',
-                   uiArea: 'StatusBar',
-                   classfication: 'Warning',
-                   timeout: 3000,
-                   defaultMessage: ''
-                }
-            );
-            return;
-        }
+        if (!this.checkForOnlyOneWidget()) { return};
+        
+        // if (this.globalVariableService.selectedWidgetIDs.length == 0) {
+        //     this.globalVariableService.statusBarMessage.next(
+        //         {
+        //            message: 'No Widget selected',
+        //            uiArea: 'StatusBar',
+        //            classfication: 'Warning',
+        //            timeout: 3000,
+        //            defaultMessage: ''
+        //         }
+        //     );
+        //     return;
+        // }
+        // if (this.globalVariableService.selectedWidgetIDs.length > 1) {
+        //     this.globalVariableService.statusBarMessage.next(
+        //         {
+        //            message: 'More than 1 Widget selected',
+        //            uiArea: 'StatusBar',
+        //            classfication: 'Warning',
+        //            timeout: 3000,
+        //            defaultMessage: ''
+        //         }
+        //     );
+        //     return;
+        // }
         
         this.showModalWidgetEditor = true;
     }
@@ -1371,6 +1372,38 @@ export class AppComponent implements OnInit {
             ev, 0 - this.startX + ev.x);
     }
 
+    checkForOnlyOneWidget(): boolean {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
+
+        if (this.globalVariableService.selectedWidgetIDs.length == 0) {
+            this.globalVariableService.statusBarMessage.next(
+                {
+                   message: 'No Widget selected',
+                   uiArea: 'StatusBar',
+                   classfication: 'Warning',
+                   timeout: 3000,
+                   defaultMessage: ''
+                }
+            );
+            return false;
+        }
+        if (this.globalVariableService.selectedWidgetIDs.length > 1) {
+            this.globalVariableService.statusBarMessage.next(
+                {
+                   message: 'More than 1 Widget selected',
+                   uiArea: 'StatusBar',
+                   classfication: 'Warning',
+                   timeout: 3000,
+                   defaultMessage: ''
+                }
+            );
+            return false;
+        }
+
+        // All good
+        return true;
+    }
 }
 
 // Naming conventions
