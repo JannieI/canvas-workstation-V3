@@ -1137,9 +1137,13 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuArrangeAligTop() {
-        // 
+        // Align the tops of the selected widgets 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAligTop', '@Start');
 
+        if (!this.checkForMultipleWidgets) {return};
+
+        this.widgetDOM.clickAlignTop()
+        
         this.globalVariableService.menuActionResize.next(true);
     }
 

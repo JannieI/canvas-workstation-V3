@@ -505,4 +505,18 @@ export class WidgetComponent {
             this.widgets[index].containerTop;
 
     }
+
+    clickAlignTop() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAlignTop', '@Start');
+
+        if (this.globalVariableService.selectedWidgetIDs.length < 2) {return}
+
+        let x: number = this.widgets[0].containerTop;
+
+        for (var i = 1; i < this.globalVariableService.selectedWidgetIDs.length; i++) {
+            this.widgets[i].containerTop = x;
+        }
+    }
+
 } 
