@@ -48,7 +48,8 @@ This document describes items for later versions of Canvas.
 13.Allow own profile pic upload!
 14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
 15.Telegram interface with bot ...
-16.Decide on 2nd 
+16.Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now, palette cannot be changed.
+17.Decide what buttons to keep on widget - for now can only think about link button in presentation mode.
 
 
 **Admin module**
