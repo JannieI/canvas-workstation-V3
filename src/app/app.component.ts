@@ -1378,7 +1378,7 @@ export class AppComponent implements OnInit {
                 }
             );
             return false;
-        }
+        };
         if (this.globalVariableService.selectedWidgetIDs.length > 1) {
             this.globalVariableService.statusBarMessage.next(
                 {
@@ -1390,11 +1390,33 @@ export class AppComponent implements OnInit {
                 }
             );
             return false;
-        }
+        };
 
         // All good
         return true;
     }
+
+    checkForMultipleWidgets(): boolean {
+        // Returns true if one and only widget was selected, else false
+        this.globalFunctionService.printToConsole(this.constructor.name,'checkForMultipleWidgets', '@Start');
+
+        if (this.globalVariableService.selectedWidgetIDs.length < 2) {
+            this.globalVariableService.statusBarMessage.next(
+                {
+                   message: 'Select multiple Widgets',
+                   uiArea: 'StatusBar',
+                   classfication: 'Warning',
+                   timeout: 3000,
+                   defaultMessage: ''
+                }
+            );
+            return false;
+        };
+
+        // All good
+        return true;
+    }
+
 }
 
 // Naming conventions
