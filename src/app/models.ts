@@ -627,7 +627,7 @@ export class Widget {
     // Props @Runtime
     isLiked: boolean;                   // @RunTime: True if Widget is liked by me
     isSelected: boolean;
-    hasDataQualityIssues: boolean;
+    nrDataQualityIssues: number;
     nrComments: number;
     nrButtonsToShow: number;
 

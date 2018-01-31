@@ -15,10 +15,10 @@
     (dragend)="clickWidgetContainerDragEnd($event, i)"
     draggable="true"
     >
-    <span *ngIf="row.hasDataQualityIssues  &&  showDataQuality" 
+    <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality" 
         class="badge badge-danger widgetBadge1" 
         title="Data Quality issues">
-        1
+        {{ row.nrDataQualityIssues }}
     </span>
     <span *ngIf="(row.nrComments)  &&  showComments" 
         class="badge badge-warning widgetBadge2" 
