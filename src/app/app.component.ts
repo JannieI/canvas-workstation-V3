@@ -194,9 +194,6 @@ export class AppComponent implements OnInit {
     currentTabName: string = '';
     statusBarRunning: boolean = false;
     statusBarCancelRefresh: boolean = false;
-    statusBarMessages: string = '';
-    loggedIntoServerText: string;
-    templateInUse: string = 'Tmpl Used';
 
     localTrash: CanvasWidget[];
     currentWidgets: Widget[] = [];
