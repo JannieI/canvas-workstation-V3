@@ -1,6 +1,14 @@
 // ALL models (schema) are kept here
 
 // Setup / Settings / General
+export class StatusBarMessage {
+    message: string;                        // Text to display
+    uiArea: string;                         // Specific UI area to affect, ie StatusBar
+    classfication: string;                  // Info, Warning, Error
+    timeout: number;                        // Duration to stay in ms, default = 3000
+    defaultMessage: string;                 // Optional Message to display after timeout
+}
+
 export class CurrentDashboardInfo {
     currentDashboardID: number = 0;         // Current D we are working with
     currentDashboardTabID: number = 0;
