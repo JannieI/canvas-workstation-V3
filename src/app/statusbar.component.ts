@@ -165,12 +165,13 @@ export class StatusbarComponent {
         );
         this.globalVariableService.statusBarMessages.subscribe(i =>
             {
+                var self = this;
                 this.statusBarMessages = i;
                 console.log('xx', i, this.statusBarMessages);
                 if (i != '') {
                     setTimeout(function(){
-                        this.globalVariableService.statusBarMessages.next('');
-                        console.log('xx2',this.statusBarMessages); }, 1000
+                        self.statusBarMessages = '';
+                        console.log('xx2',self.statusBarMessages); }, 3000
                     );
                 }
             }
