@@ -909,38 +909,15 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
         if (!this.checkForOnlyOneWidget()) { return};
-        
-        // if (this.globalVariableService.selectedWidgetIDs.length == 0) {
-        //     this.globalVariableService.statusBarMessage.next(
-        //         {
-        //            message: 'No Widget selected',
-        //            uiArea: 'StatusBar',
-        //            classfication: 'Warning',
-        //            timeout: 3000,
-        //            defaultMessage: ''
-        //         }
-        //     );
-        //     return;
-        // }
-        // if (this.globalVariableService.selectedWidgetIDs.length > 1) {
-        //     this.globalVariableService.statusBarMessage.next(
-        //         {
-        //            message: 'More than 1 Widget selected',
-        //            uiArea: 'StatusBar',
-        //            classfication: 'Warning',
-        //            timeout: 3000,
-        //            defaultMessage: ''
-        //         }
-        //     );
-        //     return;
-        // }
-        
+
         this.showModalWidgetEditor = true;
     }
 
     clickMenuWidgetCheckpoints() {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCheckpoints', '@Start');
+
+        if (!this.checkForOnlyOneWidget()) { return};
 
         this.showModalWidgetCheckpoints = true;
     }
@@ -1373,8 +1350,8 @@ export class AppComponent implements OnInit {
     }
 
     checkForOnlyOneWidget(): boolean {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
+        // Returns true if one and only widget was selected, else false
+        this.globalFunctionService.printToConsole(this.constructor.name,'checkForOnlyOneWidget', '@Start');
 
         if (this.globalVariableService.selectedWidgetIDs.length == 0) {
             this.globalVariableService.statusBarMessage.next(
