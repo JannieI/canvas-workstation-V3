@@ -935,6 +935,8 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
 
+        if (!this.checkForOnlyOneWidget()) { return};
+
         this.showModalWidgetLinks = true;
     }
 
