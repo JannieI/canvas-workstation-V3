@@ -169,6 +169,15 @@ export class WidgetComponent {
         }
 
         this.widgets[index].isSelected = !this.widgets[index].isSelected;
+
+        // If now selected, add to the global selected list - if not already there
+        if (this.widgets[index].isSelected) {
+
+            if (this.globalVariableService.selectedWidgetIDs.indexOf(this.widgets[index].id) < 0) {
+                this.globalVariableService.selectedWidgetIDs.push(this.widgets[index].id);
+            }
+        }
+        
     }
 
     clickWidget(index: number) {
@@ -181,7 +190,6 @@ export class WidgetComponent {
             return;
         }
 
-        this.globalVariableService.selectedWidgetIDs.push(1)
     }
       
     refreshWidgets(start: number = -1, end: number = -1) {
