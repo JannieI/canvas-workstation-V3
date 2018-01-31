@@ -127,7 +127,6 @@ export class StatusbarComponent {
     @Input() currentTabName: string;
     @Input() statusBarRunning: string;
     @Input() statusBarCancelRefresh: string;
-    @Input() statusBarMessages: string;
     @Input() loggedIntoServerText: string;
     @Input() templateInUse: string;
 
@@ -137,9 +136,12 @@ export class StatusbarComponent {
     showDashboardTabDescription: boolean = false;
     showNewTab: boolean = false;
     showTabList: boolean = false;
+    statusBarMessages: string = '';
+    menuActionResize: boolean;
+
     // currentTabName: string;
 
-    
+
     constructor(
         // private globalFunctionService: GlobalFunctionService,
         private globalFunctionService: GlobalFunctionService,
@@ -149,46 +151,55 @@ export class StatusbarComponent {
     ) {}
 
     ngOnInit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Close any open popus when a new D is opened
         this.globalVariableService.currentDashboardInfo.subscribe(
-            i => { 
+            i => {
                 this.showDashboardDescription = false;
                 this.showDashboardTabDescription = false;
                 this.showNewTab = false;
                 this.showTabList = false;
             }
         );
-        this.globalVariableService.statusBarMessages.subscribe(i => 
-            this.statusBarMessages = i
+        this.globalVariableService.statusBarMessages.subscribe(i =>
+            {
+                this.statusBarMessages = i;
+                console.log('xx', i, this.statusBarMessages);
+                if (i != '') {
+                    setTimeout(function(){
+                        this.globalVariableService.statusBarMessages.next('');
+                        console.log('xx2',this.statusBarMessages); }, 1000
+                    );
+                }
+            }
         )
     }
 
     // ngAfterViewChecked(){
     //     // For Testing
-    //     console.log('Explore ngAfterViewChecked W, Sl', this.currentWidgets, 
+    //     console.log('Explore ngAfterViewChecked W, Sl', this.currentWidgets,
     //         this.widgetContainters.toArray())
     // }
 
     ngAfterViewInit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
     }
 
     clickDashboardDescription() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDescription', '@Start');
 
         this.dashboardDescription = this.globalVariableService.currentDashboards[0].description;
         this.showTabList = false;
         this.showDashboardDescription = true;
-        this.showDashboardTabDescription = false;  
+        this.showDashboardTabDescription = false;
     }
 
     clickListTabs() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickListTabs', '@Start');
 
         this.showTabList = true;
@@ -197,30 +208,30 @@ export class StatusbarComponent {
     }
 
     clickShowFirstTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFirstTab', '@Start');
 
         this.showTabList = false;
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'First');    
+        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'First');
     }
 
-    
+
     clickShowPreviousTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowPreviousTab', '@Start');
 
         this.showTabList = false;
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Previous');    
+        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Previous');
     }
 
     clickShowTabDescription() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowTabDescription', '@Start');
 
         this.dashboardTabDescription = this.globalVariableService.currentDashboardTabs[
@@ -230,40 +241,40 @@ export class StatusbarComponent {
         this.showTabList = false;
         this.showDashboardTabDescription = true;
         this.showDashboardDescription = false;
-        
+
     }
 
     clickShowNextTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNextTab', '@Start');
 
         this.showTabList = false;
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Next');    
+        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Next');
     }
 
     clickShowLastTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowLastTab', '@Start');
 
         this.showTabList = false;
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Last');    
+        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Last');
     }
 
     clickAddTab() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddTab', '@Start');
 
         this.showNewTab = true;
     }
 
     clickStatusTemplate() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickStatusTemplate', '@Start');
 
         if (this.templateInUse == 'Tmpl Used') {
@@ -274,7 +285,7 @@ export class StatusbarComponent {
     }
 
     handleCloseDashboardTab(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');
 
         this.showNewTab = false;

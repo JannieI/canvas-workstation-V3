@@ -937,7 +937,7 @@ export class GlobalVariableService {
     // StatusBar
     statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);
     statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
-    statusBarMessages = new BehaviorSubject<string>('1 Msg');
+    statusBarMessages = new BehaviorSubject('');
 
 
     // Temp vars
@@ -1819,7 +1819,6 @@ export class GlobalVariableService {
                         if (ds.length > 0) {
                             datasetID = Math.max(...ds);
                         };
-                        console.log('Global-Variables getDataset xx', ds, datasourceID, datasetID)
                     };
 
                     // Retain only this id
@@ -2674,8 +2673,6 @@ export class GlobalVariableService {
                         let promiseArray = [];
                         let cnt: number = 0;
                         data.forEach(w => {
-                            console.log('xx', w.datasourceID, w.datasetID)
-                            
                             promiseArray.push(this.getDataset(cnt, w.datasourceID, w.datasetID));
                             cnt = cnt + 1;
                         })

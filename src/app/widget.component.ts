@@ -169,6 +169,8 @@ export class WidgetComponent {
             return;
         }
         this.globalVariableService.statusBarMessages.next('');
+
+
         this.widgets[index].isSelected = !this.widgets[index].isSelected;
 
         // If now selected, add to the global selected list - if not already there
