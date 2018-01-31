@@ -165,10 +165,18 @@ export class WidgetComponent {
         console.log("widget clickWidgetContainer @start", this.widgets[0].datasourceID);
 
         if (!this.editMode) {
-            this.globalVariableService.statusBarMessages.next('Not in Edit Mode')
+            this.globalVariableService.statusBarMessage.next(
+             {
+                message: 'Not in Edit Mode',
+                uiArea: 'StatusBar',
+                classfication: 'Warning',
+                timeout: 3000,
+                defaultMessage: ''
+             }
+            )
             return;
         }
-        this.globalVariableService.statusBarMessages.next('');
+        this.globalVariableService.statusBarMessage.next(null);
 
 
         this.widgets[index].isSelected = !this.widgets[index].isSelected;

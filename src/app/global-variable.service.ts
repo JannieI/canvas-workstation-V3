@@ -34,6 +34,7 @@ import { DatasourcePermission}        from './models';
 import { DatasourcePivot }            from './models';
 import { Field }                      from './models';
 import { FieldMetadata }              from './models';
+import { StatusBarMessage }           from './models';
 import { Transformation }             from './models';
 import { Widget }                     from './models';
 
@@ -937,7 +938,7 @@ export class GlobalVariableService {
     // StatusBar
     statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);
     statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
-    statusBarMessages = new BehaviorSubject('');
+    statusBarMessage = new BehaviorSubject<StatusBarMessage>(null)
 
 
     // Temp vars

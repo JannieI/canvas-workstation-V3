@@ -163,18 +163,18 @@ export class StatusbarComponent {
                 this.showTabList = false;
             }
         );
-        this.globalVariableService.statusBarMessages.subscribe(i =>
+        this.globalVariableService.statusBarMessage.subscribe(i =>
             {
                 var self = this;
-                this.statusBarMessages = i;
-                console.log('xx', i, this.statusBarMessages);
-                if (i != '') {
+                if (i != null) {
+                    this.statusBarMessages = i.message;
                     setTimeout(function(){
                         self.statusBarMessages = '';
-                        console.log('xx2',self.statusBarMessages); }, 3000
+                        }, i.timeout
                     );
                 }
             }
+
         )
     }
 
