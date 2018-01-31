@@ -1006,6 +1006,8 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDelete', '@Start');
 
+        if (!this.checkForOnlyOneWidget()) { return};
+
         this.showModalWidgetDelete = true;
     }
 
