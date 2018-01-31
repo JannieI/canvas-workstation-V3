@@ -908,7 +908,8 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
-        if (this.selectedWidgetIDs.length == 0) {
+        console.log('xx', this.globalVariableService.selectedWidgetIDs)
+        if (this.globalVariableService.selectedWidgetIDs.length == 0) {
             this.globalVariableService.statusBarMessage.next(
                 {
                    message: 'No Widget selected',
@@ -920,7 +921,7 @@ export class AppComponent implements OnInit {
             );
             return;
         }
-        if (this.selectedWidgetIDs.length > 1) {
+        if (this.globalVariableService.selectedWidgetIDs.length > 1) {
             this.globalVariableService.statusBarMessage.next(
                 {
                    message: 'More than 1 Widget selected',
