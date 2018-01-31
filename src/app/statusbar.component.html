@@ -123,8 +123,9 @@
     <span class="statusBarText" 
         title="Short message.  If more than one, it will indicate the last one"
         style="width: 41vw;"
+        [style.color]="statusBarMessageColour"
         >
-      {{ statusBarMessages }}
+      {{ statusBarMessageText }}
     </span>
 </div>
 

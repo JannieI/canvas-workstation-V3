@@ -136,7 +136,8 @@ export class StatusbarComponent {
     showDashboardTabDescription: boolean = false;
     showNewTab: boolean = false;
     showTabList: boolean = false;
-    statusBarMessages: string = '';
+    statusBarMessageText: string = '';
+    statusBarMessageColour: string = 'rgb(197, 194, 194)';
     menuActionResize: boolean;
 
     // currentTabName: string;
@@ -167,9 +168,18 @@ export class StatusbarComponent {
             {
                 var self = this;
                 if (i != null) {
-                    this.statusBarMessages = i.message;
+                    this.statusBarMessageText = i.message;
+                    this.statusBarMessageColour = 'rgb(197, 194, 194)';
+                    if (i.classfication == 'Warning') {
+                        this.statusBarMessageColour = 'yellow';
+                    }
+                    if (i.classfication == 'Error') {
+                        this.statusBarMessageColour = 'orange';
+                    }
+
                     setTimeout(function(){
-                        self.statusBarMessages = '';
+                        self.statusBarMessageText = '';
+                        self.statusBarMessageColour = 'rgb(197, 194, 194)';
                         }, i.timeout
                     );
                 }
