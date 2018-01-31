@@ -2634,7 +2634,7 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.widgetsTEST = data.filter(i => i.widgetType == 'Graph');
+                        this.widgetsTEST = data;
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         console.log('Global-Variables getWidgetsTEST 1', data)
@@ -2666,7 +2666,8 @@ export class GlobalVariableService {
 
                         // Filter the widgets
                         data = data.filter(
-                            i => i.dashboardID == dashboardID  &&
+                            i => i.widgetType == 'Graph'  &&  
+                                 i.dashboardID == dashboardID  &&
                                  (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
                         );
 
@@ -2674,8 +2675,11 @@ export class GlobalVariableService {
                         let promiseArray = [];
                         let cnt: number = 0;
                         data.forEach(w => {
-                            promiseArray.push(this.getDataset(cnt, w.datasourceID, w.datasetID));
-                            cnt = cnt + 1;
+                            // Only add datasets where necessary
+                            if (w.datasourceID != -1   ||   w.datasetID != -1) {
+                                promiseArray.push(this.getDataset(cnt, w.datasourceID, w.datasetID));
+                                cnt = cnt + 1;
+                            };
                         })
                         
                         // Add widget data to local vars
