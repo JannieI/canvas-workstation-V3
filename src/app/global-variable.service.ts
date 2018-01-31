@@ -2634,7 +2634,7 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.widgetsTEST = data;
+                        this.widgetsTEST = data.filter(i => i.widgetType == 'Graph');
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         console.log('Global-Variables getWidgetsTEST 1', data)
