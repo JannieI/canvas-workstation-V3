@@ -87,6 +87,33 @@ Auto-save / Undo:
 - options:
     1. could save all info relating to the D: speed (ie to undo, the whole D will be recreated), easier to manage (all or nothing)
     2. save steps (action, old value, new value): more complicated to sync, and how will snapshots work?
+    3. Combination of above, ie drag and resize as nr 2, rest as nr 1 ...
+
+
+Other:
+- show a list of [dSet] from menu or at least when creating Sl - and can browse data too.  How does this fit into the current D design?
+- Sl over T can be clumsy - can use multi-T feature but is this enough?
+- can we hide T - will show in T list with hidden tick, can uncheck?
+- getting a W from another D - only show those where the user has access to the DS
+- after Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field may not exist any longer in DS)
+- 
+
+Shapes:
+- have the following elements:
+    - headers, say 1-6
+    - text
+    - bullets
+    - numbered bullets
+    - links (to web and other D, T)
+    - images
+    - <data field>
+    - blocks / borders?
+    - formatting like background color?
+- use a simple MD language, parse to HTML and render
+- can have a View Window next to Design Window - can see how it looks
+- select data fields from existing DS and dSet
+- must be able to make a PowerPoint-light: front page(logo and title), agenda with bullets and optional links, pages with logo and title repeated at the top and bullets and W (graphs, etc) that are normal Canvas W => interactive and can add Sl, explore, expand, etc.
+
 
 **UI / ideas**
 1. See where and how to use tooltips on buttons (ie HTML title="" or via Clarity)
