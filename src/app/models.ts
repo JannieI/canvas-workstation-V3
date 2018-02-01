@@ -605,7 +605,7 @@ export class DashboardSchedule {
 export class DashboardPermission {
     id: number;
     dashboardID: number;
-    userID: string;        // 1 of usr/grp filled in, one blank
+    userID: string;                     // 1 of usr/grp filled in, one blank
     groupID: string;
     canView: boolean;
     canEdit: boolean;
@@ -645,7 +645,7 @@ export class Widget {
     
     // Data related
     datasourceID: number;
-    datasetID: number;
+    datasetID: number;                      // Specific ID, or -1 = latest dataset
     dataParameters:
     [
         {

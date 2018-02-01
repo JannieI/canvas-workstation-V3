@@ -18,6 +18,44 @@ This document describes items for later versions of Canvas.
 1. Have flexible field selection: ie ..."fields": [A, B, F]
 
 
+**1 Feb 2018**
+Structure on loading D:
+1. Get objects and data
+- get D-id, T-id
+- get [W] for D, W = Graph, Table, Slicer, Shape 
+- get [DS] for [W]
+- get [dSet] for [W], latest or specific - store this
+2. Refresh
+- get [dSet*] from [dSet], applying relevant Sl
+- update [W] to point to [dSet*]
+- redraw:
+    - Graph: based on grammer and type, ie Vega
+    - Slicer: render list
+    - Table: show page 1, with lazy loading
+    - Shape: show with data elements
+
+When clicking on a Sl:
+- store the selection []
+- run 2. Refresh above (but only for Sl, dSet, W affected)
+
+For now:
+- Sl has same structure (with dSet) as graph (Vega) => for now we will run query twice, but later we need to extract the unique values from the dSet already extracted
+- it is possible to use Vega sliders as well - these apply only to the graph on which it appears, and is applied after the Sl is applied.  Important, if Sl has no W linked to it, the dSet must still be obtained.
+- do we keep the DS - dSet-id pairs?
+- all W use same WidgetComponent => drag and drop, resize, selection, align, delete, refresh-DS, etc are DRY. But the following is different according to the different types: refreshing, clicking (ie Sl refreshes data)
+
+
+Different versions of Vega:
+- keep version on W in DB
+- Upgrade Util: converts W to new version, creates new record and keeps old one as IsTrashed=True.  Thus, can always see what it looked like before.  More thinking required here.
+- see DRF guidelines about the steps to do
+- a version of Canvas will only work with a specified version(s) of W ?
+
+Warning:
+- when a W is rendered and some fields dont exist, error occured, display a warning image + message inside W.  User can edit this, fix the fields and save
+- before saving a W, Canvas checks that the fields are valid, that it renders, etc and warns if not (but allows to save) - how does this fit in with auto-save policy?
+
+
 **UI / ideas**
 1. See where and how to use tooltips on buttons (ie HTML title="" or via Clarity)
 2. GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.

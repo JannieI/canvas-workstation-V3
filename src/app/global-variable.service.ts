@@ -1825,7 +1825,7 @@ export class GlobalVariableService {
                     // Retain only this id
                     // data = data.filter(i => i.id == datasetID)
 
-                    // TODO - fix this via reall http
+                    // TODO - fix this via real http
                     let dataurl: string = './assets/data.dataset' + datasetID.toString() + '.json';
                     this.filePath = '../assets/data.dataset' + datasetID.toString() + '.json';
                     this.get(dataurl)
