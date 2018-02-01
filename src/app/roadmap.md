@@ -55,6 +55,38 @@ Warning:
 - when a W is rendered and some fields dont exist, error occured, display a warning image + message inside W.  User can edit this, fix the fields and save
 - before saving a W, Canvas checks that the fields are valid, that it renders, etc and warns if not (but allows to save) - how does this fit in with auto-save policy?
 
+Caching:
+- option to switch caching on or not at the server level and local level (if server allows it)
+- stores all currentD info, users, etc
+- refreshed via WS from DB
+- also used for auto-save: all the steps are saved here, and synced to server at specified interval (setting on client)
+- 
+
+Multi-T display:
+- the T-id of a W is an array, where [] = none, [-1] = all T, [1,2] = T 1 and 2, etc
+- popup form to show which T a W lives on, and a checkbox to change.  Once on none, it can be re-added from the NEW W form - make space for it.  This facility means it is easy to move W between Ts.  Note that the position is the same on all Ts.
+- can add W from other D on the NEW W form -> makes a copy of it locally, and stores a reference to the original.  This is not maintained automatically, the user has to delete and re-copy to local to get the latest.  It is thus different to templates.
+- when a Sl is selected, all W influenced by it will have an indicator on them
+- on DS menu: indicate all W (graph + Sl) influenced by this DS
+- on W menu: indicate all Sl affecting this W
+- 
+
+Local DB:
+This seems useful for the following:
+- caching more than the current, for example load top 10 recently used D async while user is working => they are ready immediately when opened
+- quicker startup as the last used D will be available locally.  How do we synch it if it has changed since?
+- streaming: a WS is updating the local DB constantly, W refreshes at intervals
+- will not be allowed with sensitive data
+- handle big dSet -> store locally from DB and prompt user to have a Sl - which reduces the amount of data in [dSet*] which is in RAM
+- lazy loading on Tbl, so a Table can show any size data.  Filters on Tbl will re-extract from local DB, and paginate again.
+- take serious note of browser compatibility
+- auto-save can be done here - should make it faster, and less calls to server
+
+Auto-save / Undo:
+- this is a key feature
+- options:
+    1. could save all info relating to the D: speed (ie to undo, the whole D will be recreated), easier to manage (all or nothing)
+    2. save steps (action, old value, new value): more complicated to sync, and how will snapshots work?
 
 **UI / ideas**
 1. See where and how to use tooltips on buttons (ie HTML title="" or via Clarity)
