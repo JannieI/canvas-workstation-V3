@@ -20,14 +20,20 @@ This document describes items for later versions of Canvas.
 
 **1 Feb 2018**
 Structure on loading D:
-1. Get objects and data
-- get D-id, T-id
-- get [W] for D, W = Graph, Table, Slicer, Shape 
+
+At start:
+- load all D, DS
+
+1. Get objects and data (note - this cater for localDB OR arrays in memory)
+- input D-id, T-id -> get D + Tmp, all T on D
+- get all [W] for D, W = Graph, Table, Slicer, Shape 
 - get [DS] for [W]
 - get [dSet] for [W], latest or specific - store this
+- get selection for Sl as [sel]
 2. Refresh
-- get [dSet*] from [dSet], applying relevant Sl
-- update [W] to point to [dSet*]
+- update Sl with [dSet*] from [dSet] from [sel]  
+- get [dSet*] from [dSet], applying relevant Sl 
+- update [W ex Sl] to point to [dSet*]: in memory = array inside W, localDB = url
 - redraw:
     - Graph: based on grammer and type, ie Vega
     - Slicer: render list
@@ -35,11 +41,11 @@ Structure on loading D:
     - Shape: show with data elements
 
 When clicking on a Sl:
-- store the selection []
+- store the selection as [sel]
 - run 2. Refresh above (but only for Sl, dSet, W affected)
 
 For now:
-- Sl has same structure (with dSet) as graph (Vega) => for now we will run query twice, but later we need to extract the unique values from the dSet already extracted
+- Sl has same structure (with dSet) as graph (Vega) => for now we will run query twice, but later we need to extract the unique values from the dSet already extracted.  Note: the DS specifies the Distinct Top n, so that the all the rows and columns are not returned.
 - it is possible to use Vega sliders as well - these apply only to the graph on which it appears, and is applied after the Sl is applied.  Important, if Sl has no W linked to it, the dSet must still be obtained.
 - do we keep the DS - dSet-id pairs?
 - all W use same WidgetComponent => drag and drop, resize, selection, align, delete, refresh-DS, etc are DRY. But the following is different according to the different types: refreshing, clicking (ie Sl refreshes data)
@@ -49,7 +55,7 @@ Different versions of Vega:
 - keep version on W in DB
 - Upgrade Util: converts W to new version, creates new record and keeps old one as IsTrashed=True.  Thus, can always see what it looked like before.  More thinking required here.
 - see DRF guidelines about the steps to do
-- a version of Canvas will only work with a specified version(s) of W ?
+- a version of Canvas will only work with a specified version(s) of W - inside code.  This way, can load any version of Canvas and it will work provided the W version is in acceptable range - hardcoded in TS.  The version is set per W, thus can have different versions of Graphs (Vega), Sl, etc.
 
 Warning:
 - when a W is rendered and some fields dont exist, error occured, display a warning image + message inside W.  User can edit this, fix the fields and save
@@ -60,7 +66,7 @@ Caching:
 - stores all currentD info, users, etc
 - refreshed via WS from DB
 - also used for auto-save: all the steps are saved here, and synced to server at specified interval (setting on client)
-- 
+
 
 Multi-T display:
 - the T-id of a W is an array, where [] = none, [-1] = all T, [1,2] = T 1 and 2, etc
@@ -69,7 +75,7 @@ Multi-T display:
 - when a Sl is selected, all W influenced by it will have an indicator on them
 - on DS menu: indicate all W (graph + Sl) influenced by this DS
 - on W menu: indicate all Sl affecting this W
-- 
+ 
 
 Local DB:
 This seems useful for the following:
@@ -88,6 +94,13 @@ Auto-save / Undo:
     1. could save all info relating to the D: speed (ie to undo, the whole D will be recreated), easier to manage (all or nothing)
     2. save steps (action, old value, new value): more complicated to sync, and how will snapshots work?
     3. Combination of above, ie drag and resize as nr 2, rest as nr 1 ...
+    For NOW: 
+    - have a set of stores, one per entity with snapshot-id (-1 = optional), entity-id, {}
+    - have one list: entity, id, action, old, new
+    - single property changes, ie resize: graph, 3, change-container-width, old-width, new-width
+    - significant changes to one entity: graph, 1, replace, old-spec-id, new-spec-id
+    - snapshot: whole-dashboard, 2, snapshot, old-snapshot-id, new-snapshot-id
+       This will replace all current entities (D, T, W, etc) from the respective stores where the snapshot-id matches
 
 
 Other:
@@ -106,13 +119,15 @@ Shapes:
     - numbered bullets
     - links (to web and other D, T)
     - images
-    - <data field>
+    - data field, maybe in brackets
     - blocks / borders?
     - formatting like background color?
 - use a simple MD language, parse to HTML and render
 - can have a View Window next to Design Window - can see how it looks
 - select data fields from existing DS and dSet
 - must be able to make a PowerPoint-light: front page(logo and title), agenda with bullets and optional links, pages with logo and title repeated at the top and bullets and W (graphs, etc) that are normal Canvas W => interactive and can add Sl, explore, expand, etc.
+
+**END 1 Feb 2018**
 
 
 **UI / ideas**
