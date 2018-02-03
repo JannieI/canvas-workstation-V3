@@ -1485,35 +1485,7 @@ export class GlobalVariableService {
 
     }
 
-    getWidgets(): Promise<CanvasWidget[]> {
-        // Description: Gets all W
-        // Returns: this.widgets array, unless:
-        //   If not cached or if dirty, get from File
-        console.log('Global-Variables getWidgets ...');
 
-        let url: string = 'getWidgets';
-        this.filePath = './assets/data.widgets.json';
-
-        return new Promise<CanvasWidget[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
-                this.get(url)
-                    .then(data => {
-                        this.widgets = data;
-                        this.isDirtyWidgets = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getWidgets 1', data)
-                        resolve(this.widgets);
-                    });
-            } else {
-                console.log('Global-Variables getWidgets 2')
-                resolve(this.widgets);
-            }
-        });
-
-    }
 
     getCurrentWidgets(dashboardID: number, dashboardTabID: number): Promise<CanvasWidget[]> {
         // Description: Gets all W for current D
