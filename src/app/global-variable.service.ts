@@ -887,7 +887,7 @@ export class GlobalVariableService {
     currentDataset: any = currentDataset;
     currentDashboards: Dashboard[] = [];
     currentDashboardTabs: DashboardTab[] = [];
-    currentWidgets: CanvasWidget[] = [];
+    currentWidgets: Widget[] = [];
     currentShapes: CanvasShape[] = [];
     currentSlicers: CanvasSlicer[] = [];
     currentDashboardSchedules: DashboardSchedule[] = [];
@@ -1100,8 +1100,6 @@ export class GlobalVariableService {
                     if (dashboardTabID == -1) {
                         if (j.length > 0) {dashboardTabID = j[0].id}
                     }
-                    // Load Widgets
-                    this.getCurrentWidgets(dashboardID, dashboardTabID).then(k =>
                     // Load Shapes
                     this.getCurrentShapes(dashboardID, dashboardTabID).then(l =>
                     // Load Slicers
@@ -1110,7 +1108,7 @@ export class GlobalVariableService {
                     this.getCurrentDashboardPermissions(dashboardID).then( o =>
                     // Load DS
                     this.getCurrentDatasource(dashboardID).then(p =>
-                    // Load TEST
+                    // Load Widgets
                     this.getCurrentWidgetsTEST(dashboardID, dashboardTabID).then(q =>
                         // Reset Global Vars
                         {
@@ -1124,7 +1122,7 @@ export class GlobalVariableService {
                             }
                             resolve(true)
                         }
-        ))))))}));
+        )))))}));
         });
     }
 
@@ -1167,9 +1165,6 @@ export class GlobalVariableService {
 
 		// Load the current DashboardTab
         this.getCurrentDashboardTabs(dashboardID)
-
-		// Load Widgets
-        this.getCurrentWidgets(dashboardID, dashboardTabID);
 
         // Load Shapes
         this.getCurrentShapes(dashboardID, dashboardTabID);
@@ -1484,8 +1479,6 @@ export class GlobalVariableService {
         };
 
     }
-
-
 
     getDashboardSamples(): Promise<Dashboard[]> {
         // Description: Gets all Sample D

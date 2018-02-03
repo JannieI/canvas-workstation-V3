@@ -32,7 +32,7 @@ export class WidgetDeleteComponent implements OnInit {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @ViewChild('myCanvas', {read: ElementRef}) myCanvas: ElementRef;  //Vega graph
 
-    currentWidgets: CanvasWidget;
+    currentWidgets: Widget;
     localTrash: Widget[];
     nrWidgetsSelected: number = 0;
 
