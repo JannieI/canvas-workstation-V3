@@ -10,7 +10,7 @@ import { ViewChild }                  from '@angular/core';
 
 // Our models
 import { Datasource }                 from './models';
-import { CanvasWidget }               from './models';
+import { Widget }                     from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -33,7 +33,7 @@ export class WidgetDeleteComponent implements OnInit {
     @ViewChild('myCanvas', {read: ElementRef}) myCanvas: ElementRef;  //Vega graph
 
     currentWidgets: CanvasWidget;
-    localTrash: CanvasWidget[];
+    localTrash: Widget[];
     nrWidgetsSelected: number = 0;
 
     constructor(

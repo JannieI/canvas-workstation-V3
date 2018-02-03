@@ -25,7 +25,7 @@ import { GlobalFunctionService }      from './global-function.service';
 // Our Models
 import { CanvasShape }                from './models'
 import { CanvasSlicer }               from './models'
-import { CanvasWidget }               from './models'
+import { Widget }                    from './models'
 import { Dashboard }                  from './models'
 import { DashboardTab }               from './models'
 import { Datasource }                 from './models'
@@ -136,9 +136,9 @@ export class ExploreComponent {
     isFirstTimeDashboard: boolean;
     isFirstTimePresentation: boolean;
     currentShapes: CanvasShape[] = [];
-    currentWidgets: CanvasWidget[] = [];
+    currentWidgets: Widget[] = [];
     currentSlicers: CanvasSlicer[] = [];
-    localTrash: CanvasWidget[] = [];
+    localTrash: Widget[] = [];
     open: Boolean = false;
     presentationMode: boolean;
     showDashboardDescription: boolean = false;
@@ -561,7 +561,7 @@ export class ExploreComponent {
     clickShowNextTab() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNextTab', '@Start');
-        let x: CanvasWidget = this.globalVariableService.currentWidgets[2]
+        let x: Widget = this.globalVariableService.currentWidgets[2]
         this.currentWidgets.pop();
         this.currentWidgets.push(x);
         console.log(this.currentWidgets, this.globalVariableService.widgets[2])

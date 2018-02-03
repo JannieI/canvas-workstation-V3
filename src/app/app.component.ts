@@ -23,7 +23,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 
 // Our Models
 import { Field }                      from './models'
-import { CanvasWidget }               from './models'
 import { Datasource }                 from './models'
 import { Widget }                     from './models'
 
@@ -195,7 +194,7 @@ export class AppComponent implements OnInit {
     statusBarRunning: boolean = false;
     statusBarCancelRefresh: boolean = false;
 
-    localTrash: CanvasWidget[];
+    localTrash: Widget[];
     currentWidgets: Widget[] = [];
     showModalLanding: boolean;
 
