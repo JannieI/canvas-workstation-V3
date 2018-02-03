@@ -1487,47 +1487,6 @@ export class GlobalVariableService {
 
 
 
-    getCurrentWidgets(dashboardID: number, dashboardTabID: number): Promise<CanvasWidget[]> {
-        // Description: Gets all W for current D
-        // Params:
-        //   dashboardID
-        //   dashboardTabID (0 => all Tabs)
-        // Returns: this.currentWidgets array, unless:
-        //   If not cached or if dirty, get from File
-        // Usage: getWidgets(1)  =>  Returns W for DashboardID = 1
-        console.log('Global-Variables getCurrentWidgets ...');
-
-        // Refresh from source at start, or if dirty
-        if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
-            return new Promise<CanvasWidget[]>((resolve, reject) => {
-                this.getWidgets()
-                    .then(data => {
-                        data = data.filter(
-                            i => i.dashboardID == dashboardID  &&
-                                 (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
-                        );
-                        this.currentWidgets = data;
-                        console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID, data)
-                        resolve(data);
-
-                })
-             })
-        } else {
-            return new Promise<CanvasWidget[]>((resolve, reject) => {
-                let returnData: CanvasWidget[];
-                returnData = this.widgets.filter(
-                        i => i.dashboardID == dashboardID  &&
-                        (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
-
-                    )
-                this.currentWidgets = returnData;
-                console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, returnData)
-                resolve(returnData);
-            });
-        };
-
-    }
-
     getDashboardSamples(): Promise<Dashboard[]> {
         // Description: Gets all Sample D
         // Returns: an array extracted from [D], unless:
