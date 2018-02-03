@@ -1496,38 +1496,7 @@ export class GlobalVariableService {
         return dataFile;
 
     }
-    getSlicers(): Promise<CanvasSlicer[]> {
-        // Description: Gets all Sl
-        // Returns: this.Slicers array, unless:
-        //   If not cached or if dirty, get from File
-        console.log('Global-Variables getSlicers ...');
-
-        let url: string = 'getSlicers';
-        this.filePath = './assets/data.slicers.json';
-
-        return new Promise<CanvasSlicer[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.slicers.length == 0)  ||  (this.isDirtySlicers) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
-                this.get(url)
-                    .then(data => {
-                        this.slicers = data;
-                        this.isDirtySlicers = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getSlicers 1', data)
-                        resolve(this.slicers);
-                    });
-            } else {
-                console.log('Global-Variables getSlicers 2')
-                resolve(this.slicers);
-            }
-        });
-
-    }
-
- 
-
+    
     getDashboardSchedules(): Promise<DashboardSchedule[]> {
         // Description: Gets all Sch
         // Returns: this.dashboardSchedules array, unless:
