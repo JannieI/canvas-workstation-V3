@@ -422,52 +422,6 @@ const combinationDetails: CombinationDetail[] =
     }
 ];
 
-const currentDataset =
-[
-    {
-        datasourceID: 1,
-        data:
-        [
-            {
-            Name: 'Jay',
-            Type: 'Origon',
-            Description: 'bla-bla',
-            CreatedBy: 'aasdf',
-            CreatedOn: 'on',
-            RefreshedBy: 'by',
-            RefreshedOn: '2/2'
-            },
-            {
-            Name: 'Jay',
-            Type: 'Origon',
-            Description: 'bla-bla',
-            CreatedBy: 'aasdf',
-            CreatedOn: 'on',
-            RefreshedBy: 'by',
-            RefreshedOn: '2/2'
-            },
-            {
-            Name: 'Jay',
-            Type: 'Origon',
-            Description: 'bla-bla',
-            CreatedBy: 'aasdf',
-            CreatedOn: 'on',
-            RefreshedBy: 'by',
-            RefreshedOn: '2/2'
-            },
-            {
-            Name: 'Jay',
-            Type: 'Origon',
-            Description: 'bla-bla',
-            CreatedBy: 'aasdf',
-            CreatedOn: 'on',
-            RefreshedBy: 'by',
-            RefreshedOn: '2/2'
-            }
-        ]
-    }
-];
-
 const datasets: any[] =
 [
     {
