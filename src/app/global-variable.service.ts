@@ -673,13 +673,9 @@ export class GlobalVariableService {
     dashboardSnapshots: DashboardSnapshot[] = [];
     dashboardThemes: DashboardTheme[] = [];
     dashboardTemplates: DashboardTemplate[] = [];
-    widgets: CanvasWidget[] = [];
+    widgets: Widget[] = [];
     shapes: CanvasShape[] = [];
     slicers: CanvasSlicer[] = [];
-
-    widgetsTEST: Widget[] = [];
-    currentWidgetsTEST: Widget[] = [];
-
 
     datasources: Datasource[] = [];
     transformations: Transformation[] = [];
@@ -1570,9 +1566,9 @@ export class GlobalVariableService {
                         .then(dataFile => {
 
                             // Add data to widget
-                            this.currentWidgetsTEST[cnt].graphUrl = this.filePath;
+                            this.currentWidgets[cnt].graphUrl = this.filePath;
                             console.log('Global-Variables getDataset 1', cnt, datasourceID, 
-                                datasetID, dataFile, dataurl, this.currentWidgetsTEST[0]) 
+                                datasetID, dataFile, dataurl, this.currentWidgets[0]) 
                             resolve(dataFile);
                         }
                     );
@@ -2360,7 +2356,7 @@ export class GlobalVariableService {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getWidgets ...', this.widgetsTEST.length);
+        console.log('Global-Variables getWidgets ...', this.widgets.length);
 
         let url: string = 'getWidgets';
         this.filePath = './assets/data.testWidget.json';
@@ -2368,19 +2364,19 @@ export class GlobalVariableService {
         return new Promise<Widget[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.widgetsTEST.length == 0)  ||  (this.isDirtyWidgets) ) {
+            if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.widgetsTEST = data;
+                        this.widgets = data;
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         console.log('Global-Variables getWidgets 1', data)
-                        resolve(this.widgetsTEST);
+                        resolve(this.widgets);
                     });
             } else {
-                console.log('Global-Variables getWidgets 2', this.widgetsTEST)
-                resolve(this.widgetsTEST);
+                console.log('Global-Variables getWidgets 2', this.widgets)
+                resolve(this.widgets);
             }
         });
 
@@ -2397,7 +2393,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentWidgets ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.currentWidgetsTEST.length == 0)  ||  (this.isDirtyWidgets) ) {
+        if ( (this.currentWidgets.length == 0)  ||  (this.isDirtyWidgets) ) {
             return new Promise<Widget[]>((resolve, reject) => {
                 this.getWidgets()
                     .then(data => {
@@ -2436,7 +2432,7 @@ export class GlobalVariableService {
                         })
                         
                         // Add widget data to local vars
-                        this.currentWidgetsTEST = data;
+                        this.currentWidgets = data;
                         this.allWithAsync(...promiseArray)
                             .then(resolvedData => {
                                 console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID, data)
@@ -2449,12 +2445,12 @@ export class GlobalVariableService {
         } else {
             return new Promise<Widget[]>((resolve, reject) => {
                 let returnData: Widget[];
-                returnData = this.widgetsTEST.filter(
+                returnData = this.widgets.filter(
                         i => i.dashboardID == dashboardID  &&
                         (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
 
                     )
-                this.currentWidgetsTEST = returnData;
+                this.currentWidgets = returnData;
                 console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, returnData)
                 resolve(returnData);
             });

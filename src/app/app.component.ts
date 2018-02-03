@@ -292,7 +292,7 @@ export class AppComponent implements OnInit {
                                 this.currentTabName = this.globalVariableService.
                                     currentDashboardTabs[x].name;
                                 this.currentWidgets = this.globalVariableService.
-                                    currentWidgetsTEST;
+                                    currentWidgets;
 
                                 // TODO - remove later
                                 this.currentSlicers = this.globalVariableService.currentSlicers;
