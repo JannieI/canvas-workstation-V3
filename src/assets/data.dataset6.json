@@ -1,0 +1,38 @@
+[
+    {
+        "name": "1-year JGB", 
+        "outstanding": 2133 	
+    },
+    {
+        "name": "2-year JGB", 
+        "outstanding": 1283 	
+    },
+    {
+        "name": "5-year JGB", 
+        "outstanding": 9175 	
+    },
+    {
+        "name": "10-year JGB", 
+        "outstanding": 10086 	
+    },
+    {
+        "name": "20-year JGB", 
+        "outstanding": 11821 	
+    },
+    {
+        "name": "30-year JGB", 
+        "outstanding": 12779 	
+    },
+    {
+        "name": "40-year JGB", 
+        "outstanding": 7710 	
+    },
+    {
+        "name": "Floating-rate JGB", 
+        "outstanding": 2527 	
+    },
+    {
+        "name": "Inflation-indexed JGB", 
+        "outstanding": 	532 	
+    }
+]
