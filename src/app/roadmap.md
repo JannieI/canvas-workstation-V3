@@ -44,7 +44,7 @@ When clicking on a Sl:
 - run 2. Refresh above (but only for Sl, dSet, W affected)
 
 For now:
-- Sl has same structure (with dSet) as graph (Vega) => for now we will run query twice, but later we need to extract the unique values from the dSet already extracted.  Note: the DS specifies the Distinct Top n, so that the all the rows and columns are not returned.
+- Sl has same structure (with dSet) as graph (Vega), but keeps selection data separately => for now we will run query twice, but later we need to extract the unique values from the dSet already extracted.  Note: the DS specifies the Distinct Top n, so that the all the rows and columns are not returned.
 - it is possible to use Vega sliders as well - these apply only to the graph on which it appears, and is applied after the Sl is applied.  Important, if Sl has no W linked to it, the dSet must still be obtained.
 - do we keep the DS - dSet-id pairs?
 - all W use same WidgetComponent => drag and drop, resize, selection, align, delete, refresh-DS, etc are DRY. But the following is different according to the different types: refreshing, clicking (ie Sl refreshes data)
