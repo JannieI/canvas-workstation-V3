@@ -324,7 +324,7 @@ export class WidgetComponent {
     createVegaLiteSpec(widget: Widget): dl.spec.TopLevelExtendedSpec {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
-        console.log('vls', widget.graphData)
+
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
         if (widget.graphUrl != "") {
             vlSpecsNew['data'] = {"url": widget.graphUrl};
@@ -359,7 +359,6 @@ export class WidgetComponent {
               }
         };
 
-        console.log("vlSpecsNew", vlSpecsNew)
         return vlSpecsNew;
     }
 

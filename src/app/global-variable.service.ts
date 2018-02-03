@@ -1452,23 +1452,33 @@ export class GlobalVariableService {
                         };
                     };
 
-                    // Retain only this id
-                    // data = data.filter(i => i.id == datasetID)
-
                     // TODO - fix this via real http
                     let dataurl: string = './assets/data.dataset' + datasetID.toString() + '.json';
                     this.filePath = '../assets/data.dataset' + datasetID.toString() + '.json';
                     this.get(dataurl)
                         .then(dataFile => {
 
-                        // Add data to widget
-                        // TODO - url = this.filePath for localDB ...
-                        this.currentWidgets[cnt].graphUrl = "";
-                        this.currentWidgets[cnt].graphData = dataFile.filter(
-                            df => true
-                        )
-                            console.log('Global-Variables getDataset 1', cnt, datasourceID, 
-                                datasetID, dataFile, dataurl, this.currentWidgets[0]) 
+                            // Add to datasets (contains all data) - once
+                            let dsIDs: number[] = [];
+                            dataFile.forEach(df => {
+                                if (dsIDs.indexOf(df.id) < 0) {
+                                    this.datasets.push(df);
+                                    dsIDs.push(df.id);
+                                };
+                            })
+
+                            // Add to currentDatasets - filtered by Sl linked to DS
+                            let dataFileFiltered = this.filterSlicer(dataFile);
+
+                            // Add data to widget
+                            // TODO - url = this.filePath for localDB ...
+                            this.currentWidgets[cnt].graphUrl = "";
+                            this.currentWidgets[cnt].graphData = dataFileFiltered;
+                            console.log('Global-Variables getDataset 1', cnt, datasourceID, dataurl,
+                                datasetID, 'datafile + filtered', dataFile, dataFileFiltered, 
+                                'datasets', this.datasets,
+                                'currentDataset', this.currentDataset,
+                                'this.currentWidgets[0]', this.currentWidgets[0]) 
                             resolve(dataFile);
                         }
                     );
@@ -1477,6 +1487,12 @@ export class GlobalVariableService {
         });
     }
 
+    filterSlicer(dataFile): any {
+        //   Filter a given array 
+        console.log('Global-Variables getSlicers ...');
+        return dataFile;
+
+    }
     getSlicers(): Promise<CanvasSlicer[]> {
         // Description: Gets all Sl
         // Returns: this.Slicers array, unless:
