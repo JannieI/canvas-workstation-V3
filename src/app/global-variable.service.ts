@@ -909,35 +909,34 @@ export class GlobalVariableService {
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
             this.getCurrentDashboard(dashboardID).then( i => 
-            // Load the DashboardTabs
-            this.getCurrentDashboardTabs(dashboardID).then(j =>
-                {
-                    if (dashboardTabID == -1) {
-                        if (j.length > 0) {dashboardTabID = j[0].id}
-                    }
-                    // Load Shapes
-                    this.getCurrentShapes(dashboardID, dashboardTabID).then(l =>
-                    // Load Slicers
-                    this.getCurrentSlicers(dashboardID, dashboardTabID).then(m =>
-                    // Load Permissions for D
-                    this.getCurrentDashboardPermissions(dashboardID).then( o =>
-                    // Load DS
-                    this.getCurrentDatasource(dashboardID).then(p =>
-                    // Load Widgets
-                    this.getCurrentWidgets(dashboardID, dashboardTabID).then(q =>
-                        // Reset Global Vars
-                        {
-                            console.log('GV this.currentSlicers', this.currentSlicers)
-                            this.currentDashboardID = dashboardID
-                            this.currentDashboardTabID = dashboardTabID
-                            if (this.currentWidgets.length > 0) {
-                                this.hasDatasources.next(true);
-                            } else {
-                                this.hasDatasources.next(false);
-                            }
-                            resolve(true)
+                // Load the DashboardTabs
+                this.getCurrentDashboardTabs(dashboardID).then(j =>
+                    {
+                        if (dashboardTabID == -1) {
+                            if (j.length > 0) {dashboardTabID = j[0].id}
                         }
-        )))))}));
+        
+                        // Load Permissions for D
+                        this.getCurrentDashboardPermissions(dashboardID).then( o =>
+
+                            // Load Widgets
+                            this.getCurrentWidgets(dashboardID, dashboardTabID).then(q =>
+                                // Reset Global Vars
+                                {
+                                    console.log('GV this.currentSlicers', this.currentSlicers)
+                                    this.currentDashboardID = dashboardID
+                                    this.currentDashboardTabID = dashboardTabID
+                                    if (this.currentWidgets.length > 0) {
+                                        this.hasDatasources.next(true);
+                                    } else {
+                                        this.hasDatasources.next(false);
+                                    }
+                                    resolve(true)
+                                }
+                            )
+                        )
+                })
+            );
         });
     }
 
