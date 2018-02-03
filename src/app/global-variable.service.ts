@@ -422,64 +422,6 @@ const combinationDetails: CombinationDetail[] =
     }
 ];
 
-const datasets: any[] =
-[
-    {
-        datasourceID: 1,
-        data:
-        [
-            {
-              Name: 'Jay',
-              Type: 'Origon',
-              Description: 'bla-bla',
-              CreatedBy: 'aasdf',
-              CreatedOn: 'on',
-              RefreshedBy: 'by',
-              RefreshedOn: '2/2'
-            },
-            {
-              Name: 'Jay',
-              Type: 'Origon',
-              Description: 'bla-bla',
-              CreatedBy: 'aasdf',
-              CreatedOn: 'on',
-              RefreshedBy: 'by',
-              RefreshedOn: '2/2'
-            },
-            {
-              Name: 'Jay',
-              Type: 'Origon',
-              Description: 'bla-bla',
-              CreatedBy: 'aasdf',
-              CreatedOn: 'on',
-              RefreshedBy: 'by',
-              RefreshedOn: '2/2'
-            },
-            {
-              Name: 'Jay',
-              Type: 'Origon',
-              Description: 'bla-bla',
-              CreatedBy: 'aasdf',
-              CreatedOn: 'on',
-              RefreshedBy: 'by',
-              RefreshedOn: '2/2'
-            }
-        ]
-    },
-    {
-        datasourceID: 2,
-        data:
-        [
-            {Month: "01",Trades: 28}, {Month: "02",Trades: 55},
-            {Month: "03",Trades: 43}, {Month: "04",Trades: 91},
-            {Month: "05",Trades: 81}, {Month: "06",Trades: 53},
-            {Month: "07",Trades: 19}, {Month: "08",Trades: 87},
-            {Month: "09",Trades: 52}, {Month: "10",Trades: 42},
-            {Month: "11",Trades: 62}, {Month: "12",Trades: 82}
-        ]
-    }
-];
-
 const fields: Field[] =
 [
     {
@@ -639,7 +581,7 @@ export class GlobalVariableService {
     transformationsFormat: Transformation[] = transformationsFormat;
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
-    datasets: any = datasets;
+    datasets: any = [];
     finalFields: any = finalFields;
 
 
@@ -649,7 +591,7 @@ export class GlobalVariableService {
     currentDataQualityIssues: DataQualityIssue[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
     currentDatasourcePivots: DatasourcePivot[] = [];
-    currentDataset: any = currentDataset;
+    currentDataset: any = [];
     currentDashboards: Dashboard[] = [];
     currentDashboardTabs: DashboardTab[] = [];
     currentWidgets: Widget[] = [];
