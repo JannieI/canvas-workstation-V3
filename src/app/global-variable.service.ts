@@ -645,191 +645,6 @@ const transformationsFormat: Transformation[] =
 ];
 
 
-// Dashboard
-
-// const dashboards: Dashboard[] =
-// [
-//     {
-//         id: 1,
-//         state: 'Draft',
-//         version: 1,
-//         code: 'Mkt Overview',
-//         name: 'Market Overview',
-//         description: 'Economic indicator summary',
-
-//         password: '',
-//         refreshMode: '',
-//         refreshTimer: 0,
-//         defaultTabID: 0,
-//         defaultExportFileType: '',
-//         url: '',
-//         qaRequired: true,
-//         isSample: true,
-
-//         backgroundColor: '',
-//         backgroundImage: '',
-//         templateDashboardID: 0,
-
-//         creator: 'JonathanS',
-//         dateCreated: '',
-//         editor: 'JonathanS',
-//         dateEdited: '',
-//         refresher: '',
-//         dateRefreshed: '',
-
-//         nrWidgets: 1,
-//         nrShapes: 0,
-//         nrRecords: 12,
-//         nrTimesOpened: 0,
-//         tabs: [2],
-//         tags: [],
-//         permissions: []
-//     },
-//     {
-//         id: 2,
-//         state: 'Pending',
-//         version: 1,
-//         code: 'Costing',
-//         name: 'Costing Summary',
-//         description: 'Costing Summary',
-
-//         password: '',
-//         refreshMode: '',
-//         refreshTimer: 0,
-//         defaultTabID: 0,
-//         defaultExportFileType: '',
-//         url: '',
-//         qaRequired: true,
-//         isSample: true,
-
-//         backgroundColor: '',
-//         backgroundImage: '',
-//         templateDashboardID: 0,
-
-//         creator: 'JonathanS',
-//         dateCreated: '',
-//         editor: 'JonathanS',
-//         dateEdited: '',
-//         refresher: '',
-//         dateRefreshed: '',
-
-//         nrWidgets: 1,
-//         nrShapes: 0,
-//         nrRecords: 12,
-//         nrTimesOpened: 0,
-//         tabs: [2],
-//         tags: [],
-//         permissions: []
-//     },
-//     {
-//         id: 3,
-//         state: 'Complete',
-//         version: 1,
-//         code: 'Budget',
-//         name: 'Home Budget',
-//         description: 'Home Budget',
-
-//         password: '',
-//         refreshMode: '',
-//         refreshTimer: 0,
-//         defaultTabID: 0,
-//         defaultExportFileType: '',
-//         url: '',
-//         qaRequired: true,
-//         isSample: true,
-
-//         backgroundColor: '',
-//         backgroundImage: '',
-//         templateDashboardID: 0,
-
-//         creator: 'JonathanS',
-//         dateCreated: '',
-//         editor: 'JonathanS',
-//         dateEdited: '',
-//         refresher: '',
-//         dateRefreshed: '',
-
-//         nrWidgets: 1,
-//         nrShapes: 0,
-//         nrRecords: 12,
-//         nrTimesOpened: 0,
-//         tabs: [2],
-//         tags: [],
-//         permissions: []
-//     },
-//     {
-//         id: 4,
-//         state: 'Complete',
-//         version: 1,
-//         code: 'Bitcoin',
-//         name: 'Bitcoin sales',
-//         description: 'Bitcoin sales',
-
-//         password: '',
-//         refreshMode: '',
-//         refreshTimer: 0,
-//         defaultTabID: 0,
-//         defaultExportFileType: '',
-//         url: '',
-//         qaRequired: true,
-//         isSample: true,
-
-//         backgroundColor: '',
-//         backgroundImage: '',
-//         templateDashboardID: 0,
-
-//         creator: 'JonathanS',
-//         dateCreated: '',
-//         editor: 'JonathanS',
-//         dateEdited: '',
-//         refresher: '',
-//         dateRefreshed: '',
-
-//         nrWidgets: 1,
-//         nrShapes: 0,
-//         nrRecords: 12,
-//         nrTimesOpened: 0,
-//         tabs: [2],
-//         tags: [],
-//         permissions: []
-//     },
-//     {
-//         id: 5,
-//         state: 'Pending',
-//         version: 1,
-//         code: 'Cycling',
-//         name: 'Cycling routes',
-//         description: 'Cycling routes',
-
-//         password: '',
-//         refreshMode: '',
-//         refreshTimer: 0,
-//         defaultTabID: 0,
-//         defaultExportFileType: '',
-//         url: '',
-//         qaRequired: true,
-//         isSample: true,
-
-//         backgroundColor: '',
-//         backgroundImage: '',
-//         templateDashboardID: 0,
-
-//         creator: 'JonathanS',
-//         dateCreated: '',
-//         editor: 'JonathanS',
-//         dateEdited: '',
-//         refresher: '',
-//         dateRefreshed: '',
-
-//         nrWidgets: 1,
-//         nrShapes: 0,
-//         nrRecords: 12,
-//         nrTimesOpened: 0,
-//         tabs: [2],
-//         tags: [],
-//         permissions: []
-//     }
-// ];
 
 
 @Injectable()
@@ -849,7 +664,7 @@ export class GlobalVariableService {
     shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
     widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
 
-    dashboards: Dashboard[] = dashboards;
+    dashboards: Dashboard[] = [];
     dashboardTabs: DashboardTab[] = [];
     dashboardsRecent: number[];
     dashboardSchedules: DashboardSchedule[] = [];
@@ -1109,7 +924,7 @@ export class GlobalVariableService {
                     // Load DS
                     this.getCurrentDatasource(dashboardID).then(p =>
                     // Load Widgets
-                    this.getCurrentWidgetsTEST(dashboardID, dashboardTabID).then(q =>
+                    this.getCurrentWidgets(dashboardID, dashboardTabID).then(q =>
                         // Reset Global Vars
                         {
                             console.log('GV this.currentSlicers', this.currentSlicers)
@@ -2542,7 +2357,7 @@ export class GlobalVariableService {
 
     }
 
-    getWidgetsTEST(): Promise<Widget[]> {
+    getWidgets(): Promise<Widget[]> {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
@@ -2561,18 +2376,18 @@ export class GlobalVariableService {
                         this.widgetsTEST = data;
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getWidgetsTEST 1', data)
+                        console.log('Global-Variables getWidgets 1', data)
                         resolve(this.widgetsTEST);
                     });
             } else {
-                console.log('Global-Variables getWidgetsTEST 2', this.widgetsTEST)
+                console.log('Global-Variables getWidgets 2', this.widgetsTEST)
                 resolve(this.widgetsTEST);
             }
         });
 
     }
 
-    getCurrentWidgetsTEST(dashboardID: number, dashboardTabID: number): Promise<Widget[]> {
+    getCurrentWidgets(dashboardID: number, dashboardTabID: number): Promise<Widget[]> {
         // Description: Gets all W for current D
         // Params:
         //   dashboardID
@@ -2585,7 +2400,7 @@ export class GlobalVariableService {
         // Refresh from source at start, or if dirty
         if ( (this.currentWidgetsTEST.length == 0)  ||  (this.isDirtyWidgets) ) {
             return new Promise<Widget[]>((resolve, reject) => {
-                this.getWidgetsTEST()
+                this.getWidgets()
                     .then(data => {
 
                         // Filter the widgets
@@ -2610,7 +2425,7 @@ export class GlobalVariableService {
                         this.currentWidgetsTEST = data;
                         this.allWithAsync(...promiseArray)
                             .then(resolvedData => {
-                                console.log('Global-Variables getCurrentWidgetsTEST 1', dashboardID, dashboardTabID, data)
+                                console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID, data)
                                 resolve(data);
                             }, 
                             rejectionReason => console.log('reason:', rejectionReason)) // reason: rejected!
@@ -2626,7 +2441,7 @@ export class GlobalVariableService {
 
                     )
                 this.currentWidgetsTEST = returnData;
-                console.log('Global-Variables getCurrentWidgetsTEST 2', dashboardID, dashboardTabID, returnData)
+                console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, returnData)
                 resolve(returnData);
             });
         };
