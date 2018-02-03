@@ -1382,47 +1382,6 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentShapes(dashboardID: number, dashboardTabID: number): Promise<CanvasShape[]> {
-        // Description: Gets all S for current D
-        // Params:
-        //   dashboardID
-        //   dashboardTabID (0 => all Tabs)
-        // Returns: this.currentShapes array, unless:
-        //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentShapes ...');
-
-        // Refresh from source at start, or if dirty
-        if ( (this.shapes.length == 0)  ||  (this.isDirtyShapes) ) {
-            return new Promise<CanvasShape[]>((resolve, reject) => {
-                this.getShapes()
-                    .then(data => {
-                        data = data.filter(
-                            i => i.dashboardID == dashboardID  &&
-                            (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
-
-                        );
-                        this.currentShapes = data;
-                        console.log('Global-Variables getCurrentShapes 1', dashboardID, 
-                            dashboardTabID, data)
-                        resolve(data);
-                })
-             })
-        } else {
-            return new Promise<CanvasShape[]>((resolve, reject) => {
-                let returnData: CanvasShape[];
-                returnData = this.shapes.filter(
-                    i => i.dashboardID == dashboardID  &&
-                    (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
-
-                );
-                this.currentShapes = returnData;
-                console.log('Global-Variables getCurrentShapes 2', dashboardID, 
-                    dashboardTabID, returnData)
-                resolve(returnData);
-            });
-        };
-
-    }
 
     getDataset(cnt: number, datasourceID: number, datasetID: number): Promise<any> {
         // Description: Gets a Dataset
