@@ -1572,7 +1572,8 @@ export class GlobalVariableService {
                             resolve(dataFile);
                         }
                     );
-            });
+                }
+            );
         });
     }
 
@@ -2478,16 +2479,25 @@ export class GlobalVariableService {
                         cnt = cnt + 1;
                     };
                 })
-
+                        
+                // Add widget data to local vars
                 this.currentWidgets = returnData;
-                console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, returnData)
-                resolve(returnData);
+                this.allWithAsync(...promiseArray)
+                    .then(resolvedData => {
+                        this.currentWidgets = returnData;
+                        console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, returnData)
+                        resolve(returnData);
+                    }, 
+                    rejectionReason => console.log('reason:', rejectionReason)) // reason: rejected!
             });
         };
 
     }
 
     allWithAsync = (...listOfPromises) => {
+        // Resolve all promises in array
+        console.log('Global-Variables get ...');
+
         return new Promise(async (resolve, reject) => {
             let results = []
             for (let promise of listOfPromises.map(Promise.resolve, Promise)) {
