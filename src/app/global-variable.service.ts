@@ -1352,37 +1352,6 @@ export class GlobalVariableService {
 
     }
 
-    getShapes(): Promise<CanvasShape[]> {
-        // Description: Gets all S
-        // Returns: this.shapes array, unless:
-        //   If not cached or if dirty, get from File
-        console.log('Global-Variables getShapes ...');
-
-        let url: string = 'getShapes';
-        this.filePath = './assets/data.shapes.json';
-
-        return new Promise<CanvasShape[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.shapes.length == 0)  ||  (this.isDirtyShapes) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
-                this.get(url)
-                    .then(data => {
-                        this.shapes = data;
-                        this.isDirtyShapes = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getShapes 1', data)
-                        resolve(this.shapes);
-                    });
-            } else {
-                console.log('Global-Variables getShapes 2')
-                resolve(this.shapes);
-            }
-        });
-
-    }
-
-
     getDataset(cnt: number, datasourceID: number, datasetID: number): Promise<any> {
         // Description: Gets a Dataset
         // Returns: data 
