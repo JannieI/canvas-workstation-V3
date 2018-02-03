@@ -41,7 +41,7 @@ export class LandingComponent implements OnInit {
 
 		// Load Startup info:
 
-		//Datasources
+		// All Datasources
 		this.globalVariableService.getDatasources();
 
 		// Load D

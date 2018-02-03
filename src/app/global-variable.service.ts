@@ -2404,17 +2404,32 @@ export class GlobalVariableService {
 
                         // Filter the widgets
                         data = data.filter(
-                            i => i.widgetType == 'Graph'  &&  
-                                 i.dashboardID == dashboardID  &&
+                            i => i.dashboardID == dashboardID  &&
                                  (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
                         );
+
+                        // get Current DS
+                        this.currentDatasources = [];
+                        let dsIDs: number[] = [];
+                        data.forEach(w => {
+                            // Only add datasets where necessary
+                            if (w.widgetType == 'Graph'  ||  dsIDs.indexOf(w.id) < 0) {
+                                this.datasources.forEach(d => {
+                                    if (d.id == w.datasourceID) {
+                                        this.currentDatasources.push(d);
+                                        dsIDs.push(d.id);
+                                    };
+                                })
+                            }
+                        })
 
                         // Build array of promises, each getting data for 1 widget
                         let promiseArray = [];
                         let cnt: number = 0;
                         data.forEach(w => {
                             // Only add datasets where necessary
-                            if (w.datasourceID != -1   ||   w.datasetID != -1) {
+                            if (w.widgetType == 'Graph'  &&  
+                                (w.datasourceID != -1   ||   w.datasetID != -1) ) {
                                 promiseArray.push(this.getDataset(cnt, w.datasourceID, w.datasetID));
                                 cnt = cnt + 1;
                             };
