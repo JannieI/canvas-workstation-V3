@@ -645,6 +645,12 @@ export class Widget {
     
     // Data related
     datasourceID: number;
+    slicerSelection: [
+        {
+            isSelected: boolean;
+            fieldValue: string;
+        }
+    ];
     datasetID: number;                      // Specific ID, or -1 = latest dataset
     dataParameters:
     [

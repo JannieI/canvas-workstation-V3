@@ -26,13 +26,12 @@ At start:
 
 1. Get objects and data (note - this cater for localDB OR arrays in memory)
 - input D-id, T-id -> get D + Tmp, all T on D
-- get all [W] for D, W = Graph, Table, Slicer, Shape 
+- get all [W] for D, W = Graph, Table, Slicer, Shape (Sl with values and selections)
 - get [DS] for [W]
 - get [dSet] for [W], latest or specific - store this
-- get selection for Sl as [sel]
+
 2. Refresh
-- update Sl with [dSet*] from [dSet] from [sel]  
-- get [dSet*] from [dSet], applying relevant Sl 
+- get [dSet*] from [dSet] for all W, applying relevant Sl selections
 - update [W ex Sl] to point to [dSet*]: in memory = array inside W, localDB = url
 - redraw:
     - Graph: based on grammer and type, ie Vega
@@ -41,7 +40,7 @@ At start:
     - Shape: show with data elements
 
 When clicking on a Sl:
-- store the selection as [sel]
+- update the selection (values and selections)
 - run 2. Refresh above (but only for Sl, dSet, W affected)
 
 For now:
