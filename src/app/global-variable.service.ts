@@ -1462,6 +1462,7 @@ export class GlobalVariableService {
                         .then(dataFile => {
 
                         // Add data to widget
+                        // TODO - url = this.filePath for localDB ...
                         this.currentWidgets[cnt].graphUrl = "";
                         this.currentWidgets[cnt].graphData = dataFile.filter(
                             df => true

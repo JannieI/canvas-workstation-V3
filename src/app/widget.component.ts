@@ -64,7 +64,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     "transform": "",
 
     "description": "",
-    "data": "",
+    "data": null,
     "mark":
         {
             "type": "",  //bar circle square tick line area point rule text
@@ -324,12 +324,12 @@ export class WidgetComponent {
     createVegaLiteSpec(widget: Widget): dl.spec.TopLevelExtendedSpec {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
-
+        console.log('vls', widget.graphData)
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
         if (widget.graphUrl != "") {
             vlSpecsNew['data'] = {"url": widget.graphUrl};
         } else {
-            vlSpecsNew['data'] = {"url": widget.graphData};
+            vlSpecsNew['data'] = {"values": widget.graphData};
         }
         vlSpecsNew['description'] = widget.graphDescription;
         vlSpecsNew['mark']['type'] = widget.graphMark;
@@ -357,7 +357,9 @@ export class WidgetComponent {
                 "field": widget.graphColorField,
                 "type": widget.graphColorType
               }
-        }
+        };
+
+        console.log("vlSpecsNew", vlSpecsNew)
         return vlSpecsNew;
     }
 
