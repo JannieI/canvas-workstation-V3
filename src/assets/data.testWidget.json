@@ -21,6 +21,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 1,
+        "slicerSelection": null,
         "datasetID": 4,
         "dataParameters":
         [
@@ -134,6 +135,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 1,
+        "slicerSelection": null,
         "datasetID": -1,
         "dataParameters":
         [
@@ -245,6 +247,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 1,
+        "slicerSelection": null,
         "datasetID": -1,
         "dataParameters":
         [
@@ -356,6 +359,24 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 1,
+        "slicerSelection": [
+            {
+                "isSelected": true,
+                "fieldValue": "Volvo"
+            },
+            {
+                "isSelected": false,
+                "fieldValue": "Beatle"
+            },
+            {
+                "isSelected": false,
+                "fieldValue": "Datsun"
+            },
+            {
+                "isSelected": false,
+                "fieldValue": "Tesla"
+            }
+        ],
         "datasetID": -1,
         "dataParameters":
         [
@@ -469,6 +490,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 1,
+        "slicerSelection": null,
         "datasetID": 1,
         "dataParameters":
         [
@@ -580,6 +602,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 1,
+        "slicerSelection": null,
         "datasetID": 1,
         "dataParameters":
         [
