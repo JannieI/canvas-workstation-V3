@@ -595,7 +595,8 @@ export class GlobalVariableService {
     currentDashboards: Dashboard[] = [];
     currentDashboardTabs: DashboardTab[] = [];
     currentWidgets: Widget[] = [];
-    currentShapes: CanvasShape[] = [];
+    currentShapes: Widget[] = [];
+    currentTables: Widget[] = [];
     currentSlicers: Widget[] = [];
     currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardTags: DashboardTag[] = [];
@@ -874,9 +875,6 @@ export class GlobalVariableService {
 
         // Load Shapes
         this.getCurrentShapes(dashboardID, dashboardTabID);
-
-        // Load Slicers
-        this.getCurrentSlicers(dashboardID, dashboardTabID);
 
         // Load Dashboard Schedules
         this.getCurrentDashboardSchedules(dashboardID);
@@ -2291,7 +2289,10 @@ export class GlobalVariableService {
                 )
 
                 // Add Sl, Sh, Tbl
-                this.currentSlicers = returnData.filter(w => w.widgetType == 'Slicer')
+                this.currentSlicers = returnData.filter(w => w.widgetType == 'Slicer');
+                this.currentShapes = returnData.filter(w => w.widgetType == 'Shape');
+                this.currentTables = returnData.filter(w => w.widgetType == 'Table');
+
                 // get Current DS
                 this.currentDatasources = [];
                 let dsIDs: number[] = [];
