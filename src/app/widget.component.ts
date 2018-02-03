@@ -303,30 +303,7 @@ export class WidgetComponent {
 
                         console.log('definition', definition)
                 } else {
-                    definition = this.createVegaLiteSpec(
-                        this.widgets[i].graphDescription,
-                        this.widgets[i].graphMark,
-                        this.widgets[i].graphMarkColor,
-                        this.widgets[i].graphXaggregate,
-                        this.widgets[i].graphXtimeUnit,
-                        this.widgets[i].graphXfield,
-                        this.widgets[i].graphXtype,
-                        this.widgets[i].graphXaxisTitle,
-
-                        this.widgets[i].graphYaggregate,
-                        this.widgets[i].graphYtimeUnit,
-                        this.widgets[i].graphYfield,
-                        this.widgets[i].graphYtype,
-                        this.widgets[i].graphYaxisTitle,
-
-                        this.widgets[i].graphHeight,
-                        this.widgets[i].graphWidth,
-
-                        this.widgets[i].graphUrl,
-                        this.widgets[i].graphTitle,
-                        this.widgets[i].graphColorField,
-                        this.widgets[i].graphColorType,
-                    );
+                    definition = this.createVegaLiteSpec(this.widgets[i]);
                 }
                 let specification = compile(definition).spec;
                 let view = new View(parse(specification));
@@ -344,78 +321,41 @@ export class WidgetComponent {
         console.log('TEST refreshWidgets end')
     }
 
-    createVegaLiteSpec(
-        graphDescription: string = '',
-        graphMark: string = '',
-        graphMarkColor: string = '',
-
-        graphXaggregate: string = '',
-        graphXtimeUnit: string = '',
-        graphXfield: string = '',
-        graphXtype: string = '',
-        graphXaxisTitle: string = '',
-
-        graphYaggregate: string = '',
-        graphYtimeUnit: string = '',
-        graphYfield: string = '',
-        graphYtype: string = '',
-        graphYaxisTitle: string = '',
-
-        graphHeight: number = 100,
-        graphWidth: number = 100,
-        
-        graphUrl: string = '',
-        graphTitle: string = '',
-        graphColorField: string = '',
-        graphColorType: string = ''
-        ): dl.spec.TopLevelExtendedSpec {
+    createVegaLiteSpec(widget: Widget): dl.spec.TopLevelExtendedSpec {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
 
-        // Exclude nulls, as dl lib reads "" as null
-        if (graphDescription == null) { graphDescription = ''};
-        if (graphMark == null) { graphMark = ''};
-        if (graphMarkColor == null) { graphMarkColor = ''};
-        if (graphXfield == null) { graphXfield = ''};
-        if (graphYfield == null) { graphYfield = ''};
-        if (graphTitle == null) { graphTitle = ''};
-        if (graphXtype == null) { graphXtype = ''};
-        if (graphYtype == null) { graphYtype = ''};
-        if (graphUrl == null) { graphUrl = ''};
-        if (graphXtimeUnit == null) { graphXtimeUnit = ''};
-        if (graphXaggregate == null) { graphXaggregate = ''};
-        if (graphYtimeUnit == null) { graphYtimeUnit = ''};
-        if (graphYaggregate == null) { graphYaggregate = ''};
-        if (graphColorField == null) { graphColorField = ''};
-        if (graphColorType == null) { graphColorType = ''};
-
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
-        vlSpecsNew['data'] = {"url": graphUrl};
-        vlSpecsNew['description'] = graphDescription;
-        vlSpecsNew['mark']['type'] = graphMark;
-        vlSpecsNew['mark']['color'] = graphMarkColor;
+        if (widget.graphUrl != "") {
+            vlSpecsNew['data'] = {"url": widget.graphUrl};
+        } else {
+            vlSpecsNew['data'] = {"url": widget.graphData};
+        }
+        vlSpecsNew['description'] = widget.graphDescription;
+        vlSpecsNew['mark']['type'] = widget.graphMark;
+        vlSpecsNew['mark']['color'] = widget.graphMarkColor;
 
-        vlSpecsNew['encoding']['x']['field'] = graphXfield;
-        vlSpecsNew['encoding']['x']['type'] = graphXtype;
-        vlSpecsNew['encoding']['x']['axis']['title'] = graphXaxisTitle;
-        vlSpecsNew['encoding']['x']['timeUnit'] = graphXtimeUnit;
-        vlSpecsNew['encoding']['x']['aggregate'] = graphXaggregate;
+        vlSpecsNew['encoding']['x']['field'] = widget.graphXfield;
+        vlSpecsNew['encoding']['x']['type'] = widget.graphXtype;
+        vlSpecsNew['encoding']['x']['axis']['title'] = widget.graphXaxisTitle;
+        vlSpecsNew['encoding']['x']['timeUnit'] = widget.graphXtimeUnit;
+        vlSpecsNew['encoding']['x']['aggregate'] = widget.graphXaggregate;
 
-        vlSpecsNew['encoding']['y']['field'] = graphYfield;
-        vlSpecsNew['encoding']['y']['type'] = graphYtype;
-        vlSpecsNew['encoding']['y']['axis']['title'] = graphYaxisTitle;
-        vlSpecsNew['encoding']['y']['timeUnit'] = graphYtimeUnit;
-        vlSpecsNew['encoding']['y']['aggregate'] = graphYaggregate;
+        vlSpecsNew['encoding']['y']['field'] = widget.graphYfield;
+        vlSpecsNew['encoding']['y']['type'] = widget.graphYtype;
+        vlSpecsNew['encoding']['y']['axis']['title'] = widget.graphYaxisTitle;
+        vlSpecsNew['encoding']['y']['timeUnit'] = widget.graphYtimeUnit;
+        vlSpecsNew['encoding']['y']['aggregate'] = widget.graphYaggregate;
 
-        vlSpecsNew['height'] = graphHeight;
-        vlSpecsNew['width'] = graphWidth;
+        vlSpecsNew['height'] = widget.graphHeight;
+        vlSpecsNew['width'] = widget.graphWidth;
 
-        vlSpecsNew['title']['text'] = graphTitle;
+        vlSpecsNew['title']['text'] = widget.graphTitle;
 
-        if (graphColorField != ''  && graphColorField != null) {
+        if (widget.graphColorField != ''  && widget.graphColorField != null) {
             vlSpecsNew['encoding']['color'] = {
-                "field": graphColorField,
-                "type": graphColorType
+                "field": widget.graphColorField,
+                "type": widget.graphColorType
               }
         }
         return vlSpecsNew;

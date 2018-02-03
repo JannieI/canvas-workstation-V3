@@ -1461,8 +1461,11 @@ export class GlobalVariableService {
                     this.get(dataurl)
                         .then(dataFile => {
 
-                            // Add data to widget
-                            this.currentWidgets[cnt].graphUrl = this.filePath;
+                        // Add data to widget
+                        this.currentWidgets[cnt].graphUrl = "";
+                        this.currentWidgets[cnt].graphData = dataFile.filter(
+                            df => true
+                        )
                             console.log('Global-Variables getDataset 1', cnt, datasourceID, 
                                 datasetID, dataFile, dataurl, this.currentWidgets[0]) 
                             resolve(dataFile);
