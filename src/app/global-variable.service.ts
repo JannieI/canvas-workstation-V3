@@ -596,7 +596,7 @@ export class GlobalVariableService {
     currentDashboardTabs: DashboardTab[] = [];
     currentWidgets: Widget[] = [];
     currentShapes: CanvasShape[] = [];
-    currentSlicers: CanvasSlicer[] = [];
+    currentSlicers: Widget[] = [];
     currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardTags: DashboardTag[] = [];
     currentDashboardPermissions: DashboardPermission[] = [];
@@ -1488,8 +1488,11 @@ export class GlobalVariableService {
     }
 
     filterSlicer(dataFile): any {
-        //   Filter a given array 
+        // Filter a given array 
         console.log('Global-Variables getSlicers ...');
+        this.currentSlicers.forEach(s => {
+
+        })
         return dataFile;
 
     }
@@ -1523,59 +1526,7 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentSlicers(dashboardID: number, dashboardTabID: number): Promise<CanvasSlicer[]> {
-        // Description: Gets all Sl for current D
-        // Params:
-        //   dashboardID
-        //   dashboardTabID (0 => all Tabs)
-        // Returns: this.currentSlicers array, unless:
-        //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentSlicers ...', this.slicers.length);
-
-        // Refresh from source at start, or if dirty
-        if ( (this.slicers.length == 0)  ||  (this.isDirtySlicers) ) {
-            return new Promise<CanvasSlicer[]>((resolve, reject) => {
-                this.getSlicers()
-                    .then(data => {
-                        data = data.filter(
-                            i => i.dashboardID == dashboardID  &&
-                            (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
-
-                        );
-                        this.currentSlicers = data;
-                        this.currentSlicers.forEach(
-                            i => {
-                                    i.data = ['Apple', 'Google', 'Tesla']
-                                    console.log('datasetid', i.datasetID)
-                                    //i.data = ['a', 'b']
-                                    // this.getDataset(i.datasetID).then(
-                                    //     j => {
-                                    //         console.log('j', j)
-                                    //         i.data = j.data;
-                                    //     }
-                                    // )
-                                }
-                        )
-                        
-                        console.log('Global-Variables getCurrentSlicers 1', dashboardID, dashboardTabID, data)
-                        resolve(data);
-                })
-             })
-        } else {
-            return new Promise<CanvasSlicer[]>((resolve, reject) => {
-                let returnData: CanvasSlicer[];
-                returnData = this.slicers.filter(
-                    i => i.dashboardID == dashboardID  &&
-                    (dashboardTabID == 0  ||  i.dashboardTabID == dashboardTabID)
-
-                );
-                this.currentSlicers = returnData;
-                console.log('Global-Variables getCurrentSlicers 2', dashboardID, dashboardTabID, returnData)
-                resolve(returnData);
-            });
-        };
-
-    }
+ 
 
     getDashboardSchedules(): Promise<DashboardSchedule[]> {
         // Description: Gets all Sch
@@ -2361,6 +2312,8 @@ export class GlobalVariableService {
              })
         } else {
             return new Promise<Widget[]>((resolve, reject) => {
+
+                // Filter all types belonging to this D
                 let returnData: Widget[];
                 returnData = this.widgets.filter(
                     i => i.dashboardID == dashboardID  &&
@@ -2368,7 +2321,8 @@ export class GlobalVariableService {
 
                 )
 
-
+                // Add Sl, Sh, Tbl
+                this.currentSlicers = returnData.filter(w => w.widgetType == 'Slicer')
                 // get Current DS
                 this.currentDatasources = [];
                 let dsIDs: number[] = [];

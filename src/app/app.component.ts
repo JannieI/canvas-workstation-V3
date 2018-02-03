@@ -200,7 +200,7 @@ export class AppComponent implements OnInit {
 
     // Testings ....
     refreshGraphs: boolean = false;
-    currentSlicers: CanvasSlicer[] = [];
+    currentSlicers: Widget[] = [];
     showSlicer: boolean = true;
     startX: number;
     startY: number;
@@ -1356,11 +1356,11 @@ export class AppComponent implements OnInit {
         // console.log('clickResizeUp this.globalVariableService.currentSlicers[index].value',
         //     index, this.globalVariableService.currentSlicers.value[index])
 
-        this.currentSlicers[index].nrButtons =
+        this.currentSlicers[index].nrButtonsToShow =
             (this.currentSlicers[index].containerWidth - 50) / 22;
 
         console.log('clickResizeUp width buttons ev x-move',
-            this.currentSlicers[index].containerWidth, this.currentSlicers[index].nrButtons,
+            this.currentSlicers[index].containerWidth, this.currentSlicers[index].nrButtonsToShow,
             ev, 0 - this.startX + ev.x);
     }
 

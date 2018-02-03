@@ -645,6 +645,7 @@ export class Widget {
     
     // Data related
     datasourceID: number;
+    slicerFieldNr: number;                  // TODO - improve!!  This is base 0;
     slicerSelection: [
         {
             isSelected: boolean;
