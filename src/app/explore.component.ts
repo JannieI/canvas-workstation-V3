@@ -24,7 +24,7 @@ import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
 import { CanvasShape }                from './models'
-import { CanvasSlicer }               from './models'
+// import { CanvasSlicer }               from './models'
 import { Widget }                    from './models'
 import { Dashboard }                  from './models'
 import { DashboardTab }               from './models'
@@ -137,7 +137,6 @@ export class ExploreComponent {
     isFirstTimePresentation: boolean;
     currentShapes: CanvasShape[] = [];
     currentWidgets: Widget[] = [];
-    currentSlicers: CanvasSlicer[] = [];
     localTrash: Widget[] = [];
     open: Boolean = false;
     presentationMode: boolean;

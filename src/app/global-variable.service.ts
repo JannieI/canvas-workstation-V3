@@ -12,7 +12,6 @@ import { CanvasAlert }                from './models';
 import { CanvasComment }              from './models';
 import { CanvasMessage }              from './models';
 import { CanvasShape }                from './models';
-import { CanvasSlicer}                from './models';
 import { CanvasUser}                  from './models';
 import { CanvasWidget }               from './models';
 import { Combination }                from './models';
@@ -571,7 +570,6 @@ export class GlobalVariableService {
     dashboardTemplates: DashboardTemplate[] = [];
     widgets: Widget[] = [];
     shapes: CanvasShape[] = [];
-    slicers: CanvasSlicer[] = [];
 
     datasources: Datasource[] = [];
     transformations: Transformation[] = [];

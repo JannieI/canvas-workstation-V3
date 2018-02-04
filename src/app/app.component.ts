@@ -26,8 +26,6 @@ import { Field }                      from './models'
 import { Datasource }                 from './models'
 import { Widget }                     from './models'
 
-import { CanvasSlicer }               from './models'
-
 import { WidgetComponent }            from './widget.component';
 
 // Vega, Vega-Lite

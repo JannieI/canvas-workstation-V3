@@ -227,69 +227,69 @@ export class FieldMetadata{
 
 
 // Dashboard
-export class CanvasSlicer {
+// export class CanvasSlicer {
 
-    // Type
-    slicerType: string;
+//     // Type
+//     slicerType: string;
 
-    // Trashed
-    isTrashed: boolean;
+//     // Trashed
+//     isTrashed: boolean;
 
-    // Not needed when Widget is inside a Dashboard
-    dashboardID: number;                    // FK to DashboardID to which widget belongs
-    dashboardTabID: number;                 // FK to Tab where the widget lives
+//     // Not needed when Widget is inside a Dashboard
+//     dashboardID: number;                    // FK to DashboardID to which widget belongs
+//     dashboardTabID: number;                 // FK to Tab where the widget lives
 
-    // Identification and Description
-    id: number;
-    name: string;
-    description: string;
-    version: number;                        // not used for now - kept for just in cases
+//     // Identification and Description
+//     id: number;
+//     name: string;
+//     description: string;
+//     version: number;                        // not used for now - kept for just in cases
 
-    // Data related
-    datasetID: number;
-    fieldName: string;
-    data: string[];
+//     // Data related
+//     datasetID: number;
+//     fieldName: string;
+//     data: string[];
 
-    // @Runtime
-    isSelected: boolean;
-    nrButtons: number;
+//     // @Runtime
+//     isSelected: boolean;
+//     nrButtons: number;
 
-    // Container
-    containerBackgroundcolor: string;
-    containerBorder: string;
-    containerBoxshadow: string;
-    containerColor: string;
-    containerFontsize: number;
-    containerHeight: number;
-    containerLeft: number;
-    containerTitle: string;         // Title at top of container
-    containerTop: number;
-    containerWidth: number;
-    containerZindex: number;
+//     // Container
+//     containerBackgroundcolor: string;
+//     containerBorder: string;
+//     containerBoxshadow: string;
+//     containerColor: string;
+//     containerFontsize: number;
+//     containerHeight: number;
+//     containerLeft: number;
+//     containerTitle: string;         // Title at top of container
+//     containerTop: number;
+//     containerWidth: number;
+//     containerZindex: number;
 
-    // Title - not used, kept for future
-    titleText: string;                     // with HTML & keywords (##today##)
-    titleBackgroundColor: string;
-    titleBorder: string;
-    titleColor: string;
-    titleFontsize: number;                 // in px
-    titleFontWeight: string;
-    titleHeight: number;                   // in px
-    titleLeft: number;                     // in px
-    titleMargin: string;
-    titlePadding: string;
-    titlePosition: string;
-    titleTextAlign: string;
-    titleTop: number;                      // in px
-    titleWidth: number;                    // in px: 0 means it adapts to container
+//     // Title - not used, kept for future
+//     titleText: string;                     // with HTML & keywords (##today##)
+//     titleBackgroundColor: string;
+//     titleBorder: string;
+//     titleColor: string;
+//     titleFontsize: number;                 // in px
+//     titleFontWeight: string;
+//     titleHeight: number;                   // in px
+//     titleLeft: number;                     // in px
+//     titleMargin: string;
+//     titlePadding: string;
+//     titlePosition: string;
+//     titleTextAlign: string;
+//     titleTop: number;                      // in px
+//     titleWidth: number;                    // in px: 0 means it adapts to container
 
-    // Created, updated and refreshed
-    slicerCreatedOn: string;              // Created on
-    slicerCreatedBy: string;              // Created by
-    slicerUpdatedOn: string;              // Updated on
-    slicerUpdatedBy: string;              // Updated by
+//     // Created, updated and refreshed
+//     slicerCreatedOn: string;              // Created on
+//     slicerCreatedBy: string;              // Created by
+//     slicerUpdatedOn: string;              // Updated on
+//     slicerUpdatedBy: string;              // Updated by
 
-}
+// }
 
 export class CanvasShape {
 

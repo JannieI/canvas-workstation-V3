@@ -24,7 +24,6 @@ import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
 import { CanvasShape }                from './models'
-import { CanvasSlicer }               from './models'
 import { CanvasWidget }               from './models'
 import { Dashboard }                  from './models'
 import { DashboardTab }               from './models'
