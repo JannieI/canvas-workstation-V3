@@ -355,6 +355,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 1,
+        "slicerFieldName": "symbol",
         "slicerSelection": [
             {
                 "isSelected": true,

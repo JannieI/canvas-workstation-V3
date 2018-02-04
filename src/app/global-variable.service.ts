@@ -1465,6 +1465,7 @@ export class GlobalVariableService {
 
             // Build array of selection values
             let fieldValue: string[] = [];
+            let slicerFieldNr: string = 'symbol';
             console.log('xx sl.slicerSelection', sl.slicerSelection)
             sl.slicerSelection.forEach(f => {
                 if (f.isSelected) { fieldValue.push(f.fieldValue)}
@@ -1474,10 +1475,9 @@ export class GlobalVariableService {
             // Apply selected once, empty means all
             if (fieldValue.length > 0) {
                 let tempData: any = [];
-                dataSet.data.forEach(d => {
-                    console.log('xx d.symbol', d.symbol)
-                    if (fieldValue.indexOf(d.symbol) >= 0) {tempData.push(d)}
-                });
+                tempData = dataSet.data.filter(d => 
+                     fieldValue.indexOf(d[slicerFieldNr]) >= 0 
+                ); 
                 console.log('xx tempData', tempData)
 
                 // Replace 
