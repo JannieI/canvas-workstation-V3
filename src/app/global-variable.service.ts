@@ -1447,7 +1447,7 @@ export class GlobalVariableService {
                     "fieldValue": "AMZN"
                 },
                 {
-                    "isSelected": false,
+                    "isSelected": true,
                     "fieldValue": "IBM"
                 },
                 {
@@ -1465,22 +1465,18 @@ export class GlobalVariableService {
 
             // Build array of selection values
             let fieldValue: string[] = [];
-            let slicerFieldNr: string = 'symbol';
-            console.log('xx sl.slicerSelection', sl.slicerSelection)
             sl.slicerSelection.forEach(f => {
                 if (f.isSelected) { fieldValue.push(f.fieldValue)}
             });
-            console.log('xx fieldValue', fieldValue);
 
             // Apply selected once, empty means all
             if (fieldValue.length > 0) {
                 let tempData: any = [];
                 tempData = dataSet.data.filter(d => 
-                     fieldValue.indexOf(d[slicerFieldNr]) >= 0 
+                     fieldValue.indexOf(d[sl.slicerFieldName]) >= 0 
                 ); 
-                console.log('xx tempData', tempData)
 
-                // Replace 
+                // Replace the filtered data, used by the graph
                 dataSet.data = tempData;
             }
         })
