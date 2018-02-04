@@ -623,7 +623,6 @@ export class Widget {
     // Where W lives
     dashboardID: number;                // FK to DashboardID to which widget belongs
     dashboardTabID: number;             // FK to Tab where the widget lives
-    dashboardTabName: string;           // FK to Tab Name where widget lives
 
     // Identification and Description
     id: number;
