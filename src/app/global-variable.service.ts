@@ -711,7 +711,7 @@ export class GlobalVariableService {
     isDirtyDataQualityIssues: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasourcePivots: boolean = true;
-
+    isDirtyDatasets: boolean = true;
 
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
@@ -803,6 +803,7 @@ export class GlobalVariableService {
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
             this.getCurrentDashboard(dashboardID).then( i => {
+
                 // Load the DashboardTabs
                 this.getCurrentDashboardTabs(dashboardID).then(j => {
                     if (dashboardTabID == -1) {
@@ -812,8 +813,11 @@ export class GlobalVariableService {
                     // Load Permissions for D
                     this.getCurrentDashboardPermissions(dashboardID).then( l => {
 
+                    // Load Datasets
+                    this.getDataset().then(m => {
+
                         // Load Widgets
-                        this.getCurrentWidgets(dashboardID, dashboardTabID).then(m => {
+                        this.getCurrentWidgets(dashboardID, dashboardTabID).then(n => {
                             
                             // Load current DS
                             this.getCurrentDatasource(dashboardID).then(k => {
@@ -833,6 +837,7 @@ export class GlobalVariableService {
                             })
                         })
                     })
+                })
                 })
             });
         });
@@ -1354,7 +1359,7 @@ export class GlobalVariableService {
 
     }
 
-    getDataset(datasourceID: number, datasetID: number): Promise<Dataset[]> {
+    getDataset(): Promise<Dataset[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset 
         console.log('Global-Variables getDataset ...');
@@ -1365,18 +1370,18 @@ export class GlobalVariableService {
         return new Promise<Dataset[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
+            if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.datasets = data;
-                        this.isDirtyDashboards = false;
+                        this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getDashboards 1', data)
+                        console.log('Global-Variables getDataset 1', data)
                         resolve(this.datasets);
                     });
             } else {
-                console.log('Global-Variables getDashboards 2')
+                console.log('Global-Variables getDataset 2')
                 resolve(this.datasets);
             }
         });
@@ -1384,17 +1389,15 @@ export class GlobalVariableService {
     }
 
     getCurrentDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
-        // Description: Gets a Dataset, and inserts once into this.datasets and this.currentDatasets
+        // Description: Gets a Dataset, and inserts once into this.currentDatasets
         // Returns: dataset 
-        console.log('Global-Variables getDataset ...');
+        console.log('Global-Variables getCurrentDataset ...');
 
         let url: string = 'getDataset';
         this.filePath = './assets/data.datasets.json';
                 
         // Get list of dSet-ids to make array work easier
-        let dSetIDs: number[] = [];         // dataset IDs
         let dsCurrIDs: number[] = [];       // currentDataset IDs
-        this.datasets.forEach(d => dSetIDs.push(d.id));
         this.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
 
         return new Promise<any>((resolve, reject) => {
@@ -1414,19 +1417,18 @@ export class GlobalVariableService {
                                 data: dataFile
                             };
 
-                            // Add to datasets (contains all data) - once
-                            if (dSetIDs.indexOf(datasetID) < 0) {
-                                this.datasets.push(newdSet);
-                            };
+                            // // Add to datasets (contains all data) - once
+                            // if (dSetIDs.indexOf(datasetID) < 0) {
+                            //     this.datasets.push(newdSet);
+                            // };
 
                             // Add to Currentatasets (contains all data) - once
                             if (dsCurrIDs.indexOf(datasetID) < 0) {
                                 this.currentDatasets.push(newdSet);
                             };
                             
-                            console.log('Global-Variables getDataset 1', datasourceID, dataurl,
-                                datasetID, 'datafile', dataFile, 
-                                'datasets', this.datasets)
+                            console.log('Global-Variables getCurrentDataset 1', datasourceID, 
+                                datasetID, 'currentDatasets', this.currentDatasets)
                             resolve(newdSet);
                         }
                     );
@@ -1856,7 +1858,7 @@ export class GlobalVariableService {
                             this.currentDatasources = returnData;
                             this.statusBarRunning.next(this.NoQueryRunningMessage);
                             console.log('Global-Variables getCurrentDatasources 1', 
-                                dashboardID, returnData);
+                                dashboardID, this.currentDatasources);
                             resolve(returnData);
                         }
                     )
@@ -1876,7 +1878,8 @@ export class GlobalVariableService {
                 this.isDirtyDatasources = false;
                 this.currentDatasources = returnData;
                 this.statusBarRunning.next(this.NoQueryRunningMessage);
-                console.log('Global-Variables getCurrentDatasources 2', dashboardID, this.currentDatasources);
+                console.log('Global-Variables getCurrentDatasources 2', dashboardID, 
+                    this.currentDatasources);
                 resolve(returnData);
             }
         });
@@ -2244,7 +2247,6 @@ export class GlobalVariableService {
         
             // Construct array with correct datasetIDs
             this.currentWidgets.forEach(w => {
-                console.log('xx new dSet start', w, this.datasets, dsCurrIDs)
                 
                 // Only get data from Graphs and Text boxes
                 if ( (w.widgetType == 'Graph'  ||  w.widgetType == 'Shape')  &&
@@ -2252,39 +2254,41 @@ export class GlobalVariableService {
 
                     // Build array of promises, each getting data for 1 widget if not store already
                     if (dsCurrIDs.indexOf(w.datasetID) < 0) {
-                        dsCurrIDs.push(w.datasetID);
 
                         // Get the latest datasetID (when -1 is stored on W)
                         if (w.datasetID == -1) {
                             let ds: number[]=[];
-                            console.log('xx ds pre-loop', this.datasets, this.datasets.length)
                             
                             for (var i = 0; i < this.datasets.length; i++) {
-                                console.log('xx ds loop', this.datasets[i], w.datasourceID)
                                 if(this.datasets[i].datasourceID == w.datasourceID) {
                                     ds.push(this.datasets[i].id)
                                 }
                             };
-                            console.log('xx ds post-loop', ds)
                             if (ds.length > 0) {
                                 w.datasetID = Math.max(...ds);
                             };
-                            console.log('xx new dSet id', w.id, w.datasetID)
                         };
 
-                        promiseArray.push(this.getDataset(w.datasourceID, w.datasetID));
+                        // Remember, AFTER latest was found
+                        dsCurrIDs.push(w.datasetID);
+
+                        promiseArray.push(this.getCurrentDataset(w.datasourceID, w.datasetID));
+                        console.log('xx promiseArray pushed', promiseArray)
                     };
-                    console.log('xx promise done', promiseArray)
                 }
             });
 
-            // Return if nothing to be done, means all data already good
-            if (promiseArray.length = 0) {resolve(true)}
+            // // Return if nothing to be done, means all data already good
+            // if (promiseArray.length = 0) {
+            //     // TODO - better error handling
+            //     console.log('                        is EMPTy, so Nothing to resolve');
+            //     resolve(true)
+            // };
 
             // Get all the dataset to local vars
             this.allWithAsync(...promiseArray)
                 .then(resolvedData => {
-                    console.log('xx after allSynch', this.currentWidgets, this.currentDatasets)
+                    console.log('xx after allSynch', this.currentWidgets, this.currentDatasets, resolvedData)
 
                     // Filter currentDatasets by Sl linked to DS
                     this.currentDatasets.forEach(cd => {
@@ -2295,9 +2299,19 @@ export class GlobalVariableService {
                     // TODO - url = this.filePath for localDB ...
                     this.currentWidgets.forEach(w => {
                         w.graphUrl = "";
-                        let ds = this.currentDatasets.filter(i => i.id == w.datasetID);
-                        console.log('xx ds', ds, this.currentDatasets)
-                        w.graphData = { value: ds.data};
+                        let ds:Dataset[] = this.currentDatasets.filter(i => i.id == w.datasetID);
+                        if (ds.length > 0) {
+                            w.graphData = { value: ds[0].data};
+                        } else {
+                            w.graphData = { value: null};
+                        }
+
+                        // w.graphData = { value: [
+                        //     {"symbol": "MSFT", "date": "2000/1/1", "price": 39.81},
+                        //     {"symbol": "MSFT", "date": "2000/2/1", "price": 36.35},
+                        //     {"symbol": "MSFT", "date": "2000/3/1", "price": 43.22}]};
+
+                        console.log('xx ds', ds, w.graphData, ds[0].id, ds[0].data)
                     });
                             
                     console.log('Global-Variables getWidgetsInfo 1 True');
@@ -2343,7 +2357,7 @@ export class GlobalVariableService {
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
-        console.log('Global-Variables get ...');
+        console.log('Global-Variables get (url, filePath) ...', url, this.filePath);
 
         return new Promise((resolve, reject) => {
             // Get from source - files for now ...

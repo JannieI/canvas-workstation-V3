@@ -296,7 +296,6 @@ export class AppComponent implements OnInit {
 
                                 // TODO - remove later
                                 this.currentSlicers = this.globalVariableService.currentSlicers;
-                                console.log('this.currentSlicers 1', this.currentSlicers)
                             }
                         )
                 }
@@ -316,7 +315,6 @@ export class AppComponent implements OnInit {
         if (this.widgetDOM != undefined  &&  (!this.refreshGraphs) ) {
             this.refreshGraphs = true;
             this.widgetDOM.refreshWidgets();
-            console.log('this.currentSlicers 2', this.currentSlicers)
         }
     }
 
