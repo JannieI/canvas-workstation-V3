@@ -808,16 +808,16 @@ export class GlobalVariableService {
                     if (dashboardTabID == -1) {
                         if (j.length > 0) {dashboardTabID = j[0].id}
                     };
+    
+                    // Load Permissions for D
+                    this.getCurrentDashboardPermissions(dashboardID).then( l => {
 
-                    // Load current DS
-                    this.getCurrentDatasource(dashboardID).then(k => {
-        
-                        // Load Permissions for D
-                        this.getCurrentDashboardPermissions(dashboardID).then( l => {
+                        // Load Widgets
+                        this.getCurrentWidgets(dashboardID, dashboardTabID).then(m => {
+                            
+                            // Load current DS
+                            this.getCurrentDatasource(dashboardID).then(k => {
 
-                            // Load Widgets
-                            this.getCurrentWidgets(dashboardID, dashboardTabID).then(m => {
-                                
                                 // Get info for W
                                 this.getWidgetsInfo().then(n => {
 
@@ -1797,6 +1797,7 @@ export class GlobalVariableService {
         // Params: dashboardID = current D
         // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
+        // NB: assume this.currentWidgets exists !!
         console.log('Global-Variables getCurrentDatasources ...');
 
         let url: string = 'getDatasources';
@@ -2166,7 +2167,9 @@ export class GlobalVariableService {
                         this.currentTables = data.filter(w => w.widgetType == 'Table');
                         this.currentWidgets = data.filter(w => w.widgetType == 'Graph');
 
-                        console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID, data)
+                        console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID, 
+                            data, this.currentSlicers, this.currentShapes, this.currentTables, 
+                            this.currentWidgets)
                         resolve(data);
                 })
              })
@@ -2212,6 +2215,7 @@ export class GlobalVariableService {
         
             // Construct array with correct datasetIDs
             this.currentWidgets.forEach(w => {
+                console.log('xx new dSet start', w, this.datasets, dsCurrIDs)
                 
                 // Only get data from Graphs and Text boxes
                 if ( (w.widgetType == 'Graph'  ||  w.widgetType == 'Shape')  &&
@@ -2224,12 +2228,15 @@ export class GlobalVariableService {
                         // Get the latest datasetID (when -1 is stored on W)
                         if (w.datasetID == -1) {
                             let ds: number[]=[];
+                            console.log('xx ds pre-loop', this.datasets, this.datasets.length)
                             
-                            this.datasets.forEach(i => {
-                                if(i.datasourceID == w.datasourceID) {
-                                    ds.push(i.id)
+                            for (var i = 0; i < this.datasets.length; i++) {
+                                console.log('xx ds loop', this.datasets[i], w.datasourceID)
+                                if(this.datasets[i].datasourceID == w.datasourceID) {
+                                    ds.push(this.datasets[i].id)
                                 }
-                            });
+                            };
+                            console.log('xx ds post-loop', ds)
                             if (ds.length > 0) {
                                 w.datasetID = Math.max(...ds);
                             };

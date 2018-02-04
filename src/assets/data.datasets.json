@@ -2,36 +2,156 @@
     {
         "id": 1,
         "datasourceID": 1,
-        "data": [
-                {"Month": "C", "Profit": 2}, {"Month": "C", "Profit": 7}, {"Month": "C", "Profit": 4},
-                {"Month": "D", "Profit": 1}, {"Month": "D", "Profit": 2}, {"Month": "D", "Profit": 6},
-                {"Month": "E", "Profit": 8}, {"Month": "E", "Profit": 4}, {"Month": "E", "Profit": 7}
-              ]
+        "data": null
     },
     {
         "id": 2,
         "datasourceID": 1,
-        "data": [
-                {"Month": "C", "Profit": 2}, {"Month": "C", "Profit": 7}, {"Month": "C", "Profit": 4},
-                {"Month": "D", "Profit": 1}, {"Month": "D", "Profit": 2}, {"Month": "D", "Profit": 6},
-                {"Month": "E", "Profit": 8}, {"Month": "E", "Profit": 4}, {"Month": "E", "Profit": 7}
-              ]
+        "data": null
+    },
+    {
+        "id": 3,
+        "datasourceID": 1,
+        "data": null
+    },
+    {
+        "id": 4,
+        "datasourceID": 2,
+        "data": null
+    },
+    {
+        "id": 5,
+        "datasourceID": 2,
+        "data": null
+    },
+    {
+        "id": 6,
+        "datasourceID": 3,
+        "data": null
+    },
+    {
+        "id": 7,
+        "datasourceID": 4,
+        "data": null
+    },
+    {
+        "id": 8,
+        "datasourceID": 5,
+        "data": null
+    },
+    {
+        "id": 9,
+        "datasourceID": 6,
+        "data": null
+    },
+    {
+        "id": 10,
+        "datasourceID": 7,
+        "data": null
+    },
+    {
+        "id": 11,
+        "datasourceID": 8,
+        "data": null
+    },
+    {
+        "id": 12,
+        "datasourceID": 9,
+        "data": null
+    },
+    {
+        "id": 13,
+        "datasourceID": 10,
+        "data": null
+    },
+    {
+        "id": 14,
+        "datasourceID": 11,
+        "data": null
+    },
+    {
+        "id": 15,
+        "datasourceID": 12,
+        "data": null
+    },
+    {
+        "id": 16,
+        "datasourceID": 13,
+        "data": null
+    },
+    {
+        "id": 17,
+        "datasourceID": 14,
+        "data": null
+    },
+    {
+        "id": 18,
+        "datasourceID": 15,
+        "data": null
+    },
+    {
+        "id": 19,
+        "datasourceID": 16,
+        "data": null
     },
     {
         "id": 20,
-        "datasourceID": 2,
-        "data": [
-            "Blue",
-            "Gray"
-        ]
+        "datasourceID": 17,
+        "data": null
     },
     {
         "id": 21,
+        "datasourceID": 18,
+        "data": null
+    },
+    {
+        "id": 22,
+        "datasourceID": 19,
+        "data": null
+    },
+    {
+        "id": 23,
         "datasourceID": 20,
-        "data": [
-            "Action",
-            "Silence"
-        ]
+        "data": null
+    },
+    {
+        "id": 24,
+        "datasourceID": 21,
+        "data": null
+    },
+    {
+        "id": 25,
+        "datasourceID": 22,
+        "data": null
+    },
+    {
+        "id": 26,
+        "datasourceID": 23,
+        "data": null
+    },
+    {
+        "id": 27,
+        "datasourceID": 24,
+        "data": null
+    },
+    {
+        "id": 28,
+        "datasourceID": 25,
+        "data": null
+    },
+    {
+        "id": 29,
+        "datasourceID": 26,
+        "data": null
+    },
+    {
+        "id": 30,
+        "datasourceID": 27,
+        "data": null
+    },
+    {
+        "id": 31,
+        "datasourceID": 28,
+        "data": null
     }
-
 ]
