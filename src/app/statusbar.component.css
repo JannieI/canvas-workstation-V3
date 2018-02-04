@@ -42,10 +42,10 @@
 .dashboardDescription {
     background-color: #192b35;
     border-radius: 3px;
-    bottom: 1.1rem;
+    bottom: 0.1rem;
     color:  white;
     display: inline-block;
-    left: 1.2rem;
+    left: 0.9rem;
     overflow: hidden;
     padding: 4px;
     position: absolute;
@@ -66,10 +66,10 @@
 
     .tabList {
         background-color: #192b35;
-        bottom: 1.1rem;
+        bottom: 0.1rem;
         color:  white;
         display: inline-block;
-        left: 8.2rem;
+        left: 5.5rem;
         padding: 4px;
         position: absolute;
         width: 4rem;
@@ -85,10 +85,10 @@
     .dashboardTabDescription {
         background-color: #192b35;
         border-radius: 3px;
-        bottom: 1.1rem;
+        bottom: 0.1rem;
         color:  white;
         display: inline-block;
-        left: 11rem;
+        left: 9.8rem;
         overflow: hidden;
         padding: 4px;
         position: absolute;

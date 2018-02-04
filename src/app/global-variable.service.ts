@@ -2273,7 +2273,6 @@ export class GlobalVariableService {
                         dsCurrIDs.push(w.datasetID);
 
                         promiseArray.push(this.getCurrentDataset(w.datasourceID, w.datasetID));
-                        console.log('xx promiseArray pushed', promiseArray)
                     };
                 }
             });
@@ -2288,7 +2287,6 @@ export class GlobalVariableService {
             // Get all the dataset to local vars
             this.allWithAsync(...promiseArray)
                 .then(resolvedData => {
-                    console.log('xx after allSynch', this.currentWidgets, this.currentDatasets, resolvedData)
 
                     // Filter currentDatasets by Sl linked to DS
                     this.currentDatasets.forEach(cd => {
@@ -2311,7 +2309,6 @@ export class GlobalVariableService {
                         //     {"symbol": "MSFT", "date": "2000/2/1", "price": 36.35},
                         //     {"symbol": "MSFT", "date": "2000/3/1", "price": 43.22}]};
 
-                        console.log('xx ds', ds, w.graphData, ds[0].id, ds[0].data)
                     });
                             
                     console.log('Global-Variables getWidgetsInfo 1 True');
