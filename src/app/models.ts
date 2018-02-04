@@ -291,79 +291,79 @@ export class FieldMetadata{
 
 // }
 
-export class CanvasShape {
+// export class CanvasShape {
 
-    // Type
-    shapeType: string;
+//     // Type
+//     shapeType: string;
 
-    // Trashed
-    isTrashed: boolean;
+//     // Trashed
+//     isTrashed: boolean;
 
-    // Not needed when Widget is inside a Dashboard
-    dashboardID: number;                   // FK to DashboardID to which widget belongs
-    dashboardTabID: number;               // FK to Tab where the widget lives
-    dashboardTabName: string;             // FK to Tab Name where widget lives
+//     // Not needed when Widget is inside a Dashboard
+//     dashboardID: number;                   // FK to DashboardID to which widget belongs
+//     dashboardTabID: number;               // FK to Tab where the widget lives
+//     dashboardTabName: string;             // FK to Tab Name where widget lives
 
-    // Identification and Description
-    id: number;
-    name: string;
-    description: string;
-    version: number;
+//     // Identification and Description
+//     id: number;
+//     name: string;
+//     description: string;
+//     version: number;
 
-    // Data related - only for Textboxes
-    datasetID?: number;
+//     // Data related - only for Textboxes
+//     datasetID?: number;
 
-    // @Runtime
-    isSelected: boolean;
+//     // @Runtime
+//     isSelected: boolean;
 
-    // Links
-    hyperlinkDashboardID: number;           // Optional Widget ID to jump to
-    hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
+//     // Links
+//     hyperlinkDashboardID: number;           // Optional Widget ID to jump to
+//     hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
 
-    // Container
-    containerBackgroundcolor: string;
-    containerBorder: string;
-    containerBoxshadow: string;
-    containerColor: string;
-    containerFontsize: number;
-    containerHeight: number;
-    containerLeft: number;
-    containerWidgetTitle: string;           // Title at top of container
-    containerTop: number;
-    containerWidth: number;
-    containerZindex: number;
+//     // Container
+//     containerBackgroundcolor: string;
+//     containerBorder: string;
+//     containerBoxshadow: string;
+//     containerColor: string;
+//     containerFontsize: number;
+//     containerHeight: number;
+//     containerLeft: number;
+//     containerWidgetTitle: string;           // Title at top of container
+//     containerTop: number;
+//     containerWidth: number;
+//     containerZindex: number;
 
-    // Title
-    titleText: string;                      // with HTML & keywords (##today##)
-    titleBackgroundColor: string;
-    titleBorder: string;
-    titleColor: string;
-    titleFontsize: number;                  // in px
-    titleFontWeight: string;
-    titleHeight: number;                    // in px
-    titleLeft: number;                      // in px
-    titleMargin: string;
-    titlePadding: string;
-    titlePosition: string;
-    titleTextAlign: string;
-    titleTop: number;                       // in px
-    titleWidth: number;                     // in px: 0 means it adapts to container
+//     // Title
+//     titleText: string;                      // with HTML & keywords (##today##)
+//     titleBackgroundColor: string;
+//     titleBorder: string;
+//     titleColor: string;
+//     titleFontsize: number;                  // in px
+//     titleFontWeight: string;
+//     titleHeight: number;                    // in px
+//     titleLeft: number;                      // in px
+//     titleMargin: string;
+//     titlePadding: string;
+//     titlePosition: string;
+//     titleTextAlign: string;
+//     titleTop: number;                       // in px
+//     titleWidth: number;                     // in px: 0 means it adapts to container
 
-    // shape
-    cx: string;                             // circle svg cx in px - ie '50' without dimension
-    cy: string;                             // circle svg cy
-    r: string;                              // circle svg radius
-    stroke: string;                         // colour of line
-    strokeWidth: string;                    // line thickness in px
-    fill: string;                           // fill / inside (ie of circle)
+//     // shape
+//     cx: string;                             // circle svg cx in px - ie '50' without dimension
+//     cy: string;                             // circle svg cy
+//     r: string;                              // circle svg radius
+//     stroke: string;                         // colour of line
+//     strokeWidth: string;                    // line thickness in px
+//     fill: string;                           // fill / inside (ie of circle)
 
-    // Created, updated and refreshed
-    shapeCreatedOn: string;                 // Created on
-    shapeCreatedBy: string;                 // Created by
-    shapeUpdatedOn: string;                 // Updated on
-    shapeUpdatedBy: string;                 // Updated by
+//     // Created, updated and refreshed
+//     shapeCreatedOn: string;                 // Created on
+//     shapeCreatedBy: string;                 // Created by
+//     shapeUpdatedOn: string;                 // Updated on
+//     shapeUpdatedBy: string;                 // Updated by
 
-}
+// }
 
 export class CanvasWidget {
 

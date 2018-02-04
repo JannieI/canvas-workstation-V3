@@ -11,7 +11,6 @@ import { CanvasActivity }             from './models';
 import { CanvasAlert }                from './models';
 import { CanvasComment }              from './models';
 import { CanvasMessage }              from './models';
-import { CanvasShape }                from './models';
 import { CanvasUser}                  from './models';
 import { CanvasWidget }               from './models';
 import { Combination }                from './models';
@@ -569,7 +568,6 @@ export class GlobalVariableService {
     dashboardThemes: DashboardTheme[] = [];
     dashboardTemplates: DashboardTemplate[] = [];
     widgets: Widget[] = [];
-    shapes: CanvasShape[] = [];
 
     datasources: Datasource[] = [];
     transformations: Transformation[] = [];
@@ -646,13 +644,6 @@ export class GlobalVariableService {
     statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);
     statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
     statusBarMessage = new BehaviorSubject<StatusBarMessage>(null)
-
-
-    // Temp vars
-    // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
-    // localWidgets = new BehaviorSubject< CanvasWidget[]>(localWidgets);
-    // localShapes = new BehaviorSubject< CanvasShape[]>(null);
-    // localTrash = new BehaviorSubject< Widget[]>([]);
 
     dataGetFromSwitch = new BehaviorSubject<string>('File');
     duplicateWidget = new BehaviorSubject<boolean>(false);
