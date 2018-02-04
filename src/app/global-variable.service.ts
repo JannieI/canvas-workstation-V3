@@ -1357,7 +1357,7 @@ export class GlobalVariableService {
         let url: string = 'getDataset';
         this.filePath = './assets/data.datasets.json';
                 
-        // Get list of DS-ids to make array work easier
+        // Get list of dSet-ids to make array work easier
         let dSetIDs: number[] = [];
         this.datasets.forEach(d => dSetIDs.push(d.id));
 
@@ -1373,8 +1373,6 @@ export class GlobalVariableService {
                         .then(dataFile => {
 
                             // Add to datasets (contains all data) - once
-                            // Add to currentDataset (for this D)
-                            
                             if (dSetIDs.indexOf(datasetID) < 0) {
                                 this.datasets.push(
                                     {
