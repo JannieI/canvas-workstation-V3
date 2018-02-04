@@ -1354,57 +1354,35 @@ export class GlobalVariableService {
 
     }
 
-    getDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
-        // Description: Gets a Dataset, and inserts once into this.datasets and this.currentDatasets
-        // Returns: dataset 
+    getDataset(datasourceID: number, datasetID: number): Promise<Dataset[]> {
+        // Description: Gets Datasets, WITHOUT data
+        // Returns: this.dataset 
         console.log('Global-Variables getDataset ...');
 
         let url: string = 'getDataset';
         this.filePath = './assets/data.datasets.json';
-                
-        // Get list of dSet-ids to make array work easier
-        let dSetIDs: number[] = [];         // dataset IDs
-        let dsCurrIDs: number[] = [];       // currentDataset IDs
-        this.datasets.forEach(d => dSetIDs.push(d.id));
-        this.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
 
-        return new Promise<any>((resolve, reject) => {
+        return new Promise<Dataset[]>((resolve, reject) => {
 
-            this.get(url)
-                .then(data => {
-
-                    // TODO - fix this via real http
-                    let dataurl: string = './assets/data.dataset' + datasetID.toString() + '.json';
-                    this.filePath = '../assets/data.dataset' + datasetID.toString() + '.json';
-                    this.get(dataurl)
-                        .then(dataFile => {
-
-                            let newdSet: Dataset = {
-                                id: datasetID,
-                                datasourceID: datasourceID,
-                                data: dataFile
-                            };
-
-                            // Add to datasets (contains all data) - once
-                            if (dSetIDs.indexOf(datasetID) < 0) {
-                                this.datasets.push(newdSet);
-                            };
-
-                            // Add to Currentatasets (contains all data) - once
-                            if (dsCurrIDs.indexOf(datasetID) < 0) {
-                                this.currentDatasets.push(newdSet);
-                            };
-                            
-                            console.log('Global-Variables getDataset 1', datasourceID, dataurl,
-                                datasetID, 'datafile', dataFile, 
-                                'datasets', this.datasets)
-                            resolve(newdSet);
-                        }
-                    );
-                }
-            );
+            // Refresh from source at start, or if dirty
+            if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.datasets = data;
+                        this.isDirtyDashboards = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('Global-Variables getDashboards 1', data)
+                        resolve(this.datasets);
+                    });
+            } else {
+                console.log('Global-Variables getDashboards 2')
+                resolve(this.datasets);
+            }
         });
+
     }
+
     getCurrentDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
         // Description: Gets a Dataset, and inserts once into this.datasets and this.currentDatasets
         // Returns: dataset 
