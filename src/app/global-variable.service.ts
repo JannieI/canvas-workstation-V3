@@ -5,7 +5,7 @@ import { Injectable }                 from '@angular/core';
 // Our Serives
 
 // Our Models
-import { ButtonBarAvailable }         from './models';
+import { ButtonBarAvailable, Dataset }         from './models';
 import { ButtonBarSelected }          from './models';
 import { CanvasActivity }             from './models';
 import { CanvasAlert }                from './models';
@@ -591,7 +591,7 @@ export class GlobalVariableService {
     currentDataQualityIssues: DataQualityIssue[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
     currentDatasourcePivots: DatasourcePivot[] = [];
-    currentDataset: any = [];
+    currentDatasets: any = [];
     currentDashboards: Dashboard[] = [];
     currentDashboardTabs: DashboardTab[] = [];
     currentWidgets: Widget[] = [];
@@ -1349,8 +1349,8 @@ export class GlobalVariableService {
 
     }
 
-    getDataset(datasourceID: number, datasetID: number): Promise<any> {
-        // Description: Gets a Dataset, and inserts once into this.datasets
+    getDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
+        // Description: Gets a Dataset, and inserts once into this.datasets and this.currentDatasets
         // Returns: dataset 
         console.log('Global-Variables getDataset ...');
 
@@ -1358,8 +1358,10 @@ export class GlobalVariableService {
         this.filePath = './assets/data.datasets.json';
                 
         // Get list of dSet-ids to make array work easier
-        let dSetIDs: number[] = [];
+        let dSetIDs: number[] = [];         // dataset IDs
+        let dsCurrIDs: number[] = [];       // currentDataset IDs
         this.datasets.forEach(d => dSetIDs.push(d.id));
+        this.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
 
         return new Promise<any>((resolve, reject) => {
 
@@ -1372,21 +1374,26 @@ export class GlobalVariableService {
                     this.get(dataurl)
                         .then(dataFile => {
 
+                            let newdSet: Dataset = {
+                                id: datasetID,
+                                datasourceID: datasourceID,
+                                data: dataFile
+                            };
+
                             // Add to datasets (contains all data) - once
                             if (dSetIDs.indexOf(datasetID) < 0) {
-                                this.datasets.push(
-                                    {
-                                        id: datasetID,
-                                        datasourceID: datasourceID,
-                                        data: dataFile
-                                    }
-                                );
+                                this.datasets.push(newdSet);
+                            };
+
+                            // Add to Currentatasets (contains all data) - once
+                            if (dsCurrIDs.indexOf(datasetID) < 0) {
+                                this.currentDatasets.push(newdSet);
                             };
                             
                             console.log('Global-Variables getDataset 1', datasourceID, dataurl,
                                 datasetID, 'datafile', dataFile, 
                                 'datasets', this.datasets)
-                            resolve(dataFile);
+                            resolve(newdSet);
                         }
                     );
                 }
@@ -2189,14 +2196,12 @@ export class GlobalVariableService {
         console.log('Global-Variables getWidgetsInfo ...');
 
         // Empty the necessary
-        let dsIDs: number[] = [];           
         let dsCurrIDs: number[] = [];       // Current Dataset IDs
         this.currentDatasources = [];
         let promiseArray = [];
-        let cnt: number = 0;
         
-        // Get list of DS-ids to make array work easier
-        this.datasources.forEach(d => this.dsIDs.push(d.id));
+        // Get list of dSet-ids to make array work easier
+        this.currentDatasources.forEach(d => dsCurrIDs.push(d.id));
 
         // get Current DS
         this.currentWidgets.forEach(w => {
@@ -2205,17 +2210,7 @@ export class GlobalVariableService {
             if ( (w.widgetType == 'Graph'  ||  w.widgetType == 'Shape')  &&
                  (w.datasourceID >= 0) ) {
 
-                // Only add datasets where necessary
-                if (dsIDs.indexOf(w.datasourceID) < 0) {
-                    let newDS = this.datasources.filter(d => d.id == w.datasourceID);
-                    if (newDS.length > 0) { 
-                        this.currentDatasources.push(newDS[0]);
-                        dsIDs.push(w.datasourceID);
-                    }
-                };
-                console.log('xx current DS done', w.id, w.datasourceID, this.currentDatasources)
-
-                // Build array of promises, each getting data for 1 widget if not store already
+                    // Build array of promises, each getting data for 1 widget if not store already
                 if (dsCurrIDs.indexOf(w.datasetID) < 0) {
                     dsCurrIDs.push(w.datasetID);
 
@@ -2235,18 +2230,31 @@ export class GlobalVariableService {
                     };
 
                     promiseArray.push(this.getDataset(w.datasourceID, w.datasetID));
-                    cnt = cnt + 1;
                 };
                 console.log('xx promise done', promiseArray)
         
-                // Add widget data to local vars
-                console.log('xx before allSynch', this.currentWidgets)
+                // Get all the dataset to local vars
                 this.allWithAsync(...promiseArray)
                     .then(resolvedData => {
-                        console.log('xx after allSynch', this.currentWidgets, this.currentDataset)
+                        console.log('xx after allSynch', this.currentWidgets, this.currentDatasets)
+
+
+
+                // Only add datasets where necessary
+                if (dsIDs.indexOf(w.datasourceID) < 0) {
+                    let newDS = this.datasources.filter(d => d.id == w.datasourceID);
+                    if (newDS.length > 0) { 
+                        this.currentDatasources.push(newDS[0]);
+                        dsIDs.push(w.datasourceID);
+                    }
+                };
+                console.log('xx current DS done', w.id, w.datasourceID, this.currentDatasources)
+
+
+
 
                         // Filter currentDatasets by Sl linked to DS
-                        this.currentDataset.forEach(cd => {
+                        this.currentDatasets.forEach(cd => {
                             this.filterSlicer(cd);
                         })
 
@@ -2254,8 +2262,8 @@ export class GlobalVariableService {
                         // TODO - url = this.filePath for localDB ...
                         this.currentWidgets.forEach(w => {
                             w.graphUrl = "";
-                            let ds = this.currentDataset.filter(i => i.id == w.datasetID);
-                            console.log('xx ds', ds, this.currentDataset)
+                            let ds = this.currentDatasets.filter(i => i.id == w.datasetID);
+                            console.log('xx ds', ds, this.currentDatasets)
                             w.graphData = { value: ds.data};
                         });
                                 

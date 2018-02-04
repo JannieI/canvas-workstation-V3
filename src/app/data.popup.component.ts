@@ -211,7 +211,7 @@ export class DataPopupComponent implements OnInit {
                         data: currentData
                     }
                 );
-                console.log(this.globalVariableService.currentDataset)
+                console.log(this.globalVariableService.currentDatasets)
                 currentData = [];
                 console.log('DataPopup clickDSPreview      data rows', this.currentData.length)
                 console.log('DataPopup clickDSPreview      END load: ', (Date.now() - startNow) / 1000)
