@@ -19,7 +19,6 @@ import { ClarityModule }              from 'clarity-angular';
 import { AppComponent }               from './app.component';
 import { LandingComponent }           from './landing.component';
 
-import { ExploreComponent }           from './explore.component';
 import { DashboardNewComponent }      from './dashboard.new.component';
 import { DashboardOpenComponent }     from './dashboard.open.component';
 import { DashboardSaveComponent }     from './dashboard.save.component';
@@ -97,7 +96,6 @@ import { StatusbarComponent }         from './statusbar.component';
 
         // Main
         AppComponent,
-        ExploreComponent,
         HelpComponent,
         LandingComponent,
 
