@@ -581,7 +581,7 @@ export class GlobalVariableService {
     transformationsFormat: Transformation[] = transformationsFormat;
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
-    datasets: any = [];
+    datasets: any = [];                                 // List of dSets, NO data
     finalFields: any = finalFields;
 
 
@@ -591,7 +591,7 @@ export class GlobalVariableService {
     currentDataQualityIssues: DataQualityIssue[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
     currentDatasourcePivots: DatasourcePivot[] = [];
-    currentDatasets: any = [];
+    currentDatasets: any = [];                          // Used in current D, with data
     currentDashboards: Dashboard[] = [];
     currentDashboardTabs: DashboardTab[] = [];
     currentWidgets: Widget[] = [];
@@ -1355,6 +1355,57 @@ export class GlobalVariableService {
     }
 
     getDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
+        // Description: Gets a Dataset, and inserts once into this.datasets and this.currentDatasets
+        // Returns: dataset 
+        console.log('Global-Variables getDataset ...');
+
+        let url: string = 'getDataset';
+        this.filePath = './assets/data.datasets.json';
+                
+        // Get list of dSet-ids to make array work easier
+        let dSetIDs: number[] = [];         // dataset IDs
+        let dsCurrIDs: number[] = [];       // currentDataset IDs
+        this.datasets.forEach(d => dSetIDs.push(d.id));
+        this.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
+
+        return new Promise<any>((resolve, reject) => {
+
+            this.get(url)
+                .then(data => {
+
+                    // TODO - fix this via real http
+                    let dataurl: string = './assets/data.dataset' + datasetID.toString() + '.json';
+                    this.filePath = '../assets/data.dataset' + datasetID.toString() + '.json';
+                    this.get(dataurl)
+                        .then(dataFile => {
+
+                            let newdSet: Dataset = {
+                                id: datasetID,
+                                datasourceID: datasourceID,
+                                data: dataFile
+                            };
+
+                            // Add to datasets (contains all data) - once
+                            if (dSetIDs.indexOf(datasetID) < 0) {
+                                this.datasets.push(newdSet);
+                            };
+
+                            // Add to Currentatasets (contains all data) - once
+                            if (dsCurrIDs.indexOf(datasetID) < 0) {
+                                this.currentDatasets.push(newdSet);
+                            };
+                            
+                            console.log('Global-Variables getDataset 1', datasourceID, dataurl,
+                                datasetID, 'datafile', dataFile, 
+                                'datasets', this.datasets)
+                            resolve(newdSet);
+                        }
+                    );
+                }
+            );
+        });
+    }
+    getCurrentDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
         // Description: Gets a Dataset, and inserts once into this.datasets and this.currentDatasets
         // Returns: dataset 
         console.log('Global-Variables getDataset ...');
