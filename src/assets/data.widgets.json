@@ -358,20 +358,25 @@
         "slicerSelection": [
             {
                 "isSelected": true,
-                "fieldValue": "Volvo"
+                "fieldValue": "MSFT"
             },
             {
                 "isSelected": false,
-                "fieldValue": "Beatle"
+                "fieldValue": "AMZN"
             },
             {
                 "isSelected": false,
-                "fieldValue": "Datsun"
+                "fieldValue": "IBM"
             },
             {
                 "isSelected": false,
-                "fieldValue": "Tesla"
+                "fieldValue": "GOOG"
+            },
+            {
+                "isSelected": false,
+                "fieldValue": "AAPL"
             }
+
         ],
         "datasetID": -1,
         "dataParameters":

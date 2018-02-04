@@ -365,131 +365,131 @@ export class FieldMetadata{
 
 // }
 
-export class CanvasWidget {
+// export class CanvasWidget {
 
-    // Trashed
-    isTrashed: boolean;
+//     // Trashed
+//     isTrashed: boolean;
 
-    // Not needed when Widget is inside a Dashboard
-    dashboardID: number;                // FK to DashboardID to which widget belongs
-    dashboardTabID: number;             // FK to Tab where the widget lives
-    dashboardTabName: string;           // FK to Tab Name where widget lives
+//     // Not needed when Widget is inside a Dashboard
+//     dashboardID: number;                // FK to DashboardID to which widget belongs
+//     dashboardTabID: number;             // FK to Tab where the widget lives
+//     dashboardTabName: string;           // FK to Tab Name where widget lives
 
-    // Identification and Description
-    id: number;
-    name: string;
-    description: string;
-    grammar: string;
-    version: number;
+//     // Identification and Description
+//     id: number;
+//     name: string;
+//     description: string;
+//     grammar: string;
+//     version: number;
 
-    // @Runtime
-    isLiked: boolean;                   // @RunTime: True if Widget is liked by me
-    isSelected: boolean;
+//     // @Runtime
+//     isLiked: boolean;                   // @RunTime: True if Widget is liked by me
+//     isSelected: boolean;
 
-    // Data related
-    datasourceID: number;
-    datasetID: number;
-    dataParameters:
-    [
-        {
-            "field": string;
-            "value": string;
-        }
-    ]
-    reportID: number;                   // FK to report (query / data).  -1: dont load any report data
-    reportName: string;                 // Report (query) name in Eazl (DS implied)
-    rowLimit: number;                   // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
-    addRestRow: boolean;                // True means add a row to  = SUM(rest)
-    size: string;                       // Small, Medium, Large ito data loading
+//     // Data related
+//     datasourceID: number;
+//     datasetID: number;
+//     dataParameters:
+//     [
+//         {
+//             "field": string;
+//             "value": string;
+//         }
+//     ]
+//     reportID: number;                   // FK to report (query / data).  -1: dont load any report data
+//     reportName: string;                 // Report (query) name in Eazl (DS implied)
+//     rowLimit: number;                   // 0 = show all, 5 = TOP 5, -3 = BOTTOM 3
+//     addRestRow: boolean;                // True means add a row to  = SUM(rest)
+//     size: string;                       // Small, Medium, Large ito data loading
 
-    // Links
-    hyperlinkDashboardID: number;       // Optional Widget ID to jump to
-    hyperlinkDashboardTabID: number;    // Optional Tab Nr to jump to
+//     // Links
+//     hyperlinkDashboardID: number;       // Optional Widget ID to jump to
+//     hyperlinkDashboardTabID: number;    // Optional Tab Nr to jump to
 
-    // Container
-    containerBackgroundcolor: string;
-    containerBorder: string;
-    containerBoxshadow: string;
-    containerColor: string;
-    containerFontsize: number;
-    containerHeight: number;
-    containerLeft: number;
-    containerWidgetTitle: string;       // Title at top of container
-    containerTop: number;
-    containerWidth: number;
-    containerZindex: number;
+//     // Container
+//     containerBackgroundcolor: string;
+//     containerBorder: string;
+//     containerBoxshadow: string;
+//     containerColor: string;
+//     containerFontsize: number;
+//     containerHeight: number;
+//     containerLeft: number;
+//     containerWidgetTitle: string;       // Title at top of container
+//     containerTop: number;
+//     containerWidth: number;
+//     containerZindex: number;
 
-    // Title
-    titleText: string;                  // with HTML & keywords (##today##)
-    titleBackgroundColor: string;
-    titleBorder: string;
-    titleColor: string;
-    titleFontsize: number;              // in px
-    titleFontWeight: string;
-    titleHeight: number;                // in px
-    titleLeft: number;                  // in px
-    titleMargin: string;
-    titlePadding: string;
-    titlePosition: string;
-    titleTextAlign: string;
-    titleTop: number;                   // in px
-    titleWidth: number;                 // in px: 0 means it adapts to container
+//     // Title
+//     titleText: string;                  // with HTML & keywords (##today##)
+//     titleBackgroundColor: string;
+//     titleBorder: string;
+//     titleColor: string;
+//     titleFontsize: number;              // in px
+//     titleFontWeight: string;
+//     titleHeight: number;                // in px
+//     titleLeft: number;                  // in px
+//     titleMargin: string;
+//     titlePadding: string;
+//     titlePosition: string;
+//     titleTextAlign: string;
+//     titleTop: number;                   // in px
+//     titleWidth: number;                 // in px: 0 means it adapts to container
 
-    // Graph
-    graphType: string;                  // bar, pie, etc
-    graphHeight: number;                // in px
-    graphLeft: number;                  // in px
-    graphTop: number;                   // in px
-    graphWidth: number;                 // in px
-    graphGraphPadding: number;
-    graphHasSignals: boolean;
-    graphFillColor: string;
-    graphHoverColor: string;
-    graphSpecification: any;
-    graphDescription: string;
+//     // Graph
+//     graphType: string;                  // bar, pie, etc
+//     graphHeight: number;                // in px
+//     graphLeft: number;                  // in px
+//     graphTop: number;                   // in px
+//     graphWidth: number;                 // in px
+//     graphGraphPadding: number;
+//     graphHasSignals: boolean;
+//     graphFillColor: string;
+//     graphHoverColor: string;
+//     graphSpecification: any;
+//     graphDescription: string;
 
-    // X field
-    graphXaggregate: string;
-    graphXtimeUnit: string;
-    graphXfield: string;
-    graphXtype: string;
-    graphXaxisTitle: string;
+//     // X field
+//     graphXaggregate: string;
+//     graphXtimeUnit: string;
+//     graphXfield: string;
+//     graphXtype: string;
+//     graphXaxisTitle: string;
 
-    // Y field
-    graphYaggregate: string;
-    graphYtimeUnit: string;
-    graphYfield: string;
-    graphYtype: string;
-    graphYaxisTitle: string;
+//     // Y field
+//     graphYaggregate: string;
+//     graphYtimeUnit: string;
+//     graphYfield: string;
+//     graphYtype: string;
+//     graphYaxisTitle: string;
 
-    graphTitle: string;
-    graphMark: string;
-    graphUrl: string;
-    graphData: any;
-    graphColorField: string;
-    graphColorType: string;
+//     graphTitle: string;
+//     graphMark: string;
+//     graphUrl: string;
+//     graphData: any;
+//     graphColorField: string;
+//     graphColorType: string;
 
-    // Table - to be determined later ...
-    tableColor: string;                 // Text color
-    tableCols: number;                  // Nr of cols, 0 means all
-    tableHeight: number;                // in px, cuts of rest if bigger than this
-    tableHideHeader: boolean;
-    tableLeft: number;                  // in px
-    tableRows: number;                  // Nr of rows in the data, excluding header: 0 means all
-    tableTop: number;                   // in px
-    tableWidth: number;                 // in px, cuts of rest if bigger than this
+//     // Table - to be determined later ...
+//     tableColor: string;                 // Text color
+//     tableCols: number;                  // Nr of cols, 0 means all
+//     tableHeight: number;                // in px, cuts of rest if bigger than this
+//     tableHideHeader: boolean;
+//     tableLeft: number;                  // in px
+//     tableRows: number;                  // Nr of rows in the data, excluding header: 0 means all
+//     tableTop: number;                   // in px
+//     tableWidth: number;                 // in px, cuts of rest if bigger than this
 
-    // Created, updated and refreshed
-    refreshMode: string;                // Manual, OnOpen, Repeatedly
-    refreshFrequency: number;           // Nr of seconds if RefreshMode = Repeatedly
-    widgetRefreshedOn: string;          // Data Refreshed on
-    widgetRefreshedBy: string;          // Date Refreshed by
-    widgetCreatedOn: string;            // Created on
-    widgetCreatedBy: string;            // Created by
-    widgetUpdatedOn: string;            // Updated on
-    widgetUpdatedBy: string;            // Updated by
+//     // Created, updated and refreshed
+//     refreshMode: string;                // Manual, OnOpen, Repeatedly
+//     refreshFrequency: number;           // Nr of seconds if RefreshMode = Repeatedly
+//     widgetRefreshedOn: string;          // Data Refreshed on
+//     widgetRefreshedBy: string;          // Date Refreshed by
+//     widgetCreatedOn: string;            // Created on
+//     widgetCreatedBy: string;            // Created by
+//     widgetUpdatedOn: string;            // Updated on
+//     widgetUpdatedBy: string;            // Updated by
 
-}
+// }
 
 export class WidgetCheckpoint {
     id: number;

@@ -12,7 +12,6 @@ import { CanvasAlert }                from './models';
 import { CanvasComment }              from './models';
 import { CanvasMessage }              from './models';
 import { CanvasUser}                  from './models';
-import { CanvasWidget }               from './models';
 import { Combination }                from './models';
 import { CombinationDetail }          from './models';
 import { CSScolor }                   from './models';
@@ -973,13 +972,6 @@ export class GlobalVariableService {
         //
         console.log('Global-Variables dashboardDelete', index)
 
-        // let arr: CanvasWidget[] = this.currentWidgets.filter(
-        //     i => {
-        //             if (i.id == index) { i.isTrashed = true}
-        //         }
-        // );
-        // console.log('Global-Variables dashboardDelete arr', arr)
-        // this.currentWidgets.next(arr);
         for (var i = 0; i < this.currentWidgets.length; i++) {
             i => {
                     if (i.id == index) { i.isTrashed = true}
