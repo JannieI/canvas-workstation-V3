@@ -42,13 +42,11 @@ export class WidgetExpandComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        console.log('xx', this.widgetIndex)
         this.globalVariableService.filePath = "../assets/vega-datasets/cars.json";
         this.globalVariableService.get('').then(i => 
             {
                 this.dataset = i;
                 this.currentDatasetLength = i.length;
-                console.log('xxx', i)
             }
             // this.globalVariableService.currentWidgets  this.widgetIndex)
             // i =>

@@ -1436,8 +1436,36 @@ export class GlobalVariableService {
         // Loop on applicable Sl
         localSlicers.forEach(sl => {
 
+            // TODO - fix hardcoding, issue with datalib jsonTree
+            sl.slicerSelection =  [
+                {
+                    "isSelected": true,
+                    "fieldValue": "MSFT"
+                },
+                {
+                    "isSelected": false,
+                    "fieldValue": "AMZN"
+                },
+                {
+                    "isSelected": false,
+                    "fieldValue": "IBM"
+                },
+                {
+                    "isSelected": false,
+                    "fieldValue": "GOOG"
+                },
+                {
+                    "isSelected": false,
+                    "fieldValue": "AAPL"
+                }
+    
+            ]
+
+
+
             // Build array of selection values
             let fieldValue: string[] = [];
+            console.log('xx sl.slicerSelection', sl.slicerSelection)
             sl.slicerSelection.forEach(f => {
                 if (f.isSelected) { fieldValue.push(f.fieldValue)}
             });
@@ -1447,9 +1475,13 @@ export class GlobalVariableService {
             if (fieldValue.length > 0) {
                 let tempData: any = [];
                 dataSet.data.forEach(d => {
-                    if (fieldValue.indexOf(d[0]) >= 0) {tempData.push(d)}
+                    console.log('xx d.symbol', d.symbol)
+                    if (fieldValue.indexOf(d.symbol) >= 0) {tempData.push(d)}
                 });
                 console.log('xx tempData', tempData)
+
+                // Replace 
+                dataSet.data = tempData;
             }
         })
         return dataSet;
