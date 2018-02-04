@@ -2301,9 +2301,9 @@ export class GlobalVariableService {
                         w.graphUrl = "";
                         let ds:Dataset[] = this.currentDatasets.filter(i => i.id == w.datasetID);
                         if (ds.length > 0) {
-                            w.graphData = { value: ds[0].data};
+                            w.graphData = ds[0].data;
                         } else {
-                            w.graphData = { value: null};
+                            w.graphData = null;
                         }
 
                         // w.graphData = { value: [
