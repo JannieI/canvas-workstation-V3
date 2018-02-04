@@ -248,7 +248,7 @@
 
         "datasourceID": 1,
         "slicerSelection": null,
-        "datasetID": -1,
+        "datasetID": 2,
         "dataParameters":
         [
             {
