@@ -1396,7 +1396,7 @@ export class GlobalVariableService {
                                 id: datasetID,
                                 datasourceID: datasourceID,
                                 data: dataFile,
-                                dataRaw: null
+                                dataRaw: dataFile
                             };
 
                             // // Add to datasets (contains all data) - once
@@ -1419,13 +1419,40 @@ export class GlobalVariableService {
         });
     }
 
-    filterSlicer(dataFile): any {
-        // Filter a given array 
+    filterSlicer(dataSet: Dataset): any {
+        // Filter a given Dataset on .data -> .dataRaw by applying all applicable Sl
         console.log('Global-Variables filterSlicer ...');
-        this.currentSlicers.forEach(s => {
 
+        // Get all Sl for the dSet
+        let localSlicers: Widget[] = this.currentSlicers.filter( sl => 
+            sl.datasourceID == dataSet.datasourceID  &&  
+              ( (sl.datasetID == -1  ||  sl.datasetID == sl.datasetID) )
+        );
+        console.log('xx localSlicers', localSlicers, dataSet)
+
+        // Reset the filtered data
+        dataSet.data = dataSet.dataRaw;
+
+        // Loop on applicable Sl
+        localSlicers.forEach(sl => {
+
+            // Build array of selection values
+            let fieldValue: string[] = [];
+            sl.slicerSelection.forEach(f => {
+                if (f.isSelected) { fieldValue.push(f.fieldValue)}
+            });
+            console.log('xx fieldValue', fieldValue);
+
+            // Apply selected once, empty means all
+            if (fieldValue.length > 0) {
+                let tempData: any = [];
+                dataSet.data.forEach(d => {
+                    if (fieldValue.indexOf(d[0]) >= 0) {tempData.push(d)}
+                });
+                console.log('xx tempData', tempData)
+            }
         })
-        return dataFile;
+        return dataSet;
 
     }
     
