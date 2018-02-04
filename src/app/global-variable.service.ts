@@ -813,22 +813,23 @@ export class GlobalVariableService {
                     this.getCurrentDatasource(dashboardID).then(k => {
         
                         // Load Permissions for D
-                        this.getCurrentDashboardPermissions(dashboardID).then( o => {
+                        this.getCurrentDashboardPermissions(dashboardID).then( l => {
 
                             // Load Widgets
-                            this.getCurrentWidgets(dashboardID, dashboardTabID).then(q => {
+                            this.getCurrentWidgets(dashboardID, dashboardTabID).then(m => {
                                 
                                 // Get info for W
-                                this.getWidgetsInfo();
+                                this.getWidgetsInfo().then(n => {
 
-                                this.currentDashboardID = dashboardID
-                                this.currentDashboardTabID = dashboardTabID
-                                if (this.currentWidgets.length > 0) {
-                                    this.hasDatasources.next(true);
-                                } else {
-                                    this.hasDatasources.next(false);
-                                }
-                                resolve(true)
+                                    this.currentDashboardID = dashboardID
+                                    this.currentDashboardTabID = dashboardTabID
+                                    if (this.currentWidgets.length > 0) {
+                                        this.hasDatasources.next(true);
+                                    } else {
+                                        this.hasDatasources.next(false);
+                                    }
+                                    resolve(true)
+                                })
                             })
                         })
                     })
@@ -2207,77 +2208,67 @@ export class GlobalVariableService {
         // Get list of dSet-ids to make array work easier
         this.currentDatasources.forEach(d => dsCurrIDs.push(d.id));
 
-        // get Current DS
-        this.currentWidgets.forEach(w => {
-            
-            // Only get data from Graphs and Text boxes
-            if ( (w.widgetType == 'Graph'  ||  w.widgetType == 'Shape')  &&
-                 (w.datasourceID >= 0) ) {
-
-                // Build array of promises, each getting data for 1 widget if not store already
-                if (dsCurrIDs.indexOf(w.datasetID) < 0) {
-                    dsCurrIDs.push(w.datasetID);
-
-                    // Get the latest datasetID (when -1 is stored on W)
-                    if (w.datasetID == -1) {
-                        let ds: number[]=[];
-                        
-                        this.datasets.forEach(i => {
-                            if(i.datasourceID == w.datasourceID) {
-                                ds.push(i.id)
-                            }
-                        });
-                        if (ds.length > 0) {
-                            w.datasetID = Math.max(...ds);
-                        };
-                        console.log('xx new dSet id', w.id, w.datasetID)
-                    };
-
-                    promiseArray.push(this.getDataset(w.datasourceID, w.datasetID));
-                };
-                console.log('xx promise done', promiseArray)
+        return new Promise(async (resolve, reject) => {
         
-                // Return if nothing to be done, means all data already good
-                if (promiseArray.length = 0) {return true}
+            // Construct array with correct datasetIDs
+            this.currentWidgets.forEach(w => {
+                
+                // Only get data from Graphs and Text boxes
+                if ( (w.widgetType == 'Graph'  ||  w.widgetType == 'Shape')  &&
+                    (w.datasourceID >= 0) ) {
 
-                // Get all the dataset to local vars
-                this.allWithAsync(...promiseArray)
-                    .then(resolvedData => {
-                        console.log('xx after allSynch', this.currentWidgets, this.currentDatasets)
+                    // Build array of promises, each getting data for 1 widget if not store already
+                    if (dsCurrIDs.indexOf(w.datasetID) < 0) {
+                        dsCurrIDs.push(w.datasetID);
 
-                        // Only add to currentDatasets where necessary
-                        if (dsIDs.indexOf(w.datasourceID) < 0) {
-                            let newDS = this.datasources.filter(d => d.id == w.datasourceID);
-                            if (newDS.length > 0) { 
-                                this.currentDatasources.push(newDS[0]);
-                                dsIDs.push(w.datasourceID);
-                            }
+                        // Get the latest datasetID (when -1 is stored on W)
+                        if (w.datasetID == -1) {
+                            let ds: number[]=[];
+                            
+                            this.datasets.forEach(i => {
+                                if(i.datasourceID == w.datasourceID) {
+                                    ds.push(i.id)
+                                }
+                            });
+                            if (ds.length > 0) {
+                                w.datasetID = Math.max(...ds);
+                            };
+                            console.log('xx new dSet id', w.id, w.datasetID)
                         };
-                        console.log('xx current DS done', w.id, w.datasourceID, this.currentDatasources)
 
+                        promiseArray.push(this.getDataset(w.datasourceID, w.datasetID));
+                    };
+                    console.log('xx promise done', promiseArray)
+                }
+            });
 
+            // Return if nothing to be done, means all data already good
+            if (promiseArray.length = 0) {resolve(true)}
 
+            // Get all the dataset to local vars
+            this.allWithAsync(...promiseArray)
+                .then(resolvedData => {
+                    console.log('xx after allSynch', this.currentWidgets, this.currentDatasets)
 
-                        // Filter currentDatasets by Sl linked to DS
-                        this.currentDatasets.forEach(cd => {
-                            this.filterSlicer(cd);
-                        })
+                    // Filter currentDatasets by Sl linked to DS
+                    this.currentDatasets.forEach(cd => {
+                        this.filterSlicer(cd);
+                    })
 
-                        // Add data to widget
-                        // TODO - url = this.filePath for localDB ...
-                        this.currentWidgets.forEach(w => {
-                            w.graphUrl = "";
-                            let ds = this.currentDatasets.filter(i => i.id == w.datasetID);
-                            console.log('xx ds', ds, this.currentDatasets)
-                            w.graphData = { value: ds.data};
-                        });
-                                
-                        console.log('Global-Variables getWidgetsInfo 1 True');
-                        resolve(true);
-                    }, 
-                    rejectionReason => console.log('reason:', rejectionReason) // reason: rejected!
-                    )
-            };
+                    // Add data to widget
+                    // TODO - url = this.filePath for localDB ...
+                    this.currentWidgets.forEach(w => {
+                        w.graphUrl = "";
+                        let ds = this.currentDatasets.filter(i => i.id == w.datasetID);
+                        console.log('xx ds', ds, this.currentDatasets)
+                        w.graphData = { value: ds.data};
+                    });
+                            
+                    console.log('Global-Variables getWidgetsInfo 1 True');
+                    resolve(true);
+                }, 
+                rejectionReason => console.log('reason:', rejectionReason) // reason: rejected!
+            );
         });
     }
 
