@@ -654,7 +654,7 @@ export class GlobalVariableService {
     // localDashboards: dl.spec.TopLevelExtendedSpec[] = localDashboards;
     // localWidgets = new BehaviorSubject< CanvasWidget[]>(localWidgets);
     // localShapes = new BehaviorSubject< CanvasShape[]>(null);
-    localTrash = new BehaviorSubject< Widget[]>([]);
+    // localTrash = new BehaviorSubject< Widget[]>([]);
 
     dataGetFromSwitch = new BehaviorSubject<string>('File');
     duplicateWidget = new BehaviorSubject<boolean>(false);

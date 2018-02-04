@@ -194,7 +194,6 @@ export class AppComponent implements OnInit {
     statusBarRunning: boolean = false;
     statusBarCancelRefresh: boolean = false;
 
-    localTrash: Widget[];
     currentWidgets: Widget[] = [];
     showModalLanding: boolean;
 
@@ -258,12 +257,7 @@ export class AppComponent implements OnInit {
             sG => this.showGrid = sG
         );
         this.showModalLanding = this.globalVariableService.showModalLanding.value;
-        // this.globalVariableService.showMainMenu.subscribe(
-        //     sm => this.showMainMenu = sm
-        // );
-        this.globalVariableService.localTrash.subscribe(
-            i => this.localTrash = i
-        );
+
         this.globalVariableService.hasDatasources.subscribe(
             i => this.hasDatasources = i
         );
@@ -588,7 +582,7 @@ export class AppComponent implements OnInit {
         // 
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDelete', '@Start');
 
-        console.log('App handleCloseWidgetDelete', this.localTrash)
+        console.log('App handleCloseWidgetDelete')
         this.showModalWidgetDelete = false;
     }
 
