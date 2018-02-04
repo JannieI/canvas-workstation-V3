@@ -780,7 +780,7 @@ export class GlobalVariableService {
     ) {
      }
 
-     refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number): 
+     refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number):
         Promise<boolean> {
         // Refreshes all info related to current D
         // dashboardTabID = -1 if unknown, so get first T
@@ -797,7 +797,7 @@ export class GlobalVariableService {
                     if (dashboardTabID == -1) {
                         if (j.length > 0) {dashboardTabID = j[0].id}
                     };
-    
+
                     // Load Permissions for D
                     this.getCurrentDashboardPermissions(dashboardID).then( l => {
 
@@ -806,7 +806,7 @@ export class GlobalVariableService {
 
                         // Load Widgets
                         this.getCurrentWidgets(dashboardID, dashboardTabID).then(n => {
-                            
+
                             // Load current DS
                             this.getCurrentDatasource(dashboardID).then(k => {
 
@@ -839,7 +839,7 @@ export class GlobalVariableService {
         // Load the current Dashboard, and Optional template.  The dependants are stakced
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
-            this.getCurrentDatasource(datasourceID).then( i => 
+            this.getCurrentDatasource(datasourceID).then( i =>
 
             // Load Permissions for DS
             this.getCurrentDatasourcePermissions(datasourceID).then(k =>
@@ -876,50 +876,50 @@ export class GlobalVariableService {
 
         // Load Dashboard Tags
         this.getCurrentDashboardTags(dashboardID);
-        
+
         // Load Dashboard Permissions
         this.getCurrentDashboardPermissions(dashboardID);
-        
+
         // Load Dashboard Snapshots
         this.getCurrentDashboardSnapshots(dashboardID);
 
         // Load Dashboard Templates
         this.getDashboardTemplates();
-        
+
         // Load Current Datasources
         this.getCurrentDatasource(dashboardID)
 
         // Load DatTransformationsasources
-        this.getTransformations();     
+        this.getTransformations();
 
         // Load Current DatTransformationsasources
-        this.getCurrentTransformations(1);     
+        this.getCurrentTransformations(1);
 
         // Load DataQualityIssues
-        this.getDataQualityIssues();     
+        this.getDataQualityIssues();
 
         // Load Current DataQualityIssue
-        this.getCurrentDataQualityIssues(1);     
+        this.getCurrentDataQualityIssues(1);
 
         // Load DatasourcePermissions
-        this.getDatasourcePermissions();     
+        this.getDatasourcePermissions();
 
         // Load Current DatasourcePermissions
-        this.getCurrentDatasourcePermissions(1);     
+        this.getCurrentDatasourcePermissions(1);
 
         // Load Current DatasourcePivots
-        this.getCurrentDatasourcePivots(1);     
+        this.getCurrentDatasourcePivots(1);
 
         // Reset Global Vars
         this.currentDashboardID = dashboardID;
         this.currentDashboardTabID = dashboardTabID;
-        
+
     }
 
     deleteWidget(index: number) {
         //
         console.log('Global-Variables deleteWidget ...');
-        
+
         this.widgets.forEach( e => {
             if (e.id == index) {
                 e.isTrashed = true;
@@ -931,10 +931,10 @@ export class GlobalVariableService {
     currentDatasourceAdd(newData: Datasource) {
         //
         console.log('Global-Variables currentDatasourceAdd ...');
-        
+
         if (this.currentDatasources.filter(i => i.id == newData.id).length == 0) {
             this.currentDatasources.push(newData);
-        } 
+        }
         console.log('Global-Variables currentDatasourceAdd after push', this.currentDatasources)
     }
 
@@ -944,7 +944,7 @@ export class GlobalVariableService {
 
         if (this.datasources.filter(i => i.id == newData.id).length == 0) {
             this.datasources.push(newData);
-        } 
+        }
         console.log('Global-Variables datasourceAdd after push', this.datasources)
     }
 
@@ -962,7 +962,7 @@ export class GlobalVariableService {
     datasourceDelete(index: number) {
         //
         console.log('Global-Variables datasourceDelete ...');
-        
+
         let arr: Datasource[] = this.datasources.splice(index,1);
         console.log('Global-Variables datasourceDelete arr', arr)
         this.datasources = this.datasources;
@@ -989,7 +989,7 @@ export class GlobalVariableService {
     deleteDashboardRecent(index: number): Promise<boolean> {
         //
         console.log('Global-Variables deleteDashboardRecent ...');
-        
+
         // Update data
         return new Promise<boolean>((resolve, reject) => {
             let i: number = this.dashboardsRecent.indexOf(index);
@@ -1342,7 +1342,7 @@ export class GlobalVariableService {
 
     getDataset(): Promise<Dataset[]> {
         // Description: Gets Datasets, WITHOUT data
-        // Returns: this.dataset 
+        // Returns: this.dataset
         console.log('Global-Variables getDataset ...');
 
         let url: string = 'getDataset';
@@ -1371,12 +1371,12 @@ export class GlobalVariableService {
 
     getCurrentDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
         // Description: Gets a Dataset, and inserts once into this.currentDatasets
-        // Returns: dataset 
+        // Returns: dataset
         console.log('Global-Variables getCurrentDataset ...');
 
         let url: string = 'getDataset';
         this.filePath = './assets/data.datasets.json';
-                
+
         // Get list of dSet-ids to make array work easier
         let dsCurrIDs: number[] = [];       // currentDataset IDs
         this.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
@@ -1408,8 +1408,8 @@ export class GlobalVariableService {
                             if (dsCurrIDs.indexOf(datasetID) < 0) {
                                 this.currentDatasets.push(newdSet);
                             };
-                            
-                            console.log('Global-Variables getCurrentDataset 1', datasourceID, 
+
+                            console.log('Global-Variables getCurrentDataset 1', datasourceID,
                                 datasetID, 'currentDatasets', this.currentDatasets)
                             resolve(newdSet);
                         }
@@ -1424,8 +1424,8 @@ export class GlobalVariableService {
         console.log('Global-Variables filterSlicer ...');
 
         // Get all Sl for the dSet
-        let localSlicers: Widget[] = this.currentSlicers.filter( sl => 
-            sl.datasourceID == dataSet.datasourceID  &&  
+        let localSlicers: Widget[] = this.currentSlicers.filter( sl =>
+            sl.datasourceID == dataSet.datasourceID  &&
               ( (sl.datasetID == -1  ||  sl.datasetID == sl.datasetID) )
         );
         console.log('xx localSlicers', localSlicers, dataSet)
@@ -1458,7 +1458,7 @@ export class GlobalVariableService {
                     "isSelected": false,
                     "fieldValue": "AAPL"
                 }
-    
+
             ]
 
 
@@ -1472,9 +1472,9 @@ export class GlobalVariableService {
             // Apply selected once, empty means all
             if (fieldValue.length > 0) {
                 let tempData: any = [];
-                tempData = dataSet.data.filter(d => 
-                     fieldValue.indexOf(d[sl.slicerFieldName]) >= 0 
-                ); 
+                tempData = dataSet.data.filter(d =>
+                     fieldValue.indexOf(d[sl.slicerFieldName]) >= 0
+                );
 
                 // Replace the filtered data, used by the graph
                 dataSet.data = tempData;
@@ -1483,7 +1483,7 @@ export class GlobalVariableService {
         return dataSet;
 
     }
-    
+
     getDashboardSchedules(): Promise<DashboardSchedule[]> {
         // Description: Gets all Sch
         // Returns: this.dashboardSchedules array, unless:
@@ -1531,7 +1531,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSchedules = data;
-                        console.log('Global-Variables getCurrentDashboardSchedules 1', 
+                        console.log('Global-Variables getCurrentDashboardSchedules 1',
                             dashboardID, data)
                         resolve(data);
                 })
@@ -1543,7 +1543,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardSchedules = returnData;
-                console.log('Global-Variables getCurrentDashboardSchedules 2', 
+                console.log('Global-Variables getCurrentDashboardSchedules 2',
                     dashboardID, returnData)
                 resolve(returnData);
             });
@@ -1597,7 +1597,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardTags = data;
-                        console.log('Global-Variables getCurrentDashboardTags 1', 
+                        console.log('Global-Variables getCurrentDashboardTags 1',
                             dashboardID, data)
                         resolve(data);
                 })
@@ -1662,7 +1662,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardPermissions =data;
-                        console.log('Global-Variables getCurrentDashboardPermissions 1', 
+                        console.log('Global-Variables getCurrentDashboardPermissions 1',
                             dashboardID, data)
                         resolve(data);
                 })
@@ -1727,7 +1727,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSnapshots = data;
-                        console.log('Global-Variables getDashboardSnapshots 1', 
+                        console.log('Global-Variables getDashboardSnapshots 1',
                             dashboardID, data)
                         resolve(data);
                 })
@@ -1744,7 +1744,7 @@ export class GlobalVariableService {
             });
         };
     }
-    
+
     getDashboardThemes(): Promise<DashboardTheme[]> {
         // Description: Gets all Th
         // Returns: this.dashboardThemes array, unless:
@@ -1774,7 +1774,7 @@ export class GlobalVariableService {
         });
 
     }
-    
+
     getDashboardTemplates(): Promise<Dashboard[]> {
         // Description: Gets all Tpl
         // Returns: recent [D] array, unless:
@@ -1788,7 +1788,7 @@ export class GlobalVariableService {
                     .then(data => {
                         let arrTemplateIDs: number[] = [];
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i].templateDashboardID != 0  &&  
+                            if (data[i].templateDashboardID != 0  &&
                                 data[i].templateDashboardID != null) {
                                 arrTemplateIDs.push(data[i].templateDashboardID)
                             }
@@ -1809,7 +1809,7 @@ export class GlobalVariableService {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 let arrTemplateIDs: number[] = [];
                 for (var i = 0; i < this.dashboards.length; i++) {
-                    if (this.dashboards[i].templateDashboardID != 0  &&  
+                    if (this.dashboards[i].templateDashboardID != 0  &&
                         this.dashboards[i].templateDashboardID != null) {
                         arrTemplateIDs.push(this.dashboards[i].templateDashboardID)
                     }
@@ -1877,7 +1877,7 @@ export class GlobalVariableService {
             // TODO - What if databoards empty or diry - is that okay?
             if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
                 this.getDatasources()
-                    .then(ds => 
+                    .then(ds =>
                         {
                             let ids: number[] = [];
                             for (var i = 0; i < this.currentWidgets.length; i++) {
@@ -1894,7 +1894,7 @@ export class GlobalVariableService {
                             this.isDirtyDatasources = false;
                             this.currentDatasources = returnData;
                             this.statusBarRunning.next(this.NoQueryRunningMessage);
-                            console.log('Global-Variables getCurrentDatasources 1', 
+                            console.log('Global-Variables getCurrentDatasources 1',
                                 dashboardID, this.currentDatasources);
                             resolve(returnData);
                         }
@@ -1915,7 +1915,7 @@ export class GlobalVariableService {
                 this.isDirtyDatasources = false;
                 this.currentDatasources = returnData;
                 this.statusBarRunning.next(this.NoQueryRunningMessage);
-                console.log('Global-Variables getCurrentDatasources 2', dashboardID, 
+                console.log('Global-Variables getCurrentDatasources 2', dashboardID,
                     this.currentDatasources);
                 resolve(returnData);
             }
@@ -2032,7 +2032,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDataQualityIssues = data;
-                        console.log('Global-Variables getDataQualityIssuess 1', 
+                        console.log('Global-Variables getDataQualityIssuess 1',
                             datasourceID, data)
                         resolve(data);
                 })
@@ -2049,7 +2049,7 @@ export class GlobalVariableService {
             });
         };
     }
-      
+
     getDatasourcePermissions(): Promise<DatasourcePermission[]> {
         // Description: Gets all DS-P
         // Returns: this.datasourcePermissions array, unless:
@@ -2078,7 +2078,7 @@ export class GlobalVariableService {
             }
         });
     }
- 
+
     getCurrentDatasourcePermissions(datasourceID: number): Promise<DatasourcePermission[]> {
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePermissions.value array, unless:
@@ -2113,7 +2113,7 @@ export class GlobalVariableService {
         };
 
     }
-  
+
     getDatasourcePivots(): Promise<DatasourcePivot[]> {
         // Description: Gets all DS-P
         // Returns: this.datasourcePivots array, unless:
@@ -2142,7 +2142,7 @@ export class GlobalVariableService {
             }
         });
     }
- 
+
     getCurrentDatasourcePivots(datasourceID: number): Promise<DatasourcePivot[]> {
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePivots.value array, unless:
@@ -2236,8 +2236,8 @@ export class GlobalVariableService {
                         this.currentTables = data.filter(w => w.widgetType == 'Table');
                         this.currentWidgets = data.filter(w => w.widgetType == 'Graph');
 
-                        console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID, 
-                            data, this.currentSlicers, this.currentShapes, this.currentTables, 
+                        console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID,
+                            data, this.currentSlicers, this.currentShapes, this.currentTables,
                             this.currentWidgets)
                         resolve(data);
                 })
@@ -2260,7 +2260,7 @@ export class GlobalVariableService {
 
                 console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, data)
                 resolve(data);
-                    
+
             });
         };
 
@@ -2276,15 +2276,15 @@ export class GlobalVariableService {
         let dsCurrIDs: number[] = [];       // Current Dataset IDs
         this.currentDatasources = [];
         let promiseArray = [];
-        
+
         // Get list of dSet-ids to make array work easier
         this.currentDatasources.forEach(d => dsCurrIDs.push(d.id));
 
         return new Promise(async (resolve, reject) => {
-        
+
             // Construct array with correct datasetIDs
             this.currentWidgets.forEach(w => {
-                
+
                 // Only get data from Graphs and Text boxes
                 if ( (w.widgetType == 'Graph'  ||  w.widgetType == 'Shape')  &&
                     (w.datasourceID >= 0) ) {
@@ -2295,7 +2295,7 @@ export class GlobalVariableService {
                         // Get the latest datasetID (when -1 is stored on W)
                         if (w.datasetID == -1) {
                             let ds: number[]=[];
-                            
+
                             for (var i = 0; i < this.datasets.length; i++) {
                                 if(this.datasets[i].datasourceID == w.datasourceID) {
                                     ds.push(this.datasets[i].id)
@@ -2342,10 +2342,10 @@ export class GlobalVariableService {
                         }
 
                     });
-                            
+
                     console.log('Global-Variables getWidgetsInfo 1 True');
                     resolve(true);
-                }, 
+                },
                 rejectionReason => console.log('reason:', rejectionReason) // reason: rejected!
             );
         });
@@ -2403,29 +2403,29 @@ export class GlobalVariableService {
 
     refreshCurrentDashboard(
         refreshingRoutine: string,
-        dashboardID: number, 
-        dashboardTabID: number = 0, 
+        dashboardID: number,
+        dashboardTabID: number = 0,
         tabToShow: string = '') {
         // Refresh the global var currentDashboardInfo, then .next it.
         // This will refresh the Dashboard on the screen (via .subscribe)
         // If a dashboardTabID is given, this one will be shown.  Else, it will navigate
         // to tabToShow, which can be First, Previous, Next, Last.  tabToShow overules
-        // dashboardTabID if tabToShow is given.  It does not assume that all the currentD 
+        // dashboardTabID if tabToShow is given.  It does not assume that all the currentD
         // Info has already been collected - to allow for the first time this is called.
-        // It does assume that we have a currentDashboardInfo object if Previous/Next are 
+        // It does assume that we have a currentDashboardInfo object if Previous/Next are
         // parameters.
         console.log('Global-Variables refreshCurrentDashboard ...');
 
         // Assume we have all currentD info
-        if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&  
+        if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
             (this.currentDashboardInfo == null) ) {
             return;
         };
 
-        let dt = new Date();  
+        let dt = new Date();
         let x: number = 0;
         let y: number = 0;
-        
+
         if (tabToShow != '') {
             if (this.currentDashboardTabs.length == 0) {
                 console.log('this.currentDashboardTabs empty');
@@ -2448,7 +2448,7 @@ export class GlobalVariableService {
             }
             if (tabToShow == 'Last') {
                 x = this.currentDashboardTabs.length - 1;
-                    
+
             }
             y = this.currentDashboardTabs[x].id;
         } else {
@@ -2475,7 +2475,7 @@ export class GlobalVariableService {
     }
 
     sleep(milliseconds: number) {
-        // 
+        //
         console.log('Global-Variables sleep ...', milliseconds);
         var start: number = new Date().getTime();
         console.log('  start', start, new Date().getTime())

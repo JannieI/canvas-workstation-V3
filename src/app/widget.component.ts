@@ -146,7 +146,7 @@ export class WidgetComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.editMode.subscribe(i => 
+        this.globalVariableService.editMode.subscribe(i =>
             {
                 this.editMode = i;
             }
@@ -154,12 +154,12 @@ export class WidgetComponent {
 
     }
     ngAfterViewInit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
     }
 
     clickWidgetContainer(index: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainer', '@Start');
 
         console.log("widget clickWidgetContainer @start", this.widgets[0].datasourceID);
@@ -192,11 +192,11 @@ export class WidgetComponent {
                 this.globalVariableService.selectedWidgetIDs.splice(pos,1);
             }
         }
-        
+
     }
 
     clickWidget(index: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
 
         console.log("widget clickWidget @start", this.widgets[0].datasourceID);
@@ -206,16 +206,16 @@ export class WidgetComponent {
         }
 
     }
-      
+
     refreshWidgets(start: number = -1, end: number = -1) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
-        
+
         this.startWidgetNumber = 0;
         this.endWidgetNumber = this.widgetContainerDOM.length;
-        if (start > -1) { 
+        if (start > -1) {
             this.startWidgetNumber = start;
-            if (end > start) { 
+            if (end > start) {
                 this.endWidgetNumber = end;
             } else {
                 this.endWidgetNumber = start + 1;
@@ -223,7 +223,7 @@ export class WidgetComponent {
         }
 
         for (var i = this.startWidgetNumber; i < this.endWidgetNumber; i++) {
-            console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(), 
+            console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(),
                 this.widgetDOM, this.widgetDOM.length, this.widgets)
 
             // String of IF statements that caters for different visualGrammars
@@ -232,7 +232,7 @@ export class WidgetComponent {
                 console.log('this.widgets[i].graphSpecification', this.widgets[i].graphSpecification)
                 // Use the spec inside the Widget, or the properties
                 let definition: any = null;
-                if (this.widgets[i].graphSpecification != ''  &&   
+                if (this.widgets[i].graphSpecification != ''  &&
                     this.widgets[i].graphSpecification != null) {
                         definition = this.widgets[i].graphSpecification;
 
@@ -276,7 +276,7 @@ export class WidgetComponent {
                               },
                               "opacity": {"value": 0.7}
                             }
-                        }  
+                        }
 
                         definition = {
                             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
@@ -313,16 +313,16 @@ export class WidgetComponent {
                     .run()
                     .finalize();
                 console.log('TEST refreshWidgets render done', specification)
-            } else { 
+            } else {
                 alert('The visualGrammar of widget ' + i.toString() + ' is not == Vega-Lite' )
             };
-            
+
         }
         console.log('TEST refreshWidgets end')
     }
 
     createVegaLiteSpec(widget: Widget): dl.spec.TopLevelExtendedSpec {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
@@ -460,4 +460,4 @@ export class WidgetComponent {
         }
     }
 
-} 
+}
