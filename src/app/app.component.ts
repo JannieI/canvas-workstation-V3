@@ -1279,17 +1279,6 @@ export class AppComponent implements OnInit {
         this.globalVariableService.presentationMode.next(false);
     }
 
-
-
-    clickTest() {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
-
-        this.globalVariableService.refreshCurrentDashboard(
-            'statusbar-clickTest', 1, 1, '')
-    }
-
-
     trackWidget(index, row) {
         // 
         // this.globalFunctionService.printToConsole(this.constructor.name,'trackWidget', '@Start');
