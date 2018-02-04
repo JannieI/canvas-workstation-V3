@@ -802,34 +802,38 @@ export class GlobalVariableService {
         // Load the current Dashboard, and Optional template.  The dependants are stakced
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
-            this.getCurrentDashboard(dashboardID).then( i => 
+            this.getCurrentDashboard(dashboardID).then( i => {
                 // Load the DashboardTabs
-                this.getCurrentDashboardTabs(dashboardID).then(j =>
-                    {
-                        if (dashboardTabID == -1) {
-                            if (j.length > 0) {dashboardTabID = j[0].id}
-                        }
+                this.getCurrentDashboardTabs(dashboardID).then(j => {
+                    if (dashboardTabID == -1) {
+                        if (j.length > 0) {dashboardTabID = j[0].id}
+                    };
+
+                    // Load current DS
+                    this.getCurrentDatasource(dashboardID).then(k => {
         
                         // Load Permissions for D
-                        this.getCurrentDashboardPermissions(dashboardID).then( o =>
+                        this.getCurrentDashboardPermissions(dashboardID).then( o => {
 
                             // Load Widgets
-                            this.getCurrentWidgets(dashboardID, dashboardTabID).then(q =>
-                                // Reset Global Vars
-                                {
-                                    this.currentDashboardID = dashboardID
-                                    this.currentDashboardTabID = dashboardTabID
-                                    if (this.currentWidgets.length > 0) {
-                                        this.hasDatasources.next(true);
-                                    } else {
-                                        this.hasDatasources.next(false);
-                                    }
-                                    resolve(true)
+                            this.getCurrentWidgets(dashboardID, dashboardTabID).then(q => {
+                                
+                                // Get info for W
+                                this.getWidgetsInfo();
+
+                                this.currentDashboardID = dashboardID
+                                this.currentDashboardTabID = dashboardTabID
+                                if (this.currentWidgets.length > 0) {
+                                    this.hasDatasources.next(true);
+                                } else {
+                                    this.hasDatasources.next(false);
                                 }
-                            )
-                        )
+                                resolve(true)
+                            })
+                        })
+                    })
                 })
-            );
+            });
         });
     }
 
@@ -1830,7 +1834,7 @@ export class GlobalVariableService {
                 for (var i = 0; i < this.currentWidgets.length; i++) {
                     if (ids.indexOf(this.currentWidgets[i].datasourceID) < 0) {
                         ids.push(this.currentWidgets[i].datasourceID)
-                    }
+                    };
                 };
                 let returnData: Datasource[] = [];
                 for (var i = 0; i < this.datasources.length; i++) {
@@ -2210,7 +2214,7 @@ export class GlobalVariableService {
             if ( (w.widgetType == 'Graph'  ||  w.widgetType == 'Shape')  &&
                  (w.datasourceID >= 0) ) {
 
-                    // Build array of promises, each getting data for 1 widget if not store already
+                // Build array of promises, each getting data for 1 widget if not store already
                 if (dsCurrIDs.indexOf(w.datasetID) < 0) {
                     dsCurrIDs.push(w.datasetID);
 
@@ -2233,22 +2237,23 @@ export class GlobalVariableService {
                 };
                 console.log('xx promise done', promiseArray)
         
+                // Return if nothing to be done, means all data already good
+                if (promiseArray.length = 0) {return true}
+
                 // Get all the dataset to local vars
                 this.allWithAsync(...promiseArray)
                     .then(resolvedData => {
                         console.log('xx after allSynch', this.currentWidgets, this.currentDatasets)
 
-
-
-                // Only add datasets where necessary
-                if (dsIDs.indexOf(w.datasourceID) < 0) {
-                    let newDS = this.datasources.filter(d => d.id == w.datasourceID);
-                    if (newDS.length > 0) { 
-                        this.currentDatasources.push(newDS[0]);
-                        dsIDs.push(w.datasourceID);
-                    }
-                };
-                console.log('xx current DS done', w.id, w.datasourceID, this.currentDatasources)
+                        // Only add to currentDatasets where necessary
+                        if (dsIDs.indexOf(w.datasourceID) < 0) {
+                            let newDS = this.datasources.filter(d => d.id == w.datasourceID);
+                            if (newDS.length > 0) { 
+                                this.currentDatasources.push(newDS[0]);
+                                dsIDs.push(w.datasourceID);
+                            }
+                        };
+                        console.log('xx current DS done', w.id, w.datasourceID, this.currentDatasources)
 
 
 
