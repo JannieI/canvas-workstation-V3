@@ -190,7 +190,7 @@ export class StatusbarComponent {
 
     // ngAfterViewChecked(){
     //     // For Testing
-    //     console.log('Explore ngAfterViewChecked W, Sl', this.currentWidgets,
+    //     console.log('ngAfterViewChecked W, Sl', this.currentWidgets,
     //         this.widgetContainters.toArray())
     // }
 

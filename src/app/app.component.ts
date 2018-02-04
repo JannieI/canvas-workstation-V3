@@ -326,13 +326,6 @@ export class AppComponent implements OnInit {
             console.log('handleCloseModalLanding 2')
             this.showModalData = true;
         };
-
-        // if (this.globalVariableService.openDashboardFormOnStartup == true) {
-        // console.log('App handleCloseModalLanding')
-        //     this.showModalDashboardOpen = true;
-        //     this.router.navigate(['/explore']);
-        // }
-
     }
 
     handleCloseWidgetEditor(action: string) {
