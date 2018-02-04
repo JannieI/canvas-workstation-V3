@@ -2,156 +2,187 @@
     {
         "id": 1,
         "datasourceID": 1,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 2,
         "datasourceID": 1,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 3,
         "datasourceID": 2,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 4,
         "datasourceID": 3,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 5,
         "datasourceID": 3,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 6,
         "datasourceID": 3,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 7,
         "datasourceID": 4,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 8,
         "datasourceID": 5,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 9,
         "datasourceID": 6,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 10,
         "datasourceID": 7,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 11,
         "datasourceID": 8,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 12,
         "datasourceID": 9,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 13,
         "datasourceID": 10,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 14,
         "datasourceID": 11,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 15,
         "datasourceID": 12,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 16,
         "datasourceID": 13,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 17,
         "datasourceID": 14,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 18,
         "datasourceID": 15,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 19,
         "datasourceID": 16,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 20,
         "datasourceID": 17,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 21,
         "datasourceID": 18,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 22,
         "datasourceID": 19,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 23,
         "datasourceID": 20,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 24,
         "datasourceID": 21,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 25,
         "datasourceID": 22,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 26,
         "datasourceID": 23,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 27,
         "datasourceID": 24,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 28,
         "datasourceID": 25,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 29,
         "datasourceID": 26,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 30,
         "datasourceID": 27,
-        "data": null
+        "data": null,
+        "dataRaw": null
     },
     {
         "id": 31,
         "datasourceID": 28,
-        "data": null
+        "data": null,
+        "dataRaw": null
     }
 ]

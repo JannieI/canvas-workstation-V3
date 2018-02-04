@@ -112,13 +112,14 @@ export class CanvasUser {
 export class Dataset {
     id: number;
     datasourceID: number;
-    data: any;
+    data: any;                              // Filtered data as json
+    dataRaw: any;                           // Unfiltered data as json
 }
 
 export class Combination {
     combinationID: number;
     dashboardID: number;
-    type: string;                       // ie Union
+    type: string;                           // ie Union
 }
 
 export class CombinationDetail {

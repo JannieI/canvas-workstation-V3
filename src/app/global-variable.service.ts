@@ -1395,7 +1395,8 @@ export class GlobalVariableService {
                             let newdSet: Dataset = {
                                 id: datasetID,
                                 datasourceID: datasourceID,
-                                data: dataFile
+                                data: dataFile,
+                                dataRaw: null
                             };
 
                             // // Add to datasets (contains all data) - once
@@ -2284,11 +2285,6 @@ export class GlobalVariableService {
                         } else {
                             w.graphData = null;
                         }
-
-                        // w.graphData = { value: [
-                        //     {"symbol": "MSFT", "date": "2000/1/1", "price": 39.81},
-                        //     {"symbol": "MSFT", "date": "2000/2/1", "price": 36.35},
-                        //     {"symbol": "MSFT", "date": "2000/3/1", "price": 43.22}]};
 
                     });
                             
