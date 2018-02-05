@@ -1302,7 +1302,7 @@
             <b>{{ row.containerWidgetTitle }}</b>
         </div>
         <select class="slicerBlock"
-            size="4" 
+            size="{{(row.containerHeight - 36) / 23}}" 
             multiple
             [style.width.px]="row.containerWidth-14"
             >
