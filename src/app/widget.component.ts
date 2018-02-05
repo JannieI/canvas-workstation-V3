@@ -460,4 +460,8 @@ export class WidgetComponent {
         }
     }
 
+    showWidgetForSlicer() {
+        return true;
+    }
+
 }

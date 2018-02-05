@@ -3,7 +3,7 @@
     display: inline-block;
     display: grid;
     margin: 0;
-    /*                     1   2   3   4   5   6    7   8   9   10  11    12   */
+    /*                     1   2   3    4    5   6    7   8    9    10  11   12   */
     grid-template-columns: 4px 9px 16px 16px 1fr 16px 1fr 16px 16px 9px 4px;
     grid-template-rows:    4px 9px 16px 16px 1fr 16px 1fr 16px 16px 9px 4px;
     position: absolute;
@@ -16,6 +16,17 @@
 
     .widgetContainer:focus {
         border: 1px dotted gray;
+    }
+
+    .selectedSlicer {
+        color: rgb(190, 19, 19);
+        grid-column-start: 6;
+        grid-column-end: 7;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        height: 0.1rem;
+        left: 5px;
+        width: 0.1rem;
     }
 
     .widgetBadge1 {

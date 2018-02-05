@@ -15,6 +15,11 @@
     (dragend)="clickWidgetContainerDragEnd($event, i)"
     draggable="true"
     >
+    <span *ngIf="showWidgetForSlicer()" 
+        class="selectedSlicer" 
+        title="Related Widget has been selected">
+        o
+    </span>    
     <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality" 
         class="badge badge-danger widgetBadge1" 
         title="Data Quality issues">
