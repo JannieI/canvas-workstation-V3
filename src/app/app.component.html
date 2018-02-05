@@ -1306,8 +1306,9 @@
             multiple
             [style.width.px]="row.containerWidth-14"
             >
-            <option *ngFor="let d of row.slicerSelection; 
-                let i = index" class="slicerOption"
+            <option *ngFor="let d of row.slicerSelection; let i = index" 
+                class="slicerOption"
+                (click)="clickSlicerItem(i, row.id, d.fieldValue, d.fieldValue.selected)"
                 >
                 {{ d.fieldValue }}
             </option>

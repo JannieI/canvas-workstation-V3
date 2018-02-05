@@ -1286,8 +1286,6 @@ export class AppComponent implements OnInit {
         return row ? row.id : undefined;
     }
 
-
-
     clickSlicer(index: number, id: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicer', '@Start');
@@ -1300,6 +1298,14 @@ export class AppComponent implements OnInit {
             this.selectedSlicers.splice(this.selectedSlicers.indexOf(id), 1)
         }
         console.log('clickSlicer', this.selectedSlicers)
+    }
+
+
+    clickSlicerItem(index: number, id: number, fieldValue: string, sel) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerItem', '@Start');
+
+        console.log('xx', index, id, fieldValue, sel)
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {
