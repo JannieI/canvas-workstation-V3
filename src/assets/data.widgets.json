@@ -394,7 +394,7 @@
         "size": "",
         "containerBackgroundcolor": "rgb(240, 238, 238)",
         "containerBorder": "none",
-        "containerBoxshadow": "3px 3px 1px lightgray",
+        "containerBoxshadow": "none",
         "containerColor": "transparent",
         "containerFontsize": 12,
         "containerHeight": 130,

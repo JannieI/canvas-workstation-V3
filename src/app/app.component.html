@@ -1291,14 +1291,21 @@
     <div class="slicerContainerDragHandle"
         draggable="false"
         [style.background-color]="row.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
-        >
+        [style.width.px]="row.containerWidth-14"
+    >
 
         <div class="slicerLabel" *ngIf="row.containerWidgetTitle"
             (click)="clickSlicer(i, row.id)"
-            [style.background-color]="row.containerBackgroundcolor">
+            [style.background-color]="row.containerBackgroundcolor"
+            [style.width.px]="row.containerWidth-14"
+            >
             <b>{{ row.containerWidgetTitle }}</b>
         </div>
-        <select class="slicerBlock" name="cars" size="4" multiple>
+        <select class="slicerBlock"
+            size="4" 
+            multiple
+            [style.width.px]="row.containerWidth-14"
+            >
             <option *ngFor="let d of row.slicerSelection; 
                 let i = index" class="slicerOption"
                 >
