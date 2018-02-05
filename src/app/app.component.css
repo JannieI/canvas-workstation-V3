@@ -358,7 +358,7 @@
     grid-template-rows: 3px 7px 3px 1fr 16px 1fr 7px 3px;
     left: 830px;
     margin: 0;
-    min-width: 165px;
+    min-width: 35px;
     padding: 0;
     position: absolute;
     z-index: 51;
@@ -370,7 +370,7 @@
         grid-row-end: 8;
         margin: 3px !important;
         margin: 0;
-        min-width: 140px;
+        min-width: 35px;
         padding: 0;
         z-index: 49;
     }
@@ -383,7 +383,7 @@
         background-color: lightgray;
     }
         .slicerLabel {
-            color: white;
+            color: black;
             text-align: center;
         }
         .slicerBlock {

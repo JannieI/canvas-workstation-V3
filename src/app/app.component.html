@@ -1260,9 +1260,6 @@
 </div>
 
 
-
-<!-- Testings ... -->
-
 <!-- Widgets -->
 <widget #widgetDOM
     [widgets]="currentWidgets"
@@ -1270,6 +1267,11 @@
     [showComments]="showComments"
     >
 </widget>
+
+
+
+
+
 
 
 <!-- Slicers -->
@@ -1290,26 +1292,42 @@
         draggable="false"
         [style.background-color]="row.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
         >
-        <div class="slicer" *ngIf="showSlicer"
+
+        <div class="slicerLabel" *ngIf="row.containerWidgetTitle"
+            (click)="clickSlicer(i, row.id)"
+            [style.background-color]="row.containerBackgroundcolor">
+            <b>{{ row.containerWidgetTitle }}</b>
+        </div>
+        <select class="slicerBlock" name="cars" size="4" multiple>
+            <option *ngFor="let d of row.slicerSelection; 
+                let i = index" class="slicerOption"
+                >
+                {{ d.fieldValue }}
+            </option>
+        </select>
+
+        <!-- <div class="slicer"
             [style.z-index]="row.isSelected?  '68' : '70'"
             >
-            <section class="slicerBlock" title="Filter the Budget dataset on Make of Car">
+            <section class="slicerBlock" title="Filter the stock codes">
                 <div class="slicerLabel" (click)="clickSlicer(i, row.id)"
                 [style.background-color]="row.containerBackgroundcolor">
-                    <b>{{ row.containerTitle }}
+                    <b>{{ row.containerWidgetTitle }}
                     </b>
                 </div>
                 <div class="form-group">
                     <div class="select multiple">
                         <select id="selects_5" multiple>
-                            <option *ngFor="let d of row.data; let i = index" class="slicerOption">
-                                {{ d }}
+                            <option *ngFor="let d of row.slicerSelection; 
+                                let i = index" class="slicerOption"
+                                >
+                                {{ d.fieldValue }}
                             </option>
                         </select>
                     </div>
                 </div>
             </section>
-        </div>
+        </div> -->
     </div>
     <div class="slicerContainerTopLeftHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"

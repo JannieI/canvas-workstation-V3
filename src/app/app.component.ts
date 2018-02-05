@@ -198,7 +198,6 @@ export class AppComponent implements OnInit {
     // Testings ....
     refreshGraphs: boolean = false;
     currentSlicers: Widget[] = [];
-    showSlicer: boolean = true;
     startX: number;
     startY: number;
     selectedSlicers: number[] = []

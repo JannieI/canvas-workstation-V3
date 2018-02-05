@@ -1443,7 +1443,7 @@ export class GlobalVariableService {
                     "fieldValue": "MSFT"
                 },
                 {
-                    "isSelected": false,
+                    "isSelected": true,
                     "fieldValue": "AMZN"
                 },
                 {
@@ -1451,11 +1451,11 @@ export class GlobalVariableService {
                     "fieldValue": "IBM"
                 },
                 {
-                    "isSelected": false,
+                    "isSelected": true,
                     "fieldValue": "GOOG"
                 },
                 {
-                    "isSelected": false,
+                    "isSelected": true,
                     "fieldValue": "AAPL"
                 }
 
