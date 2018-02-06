@@ -200,7 +200,6 @@ export class AppComponent implements OnInit {
     currentSlicers: Widget[] = [];
     startX: number;
     startY: number;
-    selectedSlicers: number[] = []
     widgetIndex: number;
     selectedWidgetIDs: number[] = [];
 
@@ -1293,11 +1292,11 @@ export class AppComponent implements OnInit {
         console.log(this.currentSlicers, index)
         this.currentSlicers[index].isSelected = !this.currentSlicers[index].isSelected;
         if (this.currentSlicers[index].isSelected ) {
-            this.selectedSlicers.push(id);
+            this.globalVariableService.selectedSlicerIDs.push(id);
         } else {
-            this.selectedSlicers.splice(this.selectedSlicers.indexOf(id), 1)
+            this.globalVariableService.selectedSlicerIDs.splice(this.globalVariableService.selectedSlicerIDs.indexOf(id), 1)
         }
-        console.log('clickSlicer', this.selectedSlicers)
+        console.log('clickSlicer', this.globalVariableService.selectedSlicerIDs)
     }
 
 

@@ -82,12 +82,12 @@ the dependant software and their versions to npm.  Run
 
 ## Install Vega-Lite
     Vega-Lite is a concise declaritive graphics language.
-    `npm install vega-lite`
+    `npm install vega-lite --save`
 
 ## Install datalib
     Datalib works with Vega to product data transformations like summary statistics.
 
-    `npm install datalib`
+    `npm install datalib --save`
 
 ## Install datalib typing
     Clone Clarity Analytics Git repo **typings** in node_modules/@types (the .ts file must be in a subfolder called *datalib* )

@@ -460,7 +460,11 @@ export class WidgetComponent {
         }
     }
 
-    showWidgetForSlicer() {
+    showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {
+        // Returns True if a Widget is related to the selected Sl(s)
+        this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
+
+        // if ()
         return true;
     }
 

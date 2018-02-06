@@ -638,6 +638,8 @@ export class GlobalVariableService {
     menuActionSelectAll = new BehaviorSubject<boolean>(false);
     userID: string = 'JannieI';  // TODO - unHardCode
     dsIDs: number[] = [];           // Dataset IDs
+    selectedSlicerIDs: number[] = [];             // Array of selected Slicer IDs
+    selectedSlicerDatasourceIDs: number[] = [];   // Array of selected Slicer DS IDs
 
     // StatusBar
     statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);
@@ -2278,7 +2280,7 @@ export class GlobalVariableService {
         let promiseArray = [];
 
         // Get list of dSet-ids to make array work easier
-        this.currentDatasources.forEach(d => dsCurrIDs.push(d.id));
+        this.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
 
         return new Promise(async (resolve, reject) => {
 

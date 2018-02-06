@@ -15,7 +15,7 @@
     (dragend)="clickWidgetContainerDragEnd($event, i)"
     draggable="true"
     >
-    <span *ngIf="showWidgetForSlicer()" 
+    <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)" 
         class="selectedSlicer" 
         title="Related Widget has been selected">
         o
