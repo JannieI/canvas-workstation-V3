@@ -1331,8 +1331,10 @@ export class AppComponent implements OnInit {
             }
         }
         );
-        console.log('xx end', this.globalVariableService.currentDatasets, this.currentSlicers)
 
+        // Refresh Ws
+        this.widgetDOM.refreshWidgets();
+        console.log('xx end', this.globalVariableService.currentDatasets, this.currentSlicers)
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {
