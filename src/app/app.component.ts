@@ -1294,13 +1294,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.currentSlicers.forEach(sl => {
             if (sl.id == id) {sl.isSelected = sl.isSelected}
         })
-        console.log('xx', index, id, this.currentSlicers[index].isSelected)
-        if (this.currentSlicers[index].isSelected ) {
-            this.globalVariableService.selectedSlicerIDs.push(id);
-        } else {
-            this.globalVariableService.selectedSlicerIDs.splice(this.globalVariableService.selectedSlicerIDs.indexOf(id), 1)
-        }
-        console.log('clickSlicer', this.globalVariableService.selectedSlicerIDs)
+
     }
 
 
@@ -1309,7 +1303,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerItem', '@Start');
 
-        // Adjust the Sl selection
+        // Adjust the Sl selection (local + Global)
         this.globalVariableService.currentSlicers.forEach(w => {
             if (w.id == id) {
                 
@@ -1322,7 +1316,19 @@ export class AppComponent implements OnInit {
             
             }
         });
-
+        this.currentSlicers.forEach(w => {
+            if (w.id == id) {
+                
+                // Update the selected item
+                w.slicerSelection.forEach(sel => {
+                    if (sel.fieldValue == fieldValue) {
+                        sel.isSelected = !sel.isSelected;
+                    }
+                })
+            
+            }
+        });
+console.log('xx', this.currentSlicers[0].slicerSelection)
         // Filter this dSet, applying all Sl that relates to it
         this.globalVariableService.currentDatasets.forEach(cd => {
             if (cd.id == datasetID) {

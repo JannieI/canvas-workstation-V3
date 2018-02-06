@@ -638,7 +638,6 @@ export class GlobalVariableService {
     menuActionSelectAll = new BehaviorSubject<boolean>(false);
     userID: string = 'JannieI';  // TODO - unHardCode
     dsIDs: number[] = [];           // Dataset IDs
-    selectedSlicerIDs: number[] = [];             // Array of selected Slicer IDs
     selectedSlicerDatasourceIDs: number[] = [];   // Array of selected Slicer DS IDs
 
     // StatusBar
