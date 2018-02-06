@@ -207,10 +207,13 @@ export class WidgetComponent {
 
     }
 
-    refreshWidgets(start: number = -1, end: number = -1) {
+    refreshWidgets(start: number = -1, end: number = -1, arrID: number[] = []) {
         // Refreshes given range of W
         // start = start index, base 0.  end = last index.  Both are optional, which will
-        // refresh all W
+        // refresh all W.  arrID is an optional string of IDs, used to refresh specific ones
+        // only.  So refreshWidgets() will refresh all, refreshWidgets(2) will refresh the W
+        // from index 2 to the end, refreshWidgets(4,5) will refresh Ws in index position 
+        // 4 and 5.  refreshWidgets(1,-1,[1,8]) will refresh W in position 1 and 8.
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
         
         this.startWidgetNumber = 0;
@@ -226,100 +229,101 @@ export class WidgetComponent {
         }
 
         for (var i = this.startWidgetNumber; i < this.endWidgetNumber; i++) {
-            console.log('TEST refreshWidgets start', this.widgetContainerDOM.toArray(),
-                this.widgetDOM, this.widgetDOM.length, this.widgets)
+            
+            if ( (arrID.length > 0  && arrID.indexOf(this.widgets[i].id) >= 0)  ||
+                arrID.length == 0 ) {
+                console.log('xx', this.widgets[i].id, arrID, arrID.indexOf(this.widgets[i].id), arrID.length)
+                // String of IF statements that caters for different visualGrammars
+                if (this.widgets[i].visualGrammar == 'Vega-Lite') {
 
-            // String of IF statements that caters for different visualGrammars
-            if (this.widgets[i].visualGrammar == 'Vega-Lite') {
+                    console.log('this.widgets[i].graphSpecification', this.widgets[i].graphSpecification)
+                    // Use the spec inside the Widget, or the properties
+                    let definition: any = null;
+                    if (this.widgets[i].graphSpecification != ''  &&
+                        this.widgets[i].graphSpecification != null) {
+                            definition = this.widgets[i].graphSpecification;
 
-                console.log('this.widgets[i].graphSpecification', this.widgets[i].graphSpecification)
-                // Use the spec inside the Widget, or the properties
-                let definition: any = null;
-                if (this.widgets[i].graphSpecification != ''  &&
-                    this.widgets[i].graphSpecification != null) {
-                        definition = this.widgets[i].graphSpecification;
+                            // TODO - fix this, as datalib reads children as object object ...
+                            definition = definition.replace(/@/g,'"');
+                            // "data": {"url": "../assets/vega-datasets/cars.json"},
 
-                        // TODO - fix this, as datalib reads children as object object ...
-                        definition = definition.replace(/@/g,'"');
-                        // "data": {"url": "../assets/vega-datasets/cars.json"},
-
-                        definition = {
-                            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-                            "description": "Shows the relationship between horsepower and the numbver of cylinders using tick marks.",
-                            "data": {"url": "../assets/vega-datasets/cars.json"},
-                            "mark": "tick",
-                            "encoding": {
-                              "x": {"field": "Horsepower", "type": "quantitative"},
-                              "y": {"field": "Cylinders", "type": "ordinal"}
+                            definition = {
+                                "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+                                "description": "Shows the relationship between horsepower and the numbver of cylinders using tick marks.",
+                                "data": {"url": "../assets/vega-datasets/cars.json"},
+                                "mark": "tick",
+                                "encoding": {
+                                "x": {"field": "Horsepower", "type": "quantitative"},
+                                "y": {"field": "Cylinders", "type": "ordinal"}
+                                }
                             }
-                        }
 
-                        definition = {
-                            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-                            "description": "A bar chart showing the US population distribution of age groups and gender in 2000.",
-                            "data": { "url": "../assets/vega-datasets/population.json"},
-                            "transform": [
-                              {"filter": "datum.year == 2000"},
-                              {"calculate": "datum.sex == 2 ? 'Female' : 'Male'", "as": "gender"}
-                            ],
-                            "mark": "bar",
-                            "encoding": {
-                              "x": {
-                                "field": "age", "type": "ordinal",
-                                "scale": {"rangeStep": 17}
-                              },
-                              "y": {
-                                "aggregate": "sum", "field": "people", "type": "quantitative",
-                                "axis": {"title": "population"},
-                                "stack": null
-                              },
-                              "color": {
-                                "field": "gender", "type": "nominal",
-                                "scale": {"range": ["#e377c2","#1f77b4"]}
-                              },
-                              "opacity": {"value": 0.7}
+                            definition = {
+                                "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+                                "description": "A bar chart showing the US population distribution of age groups and gender in 2000.",
+                                "data": { "url": "../assets/vega-datasets/population.json"},
+                                "transform": [
+                                {"filter": "datum.year == 2000"},
+                                {"calculate": "datum.sex == 2 ? 'Female' : 'Male'", "as": "gender"}
+                                ],
+                                "mark": "bar",
+                                "encoding": {
+                                "x": {
+                                    "field": "age", "type": "ordinal",
+                                    "scale": {"rangeStep": 17}
+                                },
+                                "y": {
+                                    "aggregate": "sum", "field": "people", "type": "quantitative",
+                                    "axis": {"title": "population"},
+                                    "stack": null
+                                },
+                                "color": {
+                                    "field": "gender", "type": "nominal",
+                                    "scale": {"range": ["#e377c2","#1f77b4"]}
+                                },
+                                "opacity": {"value": 0.7}
+                                }
                             }
-                        }
 
-                        definition = {
-                            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-                            "data": { "url": "../assets/vega-datasets/github.csv"},
-                            "mark": "circle",
-                            "encoding": {
-                              "y": {
-                                "field": "time",
-                                "type": "ordinal",
-                                "timeUnit": "day"
-                              },
-                              "x": {
-                                "field": "time",
-                                "type": "ordinal",
-                                "timeUnit": "hours"
-                              },
-                              "size": {
-                                "field": "count",
-                                "type": "quantitative",
-                                "aggregate": "sum"
-                              }
+                            definition = {
+                                "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+                                "data": { "url": "../assets/vega-datasets/github.csv"},
+                                "mark": "circle",
+                                "encoding": {
+                                "y": {
+                                    "field": "time",
+                                    "type": "ordinal",
+                                    "timeUnit": "day"
+                                },
+                                "x": {
+                                    "field": "time",
+                                    "type": "ordinal",
+                                    "timeUnit": "hours"
+                                },
+                                "size": {
+                                    "field": "count",
+                                    "type": "quantitative",
+                                    "aggregate": "sum"
+                                }
+                                }
                             }
-                        }
 
-                        console.log('definition', definition)
+                            console.log('definition', definition)
+                    } else {
+                        definition = this.createVegaLiteSpec(this.widgets[i]);
+                    }
+                    let specification = compile(definition).spec;
+                    let view = new View(parse(specification));
+                    view.renderer('svg')
+                        .initialize( this.widgetDOM.toArray()[i].nativeElement)
+                        .hover()
+                        .run()
+                        .finalize();
+                    console.log('TEST refreshWidgets render done', specification)
                 } else {
-                    definition = this.createVegaLiteSpec(this.widgets[i]);
-                }
-                let specification = compile(definition).spec;
-                let view = new View(parse(specification));
-                view.renderer('svg')
-                    .initialize( this.widgetDOM.toArray()[i].nativeElement)
-                    .hover()
-                    .run()
-                    .finalize();
-                console.log('TEST refreshWidgets render done', specification)
-            } else {
-                alert('The visualGrammar of widget ' + i.toString() + ' is not == Vega-Lite' )
+                    alert('The visualGrammar of widget ' + i.toString() + ' is not == Vega-Lite' )
+                };
             };
-
         }
         console.log('TEST refreshWidgets end')
     }

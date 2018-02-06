@@ -1332,8 +1332,14 @@ export class AppComponent implements OnInit {
         }
         );
 
-        // Refresh Ws
-        this.widgetDOM.refreshWidgets();
+        // Refresh Ws that are related to Sl
+        let wIDs: number[] = [];
+        this.globalVariableService.currentWidgets.forEach(w => {
+            if (w.datasourceID == datasourceID  &&  w.datasetID == datasetID) {
+                wIDs.push(w.id);
+            }
+        })
+        this.widgetDOM.refreshWidgets(-1,-1,wIDs);
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {
