@@ -1309,13 +1309,11 @@ export class AppComponent implements OnInit {
         // Adjust the Sl selection
         this.globalVariableService.currentSlicers.forEach(w => {
             if (w.id == id) {
-                console.log('xx Sl do this id', w.id, w)
                 
                 // Update the selected item
                 w.slicerSelection.forEach(sel => {
                     if (sel.fieldValue == fieldValue) {
                         sel.isSelected = !sel.isSelected;
-                        console.log('xx Sl sel now is', sel)
                     }
                 })
             
@@ -1325,7 +1323,6 @@ export class AppComponent implements OnInit {
         // Filter this dSet, applying all Sl that relates to it
         this.globalVariableService.currentDatasets.forEach(cd => {
             if (cd.id == datasetID) {
-                console.log('xx dSet do this id', cd.id, cd)
                 
                 this.globalVariableService.filterSlicer(cd);
             }
@@ -1334,7 +1331,6 @@ export class AppComponent implements OnInit {
 
         // Refresh Ws
         this.widgetDOM.refreshWidgets();
-        console.log('xx end', this.globalVariableService.currentDatasets, this.currentSlicers)
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {
