@@ -1307,28 +1307,27 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerItem', '@Start');
 
         // Adjust the Sl selection
-        this.globalVariableService.currentWidgets.forEach(w => {
+        this.globalVariableService.currentSlicers.forEach(w => {
             if (w.id == id) {
-                console.log('xx do this id', w.id, w)
+                console.log('xx Sl do this id', w.id, w)
                 
                 // Update the selected item
                 w.slicerSelection.forEach(sel => {
                     if (sel.fieldValue == fieldValue) {
                         sel.isSelected = !sel.isSelected;
-                        console.log('xx sel now is', sel)
+                        console.log('xx Sl sel now is', sel)
                     }
                 })
             
-            // this.globalVariableService.filterSlicer(cd)
             }
         });
 
         // Filter this dSet, applying all Sl that relates to it
         this.globalVariableService.currentDatasets.forEach(cd => {
             if (cd.id == datasetID) {
-                console.log('xx do this id', cd.id, cd)
+                console.log('xx dSet do this id', cd.id, cd)
                 
-                // this.globalVariableService.filterSlicer(cd)
+                this.globalVariableService.filterSlicer(cd);
             }
         }
         );
