@@ -652,7 +652,9 @@ export class Widget {
             fieldValue: string;
         }
     ];
-    datasetID: number;                      // Specific ID, or -1 = latest dataset
+    datasetID: number;                      // Specific ID that this W points to.  For a W, 
+    // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
+    // For a W, -1 = latest dataset of the DS-id.  For now, Sl must have a datsetID <> -1
     dataParameters:
     [
         {

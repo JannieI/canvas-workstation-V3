@@ -1422,13 +1422,17 @@ export class GlobalVariableService {
     }
 
     filterSlicer(dataSet: Dataset): any {
-        // Filter a given Dataset on .data -> .dataRaw by applying all applicable Sl
+        // Filter a given Dataset on .dataRaw by applying all applicable Sl, and put result
+        // into .data
+        // Note: Objects and arrays are passed by reference. Primitive values like number, 
+        // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
         console.log('Global-Variables filterSlicer ...');
 
         // Get all Sl for the dSet
+        // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has 
+        // two dSets with different values ...
         let localSlicers: Widget[] = this.currentSlicers.filter( sl =>
-            sl.datasourceID == dataSet.datasourceID  &&
-              ( (sl.datasetID == -1  ||  sl.datasetID == sl.datasetID) )
+            sl.datasourceID == dataSet.datasourceID  &&  sl.datasetID == sl.datasetID
         );
         console.log('xx localSlicers', localSlicers, dataSet)
 
@@ -1445,7 +1449,7 @@ export class GlobalVariableService {
                     "fieldValue": "MSFT"
                 },
                 {
-                    "isSelected": true,
+                    "isSelected": false,
                     "fieldValue": "AMZN"
                 },
                 {
@@ -2336,7 +2340,9 @@ export class GlobalVariableService {
                     // TODO - url = this.filePath for localDB ...
                     this.currentWidgets.forEach(w => {
                         w.graphUrl = "";
-                        let ds:Dataset[] = this.currentDatasets.filter(i => i.id == w.datasetID);
+                        let ds: Dataset[] = this.currentDatasets.filter(
+                            i => i.id == w.datasetID
+                        );
                         if (ds.length > 0) {
                             w.graphData = ds[0].data;
                         } else {
