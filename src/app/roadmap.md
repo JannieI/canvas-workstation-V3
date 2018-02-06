@@ -108,7 +108,8 @@ Other:
 - can we hide T - will show in T list with hidden tick, can uncheck?
 - getting a W from another D - only show those where the user has access to the DS
 - after Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field may not exist any longer in DS)
-- 
+- decide if check/tick is shown on related Sl when a W is clicked.  
+- try to improve performance - trackedByFn ...
 
 Shapes:
 - have the following elements:

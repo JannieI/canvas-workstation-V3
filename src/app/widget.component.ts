@@ -208,11 +208,14 @@ export class WidgetComponent {
     }
 
     refreshWidgets(start: number = -1, end: number = -1) {
-        //
+        // Refreshes given range of W
+        // start = start index, base 0.  end = last index.  Both are optional, which will
+        // refresh all W
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
-
+        
         this.startWidgetNumber = 0;
         this.endWidgetNumber = this.widgetContainerDOM.length;
+        if (end > this.widgetContainerDOM.length) {end = this.widgetContainerDOM.length};
         if (start > -1) {
             this.startWidgetNumber = start;
             if (end > start) {
