@@ -18,7 +18,7 @@
     <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)" 
         class="selectedSlicer" 
         title="Related Widget has been selected">
-        o
+        <clr-icon shape="check" size="12"></clr-icon>
     </span>    
     <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality" 
         class="badge badge-danger widgetBadge1" 

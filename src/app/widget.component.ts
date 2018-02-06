@@ -423,7 +423,6 @@ export class WidgetComponent {
         this.startY = ev.y;
     }
 
-
     clickWidgetContainerDragEnd(ev: MouseEvent, index: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragEnd', '@Start');
@@ -464,8 +463,18 @@ export class WidgetComponent {
         // Returns True if a Widget is related to the selected Sl(s)
         this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
 
-        // if ()
-        return true;
+        // Get list of selected Sl
+        let result: boolean = false;
+        this.globalVariableService.currentSlicers.forEach(sl => {
+            if (sl.isSelected) {
+                if (sl.datasourceID == datasourceID  &&  sl.datasetID == datasetID) {
+                    console.log('xx true', id)
+                    result = true;
+                };
+            };
+        });
+
+        return result;
     }
 
 }

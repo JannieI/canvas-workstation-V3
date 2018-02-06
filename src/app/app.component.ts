@@ -284,7 +284,7 @@ export class AppComponent implements OnInit {
                                 this.currentWidgets = this.globalVariableService.
                                     currentWidgets;
 
-                                // TODO - remove later
+                                // Get Sl
                                 this.currentSlicers = this.globalVariableService.currentSlicers;
                             }
                         )
@@ -1290,8 +1290,11 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicer', '@Start');
 
         // TODO - fix index..
-        console.log('err in clickSlicer')
         this.currentSlicers[index].isSelected = !this.currentSlicers[index].isSelected;
+        this.globalVariableService.currentSlicers.forEach(sl => {
+            if (sl.id == id) {sl.isSelected = sl.isSelected}
+        })
+        console.log('xx', index, id, this.currentSlicers[index].isSelected)
         if (this.currentSlicers[index].isSelected ) {
             this.globalVariableService.selectedSlicerIDs.push(id);
         } else {
