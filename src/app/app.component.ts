@@ -1297,7 +1297,6 @@ export class AppComponent implements OnInit {
 
     }
 
-
     clickSlicerItem(index: number, id: number, datasourceID: number, datasetID: number, 
         fieldValue: string) {
         //
@@ -1316,19 +1315,7 @@ export class AppComponent implements OnInit {
             
             }
         });
-        this.currentSlicers.forEach(w => {
-            if (w.id == id) {
-                
-                // Update the selected item
-                w.slicerSelection.forEach(sel => {
-                    if (sel.fieldValue == fieldValue) {
-                        sel.isSelected = !sel.isSelected;
-                    }
-                })
-            
-            }
-        });
-console.log('xx', this.currentSlicers[0].slicerSelection)
+ 
         // Filter this dSet, applying all Sl that relates to it
         this.globalVariableService.currentDatasets.forEach(cd => {
             if (cd.id == datasetID) {
@@ -1346,6 +1333,8 @@ console.log('xx', this.currentSlicers[0].slicerSelection)
             }
         })
         this.widgetDOM.refreshWidgets(-1,-1,wIDs);
+        this.currentSlicers = this.globalVariableService.currentSlicers;
+        console.log('xx', this.currentSlicers)
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {
