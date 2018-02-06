@@ -1421,7 +1421,7 @@ export class GlobalVariableService {
         });
     }
 
-    filterSlicer(dataSet: Dataset, fix: boolean = false): any {
+    filterSlicer(dataSet: Dataset): any {
         // Filter a given Dataset on .dataRaw by applying all applicable Sl, and put result
         // into .data
         // Note: Objects and arrays are passed by reference. Primitive values like number, 
@@ -1440,33 +1440,6 @@ export class GlobalVariableService {
 
         // Loop on applicable Sl
         localSlicers.forEach(sl => {
-
-            // TODO - fix hardcoding, issue with datalib jsonTree
-            if (fix) {
-                sl.slicerSelection =  [
-                    {
-                        "isSelected": true,
-                        "fieldValue": "MSFT"
-                    },
-                    {
-                        "isSelected": false,
-                        "fieldValue": "AMZN"
-                    },
-                    {
-                        "isSelected": true,
-                        "fieldValue": "IBM"
-                    },
-                    {
-                        "isSelected": true,
-                        "fieldValue": "GOOG"
-                    },
-                    {
-                        "isSelected": true,
-                        "fieldValue": "AAPL"
-                    }
-
-                ]
-            }
 
             // Build array of selection values
             let fieldValue: string[] = [];
@@ -2208,9 +2181,37 @@ export class GlobalVariableService {
                 this.get(url)
                     .then(data => {
                         this.widgets = data;
+
+                        // TODO - fix hardcoding, issue with datalib jsonTree
+                        this.widgets.forEach(w => {
+                            w.slicerSelection =  [
+                                {
+                                    "isSelected": true,
+                                    "fieldValue": "MSFT"
+                                },
+                                {
+                                    "isSelected": false,
+                                    "fieldValue": "AMZN"
+                                },
+                                {
+                                    "isSelected": true,
+                                    "fieldValue": "IBM"
+                                },
+                                {
+                                    "isSelected": true,
+                                    "fieldValue": "GOOG"
+                                },
+                                {
+                                    "isSelected": true,
+                                    "fieldValue": "AAPL"
+                                }
+
+                            ]
+                        });
+
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getWidgets 1', data)
+                        console.log('Global-Variables getWidgets 1', this.widgets)
                         resolve(this.widgets);
                     });
             } else {
@@ -2340,7 +2341,7 @@ export class GlobalVariableService {
 
                     // Filter currentDatasets by Sl linked to DS
                     this.currentDatasets.forEach(cd => {
-                        this.filterSlicer(cd, true);  // TODO - remove fix !!!
+                        this.filterSlicer(cd);  // TODO - remove fix !!!
                     })
 
                     // Add data to widget
