@@ -1485,9 +1485,17 @@ export class GlobalVariableService {
                 // Replace the filtered data, used by the graph
                 dataSet.data = tempData;
             }
-        })
-        return dataSet;
+        });
 
+        // Filter data in [W] related to this dSet
+        this.currentWidgets.forEach(w => {
+            if (w.datasetID == dataSet.id) {
+                w.graphUrl = "";
+                w.graphData = dataSet.data;
+            }
+        });
+
+        return dataSet;
     }
 
     getDashboardSchedules(): Promise<DashboardSchedule[]> {
@@ -2338,18 +2346,18 @@ export class GlobalVariableService {
 
                     // Add data to widget
                     // TODO - url = this.filePath for localDB ...
-                    this.currentWidgets.forEach(w => {
-                        w.graphUrl = "";
-                        let ds: Dataset[] = this.currentDatasets.filter(
-                            i => i.id == w.datasetID
-                        );
-                        if (ds.length > 0) {
-                            w.graphData = ds[0].data;
-                        } else {
-                            w.graphData = null;
-                        }
+                    // this.currentWidgets.forEach(w => {
+                    //     w.graphUrl = "";
+                    //     let ds: Dataset[] = this.currentDatasets.filter(
+                    //         i => i.id == w.datasetID
+                    //     );
+                    //     if (ds.length > 0) {
+                    //         w.graphData = ds[0].data;
+                    //     } else {
+                    //         w.graphData = null;
+                    //     }
 
-                    });
+                    // });
 
                     console.log('Global-Variables getWidgetsInfo 1 True');
                     resolve(true);
