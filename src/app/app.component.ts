@@ -1289,7 +1289,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicer', '@Start');
 
-        console.log(this.currentSlicers, index)
+        // TODO - fix index..
+        console.log('err in clickSlicer')
         this.currentSlicers[index].isSelected = !this.currentSlicers[index].isSelected;
         if (this.currentSlicers[index].isSelected ) {
             this.globalVariableService.selectedSlicerIDs.push(id);
@@ -1300,11 +1301,39 @@ export class AppComponent implements OnInit {
     }
 
 
-    clickSlicerItem(index: number, id: number, fieldValue: string, sel) {
+    clickSlicerItem(index: number, id: number, datasourceID: number, datasetID: number, 
+        fieldValue: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerItem', '@Start');
 
-        console.log('xx', index, id, fieldValue, sel)
+        // Adjust the Sl selection
+        this.globalVariableService.currentWidgets.forEach(w => {
+            if (w.id == id) {
+                console.log('xx do this id', w.id, w)
+                
+                // Update the selected item
+                w.slicerSelection.forEach(sel => {
+                    if (sel.fieldValue == fieldValue) {
+                        sel.isSelected = !sel.isSelected;
+                        console.log('xx sel now is', sel)
+                    }
+                })
+            
+            // this.globalVariableService.filterSlicer(cd)
+            }
+        });
+
+        // Filter this dSet, applying all Sl that relates to it
+        this.globalVariableService.currentDatasets.forEach(cd => {
+            if (cd.id == datasetID) {
+                console.log('xx do this id', cd.id, cd)
+                
+                // this.globalVariableService.filterSlicer(cd)
+            }
+        }
+        );
+        console.log('xx end', this.globalVariableService.currentDatasets, this.currentSlicers)
+
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {

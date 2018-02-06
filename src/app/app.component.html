@@ -1308,7 +1308,8 @@
             >
             <option *ngFor="let d of row.slicerSelection; let i = index" 
                 class="slicerOption"
-                (click)="clickSlicerItem(i, row.id, d.fieldValue, d.fieldValue.selected)"
+                (click)="clickSlicerItem(i, row.id, row.datasourceID, row.datasetID, 
+                    d.fieldValue)"
                 >
                 {{ d.fieldValue }}
             </option>

@@ -1421,7 +1421,7 @@ export class GlobalVariableService {
         });
     }
 
-    filterSlicer(dataSet: Dataset): any {
+    filterSlicer(dataSet: Dataset, fix: boolean = false): any {
         // Filter a given Dataset on .dataRaw by applying all applicable Sl, and put result
         // into .data
         // Note: Objects and arrays are passed by reference. Primitive values like number, 
@@ -1434,7 +1434,6 @@ export class GlobalVariableService {
         let localSlicers: Widget[] = this.currentSlicers.filter( sl =>
             sl.datasourceID == dataSet.datasourceID  &&  sl.datasetID == sl.datasetID
         );
-        console.log('xx localSlicers', localSlicers, dataSet)
 
         // Reset the filtered data
         dataSet.data = dataSet.dataRaw;
@@ -1443,31 +1442,31 @@ export class GlobalVariableService {
         localSlicers.forEach(sl => {
 
             // TODO - fix hardcoding, issue with datalib jsonTree
-            sl.slicerSelection =  [
-                {
-                    "isSelected": true,
-                    "fieldValue": "MSFT"
-                },
-                {
-                    "isSelected": false,
-                    "fieldValue": "AMZN"
-                },
-                {
-                    "isSelected": true,
-                    "fieldValue": "IBM"
-                },
-                {
-                    "isSelected": true,
-                    "fieldValue": "GOOG"
-                },
-                {
-                    "isSelected": true,
-                    "fieldValue": "AAPL"
-                }
+            if (fix) {
+                sl.slicerSelection =  [
+                    {
+                        "isSelected": true,
+                        "fieldValue": "MSFT"
+                    },
+                    {
+                        "isSelected": false,
+                        "fieldValue": "AMZN"
+                    },
+                    {
+                        "isSelected": true,
+                        "fieldValue": "IBM"
+                    },
+                    {
+                        "isSelected": true,
+                        "fieldValue": "GOOG"
+                    },
+                    {
+                        "isSelected": true,
+                        "fieldValue": "AAPL"
+                    }
 
-            ]
-
-
+                ]
+            }
 
             // Build array of selection values
             let fieldValue: string[] = [];
@@ -2341,7 +2340,7 @@ export class GlobalVariableService {
 
                     // Filter currentDatasets by Sl linked to DS
                     this.currentDatasets.forEach(cd => {
-                        this.filterSlicer(cd);
+                        this.filterSlicer(cd, true);  // TODO - remove fix !!!
                     })
 
                     // Add data to widget
