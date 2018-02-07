@@ -210,8 +210,6 @@
     }
         .slicerLabel {
             color: black;
-            float: left;
-            text-align: center;
         }
         .slicerBlock {
             border: 1px solid black !important;

@@ -1294,6 +1294,15 @@
         [style.width.px]="row.containerWidth-14"
         >
 
+        <span>
+            <clr-icon
+                shape="pinboard"
+                size="12"
+                *ngIf="row.isSelected"
+                (click)="clickSlicerTabs()"
+                >
+            </clr-icon>
+        </span>
         <span class="slicerLabel" *ngIf="row.containerWidgetTitle"
             (click)="clickSlicer(i, row.id)"
             [style.background-color]="row.containerBackgroundcolor"

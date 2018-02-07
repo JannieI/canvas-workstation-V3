@@ -158,6 +158,7 @@ export class AppComponent implements OnInit {
     showModalDashboardTreeview: boolean = false;
     showModalDashboardSubscribe: boolean = false;
     showMainMenu: boolean = true;
+    showMultiTabMenu: boolean = false;
     showModalWidgetCheckpoints: boolean = false;
     showModalWidgetComments: boolean = false;
     showModalWidgetLinks: boolean = false;
@@ -1422,6 +1423,13 @@ export class AppComponent implements OnInit {
 
         // All good
         return true;
+    }
+
+    clickSlicerTabs() {
+        // Returns true if one and only widget was selected, else false
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerTabs', '@Start');
+
+        this.showMultiTabMenu = !this.showMultiTabMenu;
     }
 
 }
