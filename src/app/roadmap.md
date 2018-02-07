@@ -45,10 +45,8 @@ Caching:
 
 
 Multi-T display:
-- the T-id of a W is an array, where [] = none, [-1] = all T, [1,2] = T 1 and 2, etc
-- popup form to show which T a W lives on, and a checkbox to change.  Once on none, it can be re-added from the NEW W form - make space for it.  This facility means it is easy to move W between Ts.  Note that the position is the same on all Ts.
+- popup form to show which T a W lives on, and a checkbox to change.  Note that the position is the same on all Ts.
 - can add W from other D on the NEW W form -> makes a copy of it locally, and stores a reference to the original.  This is not maintained automatically, the user has to delete and re-copy to local to get the latest.  It is thus different to templates.
-- when a Sl is selected, all W influenced by it will have an indicator on them
 - on DS menu: indicate all W (graph + Sl) influenced by this DS
 - on W menu: indicate all Sl affecting this W
  

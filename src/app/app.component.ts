@@ -1428,7 +1428,7 @@ export class AppComponent implements OnInit {
     }
 
     clickSlicerTabs(index: number) {
-        // Returns true if one and only widget was selected, else false
+        // Show list of Ts on which this Sl lives
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerTabs', '@Start');
 
         // Build list of T names and position before showing it
@@ -1447,7 +1447,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMultiTabClose(index: number) {
-        // Returns true if one and only widget was selected, else false
+        // Close multi-tab-selection popup
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabClose', '@Start');
 
         let x: number = 0;
@@ -1464,7 +1464,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMultiTabSelect(index: number, ev: any) {
-        // Returns true if one and only widget was selected, else false
+        // Select/UnSelect a T 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabSelect', '@Start');
 
         if (ev.target.localName == 'input') {
@@ -1472,6 +1472,12 @@ export class AppComponent implements OnInit {
         }
     }
 
+    clickUnSelect(index: number, ev: any) {
+        // Unselects all Ws
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickUnSelect', '@Start');
+
+        this.currentWidgets.forEach(w => w.isSelected = false);
+    }
 }
 
 // Naming conventions
