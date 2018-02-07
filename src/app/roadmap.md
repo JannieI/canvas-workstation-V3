@@ -21,33 +21,10 @@ This document describes items for later versions of Canvas.
 **1 Feb 2018**
 Structure on loading D:
 
-At start:
-- load all D, DS
-
-1. Get objects and data (note - this cater for localDB OR arrays in memory)
-- input D-id, T-id -> get D + Tmp, all T on D
-- get all [W] for D, W = Graph, Table, Slicer, Shape (Sl with values and selections)
-- get [DS] for [W]
-- get [dSet] for [W], latest or specific - store this
-
-2. Refresh
-- get [dSet*] from [dSet] for all W, applying relevant Sl selections
-- update [W ex Sl] to point to [dSet*]: in memory = array inside W, localDB = url
-- redraw:
-    - Graph: based on grammer and type, ie Vega
-    - Slicer: render list
-    - Table: show page 1, with lazy loading
-    - Shape: show with data elements
-
-When clicking on a Sl:
-- update the selection (values and selections)
-- run 2. Refresh above (but only for Sl, dSet, W affected)
 
 For now:
-- Sl has same structure (with dSet) as graph (Vega), but keeps selection data separately => for now we will run query twice, but later we need to extract the unique values from the dSet already extracted.  Note: the DS specifies the Distinct Top n, so that the all the rows and columns are not returned.
 - it is possible to use Vega sliders as well - these apply only to the graph on which it appears, and is applied after the Sl is applied.  Important, if Sl has no W linked to it, the dSet must still be obtained.
-- do we keep the DS - dSet-id pairs?
-- all W use same WidgetComponent => drag and drop, resize, selection, align, delete, refresh-DS, etc are DRY. But the following is different according to the different types: refreshing, clicking (ie Sl refreshes data)
+- all W use same WidgetComponent => drag and drop, resize, selection, align, delete, refresh-DS, etc are DRY. But the following is different according to the different types: refreshing, clicking (ie Sl refreshes data) ?
 
 
 Different versions of Vega:
@@ -105,6 +82,7 @@ Auto-save / Undo:
 Other:
 - show a list of [dSet] from menu or at least when creating Sl - and can browse data too.  How does this fit into the current D design?
 - Sl over T can be clumsy - can use multi-T feature but is this enough?
+- Sl: can switch on/off per W -> suggest this will be confusing to users ...
 - can we hide T - will show in T list with hidden tick, can uncheck?
 - getting a W from another D - only show those where the user has access to the DS
 - after Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field may not exist any longer in DS)
