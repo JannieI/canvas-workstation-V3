@@ -132,6 +132,8 @@ export class AppComponent implements OnInit {
     moveOffsetY: number;
     moveLastX: number = 0;
     moveLastY: number = 0;
+    multiTabLeft: number = 0;
+    multiTabTop: number = 0;
     presentationMode: boolean;
     showGrid: boolean;
     showDataQuality: boolean;
@@ -194,6 +196,7 @@ export class AppComponent implements OnInit {
     statusBarCancelRefresh: boolean = false;
 
     currentWidgets: Widget[] = [];
+    currentTabNames: string[] = [];
     showModalLanding: boolean;
 
     // Testings ....
@@ -1425,11 +1428,24 @@ export class AppComponent implements OnInit {
         return true;
     }
 
-    clickSlicerTabs() {
+    clickSlicerTabs(index: number) {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerTabs', '@Start');
 
+        // Build list of T names and position before showing it
+        this.currentTabNames = [];
+        this.globalVariableService.currentDashboardTabs.forEach(t => 
+            this.currentTabNames.push(t.name))
+        this.multiTabLeft = this.currentSlicers[index].containerLeft;
+        this.multiTabTop = this.currentSlicers[index].containerTop + 30;
         this.showMultiTabMenu = !this.showMultiTabMenu;
+    }
+
+    clickMultiTabName(index: number) {
+        // Returns true if one and only widget was selected, else false
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabName', '@Start');
+
+        console.log('XX', this.currentTabNames[index])
     }
 
 }

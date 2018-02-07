@@ -1299,7 +1299,7 @@
                 shape="pinboard"
                 size="12"
                 *ngIf="row.isSelected"
-                (click)="clickSlicerTabs()"
+                (click)="clickSlicerTabs(i)"
                 >
             </clr-icon>
         </span>
@@ -1411,3 +1411,15 @@
  
 </div>
 
+<div *ngIf="showMultiTabMenu" class="multiTabMenu"
+    [style.left.px]="multiTabLeft"
+    [style.top.px]="multiTabTop"
+    >
+    <select>
+        <option *ngFor="let row of currentTabNames; let i = index"
+            (click)="clickMultiTabName()"
+            >
+            {{ row }}
+        </option>
+    </select>
+</div>

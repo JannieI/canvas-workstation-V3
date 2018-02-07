@@ -334,3 +334,9 @@
         padding: 0;
         background-color: #929699;
     }
+
+.multiTabMenu {
+    background-color: #293841;
+    position: absolute;
+    z-index: 100;
+}
