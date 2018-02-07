@@ -1445,7 +1445,7 @@ export class AppComponent implements OnInit {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabName', '@Start');
 
-        console.log('XX', this.currentTabNames[index])
+        console.log('xx name', index, this.currentTabNames[index])
     }
 
 }

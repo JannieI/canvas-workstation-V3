@@ -340,3 +340,6 @@
     position: absolute;
     z-index: 100;
 }
+.multiTabMenuOption {
+    background-color: #293841;
+}

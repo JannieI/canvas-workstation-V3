@@ -1415,9 +1415,9 @@
     [style.left.px]="multiTabLeft"
     [style.top.px]="multiTabTop"
     >
-    <select>
-        <option *ngFor="let row of currentTabNames; let i = index"
-            (click)="clickMultiTabName()"
+    <select multiple>
+        <option *ngFor="let row of currentTabNames; let i = index" class="multiTabMenuOption"
+            (click)="clickMultiTabName(i)"
             >
             {{ row }}
         </option>
