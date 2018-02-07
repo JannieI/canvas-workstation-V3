@@ -196,7 +196,7 @@ export class AppComponent implements OnInit {
     statusBarCancelRefresh: boolean = false;
 
     currentWidgets: Widget[] = [];
-    currentTabNames: string[] = [];
+    currentTabNames: {isSelected: boolean; name: string}[];
     showModalLanding: boolean;
 
     // Testings ....
@@ -1338,7 +1338,6 @@ export class AppComponent implements OnInit {
         })
         this.widgetDOM.refreshWidgets(-1,-1,wIDs);
         this.currentSlicers = this.globalVariableService.currentSlicers;
-        console.log('xx', this.currentSlicers)
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {
@@ -1434,27 +1433,35 @@ export class AppComponent implements OnInit {
 
         // Build list of T names and position before showing it
         this.currentTabNames = [];
-        this.globalVariableService.currentDashboardTabs.forEach(t =>
-            this.currentTabNames.push(t.name))
+        this.globalVariableService.currentDashboardTabs.forEach(t => {
+            if (this.currentTabNames == undefined) {
+                this.currentTabNames = [{isSelected: true, name: t.name}];
+            } else {
+                this.currentTabNames.push({isSelected: false, name: t.name})
+            }
+        });
+
         this.multiTabLeft = this.currentSlicers[index].containerLeft;
         this.multiTabTop = this.currentSlicers[index].containerTop;
         this.showMultiTabMenu = !this.showMultiTabMenu;
     }
 
-    clickMultiTabName(index: number) {
-        // Returns true if one and only widget was selected, else false
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabName', '@Start');
-
-        console.log('xx name', index, this.currentTabNames[index])
-    }
-
     clickMultiTabClose(index: number) {
         // Returns true if one and only widget was selected, else false
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabName', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabClose', '@Start');
 
         this.showMultiTabMenu = false;
+        console.log('xx', this.currentTabNames)
     }
 
+    clickMultiTabSelect(index: number, ev: any) {
+        // Returns true if one and only widget was selected, else false
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabSelect', '@Start');
+
+        if (ev.target.localName == 'input') {
+            this.currentTabNames[index].isSelected = ev.target.checked;
+        }
+    }
 
 }
 

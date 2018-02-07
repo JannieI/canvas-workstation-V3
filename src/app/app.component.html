@@ -1418,11 +1418,11 @@
     [style.top.px]="multiTabTop"
     >
     <div class="multiTabMenuHeader">Select Tabs to show this slicer</div>
-        <div *ngFor="let row of currentTabNames; let i = index" class="multiTabMenuOption"
-            (click)="clickMultiTabName(i)"
-            >
-            <clr-checkbox [clrChecked]="true">
-                {{ row }}
+        <div *ngFor="let row of currentTabNames; let i = index" class="multiTabMenuOption">
+            <clr-checkbox [clrChecked]="row.isSelected" 
+                [name]="row.name" 
+                (click)="clickMultiTabSelect(i, $event)">
+                {{ row.name }}
 
             </clr-checkbox>
         </div>
