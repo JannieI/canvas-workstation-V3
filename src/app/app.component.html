@@ -1417,7 +1417,7 @@
     [style.left.px]="multiTabLeft"
     [style.top.px]="multiTabTop"
     >
-    <div>Check Tabs:</div>
+    <div class="multiTabMenuHeader">Select Tabs to show this slicer</div>
         <div *ngFor="let row of currentTabNames; let i = index" class="multiTabMenuOption"
             (click)="clickMultiTabName(i)"
             >

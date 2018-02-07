@@ -341,10 +341,15 @@
 
 .multiTabMenu {
     background-color: #293841;
+    border-radius: 4px;
+    box-shadow: 3px 3px gray;
     color: white;
     position: absolute;
     width: 10rem;
     z-index: 100;
+}
+.multiTabMenuHeader {
+    text-align: center;
 }
 .multiTabMenuOption {
     background-color: #667781;
