@@ -1450,8 +1450,17 @@ export class AppComponent implements OnInit {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabClose', '@Start');
 
-        this.showMultiTabMenu = false;
-        console.log('xx', this.currentTabNames)
+        let x: number = 0;
+        this.currentTabNames.forEach(t => {
+            if (t.isSelected) {x++}
+        });
+        if (x == 0) {
+            alert('The Slicer must belong to at least one tab.  Use Slicer -> Delete menu option to get rid of it');
+            return;
+        } else {
+            this.showMultiTabMenu = false;
+            console.log('xx', this.currentTabNames)
+        }
     }
 
     clickMultiTabSelect(index: number, ev: any) {
