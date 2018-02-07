@@ -951,7 +951,7 @@ export class AppComponent implements OnInit {
 
         if (!this.checkForOnlyOneWidget()) { return};
 
-        this.widgetIndex = 0;
+        // this.widgetIndex = 0;
         this.showModalWidgetExpand = true;
         // this.router.navigate(['/expand']);
     }
@@ -1377,7 +1377,12 @@ export class AppComponent implements OnInit {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForOnlyOneWidget', '@Start');
 
-        if (this.globalVariableService.selectedWidgetIDs.length == 0) {
+        
+        this.selectedWidgetIDs = [];
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) { this.selectedWidgetIDs.push(w.id) }
+        })
+        if (this.selectedWidgetIDs.length == 0) {
             this.globalVariableService.statusBarMessage.next(
                 {
                    message: 'No Widget selected',
@@ -1389,7 +1394,7 @@ export class AppComponent implements OnInit {
             );
             return false;
         };
-        if (this.globalVariableService.selectedWidgetIDs.length > 1) {
+        if (this.selectedWidgetIDs.length > 1) {
             this.globalVariableService.statusBarMessage.next(
                 {
                    message: 'More than 1 Widget selected',
@@ -1402,7 +1407,8 @@ export class AppComponent implements OnInit {
             return false;
         };
 
-        // All good
+        // All good - only one
+        this.widgetIndex = this.selectedWidgetIDs[0];
         return true;
     }
 
