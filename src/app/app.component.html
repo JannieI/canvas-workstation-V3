@@ -1294,22 +1294,24 @@
         [style.width.px]="row.containerWidth-14"
         >
 
-        <span>
-            <clr-icon
-                shape="pinboard"
-                size="12"
-                *ngIf="row.isSelected"
-                (click)="clickSlicerTabs(i)"
-                >
-            </clr-icon>
-        </span>
-        <span class="slicerLabel" *ngIf="row.containerWidgetTitle"
+
+        <div class="slicerLabel" *ngIf="row.containerWidgetTitle"
             (click)="clickSlicer(i, row.id)"
             [style.background-color]="row.containerBackgroundcolor"
             [style.width.px]="row.containerWidth-14"
             >
+            <span>
+                <clr-icon
+                    class="slicerLabelIcon"
+                    shape="pinboard"
+                    size="12"
+                    *ngIf="row.isSelected"
+                    (click)="clickSlicerTabs(i)"
+                    >
+                </clr-icon>
+            </span>
             <b>{{ row.containerWidgetTitle }}</b>
-        </span>
+        </div>
         <select class="slicerBlock"
             size="{{(row.containerHeight - 36) / 23}}" 
             multiple
@@ -1415,11 +1417,22 @@
     [style.left.px]="multiTabLeft"
     [style.top.px]="multiTabTop"
     >
-    <select multiple>
-        <option *ngFor="let row of currentTabNames; let i = index" class="multiTabMenuOption"
+    <div>Check Tabs:</div>
+        <div *ngFor="let row of currentTabNames; let i = index" class="multiTabMenuOption"
             (click)="clickMultiTabName(i)"
             >
-            {{ row }}
-        </option>
-    </select>
+            <clr-checkbox [clrChecked]="true">
+                {{ row }}
+
+            </clr-checkbox>
+        </div>
+        <div>
+            <button
+                type="button"
+                class="btn btn-link"
+                (click)="clickMultiTabClose()"
+                >
+                Close
+            </button>
+        </div>
 </div>

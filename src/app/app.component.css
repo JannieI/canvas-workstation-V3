@@ -210,6 +210,10 @@
     }
         .slicerLabel {
             color: black;
+            text-align: center;
+        }
+        .slicerLabelIcon {
+            float: left;
         }
         .slicerBlock {
             border: 1px solid black !important;
@@ -337,9 +341,12 @@
 
 .multiTabMenu {
     background-color: #293841;
+    color: white;
     position: absolute;
+    width: 10rem;
     z-index: 100;
 }
 .multiTabMenuOption {
-    background-color: #293841;
+    background-color: #667781;
+    color: white;
 }

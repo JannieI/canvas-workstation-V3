@@ -234,20 +234,20 @@ export class AppComponent implements OnInit {
             isActive: false,
             dateJoined: '2017/01/01',
             lastLogin: '2017/01/01',
-            colorScheme: '',         
-            startupDashboardID: 0,   
+            colorScheme: '',
+            startupDashboardID: 0,
             startupDashboardTabID: 0,
-            gridSize: 3,           
-            environment: '',       
+            gridSize: 3,
+            environment: '',
             profilePicture: '',
             queryRuntimeWarning: 3,
-            snapToGrid: false    
+            snapToGrid: false
         }
         console.log('Welcome ', this.globalVariableService.currentUser.userID)
     }
 
     ngOnInit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.presentationMode.subscribe(
@@ -271,12 +271,12 @@ export class AppComponent implements OnInit {
         );
 
         this.globalVariableService.currentDashboardInfo.subscribe(
-            i => { 
+            i => {
                 if (i) {
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                         this.globalVariableService.currentDashboardInfo.value.
-                            currentDashboardTabID).then(j => 
+                            currentDashboardTabID).then(j =>
                             {
                                 this.refreshGraphs = false;
                                 let x: number = this.globalVariableService.currentDashboardInfo.value.
@@ -298,12 +298,12 @@ export class AppComponent implements OnInit {
     }
 
     ngAfterViewInit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
     }
 
     ngAfterViewChecked() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
 
         if (this.widgetDOM != undefined  &&  (!this.refreshGraphs) ) {
@@ -331,140 +331,140 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseWidgetEditor(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
         this.showModalWidgetEditor = false;
     }
 
     handleCloseDashboardNew(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardNew', '@Start');
 
         this.showModalDashboardNew = false;
     }
 
     handleCloseDashboardOpen(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardOpen', '@Start');
 
         this.showModalDashboardOpen = false;
     }
 
     handleCloseDashboardSave(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSave', '@Start');
 
         this.showModalDashboardSave = false;
     }
 
     handleCloseDashboardSnapshots(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSnapshots', '@Start');
 
         this.showModalDashboardSnapshots = false;
     }
 
     handleCloseDashboardShare(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardShare', '@Start');
 
         this.showModalDashboardShare = false;
     }
 
     handleCloseDashboardImport(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardImport', '@Start');
 
         this.showModalDashboardImport = false;
     }
 
     handleCloseDashboardDiscard(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDiscard', '@Start');
 
         this.showModalDashboardDiscard = false;
     }
 
     handleCloseDashboardRename(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardRename', '@Start');
 
         this.showModalDashboardRename = false;
     }
 
     handleCloseDashboardDetails(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDetails', '@Start');
 
         this.showModalDashboardDetails = false;
     }
 
     handleCloseDashboardDescription() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDescription', '@Start');
 
         this.showModalDashboardDescription = false;
     }
 
     handleCloseDashboardTags(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTags', '@Start');
 
         this.showModalDashboardTags = false;
     }
 
     handleCloseDashboardSettings(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSettings', '@Start');
 
         this.showModalDashboardSettings = false;
     }
 
     handleCloseDashboardTheme(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTheme', '@Start');
 
         this.showModalDashboardTheme = false;
     }
 
     handleCloseDashboardTemplate(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTemplate', '@Start');
 
         this.showModalDashboardTemplate = false;
     }
 
     handleCloseDashboardSchedule(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSchedule', '@Start');
 
         this.showModalDashboardSchedule = false;
     }
 
     handleCloseDashboardDelete(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDelete', '@Start');
 
         this.showModalDashboardDelete = false;
     }
 
     handleCloseDashboardTreeview(action: string){
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTreeview', '@Start');
 
         this.showModalDashboardTreeview = false;
     }
 
     handleCloseDashboardSubscribe(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSubscribe', '@Start');
 
         this.showModalDashboardSubscribe = false;
     }
 
     handleCloseShapeEdit(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeEdit', '@Start');
 
         this.showModalShapeEdit = false;
@@ -474,105 +474,105 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseShapeDelete(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeDelete', '@Start');
 
         this.showModalShapeDelete = false;
     }
 
     handleCloseDashboardComments(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardComments', '@Start');
 
         this.showModalDashboardComments = false;
     }
 
     handleCloseDashboardPrint(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardPrint', '@Start');
 
         this.showModalDashboardPrint = false;
     }
 
     handleCloseDataSlicers(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSlicers', '@Start');
 
         this.showModalDataSlicers = false;
     }
 
     handleCloseData(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
 
         this.showModalData = false;
     }
-    
+
     handleCloseDataCombination(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCombination', '@Start');
 
         this.showModalDataCombination = false;
     }
 
     handleCloseDataRefresh(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataRefresh', '@Start');
 
         this.showModalDataRefresh = false;
     }
 
     handleCloseDataShare(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataShare', '@Start');
 
         this.showModalDataShare = false;
     }
 
     handleCloseWidgetCheckpoints(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetCheckpoints', '@Start');
 
         this.showModalWidgetCheckpoints = false;
     }
 
     handleCloseWidgetComments(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetComments', '@Start');
 
         this.showModalWidgetComments = false;
     }
 
     handleCloseWidgetLinks(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetLinks', '@Start');
 
         this.showModalWidgetLinks = false;
     }
 
     handleCloseWidgetDuplicate(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDuplicate', '@Start');
 
         this.showModalWidgetDuplicate = false;
     }
 
     handleCloseWidgetExpand(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExpand', '@Start');
 
         this.showModalWidgetExpand = false;
     }
 
     handleCloseWidgetExport(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExport', '@Start');
 
         this.showModalWidgetExport = false;
     }
 
     handleCloseWidgetDelete(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDelete', '@Start');
 
         console.log('App handleCloseWidgetDelete')
@@ -580,91 +580,91 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseCollaborateAlerts(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateAlerts', '@Start');
 
         this.showModalCollaborateAlerts = false;
     }
 
     handleCloseCollaborateActivityAdd(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivityAdd', '@Start');
 
         this.showModalCollaborateActivityAdd = false;
     }
 
     handleCloseCollaborateMessages(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateMessages', '@Start');
 
         this.showModalCollaborateMessages = false;
     }
 
     handleCloseCollaborateActivities(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivities', '@Start');
 
         this.showModalCollaborateActivities = false;
     }
 
     handleCloseUserLogin(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserLogin', '@Start');
 
         this.showModalDashboardLogin = false;
     }
 
     handleCloseUserLogout(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserLogout', '@Start');
 
         this.showModalDashboardLogout = false;
     }
 
     handleCloseUserPreferences(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserPreferences', '@Start');
 
         this.showModalUserPreferences = false;
     }
 
     handleCloseUserdMyProfile(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserdMyProfile', '@Start');
 
         this.showModalUserMyProfile = false;
     }
 
     handleCloseUserWidgetButtonBar(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserWidgetButtonBar', '@Start');
 
         this.showModalUserWidgetButtonBar = false;
     }
 
     handleCloseUserShapeButtonBar(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserShapeButtonBar', '@Start');
 
         this.showModalUserShapeButtonBar = false;
     }
 
     handleCloseUserSystemSettings(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserSystemSettings', '@Start');
 
         this.showModalUserSystemSettings = false;
     }
 
     handleCloseUserOffline(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserOffline', '@Start');
 
         this.showModalUserOffline = false;
     }
 
     clickDashboardNew() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardNew', '@Start');
 
         console.log('App clickDashboardNew')
@@ -672,7 +672,7 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardOpen() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardOpen', '@Start');
 
         console.log('App clickDashboardOpen')
@@ -680,7 +680,7 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardEdit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardEdit', '@Start');
 
         // Switch off all selections if going to View Mode
@@ -693,21 +693,21 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardDiscard() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDiscard', '@Start');
 
         this.showModalDashboardDiscard = true;
     }
 
     clickDashboardShare() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
 
         this.showModalDashboardShare = true;
     }
 
     clickDashboardSave() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSave', '@Start');
 
         console.log('App clickDashboardSave')
@@ -715,112 +715,112 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardSnapshots() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSnapshots', '@Start');
 
         this.showModalDashboardSnapshots = true;
     }
 
     clickDashboardImport() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardImport', '@Start');
 
         this.showModalDashboardImport = true;
     }
 
     clickDashboardRename() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardRename', '@Start');
 
         this.showModalDashboardRename = true;
     }
 
     clickMenuFileDetails() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuFileDetails', '@Start');
 
         this.showModalDashboardDetails = true;
     }
 
     clickMenuDashboardDetailDescription() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDescription', '@Start');
 
         this.showModalDashboardDescription = true;
     }
 
     clickMenuDashboardDetailTags() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTags', '@Start');
 
         this.showModalDashboardTags = true;
     }
 
     clickMenuDashboardDetailSettings() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailSettings', '@Start');
 
         this.showModalDashboardSettings = true;
     }
 
     clickMenuDashboardDetailComments() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailComments', '@Start');
 
         this.showModalDashboardComments = true;
     }
 
     clickMenuDashboardDetailTheme() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTheme', '@Start');
 
         this.showModalDashboardTheme = true;
     }
 
     clickMenuDashboardDetailTemplate() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTemplate', '@Start');
 
         this.showModalDashboardTemplate = true;
     }
 
     clickMenuDashboardDetailSchedule() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailSchedule', '@Start');
 
         this.showModalDashboardSchedule = true;
     }
 
     clickMenuDashboardPrint() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardPrint', '@Start');
 
         this.showModalDashboardPrint = true;
     }
 
     clickMenuDashboardDelete() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDelete', '@Start');
 
         this.showModalDashboardDelete = true;
     }
 
     clickMenuDashboardTreeview() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardTreeview', '@Start');
 
         this.showModalDashboardTreeview = true;
     }
 
     clickMenuDashboardSubscribe() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardSubscribe', '@Start');
 
         this.showModalDashboardSubscribe = true;
     }
 
     clickMenuDataFromFile() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
 
         console.log('App clickMenuDataFromFile')
@@ -831,7 +831,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDataFromServer() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromServer', '@Start');
 
         console.log('App clickMenuDataFromServer')
@@ -841,55 +841,55 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDataCombinations(){
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinations', '@Start');
 
         this.showModalDataCombination = true;
     }
 
     clickMenuDataSlicerAdd() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerAdd', '@Start');
 
         this.showModalDataSlicers = true;
     }
 
     clickMenuDataSlicerEdit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerEdit', '@Start');
 
         this.showModalDataSlicers = true;
     }
 
     clickMenuDataSlicerDelete() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerDelete', '@Start');
 
     }
 
     clickMenuDataRefreshAll() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataRefreshAll', '@Start');
 
         this.showModalDataRefresh = true;
     }
 
     clickMenuDataShare() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataShare', '@Start');
 
         this.showModalDataShare = true;
     }
 
     clickMenuWidgetNew() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
         this.showModalWidgetEditor = true;
     }
 
     clickMenuWidgetEdit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
         if (!this.checkForOnlyOneWidget()) { return};
@@ -898,7 +898,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetCheckpoints() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCheckpoints', '@Start');
 
         if (!this.checkForOnlyOneWidget()) { return};
@@ -907,7 +907,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetComments() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetComments', '@Start');
 
         if (!this.checkForOnlyOneWidget()) { return};
@@ -916,7 +916,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetLinks() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
 
         if (!this.checkForOnlyOneWidget()) { return};
@@ -925,7 +925,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetRefresh() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetRefresh', '@Start');
 
         if (!this.checkForOnlyOneWidget()) { return};
@@ -936,7 +936,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetDuplicate() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
 
         if (!this.checkForOnlyOneWidget()) { return};
@@ -946,7 +946,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetExpand() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExpand', '@Start');
 
         if (!this.checkForOnlyOneWidget()) { return};
@@ -957,7 +957,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetExport() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExport', '@Start');
 
         if (!this.checkForOnlyOneWidget()) { return};
@@ -966,7 +966,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetCopy() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCopy', '@Start');
 
         // Copies reference to existing datasource (of From Widget)
@@ -975,19 +975,19 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetCut() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCut', '@Start');
 
     }
 
     clickMenuWidgetPaste() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetPaste', '@Start');
 
     }
 
     clickMenuWidgetDelete() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDelete', '@Start');
 
         if (!this.checkForOnlyOneWidget()) { return};
@@ -996,63 +996,63 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuEditUndo() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditUndo', '@Start');
 
         this.showTestArrows = false;
     }
 
     clickMenuEditRedo() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditRedo', '@Start');
 
         this.showTestArrows = true;
     }
 
     clickMenuEditSelectAll() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAll', '@Start');
 
         this.globalVariableService.menuActionSelectAll.next(true);
     }
 
     clickMenuEditSelectNone() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectNone', '@Start');
 
         this.globalVariableService.menuActionSelectAll.next(false);
     }
 
     clickMenuShapeNew() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeNew', '@Start');
 
         this.showModalShapeEdit = true;
     }
 
     clickMenuShapeEdit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEdit', '@Start');
 
         this.showModalShapeEdit = true;
     }
 
     clickMenuShapeLinks() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeLinks', '@Start');
 
         this.showModalWidgetLinks = true;
     }
 
     clickMenuShapeDelete() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDelete', '@Start');
 
         this.showModalShapeDelete = true;
     }
 
     clickMenuViewPresentation() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPresentation', '@Start');
 
         this.globalVariableService.presentationMode.next(!this.presentationMode);
@@ -1060,68 +1060,68 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuViewPrintPreview(){
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPrintPreview', '@Start');
     }
 
     clickMenuViewShowGrid() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
 
         this.globalVariableService.showGrid.next(!this.showGrid);
     }
 
     clickMenuViewShowDataQuality() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
 
         this.showDataQuality = !this.showDataQuality;
     }
 
     clickMenuViewShowComments() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
 
         this.showComments = !this.showComments;
     }
-    
+
     clickMenuViewSnapToGrid() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewSnapToGrid', '@Start');
     }
 
     clickMenuViewZoom() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewZoom', '@Start');
 
     }
 
     clickMenuArrangeBackward() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBackward', '@Start');
 
     }
 
     clickMenuArrangeForward() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeForward', '@Start');
 
     }
 
     clickMenuArrangeBack() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBack', '@Start');
 
     }
 
     clickMenuArrangeFront() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeFront', '@Start');
 
     }
 
     clickMenuArrangeAligTop() {
-        // Align the tops of the selected widgets 
+        // Align the tops of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAligTop', '@Start');
 
         if (!this.checkForMultipleWidgets()) {return};
@@ -1130,49 +1130,49 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuArrangeAlignCenterPageDown() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterPageDown', '@Start');
 
     }
 
     clickMenuArrangeAlignCenterPageRight() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterPageRight', '@Start');
 
     }
 
     clickMenuArrangeGroup() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeGroup', '@Start');
 
     }
 
     clickMenuArrangeUnGroup() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeUnGroup', '@Start');
 
     }
 
     clickMenuArrangeDistributeVertical() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeVertical', '@Start');
 
     }
 
     clickMenuArrangeDistributeHorisontal() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeHorisontal', '@Start');
 
     }
 
     clickMenuArrangeSameSize() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
 
     }
 
     clickMenuHelpDemo() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuHelpDemo', '@Start');
 
         this.router.navigate(['/help']);
@@ -1182,35 +1182,35 @@ export class AppComponent implements OnInit {
 
 
     clickMenuCollaborateAlerts() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateAlerts', '@Start');
 
         this.showModalCollaborateAlerts = true;
     }
 
     clickMenuCollaborateActivityAdd() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateActivityAdd', '@Start');
 
         this.showModalCollaborateActivityAdd = true;
     }
 
     clickMenuCollaborateMessages() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateMessages', '@Start');
 
         this.showModalCollaborateMessages = true;
     }
 
     clickMenuCollaborateActivities() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateActivities', '@Start');
 
         this.showModalCollaborateActivities = true;
     }
 
     clickMenuUserLogin() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogin', '@Start');
 
         this.showModalDashboardLogin = true;
@@ -1218,7 +1218,7 @@ export class AppComponent implements OnInit {
 
 
     clickMenuUserMyProfile() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserMyProfile', '@Start');
 
         console.log('App clickMenuUserMyProfile')
@@ -1226,55 +1226,55 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuUserPreferences() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserPreferences', '@Start');
 
         this.showModalUserPreferences = true;
     }
 
     clickMenuUserWidgetButtonBar() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserWidgetButtonBar', '@Start');
 
         this.showModalUserWidgetButtonBar = true;
     }
 
     clickMenuUserShapeButtonBar() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserShapeButtonBar', '@Start');
 
         this.showModalUserShapeButtonBar = true;
     }
 
     clickMenuUserSystemSettings() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserSystemSettings', '@Start');
 
         this.showModalUserSystemSettings = true;
     }
 
     clickMenuUserOffline() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserOffline', '@Start');
 
         this.showModalUserOffline = true;
     }
 
     clickMenuUserLogout() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogout', '@Start');
 
         this.showModalDashboardLogout = true;
     }
 
     showRecentDashboard(index: number) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
 
     }
 
     clickClosePresentation() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClosePresentation', '@Start');
 
         this.showMainMenu = true;
@@ -1282,7 +1282,7 @@ export class AppComponent implements OnInit {
     }
 
     trackWidget(index, row) {
-        // 
+        //
         // this.globalFunctionService.printToConsole(this.constructor.name,'trackWidget', '@Start');
 
         // console.log('trackWidget', row);
@@ -1301,7 +1301,7 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickSlicerItem(index: number, id: number, datasourceID: number, datasetID: number, 
+    clickSlicerItem(index: number, id: number, datasourceID: number, datasetID: number,
         fieldValue: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerItem', '@Start');
@@ -1309,21 +1309,21 @@ export class AppComponent implements OnInit {
         // Adjust the Sl selection (local + Global)
         this.globalVariableService.currentSlicers.forEach(w => {
             if (w.id == id) {
-                
+
                 // Update the selected item
                 w.slicerSelection.forEach(sel => {
                     if (sel.fieldValue == fieldValue) {
                         sel.isSelected = !sel.isSelected;
                     }
                 })
-            
+
             }
         });
- 
+
         // Filter this dSet, applying all Sl that relates to it
         this.globalVariableService.currentDatasets.forEach(cd => {
             if (cd.id == datasetID) {
-                
+
                 this.globalVariableService.filterSlicer(cd);
             }
         }
@@ -1434,10 +1434,10 @@ export class AppComponent implements OnInit {
 
         // Build list of T names and position before showing it
         this.currentTabNames = [];
-        this.globalVariableService.currentDashboardTabs.forEach(t => 
+        this.globalVariableService.currentDashboardTabs.forEach(t =>
             this.currentTabNames.push(t.name))
         this.multiTabLeft = this.currentSlicers[index].containerLeft;
-        this.multiTabTop = this.currentSlicers[index].containerTop + 30;
+        this.multiTabTop = this.currentSlicers[index].containerTop;
         this.showMultiTabMenu = !this.showMultiTabMenu;
     }
 
@@ -1447,6 +1447,14 @@ export class AppComponent implements OnInit {
 
         console.log('xx name', index, this.currentTabNames[index])
     }
+
+    clickMultiTabClose(index: number) {
+        // Returns true if one and only widget was selected, else false
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabName', '@Start');
+
+        this.showMultiTabMenu = false;
+    }
+
 
 }
 
