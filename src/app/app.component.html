@@ -1292,15 +1292,15 @@
         draggable="false"
         [style.background-color]="row.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
         [style.width.px]="row.containerWidth-14"
-    >
+        >
 
-        <div class="slicerLabel" *ngIf="row.containerWidgetTitle"
+        <span class="slicerLabel" *ngIf="row.containerWidgetTitle"
             (click)="clickSlicer(i, row.id)"
             [style.background-color]="row.containerBackgroundcolor"
             [style.width.px]="row.containerWidth-14"
             >
             <b>{{ row.containerWidgetTitle }}</b>
-        </div>
+        </span>
         <select class="slicerBlock"
             size="{{(row.containerHeight - 36) / 23}}" 
             multiple
@@ -1315,8 +1315,6 @@
                 {{ d.fieldValue }}
             </option>
         </select>
-
-
     </div>
     <div class="slicerContainerTopLeftHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
