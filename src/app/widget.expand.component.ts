@@ -24,13 +24,14 @@ export class WidgetExpandComponent implements OnInit {
     dataset;
     @Input() selectWidgetIndex: number;
     @Input() selectDatasetID: number;
+    @Input() selectDatasourceID: number;
     @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
 
     currentDatasetLength: number;
     records: number = 8;
     datasources: Datasource[] = [];
     // TODO - remove hardcoding
-    dataFieldNames: string[] = [
+    dataFieldNames: string[] = ['symbol',
         'Acceleration', 'Cylinders', 'Displacement', 'Horsepower', 'Miles_per_Gallon', 'Name', 'Origin', 'Weight_in_lbs', 'Year'
     ];
 
@@ -43,11 +44,15 @@ export class WidgetExpandComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.filePath = "../assets/vega-datasets/cars.json";
+        this.globalVariableService.filePath = './assets/data.dataset' + 
+            this.selectDatasetID.toString() + '.json';
+        // "../assets/vega-datasets/cars.json";
+
         this.globalVariableService.get('').then(i =>
             {
                 this.dataset = i;
                 this.currentDatasetLength = i.length;
+                console.log('xx2', i)
             }
             // this.globalVariableService.currentWidgets  this.widgetIndex)
             // i =>
@@ -59,7 +64,7 @@ export class WidgetExpandComponent implements OnInit {
             //         }
             //     }
         );
-        console.log('xx', this.selectWidgetIndex, this.selectDatasetID)
+        console.log('xx2', this.selectWidgetIndex, this.selectDatasetID, this.globalVariableService.filePath)
     }
 
   	clickClose(action: string) {

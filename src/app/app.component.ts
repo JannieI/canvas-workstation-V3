@@ -207,6 +207,7 @@ export class AppComponent implements OnInit {
     startY: number;
     selectWidgetIndex: number;
     selectDatasetID: number;
+    selectDatasourceID: number;
     selectedWidgetIDs: number[] = [];
 
 
@@ -867,6 +868,7 @@ export class AppComponent implements OnInit {
             if (w.isSelected) {
                 this.selectWidgetIndex = w.id;
                 this.selectDatasetID = w.datasetID;
+                this.selectDatasourceID = w.datasourceID;
             };
         });
         this.showModalWidgetExpand = true;
@@ -972,7 +974,8 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 this.selectWidgetIndex = w.id;
-                this.selectDatasetID = w.datasetID;                
+                this.selectDatasetID = w.datasetID;   
+                this.selectDatasourceID = w.datasourceID;             
             };
         });
         this.showModalWidgetExpand = true;
