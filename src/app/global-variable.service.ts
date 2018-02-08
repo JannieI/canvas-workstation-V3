@@ -635,7 +635,6 @@ export class GlobalVariableService {
     shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
     widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
     menuActionResize = new BehaviorSubject<boolean>(false);
-    menuActionSelectAll = new BehaviorSubject<boolean>(false);
     userID: string = 'JannieI';  // TODO - unHardCode
     dsIDs: number[] = [];           // Dataset IDs
 

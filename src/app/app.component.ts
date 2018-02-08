@@ -1013,7 +1013,6 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAll', '@Start');
 
-        this.globalVariableService.menuActionSelectAll.next(true);
     }
 
     clickMenuEditSelectNone() {
