@@ -52,12 +52,15 @@ export class WidgetExpandComponent implements OnInit {
             {
 
                 // Get fields
-                this.globalVariableService.currentDatasources.forEach(ds => 
-                    console.log('xx2', ds.dataFields ,this.selectDatasourceID)
-                )
+                this.globalVariableService.currentDatasources.forEach(ds => {
+                    if (ds.id = this.selectDatasetID) {
+                        // TODO - remove this, currently datalib reads array as string a,b,c
+                        let x: string = ds.dataFields.toString();
+                        this.dataFieldNames = x.split(',');
+                    }
+                });
                 this.dataset = i;
                 this.currentDatasetLength = i.length;
-                console.log('xx2', this.globalVariableService.currentDatasources)
             }
             // this.globalVariableService.currentWidgets  this.widgetIndex)
             // i =>
@@ -69,7 +72,7 @@ export class WidgetExpandComponent implements OnInit {
             //         }
             //     }
         );
-        console.log('xx2', this.selectWidgetIndex, this.selectDatasetID, this.globalVariableService.filePath)
+        console.log('xx23', this.selectWidgetIndex, this.selectDatasetID, this.globalVariableService.filePath)
     }
 
   	clickClose(action: string) {
