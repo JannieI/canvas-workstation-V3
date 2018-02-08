@@ -1012,6 +1012,7 @@ export class AppComponent implements OnInit {
     clickMenuEditSelectAll() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAll', '@Start');
+        this.currentWidgets.forEach(w => w.isSelected = true);
 
     }
 
