@@ -196,12 +196,12 @@ export class AppComponent implements OnInit {
     statusBarCancelRefresh: boolean = false;
 
     currentWidgets: Widget[] = [];
+    currentSlicers: Widget[] = [];
+    currentShapes: Widget[] = [];
     currentTabNames: {isSelected: boolean; name: string}[];
     showModalLanding: boolean;
 
-    // Testings ....
     refreshGraphs: boolean = false;
-    currentSlicers: Widget[] = [];
     startX: number;
     startY: number;
     widgetIndex: number;
@@ -1012,8 +1012,10 @@ export class AppComponent implements OnInit {
     clickMenuEditSelectAll() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAll', '@Start');
+        
         this.currentWidgets.forEach(w => w.isSelected = true);
-
+        this.currentSlicers.forEach(sl => sl.isSelected = true);
+        this.currentShapes.forEach(sh => sh.isSelected = true);
     }
 
     clickMenuEditSelectNone() {
@@ -1021,6 +1023,8 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectNone', '@Start');
 
         this.currentWidgets.forEach(w => w.isSelected = false);
+        this.currentSlicers.forEach(sl => sl.isSelected = false);
+        this.currentShapes.forEach(sh => sh.isSelected = false);
     }
 
     clickMenuShapeNew() {
