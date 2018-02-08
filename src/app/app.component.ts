@@ -686,7 +686,7 @@ export class AppComponent implements OnInit {
 
         // Switch off all selections if going to View Mode
         if (this.editMode) {
-            this.currentWidgets.forEach(i => i.isSelected = false);
+            this.clickMenuEditSelectNone();
         }
 
         // Toggle mode
@@ -1011,19 +1011,10 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuEditSelectAll() {
-        //
+        // Select all the objects on the D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAll', '@Start');
-        
-        if (ShapeEditComponent)
-        this.currentWidgets.forEach(w => w.isSelected = true);
-        this.currentSlicers.forEach(sl => sl.isSelected = true);
-        this.currentShapes.forEach(sh => sh.isSelected = true);
-    }
 
-    clickMenuEditSelectNone() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectNone', '@Start');
-
+        // Can only be done in Edit Mode
         if (!this.editMode) {
             this.globalVariableService.statusBarMessage.next(
              {
@@ -1035,7 +1026,16 @@ export class AppComponent implements OnInit {
              }
             )
             return;
-        }
+        };
+
+        this.currentWidgets.forEach(w => w.isSelected = true);
+        this.currentSlicers.forEach(sl => sl.isSelected = true);
+        this.currentShapes.forEach(sh => sh.isSelected = true);
+    }
+
+    clickMenuEditSelectNone() {
+        // Deselect all objects on the D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectNone', '@Start');
 
         this.currentWidgets.forEach(w => w.isSelected = false);
         this.currentSlicers.forEach(sl => sl.isSelected = false);
