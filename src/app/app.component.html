@@ -370,21 +370,18 @@
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
                         >
-                        Edit
+                        Slicer
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickMenuEditUndo()">
-                            Undo
+                        <button type="button" clrDropdownItem  (click)="clickMenuDataSlicerAdd()">
+                            Add Slicer
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuEditRedo()">
-                            Redo
+                        <button type="button" clrDropdownItem (click)="clickMenuDataSlicerEdit()">
+                            Edit Slicer
                         </button>
-                        <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuEditSelectAll()">
-                            Select All
-                        </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuEditSelectNone()">
-                            Select None
+                        <div class="dropdown-divider" (click)="clickMenuDataSlicerDelete()"></div>
+                        <button type="button" clrDropdownItem>
+                            Delete Slicer
                         </button>
                     </clr-dropdown-menu>
                 </clr-dropdown>
