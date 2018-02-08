@@ -12,6 +12,32 @@
         <div class="header-nav" [clr-nav-level]="1">
             <div>
 
+
+                <clr-dropdown class="menuText">
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm menuButton"
+                        clrDropdownTrigger
+                        >
+                        Edit
+                    </button>
+                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <button type="button" clrDropdownItem (click)="clickMenuEditUndo()">
+                            Undo
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuEditRedo()">
+                            Redo
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickMenuEditSelectAll()">
+                            Select All
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuEditSelectNone()">
+                            Select None
+                        </button>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
+        
                 <clr-dropdown class="menuText">
                     <button
                         type="button"
