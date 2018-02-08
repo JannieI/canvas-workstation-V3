@@ -22,7 +22,8 @@ import { GlobalVariableService }      from './global-variable.service';
 export class WidgetExpandComponent implements OnInit {
 
     dataset;
-    @Input() widgetIndex: number;
+    @Input() selectWidgetIndex: number;
+    @Input() selectDatasetID: number;
     @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
 
     currentDatasetLength: number;
@@ -58,7 +59,7 @@ export class WidgetExpandComponent implements OnInit {
             //         }
             //     }
         );
-        console.log('xx', this.widgetIndex)
+        console.log('xx', this.selectWidgetIndex, this.selectDatasetID)
     }
 
   	clickClose(action: string) {

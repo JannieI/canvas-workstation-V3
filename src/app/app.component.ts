@@ -205,7 +205,8 @@ export class AppComponent implements OnInit {
     refreshGraphs: boolean = false;
     startX: number;
     startY: number;
-    widgetIndex: number;
+    selectWidgetIndex: number;
+    selectDatasetID: number;
     selectedWidgetIDs: number[] = [];
 
 
@@ -860,11 +861,12 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerExpand', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget('Slicer')) { return};
 
-        this.currentWidgets.forEach(w => {
+        this.currentSlicers.forEach(w => {
             if (w.isSelected) {
-                this.widgetIndex = w.id;
+                this.selectWidgetIndex = w.id;
+                this.selectDatasetID = w.datasetID;
             };
         });
         this.showModalWidgetExpand = true;
@@ -969,7 +971,8 @@ export class AppComponent implements OnInit {
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
-                this.widgetIndex = w.id;
+                this.selectWidgetIndex = w.id;
+                this.selectDatasetID = w.datasetID;                
             };
         });
         this.showModalWidgetExpand = true;
@@ -1410,19 +1413,31 @@ export class AppComponent implements OnInit {
             ev, 0 - this.startX + ev.x);
     }
 
-    checkForOnlyOneWidget(): boolean {
+    checkForOnlyOneWidget(widgetType: string = 'Graph'): boolean {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForOnlyOneWidget', '@Start');
 
-        
+        // Get all select W, for given type
         this.selectedWidgetIDs = [];
-        this.currentWidgets.forEach(w => {
-            if (w.isSelected) { this.selectedWidgetIDs.push(w.id) }
-        })
+        if (widgetType == 'Slicer') {
+            this.currentSlicers.forEach(w => {
+                if (w.isSelected  &&  w.widgetType == widgetType) { 
+                    this.selectedWidgetIDs.push(w.id) 
+                }
+            });
+        } else {
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected  &&  w.widgetType == widgetType) { 
+                    this.selectedWidgetIDs.push(w.id) 
+                }
+            })
+            
+        };
+
         if (this.selectedWidgetIDs.length == 0) {
             this.globalVariableService.statusBarMessage.next(
                 {
-                   message: 'No Widget selected',
+                   message: 'No ' + widgetType + ' selected',
                    uiArea: 'StatusBar',
                    classfication: 'Warning',
                    timeout: 3000,
@@ -1434,7 +1449,7 @@ export class AppComponent implements OnInit {
         if (this.selectedWidgetIDs.length > 1) {
             this.globalVariableService.statusBarMessage.next(
                 {
-                   message: 'More than 1 Widget selected',
+                   message: 'More than 1 ' + widgetType + ' selected',
                    uiArea: 'StatusBar',
                    classfication: 'Warning',
                    timeout: 3000,
@@ -1445,7 +1460,6 @@ export class AppComponent implements OnInit {
         };
 
         // All good - only one
-        this.widgetIndex = this.selectedWidgetIDs[0];
         return true;
     }
 
