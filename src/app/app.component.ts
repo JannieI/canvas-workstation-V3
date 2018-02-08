@@ -35,6 +35,7 @@ import { View }                       from 'vega';
 import * as dl from 'datalib';
 import { load } from 'datalib';
 import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
+import { ShapeEditComponent } from 'app/shape.edit.component';
 
 
 // Constants
@@ -1013,6 +1014,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAll', '@Start');
         
+        if (ShapeEditComponent)
         this.currentWidgets.forEach(w => w.isSelected = true);
         this.currentSlicers.forEach(sl => sl.isSelected = true);
         this.currentShapes.forEach(sh => sh.isSelected = true);
@@ -1021,6 +1023,19 @@ export class AppComponent implements OnInit {
     clickMenuEditSelectNone() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectNone', '@Start');
+
+        if (!this.editMode) {
+            this.globalVariableService.statusBarMessage.next(
+             {
+                message: 'Not in Edit Mode',
+                uiArea: 'StatusBar',
+                classfication: 'Warning',
+                timeout: 3000,
+                defaultMessage: ''
+             }
+            )
+            return;
+        }
 
         this.currentWidgets.forEach(w => w.isSelected = false);
         this.currentSlicers.forEach(sl => sl.isSelected = false);
