@@ -50,9 +50,14 @@ export class WidgetExpandComponent implements OnInit {
 
         this.globalVariableService.get('').then(i =>
             {
+
+                // Get fields
+                this.globalVariableService.currentDatasources.forEach(ds => 
+                    console.log('xx2', ds.dataFields ,this.selectDatasourceID)
+                )
                 this.dataset = i;
                 this.currentDatasetLength = i.length;
-                console.log('xx2', i)
+                console.log('xx2', this.globalVariableService.currentDatasources)
             }
             // this.globalVariableService.currentWidgets  this.widgetIndex)
             // i =>

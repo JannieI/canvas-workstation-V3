@@ -315,6 +315,7 @@ export class DataPopupComponent implements OnInit {
             createdOn: '2017/01/01',
             refreshedBy: 'JohnM',
             refreshedOn: '2017/01/01',
+            dataFields: [],
             parameters: 'None',
             folder: '',
             fileName: '',

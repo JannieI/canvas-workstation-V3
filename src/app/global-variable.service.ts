@@ -2285,7 +2285,6 @@ export class GlobalVariableService {
 
         // Empty the necessary
         let dsCurrIDs: number[] = [];       // Current Dataset IDs
-        this.currentDatasources = [];
         let promiseArray = [];
 
         // Get list of dSet-ids to make array work easier
