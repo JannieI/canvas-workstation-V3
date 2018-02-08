@@ -166,6 +166,7 @@ export class Datasource {
     createdOn: string;
     refreshedBy: string;
     refreshedOn: string;
+    dataFields: string[];
     parameters: string;
 
     // Location and authentication
