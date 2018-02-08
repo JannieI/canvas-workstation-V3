@@ -853,6 +853,21 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerAdd', '@Start');
 
         this.showModalDataSlicers = true;
+       
+    }
+
+    clickMenuDataSlicerExpand() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerExpand', '@Start');
+
+        if (!this.checkForOnlyOneWidget()) { return};
+
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.widgetIndex = w.id;
+            };
+        });
+        this.showModalWidgetExpand = true;
     }
 
     clickMenuDataSlicerEdit() {
@@ -952,9 +967,12 @@ export class AppComponent implements OnInit {
 
         if (!this.checkForOnlyOneWidget()) { return};
 
-        // this.widgetIndex = 0;
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.widgetIndex = w.id;
+            };
+        });
         this.showModalWidgetExpand = true;
-        // this.router.navigate(['/expand']);
     }
 
     clickMenuWidgetExport() {

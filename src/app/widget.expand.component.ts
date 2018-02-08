@@ -30,7 +30,7 @@ export class WidgetExpandComponent implements OnInit {
     datasources: Datasource[] = [];
     // TODO - remove hardcoding
     dataFieldNames: string[] = [
-        'Acceleration', 'Cylinders', 'Displacement', 'Horsepower', 'Miles_per_Gallon', 'Name', 'Origin', 'Weight_in_lbs', 'Year' 
+        'Acceleration', 'Cylinders', 'Displacement', 'Horsepower', 'Miles_per_Gallon', 'Name', 'Origin', 'Weight_in_lbs', 'Year'
     ];
 
     constructor(
@@ -39,11 +39,11 @@ export class WidgetExpandComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.filePath = "../assets/vega-datasets/cars.json";
-        this.globalVariableService.get('').then(i => 
+        this.globalVariableService.get('').then(i =>
             {
                 this.dataset = i;
                 this.currentDatasetLength = i.length;
@@ -58,10 +58,11 @@ export class WidgetExpandComponent implements OnInit {
             //         }
             //     }
         );
+        console.log('xx', this.widgetIndex)
     }
 
   	clickClose(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formWidgetExpandClosed.emit(action);
