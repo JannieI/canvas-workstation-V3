@@ -1020,7 +1020,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectNone', '@Start');
 
-        this.globalVariableService.menuActionSelectAll.next(false);
+        this.currentWidgets.forEach(w => w.isSelected = false);
     }
 
     clickMenuShapeNew() {
@@ -1461,7 +1461,7 @@ export class AppComponent implements OnInit {
             if (t.isSelected) {x++}
         });
         if (x == 0) {
-            alert('The Slicer must belong to at least one tab.  Use Slicer -> Delete menu option to get rid of it');
+            alert('The Slicer must belong to at least one tab.  Use Data -> Slicer -> Delete menu option to get rid of it');
             return;
         } else {
             this.showMultiTabMenu = false;
@@ -1478,12 +1478,6 @@ export class AppComponent implements OnInit {
         }
     }
 
-    clickUnSelect(index: number, ev: any) {
-        // Unselects all Ws
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickUnSelect', '@Start');
-
-        this.currentWidgets.forEach(w => w.isSelected = false);
-    }
 }
 
 // Naming conventions
