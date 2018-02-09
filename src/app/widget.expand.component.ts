@@ -30,10 +30,7 @@ export class WidgetExpandComponent implements OnInit {
     currentDatasetLength: number;
     records: number = 8;
     datasources: Datasource[] = [];
-    // TODO - remove hardcoding
-    dataFieldNames: string[] = ['symbol',
-        'Acceleration', 'Cylinders', 'Displacement', 'Horsepower', 'Miles_per_Gallon', 'Name', 'Origin', 'Weight_in_lbs', 'Year'
-    ];
+    dataFieldNames: string[] = [];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -62,23 +59,14 @@ export class WidgetExpandComponent implements OnInit {
                 this.dataset = i;
                 this.currentDatasetLength = i.length;
             }
-            // this.globalVariableService.currentWidgets  this.widgetIndex)
-            // i =>
-            //     {
-            //         if (i.datasourceID == 3) {
-            //             this.currentDataset = i.data;
-            //             this.currentDatasetLength = this.currentDataset.length
-            //             this.dataFieldNames = Object.getOwnPropertyNames(i.data[0])
-            //         }
-            //     }
         );
         console.log('xx23', this.selectWidgetIndex, this.selectDatasetID, this.globalVariableService.filePath)
     }
 
   	clickClose(action: string) {
-        //
+        // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-
+        
         this.formWidgetExpandClosed.emit(action);
     }
 
