@@ -98,13 +98,15 @@ the dependant software and their versions to npm.  Run
         ],
         ...
 
-## Install Parse
+## Install Parse - needed ?
     Locally
     $ npm install -g parse-server mongodb-runner
     $ mongodb-runner start
     $ parse-server --appId APPLICATION_ID --masterKey MASTER_KEY --databaseURI mongodb://localhost/test
     Note: If installation with -g fails due to permission problems (npm ERR! code 'EACCES'), please refer to this link.
 
+## Install nanoSQL
+    npm install nano-sql --save
 
 
 ## Changes
