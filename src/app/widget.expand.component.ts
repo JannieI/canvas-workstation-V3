@@ -12,8 +12,6 @@ import { Datasource }                 from './models';
 import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
-// Functions
-import { nSQL } from "nano-sql";
 
 @Component({
     selector: 'widget-expand',
@@ -67,27 +65,6 @@ export class WidgetExpandComponent implements OnInit {
   	clickClose(action: string) {
         // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-        
-
-        nSQL('users') //  "users" is our table name.
-        .model([ // Declare data model
-            {key:'id',type:'int',props:['pk','ai']}, // pk == primary key, ai == auto incriment
-            {key:'name',type:'string'},
-            {key:'age', type:'int'}
-        ])
-        .connect() // Init the data store for usage. (only need to do this once)
-        .then(function(result) {
-            return nSQL().query('upsert',{ // Add a record
-                name:"bill", age: 20
-            }).exec();
-        })
-        .then(function(result) {
-            return nSQL().query('select').exec(); // select all rows from the current active table
-        })
-        .then(function(result) {
-            console.log('xx', result) // <= [{id:1, name:"bill", age: 20}]
-        })
-
 
         this.formWidgetExpandClosed.emit(action);
     }
