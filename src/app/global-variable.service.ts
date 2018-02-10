@@ -2241,7 +2241,8 @@ export class GlobalVariableService {
             return new Promise<Widget[]>((resolve, reject) => {
                 this.getWidgets()
                     .then(data => {
-
+                        console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID,
+                        data)
                         // Filter the widgets
                         data = data.filter(
                             i => i.dashboardID == dashboardID  &&
