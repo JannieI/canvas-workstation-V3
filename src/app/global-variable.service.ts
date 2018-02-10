@@ -2442,6 +2442,11 @@ export class GlobalVariableService {
                 {key:'name', type: 'string'},
                 {key:'comment', type: 'string'}
             ])
+            .config({
+                id: "CanvasCache",
+                mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
+                history: false // allow the database to undo/redo changes on the fly.
+            })
             .actions([
                 {
                     name:'addNewDashboardSnapshot',
