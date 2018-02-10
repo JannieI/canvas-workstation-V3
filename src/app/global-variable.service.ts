@@ -2377,9 +2377,13 @@ export class GlobalVariableService {
 
         return new Promise(async (resolve, reject) => {
             let results = []
-            for (let promise of listOfPromises.map(Promise.resolve, Promise)) {
-                results.push(await promise.then(async resolvedData => await resolvedData, reject))
-                if (results.length === listOfPromises.length) resolve(results)
+            if (listOfPromises.length == 0) {
+                resolve(true);
+            } else {
+                for (let promise of listOfPromises.map(Promise.resolve, Promise)) {
+                    results.push(await promise.then(async resolvedData => await resolvedData, reject))
+                    if (results.length === listOfPromises.length) resolve(results)
+                }
             }
         })
     }
@@ -2936,6 +2940,7 @@ export class GlobalVariableService {
 
             }
             y = this.currentDashboardTabs[x].id;
+            console.log('xx t: x y Tshow currT currDinfo', x, y, tabToShow, this.currentDashboardTabs, this.currentDashboardInfo.value )
         } else {
             y = dashboardTabID;
             if (this.currentDashboards.length == 0) {

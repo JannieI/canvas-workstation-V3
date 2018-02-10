@@ -79,7 +79,6 @@ export class DashboardSnapshotsComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshDashboard', '@Start');
 
-        console.log('xx', index);
         this.globalVariableService.saveLocal('DashboardSnapshot', { 
             id: null, 
             dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,

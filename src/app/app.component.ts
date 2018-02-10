@@ -307,7 +307,8 @@ export class AppComponent implements OnInit {
 
     ngAfterViewChecked() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
+        // TODO - switch on later, this fires ALL the time ...
+        // this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
 
         if (this.widgetDOM != undefined  &&  (!this.refreshGraphs) ) {
             this.refreshGraphs = true;

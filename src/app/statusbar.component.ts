@@ -225,7 +225,7 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'First');
+        this.globalVariableService.refreshCurrentDashboard('statusbar-clickShowFirstTab', 1, 0, 'First');
     }
 
 
@@ -237,7 +237,7 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Previous');
+        this.globalVariableService.refreshCurrentDashboard('statusbar-clickShowPreviousTab', 1, 0, 'Previous');
     }
 
     clickShowTabDescription() {
@@ -262,7 +262,7 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Next');
+        this.globalVariableService.refreshCurrentDashboard('statusbar-clickShowNextTab', 1, 0, 'Next');
     }
 
     clickShowLastTab() {
@@ -273,7 +273,7 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickTest', 1, 0, 'Last');
+        this.globalVariableService.refreshCurrentDashboard('statusbar-clickShowLastTab', 1, 0, 'Last');
     }
 
     clickAddTab() {
