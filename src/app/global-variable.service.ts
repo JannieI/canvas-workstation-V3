@@ -2416,7 +2416,7 @@ export class GlobalVariableService {
         );
     }
 
-    connectLocalDB<T>(): Promise<boolean> {
+    connectLocalDB<T>(): Promise<string | Object> {
         // Connect to the local DB, ie nanaSQL
         console.log('Global-Variables connectLocalDB');
 
@@ -2567,7 +2567,7 @@ export class GlobalVariableService {
             .connect()
             .then(db => {
                 console.log('connectLocalDB', db)
-                resolve(true)
+                resolve(db)
             })
         })
     }
