@@ -2578,147 +2578,7 @@ export class GlobalVariableService {
 
         return new Promise((resolve, reject) => {
             
-            // Example 0
-            nSQL('users')
-            .model  ([
-                {key:'id',type:'int',props:['pk','ai']}, // pk == primary key, ai == auto incriment
-                {key:'name',type:'string'},
-                {key:'age', type:'int'}
-            ])
-            .config({
-                id: "CanvasCache",
-                mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-                history: false // allow the database to undo/redo changes on the fly. 
-            }) 
 
-            nSQL('widgets')
-            .model([ 
-                {key: 'widgetType', 				type: 'string'},
-                {key: 'widgetSubType', 				type: 'string'},
-                {key: 'isTrashed', 					type: 'bool'},
-                {key: 'dashboardID', 				type: 'int'},
-                {key: 'dashboardTabID', 			type: 'int'},
-                {key: 'id', 						type: 'int',		props:['pk','ai']},
-                {key: 'name', 						type: 'string'},
-                {key: 'description', 				type: 'string'},
-                {key: 'visualGrammar', 				type: 'string'},
-                {key: 'version', 					type: 'int'},
-                {key: 'isLiked', 					type: 'bool'},
-                {key: 'isSelected', 				type: 'bool'},
-                {key: 'nrDataQualityIssues', 		type: 'int'},
-                {key: 'nrComments', 				type: 'int'},
-                {key: 'nrButtonsToShow', 			type: 'int'},
-                {key: 'hyperlinkDashboardID', 		type: 'int'},
-                {key: 'hyperlinkDashboardTabID', 	type: 'int'},
-                {key: 'datasourceID', 				type: 'int'},
-                {key: 'slicerFieldName', 			type: 'string'},
-                {key: 'slicerSelection', 			type: 'array'},
-                {key: 'datasetID', 					type: 'int'},
-                {key: 'dataParameters', 			type:'array'},
-                {key: 'reportID', 					type: 'int'},
-                {key: 'reportName', 				type: 'string'},
-                {key: 'rowLimit', 					type: 'int'},
-                {key: 'addRestRow', 				type: 'bool'},
-                {key: 'size', 						type: 'string'},
-                {key: 'containerBackgroundcolor', 	type: 'string'},
-                {key: 'containerBorder', 			type: 'string'},
-                {key: 'containerBoxshadow', 		type: 'string'},
-                {key: 'containerColor', 			type: 'string'},
-                {key: 'containerFontsize', 			type: 'int'},
-                {key: 'containerHeight', 			type: 'int'},
-                {key: 'containerLeft', 				type: 'int'},
-                {key: 'containerWidgetTitle', 		type: 'string'},
-                {key: 'containerTop', 				type: 'int'},
-                {key: 'containerWidth', 			type: 'int'},
-                {key: 'containerZindex', 			type: 'int'},
-                {key: 'titleText', 					type: 'string'},
-                {key: 'titleBackgroundColor', 		type: 'string'},
-                {key: 'titleBorder', 				type: 'string'},
-                {key: 'titleColor', 				type: 'string'},
-                {key: 'titleFontsize', 				type: 'int'},
-                {key: 'titleFontWeight', 			type: 'string'},
-                {key: 'titleHeight', 				type: 'int'},
-                {key: 'titleLeft', 					type: 'int'},
-                {key: 'titleMargin', 				type: 'string'},
-                {key: 'titlePadding', 				type: 'string'},
-                {key: 'titlePosition', 				type: 'string'},
-                {key: 'titleTextAlign', 			type: 'string'},
-                {key: 'titleTop', 					type: 'int'},
-                {key: 'titleWidth', 				type: 'int'},
-                {key: 'graphType', 					type: 'string'},
-                {key: 'graphHeight', 				type: 'int'},
-                {key: 'graphLeft', 					type: 'int'},
-                {key: 'graphTop', 					type: 'int'},
-                {key: 'graphWidth', 				type: 'int'},
-                {key: 'graphGraphPadding', 			type: 'int'},
-                {key: 'graphHasSignals', 			type: 'bool'},
-                {key: 'graphFillColor', 			type: 'string'},
-                {key: 'graphHoverColor', 			type: 'string'},
-                {key: 'graphSpecification', 		type: 'any'},
-                {key: 'graphDescription', 			type: 'string'},
-                {key: 'graphXaggregate', 			type: 'string'},
-                {key: 'graphXtimeUnit', 			type: 'string'},
-                {key: 'graphXfield', 				type: 'string'},
-                {key: 'graphXtype', 				type: 'string'},
-                {key: 'graphXaxisTitle', 			type: 'string'},
-                {key: 'graphYaggregate', 			type: 'string'},
-                {key: 'graphYtimeUnit', 			type: 'string'},
-                {key: 'graphYfield', 				type: 'string'},
-                {key: 'graphYtype', 				type: 'string'},
-                {key: 'graphYaxisTitle', 			type: 'string'},
-                {key: 'graphTitle', 				type: 'string'},
-                {key: 'graphMark', 					type: 'string'},
-                {key: 'graphMarkColor', 			type: 'string'},
-                {key: 'graphUrl', 					type: 'string'},
-                {key: 'graphData', 					type: 'any'},
-                {key: 'graphColorField', 			type: 'string'},
-                {key: 'graphColorType', 			type: 'string'},
-                {key: 'tableColor', 				type: 'string'},
-                {key: 'tableCols', 					type: 'int'},
-                {key: 'tableHeight', 				type: 'int'},
-                {key: 'tableHideHeader', 			type: 'bool'},
-                {key: 'tableLeft', 					type: 'int'},
-                {key: 'tableRows', 					type: 'int'},
-                {key: 'tableTop', 					type: 'int'},
-                {key: 'tableWidth', 				type: 'int'},
-                {key: 'shapeCx', 					type: 'string'},
-                {key: 'shapeCy', 					type: 'string'},
-                {key: 'shapeR', 					type: 'string'},
-                {key: 'shapeStroke', 				type: 'string'},
-                {key: 'shapeStrokeWidth', 			type: 'string'},
-                {key: 'shapeFill', 					type: 'string'},
-                {key: 'refreshMode', 				type: 'string'},
-                {key: 'refreshFrequency', 			type: 'int'},
-                {key: 'widgetRefreshedOn', 			type: 'string'},
-                {key: 'widgetRefreshedBy', 			type: 'string'},
-                {key: 'widgetCreatedOn', 			type: 'string'},
-                {key: 'widgetCreatedBy', 			type: 'string'},
-                {key: 'widgetUpdatedOn', 			type: 'string'},
-                {key: 'widgetUpdatedBy', 			type: 'string'}
-            ])
-            .config({
-                id: "CanvasCache",
-                mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-                history: false // allow the database to undo/redo changes on the fly. 
-            }) 		
-            .actions([ 
-                {
-                    name:'addNewWidget',
-                    args:['widget: map'],
-                    call:function(args, db) {
-                        return db.query('upsert',args.widget).exec();
-                    }
-                }
-            ])
-            .views([ 
-                {
-                    name: 'getWidgetByID',
-                    args: ['id:int'],
-                    call: function(args, db) {
-                        return db.query('select').where(['id','=',args.id]).exec();
-                    }
-                },
-            ])
 
             nSQL('users').connect()
             .then(function(result) {
@@ -3045,7 +2905,7 @@ export class GlobalVariableService {
                 // )
         })
     }
-    
+
     refreshCurrentDashboard(
         refreshingRoutine: string,
         dashboardID: number,
