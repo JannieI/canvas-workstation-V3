@@ -1424,12 +1424,12 @@ export class GlobalVariableService {
     filterSlicer(dataSet: Dataset): any {
         // Filter a given Dataset on .dataRaw by applying all applicable Sl, and put result
         // into .data
-        // Note: Objects and arrays are passed by reference. Primitive values like number, 
+        // Note: Objects and arrays are passed by reference. Primitive values like number,
         // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
         console.log('Global-Variables filterSlicer ...');
 
         // Get all Sl for the dSet
-        // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has 
+        // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
         // two dSets with different values ...
         let localSlicers: Widget[] = this.currentSlicers.filter( sl =>
             sl.datasourceID == dataSet.datasourceID  &&  sl.datasetID == sl.datasetID
@@ -2421,7 +2421,7 @@ export class GlobalVariableService {
         console.log('Global-Variables connectLocalDB');
 
         return new Promise((resolve, reject) => {
-            
+
             // Users Table
             nSQL('users')
             .model  ([
@@ -2432,12 +2432,12 @@ export class GlobalVariableService {
             .config({
                 id: "CanvasCache",
                 mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-                history: false // allow the database to undo/redo changes on the fly. 
-            }) 
+                history: false // allow the database to undo/redo changes on the fly.
+            })
 
             // Widgets Table
             nSQL('widgets')
-            .model([ 
+            .model([
                 {key: 'widgetType', 				type: 'string'},
                 {key: 'widgetSubType', 				type: 'string'},
                 {key: 'isTrashed', 					type: 'bool'},
@@ -2544,9 +2544,9 @@ export class GlobalVariableService {
             .config({
                 id: "CanvasCache",
                 mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-                history: false // allow the database to undo/redo changes on the fly. 
-            }) 		
-            .actions([ 
+                history: false // allow the database to undo/redo changes on the fly.
+            })
+            .actions([
                 {
                     name:'addNewWidget',
                     args:['widget: map'],
@@ -2555,7 +2555,7 @@ export class GlobalVariableService {
                     }
                 }
             ])
-            .views([ 
+            .views([
                 {
                     name: 'getWidgetByID',
                     args: ['id:int'],
@@ -2566,12 +2566,12 @@ export class GlobalVariableService {
             ])
             .connect()
             .then(db => {
-                console.log('connectLocalDB', db)
+                console.log('Global-Variables connectLocalDB', db)
                 resolve(db)
             })
         })
     }
-    
+
     getLocal<T>(table: string, params?: any): Promise<any> {
         // Generic GET data, later to be replaced with http
         console.log('Global-Variables getLocal for table, params...', table, params);
@@ -2586,17 +2586,17 @@ export class GlobalVariableService {
                 console.log('xx2 W', result) // <= arrayid:1, name:"bill", age: 20}]
                 resolve(result)
             })
-            
+
 
         })
     }
-    
+
     saveLocal<T>(table: string, params?: any): Promise<any> {
         // Generic GET data, later to be replaced with http
         console.log('Global-Variables getLocal for table, params...', table, params);
 
         return new Promise((resolve, reject) => {
-            
+
             // Example 0
             nSQL('users')
             .model  ([
@@ -2607,11 +2607,11 @@ export class GlobalVariableService {
             .config({
                 id: "CanvasCache",
                 mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-                history: false // allow the database to undo/redo changes on the fly. 
-            }) 
+                history: false // allow the database to undo/redo changes on the fly.
+            })
 
             nSQL('widgets')
-            .model([ 
+            .model([
                 {key: 'widgetType', 				type: 'string'},
                 {key: 'widgetSubType', 				type: 'string'},
                 {key: 'isTrashed', 					type: 'bool'},
@@ -2718,9 +2718,9 @@ export class GlobalVariableService {
             .config({
                 id: "CanvasCache",
                 mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-                history: false // allow the database to undo/redo changes on the fly. 
-            }) 		
-            .actions([ 
+                history: false // allow the database to undo/redo changes on the fly.
+            })
+            .actions([
                 {
                     name:'addNewWidget',
                     args:['widget: map'],
@@ -2729,7 +2729,7 @@ export class GlobalVariableService {
                     }
                 }
             ])
-            .views([ 
+            .views([
                 {
                     name: 'getWidgetByID',
                     args: ['id:int'],
@@ -2751,7 +2751,7 @@ export class GlobalVariableService {
             .then(function(result) {
                 console.log('xx2 W', result) // <= arrayid:1, name:"bill", age: 20}]
             })
-            
+
 
             // Example 1
             // nSQL('widgets') //  "users" is our table name.
@@ -2782,8 +2782,8 @@ export class GlobalVariableService {
             // ])
             // .config({
             // 	mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-            // 	history: true // allow the database to undo/redo changes on the fly. 
-            // }) 
+            // 	history: true // allow the database to undo/redo changes on the fly.
+            // })
             // .actions([ // Optional
             // 	{
             // 		name:'add_new_user',
@@ -2807,7 +2807,7 @@ export class GlobalVariableService {
             // 		call: function(args, db) {
             // 			return db.query('select',['id','name']).exec();
             // 		}
-            // 	}                       
+            // 	}
             // ])
             // .connect()
                 // .then( conn =>

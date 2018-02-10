@@ -50,6 +50,8 @@ export class DashboardSnapshotsComponent implements OnInit {
         this.globalVariableService.getCurrentDashboardSnapshots(
             this.globalVariableService.currentDashboardID).then
               (i => this.currentDashboardSnapshots = i);
+        this.globalVariableService.getLocal('users').then(i => console.log('ww', i))
+        
     }
 
     clickClose(action: string) {

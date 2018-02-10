@@ -48,8 +48,9 @@ export class LandingComponent implements OnInit {
 			} else {
 				console.log('Connection to localDB in Landing page FAILED');
 			}
-		})
-			
+		});
+
+
 		// All Datasources
 		this.globalVariableService.getDatasources();
 
@@ -80,7 +81,7 @@ export class LandingComponent implements OnInit {
 	ngOnInit() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-		
+
 	}
 
 	ngAfterViewInit() {
