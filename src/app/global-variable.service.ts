@@ -2947,7 +2947,7 @@ export class GlobalVariableService {
                 x = 0;
             } else {
                 for (var i = 0; i < this.currentDashboardTabs.length; i++) {
-                    if (this.currentDashboardTabs[i].id = dashboardTabID) {
+                    if (this.currentDashboardTabs[i].id == dashboardTabID) {
                         x = i;
                     }
                 }

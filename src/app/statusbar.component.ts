@@ -217,6 +217,15 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
     }
 
+    selectDashboardTab(index: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'selectDashboardTab', '@Start');
+
+        console.log('xx index', index, this.currentDashboardTabs)
+        this.globalVariableService.refreshCurrentDashboard('statusbar-clickShowNextTab', 1, 
+        this.currentDashboardTabs[index].id, '');
+    }
+    
     clickShowFirstTab() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFirstTab', '@Start');
