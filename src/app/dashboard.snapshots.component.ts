@@ -46,6 +46,9 @@ export class DashboardSnapshotsComponent implements OnInit {
     }
 
     ngOnInit() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
         this.globalVariableService.getCurrentDashboardSnapshots(
             this.globalVariableService.currentDashboardID).then
@@ -55,8 +58,21 @@ export class DashboardSnapshotsComponent implements OnInit {
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardSnapshotsClosed.emit(action);
     }
+
+    clickSave() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        this.globalVariableService.saveLocal('DashboardSnapshot', '').then(i => {
+            console.log('saved', i)
+        })
+
+		// this.formDashboardSnapshotsClosed.emit('Saved');
+    }
+        
 }
