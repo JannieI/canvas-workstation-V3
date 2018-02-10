@@ -14,12 +14,12 @@
                 </div>
                 <div class="propertyLine">
                     Save a Snapshot of the current Dashboard:
-                    <input type="text" id="formFields_7" placeholder="Snapshot name">
-                    <input type="text" id="formFields_7" placeholder="Comment">
+                    <input type="text" #SnapshotNameInput placeholder="Snapshot name">
+                    <input type="text" #SnapshotCommentInput placeholder="Comment">
                     <button
                         type="button"
                         class="btn btn-secondary"
-                        (click)="clickSave()"
+                        (click)="clickSave(SnapshotNameInput. value, SnapshotCommentInput.value)"
                         >
                         Save
                     </button>

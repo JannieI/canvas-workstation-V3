@@ -2422,6 +2422,8 @@ export class GlobalVariableService {
 
         return new Promise((resolve, reject) => {
 
+            // TODO - for now, must delete IndexDB in browser, Application when shema changes
+            // TODO - add proper error message if it fails
             // Users Table
             nSQL('users')
             .model ([
@@ -2599,12 +2601,13 @@ export class GlobalVariableService {
             .then(db => {
                 console.log('Global-Variables connectLocalDB', db)
                 resolve(db)
+            
             })
         })
     }
 
     getLocal<T>(table: string, params?: any): Promise<any> {
-        // Generic GET data, later to be replaced with http
+        // Generic retrieval of data from localDB
         console.log('Global-Variables getLocal for table, params...', table, params);
 
         return new Promise((resolve, reject) => {
@@ -2621,22 +2624,17 @@ export class GlobalVariableService {
         })
     }
 
-    saveLocal<T>(table: string, row: any, params?: any): Promise<any> {
-        // Generic GET data, later to be replaced with http
-        console.log('Global-Variables saveLocal for table, params...', table, params);
+    saveLocal<T>(table: string, row: any): Promise<any> {
+        // Generic saving of row to a table in the localDB
+        console.log('Global-Variables saveLocal for table...', table);
         return new Promise((resolve, reject) => {
 
             nSQL(table).connect()
             .then(function(result) {
-                return nSQL().query('upsert',{ // Add a record
-                        id: null, 
-                        dashboardID: 1,
-                        name: 'First D',
-                        comment: 'Say sthg'
-                }).exec();
+                return nSQL().query('upsert', row).exec();
             })
             .then(function(result) {
-                console.log('xx2 W', result) // <= arrayid:1, name:"bill", age: 20}]
+                console.log('Global-Variables saveLocal saved into table: ', table, result) // <= arrayid:1, name:"bill", age: 20}]
                 resolve(result)
             })
 

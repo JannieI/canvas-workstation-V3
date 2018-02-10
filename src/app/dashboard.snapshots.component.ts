@@ -29,7 +29,6 @@ export class DashboardSnapshotsComponent implements OnInit {
     @Output() formDashboardSnapshotsClosed: EventEmitter<string> = new EventEmitter();
 
     showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
     currentDashboardSnapshots: DashboardSnapshot[];
     selectedRow : Number;
     setClickedRow : Function;
@@ -49,7 +48,6 @@ export class DashboardSnapshotsComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards;
         this.globalVariableService.getCurrentDashboardSnapshots(
             this.globalVariableService.currentDashboardID).then
               (i => this.currentDashboardSnapshots = i);
@@ -64,11 +62,16 @@ export class DashboardSnapshotsComponent implements OnInit {
 		this.formDashboardSnapshotsClosed.emit(action);
     }
 
-    clickSave() {
+    clickSave(snapshotNameInput: string, snapshotCommentInput: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.globalVariableService.saveLocal('DashboardSnapshot', '').then(i => {
+        this.globalVariableService.saveLocal('DashboardSnapshot', { 
+            id: null, 
+            dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            name: snapshotNameInput,
+            comment: snapshotCommentInput
+            }).then(i => {
             console.log('saved', i)
         })
 
