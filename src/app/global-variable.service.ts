@@ -2577,99 +2577,21 @@ export class GlobalVariableService {
         console.log('Global-Variables getLocal for table, params...', table, params);
 
         return new Promise((resolve, reject) => {
-            
 
-
-            nSQL('users').connect()
-            .then(function(result) {
-                return nSQL().query('upsert',{ // Add a record
-                    id: null, name:"babsie", age: 322
-                }).exec();
-            })
+            nSQL(table).connect()
             .then(function(result) {
                 return nSQL().query('select').exec(); // select all rows from the current active table
             })
             .then(function(result) {
                 console.log('xx2 W', result) // <= arrayid:1, name:"bill", age: 20}]
+                resolve(result)
             })
             
 
-            // Example 1
-            // nSQL('widgets') //  "users" is our table name.
-            // .model([ // Declare data model
-            //     {key:'id',type:'int',props:['pk','ai']}, // pk == primary key, ai == auto incriment
-            //     {key:'name',type:'string'},
-            //     {key:'age', type:'int'}
-            // ])
-            // .connect() // Init the data store for usage. (only need to do this once)
-            // .then(function(result) {
-            //     return nSQL().query('upsert',{ // Add a record
-            //         id: null, name:"boy", age: 54
-            //     }).exec();
-            // })
-            // .then(function(result) {
-            //     return nSQL().query('select').exec(); // select all rows from the current active table
-            // })
-            // .then(function(result) {
-            //     console.log('xx2 W', result) // <= arrayid:1, name:"bill", age: 20}]
-            // })
-
-            // Example 2
-            // nSQL('users')// Table/Store Name, required to declare model and attach it to this store.
-            // .model([ // Data Model, required
-            //     {key:'id',type:'int',props:['pk', 'ai']}, // pk == primary key, ai == auto incriment
-            //     {key:'name',type:'string'},
-            //     {key:'age', type:'int'}
-            // ])
-            // .config({
-            // 	mode: "PERM", // With this enabled, the best storage engine will be auttomatically selected and all changes saved to it.  Works in browser AND nodeJS automatically.
-            // 	history: true // allow the database to undo/redo changes on the fly. 
-            // }) 
-            // .actions([ // Optional
-            // 	{
-            // 		name:'add_new_user',
-            // 		args:['user:map'],
-            // 		call:function(args, db) {
-            // 			return db.query('upsert',args.user).exec();
-            // 		}
-            // 	}
-            // ])
-            // .views([ // Optional
-            // 	{
-            // 		name: 'get_user_by_name',
-            // 		args: ['name:string'],
-            // 		call: function(args, db) {
-            // 			return db.query('select').where(['name','=',args.name]).exec();
-            // 		}
-            // 	},
-            // 	{
-            // 		name: 'list_all_users',
-            // 		args: ['page:int'],
-            // 		call: function(args, db) {
-            // 			return db.query('select',['id','name']).exec();
-            // 		}
-            // 	}                       
-            // ])
-            // .connect()
-                // .then( conn =>
-                // 	nSQL().doAction('add_new_user', { user: { id: null, name:"bill", age: 20 } } )
-                // 	.then(first =>
-                // 		nSQL().doAction('add_new_user', { user: { id: 4, name:"bambie", age: 21 } } )
-                // 		// nSQL().query('upsert',{ // Add a record
-                // 		// 	name:"bill", age: 20
-                // 		// }).exec()
-                // 			.then(second => {
-                // 				console.log('xx21', conn, first, second) //  <- "1 Row(s) upserted"
-                // 				return nSQL().getView('list_all_users');
-                // 			}).then(result => {
-                // 				console.log('xx22', result) //  <- single object array containing the row we inserted.
-                // 			})
-                // 		)
-                // )
         })
     }
     
-    getLocal<T>(table: string, params?: any): Promise<any> {
+    saveLocal<T>(table: string, params?: any): Promise<any> {
         // Generic GET data, later to be replaced with http
         console.log('Global-Variables getLocal for table, params...', table, params);
 
