@@ -1680,7 +1680,11 @@ export class GlobalVariableService {
             // Refresh from source at start, or if dirty
             if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
-                this.get(url)
+
+                // this.globalVariableService.getLocal('DashboardSnapshot').then(i => this.currentDashboardSnapshots = i)
+
+
+                this.getLocal('DashboardSnapshot')
                     .then(data => {
                         this.dashboardSnapshots = data;
                         this.isDirtyDashboardSnapshots = false;
@@ -2620,7 +2624,7 @@ export class GlobalVariableService {
                 return nSQL().query('select').exec(); // select all rows from the current active table
             })
             .then(function(result) {
-                console.log('xx2 W', result) // <= arrayid:1, name:"bill", age: 20}]
+                console.log('Global-Variables getLocal result', result) // <= arrayid:1, name:"bill", age: 20}]
                 resolve(result)
             })
 
