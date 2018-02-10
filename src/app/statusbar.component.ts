@@ -222,8 +222,12 @@ export class StatusbarComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'selectDashboardTab', '@Start');
 
         console.log('xx index', index, this.currentDashboardTabs)
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickShowNextTab', 1, 
-        this.currentDashboardTabs[index].id, '');
+        this.globalVariableService.refreshCurrentDashboard(
+            'statusbar-clickShowNextTab', 
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID, 
+            this.currentDashboardTabs[index].id, 
+            ''
+        );
     }
     
     clickShowFirstTab() {
@@ -234,7 +238,12 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickShowFirstTab', 1, 0, 'First');
+        this.globalVariableService.refreshCurrentDashboard(
+            'statusbar-clickShowFirstTab', 
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID, 
+            0, 
+            'First'
+        );
     }
 
 
@@ -246,7 +255,12 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickShowPreviousTab', 1, 0, 'Previous');
+        this.globalVariableService.refreshCurrentDashboard(
+            'statusbar-clickShowPreviousTab', 
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID, 
+            0, 
+            'Previous'
+        );
     }
 
     clickShowTabDescription() {
@@ -271,7 +285,12 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickShowNextTab', 1, 0, 'Next');
+        this.globalVariableService.refreshCurrentDashboard(
+            'statusbar-clickShowNextTab', 
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID, 
+            0, 
+            'Next'
+        );
     }
 
     clickShowLastTab() {
@@ -282,7 +301,12 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
         this.showDashboardDescription = false;
 
-        this.globalVariableService.refreshCurrentDashboard('statusbar-clickShowLastTab', 1, 0, 'Last');
+        this.globalVariableService.refreshCurrentDashboard(
+            'statusbar-clickShowLastTab', 
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID, 
+            0, 
+            'Last'
+        );
     }
 
     clickAddTab() {
