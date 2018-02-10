@@ -2422,6 +2422,9 @@ export class GlobalVariableService {
 
         return new Promise((resolve, reject) => {
 
+            // NB: if you CLEAR the IndexDB in the Browser, and create new records (where 
+            // pk = null, and props = ai, then it creates a new record for each one already
+            // in the DB - true story!
             // TODO - for now, must delete IndexDB in browser, Application when shema changes
             // TODO - add proper error message if it fails
             // Users Table
@@ -2439,7 +2442,7 @@ export class GlobalVariableService {
 
             nSQL('DashboardSnapshot')
             .model ([
-                {key:'id', type: 'int', props:['pk','ai']},
+                {key:'id', type: 'int', props:['pk', 'ai']},
                 {key:'dashboardID', type: 'int'},
                 {key:'name', type: 'string'},
                 {key:'comment', type: 'string'}
@@ -2631,12 +2634,12 @@ export class GlobalVariableService {
 
             nSQL(table).connect()
             .then(function(result) {
-                return nSQL().query('upsert', row).exec();
+                resolve(nSQL().query('upsert', row).exec());
             })
-            .then(function(result) {
-                console.log('Global-Variables saveLocal saved into table: ', table, result) // <= arrayid:1, name:"bill", age: 20}]
-                resolve(result)
-            })
+            // .then(result => {
+            //     console.log('Global-Variables saveLocal saved into table: ', table, result) // <= arrayid:1, name:"bill", age: 20}]
+            //     resolve(result)
+            // })
 
         })
     }
