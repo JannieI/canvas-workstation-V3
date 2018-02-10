@@ -104,7 +104,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
   })
   export class WidgetEditorComponent implements OnInit {
 
-    @Input() currentDatasources: Datasource[];
     @Output() formWidgetEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
@@ -117,6 +116,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     graphColor: string[];
 
     clickedButtonAggregateNo: boolean = false;
+    currentDatasource: Datasource = null;
+    currentDatasources: Datasource[];
     dataFieldNames: string[];
     draggedField: string = '';
     dragoverCol: boolean = false;
@@ -141,8 +142,34 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        let x: number = 0;
+        this.globalVariableService.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                x = w.datasourceID;
+            }
+        });
+        // TODO - handle properly and close form
+        if (x == 0) {
+            alert('No Widget was selected, or could not find it in glob vars')
+        };
+
         this.currentDatasources = this.globalVariableService.currentDatasources;
-        this.dataFieldNames = ['symbol', 'date', 'price', 'Month', 'Trades'];
+        this.globalVariableService.currentDatasources.forEach(ds => {
+            if (ds.id == x) {
+                this.currentDatasource = ds;
+            };
+        });
+        // TODO - handle properly and close form
+        if (this.currentDatasource == null) {
+            alert('Datasource not found in global currentDatasources')
+        };
+
+        // TODO - remove this, currently datalib reads array as string a,b,c
+        let y: string = this.currentDatasource.dataFields.toString();
+        this.dataFieldNames = y.split(',');
+        
+        console.log('xx ds', this.currentDatasource, this.dataFieldNames);
+
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
         );
