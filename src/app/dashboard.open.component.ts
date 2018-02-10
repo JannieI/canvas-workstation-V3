@@ -94,7 +94,7 @@ export class DashboardOpenComponent implements OnInit {
         // this.globalVariableService.refreshDashboard.next(true);
 
 		this.globalVariableService.refreshCurrentDashboard(
-			'landing-clickOpenRecentDashboard', dashboardID, -1, ''
+			'openDashboard-clickOpenRecentDashboard', dashboardID, -1, ''
         );
         
         this.formDashboardOpenClosed.emit('View');
@@ -113,7 +113,7 @@ export class DashboardOpenComponent implements OnInit {
         // this.globalVariableService.currentDashboardTabID = 1;
         // this.globalVariableService.refreshDashboard.next(true);
 		this.globalVariableService.refreshCurrentDashboard(
-			'landing-clickOpenRecentDashboard', dashboardID, -1, ''
+			'openDashboard-clickOpenEdit', dashboardID, -1, ''
         );
         this.formDashboardOpenClosed.emit('View');
     }

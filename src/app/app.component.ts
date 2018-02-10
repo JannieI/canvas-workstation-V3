@@ -856,7 +856,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerAdd', '@Start');
 
         this.showModalDataSlicers = true;
-       
+
     }
 
     clickMenuDataSlicerExpand() {
@@ -975,8 +975,8 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 this.selectWidgetIndex = w.id;
-                this.selectDatasetID = w.datasetID;   
-                this.selectDatasourceID = w.datasourceID;             
+                this.selectDatasetID = w.datasetID;
+                this.selectDatasourceID = w.datasourceID;
             };
         });
         this.showModalWidgetExpand = true;
@@ -1425,17 +1425,17 @@ export class AppComponent implements OnInit {
         this.selectedWidgetIDs = [];
         if (widgetType == 'Slicer') {
             this.currentSlicers.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == widgetType) { 
-                    this.selectedWidgetIDs.push(w.id) 
+                if (w.isSelected  &&  w.widgetType == widgetType) {
+                    this.selectedWidgetIDs.push(w.id)
                 }
             });
         } else {
             this.currentWidgets.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == widgetType) { 
-                    this.selectedWidgetIDs.push(w.id) 
+                if (w.isSelected  &&  w.widgetType == widgetType) {
+                    this.selectedWidgetIDs.push(w.id)
                 }
             })
-            
+
         };
 
         if (this.selectedWidgetIDs.length == 0) {
@@ -1525,7 +1525,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMultiTabSelect(index: number, ev: any) {
-        // Select/UnSelect a T 
+        // Select/UnSelect a T
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabSelect', '@Start');
 
         if (ev.target.localName == 'input') {

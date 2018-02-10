@@ -31,7 +31,6 @@ import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
 import * as dl from 'datalib';
-import { load } from 'datalib';
 import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
 // Own Services
@@ -212,10 +211,10 @@ export class WidgetComponent {
         // start = start index, base 0.  end = last index.  Both are optional, which will
         // refresh all W.  arrID is an optional string of IDs, used to refresh specific ones
         // only.  So refreshWidgets() will refresh all, refreshWidgets(2) will refresh the W
-        // from index 2 to the end, refreshWidgets(4,5) will refresh Ws in index position 
+        // from index 2 to the end, refreshWidgets(4,5) will refresh Ws in index position
         // 4 and 5.  refreshWidgets(1,-1,[1,8]) will refresh W in position 1 and 8.
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
-        
+
         this.startWidgetNumber = 0;
         this.endWidgetNumber = this.widgetContainerDOM.length;
         if (end > this.widgetContainerDOM.length) {end = this.widgetContainerDOM.length};
@@ -229,7 +228,7 @@ export class WidgetComponent {
         }
 
         for (var i = this.startWidgetNumber; i < this.endWidgetNumber; i++) {
-            
+
             if ( (arrID.length > 0  && arrID.indexOf(this.widgets[i].id) >= 0)  ||
                 arrID.length == 0 ) {
                 console.log('xx', this.widgets[i].id, arrID, arrID.indexOf(this.widgets[i].id), arrID.length)

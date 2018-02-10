@@ -2431,7 +2431,7 @@ export class GlobalVariableService {
 
         return new Promise((resolve, reject) => {
 
-            // NB: if you CLEAR the IndexDB in the Browser, and create new records (where 
+            // NB: if you CLEAR the IndexDB in the Browser, and create new records (where
             // pk = null, and props = ai, then it creates a new record for each one already
             // in the DB - true story!
             // TODO - for now, must delete IndexDB in browser, Application when shema changes
@@ -2479,7 +2479,7 @@ export class GlobalVariableService {
                     }
                 },
             ])
-            
+
             // Widgets Table
             nSQL('widgets')
             .model([
@@ -2613,7 +2613,7 @@ export class GlobalVariableService {
             .then(db => {
                 console.log('Global-Variables connectLocalDB', db)
                 resolve(db)
-            
+
             })
         })
     }
