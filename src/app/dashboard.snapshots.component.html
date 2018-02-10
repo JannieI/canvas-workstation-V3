@@ -37,7 +37,7 @@
 
                     <clr-dg-row *ngFor="let row of currentDashboardSnapshots;
                         let i = index"
-                        (dlbclick)="setClickedRow(i)"
+                        (click)="setClickedRow(i)"
                         [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                         [style.color]="(i == selectedRow)? 'white' : 'gray'"
                         >
@@ -46,7 +46,7 @@
                                 shape="refresh" 
                                 class="selectIcon1" 
                                 size="12"
-                                (click)="clickRefreshDashboard(i)"
+                                (dblclick)="clickRefreshDashboard(i)"
                                 >
                             </clr-icon>
                         </clr-dg-cell>

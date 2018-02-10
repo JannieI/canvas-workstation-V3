@@ -87,8 +87,14 @@ export class DashboardSnapshotsComponent implements OnInit {
             comment: 'Saved before rollback was performed'
             }).then(i => {
             console.log('saved', i)
+            // TODO - fix hardcoding
+            this.globalVariableService.refreshCurrentDashboard(
+                'snapshot-clickRefreshDashboard', 1, 2, ''
+            );
+            
+            // Close the form
+            this.formDashboardSnapshotsClosed.emit('Rollback');
         })        
-		// this.formDashboardSnapshotsClosed.emit(action);
     }
         
 }

@@ -94,7 +94,7 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenSampleDashboard', '@Start');
 
 		this.globalVariableService.refreshCurrentDashboard(
-			'landing-clickOpenRecentDashboard', dashboardID, -1, ''
+			'landing-clickOpenSampleDashboard', dashboardID, -1, ''
 		);
 
 		// Close modal, and show the Dashboard
