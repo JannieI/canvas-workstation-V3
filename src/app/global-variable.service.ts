@@ -2424,8 +2424,8 @@ export class GlobalVariableService {
 
             // Users Table
             nSQL('users')
-            .model  ([
-                {key:'id',type:'int',props:['pk','ai']}, // pk == primary key, ai == auto incriment
+            .model ([
+                {key:'id',type:'int', props:['pk','ai']}, // pk == primary key, ai == auto incriment
                 {key:'name',type:'string'},
                 {key:'age', type:'int'}
             ])
@@ -2435,6 +2435,14 @@ export class GlobalVariableService {
                 history: false // allow the database to undo/redo changes on the fly.
             })
 
+            nSQL('DashboardSnapshot')
+            .model ([
+                {key:'id', type: 'int', props:['pk','ai']},
+                {key:'dashboardID', type: 'int'},
+                {key:'name', type: 'string'},
+                {key:'comment', type: 'string'}
+            ])
+            
             // Widgets Table
             nSQL('widgets')
             .model([
