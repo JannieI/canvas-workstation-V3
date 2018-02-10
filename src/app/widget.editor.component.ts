@@ -10,6 +10,7 @@ import { ViewChild }                  from '@angular/core';
 
 // Our models
 import { Datasource }                 from './models';
+import { Widget }                     from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -116,14 +117,15 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     graphColor: string[];
 
     clickedButtonAggregateNo: boolean = false;
-    currentDatasource: Datasource = null;
-    currentDatasources: Datasource[];
+    currentDatasource: Datasource = null;           // DS for the selected W
+    currentDatasources: Datasource[];               // Current DS for the selected W
     dataFieldNames: string[];
     draggedField: string = '';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverColor: boolean = false;
     filterPivotFields: string = '';
+    localWidget: Widget;                            // W to modify, copied from selected
     opened: boolean = true;
     presentationMode: boolean;
     showRowFieldAdvanced: boolean = false;
@@ -146,6 +148,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 x = w.datasourceID;
+                this.localWidget = w;
             }
         });
         // TODO - handle properly and close form
@@ -179,7 +182,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
-        let definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);
+        let definition = this.createVegaLiteSpec();
        
     }
 
@@ -268,13 +271,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.colField = this.draggedField;
         console.log('drop_handler dropped !!', this.colField )
 
-        let definition = this.createVegaLiteSpec(
-            undefined,
-            undefined,
-            this.colField,
-            undefined,
-            undefined
-        );
+        let definition = this.createVegaLiteSpec();
 
         this.showColFieldAdvanced = true;
         this.renderGraph(definition);
@@ -294,16 +291,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.rowField = this.draggedField;
         console.log('drop_handler dropped !!', this.rowField )
 
-        let definition = this.createVegaLiteSpec(
-            undefined,
-            undefined,
-            undefined,
-            this.rowField,
-            undefined
-        );
+        let definition = this.createVegaLiteSpec();
         this.showRowFieldAdvanced = true;
         this.renderGraph(definition);
-      }
+    }
 
     drop_handlerColor(ev) {
         //
@@ -318,15 +309,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.graphColorField = this.draggedField;
         console.log('drop_handler dropped !!', this.graphColorField )
 
-        let definition = this.createVegaLiteSpec(
-            undefined,
-            undefined,
-            this.colField,
-            undefined,
-            undefined
-        );
+        let definition = this.createVegaLiteSpec();
         this.renderGraph(definition);
-      }
+    }
 
     dragover_handlerColEnter(ev, actionName: string) {
         //
@@ -394,9 +379,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'clickApplyAdvancedX', '@Start');
 
         this.showColFieldAdvancedArea = false;
-   }
+    }
 
-   clickCloseAdvancedY(action) {
+    clickCloseAdvancedY(action) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCloseAdvancedY', '@Start');
 
@@ -415,45 +400,57 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'rowFieldDropButton', '@Start');
 
         this.showColFieldAdvancedArea = true;
-   }
+    }
 
-   clickShowRowFieldAdvanced(){
+    clickShowRowFieldAdvanced(){
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowRowFieldAdvanced', '@Start');
 
         this.showRowFieldAdvancedArea = true;
-   }
+    }
 
-    createVegaLiteSpec(
-        description: string = 'First bar chart.',
-        mark: string = 'bar',
-        xfield: string = 'Month',
-        yfield: string = 'Trades',
-        title: string = 'Average Trading'): dl.spec.TopLevelExtendedSpec {
+ 
+    createVegaLiteSpec(): dl.spec.TopLevelExtendedSpec {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
+        if (this.localWidget.graphUrl != "") {
+            vlSpecsNew['data'] = {"url": this.localWidget.graphUrl};
+        } else {
+            vlSpecsNew['data'] = {"values": this.localWidget.graphData};
+        }
+        vlSpecsNew['description'] = this.localWidget.graphDescription;
+        vlSpecsNew['mark']['type'] = this.localWidget.graphMark;
+        vlSpecsNew['mark']['color'] = this.localWidget.graphMarkColor;
 
+        vlSpecsNew['encoding']['x']['field'] = this.localWidget.graphXfield;
+        vlSpecsNew['encoding']['x']['type'] = this.localWidget.graphXtype;
+        vlSpecsNew['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
+        vlSpecsNew['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
+        vlSpecsNew['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
 
-        vlSpecsNew['data']['values'] = [
-            {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
-            {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
-            {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
-            {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
-            {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
-            {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
-        ];
-        vlSpecsNew['description'] = description;
-        vlSpecsNew['mark']['type'] = mark;
-        vlSpecsNew['encoding']['x']['field'] = xfield;
-        vlSpecsNew['encoding']['y']['field'] = yfield;
-        vlSpecsNew['title']['text'] = title;
-        console.log('createVegaLiteSpec', vlSpecsNew)
+        vlSpecsNew['encoding']['y']['field'] = this.localWidget.graphYfield;
+        vlSpecsNew['encoding']['y']['type'] = this.localWidget.graphYtype;
+        vlSpecsNew['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
+        vlSpecsNew['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
+        vlSpecsNew['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
+
+        vlSpecsNew['height'] = this.localWidget.graphHeight;
+        vlSpecsNew['width'] = this.localWidget.graphWidth;
+
+        vlSpecsNew['title']['text'] = this.localWidget.graphTitle;
+
+        if (this.localWidget.graphColorField != ''  && this.localWidget.graphColorField != null) {
+            vlSpecsNew['encoding']['color'] = {
+                "field": this.localWidget.graphColorField,
+                "type": this.localWidget.graphColorType
+            }
+        };
 
         return vlSpecsNew;
-
     }
+
 
     clickDatasource(index: number, name: string) {
         //
@@ -468,13 +465,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         this.showType = false;
 
-        let definition = this.createVegaLiteSpec(
-          undefined,
-          graph,
-          undefined,
-          undefined,
-          undefined
-        );
+        let definition = this.createVegaLiteSpec();
         this.renderGraph(definition);
 
     }
