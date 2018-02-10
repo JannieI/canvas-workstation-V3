@@ -1717,7 +1717,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSnapshots = data;
-                        console.log('Global-Variables getDashboardSnapshots 1',
+                        console.log('Global-Variables getCurrentDashboardSnapshots 1',
                             dashboardID, data)
                         resolve(data);
                 })
@@ -1729,7 +1729,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardSnapshots = returnData;
-                console.log('Global-Variables getDashboardSnapshots 2', dashboardID)
+                console.log('Global-Variables getCurrentDashboardSnapshots 2', dashboardID)
                 resolve(returnData);
             });
         };

@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="propertyLine">
-                    Snapshots saved for this Dashboard:
+                    Snapshots saved for this Dashboard.  Click <b>Roll Back</b> to restore:
                 </div>
 
                 <clr-datagrid>
@@ -37,12 +37,18 @@
 
                     <clr-dg-row *ngFor="let row of currentDashboardSnapshots;
                         let i = index"
-                        (click)="setClickedRow(i)"
+                        (dlbclick)="setClickedRow(i)"
                         [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                         [style.color]="(i == selectedRow)? 'white' : 'gray'"
                         >
                         <clr-dg-cell>
-                            <clr-icon shape="refresh" class="selectIcon1" size="12"></clr-icon>
+                            <clr-icon 
+                                shape="refresh" 
+                                class="selectIcon1" 
+                                size="12"
+                                (click)="clickRefreshDashboard(i)"
+                                >
+                            </clr-icon>
                         </clr-dg-cell>
                         <clr-dg-cell>{{row.id}}</clr-dg-cell>
                         <clr-dg-cell>{{row.name}}</clr-dg-cell>

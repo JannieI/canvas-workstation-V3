@@ -31,7 +31,7 @@ export class DashboardSnapshotsComponent implements OnInit {
     showTypeDashboard: boolean = false;
     currentDashboardSnapshots: DashboardSnapshot[];
     selectedRow : Number;
-    setClickedRow : Function;
+    setClickedRow : Function;  // use (click)="setClickedRow(i)" in html to call this
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -73,8 +73,22 @@ export class DashboardSnapshotsComponent implements OnInit {
             }).then(i => {
             console.log('saved', i)
         })
+    }
 
-		// this.formDashboardSnapshotsClosed.emit('Saved');
+    clickRefreshDashboard(index: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshDashboard', '@Start');
+
+        console.log('xx', index);
+        this.globalVariableService.saveLocal('DashboardSnapshot', { 
+            id: null, 
+            dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            name: 'Backup before RollBack',
+            comment: 'Saved before rollback was performed'
+            }).then(i => {
+            console.log('saved', i)
+        })        
+		// this.formDashboardSnapshotsClosed.emit(action);
     }
         
 }
