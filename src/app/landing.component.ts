@@ -101,9 +101,23 @@ export class LandingComponent implements OnInit {
 		this.formLandingClosed.emit('OpenSample');
 	}
 
-	clickOpenRecentDashboard(dashboardID: number, dashboardTabID: number) {
+	clickOpenRecentDashboard(dashboardID: number, dashboardTabID: number, index: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenRecentDashboard', '@Start');
+
+		// Cannot open deleted ones 
+		if (this.recentDashboards[index].stateAtRunTime == 'Deleted') {
+			this.globalVariableService.statusBarMessage.next(
+				{
+					message: 'Cannot open deleted Dashboard',
+					uiArea: 'StatusBar',
+					classfication: 'Warning',
+					timeout: 3000,
+					defaultMessage: ''
+				}
+			);
+				return;
+		};
 
         this.globalVariableService.refreshCurrentDashboard(
 			'landing-clickOpenRecentDashboard', dashboardID, dashboardTabID, ''
