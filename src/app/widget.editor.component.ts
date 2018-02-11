@@ -147,6 +147,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // TODO - remove after testing
+        this.showDatasourcePopup = true;
+        
         let x: number = 0;
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.isSelected) {

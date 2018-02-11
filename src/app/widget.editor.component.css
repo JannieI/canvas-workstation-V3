@@ -13,6 +13,17 @@
     margin-top: 2px;
 }
 
+    .datasources {
+        background-color: white;
+        grid-column-start: 1;
+        grid-column-end: 19;
+        grid-row-start: 2;
+        grid-row-end: 25;
+        margin-bottom: 0;
+        padding: 2rem;   
+        z-index: 100;     
+    }
+
     .fieldList {
         grid-column-start: 1;
         grid-column-end: 4;
@@ -116,7 +127,7 @@
         border-radius: 4px;
         grid-column-start: 7;
         grid-column-end: 16;
-        grid-row-start: 1;
+        grid-row-start: 2;
         grid-row-end: 21;
         margin-bottom: 0;
         text-align: center;
