@@ -138,8 +138,9 @@ export class AppComponent implements OnInit {
     newWidget: boolean = false;
     presentationMode: boolean;
     showGrid: boolean;
-    showDataQuality: boolean;
     showComments: boolean;
+    showDatasourcePopup: boolean = false; 
+    showDataQuality: boolean;
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
@@ -909,6 +910,7 @@ export class AppComponent implements OnInit {
 
         // Indicate new W and open Editor
         this.newWidget = true;
+        this.showDatasourcePopup = true;
         this.showModalWidgetEditor = true;
     }
 
@@ -921,6 +923,7 @@ export class AppComponent implements OnInit {
 
         // Indicate edit W and open Editor
         this.newWidget = false;
+        this.showDatasourcePopup = false;
 
         this.showModalWidgetEditor = true;
     }
