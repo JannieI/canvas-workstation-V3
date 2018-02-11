@@ -239,9 +239,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         ev.preventDefault();
     }
 
-    drop_handlerCol(ev) {
-        // Event trigger when 
-        this.globalFunctionService.printToConsole(this.constructor.name,'drop_handlerCol', '@Start');
+    dropColumn(ev) {
+        // Event trigger when the dragged Field is dropped the Column field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
         ev.preventDefault();
 
         ev.dataTransfer.dropEffect = "move"
@@ -259,9 +259,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     }
 
-    drop_handlerRow(ev) {
-        // Event trigger when 
-        this.globalFunctionService.printToConsole(this.constructor.name,'drop_handlerRow', '@Start');
+    dropRow(ev) {
+        // Event trigger when the dragged Field is dropped the Column field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropRow', '@Start');
 
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
@@ -277,9 +277,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.renderGraph(definition);
     }
 
-    drop_handlerColor(ev) {
-        // Event trigger when 
-        this.globalFunctionService.printToConsole(this.constructor.name,'drop_handlerColor', '@Start');
+    dropColor(ev) {
+        // Event trigger when the dragged Field is dropped the Colour field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropColor', '@Start');
 
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
@@ -312,9 +312,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.dragoverCol = false;
     }
 
-    dragover_handlerRowEnter(ev, actionName: string) {
-        // Event trigger when 
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerRowEnter', '@Start');
+    dragenterRow(ev, actionName: string) {
+        // Event trigger when the dragged Field is enters the Row field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterRow', '@Start');
 
         ev.preventDefault();
         this.dragoverCol = false;
@@ -322,17 +322,17 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.dragoverColor = false;
     }
 
-    dragover_handlerRowLeave(ev, actionName: string) {
-        // Event trigger when 
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerRowLeave', '@Start');
+    dragoleaveRow(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the Row field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragoleaveRow', '@Start');
 
         ev.preventDefault();
         this.dragoverRow = false;
     }
 
-    dragover_handlerColorEnter(ev, actionName: string) {
-        // Event trigger when 
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerColorEnter', '@Start');
+    dragenterColors(ev, actionName: string) {
+        // Event trigger when the dragged Field is enters the Colour field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterColors', '@Start');
 
         ev.preventDefault();
       this.dragoverCol = false;
@@ -340,9 +340,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
       this.dragoverColor = true;
     }
 
-    dragover_handlerColorLeave(ev, actionName: string) {
-        // Event trigger when 
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerColorLeave', '@Start');
+    dragleaveColors(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the Colour field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveColors', '@Start');
 
         ev.preventDefault();
         this.dragoverColor = false;
@@ -377,14 +377,14 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     rowFieldDropButton(){
-        //
+        // Shows the Advanced popup for Rows
         this.globalFunctionService.printToConsole(this.constructor.name,'rowFieldDropButton', '@Start');
 
         this.showColFieldAdvancedArea = true;
     }
 
     clickShowRowFieldAdvanced(){
-        //
+        // Shows the Advanced popup for Rows
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowRowFieldAdvanced', '@Start');
 
         this.showRowFieldAdvancedArea = true;
@@ -433,7 +433,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     clickDatasource(index: number, name: string) {
-        //
+        // Show dropdown of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
 
         console.log (index, name)

@@ -133,9 +133,9 @@
 
                     <div class="rowFieldDropField"
                         id="target"
-                        (drop)="drop_handlerRow($event);"
-                        (dragenter)="dragover_handlerRowEnter($event);"
-                        (dragleave)="dragover_handlerRowLeave($event);"
+                        (drop)="dropRow($event);"
+                        (dragenter)="dragenterRow($event);"
+                        (dragleave)="dragoleaveRow($event);"
                         (dragover)="dragoverRows($event);"
                         [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
                         >
@@ -255,7 +255,7 @@
                 <div class="colField">
                     <div class="colFieldDropField"
                         id="target"
-                        (drop)="drop_handlerCol($event);"
+                        (drop)="dropColumn($event);"
                         (dragover)="dragoverColumn($event);"
                         (dragenter)="dragenterColumn($event);"
                         (dragleave)="dragleaveColumn($event);"
@@ -392,10 +392,10 @@
                     <div
                         class="dropZoneColor"
                         id="target"
-                        (drop)="drop_handlerColor($event);"
+                        (drop)="dropColor($event);"
                         (dragover)="dragoverColors($event);"
-                        (dragenter)="dragover_handlerColorEnter($event);"
-                        (dragleave)="dragover_handlerColorLeave($event);"
+                        (dragenter)="dragenterColors($event);"
+                        (dragleave)="dragleaveColors($event);"
                         [style.background-color]="dragoverColor? 'lightgray' : 'transparent'"
                         >
                         {{ graphColorField }}
