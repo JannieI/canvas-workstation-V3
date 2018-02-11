@@ -32,18 +32,18 @@
             margin: 10px;
             position: absolute;
             top: 105px;
-            width: 40%;
+            width: 450px;
         }
 
         .datasourcePreview{
             border: 1px solid black;
             display: inline-block;
             height: 375px;
-            left: 620px;
+            left: 510px;
             margin: 10px;
             position: absolute;
             top: 105px;
-            width: 50%;
+            width: 590px;
         }
 
     .fieldList {
