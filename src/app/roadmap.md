@@ -118,7 +118,7 @@ Shapes:
 10.Consider highlight of selected row in Snapshots.  If good, apply to all Grids.  Better: consider a GRID-COMPONENT ...
 11.It should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
 12.It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
-
+13.Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that browser has own set.  Try to make it dynamic, ie use can define it!
 
 **Data**
 1. Define Canvas datatype = TS ones?

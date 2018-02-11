@@ -418,8 +418,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         vlSpecsNew['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
         vlSpecsNew['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
 
-        vlSpecsNew['height'] = this.localWidget.graphHeight;
-        vlSpecsNew['width'] = this.localWidget.graphWidth;
+        // Change HxW to show the graph in the given area on this form, which may be different
+        // to the size of the W on the D
+        vlSpecsNew['height'] = 360;
+        vlSpecsNew['width'] = 520;
 
         vlSpecsNew['title']['text'] = this.localWidget.graphTitle;
 
@@ -430,6 +432,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             }
         };
 
+        console.log('xx', vlSpecsNew)
         return vlSpecsNew;
     }
 
