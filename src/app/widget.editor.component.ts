@@ -250,7 +250,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         var data = ev.dataTransfer.getData("text");
         // ev.target.appendChild(document.getElementById(data));
         this.colField = this.draggedField;
-        console.log('drop_handler dropped !!', this.colField )
+        this.localWidget.graphXfield = this.draggedField;
+        console.log('Field dropped: ', this.colField )
 
         let definition = this.createVegaLiteSpec();
 
@@ -270,7 +271,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         var data = ev.dataTransfer.getData("text");
         // ev.target.appendChild(document.getElementById(data));
         this.rowField = this.draggedField;
-        console.log('drop_handler dropped !!', this.rowField )
+        this.localWidget.graphXfield = this.draggedField;
+        console.log('Field dropped: ', this.rowField )
 
         let definition = this.createVegaLiteSpec();
         this.showRowFieldAdvanced = true;
