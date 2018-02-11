@@ -1175,6 +1175,7 @@
 <!-- Modal: widget editor -->
 <widget-editor
     *ngIf="showModalWidgetEditor"
+    [newWidget]="newWidget"
     (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Widget Editor ...
 </widget-editor>
 

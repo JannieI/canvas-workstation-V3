@@ -135,6 +135,7 @@ export class AppComponent implements OnInit {
     moveLastY: number = 0;
     multiTabLeft: number = 0;
     multiTabTop: number = 0;
+    newWidget: boolean = false;
     presentationMode: boolean;
     showGrid: boolean;
     showDataQuality: boolean;
@@ -903,17 +904,23 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetNew() {
-        //
+        // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
+        // Indicate new W and open Editor
+        this.newWidget = true;
         this.showModalWidgetEditor = true;
     }
 
     clickMenuWidgetEdit() {
-        //
+        // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
+        // Can only edit one W at a time, so ignore if multiple selected
         if (!this.checkForOnlyOneWidget()) { return};
+
+        // Indicate edit W and open Editor
+        this.newWidget = false;
 
         this.showModalWidgetEditor = true;
     }

@@ -106,7 +106,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
   export class WidgetEditorComponent implements OnInit {
 
     @Output() formWidgetEditorClosed: EventEmitter<string> = new EventEmitter();
-
+    @Input() newWidget: boolean;
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
     rowField: string = 'Drag a field here ...';
@@ -171,7 +171,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         let y: string = this.currentDatasource.dataFields.toString();
         this.dataFieldNames = y.split(',');
         
-        console.log('xx ds', this.currentDatasource, this.dataFieldNames);
+        console.log('xx ds', this.newWidget, this.currentDatasource, this.dataFieldNames);
 
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
