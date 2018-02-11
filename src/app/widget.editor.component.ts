@@ -376,9 +376,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showRowFieldAdvancedArea = false;
     }
 
-    rowFieldDropButton(){
-        // Shows the Advanced popup for Rows
-        this.globalFunctionService.printToConsole(this.constructor.name,'rowFieldDropButton', '@Start');
+    clickShowColFieldAdvanced(){
+        // Shows the Advanced popup for Cols
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColFieldAdvanced', '@Start');
 
         this.showColFieldAdvancedArea = true;
     }
@@ -389,7 +389,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         this.showRowFieldAdvancedArea = true;
     }
-
  
     createVegaLiteSpec(): dl.spec.TopLevelExtendedSpec {
         // Creates and returns the Vega-Lite and Vega specs from the W Sepc
