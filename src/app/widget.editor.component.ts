@@ -32,7 +32,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     "padding": "",
     "height": "100",
     "width": "100",
-    // "autosize": "",          NB - add these only if needed, blank causes no graph display
+
+    // "autosize": "pad",       NB - add these only if needed, blank causes no graph display
+    // "autosize": {"type": "pad", "resize": true},  //"pad",   
     // "config": "",            NB - add these only if needed, blank causes no graph display
 
     // Properties for any specifications
@@ -193,8 +195,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
         view.renderer('svg')
-            .width(600)
-            .height(340)
+            .width(470)
+            .height(320)
             .initialize(this.dragWidget.nativeElement)
             .hover()
             .run()
@@ -420,8 +422,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         // Change HxW to show the graph in the given area on this form, which may be different
         // to the size of the W on the D
-        vlSpecsNew['height'] = 360;
-        vlSpecsNew['width'] = 520;
+        vlSpecsNew['height'] = 260;
+        vlSpecsNew['width'] = 420;
 
         vlSpecsNew['title']['text'] = this.localWidget.graphTitle;
 
