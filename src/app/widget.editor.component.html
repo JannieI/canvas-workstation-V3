@@ -10,12 +10,43 @@
                 </div>
 
                 <div class="datasources" *ngIf="showDatasourcePopup">
-                    Select a <b>Datasources</b> for which the data will be visualised
-                    as a Graph or a Table:
+                    Select a <b>Datasources</b> from the list, and how it should be visualised:
+
+                    <clr-dropdown class="datasourceDropdown" *ngIf="hasClicked">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            clrDropdownTrigger
+                            >
+                            Visualisation
+                            <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
+                        </button>
+                        <clr-dropdown-menu
+                            clrPosition="bottom-left"
+                            *clrIfOpen
+                            class="datasourceDropdown"
+                            >
+                            <div class="datasourceDropdown" 
+                                (click)="clickSelectViz('Graph')"
+                                clrDropdownItem
+                                >
+                                Graph
+                            </div>
+                            <div class="datasourceDropdown" 
+                                (click)="clickSelectViz('Table')"
+                                clrDropdownItem
+                                >
+                                Table
+                            </div>
+                        </clr-dropdown-menu>
+                    </clr-dropdown>
+    
+
+
                     <button *ngIf="hasClicked"
                         class="btn btn-sm btn-secondary datasourceButton"
                         (click)="clickContinue()">
-                        Continue
+                        Edit {{ selectedViz }}
                     </button>
 
                     <div class="datasourceList">

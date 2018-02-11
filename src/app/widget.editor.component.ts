@@ -132,6 +132,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     opened: boolean = true;
     presentationMode: boolean;
     rowField: string = 'Drag a field here ...';
+    selectedViz: string = '';
     showRowFieldAdvanced: boolean = false;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
@@ -148,9 +149,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // TODO - remove after testing
         this.showDatasourcePopup = true;
-
         let x: number = 0;
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -499,5 +498,13 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
 
         this.showDatasourcePopup = false;
+    }
+
+    clickSelectViz(selection: string) {
+        // Set the selected Visualisation
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectViz', '@Start');
+
+        this.selectedViz = selection;
+
     }
   }
