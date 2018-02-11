@@ -493,4 +493,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         console.log('xx clickDSrow 2', ds, dSetID, this.currentData)
 
     }
+
+    clickContinue(){
+        // Continue to design / edit the W, and close the form for the data
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
+
+        this.showDatasourcePopup = false;
+    }
   }

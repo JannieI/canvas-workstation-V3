@@ -46,6 +46,10 @@
             width: 600px;
         }
 
+        .datasourceButton {
+            float: right;
+        }
+
     .fieldList {
         grid-column-start: 1;
         grid-column-end: 4;

@@ -12,7 +12,12 @@
                 <div class="datasources" *ngIf="showDatasourcePopup">
                     Select a <b>Datasources</b> for which the data will be visualised
                     as a Graph or a Table:
-                
+                    <button *ngIf="hasClicked"
+                        class="btn btn-sm btn-secondary datasourceButton"
+                        (click)="clickContinue()">
+                        Continue
+                    </button>
+
                     <div class="datasourceList">
                         <nav
                             >
@@ -52,15 +57,7 @@
                         </div>
                     </div>
 
-
-
                 </div>
-
-
-
-
-
-
 
                 <div class="fieldList">
                     <nav
