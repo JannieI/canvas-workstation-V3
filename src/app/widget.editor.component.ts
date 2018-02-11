@@ -469,9 +469,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         let ds: number[]=[];
         let dSetID: number = 0;
 
-        for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
-            if(this.globalVariableService.datasets[i].datasourceID == datasourceID) {
-                ds.push(this.globalVariableService.datasets[i].id)
+        for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
+            if(this.globalVariableService.currentDatasets[i].datasourceID == datasourceID) {
+                ds.push(this.globalVariableService.currentDatasets[i].id)
             }
         };
         if (ds.length > 0) {
@@ -482,7 +482,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         };
         
         // Load it
-        this.currentData = this.globalVariableService.datasets.filter(
+        this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data;
 
         // Preview
