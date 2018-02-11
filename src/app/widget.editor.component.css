@@ -20,9 +20,31 @@
         grid-row-start: 2;
         grid-row-end: 25;
         margin-bottom: 0;
-        padding: 2rem;   
+        padding: 0.7rem;   
         z-index: 100;     
     }
+
+        .datasourceList {
+            border: 1px solid black;
+            display: inline-block;
+            height: 375px;
+            left: 20px;
+            margin: 10px;
+            position: absolute;
+            top: 105px;
+            width: 40%;
+        }
+
+        .datasourcePreview{
+            border: 1px solid black;
+            display: inline-block;
+            height: 375px;
+            left: 620px;
+            margin: 10px;
+            position: absolute;
+            top: 105px;
+            width: 50%;
+        }
 
     .fieldList {
         grid-column-start: 1;

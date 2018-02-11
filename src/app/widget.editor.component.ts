@@ -112,25 +112,27 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     @Input() showDatasourcePopup: boolean;
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
-    rowField: string = 'Drag a field here ...';
-    colField: string = 'Drag a field here ...';
-    graphColorField: string = 'Drag a field here ...';
-    graphCols: string[];
-    graphRows: string[];
-    graphColor: string[];
-
     clickedButtonAggregateNo: boolean = false;
+    colField: string = 'Drag a field here ...';
+    currentData: any = [];
     currentDatasource: Datasource = null;           // DS for the selected W
     currentDatasources: Datasource[];               // Current DS for the selected W
     dataFieldNames: string[];
+    datasourceID: number;
     draggedField: string = '';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverColor: boolean = false;
     filterPivotFields: string = '';
+    graphColorField: string = 'Drag a field here ...';
+    graphCols: string[];
+    graphRows: string[];
+    graphColor: string[];
     localWidget: Widget;                            // W to modify, copied from selected
     opened: boolean = true;
     presentationMode: boolean;
+    rowField: string = 'Drag a field here ...';
+    showDataPreview: boolean = false;
     showRowFieldAdvanced: boolean = false;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
@@ -149,7 +151,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         // TODO - remove after testing
         this.showDatasourcePopup = true;
-        
+
         let x: number = 0;
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -162,12 +164,15 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             alert('No Widget was selected, or could not find it in glob vars')
         };
 
+
         this.currentDatasources = this.globalVariableService.currentDatasources;
         this.globalVariableService.currentDatasources.forEach(ds => {
             if (ds.id == x) {
                 this.currentDatasource = ds;
             };
         });
+
+        console.log('xx', this.globalVariableService.currentDatasources, this.currentDatasources), this.currentDatasource
         // TODO - handle properly and close form
         if (this.currentDatasource == null) {
             alert('Datasource not found in global currentDatasources')
@@ -461,4 +466,45 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     }
 
+
+    clickDSPreview() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
+
+        // Get latest dSet for the selected DS
+        let ds: number[]=[];
+        let dSetID: number = 0;
+
+        for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
+            if(this.globalVariableService.datasets[i].datasourceID == this.datasourceID) {
+                ds.push(this.globalVariableService.datasets[i].id)
+            }
+        };
+        if (ds.length > 0) {
+            dSetID = Math.max(...ds);
+        } else {
+            // Make proper error handling
+            alert('Error: no dataSet in glob vars for DSid = ' + this.datasourceID)
+        };
+        
+        // Load it
+        this.currentData = this.globalVariableService.datasets[i].id;
+
+        // Preview
+        console.log('xx', ds, dSetID, this.currentData)
+
+        // Show the Preview button
+        this.showDataPreview = true; //!this.showDataPreview;
+
+    }
+
+    clickDSrow(datasourceID: number) {
+        // Set the selected datasourceID
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
+
+        // Switch off preview, and remember the DSid
+        this.showDataPreview = false;
+        this.datasourceID = datasourceID;
+        
+    }
   }
