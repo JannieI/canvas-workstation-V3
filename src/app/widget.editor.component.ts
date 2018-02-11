@@ -127,6 +127,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     graphCols: string[];
     graphRows: string[];
     graphColor: string[];
+    hasClicked: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     opened: boolean = true;
     presentationMode: boolean;
@@ -465,6 +466,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
+        // Switch on the preview after the first row was clicked
+        this.hasClicked = true;
+
         // Get latest dSet for the selected DS
         let ds: number[]=[];
         let dSetID: number = 0;
@@ -481,9 +485,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
         };
         
-        // Load it
+        // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
-            d => d.id == dSetID)[0].data;
+            d => d.id == dSetID)[0].data.slice(0,5);
 
         // Preview
         console.log('xx clickDSrow 2', ds, dSetID, this.currentData)
