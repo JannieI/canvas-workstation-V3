@@ -231,7 +231,7 @@ export class WidgetComponent {
 
             if ( (arrID.length > 0  && arrID.indexOf(this.widgets[i].id) >= 0)  ||
                 arrID.length == 0 ) {
-                console.log('xx', this.widgets[i].id, arrID, arrID.indexOf(this.widgets[i].id), arrID.length)
+                console.log('xx refreshWidgets', this.widgets[i].id, arrID, arrID.indexOf(this.widgets[i].id), arrID.length)
                 // String of IF statements that caters for different visualGrammars
                 if (this.widgets[i].visualGrammar == 'Vega-Lite') {
 
@@ -475,7 +475,7 @@ export class WidgetComponent {
         this.globalVariableService.currentSlicers.forEach(sl => {
             if (sl.isSelected) {
                 if (sl.datasourceID == datasourceID  &&  sl.datasetID == datasetID) {
-                    console.log('xx true', id)
+                    console.log('xx showWidgetForSlicer', id)
                     result = true;
                 };
             };

@@ -118,7 +118,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     currentDatasource: Datasource = null;           // DS for the selected W
     currentDatasources: Datasource[];               // Current DS for the selected W
     dataFieldNames: string[];
-    datasourceID: number;
     draggedField: string = '';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
@@ -132,7 +131,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     opened: boolean = true;
     presentationMode: boolean;
     rowField: string = 'Drag a field here ...';
-    showDataPreview: boolean = false;
     showRowFieldAdvanced: boolean = false;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
@@ -172,7 +170,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             };
         });
 
-        console.log('xx', this.globalVariableService.currentDatasources, this.currentDatasources), this.currentDatasource
+        console.log('xx onInit', this.globalVariableService.currentDatasources, this.currentDatasources), this.currentDatasource
         // TODO - handle properly and close form
         if (this.currentDatasource == null) {
             alert('Datasource not found in global currentDatasources')
@@ -182,8 +180,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         let y: string = this.currentDatasource.dataFields.toString();
         this.dataFieldNames = y.split(',');
         
-        console.log('xx ds', this.newWidget, this.currentDatasource, this.dataFieldNames);
-
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
         );
@@ -443,7 +439,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             }
         };
 
-        console.log('xx', vlSpecsNew)
         return vlSpecsNew;
     }
 
@@ -466,17 +461,16 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     }
 
-
-    clickDSPreview() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
+    clickDSrow(datasourceID: number) {
+        // Set the selected datasourceID
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
         // Get latest dSet for the selected DS
         let ds: number[]=[];
         let dSetID: number = 0;
 
         for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
-            if(this.globalVariableService.datasets[i].datasourceID == this.datasourceID) {
+            if(this.globalVariableService.datasets[i].datasourceID == datasourceID) {
                 ds.push(this.globalVariableService.datasets[i].id)
             }
         };
@@ -484,27 +478,15 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             dSetID = Math.max(...ds);
         } else {
             // Make proper error handling
-            alert('Error: no dataSet in glob vars for DSid = ' + this.datasourceID)
+            alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
         };
         
         // Load it
-        this.currentData = this.globalVariableService.datasets[i].id;
+        this.currentData = this.globalVariableService.datasets.filter(
+            d => d.id == dSetID)[0].data;
 
         // Preview
-        console.log('xx', ds, dSetID, this.currentData)
+        console.log('xx clickDSrow 2', ds, dSetID, this.currentData)
 
-        // Show the Preview button
-        this.showDataPreview = true; //!this.showDataPreview;
-
-    }
-
-    clickDSrow(datasourceID: number) {
-        // Set the selected datasourceID
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
-
-        // Switch off preview, and remember the DSid
-        this.showDataPreview = false;
-        this.datasourceID = datasourceID;
-        
     }
   }

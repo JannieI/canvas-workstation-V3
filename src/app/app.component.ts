@@ -1530,7 +1530,6 @@ export class AppComponent implements OnInit {
             return;
         } else {
             this.showMultiTabMenu = false;
-            console.log('xx', this.currentTabNames)
         }
     }
 
