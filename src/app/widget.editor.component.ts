@@ -442,6 +442,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Show dropdown of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
 
+        // TODO - remove later if not used any longer
         console.log (index, name)
     }
 

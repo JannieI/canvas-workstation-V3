@@ -16,31 +16,7 @@
                         [style.width.px]="sideNavWidth"
                         [style.min-width.rem]="sideNavMinWidth"
                         >
-
-                        <clr-dropdown class="datasourceDropdown">
-                            <button
-                                type="button"
-                                class="btn btn-link btn-sm"
-                                clrDropdownTrigger
-                                >
-                                More Datasources
-                                <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
-                            </button>
-                            <clr-dropdown-menu
-                                clrPosition="bottom-left"
-                                *clrIfOpen
-                                class="datasourceDropdown"
-                                >
-
-                                <div *ngFor="let row of currentDatasources; let i = index"
-                                    (click)="clickDatasource(i, row.name)"
-                                    clrDropdownItem
-                                    class="datasourceDropdown"
-                                    >
-                                    {{ row.name }}
-                                </div>
-                            </clr-dropdown-menu>
-                        </clr-dropdown>
+                        
                         <div class="selectedDatasource">
                             Fields for: {{ currentDatasources[0].name }}
                         </div>
