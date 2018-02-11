@@ -52,7 +52,7 @@
                                     <clr-dg-cell
                                         id="fld"
                                         draggable="true"
-                                        (dragstart)="dragstart_handlerField($event)"
+                                        (dragstart)="dragstartField($event)"
                                         >
                                         {{ row }}
                                     </clr-dg-cell>
@@ -136,7 +136,7 @@
                         (drop)="drop_handlerRow($event);"
                         (dragenter)="dragover_handlerRowEnter($event);"
                         (dragleave)="dragover_handlerRowLeave($event);"
-                        (dragover)="dragover_handlerRow($event);"
+                        (dragover)="dragoverRows($event);"
                         [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
                         >
                         {{ rowField }}
@@ -256,9 +256,9 @@
                     <div class="colFieldDropField"
                         id="target"
                         (drop)="drop_handlerCol($event);"
-                        (dragover)="dragover_handlerCol($event);"
-                        (dragenter)="dragover_handlerColEnter($event);"
-                        (dragleave)="dragover_handlerColLeave($event);"
+                        (dragover)="dragoverColumn($event);"
+                        (dragenter)="dragenterColumn($event);"
+                        (dragleave)="dragleaveColumn($event);"
                         [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
                         >
                         {{ colField }}
@@ -393,7 +393,7 @@
                         class="dropZoneColor"
                         id="target"
                         (drop)="drop_handlerColor($event);"
-                        (dragover)="dragover_handlerColor($event);"
+                        (dragover)="dragoverColors($event);"
                         (dragenter)="dragover_handlerColorEnter($event);"
                         (dragleave)="dragover_handlerColorLeave($event);"
                         [style.background-color]="dragoverColor? 'lightgray' : 'transparent'"
