@@ -20,6 +20,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 4,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
         "dataParameters":
@@ -131,6 +132,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 1,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": -1,
         "dataParameters":
@@ -242,6 +244,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 1,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 1,
         "dataParameters":
@@ -487,6 +490,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 4,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
         "dataParameters":
@@ -598,6 +602,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 4,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
         "dataParameters":
@@ -709,6 +714,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 4,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
         "dataParameters":
@@ -820,6 +826,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 4,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
         "dataParameters":
@@ -931,6 +938,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 4,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
         "dataParameters":
@@ -1042,6 +1050,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 4,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
         "dataParameters":
@@ -1153,6 +1162,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 4,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
         "dataParameters":
@@ -1264,6 +1274,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 4,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
         "dataParameters":
@@ -1375,6 +1386,7 @@
         "hyperlinkDashboardTabID": 1,
 
         "datasourceID": 4,
+        "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
         "dataParameters":
