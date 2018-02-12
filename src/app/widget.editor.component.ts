@@ -150,7 +150,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         if (this.newWidget) {
             // Get DS
-            this.currentDatasources = this.globalVariableService.datasources;
+            this.currentDatasources = this.globalVariableService.currentDatasources;
 
             this.localWidget = 
             {
