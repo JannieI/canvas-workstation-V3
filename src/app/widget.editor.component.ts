@@ -115,8 +115,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     clickedButtonAggregateNo: boolean = false;
     colField: string = 'Drag a field here ...';
     currentData: any = [];
-    currentDatasource: Datasource = null;           // DS for the selected W
-    currentDatasources: Datasource[];               // Current DS for the selected W
+    currentDatasources: Datasource[] = null;               // Current DS for the selected W
     dataFieldNames: string[];
     draggedField: string = '';
     dragoverCol: boolean = false;
@@ -132,7 +131,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     opened: boolean = true;
     presentationMode: boolean;
     rowField: string = 'Drag a field here ...';
-    selectedViz: string = '';
+    selectedViz: string = 'Graph';
     showRowFieldAdvanced: boolean = false;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
@@ -149,37 +148,41 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.showDatasourcePopup = true;
-        let x: number = 0;
-        this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.isSelected) {
-                x = w.datasourceID;
-                this.localWidget = w;
-            }
-        });
-        // TODO - handle properly and close form
-        if (x == 0) {
-            alert('No Widget was selected, or could not find it in glob vars')
-        };
+        if (this.newWidget) {
+            // Get DS
+            this.currentDatasources = this.globalVariableService.currentDatasources;
 
+        } else {
 
-        this.currentDatasources = this.globalVariableService.currentDatasources;
-        this.globalVariableService.currentDatasources.forEach(ds => {
-            if (ds.id == x) {
-                this.currentDatasource = ds;
+            let x: number = 0;
+            this.globalVariableService.currentWidgets.forEach(w => {
+                if (w.isSelected) {
+                    x = w.datasourceID;
+                    this.localWidget = w;
+                }
+            });
+            // TODO - handle properly and close form
+            if (x == 0) {
+                alert('No Widget was selected, or could not find it in glob vars')
             };
-        });
 
-        console.log('xx onInit', this.globalVariableService.currentDatasources, this.currentDatasources), this.currentDatasource
-        // TODO - handle properly and close form
-        if (this.currentDatasource == null) {
-            alert('Datasource not found in global currentDatasources')
-        };
+            // Get DS
+            this.currentDatasources = this.globalVariableService.currentDatasources
+                .filter(ds => ds.id == x)
 
-        // TODO - remove this, currently datalib reads array as string a,b,c
-        let y: string = this.currentDatasource.dataFields.toString();
-        this.dataFieldNames = y.split(',');
-        
+            // TODO - handle properly and close form
+            if (this.currentDatasources.length != 1) {
+                alert('Datasource not found in global currentDatasources')
+            };
+
+            // TODO - remove this, currently datalib reads array as string a,b,c
+            let y: string = this.currentDatasources[0].dataFields.toString();
+            this.dataFieldNames = y.split(',');
+            console.log('xx onInit', this.dataFieldNames, this.globalVariableService.currentDatasources, this.currentDatasources)
+            
+        }
+
+       
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
         );
@@ -447,7 +450,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
 
         // TODO - remove later if not used any longer
-        console.log (index, name)
+        console.log ('xx', index, name)
     }
 
     clickIcon(graph: string) {
@@ -465,6 +468,15 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
+        this.globalVariableService.currentDatasources.forEach(ds => {
+            if (ds.id = datasourceID) {
+
+                // TODO - remove this, currently datalib reads array as string a,b,c
+                let y: string = ds.dataFields.toString();
+                this.dataFieldNames = y.split(',');
+            }
+        });
+        console.log('xx', this.dataFieldNames)
         // Switch on the preview after the first row was clicked
         this.hasClicked = true;
 

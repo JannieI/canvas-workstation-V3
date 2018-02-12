@@ -209,6 +209,7 @@ Shapes:
 18.Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
 19.Fix bug - grid sits on TOP of everything!!
 20.Serias work to be done - learning Vega and adding ALL features !!!
+21.Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI.  Maybe, see Table comments below, make each type of Viz a separate component (because of complexity)
 
 
 **Shapes**
@@ -230,6 +231,9 @@ Shapes:
 3. X top right to close (and how to show later?)  Can make temporary invisible?
 
 
+**Tables**
+1. Add form and code to W Editor to do this
+2. Maybe make this a separate component ... ?
 
 
 **Scheduler**

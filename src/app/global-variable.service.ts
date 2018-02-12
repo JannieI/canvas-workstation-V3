@@ -2405,9 +2405,6 @@ export class GlobalVariableService {
         );
     }
 
-
-
-
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         console.log('Global-Variables get (url, filePath) ...', url, this.filePath);
@@ -2418,6 +2415,7 @@ export class GlobalVariableService {
                 if (err) {
                     reject(err)
                 } else {
+                    if (options == 'metadata') {}
                     resolve(currentData);
                 }
                 });
