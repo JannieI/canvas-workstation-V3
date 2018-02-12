@@ -414,6 +414,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         var data = ev.dataTransfer.getData("text");
         // ev.target.appendChild(document.getElementById(data));
         this.graphColorField = this.draggedField;
+        this.localWidget.graphColorField = this.draggedField
         console.log('drop_handler dropped !!', this.graphColorField )
 
         let definition = this.createVegaLiteSpec();
