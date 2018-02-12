@@ -265,3 +265,6 @@
     background-color: lightgray;
 }
 
+.datagrid-cell {
+    padding: 3px 0 3px 10px !important;
+}
