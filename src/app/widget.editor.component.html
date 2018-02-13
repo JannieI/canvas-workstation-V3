@@ -202,6 +202,7 @@
                         (dragover)="dragoverRows($event);"
                         [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
                         >
+                        <clr-icon shape="times" *ngIf="showRowDeleteIcon"></clr-icon>
                         {{ rowField }}
                     </div>
 
@@ -288,6 +289,7 @@
                         (dragleave)="dragleaveColumn($event);"
                         [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
                         >
+                        <clr-icon shape="times" *ngIf="showColumnDeleteIcon"></clr-icon>
                         {{ colField }}
                     </div>
                 </div>
@@ -425,6 +427,7 @@
                         (dragleave)="dragleaveColors($event);"
                         [style.background-color]="dragoverColor? 'lightgray' : 'transparent'"
                         >
+                        <clr-icon shape="times" *ngIf="showColourDeleteIcon" (click)="clickClearColourField()"></clr-icon>
                         {{ graphColorField }}
                     </div>
                 </div>
@@ -433,7 +436,7 @@
                     <button
                         type="button"
                         class="btn btn-secondary"
-                        (click)="clickClose('Close')"
+                        (click)="clickSave('Saved')"
                         >
                         Save
                     </button>

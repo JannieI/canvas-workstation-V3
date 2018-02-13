@@ -95,7 +95,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                     "stack": "",
                     "sort": "",
                     "condition": ""
-                    }
+                },
+            "color": {
+                "field": "",
+                "type": ""
+            }
         }
 };
 
@@ -107,16 +111,17 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
   })
   export class WidgetEditorComponent implements OnInit {
 
-    @Output() formWidgetEditorClosed: EventEmitter<string> = new EventEmitter();
     @Input() newWidget: boolean;
     @Input() showDatasourcePopup: boolean;
+    @Output() formWidgetEditorClosed: EventEmitter<string> = new EventEmitter();
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
     clickedButtonAggregateNo: boolean = false;
     colField: string = 'Drag a field here ...';
     currentData: any = [];
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
-    dataFieldNames: string[];
+    dataFieldNames: string[] = [];
+    dataFieldLengths: number[] = [];
     draggedField: string = '';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
@@ -136,6 +141,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
     showRowFieldAdvancedArea: boolean = false;
+    showColumnDeleteIcon: boolean = false;
+    showColourDeleteIcon: boolean = false;
+    showRowDeleteIcon: boolean = false;
     showType: boolean = false;
 
     constructor(
@@ -145,7 +153,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     ) {}
 
     ngOnInit() {
-        //
+        // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         if (this.newWidget) {
@@ -292,7 +300,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             // TODO - remove this, currently datalib reads array as string a,b,c
             let y: string = this.currentDatasources[0].dataFields.toString();
             this.dataFieldNames = y.split(',');
-            console.log('xx onInit', this.dataFieldNames, this.globalVariableService.currentDatasources, this.currentDatasources)
+            let l = this.currentDatasources[0].dataFieldLengths.toString().split(',');
+            for (var i = 0; i < l.length; i++) {
+                this.dataFieldLengths.push(+l[i]);
+             };
+            console.log('xx onInit', this.dataFieldNames, this.dataFieldLengths)
             
         }
 
@@ -303,10 +315,14 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     ngAfterViewInit() {
-        //
+        // ngAfterViewInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
+        // Render if Editing an existing one
         let definition = this.createVegaLiteSpec();
+        if (!this.newWidget) {
+            this.renderGraph(definition);
+        }
        
     }
 
@@ -316,9 +332,24 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
+        let width: number = 470;
+        let height: number = 300;
+        // Reduce width of legend by length of selected field
+        if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
+            let reduce: number = 30;
+
+            // Find the length, then say 8px per character + colour blockie displayed
+            // TODO - do this better !
+            for (var i = 0; i < this.dataFieldNames.length; i++) {
+                if (this.localWidget.graphColorField == this.dataFieldNames[i]) {
+                    reduce = (8 * this.dataFieldLengths[i]) + 35;
+                }
+            }
+            width = width - reduce;
+        }
         view.renderer('svg')
-            .width(470)
-            .height(320)
+            .width(width)
+            .height(height)
             .initialize(this.dragWidget.nativeElement)
             .hover()
             .run()
@@ -330,6 +361,20 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
   	clickClose(action: string) {
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+        this.formWidgetEditorClosed.emit(action);
+    }
+
+    clickSave(action: string) {
+        // Closes the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Replace the W
+        this.globalVariableService.currentWidgets.forEach(w => {
+            if (w.id = this.localWidget.id) {
+                w = this.localWidget;
+            }
+        });
 
         this.formWidgetEditorClosed.emit(action);
     }
@@ -368,6 +413,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
         ev.preventDefault();
 
+        // Show X icon
+        this.showColumnDeleteIcon = true;
+
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
 
@@ -375,6 +423,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // ev.target.appendChild(document.getElementById(data));
         this.colField = this.draggedField;
         this.localWidget.graphXfield = this.draggedField;
+        this.localWidget.graphXaxisTitle = this.draggedField;
         console.log('Field dropped: ', this.colField )
 
         let definition = this.createVegaLiteSpec();
@@ -392,10 +441,14 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
 
+        // Show X icon
+        this.showRowDeleteIcon = true;
+
         var data = ev.dataTransfer.getData("text");
         // ev.target.appendChild(document.getElementById(data));
         this.rowField = this.draggedField;
-        this.localWidget.graphXfield = this.draggedField;
+        this.localWidget.graphYfield = this.draggedField;
+        this.localWidget.graphYaxisTitle = this.draggedField;
         console.log('Field dropped: ', this.rowField )
 
         let definition = this.createVegaLiteSpec();
@@ -407,6 +460,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Event trigger when the dragged Field is dropped the Colour field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColor', '@Start');
 
+        // Show X icon
+        this.showColourDeleteIcon = true;
+
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
@@ -415,7 +471,20 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // ev.target.appendChild(document.getElementById(data));
         this.graphColorField = this.draggedField;
         this.localWidget.graphColorField = this.draggedField
-        console.log('drop_handler dropped !!', this.graphColorField )
+        console.log('dropColor field name: ', this.graphColorField )
+
+        let definition = this.createVegaLiteSpec();
+        this.renderGraph(definition);
+    }
+
+    clickClearColourField() {
+        // Clear the Colour Field
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearColourField', '@Start');
+
+        // Show X icon
+        this.showColourDeleteIcon = false;
+        this.graphColorField = '';
+        this.localWidget.graphColorField = null;
 
         let definition = this.createVegaLiteSpec();
         this.renderGraph(definition);
@@ -522,6 +591,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
+        
         if (this.localWidget.graphUrl != "") {
             vlSpecsNew['data'] = {"url": this.localWidget.graphUrl};
         } else {
@@ -550,13 +620,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         vlSpecsNew['title']['text'] = this.localWidget.graphTitle;
 
-        if (this.localWidget.graphColorField != ''  && this.localWidget.graphColorField != null) {
-            vlSpecsNew['encoding']['color'] = {
-                "field": this.localWidget.graphColorField,
-                "type": this.localWidget.graphColorType
-            }
-        };
+        vlSpecsNew['encoding']['color']['field'] = this.localWidget.graphColorField;
+        vlSpecsNew['encoding']['color']['type'] = this.localWidget.graphColorType;
 
+        console.log('xx vega spec',this.localWidget.graphColorField, vlSpecsNew)
         return vlSpecsNew;
     }
 
@@ -583,15 +650,17 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
-        this.globalVariableService.currentDatasources.forEach(ds => {
-            if (ds.id = datasourceID) {
+        this.currentDatasources = this.globalVariableService.currentDatasources
+            .filter(ds => ds.id == datasourceID)
+        
+        // TODO - remove this, currently datalib reads array as string a,b,c
+        let y: string = this.currentDatasources[0].dataFields.toString();
+        this.dataFieldNames = y.split(',');
+        let l = this.currentDatasources[0].dataFieldLengths.toString().split(',');
+        for (var i = 0; i < l.length; i++) {
+            this.dataFieldLengths.push(+l[i]);
+         };
 
-                // TODO - remove this, currently datalib reads array as string a,b,c
-                let y: string = ds.dataFields.toString();
-                this.dataFieldNames = y.split(',');
-            }
-        });
-        console.log('xx', this.dataFieldNames)
         // Switch on the preview after the first row was clicked
         this.hasClicked = true;
 
@@ -614,10 +683,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data.slice(0,5);
-
-        // Preview
-        console.log('xx clickDSrow 2', ds, dSetID, this.currentData)
-
     }
 
     clickContinue(){

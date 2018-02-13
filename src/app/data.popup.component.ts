@@ -50,6 +50,7 @@ export class DataPopupComponent implements OnInit {
     dataArray: any;
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
+    dataFieldLengths: string[] = [];
     dataUniqueInColumn: string[] = [];
     pageSize: number = 4;
     dataQualityIssues: DataQualityIssue[];
@@ -317,6 +318,7 @@ export class DataPopupComponent implements OnInit {
             refreshedOn: '2017/01/01',
             dataFields: [],
             dataFieldTypes: [],
+            dataFieldLengths: [],
             parameters: 'None',
             folder: '',
             fileName: '',

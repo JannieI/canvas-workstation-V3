@@ -121,6 +121,12 @@ export class AppComponent implements OnInit {
     @ViewChild('widgetDOM')  widgetDOM: WidgetComponent;
 
     companyName: string = this.globalVariableService.companyName;
+    currentDashboardName: string = '';
+    currentShapes: Widget[] = [];
+    currentSlicers: Widget[] = [];
+    currentTabNames: {isSelected: boolean; name: string}[];
+    currentTabName: string = '';
+    currentWidgets: Widget[] = [];
     editMode: boolean;
     hasDatasources: boolean = false;
     editMenuText: string;
@@ -137,6 +143,11 @@ export class AppComponent implements OnInit {
     multiTabTop: number = 0;
     newWidget: boolean = false;
     presentationMode: boolean;
+    refreshGraphs: boolean = false;
+    selectWidgetIndex: number;
+    selectDatasetID: number;
+    selectDatasourceID: number;
+    selectedWidgetIDs: number[] = [];
     showGrid: boolean;
     showComments: boolean;
     showDatasourcePopup: boolean = false; 
@@ -187,30 +198,18 @@ export class AppComponent implements OnInit {
     showModalCollaborateActivityAdd: boolean = false;
     showModalCollaborateMessages: boolean = false;
     showModalCollaborateActivities: boolean = false;
+    showModalLanding: boolean;
     showModalUserMyProfile: boolean = false;
     showModalUserPreferences: boolean = false;
     showModalUserWidgetButtonBar: boolean = false;
     showModalUserShapeButtonBar: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
-    currentDashboardName: string = '';
-    currentTabName: string = '';
-    statusBarRunning: boolean = false;
-    statusBarCancelRefresh: boolean = false;
-
-    currentWidgets: Widget[] = [];
-    currentSlicers: Widget[] = [];
-    currentShapes: Widget[] = [];
-    currentTabNames: {isSelected: boolean; name: string}[];
-    showModalLanding: boolean;
-
-    refreshGraphs: boolean = false;
     startX: number;
     startY: number;
-    selectWidgetIndex: number;
-    selectDatasetID: number;
-    selectDatasourceID: number;
-    selectedWidgetIDs: number[] = [];
+    statusBarCancelRefresh: boolean = false;
+    statusBarRunning: boolean = false;
+
 
 
     constructor(
@@ -340,6 +339,23 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
+        // TODO - this can be done much better
+        // Replace the currentWidget with the editted info
+        let cW: number = -1;
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                this.globalVariableService.currentWidgets.forEach(w => {
+                    if (w.id = this.currentWidgets[i].id) {
+                        this.currentWidgets[i] = w;
+                        cW = i;
+                    }
+                })
+            }
+        };
+        // TODO - refresh only the editted one
+        this.widgetDOM.refreshWidgets();
+        
+        console.log('xx hClo', this.currentWidgets)
         this.showModalWidgetEditor = false;
     }
 
