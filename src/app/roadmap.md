@@ -150,6 +150,23 @@ Shapes:
 7. Add UserID to ALL data and code -> where needed ...
 
 
+**Data**
+1. Define Canvas data types: which module creates this for data and where?  Are all numbers equal?
+2. Data field lengths: where defined, by what means, and how are they used?  Is it display side only?  Can the user change it?  What if an actual field is wider than the stated length - will it truncate displayed data?  Does numbers have a length?
+3. How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How is locale used?
+4. How does types tranform into Vega field types, ie on Editor?
+
+
+Widgit Editor
+- user can change Vega field types on Adv form
+- our field type -> vega types: take a best guess
+- APPLY on Adv form must re-render
+- DESIGN: if Viz type is layered, ie Table, what about Vega types?  Different Vega templates and components?  Diff Adv forms?
+- DESIGn: Adv form
+- at start, add row, col, color fields
+- EDIT buggie - color stays, fails on T=2
+- new push
+
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc
