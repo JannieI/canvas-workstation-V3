@@ -203,7 +203,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 "containerColor": "transparent",
                 "containerFontsize": 12,
                 "containerHeight": 320,
-                "containerLeft": 50,
+                "containerLeft": 10,
                 "containerWidgetTitle": "Title 1",
                 "containerTop": 80,
                 "containerWidth": 410,
@@ -369,13 +369,27 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Replace the W
-        this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.id = this.localWidget.id) {
-                w = this.localWidget;
-            }
-        });
+        if (this.newWidget) {
 
+            // TODO - improve this when using a DB!
+            let newID: number = 1;
+            if (this.globalVariableService.widgets.length > 0) {
+                this.globalVariableService.widgets[
+                    this.globalVariableService.widgets.length - 1
+                ]
+            };
+            this.localWidget.id = newID;
+            this.globalVariableService.currentWidgets.push(this.localWidget);
+        } else {
+            // Replace the W
+            this.globalVariableService.currentWidgets.forEach(w => {
+                if (w.id = this.localWidget.id) {
+                    w = this.localWidget;
+                }
+            });
+        };
+        console.log('xx close gv', this.globalVariableService.currentWidgets);
+        
         this.formWidgetEditorClosed.emit(action);
     }
 

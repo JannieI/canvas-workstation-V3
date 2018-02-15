@@ -119,6 +119,15 @@ Shapes:
 11.It should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
 12.It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
 13.Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that browser has own set.  Try to make it dynamic, ie use can define it!
+14. Have verticle and horisontal hairlines when moving W - experiment a bit
+15. When equi-distant - keep order on screen, not order selected
+16. Thumbnail view of all T - can selected ala PowerPoint
+17. Have popup thumbnail of D on Landing page
+18. Use thumbnails to select a W from another D - have thumbnails are on/off option for performance perhaps
+19. Look at function in MS staff hub
+20. Incorporate tasks into Landing page?
+21. Give the user a vote - via like?  Create a sense of belonging and community
+22. Use cell to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
 
 **Data**
 1. Define Canvas datatype = TS ones?

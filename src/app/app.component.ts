@@ -211,7 +211,6 @@ export class AppComponent implements OnInit {
     statusBarRunning: boolean = false;
 
 
-
     constructor(
         private globalVariableService: GlobalVariableService,
         private globalFunctionService: GlobalFunctionService,
@@ -339,19 +338,27 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
-        // TODO - this can be done much better
-        // Replace the currentWidget with the editted info
-        let cW: number = -1;
-        for (var i = 0; i < this.currentWidgets.length; i++) {
-            if (this.currentWidgets[i].isSelected) {
-                this.globalVariableService.currentWidgets.forEach(w => {
-                    if (w.id = this.currentWidgets[i].id) {
-                        this.currentWidgets[i] = w;
-                        cW = i;
-                    }
-                })
-            }
-        };
+        if (this.newWidget) {
+            // TODO - improve, this is not failproof
+            // this.currentWidgets.push(this.globalVariableService.currentWidgets[
+            //     this.globalVariableService.currentWidgets.length - 1]);
+            console.log('xx app new', this.currentWidgets)
+        } else {
+            // TODO - this can be done much better
+            // Replace the currentWidget with the editted info
+            let cW: number = -1;
+            for (var i = 0; i < this.currentWidgets.length; i++) {
+                if (this.currentWidgets[i].isSelected) {
+                    this.globalVariableService.currentWidgets.forEach(w => {
+                        if (w.id = this.currentWidgets[i].id) {
+                            this.currentWidgets[i] = w;
+                            cW = i;
+                        }
+                    })
+                }
+            };
+
+        }
         // TODO - refresh only the editted one
         this.widgetDOM.refreshWidgets();
         
@@ -1447,6 +1454,7 @@ export class AppComponent implements OnInit {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForOnlyOneWidget', '@Start');
 
+        console.log('xx h1', this.currentWidgets)
         // Get all select W, for given type
         this.selectedWidgetIDs = [];
         if (widgetType == 'Slicer') {
