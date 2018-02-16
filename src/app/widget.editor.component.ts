@@ -298,10 +298,30 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             };
 
             // Add to axis
-            this.colField = this.localWidget.graphXfield;
-            this.rowField = this.localWidget.graphYfield;
-            this.graphColorField = this.localWidget.graphColorField;
+            if (this.localWidget.graphXfield != ''   &&   this.localWidget.graphXfield != null) {
+                this.showColumnDeleteIcon = true;
+                this.colField = this.localWidget.graphXfield;
+            } else {
+                this.showColumnDeleteIcon = false;
+                this.colField = '';
+            }
 
+            if (this.localWidget.graphYfield != ''   &&   this.localWidget.graphYfield != null) {
+                this.showRowDeleteIcon = true;
+                this.rowField = this.localWidget.graphYfield;
+            } else {
+                this.showRowDeleteIcon = false;
+                this.rowField = '';
+            }
+
+            if (this.localWidget.graphColorField != ''   &&   this.localWidget.graphColorField != null) {
+                this.showColourDeleteIcon = true;
+                this.graphColorField = this.localWidget.graphColorField;
+            } else {
+                this.showColourDeleteIcon = false;
+                this.graphColorField = '';
+            }
+            
             // TODO - remove this, currently datalib reads array as string a,b,c
             let y: string = this.currentDatasources[0].dataFields.toString();
             this.dataFieldNames = y.split(',');
@@ -495,6 +515,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         let definition = this.createVegaLiteSpec();
         this.renderGraph(definition);
     }
+
+
 
     clickClearColourField() {
         // Clear the Colour Field
