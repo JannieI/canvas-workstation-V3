@@ -516,7 +516,18 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.renderGraph(definition);
     }
 
+    clickClearColumnField() {
+        // Clear the Colour Field
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearColumnField', '@Start');
 
+        // Show X icon
+        this.showColumnDeleteIcon = false;
+        this.colField = '';
+        this.localWidget.graphXfield = null;
+
+        let definition = this.createVegaLiteSpec();
+        this.renderGraph(definition);
+    }
 
     clickClearColourField() {
         // Clear the Colour Field
