@@ -297,6 +297,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 alert('Datasource not found in global currentDatasources')
             };
 
+            // Add to axis
+            this.colField = this.localWidget.graphXfield;
+            this.rowField = this.localWidget.graphYfield;
+            this.graphColorField = this.localWidget.graphColorField;
+
             // TODO - remove this, currently datalib reads array as string a,b,c
             let y: string = this.currentDatasources[0].dataFields.toString();
             this.dataFieldNames = y.split(',');
