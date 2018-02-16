@@ -202,7 +202,9 @@
                         (dragover)="dragoverRows($event);"
                         [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
                         >
-                        <clr-icon shape="times" *ngIf="showRowDeleteIcon"></clr-icon>
+                        <clr-icon shape="times" *ngIf="showRowDeleteIcon"
+                            (click)="clickClearRowField()">
+                        </clr-icon>
                         {{ rowField }}
                     </div>
 

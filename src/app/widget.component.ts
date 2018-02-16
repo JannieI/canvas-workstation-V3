@@ -73,6 +73,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         },
     "encoding":
         {
+            "color":
+                {
+                    "field": "",
+                    "type": ""
+                },
             "x":
                 {
                     "aggregate": "",
@@ -358,12 +363,16 @@ export class WidgetComponent {
 
         vlSpecsNew['title']['text'] = widget.graphTitle;
 
-        if (widget.graphColorField != ''  && widget.graphColorField != null) {
-            vlSpecsNew['encoding']['color'] = {
-                "field": widget.graphColorField,
-                "type": widget.graphColorType
-              }
-        };
+        vlSpecsNew['encoding']['color']['field'] = widget.graphColorField;
+        vlSpecsNew['encoding']['color']['type'] = widget.graphColorType;
+
+
+        // if (widget.graphColorField != ''  && widget.graphColorField != null) {
+        //     vlSpecsNew['encoding']['color'] = {
+        //         "field": widget.graphColorField,
+        //         "type": widget.graphColorType
+        //       }
+        // };
 
         return vlSpecsNew;
     }

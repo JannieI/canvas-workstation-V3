@@ -529,6 +529,19 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.renderGraph(definition);
     }
 
+    clickClearRowField() {
+        // Clear the Colour Field
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearRowField', '@Start');
+
+        // Show X icon
+        this.showRowDeleteIcon = false;
+        this.rowField = '';
+        this.localWidget.graphYfield = null;
+
+        let definition = this.createVegaLiteSpec();
+        this.renderGraph(definition);
+    }
+
     clickClearColourField() {
         // Clear the Colour Field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearColourField', '@Start');
