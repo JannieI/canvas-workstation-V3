@@ -838,13 +838,26 @@ export class GlobalVariableService {
         // Returns True if all worked, False if something went wrong
         console.log('Global-Variables refreshCurrentDatasourceInfo D,T id = ', datasourceID)
 
+        // Get lates dSet for give DSid
+        let ds: number[] = [];
+        let dSetID: number = 1;
+        for (var i = 0; i < this.datasets.length; i++) {
+            if(this.datasets[i].datasourceID == datasourceID) {
+                ds.push(this.datasets[i].id)
+            }
+        };
+        if (ds.length > 0) {
+            dSetID = Math.max(...ds);
+        };
+        console.log('xx dSetID', datasourceID, dSetID)
         // Load the current Dashboard, and Optional template.  The dependants are stakced
         // in a Promise chain, to ensure we have all or nothing ...
+
         return new Promise<boolean>((resolve, reject) => {
             this.getCurrentDatasource(datasourceID).then( i =>
             // Load data
             // TODO - decide if lates / -1 is best choice here
-            this.getCurrentDataset(datasourceID, -1).then (j =>
+            this.getCurrentDataset(datasourceID, dSetID).then (j =>
             // Load Permissions for DS
             this.getCurrentDatasourcePermissions(datasourceID).then(k =>
             // Load Transformations

@@ -402,6 +402,7 @@ export class DataPopupComponent implements OnInit {
         this.globalVariableService.refreshCurrentDatasourceInfo(id).then(
             i => {
                     this.currentDatasources = this.globalVariableService.currentDatasources;
+                    this.currentData = this.globalVariableService.currentDatasets[0].data;
                     this.transformationsFormat = this.globalVariableService.transformationsFormat;
                     this.currentTransformations = this.globalVariableService.currentTransformations;
                     this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
