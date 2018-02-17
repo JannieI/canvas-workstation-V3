@@ -220,7 +220,7 @@ export class WidgetComponent {
         // 4 and 5.  refreshWidgets(1,-1,[1,8]) will refresh W in position 1 and 8.
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
 
-        console.log('xx refreshWidgets start len', this.widgets.length, this.widgets, this.widgetContainerDOM)
+        console.log('xx refreshWidgets start len', this.widgets.length, this.widgetContainerDOM.length, this.widgets, this.widgetContainerDOM)
 
         this.startWidgetNumber = 0;
         // TODO - Bug: new W not in DOM ... !!!

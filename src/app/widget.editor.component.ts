@@ -331,7 +331,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
              };
             
         }
-
        
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres

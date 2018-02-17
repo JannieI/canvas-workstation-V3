@@ -122,6 +122,7 @@ export class AppComponent implements OnInit {
 
     companyName: string = this.globalVariableService.companyName;
     currentDashboardName: string = '';
+    currentDatasources: Datasource[];
     currentShapes: Widget[] = [];
     currentSlicers: Widget[] = [];
     currentTabNames: {isSelected: boolean; name: string}[];
@@ -290,6 +291,10 @@ export class AppComponent implements OnInit {
                                     currentDashboardTabs[x].name;
                                 this.currentWidgets = this.globalVariableService.
                                     currentWidgets;
+                                // TODO - make currentDatasources BehaviourSubject in GV, update
+                                // when it changes in DATA form
+                                this.currentDatasources = this.globalVariableService.
+                                    currentDatasources; 
 
                                 // Get Sl
                                 this.currentSlicers = this.globalVariableService.currentSlicers;
@@ -849,8 +854,8 @@ export class AppComponent implements OnInit {
         this.showModalDashboardSubscribe = true;
     }
 
-    clickMenuDataFromFile() {
-        //
+    clickMenuDataFromFile(id: number) {
+        // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
 
         console.log('App clickMenuDataFromFile')

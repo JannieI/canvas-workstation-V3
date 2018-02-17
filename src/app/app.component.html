@@ -213,25 +213,23 @@
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
                                 >
-                                Recent
+                                Current
                             </button>
-                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" clrDropdownItem>
-                                    1. Sales per region
-                                </button>
-                                <button type="button" clrDropdownItem>
-                                    2. Risk analysis
-                                </button>
-                                <button type="button" clrDropdownItem>
-                                    3. Part maintenance
-                                </button>
-                                <button type="button" clrDropdownItem>
-                                    4. Production comparison
-                                </button>
+                            <clr-dropdown-menu
+                                clrPosition="right-top" 
+                                *clrIfOpen
+                                >
+                                    <button  *ngFor="let row of currentDatasources"
+                                        type="button" 
+                                        clrDropdownItem 
+                                        (click)="clickMenuDataFromFile(row.id)"
+                                        >
+                                        {{ row.name }}
+                                    </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuDataFromFile()">
+                        <button type="button" clrDropdownItem (click)="clickMenuDataFromFile(-1)">
                             From File
                         </button>
                         <button type="button" clrDropdownItem (click)="clickMenuDataFromServer()">
