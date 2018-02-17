@@ -842,7 +842,9 @@ export class GlobalVariableService {
         // in a Promise chain, to ensure we have all or nothing ...
         return new Promise<boolean>((resolve, reject) => {
             this.getCurrentDatasource(datasourceID).then( i =>
-
+            // Load data
+            // TODO - decide if lates / -1 is best choice here
+            this.getCurrentDataset(datasourceID, -1).then (j =>
             // Load Permissions for DS
             this.getCurrentDatasourcePermissions(datasourceID).then(k =>
             // Load Transformations
@@ -855,7 +857,7 @@ export class GlobalVariableService {
                 {
                     resolve(true)
                 }
-        )))));
+        ))))));
         });
     }
 

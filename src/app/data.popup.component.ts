@@ -56,7 +56,7 @@ export class DataPopupComponent implements OnInit {
     dataQualityIssues: DataQualityIssue[];
     currentTransformations: Transformation[];
     curentDatasetID: number;
-    currentDatasetName: string = '';
+    currentDatasetName: string = '';            // Array with current data block
     draggedField: string = '';
     fileName: string = 'stocks.csv';
     rowField: string = 'Drag a field here ...';
@@ -187,7 +187,8 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickDSPreview(action: string) {
-        //
+        // Load the new DS in the ID section, and show in Preview area
+        // action = New(load from source), Current (load from Glob Vars) dSet to show
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
 
         var csv_data = dl.load({url: './assets/vega-datasets/stocks.csv'});
@@ -212,7 +213,6 @@ export class DataPopupComponent implements OnInit {
                         data: currentData
                     }
                 );
-                console.log(this.globalVariableService.currentDatasets)
                 currentData = [];
                 console.log('DataPopup clickDSPreview      data rows', this.currentData.length)
                 console.log('DataPopup clickDSPreview      END load: ', (Date.now() - startNow) / 1000)
@@ -281,7 +281,7 @@ export class DataPopupComponent implements OnInit {
                 console.log('DataPopup clickDSPreview      END unique: ', (Date.now() - startNow) / 1000)
 
             }
-          });
+        });
 
         // Preview
         console.log('')
@@ -350,7 +350,7 @@ export class DataPopupComponent implements OnInit {
 
         // Show current Tab
         this.currentDS = true;
-        
+
         // Add to all DS, for later use
         this.globalVariableService.datasourceAdd(newData);
 
@@ -396,7 +396,7 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickCurrentDatasource(id: number, index: number) {
-        //
+        // Load related data for the selected DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDatasource', '@Start');
 
         this.globalVariableService.refreshCurrentDatasourceInfo(id).then(
