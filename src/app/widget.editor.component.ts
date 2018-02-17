@@ -169,8 +169,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 "dashboardID": 1,
                 "dashboardTabID": 1,
                 "id": 1,
-                "name": "barchart for start",
-                "description": "bla-bla-bla",
+                "name": "New",
+                "description": "New",
                 "visualGrammar": "Vega-Lite",
                 "version": 1,
                 "isSelected": false,
@@ -235,9 +235,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 "graphDescription": "",
                 "graphXaggregate": "",
                 "graphXtimeUnit": "",
-                "graphXfield": "Horsepower",
-                "graphXtype": "quantitative",
-                "graphXaxisTitle": "Horsepower",
+                "graphXfield": "",
+                "graphXtype": "",
+                "graphXaxisTitle": "",
                 "graphYaggregate": "",
                 "graphYtimeUnit": "",
                 "graphYfield": "Miles_per_Gallon",
@@ -329,7 +329,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             for (var i = 0; i < l.length; i++) {
                 this.dataFieldLengths.push(+l[i]);
              };
-            console.log('xx onInit', this.dataFieldNames, this.dataFieldLengths)
             
         }
 
@@ -688,7 +687,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         vlSpecsNew['encoding']['color']['field'] = this.localWidget.graphColorField;
         vlSpecsNew['encoding']['color']['type'] = this.localWidget.graphColorType;
 
-        console.log('xx vega spec',this.localWidget.graphColorField, vlSpecsNew)
+        // console.log('xx vega spec',this.localWidget.graphColorField, vlSpecsNew)
         return vlSpecsNew;
     }
 
@@ -697,7 +696,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
 
         // TODO - remove later if not used any longer
-        console.log ('xx', index, name)
     }
 
     clickIcon(graph: string) {

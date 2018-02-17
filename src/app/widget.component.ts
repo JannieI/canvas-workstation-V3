@@ -220,7 +220,10 @@ export class WidgetComponent {
         // 4 and 5.  refreshWidgets(1,-1,[1,8]) will refresh W in position 1 and 8.
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
 
+        console.log('xx refreshWidgets start len', this.widgets.length, this.widgets, this.widgetContainerDOM)
+
         this.startWidgetNumber = 0;
+        // TODO - Bug: new W not in DOM ... !!!
         this.endWidgetNumber = this.widgetContainerDOM.length;
         if (end > this.widgetContainerDOM.length) {end = this.widgetContainerDOM.length};
         if (start > -1) {
@@ -232,11 +235,13 @@ export class WidgetComponent {
             }
         }
 
+        console.log('xx str end', this.startWidgetNumber, this.endWidgetNumber)
+
         for (var i = this.startWidgetNumber; i < this.endWidgetNumber; i++) {
 
+            console.log('xx refreshWidgets loop i: ', i, this.widgets[i].id, arrID, arrID.indexOf(this.widgets[i].id), arrID.length)
             if ( (arrID.length > 0  && arrID.indexOf(this.widgets[i].id) >= 0)  ||
                 arrID.length == 0 ) {
-                console.log('xx refreshWidgets', this.widgets[i].id, arrID, arrID.indexOf(this.widgets[i].id), arrID.length)
                 // String of IF statements that caters for different visualGrammars
                 if (this.widgets[i].visualGrammar == 'Vega-Lite') {
 
@@ -484,7 +489,6 @@ export class WidgetComponent {
         this.globalVariableService.currentSlicers.forEach(sl => {
             if (sl.isSelected) {
                 if (sl.datasourceID == datasourceID  &&  sl.datasetID == datasetID) {
-                    console.log('xx showWidgetForSlicer', id)
                     result = true;
                 };
             };

@@ -342,6 +342,7 @@ export class AppComponent implements OnInit {
             // TODO - improve, this is not failproof
             // this.currentWidgets.push(this.globalVariableService.currentWidgets[
             //     this.globalVariableService.currentWidgets.length - 1]);
+            this.currentWidgets = this.globalVariableService.currentWidgets
             console.log('xx app new', this.currentWidgets)
         } else {
             // TODO - this can be done much better
@@ -362,7 +363,7 @@ export class AppComponent implements OnInit {
         // TODO - refresh only the editted one
         this.widgetDOM.refreshWidgets();
         
-        console.log('xx hClo', this.currentWidgets)
+        console.log('xx app hClo', this.currentWidgets)
         this.showModalWidgetEditor = false;
     }
 
@@ -1454,7 +1455,6 @@ export class AppComponent implements OnInit {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForOnlyOneWidget', '@Start');
 
-        console.log('xx h1', this.currentWidgets)
         // Get all select W, for given type
         this.selectedWidgetIDs = [];
         if (widgetType == 'Slicer') {
