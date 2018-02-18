@@ -122,6 +122,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
     dataFieldNames: string[] = [];
     dataFieldLengths: number[] = [];
+    dataFieldTypes: string[] = [];
     draggedField: string = '';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
@@ -131,6 +132,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     graphCols: string[];
     graphRows: string[];
     graphColor: string[];
+    graphTypeFieldY: string[] =[];
+    graphTypeFieldX: string[] =[];
+    graphTypeFieldColor: string[] =[];
     hasClicked: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     opened: boolean = true;
@@ -144,6 +148,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     showColumnDeleteIcon: boolean = false;
     showColourDeleteIcon: boolean = false;
     showRowDeleteIcon: boolean = false;
+    showTable: boolean = false;
     showType: boolean = false;
 
     constructor(
@@ -329,7 +334,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             for (var i = 0; i < l.length; i++) {
                 this.dataFieldLengths.push(+l[i]);
              };
-            
+             let t: string = this.currentDatasources[0].dataFieldTypes.toString();
+             this.dataFieldTypes = t.split(','); 
+                         
         }
        
         this.globalVariableService.presentationMode.subscribe(
@@ -367,7 +374,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 if (this.localWidget.graphColorField == this.dataFieldNames[i]) {
                     reduce = (8 * this.dataFieldLengths[i]) + 35;
                 }
-            }
+            };
             width = width - reduce;
         }
         view.renderer('svg')
@@ -461,10 +468,14 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.colField = this.draggedField;
         this.localWidget.graphXfield = this.draggedField;
         this.localWidget.graphXaxisTitle = this.draggedField;
+
+        // Fill the default and allowed types of Vega field types
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.graphTypeFieldX = this.allowedGraphTypeField(fieldType);
+        this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);        
         console.log('Field dropped: ', this.colField )
 
         let definition = this.createVegaLiteSpec();
-
         this.showColFieldAdvanced = true;
         this.renderGraph(definition);
 
@@ -486,8 +497,17 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.rowField = this.draggedField;
         this.localWidget.graphYfield = this.draggedField;
         this.localWidget.graphYaxisTitle = this.draggedField;
-        console.log('Field dropped: ', this.rowField )
 
+        // Fill the default and allowed types of Vega field types
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.graphTypeFieldY = this.allowedGraphTypeField(fieldType);
+        this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType);
+        
+        // TODO - REMOVE when this is done via forms !!!
+        console.log('xx graphYtype', this.localWidget.graphYtype)
+        if (this.localWidget.graphYtype == 'quantitative') {
+            this.localWidget.graphYtype = 'ordinal';
+        };
         let definition = this.createVegaLiteSpec();
         this.showRowFieldAdvanced = true;
         this.renderGraph(definition);
@@ -508,6 +528,12 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // ev.target.appendChild(document.getElementById(data));
         this.graphColorField = this.draggedField;
         this.localWidget.graphColorField = this.draggedField
+
+        // Fill the default and allowed types of Vega field types
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.graphTypeFieldColor = this.allowedGraphTypeField(fieldType);
+        this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType);        
+
         console.log('dropColor field name: ', this.graphColorField )
 
         let definition = this.createVegaLiteSpec();
@@ -633,6 +659,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'clickApplyAdvancedY', '@Start');
 
         this.showRowFieldAdvancedArea = false;
+
+        let definition = this.createVegaLiteSpec();
+        this.renderGraph(definition);
     }
 
     clickShowColFieldAdvanced(){
@@ -703,6 +732,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         this.showType = false;
 
+        this.localWidget.graphMark = graph;
         let definition = this.createVegaLiteSpec();
         this.renderGraph(definition);
 
@@ -751,6 +781,12 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Continue to design / edit the W, and close the form for the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
 
+        if (this.selectedViz=='Table') {
+            this.showTable = true;
+        } else {
+            this.showTable = false;
+        };
+        
         this.showDatasourcePopup = false;
     }
 
@@ -761,4 +797,49 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.selectedViz = selection;
 
     }
+
+    setGraphTypeFieldY(graphYtype: string) {
+        // Set the Vega field type of the Y axis
+        // TODO - fix event in HTML so that it is triggered here
+        this.globalFunctionService.printToConsole(this.constructor.name,'setGraphTypeFieldY', '@Start');
+
+        console.log('xx graphYtype', graphYtype)
+        this.localWidget.graphYtype = graphYtype;
+    }
+
+    allowedGraphTypeField(fieldType: string): string[] {
+        // Returns a string array of allowed Vega types depending on a given field type
+        this.globalFunctionService.printToConsole(this.constructor.name,'allowedGraphTypeField', '@Start');
+
+        if (fieldType == 'string') {
+            return ['ordinal'];
+        };
+        if (fieldType == 'number') {
+            return ['ordinal','quantitative'];
+        };
+    }
+
+    defaultGraphTypeField(fieldType: string): string {
+        // Returns the default Vega field type depending a given field types
+        this.globalFunctionService.printToConsole(this.constructor.name,'defaultGraphTypeField', '@Start');
+
+        if (fieldType == 'string') {
+            return 'ordinal';
+        };
+        if (fieldType == 'number') {
+            return 'quantitative';
+        };
+    }
+
+    getFieldType(fieldName: string): string {
+        // Returns the field type of a given field name
+        this.globalFunctionService.printToConsole(this.constructor.name,'getFieldType', '@Start');
+
+        for (var i = 0; i < this.dataFieldNames.length; i++) {
+            if (this.dataFieldNames[i] == fieldName) {
+                return this.dataFieldTypes[i]
+            }
+        };
+    }
+
   }

@@ -399,44 +399,52 @@ export class DataPopupComponent implements OnInit {
         // Load related data for the selected DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDatasource', '@Start');
 
-        this.globalVariableService.refreshCurrentDatasourceInfo(id).then(
-            i => {
-                    this.currentDatasources = this.globalVariableService.currentDatasources;
-                    this.currentData = this.globalVariableService.currentDatasets[0].data;
-                    this.transformationsFormat = this.globalVariableService.transformationsFormat;
-                    this.currentTransformations = this.globalVariableService.currentTransformations;
-                    this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
-                    this.fields = this.globalVariableService.fields;
-                    this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
-                    this.globalVariableService.dataGetFromSwitch.subscribe(
-                        i => {
-                                this.dataGetFromSwitch
-                        }
-                    )
+        this.globalVariableService.refreshCurrentDatasourceInfo(id).then(i => {
+            this.currentDatasources = this.globalVariableService.currentDatasources;
+            this.currentDatasources.forEach(ds => {
+                if (ds.id == id) {
+                    // TODO - remove this, currently datalib reads array as string a,b,c
+                    let y: string = ds.dataFields.toString();
+                    this.dataFieldNames = y.split(',');
+                    let l = ds.dataFieldLengths.toString();
+                    this.dataFieldLengths = l.split(',');
+                };
+            });
+            this.currentData = this.globalVariableService.currentDatasets[0].data;
+            this.transformationsFormat = this.globalVariableService.transformationsFormat;
+            this.currentTransformations = this.globalVariableService.currentTransformations;
+            this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
+            this.fields = this.globalVariableService.fields;
+            this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
+            this.globalVariableService.dataGetFromSwitch.subscribe(
+                i => {
+                        this.dataGetFromSwitch = i;
                 }
-        )
+            )
 
-        // General var with name - used in *ngIf, etc
-        this.curentDatasetID = index;
-        this.currentDatasetName = this.currentDatasources[index].name;
+            // General var with name - used in *ngIf, etc
+            this.curentDatasetID = index;
+            this.currentDatasetName = this.currentDatasources[index].name;
 
-        // Reset data related to this DS
-        this.transformationsFormat = this.globalVariableService.transformationsFormat;
-        this.pivotAgg = [];
-        this.pivotCols = [];
-        this.pivotRows = [];
-        this.pivotResults = []
-        this.finalFields = this.globalVariableService.finalFields;
-        this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
+            // Reset data related to this DS
+            this.transformationsFormat = this.globalVariableService.transformationsFormat;
+            this.pivotAgg = [];
+            this.pivotCols = [];
+            this.pivotRows = [];
+            this.pivotResults = []
+            this.finalFields = this.globalVariableService.finalFields;
+            this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
 
-        // Show the preview
-        this.showDataPreview = true;
+            // Show the preview
+            this.showDataPreview = true;
 
-        // Show the top steps
-        this.showTopSteps = true;
+            // Show the top steps
+            this.showTopSteps = true;
 
-        // UnShow Add button
-        this.showAddButton = false;
+            // UnShow Add button
+            this.showAddButton = false;
+        }
+    )
 
     }
 

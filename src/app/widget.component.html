@@ -1,5 +1,5 @@
-<div class="widgetContainer" *ngFor="let row of widgets; let i = index; let even = even; let odd = odd; 
-        let first = first; let last = last" 
+<div class="widgetContainer" *ngFor="let row of widgets; let i = index; let even = even; let odd = odd;
+        let first = first; let last = last"
     #widgetContainerDOM
     [style.background-color]="row.containerBackgroundColor"
     [style.border]="row.isSelected? '1px dotted gray' : row.containerBorder"
@@ -15,18 +15,18 @@
     (dragend)="clickWidgetContainerDragEnd($event, i)"
     draggable="true"
     >
-    <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)" 
-        class="selectedSlicer" 
+    <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
+        class="selectedSlicer"
         title="Related Widget has been selected">
         <clr-icon shape="check" size="12"></clr-icon>
-    </span>    
-    <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality" 
-        class="badge badge-danger widgetBadge1" 
+    </span>
+    <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality"
+        class="badge badge-danger widgetBadge1"
         title="Data Quality issues">
         {{ row.nrDataQualityIssues }}
     </span>
-    <span *ngIf="(row.nrComments)  &&  showComments" 
-        class="badge badge-warning widgetBadge2" 
+    <span *ngIf="(row.nrComments)  &&  showComments"
+        class="badge badge-warning widgetBadge2"
         title="Comments"
         >
         {{ row.nrComments }}

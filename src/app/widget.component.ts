@@ -131,10 +131,11 @@ export class WidgetComponent {
     @ViewChildren('widgetContainerDOM')  widgetContainerDOM: QueryList<ElementRef>;
 
     editMode: boolean;
+    endWidgetNumber: number;
+    isBusyResizing: boolean = false;
     startX: number;
     startY: number;
     startWidgetNumber: number;
-    endWidgetNumber: number;
     selectedWidgetIDs: number[] = [];
 
     constructor(
@@ -390,6 +391,8 @@ export class WidgetComponent {
             return;
         }
 
+        // Indicate that we are resizing
+        this.isBusyResizing = true;
         console.log('clickResizeDown', this.widgets[index].containerLeft, ev);
         this.startX = ev.x;
         this.startY = ev.y;
@@ -438,7 +441,12 @@ export class WidgetComponent {
             return;
         }
 
-        console.log('clickWidgetContainerDragStart starts index', index, this.widgetContainerDOM)
+        // Is busy with resizing, ignore this
+        if (this.isBusyResizing) {
+            console.log('xx busy resizing')
+            return;
+        };
+
         this.startX = ev.x;
         this.startY = ev.y;
     }
@@ -450,6 +458,15 @@ export class WidgetComponent {
         if (!this.editMode) {
             return;
         }
+
+        // Is busy with resizing, ignore this
+        if (this.isBusyResizing) {
+            console.log('xx busy resizing')
+
+            // Done with resizing
+            this.isBusyResizing = false;
+            return;
+        };
 
         console.log('clickWidgetContainerDragEnd starts index', index, this.startX, ev.x)
 

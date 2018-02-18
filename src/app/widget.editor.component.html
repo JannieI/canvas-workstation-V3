@@ -128,10 +128,17 @@
                 <div class="rowAdvanced" *ngIf="showRowFieldAdvancedArea">
                     <span>
                         <label for="dashboardName" class="popupLabel">
-                            Field : Country_Of_Origin_Calculated
+                            Field : {{ rowField }}
                         </label>
 
                         <br>
+                        <span class="popupLabel">Graph field Type</span>
+                        <select class="popupLabel" id="selectGraphFieldType">
+                            <option *ngFor="let row of graphTypeFieldY" 
+                            (change)="setGraphTypeFieldY(row)">
+                                {{ row }}
+                            </option>
+                        </select>
                         <br>
                         <label for="dashboardName" class="popupLabel">
                             Aggregate :
@@ -222,7 +229,7 @@
                 <div class="colAdvanced" *ngIf="showColFieldAdvancedArea">
                     <span>
                         <label for="dashboardName" class="popupLabel">
-                            Field : Country_Of_Origin_Calculated
+                            Field : {{ colField }}
                         </label>
 
                         <br>
@@ -308,107 +315,119 @@
                 </div>
 
                 <div class="graphArea" #dragWidget>
-
                 </div>
 
+                <div *ngIf="showTable" class="tableArea">
+                    <clr-datagrid class="gridIdentifyDataPreviewGrid">
+                    
+                        <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+                        <clr-dg-row *ngFor="let row of currentData">
+
+                            <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+                                    {{ row[col] }}
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+                </div>
                 <div class="graphType">
 
                     <div>
                         Current:
                         <img class="typeIcon"
-                            [style.height.px]="50"
-                            [style.width.px]="50"
+                            [style.height.px]="20"
+                            [style.width.px]="20"
                             src="../images/BarChart.png"
                         >
                     </div>
                     <br>
                     <img class="typeIcon"
-                        [style.height.px]="40"
-                        [style.width.px]="40"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
                         src="../images/BarChart.png"
+                        title="Bar Chart (select ordinal type for direction)"
                         (click)="clickIcon('bar')"
                     >
                     <img class="typeIcon"
-                        [style.height.px]="40"
-                        [style.width.px]="40"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
                         src="../images/BubbleChart.png"
+                        title="Circles"
                         (click)="clickIcon('circle')"
                     >
                     <img class="typeIcon"
-                        [style.height.px]="40"
-                        [style.width.px]="40"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
                         src="../images/ColumnChart.png"
+                        title="Rectangles"
                         (click)="clickIcon('rect')"
                     >
                     <img class="typeIcon"
-                        [style.height.px]="40"
-                        [style.width.px]="40"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
                         src="../images/LineChart.png"
+                        title="Lines"
                         (click)="clickIcon('line')"
                     >
                     <img class="typeIcon"
-                        [style.height.px]="40"
-                        [style.width.px]="40"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
                         src="../images/PieChart.png"
+                        title="Squares"
                         (click)="clickIcon('square')"
                     >
                     <img class="typeIcon"
-                        [style.height.px]="40"
-                        [style.width.px]="40"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
                         src="../images/ScatterChart.png"
+                        title="Points"
+                        (click)="clickIcon('point')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/BarChart.png"
+                        title="Bar Chart"
+                        (click)="clickIcon('bar')"
+                    >
+                    <img
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/BubbleChart.png"
+                        title="Ticks"
+                        (click)="clickIcon('tick')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/ColumnChart.png"
+                        title="Squares"
+                        (click)="clickIcon('square')"
+                    >
+                    <img
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/LineChart.png"
+                        title="Lines"
+                        (click)="clickIcon('line')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/PieChart.png"
+                        title="Bar Chart"
+                        (click)="clickIcon('bar')"
+                    >
+                    <img
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/ScatterChart.png"
+                        title="Points"
                         (click)="clickIcon('point')"
                     >
                 </div>
 
-                <div class="graphTypeMore">
-                    <button class="btn btn-sm btn-link"
-                        (click)="showType=!showType"
-                        >More graph types
-                    </button>
-
-                    <div *ngIf="showType">
-
-                        <img class="typeIcon"
-                            [style.height.px]="40"
-                            [style.width.px]="40"
-                            src="../images/BarChart.png"
-                            (click)="clickIcon('BarChart')"
-                        >
-                        <img
-                            [style.height.px]="40"
-                            [style.width.px]="40"
-                            src="../images/BubbleChart.png"
-                            (click)="clickIcon('BubbleChart')"
-                        >
-                        <img class="typeIcon"
-                            [style.height.px]="40"
-                            [style.width.px]="40"
-                            src="../images/ColumnChart.png"
-                            (click)="clickIcon('ColumnChart')"
-                        >
-                        <img
-                            [style.height.px]="40"
-                            [style.width.px]="40"
-                            src="../images/LineChart.png"
-                            (click)="clickIcon('LineChart')"
-                        >
-                        <img class="typeIcon"
-                            [style.height.px]="40"
-                            [style.width.px]="40"
-                            src="../images/PieChart.png"
-                            (click)="clickIcon('PieChart')"
-                        >
-                        <img
-                            [style.height.px]="40"
-                            [style.width.px]="40"
-                            src="../images/ScatterChart.png"
-                            (click)="clickIcon('ScatterChart')"
-                        >
-                    </div>
-
-                    <span class="graphTypeMoreMsg">
-                        Last refreshed: 2017/01/01 08:31
-                    </span>
+                <div class="graphTypeMoreMsg">
+                    Last refreshed: 2017/01/01 08:31
                 </div>
 
                 <div class="colorAdvanced" *ngIf="showAdvancedField">
@@ -447,6 +466,7 @@
                         Save
                     </button>
                 </div>
+
                 <span class="presentationNoSave" *ngIf="presentationMode"
                     >
                     Cannot save in Presentation Mode

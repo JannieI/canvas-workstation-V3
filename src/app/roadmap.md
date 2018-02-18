@@ -164,9 +164,10 @@ Shapes:
 2. Data field lengths: where defined, by what means, and how are they used?  Is it display side only?  Can the user change it?  What if an actual field is wider than the stated length - will it truncate displayed data?  Does numbers have a length?
 3. How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How is locale used?
 4. How does types tranform into Vega field types, ie on Editor?
+5. Consider dataQuality on own menu item, or on W menu
 
 
-Widgit Editor
+Widget Editor
 - user can change Vega field types on Adv form
 - our field type -> vega types: take a best guess
 - APPLY on Adv form must re-render
@@ -175,7 +176,11 @@ Widgit Editor
 - at start, add row, col, color fields
 - EDIT buggie - color stays, fails on T=2
 - new push
-
+- TABLE: 
+    - make faster, ie use raw <td> tags or superClick grid from Bradley
+    - add drag fields - to X = Add, Drag away = delete from headers
+    - add drag field to Y = Pivot!  Decide local or in backend
+    - add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc
@@ -233,7 +238,7 @@ Widgit Editor
 16.Show a Viz on the tooltip - this could be our explain ... !
 17.Annotate on Widget - our shapes with text and emojis, like the Tableau
 18.Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
-19.Fix bug - grid sits on TOP of everything!!
+19.
 20.Serias work to be done - learning Vega and adding ALL features !!!
 21.Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI.  Maybe, see Table comments below, make each type of Viz a separate component (because of complexity)
 

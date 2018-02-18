@@ -159,6 +159,19 @@
         text-align: center;
     }
 
+    .tableArea {
+        background-color: white;
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 7;
+        grid-column-end: 19;
+        grid-row-start: 2;
+        grid-row-end: 21;
+        margin-bottom: 0;
+        text-align: center;
+        z-index: 100;     
+    }
+
     .graphType {
         border: 1px solid gray;
         border-radius: 4px;
@@ -176,16 +189,12 @@
             margin: 2px;
         }
 
-    .graphTypeMore {
+    .graphTypeMoreMsg {
         grid-column-start: 16;
         grid-column-end: 19;
-        grid-row-start: 18;
-        grid-row-end: 25;
-        margin: 10px;
-        text-align: center;
-    }
-
-    .graphTypeMoreMsg {
+        grid-row-start: 19;
+        grid-row-end: 19;
+        margin: 15px;
         font-size: 0.4rem;
     }
 
