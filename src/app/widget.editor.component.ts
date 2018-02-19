@@ -34,7 +34,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     "width": "100",
 
     // "autosize": "pad",       NB - add these only if needed, blank causes no graph display
-    // "autosize": {"type": "pad", "resize": true},  //"pad",   
+    // "autosize": {"type": "pad", "resize": true},  //"pad",
     // "config": "",            NB - add these only if needed, blank causes no graph display
 
     // Properties for any specifications
@@ -165,11 +165,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             // Get DS
             this.currentDatasources = this.globalVariableService.currentDatasources;
 
-            this.localWidget = 
+            this.localWidget =
             {
                 "widgetType": "Graph",
                 "widgetSubType": "",
-        
+
                 "isTrashed": false,
                 "dashboardID": 1,
                 "dashboardTabID": 1,
@@ -186,7 +186,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 "nrButtonsToShow": 3,
                 "hyperlinkDashboardID": 1,
                 "hyperlinkDashboardTabID": 1,
-        
+
                 "datasourceID": 4,
                 "slicerFieldName": "symbol",
                 "slicerSelection": null,
@@ -327,7 +327,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 this.showColourDeleteIcon = false;
                 this.graphColorField = '';
             }
-            
+
             // TODO - remove this, currently datalib reads array as string a,b,c
             let y: string = this.currentDatasources[0].dataFields.toString();
             this.dataFieldNames = y.split(',');
@@ -336,10 +336,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 this.dataFieldLengths.push(+l[i]);
              };
              let t: string = this.currentDatasources[0].dataFieldTypes.toString();
-             this.dataFieldTypes = t.split(','); 
-                         
+             this.dataFieldTypes = t.split(',');
+
         }
-       
+
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
         );
@@ -354,7 +354,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         if (!this.newWidget) {
             this.renderGraph(definition);
         }
-       
+
     }
 
     renderGraph(definition: any) {
@@ -420,7 +420,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             });
         };
         console.log('xx close gv', this.globalVariableService.currentWidgets);
-        
+
         this.formWidgetEditorClosed.emit(action);
     }
 
@@ -433,7 +433,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     dragoverColumn(ev, actionName: string) {
-        // Event trigger when a field is dragged over Column element 
+        // Event trigger when a field is dragged over Column element
         this.globalFunctionService.printToConsole(this.constructor.name,'dragoverColumn', '@Start');
 
         ev.preventDefault();
@@ -473,7 +473,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(this.draggedField);
         this.graphTypeFieldX = this.allowedGraphTypeField(fieldType);
-        this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);        
+        this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
         console.log('Field dropped: ', this.colField )
 
         let definition = this.createVegaLiteSpec();
@@ -503,7 +503,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         let fieldType:string = this.getFieldType(this.draggedField);
         this.graphTypeFieldY = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType);
-        
+
         // TODO - REMOVE when this is done via forms !!!
         console.log('xx graphYtype', this.localWidget.graphYtype)
         if (this.localWidget.graphYtype == 'quantitative') {
@@ -533,7 +533,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(this.draggedField);
         this.graphTypeFieldColor = this.allowedGraphTypeField(fieldType);
-        this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType);        
+        this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType);
 
         console.log('dropColor field name: ', this.graphColorField )
 
@@ -635,7 +635,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     clickCloseAdvancedX(action) {
-        // Closes the Advanced popup for the Xaxis 
+        // Closes the Advanced popup for the Xaxis
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCloseAdvancedX', '@Start');
 
         this.showColFieldAdvancedArea = false;
@@ -649,7 +649,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     clickCloseAdvancedY(action) {
-        // Closes the Advanced popup for the Yaxis 
+        // Closes the Advanced popup for the Yaxis
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCloseAdvancedY', '@Start');
 
         this.showRowFieldAdvancedArea = false;
@@ -678,13 +678,13 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         this.showRowFieldAdvancedArea = true;
     }
- 
+
     createVegaLiteSpec(): dl.spec.TopLevelExtendedSpec {
         // Creates and returns the Vega-Lite and Vega specs from the W Sepc
         this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
-        
+
         if (this.localWidget.graphUrl != "") {
             vlSpecsNew['data'] = {"url": this.localWidget.graphUrl};
         } else {
@@ -745,7 +745,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         this.currentDatasources = this.globalVariableService.currentDatasources
             .filter(ds => ds.id == datasourceID)
-        
+
         // TODO - remove this, currently datalib reads array as string a,b,c
         let y: string = this.currentDatasources[0].dataFields.toString();
         this.dataFieldNames = y.split(',');
@@ -772,7 +772,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             // Make proper error handling
             alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
         };
-        
+
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data.slice(0,5);
@@ -787,7 +787,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         } else {
             this.showTable = false;
         };
-        
+
         this.showDatasourcePopup = false;
     }
 

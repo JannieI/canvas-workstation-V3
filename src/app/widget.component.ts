@@ -133,6 +133,7 @@ export class WidgetComponent {
     editMode: boolean;
     endWidgetNumber: number;
     isBusyResizing: boolean = false;
+    refreshGraphs: boolean = false;
     startX: number;
     startY: number;
     startWidgetNumber: number;
@@ -151,6 +152,12 @@ export class WidgetComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.globalVariableService.duplicateWidget.subscribe(i => {
+            if (i) {
+                this.duplicateWidget();
+            }
+        });
+
         this.globalVariableService.editMode.subscribe(i =>
             {
                 this.editMode = i;
@@ -161,6 +168,17 @@ export class WidgetComponent {
     ngAfterViewInit() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+    }
+
+    ngAfterViewChecked() {
+        //
+        // TODO - switch on later, this fires ALL the time ...
+        // this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
+
+        if (!this.refreshGraphs) {
+            this.refreshGraphs = true;
+            this.refreshWidgets();
+        }
     }
 
     clickWidgetContainer(index: number) {
@@ -553,7 +571,7 @@ export class WidgetComponent {
     showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {
         // Returns True if a Widget is related to the selected Sl(s)
         // TODO - put back, but this fires ALL the time ...
-        // this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
 
         // Get list of selected Sl
         let result: boolean = false;
@@ -568,4 +586,29 @@ export class WidgetComponent {
         return result;
     }
 
+    duplicateWidget() {
+        // Duplicates all selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'duplicateWidget', '@Start');
+     
+        this.globalVariableService.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+
+                // TODO - improve this when using a DB!
+                let newID: number = 1;
+                if (this.globalVariableService.widgets.length > 0) {
+                    newID = this.globalVariableService.widgets.length - 1;
+                };
+
+                // Make a deep copy
+                let localWidget= Object.assign({}, w);
+                localWidget.id = newID;
+                localWidget.containerLeft = localWidget.containerLeft + 20;
+                localWidget.containerTop = localWidget.containerTop + 20;
+                this.globalVariableService.currentWidgets.push(localWidget);
+
+                // Refresh the Graph inside the Container
+                this.refreshGraphs = false;
+            };
+        });
+    }
 }

@@ -45,7 +45,6 @@ Caching:
 
 
 Multi-T display:
-- popup form to show which T a W lives on, and a checkbox to change.  Note that the position is the same on all Ts.
 - can add W from other D on the NEW W form -> makes a copy of it locally, and stores a reference to the original.  This is not maintained automatically, the user has to delete and re-copy to local to get the latest.  It is thus different to templates.
 - on DS menu: indicate all W (graph + Sl) influenced by this DS
 - on W menu: indicate all Sl affecting this W
