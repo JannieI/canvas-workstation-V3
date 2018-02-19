@@ -960,6 +960,10 @@ export class GlobalVariableService {
         if (this.currentDatasources.filter(i => i.id == newData.id).length == 0) {
             this.currentDatasources.push(newData);
         }
+
+        // Inform that we now at a DS
+        this.hasDatasources.next(true);
+        
         console.log('Global-Variables currentDatasourceAdd after push', this.currentDatasources)
     }
 
