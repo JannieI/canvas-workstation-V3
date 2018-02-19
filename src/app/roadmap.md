@@ -223,11 +223,10 @@ Widget Editor
 3. Fix bug: isTrash => Widget does not disappear !
 4. Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
  + Dont show top if now Dataset - rather appropriate Unexpected Error msg
-5. Fix bug and Duplicate Widget correctly
+5. 
 6. Fix bug: [style.border]="row.isSelected? '2px solid black' : '2px solid red'" does not work
 7. Flag visible if it has a Note, Data Quality issues
-8. Issue - button bar is at top of Widget => moves graph down, messes up things.  Either totally
-   separate SINGLE bar => just make visible ...  OR  duplicate div and border around Widget
+8. 
 9. Advanced box in Widget-Editor: consider and document z-index used here
 10.How to show comparison between current and previous period ?
 11.Issue - When resize Widget => add resize graph as well.

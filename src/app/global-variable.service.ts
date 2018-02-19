@@ -633,7 +633,6 @@ export class GlobalVariableService {
     currentDashboardTabID:number = 0; //  = new BehaviorSubject<number>(1);
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
-    widgetToEditID = new BehaviorSubject<number>(null);
     datasourceToEditID = new BehaviorSubject<number>(null);
     shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
     widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;

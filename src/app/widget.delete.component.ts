@@ -42,9 +42,7 @@ export class WidgetDeleteComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.globalVariableService.widgetToEditID.subscribe(
-            i => {
-                    this.currentWidgets = this.globalVariableService.currentWidgets[i];
+        this.currentWidgets = this.globalVariableService.currentWidgets[i];
                     this.nrWidgetsSelected = this.globalVariableService.currentWidgets.length;
             }
         );
