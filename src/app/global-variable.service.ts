@@ -942,6 +942,15 @@ export class GlobalVariableService {
                 console.log('Global-Variables deleteWidget id:', e.id)
             }
         });
+
+        // Refresh the D
+        this.refreshCurrentDashboard(
+            'globVar-deleteWidget',
+            this.currentDashboardInfo.value.currentDashboardID,
+            this.currentDashboardInfo.value.currentDashboardTabID,
+            ''
+        );
+
     }
 
     currentDatasourceAdd(newData: Datasource) {
@@ -2195,7 +2204,7 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.widgets = data;
+                        this.widgets = data.filter(d => (!d.isTrashed) );
 
                         // TODO - fix hardcoding, issue with datalib jsonTree
                         this.widgets.forEach(w => {
@@ -2260,6 +2269,7 @@ export class GlobalVariableService {
                         data = data.filter(
                             i => i.dashboardID == dashboardID  &&
                                  (dashboardTabID == -1  ||  i.dashboardTabID == dashboardTabID)
+                                 &&  (!i.isTrashed) 
                         );
 
                         // Add Sl, Sh, Tbl
@@ -2282,6 +2292,7 @@ export class GlobalVariableService {
                 data = this.widgets.filter(
                     i => i.dashboardID == dashboardID  &&
                     (dashboardTabID == -1  ||  i.dashboardTabID == dashboardTabID)
+                    &&  (!i.isTrashed) 
                 )
 
                 // Add Sl, Sh, Tbl
