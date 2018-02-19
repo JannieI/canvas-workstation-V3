@@ -1,3 +1,16 @@
+.modalBox {
+	background-color: rgba(0,0,0,0.4);
+	-shadow: 0 2px 2px 0 lightgray;
+}
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+
 .overall {
     display: grid;
     grid-template-columns: repeat(11, 3rem);
@@ -16,8 +29,6 @@
 .multiTabMenuHeader {
     text-align: center;
 }
-
-.multiTabMenuOption {
-    background-color: #667781;
-    color: white;
+.errorMessage {
+    color: red;
 }

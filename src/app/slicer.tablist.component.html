@@ -9,11 +9,11 @@
                         X
                     </button>
 
-                    Tab list        
+                    Tab list
                     <div class="multiTabMenuHeader">Select Tabs to show this slicer
-                        <div *ngFor="let row of currentTabNames; let i = index" class="multiTabMenuOption">
-                            <clr-checkbox [clrChecked]="row.isSelected" 
-                                [name]="row.name" 
+                        <div *ngFor="let row of currentTabNames; let i = index">
+                            <clr-checkbox [clrChecked]="row.isSelected"
+                                [name]="row.name"
                                 (click)="clickMultiTabSelect(i, $event)">
                                 {{ row.name }}
 
@@ -25,8 +25,11 @@
                                 class="btn btn-link"
                                 (click)="clickMultiTabClose()"
                                 >
-                                Close
+                                Save
                             </button>
+                            <div *ngIf="errorMessage" class="errorMessage">
+                                At least one tab must be selected
+                            </div>
                         </div>
                     </div>
                 </div>

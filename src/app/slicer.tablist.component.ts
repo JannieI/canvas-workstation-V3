@@ -25,6 +25,7 @@ export class SlicerTablistComponent implements OnInit {
     @Output() formSlicerTablistClosed: EventEmitter<string> = new EventEmitter();
 
     currentTabNames: {isSelected: boolean; name: string}[];
+    errorMessage: boolean = false;
     showTextBox: boolean = true;
     showCircle: boolean = false;
     showRectangle: boolean = false;
@@ -40,13 +41,26 @@ export class SlicerTablistComponent implements OnInit {
     }
 
     ngOnInit() {
+        // Build list of T to which SINGLE selected Sl belongs
+        let slID: number[] = [];
+        this.globalVariableService.currentSlicers.forEach(sl => {
+            if (sl.isSelected) {
+                slID.push(sl.dashboardTabID);
+            };
+        });
+
         // Build list of T names and position before showing it
         this.currentTabNames = [];
         this.globalVariableService.currentDashboardTabs.forEach(t => {
             if (this.currentTabNames == undefined) {
                 this.currentTabNames = [{isSelected: true, name: t.name}];
             } else {
-                this.currentTabNames.push({isSelected: false, name: t.name})
+                if (slID.indexOf(t.id) >= 0) {
+                    this.currentTabNames.push({isSelected: true, name: t.name})
+                } else {
+                    this.currentTabNames.push({isSelected: false, name: t.name})
+                }
+
             }
         });
     }
@@ -66,7 +80,7 @@ export class SlicerTablistComponent implements OnInit {
             if (t.isSelected) {x++}
         });
         if (x == 0) {
-            alert('The Slicer must belong to at least one tab.  Use Data -> Slicer -> Delete menu option to get rid of it');
+            this.errorMessage = true;
             return;
         } else {
 		this.formSlicerTablistClosed.emit('saved');

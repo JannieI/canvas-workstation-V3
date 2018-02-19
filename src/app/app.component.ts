@@ -896,8 +896,10 @@ export class AppComponent implements OnInit {
     }
     
     clickMenuSlicerTablist() {
-        //
+        // Open the list of tabs to which a Sl belongs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerTablist', '@Start');
+
+        if (!this.checkForOnlyOneWidget('Slicer')) { return};
 
         this.showModalSlicerTablist = true;
 
