@@ -361,6 +361,7 @@ export class Widget {
     // Where W lives
     dashboardID: number;                // FK to DashboardID to which widget belongs
     dashboardTabID: number;             // FKs to Tabs where the widget lives
+    dashboardTabIDs: number[];             // FKs to Tabs where the widget lives
 
     // Identification and Description
     id: number;

@@ -1,0 +1,36 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div class="overall">
+
+                <div class="shapeProperties">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+
+                    Tab list        
+                    <div class="multiTabMenuHeader">Select Tabs to show this slicer
+                        <div *ngFor="let row of currentTabNames; let i = index" class="multiTabMenuOption">
+                            <clr-checkbox [clrChecked]="row.isSelected" 
+                                [name]="row.name" 
+                                (click)="clickMultiTabSelect(i, $event)">
+                                {{ row.name }}
+
+                            </clr-checkbox>
+                        </div>
+                        <div>
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickMultiTabClose()"
+                                >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

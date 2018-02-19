@@ -212,9 +212,6 @@
             color: black;
             text-align: center;
         }
-        .slicerLabelIcon {
-            float: left;
-        }
         .slicerBlock {
             border: 1px solid black !important;
             border-radius: 5px !important;
@@ -230,6 +227,7 @@
 
 
     .slicerContainerTopLeftHandle {
+        cursor: nwse-resize;
         grid-column-start: 1;
         grid-column-end: 3;
         grid-row-start: 1;
@@ -239,6 +237,7 @@
         background-color: #929699;
     }
     .slicerContainerTopHandle {
+        cursor: n-resize;
         grid-column-start: 4;
         grid-column-end: 5;
         grid-row-start: 1;
@@ -248,6 +247,7 @@
         background-color: #929699;
     }
     .slicerContainerTopRightHandle {
+        cursor: nesw-resize;
         grid-column-start: 6;
         grid-column-end: 8;
         grid-row-start: 1;
@@ -257,6 +257,7 @@
         background-color: #929699;
     }
     .slicerContainerRightTopHandle {
+        cursor: nesw-resize;
         grid-column-start: 7;
         grid-column-end: 8;
         grid-row-start: 1;
@@ -266,6 +267,7 @@
         background-color: #929699;
     }
     .slicerContainerRightHandle {
+        background-color: #929699;
         cursor: ew-resize;
         grid-column-start: 7;
         grid-column-end: 8;
@@ -276,6 +278,7 @@
         background-color: #929699;
     }
     .slicerContainerRightBottomHandle {
+        cursor: nwse-resize;
         grid-column-start: 7;
         grid-column-end: 8;
         grid-row-start: 7;
@@ -285,6 +288,7 @@
         background-color: #929699;
     }
     .slicerContainerBottomRightHandle {
+        cursor: nwse-resize;
         grid-column-start: 6;
         grid-column-end: 8;
         grid-row-start: 8;
@@ -294,6 +298,7 @@
         background-color: #929699;
     }
     .slicerContainerBottomHandle {
+        cursor: s-resize;
         grid-column-start: 4;
         grid-column-end: 5;
         grid-row-start: 8;
@@ -303,6 +308,7 @@
         background-color: #929699;
     }
     .slicerContainerBottomLeftHandle {
+        cursor: nesw-resize;
         grid-column-start: 1;
         grid-column-end: 3;
         grid-row-start: 8;
@@ -312,6 +318,7 @@
         background-color: #929699;
     }
     .slicerContainerLeftBottomHandle {
+        cursor: nesw-resize;
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 7;
@@ -321,6 +328,7 @@
         background-color: #929699;
     }
     .slicerContainerLeftHandle {
+        cursor: w-resize;
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 5;
@@ -330,6 +338,7 @@
         background-color: #929699;
     }
     .slicerContainerLeftTopHandle {
+        cursor: nwse-resize;
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 1;
@@ -339,19 +348,3 @@
         background-color: #929699;
     }
 
-.multiTabMenu {
-    background-color: #293841;
-    border-radius: 4px;
-    box-shadow: 3px 3px gray;
-    color: white;
-    position: absolute;
-    width: 10rem;
-    z-index: 100;
-}
-.multiTabMenuHeader {
-    text-align: center;
-}
-.multiTabMenuOption {
-    background-color: #667781;
-    color: white;
-}

@@ -52,6 +52,9 @@ import { WidgetExportComponent }      from './widget.export.component';
 import { WidgetDeleteComponent }      from './widget.delete.component';
 import { WidgetCommentsComponent }    from './widget.comments.component';
 
+import { SlicerTablistComponent }     from './slicer.tablist.component';
+
+import { ShapeEditComponent }         from './shape.edit.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataPopupComponent }         from './data.popup.component';
@@ -60,7 +63,6 @@ import { DataSlicersComponent }       from './data.slicers.component';
 import { DataRefreshComponent }       from './data.refresh.component';
 import { DatasourceShareComponent }   from './data.share.component';
 
-import { ShapeEditComponent }         from './shape.edit.component';
 
 import { HelpComponent }              from './help.component';
 
@@ -135,6 +137,8 @@ import { StatusbarComponent }         from './statusbar.component';
         WidgetExportComponent,
         WidgetDeleteComponent,
         WidgetCommentsComponent,
+
+        SlicerTablistComponent,
 
         ShapeEditComponent,
         ShapeDeleteComponent,

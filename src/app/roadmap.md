@@ -219,7 +219,7 @@ Widget Editor
 
 **Widget**
 1. Issue: how to call code ~WidgetEdit, etc from explore NOT duplicating code ...
-2. Add fields for Widget Properties to New / Edit !
+2.
 3. Fix bug: isTrash => Widget does not disappear !
 4. Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
  + Dont show top if now Dataset - rather appropriate Unexpected Error msg
@@ -257,13 +257,13 @@ Widget Editor
 
 
 **Slicers**
-1. Make moveable!
+1. 
 2. Make look and feel customisable
-3. X top right to close (and how to show later?)  Can make temporary invisible?
+3. 
 
 
 **Tables**
-1. Add form and code to W Editor to do this
+1. WE (for table) - make cols drag and drop
 2. Maybe make this a separate component ... ?
 
 

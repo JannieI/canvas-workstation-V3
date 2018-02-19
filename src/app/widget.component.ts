@@ -384,41 +384,100 @@ export class WidgetComponent {
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {
-        //
+        // Mouse down event during resize, registers original x and y coordinates
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeDown', '@Start');
 
         if (!this.editMode) {
             return;
         }
 
-        // Indicate that we are resizing
+        // Indicate that we are resizing - thus block the dragging action
         this.isBusyResizing = true;
-        console.log('clickResizeDown', this.widgets[index].containerLeft, ev);
         this.startX = ev.x;
         this.startY = ev.y;
 
     }
 
-    clickResizeUp(ev: MouseEvent, index: number) {
-        //
+    clickResizeUp(ev: MouseEvent, 
+        index: number, 
+        resizeTop: boolean, 
+        resizeRight: boolean,
+        resizeBottom: boolean,
+        resizeLeft: boolean) {
+        // Mouse up click during resize event.  Change x and y coordinates according to the 
+        // movement since the resize down event
+        //   ev - mouse event
+        //   index - index of the W to resize
+        //   resizeTop, -Right, -Bottom, -Left - True to move the ... boundary.
+        //     Note: 1. both the current and globalVar vars are changed
+        //           2. Top and Left involves changing two aspects, ie Left and Width 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeUp', '@Start');
-
-        console.log('clickResizeUp starts index', index, this.widgetContainerDOM)
 
         if (!this.editMode) {
             return;
         }
 
-        // Reset current and globalVar values
-        this.widgets[index].containerWidth =
-            this.widgets[index].containerWidth - this.startX + ev.x;
-        this.globalVariableService.currentWidgets[index].containerWidth =
-            this.widgets[index].containerWidth;
+        // Top moved: adjust the height & top
+        if (resizeTop) {
+            this.widgets[index].containerTop =
+                this.widgets[index].containerTop - this.startY + ev.y;
+            this.globalVariableService.currentWidgets[index].containerTop =
+                this.widgets[index].containerTop;
 
-        this.widgets[index].graphWidth =
-            this.widgets[index].graphWidth - this.startX + ev.x;
-        this.globalVariableService.currentWidgets[index].graphWidth =
-            this.widgets[index].graphWidth;
+            this.widgets[index].containerHeight =
+                this.widgets[index].containerHeight - ev.y + this.startY;
+            this.globalVariableService.currentWidgets[index].containerHeight =
+                this.widgets[index].containerHeight;
+
+            this.widgets[index].graphHeight =
+                this.widgets[index].graphHeight - ev.y + this.startY;
+            this.globalVariableService.currentWidgets[index].graphHeight =
+                this.widgets[index].graphHeight;
+        };
+
+        // Right moved: adjust the width
+        if (resizeRight) {
+            this.widgets[index].containerWidth =
+                this.widgets[index].containerWidth - this.startX + ev.x;
+            this.globalVariableService.currentWidgets[index].containerWidth =
+                this.widgets[index].containerWidth;
+
+            this.widgets[index].graphWidth =
+                this.widgets[index].graphWidth - this.startX + ev.x;
+            this.globalVariableService.currentWidgets[index].graphWidth =
+                this.widgets[index].graphWidth;
+        };
+
+        // Bottom moved: adjust the height
+        if (resizeBottom) {
+            this.widgets[index].containerHeight =
+                this.widgets[index].containerHeight - this.startY + ev.y;
+            this.globalVariableService.currentWidgets[index].containerHeight =
+                this.widgets[index].containerHeight;
+
+            this.widgets[index].graphHeight =
+                this.widgets[index].graphHeight - this.startY + ev.y;
+            this.globalVariableService.currentWidgets[index].graphHeight =
+                this.widgets[index].graphHeight;
+        };
+
+        // Left moved: adjust the width & left
+        if (resizeLeft) {
+            this.widgets[index].containerLeft =
+                this.widgets[index].containerLeft - this.startX + ev.x;
+            this.globalVariableService.currentWidgets[index].containerLeft =
+                this.widgets[index].containerLeft;
+
+            this.widgets[index].containerWidth =
+                this.widgets[index].containerWidth - ev.x + this.startX;
+            this.globalVariableService.currentWidgets[index].containerWidth =
+                this.widgets[index].containerWidth;
+
+            this.widgets[index].graphWidth =
+                this.widgets[index].graphWidth - ev.x + this.startX;
+            this.globalVariableService.currentWidgets[index].graphWidth =
+                this.widgets[index].graphWidth;
+        };
 
         this.refreshWidgets(index)
 
@@ -428,13 +487,10 @@ export class WidgetComponent {
         this.widgets[index].nrButtonsToShow =
             (this.widgets[index].containerWidth - 50) / 22;
 
-        console.log('clickResizeUp width buttons ev x-move',
-            this.widgets[index].containerWidth, this.widgets[index].nrButtonsToShow,
-            ev, 0 - this.startX + ev.x);
     }
 
     clickWidgetContainerDragStart(ev: MouseEvent, index: number) {
-        //
+        // Register start of W container event
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragStart', '@Start');
 
         if (!this.editMode) {
@@ -452,7 +508,7 @@ export class WidgetComponent {
     }
 
     clickWidgetContainerDragEnd(ev: MouseEvent, index: number) {
-        //
+        // Move the W container at the end of the drag event
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragEnd', '@Start');
 
         if (!this.editMode) {
@@ -467,8 +523,6 @@ export class WidgetComponent {
             this.isBusyResizing = false;
             return;
         };
-
-        console.log('clickWidgetContainerDragEnd starts index', index, this.startX, ev.x)
 
         // Reset current and globalVar values
         this.widgets[index].containerLeft =

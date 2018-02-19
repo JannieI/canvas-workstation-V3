@@ -351,17 +351,20 @@
                         Slicer
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem  (click)="clickMenuDataSlicerAdd()">
+                        <button type="button" clrDropdownItem (click)="clickMenuDataSlicerAdd()">
                             Add Slicer
                         </button>
                         <button type="button" clrDropdownItem (click)="clickMenuDataSlicerEdit()">
                             Edit Slicer
                         </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuSlicerTablist()">
+                            Tablist
+                        </button>
                         <button type="button" clrDropdownItem (click)="clickMenuDataSlicerExpand()">
                             Expand
                         </button>
-                        <div class="dropdown-divider" (click)="clickMenuDataSlicerDelete()"></div>
-                        <button type="button" clrDropdownItem>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickMenuDataSlicerDelete()">
                             Delete Slicer
                         </button>
                     </clr-dropdown-menu>
@@ -1010,6 +1013,34 @@
 </dashboard-print>
 
 
+<!-- Modal: data  -->
+<data
+    *ngIf="showModalData"
+    (formDataPopupClosed)="handleCloseData($event)">Load Data ...
+</data>
+
+
+<!-- Modal: data Combination -->
+<data-combination
+    *ngIf="showModalDataCombination"
+    (formDataCombinationClosed)="handleCloseDataCombination($event)">Load Data Combination ...
+</data-combination>
+
+
+<!-- Modal: data refresh all -->
+<data-refresh
+    *ngIf="showModalDataRefresh"
+    (formDataRefreshClosed)="handleCloseDataRefresh($event)">Refresh All Data ...
+</data-refresh>
+
+
+<!-- Modal: data Share -->
+<data-share
+    *ngIf="showModalDataShare"
+    (formDataShareClosed)="handleCloseDataShare($event)">Share All Data ...
+</data-share>
+
+
 <!-- Modal: Widget Expand -->
 <widget-expand
     class="formPopupDashboard"
@@ -1037,6 +1068,84 @@
 </widget-delete>
 
 
+<!-- Modal: widget editor -->
+<widget-editor
+    *ngIf="showModalWidgetEditor"
+    [showDatasourcePopup]="showDatasourcePopup"
+    [newWidget]="newWidget"
+    (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Widget Editor ...
+</widget-editor>
+
+
+<!-- Modal: widget checkpoints -->
+<widget-checkpoints
+    *ngIf="showModalWidgetCheckpoints"
+    (formWidgetCheckpointsClosed)="handleCloseWidgetCheckpoints($event)">Load Widget Checkpoints ...
+</widget-checkpoints>
+
+
+<!-- Modal: widget links -->
+<widget-links
+    *ngIf="showModalWidgetLinks"
+    (formWidgetLinksClosed)="handleCloseWidgetLinks($event)">Load Widget Links ...
+</widget-links>
+
+
+<!-- Modal: widget Comments -->
+<widget-comments
+    *ngIf="showModalWidgetComments"
+    (formWidgetCommentsClosed)="handleCloseWidgetComments($event)">Load Widget Comments ...
+</widget-comments>
+
+
+<!-- Model: Widget Refresh -->
+<div class="modal modalBox" *ngIf="showModalWidgetRefresh">
+	<div class="modal-dialog modal-sm" role="dialog" aria-hidden="true">
+		<div class="modal-content modalContent">
+
+            <div class="overall">
+                <div class="closeButton">
+                    <button type="button" class="closeButton" (click)="showModalWidgetRefresh=!showModalWidgetRefresh">
+                        X
+                    </button>
+                </div>
+                <i>
+                    Note: The Datasource associated with this Widget is large, and may take a while
+                    to Refresh.  While running, it will indicate 'Query Running' in the Statusbar
+                    at the bottom of the screen.  You may stop it by clicking the <b>Cancel</b>
+                    button on the Statusbar.  Once the query completes, the graph in the Widget will refresh
+                    automatically.  You may have multiple queries running at the same time.
+                    Do you want to continue?
+                </i>
+                <div>
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="showModalWidgetRefresh=!showModalWidgetRefresh"
+                        >
+                        Refresh
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal: Slicers -->
+<data-slicers
+    *ngIf="showModalDataSlicers"
+    (formDataSlicersClosed)="handleCloseDataSlicers($event)">Load Slicers ...
+</data-slicers>
+
+
+<!-- Modal: Slicer Tablist -->
+<slicer-tablist
+    *ngIf="showModalSlicerTablist"
+    (formSlicerTablistClosed)="handleCloseSlicerTablist($event)">Load Slicer Tablist ...
+</slicer-tablist>
+
+
 <!-- Modal: Shape Edit -->
 <shape-edit
     class="formPopupDashboard"
@@ -1054,7 +1163,7 @@
 </shape-delete>
 
 
-<!-- Overlay: Dashboard Help -->
+<!-- Overlay: Help -->
 <dashboard-help
     *ngIf="isFirstTimeDashboard"
     (formDashboardHelpClosed)="handleCloseDashboardHelp($event)">Load Help form ...
@@ -1062,7 +1171,7 @@
 </dashboard-help>
 
 
-<!-- Overlay: Dashboard Help for Presentation -->
+<!-- Overlay: Help for Presentation -->
 <dashboard-helpPresentation
     *ngIf="isFirstTimePresentation  &&  presentationMode"
     (formDashboardHelpPresentationClosed)="handleCloseDashboardHelpPresentation($event)">Load Help form ...
@@ -1138,71 +1247,6 @@
 </preferences>
 
 
-<!-- Modal: data Slicers -->
-<data-slicers
-    *ngIf="showModalDataSlicers"
-    (formDataSlicersClosed)="handleCloseDataSlicers($event)">Load Data Slicers ...
-</data-slicers>
-
-
-<!-- Modal: data  -->
-<data
-    *ngIf="showModalData"
-    (formDataPopupClosed)="handleCloseData($event)">Load Data ...
-</data>
-
-
-<!-- Modal: data Combination -->
-<data-combination
-    *ngIf="showModalDataCombination"
-    (formDataCombinationClosed)="handleCloseDataCombination($event)">Load Data Combination ...
-</data-combination>
-
-
-<!-- Modal: data refresh all -->
-<data-refresh
-    *ngIf="showModalDataRefresh"
-    (formDataRefreshClosed)="handleCloseDataRefresh($event)">Refresh All Data ...
-</data-refresh>
-
-
-<!-- Modal: data Share -->
-<data-share
-    *ngIf="showModalDataShare"
-    (formDataShareClosed)="handleCloseDataShare($event)">Share All Data ...
-</data-share>
-
-
-<!-- Modal: widget editor -->
-<widget-editor
-    *ngIf="showModalWidgetEditor"
-    [showDatasourcePopup]="showDatasourcePopup"
-    [newWidget]="newWidget"
-    (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Widget Editor ...
-</widget-editor>
-
-
-<!-- Modal: widget checkpoints -->
-<widget-checkpoints
-    *ngIf="showModalWidgetCheckpoints"
-    (formWidgetCheckpointsClosed)="handleCloseWidgetCheckpoints($event)">Load Widget Checkpoints ...
-</widget-checkpoints>
-
-
-<!-- Modal: widget links -->
-<widget-links
-    *ngIf="showModalWidgetLinks"
-    (formWidgetLinksClosed)="handleCloseWidgetLinks($event)">Load Widget Links ...
-</widget-links>
-
-
-<!-- Modal: widget Comments -->
-<widget-comments
-    *ngIf="showModalWidgetComments"
-    (formWidgetCommentsClosed)="handleCloseWidgetComments($event)">Load Widget Comments ...
-</widget-comments>
-
-
 <!-- Modal: Alerts -->
 <collaborate-alerts
     class="formPopupDashboard"
@@ -1235,40 +1279,6 @@
 </collaborate-activityadd>
 
 
-<!-- Model: Widget Refresh -->
-<div class="modal modalBox" *ngIf="showModalWidgetRefresh">
-	<div class="modal-dialog modal-sm" role="dialog" aria-hidden="true">
-		<div class="modal-content modalContent">
-
-            <div class="overall">
-                <div class="closeButton">
-                    <button type="button" class="closeButton" (click)="showModalWidgetRefresh=!showModalWidgetRefresh">
-                        X
-                    </button>
-                </div>
-                <i>
-                    Note: The Datasource associated with this Widget is large, and may take a while
-                    to Refresh.  While running, it will indicate 'Query Running' in the Statusbar
-                    at the bottom of the screen.  You may stop it by clicking the <b>Cancel</b>
-                    button on the Statusbar.  Once the query completes, the graph in the Widget will refresh
-                    automatically.  You may have multiple queries running at the same time.
-                    Do you want to continue?
-                </i>
-                <div>
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="showModalWidgetRefresh=!showModalWidgetRefresh"
-                        >
-                        Refresh
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <!-- Widgets -->
 <widget #widgetDOM
     [widgets]="currentWidgets"
@@ -1295,6 +1305,8 @@
     [style.top.px]="row.containerTop"
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
+    (dragstart)="clickSlicerContainerDragStart($event, i)"
+    (dragend)="clickSlicerContainerDragEnd($event, i)"
     draggable="true"
     >
     <div class="slicerContainerDragHandle"
@@ -1303,22 +1315,11 @@
         [style.width.px]="row.containerWidth-14"
         >
 
-
         <div class="slicerLabel" *ngIf="row.containerWidgetTitle"
             (click)="clickSlicer(i, row.id)"
             [style.background-color]="row.containerBackgroundcolor"
             [style.width.px]="row.containerWidth-14"
             >
-            <span>
-                <clr-icon
-                    class="slicerLabelIcon"
-                    shape="pinboard"
-                    size="12"
-                    *ngIf="row.isSelected"
-                    (click)="clickSlicerTabs(i)"
-                    >
-                </clr-icon>
-            </span>
             <b>{{ row.containerWidgetTitle }}</b>
         </div>
         <select class="slicerBlock"
@@ -1338,54 +1339,86 @@
     </div>
     <div class="slicerContainerTopLeftHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, true, false, false, true)"
+        draggable="true"
         >
     </div>
     <div class="slicerContainerTopHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, true, false, false, false)"
+        draggable="true"
         >
     </div>
     <div class="slicerContainerTopRightHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, true, true, false, false)"
+        draggable="true"
         >
     </div>
     <div class="slicerContainerRightTopHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, true, true, false, false)"
+        draggable="true"
         >
     </div>
     <div class="slicerContainerRightHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeDown($event, i)"
-        (mouseup)="clickResizeUp($event, i)"
-        (dragend)="clickResizeUp($event, i)"
+        (dragend)="clickResizeUp($event, i, false, true, false, false)"
         draggable="true"
         >
     </div>
     <div class="slicerContainerRightBottomHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, true, true, false)"
+        draggable="true"
         >
     </div>
     <div class="slicerContainerBottomRightHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, true, true, false)"
+        draggable="true"
         >
     </div>
     <div class="slicerContainerBottomLeftHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, false, true, true)"
+        draggable="true"
         >
     </div>
     <div class="slicerContainerBottomHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, false, true, false)"
+        draggable="true"
         >
     </div>
     <div class="slicerContainerLeftBottomHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, false, true, true)"
+        draggable="true"
         >
     </div>
     <div class="slicerContainerLeftHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, false, false, true)"
+        draggable="true"
         >
     </div>
     <div class="slicerContainerLeftTopHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, true, false, false, true)"
+        draggable="true"
         >
     </div>
 
@@ -1422,26 +1455,3 @@
  
 </div>
 
-<div *ngIf="showMultiTabMenu" class="multiTabMenu"
-    [style.left.px]="multiTabLeft"
-    [style.top.px]="multiTabTop"
-    >
-    <div class="multiTabMenuHeader">Select Tabs to show this slicer</div>
-        <div *ngFor="let row of currentTabNames; let i = index" class="multiTabMenuOption">
-            <clr-checkbox [clrChecked]="row.isSelected" 
-                [name]="row.name" 
-                (click)="clickMultiTabSelect(i, $event)">
-                {{ row.name }}
-
-            </clr-checkbox>
-        </div>
-        <div>
-            <button
-                type="button"
-                class="btn btn-link"
-                (click)="clickMultiTabClose()"
-                >
-                Close
-            </button>
-        </div>
-</div>

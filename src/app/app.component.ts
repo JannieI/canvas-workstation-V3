@@ -125,13 +125,13 @@ export class AppComponent implements OnInit {
     currentDatasources: Datasource[];
     currentShapes: Widget[] = [];
     currentSlicers: Widget[] = [];
-    currentTabNames: {isSelected: boolean; name: string}[];
     currentTabName: string = '';
     currentWidgets: Widget[] = [];
     editMode: boolean;
     hasDatasources: boolean = false;
     editMenuText: string;
     fields: Field[];
+    isBusyResizing: boolean = false;
     moveStartX: number;
     moveStartY: number;
     moveEndX: number;
@@ -140,8 +140,6 @@ export class AppComponent implements OnInit {
     moveOffsetY: number;
     moveLastX: number = 0;
     moveLastY: number = 0;
-    multiTabLeft: number = 0;
-    multiTabTop: number = 0;
     newWidget: boolean = false;
     presentationMode: boolean;
     refreshGraphs: boolean = false;
@@ -175,7 +173,6 @@ export class AppComponent implements OnInit {
     showModalDashboardTreeview: boolean = false;
     showModalDashboardSubscribe: boolean = false;
     showMainMenu: boolean = true;
-    showMultiTabMenu: boolean = false;
     showModalWidgetCheckpoints: boolean = false;
     showModalWidgetComments: boolean = false;
     showModalWidgetLinks: boolean = false;
@@ -187,6 +184,7 @@ export class AppComponent implements OnInit {
     showModalDashboardPrint: boolean = false;
     showModalData: boolean = false;
     showModalDataSlicers: boolean = false;
+    showModalSlicerTablist: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalDataShare: boolean = false;
@@ -213,8 +211,8 @@ export class AppComponent implements OnInit {
 
 
     constructor(
-        private globalVariableService: GlobalVariableService,
         private globalFunctionService: GlobalFunctionService,
+        private globalVariableService: GlobalVariableService,
         @Inject(DOCUMENT) private document: Document,
         private renderer: Renderer,
         private router: Router,
@@ -536,6 +534,13 @@ export class AppComponent implements OnInit {
         this.showModalDataSlicers = false;
     }
 
+    handleCloseSlicerTablist(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseSlicerTablist', '@Start');
+
+        this.showModalSlicerTablist = false;
+    }
+    
     handleCloseData(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
@@ -887,6 +892,14 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerAdd', '@Start');
 
         this.showModalDataSlicers = true;
+
+    }
+    
+    clickMenuSlicerTablist() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerTablist', '@Start');
+
+        this.showModalSlicerTablist = true;
 
     }
 
@@ -1424,32 +1437,108 @@ export class AppComponent implements OnInit {
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {
-        //
+        // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeDown', '@Start');
 
-        console.log('clickResizeDown', this.currentSlicers[index].containerLeft, ev);
+        // Indicate that we are resizing - thus block the dragging action
+        this.isBusyResizing = true;
         this.startX = ev.x;
         this.startY = ev.y;
 
     }
 
-    clickResizeUp(ev: MouseEvent, index: number) {
-        //
+    clickResizeUp(ev: MouseEvent, 
+        index: number, 
+        resizeTop: boolean, 
+        resizeRight: boolean,
+        resizeBottom: boolean,
+        resizeLeft: boolean) {
+        // Mouse up click during resize event.  Change x and y coordinates according to the 
+        // movement since the resize down event
+        //   ev - mouse event
+        //   index - index of the W to resize
+        //   resizeTop, -Right, -Bottom, -Left - True to move the ... boundary.
+        //     Note: 1. both the current and globalVar vars are changed
+        //           2. Top and Left involves changing two aspects, ie Left and Width 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeUp', '@Start');
 
         console.log('clickResizeUp starts index', index)
 
-        // Reset current and globalVar values
-        this.currentSlicers[index].containerWidth =
-            this.currentSlicers[index].containerWidth - this.startX + ev.x;
-        this.globalVariableService.currentSlicers[index].containerWidth =
-            this.currentSlicers[index].containerWidth;
+        // // Reset current and globalVar values
+        // this.currentSlicers[index].containerWidth =
+        //     this.currentSlicers[index].containerWidth - this.startX + ev.x;
+        // this.globalVariableService.currentSlicers[index].containerWidth =
+        //     this.currentSlicers[index].containerWidth;
 
         // console.log('clickResizeUp this.globalVariableService.currentSlicers[index].value',
         //     index, this.globalVariableService.currentSlicers.value[index])
 
         this.currentSlicers[index].nrButtonsToShow =
             (this.currentSlicers[index].containerWidth - 50) / 22;
+
+
+        // Top moved: adjust the height & top
+        if (resizeTop) {
+            this.currentSlicers[index].containerTop =
+                this.currentSlicers[index].containerTop - this.startY + ev.y;
+            this.globalVariableService.currentSlicers[index].containerTop =
+                this.currentSlicers[index].containerTop;
+
+            this.currentSlicers[index].containerHeight =
+                this.currentSlicers[index].containerHeight - ev.y + this.startY;
+            this.globalVariableService.currentSlicers[index].containerHeight =
+                this.currentSlicers[index].containerHeight;
+
+            this.currentSlicers[index].graphHeight =
+                this.currentSlicers[index].graphHeight - ev.y + this.startY;
+            this.globalVariableService.currentSlicers[index].graphHeight =
+                this.currentSlicers[index].graphHeight;
+        };
+
+        // Right moved: adjust the width
+        if (resizeRight) {
+            this.currentSlicers[index].containerWidth =
+                this.currentSlicers[index].containerWidth - this.startX + ev.x;
+            this.globalVariableService.currentSlicers[index].containerWidth =
+                this.currentSlicers[index].containerWidth;
+
+            this.currentSlicers[index].graphWidth =
+                this.currentSlicers[index].graphWidth - this.startX + ev.x;
+            this.globalVariableService.currentSlicers[index].graphWidth =
+                this.currentSlicers[index].graphWidth;
+        };
+
+        // Bottom moved: adjust the height
+        if (resizeBottom) {
+            this.currentSlicers[index].containerHeight =
+                this.currentSlicers[index].containerHeight - this.startY + ev.y;
+            this.globalVariableService.currentSlicers[index].containerHeight =
+                this.currentSlicers[index].containerHeight;
+
+            this.currentSlicers[index].graphHeight =
+                this.currentSlicers[index].graphHeight - this.startY + ev.y;
+            this.globalVariableService.currentSlicers[index].graphHeight =
+                this.currentSlicers[index].graphHeight;
+        };
+
+        // Left moved: adjust the width & left
+        if (resizeLeft) {
+            this.currentSlicers[index].containerLeft =
+                this.currentSlicers[index].containerLeft - this.startX + ev.x;
+            this.globalVariableService.currentSlicers[index].containerLeft =
+                this.currentSlicers[index].containerLeft;
+
+            this.currentSlicers[index].containerWidth =
+                this.currentSlicers[index].containerWidth - ev.x + this.startX;
+            this.globalVariableService.currentSlicers[index].containerWidth =
+                this.currentSlicers[index].containerWidth;
+
+            this.currentSlicers[index].graphWidth =
+                this.currentSlicers[index].graphWidth - ev.x + this.startX;
+            this.globalVariableService.currentSlicers[index].graphWidth =
+                this.currentSlicers[index].graphWidth;
+        };
+
 
         console.log('clickResizeUp width buttons ev x-move',
             this.currentSlicers[index].containerWidth, this.currentSlicers[index].nrButtonsToShow,
@@ -1527,50 +1616,55 @@ export class AppComponent implements OnInit {
         return true;
     }
 
-    clickSlicerTabs(index: number) {
-        // Show list of Ts on which this Sl lives
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerTabs', '@Start');
+    clickSlicerContainerDragStart(ev: MouseEvent, index: number) {
+        // Register start of Sl drag event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerContainerDragStart', '@Start');
 
-        // Build list of T names and position before showing it
-        this.currentTabNames = [];
-        this.globalVariableService.currentDashboardTabs.forEach(t => {
-            if (this.currentTabNames == undefined) {
-                this.currentTabNames = [{isSelected: true, name: t.name}];
-            } else {
-                this.currentTabNames.push({isSelected: false, name: t.name})
-            }
-        });
-
-        this.multiTabLeft = this.currentSlicers[index].containerLeft;
-        this.multiTabTop = this.currentSlicers[index].containerTop;
-        this.showMultiTabMenu = !this.showMultiTabMenu;
-    }
-
-    clickMultiTabClose(index: number) {
-        // Close multi-tab-selection popup
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabClose', '@Start');
-
-        let x: number = 0;
-        this.currentTabNames.forEach(t => {
-            if (t.isSelected) {x++}
-        });
-        if (x == 0) {
-            alert('The Slicer must belong to at least one tab.  Use Data -> Slicer -> Delete menu option to get rid of it');
+        if (!this.editMode) {
             return;
-        } else {
-            this.showMultiTabMenu = false;
         }
+
+        // Is busy with resizing, ignore this
+        if (this.isBusyResizing) {
+            console.log('xx busy resizing')
+            return;
+        };
+
+        this.startX = ev.x;
+        this.startY = ev.y;
     }
 
-    clickMultiTabSelect(index: number, ev: any) {
-        // Select/UnSelect a T
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabSelect', '@Start');
+    clickSlicerContainerDragEnd(ev: MouseEvent, index: number) {
+        // Move the Sl containter at the end of the drag event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerContainerDragEnd', '@Start');
 
-        if (ev.target.localName == 'input') {
-            this.currentTabNames[index].isSelected = ev.target.checked;
+        if (!this.editMode) {
+            return;
         }
-    }
 
+        // Is busy with resizing, ignore this
+        if (this.isBusyResizing) {
+            console.log('xx busy resizing')
+
+            // Done with resizing
+            this.isBusyResizing = false;
+            return;
+        };
+
+        console.log('clickSlicerContainerDragEnd starts index', index, this.startX, ev.x)
+
+        // Reset current and globalVar values
+        this.currentSlicers[index].containerLeft =
+            this.currentSlicers[index].containerLeft - this.startX + ev.x;
+        this.globalVariableService.currentSlicers[index].containerLeft =
+            this.currentSlicers[index].containerLeft;
+
+        this.currentSlicers[index].containerTop =
+            this.currentSlicers[index].containerTop - this.startY + ev.y;
+        this.globalVariableService.currentSlicers[index].containerTop =
+            this.currentSlicers[index].containerTop;
+
+    }
 }
 
 // Naming conventions

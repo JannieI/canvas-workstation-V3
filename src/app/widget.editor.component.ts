@@ -173,6 +173,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 "isTrashed": false,
                 "dashboardID": 1,
                 "dashboardTabID": 1,
+                dashboardTabIDs: [1],
                 "id": 1,
                 "name": "New",
                 "description": "New",

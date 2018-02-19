@@ -1,0 +1,23 @@
+.overall {
+    display: grid;
+    grid-template-columns: repeat(11, 3rem);
+    grid-template-rows:  repeat(8, 2rem);
+    margin-top: 2px;
+}
+
+    .shapeProperties {
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 1;
+        grid-row-end: 12;
+        text-align: left;
+    }
+
+.multiTabMenuHeader {
+    text-align: center;
+}
+
+.multiTabMenuOption {
+    background-color: #667781;
+    color: white;
+}

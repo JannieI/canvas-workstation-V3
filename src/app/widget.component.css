@@ -95,12 +95,6 @@
         color: white;
     }
 
-
-
-
-
-
-
 .slicerContainerTopLeftHandle {
     cursor: nwse-resize;
     grid-column-start: 1;
@@ -141,7 +135,6 @@
     padding: 0;
     background-color: #929699;
 }
-
 .slicerContainerRightHandle {
     background-color: #929699;
     cursor: e-resize;
@@ -153,7 +146,6 @@
     padding: 0;
     z-index: 100;
 }
-
 .slicerContainerRightBottomHandle {
     cursor: nwse-resize;
     grid-column-start: 11;

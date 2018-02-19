@@ -88,11 +88,6 @@ export class DashboardOpenComponent implements OnInit {
 
         this.globalVariableService.editMode.next(false);
 
-        // Set ids and then signal that the Dashboard must be refreshed
-        // this.globalVariableService.currentDashboardID = dashboardID;
-        // this.globalVariableService.currentDashboardTabID = 1;
-        // this.globalVariableService.refreshDashboard.next(true);
-
 		this.globalVariableService.refreshCurrentDashboard(
 			'openDashboard-clickOpenRecentDashboard', dashboardID, -1, ''
         );
@@ -107,11 +102,6 @@ export class DashboardOpenComponent implements OnInit {
         console.log('DashboardOpen clickOpenEdit id', dashboardID)
 
         this.globalVariableService.editMode.next(true);
-
-        // Set ids and then signal that the Dashboard must be refreshed
-        // this.globalVariableService.currentDashboardID = dashboardID;
-        // this.globalVariableService.currentDashboardTabID = 1;
-        // this.globalVariableService.refreshDashboard.next(true);
 		this.globalVariableService.refreshCurrentDashboard(
 			'openDashboard-clickOpenEdit', dashboardID, -1, ''
         );

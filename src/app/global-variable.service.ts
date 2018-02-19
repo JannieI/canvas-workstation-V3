@@ -2259,6 +2259,8 @@ export class GlobalVariableService {
                         console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID,
                         data)
                         // Filter the widgets
+                        // TODO - use i.dashboardTabIDs.indexOf(dashboardTabID) >= 0 once datalib
+                        // reads arrays correctly.  That should be the only change ...
                         data = data.filter(
                             i => i.dashboardID == dashboardID  &&
                                  (dashboardTabID == -1  ||  i.dashboardTabID == dashboardTabID)
