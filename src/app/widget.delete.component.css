@@ -3,6 +3,68 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
+.overall {
+    display: grid;
+    grid-template-columns: repeat(11, 2rem);
+    grid-template-rows:  repeat(13, 1rem);
+    margin-top: 2px;
+}
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+.header0 {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    text-align: left;
+}
+
+.header1 {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    text-align: left;
+}
+
+.header2 {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    text-align: left;
+}
+
+.header3 {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    grid-row-start: 10;
+    grid-row-end: 11;
+    text-align: left;
+}
+
+.widget {
+    grid-column-start: 4;
+    grid-column-end: 12;
+    grid-row-start: 5;
+    grid-row-end: 8;
+    margin-left: 50px;
+}
+
+.deleteButton {
+    grid-column-start: 6;
+    grid-column-end: 8;
+    grid-row-start: 11;
+    grid-row-end: 12;
+    margin-top: 1rem;
+}
+
 .closeButton {
     background-color: transparent;
     border: none;

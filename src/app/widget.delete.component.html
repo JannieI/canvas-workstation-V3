@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
 
             <div class="overall">
@@ -9,35 +9,35 @@
                     </button>
                 </div>
 
-                Delete a Widget
-                <p>Deleting a Widget is permanent in that it is not moved to Trash.  However,
-                    you can Undo the delete action in the current Dashboard with the menu
-                    option Edit -> Undo.  You have selected {{ nrWidgetsSelected }}
-                    Widgets to be deleted.
-                </p>
-                <p>Image widget goes here ...</p>
-                <form>
-                    <section>
-                        <div class="form-group">
-                            <label for="selects_4">Are you sure you want to delete the current Widget?</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Yes</option>
-                                    <option>No</option>
-                                </select>
-                            </div>
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickDeleteWidget()"
-                                >
-                                Delete
-                            </button>
-                        </div>
-                    </section>
-                </form>
+                <div class="header0">
+                    Delete a Widget
+
+                </div>
+                <div class="header1">
+                    Select <b>Edit -> Undo</b> on the main menu to retrieve a deleted Widget.
+                </div>
+                <div class="header2">
+                    {{ nrWidgetsSelected }} Widgets were selected for deletion.
+                </div>
+                <div class="widget">
+                    <widget #widgetDOM
+                        [widgets]="currentWidgets"
+                        [showDataQuality]="showDataQuality"
+                        [showComments]="showComments"
+                        >
+                    </widget>
+                </div>
+
+                <div class="header3">
+                    Are you sure you want to delete the current Widget?
+                </div>
+                <button
+                    type="button"
+                    class="btn btn-secondary deleteButton"
+                    (click)="clickDeleteWidget()"
+                    >
+                    Delete
+                </button>
             </div>
         </div>
     </div>

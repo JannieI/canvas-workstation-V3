@@ -32,7 +32,7 @@ export class WidgetDeleteComponent implements OnInit {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     @ViewChild('myCanvas', {read: ElementRef}) myCanvas: ElementRef;  //Vega graph
 
-    currentWidgets: Widget;
+    currentWidgets: Widget[] = [];
     nrWidgetsSelected: number = 0;
 
     constructor(
@@ -42,10 +42,48 @@ export class WidgetDeleteComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.currentWidgets = this.globalVariableService.currentWidgets[i];
-                    this.nrWidgetsSelected = this.globalVariableService.currentWidgets.length;
-            }
-        );
+
+        // Get the current W
+        this.globalVariableService.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+
+                // TODO - improve this when using a DB!
+                let newID: number = 1;
+                if (this.globalVariableService.widgets.length > 0) {
+                    newID = this.globalVariableService.widgets.length - 1;
+                };
+
+                // Make a deep copy
+                let localWidget= Object.assign({}, w);
+                localWidget.id = newID;
+
+                // Rescale and limit amount of detail on the graph
+                // TODO - change if multiple can be deleted
+                localWidget.containerLeft = 100;
+                localWidget.containerTop = 100;
+                localWidget.containerHeight = 100;
+                localWidget.graphHeight = 80;
+                localWidget.containerWidth = 100;
+                localWidget.graphWidth = 80;
+                localWidget.containerBoxshadow = 'none';
+                localWidget.containerBorder = 'none';
+                localWidget.isSelected = false;
+                localWidget.graphTitle = '';
+                localWidget.graphXaxisTitle = '';
+                localWidget.graphYaxisTitle = '';
+                localWidget.containerBorder = '';
+                localWidget.containerBackgroundcolor = 'white';
+                this.currentWidgets.push(localWidget);
+
+            };
+        });
+        
+        this.globalVariableService.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                // this.currentWidgets[0] = w;
+                this.nrWidgetsSelected = this.nrWidgetsSelected + 1;
+            };
+        });
 
     }
 
@@ -73,7 +111,7 @@ export class WidgetDeleteComponent implements OnInit {
     clickDeleteWidget() {
         console.log('clickDelete')
 
-        this.globalVariableService.deleteWidget(this.currentWidgets.id);
+        this.globalVariableService.deleteWidget(this.currentWidgets[0].id);
 
         this.formWidgetDeleteClosed.emit('Deleted');
     }
