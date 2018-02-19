@@ -128,6 +128,7 @@ Shapes:
 20. Incorporate tasks into Landing page?
 21. Give the user a vote - via like?  Create a sense of belonging and community
 22. Use cell to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
+23.Consider to move ALL selected objects - remember complexity since Sl and W sits in different components ...
 
 **Data**
 1. Define Canvas datatype = TS ones?

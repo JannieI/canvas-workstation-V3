@@ -18,17 +18,22 @@
     margin-top: 2px;
 }
 
-    .shapeProperties {
-        grid-column-start: 1;
-        grid-column-end: 6;
-        grid-row-start: 1;
+    .multiTabMenuHeader {
+        grid-column-start: 2;
+        grid-column-end: 12;
+        grid-row-start: 2;
         grid-row-end: 12;
         text-align: left;
     }
 
-.multiTabMenuHeader {
-    text-align: center;
-}
+    .multiTabOption {
+        grid-column-start: 3;
+        grid-column-end: 12;
+        grid-row-start: 4;
+        grid-row-end: 12;
+        text-align: left;
+    }
+
 .errorMessage {
     color: red;
 }

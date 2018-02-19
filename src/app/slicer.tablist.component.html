@@ -4,32 +4,30 @@
 
             <div class="overall">
 
-                <div class="shapeProperties">
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
 
-                    Tab list
-                    <div class="multiTabMenuHeader">Select Tabs to show this slicer
-                        <div *ngFor="let row of currentTabNames; let i = index">
-                            <clr-checkbox [clrChecked]="row.isSelected"
-                                [name]="row.name"
-                                (click)="clickMultiTabSelect(i, $event)">
-                                {{ row.name }}
+                <div class="multiTabMenuHeader">Select the Tabs on this Dashboard on which 
+                        to show this Slicer:
+                    <div *ngFor="let row of currentTabNames; let i = index" class="multiTabOption">
+                        <clr-checkbox [clrChecked]="row.isSelected"
+                            [name]="row.name"
+                            (click)="clickMultiTabSelect(i, $event)">
+                            {{ row.name }}
 
-                            </clr-checkbox>
-                        </div>
-                        <div>
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="clickMultiTabClose()"
-                                >
-                                Save
-                            </button>
-                            <div *ngIf="errorMessage" class="errorMessage">
-                                At least one tab must be selected
-                            </div>
+                        </clr-checkbox>
+                    </div>
+                    <div>
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickMultiTabClose()"
+                            >
+                            Save
+                        </button>
+                        <div *ngIf="errorMessage" class="errorMessage">
+                            At least one tab must be selected
                         </div>
                     </div>
                 </div>

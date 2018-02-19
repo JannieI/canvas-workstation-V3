@@ -1696,9 +1696,6 @@ export class GlobalVariableService {
             if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
 
-                // this.globalVariableService.getLocal('DashboardSnapshot').then(i => this.currentDashboardSnapshots = i)
-
-
                 this.getLocal('DashboardSnapshot')
                     .then(data => {
                         this.dashboardSnapshots = data;
