@@ -144,7 +144,6 @@
     grid-row-end: 7;
     margin: 0;
     padding: 0;
-    z-index: 100;
 }
 .slicerContainerRightBottomHandle {
     cursor: nwse-resize;

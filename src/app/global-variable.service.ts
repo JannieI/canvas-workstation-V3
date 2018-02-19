@@ -932,12 +932,12 @@ export class GlobalVariableService {
 
     }
 
-    deleteWidget(index: number) {
+    deleteWidget(id: number) {
         //
-        console.log('Global-Variables deleteWidget ...');
+        console.log('Global-Variables deleteWidget ...', id);
 
-        this.widgets.forEach( e => {
-            if (e.id == index) {
+        this.currentWidgets.forEach( e => {
+            if (e.id == id) {
                 e.isTrashed = true;
                 console.log('Global-Variables deleteWidget id:', e.id)
             }

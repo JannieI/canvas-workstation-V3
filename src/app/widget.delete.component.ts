@@ -42,20 +42,15 @@ export class WidgetDeleteComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get the current W
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.isSelected) {
 
-                // TODO - improve this when using a DB!
-                let newID: number = 1;
-                if (this.globalVariableService.widgets.length > 0) {
-                    newID = this.globalVariableService.widgets.length - 1;
-                };
-
                 // Make a deep copy
                 let localWidget= Object.assign({}, w);
-                localWidget.id = newID;
 
                 // Rescale and limit amount of detail on the graph
                 // TODO - change if multiple can be deleted
@@ -68,6 +63,7 @@ export class WidgetDeleteComponent implements OnInit {
                 localWidget.containerBoxshadow = 'none';
                 localWidget.containerBorder = 'none';
                 localWidget.isSelected = false;
+                // TODO - a huge graph shows too big - change Vega param to fix this.
                 localWidget.graphTitle = '';
                 localWidget.graphXaxisTitle = '';
                 localWidget.graphYaxisTitle = '';
@@ -88,29 +84,24 @@ export class WidgetDeleteComponent implements OnInit {
     }
 
     ngAfterViewInit() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+
 
     }
 
-    drawGrid() {
-      // var c = document.getElementById("myCanvas");
-      // var ctx = c.getContext("2d");
-      // ctx.clearRect(0, 0, c.width, c.height);
-      // var img = document.getElementById("lamp")
-      // var pat = ctx.createPattern(img, 'repeat');
-      // ctx.rect(0, 0, 150, 100);
-      // ctx.fillStyle = pat;
-      // ctx.fill();
-    }
   	clickClose(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
 	  	this.formWidgetDeleteClosed.emit(action);
         }
-        clickDelete(index: number) {
-            console.log('clickDelete', index)
-            this.globalVariableService.deleteWidget(index);
-        }
-    clickDeleteWidget() {
-        console.log('clickDelete')
 
+    clickDeleteWidget() {
+        // Delete the Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteWidget', '@Start');
+
+        // TODO - amend if more than W can be selected for deletion
         this.globalVariableService.deleteWidget(this.currentWidgets[0].id);
 
         this.formWidgetDeleteClosed.emit('Deleted');
