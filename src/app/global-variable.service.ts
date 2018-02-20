@@ -2967,7 +2967,6 @@ export class GlobalVariableService {
 
             }
             y = this.currentDashboardTabs[x].id;
-            console.log('xx t: x y Tshow currT currDinfo', x, y, tabToShow, this.currentDashboardTabs, this.currentDashboardInfo.value )
         } else {
             y = dashboardTabID;
             if (this.currentDashboards.length == 0) {
@@ -2979,7 +2978,7 @@ export class GlobalVariableService {
                     }
                 }
             }
-        }
+        };
 
         this.currentDashboardInfo.next({
             currentDashboardID: dashboardID,

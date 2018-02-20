@@ -239,7 +239,7 @@ export class WidgetComponent {
         // 4 and 5.  refreshWidgets(1,-1,[1,8]) will refresh W in position 1 and 8.
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidgets', '@Start');
 
-        console.log('xx refreshWidgets start len', this.widgets.length, this.widgetContainerDOM.length, this.widgets, this.widgetContainerDOM)
+        // console.log('xx refreshWidgets start len', this.widgets.length, this.widgetContainerDOM.length, this.widgets, this.widgetContainerDOM)
 
         this.startWidgetNumber = 0;
         // TODO - Bug: new W not in DOM ... !!!
@@ -254,11 +254,11 @@ export class WidgetComponent {
             }
         }
 
-        console.log('xx str end', this.startWidgetNumber, this.endWidgetNumber)
+        // console.log('xx str end', this.startWidgetNumber, this.endWidgetNumber)
 
         for (var i = this.startWidgetNumber; i < this.endWidgetNumber; i++) {
 
-            console.log('xx refreshWidgets loop i: ', i, this.widgets[i].id, arrID, arrID.indexOf(this.widgets[i].id), arrID.length)
+            // console.log('xx refreshWidgets loop i: ', i, this.widgets[i].id, arrID, arrID.indexOf(this.widgets[i].id), arrID.length)
             if ( (arrID.length > 0  && arrID.indexOf(this.widgets[i].id) >= 0)  ||
                 arrID.length == 0 ) {
                 // String of IF statements that caters for different visualGrammars
@@ -517,7 +517,6 @@ export class WidgetComponent {
 
         // Is busy with resizing, ignore this
         if (this.isBusyResizing) {
-            console.log('xx busy resizing')
             return;
         };
 
@@ -535,7 +534,6 @@ export class WidgetComponent {
 
         // Is busy with resizing, ignore this
         if (this.isBusyResizing) {
-            console.log('xx busy resizing')
 
             // Done with resizing
             this.isBusyResizing = false;
@@ -571,7 +569,7 @@ export class WidgetComponent {
     showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {
         // Returns True if a Widget is related to the selected Sl(s)
         // TODO - put back, but this fires ALL the time ...
-        this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
+        // this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
 
         // Get list of selected Sl
         let result: boolean = false;
@@ -601,7 +599,7 @@ export class WidgetComponent {
                     ds.push(w.id);
                 });
                 newID = Math.max(...ds) + 1;
-                console.log('xx newID', newID)
+                console.log('xx newID', newID, ds)
                 // Make a deep copy
                 let localWidget= Object.assign({}, w);
                 localWidget.id = newID;

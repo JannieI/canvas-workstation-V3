@@ -177,7 +177,6 @@ export class AppComponent implements OnInit {
     showModalWidgetComments: boolean = false;
     showModalWidgetLinks: boolean = false;
     showModalWidgetRefresh: boolean = false;
-    showModalWidgetDuplicate: boolean = false;
     showModalWidgetExpand: boolean = false;
     showModalWidgetExport: boolean = false;
     showModalWidgetDelete: boolean = false;
@@ -346,7 +345,6 @@ export class AppComponent implements OnInit {
             // this.currentWidgets.push(this.globalVariableService.currentWidgets[
             //     this.globalVariableService.currentWidgets.length - 1]);
             this.currentWidgets = this.globalVariableService.currentWidgets
-            console.log('xx app new', this.currentWidgets)
         } else {
             // TODO - this can be done much better
             // Replace the currentWidget with the editted info
@@ -366,7 +364,6 @@ export class AppComponent implements OnInit {
         // TODO - refresh only the editted one
         this.widgetDOM.refreshWidgets();
         
-        console.log('xx app hClo', this.currentWidgets)
         this.showModalWidgetEditor = false;
     }
 
@@ -594,7 +591,6 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDuplicate', '@Start');
 
-        this.showModalWidgetDuplicate = false;
     }
 
     handleCloseWidgetExpand(action: string) {
@@ -1003,7 +999,9 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetRefresh', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget()) {
+            return;
+        };
 
         this.showModalWidgetRefresh = true;
         this.globalVariableService.statusBarRunning.next(this.globalVariableService.NoQueryRunningMessage);
@@ -1013,10 +1011,9 @@ export class AppComponent implements OnInit {
     clickMenuWidgetDuplicate() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
-
+        console.log('xx clickMenuWidgetDuplicate', this.globalVariableService.currentWidgets)
         if (!this.checkForOnlyOneWidget()) { return};
 
-        this.showModalWidgetDuplicate = true;
         this.globalVariableService.duplicateWidget.next(true);
     }
 
@@ -1628,7 +1625,6 @@ export class AppComponent implements OnInit {
 
         // Is busy with resizing, ignore this
         if (this.isBusyResizing) {
-            console.log('xx busy resizing')
             return;
         };
 
@@ -1646,7 +1642,6 @@ export class AppComponent implements OnInit {
 
         // Is busy with resizing, ignore this
         if (this.isBusyResizing) {
-            console.log('xx busy resizing')
 
             // Done with resizing
             this.isBusyResizing = false;
