@@ -934,12 +934,12 @@ export class GlobalVariableService {
 
     deleteWidget(id: number) {
         //
-        console.log('Global-Variables deleteWidget ...', id);
+        console.log('Global-Variables deleteWidget ...', id, this.currentWidgets);
 
-        this.currentWidgets.forEach( e => {
-            if (e.id == id) {
-                e.isTrashed = true;
-                console.log('Global-Variables deleteWidget id:', e.id)
+        this.currentWidgets.forEach( w => {
+            if (w.id == id) {
+                w.isTrashed = true;
+                console.log('Global-Variables deleteWidget id:', w.id)
             }
         });
 
@@ -950,6 +950,7 @@ export class GlobalVariableService {
             this.currentDashboardInfo.value.currentDashboardTabID,
             ''
         );
+        console.log('Global-Variables deleteWidget ... 2 ', id, this.currentWidgets);
 
     }
 
@@ -963,7 +964,7 @@ export class GlobalVariableService {
 
         // Inform that we now at a DS
         this.hasDatasources.next(true);
-        
+
         console.log('Global-Variables currentDatasourceAdd after push', this.currentDatasources)
     }
 

@@ -590,20 +590,27 @@ export class WidgetComponent {
         // Duplicates all selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'duplicateWidget', '@Start');
      
+        console.log('xx duplicateWidget', this.globalVariableService.currentWidgets)
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.isSelected) {
 
                 // TODO - improve this when using a DB!
                 let newID: number = 1;
-                if (this.globalVariableService.widgets.length > 0) {
-                    newID = this.globalVariableService.widgets.length - 1;
-                };
-
+                let ds: number[] = [];
+                this.globalVariableService.widgets.forEach(w => {
+                    ds.push(w.id);
+                });
+                newID = Math.max(...ds) + 1;
+                console.log('xx newID', newID)
                 // Make a deep copy
                 let localWidget= Object.assign({}, w);
                 localWidget.id = newID;
+                localWidget.isSelected = false;
                 localWidget.containerLeft = localWidget.containerLeft + 20;
                 localWidget.containerTop = localWidget.containerTop + 20;
+
+                // Add to all and current W
+                this.widgets.push(localWidget);
                 this.globalVariableService.currentWidgets.push(localWidget);
 
                 // Refresh the Graph inside the Container
