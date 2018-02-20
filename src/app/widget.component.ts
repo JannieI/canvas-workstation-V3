@@ -608,7 +608,7 @@ export class WidgetComponent {
                 localWidget.containerTop = localWidget.containerTop + 20;
 
                 // Add to all and current W
-                this.widgets.push(localWidget);
+                this.globalVariableService.widgets.push(localWidget);
                 this.globalVariableService.currentWidgets.push(localWidget);
 
                 // Refresh the Graph inside the Container
