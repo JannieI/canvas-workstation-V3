@@ -1495,7 +1495,17 @@ export class GlobalVariableService {
         this.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
         this.datasets.forEach(ds => {
             if (ds.id == datasetID) {
-                this.filePath = '../assets/data.dataset' + ds.id.toString() + '.json';
+                if (ds.folderName == ''  ||  ds.folderName == null) {
+                    this.filePath = '../assets/';
+                } else {
+                    this.filePath = ds.folderName;
+                };
+                if (ds.filename == ''  ||  ds.filename == null) {
+                    this.filePath = this.filePath + 'data.dataset' + ds.id.toString() + '.json';
+                } else {
+                    this.filePath = this.filePath + ds.filename;
+                };
+                // this.filePath = '../assets/data.dataset' + ds.id.toString() + '.json';
                 console.log('xx this.filePath', datasetID, this.filePath)
             }
         });
@@ -1514,6 +1524,8 @@ export class GlobalVariableService {
                             let newdSet: Dataset = {
                                 id: datasetID,
                                 datasourceID: datasourceID,
+                                folderName: '',
+                                filename: '',
                                 data: dataFile,
                                 dataRaw: dataFile
                             };
