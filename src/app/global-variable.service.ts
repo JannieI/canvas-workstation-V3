@@ -3092,4 +3092,50 @@ export class GlobalVariableService {
             }
         }
     }
+
+
+    createVegaLiteSpec(widget: Widget): dl.spec.TopLevelExtendedSpec {
+        // Creates a Vega-Lite spec for a given Widget from a standard template
+        console.log('Global-Variables refreshCurrentDashboard ...');
+
+        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
+        if (widget.graphUrl != "") {
+            vlSpecsNew['data'] = {"url": widget.graphUrl};
+        } else {
+            vlSpecsNew['data'] = {"values": widget.graphData};
+        }
+        vlSpecsNew['description'] = widget.graphDescription;
+        vlSpecsNew['mark']['type'] = widget.graphMark;
+        vlSpecsNew['mark']['color'] = widget.graphMarkColor;
+
+        vlSpecsNew['encoding']['x']['field'] = widget.graphXfield;
+        vlSpecsNew['encoding']['x']['type'] = widget.graphXtype;
+        vlSpecsNew['encoding']['x']['axis']['title'] = widget.graphXaxisTitle;
+        vlSpecsNew['encoding']['x']['timeUnit'] = widget.graphXtimeUnit;
+        vlSpecsNew['encoding']['x']['aggregate'] = widget.graphXaggregate;
+
+        vlSpecsNew['encoding']['y']['field'] = widget.graphYfield;
+        vlSpecsNew['encoding']['y']['type'] = widget.graphYtype;
+        vlSpecsNew['encoding']['y']['axis']['title'] = widget.graphYaxisTitle;
+        vlSpecsNew['encoding']['y']['timeUnit'] = widget.graphYtimeUnit;
+        vlSpecsNew['encoding']['y']['aggregate'] = widget.graphYaggregate;
+
+        vlSpecsNew['height'] = widget.graphHeight;
+        vlSpecsNew['width'] = widget.graphWidth;
+
+        vlSpecsNew['title']['text'] = widget.graphTitle;
+
+        vlSpecsNew['encoding']['color']['field'] = widget.graphColorField;
+        vlSpecsNew['encoding']['color']['type'] = widget.graphColorType;
+
+
+        // if (widget.graphColorField != ''  && widget.graphColorField != null) {
+        //     vlSpecsNew['encoding']['color'] = {
+        //         "field": widget.graphColorField,
+        //         "type": widget.graphColorType
+        //       }
+        // };
+
+        return vlSpecsNew;
+    }
 }
