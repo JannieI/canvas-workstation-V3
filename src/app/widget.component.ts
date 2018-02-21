@@ -588,7 +588,7 @@ export class WidgetComponent {
         // Duplicates all selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'duplicateWidget', '@Start');
      
-        console.log('xx duplicateWidget', this.globalVariableService.currentWidgets)
+        // console.log('xx duplicateWidget', this.globalVariableService.currentWidgets)
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.isSelected) {
 
@@ -599,7 +599,7 @@ export class WidgetComponent {
                     ds.push(w.id);
                 });
                 newID = Math.max(...ds) + 1;
-                console.log('xx newID', newID, ds)
+                // console.log('xx newID', newID, ds)
                 // Make a deep copy
                 let localWidget= Object.assign({}, w);
                 localWidget.id = newID;

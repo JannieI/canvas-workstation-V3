@@ -611,6 +611,9 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDelete', '@Start');
 
+        if (action == 'delete') {
+            this.deleteWidget();
+        }
         console.log('App handleCloseWidgetDelete')
         this.showModalWidgetDelete = false;
     }
@@ -1660,6 +1663,23 @@ export class AppComponent implements OnInit {
             this.currentSlicers[index].containerTop - this.startY + ev.y;
         this.globalVariableService.currentSlicers[index].containerTop =
             this.currentSlicers[index].containerTop;
+
+    }
+
+    deleteWidget() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
+        // console.log('Global-Variables deleteWidget ...');
+        // console.log('xx deleteWidget 1...', id, this.currentWidgets);
+
+        this.currentWidgets.forEach( w => {
+            if (w.isSelected) {
+                // w.isTrashed = true;
+                console.log('xx deleteWidget selected id:', w.id)
+            };
+        });
+
+        // console.log('xx deleteWidget 2...', id, this.currentWidgets);
 
     }
 }

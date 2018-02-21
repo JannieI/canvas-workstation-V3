@@ -95,14 +95,14 @@ export class WidgetDeleteComponent implements OnInit {
 	  	this.formWidgetDeleteClosed.emit(action);
     }
 
-    clickDeleteWidget() {
-        // Delete the Widget
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteWidget', '@Start');
-        console.log('xx clickDeleteWidget', this.globalVariableService.currentWidgets)
+    // clickDeleteWidget() {
+    //     // Delete the Widget
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteWidget', '@Start');
+    //     console.log('xx clickDeleteWidget', this.globalVariableService.currentWidgets)
         
-        // TODO - amend if more than W can be selected for deletion
-        this.globalVariableService.deleteWidget(this.currentWidgets[0].id);
+    //     // TODO - amend if more than W can be selected for deletion
+    //     this.globalVariableService.deleteWidget(this.currentWidgets[0].id);
 
-        this.formWidgetDeleteClosed.emit('Deleted');
-    }
+    //     this.formWidgetDeleteClosed.emit('Deleted');
+    // }
 }

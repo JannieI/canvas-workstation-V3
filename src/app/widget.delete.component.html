@@ -4,7 +4,7 @@
 
             <div class="overall">
                 <div class="closeButton">
-                    <button type="button" class="closeButton" (click)="clickClose()">
+                    <button type="button" class="closeButton" (click)="clickClose('')">
                         X
                     </button>
                 </div>
@@ -34,7 +34,7 @@
                 <button
                     type="button"
                     class="btn btn-secondary deleteButton"
-                    (click)="clickDeleteWidget()"
+                    (click)="clickClose('delete')"
                     >
                     Delete
                 </button>
