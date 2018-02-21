@@ -149,14 +149,14 @@
 
                         <div class="gridIdentifyDataIDfile" *ngIf="dataGetFromSwitch==='File'">
                             <span>Please enter file name and location:</span>
-                            <input type="text" id="formFields_7"
-                                placeholder="Folder/FileName"
+                            <input type="text" #filename
+                                placeholder="stocks.csv"
                                 class="selectFile"
                                 >
                                 <button
                                     type="button"
                                     class="btn btn-link"
-                                    (click)="clickFileBrowse()"
+                                    (click)="clickFileBrowse(filename.value)"
                                     >
                                     Browse
                                 </button>
@@ -184,7 +184,7 @@
                             <button
                                 type="button"
                                 class="btn btn-secondary selectButton"
-                                (click)="clickDSPreview('New')"
+                                (click)="clickDSPreview(filename.value)"
                                 >
                                 Preview
                             </button>

@@ -2357,7 +2357,7 @@ export class GlobalVariableService {
                         data = data.filter(
                             i => i.dashboardID == dashboardID  &&
                                  (dashboardTabID == -1  ||  i.dashboardTabID == dashboardTabID)
-                                 &&  (!i.isTrashed) 
+                                 &&  (!i.isTrashed)
                         );
 
                         // Add Sl, Sh, Tbl
@@ -2380,7 +2380,7 @@ export class GlobalVariableService {
                 data = this.widgets.filter(
                     i => i.dashboardID == dashboardID  &&
                     (dashboardTabID == -1  ||  i.dashboardTabID == dashboardTabID)
-                    &&  (!i.isTrashed) 
+                    &&  (!i.isTrashed)
                 )
 
                 // Add Sl, Sh, Tbl

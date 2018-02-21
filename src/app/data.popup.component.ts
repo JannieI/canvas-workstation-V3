@@ -172,10 +172,11 @@ export class DataPopupComponent implements OnInit {
         }
     }
 
-    clickFileBrowse() {
+    clickFileBrowse(filename: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
 
+        console.log('xx brws', filename)
         // TODO alert('Later: File component to browse ...')
     }
 
@@ -186,12 +187,15 @@ export class DataPopupComponent implements OnInit {
         this.globalVariableService.currentDatasourceDelete(index);
     }
 
-    clickDSPreview(action: string) {
+    clickDSPreview(filename: string) {
         // Load the new DS in the ID section, and show in Preview area
-        // action = New(load from source), Current (load from Glob Vars) dSet to show
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
+        if (filename ==''  ||  filename == undefined) {
+            filename = 'stocks.csv';
+        };
+        console.log('xx brws', filename)
 
-        var csv_data = dl.load({url: './assets/vega-datasets/stocks.csv'});
+        var csv_data = dl.load({url: './assets/vega-datasets/' + filename});
         let startNow: number;
 
         startNow = Date.now()

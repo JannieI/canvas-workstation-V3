@@ -79,7 +79,7 @@ export class WidgetDeleteComponent implements OnInit {
 
             };
         });
-        
+
         // Count the number of W selected
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.isSelected) {
