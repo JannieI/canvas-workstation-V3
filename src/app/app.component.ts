@@ -608,13 +608,15 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseWidgetDelete(action: string) {
-        //
+        // Handles the response to the Delete Widget form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDelete', '@Start');
 
+        // Delete, if so requested
         if (action == 'delete') {
             this.deleteWidget();
-        }
-        console.log('App handleCloseWidgetDelete')
+        };
+
+        // Hide modal form
         this.showModalWidgetDelete = false;
     }
 
@@ -1667,19 +1669,23 @@ export class AppComponent implements OnInit {
     }
 
     deleteWidget() {
-        //
+        // Delete the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
-        // console.log('Global-Variables deleteWidget ...');
-        // console.log('xx deleteWidget 1...', id, this.currentWidgets);
 
-        this.currentWidgets.forEach( w => {
-            if (w.isSelected) {
-                // w.isTrashed = true;
-                console.log('xx deleteWidget selected id:', w.id)
+        // Delete the local one
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                this.currentWidgets.splice(i,1)
             };
-        });
+        };
 
-        console.log('xx deleteWidget 2...', this.currentWidgets);
+        // Delete the global one
+        for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
+            if (this.globalVariableService.currentWidgets[i].isSelected) {
+                console.log('xx deleteWidget selected id:', this.globalVariableService.currentWidgets[i].id)
+                this.globalVariableService.currentWidgets.splice(i,1)
+            };
+        };
 
     }
 }
