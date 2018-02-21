@@ -895,3 +895,7 @@ datagrid-placeholder-container {
 .datagrid-fixed-width {
         flex: 0 0 auto;
 }
+
+.errorMessage {
+    color: red;
+}

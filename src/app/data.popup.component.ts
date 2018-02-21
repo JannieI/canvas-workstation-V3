@@ -188,6 +188,7 @@ export class DataPopupComponent implements OnInit {
         // Load the new DS in the ID section, and show in Preview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
 
+        this.errorMessage = '';
         this.fileName = fileName;
         console.log('xx brws', folderName + this.fileName)
         if (folderName == ''  ||  folderName == undefined) {
@@ -199,7 +200,7 @@ export class DataPopupComponent implements OnInit {
         console.log('xx brws', folderName + this.fileName)
 
         // Load synchronously
-        var csv_data = dl.load({url: folderName + this.fileName});
+        // var csv_data = dl.load({url: folderName + this.fileName});
         console.log('DataPopup clickDSPreview LOAD data start:')
         // let fileFolder: string = './assets/vega-datasets/';
         let filePath: string = folderName + this.fileName;
@@ -209,6 +210,7 @@ export class DataPopupComponent implements OnInit {
         if (fileSuffix == 'json') {
             dl.json({url: filePath}, {}, (err, currentData) => {
                 if (err) {
+                    this.errorMessage = err;
                     console.log('DataPopup clickDSPreview error on load', err)
                 } else {
                     // Callback
@@ -219,6 +221,7 @@ export class DataPopupComponent implements OnInit {
         if (fileSuffix == 'csv') {
             dl.csv({url: filePath}, {}, (err, currentData) => {
                 if (err) {
+                    this.errorMessage = err;
                     console.log('DataPopup clickDSPreview error on load', err)
                 } else {
                     // Callback
@@ -227,7 +230,9 @@ export class DataPopupComponent implements OnInit {
             });
         };
         // TODO - proper message when file type unknown
-
+        if (fileSuffix != 'json'  &&  fileSuffix != 'csv') {
+            this.errorMessage = 'Unknown file type';
+        }
     }
 
     fileLoadedCallback(fileSuffix: string, currentData: any) {
