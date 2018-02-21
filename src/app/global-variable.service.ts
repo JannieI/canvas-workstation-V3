@@ -1471,11 +1471,11 @@ export class GlobalVariableService {
                         this.datasets = data;
                         this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getDataset 1', data)
+                        console.log('Global-Variables getDataset 1', this.datasets)
                         resolve(this.datasets);
                     });
             } else {
-                console.log('Global-Variables getDataset 2')
+                console.log('Global-Variables getDataset 2', this.datasets)
                 resolve(this.datasets);
             }
         });

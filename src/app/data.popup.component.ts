@@ -20,6 +20,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { Datasource }                 from './models';
+import { Dataset }                    from './models';
 import { Transformation }             from './models';
 import { Field }                      from './models';
 import { FieldMetadata }              from './models';
@@ -43,7 +44,7 @@ export class DataPopupComponent implements OnInit {
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
     @ViewChild('typeTransformationDropdown') typeTransformationDropdown: ElementRef;
     @ViewChild('transformations') transformations: ElementRef;
-    
+
     // datasources: Datasource[];
     addNewTransformation: boolean = false;
     aggField: string = 'Drag a field here ...';
@@ -112,7 +113,7 @@ export class DataPopupComponent implements OnInit {
                 MSFT: 50
             }
         ]
-        
+
     fields: Field[];
     fieldsMetadata: FieldMetadata[];
     selectAddTransformation: boolean = false;
@@ -215,12 +216,15 @@ export class DataPopupComponent implements OnInit {
             dl.json({url: filePath}, {}, (err, currentData) => {
                 if (err) {
                     this.errorMessage = err.status + ':' + err.statusText;
+                    this.showDataPreview = false;
+
                     console.log('DataPopup clickDSPreview error on load', err)
                 } else {
                     // Callback
+                    this.showDataPreview = true;
                     this.fileLoadedCallback(fileSuffix, currentData);
                 }
-            });            
+            });
         };
         if (fileSuffix == 'csv') {
             dl.csv({url: filePath}, {}, (err, currentData) => {
@@ -229,16 +233,17 @@ export class DataPopupComponent implements OnInit {
                     console.log('DataPopup clickDSPreview error on load', err)
                 } else {
                     // Callback
-                    this.fileLoadedCallback(fileSuffix, currentData);
-
                     this.showDataPreview = true;
+                    this.fileLoadedCallback(fileSuffix, currentData);
                 }
             });
         };
-        // TODO - proper message when file type unknown
+
+        // Message when file type unknown
         if (fileSuffix != 'json'  &&  fileSuffix != 'csv') {
             this.errorMessage = 'Unknown file type';
-        }
+            this.showDataPreview = false;
+        };
     }
 
     fileLoadedCallback(fileSuffix: string, currentData: any) {
@@ -254,12 +259,12 @@ export class DataPopupComponent implements OnInit {
         console.log('')
         console.log('DataPopup clickDSPreview LOAD start:')
         this.currentData = currentData;
-        this.globalVariableService.datasets.push(
-            {
-                datasourceID : 3,
-                data: currentData
-            }
-        );
+        // this.globalVariableService.datasets.push(
+        //     {
+        //         datasourceID : 3,
+        //         data: currentData
+        //     }
+        // );
         currentData = [];
         console.log('DataPopup clickDSPreview      data rows', this.currentData.length)
         console.log('DataPopup clickDSPreview      END load: ', (Date.now() - startNow) / 1000)
@@ -354,7 +359,7 @@ export class DataPopupComponent implements OnInit {
         this.currentDatasetName = '';
 
         // Show the Preview button
-        this.showDataPreview = true; 
+        this.showDataPreview = true;
 
         // Show Add button
         this.showAddButton = true;
@@ -362,19 +367,20 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickDSAdd(action: string) {
-        //
+        //  Add the data to the DS, dSet, etc - locally and globally
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
-        console.log('strt', this.currentDatasources)
+        console.log('strt', this.currentDatasources, this.currentData)
 
+        // Get new DSid
         // TODO - do better with DB
-        let newID: number = 100;
+        let newDSID: number = 1;
         let dsIDs: number[] = [];
         this.globalVariableService.datasources.forEach(ds => dsIDs.push(ds.id));
-        newID = Math.max(...dsIDs) + 1;
+        newDSID = Math.max(...dsIDs) + 1;
 
-        // Datasource
+        // New Datasource
         let newData: Datasource =  {
-            id: newID,
+            id: newDSID,
             name: this.fileName,
             type: 'File',
             subType: 'CSV',
@@ -422,6 +428,35 @@ export class DataPopupComponent implements OnInit {
         // Add to all DS, for later use
         this.globalVariableService.datasourceAdd(newData);
 
+        // Get new dSetID
+        // TODO - do better with DB
+        let newdSetID: number = 1;
+        let dSetIDs: number[] = [];
+        this.globalVariableService.datasets.forEach(ds => dSetIDs.push(ds.id));
+        newdSetID = Math.max(...dSetIDs) + 1;
+        console.log('xx newdSetID', newdSetID, dSetIDs,this.globalVariableService.datasets)
+        // Get list of dSet-ids to make array work easier
+        let dsCurrIDs: number[] = [];       // currentDataset IDs
+        this.globalVariableService.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
+        let newdSet: Dataset = {
+            id: newdSetID,
+            datasourceID: newDSID,
+            folderName: '',
+            filename: '',
+            data: this.currentData,
+            dataRaw: this.currentData
+        };
+
+        // Add to Currentatasets
+        if (dsCurrIDs.indexOf(newdSetID) < 0) {
+            this.globalVariableService.currentDatasets.push(newdSet);
+        };
+
+        // Add to All datasets
+        if (dSetIDs.indexOf(newdSetID) < 0) {
+            this.globalVariableService.datasets.push(newdSet);
+        };
+
         // Reset data related to this DS
         this.currentDatasources = this.globalVariableService.currentDatasources;
         this.currentTransformations = [];
@@ -468,6 +503,7 @@ export class DataPopupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDatasource', '@Start');
 
         this.globalVariableService.refreshCurrentDatasourceInfo(id).then(i => {
+            console.log('xx this.globalVariableService.currentDatasources', this.globalVariableService.currentDatasources)
             this.currentDatasources = this.globalVariableService.currentDatasources;
             this.currentDatasources.forEach(ds => {
                 if (ds.id == id) {
@@ -931,6 +967,7 @@ export class DataPopupComponent implements OnInit {
 
         this.currentDS = !this.currentDS;
     }
+    
 }
 
 
