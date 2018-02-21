@@ -307,23 +307,37 @@ export class DataPopupComponent implements OnInit {
                 console.log('DataPopup clickDSPreview      unique', dataUniqueInColumn)
                 console.log('DataPopup clickDSPreview      END unique: ', (Date.now() - startNow) / 1000)
 
+                // Preview
+                console.log('')
+                console.log('DataPopup clickDSPreview PREVIEW start:')
+                startNow = Date.now()
+                console.log('DataPopup clickDSPreview         END preview: ', (Date.now() - startNow) / 1000)
+
+                // No DS currently selected
+                this.currentDatasetName = '';
+
+                // Show the Preview button
+                this.showDataPreview = true; //!this.showDataPreview;
+
+                // Show Add button
+                this.showAddButton = true;                
             }
         });
 
-        // Preview
-        console.log('')
-        console.log('DataPopup clickDSPreview PREVIEW start:')
-        startNow = Date.now()
-        console.log('DataPopup clickDSPreview         END preview: ', (Date.now() - startNow) / 1000)
+        // // Preview
+        // console.log('')
+        // console.log('DataPopup clickDSPreview PREVIEW start:')
+        // startNow = Date.now()
+        // console.log('DataPopup clickDSPreview         END preview: ', (Date.now() - startNow) / 1000)
 
-        // No DS currently selected
-        this.currentDatasetName = '';
+        // // No DS currently selected
+        // this.currentDatasetName = '';
 
-        // Show the Preview button
-        this.showDataPreview = true; //!this.showDataPreview;
+        // // Show the Preview button
+        // this.showDataPreview = true; //!this.showDataPreview;
 
-        // Show Add button
-        this.showAddButton = true;
+        // // Show Add button
+        // this.showAddButton = true;
     }
 
     clickDSAdd(action: string) {
