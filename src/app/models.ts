@@ -112,6 +112,8 @@ export class CanvasUser {
 export class Dataset {
     id: number;
     datasourceID: number;
+    folderName: string;                     // Optional folder name where data is stored
+    filename: string;                       // Optional file name where data is stored
     data: any;                              // Filtered data as json
     dataRaw: any;                           // Unfiltered data as json
 }

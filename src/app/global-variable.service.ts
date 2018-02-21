@@ -1038,7 +1038,7 @@ export class GlobalVariableService {
     // }
 
     currentDatasourceAdd(newData: Datasource) {
-        //
+        // Add given DS to the current DS
         console.log('Global-Variables currentDatasourceAdd ...');
 
         if (this.currentDatasources.filter(i => i.id == newData.id).length == 0) {
@@ -1052,7 +1052,7 @@ export class GlobalVariableService {
     }
 
     datasourceAdd(newData: Datasource) {
-        //
+        // Add given DS to the list of all DS
         console.log('Global-Variables datasourceAdd ...');
 
         if (this.datasources.filter(i => i.id == newData.id).length == 0) {
@@ -1493,6 +1493,12 @@ export class GlobalVariableService {
         // Get list of dSet-ids to make array work easier
         let dsCurrIDs: number[] = [];       // currentDataset IDs
         this.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
+        this.datasets.forEach(ds => {
+            if (ds.id == datasetID) {
+                this.filePath = '../assets/data.dataset' + ds.id.toString() + '.json';
+                console.log('xx this.filePath', datasetID, this.filePath)
+            }
+        });
 
         return new Promise<any>((resolve, reject) => {
 

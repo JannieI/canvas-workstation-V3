@@ -2,186 +2,248 @@
     {
         "id": 1,
         "datasourceID": 1,
+        "folderName": "",
+        "filename": "dataset1.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 2,
         "datasourceID": 1,
+        "folderName": "",
+        "filename": "dataset2.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 3,
         "datasourceID": 2,
+        "folderName": "",
+        "filename": "dataset3.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 4,
         "datasourceID": 3,
+        "folderName": "",
+        "filename": "dataset4.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 5,
         "datasourceID": 3,
+        "folderName": "",
+        "filename": "dataset5.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 6,
         "datasourceID": 3,
+        "folderName": "",
+        "filename": "dataset6.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 7,
         "datasourceID": 4,
+        "folderName": "",
+        "filename": "dataset7.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 8,
         "datasourceID": 5,
+        "folderName": "",
+        "filename": "dataset8.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 9,
         "datasourceID": 6,
+        "folderName": "",
+        "filename": "dataset9.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 10,
         "datasourceID": 7,
+        "folderName": "",
+        "filename": "dataset10.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 11,
         "datasourceID": 8,
+        "folderName": "",
+        "filename": "dataset11.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 12,
         "datasourceID": 9,
+        "folderName": "",
+        "filename": "dataset12.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 13,
         "datasourceID": 10,
+        "folderName": "",
+        "filename": "dataset13.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 14,
         "datasourceID": 11,
+        "folderName": "",
+        "filename": "dataset14.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 15,
         "datasourceID": 12,
+        "folderName": "",
+        "filename": "dataset15.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 16,
         "datasourceID": 13,
+        "folderName": "",
+        "filename": "dataset16.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 17,
         "datasourceID": 14,
+        "folderName": "",
+        "filename": "dataset17.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 18,
         "datasourceID": 15,
+        "folderName": "",
+        "filename": "dataset18.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 19,
         "datasourceID": 16,
+        "folderName": "",
+        "filename": "dataset19.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 20,
         "datasourceID": 17,
+        "folderName": "",
+        "filename": "dataset20.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 21,
         "datasourceID": 18,
+        "folderName": "",
+        "filename": "dataset21.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 22,
         "datasourceID": 19,
+        "folderName": "",
+        "filename": "dataset22.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 23,
         "datasourceID": 20,
+        "folderName": "",
+        "filename": "dataset23.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 24,
         "datasourceID": 21,
+        "folderName": "",
+        "filename": "dataset24.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 25,
         "datasourceID": 22,
+        "folderName": "",
+        "filename": "dataset25.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 26,
         "datasourceID": 23,
+        "folderName": "",
+        "filename": "dataset26.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 27,
         "datasourceID": 24,
+        "folderName": "",
+        "filename": "dataset27.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 28,
         "datasourceID": 25,
+        "folderName": "",
+        "filename": "dataset28.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 29,
         "datasourceID": 26,
+        "folderName": "",
+        "filename": "dataset29.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 30,
         "datasourceID": 27,
+        "folderName": "",
+        "filename": "dataset30.json",
         "data": null,
         "dataRaw": null
     },
     {
         "id": 31,
         "datasourceID": 28,
+        "folderName": "",
+        "filename": "dataset31.json",
         "data": null,
         "dataRaw": null
     }

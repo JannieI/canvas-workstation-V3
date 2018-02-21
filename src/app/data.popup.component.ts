@@ -308,10 +308,16 @@ export class DataPopupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
         console.log('strt', this.currentDatasources)
 
+        // TODO - do better with DB
+        let newID: number = 100;
+        let dsIDs: number[] = [];
+        this.globalVariableService.datasources.forEach(ds => dsIDs.push(ds.id));
+        newID = Math.max(...dsIDs) + 1;
+
         // Datasource
         let newData: Datasource =  {
-            id: 100,
-            name: 'Stocks.csv',
+            id: newID,
+            name: this.fileName,
             type: 'File',
             subType: 'CSV',
             typeVersion: 'Comma-Separated',
@@ -320,9 +326,9 @@ export class DataPopupComponent implements OnInit {
             createdOn: '2017/01/01',
             refreshedBy: 'JohnM',
             refreshedOn: '2017/01/01',
-            dataFields: [],
-            dataFieldTypes: [],
-            dataFieldLengths: [],
+            dataFields: ['symbol', 'date', 'price'],
+            dataFieldTypes: ['string', 'string', 'number'],
+            dataFieldLengths: [6, 10, 12],
             parameters: 'None',
             folder: '',
             fileName: '',
@@ -359,7 +365,7 @@ export class DataPopupComponent implements OnInit {
         this.globalVariableService.datasourceAdd(newData);
 
         // Reset data related to this DS
-        // this.currentDatasources.push(newData);
+        this.currentDatasources = this.globalVariableService.currentDatasources;
         this.currentTransformations = [];
         this.transformationsFormat = [];
         this.pivotAgg = [];
@@ -377,7 +383,7 @@ export class DataPopupComponent implements OnInit {
 
         // UnShow Add button
         this.showAddButton = false;
-        console.log('done', this.currentDatasources)
+        console.log('done', this.currentDatasources, this.globalVariableService.datasources)
     }
 
     clickDatasourceRow(dsName: string) {
