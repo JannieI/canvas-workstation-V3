@@ -43,33 +43,48 @@ export class DataPopupComponent implements OnInit {
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
     @ViewChild('typeTransformationDropdown') typeTransformationDropdown: ElementRef;
     @ViewChild('transformations') transformations: ElementRef;
-
+    
     // datasources: Datasource[];
+    addNewTransformation: boolean = false;
+    aggField: string = 'Drag a field here ...';
+    changeVar: number = 2;
+    colField: string = 'Drag a field here ...';
     currentDatasources: Datasource[] = [];
     currentData: any = [];
+    currentDatasetName: string = '';            // Array with current data block
+    curentDatasetID: number;
+    currentDS: boolean = true;
+    currentTransformations: Transformation[];
     dataArray: any;
+    dataFieldLengths: number[] = [];
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
-    dataFieldLengths: number[] = [];
+    dataGetFromSwitch: string = 'File';
     dataUniqueInColumn: string[] = [];
-    pageSize: number = 4;
     dataQualityIssues: DataQualityIssue[];
-    currentTransformations: Transformation[];
-    curentDatasetID: number;
-    currentDatasetName: string = '';            // Array with current data block
-    draggedField: string = '';
-    fileName: string = 'stocks.csv';
-    rowField: string = 'Drag a field here ...';
-    colField: string = 'Drag a field here ...';
-    aggField: string = 'Drag a field here ...';
-    resultMessage: string = 'Results will be shown here: drag and drop fields, then click Refresh'
-    dragoverCol: boolean = false;
-    dragoverRow: boolean = false;
     dragoverAgg: boolean = false;
+    dragoverCol: boolean = false;
+    draggedField: string = '';
+    dragoverRow: boolean = false;
+    errorMessage: string = "";
+    existingDSName: string = '';
+    filterDataset: string = '';
+    filterTransformation: string = '';
+    filterPivotFields: string = '';
+    fileName: string = 'stocks.csv';
     finalFields: any = [];
+    gridViewOverview: boolean = true;
+    gridViewFields: boolean = false;
+    gridViewFieldProperties: boolean = false;
+    gridViewExplain: boolean = false;
+    gridViewFieldProfile: boolean = false;
+    gridViewDataQuality: boolean = false;
+    rowField: string = 'Drag a field here ...';
+    pageSize: number = 4;
     pivotCols: string[];
     pivotRows: string[];
     pivotAgg: string[];
+    resultMessage: string = 'Results will be shown here: drag and drop fields, then click Refresh'
     pivotResults: any[] =
         [
             {
@@ -97,53 +112,35 @@ export class DataPopupComponent implements OnInit {
                 MSFT: 50
             }
         ]
-
-    errorMessage: string = "";
+        
     fields: Field[];
     fieldsMetadata: FieldMetadata[];
-    selectorDetailColumnEnd: string = '12';
-    selectedFile: boolean = true;
+    selectAddTransformation: boolean = false;
     selectedData: string = 'Trades for 2016';
+    selectedDatasource: boolean = true;
+    selectorDetailColumnEnd: string = '12';
+    selectedExistingDS: boolean = false;
+    selectedExistingTransform: boolean = false;
+    selectedFieldProperties: boolean = false;
+    selectedFieldTransform: boolean = false;
+    selectedFile: boolean = true;
+    selectedOverallTransform: boolean = false;
+    selectedSummary: boolean = false;
     showAddButton: boolean = false;
     showDataPreview: boolean = false;
     showIdentifyFile: boolean = true;
     showFilter: boolean = false;
-    showTopSteps: boolean = false;
-    showTransform: boolean = false;
     showPivot: boolean = false;
-    showView: boolean = false;
     showSelectField: boolean = false;
-    transformationsFormat: Transformation[];
+    showTopSteps: boolean = false;
     showTransformDetail: boolean = false;
+    showTransform: boolean = false;
+    showView: boolean = false;
+    transformationsFormat: Transformation[];
     transformationDescription: string = '';
-    selectedExistingDS: boolean = false;
-    selectedExistingTransform: boolean = false;
-    selectedDatasource: boolean = true;
-    selectedOverallTransform: boolean = false;
-    selectedFieldTransform: boolean = false;
-    selectedFieldProperties: boolean = false;
-    selectedSummary: boolean = false;
-    selectAddTransformation: boolean = false;
-
-    gridViewOverview: boolean = true;
-    gridViewFields: boolean = false;
-    gridViewFieldProperties: boolean = false;
-    gridViewExplain: boolean = false;
-    gridViewFieldProfile: boolean = false;
-    gridViewDataQuality: boolean = false;
-
     showTransitionFormat: boolean = false;
     transitionFieldName: string;
     transitionAction: string;
-
-    filterDataset: string = '';
-    filterTransformation: string = '';
-    filterPivotFields: string = '';
-    changeVar: number = 2;
-    dataGetFromSwitch: string = 'File';
-    currentDS: boolean = true;
-    existingDSName: string = '';
-    addNewTransformation: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

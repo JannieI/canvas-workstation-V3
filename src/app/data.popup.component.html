@@ -246,8 +246,10 @@
 
                                 </clr-datagrid>
                             </div>
+                            <div *ngIf="!showDataPreview">
+                                {{ errMessage }}
+                            </div>
                         </div>
-
                     </div>
 <!--
                     <div class="gridFilter" *ngIf="showFilter">
