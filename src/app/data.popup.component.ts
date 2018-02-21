@@ -50,7 +50,7 @@ export class DataPopupComponent implements OnInit {
     dataArray: any;
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
-    dataFieldLengths: string[] = [];
+    dataFieldLengths: number[] = [];
     dataUniqueInColumn: string[] = [];
     pageSize: number = 4;
     dataQualityIssues: DataQualityIssue[];
@@ -172,7 +172,7 @@ export class DataPopupComponent implements OnInit {
         }
     }
 
-    clickFileBrowse(filename: string) {
+    clickFileBrowse(folderName: string, filename: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
 
@@ -191,6 +191,7 @@ export class DataPopupComponent implements OnInit {
         // Load the new DS in the ID section, and show in Preview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
 
+        console.log('xx brws', folderName + filename)
         if (folderName == ''  ||  folderName == undefined) {
             folderName = './assets/vega-datasets/';
         }
@@ -199,6 +200,7 @@ export class DataPopupComponent implements OnInit {
         };
         console.log('xx brws', folderName + filename)
 
+        // Load synchronously
         var csv_data = dl.load({url: folderName + filename});
         let startNow: number;
 
@@ -241,12 +243,29 @@ export class DataPopupComponent implements OnInit {
                 console.log('')
                 console.log('DataPopup clickDSPreview TYPES start:')
                 startNow = Date.now()
+                this.dataFieldTypes = [];
                 console.log('DataPopup clickDSPreview      types');
                 for (var i = 0; i < this.dataFieldNames.length; i++) {
                     this.dataFieldTypes.push(dataTypes[ this.dataFieldNames[i] ] );
                     console.log('DataPopup clickDSPreview      ', i, this.dataFieldTypes[i])
                 }
                 console.log('DataPopup clickDSPreview      END types: ', (Date.now() - startNow) / 1000)
+
+                // Lengths
+                console.log('')
+                console.log('DataPopup clickDSPreview LENGTHS start:')
+                startNow = Date.now()
+                this.dataFieldLengths = [];
+                console.log('DataPopup clickDSPreview      lengths');
+                for (var i = 0; i < this.dataFieldTypes.length; i++) {
+                    if (this.dataFieldTypes[i] == 'string'  ||  this.dataFieldTypes[i] == 'date') {
+                        this.dataFieldLengths.push(25);
+                    } else {
+                        this.dataFieldLengths.push(12);
+                    }
+                    console.log('DataPopup clickDSPreview      ', i, this.dataFieldLengths[i])
+                }
+                console.log('DataPopup clickDSPreview      END lengths: ', (Date.now() - startNow) / 1000)
 
                 // Sort
                 console.log('')
@@ -330,9 +349,9 @@ export class DataPopupComponent implements OnInit {
             createdOn: '2017/01/01',
             refreshedBy: 'JohnM',
             refreshedOn: '2017/01/01',
-            dataFields: ['symbol', 'date', 'price'],
-            dataFieldTypes: ['string', 'string', 'number'],
-            dataFieldLengths: [6, 10, 12],
+            dataFields: this.dataFieldNames,
+            dataFieldTypes: this.dataFieldTypes,
+            dataFieldLengths: this.dataFieldLengths,
             parameters: 'None',
             folder: '',
             fileName: '',
@@ -420,8 +439,11 @@ export class DataPopupComponent implements OnInit {
                     // TODO - remove this, currently datalib reads array as string a,b,c
                     let y: string = ds.dataFields.toString();
                     this.dataFieldNames = y.split(',');
-                    let l = ds.dataFieldLengths.toString();
-                    this.dataFieldLengths = l.split(',');
+                    let l: string[] = ds.dataFieldLengths.toString().split(',');
+                    // this.dataFieldLengths = l.split(',');
+                    for (var i = 0; i < l.length; i++) {
+                        this.dataFieldLengths.push(+l[i]);
+                    }
                 };
             });
             this.currentData = this.globalVariableService.currentDatasets[0].data;
