@@ -202,9 +202,6 @@ export class DataPopupComponent implements OnInit {
 
         // Load synchronously
         var csv_data = dl.load({url: folderName + filename});
-        let startNow: number;
-
-        startNow = Date.now()
         console.log('DataPopup clickDSPreview LOAD data start:')
         let fileFolder: string = './assets/vega-datasets/';
         let filePath: string = fileFolder + this.fileName;
@@ -212,6 +209,32 @@ export class DataPopupComponent implements OnInit {
             if (err) {
               console.log('DataPopup clickDSPreview error on load', err)
             } else {
+                // Callback
+                this.fileLoadedCallback(currentData);
+            }
+        });
+
+        // // Preview
+        // console.log('')
+        // console.log('DataPopup clickDSPreview PREVIEW start:')
+        // startNow = Date.now()
+        // console.log('DataPopup clickDSPreview         END preview: ', (Date.now() - startNow) / 1000)
+
+        // // No DS currently selected
+        // this.currentDatasetName = '';
+
+        // // Show the Preview button
+        // this.showDataPreview = true; //!this.showDataPreview;
+
+        // // Show Add button
+        // this.showAddButton = true;
+    }
+
+    fileLoadedCallback(currentData: any) {
+
+        let startNow: number;
+
+        startNow = Date.now()
 
                 // Load
                 console.log('')
@@ -320,26 +343,9 @@ export class DataPopupComponent implements OnInit {
                 this.showDataPreview = true; //!this.showDataPreview;
 
                 // Show Add button
-                this.showAddButton = true;                
-            }
-        });
-
-        // // Preview
-        // console.log('')
-        // console.log('DataPopup clickDSPreview PREVIEW start:')
-        // startNow = Date.now()
-        // console.log('DataPopup clickDSPreview         END preview: ', (Date.now() - startNow) / 1000)
-
-        // // No DS currently selected
-        // this.currentDatasetName = '';
-
-        // // Show the Preview button
-        // this.showDataPreview = true; //!this.showDataPreview;
-
-        // // Show Add button
-        // this.showAddButton = true;
+                this.showAddButton = true;
+        
     }
-
     clickDSAdd(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
