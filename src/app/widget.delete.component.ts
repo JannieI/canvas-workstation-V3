@@ -9,14 +9,16 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { Datasource }                 from './models';
 import { Widget }                     from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
-// Functions
+// Vega, Vega-Lite
+import { compile }                    from 'vega-lite';
+import { parse }                      from 'vega';
+import { View }                       from 'vega';
 
 
 @Component({
@@ -26,10 +28,9 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetDeleteComponent implements OnInit {
 
-    // @Input() nrWidgetsSelected: number;
+    @ViewChild('widgetDOM')  widgetDOM: ElementRef;
     @Output() formWidgetDeleteClosed: EventEmitter<string> = new EventEmitter();
 
-    currentWidgets: Widget[] = [];
     nrWidgetsSelected: number = 0;
 
     constructor(
@@ -39,7 +40,7 @@ export class WidgetDeleteComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        //
+        // Init routine
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get the current W
@@ -66,7 +67,15 @@ export class WidgetDeleteComponent implements OnInit {
                 localWidget.graphYaxisTitle = '';
                 localWidget.containerBorder = '';
                 localWidget.containerBackgroundcolor = 'white';
-                // this.currentWidgets.push(localWidget);
+
+                let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
+                let specification = compile(definition).spec;
+                let view = new View(parse(specification));
+                view.renderer('svg')
+                    .initialize( this.widgetDOM.nativeElement)
+                    .hover()
+                    .run()
+                    .finalize();
 
             };
         });
@@ -86,20 +95,10 @@ export class WidgetDeleteComponent implements OnInit {
     }
 
   	clickClose(action: string) {
-        //
+        // Close the form.  Action = '', or 'delete' to instruct calling routine to delete it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 	  	this.formWidgetDeleteClosed.emit(action);
     }
 
-    // clickDeleteWidget() {
-    //     // Delete the Widget
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteWidget', '@Start');
-    //     console.log('xx clickDeleteWidget', this.globalVariableService.currentWidgets)
-        
-    //     // TODO - amend if more than W can be selected for deletion
-    //     this.globalVariableService.deleteWidget(this.currentWidgets[0].id);
-
-    //     this.formWidgetDeleteClosed.emit('Deleted');
-    // }
 }

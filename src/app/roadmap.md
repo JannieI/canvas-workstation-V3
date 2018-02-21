@@ -128,6 +128,7 @@ Shapes:
 21. Give the user a vote - via like?  Create a sense of belonging and community
 22. Use cell to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
 23.Consider to move ALL selected objects - remember complexity since Sl and W sits in different components ...
+24.Refactor: Change all components to use central (global var) createVegaLiteSpec ...
 
 **Data**
 1. Define Canvas datatype = TS ones?
@@ -181,6 +182,7 @@ Widget Editor
     - add drag fields - to X = Add, Drag away = delete from headers
     - add drag field to Y = Pivot!  Decide local or in backend
     - add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here
+BUG: if using a custom vega spec, the editor does not understand this.
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc
