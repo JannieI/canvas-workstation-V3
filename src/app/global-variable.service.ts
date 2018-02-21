@@ -42,6 +42,87 @@ import { Observable }                 from 'rxjs/Observable';
 // Functions
 import { nSQL } from "nano-sql";
 
+// Vega constant
+const vlTemplate: dl.spec.TopLevelExtendedSpec =
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+
+    // Properties for top-level specification (e.g., standalone single view specifications)
+    "background": "",
+    "padding": "",
+    "height": "100",
+    "width": "100",
+    // "autosize": "",          NB - add these only if needed, blank causes no graph display
+    // "config": "",            NB - add these only if needed, blank causes no graph display
+
+    // Properties for any specifications
+    "title":
+        {
+            "text": "",
+            "anchor": "",
+            "offset": "",
+            "orient": "",
+            "style": ""
+        },
+    "name": "",
+    "transform": "",
+
+    "description": "",
+    "data": null,
+    "mark":
+        {
+            "type": "",  //bar circle square tick line area point rule text
+            "style": "",
+            "clip": "",
+            "color": "#4682b4"
+        },
+    "encoding":
+        {
+            "color":
+                {
+                    "field": "",
+                    "type": ""
+                },
+            "x":
+                {
+                    "aggregate": "",
+                    "field": "",
+                    "type": "ordinal",
+                    "bin": "",
+                    "timeUnit": "",
+                    "axis":
+                    {
+                        "title": ""
+                    },
+                    "scale": "",
+                    "legend": "",
+                    "format": "",
+                    "stack": "",
+                    "sort": "",
+                    "condition": ""
+                },
+            "y":
+                {
+                    "aggregate": "",
+                    "field": "",
+                    "type": "quantitative",
+                    "bin": "",
+                    "timeUnit": "",
+                    "axis":
+                        {
+                            "title": ""
+                        },
+                    "scale": "",
+                    "legend": "",
+                    "format": "",
+                    "stack": "",
+                    "sort": "",
+                    "condition": ""
+                    }
+        }
+};
+
+
 // Setup / Settings / General
 const backgroundcolors: CSScolor[] =
 [
@@ -549,6 +630,7 @@ export class GlobalVariableService {
     // Constants
     NoQueryRunningMessage: string = 'No Query';
     QueryRunningMessage: string = 'Query running...';
+    vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
 
     // Permanent data - later to come from http
     backgroundcolors: CSScolor[] = backgroundcolors;

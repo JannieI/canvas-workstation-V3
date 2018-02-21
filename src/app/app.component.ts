@@ -1679,7 +1679,7 @@ export class AppComponent implements OnInit {
             };
         });
 
-        // console.log('xx deleteWidget 2...', id, this.currentWidgets);
+        console.log('xx deleteWidget 2...', this.currentWidgets);
 
     }
 }

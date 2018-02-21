@@ -29,9 +29,6 @@ export class WidgetDeleteComponent implements OnInit {
     // @Input() nrWidgetsSelected: number;
     @Output() formWidgetDeleteClosed: EventEmitter<string> = new EventEmitter();
 
-    @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
-    @ViewChild('myCanvas', {read: ElementRef}) myCanvas: ElementRef;  //Vega graph
-
     currentWidgets: Widget[] = [];
     nrWidgetsSelected: number = 0;
 
@@ -69,14 +66,14 @@ export class WidgetDeleteComponent implements OnInit {
                 localWidget.graphYaxisTitle = '';
                 localWidget.containerBorder = '';
                 localWidget.containerBackgroundcolor = 'white';
-                this.currentWidgets.push(localWidget);
+                // this.currentWidgets.push(localWidget);
 
             };
         });
         
+        // Count the number of W selected
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.isSelected) {
-                // this.currentWidgets[0] = w;
                 this.nrWidgetsSelected = this.nrWidgetsSelected + 1;
             };
         });

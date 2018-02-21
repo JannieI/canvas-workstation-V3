@@ -37,85 +37,6 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
 // Own Components
 
-// Constants
-const vlTemplate: dl.spec.TopLevelExtendedSpec =
-{
-    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-
-    // Properties for top-level specification (e.g., standalone single view specifications)
-    "background": "",
-    "padding": "",
-    "height": "100",
-    "width": "100",
-    // "autosize": "",          NB - add these only if needed, blank causes no graph display
-    // "config": "",            NB - add these only if needed, blank causes no graph display
-
-    // Properties for any specifications
-    "title":
-        {
-            "text": "",
-            "anchor": "",
-            "offset": "",
-            "orient": "",
-            "style": ""
-        },
-    "name": "",
-    "transform": "",
-
-    "description": "",
-    "data": null,
-    "mark":
-        {
-            "type": "",  //bar circle square tick line area point rule text
-            "style": "",
-            "clip": "",
-            "color": "#4682b4"
-        },
-    "encoding":
-        {
-            "color":
-                {
-                    "field": "",
-                    "type": ""
-                },
-            "x":
-                {
-                    "aggregate": "",
-                    "field": "",
-                    "type": "ordinal",
-                    "bin": "",
-                    "timeUnit": "",
-                    "axis":
-                    {
-                        "title": ""
-                    },
-                    "scale": "",
-                    "legend": "",
-                    "format": "",
-                    "stack": "",
-                    "sort": "",
-                    "condition": ""
-                },
-            "y":
-                {
-                    "aggregate": "",
-                    "field": "",
-                    "type": "quantitative",
-                    "bin": "",
-                    "timeUnit": "",
-                    "axis":
-                        {
-                            "title": ""
-                        },
-                    "scale": "",
-                    "legend": "",
-                    "format": "",
-                    "stack": "",
-                    "sort": "",
-                    "condition": ""
-                    }
-        }
-};
 
 @Component({
     selector: 'widget',
@@ -360,7 +281,7 @@ export class WidgetComponent {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
 
-        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
+        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.globalVariableService.vlTemplate;
         if (widget.graphUrl != "") {
             vlSpecsNew['data'] = {"url": widget.graphUrl};
         } else {
