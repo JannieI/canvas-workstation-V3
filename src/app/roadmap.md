@@ -183,6 +183,8 @@ Widget Editor
     - add drag field to Y = Pivot!  Decide local or in backend
     - add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here
 BUG: if using a custom vega spec, the editor does not understand this.
+Bug: after changes in the Modal form & close with X - the original W changes
+Bug: X axis always changes to nominal - fix hardcoding ...
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc
