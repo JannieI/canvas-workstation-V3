@@ -1511,8 +1511,7 @@ export class GlobalVariableService {
         return new Promise<any>((resolve, reject) => {
 
             // TODO - fix this via real http
-            let dataurl: string = './assets/data.dataset' + datasetID.toString() + '.json';
-            // this.filePath = '../assets/data.dataset' + datasetID.toString() + '.json';
+            let dataurl: string = this.filePath;
             this.get(dataurl)
                 .then(dataFile => {
 
@@ -1536,7 +1535,7 @@ export class GlobalVariableService {
                     };
 
                     console.log('Global-Variables getCurrentDataset 1', datasourceID,
-                        datasetID, 'currentDatasets', this.currentDatasets)
+                        datasetID, newdSet, 'currentDatasets', this.currentDatasets)
                     resolve(newdSet);
                 }
             );

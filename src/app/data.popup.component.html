@@ -148,18 +148,23 @@
                         </div>
 
                         <div class="gridIdentifyDataIDfile" *ngIf="dataGetFromSwitch==='File'">
-                            <span>Please enter file name and location:</span>
+                            <span>Folder:</span>
+                            <input type="text" #folderName
+                                placeholder="./assets/vega-datasets/"
+                                class="selectFile"
+                                >
+                            <span>Filename:</span>
                             <input type="text" #filename
                                 placeholder="stocks.csv"
                                 class="selectFile"
                                 >
-                                <button
-                                    type="button"
-                                    class="btn btn-link"
-                                    (click)="clickFileBrowse(filename.value)"
-                                    >
-                                    Browse
-                                </button>
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickFileBrowse(folderName.value, filename.value)"
+                                >
+                                Browse
+                            </button>
                             <br>
                             Excel Worksheet:
                             <span class="select">
@@ -184,7 +189,7 @@
                             <button
                                 type="button"
                                 class="btn btn-secondary selectButton"
-                                (click)="clickDSPreview(filename.value)"
+                                (click)="clickDSPreview(folderName.value, filename.value)"
                                 >
                                 Preview
                             </button>

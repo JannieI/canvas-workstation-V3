@@ -187,15 +187,19 @@ export class DataPopupComponent implements OnInit {
         this.globalVariableService.currentDatasourceDelete(index);
     }
 
-    clickDSPreview(filename: string) {
+    clickDSPreview(folderName: string, filename: string) {
         // Load the new DS in the ID section, and show in Preview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
+
+        if (folderName == ''  ||  folderName == undefined) {
+            folderName = './assets/vega-datasets/';
+        }
         if (filename ==''  ||  filename == undefined) {
             filename = 'stocks.csv';
         };
-        console.log('xx brws', filename)
+        console.log('xx brws', folderName + filename)
 
-        var csv_data = dl.load({url: './assets/vega-datasets/' + filename});
+        var csv_data = dl.load({url: folderName + filename});
         let startNow: number;
 
         startNow = Date.now()
