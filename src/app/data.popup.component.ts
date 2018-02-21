@@ -187,25 +187,27 @@ export class DataPopupComponent implements OnInit {
         this.globalVariableService.currentDatasourceDelete(index);
     }
 
-    clickDSPreview(folderName: string, filename: string) {
+    clickDSPreview(folderName: string, fileName: string) {
         // Load the new DS in the ID section, and show in Preview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
 
-        console.log('xx brws', folderName + filename)
+        this.fileName = fileName;
+        console.log('xx brws', folderName + this.fileName)
         if (folderName == ''  ||  folderName == undefined) {
             folderName = './assets/vega-datasets/';
         }
-        if (filename ==''  ||  filename == undefined) {
-            filename = 'stocks.csv';
+        if (this.fileName ==''  ||  this.fileName == undefined) {
+            this.fileName = 'stocks.csv';
         };
-        console.log('xx brws', folderName + filename)
+        console.log('xx brws', folderName + this.fileName)
 
         // Load synchronously
-        var csv_data = dl.load({url: folderName + filename});
+        var csv_data = dl.load({url: folderName + this.fileName});
         console.log('DataPopup clickDSPreview LOAD data start:')
-        let fileFolder: string = './assets/vega-datasets/';
-        let filePath: string = fileFolder + this.fileName;
-        let fileSuffix = this.fileName.substr(this.fileName.indexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
+        // let fileFolder: string = './assets/vega-datasets/';
+        let filePath: string = folderName + this.fileName;
+        console.log('xx filePath', )
+        let fileSuffix = this.fileName.substr(this.fileName.lastIndexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
         console.log('xx fileSuffix', fileSuffix)
         if (fileSuffix == 'json') {
             dl.json({url: filePath}, {}, (err, currentData) => {
@@ -227,6 +229,7 @@ export class DataPopupComponent implements OnInit {
                 }
             });
         };
+        // TODO - proper message when file type unknown
 
     }
 
