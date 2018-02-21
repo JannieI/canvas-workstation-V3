@@ -205,33 +205,36 @@ export class DataPopupComponent implements OnInit {
         console.log('DataPopup clickDSPreview LOAD data start:')
         let fileFolder: string = './assets/vega-datasets/';
         let filePath: string = fileFolder + this.fileName;
-        dl.csv({url: filePath}, {}, (err, currentData) => {
-            if (err) {
-              console.log('DataPopup clickDSPreview error on load', err)
-            } else {
-                // Callback
-                this.fileLoadedCallback(currentData);
-            }
-        });
+        let fileSuffix = this.fileName.substr(this.fileName.indexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
+        console.log('xx fileSuffix', fileSuffix)
+        if (fileSuffix == 'json') {
+            dl.json({url: filePath}, {}, (err, currentData) => {
+                if (err) {
+                    console.log('DataPopup clickDSPreview error on load', err)
+                } else {
+                    // Callback
+                    this.fileLoadedCallback(fileSuffix, currentData);
+                }
+            });            
+        };
+        if (fileSuffix == 'csv') {
+            dl.csv({url: filePath}, {}, (err, currentData) => {
+                if (err) {
+                    console.log('DataPopup clickDSPreview error on load', err)
+                } else {
+                    // Callback
+                    this.fileLoadedCallback(fileSuffix, currentData);
+                }
+            });
+        };
 
-        // // Preview
-        // console.log('')
-        // console.log('DataPopup clickDSPreview PREVIEW start:')
-        // startNow = Date.now()
-        // console.log('DataPopup clickDSPreview         END preview: ', (Date.now() - startNow) / 1000)
-
-        // // No DS currently selected
-        // this.currentDatasetName = '';
-
-        // // Show the Preview button
-        // this.showDataPreview = true; //!this.showDataPreview;
-
-        // // Show Add button
-        // this.showAddButton = true;
     }
 
-    fileLoadedCallback(currentData: any) {
+    fileLoadedCallback(fileSuffix: string, currentData: any) {
+        // Handles callback from async datalib load
+        this.globalFunctionService.printToConsole(this.constructor.name,'fileLoadedCallback', '@Start');
 
+        console.log('xx file type =', fileSuffix)
         let startNow: number;
 
         startNow = Date.now()
