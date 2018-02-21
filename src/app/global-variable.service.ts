@@ -1505,8 +1505,6 @@ export class GlobalVariableService {
                 } else {
                     this.filePath = this.filePath + ds.filename;
                 };
-                // this.filePath = '../assets/data.dataset' + ds.id.toString() + '.json';
-                console.log('xx this.filePath', datasetID, this.filePath)
             }
         });
 
