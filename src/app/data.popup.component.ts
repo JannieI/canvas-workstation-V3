@@ -441,7 +441,7 @@ export class DataPopupComponent implements OnInit {
         let newdSet: Dataset = {
             id: newdSetID,
             datasourceID: newDSID,
-            sourceLocation: 'file',
+            sourceLocation: 'localDB',
             folderName: '',
             filename: '',
             data: this.currentData,
@@ -505,7 +505,8 @@ export class DataPopupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDatasource', '@Start');
 
         this.globalVariableService.refreshCurrentDatasourceInfo(id).then(i => {
-            console.log('xx this.globalVariableService.currentDatasources', this.globalVariableService.currentDatasources)
+            console.log('xx this.globalVariableService.currentDatasources', 
+            this.globalVariableService.currentDatasources, this.globalVariableService.currentDatasets)
             this.currentDatasources = this.globalVariableService.currentDatasources;
             this.currentDatasources.forEach(ds => {
                 if (ds.id == id) {
@@ -519,6 +520,7 @@ export class DataPopupComponent implements OnInit {
                     }
                 };
             });
+            console.log('xx f t l', this.dataFieldNames, this.dataFieldTypes, this.dataFieldLengths)
             this.currentData = this.globalVariableService.currentDatasets[0].data;
             this.transformationsFormat = this.globalVariableService.transformationsFormat;
             this.currentTransformations = this.globalVariableService.currentTransformations;

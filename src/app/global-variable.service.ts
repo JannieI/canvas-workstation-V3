@@ -1491,9 +1491,11 @@ export class GlobalVariableService {
 
         // Get list of dSet-ids to make array work easier
         let dsCurrIDs: number[] = [];       // currentDataset IDs
+        let dsSourceLocation: string = '';
         this.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
         this.datasets.forEach(ds => {
             if (ds.id == datasetID) {
+                dsSourceLocation = ds.sourceLocation;
                 if (ds.folderName == ''  ||  ds.folderName == null) {
                     this.filePath = '../assets/';
                 } else {
@@ -1509,29 +1511,12 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
-            this.getLocal('DashboardSnapshot')
-            .then(data => {
-                this.dashboardSnapshots = data;
-                this.isDirtyDashboardSnapshots = false;
-                this.statusBarRunning.next(this.NoQueryRunningMessage);
-                console.log('Global-Variables getDashboardSnapshots 1', data)
-                resolve(this.dashboardSnapshots);
-            });
+            // Get data from the correct place
+            if (dsSourceLocation == 'localDB') {
 
-            // TODO - fix this via real http
-            let dataurl: string = this.filePath;
-            this.get(dataurl)
-                .then(dataFile => {
-
-                    let newdSet: Dataset = {
-                        id: datasetID,
-                        datasourceID: datasourceID,
-                        sourceLocation: 'file',
-                        folderName: '',
-                        filename: '',
-                        data: dataFile,
-                        dataRaw: dataFile
-                    };
+                this.getLocal('Dataset')
+                .then(data => {
+                    let newdSet: Dataset = data;
 
                     // // Add to datasets (contains all data) - once
                     // if (dSetIDs.indexOf(datasetID) < 0) {
@@ -1543,12 +1528,44 @@ export class GlobalVariableService {
                         this.currentDatasets.push(newdSet);
                     };
 
-                    console.log('Global-Variables getCurrentDataset 1', datasourceID,
+                    console.log('Global-Variables getCurrentDataset 1 from ', dsSourceLocation, datasourceID,
                         datasetID, newdSet, 'currentDatasets', this.currentDatasets)
                     resolve(newdSet);
-                }
-            );
-            
+                });
+            };
+
+            if (dsSourceLocation == 'file') {
+                // TODO - fix this via real http
+                let dataurl: string = this.filePath;
+                this.get(dataurl)
+                    .then(dataFile => {
+
+                        let newdSet: Dataset = {
+                            id: datasetID,
+                            datasourceID: datasourceID,
+                            sourceLocation: 'file',
+                            folderName: '',
+                            filename: '',
+                            data: dataFile,
+                            dataRaw: dataFile
+                        };
+
+                        // // Add to datasets (contains all data) - once
+                        // if (dSetIDs.indexOf(datasetID) < 0) {
+                        //     this.datasets.push(newdSet);
+                        // };
+
+                        // Add to Currentatasets (contains all data) - once
+                        if (dsCurrIDs.indexOf(datasetID) < 0) {
+                            this.currentDatasets.push(newdSet);
+                        };
+
+                        console.log('Global-Variables getCurrentDataset 1 from ', dsSourceLocation, datasourceID,
+                            datasetID, newdSet, 'currentDatasets', this.currentDatasets)
+                        resolve(newdSet);
+                    }
+                );
+            };
         });
     }
 
