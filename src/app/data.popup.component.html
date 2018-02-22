@@ -122,7 +122,11 @@
                             <clr-icon shape="check" *ngIf="!currentDS"></clr-icon>
                         </div>
                         <div class="gridIdentifyDataExisting" *ngIf="currentDS">
-                            <clr-datagrid class="fieldsDataGrid">
+                            <clr-datagrid class="fieldsDataGrid datagrid-compact">
+                                <clr-dg-placeholder>
+                                    No records ...
+                                </clr-dg-placeholder>
+                                
                                 <clr-dg-row
                                     *ngFor="let row of currentDatasources; let i = index"
                                     (click)="clickCurrentDatasource(row.id, i)"
