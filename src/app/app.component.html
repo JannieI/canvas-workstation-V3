@@ -1319,13 +1319,13 @@
 
         <table style="width:100%">
             <tr>
-                <th *ngFor="let col of dataFieldNames">
+                <th *ngFor="let col of row.dataFields" class="tableHeader">
                     {{col}}
                 </th>
             </tr>
-            <tr *ngFor="let col of currentData; let i = index">
-                <td *ngFor="let col of dataFieldNames; let i = index">
-                    {{ row[col] }}
+            <tr *ngFor="let data of row.data; let i = index" class="tableRow">
+                <td *ngFor="let col of row.dataFields; let i = index">
+                    {{ data[col] }}
                 </td>
             </tr>
         </table>

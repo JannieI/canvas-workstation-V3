@@ -297,15 +297,21 @@ export class AppComponent implements OnInit {
                                 // Get Sl
                                 this.currentSlicers = this.globalVariableService.currentSlicers;
 
-                                // Get Tabl
+                                // Get Tables
                                 this.currentTables = this.globalVariableService.currentTables;
+
+                                // Duplicate data elements; this is easier for *ngFor 
+                                // TODO - this must be done in DB
                                 this.currentTables.forEach(t => {
-                                    t.slicerSelection = this.globalVariableService.currentDatasets.
+                                    t.data = this.globalVariableService.currentDatasets.
                                         filter(cd => cd.id = t.id)[0].dataRaw;
-                                        data
-                                        dataFields
-                                        dataFieldTypes
-                                        dataFieldLengths
+                                    t.dataFields = this.globalVariableService.currentDatasources.
+                                        filter(cd => cd.id = t.id)[0].dataFields;        
+                                    t.dataFieldTypes = this.globalVariableService.currentDatasources.
+                                        filter(cd => cd.id = t.id)[0].dataFieldTypes;        
+                                    t.dataFieldLengths = this.globalVariableService.currentDatasources.
+                                        filter(cd => cd.id = t.id)[0].dataFieldLengths;        
+                                        
                                     console.log('xx Tab', this.currentTables)
                                 })
                             }

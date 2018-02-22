@@ -360,3 +360,11 @@
     position: absolute;
     z-index: 51;
 }
+    .tableHeader {
+        background-color: rgb(177, 174, 174);
+        border: 1px solid gray;
+    }
+    .tableRow {
+        background-color: rgb(219, 215, 215);
+        border: 1px solid gray;
+    }
