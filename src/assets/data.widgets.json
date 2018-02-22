@@ -24,6 +24,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -137,6 +141,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": -1,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -250,6 +258,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 1,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -363,6 +375,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": "true,MSFT,false,AMZN,true,IBM,true,GOOG,true,AAPL",
         "datasetID": 2,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -476,6 +492,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -491,7 +511,7 @@
         "containerBackgroundcolor": "lightgray",
         "containerBorder": "1px solid black",
         "containerBoxshadow": "",
-        "containerColor": "transparent",
+        "containerColor": "gray",
         "containerFontsize": 12,
         "containerHeight": 320,
         "containerLeft": 500,
@@ -589,6 +609,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -702,6 +726,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -815,6 +843,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -928,6 +960,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -1041,6 +1077,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -1154,6 +1194,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -1267,6 +1311,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -1380,6 +1428,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -1493,6 +1545,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {
@@ -1606,6 +1662,10 @@
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": 7,
+        "data": "",
+        "dataFields": "",
+        "dataFieldTypes": "",
+        "dataFieldLengths": "",
         "dataParameters":
         [
             {

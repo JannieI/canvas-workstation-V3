@@ -348,3 +348,15 @@
         background-color: #929699;
     }
 
+.tableContainer {
+    bottom: 100px;
+    display: grid;
+    grid-template-columns: 3px 7px 1fr 16px 1fr 7px 3px;
+    grid-template-rows: 3px 7px 3px 1fr 16px 1fr 7px 3px;
+    left: 830px;
+    margin: 0;
+    min-width: 35px;
+    padding: 0;
+    position: absolute;
+    z-index: 51;
+}

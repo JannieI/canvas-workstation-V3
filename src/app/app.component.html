@@ -1289,10 +1289,10 @@
 
 
 <!-- Tables -->
-<div class="slicerContainer" *ngFor="let row of currentTables; let i = index"
+<div class="tableContainer" *ngFor="let row of currentTables; let i = index"
     #table
-    [style.background-color]="row.containerBackgroundColor"
-    [style.border]="row.isSelected? '1px solid black' : 'black'"
+    [style.background-color]="row.containerBackgroundcolor"
+    [style.border]="'1px solid black'"
     [style.box-shadow]="row.containerBoxshadow"
     [style.font-size.px]="row.containerFontsize"
     [style.height.px]="row.containerHeight"

@@ -300,10 +300,13 @@ export class AppComponent implements OnInit {
                                 // Get Tabl
                                 this.currentTables = this.globalVariableService.currentTables;
                                 this.currentTables.forEach(t => {
-                                    let temp: any = this.globalVariableService.currentDatasets.
-                                        filter(cd => cd.id = t.id)
-
-                                    console.log('xx Tab', this.currentTables, temp.data)
+                                    t.slicerSelection = this.globalVariableService.currentDatasets.
+                                        filter(cd => cd.id = t.id)[0].dataRaw;
+                                        data
+                                        dataFields
+                                        dataFieldTypes
+                                        dataFieldLengths
+                                    console.log('xx Tab', this.currentTables)
                                 })
                             }
                         )
