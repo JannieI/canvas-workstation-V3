@@ -514,7 +514,7 @@ export class DataPopupComponent implements OnInit {
                     let f: string = ds.dataFields.toString();
                     this.dataFieldNames = f.split(',');
                     let t: string = ds.dataFieldTypes.toString();
-                    this.dataFieldNames = t.split(',');
+                    this.dataFieldTypes = t.split(',');
                     let l: string[] = ds.dataFieldLengths.toString().split(',');
                     // this.dataFieldLengths = l.split(',');
                     for (var i = 0; i < l.length; i++) {
