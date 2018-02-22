@@ -2351,30 +2351,28 @@ export class GlobalVariableService {
 
                         // TODO - fix hardcoding, issue with datalib jsonTree
                         this.widgets.forEach(w => {
-                            console.log('xx w.slicerSelection', w.slicerSelection)
-                            w.slicerSelection =  [
-                                {
-                                    "isSelected": true,
-                                    "fieldValue": "MSFT"
-                                },
-                                {
-                                    "isSelected": false,
-                                    "fieldValue": "AMZN"
-                                },
-                                {
-                                    "isSelected": true,
-                                    "fieldValue": "IBM"
-                                },
-                                {
-                                    "isSelected": true,
-                                    "fieldValue": "GOOG"
-                                },
-                                {
-                                    "isSelected": true,
-                                    "fieldValue": "AAPL"
-                                }
+                            if (w.slicerSelection != null) {
+                                let s: string = w.slicerSelection.toString();
+                                let sF: string[] = s.split(',');
+                                let sO: {isSelected: boolean; fieldValue: string}[] = [];
+                                let i: number = 0;
+                                let oSel: boolean;
+                                let oFld: string;
+                                w.slicerSelection = [];
+                                sF.forEach(s => {
+                                    i = i + 1;
+                                    if (i == 1) {
+                                        oSel = (s == 'true');
+                                    } else {
+                                        oFld = s;
+                                        i = 0;
+                                        let o: {isSelected: boolean; fieldValue: string} = 
+                                            {isSelected: oSel, fieldValue: oFld};
+                                        w.slicerSelection.push(o);
+                                    }
+                                })
+                            };
 
-                            ]
                         });
 
                         this.isDirtyWidgets = false;
@@ -3200,7 +3198,6 @@ export class GlobalVariableService {
             }
         }
     }
-
 
     createVegaLiteSpec(widget: Widget): dl.spec.TopLevelExtendedSpec {
         // Creates a Vega-Lite spec for a given Widget from a standard template

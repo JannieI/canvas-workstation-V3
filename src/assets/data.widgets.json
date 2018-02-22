@@ -22,7 +22,7 @@
 
         "datasourceID": 4,
         "slicerFieldName": "symbol",
-        "slicerSelection": "true, MSFT, false, AMZN, true, IBM, true, GOOG, true, AAPL",
+        "slicerSelection": null,
         "datasetID": 7,
         "dataParameters":
         [
@@ -361,29 +361,7 @@
 
         "datasourceID": 1,
         "slicerFieldName": "symbol",
-        "slicerSelection": [
-            {
-                "isSelected": true,
-                "fieldValue": "MSFT"
-            },
-            {
-                "isSelected": false,
-                "fieldValue": "AMZN"
-            },
-            {
-                "isSelected": false,
-                "fieldValue": "IBM"
-            },
-            {
-                "isSelected": false,
-                "fieldValue": "GOOG"
-            },
-            {
-                "isSelected": false,
-                "fieldValue": "AAPL"
-            }
-
-        ],
+        "slicerSelection": "true,MSFT,false,AMZN,true,IBM,true,GOOG,true,AAPL",
         "datasetID": 2,
         "dataParameters":
         [
