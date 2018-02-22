@@ -523,7 +523,8 @@ export class DataPopupComponent implements OnInit {
                 };
             });
             console.log('xx f t l', this.dataFieldNames, this.dataFieldTypes, this.dataFieldLengths)
-            this.currentData = this.globalVariableService.currentDatasets[0].data;
+            // TODO - using index below assumes currentDS and currentDSET has same lengths - wise ? 
+            this.currentData = this.globalVariableService.currentDatasets[index].data;
             this.transformationsFormat = this.globalVariableService.transformationsFormat;
             this.currentTransformations = this.globalVariableService.currentTransformations;
             this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
