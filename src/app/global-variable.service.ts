@@ -2609,8 +2609,8 @@ export class GlobalVariableService {
                 {key:'datasourceID', type: 'int'},
                 {key:'folderName', type: 'string'},
                 {key:'filename', type: 'string'},
-                {key:'data', type: 'string'},
-                {key:'dataRaw', type: 'string'}
+                {key:'data', type: 'array'},
+                {key:'dataRaw', type: 'array'}
             ])
             .config({
                 id: "CanvasCache",

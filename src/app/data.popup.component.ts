@@ -447,14 +447,15 @@ export class DataPopupComponent implements OnInit {
             dataRaw: this.currentData
         };
 
-        // Add to Currentatasets
+        // Add to CurrentDatasets
         if (dsCurrIDs.indexOf(newdSetID) < 0) {
             this.globalVariableService.currentDatasets.push(newdSet);
         };
-
+        
         // Add to All datasets
         if (dSetIDs.indexOf(newdSetID) < 0) {
             this.globalVariableService.datasets.push(newdSet);
+            this.globalVariableService.saveLocal('Dataset', newdSet);
         };
 
         // Reset data related to this DS
