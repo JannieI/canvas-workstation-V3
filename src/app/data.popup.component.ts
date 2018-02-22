@@ -174,7 +174,6 @@ export class DataPopupComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
 
-        console.log('xx brws', filename)
         // TODO alert('Later: File component to browse ...')
     }
 
@@ -193,7 +192,6 @@ export class DataPopupComponent implements OnInit {
         this.errorMessage = '';
         this.fileName = fileName;
         this.showDataPreview = false;
-        console.log('xx brws', folderName + this.fileName)
 
         // Get the folder and file, setting some defaults
         if (folderName == ''  ||  folderName == undefined) {
@@ -202,16 +200,15 @@ export class DataPopupComponent implements OnInit {
         if (this.fileName ==''  ||  this.fileName == undefined) {
             this.fileName = 'stocks.csv';
         };
-        console.log('xx brws', folderName + this.fileName)
 
         // Load synchronously
         // var csv_data = dl.load({url: folderName + this.fileName});
         console.log('DataPopup clickDSPreview LOAD data start:')
         // let fileFolder: string = './assets/vega-datasets/';
         let filePath: string = folderName + this.fileName;
-        console.log('xx filePath', )
+
         let fileSuffix = this.fileName.substr(this.fileName.lastIndexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
-        console.log('xx fileSuffix', fileSuffix)
+
         if (fileSuffix == 'json') {
             dl.json({url: filePath}, {}, (err, currentData) => {
                 if (err) {
@@ -250,9 +247,7 @@ export class DataPopupComponent implements OnInit {
         // Handles callback from async datalib load
         this.globalFunctionService.printToConsole(this.constructor.name,'fileLoadedCallback', '@Start');
 
-        console.log('xx file type =', fileSuffix)
         let startNow: number;
-
         startNow = Date.now()
 
         // Load
@@ -410,6 +405,7 @@ export class DataPopupComponent implements OnInit {
             language: '',
             serverOptions: ''
         };
+        console.log('xx newData', newDSID, newData)
 
         // General var with name - used in *ngIF, etc
         if (this.existingDSName == '') {
@@ -434,7 +430,7 @@ export class DataPopupComponent implements OnInit {
         let dSetIDs: number[] = [];
         this.globalVariableService.datasets.forEach(ds => dSetIDs.push(ds.id));
         newdSetID = Math.max(...dSetIDs) + 1;
-        console.log('xx newdSetID', newdSetID, dSetIDs,this.globalVariableService.datasets)
+        
         // Get list of dSet-ids to make array work easier
         let dsCurrIDs: number[] = [];       // currentDataset IDs
         this.globalVariableService.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
@@ -447,6 +443,7 @@ export class DataPopupComponent implements OnInit {
             data: this.currentData,
             dataRaw: this.currentData
         };
+        console.log('xx newdSet', newdSetID, newdSet);
 
         // Add to CurrentDatasets
         if (dsCurrIDs.indexOf(newdSetID) < 0) {
@@ -510,16 +507,19 @@ export class DataPopupComponent implements OnInit {
             this.currentDatasources = this.globalVariableService.currentDatasources;
             this.currentDatasources.forEach(ds => {
                 if (ds.id == id) {
-                    // TODO - remove this, currently datalib reads array as string a,b,c
-                    let f: string = ds.dataFields.toString();
-                    this.dataFieldNames = f.split(',');
-                    let t: string = ds.dataFieldTypes.toString();
-                    this.dataFieldTypes = t.split(',');
-                    let l: string[] = ds.dataFieldLengths.toString().split(',');
-                    // this.dataFieldLengths = l.split(',');
-                    for (var i = 0; i < l.length; i++) {
-                        this.dataFieldLengths.push(+l[i]);
-                    }
+                    this.dataFieldNames = ds.dataFields;
+                    this.dataFieldTypes = ds.dataFieldTypes;
+                    this.dataFieldLengths = ds.dataFieldLengths;
+                    //         // TODO - remove this, currently datalib reads array as string a,b,c
+            //         let f: string = ds.dataFields.toString();
+            //         this.dataFieldNames = f.split(',');
+            //         let t: string = ds.dataFieldTypes.toString();
+            //         this.dataFieldTypes = t.split(',');
+            //         let l: string[] = ds.dataFieldLengths.toString().split(',');
+            //         this.dataFieldLengths = [];
+            //         for (var i = 0; i < l.length; i++) {
+            //             this.dataFieldLengths.push(+l[i]);
+            //         }
                 };
             });
             console.log('xx f t l', this.dataFieldNames, this.dataFieldTypes, this.dataFieldLengths)

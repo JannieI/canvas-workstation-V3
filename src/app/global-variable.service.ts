@@ -1984,7 +1984,25 @@ export class GlobalVariableService {
                         this.datasources = data;
                         this.isDirtyDatasources = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getDatasources 1', data)
+
+                        this.datasources.forEach(ds => {
+                            // TODO - remove this, currently datalib reads array as string 'a,b,c'
+                            let f: string = ds.dataFields.toString();
+                            let fN: string[] = f.split(',');
+                            ds.dataFields = fN;
+                            let t: string = ds.dataFieldTypes.toString();
+                            let fT: string[] = t.split(',');
+                            ds.dataFieldTypes = fT;
+                            let l: string[] = ds.dataFieldLengths.toString().split(',');
+                            let fL: number[] = [];
+                            for (var i = 0; i < l.length; i++) {
+                                fL.push(+l[i]);
+                            };
+                            ds.dataFieldLengths = fL;
+                        });
+
+
+                        console.log('Global-Variables getDatasources 1', this.datasources)
                         resolve(this.datasources);
                     });
             } else {
