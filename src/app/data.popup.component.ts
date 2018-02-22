@@ -511,8 +511,10 @@ export class DataPopupComponent implements OnInit {
             this.currentDatasources.forEach(ds => {
                 if (ds.id == id) {
                     // TODO - remove this, currently datalib reads array as string a,b,c
-                    let y: string = ds.dataFields.toString();
-                    this.dataFieldNames = y.split(',');
+                    let f: string = ds.dataFields.toString();
+                    this.dataFieldNames = f.split(',');
+                    let t: string = ds.dataFieldTypes.toString();
+                    this.dataFieldNames = t.split(',');
                     let l: string[] = ds.dataFieldLengths.toString().split(',');
                     // this.dataFieldLengths = l.split(',');
                     for (var i = 0; i < l.length; i++) {
