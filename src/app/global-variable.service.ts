@@ -2805,7 +2805,16 @@ export class GlobalVariableService {
         return new Promise((resolve, reject) => {
 
             nSQL(table).query('upsert', row).exec().then(res => {
-                console.log('xx GV inserted', res)
+
+                // TODO - we need a better way to update the global vars
+                if (table == 'DashboardSnapshot') {
+                    res.forEach( r => {
+                        r.affectedRows.forEach(ra => {
+                            this.dashboardSnapshots.push(ra);
+                            this.currentDashboardSnapshots.push(ra);
+                        })
+                    });
+                };
             });
             // Worked
             // nSQL(table).connect()
@@ -2813,10 +2822,6 @@ export class GlobalVariableService {
             //     resolve(nSQL().query('upsert', row).exec());
             // })
 
-            // TODO - we need a better way to update the global vars
-            if (table == 'DashboardSnapshot') {
-                this.currentDashboardSnapshots.push(row);
-            };
         })
     }
 
