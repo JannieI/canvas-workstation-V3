@@ -125,6 +125,7 @@ export class AppComponent implements OnInit {
     currentDatasources: Datasource[];
     currentShapes: Widget[] = [];
     currentSlicers: Widget[] = [];
+    currentTables: Widget[] = [];
     currentTabName: string = '';
     currentWidgets: Widget[] = [];
     editMode: boolean;
@@ -149,7 +150,7 @@ export class AppComponent implements OnInit {
     selectedWidgetIDs: number[] = [];
     showGrid: boolean;
     showComments: boolean;
-    showDatasourcePopup: boolean = false; 
+    showDatasourcePopup: boolean = false;
     showDataQuality: boolean;
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
@@ -291,10 +292,19 @@ export class AppComponent implements OnInit {
                                 // TODO - make currentDatasources BehaviourSubject in GV, update
                                 // when it changes in DATA form
                                 this.currentDatasources = this.globalVariableService.
-                                    currentDatasources; 
+                                    currentDatasources;
 
                                 // Get Sl
                                 this.currentSlicers = this.globalVariableService.currentSlicers;
+
+                                // Get Tabl
+                                this.currentTables = this.globalVariableService.currentTables;
+                                this.currentTables.forEach(t => {
+                                    let temp: any = this.globalVariableService.currentDatasets.
+                                        filter(cd => cd.id = t.id)
+
+                                    console.log('xx Tab', this.currentTables, temp.data)
+                                })
                             }
                         )
                 }
@@ -363,7 +373,7 @@ export class AppComponent implements OnInit {
         }
         // TODO - refresh only the editted one
         this.widgetDOM.refreshWidgets();
-        
+
         this.showModalWidgetEditor = false;
     }
 
@@ -537,7 +547,7 @@ export class AppComponent implements OnInit {
 
         this.showModalSlicerTablist = false;
     }
-    
+
     handleCloseData(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
@@ -895,7 +905,7 @@ export class AppComponent implements OnInit {
         this.showModalDataSlicers = true;
 
     }
-    
+
     clickMenuSlicerTablist() {
         // Open the list of tabs to which a Sl belongs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerTablist', '@Start');
@@ -1451,19 +1461,19 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickResizeUp(ev: MouseEvent, 
-        index: number, 
-        resizeTop: boolean, 
+    clickResizeUp(ev: MouseEvent,
+        index: number,
+        resizeTop: boolean,
         resizeRight: boolean,
         resizeBottom: boolean,
         resizeLeft: boolean) {
-        // Mouse up click during resize event.  Change x and y coordinates according to the 
+        // Mouse up click during resize event.  Change x and y coordinates according to the
         // movement since the resize down event
         //   ev - mouse event
         //   index - index of the W to resize
         //   resizeTop, -Right, -Bottom, -Left - True to move the ... boundary.
         //     Note: 1. both the current and globalVar vars are changed
-        //           2. Top and Left involves changing two aspects, ie Left and Width 
+        //           2. Top and Left involves changing two aspects, ie Left and Width
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeUp', '@Start');
 
         console.log('clickResizeUp starts index', index)

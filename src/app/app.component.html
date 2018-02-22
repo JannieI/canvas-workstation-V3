@@ -1288,9 +1288,135 @@
 </widget>
 
 
+<!-- Tables -->
+<div class="slicerContainer" *ngFor="let row of currentTables; let i = index"
+    #table
+    [style.background-color]="row.containerBackgroundColor"
+    [style.border]="row.isSelected? '1px solid black' : 'black'"
+    [style.box-shadow]="row.containerBoxshadow"
+    [style.font-size.px]="row.containerFontsize"
+    [style.height.px]="row.containerHeight"
+    [style.left.px]="row.containerLeft"
+    [style.top.px]="row.containerTop"
+    [style.width.px]="row.containerWidth"
+    [style.zindex]="row.containerZindex"
+    (dragstart)="clickSlicerContainerDragStart($event, i)"
+    (dragend)="clickSlicerContainerDragEnd($event, i)"
+    draggable="true"
+    >
+    <div class="slicerContainerDragHandle"
+        draggable="false"
+        [style.background-color]="row.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
+        [style.width.px]="row.containerWidth-14"
+        >
 
+        <div class="slicerLabel" *ngIf="row.containerWidgetTitle"
+            (click)="clickSlicer(i, row.id)"
+            [style.width.px]="row.containerWidth-14"
+            >
+            <b>{{ row.containerWidgetTitle }}</b>
+        </div>
 
+        <table style="width:100%">
+            <tr>
+                <th *ngFor="let col of dataFieldNames">
+                    {{col}}
+                </th>
+            </tr>
+            <tr *ngFor="let col of currentData; let i = index">
+                <td *ngFor="let col of dataFieldNames; let i = index">
+                    {{ row[col] }}
+                </td>
+            </tr>
+        </table>
 
+    </div>
+    <div class="slicerContainerTopLeftHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, true, false, false, true)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerTopHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, true, false, false, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerTopRightHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, true, true, false, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerRightTopHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, true, true, false, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerRightHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, true, false, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerRightBottomHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, true, true, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerBottomRightHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, true, true, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerBottomLeftHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, false, true, true)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerBottomHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, false, true, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerLeftBottomHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, false, true, true)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerLeftHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, false, false, false, true)"
+        draggable="true"
+        >
+    </div>
+    <div class="slicerContainerLeftTopHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeDown($event, i)"
+        (dragend)="clickResizeUp($event, i, true, false, false, true)"
+        draggable="true"
+        >
+    </div>
+
+</div>
 
 
 <!-- Slicers -->
@@ -1423,8 +1549,6 @@
     </div>
 
 </div>
-
-
 
 
 <!-- Testing Arrows -->
