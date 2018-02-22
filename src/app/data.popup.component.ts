@@ -405,7 +405,6 @@ export class DataPopupComponent implements OnInit {
             language: '',
             serverOptions: ''
         };
-        console.log('xx newData', newDSID, newData)
 
         // General var with name - used in *ngIF, etc
         if (this.existingDSName == '') {
@@ -443,7 +442,6 @@ export class DataPopupComponent implements OnInit {
             data: this.currentData,
             dataRaw: this.currentData
         };
-        console.log('xx newdSet', newdSetID, newdSet);
 
         // Add to CurrentDatasets
         if (dsCurrIDs.indexOf(newdSetID) < 0) {
@@ -502,27 +500,16 @@ export class DataPopupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDatasource', '@Start');
 
         this.globalVariableService.refreshCurrentDatasourceInfo(id).then(i => {
-            console.log('xx this.globalVariableService.currentDatasources', 
-            this.globalVariableService.currentDatasources, this.globalVariableService.currentDatasets)
+            
             this.currentDatasources = this.globalVariableService.currentDatasources;
             this.currentDatasources.forEach(ds => {
                 if (ds.id == id) {
                     this.dataFieldNames = ds.dataFields;
                     this.dataFieldTypes = ds.dataFieldTypes;
                     this.dataFieldLengths = ds.dataFieldLengths;
-                    //         // TODO - remove this, currently datalib reads array as string a,b,c
-            //         let f: string = ds.dataFields.toString();
-            //         this.dataFieldNames = f.split(',');
-            //         let t: string = ds.dataFieldTypes.toString();
-            //         this.dataFieldTypes = t.split(',');
-            //         let l: string[] = ds.dataFieldLengths.toString().split(',');
-            //         this.dataFieldLengths = [];
-            //         for (var i = 0; i < l.length; i++) {
-            //             this.dataFieldLengths.push(+l[i]);
-            //         }
                 };
             });
-            console.log('xx f t l', this.dataFieldNames, this.dataFieldTypes, this.dataFieldLengths)
+
             // TODO - using index below assumes currentDS and currentDSET has same lengths - wise ? 
             this.currentData = this.globalVariableService.currentDatasets[index].data;
             this.transformationsFormat = this.globalVariableService.transformationsFormat;

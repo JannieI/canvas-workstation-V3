@@ -2351,6 +2351,7 @@ export class GlobalVariableService {
 
                         // TODO - fix hardcoding, issue with datalib jsonTree
                         this.widgets.forEach(w => {
+                            console.log('xx w.slicerSelection', w.slicerSelection)
                             w.slicerSelection =  [
                                 {
                                     "isSelected": true,

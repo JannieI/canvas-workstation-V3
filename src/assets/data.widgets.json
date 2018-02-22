@@ -22,7 +22,7 @@
 
         "datasourceID": 4,
         "slicerFieldName": "symbol",
-        "slicerSelection": null,
+        "slicerSelection": "true, MSFT, false, AMZN, true, IBM, true, GOOG, true, AAPL",
         "datasetID": 7,
         "dataParameters":
         [
