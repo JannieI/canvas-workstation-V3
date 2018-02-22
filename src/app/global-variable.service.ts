@@ -915,7 +915,7 @@ export class GlobalVariableService {
     }
 
     refreshCurrentDatasourceInfo(datasourceID: number): Promise<boolean> {
-        // Refreshes all info related to current DS
+        // Refreshes all info related to current DS, but NOT currentDatasources
         // Returns True if all worked, False if something went wrong
         console.log('Global-Variables refreshCurrentDatasourceInfo D,T id = ', datasourceID)
 
@@ -936,7 +936,6 @@ export class GlobalVariableService {
         // in a Promise chain, to ensure we have all or nothing ...
 
         return new Promise<boolean>((resolve, reject) => {
-            this.getCurrentDatasource(datasourceID).then( i =>
             // Load data
             this.getCurrentDataset(datasourceID, dSetID).then (j =>
             // Load Permissions for DS
@@ -951,7 +950,7 @@ export class GlobalVariableService {
                 {
                     resolve(true)
                 }
-        ))))));
+        )))));
         });
     }
 
