@@ -26,13 +26,13 @@
                             *clrIfOpen
                             class="datasourceDropdown"
                             >
-                            <div class="datasourceDropdown" 
+                            <div class="datasourceDropdown"
                                 (click)="clickSelectViz('Graph')"
                                 clrDropdownItem
                                 >
                                 Graph
                             </div>
-                            <div class="datasourceDropdown" 
+                            <div class="datasourceDropdown"
                                 (click)="clickSelectViz('Table')"
                                 clrDropdownItem
                                 >
@@ -40,7 +40,7 @@
                             </div>
                         </clr-dropdown-menu>
                     </clr-dropdown>
-    
+
                     <button *ngIf="hasClicked"
                         class="btn btn-sm btn-secondary datasourceButton"
                         (click)="clickContinue()">
@@ -66,7 +66,7 @@
                                         of {{pagination.totalItems}} rows
                                         <clr-dg-pagination #pagination [clrDgPageSize]="7"></clr-dg-pagination>
                                     </clr-dg-footer>
-                                            
+
                                 </clr-datagrid>
                             </div>
                         </nav>
@@ -103,7 +103,7 @@
                         [style.width.px]="sideNavWidth"
                         [style.min-width.rem]="sideNavMinWidth"
                         >
-                        
+
                         <div class="selectedDatasource">
                             Fields for: {{ currentDatasources[0].name }}
                         </div>
@@ -134,7 +134,7 @@
                         <br>
                         <span class="popupLabel">Graph field Type</span>
                         <select class="popupLabel" id="selectGraphFieldType">
-                            <option *ngFor="let row of graphTypeFieldY" 
+                            <option *ngFor="let row of graphTypeFieldY"
                             (change)="setGraphTypeFieldY(row)">
                                 {{ row }}
                             </option>
@@ -319,7 +319,7 @@
 
                 <div *ngIf="showTable" class="tableArea">
                     <clr-datagrid class="gridIdentifyDataPreviewGrid">
-                    
+
                         <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
                         <clr-dg-row *ngFor="let row of currentData">
 
@@ -450,7 +450,7 @@
                         (dragleave)="dragleaveColors($event);"
                         [style.background-color]="dragoverColor? 'lightgray' : 'transparent'"
                         >
-                        <clr-icon shape="times" *ngIf="showColourDeleteIcon" 
+                        <clr-icon shape="times" *ngIf="showColourDeleteIcon"
                             (click)="clickClearColourField()">
                         </clr-icon>
                         {{ graphColorField }}

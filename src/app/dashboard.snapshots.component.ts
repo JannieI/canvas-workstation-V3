@@ -85,6 +85,7 @@ export class DashboardSnapshotsComponent implements OnInit {
               (i => this.currentDashboardSnapshots = i);
 
     }
+    
     clickRefreshDashboard(index: number) {
         // Refresh the D to the selected Snapshot, after saving the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshDashboard', '@Start');
