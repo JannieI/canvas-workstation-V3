@@ -45,12 +45,10 @@ export class DashboardSnapshotsComponent implements OnInit {
     }
 
     ngOnInit() {
-        //
+        // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCurrentDashboardSnapshots(
-            this.globalVariableService.currentDashboardID).then
-              (i => this.currentDashboardSnapshots = i);
+        this.refreshGrid();
         
     }
 
@@ -74,14 +72,21 @@ export class DashboardSnapshotsComponent implements OnInit {
             console.log('saved', i)
         });
 
-        this.globalVariableService.getCurrentDashboardSnapshots(
-            this.globalVariableService.currentDashboardID).then
-              (i => this.currentDashboardSnapshots = i);
+        this.refreshGrid();
         
     }
 
+    refreshGrid() {
+        // Refresh the snapshot Grid with the latest info
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+        
+        this.globalVariableService.getCurrentDashboardSnapshots(
+            this.globalVariableService.currentDashboardID).then
+              (i => this.currentDashboardSnapshots = i);
+
+    }
     clickRefreshDashboard(index: number) {
-        //
+        // Refresh the D to the selected Snapshot, after saving the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshDashboard', '@Start');
 
         this.globalVariableService.saveLocal('DashboardSnapshot', { 
