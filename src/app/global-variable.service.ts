@@ -2780,14 +2780,21 @@ export class GlobalVariableService {
 
         return new Promise((resolve, reject) => {
 
-            nSQL(table).connect()
-            .then(function(result) {
-                return nSQL().query('select').exec(); // select all rows from the current active table
-            })
-            .then(function(result) {
+            nSQL(table).query('select').exec()
+            .then( result => {
                 console.log('Global-Variables getLocal result', result) // <= arrayid:1, name:"bill", age: 20}]
                 resolve(result)
             })
+
+            // Worked
+            // nSQL(table).connect()
+            // .then(function(result) {
+            //     return nSQL().query('select').exec(); // select all rows from the current active table
+            // })
+            // .then(function(result) {
+            //     console.log('Global-Variables getLocal result', result) // <= arrayid:1, name:"bill", age: 20}]
+            //     resolve(result)
+            // })
 
         })
     }
@@ -2797,15 +2804,19 @@ export class GlobalVariableService {
         console.log('Global-Variables saveLocal for table...', table);
         return new Promise((resolve, reject) => {
 
-            nSQL(table).connect()
-            .then(function(result) {
-                resolve(nSQL().query('upsert', row).exec());
-            })
-            // .then(result => {
-            //     console.log('Global-Variables saveLocal saved into table: ', table, result) // <= arrayid:1, name:"bill", age: 20}]
-            //     resolve(result)
+            nSQL(table).query('upsert', row).exec().then(res => {
+                console.log('xx GV inserted', res)
+            });
+            // Worked
+            // nSQL(table).connect()
+            // .then(function(result) {
+            //     resolve(nSQL().query('upsert', row).exec());
             // })
 
+            // TODO - we need a better way to update the global vars
+            if (table == 'DashboardSnapshot') {
+                this.currentDashboardSnapshots.push(row);
+            };
         })
     }
 
