@@ -2,6 +2,7 @@
     {
         "id": 1,
         "datasourceID": 1,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset1.json",
         "data": null,
@@ -10,6 +11,7 @@
     {
         "id": 2,
         "datasourceID": 1,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset2.json",
         "data": null,
@@ -18,6 +20,7 @@
     {
         "id": 3,
         "datasourceID": 2,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset3.json",
         "data": null,
@@ -26,6 +29,7 @@
     {
         "id": 4,
         "datasourceID": 3,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset4.json",
         "data": null,
@@ -34,6 +38,7 @@
     {
         "id": 5,
         "datasourceID": 3,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset5.json",
         "data": null,
@@ -42,6 +47,7 @@
     {
         "id": 6,
         "datasourceID": 3,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset6.json",
         "data": null,
@@ -50,6 +56,7 @@
     {
         "id": 7,
         "datasourceID": 4,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset7.json",
         "data": null,
@@ -58,6 +65,7 @@
     {
         "id": 8,
         "datasourceID": 5,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset8.json",
         "data": null,
@@ -66,6 +74,7 @@
     {
         "id": 9,
         "datasourceID": 6,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset9.json",
         "data": null,
@@ -74,6 +83,7 @@
     {
         "id": 10,
         "datasourceID": 7,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset10.json",
         "data": null,
@@ -82,6 +92,7 @@
     {
         "id": 11,
         "datasourceID": 8,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset11.json",
         "data": null,
@@ -90,6 +101,7 @@
     {
         "id": 12,
         "datasourceID": 9,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset12.json",
         "data": null,
@@ -98,6 +110,7 @@
     {
         "id": 13,
         "datasourceID": 10,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset13.json",
         "data": null,
@@ -106,6 +119,7 @@
     {
         "id": 14,
         "datasourceID": 11,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset14.json",
         "data": null,
@@ -114,6 +128,7 @@
     {
         "id": 15,
         "datasourceID": 12,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset15.json",
         "data": null,
@@ -122,6 +137,7 @@
     {
         "id": 16,
         "datasourceID": 13,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset16.json",
         "data": null,
@@ -130,6 +146,7 @@
     {
         "id": 17,
         "datasourceID": 14,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset17.json",
         "data": null,
@@ -138,6 +155,7 @@
     {
         "id": 18,
         "datasourceID": 15,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset18.json",
         "data": null,
@@ -146,6 +164,7 @@
     {
         "id": 19,
         "datasourceID": 16,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset19.json",
         "data": null,
@@ -154,6 +173,7 @@
     {
         "id": 20,
         "datasourceID": 17,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset20.json",
         "data": null,
@@ -162,6 +182,7 @@
     {
         "id": 21,
         "datasourceID": 18,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset21.json",
         "data": null,
@@ -170,6 +191,7 @@
     {
         "id": 22,
         "datasourceID": 19,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset22.json",
         "data": null,
@@ -178,6 +200,7 @@
     {
         "id": 23,
         "datasourceID": 20,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset23.json",
         "data": null,
@@ -186,6 +209,7 @@
     {
         "id": 24,
         "datasourceID": 21,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset24.json",
         "data": null,
@@ -194,6 +218,7 @@
     {
         "id": 25,
         "datasourceID": 22,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset25.json",
         "data": null,
@@ -202,6 +227,7 @@
     {
         "id": 26,
         "datasourceID": 23,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset26.json",
         "data": null,
@@ -210,6 +236,7 @@
     {
         "id": 27,
         "datasourceID": 24,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset27.json",
         "data": null,
@@ -218,6 +245,7 @@
     {
         "id": 28,
         "datasourceID": 25,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset28.json",
         "data": null,
@@ -226,6 +254,7 @@
     {
         "id": 29,
         "datasourceID": 26,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset29.json",
         "data": null,
@@ -234,6 +263,7 @@
     {
         "id": 30,
         "datasourceID": 27,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset30.json",
         "data": null,
@@ -242,6 +272,7 @@
     {
         "id": 31,
         "datasourceID": 28,
+        "sourceLocation": "file",
         "folderName": "",
         "filename": "data.dataset31.json",
         "data": null,

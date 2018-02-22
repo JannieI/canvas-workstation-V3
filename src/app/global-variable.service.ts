@@ -1509,6 +1509,15 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
+            this.getLocal('DashboardSnapshot')
+            .then(data => {
+                this.dashboardSnapshots = data;
+                this.isDirtyDashboardSnapshots = false;
+                this.statusBarRunning.next(this.NoQueryRunningMessage);
+                console.log('Global-Variables getDashboardSnapshots 1', data)
+                resolve(this.dashboardSnapshots);
+            });
+
             // TODO - fix this via real http
             let dataurl: string = this.filePath;
             this.get(dataurl)
@@ -1517,6 +1526,7 @@ export class GlobalVariableService {
                     let newdSet: Dataset = {
                         id: datasetID,
                         datasourceID: datasourceID,
+                        sourceLocation: 'file',
                         folderName: '',
                         filename: '',
                         data: dataFile,
