@@ -62,7 +62,7 @@ export class DashboardSnapshotsComponent implements OnInit {
     }
 
     clickSave(snapshotNameInput: string, snapshotCommentInput: string) {
-        //
+        // Save the snapshot
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         this.globalVariableService.saveLocal('DashboardSnapshot', { 
@@ -72,7 +72,12 @@ export class DashboardSnapshotsComponent implements OnInit {
             comment: snapshotCommentInput
             }).then(i => {
             console.log('saved', i)
-        })
+        });
+
+        this.globalVariableService.getCurrentDashboardSnapshots(
+            this.globalVariableService.currentDashboardID).then
+              (i => this.currentDashboardSnapshots = i);
+        
     }
 
     clickRefreshDashboard(index: number) {

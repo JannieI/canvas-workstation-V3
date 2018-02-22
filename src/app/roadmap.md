@@ -13,6 +13,10 @@ This document describes items for later versions of Canvas.
 5. Add a TABLE widget - similar look and feel as Simplus UI with filters, etc - maybe SlickDataGrid?
 6. Landing page: disable Menu & Statusbar?
 7. Setting min Grid width - wait for Clarity Bug fix
+8. 
+9. LocalDB - how to add a table without deleting the IndexDB manually ??
+
+
 
 **API**
 1. Have flexible field selection: ie ..."fields": [A, B, F]
