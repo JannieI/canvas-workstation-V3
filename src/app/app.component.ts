@@ -1726,6 +1726,11 @@ export class AppComponent implements OnInit {
 
 
 
+
+
+
+
+
     clickWidgetContainerDragStart(ev: MouseEvent, index: number) {
         // Register start of W drag event
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragStart', '@Start');
@@ -1781,7 +1786,7 @@ export class AppComponent implements OnInit {
         if (!this.editMode) {
             return;
         }
-        
+
         // TODO - fix index..
         this.currentWidgets[index].isSelected = !this.currentWidgets[index].isSelected;
         this.globalVariableService.currentWidgets.forEach(w => {
@@ -1891,6 +1896,40 @@ export class AppComponent implements OnInit {
             this.currentWidgets[index].containerWidth, this.currentWidgets[index].nrButtonsToShow,
             ev, 0 - this.startX + ev.x);
     }
+
+    isInEditMode(): boolean {
+        // Returns True if in EditMode, else pops up a message
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetUp', '@Start');
+        
+        if (this.editMode) {
+            return;
+        } else {
+            // Pop message
+            this.globalVariableService.statusBarMessage.next(
+                {
+                message: 'Not in Edit Mode',
+                uiArea: 'StatusBar',
+                classfication: 'Warning',
+                timeout: 3000,
+                defaultMessage: ''
+                }
+            )
+            return false;
+        };
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
