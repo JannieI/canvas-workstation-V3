@@ -1586,6 +1586,28 @@
         [style.width.px]="row.containerWidth-14"
         >
 
+
+
+        <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
+            class="selectedSlicer"
+            title="Related Widget has been selected">
+            <clr-icon shape="check" size="12"></clr-icon>
+        </span>
+        <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality"
+            class="badge badge-danger widgetBadge1"
+            title="Data Quality issues">
+            {{ row.nrDataQualityIssues }}
+        </span>
+        <span *ngIf="(row.nrComments)  &&  showComments"
+            class="badge badge-warning widgetBadge2"
+            title="Comments"
+            >
+            {{ row.nrComments }}
+        </span>
+
+
+
+
         <div class="widgetLabel" *ngIf="row.containerWidgetTitle"
             [style.background-color]="row.containerBackgroundcolor"
             [style.width.px]="row.containerWidth-14"
@@ -1595,7 +1617,9 @@
         
     </div>
 
-    <widget #widget
+
+    
+    <widget #widget class="widget"
         [widget]="widget"
         [showDataQuality]="showDataQuality"
         [showComments]="showComments"

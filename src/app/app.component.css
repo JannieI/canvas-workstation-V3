@@ -378,181 +378,104 @@
 
 
 
-
     
 
 
 
 /* New way - experiment with W container in app.component */
+/* Widgets */
 .widgetContainer {
-    background-color: transparent;
-    border: 1px solid lightgray;
-    bottom: 100px;
+    display: inline-block;
     display: grid;
-    grid-template-columns: 3px 7px 1fr 16px 1fr 7px 3px;
-    grid-template-rows: 3px 7px 3px 1fr 16px 1fr 7px 3px;
-    left: 830px;
     margin: 0;
-    min-width: 35px;
-    padding: 0;
+    /*                     1   2   3    4    5   6    7   8    9    10  11   12   */
+    grid-template-columns: 4px 9px 16px 16px 1fr 16px 1fr 16px 16px 9px 4px;
+    grid-template-rows:    4px 9px 16px 16px 1fr 16px 1fr 16px 16px 9px 4px;
     position: absolute;
-    z-index: 51;
+    padding: 0;
 }
-    .widgetContainerDragHandle {
-        grid-column-start: 2;
-        grid-column-end: 7;
-        grid-row-start: 2;
-        grid-row-end: 8;
-        margin: 3px !important;
-        margin: 0;
-        min-width: 35px;
-        padding: 0;
-        z-index: 49;
+    .widgetContainer:hover {
+        border: 1px dotted gray !important;
+        box-shadow: 8px 8px gray;
     }
+
+    .widgetContainer:focus {
+        border: 1px dotted gray;
+    }
+
+    .selectedSlicer {
+        color: rgb(190, 19, 19);
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        height: 0.1rem;
+        left: 5px;
+        width: 0.1rem;
+    }
+
+    .widgetBadge1 {
+        grid-column-start: 8;
+        grid-column-end: 9;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        margin-right: 10px;
+        width: 0.6rem;
+    }
+
+    .widgetBadge2 {
+        grid-column-start: 9;
+        grid-column-end: 10;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        margin-right: 5px;
+        width: 0.6rem;
+    }
+
+    .widgetBadge3 {
+        grid-column-start: 10;
+        grid-column-end: 11;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        float: right;
+        width: 0.6rem;
+    }
+
     .widget {
-        border: '1px solid red';
-        margin: 2px 0 0 0;
-        padding: 0;
+        /* border: 1px dotted gray; */
+        display: inline-block;
+        grid-column-start: 3;
+        grid-column-end: 10;
+        grid-row-start: 3;
+        grid-row-end: 10;
     }
-    .widget:hover {
-        background-color: lightgray;
-    }
-        .widgetLabel {
-            color: black;
-            text-align: center;
-        }
-        .widgetBlock {
-            border: 1px solid black !important;
-            border-radius: 5px !important;
-            min-width: 35px;
-        }
-        /* .select { */
-            /* height: 2rem !important; */
-            /* overflow: scroll; */
-        /* } */
-        .widgetOption {
-            border-bottom: 1px solid gray !important;
-        }
 
+    .widgetSelectedDrag {
+        background-color: transparent;
+        border: none !important;
+        top: 0;
+        position: absolute;
+        right: 0;
+    }
 
-    .widgetContainerTopLeftHandle {
-        cursor: nwse-resize;
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
+    .widgetSelectedDrag:hover {
+        background-color: darkgray;
+        border-right: 2px solid black !important;
+        border-top: 2px solid black !important;
+        color: white;
     }
-    .widgetContainerTopHandle {
-        cursor: n-resize;
-        grid-column-start: 4;
-        grid-column-end: 5;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
+
+    .widgetSelectedResize {
+        background-color: transparent;
+        border: none !important;
+        bottom: 0;
+        right: 0;
+        position: absolute;
     }
-    .widgetContainerTopRightHandle {
-        cursor: nesw-resize;
-        grid-column-start: 6;
-        grid-column-end: 8;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
-    }
-    .widgetContainerRightTopHandle {
-        cursor: nesw-resize;
-        grid-column-start: 7;
-        grid-column-end: 8;
-        grid-row-start: 1;
-        grid-row-end: 3;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
-    }
-    .widgetContainerRightHandle {
-        background-color: #929699;
-        cursor: ew-resize;
-        grid-column-start: 7;
-        grid-column-end: 8;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
-    }
-    .widgetContainerRightBottomHandle {
-        cursor: nwse-resize;
-        grid-column-start: 7;
-        grid-column-end: 8;
-        grid-row-start: 7;
-        grid-row-end: 9;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
-    }
-    .widgetContainerBottomRightHandle {
-        cursor: nwse-resize;
-        grid-column-start: 6;
-        grid-column-end: 8;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
-    }
-    .widgetContainerBottomHandle {
-        cursor: s-resize;
-        grid-column-start: 4;
-        grid-column-end: 5;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
-    }
-    .widgetContainerBottomLeftHandle {
-        cursor: nesw-resize;
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
-    }
-    .widgetContainerLeftBottomHandle {
-        cursor: nesw-resize;
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 7;
-        grid-row-end: 9;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
-    }
-    .widgetContainerLeftHandle {
-        cursor: w-resize;
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
-    }
-    .widgetContainerLeftTopHandle {
-        cursor: nwse-resize;
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 1;
-        grid-row-end: 3;
-        margin: 0;
-        padding: 0;
-        background-color: #929699;
+
+    .widgetSelectedResize:hover {
+        background-color: darkgray;
+        border-bottom: 2px solid black !important;
+        border-right: 2px solid black !important;
+        color: white;
     }
