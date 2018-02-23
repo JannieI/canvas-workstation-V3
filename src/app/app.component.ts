@@ -1928,11 +1928,10 @@ export class AppComponent implements OnInit {
 
         // Get list of selected Sl
         let result: boolean = false;
-        this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.isSelected  ||  w.widgetType == 'Slicer') {
-                if (w.datasourceID == datasourceID  &&  w.datasetID == datasetID) {
+        this.globalVariableService.currentWidgets.forEach(sl => {
+            if (sl.isSelected   &&   sl.widgetType == 'Slicer'  && 
+                sl.datasourceID == datasourceID   &&   sl.datasetID == datasetID) {
                     result = true;
-                };
             };
         });
 

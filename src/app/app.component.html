@@ -1618,14 +1618,15 @@
     </div>
 
 
-    
-    <widget-single *ngFor="let row of currentWidgets; let i = index" class="widget"
-        #widget
-        [widget]="row"
-        [showDataQuality]="showDataQuality"
-        [showComments]="showComments"
-        >
-    </widget-single>
+    <div class="widget" *ngIf="row.widgetType=='Graph'">
+        <widget-single
+            #widget
+            [widget]="row"
+            [showDataQuality]="showDataQuality"
+            [showComments]="showComments"
+            >
+        </widget-single>
+    </div>
 
     <div class="widgetContainerTopLeftHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"

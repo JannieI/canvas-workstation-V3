@@ -48,7 +48,7 @@ export class WidgetSingleComponent {
     @Input() showDataQuality: boolean;
     @Input() showComments: boolean;
 
-    @ViewChild('widgetDOM')  widgetDOM: ElementRef;
+    @ViewChild('graphDOM')  graphDOM: ElementRef;
 
     editMode: boolean;
     endWidgetNumber: number;
@@ -214,7 +214,7 @@ export class WidgetSingleComponent {
             let specification = compile(definition).spec;
             let view = new View(parse(specification));
             view.renderer('svg')
-                .initialize( this.widgetDOM.nativeElement)
+                .initialize( this.graphDOM.nativeElement)
                 .hover()
                 .run()
                 .finalize();
