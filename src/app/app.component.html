@@ -1619,12 +1619,13 @@
 
 
     
-    <widget #widget class="widget"
-        [widget]="widget"
+    <widget-single *ngFor="let row of currentWidgets; let i = index" class="widget"
+        #widget
+        [widget]="row"
         [showDataQuality]="showDataQuality"
         [showComments]="showComments"
         >
-    </widget>
+    </widget-single>
 
     <div class="widgetContainerTopLeftHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"

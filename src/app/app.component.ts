@@ -1921,6 +1921,23 @@ export class AppComponent implements OnInit {
         }
     }
 
+    showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {
+        // Returns True if a Widget is related to the selected Sl(s)
+        // TODO - put back, but this fires ALL the time ...
+        // this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
+
+        // Get list of selected Sl
+        let result: boolean = false;
+        this.globalVariableService.currentWidgets.forEach(w => {
+            if (w.isSelected  ||  w.widgetType == 'Slicer') {
+                if (w.datasourceID == datasourceID  &&  w.datasetID == datasetID) {
+                    result = true;
+                };
+            };
+        });
+
+        return result;
+    }
 
 
 

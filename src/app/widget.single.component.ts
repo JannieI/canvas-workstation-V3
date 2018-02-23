@@ -39,7 +39,7 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
 
 @Component({
-    selector: 'widget',
+    selector: 'widget-single',
     templateUrl: './widget.single.component.html',
     styleUrls: ['./widget.single.component.css']
 })
@@ -132,6 +132,7 @@ export class WidgetSingleComponent {
         // Refreshes this W
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidget', '@Start');
 
+        console.log('xx refreshWidget', this.widget)
         if (this.widget.visualGrammar == 'Vega-Lite') {
 
             console.log('this.widgets[i].graphSpecification', this.widget.graphSpecification)
