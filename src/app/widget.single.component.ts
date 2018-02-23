@@ -440,4 +440,18 @@ export class WidgetSingleComponent {
             };
         });
     }
+
+    clickSingleWidget(index: number, id: number) {
+        // Click W object
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSingleWidget', '@Start');
+
+        // // TODO - fix index..
+        // this.currentWidgets[index].isSelected = !this.currentWidgets[index].isSelected;
+        // this.globalVariableService.currentWidgets.forEach(w => {
+        //     if (w.id == id) {
+        //         w.isSelected = this.currentWidgets[index].isSelected;
+        //     };
+        // });
+
+    }
 }
