@@ -293,27 +293,27 @@ export class AppComponent implements OnInit {
                                 // when it changes in DATA form
                                 this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
+// KEEP ! This code worked - BUT showed stuff separately ... now using currentWidgets only
+                                // // Get Sl
+                                // this.currentSlicers = this.globalVariableService.currentSlicers;
 
-                                // Get Sl
-                                this.currentSlicers = this.globalVariableService.currentSlicers;
+                                // // Get Tables
+                                // this.currentTables = this.globalVariableService.currentTables;
 
-                                // Get Tables
-                                this.currentTables = this.globalVariableService.currentTables;
-
-                                // Duplicate data elements; this is easier for *ngFor 
-                                // TODO - this must be done in DB
-                                this.currentTables.forEach(t => {
-                                    t.data = this.globalVariableService.currentDatasets.
-                                        filter(cd => cd.id = t.id)[0].dataRaw;
-                                    t.dataFields = this.globalVariableService.currentDatasources.
-                                        filter(cd => cd.id = t.id)[0].dataFields;        
-                                    t.dataFieldTypes = this.globalVariableService.currentDatasources.
-                                        filter(cd => cd.id = t.id)[0].dataFieldTypes;        
-                                    t.dataFieldLengths = this.globalVariableService.currentDatasources.
-                                        filter(cd => cd.id = t.id)[0].dataFieldLengths;        
+                                // // Duplicate data elements; this is easier for *ngFor 
+                                // // TODO - this must be done in DB
+                                // this.currentTables.forEach(t => {
+                                //     t.data = this.globalVariableService.currentDatasets.
+                                //         filter(cd => cd.id = t.id)[0].dataRaw;
+                                //     t.dataFields = this.globalVariableService.currentDatasources.
+                                //         filter(cd => cd.id = t.id)[0].dataFields;        
+                                //     t.dataFieldTypes = this.globalVariableService.currentDatasources.
+                                //         filter(cd => cd.id = t.id)[0].dataFieldTypes;        
+                                //     t.dataFieldLengths = this.globalVariableService.currentDatasources.
+                                //         filter(cd => cd.id = t.id)[0].dataFieldLengths;        
                                         
-                                    console.log('xx Tab', this.currentTables)
-                                })
+                                //     console.log('xx Tab', this.currentTables)
+                                // })
                             }
                         )
                 }
@@ -1709,6 +1709,193 @@ export class AppComponent implements OnInit {
         };
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    clickWidgetContainerDragStart(ev: MouseEvent, index: number) {
+        // Register start of W drag event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragStart', '@Start');
+
+        if (!this.editMode) {
+            return;
+        }
+
+        // Is busy with resizing, ignore this
+        if (this.isBusyResizing) {
+            return;
+        };
+
+        this.startX = ev.x;
+        this.startY = ev.y;
+    }
+
+    clickWidgetContainerDragEnd(ev: MouseEvent, index: number) {
+        // Move the W containter at the end of the drag event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragEnd', '@Start');
+
+        if (!this.editMode) {
+            return;
+        }
+
+        // Is busy with resizing, ignore this
+        if (this.isBusyResizing) {
+
+            // Done with resizing
+            this.isBusyResizing = false;
+            return;
+        };
+
+        console.log('clickSlicerContainerDragEnd starts index', index, this.startX, ev.x)
+
+        // Reset current and globalVar values
+        this.currentWidgets[index].containerLeft =
+            this.currentWidgets[index].containerLeft - this.startX + ev.x;
+        this.globalVariableService.currentWidgets[index].containerLeft =
+            this.currentWidgets[index].containerLeft;
+
+        this.currentWidgets[index].containerTop =
+            this.currentWidgets[index].containerTop - this.startY + ev.y;
+        this.globalVariableService.currentWidgets[index].containerTop =
+            this.currentWidgets[index].containerTop;
+
+    }
+
+    clickWidget(index: number, id: number) {
+        // Click W object
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
+
+        if (!this.editMode) {
+            return;
+        }
+        
+        // TODO - fix index..
+        this.currentWidgets[index].isSelected = !this.currentWidgets[index].isSelected;
+        this.globalVariableService.currentWidgets.forEach(w => {
+            if (w.id == id) {
+                w.isSelected = this.currentWidgets[index].isSelected;
+            };
+        });
+
+    }
+
+    clickResizeWidgetDown(ev: MouseEvent, index: number) {
+        // Register mouse down event when resize starts
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetDown', '@Start');
+
+        // Indicate that we are resizing - thus block the dragging action
+        this.isBusyResizing = true;
+        this.startX = ev.x;
+        this.startY = ev.y;
+
+    }
+
+    clickResizeWidgetUp(ev: MouseEvent,
+        index: number,
+        resizeTop: boolean,
+        resizeRight: boolean,
+        resizeBottom: boolean,
+        resizeLeft: boolean) {
+        // Mouse up click during resize event.  Change x and y coordinates according to the
+        // movement since the resize down event
+        //   ev - mouse event
+        //   index - index of the W to resize
+        //   resizeTop, -Right, -Bottom, -Left - True to move the ... boundary.
+        //     Note: 1. both the current and globalVar vars are changed
+        //           2. Top and Left involves changing two aspects, ie Left and Width
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetUp', '@Start');
+
+        console.log('clickResizeUp starts index', index)
+
+        this.currentWidgets[index].nrButtonsToShow =
+            (this.currentWidgets[index].containerWidth - 50) / 22;
+
+
+        // Top moved: adjust the height & top
+        if (resizeTop) {
+            this.currentWidgets[index].containerTop =
+                this.currentWidgets[index].containerTop - this.startY + ev.y;
+            this.globalVariableService.currentWidgets[index].containerTop =
+                this.currentWidgets[index].containerTop;
+
+            this.currentWidgets[index].containerHeight =
+                this.currentWidgets[index].containerHeight - ev.y + this.startY;
+            this.globalVariableService.currentWidgets[index].containerHeight =
+                this.currentWidgets[index].containerHeight;
+
+            this.currentWidgets[index].graphHeight =
+                this.currentWidgets[index].graphHeight - ev.y + this.startY;
+            this.globalVariableService.currentWidgets[index].graphHeight =
+                this.currentWidgets[index].graphHeight;
+        };
+
+        // Right moved: adjust the width
+        if (resizeRight) {
+            this.currentWidgets[index].containerWidth =
+                this.currentWidgets[index].containerWidth - this.startX + ev.x;
+            this.globalVariableService.currentWidgets[index].containerWidth =
+                this.currentWidgets[index].containerWidth;
+
+            this.currentWidgets[index].graphWidth =
+                this.currentWidgets[index].graphWidth - this.startX + ev.x;
+            this.globalVariableService.currentWidgets[index].graphWidth =
+                this.currentWidgets[index].graphWidth;
+        };
+
+        // Bottom moved: adjust the height
+        if (resizeBottom) {
+            this.currentWidgets[index].containerHeight =
+                this.currentWidgets[index].containerHeight - this.startY + ev.y;
+            this.globalVariableService.currentWidgets[index].containerHeight =
+                this.currentWidgets[index].containerHeight;
+
+            this.currentWidgets[index].graphHeight =
+                this.currentWidgets[index].graphHeight - this.startY + ev.y;
+            this.globalVariableService.currentWidgets[index].graphHeight =
+                this.currentWidgets[index].graphHeight;
+        };
+
+        // Left moved: adjust the width & left
+        if (resizeLeft) {
+            this.currentWidgets[index].containerLeft =
+                this.currentWidgets[index].containerLeft - this.startX + ev.x;
+            this.globalVariableService.currentWidgets[index].containerLeft =
+                this.currentWidgets[index].containerLeft;
+
+            this.currentWidgets[index].containerWidth =
+                this.currentWidgets[index].containerWidth - ev.x + this.startX;
+            this.globalVariableService.currentWidgets[index].containerWidth =
+                this.currentWidgets[index].containerWidth;
+
+            this.currentWidgets[index].graphWidth =
+                this.currentWidgets[index].graphWidth - ev.x + this.startX;
+            this.globalVariableService.currentWidgets[index].graphWidth =
+                this.currentWidgets[index].graphWidth;
+        };
+
+
+        console.log('clickResizeUp width buttons ev x-move',
+            this.currentWidgets[index].containerWidth, this.currentWidgets[index].nrButtonsToShow,
+            ev, 0 - this.startX + ev.x);
+    }
+
+
+
+
+
 }
 
 // Naming conventions
