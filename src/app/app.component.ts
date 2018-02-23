@@ -1784,6 +1784,12 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
 
         if (!this.editMode) {
+            this.showStatusBarMessage(
+                'Not in Edit Mode',
+                'StatusBar',
+                'Warning',
+                3000,
+                '');
             return;
         }
 
@@ -1897,25 +1903,21 @@ export class AppComponent implements OnInit {
             ev, 0 - this.startX + ev.x);
     }
 
-    isInEditMode(): boolean {
-        // Returns True if in EditMode, else pops up a message
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetUp', '@Start');
+    showStatusBarMessage(
+        message: string, 
+        uiArea: string,
+        classfication: string,
+        timeout: number,
+        defaultMessage: string,): void {
+        // Shows a message in the right area, ie StatusBar
+        this.globalFunctionService.printToConsole(this.constructor.name,'isInEditMode', '@Start');
         
-        if (this.editMode) {
-            return;
-        } else {
-            // Pop message
+        // Pop message in right area
+        if (classfication == 'StatusBar') {
             this.globalVariableService.statusBarMessage.next(
-                {
-                message: 'Not in Edit Mode',
-                uiArea: 'StatusBar',
-                classfication: 'Warning',
-                timeout: 3000,
-                defaultMessage: ''
-                }
-            )
-            return false;
-        };
+                {message, uiArea, classfication, timeout, defaultMessage}
+            );
+        }
     }
 
 
