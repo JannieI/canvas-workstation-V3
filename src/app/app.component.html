@@ -1628,6 +1628,18 @@
         </widget-single>
     </div>
 
+    <div class="widget" *ngIf="row.widgetType=='Slicer'">
+        <slicer-single
+            #widget
+            [widget]="row"
+            [showDataQuality]="showDataQuality"
+            [showComments]="showComments"
+            >
+        </slicer-single>
+    </div>
+
+
+
     <div class="widgetContainerTopLeftHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
