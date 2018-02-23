@@ -51,6 +51,7 @@ import { WidgetExpandComponent }      from './widget.expand.component';
 import { WidgetExportComponent }      from './widget.export.component';
 import { WidgetDeleteComponent }      from './widget.delete.component';
 import { WidgetCommentsComponent }    from './widget.comments.component';
+import { WidgetSingleComponent }      from './widget.single.component';
 
 import { SlicerTablistComponent }     from './slicer.tablist.component';
 
@@ -137,6 +138,7 @@ import { StatusbarComponent }         from './statusbar.component';
         WidgetExportComponent,
         WidgetDeleteComponent,
         WidgetCommentsComponent,
+        WidgetSingleComponent,
 
         SlicerTablistComponent,
 

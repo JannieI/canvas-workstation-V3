@@ -1,0 +1,218 @@
+/* Widgets */
+.widgetContainer {
+    display: inline-block;
+    display: grid;
+    margin: 0;
+    /*                     1   2   3    4    5   6    7   8    9    10  11   12   */
+    grid-template-columns: 4px 9px 16px 16px 1fr 16px 1fr 16px 16px 9px 4px;
+    grid-template-rows:    4px 9px 16px 16px 1fr 16px 1fr 16px 16px 9px 4px;
+    position: absolute;
+    padding: 0;
+}
+    .widgetContainer:hover {
+        border: 1px dotted gray !important;
+        box-shadow: 8px 8px gray;
+    }
+
+    .widgetContainer:focus {
+        border: 1px dotted gray;
+    }
+
+    .selectedSlicer {
+        color: rgb(190, 19, 19);
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        height: 0.1rem;
+        left: 5px;
+        width: 0.1rem;
+    }
+
+    .widgetBadge1 {
+        grid-column-start: 8;
+        grid-column-end: 9;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        margin-right: 10px;
+        width: 0.6rem;
+    }
+
+    .widgetBadge2 {
+        grid-column-start: 9;
+        grid-column-end: 10;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        margin-right: 5px;
+        width: 0.6rem;
+    }
+
+    .widgetBadge3 {
+        grid-column-start: 10;
+        grid-column-end: 11;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        float: right;
+        width: 0.6rem;
+    }
+
+    .widget {
+        /* border: 1px dotted gray; */
+        display: inline-block;
+        grid-column-start: 3;
+        grid-column-end: 10;
+        grid-row-start: 3;
+        grid-row-end: 10;
+    }
+
+    .widgetSelectedDrag {
+        background-color: transparent;
+        border: none !important;
+        top: 0;
+        position: absolute;
+        right: 0;
+    }
+
+    .widgetSelectedDrag:hover {
+        background-color: darkgray;
+        border-right: 2px solid black !important;
+        border-top: 2px solid black !important;
+        color: white;
+    }
+
+    .widgetSelectedResize {
+        background-color: transparent;
+        border: none !important;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+    }
+
+    .widgetSelectedResize:hover {
+        background-color: darkgray;
+        border-bottom: 2px solid black !important;
+        border-right: 2px solid black !important;
+        color: white;
+    }
+
+.slicerContainerTopLeftHandle {
+    cursor: nwse-resize;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerTopHandle {
+    cursor: n-resize;
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerTopRightHandle {
+    cursor: nesw-resize;
+    grid-column-start: 10;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerRightTopHandle {
+    cursor: nesw-resize;
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerRightHandle {
+    background-color: #929699;
+    cursor: e-resize;
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 6;
+    grid-row-end: 7;
+    margin: 0;
+    padding: 0;
+}
+.slicerContainerRightBottomHandle {
+    cursor: nwse-resize;
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 10;
+    grid-row-end: 12;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerBottomRightHandle {
+    cursor: nwse-resize;
+    grid-column-start: 10;
+    grid-column-end: 12;
+    grid-row-start: 11;
+    grid-row-end: 12;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerBottomHandle {
+    cursor: s-resize;
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 11;
+    grid-row-end: 12;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerBottomLeftHandle {
+    cursor: nesw-resize;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 11;
+    grid-row-end: 12;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerLeftBottomHandle {
+    cursor: nesw-resize;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 10;
+    grid-row-end: 12;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerLeftHandle {
+    cursor: w-resize;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 6;
+    grid-row-end: 7;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+.slicerContainerLeftTopHandle {
+    cursor: nwse-resize;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    margin: 0;
+    padding: 0;
+    background-color: #929699;
+}
+

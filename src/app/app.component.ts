@@ -1789,7 +1789,8 @@ export class AppComponent implements OnInit {
                 'StatusBar',
                 'Warning',
                 3000,
-                '');
+                ''
+            );
             return;
         }
 
@@ -1910,10 +1911,10 @@ export class AppComponent implements OnInit {
         timeout: number,
         defaultMessage: string,): void {
         // Shows a message in the right area, ie StatusBar
-        this.globalFunctionService.printToConsole(this.constructor.name,'isInEditMode', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'showStatusBarMessage', '@Start');
         
         // Pop message in right area
-        if (classfication == 'StatusBar') {
+        if (uiArea == 'StatusBar') {
             this.globalVariableService.statusBarMessage.next(
                 {message, uiArea, classfication, timeout, defaultMessage}
             );

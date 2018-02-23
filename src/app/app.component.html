@@ -1594,6 +1594,14 @@
         </div>
         
     </div>
+
+    <widget #widget
+        [widget]="widget"
+        [showDataQuality]="showDataQuality"
+        [showComments]="showComments"
+        >
+    </widget>
+
     <div class="widgetContainerTopLeftHandle"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
