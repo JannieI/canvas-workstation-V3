@@ -414,7 +414,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 ws.push(this.globalVariableService.widgets[i].id)
             };
             if (ws.length > 0) {
-                newID = Math.max(...ws);
+                newID = Math.max(...ws) + 1;
             };
             this.localWidget.id = newID;
             this.globalVariableService.widgets.push(this.localWidget);
@@ -780,7 +780,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             }
         };
         if (ds.length > 0) {
-            dSetID = Math.max(...ds);
+            dSetID = Math.max(...ds) + 1;
         } else {
             // Make proper error handling
             alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
