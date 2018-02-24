@@ -2438,11 +2438,11 @@ export class GlobalVariableService {
                 )
 
                 // Add Sl, Sh, Tbl
-                this.currentSlicers = data.filter(w => w.widgetType == 'Slicer');
-                this.currentShapes = data.filter(w => w.widgetType == 'Shape');
-                this.currentTables = data.filter(w => w.widgetType == 'Table');
-                this.currentWidgets = data.filter(w => w.widgetType == 'Graph');
-
+                // this.currentSlicers = data.filter(w => w.widgetType == 'Slicer');
+                // this.currentShapes = data.filter(w => w.widgetType == 'Shape');
+                // this.currentTables = data.filter(w => w.widgetType == 'Table');
+                // this.currentWidgets = data.filter(w => w.widgetType == 'Graph');
+                this.currentWidgets = data;
                 console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, data)
                 resolve(data);
 
