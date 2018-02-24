@@ -204,11 +204,13 @@ export class AppComponent implements OnInit {
     showModalUserShapeButtonBar: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
+    showTitleForm: boolean = false;
     startX: number;
     startY: number;
     statusBarCancelRefresh: boolean = false;
     statusBarRunning: boolean = false;
-
+    titleFormLeft: number = 50;
+    titleFormTop: number = 50;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -1894,7 +1896,9 @@ export class AppComponent implements OnInit {
 
         console.log('xx', ev)
         ev.preventDefault();
-        this.currentWidgets[index].containerHasTitle = !this.currentWidgets[index].containerHasTitle;        
+        this.showTitleForm = true;
+        this.titleFormLeft = this.currentWidgets[index].containerLeft;
+        this.titleFormTop = this.currentWidgets[index].containerTop;
 
     }
 

@@ -602,3 +602,30 @@
         padding: 0;
         background-color: #929699;
     }
+
+.titleForm {
+    background-color: rgb(226, 222, 222);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    position: absolute;
+    top: 80px;
+    width: 400px;
+    z-index: 100;
+    }
+    .titleFormHeader {
+        font-size: 0.8rem;
+        margin: 5px 5px 5px 15px;
+        text-align: center;        
+    }
+    .titleFormLine {
+        margin: 3px 5px 3px 15px;
+    }
+    .titleFormButtonLeft {
+        float: left;
+        margin: 15px 40px 15px 40px;
+    }
+    .titleFormButtonRight {
+        float: right;
+        margin: 15px 40px 15px 40px;
+    }

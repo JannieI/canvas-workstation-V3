@@ -1730,6 +1730,97 @@
 
 
 
+<div class="titleForm" *ngIf="showTitleForm"
+    [style.left.px]="titleFormLeft"
+    >
+    <div class="titleFormHeader">
+        <b>Title properties</b>
+    </div>
+    <div class="titleFormLine">
+        Text:
+        <input type="text" id="formFields_7" placeholder="Title Text">
+    </div>
+    <div class="titleFormLine">
+        BackgroundColor:
+        <input type="text" id="formFields_7" placeholder="CSS or rgb() color">
+    </div>
+    <div class="titleFormLine">
+        Border:
+        <input type="text" id="formFields_7" placeholder="ie 1px solid black">
+    </div>
+    <hr>
+    <div class="titleFormLine">
+        Color:
+        <input type="text" id="formFields_7" placeholder="CSS or rgb() color">
+    </div>
+    <div class="titleFormLine">
+        Fontsize:
+        <input type="text" id="formFields_7" placeholder="(for later use)">
+    </div>
+    <div class="titleFormLine">
+        FontWeight:
+        <input type="text" id="formFields_7" placeholder="(for later use)">
+    </div>
+    <div class="titleFormLine">
+        Height:
+        <input type="text" id="formFields_7" placeholder="(for later use)">
+    </div>
+    <div class="titleFormLine">
+        Left:
+        <input type="text" id="formFields_7" placeholder="Space at left in px">
+    </div>
+    <div class="titleFormLine">
+        Margin:
+        <input type="text" id="formFields_7" placeholder="ie 0 0 0 5px">
+    </div>
+    <div class="titleFormLine">
+        Padding:
+        <input type="text" id="formFields_7" placeholder="ie 0 0 0 5px">
+    </div>
+    <div class="titleFormLine">
+        Position:
+        <input type="text" id="formFields_7" placeholder="relative or absolute">
+    </div>
+    <div class="titleFormLine">
+        TextAlign:
+        <input type="text" id="formFields_7" placeholder="left, center or right">
+    </div>
+    <div class="titleFormLine">
+        Top:
+        <input type="text" id="formFields_7" placeholder="ie 0 0 0 5px">
+    </div>
+    <div class="titleFormLine">
+        Width:
+        <input type="text" id="formFields_7" placeholder="Width as % (0-100)">
+    </div>
+
+    <button
+        type="button"
+        class="btn btn-secondary titleFormButtonLeft"
+        (click)="showTitleForm=false"
+        >
+        Cancel
+    </button>
+    <button
+        type="button"
+        class="btn btn-primary titleFormButtonRight"
+        (click)="showTitleForm=false"
+        >
+        Save
+    </button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
 <!-- Testing Arrows -->
 <div *ngIf="showTestArrows">
     <div class="arrow"></div>
