@@ -404,7 +404,6 @@
     }
 
     .widgetTitle {
-        background-color: rgb(224, 220, 220) !important;
         display: inline-block;
         grid-column-start: 1;
         grid-column-end: 12;
