@@ -1564,26 +1564,22 @@ export class AppComponent implements OnInit {
         };
 
         if (this.selectedWidgetIDs.length == 0) {
-            this.globalVariableService.statusBarMessage.next(
-                {
-                   message: 'No ' + widgetType + ' selected',
-                   uiArea: 'StatusBar',
-                   classfication: 'Warning',
-                   timeout: 3000,
-                   defaultMessage: ''
-                }
+            this.showStatusBarMessage(
+                   'No ' + widgetType + ' selected',
+                   'StatusBar',
+                   'Warning',
+                   3000,
+                   ''
             );
             return false;
         };
         if (this.selectedWidgetIDs.length > 1) {
-            this.globalVariableService.statusBarMessage.next(
-                {
-                   message: 'More than 1 ' + widgetType + ' selected',
-                   uiArea: 'StatusBar',
-                   classfication: 'Warning',
-                   timeout: 3000,
-                   defaultMessage: ''
-                }
+            this.showStatusBarMessage(
+                'More than 1 ' + widgetType + ' selected',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
             );
             return false;
         };
@@ -1597,14 +1593,12 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForMultipleWidgets', '@Start');
 
         if (this.globalVariableService.selectedWidgetIDs.length < 2) {
-            this.globalVariableService.statusBarMessage.next(
-                {
-                   message: 'Select multiple Widgets',
-                   uiArea: 'StatusBar',
-                   classfication: 'Warning',
-                   timeout: 3000,
-                   defaultMessage: ''
-                }
+            this.showStatusBarMessage(
+                'Select multiple Widgets',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
             );
             return false;
         };
@@ -1890,7 +1884,13 @@ export class AppComponent implements OnInit {
         // Pop message in right area
         if (uiArea == 'StatusBar') {
             this.globalVariableService.statusBarMessage.next(
-                {message, uiArea, classfication, timeout, defaultMessage}
+                {
+                    message, 
+                    uiArea, 
+                    classfication, 
+                    timeout, 
+                    defaultMessage
+                }
             );
         }
     }
