@@ -986,19 +986,18 @@ export class AppComponent implements OnInit {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
+        // Has to be in editMode
         if (!this.editMode) {
-            this.globalVariableService.statusBarMessage.next(
-             {
-                message: 'Not in Edit Mode (see Edit menu Option)',
-                uiArea: 'StatusBar',
-                classfication: 'Warning',
-                timeout: 3000,
-                defaultMessage: ''
-             }
-            )
+            this.showStatusBarMessage(
+                'Not in Edit Mode (see Edit menu Option)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
             return;
         };
-        
+
         // Indicate new W and open Editor
         this.newWidget = true;
         this.showDatasourcePopup = true;
@@ -1141,17 +1140,15 @@ export class AppComponent implements OnInit {
         // Select all the objects on the D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAll', '@Start');
 
-        // Can only be done in Edit Mode
+        // Has to be in editMode
         if (!this.editMode) {
-            this.globalVariableService.statusBarMessage.next(
-             {
-                message: 'Not in Edit Mode (see Edit menu Option)',
-                uiArea: 'StatusBar',
-                classfication: 'Warning',
-                timeout: 3000,
-                defaultMessage: ''
-             }
-            )
+            this.showStatusBarMessage(
+                'Not in Edit Mode (see Edit menu Option)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
             return;
         };
 
@@ -1760,7 +1757,7 @@ export class AppComponent implements OnInit {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
 
-        console.log('xx', ev)
+        // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
                 'Not in Edit Mode (see Edit menu Option)',
@@ -1770,7 +1767,7 @@ export class AppComponent implements OnInit {
                 ''
             );
             return;
-        }
+        };
 
         // TODO - fix index..
         this.currentWidgets[index].isSelected = !this.currentWidgets[index].isSelected;
