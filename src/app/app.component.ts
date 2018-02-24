@@ -320,6 +320,8 @@ export class AppComponent implements OnInit {
     }
 
     
+// ***********************  HANDLE RETURN AFTER MODAL FORM CLOSES ************************ //
+    
     handleCloseModalLanding(action: string) {
         // Close Modal form Landing page
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
@@ -712,6 +714,62 @@ export class AppComponent implements OnInit {
         this.showModalUserOffline = false;
     }
 
+
+
+
+
+// ***********************  CLICK EDIT MENU OPTIONS ************************ //
+    
+    clickMenuEditUndo() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditUndo', '@Start');
+
+        this.showTestArrows = false;
+    }
+
+    clickMenuEditRedo() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditRedo', '@Start');
+
+        this.showTestArrows = true;
+    }
+
+    clickMenuEditSelectAll() {
+        // Select all the objects on the D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAll', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showStatusBarMessage(
+                'Not in Edit Mode (see Edit menu Option)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        this.currentWidgets.forEach(w => w.isSelected = true);
+        this.currentSlicers.forEach(sl => sl.isSelected = true);
+        this.currentShapes.forEach(sh => sh.isSelected = true);
+    }
+
+    clickMenuEditSelectNone() {
+        // Deselect all objects on the D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectNone', '@Start');
+
+        this.currentWidgets.forEach(w => w.isSelected = false);
+        this.currentSlicers.forEach(sl => sl.isSelected = false);
+        this.currentShapes.forEach(sh => sh.isSelected = false);
+    }
+
+
+
+
+
+// ***********************  CLICK DASHBOARD MENU OPTIONS ************************ //
+    
     clickDashboardNew() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardNew', '@Start');
@@ -868,6 +926,11 @@ export class AppComponent implements OnInit {
         this.showModalDashboardSubscribe = true;
     }
 
+
+
+
+// ***********************  CLICK DATA MENU OPTIONS ************************ //
+    
     clickMenuDataFromFile(id: number) {
         // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
@@ -896,6 +959,12 @@ export class AppComponent implements OnInit {
         this.showModalDataCombination = true;
     }
 
+
+
+
+
+// ***********************  CLICK SLICER MENU OPTIONS ************************ //
+    
     clickMenuDataSlicerAdd() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerAdd', '@Start');
@@ -957,6 +1026,12 @@ export class AppComponent implements OnInit {
         this.showModalDataShare = true;
     }
 
+
+
+
+
+// ***********************  CLICK WIDGET MENU OPTIONS ************************ //
+    
     clickMenuWidgetNew() {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
@@ -1097,50 +1172,12 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDelete = true;
     }
 
-    clickMenuEditUndo() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditUndo', '@Start');
 
-        this.showTestArrows = false;
-    }
 
-    clickMenuEditRedo() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditRedo', '@Start');
 
-        this.showTestArrows = true;
-    }
 
-    clickMenuEditSelectAll() {
-        // Select all the objects on the D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAll', '@Start');
-
-        // Has to be in editMode
-        if (!this.editMode) {
-            this.showStatusBarMessage(
-                'Not in Edit Mode (see Edit menu Option)',
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
-        this.currentWidgets.forEach(w => w.isSelected = true);
-        this.currentSlicers.forEach(sl => sl.isSelected = true);
-        this.currentShapes.forEach(sh => sh.isSelected = true);
-    }
-
-    clickMenuEditSelectNone() {
-        // Deselect all objects on the D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectNone', '@Start');
-
-        this.currentWidgets.forEach(w => w.isSelected = false);
-        this.currentSlicers.forEach(sl => sl.isSelected = false);
-        this.currentShapes.forEach(sh => sh.isSelected = false);
-    }
-
+// ***********************  CLICK SHAPE MENU OPTIONS ************************ //
+    
     clickMenuShapeNew() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeNew', '@Start');
@@ -1169,6 +1206,12 @@ export class AppComponent implements OnInit {
         this.showModalShapeDelete = true;
     }
 
+
+
+
+
+// ***********************  CLICK VIEW MENU OPTIONS ************************ //
+    
     clickMenuViewPresentation() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPresentation', '@Start');
@@ -1214,6 +1257,12 @@ export class AppComponent implements OnInit {
 
     }
 
+
+
+
+
+// ***********************  CLICK ARRANGE MENU OPTIONS ************************ //
+    
     clickMenuArrangeBackward() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBackward', '@Start');
@@ -1289,6 +1338,12 @@ export class AppComponent implements OnInit {
 
     }
 
+
+
+
+
+// ***********************  CLICK HELP MENU OPTIONS ************************ //
+    
     clickMenuHelpDemo() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuHelpDemo', '@Start');
@@ -1296,9 +1351,12 @@ export class AppComponent implements OnInit {
         this.router.navigate(['/help']);
     }
 
-    // clickMenuPreferences Messages etc
 
 
+
+
+// ***********************  CLICK COLLABORATE MENU OPTIONS ************************ //
+    
     clickMenuCollaborateAlerts() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateAlerts', '@Start');
@@ -1327,6 +1385,12 @@ export class AppComponent implements OnInit {
         this.showModalCollaborateActivities = true;
     }
 
+
+
+
+
+// ***********************  CLICK USER MENU OPTIONS ************************ //
+    
     clickMenuUserLogin() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogin', '@Start');
@@ -1385,6 +1449,10 @@ export class AppComponent implements OnInit {
         this.showModalDashboardLogout = true;
     }
 
+
+
+// ***********************  OTHER ************************ //
+    
     showRecentDashboard(index: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
