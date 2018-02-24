@@ -1582,9 +1582,21 @@
     draggable="true"
     >
 
-    <div class="widgetHeader" *ngIf="row.containerHasTitle"
+    <div class="widgetTitle"
         [style.background-color]="row.containerBackgroundcolor"
-        [style.width.px]="row.containerWidth-14"
+        [style.zindex]="row.containerZindex+1"
+        
+        [style.background-color]="row.titleBackgroundColor"
+        [style.border]="row.titleBorder"
+        [style.color]="row.titleColor"
+        [style.left.px]="row.titleLeft"
+        [style.margin]="row.titleMargin"
+        [style.padding]="row.titlePadding"
+        [style.position]="row.titlePosition"
+        [style.text-align]="row.titleTextAlign"
+        [style.titleWidth.%]="row.titleWidth"
+        
+        
         >
             <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
                 class="selectedSlicer"
@@ -1603,10 +1615,7 @@
                 {{ row.nrComments }}
             </span>
 
-
-
-
-            <b>{{ row.containerWidgetTitle }}</b>
+            <b>{{ row.titleText }}</b>
         </div>
         
 

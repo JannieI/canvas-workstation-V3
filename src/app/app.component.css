@@ -393,7 +393,7 @@
     grid-template-rows:    4px 9px 16px 16px 1fr 16px 1fr 16px 16px 9px 4px;
     position: absolute;
     padding: 0;
-}
+    }
     .widgetContainer:hover {
         border: 1px dotted gray !important;
         box-shadow: 8px 8px gray;
@@ -403,50 +403,56 @@
         border: 1px dotted gray;
     }
 
-    .selectedSlicer {
-        color: rgb(190, 19, 19);
+    .widgetTitle {
+        background-color: rgb(224, 220, 220) !important;
+        display: inline-block;
         grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        height: 0.1rem;
-        left: 5px;
-        width: 0.1rem;
-    }
-
-    .widgetBadge1 {
-        grid-column-start: 8;
-        grid-column-end: 9;
-        grid-row-start: 1;
-        grid-row-end: 3;
-        margin-right: 10px;
-        width: 0.6rem;
-    }
-
-    .widgetBadge2 {
-        grid-column-start: 9;
-        grid-column-end: 10;
-        grid-row-start: 1;
-        grid-row-end: 3;
-        margin-right: 5px;
-        width: 0.6rem;
-    }
-
-    .widgetBadge3 {
-        grid-column-start: 10;
-        grid-column-end: 11;
-        grid-row-start: 1;
-        grid-row-end: 3;
-        float: right;
-        width: 0.6rem;
-    }
+        grid-column-end: 12;
+        grid-row-start: 2;
+        grid-row-end: 4;
+        }
+        .selectedSlicer {
+            color: rgb(190, 19, 19);
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            height: 0.1rem;
+            left: 5px;
+            width: 0.1rem;
+        }
+        .widgetBadge1 {
+            grid-column-start: 8;
+            grid-column-end: 9;
+            grid-row-start: 1;
+            grid-row-end: 3;
+            margin-right: 10px;
+            width: 0.6rem;
+        }
+        .widgetBadge2 {
+            grid-column-start: 9;
+            grid-column-end: 10;
+            grid-row-start: 1;
+            grid-row-end: 3;
+            margin-right: 5px;
+            width: 0.6rem;
+        }
+        .widgetBadge3 {
+            grid-column-start: 10;
+            grid-column-end: 11;
+            grid-row-start: 1;
+            grid-row-end: 3;
+            float: right;
+            width: 0.6rem;
+        }
+    
 
     .widget {
         /* border: 1px dotted gray; */
         display: inline-block;
         grid-column-start: 3;
         grid-column-end: 10;
-        grid-row-start: 3;
+        grid-row-start: 4;
         grid-row-end: 10;
     }
 

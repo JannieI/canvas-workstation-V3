@@ -416,20 +416,20 @@ export class Widget {
     containerZindex: number;
 
     // Title
-    titleText: string;                  // with HTML & keywords (##today##)
+    titleText: string;                  // Text, can include HTML & keywords (##today##)
     titleBackgroundColor: string;
-    titleBorder: string;
+    titleBorder: string;                // css spec, ie 1px solid black
     titleColor: string;
-    titleFontsize: number;              // in px
-    titleFontWeight: string;
-    titleHeight: number;                // in px
+    titleFontsize: number;              // in px (for later use)
+    titleFontWeight: string;            //   (for later use)
+    titleHeight: number;                // in px (for later use)
     titleLeft: number;                  // in px
-    titleMargin: string;
-    titlePadding: string;
-    titlePosition: string;
-    titleTextAlign: string;
-    titleTop: number;                   // in px
-    titleWidth: number;                 // in px: 0 means it adapts to container
+    titleMargin: string;                // css spec, ie 2px 1px 0px 0px
+    titlePadding: string;               // css spec, ie 2px 1px 0px 0px
+    titlePosition: string;              // absolute (needed for left to work) or relative
+    titleTextAlign: string;             // left, right, center
+    titleTop: number;                   // in px (for later use)
+    titleWidth: number;                 // in %: 0 means it adapts to container
 
     // Graph
     graphType: string;                  // bar, pie, etc
