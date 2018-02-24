@@ -1576,13 +1576,13 @@
     [style.top.px]="row.containerTop"
     [style.width.px]="row.containerWidth"
     [style.zindex]="row.containerZindex"
-    (click)="clickWidget(i, row.id)"
+    (click)="clickWidget($event, i, row.id)"
     (dragstart)="clickWidgetContainerDragStart($event, i)"
     (dragend)="clickWidgetContainerDragEnd($event, i)"
     draggable="true"
     >
 
-    <div class="widgetTitle"
+    <div class="widgetTitle" *ngIf="row.containerHasTitle"
         [style.background-color]="row.containerBackgroundcolor"
         [style.zindex]="row.containerZindex+1"
         
@@ -1595,8 +1595,7 @@
         [style.position]="row.titlePosition"
         [style.text-align]="row.titleTextAlign"
         [style.width.%]="row.titleWidth"
-        
-        
+        (contextmenu)="contextmenuWidgetTitle($event, i, row.id)"
         >
             <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
                 class="selectedSlicer"

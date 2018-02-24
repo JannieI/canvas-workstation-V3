@@ -1729,10 +1729,11 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickWidget(index: number, id: number) {
+    clickWidget(ev: MouseEvent, index: number, id: number) {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
 
+        console.log('xx', ev)
         if (!this.editMode) {
             this.showStatusBarMessage(
                 'Not in Edit Mode (see Edit menu Option)',
@@ -1848,7 +1849,6 @@ export class AppComponent implements OnInit {
                 this.currentWidgets[index].graphWidth;
         };
 
-
         console.log('clickResizeUp width buttons ev x-move',
             this.currentWidgets[index].containerWidth, this.currentWidgets[index].nrButtonsToShow,
             ev, 0 - this.startX + ev.x);
@@ -1888,6 +1888,15 @@ export class AppComponent implements OnInit {
         return result;
     }
 
+    contextmenuWidgetTitle(ev: MouseEvent, index: number) {
+        // Register mouse down event when resize starts
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetTitle', '@Start');
+
+        console.log('xx', ev)
+        ev.preventDefault();
+        this.currentWidgets[index].containerHasTitle = !this.currentWidgets[index].containerHasTitle;        
+
+    }
 
 
 
