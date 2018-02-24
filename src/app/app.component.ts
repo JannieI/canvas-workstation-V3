@@ -383,7 +383,13 @@ export class AppComponent implements OnInit {
 
         }
         // TODO - refresh only the editted one
-        this.widgetDOM.refreshWidgets();
+        // this.widgetDOM.refreshWidgets();
+        this.globalVariableService.refreshCurrentDashboard(
+            'app-handleCloseWidgetEditor',
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+            ''
+        );
 
         this.showModalWidgetEditor = false;
     }
