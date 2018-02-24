@@ -410,7 +410,7 @@ export class Widget {
     containerFontsize: number;
     containerHeight: number;
     containerLeft: number;
-    containerWidgetTitle: string;       // Title at top of container
+    containerHasTitle: boolean;         // True to display Title at top of container
     containerTop: number;
     containerWidth: number;
     containerZindex: number;

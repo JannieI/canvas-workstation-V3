@@ -1581,41 +1581,34 @@
     (dragend)="clickWidgetContainerDragEnd($event, i)"
     draggable="true"
     >
-    <div class="widgetContainerDragHandle"
-        [style.background-color]="row.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
+
+    <div class="widgetHeader" *ngIf="row.containerHasTitle"
+        [style.background-color]="row.containerBackgroundcolor"
         [style.width.px]="row.containerWidth-14"
         >
-
-
-
-        <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
-            class="selectedSlicer"
-            title="Related Widget has been selected">
-            <clr-icon shape="check" size="12"></clr-icon>
-        </span>
-        <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality"
-            class="badge badge-danger widgetBadge1"
-            title="Data Quality issues">
-            {{ row.nrDataQualityIssues }}
-        </span>
-        <span *ngIf="(row.nrComments)  &&  showComments"
-            class="badge badge-warning widgetBadge2"
-            title="Comments"
-            >
-            {{ row.nrComments }}
-        </span>
+            <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
+                class="selectedSlicer"
+                title="Related Widget has been selected">
+                <clr-icon shape="check" size="12"></clr-icon>
+            </span>
+            <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality"
+                class="badge badge-danger widgetBadge1"
+                title="Data Quality issues">
+                {{ row.nrDataQualityIssues }}
+            </span>
+            <span *ngIf="(row.nrComments)  &&  showComments"
+                class="badge badge-warning widgetBadge2"
+                title="Comments"
+                >
+                {{ row.nrComments }}
+            </span>
 
 
 
 
-        <div class="widgetLabel" *ngIf="row.containerWidgetTitle"
-            [style.background-color]="row.containerBackgroundcolor"
-            [style.width.px]="row.containerWidth-14"
-            >
             <b>{{ row.containerWidgetTitle }}</b>
         </div>
         
-    </div>
 
 
     <!-- Graph Object -->

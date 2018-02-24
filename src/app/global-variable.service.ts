@@ -2718,7 +2718,7 @@ export class GlobalVariableService {
                 {key: 'containerFontsize', 			type: 'int'},
                 {key: 'containerHeight', 			type: 'int'},
                 {key: 'containerLeft', 				type: 'int'},
-                {key: 'containerWidgetTitle', 		type: 'string'},
+                {key: 'containerHasTitle', 		    type: 'bool'},
                 {key: 'containerTop', 				type: 'int'},
                 {key: 'containerWidth', 			type: 'int'},
                 {key: 'containerZindex', 			type: 'int'},
