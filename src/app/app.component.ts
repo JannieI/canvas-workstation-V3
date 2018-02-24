@@ -28,6 +28,7 @@ import { Datasource }                 from './models'
 import { Widget }                     from './models'
 
 import { WidgetComponent }            from './widget.component';
+import { WidgetSingleComponent }      from './widget.single.component';
 
 // Vega, Vega-Lite
 import { compile }                    from 'vega-lite';
@@ -119,7 +120,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
-    @ViewChild('widgetContainer')  widgetDOM: WidgetComponent;
+    @ViewChild('widgetDOM')  widgetDOM: WidgetSingleComponent;
 
     companyName: string = this.globalVariableService.companyName;
     currentDashboardName: string = '';
@@ -335,12 +336,12 @@ export class AppComponent implements OnInit {
     ngAfterViewChecked() {
         //
         // TODO - switch on later, this fires ALL the time ...
-        // this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
-
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
+        console.log('xx dom', this.widgetDOM)
         if (this.widgetDOM != undefined  &&  (!this.refreshGraphs) ) {
             this.refreshGraphs = true;
             // TODO - fix and put back !
-            // this.widgetDOM.refreshWidgets();
+            this.widgetDOM.refreshWidget();
         }
     }
 
@@ -1916,7 +1917,6 @@ export class AppComponent implements OnInit {
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetTitle', '@Start');
 
-        console.log('xx', ev)
         ev.preventDefault();
         this.showTitleForm = true;
         this.titleFormLeft = this.currentWidgets[index].containerLeft;

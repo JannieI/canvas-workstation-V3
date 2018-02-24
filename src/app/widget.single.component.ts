@@ -126,8 +126,6 @@ export class WidgetSingleComponent {
 
     }
 
-
-
     refreshWidget() {
         // Refreshes this W
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidget', '@Start');
