@@ -842,13 +842,6 @@ export class AppComponent implements OnInit {
         this.showModalDashboardRename = true;
     }
 
-    clickMenuFileDetails() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuFileDetails', '@Start');
-
-        this.showModalDashboardDetails = true;
-    }
-
     clickMenuDashboardDetailDescription() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDescription', '@Start');
