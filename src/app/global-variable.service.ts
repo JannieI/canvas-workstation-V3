@@ -2713,6 +2713,7 @@ export class GlobalVariableService {
                 {key: 'size', 						type: 'string'},
                 {key: 'containerBackgroundcolor', 	type: 'string'},
                 {key: 'containerBorder', 			type: 'string'},
+                {key: 'containerBorderRadius', 	    type: 'string'},
                 {key: 'containerBoxshadow', 		type: 'string'},
                 {key: 'containerColor', 			type: 'string'},
                 {key: 'containerFontsize', 			type: 'int'},

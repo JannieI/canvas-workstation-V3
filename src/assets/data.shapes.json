@@ -20,6 +20,7 @@
 
         "containerBackgroundcolor": "red",
         "containerBorder": "",
+        "containerBorderRadius": "",
         "containerBoxshadow": "",
         "containerColor": "",
         "containerFontsize": 0,
@@ -78,6 +79,7 @@
 
         "containerBackgroundcolor": "red",
         "containerBorder": "",
+        "containerBorderRadius": "",
         "containerBoxshadow": "",
         "containerColor": "",
         "containerFontsize": 0,

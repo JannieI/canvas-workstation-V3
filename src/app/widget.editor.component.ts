@@ -209,6 +209,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 "size": "",
                 "containerBackgroundcolor": "transparent",
                 "containerBorder": "2px solid black",
+                "containerBorderRadius": "",
                 "containerBoxshadow": "2px 2px gray",
                 "containerColor": "transparent",
                 "containerFontsize": 12,

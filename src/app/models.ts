@@ -405,6 +405,7 @@ export class Widget {
     // Container
     containerBackgroundcolor: string;
     containerBorder: string;
+    containerBorderRadius: string;
     containerBoxshadow: string;
     containerColor: string;
     containerFontsize: number;
