@@ -409,22 +409,26 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
             // TODO - improve this when using a DB!
             let newID: number = 1;
-            if (this.globalVariableService.widgets.length > 0) {
-                this.globalVariableService.widgets[
-                    this.globalVariableService.widgets.length - 1
-                ]
+            let ws: number[]=[];
+            for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
+                ws.push(this.globalVariableService.widgets[i].id)
+            };
+            if (ws.length > 0) {
+                newID = Math.max(...ws);
             };
             this.localWidget.id = newID;
-            this.globalVariableService.currentWidgets.push(this.localWidget);
+            this.globalVariableService.widgets.push(this.localWidget);
         } else {
             // Replace the W
-            this.globalVariableService.currentWidgets.forEach(w => {
+            this.globalVariableService.widgets.forEach(w => {
                 if (w.id = this.localWidget.id) {
                     w = this.localWidget;
+                    w.titleText = 'xXx'
                 }
             });
         };
-        console.log('xx close gv', this.globalVariableService.currentWidgets);
+
+        console.log('xx close gv', this.globalVariableService.widgets);
 
         this.formWidgetEditorClosed.emit(action);
     }

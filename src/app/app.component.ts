@@ -3,6 +3,7 @@
  */
 
 // Angular
+import { ChangeDetectorRef }          from '@angular/core';
 import { Component }                  from '@angular/core';
 import { DOCUMENT }                   from '@angular/platform-browser';
 import { ElementRef }                 from '@angular/core';
@@ -118,7 +119,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
-    @ViewChild('widgetDOM')  widgetDOM: WidgetComponent;
+    @ViewChild('widgetContainer')  widgetDOM: WidgetComponent;
 
     companyName: string = this.globalVariableService.companyName;
     currentDashboardName: string = '';
@@ -213,6 +214,7 @@ export class AppComponent implements OnInit {
     titleFormTop: number = 50;
 
     constructor(
+        private cd: ChangeDetectorRef,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         @Inject(DOCUMENT) private document: Document,
@@ -291,10 +293,12 @@ export class AppComponent implements OnInit {
                                     currentDashboardTabs[x].name;
                                 this.currentWidgets = this.globalVariableService.
                                     currentWidgets;
-                                // TODO - make currentDatasources BehaviourSubject in GV, update
-                                // when it changes in DATA form
-                                this.currentDatasources = this.globalVariableService.
+                                    // TODO - make currentDatasources BehaviourSubject in GV, update
+                                    // when it changes in DATA form
+                                    this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
+                                // this.cd.detectChanges(); // marks path
+                                console.log('xx dom', this.widgetDOM)
 // KEEP ! This code worked - BUT showed stuff separately ... now using currentWidgets only
                                 // // Get Sl
                                 // this.currentSlicers = this.globalVariableService.currentSlicers;
@@ -335,10 +339,12 @@ export class AppComponent implements OnInit {
 
         if (this.widgetDOM != undefined  &&  (!this.refreshGraphs) ) {
             this.refreshGraphs = true;
-            this.widgetDOM.refreshWidgets();
+            // TODO - fix and put back !
+            // this.widgetDOM.refreshWidgets();
         }
     }
 
+    
     handleCloseModalLanding(action: string) {
         // Close Modal form Landing page
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
