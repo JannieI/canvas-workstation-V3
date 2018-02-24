@@ -1,4 +1,10 @@
+<!-- ***********************************  MAIN MENU & PALETTE *********************************** -->
+
+
+<!-- Main Dashboard & Tab Container -->
 <clr-main-container>
+
+    <!-- Header at top, that contains main menu -->
     <clr-header class="header-6" *ngIf="showMainMenu">
         <div class="branding">
             <a href="http://clarityanalytics.xyz" class="nav-link">
@@ -9,10 +15,11 @@
             </a>
         </div>
 
+        <!-- // Main menu -->
         <div class="header-nav" [clr-nav-level]="1">
             <div>
 
-
+                <!-- // Edit menu -->
                 <clr-dropdown class="menuText">
                     <button
                         type="button"
@@ -48,6 +55,7 @@
                     </clr-dropdown-menu>
                 </clr-dropdown>
         
+                <!-- Dashboard menu -->
                 <clr-dropdown class="menuText">
                     <button
                         type="button"
@@ -198,6 +206,7 @@
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
+                <!-- Data menu -->
                 <clr-dropdown class="menuText">
                     <button
                         type="button"
@@ -296,6 +305,7 @@
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
+                <!-- Widget menu -->
                 <clr-dropdown class="menuText">
                     <button
                         type="button"
@@ -342,6 +352,7 @@
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
+                <!-- Slicer menu -->
                 <clr-dropdown class="menuText">
                     <button
                         type="button"
@@ -370,6 +381,7 @@
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
+                <!-- Shape menu -->
                 <clr-dropdown class="menuText">
                     <button
                         type="button"
@@ -396,6 +408,7 @@
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
+                <!-- View menu -->
                 <clr-dropdown class="menuText">
                     <button
                         type="button"
@@ -474,6 +487,7 @@
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
+                <!-- Arrange menu -->
                 <clr-dropdown class="menuText">
                     <button
                         type="button"
@@ -552,6 +566,7 @@
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
+                <!-- Help menu -->
                 <clr-dropdown class="menuText">
                     <button
                         type="button"
@@ -596,6 +611,7 @@
             </div>
         </div>
 
+        <!-- Header Actions on right hand side -->
         <div class="header-actions">
             <clr-dropdown class="dropdown">
                 <button class="nav-icon" clrDropdownTrigger>
@@ -646,74 +662,74 @@
         </div>
     </clr-header>
 
-        <!-- Presentation Button -->
-        <div class="presentationButton dropdown" *ngIf="presentationMode">
-            <clr-dropdown>
-                <button type="button" clrDropdownTrigger>
-                    <clr-icon shape="bars"></clr-icon>
+    <!-- Presentation popup Button -->
+    <div class="presentationButton dropdown" *ngIf="presentationMode">
+        <clr-dropdown>
+            <button type="button" clrDropdownTrigger>
+                <clr-icon shape="bars"></clr-icon>
+            </button>
+
+            <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                <button
+                    type="button"
+                    class="btn btn-link btn-sm"
+                    clrDropdownItem
+                    title="Show the first Dashboard in the presentation"
+                    >
+                    <clr-icon shape="step-forward down" size="20"></clr-icon>
+                    First Dashboard
                 </button>
+                <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    clrDropdownItem
+                    title="Jump to the Next Dashboard"
+                    >
+                    <clr-icon shape="fast-forward" size="20"></clr-icon>
+                    Next Dashboard
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    clrDropdownItem
+                    title="Return to the Previous Dashboard"
+                    >
+                    <clr-icon shape="rewind" size="20"></clr-icon>
+                    Previous Dashboard
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    clrDropdownItem
+                    title="Show the Last Dashboard in the presentation"
+                    >
+                    <clr-icon shape="step-forward" size="20"></clr-icon>
+                    Last Dashboard
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    clrDropdownItem
+                    title="Print all the Dashboards in presentation format"
+                    >
+                    <clr-icon shape="printer" size="20"></clr-icon>
+                    Print ...
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-secondary btn-sm"
+                    clrDropdownItem
+                    (click)="clickClosePresentation()"
+                    title="Exit the presentation, and return to the Dashboard page"
+                    >
+                    <clr-icon shape="times" size="20"></clr-icon>
+                    Exit
+                </button>
+            </clr-dropdown-menu>
+        </clr-dropdown>
+    </div>
 
-                <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm"
-                        clrDropdownItem
-                        title="Show the first Dashboard in the presentation"
-                        >
-                        <clr-icon shape="step-forward down" size="20"></clr-icon>
-                        First Dashboard
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-sm"
-                        clrDropdownItem
-                        title="Jump to the Next Dashboard"
-                        >
-                        <clr-icon shape="fast-forward" size="20"></clr-icon>
-                        Next Dashboard
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-sm"
-                        clrDropdownItem
-                        title="Return to the Previous Dashboard"
-                        >
-                        <clr-icon shape="rewind" size="20"></clr-icon>
-                        Previous Dashboard
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-sm"
-                        clrDropdownItem
-                        title="Show the Last Dashboard in the presentation"
-                        >
-                        <clr-icon shape="step-forward" size="20"></clr-icon>
-                        Last Dashboard
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-sm"
-                        clrDropdownItem
-                        title="Print all the Dashboards in presentation format"
-                        >
-                        <clr-icon shape="printer" size="20"></clr-icon>
-                        Print ...
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-sm"
-                        clrDropdownItem
-                        (click)="clickClosePresentation()"
-                        title="Exit the presentation, and return to the Dashboard page"
-                        >
-                        <clr-icon shape="times" size="20"></clr-icon>
-                        Exit
-                    </button>
-                </clr-dropdown-menu>
-            </clr-dropdown>
-        </div>
-
-
+    <!-- Routed area -->
     <div class="content-container"
         [style.background-image]="showGrid? 'url(../images/gridBlock.png)' : ''"
         >
@@ -736,6 +752,248 @@
 
 </clr-main-container>
 
+
+
+
+
+<!-- ****************************  WIDGETS & RELATED FORMS ***************************** -->
+
+<!-- Widgets -->
+<div class="widgetContainer" *ngFor="let row of currentWidgets; let i = index"
+    #widgetContainer
+    [style.background-color]="row.containerBackgroundColor"
+    [style.border]="row.isSelected? '1px solid black' : row.containerBorder"
+    [style.border-radius]="row.containerBorderRadius"
+    [style.box-shadow]="row.containerBoxshadow"
+    [style.font-size.px]="row.containerFontsize"
+    [style.height.px]="row.containerHeight"
+    [style.left.px]="row.containerLeft"
+    [style.top.px]="row.containerTop"
+    [style.width.px]="row.containerWidth"
+    [style.zindex]="row.containerZindex"
+    (click)="clickWidget($event, i, row.id)"
+    (dragstart)="clickWidgetContainerDragStart($event, i)"
+    (dragend)="clickWidgetContainerDragEnd($event, i)"
+    draggable="true"
+    >
+
+    <div class="widgetTitle" *ngIf="row.containerHasTitle"
+        [style.background-color]="row.containerBackgroundcolor"
+        [style.zindex]="row.containerZindex+1"
+        
+        [style.background-color]="row.titleBackgroundColor"
+        [style.border]="row.titleBorder"
+        [style.color]="row.titleColor"
+        [style.left.px]="row.titleLeft"
+        [style.margin]="row.titleMargin"
+        [style.padding]="row.titlePadding"
+        [style.position]="row.titlePosition"
+        [style.text-align]="row.titleTextAlign"
+        [style.width.%]="row.titleWidth"
+        (contextmenu)="contextmenuWidgetTitle($event, i, row.id)"
+        >
+            <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
+                class="selectedSlicer"
+                title="Related Widget has been selected">
+                <clr-icon shape="check" size="12"></clr-icon>
+            </span>
+            <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality"
+                class="badge badge-danger widgetBadge1"
+                title="Data Quality issues">
+                {{ row.nrDataQualityIssues }}
+            </span>
+            <span *ngIf="(row.nrComments)  &&  showComments"
+                class="badge badge-warning widgetBadge2"
+                title="Comments"
+                >
+                {{ row.nrComments }}
+            </span>
+
+            <b>{{ row.titleText }}</b>
+        </div>
+
+    <!-- Graph Object -->
+    <div class="widget" *ngIf="row.widgetType=='Graph'">
+        <widget-single
+            #widgetDOM
+            [widget]="row"
+            [showDataQuality]="showDataQuality"
+            [showComments]="showComments"
+            >
+        </widget-single>
+    </div>
+
+    <!-- Slicer Object -->
+    <div class="widget" *ngIf="row.widgetType=='Slicer'">
+        <slicer-single
+            [slicer]="row"
+            >
+        </slicer-single>
+    </div>
+
+    <div class="widgetContainerTopLeftHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
+        draggable="true"
+        >
+    </div>
+    <div class="widgetContainerTopHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, true, false, false, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="widgetContainerTopRightHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="widgetContainerRightTopHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="widgetContainerRightHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, false, true, false, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="widgetContainerRightBottomHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="widgetContainerBottomRightHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="widgetContainerBottomLeftHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
+        draggable="true"
+        >
+    </div>
+    <div class="widgetContainerBottomHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, false, false, true, false)"
+        draggable="true"
+        >
+    </div>
+    <div class="widgetContainerLeftBottomHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
+        draggable="true"
+        >
+    </div>
+    <div class="widgetContainerLeftHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, false, false, false, true)"
+        draggable="true"
+        >
+    </div>
+    <div class="widgetContainerLeftTopHandle"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (mousedown)="clickResizeWidgetDown($event, i)"
+        (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
+        draggable="true"
+        >
+    </div>
+
+</div>
+
+
+<!-- Form to edit Title Properties -->
+<div class="titleForm" *ngIf="showTitleForm"
+    [style.left.px]="titleFormLeft"
+    >
+    <div class="titleFormHeader">
+        <b>Title properties</b>
+    </div>
+    <div class="titleFormLine">
+        Text:
+        <input type="text" id="formFields_7" placeholder="Title Text">
+    </div>
+    <div class="titleFormLine">
+        BackgroundColor:
+        <input type="text" id="formFields_7" placeholder="CSS or rgb() color">
+    </div>
+    <div class="titleFormLine">
+        Border:
+        <input type="text" id="formFields_7" placeholder="ie 1px solid black">
+    </div>
+    <hr>
+    <div class="titleFormLine">
+        Color:
+        <input type="text" id="formFields_7" placeholder="CSS or rgb() color">
+    </div>
+    <div class="titleFormLine">
+        Left:
+        <input type="text" id="formFields_7" placeholder="Space at left in px">
+    </div>
+    <div class="titleFormLine">
+        Margin:
+        <input type="text" id="formFields_7" placeholder="ie 0 0 0 5px">
+    </div>
+    <div class="titleFormLine">
+        Padding:
+        <input type="text" id="formFields_7" placeholder="ie 0 0 0 5px">
+    </div>
+    <div class="titleFormLine">
+        Position:
+        <input type="text" id="formFields_7" placeholder="relative or absolute">
+    </div>
+    <div class="titleFormLine">
+        TextAlign:
+        <input type="text" id="formFields_7" placeholder="left, center or right">
+    </div>
+    <div class="titleFormLine">
+        Top:
+        <input type="text" id="formFields_7" placeholder="ie 0 0 0 5px">
+    </div>
+    <div class="titleFormLine">
+        Width:
+        <input type="text" id="formFields_7" placeholder="Width as % (0-100)">
+    </div>
+
+    <button
+        type="button"
+        class="btn btn-secondary titleFormButtonLeft"
+        (click)="showTitleForm=false"
+        >
+        Cancel
+    </button>
+    <button
+        type="button"
+        class="btn btn-primary titleFormButtonRight"
+        (click)="showTitleForm=false"
+        >
+        Save
+    </button>
+
+</div>
+
+
+
+
+
+<!-- ***********************************  MODAL FORMS *********************************** -->
 
 <!-- Modal: landing page -->
 <landing *ngIf="showModalLanding"
@@ -1279,535 +1537,13 @@
 </collaborate-activityadd>
 
 
- <!-- KEEP ! This code worked - BUT showed stuff separately ... now using currentWidgets only -->
-
-    <!-- Widgets -->
-    <!-- <widget #widgetDOM
-        [widgets]="currentWidgets"
-        [showDataQuality]="showDataQuality"
-        [showComments]="showComments"
-        >
-    </widget> -->
-
-
-    <!-- Tables -->
-    <!-- <div class="tableContainer" *ngFor="let row of currentTables; let i = index"
-        #table
-        [style.background-color]="row.containerBackgroundcolor"
-        [style.border]="'1px solid black'"
-        [style.box-shadow]="row.containerBoxshadow"
-        [style.font-size.px]="row.containerFontsize"
-        [style.height.px]="row.containerHeight"
-        [style.left.px]="row.containerLeft"
-        [style.top.px]="row.containerTop"
-        [style.width.px]="row.containerWidth"
-        [style.zindex]="row.containerZindex"
-        (dragstart)="clickSlicerContainerDragStart($event, i)"
-        (dragend)="clickSlicerContainerDragEnd($event, i)"
-        draggable="true"
-        >
-        <div class="slicerContainerDragHandle"
-            draggable="false"
-            [style.background-color]="row.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
-            [style.width.px]="row.containerWidth-14"
-            >
-
-            <div class="slicerLabel" *ngIf="row.containerWidgetTitle"
-                (click)="clickSlicer(i, row.id)"
-                [style.width.px]="row.containerWidth-14"
-                >
-                <b>{{ row.containerWidgetTitle }}</b>
-            </div>
-
-            <table style="width:100%">
-                <tr>
-                    <th *ngFor="let col of row.dataFields" class="tableHeader">
-                        {{col}}
-                    </th>
-                </tr>
-                <tr *ngFor="let data of row.data; let i = index" class="tableRow">
-                    <td *ngFor="let col of row.dataFields; let i = index">
-                        {{ data[col] }}
-                    </td>
-                </tr>
-            </table>
-
-        </div>
-        <div class="slicerContainerTopLeftHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, true, false, false, true)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerTopHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, true, false, false, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerTopRightHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, true, true, false, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerRightTopHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, true, true, false, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerRightHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, true, false, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerRightBottomHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, true, true, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerBottomRightHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, true, true, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerBottomLeftHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, false, true, true)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerBottomHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, false, true, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerLeftBottomHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, false, true, true)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerLeftHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, false, false, true)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerLeftTopHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, true, false, false, true)"
-            draggable="true"
-            >
-        </div>
-
-    </div> -->
-
-
-    <!-- Slicers -->
-    <!-- <div class="slicerContainer" *ngFor="let row of currentSlicers; let i = index"
-        #slicerContainer
-        [style.background-color]="row.containerBackgroundColor"
-        [style.border]="row.isSelected? '1px solid black' : 'black'"
-        [style.box-shadow]="row.containerBoxshadow"
-        [style.font-size.px]="row.containerFontsize"
-        [style.height.px]="row.containerHeight"
-        [style.left.px]="row.containerLeft"
-        [style.top.px]="row.containerTop"
-        [style.width.px]="row.containerWidth"
-        [style.zindex]="row.containerZindex"
-        (dragstart)="clickSlicerContainerDragStart($event, i)"
-        (dragend)="clickSlicerContainerDragEnd($event, i)"
-        draggable="true"
-        >
-        <div class="slicerContainerDragHandle"
-            draggable="false"
-            [style.background-color]="row.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
-            [style.width.px]="row.containerWidth-14"
-            >
-
-            <div class="slicerLabel" *ngIf="row.containerWidgetTitle"
-                (click)="clickSlicer(i, row.id)"
-                [style.background-color]="row.containerBackgroundcolor"
-                [style.width.px]="row.containerWidth-14"
-                >
-                <b>{{ row.containerWidgetTitle }}</b>
-            </div>
-            <select class="slicerBlock"
-                size="{{(row.containerHeight - 36) / 23}}" 
-                multiple
-                [style.width.px]="row.containerWidth-14"
-                >
-                <option *ngFor="let d of row.slicerSelection; let i = index" 
-                    class="slicerOption"
-                    [selected]="d.isSelected"
-                    (click)="clickSlicerItem(i, row.id, row.datasourceID, row.datasetID, 
-                        d.fieldValue)"
-                    >
-                    {{ d.fieldValue }}
-                </option>
-            </select>
-        </div>
-        <div class="slicerContainerTopLeftHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, true, false, false, true)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerTopHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, true, false, false, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerTopRightHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, true, true, false, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerRightTopHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, true, true, false, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerRightHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, true, false, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerRightBottomHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, true, true, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerBottomRightHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, true, true, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerBottomLeftHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, false, true, true)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerBottomHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, false, true, false)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerLeftBottomHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, false, true, true)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerLeftHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, false, false, false, true)"
-            draggable="true"
-            >
-        </div>
-        <div class="slicerContainerLeftTopHandle"
-            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-            (mousedown)="clickResizeDown($event, i)"
-            (dragend)="clickResizeUp($event, i, true, false, false, true)"
-            draggable="true"
-            >
-        </div>
-
-    </div> -->
-<!-- KEEP ! This code worked - BUT showed stuff separately ... now using currentWidgets only -->
 
 
 
 
 
 
-
-
-
-
-
-
-<!-- Widgets -->
-<div class="widgetContainer" *ngFor="let row of currentWidgets; let i = index"
-    #widgetContainer
-    [style.background-color]="row.containerBackgroundColor"
-    [style.border]="row.isSelected? '1px solid black' : row.containerBorder"
-    [style.border-radius]="row.containerBorderRadius"
-    [style.box-shadow]="row.containerBoxshadow"
-    [style.font-size.px]="row.containerFontsize"
-    [style.height.px]="row.containerHeight"
-    [style.left.px]="row.containerLeft"
-    [style.top.px]="row.containerTop"
-    [style.width.px]="row.containerWidth"
-    [style.zindex]="row.containerZindex"
-    (click)="clickWidget($event, i, row.id)"
-    (dragstart)="clickWidgetContainerDragStart($event, i)"
-    (dragend)="clickWidgetContainerDragEnd($event, i)"
-    draggable="true"
-    >
-
-    <div class="widgetTitle" *ngIf="row.containerHasTitle"
-        [style.background-color]="row.containerBackgroundcolor"
-        [style.zindex]="row.containerZindex+1"
-        
-        [style.background-color]="row.titleBackgroundColor"
-        [style.border]="row.titleBorder"
-        [style.color]="row.titleColor"
-        [style.left.px]="row.titleLeft"
-        [style.margin]="row.titleMargin"
-        [style.padding]="row.titlePadding"
-        [style.position]="row.titlePosition"
-        [style.text-align]="row.titleTextAlign"
-        [style.width.%]="row.titleWidth"
-        (contextmenu)="contextmenuWidgetTitle($event, i, row.id)"
-        >
-            <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
-                class="selectedSlicer"
-                title="Related Widget has been selected">
-                <clr-icon shape="check" size="12"></clr-icon>
-            </span>
-            <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality"
-                class="badge badge-danger widgetBadge1"
-                title="Data Quality issues">
-                {{ row.nrDataQualityIssues }}
-            </span>
-            <span *ngIf="(row.nrComments)  &&  showComments"
-                class="badge badge-warning widgetBadge2"
-                title="Comments"
-                >
-                {{ row.nrComments }}
-            </span>
-
-            <b>{{ row.titleText }}</b>
-        </div>
-        
-
-
-    <!-- Graph Object -->
-    <div class="widget" *ngIf="row.widgetType=='Graph'">
-        <widget-single
-            #widgetDOM
-            [widget]="row"
-            [showDataQuality]="showDataQuality"
-            [showComments]="showComments"
-            >
-        </widget-single>
-    </div>
-
-    <!-- Slicer Object -->
-    <div class="widget" *ngIf="row.widgetType=='Slicer'">
-        <slicer-single
-            [slicer]="row"
-            >
-        </slicer-single>
-    </div>
-
-
-
-    <div class="widgetContainerTopLeftHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
-        draggable="true"
-        >
-    </div>
-    <div class="widgetContainerTopHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, true, false, false, false)"
-        draggable="true"
-        >
-    </div>
-    <div class="widgetContainerTopRightHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
-        draggable="true"
-        >
-    </div>
-    <div class="widgetContainerRightTopHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
-        draggable="true"
-        >
-    </div>
-    <div class="widgetContainerRightHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, false, true, false, false)"
-        draggable="true"
-        >
-    </div>
-    <div class="widgetContainerRightBottomHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
-        draggable="true"
-        >
-    </div>
-    <div class="widgetContainerBottomRightHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
-        draggable="true"
-        >
-    </div>
-    <div class="widgetContainerBottomLeftHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
-        draggable="true"
-        >
-    </div>
-    <div class="widgetContainerBottomHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, false, false, true, false)"
-        draggable="true"
-        >
-    </div>
-    <div class="widgetContainerLeftBottomHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
-        draggable="true"
-        >
-    </div>
-    <div class="widgetContainerLeftHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, false, false, false, true)"
-        draggable="true"
-        >
-    </div>
-    <div class="widgetContainerLeftTopHandle"
-        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
-        (mousedown)="clickResizeWidgetDown($event, i)"
-        (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
-        draggable="true"
-        >
-    </div>
-
-</div>
-
-
-
-
-<div class="titleForm" *ngIf="showTitleForm"
-    [style.left.px]="titleFormLeft"
-    >
-    <div class="titleFormHeader">
-        <b>Title properties</b>
-    </div>
-    <div class="titleFormLine">
-        Text:
-        <input type="text" id="formFields_7" placeholder="Title Text">
-    </div>
-    <div class="titleFormLine">
-        BackgroundColor:
-        <input type="text" id="formFields_7" placeholder="CSS or rgb() color">
-    </div>
-    <div class="titleFormLine">
-        Border:
-        <input type="text" id="formFields_7" placeholder="ie 1px solid black">
-    </div>
-    <hr>
-    <div class="titleFormLine">
-        Color:
-        <input type="text" id="formFields_7" placeholder="CSS or rgb() color">
-    </div>
-    <div class="titleFormLine">
-        Left:
-        <input type="text" id="formFields_7" placeholder="Space at left in px">
-    </div>
-    <div class="titleFormLine">
-        Margin:
-        <input type="text" id="formFields_7" placeholder="ie 0 0 0 5px">
-    </div>
-    <div class="titleFormLine">
-        Padding:
-        <input type="text" id="formFields_7" placeholder="ie 0 0 0 5px">
-    </div>
-    <div class="titleFormLine">
-        Position:
-        <input type="text" id="formFields_7" placeholder="relative or absolute">
-    </div>
-    <div class="titleFormLine">
-        TextAlign:
-        <input type="text" id="formFields_7" placeholder="left, center or right">
-    </div>
-    <div class="titleFormLine">
-        Top:
-        <input type="text" id="formFields_7" placeholder="ie 0 0 0 5px">
-    </div>
-    <div class="titleFormLine">
-        Width:
-        <input type="text" id="formFields_7" placeholder="Width as % (0-100)">
-    </div>
-
-    <button
-        type="button"
-        class="btn btn-secondary titleFormButtonLeft"
-        (click)="showTitleForm=false"
-        >
-        Cancel
-    </button>
-    <button
-        type="button"
-        class="btn btn-primary titleFormButtonRight"
-        (click)="showTitleForm=false"
-        >
-        Save
-    </button>
-
-</div>
-
-
-
-
-
-
-
-
-
+<!-- ****************************  TESTING & FOOLING AROUND ***************************** -->
 
 
 <!-- Testing Arrows -->

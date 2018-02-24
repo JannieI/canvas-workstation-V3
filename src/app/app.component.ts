@@ -3,7 +3,6 @@
  */
 
 // Angular
-import { ChangeDetectorRef }          from '@angular/core';
 import { Component }                  from '@angular/core';
 import { DOCUMENT }                   from '@angular/platform-browser';
 import { ElementRef }                 from '@angular/core';
@@ -215,7 +214,6 @@ export class AppComponent implements OnInit {
     titleFormTop: number = 50;
 
     constructor(
-        private cd: ChangeDetectorRef,
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         @Inject(DOCUMENT) private document: Document,
@@ -294,33 +292,9 @@ export class AppComponent implements OnInit {
                                     currentDashboardTabs[x].name;
                                 this.currentWidgets = this.globalVariableService.
                                     currentWidgets;
-                                    // TODO - make currentDatasources BehaviourSubject in GV, update
-                                    // when it changes in DATA form
                                     this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
-                                // this.cd.detectChanges(); // marks path
                                 console.log('xx dom', this.widgetDOM)
-// KEEP ! This code worked - BUT showed stuff separately ... now using currentWidgets only
-                                // // Get Sl
-                                // this.currentSlicers = this.globalVariableService.currentSlicers;
-
-                                // // Get Tables
-                                // this.currentTables = this.globalVariableService.currentTables;
-
-                                // // Duplicate data elements; this is easier for *ngFor 
-                                // // TODO - this must be done in DB
-                                // this.currentTables.forEach(t => {
-                                //     t.data = this.globalVariableService.currentDatasets.
-                                //         filter(cd => cd.id = t.id)[0].dataRaw;
-                                //     t.dataFields = this.globalVariableService.currentDatasources.
-                                //         filter(cd => cd.id = t.id)[0].dataFields;        
-                                //     t.dataFieldTypes = this.globalVariableService.currentDatasources.
-                                //         filter(cd => cd.id = t.id)[0].dataFieldTypes;        
-                                //     t.dataFieldLengths = this.globalVariableService.currentDatasources.
-                                //         filter(cd => cd.id = t.id)[0].dataFieldLengths;        
-                                        
-                                //     console.log('xx Tab', this.currentTables)
-                                // })
                             }
                         )
                 }
