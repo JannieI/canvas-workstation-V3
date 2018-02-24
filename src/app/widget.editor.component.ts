@@ -421,8 +421,12 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         } else {
             // Replace the W
             this.globalVariableService.widgets.forEach(w => {
-                if (w.id = this.localWidget.id) {
-                    w = this.localWidget;
+                if (w.id == this.localWidget.id) {
+                // Make a deep copy
+                    w= Object.assign({}, this.localWidget);
+
+
+                    // w = this.localWidget;
                     w.titleText = 'xXx'
                 }
             });
