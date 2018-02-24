@@ -986,6 +986,19 @@ export class AppComponent implements OnInit {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
+        if (!this.editMode) {
+            this.globalVariableService.statusBarMessage.next(
+             {
+                message: 'Not in Edit Mode (see Edit menu Option)',
+                uiArea: 'StatusBar',
+                classfication: 'Warning',
+                timeout: 3000,
+                defaultMessage: ''
+             }
+            )
+            return;
+        };
+        
         // Indicate new W and open Editor
         this.newWidget = true;
         this.showDatasourcePopup = true;
