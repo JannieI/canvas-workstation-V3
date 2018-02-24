@@ -2403,8 +2403,7 @@ export class GlobalVariableService {
             return new Promise<Widget[]>((resolve, reject) => {
                 this.getWidgets()
                     .then(data => {
-                        console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID,
-                        data)
+
                         // Filter the widgets
                         // TODO - use i.dashboardTabIDs.indexOf(dashboardTabID) >= 0 once datalib
                         // reads arrays correctly.  That should be the only change ...
@@ -2415,14 +2414,15 @@ export class GlobalVariableService {
                         );
 
                         // Add Sl, Sh, Tbl
-                        this.currentSlicers = data.filter(w => w.widgetType == 'Slicer');
-                        this.currentShapes = data.filter(w => w.widgetType == 'Shape');
-                        this.currentTables = data.filter(w => w.widgetType == 'Table');
-                        this.currentWidgets = data.filter(w => w.widgetType == 'Graph');
+                        // Old
+                        // this.currentSlicers = data.filter(w => w.widgetType == 'Slicer');
+                        // this.currentShapes = data.filter(w => w.widgetType == 'Shape');
+                        // this.currentTables = data.filter(w => w.widgetType == 'Table');
+                        // Old
+                        // this.currentWidgets = data.filter(w => w.widgetType == 'Graph');
+                        this.currentWidgets = data;
 
-                        console.log('Global-Variables getCurrentWidgets 1', dashboardID, dashboardTabID,
-                            data, this.currentSlicers, this.currentShapes, this.currentTables,
-                            this.currentWidgets)
+                        console.log('Global-Variables getCurrentWidgets 1', this.currentWidgets)
                         resolve(data);
                 })
              })
@@ -2511,7 +2511,8 @@ export class GlobalVariableService {
 
                     // Filter currentDatasets by Sl linked to DS
                     this.currentDatasets.forEach(cd => {
-                        this.filterSlicer(cd);  // TODO - remove fix !!!
+                        // TODO - improve
+                        this.filterSlicer(cd);  
                     })
 
                     // Add data to widget

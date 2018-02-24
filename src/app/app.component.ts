@@ -1118,7 +1118,7 @@ export class AppComponent implements OnInit {
         if (!this.editMode) {
             this.globalVariableService.statusBarMessage.next(
              {
-                message: 'Not in Edit Mode',
+                message: 'Not in Edit Mode (see Edit menu Option)',
                 uiArea: 'StatusBar',
                 classfication: 'Warning',
                 timeout: 3000,
@@ -1408,56 +1408,6 @@ export class AppComponent implements OnInit {
         return row ? row.id : undefined;
     }
 
-    clickSlicer(index: number, id: number) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicer', '@Start');
-
-        // TODO - fix index..
-        this.currentSlicers[index].isSelected = !this.currentSlicers[index].isSelected;
-        this.globalVariableService.currentSlicers.forEach(sl => {
-            if (sl.id == id) {sl.isSelected = sl.isSelected}
-        })
-
-    }
-
-    clickSlicerItem(index: number, id: number, datasourceID: number, datasetID: number,
-        fieldValue: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerItem', '@Start');
-
-        // Adjust the Sl selection (local + Global)
-        this.globalVariableService.currentSlicers.forEach(w => {
-            if (w.id == id) {
-
-                // Update the selected item
-                w.slicerSelection.forEach(sel => {
-                    if (sel.fieldValue == fieldValue) {
-                        sel.isSelected = !sel.isSelected;
-                    }
-                })
-
-            }
-        });
-
-        // Filter this dSet, applying all Sl that relates to it
-        this.globalVariableService.currentDatasets.forEach(cd => {
-            if (cd.id == datasetID) {
-
-                this.globalVariableService.filterSlicer(cd);
-            }
-        }
-        );
-
-        // Refresh Ws that are related to Sl
-        let wIDs: number[] = [];
-        this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.datasourceID == datasourceID  &&  w.datasetID == datasetID) {
-                wIDs.push(w.id);
-            }
-        })
-        this.widgetDOM.refreshWidgets(-1,-1,wIDs);
-        this.currentSlicers = this.globalVariableService.currentSlicers;
-    }
 
     clickResizeDown(ev: MouseEvent, index: number) {
         // Register mouse down event when resize starts
@@ -1785,7 +1735,7 @@ export class AppComponent implements OnInit {
 
         if (!this.editMode) {
             this.showStatusBarMessage(
-                'Not in Edit Mode',
+                'Not in Edit Mode (see Edit menu Option)',
                 'StatusBar',
                 'Warning',
                 3000,

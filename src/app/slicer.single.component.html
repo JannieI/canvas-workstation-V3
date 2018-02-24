@@ -1,5 +1,27 @@
 <div #slicerDOM
     [style.zindex]="100"
-    (click)="clickSingleWidget(i)"
+    (click)="clickSlicer(i)"
     >
+    <div class="slicerContainerDragHandle"
+    draggable="false"
+    [style.background-color]="slicer.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
+    [style.width.px]="slicer.containerWidth-14"
+    >
+
+    <select class="slicerBlock"
+        size="{{(slicer.containerHeight - 36) / 23}}" 
+        multiple
+        [style.width.px]="slicer.containerWidth-14"
+        >
+        <option *ngFor="let d of slicer.slicerSelection; let i = index" 
+            class="slicerOption"
+            [selected]="d.isSelected"
+            (click)="clickSlicerItem(i, slicer.id, slicer.datasourceID, slicer.datasetID, 
+                d.fieldValue)"
+            >
+            {{ d.fieldValue }}
+        </option>
+    </select>
+</div>
+
 </div>

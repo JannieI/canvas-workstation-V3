@@ -1618,6 +1618,7 @@
     </div>
 
 
+    <!-- Graph Object -->
     <div class="widget" *ngIf="row.widgetType=='Graph'">
         <widget-single
             #widget
@@ -1628,12 +1629,10 @@
         </widget-single>
     </div>
 
+    <!-- Slicer Object -->
     <div class="widget" *ngIf="row.widgetType=='Slicer'">
         <slicer-single
-            #widget
-            [widget]="row"
-            [showDataQuality]="showDataQuality"
-            [showComments]="showComments"
+            [slicer]="row"
             >
         </slicer-single>
     </div>

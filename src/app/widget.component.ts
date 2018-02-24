@@ -111,7 +111,7 @@ export class WidgetComponent {
         if (!this.editMode) {
             this.globalVariableService.statusBarMessage.next(
              {
-                message: 'Not in Edit Mode',
+                message: 'Not in Edit Mode (see Edit menu Option)',
                 uiArea: 'StatusBar',
                 classfication: 'Warning',
                 timeout: 3000,
