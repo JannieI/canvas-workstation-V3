@@ -152,6 +152,11 @@ Shapes:
 15.Telegram interface with bot ...
 16.Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now, palette cannot be changed.
 17.Decide what buttons to keep on widget - for now can only think about link button in presentation mode.
+1. Define Canvas data types: which module creates this for data and where?  Are all numbers equal?
+2. Data field lengths: where defined, by what means, and how are they used?  Is it display side only?  Can the user change it?  What if an actual field is wider than the stated length - will it truncate displayed data?  Does numbers have a length?
+3. How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How is locale used?
+4. How does types tranform into Vega field types, ie on Editor?
+5. Consider dataQuality on own menu item, or on W menu
 
 
 **Admin module**
@@ -164,15 +169,9 @@ Shapes:
 7. Add UserID to ALL data and code -> where needed ...
 
 
-**Data**
-1. Define Canvas data types: which module creates this for data and where?  Are all numbers equal?
-2. Data field lengths: where defined, by what means, and how are they used?  Is it display side only?  Can the user change it?  What if an actual field is wider than the stated length - will it truncate displayed data?  Does numbers have a length?
-3. How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How is locale used?
-4. How does types tranform into Vega field types, ie on Editor?
-5. Consider dataQuality on own menu item, or on W menu
 
 
-Widget Editor
+**Widget Editor**
 - user can change Vega field types on Adv form
 - our field type -> vega types: take a best guess
 - APPLY on Adv form must re-render
@@ -189,6 +188,7 @@ Widget Editor
 BUG: if using a custom vega spec, the editor does not understand this.
 Bug: after changes in the Modal form & close with X - the original W changes
 Bug: X axis always changes to nominal - fix hardcoding ...
+- set properties of new Widget as a template - user pref
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc
@@ -210,7 +210,9 @@ Bug: X axis always changes to nominal - fix hardcoding ...
 16.Fix bug: Recent Dashboard refreshes 1 cycle too late
 17.Fix Bug: grid shows on top of widgets -> cannot click them
 18.StatusBar must not grow beyond screen width, or to double line
-19.
+19.Set editMode per Recent - must be same mode as last saved
+20.Set editMode @startup as user pref
+21.Set editMode for ALL menu options: ie, cannot edit Title with RightClick in ViewOnly
 
 
 **Templates**
