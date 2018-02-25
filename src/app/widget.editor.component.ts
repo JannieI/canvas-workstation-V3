@@ -294,7 +294,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                     // this.localWidget = w;
                     // Make a deep copy
                     this.localWidget = Object.assign({}, w);
-                    console.log('xx localW', this.localWidget)
                 }
             });
             // TODO - handle properly and close form
@@ -340,9 +339,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.dataFieldNames = this.currentDatasources[0].dataFields;
             this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
             this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
-            console.log('xx 3 arrays', this.dataFieldNames,
-            this.dataFieldLengths,
-            this.dataFieldTypes)
         }
 
         this.globalVariableService.presentationMode.subscribe(
@@ -420,23 +416,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.globalVariableService.widgets.push(this.localWidget);
         } else {
             // Replace the W
-            console.log('xx save this.localWidget', this.localWidget)
             this.globalVariableService.widgetReplace(this.localWidget);
-
-            // this.globalVariableService.widgets.forEach(w => {
-            //     if (w.id == this.localWidget.id) {
-            //     // Make a deep copy
-            //         // w = Object.assign({}, this.localWidget);
-            //         w = this.localWidget;
-            //         // w = this.localWidget;
-            //         w.titleText = 'xXx'
-            //     }
-            // });
         };
 
         let widgetsToRefresh: number[] = [this.localWidget.id];
-        console.log('xx close gv', this.globalVariableService.widgets, widgetsToRefresh);
-        // this.globalVariableService.widgetsToRefresh.next(widgetsToRefresh);
+
         this.formWidgetEditorClosed.emit(widgetsToRefresh);
     }
 
@@ -521,7 +505,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType);
 
         // TODO - REMOVE when this is done via forms !!!
-        console.log('xx graphYtype', this.localWidget.graphYtype)
         if (this.localWidget.graphYtype == 'quantitative') {
             this.localWidget.graphYtype = 'ordinal';
         };
@@ -741,7 +724,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         vlSpecsNew['encoding']['color']['field'] = this.localWidget.graphColorField;
         vlSpecsNew['encoding']['color']['type'] = this.localWidget.graphColorType;
 
-        // console.log('xx vega spec',this.localWidget.graphColorField, vlSpecsNew)
         return vlSpecsNew;
     }
 
@@ -775,10 +757,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.dataFieldNames = this.currentDatasources[0].dataFields;
         this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
         this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
-        console.log('xx 3 arrays', this.dataFieldNames,
-        this.dataFieldLengths,
-        this.dataFieldTypes)
-
+        
         // Switch on the preview after the first row was clicked
         this.hasClicked = true;
 

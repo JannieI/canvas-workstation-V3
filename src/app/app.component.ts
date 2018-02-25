@@ -290,32 +290,21 @@ export class AppComponent implements OnInit {
                                     currentDashboards[0].name;
                                 this.currentTabName = this.globalVariableService.
                                     currentDashboardTabs[x].name;
-                                // this.currentWidgets = this.globalVariableService.
-                                //     currentWidgets;
                                 this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
 
-                                console.log('xx app [w]', this.globalVariableService.currentDashboardInfo.
-                                    value.widgetsToRefresh, this.globalVariableService.currentWidgets)
                                 // Loop on All/Indicated Ws
+                                // Note: recreate this.currentWidgets, else if becomes a 
+                                // ByRef to this.gv.currentWidgets.  In this case, Angular
+                                // does not register that it has changed
                                 this.currentWidgets = [];
-                                // if (this.globalVariableService.currentDashboardInfo.
-                                //     value.widgetsToRefresh == []) {
-                                        for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
-                                            let w: Widget = Object.assign({}, 
-                                                this.globalVariableService.currentWidgets[i]);
-                                            // this.currentWidgets.splice(i, 1)
-                                            this.currentWidgets.push(w)
-                                            console.log('xx app for', i, this.globalVariableService.currentWidgets[i].id)
-                                        }
-                                // };
-                                console.log('xx app end', this.currentWidgets);        
-                                // let w: Widget = Object.assign({}, this.globalVariableService.currentWidgets[0]);
-                                // this.currentWidgets.splice(0, 1)
-                                // this.currentWidgets.push(w)
-                                
-                                console.log('xx aft push', this.currentWidgets.length, 
-                                    this.globalVariableService.widgets)
+                                for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
+                                    let w: Widget = Object.assign({}, 
+                                        this.globalVariableService.currentWidgets[i]);
+                                    // this.currentWidgets.splice(i, 1)
+                                    this.currentWidgets.push(w)
+                                    console.log('xx app for', i, this.globalVariableService.currentWidgets[i].id)
+                                };
                             }
 
                         )
@@ -1609,7 +1598,7 @@ export class AppComponent implements OnInit {
     checkForOnlyOneWidget(widgetType: string = 'Graph'): boolean {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForOnlyOneWidget', '@Start');
-        console.log('xx checkForOnlyOneWidget', this.currentWidgets)
+
         // Get all select W, for given type
         this.selectedWidgetIDs = [];
         if (widgetType == 'Slicer') {
