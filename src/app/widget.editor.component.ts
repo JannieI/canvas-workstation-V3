@@ -291,7 +291,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.globalVariableService.currentWidgets.forEach(w => {
                 if (w.isSelected) {
                     x = w.datasourceID;
-                    this.localWidget = w;
+                    // this.localWidget = w;
+                    // Make a deep copy
+                    this.localWidget = Object.assign({}, w);
+                    console.log('xx localW', this.localWidget)
                 }
             });
             // TODO - handle properly and close form
@@ -417,16 +420,18 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.globalVariableService.widgets.push(this.localWidget);
         } else {
             // Replace the W
-            this.globalVariableService.widgets.forEach(w => {
-                if (w.id == this.localWidget.id) {
-                // Make a deep copy
-                    w = Object.assign({}, this.localWidget);
+            console.log('xx save this.localWidget', this.localWidget)
+            this.globalVariableService.widgetReplace(this.localWidget);
 
-
-                    // w = this.localWidget;
-                    w.titleText = 'xXx'
-                }
-            });
+            // this.globalVariableService.widgets.forEach(w => {
+            //     if (w.id == this.localWidget.id) {
+            //     // Make a deep copy
+            //         // w = Object.assign({}, this.localWidget);
+            //         w = this.localWidget;
+            //         // w = this.localWidget;
+            //         w.titleText = 'xXx'
+            //     }
+            // });
         };
 
         let widgetsToRefresh: number[] = [this.localWidget.id];

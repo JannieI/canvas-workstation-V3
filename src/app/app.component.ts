@@ -274,23 +274,24 @@ export class AppComponent implements OnInit {
                  }
         );
 
-        this.globalVariableService.widgetsToRefresh.subscribe(
-            wIDs => {
-                if (wIDs.length > 0) {
-                    this.currentWidgets.forEach(w => {
-                        if (wIDs.indexOf(w.id) >= 0) {
-                            w = this.globalVariableService.currentWidgets[0];
-                            console.log('xx replace', wIDs,w, this.globalVariableService.currentWidgets)
-                            // this.widgetDOM.refreshWidget(w, 'app ngAfterViewChecked')
-                        };
-                    });
-                };
-            }
-        );
+        // this.globalVariableService.widgetsToRefresh.subscribe(
+        //     wIDs => {
+        //         if (wIDs.length > 0) {
+        //             this.currentWidgets.forEach(w => {
+        //                 if (wIDs.indexOf(w.id) >= 0) {
+        //                     w = this.globalVariableService.currentWidgets[0];
+        //                     console.log('xx replace', wIDs,w, this.globalVariableService.currentWidgets)
+        //                     // this.widgetDOM.refreshWidget(w, 'app ngAfterViewChecked')
+        //                 };
+        //             });
+        //         };
+        //     }
+        // );
         
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => {
                 if (i) {
+
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                         this.globalVariableService.currentDashboardInfo.value.
@@ -307,8 +308,15 @@ export class AppComponent implements OnInit {
                                     currentWidgets;
                                 this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
-                                console.log('xx sub', this.globalVariableService.currentWidgets, this.currentWidgets)
-                                }
+
+                                let w: Widget = Object.assign({}, this.globalVariableService.currentWidgets[0]);
+                                this.currentWidgets.splice(0, 1)
+                                this.currentWidgets.push(w)
+                                
+                                console.log('xx aft push', this.currentWidgets.length, 
+                                    this.globalVariableService.widgets)
+                            }
+
                         )
                 }
             }

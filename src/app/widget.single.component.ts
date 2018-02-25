@@ -79,7 +79,8 @@ export class WidgetSingleComponent {
     }
 
     ngAfterViewChecked() {
-        //
+        // Runs after the View has been initialised.  This is needed to refresh the graphs
+        // in the app component.
         // TODO - switch on later, this fires ALL the time ...
         // this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
 

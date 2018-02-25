@@ -13,6 +13,7 @@ export class CurrentDashboardInfo {
     currentDashboardID: number = 0;         // Current D we are working with
     currentDashboardTabID: number = 0;
     currentDashboardTabIndex: number = 0;   // Index in [T]
+    widgetsToRefresh: number[] = [];        // Optional list of W to refresh, [] = All
     refreshingRoutine: string;              // Component-Function that called to refresh
     refreshDateTime: string;
 }

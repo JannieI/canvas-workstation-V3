@@ -3182,6 +3182,125 @@ export class GlobalVariableService {
 
     }
 
+    widgetReplace(changedWidget: Widget) {
+        //
+        console.log('Global-Variables sleep ... widgetReplace', changedWidget.id);
+
+        this.widgets.forEach(w => {
+            if (w.id == changedWidget.id) {
+                // TODO - Make a deep copy / error free, less work copy
+                w.widgetType = changedWidget.widgetType;
+                w.widgetSubType = changedWidget.widgetSubType;
+                w.isTrashed = changedWidget.isTrashed;
+                w.dashboardID = changedWidget.dashboardID;
+                w.dashboardTabID = changedWidget.dashboardTabID;
+                w.dashboardTabIDs = changedWidget.dashboardTabIDs;
+                w.id = changedWidget.id;
+                w.name = changedWidget.name;
+                w.description = changedWidget.description;
+                w.visualGrammar = changedWidget.visualGrammar;
+                w.version = changedWidget.version;
+                w.isSelected = changedWidget.isSelected;
+                w.isLiked = changedWidget.isLiked;
+                w.nrDataQualityIssues = changedWidget.nrDataQualityIssues;
+                w.nrComments = changedWidget.nrComments;
+                w.nrButtonsToShow = changedWidget.nrButtonsToShow;
+                w.hyperlinkDashboardID = changedWidget.hyperlinkDashboardID;
+                w.hyperlinkDashboardTabID = changedWidget.hyperlinkDashboardTabID;
+                w.datasourceID = changedWidget.datasourceID;
+                w.slicerFieldName = changedWidget.slicerFieldName;
+                w.slicerSelection = changedWidget.slicerSelection;
+                w.datasetID = changedWidget.datasetID;
+                w.data = changedWidget.data;
+                w.dataFields = changedWidget.dataFields;
+                w.dataFieldTypes = changedWidget.dataFieldTypes;
+                w.dataFieldLengths = changedWidget.dataFieldLengths;
+                w.dataParameters = changedWidget.dataParameters;
+                w.reportID = changedWidget.reportID;
+                w.reportName = changedWidget.reportName;
+                w.rowLimit = changedWidget.rowLimit;
+                w.addRestRow = changedWidget.addRestRow;
+                w.size = changedWidget.size;
+                w.containerBackgroundcolor = changedWidget.containerBackgroundcolor;
+                w.containerBorder = changedWidget.containerBorder;
+                w.containerBorderRadius = changedWidget.containerBorderRadius;
+                w.containerBoxshadow = changedWidget.containerBoxshadow;
+                w.containerColor = changedWidget.containerColor;
+                w.containerFontsize = changedWidget.containerFontsize;
+                w.containerHeight = changedWidget.containerHeight;
+                w.containerLeft = changedWidget.containerLeft;
+                w.containerHasTitle = changedWidget.containerHasTitle;
+                w.containerTop = changedWidget.containerTop;
+                w.containerWidth = changedWidget.containerWidth;
+                w.containerZindex = changedWidget.containerZindex;
+                w.titleText = changedWidget.titleText;
+                w.titleBackgroundColor = changedWidget.titleBackgroundColor;
+                w.titleBorder = changedWidget.titleBorder;
+                w.titleColor = changedWidget.titleColor;
+                w.titleFontsize = changedWidget.titleFontsize;
+                w.titleFontWeight = changedWidget.titleFontWeight;
+                w.titleHeight = changedWidget.titleHeight;
+                w.titleLeft = changedWidget.titleLeft;
+                w.titleMargin = changedWidget.titleMargin;
+                w.titlePadding = changedWidget.titlePadding;
+                w.titlePosition = changedWidget.titlePosition;
+                w.titleTextAlign = changedWidget.titleTextAlign;
+                w.titleTop = changedWidget.titleTop;
+                w.titleWidth = changedWidget.titleWidth;
+                w.graphType = changedWidget.graphType;
+                w.graphHeight = changedWidget.graphHeight;
+                w.graphLeft = changedWidget.graphLeft;
+                w.graphTop = changedWidget.graphTop;
+                w.graphWidth = changedWidget.graphWidth;
+                w.graphGraphPadding = changedWidget.graphGraphPadding;
+                w.graphHasSignals = changedWidget.graphHasSignals;
+                w.graphFillColor = changedWidget.graphFillColor;
+                w.graphHoverColor = changedWidget.graphHoverColor;
+                w.graphSpecification = changedWidget.graphSpecification;
+                w.graphDescription = changedWidget.graphDescription;
+                w.graphXaggregate = changedWidget.graphXaggregate;
+                w.graphXtimeUnit = changedWidget.graphXtimeUnit;
+                w.graphXfield = changedWidget.graphXfield;
+                w.graphXtype = changedWidget.graphXtype;
+                w.graphXaxisTitle = changedWidget.graphXaxisTitle;
+                w.graphYaggregate = changedWidget.graphYaggregate;
+                w.graphYtimeUnit = changedWidget.graphYtimeUnit;
+                w.graphYfield = changedWidget.graphYfield;
+                w.graphYtype = changedWidget.graphYtype;
+                w.graphYaxisTitle = changedWidget.graphYaxisTitle;
+                w.graphTitle = changedWidget.graphTitle;
+                w.graphMark = changedWidget.graphMark;
+                w.graphMarkColor = changedWidget.graphMarkColor;
+                w.graphUrl = changedWidget.graphUrl;
+                w.graphColorField = changedWidget.graphColorField;
+                w.graphColorType = changedWidget.graphColorType;
+                w.graphData = changedWidget.graphData;
+                w.tableColor = changedWidget.tableColor;
+                w.tableCols = changedWidget.tableCols;
+                w.tableHeight = changedWidget.tableHeight;
+                w.tableHideHeader = changedWidget.tableHideHeader;
+                w.tableLeft = changedWidget.tableLeft;
+                w.tableRows = changedWidget.tableRows;
+                w.tableTop = changedWidget.tableTop;
+                w.tableWidth = changedWidget.tableWidth;
+                w.shapeCx = changedWidget.shapeCx;
+                w.shapeCy = changedWidget.shapeCy;
+                w.shapeR = changedWidget.shapeR;
+                w.shapeStroke = changedWidget.shapeStroke;
+                w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
+                w.shapeFill = changedWidget.shapeFill;
+                w.refreshMode = changedWidget.refreshMode;
+                w.refreshFrequency = changedWidget.refreshFrequency;
+                w.widgetRefreshedOn = changedWidget.widgetRefreshedOn;
+                w.widgetRefreshedBy = changedWidget.widgetRefreshedBy;
+                w.widgetCreatedOn = changedWidget.widgetCreatedOn;
+                w.widgetCreatedBy = changedWidget.widgetCreatedBy;
+                w.widgetUpdatedOn = changedWidget.widgetUpdatedOn;
+                w.widgetUpdatedBy = changedWidget.widgetUpdatedBy;
+            };
+        });
+    }
+
     sleep(milliseconds: number) {
         //
         console.log('Global-Variables sleep ...', milliseconds);

@@ -1896,7 +1896,6 @@
     {
         "widgetType": "Graph",
         "widgetSubType": "",
-
         "isTrashed": true,
         "dashboardID": 1,
         "dashboardTabID": 4,
@@ -1913,7 +1912,6 @@
         "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
-
         "datasourceID": 4,
         "slicerFieldName": "symbol",
         "slicerSelection": null,
@@ -1922,13 +1920,7 @@
         "dataFields": "",
         "dataFieldTypes": "",
         "dataFieldLengths": "",
-        "dataParameters":
-        [
-            {
-                "field": "",
-                "value": ""
-            }
-        ],
+        "dataParameters": [ { "field": "", "value": "" } ],
         "reportID": 1,
         "reportName": "",
         "rowLimit": 1,
