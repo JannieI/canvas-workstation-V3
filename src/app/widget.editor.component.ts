@@ -577,6 +577,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showRowDeleteIcon = false;
         this.rowField = '';
         this.localWidget.graphYfield = null;
+        this.localWidget.graphYaxisTitle = null;
+        this.localWidget.graphYaggregate = null;
+        this.localWidget.graphYtimeUnit = null;
+        this.localWidget.graphYtype = null;
 
         let definition = this.createVegaLiteSpec();
         this.renderGraph(definition);
