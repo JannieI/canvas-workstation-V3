@@ -9,14 +9,14 @@
     >
     The Slicer
     <select class="slicerBlock"
-        size="{{(slicer.containerHeight - 36) / 23}}" 
+        size="{{(slicer.containerHeight - 36) / 23}}"
         multiple
         [style.width.px]="slicer.containerWidth-14"
         >
-        <option *ngFor="let d of slicer.slicerSelection; let i = index" 
+        <option *ngFor="let d of slicer.slicerSelection; let i = index"
             class="slicerOption"
             [selected]="d.isSelected"
-            (click)="clickSlicerItem(i, slicer.id, slicer.datasourceID, slicer.datasetID, 
+            (click)="clickSlicerItem(i, slicer.id, slicer.datasourceID, slicer.datasetID,
                 d.fieldValue)"
             >
             {{ d.fieldValue }}

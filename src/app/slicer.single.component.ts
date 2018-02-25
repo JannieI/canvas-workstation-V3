@@ -70,6 +70,7 @@ export class SlicerSingleComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        console.log('xx sl w', this.slicer)
     }
     ngAfterViewInit() {
         //
@@ -87,11 +88,11 @@ export class SlicerSingleComponent {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicer', '@Start');
 
-        // TODO - fix index..
-        this.slicer.isSelected = !this.slicer.isSelected;
-        this.globalVariableService.currentSlicers.forEach(sl => {
-            if (sl.id == id) {sl.isSelected = sl.isSelected}
-        })
+        console.log('xx cl-Sl', this.slicer, index, id)
+        // this.slicer.isSelected = !this.slicer.isSelected; slicerSelection
+        // this.globalVariableService.currentSlicers.forEach(sl => {
+        //     if (sl.id == id) {sl.isSelected = sl.isSelected}
+        // })
 
     }
 

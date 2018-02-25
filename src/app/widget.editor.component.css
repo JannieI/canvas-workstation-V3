@@ -148,6 +148,15 @@
         padding: 0;
     }
 
+    .hasTitle {
+        grid-column-start: 16;
+        grid-column-end: 19;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 0;
+        padding: 0 0 0 10px;
+    }
+
     .graphArea {
         border: 1px solid gray;
         border-radius: 4px;

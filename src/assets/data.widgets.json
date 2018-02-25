@@ -140,7 +140,7 @@
 
         "datasourceID": 44,
         "slicerFieldName": "Origin",
-        "slicerSelection": null,
+        "slicerSelection": "true,USA,true,Europe,true,Japan",
         "datasetID": 7,
         "data": "",
         "dataFields": "",
