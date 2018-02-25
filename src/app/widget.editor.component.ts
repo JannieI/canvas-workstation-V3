@@ -113,7 +113,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     @Input() newWidget: boolean;
     @Input() showDatasourcePopup: boolean;
-    @Output() formWidgetEditorClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formWidgetEditorClosed: EventEmitter<number[]> = new EventEmitter();
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
     clickedButtonAggregateNo: boolean = false;
@@ -398,7 +398,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formWidgetEditorClosed.emit(action);
+        this.formWidgetEditorClosed.emit([]);
     }
 
     clickSave(action: string) {
@@ -436,8 +436,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         let widgetsToRefresh: number[] = [this.localWidget.id];
         console.log('xx close gv', this.globalVariableService.widgets, widgetsToRefresh);
-        this.globalVariableService.widgetsToRefresh.next(widgetsToRefresh);
-        this.formWidgetEditorClosed.emit(action);
+        // this.globalVariableService.widgetsToRefresh.next(widgetsToRefresh);
+        this.formWidgetEditorClosed.emit(widgetsToRefresh);
     }
 
     dragstartField(ev) {

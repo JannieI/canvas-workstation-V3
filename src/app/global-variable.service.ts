@@ -684,7 +684,7 @@ export class GlobalVariableService {
     currentDashboardSnapshots: DashboardSnapshot[] = [];
 
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
-    widgetsToRefresh = new BehaviorSubject<number[]>([]);            // Array of Wids to refresh
+    // widgetsToRefresh = new BehaviorSubject<number[]>([]);            // Array of Wids to refresh
 
     // Global vars that guide all interactions
     // ***************************************
@@ -3113,7 +3113,8 @@ export class GlobalVariableService {
         refreshingRoutine: string,
         dashboardID: number,
         dashboardTabID: number = 0,
-        tabToShow: string = '') {
+        tabToShow: string = '',
+        widgetsToRefresh: number[] = []) {
         // Refresh the global var currentDashboardInfo, then .next it.
         // This will refresh the Dashboard on the screen (via .subscribe)
         // If a dashboardTabID is given, this one will be shown.  Else, it will navigate
@@ -3177,7 +3178,8 @@ export class GlobalVariableService {
             currentDashboardTabID: y,
             currentDashboardTabIndex: x,
             refreshingRoutine: refreshingRoutine,
-            refreshDateTime: dt.toString()
+            refreshDateTime: dt.toString(),
+            widgetsToRefresh
         });
 
     }
