@@ -771,13 +771,13 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         let ds: number[]=[];
         let dSetID: number = 0;
 
-        for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
-            if(this.globalVariableService.datasets[i].datasourceID == datasourceID) {
-                ds.push(this.globalVariableService.datasets[i].id)
+        for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
+            if(this.globalVariableService.currentDatasets[i].datasourceID == datasourceID) {
+                ds.push(this.globalVariableService.currentDatasets[i].id)
             }
         };
         if (ds.length > 0) {
-            dSetID = Math.max(...ds) + 1;
+            dSetID = Math.max(...ds);
         } else {
             // Make proper error handling
             alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
