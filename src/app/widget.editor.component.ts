@@ -594,6 +594,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showColourDeleteIcon = false;
         this.graphColorField = '';
         this.localWidget.graphColorField = null;
+        this.localWidget.graphColorType = null;
 
         let definition = this.createVegaLiteSpec();
         this.renderGraph(definition);
