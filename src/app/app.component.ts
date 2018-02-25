@@ -268,13 +268,26 @@ export class AppComponent implements OnInit {
         );
         this.globalVariableService.editMode.subscribe(
             i => {
-                console.log(i, this.presentationMode)
                     this.editMode = i;
                     if (!i) {this.editMenuText = 'Edit Mode'}
                     else {this.editMenuText = 'View Mode'};
                  }
         );
 
+        this.globalVariableService.widgetsToRefresh.subscribe(
+            wIDs => {
+                if (wIDs.length > 0) {
+                    this.currentWidgets.forEach(w => {
+                        if (wIDs.indexOf(w.id) >= 0) {
+                            w = this.globalVariableService.currentWidgets[0];
+                            console.log('xx replace', wIDs,w, this.globalVariableService.currentWidgets)
+                            // this.widgetDOM.refreshWidget(w, 'app ngAfterViewChecked')
+                        };
+                    });
+                };
+            }
+        );
+        
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => {
                 if (i) {
@@ -292,9 +305,10 @@ export class AppComponent implements OnInit {
                                     currentDashboardTabs[x].name;
                                 this.currentWidgets = this.globalVariableService.
                                     currentWidgets;
-                                    this.currentDatasources = this.globalVariableService.
+                                this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
-                            }
+                                console.log('xx sub', this.globalVariableService.currentWidgets, this.currentWidgets)
+                                }
                         )
                 }
             }
@@ -313,8 +327,13 @@ export class AppComponent implements OnInit {
 
         if (this.widgetDOM != undefined  &&  (!this.refreshGraphs) ) {
             this.refreshGraphs = true;
-            // TODO - fix and put back !
-            this.widgetDOM.refreshWidget();
+            // TODO - only refresh changed one after W-Editor
+            this.currentWidgets.forEach(w => {
+                if (w.id == 1) {
+
+                    // this.widgetDOM.refreshWidget(w, 'app ngAfterViewChecked')
+                }
+            })
         }
     }
 
@@ -355,7 +374,7 @@ export class AppComponent implements OnInit {
             for (var i = 0; i < this.currentWidgets.length; i++) {
                 if (this.currentWidgets[i].isSelected) {
                     this.globalVariableService.currentWidgets.forEach(w => {
-                        if (w.id = this.currentWidgets[i].id) {
+                        if (w.id == this.currentWidgets[i].id) {
                             this.currentWidgets[i] = w;
                             cW = i;
                         }

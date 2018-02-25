@@ -251,9 +251,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 "graphXaxisTitle": "",
                 "graphYaggregate": "",
                 "graphYtimeUnit": "",
-                "graphYfield": "Miles_per_Gallon",
-                "graphYtype": "quantitative",
-                "graphYaxisTitle": "Miles/Gallon",
+                "graphYfield": "",
+                "graphYtype": "",
+                "graphYaxisTitle": "",
                 "graphTitle": "graphTitle",
                 "graphMark": "tick",
                 "graphMarkColor": "#4682b4",
@@ -429,8 +429,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             });
         };
 
-        console.log('xx close gv', this.globalVariableService.widgets);
-
+        let widgetsToRefresh: number[] = [this.localWidget.id];
+        console.log('xx close gv', this.globalVariableService.widgets, widgetsToRefresh);
+        this.globalVariableService.widgetsToRefresh.next(widgetsToRefresh);
         this.formWidgetEditorClosed.emit(action);
     }
 
@@ -559,6 +560,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showColumnDeleteIcon = false;
         this.colField = '';
         this.localWidget.graphXfield = null;
+        this.localWidget.graphXaxisTitle = null;
+        this.localWidget.graphXaggregate = null;
+        this.localWidget.graphXtimeUnit = null;
+        this.localWidget.graphXtype = null;
 
         let definition = this.createVegaLiteSpec();
         this.renderGraph(definition);

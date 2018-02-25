@@ -684,6 +684,7 @@ export class GlobalVariableService {
     currentDashboardSnapshots: DashboardSnapshot[] = [];
 
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
+    widgetsToRefresh = new BehaviorSubject<number[]>([]);            // Array of Wids to refresh
 
     // Global vars that guide all interactions
     // ***************************************

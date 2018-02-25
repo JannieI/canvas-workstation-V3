@@ -85,7 +85,7 @@ export class WidgetSingleComponent {
 
         if (!this.refreshGraphs) {
             this.refreshGraphs = true;
-            this.refreshWidget();
+            this.refreshWidget(null, 'wsingle ngAfterViewChecked');
         }
     }
 
@@ -126,11 +126,16 @@ export class WidgetSingleComponent {
 
     }
 
-    refreshWidget() {
+    refreshWidget(w: Widget, callingRoutine: string) {
         // Refreshes this W
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidget', '@Start');
 
-        console.log('xx refreshWidget', this.widget)
+        console.log('xx refreshWidget from this.widget', callingRoutine, this.widget.id, this.widget.graphXfield, this.widget.graphYfield)
+        if (w != null) {
+            this.widget = w;
+            console.log('xx refreshWidget w', w.id, w.graphXfield, w.graphYfield)
+        }
+
         if (this.widget.visualGrammar == 'Vega-Lite') {
 
             console.log('this.widgets[i].graphSpecification', this.widget.graphSpecification)
@@ -319,7 +324,7 @@ export class WidgetSingleComponent {
                 this.widget.graphWidth;
         };
 
-        this.refreshWidget()
+        this.refreshWidget(null, 'wsingle clickResizeUp')
 
         // console.log('clickResizeUp this.globalVariableService.widgets[index].value',
         //     index, this.globalVariableService.widgets.value[index])
