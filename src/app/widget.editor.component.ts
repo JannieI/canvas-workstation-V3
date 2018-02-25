@@ -219,20 +219,20 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 "containerTop": 80,
                 "containerWidth": 410,
                 "containerZindex": 50,
-                "titleText": "New Title",
+                "titleText": "Title of new Widget",
                 "titleBackgroundColor": "#192b35",
                 "titleBorder": "",
-                "titleColor": "",
+                "titleColor": "black",
                 "titleFontsize": 1,
                 "titleFontWeight": "",
                 "titleHeight": 1,
                 "titleLeft": 1,
-                "titleMargin": "",
-                "titlePadding": "",
+                "titleMargin": "0",
+                "titlePadding": "0 0 0 5px",
                 "titlePosition": "",
-                "titleTextAlign": "",
+                "titleTextAlign": "left",
                 "titleTop": 1,
-                "titleWidth": 1,
+                "titleWidth": 100,
                 "graphType": "",
                 "graphHeight": 240,
                 "graphLeft": 1,
@@ -420,7 +420,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.globalVariableService.widgets.forEach(w => {
                 if (w.id == this.localWidget.id) {
                 // Make a deep copy
-                    w= Object.assign({}, this.localWidget);
+                    w = Object.assign({}, this.localWidget);
 
 
                     // w = this.localWidget;
