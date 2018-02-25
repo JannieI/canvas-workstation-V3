@@ -333,16 +333,13 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 this.graphColorField = '';
             }
 
-            // TODO - remove this, currently datalib reads array as string a,b,c
-            let y: string = this.currentDatasources[0].dataFields.toString();
-            this.dataFieldNames = y.split(',');
-            let l = this.currentDatasources[0].dataFieldLengths.toString().split(',');
-            for (var i = 0; i < l.length; i++) {
-                this.dataFieldLengths.push(+l[i]);
-             };
-             let t: string = this.currentDatasources[0].dataFieldTypes.toString();
-             this.dataFieldTypes = t.split(',');
-
+            // Get local vars - easier for ngFor
+            this.dataFieldNames = this.currentDatasources[0].dataFields;
+            this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
+            this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
+            console.log('xx 3 arrays', this.dataFieldNames,
+            this.dataFieldLengths,
+            this.dataFieldTypes)
         }
 
         this.globalVariableService.presentationMode.subscribe(
@@ -752,7 +749,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     }
 
-    clickDSrow(datasourceID: number) {
+    clickDSrow(datasourceID: number, index: number) {
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
@@ -760,12 +757,12 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             .filter(ds => ds.id == datasourceID)
 
         // TODO - remove this, currently datalib reads array as string a,b,c
-        let y: string = this.currentDatasources[0].dataFields.toString();
-        this.dataFieldNames = y.split(',');
-        let l = this.currentDatasources[0].dataFieldLengths.toString().split(',');
-        for (var i = 0; i < l.length; i++) {
-            this.dataFieldLengths.push(+l[i]);
-         };
+        this.dataFieldNames = this.currentDatasources[0].dataFields;
+        this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
+        this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
+        console.log('xx 3 arrays', this.dataFieldNames,
+        this.dataFieldLengths,
+        this.dataFieldTypes)
 
         // Switch on the preview after the first row was clicked
         this.hasClicked = true;
@@ -817,7 +814,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // TODO - fix event in HTML so that it is triggered here
         this.globalFunctionService.printToConsole(this.constructor.name,'setGraphTypeFieldY', '@Start');
 
-        console.log('xx graphYtype', graphYtype)
         this.localWidget.graphYtype = graphYtype;
     }
 

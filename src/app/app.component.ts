@@ -294,7 +294,6 @@ export class AppComponent implements OnInit {
                                     currentWidgets;
                                     this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
-                                console.log('xx dom', this.widgetDOM)
                             }
                         )
                 }
@@ -310,8 +309,8 @@ export class AppComponent implements OnInit {
     ngAfterViewChecked() {
         //
         // TODO - switch on later, this fires ALL the time ...
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
-        console.log('xx dom', this.widgetDOM)
+        // this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
+
         if (this.widgetDOM != undefined  &&  (!this.refreshGraphs) ) {
             this.refreshGraphs = true;
             // TODO - fix and put back !
@@ -320,7 +319,7 @@ export class AppComponent implements OnInit {
     }
 
     
-// ***********************  HANDLE RETURN AFTER MODAL FORM CLOSES ************************ //
+    // ***********************  HANDLE RETURN AFTER MODAL FORM CLOSES ************************ //
     
     handleCloseModalLanding(action: string) {
         // Close Modal form Landing page
@@ -718,7 +717,7 @@ export class AppComponent implements OnInit {
 
 
 
-// ***********************  CLICK EDIT MENU OPTIONS ************************ //
+    // ***********************  CLICK EDIT MENU OPTIONS ************************ //
     
     clickMenuEditUndo() {
         //
@@ -768,7 +767,7 @@ export class AppComponent implements OnInit {
 
 
 
-// ***********************  CLICK DASHBOARD MENU OPTIONS ************************ //
+    // ***********************  CLICK DASHBOARD MENU OPTIONS ************************ //
     
     clickDashboardNew() {
         //
@@ -922,7 +921,7 @@ export class AppComponent implements OnInit {
 
 
 
-// ***********************  CLICK DATA MENU OPTIONS ************************ //
+    // ***********************  CLICK DATA MENU OPTIONS ************************ //
     
     clickMenuDataFromFile(id: number) {
         // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
@@ -952,59 +951,6 @@ export class AppComponent implements OnInit {
         this.showModalDataCombination = true;
     }
 
-
-
-
-
-// ***********************  CLICK SLICER MENU OPTIONS ************************ //
-    
-    clickMenuDataSlicerAdd() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerAdd', '@Start');
-
-        this.showModalDataSlicers = true;
-
-    }
-
-    clickMenuSlicerTablist() {
-        // Open the list of tabs to which a Sl belongs
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerTablist', '@Start');
-
-        if (!this.checkForOnlyOneWidget('Slicer')) { return};
-
-        this.showModalSlicerTablist = true;
-
-    }
-
-    clickMenuDataSlicerExpand() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerExpand', '@Start');
-
-        if (!this.checkForOnlyOneWidget('Slicer')) { return};
-
-        this.currentSlicers.forEach(w => {
-            if (w.isSelected) {
-                this.selectWidgetIndex = w.id;
-                this.selectDatasetID = w.datasetID;
-                this.selectDatasourceID = w.datasourceID;
-            };
-        });
-        this.showModalWidgetExpand = true;
-    }
-
-    clickMenuDataSlicerEdit() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerEdit', '@Start');
-
-        this.showModalDataSlicers = true;
-    }
-
-    clickMenuDataSlicerDelete() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSlicerDelete', '@Start');
-
-    }
-
     clickMenuDataRefreshAll() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataRefreshAll', '@Start');
@@ -1023,7 +969,7 @@ export class AppComponent implements OnInit {
 
 
 
-// ***********************  CLICK WIDGET MENU OPTIONS ************************ //
+    // ***********************  CLICK WIDGET MENU OPTIONS ************************ //
     
     clickMenuWidgetNew() {
         // Open W Editor
@@ -1169,7 +1115,60 @@ export class AppComponent implements OnInit {
 
 
 
-// ***********************  CLICK SHAPE MENU OPTIONS ************************ //
+    // ***********************  CLICK SLICER MENU OPTIONS ************************ //
+        
+    clickMenuSlicerAdd() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerAdd', '@Start');
+
+        this.showModalDataSlicers = true;
+
+    }
+
+    clickMenuSlicerTablist() {
+        // Open the list of tabs to which a Sl belongs
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerTablist', '@Start');
+
+        if (!this.checkForOnlyOneWidget('Slicer')) { return};
+
+        this.showModalSlicerTablist = true;
+
+    }
+
+    clickMenuSlicerExpand() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExpand', '@Start');
+
+        if (!this.checkForOnlyOneWidget('Slicer')) { return};
+
+        this.currentSlicers.forEach(w => {
+            if (w.isSelected) {
+                this.selectWidgetIndex = w.id;
+                this.selectDatasetID = w.datasetID;
+                this.selectDatasourceID = w.datasourceID;
+            };
+        });
+        this.showModalWidgetExpand = true;
+    }
+
+    clickMenuSlicerEdit() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
+
+        this.showModalDataSlicers = true;
+    }
+
+    clickMenuSlicerDelete() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDelete', '@Start');
+
+    }
+
+
+
+
+
+    // ***********************  CLICK SHAPE MENU OPTIONS ************************ //
     
     clickMenuShapeNew() {
         //
@@ -1203,7 +1202,7 @@ export class AppComponent implements OnInit {
 
 
 
-// ***********************  CLICK VIEW MENU OPTIONS ************************ //
+    // ***********************  CLICK VIEW MENU OPTIONS ************************ //
     
     clickMenuViewPresentation() {
         //
@@ -1254,7 +1253,7 @@ export class AppComponent implements OnInit {
 
 
 
-// ***********************  CLICK ARRANGE MENU OPTIONS ************************ //
+    // ***********************  CLICK ARRANGE MENU OPTIONS ************************ //
     
     clickMenuArrangeBackward() {
         //
@@ -1335,7 +1334,7 @@ export class AppComponent implements OnInit {
 
 
 
-// ***********************  CLICK HELP MENU OPTIONS ************************ //
+    // ***********************  CLICK HELP MENU OPTIONS ************************ //
     
     clickMenuHelpDemo() {
         //
@@ -1348,7 +1347,7 @@ export class AppComponent implements OnInit {
 
 
 
-// ***********************  CLICK COLLABORATE MENU OPTIONS ************************ //
+    // ***********************  CLICK COLLABORATE MENU OPTIONS ************************ //
     
     clickMenuCollaborateAlerts() {
         //
@@ -1382,7 +1381,7 @@ export class AppComponent implements OnInit {
 
 
 
-// ***********************  CLICK USER MENU OPTIONS ************************ //
+    // ***********************  CLICK USER MENU OPTIONS ************************ //
     
     clickMenuUserLogin() {
         //
@@ -1444,7 +1443,7 @@ export class AppComponent implements OnInit {
 
 
 
-// ***********************  OTHER ************************ //
+    // ***********************  OTHER ************************ //
     
     showRecentDashboard(index: number) {
         //
