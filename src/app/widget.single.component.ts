@@ -244,19 +244,19 @@ export class WidgetSingleComponent {
 
     }
 
-    clickResizeUp(ev: MouseEvent, 
-        index: number, 
-        resizeTop: boolean, 
+    clickResizeUp(ev: MouseEvent,
+        index: number,
+        resizeTop: boolean,
         resizeRight: boolean,
         resizeBottom: boolean,
         resizeLeft: boolean) {
-        // Mouse up click during resize event.  Change x and y coordinates according to the 
+        // Mouse up click during resize event.  Change x and y coordinates according to the
         // movement since the resize down event
         //   ev - mouse event
         //   index - index of the W to resize
         //   resizeTop, -Right, -Bottom, -Left - True to move the ... boundary.
         //     Note: 1. both the current and globalVar vars are changed
-        //           2. Top and Left involves changing two aspects, ie Left and Width 
+        //           2. Top and Left involves changing two aspects, ie Left and Width
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeUp', '@Start');
 
         if (!this.editMode) {
@@ -415,7 +415,7 @@ export class WidgetSingleComponent {
     duplicateWidget() {
         // Duplicates all selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'duplicateWidget', '@Start');
-     
+
         // console.log('xx duplicateWidget', this.globalVariableService.currentWidgets)
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.isSelected) {

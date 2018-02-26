@@ -275,25 +275,21 @@ export class AppComponent implements OnInit {
         );
         
         // This refreshes one W
-        this.globalVariableService.changedWidgetID.subscribe(wID => {
-            if (wID >= 100) {
+        this.globalVariableService.changedWidget.subscribe(w => {
+            if (w != null) {
                 // Note: amend this.currentWidgets as it is a ByRef to 
                 // this.gv.currentWidgets, which Angular does not register that it has changed
-                this.globalVariableService.currentWidgets.forEach( globW => {
-                    if (globW.id == wID) {
 
-                        // Deep copy
-                        let newW: Widget = Object.assign({}, globW);
+                // Deep copy
+                let newW: Widget = Object.assign({}, w);
 
-                        for (var i = 0; i < this.currentWidgets.length; i++) {
-                            if (this.currentWidgets[i].id == wID) {
-                                this.currentWidgets.splice(i, 1);
-                            };
-                        this.currentWidgets.push(globW);
-                        this.widgetDOM.refreshWidget(globW, 'app ')
+                for (var i = 0; i < this.currentWidgets.length; i++) {
+                    if (this.currentWidgets[i].id == w.id) {
+                        this.currentWidgets.splice(i, 1);
                     };
-                    };
-                });
+                };
+                this.currentWidgets.push(w);
+                this.widgetDOM.refreshWidget(w, 'app ')
                 console.log('xx replaced', this.currentWidgets)
             };
         });
@@ -385,56 +381,20 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
-        // if (this.newWidget) {
-        //     // TODO - improve, this is not failproof
-        //     // this.currentWidgets.push(this.globalVariableService.currentWidgets[
-        //     //     this.globalVariableService.currentWidgets.length - 1]);
-        //     this.currentWidgets = this.globalVariableService.currentWidgets
-        // } else {
-        //     // TODO - this can be done much better
-        //     // Replace the currentWidget with the editted info
-        //     let cW: number = -1;
-        //     for (var i = 0; i < this.currentWidgets.length; i++) {
-        //         if (this.currentWidgets[i].isSelected) {
-        //             this.globalVariableService.currentWidgets.forEach(w => {
-        //                 if (w.id == this.currentWidgets[i].id) {
-        //                     this.currentWidgets[i] = w;
-        //                     cW = i;
-        //                 }
-        //             })
-        //         }
-        //     };
-
-        // }
-
-
-        // TODO - refresh only the editted one
-        // this.widgetDOM.refreshWidgets();
-        // this.globalVariableService.refreshCurrentDashboard(
-        //     'app-handleCloseWidgetEditor',
-        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-        //     '',
-        //     []
-        // );
-
-
-
         // Note: amend this.currentWidgets as it is a ByRef to 
         // this.gv.currentWidgets, which Angular does not register that it has changed
         // Deep copy
-        let newW: Widget = Object.assign({}, changedWidget);
+        // let newW: Widget = Object.assign({}, changedWidget);
 
-        for (var i = 0; i < this.currentWidgets.length; i++) {
-            if (this.currentWidgets[i].id == changedWidget.id) {
-                this.currentWidgets.splice(i, 1);
-            };
-        };
-        this.currentWidgets.push(changedWidget);
+        // for (var i = 0; i < this.currentWidgets.length; i++) {
+        //     if (this.currentWidgets[i].id == changedWidget.id) {
+        //         this.currentWidgets.splice(i, 1);
+        //     };
+        // };
+        // this.currentWidgets.push(changedWidget);
         console.log('xx handW', this.currentWidgets)
-        // this.widgetDOM.refreshWidget(globW, 'app ')
 
-
+        this.globalVariableService.changedWidget.next(changedWidget);
 
         this.showModalWidgetEditor = false;
     }
@@ -1782,7 +1742,8 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        console.log('clickWidgetContainerDragEnd starts index', index, this.startX, ev.x, this.currentWidgets)
+        console.log('clickWidgetContainerDragEnd starts index', index, this.startX, ev.x, 
+            this.currentWidgets, this.globalVariableService.currentWidgets)
 
         // Reset current and globalVar values
         this.currentWidgets[index].containerLeft =

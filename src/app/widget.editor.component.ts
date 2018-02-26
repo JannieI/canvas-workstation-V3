@@ -414,6 +414,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             };
             this.localWidget.id = newID;
             this.globalVariableService.widgets.push(this.localWidget);
+            this.globalVariableService.currentWidgets.push(this.localWidget);
         } else {
             // Replace the W
             this.globalVariableService.widgetReplace(this.localWidget);

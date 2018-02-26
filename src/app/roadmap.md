@@ -133,6 +133,7 @@ Shapes:
 22. Use cell to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
 23.Consider to move ALL selected objects - remember complexity since Sl and W sits in different components ...
 24.Refactor: Change all components to use central (global var) createVegaLiteSpec ...
+25.Consider CAREFULLY skipping all currentXX routines and data ... this can work is all controlled by App Component.  Not sure what the FULL implications are ...
 
 **Data**
 1. Define Canvas datatype = TS ones?
@@ -189,6 +190,7 @@ BUG: if using a custom vega spec, the editor does not understand this.
 Bug: after changes in the Modal form & close with X - the original W changes
 Bug: X axis always changes to nominal - fix hardcoding ...
 - set properties of new Widget as a template - user pref
+- when open NEW and only 1 DS, then skip DS selection page?
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc
