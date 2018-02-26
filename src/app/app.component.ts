@@ -291,12 +291,12 @@ export class AppComponent implements OnInit {
                 };
 
                 // Add the given one
-                this.currentWidgets.push(w);
+                this.currentWidgets.push(newW);
 
                 // Refresh, only for graphs
-                if (w.widgetType == 'Graph') {
-                    this.widgetDOM.refreshWidget(w, 'app ')
-                };
+                // if (w.widgetType == 'Graph') {
+                //     this.widgetDOM.refreshWidget(w, 'app ')
+                // };
 
                 console.log('xx app changedWidget replaced', w.data, this.currentWidgets)
             };
@@ -389,14 +389,14 @@ export class AppComponent implements OnInit {
         // Note: amend this.currentWidgets as it is a ByRef to 
         // this.gv.currentWidgets, which Angular does not register that it has changed
 
-        for (var i = 0; i < this.currentWidgets.length; i++) {
-            if (this.currentWidgets[i].id == changedWidget.id) {
-                this.currentWidgets.splice(i, 1);
-            };
-        };
-        this.currentWidgets.push(changedWidget);
+        // for (var i = 0; i < this.currentWidgets.length; i++) {
+        //     if (this.currentWidgets[i].id == changedWidget.id) {
+        //         this.currentWidgets.splice(i, 1);
+        //     };
+        // };
+        // this.currentWidgets.push(changedWidget);
         console.log('xx handW', this.currentWidgets)
-        // this.globalVariableService.changedWidget.next(changedWidget);
+        this.globalVariableService.changedWidget.next(changedWidget);
 
         this.showModalWidgetEditor = false;
     }
