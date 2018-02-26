@@ -43,7 +43,6 @@ import { DashboardTreeviewComponent } from './dashboard.treeview.component';
 import { DashboardSubscribeComponent }         from './dashboard.subscribe.component';
 import { DashboardImportComponent }   from './dashboard.import.component';
 
-import { WidgetComponent }            from './widget.component';
 import { WidgetEditorComponent }      from './widget.editor.component';
 import { WidgetCheckpointsComponent }       from './widget.checkpoints.component';
 import { WidgetLinksComponent }       from './widget.links.component';
@@ -165,7 +164,6 @@ import { StatusbarComponent }         from './statusbar.component';
         MyNgIfDirective,
 
         PipeFilterDSType,
-        WidgetComponent,
         StatusbarComponent,
 
     ],

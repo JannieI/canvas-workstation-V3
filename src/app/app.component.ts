@@ -26,7 +26,6 @@ import { Field }                      from './models'
 import { Datasource }                 from './models'
 import { Widget }                     from './models'
 
-import { WidgetComponent }            from './widget.component';
 import { WidgetSingleComponent }      from './widget.single.component';
 
 // Vega, Vega-Lite
@@ -1782,10 +1781,62 @@ export class AppComponent implements OnInit {
 
     }
 
+    deleteWidget() {
+        // Delete the selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
+        
+        // Delete the local one
+        let delIDs: number[] = [];
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+            delIDs.push(this.currentWidgets[i].id);
+            this.currentWidgets.splice(i,1);
+            };
+        };
+        
+        // Delete the global one
+        for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
+            if (delIDs.indexOf(this.globalVariableService.widgets[i].id) >= 0) {
+            console.log('xx deleteWidget selected id:', this.globalVariableService.widgets[i].id)
+            this.globalVariableService.widgets.splice(i,1)
+            };
+        };
+        
+    }
 
+    // Fix up for later use ....
+    duplicateWidget() {
+        // Duplicates all selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'duplicateWidget', '@Start');
+     
+        // console.log('xx duplicateWidget', this.globalVariableService.currentWidgets)
+        this.globalVariableService.currentWidgets.forEach(w => {
+            if (w.isSelected) {
 
+                // TODO - improve this when using a DB!
+                let newID: number = 1;
+                let ds: number[] = [];
+                this.globalVariableService.widgets.forEach(w => {
+                    ds.push(w.id);
+                });
+                newID = Math.max(...ds) + 1;
+                // console.log('xx newID', newID, ds)
+                // Make a deep copy
+                let localWidget= Object.assign({}, w);
+                localWidget.id = newID;
+                localWidget.isSelected = false;
+                localWidget.containerLeft = localWidget.containerLeft + 20;
+                localWidget.containerTop = localWidget.containerTop + 20;
 
+                // Add to all and current W
+                this.globalVariableService.widgets.push(localWidget);
+                this.globalVariableService.currentWidgets.push(localWidget);
 
+                // Refresh the Graph inside the Container
+                this.refreshGraphs = false;
+            };
+        });
+    }
 
 
 

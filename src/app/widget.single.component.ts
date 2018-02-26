@@ -222,11 +222,11 @@ export class WidgetSingleComponent {
                 .hover()
                 .run()
                 .finalize();
-            console.log('TEST refreshWidgets render done', specification)
+            console.log('TEST refreshWidget render done', specification)
         } else {
             alert('The visualGrammar of widget is not == Vega-Lite' )
         };
-        console.log('TEST refreshWidgets end')
+        console.log('TEST refreshWidget end')
     }
 
     clickResizeDown(ev: MouseEvent, index: number) {
