@@ -275,21 +275,23 @@ export class AppComponent implements OnInit {
         );
         
         // This refreshes one W
-        this.globalVariableService.changedWidgetID.subscribe(wi => {
-            if (wi >= 0) {
+        this.globalVariableService.changedWidgetID.subscribe(wID => {
+            if (wID >= 100) {
                 // Note: amend this.currentWidgets as it is a ByRef to 
                 // this.gv.currentWidgets, which Angular does not register that it has changed
                 this.globalVariableService.currentWidgets.forEach( globW => {
-                    if (globW.id == wi) {
+                    if (globW.id == wID) {
 
+                        // Deep copy
                         let newW: Widget = Object.assign({}, globW);
 
                         for (var i = 0; i < this.currentWidgets.length; i++) {
-                            if (this.currentWidgets[i].id == wi) {
+                            if (this.currentWidgets[i].id == wID) {
                                 this.currentWidgets.splice(i, 1);
-                                this.currentWidgets.push(globW);
                             };
-                        };
+                        this.currentWidgets.push(globW);
+                        this.widgetDOM.refreshWidget(globW, 'app ')
+                    };
                     };
                 });
                 console.log('xx replaced', this.currentWidgets)
@@ -315,8 +317,19 @@ export class AppComponent implements OnInit {
                                     currentDashboardTabs[x].name;
                                 this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
-                                this.currentWidgets = this.globalVariableService.
-                                    currentWidgets; 
+                                // this.currentWidgets = this.globalVariableService.
+                                //     currentWidgets; 
+                                console.log('xx app [w]', this.globalVariableService.currentDashboardInfo.
+                                    value.widgetsToRefresh, this.globalVariableService.currentWidgets)
+                                // Loop on All/Indicated Ws
+                                this.currentWidgets = [];
+                                for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
+                                    let w: Widget = Object.assign({}, 
+                                        this.globalVariableService.currentWidgets[i]);
+                                    this.currentWidgets.push(w)
+                                }
+                                console.log('xx app end', this.currentWidgets);        
+
                             }
 
                         )
@@ -368,40 +381,60 @@ export class AppComponent implements OnInit {
         };
     }
 
-    handleCloseWidgetEditor(widgetsToRefresh: number[]) {
+    handleCloseWidgetEditor(changedWidget: Widget) {    //widgetsToRefresh: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
-        if (this.newWidget) {
-            // TODO - improve, this is not failproof
-            // this.currentWidgets.push(this.globalVariableService.currentWidgets[
-            //     this.globalVariableService.currentWidgets.length - 1]);
-            this.currentWidgets = this.globalVariableService.currentWidgets
-        } else {
-            // TODO - this can be done much better
-            // Replace the currentWidget with the editted info
-            let cW: number = -1;
-            for (var i = 0; i < this.currentWidgets.length; i++) {
-                if (this.currentWidgets[i].isSelected) {
-                    this.globalVariableService.currentWidgets.forEach(w => {
-                        if (w.id == this.currentWidgets[i].id) {
-                            this.currentWidgets[i] = w;
-                            cW = i;
-                        }
-                    })
-                }
-            };
+        // if (this.newWidget) {
+        //     // TODO - improve, this is not failproof
+        //     // this.currentWidgets.push(this.globalVariableService.currentWidgets[
+        //     //     this.globalVariableService.currentWidgets.length - 1]);
+        //     this.currentWidgets = this.globalVariableService.currentWidgets
+        // } else {
+        //     // TODO - this can be done much better
+        //     // Replace the currentWidget with the editted info
+        //     let cW: number = -1;
+        //     for (var i = 0; i < this.currentWidgets.length; i++) {
+        //         if (this.currentWidgets[i].isSelected) {
+        //             this.globalVariableService.currentWidgets.forEach(w => {
+        //                 if (w.id == this.currentWidgets[i].id) {
+        //                     this.currentWidgets[i] = w;
+        //                     cW = i;
+        //                 }
+        //             })
+        //         }
+        //     };
 
-        }
+        // }
+
+
         // TODO - refresh only the editted one
         // this.widgetDOM.refreshWidgets();
-        this.globalVariableService.refreshCurrentDashboard(
-            'app-handleCloseWidgetEditor',
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-            '',
-            []
-        );
+        // this.globalVariableService.refreshCurrentDashboard(
+        //     'app-handleCloseWidgetEditor',
+        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+        //     '',
+        //     []
+        // );
+
+
+
+        // Note: amend this.currentWidgets as it is a ByRef to 
+        // this.gv.currentWidgets, which Angular does not register that it has changed
+        // Deep copy
+        let newW: Widget = Object.assign({}, changedWidget);
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].id == changedWidget.id) {
+                this.currentWidgets.splice(i, 1);
+            };
+        };
+        this.currentWidgets.push(changedWidget);
+        console.log('xx handW', this.currentWidgets)
+        // this.widgetDOM.refreshWidget(globW, 'app ')
+
+
 
         this.showModalWidgetEditor = false;
     }

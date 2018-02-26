@@ -113,7 +113,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     @Input() newWidget: boolean;
     @Input() showDatasourcePopup: boolean;
-    @Output() formWidgetEditorClosed: EventEmitter<number[]> = new EventEmitter();
+    @Output() formWidgetEditorClosed: EventEmitter<Widget> = new EventEmitter();
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
     clickedButtonAggregateNo: boolean = false;
@@ -394,7 +394,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formWidgetEditorClosed.emit([]);
+        this.formWidgetEditorClosed.emit(null);
     }
 
     clickSave(action: string) {
@@ -419,9 +419,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.globalVariableService.widgetReplace(this.localWidget);
         };
 
-        let widgetsToRefresh: number[] = [this.localWidget.id];
+        let widgetsToRefresh: number = this.localWidget.id;
 
-        this.formWidgetEditorClosed.emit(widgetsToRefresh);
+        // this.formWidgetEditorClosed.emit(widgetsToRefresh);
+        this.formWidgetEditorClosed.emit(this.localWidget);
     }
 
     dragstartField(ev) {
@@ -505,9 +506,10 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType);
 
         // TODO - REMOVE when this is done via forms !!!
-        if (this.localWidget.graphYtype == 'quantitative') {
-            this.localWidget.graphYtype = 'ordinal';
-        };
+        // if (this.localWidget.graphYtype == 'quantitative') {
+        //     this.localWidget.graphYtype = 'ordinal';
+        // };
+
         let definition = this.createVegaLiteSpec();
         this.showRowFieldAdvanced = true;
         this.renderGraph(definition);
@@ -757,7 +759,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.dataFieldNames = this.currentDatasources[0].dataFields;
         this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
         this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
-        
+
         // Switch on the preview after the first row was clicked
         this.hasClicked = true;
 
