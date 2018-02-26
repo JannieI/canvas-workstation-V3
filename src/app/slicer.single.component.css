@@ -3,5 +3,6 @@
 }
 
 .slicerItem {
-    margin: 1px 10px 1px 0px;
+    margin: 0;
+    padding: 1px 10px 1px 0px;
 }

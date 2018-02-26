@@ -9,7 +9,7 @@
         >
         <div *ngFor="let d of slicer.slicerSelection; let i = index" class="slicerItem"
             [style.background-color]="d.isSelected ? 'rgb(199, 199, 199)' : 'white'"
-            [style.width.px]="slicer.containerWidth-8"
+            [style.width.px]="slicer.containerWidth-20"
             >
             <input type="checkbox" 
                 id="checkbox" 
