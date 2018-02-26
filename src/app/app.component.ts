@@ -1425,9 +1425,9 @@ export class AppComponent implements OnInit {
             };
         };
     }
-    clickMenuArrangeAlignCenterPageDown() {
+    clickMenuArrangeAlignCenterHorisontally() {
         // Center horisontally across page
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterPageDown', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterHorisontally', '@Start');
 
         if (!this.checkForMultipleWidgets()) {return};
 
@@ -1441,10 +1441,20 @@ export class AppComponent implements OnInit {
         };        
     }
 
-    clickMenuArrangeAlignCenterPageRight() {
-        // Center horisontally across page
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterPageRight', '@Start');
+    clickMenuArrangeAlignCenterVertically() {
+        // Center vertically across page
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterVertically', '@Start');
 
+        if (!this.checkForMultipleWidgets()) {return};
+
+        let x: number = window.innerHeight / 2; 
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                this.currentWidgets[i].containerTop = x - 
+                    (this.currentWidgets[i].containerHeight / 2);
+            };
+        };   
     }
 
     clickMenuArrangeGroup() {
