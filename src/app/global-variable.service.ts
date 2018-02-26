@@ -1582,7 +1582,7 @@ export class GlobalVariableService {
         // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
         // two dSets with different values ...
         let relatedSlicers: Widget[] = this.currentWidgets.filter( w =>
-            w.datasourceID == dataSet.datasourceID  &&  w.datasetID == w.datasetID  
+            w.datasourceID == dataSet.datasourceID  &&  w.datasetID == dataSet.id  
             &&  w.widgetType == 'Slicer'
         );
 

@@ -120,7 +120,8 @@ export class SlicerSingleComponent {
             }
         });
 
-        // Filter this dSet, applying all Sl that relates to it
+        // Filter the data in the dSets to which the Sl points.
+        // In addition, apply all Sl that relates to each one
         this.globalVariableService.currentDatasets.forEach(cd => {
             if (cd.id == datasetID) {
 
@@ -132,8 +133,9 @@ export class SlicerSingleComponent {
         // Refresh Ws that are related to Sl
         let wIDs: number[] = [];
         this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.datasourceID == datasourceID  &&  w.datasetID == datasetID) {
-                wIDs.push(w.id);
+            if (w.datasourceID == datasourceID  &&  w.datasetID == datasetID  && w.widgetType != 'Slicer') {
+                // wIDs.push(w.id);
+                this.globalVariableService.changedWidget.next(w);
             }
         })
         // this.widgetDOM.refreshWidgets(-1,-1,wIDs);

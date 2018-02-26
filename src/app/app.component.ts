@@ -298,7 +298,7 @@ export class AppComponent implements OnInit {
                     this.widgetDOM.refreshWidget(w, 'app ')
                 };
 
-                console.log('xx app changedWidget replaced', this.currentWidgets)
+                console.log('xx app changedWidget replaced', w.data, this.currentWidgets)
             };
         });
 
@@ -386,8 +386,17 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
-        // Identify W to be changed
-        this.globalVariableService.changedWidget.next(changedWidget);
+        // Note: amend this.currentWidgets as it is a ByRef to 
+        // this.gv.currentWidgets, which Angular does not register that it has changed
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].id == changedWidget.id) {
+                this.currentWidgets.splice(i, 1);
+            };
+        };
+        this.currentWidgets.push(changedWidget);
+        console.log('xx handW', this.currentWidgets)
+        // this.globalVariableService.changedWidget.next(changedWidget);
 
         this.showModalWidgetEditor = false;
     }
