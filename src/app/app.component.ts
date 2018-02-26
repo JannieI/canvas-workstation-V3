@@ -1383,6 +1383,27 @@ export class AppComponent implements OnInit {
         };
     }
 
+    clickMenuArrangeAlignMiddle() {
+        // Align the Middles of the selected widgets
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignMiddle', '@Start');
+
+        if (!this.checkForMultipleWidgets()) {return};
+
+        let x: number = -1; 
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                if (x == -1) {
+                    x = this.currentWidgets[i].containerTop + 
+                        (this.currentWidgets[i].containerHeight / 2);
+                } else {
+                    this.currentWidgets[i].containerTop = x - 
+                        (this.currentWidgets[i].containerHeight / 2);
+                };
+            };
+        };
+    }
+
     clickMenuArrangeAlignCenterPageDown() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterPageDown', '@Start');
