@@ -107,7 +107,8 @@ export class SlicerSingleComponent {
         id: number, 
         datasourceID: number, 
         datasetID: number,
-        fieldValue: string
+        fieldValue: string,
+        ev: any
         ) {
         // Clicked a Slicer item - now filter the data, and then update related Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerItem', '@Start');
@@ -120,10 +121,8 @@ export class SlicerSingleComponent {
             if (sel.fieldValue == fieldValue) {
                 sel.isSelected = !sel.isSelected;
             }
-        })
-        console.log('xx this.slicer.slicerSelection', this.slicer.slicerSelection)
-        let a: boolean = true;
-        if (a) return;
+        });
+
         // Adjust the global Sl selection, for next time
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.id == id) {
@@ -131,12 +130,19 @@ export class SlicerSingleComponent {
                 // Update the selected item
                 w.slicerSelection.forEach(sel => {
                     if (sel.fieldValue == fieldValue) {
-                        sel.isSelected = !sel.isSelected;
+                        sel.isSelected = ev.target.checked;
                     }
                 })
 
             }
         });
+
+        // Adjust the current Slicer
+        this.slicer.slicerSelection.forEach(sel => {
+            if (sel.fieldValue == fieldValue) {
+                sel.isSelected = ev.target.checked;
+            }
+        })
 
         // Filter the data in the dSets to which the Sl points.
         // In addition, apply all Sl that relates to each one
@@ -156,8 +162,6 @@ export class SlicerSingleComponent {
                 this.globalVariableService.changedWidget.next(w);
             }
         })
-        // this.widgetDOM.refreshWidgets(-1,-1,wIDs);
-        // this.currentSlicers = this.globalVariableService.currentSlicers;
     }
 
 }

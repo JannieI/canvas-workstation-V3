@@ -298,7 +298,7 @@ export class AppComponent implements OnInit {
                 //     this.widgetDOM.refreshWidget(w, 'app ')
                 // };
 
-                console.log('xx app changedWidget replaced', w.data, this.currentWidgets)
+                console.log('xx app changedWidget replaced', w.graphData, this.currentWidgets)
             };
         });
 
@@ -1491,7 +1491,6 @@ export class AppComponent implements OnInit {
         // console.log('trackWidget', row);
         return row ? row.id : undefined;
     }
-
 
     checkForOnlyOneWidget(widgetType: string = 'Graph'): boolean {
         // Returns true if one and only widget was selected, else false

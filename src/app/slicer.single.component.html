@@ -15,7 +15,13 @@
             <input type="checkbox" 
                 id="checkbox" 
                 [checked]="d.isSelected" 
-                (click)="clickSlicerItem(i,slicer.id,slicer.datasourceID,slicer.datasetID,d.fieldValue)"            
+                (click)="clickSlicerItem(
+                    i,
+                    slicer.id,
+                    slicer.datasourceID,
+                    slicer.datasetID,
+                    d.fieldValue,
+                    $event)"            
                 >
             <label for="checkbox"
                 [style.background-color]="d.isSelected ? 'rgb(199, 199, 199)' : 'white'"

@@ -235,7 +235,7 @@ Bug: X axis always changes to nominal - fix hardcoding ...
 3. Fix bug: isTrash => Widget does not disappear !
 4. Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
  + Dont show top if now Dataset - rather appropriate Unexpected Error msg
-5. 
+5. Slicerresize: only goes to a min size (maybe min-size in css), but internals shrinks further.  Not bad functionally but not right - have a look.
 6. Fix bug: [style.border]="row.isSelected? '2px solid black' : '2px solid red'" does not work
 7. Flag visible if it has a Note, Data Quality issues
 8. 

@@ -1586,6 +1586,7 @@ export class GlobalVariableService {
             &&  w.widgetType == 'Slicer'
         );
 
+        console.log('xx relatedSlicers', relatedSlicers)
         // Reset the filtered data
         dataSet.data = dataSet.dataRaw;
 
@@ -1608,17 +1609,18 @@ export class GlobalVariableService {
                 // Replace the filtered data, used by the graph
                 dataSet.data = tempData;
             }
+            console.log('xx w',w)
         });
 
         // Filter data in [W] related to this dSet
         // TODO - cater later for cases for we use graphUrl
         this.currentWidgets.forEach(w => {
-            if (w.datasourceID == dataSet.datasourceID  &&   w.datasetID == dataSet.id) {
+            if (w.datasourceID == dataSet.datasourceID  &&   w.datasetID == dataSet.id  && w.widgetType != 'Slicer') {
                 w.graphUrl = "";
                 w.graphData = dataSet.data;
             }
         });
-
+        console.log('xx currW', this.currentWidgets)
         return dataSet;
     }
 
