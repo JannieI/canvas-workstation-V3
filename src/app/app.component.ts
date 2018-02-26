@@ -1404,6 +1404,27 @@ export class AppComponent implements OnInit {
         };
     }
 
+
+    clickMenuArrangeAlignBottom() {
+        // Align the Bottoms of the selected widgets
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignBottom', '@Start');
+
+        if (!this.checkForMultipleWidgets()) {return};
+
+        let x: number = -1; 
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                if (x == -1) {
+                    x = this.currentWidgets[i].containerTop + 
+                        (this.currentWidgets[i].containerHeight);
+                } else {
+                    this.currentWidgets[i].containerTop = x - 
+                        (this.currentWidgets[i].containerHeight);
+                };
+            };
+        };
+    }
     clickMenuArrangeAlignCenterPageDown() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterPageDown', '@Start');
