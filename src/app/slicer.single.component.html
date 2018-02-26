@@ -1,26 +1,27 @@
-<div #slicerDOM
+<div #slicerDOM class="slicer"
     [style.zindex]="100"
     (click)="clickSlicer(i)"
+    [style.height.px]="slicer.containerHeight-2"
+    [style.width.px]="slicer.containerWidth-2"
     >
-    <div class="slicerContainerDragHandle"
-    draggable="false"
-    [style.background-color]="slicer.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
-    [style.width.px]="slicer.containerWidth-14"
-    >
-    <div *ngFor="let d of slicer.slicerSelection; let i = index" class="slicerItem"
-        [style.background-color]="d.isSelected ? 'rgb(199, 199, 199)' : 'white'"
+    <div [style.height.px]="slicer.containerHeight-4"
+        [style.width.px]="slicer.containerWidth-4"
         >
-        <input type="checkbox" 
-            id="checkbox" 
-            [checked]="d.isSelected" 
-            (click)="clickSlicerItem(i,slicer.id,slicer.datasourceID,slicer.datasetID,d.fieldValue)"            
-            >
-        <label for="checkbox"
+        <div *ngFor="let d of slicer.slicerSelection; let i = index" class="slicerItem"
             [style.background-color]="d.isSelected ? 'rgb(199, 199, 199)' : 'white'"
+            [style.width.px]="slicer.containerWidth-8"
             >
-            {{ d.fieldValue }}
-        </label>
+            <input type="checkbox" 
+                id="checkbox" 
+                [checked]="d.isSelected" 
+                (click)="clickSlicerItem(i,slicer.id,slicer.datasourceID,slicer.datasetID,d.fieldValue)"            
+                >
+            <label for="checkbox"
+                [style.background-color]="d.isSelected ? 'rgb(199, 199, 199)' : 'white'"
+                >
+                {{ d.fieldValue }}
+            </label>
+        </div>
     </div>
 </div>
 
-</div>
