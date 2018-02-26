@@ -1705,23 +1705,6 @@ export class AppComponent implements OnInit {
         return true;
     }
 
-    clickSlicerContainerDragStart(ev: MouseEvent, index: number) {
-        // Register start of Sl drag event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerContainerDragStart', '@Start');
-
-        if (!this.editMode) {
-            return;
-        }
-
-        // Is busy with resizing, ignore this
-        if (this.isBusyResizing) {
-            return;
-        };
-
-        this.startX = ev.x;
-        this.startY = ev.y;
-    }
-
     clickSlicerContainerDragEnd(ev: MouseEvent, index: number) {
         // Move the Sl containter at the end of the drag event
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerContainerDragEnd', '@Start');
@@ -1830,7 +1813,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        console.log('clickSlicerContainerDragEnd starts index', index, this.startX, ev.x)
+        console.log('clickWidgetContainerDragEnd starts index', index, this.startX, ev.x, this.currentWidgets)
 
         // Reset current and globalVar values
         this.currentWidgets[index].containerLeft =
