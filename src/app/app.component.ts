@@ -1557,50 +1557,6 @@ export class AppComponent implements OnInit {
         return true;
     }
 
-    deleteWidget() {
-        // Delete the selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
-
-        // Delete the local one
-        let delIDs: number[] = [];
-        for (var i = 0; i < this.currentWidgets.length; i++) {
-            if (this.currentWidgets[i].isSelected) {
-                delIDs.push(this.currentWidgets[i].id);
-                this.currentWidgets.splice(i,1);
-            };
-        };
-
-        // Delete the global one
-        for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-            if (delIDs.indexOf(this.globalVariableService.widgets[i].id) >= 0) {
-                console.log('xx deleteWidget selected id:', this.globalVariableService.widgets[i].id)
-                this.globalVariableService.widgets.splice(i,1)
-            };
-        };
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     clickWidgetContainerDragStart(ev: MouseEvent, index: number) {
         // Register start of W drag event
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragStart', '@Start');
