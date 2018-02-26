@@ -24,8 +24,15 @@
 
     </select> -->
     <div *ngFor="let d of slicer.slicerSelection; let i = index">
-        <input type="checkbox" id="checkbox" [checked]="d.isSelected">
-        <label for="checkbox">{{ d.fieldValue }}</label>
+        <input type="checkbox" 
+            id="checkbox" 
+            [checked]="d.isSelected" 
+            >
+        <label for="checkbox"
+            [style.background-color]="d.isSelected ? 'rgb(121, 121, 153)' : 'white'"
+            >
+            {{ d.fieldValue }}
+        </label>
     </div>
 </div>
 
