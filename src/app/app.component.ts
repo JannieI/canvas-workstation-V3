@@ -1493,16 +1493,6 @@ export class AppComponent implements OnInit {
     }
 
 
-    clickResizeDown(ev: MouseEvent, index: number) {
-        // Register mouse down event when resize starts
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeDown', '@Start');
-
-        // Indicate that we are resizing - thus block the dragging action
-        this.isBusyResizing = true;
-        this.startX = ev.x;
-        this.startY = ev.y;
-
-    }
 
     clickResizeUp(ev: MouseEvent,
         index: number,
