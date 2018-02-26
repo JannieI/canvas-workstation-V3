@@ -274,6 +274,29 @@ export class AppComponent implements OnInit {
                  }
         );
         
+        // This refreshes one W
+        this.globalVariableService.changedWidgetID.subscribe(wi => {
+            if (wi >= 0) {
+                // Note: amend this.currentWidgets as it is a ByRef to 
+                // this.gv.currentWidgets, which Angular does not register that it has changed
+                this.globalVariableService.currentWidgets.forEach( globW => {
+                    if (globW.id == wi) {
+
+                        let newW: Widget = Object.assign({}, globW);
+
+                        for (var i = 0; i < this.currentWidgets.length; i++) {
+                            if (this.currentWidgets[i].id == wi) {
+                                this.currentWidgets.splice(i, 1);
+                                this.currentWidgets.push(globW);
+                            };
+                        };
+                    };
+                });
+                console.log('xx replaced', this.currentWidgets)
+            };
+        });
+
+        // This refreshes the whole D, with W and related info
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => {
                 if (i) {

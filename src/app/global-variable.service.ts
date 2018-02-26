@@ -682,6 +682,7 @@ export class GlobalVariableService {
     currentDashboardTags: DashboardTag[] = [];
     currentDashboardPermissions: DashboardPermission[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
+    changedWidgetID = new BehaviorSubject<number>(-1);    // Wid that must be changed
 
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
     // widgetsToRefresh = new BehaviorSubject<number[]>([]);            // Array of Wids to refresh
