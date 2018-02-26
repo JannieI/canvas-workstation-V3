@@ -1494,24 +1494,12 @@ export class AppComponent implements OnInit {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForOnlyOneWidget', '@Start');
 
-        // Get all select W, for given type
-        this.selectedWidgetIDs = [];
-        if (widgetType == 'Slicer') {
-            this.currentSlicers.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == widgetType) {
-                    this.selectedWidgetIDs.push(w.id)
-                }
-            });
-        } else {
-            this.currentWidgets.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == widgetType) {
-                    this.selectedWidgetIDs.push(w.id)
-                }
-            })
+        // Get nr of W selected
+        let nrWidgetsSelected: number = this.currentWidgets.filter(
+            w => w.isSelected).length;
 
-        };
 
-        if (this.selectedWidgetIDs.length == 0) {
+        if (nrWidgetsSelected == 0) {
             this.showStatusBarMessage(
                    'No ' + widgetType + ' selected',
                    'StatusBar',
@@ -1521,7 +1509,7 @@ export class AppComponent implements OnInit {
             );
             return false;
         };
-        if (this.selectedWidgetIDs.length > 1) {
+        if (nrWidgetsSelected > 1) {
             this.showStatusBarMessage(
                 'More than 1 ' + widgetType + ' selected',
                 'StatusBar',
