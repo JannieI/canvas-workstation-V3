@@ -1303,7 +1303,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuArrangeAlignLeft() {
-        // Align the tops of the selected widgets
+        // Align the lefts of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignLeft', '@Start');
 
         if (!this.checkForMultipleWidgets()) {return};
@@ -1321,7 +1321,29 @@ export class AppComponent implements OnInit {
             };
         };
     }
-    
+
+    clickMenuArrangeAlignCenter() {
+        // Align the centers of the selected widgets
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenter', '@Start');
+
+        if (!this.checkForMultipleWidgets()) {return};
+
+        let x: number = -1; 
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                if (x == -1) {
+                    x = this.currentWidgets[i].containerLeft + 
+                        (this.currentWidgets[i].containerWidth / 2);
+                } else {
+                    this.currentWidgets[i].containerLeft = x - 
+                        (this.currentWidgets[i].containerWidth / 2);
+                };
+                console.log('xx t', this.currentWidgets[i].containerLeft)
+            };
+        };
+    }
+
     clickMenuArrangeAlignTop() {
         // Align the tops of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignTop', '@Start');
