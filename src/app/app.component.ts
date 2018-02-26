@@ -1426,13 +1426,23 @@ export class AppComponent implements OnInit {
         };
     }
     clickMenuArrangeAlignCenterPageDown() {
-        //
+        // Center horisontally across page
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterPageDown', '@Start');
 
+        if (!this.checkForMultipleWidgets()) {return};
+
+        let x: number = window.innerWidth / 2; 
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                this.currentWidgets[i].containerLeft = x - 
+                    (this.currentWidgets[i].containerWidth / 2);
+            };
+        };        
     }
 
     clickMenuArrangeAlignCenterPageRight() {
-        //
+        // Center horisontally across page
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterPageRight', '@Start');
 
     }
