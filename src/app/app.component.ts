@@ -1317,7 +1317,6 @@ export class AppComponent implements OnInit {
                 } else {
                     this.currentWidgets[i].containerLeft = x;
                 };
-                console.log('xx t', this.currentWidgets[i].containerLeft)
             };
         };
     }
@@ -1339,7 +1338,27 @@ export class AppComponent implements OnInit {
                     this.currentWidgets[i].containerLeft = x - 
                         (this.currentWidgets[i].containerWidth / 2);
                 };
-                console.log('xx t', this.currentWidgets[i].containerLeft)
+            };
+        };
+    }
+
+    clickMenuArrangeAlignRight() {
+        // Align the Rights of the selected widgets
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignRight', '@Start');
+
+        if (!this.checkForMultipleWidgets()) {return};
+
+        let x: number = -1; 
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                if (x == -1) {
+                    x = this.currentWidgets[i].containerLeft + 
+                        this.currentWidgets[i].containerWidth;
+                } else {
+                    this.currentWidgets[i].containerLeft = x - 
+                        this.currentWidgets[i].containerWidth;
+                };
             };
         };
     }
