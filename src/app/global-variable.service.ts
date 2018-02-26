@@ -1571,29 +1571,30 @@ export class GlobalVariableService {
         });
     }
 
-    filterSlicer(dataSet: Dataset): any {
+    filterSlicer(dataSet: Dataset): Dataset {
         // Filter a given Dataset on .dataRaw by applying all applicable Sl, and put result
         // into .data
         // Note: Objects and arrays are passed by reference. Primitive values like number,
         // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
         console.log('Global-Variables filterSlicer ...');
 
-        // Get all Sl for the dSet
+        // Get all Sl for the given dSet
         // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
         // two dSets with different values ...
-        let localSlicers: Widget[] = this.currentSlicers.filter( sl =>
-            sl.datasourceID == dataSet.datasourceID  &&  sl.datasetID == sl.datasetID
+        let relatedSlicers: Widget[] = this.currentWidgets.filter( w =>
+            w.datasourceID == dataSet.datasourceID  &&  w.datasetID == w.datasetID  
+            &&  w.widgetType == 'Slicer'
         );
 
         // Reset the filtered data
         dataSet.data = dataSet.dataRaw;
 
-        // Loop on applicable Sl
-        localSlicers.forEach(sl => {
+        // Loop on related Sl and filter data
+        relatedSlicers.forEach(w => {
 
             // Build array of selection values
             let fieldValue: string[] = [];
-            sl.slicerSelection.forEach(f => {
+            w.slicerSelection.forEach(f => {
                 if (f.isSelected) { fieldValue.push(f.fieldValue)}
             });
 
@@ -1601,7 +1602,7 @@ export class GlobalVariableService {
             if (fieldValue.length > 0) {
                 let tempData: any = [];
                 tempData = dataSet.data.filter(d =>
-                     fieldValue.indexOf(d[sl.slicerFieldName]) >= 0
+                     fieldValue.indexOf(d[w.slicerFieldName]) >= 0
                 );
 
                 // Replace the filtered data, used by the graph
@@ -1610,8 +1611,9 @@ export class GlobalVariableService {
         });
 
         // Filter data in [W] related to this dSet
+        // TODO - cater later for cases for we use graphUrl
         this.currentWidgets.forEach(w => {
-            if (w.datasetID == dataSet.id) {
+            if (w.datasourceID == dataSet.datasourceID  &&   w.datasetID == dataSet.id) {
                 w.graphUrl = "";
                 w.graphData = dataSet.data;
             }

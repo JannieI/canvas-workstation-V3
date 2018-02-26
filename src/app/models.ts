@@ -386,7 +386,8 @@ export class Widget {
     hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
     
     // Data related
-    datasourceID: number;
+    datasourceID: number;                   // Specific ID that this W points to.  For a W, 
+    // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
     slicerFieldName: string;                // Name to filter on
     slicerSelection: {isSelected: boolean; fieldValue: string;}[];
     datasetID: number;                      // Specific ID that this W points to.  For a W, 

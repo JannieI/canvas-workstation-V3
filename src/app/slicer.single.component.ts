@@ -96,13 +96,18 @@ export class SlicerSingleComponent {
 
     }
 
-    clickSlicerItem(index: number, id: number, datasourceID: number, datasetID: number,
-        fieldValue: string) {
-        //
+    clickSlicerItem(
+        index: number, 
+        id: number, 
+        datasourceID: number, 
+        datasetID: number,
+        fieldValue: string
+        ) {
+        // Clicked a Slicer item - now filter the data, and then update related Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerItem', '@Start');
 
-        // Adjust the Sl selection (local + Global)
-        this.globalVariableService.currentSlicers.forEach(w => {
+        // Adjust the global Sl selection, for next time
+        this.globalVariableService.currentWidgets.forEach(w => {
             if (w.id == id) {
 
                 // Update the selected item

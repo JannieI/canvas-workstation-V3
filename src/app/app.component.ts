@@ -283,14 +283,22 @@ export class AppComponent implements OnInit {
                 // Deep copy
                 let newW: Widget = Object.assign({}, w);
 
+                // Delete W if it in our stash
                 for (var i = 0; i < this.currentWidgets.length; i++) {
                     if (this.currentWidgets[i].id == w.id) {
                         this.currentWidgets.splice(i, 1);
                     };
                 };
+
+                // Add the given one
                 this.currentWidgets.push(w);
-                this.widgetDOM.refreshWidget(w, 'app ')
-                console.log('xx replaced', this.currentWidgets)
+
+                // Refresh, only for graphs
+                if (w.widgetType == 'Graph') {
+                    this.widgetDOM.refreshWidget(w, 'app ')
+                };
+
+                console.log('xx app changedWidget replaced', this.currentWidgets)
             };
         });
 
@@ -313,10 +321,7 @@ export class AppComponent implements OnInit {
                                     currentDashboardTabs[x].name;
                                 this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
-                                // this.currentWidgets = this.globalVariableService.
-                                //     currentWidgets; 
-                                console.log('xx app [w]', this.globalVariableService.currentDashboardInfo.
-                                    value.widgetsToRefresh, this.globalVariableService.currentWidgets)
+
                                 // Loop on All/Indicated Ws
                                 this.currentWidgets = [];
                                 for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
@@ -381,19 +386,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
-        // Note: amend this.currentWidgets as it is a ByRef to 
-        // this.gv.currentWidgets, which Angular does not register that it has changed
-        // Deep copy
-        // let newW: Widget = Object.assign({}, changedWidget);
-
-        // for (var i = 0; i < this.currentWidgets.length; i++) {
-        //     if (this.currentWidgets[i].id == changedWidget.id) {
-        //         this.currentWidgets.splice(i, 1);
-        //     };
-        // };
-        // this.currentWidgets.push(changedWidget);
-        console.log('xx handW', this.currentWidgets)
-
+        // Identify W to be changed
         this.globalVariableService.changedWidget.next(changedWidget);
 
         this.showModalWidgetEditor = false;
