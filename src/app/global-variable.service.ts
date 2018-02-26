@@ -1015,29 +1015,6 @@ export class GlobalVariableService {
 
     }
 
-    // deleteWidget(id: number) {
-    //     //
-    //     console.log('Global-Variables deleteWidget ...');
-    //     console.log('xx deleteWidget 1...', id, this.currentWidgets);
-
-    //     this.currentWidgets.forEach( w => {
-    //         if (w.id == id) {
-    //             // w.isTrashed = true;
-    //             console.log('xx deleteWidget selected id:', w.id)
-    //         };
-    //     });
-
-    //     // Refresh the D
-    //     // this.refreshCurrentDashboard(
-    //     //     'globVar-deleteWidget',
-    //     //     this.currentDashboardInfo.value.currentDashboardID,
-    //     //     this.currentDashboardInfo.value.currentDashboardTabID,
-    //     //     ''
-    //     // );
-    //     console.log('xx deleteWidget 2...', id, this.currentWidgets);
-
-    // }
-
     currentDatasourceAdd(newData: Datasource) {
         // Add given DS to the current DS
         console.log('Global-Variables currentDatasourceAdd ...');
