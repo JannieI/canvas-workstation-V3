@@ -8,7 +8,7 @@
     [style.width.px]="slicer.containerWidth-14"
     >
     The Slicer
-    <select class="slicerBlock"
+    <!-- <select class="slicerBlock"
         size="{{(slicer.containerHeight - 36) / 23}}"
         multiple
         [style.width.px]="slicer.containerWidth-14"
@@ -21,7 +21,12 @@
             >
             {{ d.fieldValue }}
         </option>
-    </select>
+
+    </select> -->
+    <div *ngFor="let d of slicer.slicerSelection; let i = index">
+        <input type="checkbox" id="checkbox" [checked]="d.isSelected">
+        <label for="checkbox">{{ d.fieldValue }}</label>
+    </div>
 </div>
 
 </div>

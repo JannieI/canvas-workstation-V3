@@ -106,6 +106,14 @@ export class SlicerSingleComponent {
         // Clicked a Slicer item - now filter the data, and then update related Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerItem', '@Start');
 
+        // Update Sl
+        this.slicer.slicerSelection.forEach(sel => {
+            if (sel.fieldValue == fieldValue) {
+                sel.isSelected = !sel.isSelected;
+            }
+        })
+        let a: boolean = true;
+        if (a) return;
         // Adjust the global Sl selection, for next time
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.id == id) {
