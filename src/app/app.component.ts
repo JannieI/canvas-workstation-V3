@@ -1540,7 +1540,7 @@ export class AppComponent implements OnInit {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForMultipleWidgets', '@Start');
 
-        if (this.globalVariableService.selectedWidgetIDs.length < 2) {
+        if (this.currentWidgets.filter(w => w.isSelected).length < 2) {
             this.showStatusBarMessage(
                 'Select multiple Widgets',
                 'StatusBar',
