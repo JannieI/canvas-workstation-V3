@@ -521,17 +521,33 @@
                                 Align
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Left</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Center</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Right</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem
+                                    (click)="clickMenuArrangeAlignLeft()"
+                                    >
+                                    Left
+                                </button>
+                                <button type="button" class="dropdown-item" clrDropdownItem
+                                    (click)="clickMenuArrangeAlignCenter()"
+                                    >
+                                    Center</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem
+                                    (click)="clickMenuArrangeAlignRight()"
+                                    >
+                                    Right</button>
                                 <div class="dropdown-divider"></div>
                                 <button type="button" class="dropdown-item" clrDropdownItem
-                                    (click)="clickMenuArrangeAligTop()"
+                                    (click)="clickMenuArrangeAlignTop()"
                                     >
                                     Top
                                 </button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Middle</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem>Bottom</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem
+                                    (click)="clickMenuArrangeAlignMiddle()"
+                                    >
+                                    Middle</button>
+                                <button type="button" class="dropdown-item" clrDropdownItem
+                                    (click)="clickMenuArrangeAlignBottom()"
+                                    >
+                                    Bottom</button>
                                 <div class="dropdown-divider"></div>
                                 <button type="button" clrDropdownItem (click)="clickMenuArrangeAlignCenterPageDown()">
                                     Center page
