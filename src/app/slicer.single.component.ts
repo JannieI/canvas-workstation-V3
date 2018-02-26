@@ -52,6 +52,7 @@ export class SlicerSingleComponent {
     endWidgetNumber: number;
     isBusyResizing: boolean = false;
     refreshGraphs: boolean = false;
+    slicerItemClicked: boolean = false;     // True if Item was clicked -> dont click others
     startX: number;
     startY: number;
     startWidgetNumber: number;
@@ -88,6 +89,11 @@ export class SlicerSingleComponent {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicer', '@Start');
 
+        // Item handles things
+        if (this.slicerItemClicked) {
+            this.slicerItemClicked = false;
+            return;
+        }
         console.log('xx cl-Sl', this.slicer, index, id)
         // this.slicer.isSelected = !this.slicer.isSelected; slicerSelection
         // this.globalVariableService.currentSlicers.forEach(sl => {
@@ -106,12 +112,16 @@ export class SlicerSingleComponent {
         // Clicked a Slicer item - now filter the data, and then update related Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerItem', '@Start');
 
+        // Indicate the Item was clicked
+        this.slicerItemClicked = true;
+
         // Update Sl
         this.slicer.slicerSelection.forEach(sel => {
             if (sel.fieldValue == fieldValue) {
                 sel.isSelected = !sel.isSelected;
             }
         })
+        console.log('xx this.slicer.slicerSelection', this.slicer.slicerSelection)
         let a: boolean = true;
         if (a) return;
         // Adjust the global Sl selection, for next time

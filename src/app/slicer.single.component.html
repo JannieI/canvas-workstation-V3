@@ -7,29 +7,16 @@
     [style.background-color]="slicer.isSelected? 'rgb(238, 236, 236)' : 'transparent'"
     [style.width.px]="slicer.containerWidth-14"
     >
-    The Slicer
-    <!-- <select class="slicerBlock"
-        size="{{(slicer.containerHeight - 36) / 23}}"
-        multiple
-        [style.width.px]="slicer.containerWidth-14"
+    <div *ngFor="let d of slicer.slicerSelection; let i = index" class="slicerItem"
+        [style.background-color]="d.isSelected ? 'rgb(199, 199, 199)' : 'white'"
         >
-        <option *ngFor="let d of slicer.slicerSelection; let i = index"
-            class="slicerOption"
-            [selected]="d.isSelected"
-            (click)="clickSlicerItem(i, slicer.id, slicer.datasourceID, slicer.datasetID,
-                d.fieldValue)"
-            >
-            {{ d.fieldValue }}
-        </option>
-
-    </select> -->
-    <div *ngFor="let d of slicer.slicerSelection; let i = index">
         <input type="checkbox" 
             id="checkbox" 
             [checked]="d.isSelected" 
+            (click)="clickSlicerItem(i,slicer.id,slicer.datasourceID,slicer.datasetID,d.fieldValue)"            
             >
         <label for="checkbox"
-            [style.background-color]="d.isSelected ? 'rgb(121, 121, 153)' : 'white'"
+            [style.background-color]="d.isSelected ? 'rgb(199, 199, 199)' : 'white'"
             >
             {{ d.fieldValue }}
         </label>
