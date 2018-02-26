@@ -147,7 +147,6 @@ export class AppComponent implements OnInit {
     selectWidgetIndex: number;
     selectDatasetID: number;
     selectDatasourceID: number;
-    selectedWidgetIDs: number[] = [];
     showGrid: boolean;
     showComments: boolean;
     showDatasourcePopup: boolean = false;
