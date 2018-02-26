@@ -394,7 +394,6 @@ export class AppComponent implements OnInit {
         //     };
         // };
         // this.currentWidgets.push(changedWidget);
-        console.log('xx handW', this.currentWidgets)
         this.globalVariableService.changedWidget.next(changedWidget);
 
         this.showModalWidgetEditor = false;
@@ -1797,8 +1796,8 @@ export class AppComponent implements OnInit {
         // Delete the global one
         for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
             if (delIDs.indexOf(this.globalVariableService.widgets[i].id) >= 0) {
-            console.log('xx deleteWidget selected id:', this.globalVariableService.widgets[i].id)
-            this.globalVariableService.widgets.splice(i,1)
+
+                this.globalVariableService.widgets.splice(i,1)
             };
         };
         

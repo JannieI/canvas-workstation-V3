@@ -831,84 +831,84 @@
         </slicer-single>
     </div>
 
-    <div class="widgetContainerTopLeftHandle"
+    <div class="widgetContainerTopLeftHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
         draggable="true"
         >
     </div>
-    <div class="widgetContainerTopHandle"
+    <div class="widgetContainerTopHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, true, false, false, false)"
         draggable="true"
         >
     </div>
-    <div class="widgetContainerTopRightHandle"
+    <div class="widgetContainerTopRightHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
         draggable="true"
         >
     </div>
-    <div class="widgetContainerRightTopHandle"
+    <div class="widgetContainerRightTopHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
         draggable="true"
         >
     </div>
-    <div class="widgetContainerRightHandle"
+    <div class="widgetContainerRightHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, false, true, false, false)"
         draggable="true"
         >
     </div>
-    <div class="widgetContainerRightBottomHandle"
+    <div class="widgetContainerRightBottomHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
         draggable="true"
         >
     </div>
-    <div class="widgetContainerBottomRightHandle"
+    <div class="widgetContainerBottomRightHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
         draggable="true"
         >
     </div>
-    <div class="widgetContainerBottomLeftHandle"
+    <div class="widgetContainerBottomLeftHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
         draggable="true"
         >
     </div>
-    <div class="widgetContainerBottomHandle"
+    <div class="widgetContainerBottomHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, false, false, true, false)"
         draggable="true"
         >
     </div>
-    <div class="widgetContainerLeftBottomHandle"
+    <div class="widgetContainerLeftBottomHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
         draggable="true"
         >
     </div>
-    <div class="widgetContainerLeftHandle"
+    <div class="widgetContainerLeftHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, false, false, false, true)"
         draggable="true"
         >
     </div>
-    <div class="widgetContainerLeftTopHandle"
+    <div class="widgetContainerLeftTopHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
         (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
