@@ -292,19 +292,8 @@ export class AppComponent implements OnInit {
                                     currentDashboardTabs[x].name;
                                 this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
-
-                                // Loop on All/Indicated Ws
-                                // Note: recreate this.currentWidgets, else if becomes a 
-                                // ByRef to this.gv.currentWidgets.  In this case, Angular
-                                // does not register that it has changed
-                                this.currentWidgets = [];
-                                for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
-                                    let w: Widget = Object.assign({}, 
-                                        this.globalVariableService.currentWidgets[i]);
-                                    // this.currentWidgets.splice(i, 1)
-                                    this.currentWidgets.push(w)
-                                    console.log('xx app for', i, this.globalVariableService.currentWidgets[i].id)
-                                };
+                                this.currentWidgets = this.globalVariableService.
+                                    currentWidgets; 
                             }
 
                         )
