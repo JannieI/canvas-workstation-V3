@@ -1705,37 +1705,6 @@ export class AppComponent implements OnInit {
         return true;
     }
 
-    clickSlicerContainerDragEnd(ev: MouseEvent, index: number) {
-        // Move the Sl containter at the end of the drag event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerContainerDragEnd', '@Start');
-
-        if (!this.editMode) {
-            return;
-        }
-
-        // Is busy with resizing, ignore this
-        if (this.isBusyResizing) {
-
-            // Done with resizing
-            this.isBusyResizing = false;
-            return;
-        };
-
-        console.log('clickSlicerContainerDragEnd starts index', index, this.startX, ev.x)
-
-        // Reset current and globalVar values
-        this.currentSlicers[index].containerLeft =
-            this.currentSlicers[index].containerLeft - this.startX + ev.x;
-        this.globalVariableService.currentSlicers[index].containerLeft =
-            this.currentSlicers[index].containerLeft;
-
-        this.currentSlicers[index].containerTop =
-            this.currentSlicers[index].containerTop - this.startY + ev.y;
-        this.globalVariableService.currentSlicers[index].containerTop =
-            this.currentSlicers[index].containerTop;
-
-    }
-
     deleteWidget() {
         // Delete the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
