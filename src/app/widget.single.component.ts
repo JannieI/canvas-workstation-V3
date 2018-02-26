@@ -381,19 +381,6 @@ export class WidgetSingleComponent {
 
     }
 
-    clickAlignTop() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAlignTop', '@Start');
-
-        if (this.globalVariableService.selectedWidgetIDs.length < 2) {return}
-
-        let x: number = this.widget.containerTop;
-
-        for (var i = 1; i < this.globalVariableService.selectedWidgetIDs.length; i++) {
-            this.widget.containerTop = x;
-        }
-    }
-
     showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {
         // Returns True if a Widget is related to the selected Sl(s)
         // TODO - put back, but this fires ALL the time ...

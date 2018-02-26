@@ -1023,7 +1023,7 @@ export class AppComponent implements OnInit {
         // Can only edit one W at a time, so ignore if multiple selected
         if (!this.checkForOnlyOneWidget()) { return};
 
-        // Indicate edit W and open Editor
+        // Indicate edit W and open Editor, which will work with selected W
         this.newWidget = false;
         this.showDatasourcePopup = false;
 
@@ -1308,7 +1308,18 @@ export class AppComponent implements OnInit {
 
         if (!this.checkForMultipleWidgets()) {return};
 
-        this.widgetDOM.clickAlignTop()
+        let x: number = -1; 
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                if (x == -1) {
+                    x = this.currentWidgets[i].containerTop;
+                } else {
+                    this.currentWidgets[i].containerTop = x;
+                };
+                console.log('xx t', this.currentWidgets[i].containerTop)
+            };
+        };
     }
 
     clickMenuArrangeAlignCenterPageDown() {
@@ -1496,8 +1507,7 @@ export class AppComponent implements OnInit {
 
         // Get nr of W selected
         let nrWidgetsSelected: number = this.currentWidgets.filter(
-            w => w.isSelected).length;
-
+            w => (w.isSelected  &&  w.widgetType == widgetType) ).length;
 
         if (nrWidgetsSelected == 0) {
             this.showStatusBarMessage(
