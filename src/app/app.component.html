@@ -793,7 +793,7 @@
     [style.zindex]="row.containerZindex"
     (click)="clickWidget($event, i, row.id)"
     (dragstart)="clickWidgetContainerDragStart($event, i)"
-    (dragend)="clickWidgetContainerDragEnd($event, i)"
+    (dragend)="clickWidgetContainerDragEnd($event, i, row.id)"
     draggable="true"
     >
 

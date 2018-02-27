@@ -1720,7 +1720,7 @@ export class AppComponent implements OnInit {
         this.startY = ev.y;
     }
 
-    clickWidgetContainerDragEnd(ev: MouseEvent, index: number) {
+    clickWidgetContainerDragEnd(ev: MouseEvent, index: number, id: number) {
         // Move the W containter at the end of the drag event
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragEnd', '@Start');
 
@@ -1736,19 +1736,34 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        console.log('clickWidgetContainerDragEnd starts index', index, this.startX, ev.x, 
-            this.currentWidgets, this.globalVariableService.currentWidgets)
+
+        // Create array to loop on
+        let draggables: number[] = [];
+        if (this.widgetGroup.length == 0) {
+            draggables = [id];
+        } else {
+            this.widgetGroup.forEach( wg => {
+                draggables.push(wg)
+            });
+        };
+        console.log('clickWidgetContainerDragEnd starts index', index, id, draggables)
 
         // Reset current and globalVar values
-        this.currentWidgets[index].containerLeft =
-            this.currentWidgets[index].containerLeft - this.startX + ev.x;
-        this.globalVariableService.currentWidgets[index].containerLeft =
-            this.currentWidgets[index].containerLeft;
-
-        this.currentWidgets[index].containerTop =
-            this.currentWidgets[index].containerTop - this.startY + ev.y;
-        this.globalVariableService.currentWidgets[index].containerTop =
-            this.currentWidgets[index].containerTop;
+        this.currentWidgets.forEach( w => {
+            
+            if (draggables.indexOf(w.id) >= 0) {
+                w.containerLeft = w.containerLeft - this.startX + ev.x;
+                w.containerTop = w.containerTop - this.startY + ev.y;
+            }
+        });
+        this.globalVariableService.currentWidgets.forEach( w => {
+            
+            if (draggables.indexOf(w.id) >= 0) {
+                w.containerLeft = w.containerLeft - this.startX + ev.x;
+                w.containerTop = w.containerTop - this.startY + ev.y;
+            }
+        });
+        console.log('xx end', this.currentWidgets, this.globalVariableService.currentWidgets)
 
     }
 
