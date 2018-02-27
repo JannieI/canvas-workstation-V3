@@ -32,6 +32,7 @@ import { GlobalVariableService }      from './global-variable.service';
     dataValues: string[] = [];
     localWidget: Widget;                            // W to modify, copied from selected
     selectedDatasourceID: number = -1;
+    selectedDatasetID: number = -1;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -92,19 +93,18 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDataFields', '@Start');
 
         // Get ID of latest dSet for the selected DS
-        let newdSetID: number = 1;
         let dSetIDs: number[] = [];
         this.globalVariableService.currentDatasets.forEach(ds => {
             if (ds.datasourceID == this.selectedDatasourceID) {
                 dSetIDs.push(ds.id);
             }; 
         });
-        newdSetID = Math.max(...dSetIDs);
+        this.selectedDatasetID = Math.max(...dSetIDs);
 
         // More into array
         this.dataValues = [];
         let tempData: any = this.globalVariableService.currentDatasets.filter(ds => 
-            ds.id == newdSetID)[0].dataRaw //['Origin'];
+            ds.id == this.selectedDatasetID)[0].dataRaw //['Origin'];
         
         tempData.forEach(t => {
             if (this.dataValues.indexOf(t['Origin']) < 0) {
@@ -145,6 +145,9 @@ import { GlobalVariableService }      from './global-variable.service';
             this.localWidget.id = newID;
             this.globalVariableService.widgets.push(this.localWidget);
             this.globalVariableService.currentWidgets.push(this.localWidget);
+            this.localWidget.datasourceID = this.selectedDatasourceID;
+            this.localWidget.datasetID = this.selectedDatasetID;
+
         } else {
             // Replace the W
             this.globalVariableService.widgetReplace(this.localWidget);

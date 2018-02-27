@@ -94,12 +94,6 @@ export class SlicerSingleComponent {
             this.slicerItemClicked = false;
             return;
         }
-        console.log('xx cl-Sl', this.slicer, index, id)
-        // this.slicer.isSelected = !this.slicer.isSelected; slicerSelection
-        // this.globalVariableService.currentSlicers.forEach(sl => {
-        //     if (sl.id == id) {sl.isSelected = sl.isSelected}
-        // })
-
     }
 
     clickSlicerItem(

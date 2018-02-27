@@ -139,7 +139,6 @@ export class WidgetSingleComponent {
 
         if (this.widget.visualGrammar == 'Vega-Lite') {
 
-            console.log('this.widgets[i].graphSpecification', this.widget.graphSpecification)
             // Use the spec inside the Widget, or the properties
             let definition: any = null;
             if (this.widget.graphSpecification != ''  &&

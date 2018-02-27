@@ -297,7 +297,7 @@ export class AppComponent implements OnInit {
                 //     this.widgetDOM.refreshWidget(w, 'app ')
                 // };
 
-                console.log('xx app changedWidget replaced', w.graphData, this.currentWidgets)
+                console.log('xx app changedWidget replaced', w, this.currentWidgets)
             };
         });
 
