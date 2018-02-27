@@ -165,125 +165,129 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             // Get DS
             this.currentDatasources = this.globalVariableService.currentDatasources;
 
-            this.localWidget =
-            {
-                "widgetType": "Graph",
-                "widgetSubType": "",
+            // Create new W
+            this.localWidget = this.globalVariableService.widgetTemplate;
+            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID; 
+            this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+            this.localWidget.widgetType = 'Graph';
+            // {
+            //     "widgetType": "Graph",
+            //     "widgetSubType": "",
 
-                "isTrashed": false,
-                "dashboardID": 1,
-                "dashboardTabID": 1,
-                "dashboardTabIDs": [1],
-                "id": 1,
-                "name": "New",
-                "description": "New",
-                "visualGrammar": "Vega-Lite",
-                "version": 1,
-                "isSelected": false,
-                "isLiked": false,
-                "nrDataQualityIssues": 0,
-                "nrComments": 4,
-                "nrButtonsToShow": 3,
-                "hyperlinkDashboardID": 1,
-                "hyperlinkDashboardTabID": 1,
+            //     "isTrashed": false,
+            //     "dashboardID": 1,
+            //     "dashboardTabID": 1,
+            //     "dashboardTabIDs": [1],
+            //     "id": 1,
+            //     "name": "New",
+            //     "description": "New",
+            //     "visualGrammar": "Vega-Lite",
+            //     "version": 1,
+            //     "isSelected": false,
+            //     "isLiked": false,
+            //     "nrDataQualityIssues": 0,
+            //     "nrComments": 4,
+            //     "nrButtonsToShow": 3,
+            //     "hyperlinkDashboardID": 1,
+            //     "hyperlinkDashboardTabID": 1,
 
-                "datasourceID": 4,
-                "data": null,
-                "dataFields": null,
-                "dataFieldTypes": null,
-                "dataFieldLengths": null,
-                "slicerFieldName": "symbol",
-                "slicerSelection": null,
-                "datasetID": 7,
-                "dataParameters":
-                [
-                    {
-                        "field": "",
-                        "value": ""
-                    }
-                ],
-                "reportID": 1,
-                "reportName": "",
-                "rowLimit": 1,
-                "addRestRow": false,
-                "size": "",
-                "containerBackgroundcolor": "transparent",
-                "containerBorder": "2px solid black",
-                "containerBorderRadius": "",
-                "containerBoxshadow": "2px 2px gray",
-                "containerColor": "transparent",
-                "containerFontsize": 12,
-                "containerHeight": 320,
-                "containerLeft": 10,
-                "containerHasTitle": true,
-                "containerTop": 80,
-                "containerWidth": 410,
-                "containerZindex": 50,
-                "titleText": "Title of new Widget",
-                "titleBackgroundColor": "#192b35",
-                "titleBorder": "",
-                "titleColor": "black",
-                "titleFontsize": 1,
-                "titleFontWeight": "",
-                "titleHeight": 1,
-                "titleLeft": 1,
-                "titleMargin": "0",
-                "titlePadding": "0 0 0 5px",
-                "titlePosition": "",
-                "titleTextAlign": "left",
-                "titleTop": 1,
-                "titleWidth": 100,
-                "graphType": "",
-                "graphHeight": 240,
-                "graphLeft": 1,
-                "graphTop": 1,
-                "graphWidth": 240,
-                "graphGraphPadding": 1,
-                "graphHasSignals": false,
-                "graphFillColor": "",
-                "graphHoverColor": "",
-                "graphSpecification": "",
-                "graphDescription": "",
-                "graphXaggregate": "",
-                "graphXtimeUnit": "",
-                "graphXfield": "",
-                "graphXtype": "",
-                "graphXaxisTitle": "",
-                "graphYaggregate": "",
-                "graphYtimeUnit": "",
-                "graphYfield": "",
-                "graphYtype": "",
-                "graphYaxisTitle": "",
-                "graphTitle": "graphTitle",
-                "graphMark": "tick",
-                "graphMarkColor": "#4682b4",
-                "graphUrl": "../assets/vega-datasets/cars.json",
-                "graphColorField": "",
-                "graphColorType": "",
-                "graphData": "",
-                "tableColor": "",
-                "tableCols": 1,
-                "tableHeight": 1,
-                "tableHideHeader": false,
-                "tableLeft": 1,
-                "tableRows": 1,
-                "tableTop": 1,
-                "tableWidth": 1,
-                "shapeCx": "",
-                "shapeCy": "",
-                "shapeR": "",
-                "shapeStroke": "",
-                "shapeStrokeWidth": "",
-                "shapeFill": "",
-                "refreshMode": "",
-                "refreshFrequency": 1,
-                "widgetRefreshedOn": "",
-                "widgetRefreshedBy": "",
-                "widgetCreatedOn": "",
-                "widgetCreatedBy": "",
-                "widgetUpdatedOn": "",
-                "widgetUpdatedBy": ""
-            }
+            //     "datasourceID": 4,
+            //     "data": null,
+            //     "dataFields": null,
+            //     "dataFieldTypes": null,
+            //     "dataFieldLengths": null,
+            //     "slicerFieldName": "symbol",
+            //     "slicerSelection": null,
+            //     "datasetID": 7,
+            //     "dataParameters":
+            //     [
+            //         {
+            //             "field": "",
+            //             "value": ""
+            //         }
+            //     ],
+            //     "reportID": 1,
+            //     "reportName": "",
+            //     "rowLimit": 1,
+            //     "addRestRow": false,
+            //     "size": "",
+            //     "containerBackgroundcolor": "transparent",
+            //     "containerBorder": "2px solid black",
+            //     "containerBorderRadius": "",
+            //     "containerBoxshadow": "2px 2px gray",
+            //     "containerColor": "transparent",
+            //     "containerFontsize": 12,
+            //     "containerHeight": 320,
+            //     "containerLeft": 10,
+            //     "containerHasTitle": true,
+            //     "containerTop": 80,
+            //     "containerWidth": 410,
+            //     "containerZindex": 50,
+            //     "titleText": "Title of new Widget",
+            //     "titleBackgroundColor": "#192b35",
+            //     "titleBorder": "",
+            //     "titleColor": "black",
+            //     "titleFontsize": 1,
+            //     "titleFontWeight": "",
+            //     "titleHeight": 1,
+            //     "titleLeft": 1,
+            //     "titleMargin": "0",
+            //     "titlePadding": "0 0 0 5px",
+            //     "titlePosition": "",
+            //     "titleTextAlign": "left",
+            //     "titleTop": 1,
+            //     "titleWidth": 100,
+            //     "graphType": "",
+            //     "graphHeight": 240,
+            //     "graphLeft": 1,
+            //     "graphTop": 1,
+            //     "graphWidth": 240,
+            //     "graphGraphPadding": 1,
+            //     "graphHasSignals": false,
+            //     "graphFillColor": "",
+            //     "graphHoverColor": "",
+            //     "graphSpecification": "",
+            //     "graphDescription": "",
+            //     "graphXaggregate": "",
+            //     "graphXtimeUnit": "",
+            //     "graphXfield": "",
+            //     "graphXtype": "",
+            //     "graphXaxisTitle": "",
+            //     "graphYaggregate": "",
+            //     "graphYtimeUnit": "",
+            //     "graphYfield": "",
+            //     "graphYtype": "",
+            //     "graphYaxisTitle": "",
+            //     "graphTitle": "graphTitle",
+            //     "graphMark": "tick",
+            //     "graphMarkColor": "#4682b4",
+            //     "graphUrl": "../assets/vega-datasets/cars.json",
+            //     "graphColorField": "",
+            //     "graphColorType": "",
+            //     "graphData": "",
+            //     "tableColor": "",
+            //     "tableCols": 1,
+            //     "tableHeight": 1,
+            //     "tableHideHeader": false,
+            //     "tableLeft": 1,
+            //     "tableRows": 1,
+            //     "tableTop": 1,
+            //     "tableWidth": 1,
+            //     "shapeCx": "",
+            //     "shapeCy": "",
+            //     "shapeR": "",
+            //     "shapeStroke": "",
+            //     "shapeStrokeWidth": "",
+            //     "shapeFill": "",
+            //     "refreshMode": "",
+            //     "refreshFrequency": 1,
+            //     "widgetRefreshedOn": "",
+            //     "widgetRefreshedBy": "",
+            //     "widgetCreatedOn": "",
+            //     "widgetCreatedBy": "",
+            //     "widgetUpdatedOn": "",
+            //     "widgetUpdatedBy": ""
+            // }
 
         } else {
 
@@ -756,7 +760,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.currentDatasources = this.globalVariableService.currentDatasources
             .filter(ds => ds.id == datasourceID)
 
-        // TODO - remove this, currently datalib reads array as string a,b,c
+        // Load local arrays for ngFor
         this.dataFieldNames = this.currentDatasources[0].dataFields;
         this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
         this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
@@ -783,6 +787,17 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data.slice(0,5);
+        
+        
+        // Fill in data info
+        if (this.newWidget) {
+            this.localWidget.datasourceID = datasourceID;
+            this.localWidget.datasetID = dSetID;
+            this.localWidget.graphData = this.globalVariableService.currentDatasets.filter(
+                d => d.id == dSetID)[0].data;
+            console.log('xx new', datasourceID, dSetID)
+        };
+
     }
 
     clickContinue(){
