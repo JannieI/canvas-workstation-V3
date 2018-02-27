@@ -756,27 +756,6 @@ export class AppComponent implements OnInit {
         this.showTestArrows = true;
     }
 
-    clickMenuEditSelectAll() {
-        // Select all the objects on the D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAll', '@Start');
-
-        // Has to be in editMode
-        if (!this.editMode) {
-            this.showStatusBarMessage(
-                'Not in Edit Mode (see Edit menu Option)',
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
-        this.currentWidgets.forEach(w => w.isSelected = true);
-        this.currentSlicers.forEach(sl => sl.isSelected = true);
-        this.currentShapes.forEach(sh => sh.isSelected = true);
-    }
-
     clickMenuEditSelectAllNone(size: string) {
         // Deselect n objects on the D based on size, All, None, Auto
         // Auto will select All if none is selected, None is any is selected
