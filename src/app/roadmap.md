@@ -191,6 +191,7 @@ Bug: after changes in the Modal form & close with X - the original W changes
 Bug: X axis always changes to nominal - fix hardcoding ...
 - set properties of new Widget as a template - user pref
 - when open NEW and only 1 DS, then skip DS selection page?
+- when add NEW, ensure it is accessable: always same position top left + z-index = Max(rest)+1
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc
