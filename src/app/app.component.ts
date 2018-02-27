@@ -1462,7 +1462,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeGroup', '@Start');
 
         if (!this.checkForMultipleWidgets()) {return};
-        
+
         // Clear, and add
         this.widgetGroup = [];
         this.currentWidgets.forEach(w => {
@@ -1484,6 +1484,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeUnGroup', '@Start');
 
+        // Clear
+        this.widgetGroup = [];
+
+        this.showStatusBarMessage(
+            'Group cleared ',
+            'StatusBar',
+            'Info',
+            3000,
+            ''
+        );
     }
 
     clickMenuArrangeDistributeVertical() {
