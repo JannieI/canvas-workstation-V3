@@ -782,6 +782,18 @@ export class AppComponent implements OnInit {
         // Auto will select All if none is selected, None is any is selected
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAllNone', '@Start');
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showStatusBarMessage(
+                'Not in Edit Mode (see Edit menu Option)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+        
         if (size == 'None') {
             this.currentWidgets.forEach(w => w.isSelected = false);
         };
@@ -791,6 +803,7 @@ export class AppComponent implements OnInit {
         if (size == 'Auto') {
             let selectedWidgets: Widget[] = this.currentWidgets.filter(
                 w => (w.isSelected) );
+                console.log('xx', selectedWidgets)
             if (selectedWidgets.length == 0) {
                 this.currentWidgets.forEach(w => w.isSelected = true);
             } else {
