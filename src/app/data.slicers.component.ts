@@ -150,6 +150,15 @@ import { GlobalVariableService }      from './global-variable.service';
             this.globalVariableService.widgetReplace(this.localWidget);
         };
 
+        // Set Slicer related data
+        this.localWidget.slicerFieldName = 'Origin';
+        this.localWidget.slicerSelection = [];
+        this.dataFields.forEach(df => 
+            this.localWidget.slicerSelection.push( 
+                {
+                    isSelected: true, fieldValue: df
+                })
+        );
         let widgetsToRefresh: number = this.localWidget.id;
 
 	  	this.formDataSlicersClosed.emit(this.localWidget);
