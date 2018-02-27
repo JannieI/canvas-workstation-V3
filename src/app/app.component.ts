@@ -1496,15 +1496,29 @@ export class AppComponent implements OnInit {
         );
     }
 
+    clickMenuArrangeDistributeHorisontal() {
+        // Equally distribute the selected Ws horisontally.
+        // Assume the selected Ws are W1 (first), W2, ..., Wn (last)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeHorisontal', '@Start');
+
+        // Get selected, sorted by .left  = [Wi]
+        let selectedWidgets: number[] = [];
+        this.currentWidgets.forEach(w => {
+            selectedWidgets.push(w.id)
+        }
+        // Count x = nr selected  =  [Wi].length  =>   (x-1) spaces between them
+
+        // Calc d  =  distance between left- and right-most  =  (Wn.left - W1.left)
+
+        // Calc e = eqi-space between them
+
+        // Adjust the middle Ws (W1 and Wn remains unchanged): Wi = loop (i = 2,.., n-1)
+        // Wi.left = W1.left + (i-1) * e
+    }
+
     clickMenuArrangeDistributeVertical() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeVertical', '@Start');
-
-    }
-
-    clickMenuArrangeDistributeHorisontal() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeHorisontal', '@Start');
 
     }
 
@@ -1736,7 +1750,6 @@ export class AppComponent implements OnInit {
             return;
         };
 
-
         // Create array to loop on
         let draggables: number[] = [];
         if (this.widgetGroup.length == 0) {
@@ -1746,7 +1759,6 @@ export class AppComponent implements OnInit {
                 draggables.push(wg)
             });
         };
-        console.log('clickWidgetContainerDragEnd starts index', index, id, draggables)
 
         // Reset current and globalVar values
         this.currentWidgets.forEach( w => {
@@ -1763,7 +1775,6 @@ export class AppComponent implements OnInit {
                 w.containerTop = w.containerTop - this.startY + ev.y;
             }
         });
-        console.log('xx end', this.currentWidgets, this.globalVariableService.currentWidgets)
 
     }
 
