@@ -1501,19 +1501,76 @@ export class AppComponent implements OnInit {
         // Assume the selected Ws are W1 (first), W2, ..., Wn (last)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeHorisontal', '@Start');
 
+        
         // Get selected, sorted by .left  = [Wi]
-        let selectedWidgets: number[] = [];
-        this.currentWidgets.forEach(w => {
-            selectedWidgets.push(w.id)
+        let selectedOnes = []; //{position: number; id: number; left: number; top: number}[] = null;
+        for (var i = 0; i < (this.currentWidgets.length); i++) {
+            if (this.currentWidgets[i].isSelected) {
+                selectedOnes.push({
+                    position: i, 
+                    id: this.currentWidgets[i].id, 
+                    height: this.currentWidgets[i].containerHeight,
+                    width: this.currentWidgets[i].containerWidth, 
+                    left: this.currentWidgets[i].containerLeft, 
+                    newLeft: this.currentWidgets[i].containerLeft, 
+                    top: this.currentWidgets[i].containerTop,
+                    newTop: this.currentWidgets[i].containerTop
+                });
+            }
+        };
+        // Ensure we have selected > 2, else we may have divid 0 ...
+        if (selectedOnes.length < 3) {
+            this.showStatusBarMessage(
+                'Select at least 2 ',
+                'StatusBar',
+                'Info',
+                3000,
+                ''
+            );
+            return;            
         }
-        // Count x = nr selected  =  [Wi].length  =>   (x-1) spaces between them
+        selectedOnes.sort( (obj1,obj2) => {
+            if (obj1.left > obj2.left) {
+                return 1;
+            };
+            if (obj1.left < obj2.left) {
+                return -1;
+            };
+            return 0;
+        });
+        // Count number with spaces: x  =  nr selected -1  =  [Wi].length - 1 
+        let x: number = selectedOnes.length - 1;
 
         // Calc d  =  distance between left- and right-most  =  (Wn.left - W1.left)
+        let d: number = selectedOnes[selectedOnes.length - 1].left - selectedOnes[0].left;
 
-        // Calc e = eqi-space between them
+        // Calc f  =  filled space  =  SUM(Wi.width), 1<n
+        let f: number = 0;
+        for (var i = 0; i < (selectedOnes.length - 1); i++) {
+            f = f + selectedOnes[i].width;
+        };
+
+        // Calc gap between each: g  =  (open space) / nr spaces  =  (d - f) / x
+        let g: number = (d - f) / x;
+
 
         // Adjust the middle Ws (W1 and Wn remains unchanged): Wi = loop (i = 2,.., n-1)
-        // Wi.left = W1.left + (i-1) * e
+        // Wi.left = W(i-1).left + W(i-1).width + g
+        for (var i = 0; i < (selectedOnes.length - 1); i++) {
+            if (i > 0) {
+                selectedOnes[i].newLeft = selectedOnes[i-1].newLeft + 
+                    selectedOnes[i-1].width + g;
+                this.currentWidgets[selectedOnes[i].position].containerLeft = 
+                    selectedOnes[i].newLeft;
+                this.globalVariableService.currentWidgets[selectedOnes[i].position].
+                    containerLeft = selectedOnes[i].newLeft;
+            } else {
+                selectedOnes[i].newLeft = selectedOnes[i].newLeft;
+            }
+        }
+        console.log('xx selectedOnes', selectedOnes, x, d, f, g, this.currentWidgets)
+
+        
     }
 
     clickMenuArrangeDistributeVertical() {
