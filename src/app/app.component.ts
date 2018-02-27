@@ -777,13 +777,26 @@ export class AppComponent implements OnInit {
         this.currentShapes.forEach(sh => sh.isSelected = true);
     }
 
-    clickMenuEditSelectNone() {
-        // Deselect all objects on the D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectNone', '@Start');
+    clickMenuEditSelectAllNone(size: string) {
+        // Deselect n objects on the D based on size, All, None, Auto
+        // Auto will select All if none is selected, None is any is selected
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAllNone', '@Start');
 
-        this.currentWidgets.forEach(w => w.isSelected = false);
-        this.currentSlicers.forEach(sl => sl.isSelected = false);
-        this.currentShapes.forEach(sh => sh.isSelected = false);
+        if (size == 'None') {
+            this.currentWidgets.forEach(w => w.isSelected = false);
+        };
+        if (size == 'All') {
+            this.currentWidgets.forEach(w => w.isSelected = true);
+        };
+        if (size == 'Auto') {
+            let selectedWidgets: Widget[] = this.currentWidgets.filter(
+                w => (w.isSelected) );
+            if (selectedWidgets.length == 0) {
+                this.currentWidgets.forEach(w => w.isSelected = true);
+            } else {
+                this.currentWidgets.forEach(w => w.isSelected = false);
+            }
+        };
     }
 
 
@@ -814,7 +827,7 @@ export class AppComponent implements OnInit {
 
         // Switch off all selections if going to View Mode
         if (this.editMode) {
-            this.clickMenuEditSelectNone();
+            this.clickMenuEditSelectAllNone('None');
         }
 
         // Toggle mode
@@ -1574,7 +1587,8 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuArrangeDistributeVertical() {
-        //
+        // Vertically arrange selected Ws, equally spaced
+        // Assume the selected Ws are W1 (first), W2, ..., Wn (last)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeVertical', '@Start');
 
     }

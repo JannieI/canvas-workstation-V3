@@ -49,7 +49,7 @@
                         <button type="button" clrDropdownItem (click)="clickMenuEditSelectAll()">
                             Select All
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuEditSelectNone()">
+                        <button type="button" clrDropdownItem (click)="clickMenuEditSelectAllNone('None')">
                             Select None
                         </button>
                     </clr-dropdown-menu>
@@ -1116,8 +1116,8 @@
         shape="cursor-arrow"
         size="20"
         class="buttonBarIcon"
-        (click)="clickMenuEditSelectNone()"
-        title="UnSelect all Widgets"
+        (click)="clickMenuEditSelectAllNone('Auto')"
+        title="Un-/Select Widgets"
         >
     </clr-icon>
 </div>
