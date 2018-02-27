@@ -1505,10 +1505,9 @@ export class AppComponent implements OnInit {
         // Equally distribute the selected Ws horisontally.
         // Assume the selected Ws are W1 (first), W2, ..., Wn (last)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeHorisontal', '@Start');
-
         
         // Get selected, sorted by .left  = [Wi]
-        let selectedOnes = []; //{position: number; id: number; left: number; top: number}[] = null;
+        let selectedOnes = []; 
         for (var i = 0; i < (this.currentWidgets.length); i++) {
             if (this.currentWidgets[i].isSelected) {
                 selectedOnes.push({
@@ -1574,7 +1573,6 @@ export class AppComponent implements OnInit {
             }
         }
         console.log('xx selectedOnes', selectedOnes, x, d, f, g, this.currentWidgets)
-
         
     }
 
@@ -1582,6 +1580,74 @@ export class AppComponent implements OnInit {
         // Vertically arrange selected Ws, equally spaced
         // Assume the selected Ws are W1 (first), W2, ..., Wn (last)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeVertical', '@Start');
+        
+        // Get selected, sorted by .top  = [Wi]
+        let selectedOnes = []; 
+        for (var i = 0; i < (this.currentWidgets.length); i++) {
+            if (this.currentWidgets[i].isSelected) {
+                selectedOnes.push({
+                    position: i, 
+                    id: this.currentWidgets[i].id, 
+                    height: this.currentWidgets[i].containerHeight,
+                    width: this.currentWidgets[i].containerWidth, 
+                    left: this.currentWidgets[i].containerLeft, 
+                    newLeft: this.currentWidgets[i].containerLeft, 
+                    top: this.currentWidgets[i].containerTop,
+                    newTop: this.currentWidgets[i].containerTop
+                });
+            }
+        };
+        // Ensure we have selected > 2, else we may have divid 0 ...
+        if (selectedOnes.length < 3) {
+            this.showStatusBarMessage(
+                'Select at least 2 ',
+                'StatusBar',
+                'Info',
+                3000,
+                ''
+            );
+            return;            
+        }
+        selectedOnes.sort( (obj1,obj2) => {
+            if (obj1.top > obj2.top) {
+                return 1;
+            };
+            if (obj1.top < obj2.top) {
+                return -1;
+            };
+            return 0;
+        });
+        // Count number with spaces: x  =  nr selected -1  =  [Wi].length - 1 
+        let x: number = selectedOnes.length - 1;
+
+        // Calc d  =  distance between top- and lower-most  =  (Wn.top - W1.top)
+        let d: number = selectedOnes[selectedOnes.length - 1].top - selectedOnes[0].top;
+
+        // Calc f  =  filled space  =  SUM(Wi.height), 1<n
+        let f: number = 0;
+        for (var i = 0; i < (selectedOnes.length - 1); i++) {
+            f = f + selectedOnes[i].height;
+        };
+
+        // Calc gap between each: g  =  (open space) / nr spaces  =  (d - f) / x
+        let g: number = (d - f) / x;
+
+
+        // Adjust the middle Ws (W1 and Wn remains unchanged): Wi = loop (i = 2,.., n-1)
+        // Wi.top = W(i-1).top + W(i-1).heigth + g
+        for (var i = 0; i < (selectedOnes.length - 1); i++) {
+            if (i > 0) {
+                selectedOnes[i].newTop = selectedOnes[i-1].newTop + 
+                    selectedOnes[i-1].height + g;
+                this.currentWidgets[selectedOnes[i].position].containerTop = 
+                    selectedOnes[i].newTop;
+                this.globalVariableService.currentWidgets[selectedOnes[i].position].
+                    containerTop = selectedOnes[i].newTop;
+            } else {
+                selectedOnes[i].newTop = selectedOnes[i].newTop;
+            }
+        }
+        console.log('xx selectedOnes', selectedOnes, x, d, f, g, this.currentWidgets)
 
     }
 
