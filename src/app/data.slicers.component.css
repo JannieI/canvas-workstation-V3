@@ -13,14 +13,14 @@
 
 .gridOverall {
     display: grid;
-    grid-template-columns: repeat(20, 1fr);
+    grid-template-columns: repeat(40, 1fr);
     grid-auto-rows: 0.8rem;
     margin-top: 2px;
     }
 
     .slicerHeader {
         grid-column-start: 1;
-        grid-column-end: 20;
+        grid-column-end: 40;
         grid-row-start: 2;
         grid-row-end: 3;
         margin: 2px 2px 2px 20px;
@@ -32,7 +32,7 @@
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
-        grid-column-end: 4;
+        grid-column-end: 9;
         grid-row-start: 4;
         grid-row-end: 25;
         margin: 2px 2px 2px 20px;
@@ -43,8 +43,8 @@
     .fieldList {
         border: 1px solid gray;
         border-radius: 4px;
-        grid-column-start: 5;
-        grid-column-end: 0;
+        grid-column-start: 10;
+        grid-column-end: 19;
         grid-row-start: 4;
         grid-row-end: 25;
         margin: 2px 2px 2px 20px;
@@ -55,8 +55,8 @@
     .valueList {
         border: 1px solid gray;
         border-radius: 4px;
-        grid-column-start: 10;
-        grid-column-end: 14;
+        grid-column-start: 20;
+        grid-column-end: 29;
         grid-row-start: 4;
         grid-row-end: 25;
         margin: 2px 2px 2px 20px;
@@ -65,9 +65,9 @@
     }
 
     .formBody {
-        grid-column-start: 15;
-        grid-column-end: 22;
-        grid-row-start: 3;
+        grid-column-start: 30;
+        grid-column-end: 40;
+        grid-row-start: 4;
         grid-row-end: 25;
         margin: 2px 2px 2px 20px;
         overflow-y: hidden;
@@ -75,6 +75,6 @@
     }
 
 .textLine {
-    margin: 2px 2px 2px 20px;
+    margin: 8px 2px 2px 20px;
 }
 

@@ -27,10 +27,9 @@
                         
                         <clr-dg-row
                             *ngFor="let row of currentDatasources; let i = index"
-                            (click)="clickCurrentDatasource(row.id, i)"
+                            (click)="clickDatasource(row.id, i)"
                             >
                             <clr-dg-cell>
-                                <clr-icon shape="times" (click)="clickCurrentDSDelete(i)"></clr-icon>
                                 {{row.name}}
                             </clr-dg-cell>
                         </clr-dg-row>
@@ -48,11 +47,10 @@
                         
                         <clr-dg-row
                             *ngFor="let row of dataFields; let i = index"
-                            (click)="clickCurrentDatasource(row.id, i)"
+                            (click)="clickDataFields(row.id, i)"
                             >
                             <clr-dg-cell>
-                                <clr-icon shape="times" (click)="clickCurrentDSDelete(i)"></clr-icon>
-                                {{row.name}}
+                                {{ row }}
                             </clr-dg-cell>
                         </clr-dg-row>
                     </clr-datagrid>
@@ -69,11 +67,11 @@
                         
                         <clr-dg-row
                             *ngFor="let row of dataValues; let i = index"
-                            (click)="clickCurrentDatasource(row.id, i)"
+                            (click)="clickDataValue(row.id, i)"
                             >
                             <clr-dg-cell>
                                 <clr-icon shape="times" (click)="clickCurrentDSDelete(i)"></clr-icon>
-                                {{row.name}}
+                                {{ row }}
                             </clr-dg-cell>
                         </clr-dg-row>
                     </clr-datagrid>
@@ -81,45 +79,45 @@
 
 
                 <div class="formBody">
-                            <label for="selects_4">Sort on:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Field 1</option>
-                                    <option>Field 2</option>
-                                    <option>Field 3</option>
-                                </select>
-                            </div>
-                            <label for="selects_4">Sort order:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Ascending</option>
-                                    <option>Descending</option>
-                                </select>
-                            </div>
-                            <label for="selects_4">Select a format:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Single select list</option>
-                                    <option>Multi-select</option>
-                                    <option>Slider</option>
-                                </select>
-                            </div>
-                            <label for="selects_4">Select a font-size:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Small</option>
-                                    <option>Medium</option>
-                                    <option>Large</option>
-                                </select>
-                            </div>
+                    <label for="selects_4">Sort on:</label>
+                    <div class="select">
+                        <select id="selects_3"
+                            (change)="clickSelectStep($event)"
+                            >
+                            <option>Field 1</option>
+                            <option>Field 2</option>
+                            <option>Field 3</option>
+                        </select>
+                    </div>
+                    <label for="selects_4">Sort order:</label>
+                    <div class="select">
+                        <select id="selects_3"
+                            (change)="clickSelectStep($event)"
+                            >
+                            <option>Ascending</option>
+                            <option>Descending</option>
+                        </select>
+                    </div>
+                    <label for="selects_4">Select a format:</label>
+                    <div class="select">
+                        <select id="selects_3"
+                            (change)="clickSelectStep($event)"
+                            >
+                            <option>Single select list</option>
+                            <option>Multi-select</option>
+                            <option>Slider</option>
+                        </select>
+                    </div>
+                    <label for="selects_4">Select a font-size:</label>
+                    <div class="select">
+                        <select id="selects_3"
+                            (change)="clickSelectStep($event)"
+                            >
+                            <option>Small</option>
+                            <option>Medium</option>
+                            <option>Large</option>
+                        </select>
+                    </div>
                     <button
                         type="button"
                         class="btn btn-secondary"

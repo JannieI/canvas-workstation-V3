@@ -40,8 +40,8 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.currentDatasources = this.globalVariableService.currentDatasources;
-        this.dataFields = ['name', 'date', 'price']
-        this.dataValues = ['Jason', 'Philly', 'Sue', 'Andeer']
+        this.dataFields = [];
+        this.dataValues = [];
       }
 
     ngAfterViewInit() {
@@ -49,6 +49,28 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
       }
+
+    clickDatasource(id: number, index: number){
+        // Clicked a DS, now load the Fields
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
+
+        this.dataFields = this.currentDatasources[index].dataFields;
+        
+    }
+
+    clickDataFields(id: number, index: number){
+        // Clicked a Field, now load the Values
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDataFields', '@Start');
+
+        this.dataValues = ['val 1', 'val 2'];
+        
+    }
+
+    clickDataValue(id: number, index: number){
+        // Clicked a Value, now ....
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDataValue', '@Start');
+
+    }
 
   	clickClose(action: string) {
         //
