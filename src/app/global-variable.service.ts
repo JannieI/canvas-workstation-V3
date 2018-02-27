@@ -730,7 +730,6 @@ export class GlobalVariableService {
     statusBarMessage = new BehaviorSubject<StatusBarMessage>(null)
 
     dataGetFromSwitch = new BehaviorSubject<string>('File');
-    duplicateWidget = new BehaviorSubject<boolean>(false);          // True to duplicate a Widget
     // refreshDashboard = new BehaviorSubject<boolean>(false);      // True to refresh the D now
 
 
