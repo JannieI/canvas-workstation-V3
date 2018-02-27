@@ -429,7 +429,7 @@ export class DataPopupComponent implements OnInit {
         let dSetIDs: number[] = [];
         this.globalVariableService.datasets.forEach(ds => dSetIDs.push(ds.id));
         newdSetID = Math.max(...dSetIDs) + 1;
-        
+
         // Get list of dSet-ids to make array work easier
         let dsCurrIDs: number[] = [];       // currentDataset IDs
         this.globalVariableService.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
@@ -447,7 +447,7 @@ export class DataPopupComponent implements OnInit {
         if (dsCurrIDs.indexOf(newdSetID) < 0) {
             this.globalVariableService.currentDatasets.push(newdSet);
         };
-        
+
         // Add to All datasets
         if (dSetIDs.indexOf(newdSetID) < 0) {
             this.globalVariableService.datasets.push(newdSet);
@@ -500,7 +500,7 @@ export class DataPopupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDatasource', '@Start');
 
         this.globalVariableService.refreshCurrentDatasourceInfo(id).then(i => {
-            
+
             this.currentDatasources = this.globalVariableService.currentDatasources;
             this.currentDatasources.forEach(ds => {
                 if (ds.id == id) {
@@ -510,7 +510,7 @@ export class DataPopupComponent implements OnInit {
                 };
             });
 
-            // TODO - using index below assumes currentDS and currentDSET has same lengths - wise ? 
+            // TODO - using index below assumes currentDS and currentDSET has same lengths - wise ?
             this.currentData = this.globalVariableService.currentDatasets[index].data;
             this.transformationsFormat = this.globalVariableService.transformationsFormat;
             this.currentTransformations = this.globalVariableService.currentTransformations;
@@ -961,7 +961,7 @@ export class DataPopupComponent implements OnInit {
 
         this.currentDS = !this.currentDS;
     }
-    
+
 }
 
 

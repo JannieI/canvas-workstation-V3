@@ -2,47 +2,104 @@
 	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
 
-            <div class="overall">
+            <div class="gridOverall">
                 <div class="closeButton">
                     <button type="button" class="closeButton" (click)="clickClose()">
                         X
                     </button>
                 </div>
 
-                Data Slicer
-                <i>
-                    The connected dataset will be refreshed as the user clicks on the Slicer.
-                </i>
-                <form>
-                    <section>
-                        <div class="form-group">
-                            <label for="selects_4">Select a Datasource:</label>
+                <div class="slicerHeader">
+                    Data Slicer
+                    <i>
+                        The connected dataset will be refreshed as the user clicks on the Slicer.
+                    </i>
+                </div>
+
+                <div class="datasourceList">
+                    <div class="textLine">
+                        Current Datasources
+                    </div>
+                    <clr-datagrid class="fieldsDataGrid datagrid-compact">
+                        <clr-dg-placeholder>
+                            No records ...
+                        </clr-dg-placeholder>
+                        
+                        <clr-dg-row
+                            *ngFor="let row of currentDatasources; let i = index"
+                            (click)="clickCurrentDatasource(row.id, i)"
+                            >
+                            <clr-dg-cell>
+                                <clr-icon shape="times" (click)="clickCurrentDSDelete(i)"></clr-icon>
+                                {{row.name}}
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+                </div>
+
+                <div class="fieldList">
+                    <div class="textLine">
+                        Fields for datasource
+                    </div>
+                    <clr-datagrid class="fieldsDataGrid datagrid-compact">
+                        <clr-dg-placeholder>
+                            No records ...
+                        </clr-dg-placeholder>
+                        
+                        <clr-dg-row
+                            *ngFor="let row of dataFields; let i = index"
+                            (click)="clickCurrentDatasource(row.id, i)"
+                            >
+                            <clr-dg-cell>
+                                <clr-icon shape="times" (click)="clickCurrentDSDelete(i)"></clr-icon>
+                                {{row.name}}
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+                </div>
+
+                <div class="valueList">
+                    <div class="textLine">
+                        Values for Field
+                    </div>
+                    <clr-datagrid class="fieldsDataGrid datagrid-compact">
+                        <clr-dg-placeholder>
+                            No records ...
+                        </clr-dg-placeholder>
+                        
+                        <clr-dg-row
+                            *ngFor="let row of dataValues; let i = index"
+                            (click)="clickCurrentDatasource(row.id, i)"
+                            >
+                            <clr-dg-cell>
+                                <clr-icon shape="times" (click)="clickCurrentDSDelete(i)"></clr-icon>
+                                {{row.name}}
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+                </div>
+
+
+                <div class="formBody">
+                            <label for="selects_4">Sort on:</label>
                             <div class="select">
                                 <select id="selects_3"
                                     (change)="clickSelectStep($event)"
                                     >
-                                    <option>Current Budget</option>
-                                    <option>Healthcare History</option>
-                                    <option>Temperatures</option>
+                                    <option>Field 1</option>
+                                    <option>Field 2</option>
+                                    <option>Field 3</option>
                                 </select>
                             </div>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="form-group">
-                            <label for="selects_4">Select a Field:</label>
+                            <label for="selects_4">Sort order:</label>
                             <div class="select">
                                 <select id="selects_3"
                                     (change)="clickSelectStep($event)"
                                     >
-                                    <option>Date</option>
-                                    <option>SalesVolume</option>
+                                    <option>Ascending</option>
+                                    <option>Descending</option>
                                 </select>
                             </div>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="form-group">
                             <label for="selects_4">Select a format:</label>
                             <div class="select">
                                 <select id="selects_3"
@@ -53,10 +110,6 @@
                                     <option>Slider</option>
                                 </select>
                             </div>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="form-group">
                             <label for="selects_4">Select a font-size:</label>
                             <div class="select">
                                 <select id="selects_3"
@@ -67,8 +120,6 @@
                                     <option>Large</option>
                                 </select>
                             </div>
-                        </div>
-                    </section>
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -77,7 +128,7 @@
                         Save
                     </button>
 
-                </form>
+                </div>
             </div>
         </div>
     </div>

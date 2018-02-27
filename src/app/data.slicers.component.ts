@@ -25,6 +25,9 @@ import { GlobalVariableService }      from './global-variable.service';
     @Output() formDataSlicersClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
+    currentDatasources: Datasource[] = [];
+    dataFields: string[] = [];
+    dataValues: string[] = [];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -33,26 +36,29 @@ import { GlobalVariableService }      from './global-variable.service';
     ) {}
 
     ngOnInit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.currentDatasources = this.globalVariableService.currentDatasources;
+        this.dataFields = ['name', 'date', 'price']
+        this.dataValues = ['Jason', 'Philly', 'Sue', 'Andeer']
       }
 
     ngAfterViewInit() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
       }
 
   	clickClose(action: string) {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 	  	this.formDataSlicersClosed.emit(action);
         }
 
     clickSave() {
-        // 
+        //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
 	  	this.formDataSlicersClosed.emit('Saved');
