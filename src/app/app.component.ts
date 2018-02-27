@@ -210,6 +210,7 @@ export class AppComponent implements OnInit {
     statusBarRunning: boolean = false;
     titleFormLeft: number = 50;
     titleFormTop: number = 50;
+    widgetGroup: number[] = [];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -1457,8 +1458,25 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuArrangeGroup() {
-        //
+        // Groups the selected Widgets into a single group
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeGroup', '@Start');
+
+        if (!this.checkForMultipleWidgets()) {return};
+        
+        // Clear, and add
+        this.widgetGroup = [];
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.widgetGroup.push(w.id);
+            }
+        });
+        this.showStatusBarMessage(
+            'New group of ' + this.widgetGroup.length,
+            'StatusBar',
+            'Info',
+            3000,
+            ''
+        );
 
     }
 
@@ -1657,7 +1675,7 @@ export class AppComponent implements OnInit {
     }
 
     checkForMultipleWidgets(): boolean {
-        // Returns true if one and only widget was selected, else false
+        // Returns true if >1 widgets were selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForMultipleWidgets', '@Start');
 
         if (this.currentWidgets.filter(w => w.isSelected).length < 2) {
