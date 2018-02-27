@@ -1430,6 +1430,7 @@ export class AppComponent implements OnInit {
             };
         };
     }
+
     clickMenuArrangeAlignCenterHorisontally() {
         // Center horisontally across page
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterHorisontally', '@Start');
@@ -1655,6 +1656,23 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
 
+        if (!this.checkForMultipleWidgets()) {return};
+
+        let x: number = -1; 
+        let y: number = -1; 
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                if (x == -1) {
+                    x = this.currentWidgets[i].containerWidth; 
+                    y = this.currentWidgets[i].containerHeight; 
+                        
+                } else {
+                    this.currentWidgets[i].containerWidth = x; 
+                    this.currentWidgets[i].containerHeight = y; 
+                };
+            };
+        };
     }
 
 
