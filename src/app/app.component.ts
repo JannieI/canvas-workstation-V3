@@ -1081,33 +1081,38 @@ export class AppComponent implements OnInit {
         console.log('xx clickMenuWidgetDuplicate', this.globalVariableService.currentWidgets)
         if (!this.checkForOnlyOneWidget()) { return};
 
-        // console.log('xx duplicateWidget', this.globalVariableService.currentWidgets)
-        this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.isSelected) {
+        if (!this.checkForOnlyOneWidget()) { return};
+        
+        // Get new ID
+        // TODO - improve this when using a DB!
+        let newID: number = 1;
+        let ds: number[] = [];
+        this.globalVariableService.widgets.forEach(w => {
+            ds.push(w.id);
+        });
+        newID = Math.max(...ds) + 1;
+        console.log('xx newID', newID, ds)
 
-                // TODO - improve this when using a DB!
-                let newID: number = 1;
-                let ds: number[] = [];
-                this.globalVariableService.widgets.forEach(w => {
-                    ds.push(w.id);
-                });
-                newID = Math.max(...ds) + 1;
-                // console.log('xx newID', newID, ds)
+        this.currentWidgets.forEach(w => {
+
+            if (w.isSelected) {
+        
                 // Make a deep copy
                 let localWidget= Object.assign({}, w);
                 localWidget.id = newID;
                 localWidget.isSelected = false;
-                localWidget.containerLeft = localWidget.containerLeft + 20;
-                localWidget.containerTop = localWidget.containerTop + 20;
+                localWidget.containerLeft = 120;
+                localWidget.containerTop = 120;
+                localWidget.titleText = localWidget.titleText + ' (copy)';
 
                 // Add to all and current W
                 this.globalVariableService.widgets.push(localWidget);
                 this.globalVariableService.currentWidgets.push(localWidget);
+                this.currentWidgets.push(localWidget);
 
-                // Refresh the Graph inside the Container
-                this.refreshGraphs = false;
             };
         });
+        console.log('xx end', this.currentWidgets)
     }
 
     clickMenuWidgetExpand() {
