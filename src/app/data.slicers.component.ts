@@ -10,6 +10,7 @@ import { ViewChild }                  from '@angular/core';
 
 // Our models
 import { Datasource }                 from './models';
+import { Widget }                     from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -21,14 +22,16 @@ import { GlobalVariableService }      from './global-variable.service';
     styleUrls: ['./data.slicers.component.css']
   })
   export class DataSlicersComponent implements OnInit {
+    @Input() newWidget: boolean;
 
-    @Output() formDataSlicersClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataSlicersClosed: EventEmitter<Widget> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     currentDatasources: Datasource[] = [];
     dataFields: string[] = [];
-    selectedDatasourceID: number = -1;
     dataValues: string[] = [];
+    localWidget: Widget;                            // W to modify, copied from selected
+    selectedDatasourceID: number = -1;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -43,6 +46,27 @@ import { GlobalVariableService }      from './global-variable.service';
         this.currentDatasources = this.globalVariableService.currentDatasources;
         this.dataFields = [];
         this.dataValues = [];
+
+        if (this.newWidget) {
+
+            // Create new W
+            this.localWidget = this.globalVariableService.widgetTemplate;
+            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID; 
+            this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+            this.localWidget.widgetType = 'Slicer';
+        } else {
+
+            let x: number = 0;
+            this.globalVariableService.currentWidgets.forEach(w => {
+                if (w.isSelected) {
+                    x = w.datasourceID;
+                    // this.localWidget = w;
+                    // Make a deep copy
+                    this.localWidget = Object.assign({}, w);
+                }
+            });
+        };
+
       }
 
     ngAfterViewInit() {
@@ -87,7 +111,6 @@ import { GlobalVariableService }      from './global-variable.service';
                 this.dataValues.push(t['Origin']);
             };
         });
-        console.log('xx ds', this.dataValues)
         
     }
 
@@ -101,13 +124,34 @@ import { GlobalVariableService }      from './global-variable.service';
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-	  	this.formDataSlicersClosed.emit(action);
+	  	this.formDataSlicersClosed.emit(null);
         }
 
     clickSave() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-	  	this.formDataSlicersClosed.emit('Saved');
+        if (this.newWidget) {
+
+            // TODO - improve this when using a DB!
+            let newID: number = 1;
+            let ws: number[]=[];
+            for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
+                ws.push(this.globalVariableService.widgets[i].id)
+            };
+            if (ws.length > 0) {
+                newID = Math.max(...ws) + 1;
+            };
+            this.localWidget.id = newID;
+            this.globalVariableService.widgets.push(this.localWidget);
+            this.globalVariableService.currentWidgets.push(this.localWidget);
+        } else {
+            // Replace the W
+            this.globalVariableService.widgetReplace(this.localWidget);
+        };
+
+        let widgetsToRefresh: number = this.localWidget.id;
+
+	  	this.formDataSlicersClosed.emit(this.localWidget);
     }
   }

@@ -556,10 +556,14 @@ export class AppComponent implements OnInit {
         this.showModalDashboardPrint = false;
     }
 
-    handleCloseDataSlicers(action: string) {
+    handleCloseDataSlicers(changedWidget: Widget) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSlicers', '@Start');
 
+        console.log('xx handleSlClose', changedWidget)
+
+        this.globalVariableService.changedWidget.next(changedWidget);
+        
         this.showModalDataSlicers = false;
     }
 
@@ -1179,9 +1183,20 @@ export class AppComponent implements OnInit {
     clickMenuSlicerAdd() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerAdd', '@Start');
-
+        
+        this.newWidget = true;
+        
         this.showModalDataSlicers = true;
 
+    }
+
+    clickMenuSlicerEdit() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
+        
+        this.newWidget = false;
+
+        this.showModalDataSlicers = true;
     }
 
     clickMenuSlicerTablist() {
@@ -1208,13 +1223,6 @@ export class AppComponent implements OnInit {
             };
         });
         this.showModalWidgetExpand = true;
-    }
-
-    clickMenuSlicerEdit() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
-
-        this.showModalDataSlicers = true;
     }
 
     clickMenuSlicerDelete() {

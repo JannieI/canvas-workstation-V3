@@ -24,7 +24,6 @@
         grid-row-start: 2;
         grid-row-end: 4;
         margin: 2px 2px 2px 20px;
-        overflow-y: scroll;
         width: 100%;
     }
 
