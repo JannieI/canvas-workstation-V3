@@ -379,7 +379,6 @@ export class Widget {
     isSelected: boolean;
     nrDataQualityIssues: number;
     nrComments: number;
-    nrButtonsToShow: number;
 
     // Links @Runtime
     hyperlinkDashboardID: number;           // Optional Widget ID to jump to

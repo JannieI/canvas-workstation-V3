@@ -141,7 +141,6 @@ const widgetTemplate: Widget =
                 "isLiked": false,
                 "nrDataQualityIssues": 0,
                 "nrComments": 0,
-                "nrButtonsToShow": 0,
                 "hyperlinkDashboardID": null,
                 "hyperlinkDashboardTabID": null,
 
@@ -256,7 +255,6 @@ const widgetTemplate: Widget =
 //     "isLiked": false,
 //     "nrDataQualityIssues": 0,
 //     "nrComments": 0,
-//     "nrButtonsToShow": 0,
 //     "hyperlinkDashboardID": null,
 //     "hyperlinkDashboardTabID": null,
 
@@ -2908,7 +2906,6 @@ export class GlobalVariableService {
                 {key: 'isSelected', 				type: 'bool'},
                 {key: 'nrDataQualityIssues', 		type: 'int'},
                 {key: 'nrComments', 				type: 'int'},
-                {key: 'nrButtonsToShow', 			type: 'int'},
                 {key: 'hyperlinkDashboardID', 		type: 'int'},
                 {key: 'hyperlinkDashboardTabID', 	type: 'int'},
                 {key: 'datasourceID', 				type: 'int'},
@@ -3254,7 +3251,6 @@ export class GlobalVariableService {
                 w.isLiked = changedWidget.isLiked;
                 w.nrDataQualityIssues = changedWidget.nrDataQualityIssues;
                 w.nrComments = changedWidget.nrComments;
-                w.nrButtonsToShow = changedWidget.nrButtonsToShow;
                 w.hyperlinkDashboardID = changedWidget.hyperlinkDashboardID;
                 w.hyperlinkDashboardTabID = changedWidget.hyperlinkDashboardTabID;
                 w.datasourceID = changedWidget.datasourceID;

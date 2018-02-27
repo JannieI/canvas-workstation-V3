@@ -16,7 +16,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 10,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -134,7 +133,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 10,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -253,7 +251,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 2,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -376,7 +373,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 2,
         "nrComments": 16,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -494,7 +490,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 2,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -612,7 +607,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 2,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -730,7 +724,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 0,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -848,7 +841,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 4,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -966,7 +958,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 0,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -1084,7 +1075,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 0,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -1202,7 +1192,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 0,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -1320,7 +1309,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 0,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -1438,7 +1426,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 0,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -1556,7 +1543,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 0,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -1674,7 +1660,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 0,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -1792,7 +1777,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 0,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
 
@@ -1909,7 +1893,6 @@
         "isLiked": false,
         "nrDataQualityIssues": 0,
         "nrComments": 4,
-        "nrButtonsToShow": 3,
         "hyperlinkDashboardID": 1,
         "hyperlinkDashboardTabID": 1,
         "datasourceID": 4,

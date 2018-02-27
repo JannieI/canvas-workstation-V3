@@ -330,9 +330,6 @@ export class WidgetSingleComponent {
         // console.log('clickResizeUp this.globalVariableService.widgets[index].value',
         //     index, this.globalVariableService.widgets.value[index])
 
-        this.widget.nrButtonsToShow =
-            (this.widget.containerWidth - 50) / 22;
-
     }
 
     clickWidgetContainerDragStart(ev: MouseEvent, index: number) {

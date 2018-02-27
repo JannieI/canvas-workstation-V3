@@ -187,7 +187,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             //     "isLiked": false,
             //     "nrDataQualityIssues": 0,
             //     "nrComments": 4,
-            //     "nrButtonsToShow": 3,
             //     "hyperlinkDashboardID": 1,
             //     "hyperlinkDashboardTabID": 1,
 

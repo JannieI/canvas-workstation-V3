@@ -2010,10 +2010,6 @@ export class AppComponent implements OnInit {
 
         console.log('clickResizeUp starts index', index)
 
-        this.currentWidgets[index].nrButtonsToShow =
-            (this.currentWidgets[index].containerWidth - 50) / 22;
-
-
         // Top moved: adjust the height & top
         if (resizeTop) {
             this.currentWidgets[index].containerTop =
@@ -2077,8 +2073,7 @@ export class AppComponent implements OnInit {
         };
 
         console.log('clickResizeUp width buttons ev x-move',
-            this.currentWidgets[index].containerWidth, this.currentWidgets[index].nrButtonsToShow,
-            ev, 0 - this.startX + ev.x);
+            this.currentWidgets[index].containerWidth, ev, 0 - this.startX + ev.x);
     }
 
     showStatusBarMessage(
