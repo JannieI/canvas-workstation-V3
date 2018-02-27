@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="datasourceList">
-                    <div class="textLine">
+                    <div class="headerLine">
                         Current Datasources
                     </div>
                     <clr-datagrid class="fieldsDataGrid datagrid-compact">
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="fieldList">
-                    <div class="textLine">
+                    <div class="headerLine">
                         Fields for datasource
                     </div>
                     <clr-datagrid class="fieldsDataGrid datagrid-compact">
@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="valueList">
-                    <div class="textLine">
+                    <div class="headerLine">
                         Values for Field
                     </div>
                     <clr-datagrid class="fieldsDataGrid datagrid-compact">
@@ -70,27 +70,51 @@
                             (click)="clickDataValue(row.id, i)"
                             >
                             <clr-dg-cell>
-                                <clr-icon shape="times" (click)="clickCurrentDSDelete(i)"></clr-icon>
+                                    <input type="checkbox" id="checkrads_2" checked>
                                 {{ row }}
                             </clr-dg-cell>
                         </clr-dg-row>
                     </clr-datagrid>
                 </div>
 
-
                 <div class="formBody">
-                    <label for="selects_4">Sort on:</label>
-                    <div class="select">
-                        <select id="selects_3"
+
+                    <label for="selects0">Show:</label>
+                    <div class="select textLine">
+                        <select id="selects0">
+                            <option>All</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+        
+                    <label for="selects1">Sort on:</label>
+                    <div class="select textLine">
+                        <select id="selects1"
                             (change)="clickSelectStep($event)"
                             >
-                            <option>Field 1</option>
-                            <option>Field 2</option>
-                            <option>Field 3</option>
+                            <!-- TODO - Remove hard coding -->
+                            <option>Acceleration</option>
+                            <option>Cylinders</option>
+                            <option>Displacement</option>
+                            <option>Horsepower</option>
+                            <option>Miles_per_Gallon</option>
+                            <option>Name</option>
+                            <option>Origin</option>
+                            <option>Weight_in_lbs</option>
+                            <option>Year</option>
                         </select>
                     </div>
                     <label for="selects_4">Sort order:</label>
-                    <div class="select">
+                    <div class="select textLine">
                         <select id="selects_3"
                             (change)="clickSelectStep($event)"
                             >
@@ -99,7 +123,7 @@
                         </select>
                     </div>
                     <label for="selects_4">Select a format:</label>
-                    <div class="select">
+                    <div class="select textLine">
                         <select id="selects_3"
                             (change)="clickSelectStep($event)"
                             >
@@ -109,7 +133,7 @@
                         </select>
                     </div>
                     <label for="selects_4">Select a font-size:</label>
-                    <div class="select">
+                    <div class="select textLine">
                         <select id="selects_3"
                             (change)="clickSelectStep($event)"
                             >
@@ -118,6 +142,8 @@
                             <option>Large</option>
                         </select>
                     </div>
+                </div>
+                <div class="slicerButton">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -125,8 +151,8 @@
                         >
                         Save
                     </button>
-
                 </div>
+
             </div>
         </div>
     </div>

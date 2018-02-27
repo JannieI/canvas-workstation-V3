@@ -22,9 +22,9 @@
         grid-column-start: 1;
         grid-column-end: 40;
         grid-row-start: 2;
-        grid-row-end: 3;
+        grid-row-end: 4;
         margin: 2px 2px 2px 20px;
-        overflow-y: hidden;
+        overflow-y: scroll;
         width: 100%;
     }
 
@@ -48,7 +48,7 @@
         grid-row-start: 4;
         grid-row-end: 25;
         margin: 2px 2px 2px 20px;
-        overflow-y: hidden;
+        overflow-y: scroll;
         width: 100%;
     }
 
@@ -60,7 +60,7 @@
         grid-row-start: 4;
         grid-row-end: 25;
         margin: 2px 2px 2px 20px;
-        overflow-y: hidden;
+        overflow-y: scroll;
         width: 100%;
     }
 
@@ -69,12 +69,24 @@
         grid-column-end: 40;
         grid-row-start: 4;
         grid-row-end: 25;
-        margin: 2px 2px 2px 20px;
-        overflow-y: hidden;
+        margin: 2px 2px 2px 20px2;
+        width: 100%;
+    }
+    
+    .slicerButton {
+        grid-column-start: 34;
+        grid-column-end: 36;
+        grid-row-start: 21;
+        grid-row-end: 22;
+        margin: 2px 2px 2px 2px;
         width: 100%;
     }
 
+.headerLine {
+    margin: 4px 2px 4px 20px;
+}
+
 .textLine {
-    margin: 8px 2px 2px 20px;
+    margin: 0px 2px 16px 20px;
 }
 

@@ -27,6 +27,7 @@ import { GlobalVariableService }      from './global-variable.service';
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     currentDatasources: Datasource[] = [];
     dataFields: string[] = [];
+    selectedDatasourceID: number = -1;
     dataValues: string[] = [];
 
     constructor(
@@ -54,6 +55,10 @@ import { GlobalVariableService }      from './global-variable.service';
         // Clicked a DS, now load the Fields
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
 
+        // Remember selected on 
+        this.selectedDatasourceID = id;
+
+        // Get fields in this DS
         this.dataFields = this.currentDatasources[index].dataFields;
         
     }
@@ -62,7 +67,27 @@ import { GlobalVariableService }      from './global-variable.service';
         // Clicked a Field, now load the Values
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDataFields', '@Start');
 
-        this.dataValues = ['val 1', 'val 2'];
+        // Get ID of latest dSet for the selected DS
+        let newdSetID: number = 1;
+        let dSetIDs: number[] = [];
+        this.globalVariableService.currentDatasets.forEach(ds => {
+            if (ds.datasourceID == this.selectedDatasourceID) {
+                dSetIDs.push(ds.id);
+            }; 
+        });
+        newdSetID = Math.max(...dSetIDs);
+
+        // More into array
+        this.dataValues = [];
+        let tempData: any = this.globalVariableService.currentDatasets.filter(ds => 
+            ds.id == newdSetID)[0].dataRaw //['Origin'];
+        
+        tempData.forEach(t => {
+            if (this.dataValues.indexOf(t['Origin']) < 0) {
+                this.dataValues.push(t['Origin']);
+            };
+        });
+        console.log('xx ds', this.dataValues)
         
     }
 
