@@ -124,7 +124,6 @@ export class AppComponent implements OnInit {
     currentDashboardName: string = '';
     currentDatasources: Datasource[];
     currentShapes: Widget[] = [];
-    currentSlicers: Widget[] = [];
     currentTables: Widget[] = [];
     currentTabName: string = '';
     currentWidgets: Widget[] = [];
