@@ -34,6 +34,7 @@ import { GlobalVariableService }      from './global-variable.service';
     numberToShow: string = 'All';
     selectedDatasourceID: number = -1;
     selectedDatasetID: number = -1;
+    selectedField: string = '';
     showNumber: boolean = false;
     showSortFields: boolean = false;
     showSortFieldOrder: boolean = false;
@@ -98,6 +99,20 @@ import { GlobalVariableService }      from './global-variable.service';
         // Clicked a Field, now load the Values
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDataFields', '@Start');
 
+        // Set field, and refresh
+        this.selectedField = this.dataFields[index];
+        this.changeValues();
+    }
+
+    changeValues() {
+        // Refresh the list of values, with all the criteria
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeValues', '@Start');
+
+        // Do we have a field
+        if (this.selectedField == '') {
+            return;
+        }
+
         // Get ID of latest dSet for the selected DS
         let dSetIDs: number[] = [];
         this.globalVariableService.currentDatasets.forEach(ds => {
@@ -111,10 +126,10 @@ import { GlobalVariableService }      from './global-variable.service';
         this.dataValues = [];
         let tempData: any[] = this.globalVariableService.currentDatasets.filter(ds => 
             ds.id == this.selectedDatasetID)[0].dataRaw //['Origin'];
-        console.log('xx cl Fld', tempData, this.dataFields[index]);
+        console.log('xx cl Fld', tempData, this.selectedField);
 
         // Sort, if so wished
-        if (this.showSortFields) {
+        if (this.sortField != '') {
             if (this.sortField != '') {
                 tempData.sort( (obj1,obj2) => {
                     if (obj1[this.sortField] > obj2[this.sortField]) {
@@ -136,8 +151,8 @@ import { GlobalVariableService }      from './global-variable.service';
         // }
 
         tempData.forEach(t => {
-            if (this.dataValues.indexOf(t[this.dataFields[index]]) < 0) {
-                this.dataValues.push(t[this.dataFields[index]]);
+            if (this.dataValues.indexOf(t[this.selectedField]) < 0) {
+                this.dataValues.push(t[this.selectedField]);
             };
         });
         
