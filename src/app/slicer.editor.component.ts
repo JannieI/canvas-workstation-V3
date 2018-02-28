@@ -88,7 +88,6 @@ import { GlobalVariableService }      from './global-variable.service';
             this.slicerNumberToShow = this.localWidget.slicerNumberToShow;
             this.slicerSortField = this.localWidget.slicerSortField;
             this.slicerSortFieldOrder = this.localWidget.slicerSortFieldOrder;
-        console.log('xx flds', this.localWidget, this.selectedDatasourceID, this.selectedDatasetID, this.selectedField)
             
             this.changeValues();
         };
@@ -144,7 +143,6 @@ import { GlobalVariableService }      from './global-variable.service';
         this.dataValues = [];
         let tempData: any[] = this.globalVariableService.currentDatasets.filter(ds =>
             ds.id == this.selectedDatasetID)[0].dataRaw //['Origin'];
-        console.log('xx cl Fld', tempData, this.selectedField);
 
         // Sort, if so wished
         if (this.slicerSortField != '') {

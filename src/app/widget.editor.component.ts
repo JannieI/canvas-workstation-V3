@@ -797,7 +797,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.localWidget.datasetID = dSetID;
             this.localWidget.graphData = this.globalVariableService.currentDatasets.filter(
                 d => d.id == dSetID)[0].data;
-            console.log('xx new', datasourceID, dSetID)
         };
 
     }

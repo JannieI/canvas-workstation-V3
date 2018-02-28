@@ -1834,6 +1834,38 @@ export class AppComponent implements OnInit {
 
 
 
+
+
+    // ***********************  CLICK PALETTE (specific) MENU OPTIONS ************************ //
+    clickMenuPaletteEdit() {
+        // Clicked the Edit option on palette - decide what to do
+        this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
+        
+        // Decide which way
+        if (this.currentWidgets.filter(w => w.isSelected  &&  w.widgetType == 'Slicer').
+            length == 1) {
+                this.clickMenuSlicerEdit();
+        };
+        if (this.currentWidgets.filter(w => w.isSelected  &&  w.widgetType == 'Graph').
+            length == 1) {
+                this.clickMenuWidgetEdit();
+        };
+
+        console.log('xx x', this.currentWidgets.filter(w => w.isSelected  &&  w.widgetType == 'Slicer'))
+        // Lost
+        this.showStatusBarMessage(
+            'Select a graph or slicer',
+            'StatusBar',
+            'Warning',
+            3000,
+            ''
+        );
+        
+    }
+
+
+
+
     // ***********************  OTHER ************************ //
     
     showRecentDashboard(index: number) {
