@@ -22,7 +22,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService } 	  from './global-function.service';
 
 // Our Models
-import { Field }                      from './models'
+import { Field, Dataset }                      from './models'
 import { Datasource }                 from './models'
 import { Widget }                     from './models'
 
@@ -2179,23 +2179,53 @@ export class AppComponent implements OnInit {
         // Delete the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
         
+        let datasetID: number = -1;
         // Delete the local one
         let delIDs: number[] = [];
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected  &&  
                 this.currentWidgets[i].widgetType == widgetType) {
-            delIDs.push(this.currentWidgets[i].id);
-            this.currentWidgets.splice(i,1);
+
+                datasetID = this.currentWidgets[i].datasetID;
+                delIDs.push(this.currentWidgets[i].id);
+                this.currentWidgets.splice(i,1);
             };
         };
         
-        // Delete the global one
+        // Delete the global ones
         for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
             if (delIDs.indexOf(this.globalVariableService.widgets[i].id) >= 0) {
 
                 this.globalVariableService.widgets.splice(i,1)
             };
         };
+        for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
+            if (delIDs.indexOf(this.globalVariableService.currentWidgets[i].id) >= 0) {
+
+                this.globalVariableService.currentWidgets.splice(i,1)
+            };
+        };
+
+        // Filter the data in the dSets to which the Sl points.
+        // In addition, apply all Sl that relates to each one
+        let newDataset: Dataset;
+        this.globalVariableService.currentDatasets.forEach(cd => {
+            if (cd.id == datasetID) {
+
+                newDataset = this.globalVariableService.filterSlicer(cd);
+            }
+        }
+        );
+
+        // Update the dataSet for local W, and refresh
+        this.currentWidgets.forEach(w => {
+            if (w.datasetID == datasetID) {
+                w.graphData = newDataset.data
+                this.widgetDOM.refreshWidget(w, 'app deleteWidget')
+            }
+        });
+
+        console.log('xx newDataset', newDataset, this.currentWidgets)
         
     }
 

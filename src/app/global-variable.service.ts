@@ -1709,6 +1709,8 @@ export class GlobalVariableService {
                 w.graphData = dataSet.data;
             }
         });
+
+        console.log('xx filt Sl', this.currentWidgets, dataSet)
         return dataSet;
     }
 
