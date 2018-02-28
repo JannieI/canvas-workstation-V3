@@ -161,7 +161,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
         // Reduce if needed
         if (this.numberToShow != 'All') {
-            tempData = tempData.splice(0, +this.numberToShow);
+            this.dataValues = this.dataValues.splice(0, +this.numberToShow);
         }        
     }
 
@@ -177,7 +177,6 @@ import { GlobalVariableService }      from './global-variable.service';
 
         this.sortField = sortField;
         this.showSortFields = false;
-        console.log('xx sortField', this.sortField)
         this.changeValues();
         
     }
@@ -188,7 +187,6 @@ import { GlobalVariableService }      from './global-variable.service';
 
         this.sortFieldOrder = sortFieldOrder;
         this.showSortFieldOrder = false;
-        console.log('xx sortFieldOrder', this.sortFieldOrder)
         this.changeValues();
     }
 
@@ -198,7 +196,6 @@ import { GlobalVariableService }      from './global-variable.service';
 
         this.numberToShow = numberToShow;
         this.showNumber = false;
-        console.log('xx numberToShow', this.numberToShow)
         this.changeValues();
     }
 
