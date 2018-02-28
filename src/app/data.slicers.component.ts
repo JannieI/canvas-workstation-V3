@@ -34,6 +34,7 @@ import { GlobalVariableService }      from './global-variable.service';
     selectedDatasourceID: number = -1;
     selectedDatasetID: number = -1;
     showSortFields: boolean = false;
+    showSortFieldOrder: boolean = false;
     sortField: string = '';
     sortFieldOrder: string = 'Ascending';
 
@@ -199,7 +200,7 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
 
         this.sortFieldOrder = sortFieldOrder;
-        this.showSortFields = false;
+        this.showSortFieldOrder = false;
         console.log('xx sortFieldOrder', this.sortFieldOrder)
     }
   }

@@ -76,7 +76,7 @@
                     </div>
         
                     <clr-icon shape="bars" (click)="showSortFields=true"></clr-icon>
-                    <label>Sort on </label> {{ sortField }}
+                    <label>Sort on: </label> <i> {{ sortField }} </i>
                     <div class="select textLine" *ngIf="showSortFields">
                         <select (change)="clickSortField($event.target.value)">
                             <option *ngFor="let row of dataFields; let i = index">
@@ -84,7 +84,10 @@
                             </option>
                         </select>
                     </div>
-                    <div class="select textLine" *ngIf="showSortFields">
+                    <br>
+                    <clr-icon shape="bars" (click)="showSortFieldOrder=true"></clr-icon>
+                    <label>Sort order: </label> <i> {{ showSortFieldOrder }} </i>
+                    <div class="select textLine" *ngIf="showSortFieldOrder">
                         <select (change)="clickSortFieldOrder($event.target.value)">
                             <option>Ascending</option>
                             <option>Descending</option>
