@@ -85,9 +85,9 @@ import { GlobalVariableService }      from './global-variable.service';
             this.selectedDatasetID = this.localWidget.datasetID;
             this.selectedField = this.localWidget.slicerFieldName;
 
-            this.slicerNumberToShow = this.slicerNumberToShow;
-            this.slicerSortField = this.slicerSortField;
-            this.slicerSortFieldOrder = this.slicerSortFieldOrder;
+            this.slicerNumberToShow = this.localWidget.slicerNumberToShow;
+            this.slicerSortField = this.localWidget.slicerSortField;
+            this.slicerSortFieldOrder = this.localWidget.slicerSortFieldOrder;
         console.log('xx flds', this.localWidget, this.selectedDatasourceID, this.selectedDatasetID, this.selectedField)
             
             this.changeValues();
@@ -178,7 +178,7 @@ import { GlobalVariableService }      from './global-variable.service';
         });
 
         // Reduce if needed
-        if (this.slicerNumberToShow != 'All') {
+        if (this.slicerNumberToShow != 'All'  &&  this.slicerNumberToShow != null) {
             this.dataValues = this.dataValues.splice(0, +this.slicerNumberToShow);
         }
     }
