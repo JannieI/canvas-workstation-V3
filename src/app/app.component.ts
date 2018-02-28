@@ -2082,6 +2082,7 @@ export class AppComponent implements OnInit {
 
         console.log('clickResizeUp width buttons ev x-move',
             this.currentWidgets[index].containerWidth, ev, 0 - this.startX + ev.x);
+        this.widgetDOM.refreshWidget(this.currentWidgets[index], 'app Resize');
     }
 
     showStatusBarMessage(
