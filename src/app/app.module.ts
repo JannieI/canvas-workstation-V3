@@ -53,6 +53,7 @@ import { WidgetCommentsComponent }    from './widget.comments.component';
 import { WidgetSingleComponent }      from './widget.single.component';
 import { SlicerSingleComponent }      from './slicer.single.component';
 
+import { SlicerEditorComponent }      from './slicer.editor.component';
 import { SlicerTablistComponent }     from './slicer.tablist.component';
 
 import { ShapeEditComponent }         from './shape.edit.component';
@@ -60,10 +61,8 @@ import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataPopupComponent }         from './data.popup.component';
 import { DataCombinationComponent }   from './data.combination.component';
-import { DataSlicersComponent }       from './data.slicers.component';
 import { DataRefreshComponent }       from './data.refresh.component';
 import { DatasourceShareComponent }   from './data.share.component';
-
 
 import { HelpComponent }              from './help.component';
 
@@ -127,7 +126,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardImportComponent,
         DataPopupComponent,
         DataCombinationComponent,
-        DataSlicersComponent,
+        SlicerEditorComponent,
         DataRefreshComponent,
         DatasourceShareComponent,
 

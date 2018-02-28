@@ -18,10 +18,10 @@ import { GlobalVariableService }      from './global-variable.service';
 
 @Component({
     selector: 'data-slicers',
-    templateUrl: './data.slicers.component.html',
-    styleUrls: ['./data.slicers.component.css']
+    templateUrl: './slicer.editor.component.html',
+    styleUrls: ['./slicer.editor.component.css']
   })
-  export class DataSlicersComponent implements OnInit {
+  export class SlicerEditorComponent implements OnInit {
     @Input() newWidget: boolean;
 
     @Output() formDataSlicersClosed: EventEmitter<Widget> = new EventEmitter();

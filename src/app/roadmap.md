@@ -269,9 +269,10 @@ Bug: X axis always changes to nominal - fix hardcoding ...
 
 
 **Slicers**
-1. 
+1. Philosopy: currently is UNselects anyone unselected: say 2 Sl on Origin field, one has 
+Europe unselected, one has USA unselected.  Then data is only for Japan (3 values in dataset) - is this correct, or should it include all?
 2. Make look and feel customisable
-3. 
+3. Warn user if 2 Sl on the same dataset for the same field?
 
 
 **Tables**
