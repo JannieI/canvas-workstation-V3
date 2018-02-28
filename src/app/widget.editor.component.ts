@@ -195,6 +195,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             //     "dataFields": null,
             //     "dataFieldTypes": null,
             //     "dataFieldLengths": null,
+            // slicerNumberToShow
+            // sortField
+            // sortFieldOrder
             //     "slicerFieldName": "symbol",
             //     "slicerSelection": null,
             //     "datasetID": 7,

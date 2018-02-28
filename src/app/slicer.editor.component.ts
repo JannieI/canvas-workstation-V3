@@ -31,15 +31,15 @@ import { GlobalVariableService }      from './global-variable.service';
     dataFields: string[] = [];
     dataValues: string[] = [];
     localWidget: Widget;                            // W to modify, copied from selected
-    numberToShow: string = 'All';
     selectedDatasourceID: number = -1;
     selectedDatasetID: number = -1;
     selectedField: string = '';
     showNumber: boolean = false;
     showSortFields: boolean = false;
     showSortFieldOrder: boolean = false;
-    sortField: string = '';
-    sortFieldOrder: string = 'Ascending';
+    slicerNumberToShow: string = 'All';
+    slicerSortField: string = '';
+    slicerSortFieldOrder: string = 'Ascending';
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -84,6 +84,10 @@ import { GlobalVariableService }      from './global-variable.service';
             this.selectedDatasourceID = this.localWidget.datasourceID;
             this.selectedDatasetID = this.localWidget.datasetID;
             this.selectedField = this.localWidget.slicerFieldName;
+
+            this.slicerNumberToShow = this.slicerNumberToShow;
+            this.slicerSortField = this.slicerSortField;
+            this.slicerSortFieldOrder = this.slicerSortFieldOrder;
         console.log('xx flds', this.localWidget, this.selectedDatasourceID, this.selectedDatasetID, this.selectedField)
             
             this.changeValues();
@@ -143,18 +147,18 @@ import { GlobalVariableService }      from './global-variable.service';
         console.log('xx cl Fld', tempData, this.selectedField);
 
         // Sort, if so wished
-        if (this.sortField != '') {
-            if (this.sortField != '') {
+        if (this.slicerSortField != '') {
+            if (this.slicerSortField != '') {
                 tempData.sort( (obj1,obj2) => {
-                    if (obj1[this.sortField] > obj2[this.sortField]) {
-                        if (this.sortFieldOrder == 'Ascending') {
+                    if (obj1[this.slicerSortField] > obj2[this.slicerSortField]) {
+                        if (this.slicerSortFieldOrder == 'Ascending') {
                             return 1;
                         } else {
                             return -1;
                         };
                     };
-                    if (obj1[this.sortField] < obj2[this.sortField]) {
-                        if (this.sortFieldOrder == 'Ascending') {
+                    if (obj1[this.slicerSortField] < obj2[this.slicerSortField]) {
+                        if (this.slicerSortFieldOrder == 'Ascending') {
                             return -1;
                         } else {
                             return 1;
@@ -174,8 +178,8 @@ import { GlobalVariableService }      from './global-variable.service';
         });
 
         // Reduce if needed
-        if (this.numberToShow != 'All') {
-            this.dataValues = this.dataValues.splice(0, +this.numberToShow);
+        if (this.slicerNumberToShow != 'All') {
+            this.dataValues = this.dataValues.splice(0, +this.slicerNumberToShow);
         }
     }
 
@@ -189,7 +193,7 @@ import { GlobalVariableService }      from './global-variable.service';
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
 
-        this.sortField = sortField;
+        this.slicerSortField = sortField;
         this.showSortFields = false;
         this.changeValues();
 
@@ -199,7 +203,7 @@ import { GlobalVariableService }      from './global-variable.service';
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
 
-        this.sortFieldOrder = sortFieldOrder;
+        this.slicerSortFieldOrder = sortFieldOrder;
         this.showSortFieldOrder = false;
         this.changeValues();
     }
@@ -208,7 +212,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // Clicked the number of records to show
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
 
-        this.numberToShow = numberToShow;
+        this.slicerNumberToShow = numberToShow;
         this.showNumber = false;
         this.changeValues();
     }
@@ -247,6 +251,9 @@ import { GlobalVariableService }      from './global-variable.service';
         };
 
         // Set Slicer related data
+        this.localWidget.slicerNumberToShow = this.slicerNumberToShow;
+        this.localWidget.slicerSortField = this.slicerSortField;
+        this.localWidget.slicerSortFieldOrder = this.slicerSortFieldOrder;
         this.localWidget.slicerFieldName = this.selectedField;
         this.localWidget.slicerSelection = [];
         this.dataValues.forEach(df =>

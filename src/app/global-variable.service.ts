@@ -149,6 +149,9 @@ const widgetTemplate: Widget =
         "dataFields": null,
         "dataFieldTypes": null,
         "dataFieldLengths": null,
+        "slicerNumberToShow": '',
+        "slicerSortField": '',
+        "slicerSortFieldOrder": '',
         "slicerFieldName": "symbol",
         "slicerSelection": null,
         "datasetID": null,
@@ -2795,6 +2798,9 @@ export class GlobalVariableService {
                 {key: 'hyperlinkDashboardID', 		type: 'int'},
                 {key: 'hyperlinkDashboardTabID', 	type: 'int'},
                 {key: 'datasourceID', 				type: 'int'},
+                {key: 'slicerNumberToShow', 		type: 'string'},
+                {key: 'sortField', 				    type: 'string'},
+                {key: 'sortFieldOrder', 			type: 'string'},
                 {key: 'slicerFieldName', 			type: 'string'},
                 {key: 'slicerSelection', 			type: 'array'},
                 {key: 'datasetID', 					type: 'int'},
@@ -3140,6 +3146,9 @@ export class GlobalVariableService {
                 w.hyperlinkDashboardID = changedWidget.hyperlinkDashboardID;
                 w.hyperlinkDashboardTabID = changedWidget.hyperlinkDashboardTabID;
                 w.datasourceID = changedWidget.datasourceID;
+                w.slicerNumberToShow = changedWidget.slicerNumberToShow;
+                w.slicerSortField = changedWidget.slicerSortField;
+                w.slicerSortFieldOrder = changedWidget.slicerSortFieldOrder;
                 w.slicerFieldName = changedWidget.slicerFieldName;
                 w.slicerSelection = changedWidget.slicerSelection;
                 w.datasetID = changedWidget.datasetID;

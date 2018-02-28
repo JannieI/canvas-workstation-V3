@@ -387,6 +387,9 @@ export class Widget {
     // Data related
     datasourceID: number;                   // Specific ID that this W points to.  For a W, 
     // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
+    slicerNumberToShow: string;             // Nr fields (values) to show in Slicer - default = All
+    slicerSortField: string;                // Name of Field to sort Slicer dataset on
+    slicerSortFieldOrder: string;           // Sort order for Slicer dataset, Ascending, Descending
     slicerFieldName: string;                // Name to filter on
     slicerSelection: {isSelected: boolean; fieldValue: string;}[];
     datasetID: number;                      // Specific ID that this W points to.  For a W, 
