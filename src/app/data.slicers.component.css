@@ -57,7 +57,7 @@
         grid-row-start: 4;
         grid-row-end: 9;
         margin: 2px 2px 2px 20px;
-        overflow-y: scroll;
+        overflow-y: auto;
         width: 100%;
     }
     .valueList {

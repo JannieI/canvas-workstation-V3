@@ -59,11 +59,9 @@
                 <div class="valueCriteria">
 
                     <clr-icon shape="bars" (click)="showNumber=true"></clr-icon>
-                    <label>Sort on: </label> <i> {{ sortField }} </i>
-    
-                    <div class="select textLine">
-                        Show:
-                        <select id="selects0">
+                    <label>Show: </label> <i> {{ numberToShow }} </i>
+                    <div class="select textLine" *ngIf="showNumber">
+                        <select (click)="clickShowNumber($event.target.value)">
                             <option>All</option>
                             <option>1</option>
                             <option>2</option>
@@ -82,7 +80,7 @@
                     <clr-icon shape="bars" (click)="showSortFields=true"></clr-icon>
                     <label>Sort on: </label> <i> {{ sortField }} </i>
                     <div class="select textLine" *ngIf="showSortFields">
-                        <select (change)="clickSortField($event.target.value)">
+                        <select (click)="clickSortField($event.target.value)">
                             <option *ngFor="let row of dataFields; let i = index">
                                 {{ row }}
                             </option>
@@ -91,9 +89,9 @@
 
                     <br>
                     <clr-icon shape="bars" (click)="showSortFieldOrder=true"></clr-icon>
-                    <label>Sort order: </label> <i> {{ showSortFieldOrder }} </i>
+                    <label>Sort order: </label> <i> {{ sortFieldOrder }} </i>
                     <div class="select textLine" *ngIf="showSortFieldOrder">
-                        <select (change)="clickSortFieldOrder($event.target.value)">
+                        <select (click)="clickSortFieldOrder($event.target.value)">
                             <option>Ascending</option>
                             <option>Descending</option>
                         </select>

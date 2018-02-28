@@ -31,7 +31,7 @@ import { GlobalVariableService }      from './global-variable.service';
     dataFields: string[] = [];
     dataValues: string[] = [];
     localWidget: Widget;                            // W to modify, copied from selected
-    numberToShow: number = 0;
+    numberToShow: string = 'All';
     selectedDatasourceID: number = -1;
     selectedDatasetID: number = -1;
     showNumber: boolean = false;
@@ -127,6 +127,14 @@ import { GlobalVariableService }      from './global-variable.service';
                 });
             };
         };
+
+        // Reduce if needed
+        // if (numberToShow == 'All') {
+        //     this.numberToShow = 0;
+        // } else {
+        //     this.numberToShow = +numberToShow;
+        // }
+
         tempData.forEach(t => {
             if (this.dataValues.indexOf(t[this.dataFields[index]]) < 0) {
                 this.dataValues.push(t[this.dataFields[index]]);
@@ -210,11 +218,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // Clicked the number of records to show
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
 
-        if (numberToShow == 'All') {
-            this.numberToShow = 0;
-        } else {
-            this.numberToShow = +numberToShow;
-        }
+        this.numberToShow = numberToShow;
         this.showNumber = false;
         console.log('xx numberToShow', this.numberToShow)
     }
