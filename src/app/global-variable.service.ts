@@ -793,7 +793,6 @@ export class GlobalVariableService {
     currentDashboards: Dashboard[] = [];
     currentDashboardTabs: DashboardTab[] = [];
     currentWidgets: Widget[] = [];
-    currentShapes: Widget[] = [];
     currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardTags: DashboardTag[] = [];
     currentDashboardPermissions: DashboardPermission[] = [];

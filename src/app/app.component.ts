@@ -123,6 +123,7 @@ export class AppComponent implements OnInit {
     companyName: string = this.globalVariableService.companyName;
     currentDashboardName: string = '';
     currentDatasources: Datasource[];
+    currentShapeSpec: any;          // TODO - fill this var !!  not working at moment
     currentTabName: string = '';
     currentWidgets: Widget[] = [];
     editMode: boolean;
