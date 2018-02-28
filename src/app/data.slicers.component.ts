@@ -31,8 +31,10 @@ import { GlobalVariableService }      from './global-variable.service';
     dataFields: string[] = [];
     dataValues: string[] = [];
     localWidget: Widget;                            // W to modify, copied from selected
+    numberToShow: number = 0;
     selectedDatasourceID: number = -1;
     selectedDatasetID: number = -1;
+    showNumber: boolean = false;
     showSortFields: boolean = false;
     showSortFieldOrder: boolean = false;
     sortField: string = '';
@@ -202,5 +204,18 @@ import { GlobalVariableService }      from './global-variable.service';
         this.sortFieldOrder = sortFieldOrder;
         this.showSortFieldOrder = false;
         console.log('xx sortFieldOrder', this.sortFieldOrder)
+    }
+
+    clickShowNumber(numberToShow: string) {
+        // Clicked the number of records to show
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
+
+        if (numberToShow == 'All') {
+            this.numberToShow = 0;
+        } else {
+            this.numberToShow = +numberToShow;
+        }
+        this.showNumber = false;
+        console.log('xx numberToShow', this.numberToShow)
     }
   }

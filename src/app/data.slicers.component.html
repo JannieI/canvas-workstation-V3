@@ -58,6 +58,9 @@
 
                 <div class="valueCriteria">
 
+                    <clr-icon shape="bars" (click)="showNumber=true"></clr-icon>
+                    <label>Sort on: </label> <i> {{ sortField }} </i>
+    
                     <div class="select textLine">
                         Show:
                         <select id="selects0">
@@ -74,7 +77,8 @@
                             <option>10</option>
                         </select>
                     </div>
-        
+                    
+                    <br>
                     <clr-icon shape="bars" (click)="showSortFields=true"></clr-icon>
                     <label>Sort on: </label> <i> {{ sortField }} </i>
                     <div class="select textLine" *ngIf="showSortFields">
@@ -84,6 +88,7 @@
                             </option>
                         </select>
                     </div>
+
                     <br>
                     <clr-icon shape="bars" (click)="showSortFieldOrder=true"></clr-icon>
                     <label>Sort order: </label> <i> {{ showSortFieldOrder }} </i>
