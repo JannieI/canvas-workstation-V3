@@ -66,10 +66,26 @@ import { GlobalVariableService }      from './global-variable.service';
 
             this.localWidget = Object.assign({}, this.selectedWidget);
             this.dataFields = this.localWidget.dataFields;
-            this.dataValues = [];
+
+            // Get fields in this DS
+            this.currentDatasources.forEach(ds => {
+                if (ds.id == this.localWidget.datasourceID) {
+                    this.dataFields = ds.dataFields;        
+                };
+            })
+
+            // Get the data values
             this.localWidget.slicerSelection.forEach( sl => 
                 this.dataValues.push(sl.fieldValue)
             );
+
+            
+            // Set the selected items
+            this.selectedDatasourceID = this.localWidget.datasourceID;
+            this.selectedDatasetID = this.localWidget.datasetID;
+            this.selectedField = this.localWidget.slicerFieldName;
+        console.log('xx flds', this.localWidget, this.selectedDatasourceID, this.selectedDatasetID, this.selectedField)
+            
             this.changeValues();
         };
 
