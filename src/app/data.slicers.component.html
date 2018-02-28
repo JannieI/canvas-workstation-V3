@@ -97,11 +97,12 @@
                     </div>
         
                     <label for="selects1">Sort on:</label>
+                    <input type="checkbox" id="checkrads_2" (click)="showSortFields=!showSortFields">
                     <div class="select textLine">
-                        <select>
-                            <option *ngFor="let row of dataFields; let i = index"
-                                (change)="clickSortField(row)"
-                                >
+                        <select *ngIf="showSortFields"
+                            (change)="clickSortField($event.target.value)"
+                            >
+                            <option *ngFor="let row of dataFields; let i = index">
                                 {{ row }}
                             </option>
                         </select>

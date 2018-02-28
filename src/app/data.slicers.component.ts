@@ -33,6 +33,8 @@ import { GlobalVariableService }      from './global-variable.service';
     localWidget: Widget;                            // W to modify, copied from selected
     selectedDatasourceID: number = -1;
     selectedDatasetID: number = -1;
+    showSortFields: boolean = false;
+    sortField: string = '';
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -171,6 +173,7 @@ import { GlobalVariableService }      from './global-variable.service';
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
 
-        console.log('xx sortField', sortField)
+        this.sortField = sortField;
+        console.log('xx sortField', this.sortField)
     }
   }
