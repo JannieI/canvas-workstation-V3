@@ -143,19 +143,18 @@ import { GlobalVariableService }      from './global-variable.service';
             };
         };
 
-        // Reduce if needed
-        // if (numberToShow == 'All') {
-        //     this.numberToShow = 0;
-        // } else {
-        //     this.numberToShow = +numberToShow;
-        // }
-
+        // Get a distinct list
+        // TODO - this could surely be done better
         tempData.forEach(t => {
             if (this.dataValues.indexOf(t[this.selectedField]) < 0) {
                 this.dataValues.push(t[this.selectedField]);
             };
         });
-        
+
+        // Reduce if needed
+        if (this.numberToShow != 'All') {
+            tempData = tempData.splice(0, +this.numberToShow);
+        }        
     }
 
     clickDataValue(id: number, index: number){
