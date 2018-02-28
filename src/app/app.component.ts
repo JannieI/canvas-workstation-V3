@@ -1914,7 +1914,7 @@ export class AppComponent implements OnInit {
         };
         if (nrWidgetsSelected > 1) {
             this.showStatusBarMessage(
-                'More than 1 ' + widgetType + ' selected',
+                widgetType=='All'? 'Multiple selected' : 'More than 1 ' + widgetType + ' selected',
                 'StatusBar',
                 'Warning',
                 3000,
