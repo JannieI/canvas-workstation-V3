@@ -649,7 +649,7 @@ export class AppComponent implements OnInit {
 
         // Delete, if so requested
         if (action == 'delete') {
-            this.deleteWidget();
+            this.deleteWidget('Graph');
         };
 
         // Hide modal form
@@ -1169,7 +1169,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDelete', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget('Graph')) { return};
 
         this.showModalWidgetDelete = true;
     }
@@ -1229,6 +1229,11 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDelete', '@Start');
 
+        // Make sure we have only one, then delete it
+        if (!this.checkForOnlyOneWidget('Slicer')) { return};
+
+        this.deleteWidget('Slicer')
+        
     }
 
 
@@ -1562,6 +1567,7 @@ export class AppComponent implements OnInit {
                 });
             }
         };
+
         // Ensure we have selected > 2, else we may have divid 0 ...
         if (selectedOnes.length < 3) {
             this.showStatusBarMessage(
@@ -1582,6 +1588,7 @@ export class AppComponent implements OnInit {
             };
             return 0;
         });
+        
         // Count number with spaces: x  =  nr selected -1  =  [Wi].length - 1 
         let x: number = selectedOnes.length - 1;
 
@@ -1597,7 +1604,6 @@ export class AppComponent implements OnInit {
         // Calc gap between each: g  =  (open space) / nr spaces  =  (d - f) / x
         let g: number = (d - f) / x;
 
-
         // Adjust the middle Ws (W1 and Wn remains unchanged): Wi = loop (i = 2,.., n-1)
         // Wi.left = W(i-1).left + W(i-1).width + g
         for (var i = 0; i < (selectedOnes.length - 1); i++) {
@@ -1612,7 +1618,6 @@ export class AppComponent implements OnInit {
                 selectedOnes[i].newLeft = selectedOnes[i].newLeft;
             }
         }
-        console.log('xx selectedOnes', selectedOnes, x, d, f, g, this.currentWidgets)
         
     }
 
@@ -2136,14 +2141,15 @@ export class AppComponent implements OnInit {
 
     }
 
-    deleteWidget() {
+    deleteWidget(widgetType) {
         // Delete the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
         
         // Delete the local one
         let delIDs: number[] = [];
         for (var i = 0; i < this.currentWidgets.length; i++) {
-            if (this.currentWidgets[i].isSelected) {
+            if (this.currentWidgets[i].isSelected  &&  
+                this.currentWidgets[i].widgetType == widgetType) {
             delIDs.push(this.currentWidgets[i].id);
             this.currentWidgets.splice(i,1);
             };
