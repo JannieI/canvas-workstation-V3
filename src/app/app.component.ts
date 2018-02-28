@@ -1173,7 +1173,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDelete', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Graph')) { return};
+        if (!this.checkForOnlyOneWidget()) { return};
 
         this.showModalWidgetDelete = true;
     }
@@ -1198,7 +1198,7 @@ export class AppComponent implements OnInit {
         // Edits the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Slicer')) { return};
+        if (!this.checkForOnlyOneWidget()) { return};
         
         this.newWidget = false;
         this.selectedWidget = this.currentWidgets[1]
@@ -1210,7 +1210,7 @@ export class AppComponent implements OnInit {
         // Open the list of tabs to which a Sl belongs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerTablist', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Slicer')) { return};
+        if (!this.checkForOnlyOneWidget()) { return};
 
         this.showModalSlicerTablist = true;
 
@@ -1220,7 +1220,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExpand', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Slicer')) { return};
+        if (!this.checkForOnlyOneWidget()) { return};
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -1237,7 +1237,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDelete', '@Start');
 
         // Make sure we have only one, then delete it
-        if (!this.checkForOnlyOneWidget('Slicer')) { return};
+        if (!this.checkForOnlyOneWidget()) { return};
 
         this.deleteWidget('Slicer')
         
@@ -1847,13 +1847,11 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
         
         // Decide which way
-        if (this.currentWidgets.filter(w => w.isSelected  &&  w.widgetType == 'Graph').
-            length == 1) {
-                this.clickMenuWidgetEdit();
+        if (this.checkForOnlyOneWidget('Graph')) {
+            this.clickMenuWidgetEdit();
         } else {
-            if (this.currentWidgets.filter(w => w.isSelected  &&  w.widgetType == 'Slicer').
-                length == 1) {
-                    this.clickMenuSlicerEdit();
+            if (this.checkForOnlyOneWidget('Slicer')) {
+                this.clickMenuSlicerEdit();
             } else {
                 // Lost
                 this.showStatusBarMessage(
@@ -1895,17 +1893,18 @@ export class AppComponent implements OnInit {
         return row ? row.id : undefined;
     }
 
-    checkForOnlyOneWidget(widgetType: string = 'Graph'): boolean {
+    checkForOnlyOneWidget(widgetType: string = 'All'): boolean {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForOnlyOneWidget', '@Start');
 
         // Get nr of W selected
         let nrWidgetsSelected: number = this.currentWidgets.filter(
-            w => (w.isSelected  &&  w.widgetType == widgetType) ).length;
+            w => (w.isSelected  &&  (w.widgetType == widgetType  ||  widgetType == 'All')  
+                 ) ).length;
 
         if (nrWidgetsSelected == 0) {
             this.showStatusBarMessage(
-                   'No ' + widgetType + ' selected',
+                    widgetType=='All'? 'Nothing selected' : 'No ' + widgetType + ' selected',
                    'StatusBar',
                    'Warning',
                    3000,
@@ -2155,7 +2154,7 @@ export class AppComponent implements OnInit {
     showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {
         // Returns True if a Widget is related to the selected Sl(s)
         // TODO - put back, but this fires ALL the time ...
-        this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
+        // this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
 
         // Get list of selected Sl
         let result: boolean = false;
