@@ -777,7 +777,10 @@ export class AppComponent implements OnInit {
         };
         
         if (size == 'None') {
-            this.currentWidgets.forEach(w => w.isSelected = false);
+            this.currentWidgets.forEach(w => {
+                w.isSelected = false
+                w.titleText = "xXX"
+            });
         };
         if (size == 'All') {
             this.currentWidgets.forEach(w => w.isSelected = true);
@@ -2156,7 +2159,8 @@ export class AppComponent implements OnInit {
         let result: boolean = false;
         this.globalVariableService.currentWidgets.forEach(sl => {
             if (sl.isSelected   &&   sl.widgetType == 'Slicer'  && 
-                sl.datasourceID == datasourceID   &&   sl.datasetID == datasetID) {
+                sl.datasourceID == datasourceID   &&   sl.datasetID == datasetID
+                &&  sl.id != id) {
                     result = true;
             };
         });
