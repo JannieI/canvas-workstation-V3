@@ -27,7 +27,7 @@ export class WidgetExpandComponent implements OnInit {
     @Output() formWidgetExpandClosed: EventEmitter<string> = new EventEmitter();
 
     currentDatasetLength: number;
-    records: number = 8;
+    records: number = 6;
     datasources: Datasource[] = [];
     dataFieldNames: string[] = [];
 
@@ -40,7 +40,7 @@ export class WidgetExpandComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.filePath = './assets/data.dataset' + 
+        this.globalVariableService.filePath = './assets/data.dataset' +
             this.selectDatasetID.toString() + '.json';
         // "../assets/vega-datasets/cars.json";
 

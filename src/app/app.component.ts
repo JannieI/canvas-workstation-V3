@@ -1219,7 +1219,7 @@ export class AppComponent implements OnInit {
 
         if (!this.checkForOnlyOneWidget('Slicer')) { return};
 
-        this.currentSlicers.forEach(w => {
+        this.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 this.selectWidgetIndex = w.id;
                 this.selectDatasetID = w.datasetID;
