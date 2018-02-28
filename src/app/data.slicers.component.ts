@@ -105,9 +105,24 @@ import { GlobalVariableService }      from './global-variable.service';
 
         // More into array
         this.dataValues = [];
-        let tempData: any = this.globalVariableService.currentDatasets.filter(ds => 
+        let tempData: any[] = this.globalVariableService.currentDatasets.filter(ds => 
             ds.id == this.selectedDatasetID)[0].dataRaw //['Origin'];
         console.log('xx cl Fld', tempData, this.dataFields[index]);
+
+        // Sort, if so wished
+        if (this.showSortFields) {
+            if (this.sortField != '') {
+                tempData.sort( (obj1,obj2) => {
+                    if (obj1[this.sortField] > obj2[this.sortField]) {
+                        return 1;
+                    };
+                    if (obj1[this.sortField] < obj2[this.sortField]) {
+                        return -1;
+                    };
+                    return 0;
+                });
+            };
+        };
         tempData.forEach(t => {
             if (this.dataValues.indexOf(t[this.dataFields[index]]) < 0) {
                 this.dataValues.push(t[this.dataFields[index]]);
