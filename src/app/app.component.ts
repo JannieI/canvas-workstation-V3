@@ -778,8 +778,10 @@ export class AppComponent implements OnInit {
         
         if (size == 'None') {
             this.currentWidgets.forEach(w => {
-                w.isSelected = false
-                w.titleText = "xXX"
+                w.isSelected  = false
+            });
+            this.globalVariableService.currentWidgets.forEach(w => {
+                w.isSelected  = false
             });
         };
         if (size == 'All') {
@@ -2153,11 +2155,11 @@ export class AppComponent implements OnInit {
     showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {
         // Returns True if a Widget is related to the selected Sl(s)
         // TODO - put back, but this fires ALL the time ...
-        // this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
 
         // Get list of selected Sl
         let result: boolean = false;
-        this.globalVariableService.currentWidgets.forEach(sl => {
+        this.currentWidgets.forEach(sl => {
             if (sl.isSelected   &&   sl.widgetType == 'Slicer'  && 
                 sl.datasourceID == datasourceID   &&   sl.datasetID == datasetID
                 &&  sl.id != id) {
