@@ -133,10 +133,18 @@ import { GlobalVariableService }      from './global-variable.service';
             if (this.sortField != '') {
                 tempData.sort( (obj1,obj2) => {
                     if (obj1[this.sortField] > obj2[this.sortField]) {
-                        return 1;
+                        if (this.sortFieldOrder == 'Ascending') {
+                            return 1;
+                        } else {
+                            return -1;
+                        };
                     };
                     if (obj1[this.sortField] < obj2[this.sortField]) {
-                        return -1;
+                        if (this.sortFieldOrder == 'Ascending') {
+                            return -1;
+                        } else {
+                            return 1;
+                        };
                     };
                     return 0;
                 });
@@ -163,12 +171,43 @@ import { GlobalVariableService }      from './global-variable.service';
 
     }
 
-  	clickClose(action: string) {
+    clickSortField(sortField: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
+
+        this.sortField = sortField;
+        this.showSortFields = false;
+        console.log('xx sortField', this.sortField)
+        this.changeValues();
+        
+    }
+
+    clickSortFieldOrder(sortFieldOrder: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
+
+        this.sortFieldOrder = sortFieldOrder;
+        this.showSortFieldOrder = false;
+        console.log('xx sortFieldOrder', this.sortFieldOrder)
+        this.changeValues();
+    }
+
+    clickShowNumber(numberToShow: string) {
+        // Clicked the number of records to show
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
+
+        this.numberToShow = numberToShow;
+        this.showNumber = false;
+        console.log('xx numberToShow', this.numberToShow)
+        this.changeValues();
+    }
+
+    clickClose(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 	  	this.formDataSlicersClosed.emit(null);
-        }
+    }
 
     clickSave() {
         //
@@ -210,30 +249,4 @@ import { GlobalVariableService }      from './global-variable.service';
 	  	this.formDataSlicersClosed.emit(this.localWidget);
     }
 
-    clickSortField(sortField: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
-
-        this.sortField = sortField;
-        this.showSortFields = false;
-        console.log('xx sortField', this.sortField)
-    }
-
-    clickSortFieldOrder(sortFieldOrder: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
-
-        this.sortFieldOrder = sortFieldOrder;
-        this.showSortFieldOrder = false;
-        console.log('xx sortFieldOrder', this.sortFieldOrder)
-    }
-
-    clickShowNumber(numberToShow: string) {
-        // Clicked the number of records to show
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
-
-        this.numberToShow = numberToShow;
-        this.showNumber = false;
-        console.log('xx numberToShow', this.numberToShow)
-    }
-  }
+}
