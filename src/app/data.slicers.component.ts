@@ -107,10 +107,10 @@ import { GlobalVariableService }      from './global-variable.service';
         this.dataValues = [];
         let tempData: any = this.globalVariableService.currentDatasets.filter(ds => 
             ds.id == this.selectedDatasetID)[0].dataRaw //['Origin'];
-        
+        console.log('xx cl Fld', tempData, this.dataFields[index]);
         tempData.forEach(t => {
-            if (this.dataValues.indexOf(t['Origin']) < 0) {
-                this.dataValues.push(t['Origin']);
+            if (this.dataValues.indexOf(t[this.dataFields[index]]) < 0) {
+                this.dataValues.push(t[this.dataFields[index]]);
             };
         });
         
