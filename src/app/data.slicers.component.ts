@@ -233,9 +233,9 @@ import { GlobalVariableService }      from './global-variable.service';
         };
 
         // Set Slicer related data
-        this.localWidget.slicerFieldName = 'Origin';
+        this.localWidget.slicerFieldName = this.selectedField;
         this.localWidget.slicerSelection = [];
-        this.dataFields.forEach(df => 
+        this.dataValues.forEach(df => 
             this.localWidget.slicerSelection.push( 
                 {
                     isSelected: true, fieldValue: df
