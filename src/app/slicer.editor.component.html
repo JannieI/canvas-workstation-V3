@@ -24,7 +24,7 @@
                         <clr-dg-placeholder>
                             No records ...
                         </clr-dg-placeholder>
-                        
+
                         <clr-dg-row
                             *ngFor="let row of currentDatasources; let i = index"
                             (click)="clickDatasource(row.id, i)"
@@ -44,7 +44,7 @@
                         <clr-dg-placeholder>
                             No records ...
                         </clr-dg-placeholder>
-                        
+
                         <clr-dg-row
                             *ngFor="let row of dataFields; let i = index"
                             (click)="clickDataFields(row.id, i)"
@@ -75,7 +75,7 @@
                             <option>10</option>
                         </select>
                     </div>
-                    
+
                     <br>
                     <clr-icon shape="bars" (click)="showSortFields=true"></clr-icon>
                     <label>Sort on: </label> <i> {{ sortField }} </i>
@@ -107,7 +107,7 @@
                         <clr-dg-placeholder>
                             No records ...
                         </clr-dg-placeholder>
-                        
+
                         <clr-dg-row
                             *ngFor="let row of dataValues; let i = index"
                             (click)="clickDataValue(row.id, i)"

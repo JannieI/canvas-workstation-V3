@@ -23,10 +23,10 @@ import { GlobalVariableService }      from './global-variable.service';
   })
   export class SlicerEditorComponent implements OnInit {
     @Input() newWidget: boolean;
+    @Input() selectedWidget: Widget;
 
     @Output() formDataSlicersClosed: EventEmitter<Widget> = new EventEmitter();
 
-    @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
     currentDatasources: Datasource[] = [];
     dataFields: string[] = [];
     dataValues: string[] = [];
@@ -59,20 +59,18 @@ import { GlobalVariableService }      from './global-variable.service';
 
             // Create new W
             this.localWidget = this.globalVariableService.widgetTemplate;
-            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID; 
+            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
             this.localWidget.widgetType = 'Slicer';
         } else {
 
-            let x: number = 0;
-            this.globalVariableService.currentWidgets.forEach(w => {
-                if (w.isSelected) {
-                    x = w.datasourceID;
-                    // this.localWidget = w;
-                    // Make a deep copy
-                    this.localWidget = Object.assign({}, w);
-                }
-            });
+            this.localWidget = Object.assign({}, this.selectedWidget);
+            this.dataFields = this.localWidget.dataFields;
+            this.dataValues = [];
+            this.localWidget.slicerSelection.forEach( sl => 
+                this.dataValues.push(sl.fieldValue)
+            );
+            this.changeValues();
         };
 
       }
@@ -87,12 +85,12 @@ import { GlobalVariableService }      from './global-variable.service';
         // Clicked a DS, now load the Fields
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
 
-        // Remember selected on 
+        // Remember selected on
         this.selectedDatasourceID = id;
 
         // Get fields in this DS
         this.dataFields = this.currentDatasources[index].dataFields;
-        
+
     }
 
     clickDataFields(id: number, index: number){
@@ -118,13 +116,13 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalVariableService.currentDatasets.forEach(ds => {
             if (ds.datasourceID == this.selectedDatasourceID) {
                 dSetIDs.push(ds.id);
-            }; 
+            };
         });
         this.selectedDatasetID = Math.max(...dSetIDs);
 
         // More into array
         this.dataValues = [];
-        let tempData: any[] = this.globalVariableService.currentDatasets.filter(ds => 
+        let tempData: any[] = this.globalVariableService.currentDatasets.filter(ds =>
             ds.id == this.selectedDatasetID)[0].dataRaw //['Origin'];
         console.log('xx cl Fld', tempData, this.selectedField);
 
@@ -162,7 +160,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // Reduce if needed
         if (this.numberToShow != 'All') {
             this.dataValues = this.dataValues.splice(0, +this.numberToShow);
-        }        
+        }
     }
 
     clickDataValue(id: number, index: number){
@@ -178,7 +176,7 @@ import { GlobalVariableService }      from './global-variable.service';
         this.sortField = sortField;
         this.showSortFields = false;
         this.changeValues();
-        
+
     }
 
     clickSortFieldOrder(sortFieldOrder: string) {
@@ -235,8 +233,8 @@ import { GlobalVariableService }      from './global-variable.service';
         // Set Slicer related data
         this.localWidget.slicerFieldName = this.selectedField;
         this.localWidget.slicerSelection = [];
-        this.dataValues.forEach(df => 
-            this.localWidget.slicerSelection.push( 
+        this.dataValues.forEach(df =>
+            this.localWidget.slicerSelection.push(
                 {
                     isSelected: true, fieldValue: df
                 })

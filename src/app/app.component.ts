@@ -147,6 +147,7 @@ export class AppComponent implements OnInit {
     selectWidgetIndex: number;
     selectDatasetID: number;
     selectDatasourceID: number;
+    selectedWidget: Widget;
     showGrid: boolean;
     showComments: boolean;
     showDatasourcePopup: boolean = false;
@@ -1191,10 +1192,13 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuSlicerEdit() {
-        //
+        // Edits the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
+
+        if (!this.checkForOnlyOneWidget('Slicer')) { return};
         
         this.newWidget = false;
+        this.selectedWidget = this.currentWidgets[1]
 
         this.showModalDataSlicers = true;
     }

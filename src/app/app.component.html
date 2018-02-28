@@ -1413,6 +1413,7 @@
 <!-- Modal: Slicers -->
 <data-slicers
     *ngIf="showModalDataSlicers"
+    [selectedWidget]="selectedWidget"
     [newWidget]="newWidget"
     (formDataSlicersClosed)="handleCloseDataSlicers($event)">Load Slicers ...
 </data-slicers>
