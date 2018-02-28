@@ -166,4 +166,11 @@ import { GlobalVariableService }      from './global-variable.service';
 
 	  	this.formDataSlicersClosed.emit(this.localWidget);
     }
+
+    clickSortField(sortField: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
+
+        console.log('xx sortField', sortField)
+    }
   }

@@ -98,19 +98,12 @@
         
                     <label for="selects1">Sort on:</label>
                     <div class="select textLine">
-                        <select id="selects1"
-                            (change)="clickSelectStep($event)"
-                            >
-                            <!-- TODO - Remove hard coding -->
-                            <option>Acceleration</option>
-                            <option>Cylinders</option>
-                            <option>Displacement</option>
-                            <option>Horsepower</option>
-                            <option>Miles_per_Gallon</option>
-                            <option>Name</option>
-                            <option>Origin</option>
-                            <option>Weight_in_lbs</option>
-                            <option>Year</option>
+                        <select>
+                            <option *ngFor="let row of dataFields; let i = index"
+                                (change)="clickSortField(row)"
+                                >
+                                {{ row }}
+                            </option>
                         </select>
                     </div>
                     <label for="selects_4">Sort order:</label>
