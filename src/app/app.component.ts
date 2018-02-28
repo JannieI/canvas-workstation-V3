@@ -777,24 +777,24 @@ export class AppComponent implements OnInit {
         };
         
         if (size == 'None') {
-            this.currentWidgets.forEach(w => {
-                w.isSelected  = false
-            });
+            this.currentWidgets.forEach(w => {w.isSelected  = false});
             this.globalVariableService.currentWidgets.forEach(w => {
                 w.isSelected  = false
             });
         };
         if (size == 'All') {
             this.currentWidgets.forEach(w => w.isSelected = true);
+            this.globalVariableService.currentWidgets.forEach(w => w.isSelected = true);
         };
         if (size == 'Auto') {
             let selectedWidgets: Widget[] = this.currentWidgets.filter(
                 w => (w.isSelected) );
-                console.log('xx', selectedWidgets)
             if (selectedWidgets.length == 0) {
                 this.currentWidgets.forEach(w => w.isSelected = true);
+                this.globalVariableService.currentWidgets.forEach(w => w.isSelected = true);
             } else {
                 this.currentWidgets.forEach(w => w.isSelected = false);
+                this.globalVariableService.currentWidgets.forEach(w => w.isSelected = false);
             }
         };
     }
