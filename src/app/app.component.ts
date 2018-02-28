@@ -1842,25 +1842,25 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
         
         // Decide which way
-        if (this.currentWidgets.filter(w => w.isSelected  &&  w.widgetType == 'Slicer').
-            length == 1) {
-                this.clickMenuSlicerEdit();
-        };
         if (this.currentWidgets.filter(w => w.isSelected  &&  w.widgetType == 'Graph').
             length == 1) {
                 this.clickMenuWidgetEdit();
+        } else {
+            if (this.currentWidgets.filter(w => w.isSelected  &&  w.widgetType == 'Slicer').
+                length == 1) {
+                    this.clickMenuSlicerEdit();
+            } else {
+                // Lost
+                this.showStatusBarMessage(
+                    'Select a graph or slicer',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );                
+            };
         };
 
-        console.log('xx x', this.currentWidgets.filter(w => w.isSelected  &&  w.widgetType == 'Slicer'))
-        // Lost
-        this.showStatusBarMessage(
-            'Select a graph or slicer',
-            'StatusBar',
-            'Warning',
-            3000,
-            ''
-        );
-        
     }
 
 
