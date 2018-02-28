@@ -384,8 +384,8 @@ export class WidgetSingleComponent {
 
         // Get list of selected Sl
         let result: boolean = false;
-        this.globalVariableService.currentSlicers.forEach(sl => {
-            if (sl.isSelected) {
+        this.globalVariableService.currentWidgets.forEach(sl => {
+            if (sl.isSelected  &&  sl.widgetType == 'Slicer') {
                 if (sl.datasourceID == datasourceID  &&  sl.datasetID == datasetID) {
                     result = true;
                 };

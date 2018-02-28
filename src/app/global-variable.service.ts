@@ -795,7 +795,6 @@ export class GlobalVariableService {
     currentWidgets: Widget[] = [];
     currentShapes: Widget[] = [];
     currentTables: Widget[] = [];
-    currentSlicers: Widget[] = [];
     currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardTags: DashboardTag[] = [];
     currentDashboardPermissions: DashboardPermission[] = [];
@@ -2509,14 +2508,6 @@ export class GlobalVariableService {
                                  (dashboardTabID == -1  ||  i.dashboardTabID == dashboardTabID)
                                  &&  (!i.isTrashed)
                         );
-
-                        // Add Sl, Sh, Tbl
-                        // Old
-                        // this.currentSlicers = data.filter(w => w.widgetType == 'Slicer');
-                        // this.currentShapes = data.filter(w => w.widgetType == 'Shape');
-                        // this.currentTables = data.filter(w => w.widgetType == 'Table');
-                        // Old
-                        // this.currentWidgets = data.filter(w => w.widgetType == 'Graph');
                         this.currentWidgets = data;
 
                         console.log('Global-Variables getCurrentWidgets 1', this.currentWidgets)
@@ -2534,11 +2525,6 @@ export class GlobalVariableService {
                     &&  (!i.isTrashed)
                 )
 
-                // Add Sl, Sh, Tbl
-                // this.currentSlicers = data.filter(w => w.widgetType == 'Slicer');
-                // this.currentShapes = data.filter(w => w.widgetType == 'Shape');
-                // this.currentTables = data.filter(w => w.widgetType == 'Table');
-                // this.currentWidgets = data.filter(w => w.widgetType == 'Graph');
                 this.currentWidgets = data;
                 console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, data)
                 resolve(data);

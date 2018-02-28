@@ -43,8 +43,8 @@ export class SlicerTablistComponent implements OnInit {
     ngOnInit() {
         // Build list of T to which SINGLE selected Sl belongs
         let slID: number[] = [];
-        this.globalVariableService.currentSlicers.forEach(sl => {
-            if (sl.isSelected) {
+        this.globalVariableService.currentWidgets.forEach(sl => {
+            if (sl.isSelected  &&  sl.widgetType == 'Slicer') {
                 slID.push(sl.dashboardTabID);
             };
         });
