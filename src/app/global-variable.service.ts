@@ -472,37 +472,37 @@ const widgetButtonsSelected: ButtonBarSelected[] =
 //     }
 // ];
 
-const canvasAlerts: CanvasAlert[] =
-[
-    {
-        id: 1,
-        sentOn: '2017/01/01',
-        recipient: 'BonitaS',
-        read: false,
-        alertText: 'Schedule Weekly reports failed',
-    },
-    {
-        id: 2,
-        sentOn: '2017/01/01',
-        recipient: 'AlisonW',
-        read: true,
-        alertText: 'Please log out for maintenance',
-    },
-    {
-        id: 3,
-        sentOn: '2017/01/01',
-        recipient: 'GavinO',
-        read: false,
-        alertText: 'Longrunning query finished',
-    },
-    {
-        id: 4,
-        sentOn: '2017/01/01',
-        recipient: 'WendyA',
-        read: true,
-        alertText: 'Query xyz failed',
-    }
-];
+// const canvasAlerts: CanvasAlert[] =
+// [
+//     {
+//         id: 1,
+//         sentOn: '2017/01/01',
+//         recipient: 'BonitaS',
+//         read: false,
+//         alertText: 'Schedule Weekly reports failed',
+//     },
+//     {
+//         id: 2,
+//         sentOn: '2017/01/01',
+//         recipient: 'AlisonW',
+//         read: true,
+//         alertText: 'Please log out for maintenance',
+//     },
+//     {
+//         id: 3,
+//         sentOn: '2017/01/01',
+//         recipient: 'GavinO',
+//         read: false,
+//         alertText: 'Longrunning query finished',
+//     },
+//     {
+//         id: 4,
+//         sentOn: '2017/01/01',
+//         recipient: 'WendyA',
+//         read: true,
+//         alertText: 'Query xyz failed',
+//     }
+// ];
 
 const canvasMessages: CanvasMessage[] =
 [
@@ -751,7 +751,7 @@ export class GlobalVariableService {
     // Permanent data - later to come from http
     backgroundcolors: CSScolor[];
     canvasActivities: CanvasActivity[];
-    canvasAlerts: CanvasAlert[] = canvasAlerts;
+    canvasAlerts: CanvasAlert[];
     canvasComments: CanvasComment[] = canvasComments;
     canvasMessages: CanvasMessage[] =  canvasMessages;
     filePath: string;
