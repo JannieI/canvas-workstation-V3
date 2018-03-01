@@ -899,6 +899,7 @@ export class GlobalVariableService {
     isDirtyDatasets: boolean = true;
     isDirtyBackgroundColors: boolean = true;
     isDirtyCanvasActivities: boolean = true;
+    isDirtyCanvasAlerts: boolean = true;
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -2694,6 +2695,37 @@ export class GlobalVariableService {
             } else {
                 console.log('Global-Variables getCanvasActivities 2', this.canvasActivities)
                 resolve(this.canvasActivities);
+            }
+        });
+
+    }
+
+    getCanvasAlerts(): Promise<CanvasAlert[]> {
+        // Description: Gets all Canvas Alerts
+        // Returns: this.canvasalerts array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getCanvasAlerts ...', this.canvasAlerts.length);
+
+        let url: string = 'getCanvasAlerts';
+        this.filePath = './assets/settings.canvasAlerts.json';
+
+        return new Promise<CanvasAlert[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.canvasAlerts.length == 0)  ||  (this.isDirtyCanvasAlerts) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.canvasAlerts = data.filter(d => (!d.isTrashed) );
+
+                        this.isDirtyCanvasAlerts = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('Global-Variables getCanvasAlerts 1', this.canvasAlerts)
+                        resolve(this.canvasAlerts);
+                    });
+            } else {
+                console.log('Global-Variables getCanvasAlerts 2', this.canvasAlerts)
+                resolve(this.canvasAlerts);
             }
         });
 
