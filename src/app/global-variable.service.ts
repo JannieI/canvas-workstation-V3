@@ -241,18 +241,18 @@ const widgetTemplate: Widget =
 
 
 // Setup / Settings / General
-const backgroundcolors: CSScolor[] =
-[
-    {
-        name: 'transparent'
-    },
-    {
-        name: 'beige'
-    },
-    {
-        name: 'white'
-    }
-];
+// const backgroundcolors: CSScolor[] =
+// [
+//     {
+//         name: 'transparent'
+//     },
+//     {
+//         name: 'beige'
+//     },
+//     {
+//         name: 'white'
+//     }
+// ];
 
 const shapeButtonsAvailable: ButtonBarAvailable[] =
 [
@@ -749,7 +749,7 @@ export class GlobalVariableService {
     widgetTemplate: Widget = widgetTemplate;
 
     // Permanent data - later to come from http
-    backgroundcolors: CSScolor[] = backgroundcolors;
+    backgroundcolors: CSScolor[];
     canvasActivities: CanvasActivity[] = canvasActivities;
     canvasAlerts: CanvasAlert[] = canvasAlerts;
     canvasComments: CanvasComment[] = canvasComments;
@@ -2636,8 +2636,6 @@ export class GlobalVariableService {
             }
         })
     }
-
-
 
     getBackgroundColors(): Promise<CSScolor[]> {
         // Description: Gets all Background colors
