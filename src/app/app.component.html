@@ -1126,16 +1126,19 @@
         <span class="tooltip-content">Export underlying data for a selected Widget</span>
     </span>
 
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
         <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="deploy"
             size="20"
             class="buttonBarIcon"
             (click)="clickMenuArrangeBack(i)"
-            title="Move Widget back"
             >
         </clr-icon>
+        <span class="tooltip-content">Move selected Widget or Slicer Back</span>
+    </span>
 
-        <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
+            <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="block"
             size="20"
             class="buttonBarIcon"
@@ -1143,6 +1146,8 @@
             title="Move Widget forward"
             >
         </clr-icon>
+        <span class="tooltip-content">Move selected Widget or Slicer Forward</span>
+    </span>
 
         <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="trash"
