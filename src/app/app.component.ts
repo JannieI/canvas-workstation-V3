@@ -744,12 +744,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditUndo', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showTestArrows = false;
     }
 
     clickMenuEditRedo() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditRedo', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showTestArrows = true;
     }
@@ -759,6 +763,8 @@ export class AppComponent implements OnInit {
         // Auto will select All if none is selected, None is any is selected
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAllNone', '@Start');
 
+        this.menuOptionClickPreAction();
+        
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
@@ -804,6 +810,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardNew', '@Start');
 
+        this.menuOptionClickPreAction();
+        
         console.log('App clickDashboardNew')
         this.showModalDashboardNew = true;
     }
@@ -812,6 +820,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardOpen', '@Start');
 
+        this.menuOptionClickPreAction();
+        
         console.log('App clickDashboardOpen')
         this.showModalDashboardOpen = true;
     }
@@ -819,6 +829,8 @@ export class AppComponent implements OnInit {
     clickDashboardEdit() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardEdit', '@Start');
+
+        this.menuOptionClickPreAction();
 
         // Switch off all selections if going to View Mode
         if (this.editMode) {
@@ -832,6 +844,8 @@ export class AppComponent implements OnInit {
     clickDashboardDiscard() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDiscard', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalDashboardDiscard = true;
     }
@@ -847,6 +861,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSave', '@Start');
 
+        this.menuOptionClickPreAction();
+
         console.log('App clickDashboardSave')
         this.showModalDashboardSave = true;
     }
@@ -855,12 +871,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSnapshots', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalDashboardSnapshots = true;
     }
 
     clickDashboardImport() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardImport', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalDashboardImport = true;
     }
@@ -869,12 +889,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardRename', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalDashboardRename = true;
     }
 
     clickMenuDashboardDetailDescription() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDescription', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalDashboardDescription = true;
     }
@@ -883,12 +907,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTags', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalDashboardTags = true;
     }
 
     clickMenuDashboardDetailSettings() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailSettings', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalDashboardSettings = true;
     }
@@ -897,12 +925,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailComments', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalDashboardComments = true;
     }
 
     clickMenuDashboardDetailTheme() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTheme', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalDashboardTheme = true;
     }
@@ -911,12 +943,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTemplate', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalDashboardTemplate = true;
     }
 
     clickMenuDashboardDetailSchedule() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailSchedule', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalDashboardSchedule = true;
     }
@@ -925,12 +961,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardPrint', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalDashboardPrint = true;
     }
 
     clickMenuDashboardDelete() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDelete', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalDashboardDelete = true;
     }
@@ -939,12 +979,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardTreeview', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalDashboardTreeview = true;
     }
 
     clickMenuDashboardSubscribe() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardSubscribe', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalDashboardSubscribe = true;
     }
@@ -958,6 +1002,8 @@ export class AppComponent implements OnInit {
         // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
 
+        this.menuOptionClickPreAction();
+
         console.log('App clickMenuDataFromFile')
         this.globalVariableService.dataGetFromSwitch.next('File');
         // this.globalVariableService.showModalData.next(true);
@@ -969,6 +1015,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromServer', '@Start');
 
+        this.menuOptionClickPreAction();
+
         console.log('App clickMenuDataFromServer')
         this.globalVariableService.dataGetFromSwitch.next('Server');
         // this.router.navigate(['/data']);
@@ -979,6 +1027,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinations', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalDataCombination = true;
     }
 
@@ -986,12 +1036,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataRefreshAll', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalDataRefresh = true;
     }
 
     clickMenuDataShare() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataShare', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalDataShare = true;
     }
@@ -1005,6 +1059,8 @@ export class AppComponent implements OnInit {
     clickMenuWidgetNew() {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
+
+        this.menuOptionClickPreAction();
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -1028,6 +1084,8 @@ export class AppComponent implements OnInit {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
+        this.menuOptionClickPreAction();
+
         // Can only edit one W at a time, so ignore if multiple selected
         if (!this.checkForOnlyOneWidget()) { return};
 
@@ -1047,6 +1105,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCheckpoints', '@Start');
 
+        this.menuOptionClickPreAction();
+
         if (!this.checkForOnlyOneWidget()) { return};
 
         this.showModalWidgetCheckpoints = true;
@@ -1055,6 +1115,8 @@ export class AppComponent implements OnInit {
     clickMenuWidgetComments() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetComments', '@Start');
+
+        this.menuOptionClickPreAction();
 
         if (!this.checkForOnlyOneWidget()) { return};
 
@@ -1065,6 +1127,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
 
+        this.menuOptionClickPreAction();
+
         if (!this.checkForOnlyOneWidget()) { return};
 
         this.showModalWidgetLinks = true;
@@ -1073,6 +1137,8 @@ export class AppComponent implements OnInit {
     clickMenuWidgetRefresh() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetRefresh', '@Start');
+
+        this.menuOptionClickPreAction();
 
         if (!this.checkForOnlyOneWidget()) {
             return;
@@ -1086,6 +1152,8 @@ export class AppComponent implements OnInit {
     clickMenuWidgetDuplicate() {
         // Duplicate selected Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
+
+        this.menuOptionClickPreAction();
 
         if (!this.checkForOnlyOneWidget()) { return};
         
@@ -1125,6 +1193,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExpand', '@Start');
 
+        this.menuOptionClickPreAction();
+
         if (!this.checkForOnlyOneWidget()) { return};
 
         this.currentWidgets.forEach(w => {
@@ -1141,6 +1211,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExport', '@Start');
 
+        this.menuOptionClickPreAction();
+
         if (!this.checkForOnlyOneWidget()) { return};
 
         this.showModalWidgetExport = true;
@@ -1149,6 +1221,8 @@ export class AppComponent implements OnInit {
     clickMenuWidgetCopy() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCopy', '@Start');
+
+        this.menuOptionClickPreAction();
 
         // Copies reference to existing datasource (of From Widget)
         // For now, only per Dashboard - issue with Global paste is datasource
@@ -1159,17 +1233,23 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCut', '@Start');
 
+        this.menuOptionClickPreAction();
+
     }
 
     clickMenuWidgetPaste() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetPaste', '@Start');
 
+        this.menuOptionClickPreAction();
+
     }
 
     clickMenuWidgetDelete() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDelete', '@Start');
+
+        this.menuOptionClickPreAction();
 
         if (!this.checkForOnlyOneWidget()) { return};
 
@@ -1186,6 +1266,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerAdd', '@Start');
         
+        this.menuOptionClickPreAction();
+
         this.newWidget = true;
         
         this.showModalDataSlicers = true;
@@ -1195,6 +1277,8 @@ export class AppComponent implements OnInit {
     clickMenuSlicerEdit() {
         // Edits the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
+
+        this.menuOptionClickPreAction();
 
         if (!this.checkForOnlyOneWidget()) { return};
         
@@ -1212,6 +1296,8 @@ export class AppComponent implements OnInit {
         // Open the list of tabs to which a Sl belongs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerTablist', '@Start');
 
+        this.menuOptionClickPreAction();
+
         if (!this.checkForOnlyOneWidget()) { return};
 
         this.showModalSlicerTablist = true;
@@ -1221,6 +1307,8 @@ export class AppComponent implements OnInit {
     clickMenuSlicerExpand() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExpand', '@Start');
+
+        this.menuOptionClickPreAction();
 
         if (!this.checkForOnlyOneWidget()) { return};
 
@@ -1237,6 +1325,8 @@ export class AppComponent implements OnInit {
     clickMenuSlicerDelete() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDelete', '@Start');
+
+        this.menuOptionClickPreAction();
 
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) { return};
@@ -1255,12 +1345,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeNew', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalShapeEdit = true;
     }
 
     clickMenuShapeEdit() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEdit', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalShapeEdit = true;
     }
@@ -1269,12 +1363,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeLinks', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalWidgetLinks = true;
     }
 
     clickMenuShapeDelete() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDelete', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalShapeDelete = true;
     }
@@ -1289,6 +1387,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPresentation', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.globalVariableService.presentationMode.next(!this.presentationMode);
         this.showMainMenu = false;
     }
@@ -1296,11 +1396,15 @@ export class AppComponent implements OnInit {
     clickMenuViewPrintPreview(){
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPrintPreview', '@Start');
+   
+        this.menuOptionClickPreAction();
     }
 
     clickMenuViewShowGrid() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.globalVariableService.showGrid.next(!this.showGrid);
     }
@@ -1309,6 +1413,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showDataQuality = !this.showDataQuality;
     }
 
@@ -1316,17 +1422,23 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showComments = !this.showComments;
     }
 
     clickMenuViewSnapToGrid() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewSnapToGrid', '@Start');
+
+        this.menuOptionClickPreAction();
     }
 
     clickMenuViewZoom() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewZoom', '@Start');
+
+        this.menuOptionClickPreAction();
 
     }
 
@@ -1340,11 +1452,15 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBackward', '@Start');
 
+        this.menuOptionClickPreAction();
+
     }
 
     clickMenuArrangeForward() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeForward', '@Start');
+
+        this.menuOptionClickPreAction();
 
     }
 
@@ -1352,17 +1468,23 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBack', '@Start');
 
+        this.menuOptionClickPreAction();
+
     }
 
     clickMenuArrangeFront() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeFront', '@Start');
 
+        this.menuOptionClickPreAction();
+
     }
 
     clickMenuArrangeAlignLeft() {
         // Align the lefts of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignLeft', '@Start');
+
+        this.menuOptionClickPreAction();
 
         if (!this.checkForMultipleWidgets()) {return};
 
@@ -1382,6 +1504,8 @@ export class AppComponent implements OnInit {
     clickMenuArrangeAlignCenter() {
         // Align the centers of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenter', '@Start');
+
+        this.menuOptionClickPreAction();
 
         if (!this.checkForMultipleWidgets()) {return};
 
@@ -1404,6 +1528,8 @@ export class AppComponent implements OnInit {
         // Align the Rights of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignRight', '@Start');
 
+        this.menuOptionClickPreAction();
+
         if (!this.checkForMultipleWidgets()) {return};
 
         let x: number = -1; 
@@ -1425,6 +1551,8 @@ export class AppComponent implements OnInit {
         // Align the tops of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignTop', '@Start');
 
+        this.menuOptionClickPreAction();
+
         if (!this.checkForMultipleWidgets()) {return};
 
         let x: number = -1; 
@@ -1443,6 +1571,8 @@ export class AppComponent implements OnInit {
     clickMenuArrangeAlignMiddle() {
         // Align the Middles of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignMiddle', '@Start');
+
+        this.menuOptionClickPreAction();
 
         if (!this.checkForMultipleWidgets()) {return};
 
@@ -1466,6 +1596,8 @@ export class AppComponent implements OnInit {
         // Align the Bottoms of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignBottom', '@Start');
 
+        this.menuOptionClickPreAction();
+
         if (!this.checkForMultipleWidgets()) {return};
 
         let x: number = -1; 
@@ -1487,6 +1619,8 @@ export class AppComponent implements OnInit {
         // Center horisontally across page
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterHorisontally', '@Start');
 
+        this.menuOptionClickPreAction();
+
         if (!this.checkForMultipleWidgets()) {return};
 
         let x: number = window.innerWidth / 2; 
@@ -1503,6 +1637,8 @@ export class AppComponent implements OnInit {
         // Center vertically across page
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterVertically', '@Start');
 
+        this.menuOptionClickPreAction();
+
         if (!this.checkForMultipleWidgets()) {return};
 
         let x: number = window.innerHeight / 2; 
@@ -1518,6 +1654,8 @@ export class AppComponent implements OnInit {
     clickMenuArrangeGroup() {
         // Groups the selected Widgets into a single group
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeGroup', '@Start');
+
+        this.menuOptionClickPreAction();
 
         if (!this.checkForMultipleWidgets()) {return};
 
@@ -1542,6 +1680,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeUnGroup', '@Start');
 
+        this.menuOptionClickPreAction();
+
         // Clear
         this.widgetGroup = [];
 
@@ -1559,6 +1699,8 @@ export class AppComponent implements OnInit {
         // Assume the selected Ws are W1 (first), W2, ..., Wn (last)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeHorisontal', '@Start');
         
+        this.menuOptionClickPreAction();
+
         // Get selected, sorted by .left  = [Wi]
         let selectedOnes = []; 
         for (var i = 0; i < (this.currentWidgets.length); i++) {
@@ -1634,6 +1776,8 @@ export class AppComponent implements OnInit {
         // Assume the selected Ws are W1 (first), W2, ..., Wn (last)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeVertical', '@Start');
         
+        this.menuOptionClickPreAction();
+
         // Get selected, sorted by .top  = [Wi]
         let selectedOnes = []; 
         for (var i = 0; i < (this.currentWidgets.length); i++) {
@@ -1707,6 +1851,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
 
+        this.menuOptionClickPreAction();
+
         if (!this.checkForMultipleWidgets()) {return};
 
         let x: number = -1; 
@@ -1736,6 +1882,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuHelpDemo', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.router.navigate(['/help']);
     }
 
@@ -1749,12 +1897,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateAlerts', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalCollaborateAlerts = true;
     }
 
     clickMenuCollaborateActivityAdd() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateActivityAdd', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalCollaborateActivityAdd = true;
     }
@@ -1763,12 +1915,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateMessages', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalCollaborateMessages = true;
     }
 
     clickMenuCollaborateActivities() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateActivities', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalCollaborateActivities = true;
     }
@@ -1783,6 +1939,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogin', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalDashboardLogin = true;
     }
 
@@ -1790,6 +1948,8 @@ export class AppComponent implements OnInit {
     clickMenuUserMyProfile() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserMyProfile', '@Start');
+
+        this.menuOptionClickPreAction();
 
         console.log('App clickMenuUserMyProfile')
         this.showModalUserMyProfile = true;
@@ -1799,12 +1959,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserPreferences', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalUserPreferences = true;
     }
 
     clickMenuUserWidgetButtonBar() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserWidgetButtonBar', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalUserWidgetButtonBar = true;
     }
@@ -1813,12 +1977,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserShapeButtonBar', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalUserShapeButtonBar = true;
     }
 
     clickMenuUserSystemSettings() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserSystemSettings', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalUserSystemSettings = true;
     }
@@ -1827,12 +1995,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserOffline', '@Start');
 
+        this.menuOptionClickPreAction();
+
         this.showModalUserOffline = true;
     }
 
     clickMenuUserLogout() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogout', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalDashboardLogout = true;
     }
@@ -2246,16 +2418,12 @@ export class AppComponent implements OnInit {
 
     }
 
-
-
-
-
-
-
-
-
-
-
+    menuOptionClickPreAction() {
+        // Actions performed at the START of a menu item click, PRE any other work
+        this.globalFunctionService.printToConsole(this.constructor.name,'menuOptionClickPreAction', '@Start');
+        
+        this.showPopupMessage = false;
+    }
 
 }
 
