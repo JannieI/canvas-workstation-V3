@@ -1143,7 +1143,6 @@
             size="20"
             class="buttonBarIcon"
             (click)="clickMenuArrangeFront(i)"
-            title="Move Widget forward"
             >
         </clr-icon>
         <span class="tooltip-content">Move selected Widget or Slicer Forward</span>
@@ -1160,14 +1159,16 @@
         <span class="tooltip-content">Delete selected Widget or Slicer</span>
     </span>
 
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
         <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="cursor-arrow"
             size="20"
             class="buttonBarIcon"
             (click)="clickMenuEditSelectAllNone('Auto')"
-            title="Un-/Select Widgets"
             >
         </clr-icon>
+        <span class="tooltip-content">Un-/Select none, some, all Widgets and Slicers</span>
+    </span>
 </div>
 
 
