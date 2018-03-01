@@ -1049,14 +1049,17 @@
         <span class="tooltip-content">Edit a selected Widget or Slicer</span>
     </span>
 
-    <clr-icon *ngIf="!presentationMode"
-        title="Show Checkpoints"
-        shape="add-text"
-        size="20"
-        class="buttonBarIcon"
-        (click)="clickMenuWidgetCheckpoints(i)"
-        >
-    </clr-icon>
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
+        <clr-icon *ngIf="!presentationMode"
+            shape="add-text"
+            size="20"
+            class="buttonBarIcon"
+            (click)="clickMenuWidgetCheckpoints(i)"
+            >
+        </clr-icon>
+        <span class="tooltip-content">Show Checkpoints for a selected Widget</span>
+    </span>
+
     <clr-icon *ngIf="!presentationMode"
         shape="note"
         size="20"
