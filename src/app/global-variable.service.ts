@@ -458,19 +458,19 @@ const widgetButtonsSelected: ButtonBarSelected[] =
 
 
 // Messages / Activities / Alerts / Comments
-const  canvasActivities: CanvasActivity[] =
-[
-    {
-        id: 1,
-        createdBy: 'AlexanderB',
-        createdOn: '2017/01/01',
-        activityType: 'Action',
-        activityStatus: 'Open',
-        linkedDashboardList: [],
-        activityText: 'Refactor Widget for coal levels',
-        activityComments: ['2017/01/01 @BorisN Levels in tenk 1-A checked and good']
-    }
-];
+// const  canvasActivities: CanvasActivity[] =
+// [
+//     {
+//         id: 1,
+//         createdBy: 'AlexanderB',
+//         createdOn: '2017/01/01',
+//         activityType: 'Action',
+//         activityStatus: 'Open',
+//         linkedDashboardList: [],
+//         activityText: 'Refactor Widget for coal levels',
+//         activityComments: ['2017/01/01 @BorisN Levels in tenk 1-A checked and good']
+//     }
+// ];
 
 const canvasAlerts: CanvasAlert[] =
 [
