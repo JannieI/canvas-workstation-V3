@@ -2668,6 +2668,37 @@ export class GlobalVariableService {
 
     }
 
+    getCanvasActivities(): Promise<CSScolor[]> {
+        // Description: Gets all Background colors
+        // Returns: this.backgroundcolors array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getCanvasActivities ...', this.backgroundcolors.length);
+
+        let url: string = 'getCanvasActivities';
+        this.filePath = './assets/settings.canvasactivities.json';
+
+        return new Promise<CSScolor[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.backgroundcolors.length == 0)  ||  (this.isDirtyBackgroundColors) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.backgroundcolors = data.filter(d => (!d.isTrashed) );
+
+                        this.isDirtyBackgroundColors = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('Global-Variables getCanvasActivities 1', this.backgroundcolors)
+                        resolve(this.backgroundcolors);
+                    });
+            } else {
+                console.log('Global-Variables getCanvasActivities 2', this.backgroundcolors)
+                resolve(this.backgroundcolors);
+            }
+        });
+
+    }
+
     getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         console.log('Global-Variables get ...');
