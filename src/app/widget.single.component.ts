@@ -216,6 +216,7 @@ export class WidgetSingleComponent {
             }
             let specification = compile(definition).spec;
             let view = new View(parse(specification));
+            // Note: not .width and .heigth here as we use W.graphWidth parsed into definition
             view.renderer('svg')
                 .initialize(this.graphDOM.nativeElement)
                 .hover()

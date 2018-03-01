@@ -263,6 +263,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             };
             width = width - reduce;
         }
+        // Note: trick to set .width and .height explicitly, thus W.graphWidth not used
         view.renderer('svg')
             .width(width)
             .height(height)
@@ -302,6 +303,21 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         } else {
             // Replace the W
             this.globalVariableService.widgetReplace(this.localWidget);
+        };
+
+        // Set width, depending on ColorField change
+        if (this.selectedWidget.graphColorField != ''  
+            &&  this.selectedWidget.graphColorField != null) {
+                if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
+                    this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
+                };
+        };
+        if (this.selectedWidget.graphColorField == ''  
+            ||  this.selectedWidget.graphColorField == null) {
+                if (this.localWidget.graphColorField != '' 
+                    &&  this.localWidget.graphColorField != null) {
+                    this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
+                };
         };
 
         this.localWidget.containerHasTitle = this.containerHasTitle;
