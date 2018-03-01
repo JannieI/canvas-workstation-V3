@@ -1107,7 +1107,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget('Graph')) { return};
 
         this.showModalWidgetCheckpoints = true;
     }

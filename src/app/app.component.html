@@ -1,4 +1,4 @@
-<!-- ***********************************  MAIN MENU & PALETTE *********************************** -->
+<!-- ***********************************  MAIN MENU ************************************ -->
 
 
 <!-- Main Dashboard & Tab Container -->
@@ -1035,21 +1035,26 @@
 
 <!-- Palette -->
 <div class="palette" *ngIf="editMode  &&  !presentationMode">
-    <clr-icon
-        title="Edit Widget"
-        shape="pencil"
-        size="20"
-        class="buttonBarIcon"
-        accesskey="w"
-        (click)="clickMenuPaletteEdit(i)"
-        >
-    </clr-icon>
+
+
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
+        <clr-icon
+            shape="pencil"
+            size="20"
+            class="buttonBarIcon"
+            accesskey="w"
+            (click)="clickMenuPaletteEdit(i)"
+            >
+        </clr-icon>
+        <span class="tooltip-content">Edit a selected Widget or Slicer</span>
+    </span>
+
     <clr-icon *ngIf="!presentationMode"
-        shape="pop-out"
+        title="Show Checkpoints"
+        shape="add-text"
         size="20"
         class="buttonBarIcon"
         (click)="clickMenuWidgetCheckpoints(i)"
-        title="Show Checkpoints"
         >
     </clr-icon>
     <clr-icon *ngIf="!presentationMode"
