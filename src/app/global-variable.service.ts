@@ -750,7 +750,7 @@ export class GlobalVariableService {
 
     // Permanent data - later to come from http
     backgroundcolors: CSScolor[];
-    canvasActivities: CanvasActivity[] = canvasActivities;
+    canvasActivities: CanvasActivity[];
     canvasAlerts: CanvasAlert[] = canvasAlerts;
     canvasComments: CanvasComment[] = canvasComments;
     canvasMessages: CanvasMessage[] =  canvasMessages;
@@ -898,7 +898,7 @@ export class GlobalVariableService {
     isDirtyDatasourcePivots: boolean = true;
     isDirtyDatasets: boolean = true;
     isDirtyBackgroundColors: boolean = true;
-    
+    isDirtyCanvasActivities: boolean = true;
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -2668,32 +2668,32 @@ export class GlobalVariableService {
 
     }
 
-    getCanvasActivities(): Promise<CSScolor[]> {
-        // Description: Gets all Background colors
-        // Returns: this.backgroundcolors array, unless:
+    getCanvasActivities(): Promise<CanvasActivity[]> {
+        // Description: Gets all Canvas Activities
+        // Returns: this.canvasactivities array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCanvasActivities ...', this.backgroundcolors.length);
+        console.log('Global-Variables getCanvasActivities ...', this.canvasActivities.length);
 
         let url: string = 'getCanvasActivities';
-        this.filePath = './assets/settings.canvasactivities.json';
+        this.filePath = './assets/settings.canvasActivities.json';
 
-        return new Promise<CSScolor[]>((resolve, reject) => {
+        return new Promise<CanvasActivity[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.backgroundcolors.length == 0)  ||  (this.isDirtyBackgroundColors) ) {
+            if ( (this.canvasActivities.length == 0)  ||  (this.isDirtyCanvasActivities) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.backgroundcolors = data.filter(d => (!d.isTrashed) );
+                        this.canvasActivities = data.filter(d => (!d.isTrashed) );
 
-                        this.isDirtyBackgroundColors = false;
+                        this.isDirtyCanvasActivities = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getCanvasActivities 1', this.backgroundcolors)
-                        resolve(this.backgroundcolors);
+                        console.log('Global-Variables getCanvasActivities 1', this.canvasActivities)
+                        resolve(this.canvasActivities);
                     });
             } else {
-                console.log('Global-Variables getCanvasActivities 2', this.backgroundcolors)
-                resolve(this.backgroundcolors);
+                console.log('Global-Variables getCanvasActivities 2', this.canvasActivities)
+                resolve(this.canvasActivities);
             }
         });
 
