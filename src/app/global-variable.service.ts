@@ -897,7 +897,8 @@ export class GlobalVariableService {
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasourcePivots: boolean = true;
     isDirtyDatasets: boolean = true;
-
+    isDirtyBackgroundColors: boolean = true;
+    
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -2637,7 +2638,37 @@ export class GlobalVariableService {
     }
 
 
-    // var tree = dl.treejson('data/flare.json', {children: 'children'});
+
+    getBackgroundColors(): Promise<CSScolor[]> {
+        // Description: Gets all Background colors
+        // Returns: this.backgroundcolors array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getBackgroundColors ...', this.backgroundcolors.length);
+
+        let url: string = 'getBackgroundColors';
+        this.filePath = './assets/settings.backgroundcolors.json';
+
+        return new Promise<CSScolor[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.backgroundcolors.length == 0)  ||  (this.isDirtyBackgroundColors) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.backgroundcolors = data.filter(d => (!d.isTrashed) );
+
+                        this.isDirtyBackgroundColors = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('Global-Variables getBackgroundColors 1', this.backgroundcolors)
+                        resolve(this.backgroundcolors);
+                    });
+            } else {
+                console.log('Global-Variables getBackgroundColors 2', this.backgroundcolors)
+                resolve(this.backgroundcolors);
+            }
+        });
+
+    }
 
     getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
