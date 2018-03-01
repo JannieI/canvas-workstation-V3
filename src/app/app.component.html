@@ -1088,20 +1088,21 @@
             size="20"
             class="buttonBarIcon"
             (click)="clickMenuWidgetRefresh(i)"
-            title="Refresh Dataset for this Widget only"
             >
         </clr-icon>
         <span class="tooltip-content">Refresh Dataset for a selected Widget or Slicer</span>
     </span>
 
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
         <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="copy"
             size="20"
             class="buttonBarIcon"
             (click)="clickMenuWidgetDuplicate(i)"
-            title="Duplicate this Widget"
             >
         </clr-icon>
+        <span class="tooltip-content">Duplicate a selected Widget</span>
+    </span>
 
         <clr-icon *ngIf="!presentationMode"
             shape="pop-out"

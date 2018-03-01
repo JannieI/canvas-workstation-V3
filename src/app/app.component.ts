@@ -2037,7 +2037,6 @@ export class AppComponent implements OnInit {
                 );                
             };
         };
-
     }
 
     clickMenuPaletteExpand() {
@@ -2062,6 +2061,7 @@ export class AppComponent implements OnInit {
             };
         };
 
+        
     }
 
 
