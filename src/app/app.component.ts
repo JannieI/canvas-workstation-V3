@@ -1092,19 +1092,20 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
         console.log('xx clickMenuWidgetDuplicate', this.globalVariableService.currentWidgets)
-        if (!this.checkForOnlyOneWidget()) { return};
 
         if (!this.checkForOnlyOneWidget()) { return};
         
         // Get new ID
         // TODO - improve this when using a DB!
         let newID: number = 1;
-        let ds: number[] = [];
+        let wIDs: number[] = [];
         this.globalVariableService.widgets.forEach(w => {
-            ds.push(w.id);
+            wIDs.push(w.id);
         });
-        newID = Math.max(...ds) + 1;
-        console.log('xx newID', newID, ds)
+        if (wIDs.length > 0) {
+            newID = Math.max(...wIDs) + 1;
+        };
+        console.log('xx newID', newID, wIDs)
 
         this.currentWidgets.forEach(w => {
 
