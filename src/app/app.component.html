@@ -1149,14 +1149,16 @@
         <span class="tooltip-content">Move selected Widget or Slicer Forward</span>
     </span>
 
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
         <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="trash"
             size="20"
             class="buttonBarIcon"
             (click)="clickMenuWidgetDelete(i)"
-            title="Delete this Widget"
             >
         </clr-icon>
+        <span class="tooltip-content">Delete selected Widget or Slicer</span>
+    </span>
 
         <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="cursor-arrow"
