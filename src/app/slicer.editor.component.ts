@@ -30,6 +30,7 @@ import { GlobalVariableService }      from './global-variable.service';
     currentDatasources: Datasource[] = [];
     dataFields: string[] = [];
     dataValues: string[] = [];
+    containerHasTitle: boolean = true;
     localWidget: Widget;                            // W to modify, copied from selected
     selectedDatasourceID: number = -1;
     selectedDatasetID: number = -1;
@@ -66,6 +67,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
             this.localWidget = Object.assign({}, this.selectedWidget);
             this.dataFields = this.localWidget.dataFields;
+            this.containerHasTitle = this.localWidget.containerHasTitle;
 
             // Get fields in this DS
             this.currentDatasources.forEach(ds => {
@@ -249,6 +251,7 @@ import { GlobalVariableService }      from './global-variable.service';
         };
 
         // Set Slicer related data
+        this.localWidget.containerHasTitle = this.containerHasTitle;
         this.localWidget.slicerNumberToShow = this.slicerNumberToShow;
         this.localWidget.slicerSortField = this.slicerSortField;
         this.localWidget.slicerSortFieldOrder = this.slicerSortFieldOrder;

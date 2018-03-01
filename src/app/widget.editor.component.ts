@@ -231,7 +231,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.dataFieldNames = this.currentDatasources[0].dataFields;
             this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
             this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
-            console.log('xx', this.containerHasTitle, this.localWidget.containerHasTitle)
+
         }
 
         this.globalVariableService.presentationMode.subscribe(
