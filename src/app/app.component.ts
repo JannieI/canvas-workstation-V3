@@ -1118,7 +1118,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget('Graph')) { return};
 
         this.showModalWidgetComments = true;
     }
@@ -1129,7 +1129,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget('Graph')) { return};
 
         this.showModalWidgetLinks = true;
     }

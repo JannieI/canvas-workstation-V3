@@ -1061,7 +1061,6 @@
     </span>
 
     <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
-
         <clr-icon *ngIf="!presentationMode"
             shape="note"
             size="20"
@@ -1072,14 +1071,16 @@
         <span class="tooltip-content">Show Comments for a selected Widget</span>
     </span>
 
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
         <clr-icon
             shape="link"
             size="20"
             class="buttonBarIcon"
             (click)="clickMenuWidgetLinks(i)"
-            title="Show Links"
             >
         </clr-icon>
+        <span class="tooltip-content">Show Links for a selected Widget</span>
+    </span>
 
         <clr-icon *ngIf="!presentationMode"
             shape="refresh"
