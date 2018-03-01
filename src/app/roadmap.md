@@ -137,6 +137,8 @@ Shapes:
 26.Consider array.spice() instead of current deep copy - is more TS-like ...
 27.Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  
 THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
+28.Delete Slicer has no confirmation - maybe it should be done.  Then decide, in app component or new component.
+
 
 **Data**
 1. Define Canvas datatype = TS ones?
@@ -190,11 +192,11 @@ THEN: consider all currentXXX, where XXX = Objects to follow the same methodolog
     - add drag field to Y = Pivot!  Decide local or in backend
     - add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here
 BUG: if using a custom vega spec, the editor does not understand this.
-Bug: after changes in the Modal form & close with X - the original W changes
-Bug: X axis always changes to nominal - fix hardcoding ...
 - set properties of new Widget as a template - user pref
 - when open NEW and only 1 DS, then skip DS selection page?
 - when add NEW, ensure it is accessable: always same position top left + z-index = Max(rest)+1
+
+
 
 **Dashboard**
 1. Easy to drill in and out of dates - year - month - day, etc

@@ -306,18 +306,27 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         };
 
         // Set width, depending on ColorField change
-        if (this.selectedWidget.graphColorField != ''  
-            &&  this.selectedWidget.graphColorField != null) {
-                if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
-                    this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
-                };
-        };
-        if (this.selectedWidget.graphColorField == ''  
-            ||  this.selectedWidget.graphColorField == null) {
-                if (this.localWidget.graphColorField != '' 
-                    &&  this.localWidget.graphColorField != null) {
-                    this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
-                };
+        if (this.newWidget) {
+            if (this.localWidget.graphColorField != '' 
+                 &&  this.localWidget.graphColorField != null) {
+                this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
+            } else {
+                this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
+            };
+        } else {
+            if (this.selectedWidget.graphColorField != ''  
+                &&  this.selectedWidget.graphColorField != null) {
+                    if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
+                        this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
+                    };
+            };
+            if (this.selectedWidget.graphColorField == ''  
+                ||  this.selectedWidget.graphColorField == null) {
+                    if (this.localWidget.graphColorField != '' 
+                        &&  this.localWidget.graphColorField != null) {
+                        this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
+                    };
+            };
         };
 
         this.localWidget.containerHasTitle = this.containerHasTitle;

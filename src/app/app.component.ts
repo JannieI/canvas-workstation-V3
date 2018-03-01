@@ -1155,7 +1155,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget('Graph')) { return};
         
         // Get new ID
         // TODO - improve this when using a DB!
@@ -1253,6 +1253,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget('Graph')) { return};
 
         this.showModalWidgetDelete = true;
     }
@@ -1332,6 +1333,7 @@ export class AppComponent implements OnInit {
 
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget('Slicer')) { return};
 
         this.deleteWidget('Slicer')
         
