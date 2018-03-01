@@ -2038,7 +2038,29 @@ export class AppComponent implements OnInit {
 
     }
 
+    clickMenuPaletteExpand() {
+        // Clicked the Edit option on palette - decide what to do
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteExpand', '@Start');
+        
+        // Decide which way
+        if (this.checkForOnlyOneWidget('Graph')) {
+            this.clickMenuWidgetExpand();
+        } else {
+            if (this.checkForOnlyOneWidget('Slicer')) {
+                this.clickMenuSlicerExpand();
+            } else {
+                // Lost
+                this.showStatusBarMessage(
+                    'Select a graph or slicer',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );                
+            };
+        };
 
+    }
 
 
     // ***********************  OTHER ************************ //
