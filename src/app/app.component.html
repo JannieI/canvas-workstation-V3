@@ -1351,6 +1351,7 @@
     *ngIf="showModalWidgetEditor"
     [showDatasourcePopup]="showDatasourcePopup"
     [newWidget]="newWidget"
+    [selectedWidget]="selectedWidget"
     (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Widget Editor ...
 </widget-editor>
 
@@ -1411,12 +1412,12 @@
 
 
 <!-- Modal: Slicers -->
-<data-slicers
+<slicer-editor
     *ngIf="showModalDataSlicers"
     [selectedWidget]="selectedWidget"
     [newWidget]="newWidget"
     (formDataSlicersClosed)="handleCloseDataSlicers($event)">Load Slicers ...
-</data-slicers>
+</slicer-editor>
 
 
 <!-- Modal: Slicer Tablist -->

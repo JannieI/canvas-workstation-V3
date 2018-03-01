@@ -17,7 +17,7 @@ import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 @Component({
-    selector: 'data-slicers',
+    selector: 'slicer-editor',
     templateUrl: './slicer.editor.component.html',
     styleUrls: ['./slicer.editor.component.css']
   })
