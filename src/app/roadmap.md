@@ -135,7 +135,8 @@ Shapes:
 24.Refactor: Change all components to use central (global var) createVegaLiteSpec ...
 25.Consider CAREFULLY skipping all currentXX routines and data ... this can work is all controlled by App Component.  Not sure what the FULL implications are ...
 26.Consider array.spice() instead of current deep copy - is more TS-like ...
-
+27.Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  
+THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
 
 **Data**
 1. Define Canvas datatype = TS ones?

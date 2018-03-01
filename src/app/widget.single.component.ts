@@ -217,7 +217,7 @@ export class WidgetSingleComponent {
             let specification = compile(definition).spec;
             let view = new View(parse(specification));
             view.renderer('svg')
-                .initialize( this.graphDOM.nativeElement)
+                .initialize(this.graphDOM.nativeElement)
                 .hover()
                 .run()
                 .finalize();

@@ -118,6 +118,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     clickedButtonAggregateNo: boolean = false;
     colField: string = 'Drag a field here ...';
+    containerHasTitle: boolean = true;
     currentData: any = [];
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
     dataFieldNames: string[] = [];
@@ -170,126 +171,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID; 
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
             this.localWidget.widgetType = 'Graph';
-            // {
-            //     "widgetType": "Graph",
-            //     "widgetSubType": "",
-
-            //     "isTrashed": false,
-            //     "dashboardID": 1,
-            //     "dashboardTabID": 1,
-            //     "dashboardTabIDs": [1],
-            //     "id": 1,
-            //     "name": "New",
-            //     "description": "New",
-            //     "visualGrammar": "Vega-Lite",
-            //     "version": 1,
-            //     "isSelected": false,
-            //     "isLiked": false,
-            //     "nrDataQualityIssues": 0,
-            //     "nrComments": 4,
-            //     "hyperlinkDashboardID": 1,
-            //     "hyperlinkDashboardTabID": 1,
-
-            //     "datasourceID": 4,
-            //     "data": null,
-            //     "dataFields": null,
-            //     "dataFieldTypes": null,
-            //     "dataFieldLengths": null,
-            // slicerNumberToShow
-            // sortField
-            // sortFieldOrder
-            //     "slicerFieldName": "symbol",
-            //     "slicerSelection": null,
-            //     "datasetID": 7,
-            //     "dataParameters":
-            //     [
-            //         {
-            //             "field": "",
-            //             "value": ""
-            //         }
-            //     ],
-            //     "reportID": 1,
-            //     "reportName": "",
-            //     "rowLimit": 1,
-            //     "addRestRow": false,
-            //     "size": "",
-            //     "containerBackgroundcolor": "transparent",
-            //     "containerBorder": "2px solid black",
-            //     "containerBorderRadius": "",
-            //     "containerBoxshadow": "2px 2px gray",
-            //     "containerColor": "transparent",
-            //     "containerFontsize": 12,
-            //     "containerHeight": 320,
-            //     "containerLeft": 10,
-            //     "containerHasTitle": true,
-            //     "containerTop": 80,
-            //     "containerWidth": 410,
-            //     "containerZindex": 50,
-            //     "titleText": "Title of new Widget",
-            //     "titleBackgroundColor": "#192b35",
-            //     "titleBorder": "",
-            //     "titleColor": "black",
-            //     "titleFontsize": 1,
-            //     "titleFontWeight": "",
-            //     "titleHeight": 1,
-            //     "titleLeft": 1,
-            //     "titleMargin": "0",
-            //     "titlePadding": "0 0 0 5px",
-            //     "titlePosition": "",
-            //     "titleTextAlign": "left",
-            //     "titleTop": 1,
-            //     "titleWidth": 100,
-            //     "graphType": "",
-            //     "graphHeight": 240,
-            //     "graphLeft": 1,
-            //     "graphTop": 1,
-            //     "graphWidth": 240,
-            //     "graphGraphPadding": 1,
-            //     "graphHasSignals": false,
-            //     "graphFillColor": "",
-            //     "graphHoverColor": "",
-            //     "graphSpecification": "",
-            //     "graphDescription": "",
-            //     "graphXaggregate": "",
-            //     "graphXtimeUnit": "",
-            //     "graphXfield": "",
-            //     "graphXtype": "",
-            //     "graphXaxisTitle": "",
-            //     "graphYaggregate": "",
-            //     "graphYtimeUnit": "",
-            //     "graphYfield": "",
-            //     "graphYtype": "",
-            //     "graphYaxisTitle": "",
-            //     "graphTitle": "graphTitle",
-            //     "graphMark": "tick",
-            //     "graphMarkColor": "#4682b4",
-            //     "graphUrl": "../assets/vega-datasets/cars.json",
-            //     "graphColorField": "",
-            //     "graphColorType": "",
-            //     "graphData": "",
-            //     "tableColor": "",
-            //     "tableCols": 1,
-            //     "tableHeight": 1,
-            //     "tableHideHeader": false,
-            //     "tableLeft": 1,
-            //     "tableRows": 1,
-            //     "tableTop": 1,
-            //     "tableWidth": 1,
-            //     "shapeCx": "",
-            //     "shapeCy": "",
-            //     "shapeR": "",
-            //     "shapeStroke": "",
-            //     "shapeStrokeWidth": "",
-            //     "shapeFill": "",
-            //     "refreshMode": "",
-            //     "refreshFrequency": 1,
-            //     "widgetRefreshedOn": "",
-            //     "widgetRefreshedBy": "",
-            //     "widgetCreatedOn": "",
-            //     "widgetCreatedBy": "",
-            //     "widgetUpdatedOn": "",
-            //     "widgetUpdatedBy": ""
-            // }
 
         } else {
 
@@ -342,9 +223,11 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             }
 
             // Get local vars - easier for ngFor
+            this.containerHasTitle = this.localWidget.containerHasTitle;
             this.dataFieldNames = this.currentDatasources[0].dataFields;
             this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
             this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
+            console.log('xx', this.containerHasTitle, this.localWidget.containerHasTitle)
         }
 
         this.globalVariableService.presentationMode.subscribe(
@@ -426,9 +309,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.globalVariableService.widgetReplace(this.localWidget);
         };
 
-        let widgetsToRefresh: number = this.localWidget.id;
-
-        // this.formWidgetEditorClosed.emit(widgetsToRefresh);
+        this.localWidget.containerHasTitle = this.containerHasTitle;
         this.formWidgetEditorClosed.emit(this.localWidget);
     }
 
