@@ -739,8 +739,6 @@ const transformationsFormat: Transformation[] =
 ];
 
 
-
-
 @Injectable()
 export class GlobalVariableService {
 
