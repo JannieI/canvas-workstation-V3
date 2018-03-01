@@ -1083,9 +1083,8 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetDuplicate() {
-        //
+        // Duplicate selected Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
-        console.log('xx clickMenuWidgetDuplicate', this.globalVariableService.currentWidgets)
 
         if (!this.checkForOnlyOneWidget()) { return};
         
@@ -1099,28 +1098,26 @@ export class AppComponent implements OnInit {
         if (wIDs.length > 0) {
             newID = Math.max(...wIDs) + 1;
         };
-        console.log('xx newID', newID, wIDs)
 
         this.currentWidgets.forEach(w => {
 
             if (w.isSelected) {
         
                 // Make a deep copy
-                let localWidget= Object.assign({}, w);
-                localWidget.id = newID;
-                localWidget.isSelected = false;
-                localWidget.containerLeft = 120;
-                localWidget.containerTop = 120;
-                localWidget.titleText = localWidget.titleText + ' (copy)';
+                let copiedWidget: Widget = Object.assign({}, w);
+                copiedWidget.id = newID;
+                copiedWidget.isSelected = false;
+                copiedWidget.containerLeft = 120;
+                copiedWidget.containerTop = 120;
+                copiedWidget.titleText = copiedWidget.titleText + ' (copy)';
 
                 // Add to all and current W
-                this.globalVariableService.widgets.push(localWidget);
-                this.globalVariableService.currentWidgets.push(localWidget);
-                this.currentWidgets.push(localWidget);
+                this.globalVariableService.widgets.push(copiedWidget);
+                this.globalVariableService.currentWidgets.push(copiedWidget);
+                this.globalVariableService.changedWidget.next(copiedWidget);
 
             };
         });
-        console.log('xx end', this.currentWidgets)
     }
 
     clickMenuWidgetExpand() {
