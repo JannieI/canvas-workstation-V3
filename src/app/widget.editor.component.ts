@@ -176,17 +176,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         } else {
 
-            // let x: number = 0;
-            // this.globalVariableService.currentWidgets.forEach(w => {
-            //     if (w.isSelected) {
-            //         x = w.datasourceID;
-            //         // this.localWidget = w;
-            //         // Make a deep copy
-            //         this.localWidget = Object.assign({}, w);
-            //     }
-            // });
             this.localWidget = Object.assign({}, this.selectedWidget);
-            console.log('xx this.localWidget', this.localWidget)
+
             // TODO - handle properly and close form
             if (this.localWidget.datasourceID == 0) {
                 alert('No Widget was selected, or could not find it in glob vars')

@@ -559,8 +559,6 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSlicers', '@Start');
 
-        console.log('xx handleSlClose', changedWidget)
-
         this.globalVariableService.changedWidget.next(changedWidget);
         
         this.showModalDataSlicers = false;
@@ -1435,7 +1433,6 @@ export class AppComponent implements OnInit {
                 } else {
                     this.currentWidgets[i].containerTop = x;
                 };
-                console.log('xx t', this.currentWidgets[i].containerTop)
             };
         };
     }
@@ -1700,7 +1697,6 @@ export class AppComponent implements OnInit {
                 selectedOnes[i].newTop = selectedOnes[i].newTop;
             }
         }
-        console.log('xx selectedOnes', selectedOnes, x, d, f, g, this.currentWidgets)
 
     }
 
@@ -1990,14 +1986,12 @@ export class AppComponent implements OnInit {
             });
         };
 
-        console.log('xx draggables', draggables)
         // Reset current and globalVar values
         this.currentWidgets.forEach( w => {
             
             if (draggables.indexOf(w.id) >= 0) {
                 w.containerLeft = w.containerLeft - this.startX + ev.x;
                 w.containerTop = w.containerTop - this.startY + ev.y;
-                console.log('xx in loop', w.id, w.containerTop, w.containerTop, this.startY, ev.y);
             }
         });
         this.globalVariableService.currentWidgets.forEach( w => {
@@ -2234,8 +2228,6 @@ export class AppComponent implements OnInit {
             }
         });
 
-        console.log('xx newDataset', newDataset, this.currentWidgets)
-        
     }
 
 
