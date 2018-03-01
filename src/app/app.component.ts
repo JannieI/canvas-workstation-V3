@@ -1038,7 +1038,7 @@ export class AppComponent implements OnInit {
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected) {
+            if (w.isSelected  &&  w.widgetType == 'Graph') {
                 this.selectedWidget = w;
             };
         });
@@ -1206,7 +1206,11 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget()) { return};
         
         this.newWidget = false;
-        this.selectedWidget = this.currentWidgets[1]
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Slicer') {
+                this.selectedWidget = w;
+            };
+        });
 
         this.showModalDataSlicers = true;
     }
