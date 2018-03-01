@@ -176,7 +176,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         } else {
 
-            let x: number = 0;
+            // let x: number = 0;
             // this.globalVariableService.currentWidgets.forEach(w => {
             //     if (w.isSelected) {
             //         x = w.datasourceID;
@@ -188,13 +188,13 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.localWidget = Object.assign({}, this.selectedWidget);
             console.log('xx this.localWidget', this.localWidget)
             // TODO - handle properly and close form
-            if (x == 0) {
+            if (this.localWidget.datasourceID == 0) {
                 alert('No Widget was selected, or could not find it in glob vars')
             };
 
             // Get DS
             this.currentDatasources = this.globalVariableService.currentDatasources
-                .filter(ds => ds.id == x)
+                .filter(ds => ds.id == this.localWidget.datasourceID)
 
             // TODO - handle properly and close form
             if (this.currentDatasources.length != 1) {
