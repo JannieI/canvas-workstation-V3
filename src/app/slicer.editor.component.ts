@@ -255,6 +255,7 @@ import { GlobalVariableService }      from './global-variable.service';
         this.localWidget.slicerNumberToShow = this.slicerNumberToShow;
         this.localWidget.slicerSortField = this.slicerSortField;
         this.localWidget.slicerSortFieldOrder = this.slicerSortFieldOrder;
+        this.localWidget.titleText = this.selectedField;
         this.localWidget.slicerFieldName = this.selectedField;
         this.localWidget.slicerSelection = [];
         this.dataValues.forEach(df =>
