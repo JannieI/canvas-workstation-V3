@@ -202,11 +202,13 @@ export class AppComponent implements OnInit {
     showModalUserShapeButtonBar: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
+    showPopupMessage: boolean = false;
     showTitleForm: boolean = false;
     startX: number;
     startY: number;
     statusBarCancelRefresh: boolean = false;
     statusBarRunning: boolean = false;
+    stuckCount: number = 0;
     titleFormLeft: number = 50;
     titleFormTop: number = 50;
     widgetGroup: number[] = [];
@@ -2146,7 +2148,20 @@ export class AppComponent implements OnInit {
                     defaultMessage
                 }
             );
-        }
+        };
+
+        // In addition, make sure the user is not stuck
+        if (message == 'Not in Edit Mode (see Edit menu Option)') {
+            this.stuckCount = this.stuckCount + 1;
+        } else {
+            this.stuckCount = 0;
+        };
+        if (this.stuckCount > 3) {
+            this.showPopupMessage = true;
+        } else {
+            this.showPopupMessage = false;
+        };
+        
     }
 
     showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {

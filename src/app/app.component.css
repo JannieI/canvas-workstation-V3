@@ -629,3 +629,15 @@
         float: right;
         margin: 15px 40px 15px 40px;
     }
+
+.popupMessage {
+    background-color: gray;
+    border: 1px solid black;
+    border-radius: 5px;
+    bottom: 50px;
+    color: black;
+    position: absolute;
+    right: 80px;
+    width: 300px;
+    z-index: 100;
+}

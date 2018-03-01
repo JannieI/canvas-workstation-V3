@@ -939,6 +939,11 @@
 </div>
 
 
+
+
+
+<!-- ****************************  POPUP FORMS / WINDOWS ***************************** -->
+
 <!-- Form to edit Title Properties -->
 <div class="titleForm" *ngIf="showTitleForm"
     [style.left.px]="titleFormLeft"
@@ -1008,6 +1013,13 @@
     </button>
 
 </div>
+
+<div class="popupMessage" *ngIf="showPopupMessage">
+    In order to change the dashboard (ie. edit, move, duplicate, etc), you have to be in
+    EditMode.  This is on the <b>Edit</b> menu option.  It is only possible to edit if
+    you have the correct rights.
+</div>
+
 
 
 
