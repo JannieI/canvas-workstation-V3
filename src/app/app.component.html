@@ -1101,17 +1101,19 @@
             (click)="clickMenuWidgetDuplicate(i)"
             >
         </clr-icon>
-        <span class="tooltip-content">Duplicate a selected Widget</span>
+        <span class="tooltip-content">Duplicate a selected Widget or Slicer</span>
     </span>
 
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
         <clr-icon *ngIf="!presentationMode"
             shape="pop-out"
             size="20"
             class="buttonBarIcon"
             (click)="clickMenuPaletteExpand(i)"
-            title="Expand the Dataset for this Widget"
             >
         </clr-icon>
+        <span class="tooltip-content">Expand underlying data for a selected Widget or Slicer</span>
+    </span>
 
         <clr-icon *ngIf="!presentationMode"
             shape="export"
