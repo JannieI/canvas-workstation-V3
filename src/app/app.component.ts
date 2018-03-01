@@ -622,12 +622,6 @@ export class AppComponent implements OnInit {
         this.showModalWidgetLinks = false;
     }
 
-    handleCloseWidgetDuplicate(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDuplicate', '@Start');
-
-    }
-
     handleCloseWidgetExpand(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExpand', '@Start');
@@ -1999,12 +1993,14 @@ export class AppComponent implements OnInit {
             });
         };
 
+        console.log('xx draggables', draggables)
         // Reset current and globalVar values
         this.currentWidgets.forEach( w => {
             
             if (draggables.indexOf(w.id) >= 0) {
                 w.containerLeft = w.containerLeft - this.startX + ev.x;
                 w.containerTop = w.containerTop - this.startY + ev.y;
+                console.log('xx in loop', w.id, w.containerTop, w.containerTop, this.startY, ev.y);
             }
         });
         this.globalVariableService.currentWidgets.forEach( w => {
@@ -2051,6 +2047,7 @@ export class AppComponent implements OnInit {
         this.isBusyResizing = true;
         this.startX = ev.x;
         this.startY = ev.y;
+        console.log('xx clickResizeWidgetDownp',  this.startY, ev.y);
 
     }
 
@@ -2069,7 +2066,7 @@ export class AppComponent implements OnInit {
         //           2. Top and Left involves changing two aspects, ie Left and Width
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetUp', '@Start');
 
-        console.log('clickResizeUp starts index', index)
+        console.log('clickResizeUp starts index', index, this.startY, ev.y)
 
         // Top moved: adjust the height & top
         if (resizeTop) {
