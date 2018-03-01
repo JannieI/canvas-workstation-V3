@@ -1082,6 +1082,7 @@
         <span class="tooltip-content">Show Links for a selected Widget</span>
     </span>
 
+    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
         <clr-icon *ngIf="!presentationMode"
             shape="refresh"
             size="20"
@@ -1090,6 +1091,9 @@
             title="Refresh Dataset for this Widget only"
             >
         </clr-icon>
+        <span class="tooltip-content">Refresh Dataset for a selected Widget or Slicer</span>
+    </span>
+
         <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="copy"
             size="20"
@@ -1098,6 +1102,7 @@
             title="Duplicate this Widget"
             >
         </clr-icon>
+
         <clr-icon *ngIf="!presentationMode"
             shape="pop-out"
             size="20"
@@ -1106,6 +1111,7 @@
             title="Expand the Dataset for this Widget"
             >
         </clr-icon>
+
         <clr-icon *ngIf="!presentationMode"
             shape="export"
             size="20"
@@ -1114,6 +1120,7 @@
             title="Export the Dataset for this Widget"
             >
         </clr-icon>
+
         <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="deploy"
             size="20"
@@ -1122,6 +1129,7 @@
             title="Move Widget back"
             >
         </clr-icon>
+
         <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="block"
             size="20"
@@ -1130,6 +1138,7 @@
             title="Move Widget forward"
             >
         </clr-icon>
+
         <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="trash"
             size="20"
@@ -1138,6 +1147,7 @@
             title="Delete this Widget"
             >
         </clr-icon>
+
         <clr-icon *ngIf="!presentationMode  &&  hasDatasources"
             shape="cursor-arrow"
             size="20"
