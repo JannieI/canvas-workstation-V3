@@ -113,6 +113,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     @Input() newWidget: boolean;
     @Input() showDatasourcePopup: boolean;
+    @Input() selectedWidget: Widget;
+
     @Output() formWidgetEditorClosed: EventEmitter<Widget> = new EventEmitter();
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
@@ -175,14 +177,16 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         } else {
 
             let x: number = 0;
-            this.globalVariableService.currentWidgets.forEach(w => {
-                if (w.isSelected) {
-                    x = w.datasourceID;
-                    // this.localWidget = w;
-                    // Make a deep copy
-                    this.localWidget = Object.assign({}, w);
-                }
-            });
+            // this.globalVariableService.currentWidgets.forEach(w => {
+            //     if (w.isSelected) {
+            //         x = w.datasourceID;
+            //         // this.localWidget = w;
+            //         // Make a deep copy
+            //         this.localWidget = Object.assign({}, w);
+            //     }
+            // });
+            this.localWidget = Object.assign({}, this.selectedWidget);
+            console.log('xx this.localWidget', this.localWidget)
             // TODO - handle properly and close form
             if (x == 0) {
                 alert('No Widget was selected, or could not find it in glob vars')

@@ -1037,6 +1037,11 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget()) { return};
 
         // Indicate edit W and open Editor, which will work with selected W
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidget = w;
+            };
+        });
         this.newWidget = false;
         this.showDatasourcePopup = false;
 
