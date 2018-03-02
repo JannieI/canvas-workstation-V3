@@ -1297,6 +1297,26 @@ export class AppComponent implements OnInit {
         this.showModalTables = true;
     }
 
+    clickMenuTableExpand() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExpand', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget('Slicer')) { return};
+
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectWidgetIndex = w.id;
+                this.selectDatasetID = w.datasetID;
+                this.selectDatasourceID = w.datasourceID;
+            };
+        });
+        this.showModalWidgetExpand = true;
+    }
+
+  
 
 
     // ***********************  CLICK SLICER MENU OPTIONS ************************ //
