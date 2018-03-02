@@ -3,22 +3,12 @@
  */
 
 // From Angular
-import { AfterViewInit }              from '@angular/core';
 import { Component }                  from '@angular/core';
-import { ContentChildren }            from '@angular/core';
-import { Directive }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
-import { HostBinding }                from '@angular/core';
-import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
-import { QueryList }                  from '@angular/core';
-import { Renderer }                   from '@angular/core';
-import { Renderer2 }                  from '@angular/core';
 import { ViewChild }                  from '@angular/core';
-import { ViewChildren }               from '@angular/core';
 
-import { Observable} from 'rxjs'
 // Our Services
 import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService }      from './global-function.service';
@@ -26,22 +16,11 @@ import { GlobalFunctionService }      from './global-function.service';
 // Our Models
 import { Widget }                     from './models'
 
-// Vega, Vega-Lite
-import { compile }                    from 'vega-lite';
-import { parse }                      from 'vega';
-import { View }                       from 'vega';
-import * as dl from 'datalib';
-import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
-
-// Own Services
-
-// Own Components
-
 
 @Component({
-    selector: 'slicer-single',
-    templateUrl: './slicer.single.component.html',
-    styleUrls: ['./slicer.single.component.css']
+    selector: 'table-single',
+    templateUrl: './table.single.component.html',
+    styleUrls: ['./table.single.component.css']
 })
 export class TableSingleComponent {
     @Input() slicer: Widget;
@@ -72,17 +51,6 @@ export class TableSingleComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         console.log('xx sl w', this.slicer)
-    }
-    ngAfterViewInit() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
-    }
-
-    ngAfterViewChecked() {
-        //
-        // TODO - switch on later, this fires ALL the time ...
-        // this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
-
     }
 
     clickSlicer(index: number, id: number) {

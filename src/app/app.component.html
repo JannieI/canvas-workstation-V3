@@ -851,6 +851,14 @@
         </slicer-single>
     </div>
 
+    <!-- Table Object -->
+    <div class="widget" *ngIf="row.widgetType=='Table'">
+        <table-single
+            [slicer]="row"
+            >
+        </table-single>
+    </div>
+    
     <div class="widgetContainerTopLeftHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
