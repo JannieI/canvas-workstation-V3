@@ -752,7 +752,7 @@ export class GlobalVariableService {
     backgroundcolors: CSScolor[];
     canvasActivities: CanvasActivity[];
     canvasAlerts: CanvasAlert[];
-    canvasComments: CanvasComment[]De;
+    canvasComments: CanvasComment[];
     canvasMessages: CanvasMessage[] =  canvasMessages;
     filePath: string;
     shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
@@ -900,6 +900,7 @@ export class GlobalVariableService {
     isDirtyBackgroundColors: boolean = true;
     isDirtyCanvasActivities: boolean = true;
     isDirtyCanvasAlerts: boolean = true;
+    isDirtyCanvasComments: boolean = true;
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -2726,6 +2727,38 @@ export class GlobalVariableService {
             } else {
                 console.log('Global-Variables getCanvasAlerts 2', this.canvasAlerts)
                 resolve(this.canvasAlerts);
+            }
+        });
+
+    }
+
+
+    getCanvasComments(): Promise<CanvasComment[]> {
+        // Description: Gets all Canvas Alerts
+        // Returns: this.canvasalerts array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getCanvasComments ...', this.canvasComments.length);
+
+        let url: string = 'getCanvasComments';
+        this.filePath = './assets/settings.canvasComments.json';
+
+        return new Promise<CanvasComment[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.canvasComments.length == 0)  ||  (this.isDirtyCanvasComments) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.canvasComments = data.filter(d => (!d.isTrashed) );
+
+                        this.isDirtyCanvasComments = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('Global-Variables getCanvasComments 1', this.canvasComments)
+                        resolve(this.canvasComments);
+                    });
+            } else {
+                console.log('Global-Variables getCanvasComments 2', this.canvasComments)
+                resolve(this.canvasComments);
             }
         });
 
