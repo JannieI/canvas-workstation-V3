@@ -750,10 +750,10 @@ export class GlobalVariableService {
 
     // Permanent data - later to come from http
     backgroundcolors: CSScolor[];
-    canvasActivities: CanvasActivity[];
-    canvasAlerts: CanvasAlert[];
-    canvasComments: CanvasComment[];
-    canvasMessages: CanvasMessage[];
+    canvasActivities: CanvasActivity[] = [];
+    canvasAlerts: CanvasAlert[] = [];
+    canvasComments: CanvasComment[] = [];
+    canvasMessages: CanvasMessage[] = [];
     filePath: string;
     shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
     widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
