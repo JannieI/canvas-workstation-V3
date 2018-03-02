@@ -27,15 +27,7 @@ export class SlicerSingleComponent {
 
     @ViewChild('slicerDOM')  slicerDOM: ElementRef;
 
-    editMode: boolean;
-    endWidgetNumber: number;
-    isBusyResizing: boolean = false;
-    refreshGraphs: boolean = false;
     slicerItemClicked: boolean = false;     // True if Item was clicked -> dont click others
-    startX: number;
-    startY: number;
-    startWidgetNumber: number;
-    selectedWidgetIDs: number[] = [];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
