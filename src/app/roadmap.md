@@ -10,7 +10,6 @@ This document describes items for later versions of Canvas.
 2. Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
 3. Use style.css for standard items, ie class="helpMessage"
 4. Standardize date format shown - as selected by the user, stored as settings
-5. Add a TABLE widget - similar look and feel as Simplus UI with filters, etc - maybe SlickDataGrid?
 6. 
 7. Setting min Grid width - wait for Clarity Bug fix
 8. 
@@ -179,7 +178,6 @@ THEN: consider all currentXXX, where XXX = Objects to follow the same methodolog
 - user can change Vega field types on Adv form
 - our field type -> vega types: take a best guess
 - APPLY on Adv form must re-render
-- DESIGN: if Viz type is layered, ie Table, what about Vega types?  Different Vega templates and components?  Diff Adv forms?
 - DESIGn: Adv form
 - at start, add row, col, color fields
 - EDIT buggie - color stays, fails on T=2
@@ -255,7 +253,7 @@ BUG: if using a custom vega spec, the editor does not understand this.
 18.Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
 19.
 20.Serias work to be done - learning Vega and adding ALL features !!!
-21.Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI.  Maybe, see Table comments below, make each type of Viz a separate component (because of complexity)
+21.Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI.  
 
 
 **Shapes**
@@ -277,10 +275,6 @@ Europe unselected, one has USA unselected.  Then data is only for Japan (3 value
 2. Make look and feel customisable
 3. Warn user if 2 Sl on the same dataset for the same field?
 
-
-**Tables**
-1. WE (for table) - make cols drag and drop
-2. Maybe make this a separate component ... ?
 
 
 **Scheduler**
