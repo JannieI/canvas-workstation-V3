@@ -21,24 +21,6 @@
                                 Visualisation
                                 <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
                             </button>
-                            <clr-dropdown-menu
-                                clrPosition="bottom-left"
-                                *clrIfOpen
-                                class="datasourceDropdown"
-                                >
-                                <div class="datasourceDropdown"
-                                    (click)="clickSelectViz('Graph')"
-                                    clrDropdownItem
-                                    >
-                                    Graph
-                                </div>
-                                <div class="datasourceDropdown"
-                                    (click)="clickSelectViz('Table')"
-                                    clrDropdownItem
-                                    >
-                                    Table
-                                </div>
-                            </clr-dropdown-menu>
                         </clr-dropdown>
     
                         <button *ngIf="hasClicked"
