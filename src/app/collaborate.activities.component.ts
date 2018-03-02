@@ -40,7 +40,9 @@ export class CollaborateActivitiesComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.canvasActivities = this.globalVariableService.canvasActivities;
+        this.globalVariableService.getCanvasActivities().then(i =>
+            this.canvasActivities = i
+        );
     }
 
     clickClose(action: string) {
