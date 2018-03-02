@@ -352,6 +352,33 @@
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
+
+                <!-- Table menu -->
+                <clr-dropdown class="menuText">
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm menuButton"
+                        clrDropdownTrigger
+                        >
+                        Table
+                    </button>
+                    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                        <button type="button" clrDropdownItem (click)="clickMenuTableAdd()">
+                            Add Table
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuTableEdit()">
+                            Edit Table
+                        </button>
+                        <button type="button" clrDropdownItem (click)="clickMenuTableExpand()">
+                            Expand
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button type="button" clrDropdownItem (click)="clickMenuTableDelete()">
+                            Delete Table
+                        </button>
+                    </clr-dropdown-menu>
+                </clr-dropdown>
+    
                 <!-- Slicer menu -->
                 <clr-dropdown class="menuText">
                     <button

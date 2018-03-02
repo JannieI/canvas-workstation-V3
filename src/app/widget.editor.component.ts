@@ -170,7 +170,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
             // Create new W
             this.localWidget = this.globalVariableService.widgetTemplate;
-            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID; 
+            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
             this.localWidget.widgetType = 'Graph';
 
@@ -307,22 +307,22 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         // Set width, depending on ColorField change
         if (this.newWidget) {
-            if (this.localWidget.graphColorField != '' 
+            if (this.localWidget.graphColorField != ''
                  &&  this.localWidget.graphColorField != null) {
                 this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
             } else {
                 this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
             };
         } else {
-            if (this.selectedWidget.graphColorField != ''  
+            if (this.selectedWidget.graphColorField != ''
                 &&  this.selectedWidget.graphColorField != null) {
                     if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
                         this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
                     };
             };
-            if (this.selectedWidget.graphColorField == ''  
+            if (this.selectedWidget.graphColorField == ''
                 ||  this.selectedWidget.graphColorField == null) {
-                    if (this.localWidget.graphColorField != '' 
+                    if (this.localWidget.graphColorField != ''
                         &&  this.localWidget.graphColorField != null) {
                         this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
                     };
@@ -690,8 +690,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data.slice(0,5);
-        
-        
+
+
         // Fill in data info
         if (this.newWidget) {
             this.localWidget.datasourceID = datasourceID;
