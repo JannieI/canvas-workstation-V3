@@ -40,7 +40,9 @@ export class CollaborateAlertsComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.canvasAlerts = this.globalVariableService.canvasAlerts;
+        this.globalVariableService.getCanvasAlerts().then (i =>
+            this.canvasAlerts = i
+        );
     }
 
     clickClose(action: string) {
