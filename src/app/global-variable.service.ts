@@ -241,18 +241,6 @@ const widgetTemplate: Widget =
 
 
 // Setup / Settings / General
-// const backgroundcolors: CSScolor[] =
-// [
-//     {
-//         name: 'transparent'
-//     },
-//     {
-//         name: 'beige'
-//     },
-//     {
-//         name: 'white'
-//     }
-// ];
 
 const shapeButtonsAvailable: ButtonBarAvailable[] =
 [
@@ -455,108 +443,6 @@ const widgetButtonsSelected: ButtonBarSelected[] =
         sortOrder: 2,
     }
 ]
-
-
-// Messages / Activities / Alerts / Comments
-// const  canvasActivities: CanvasActivity[] =
-// [
-//     {
-//         id: 1,
-//         createdBy: 'AlexanderB',
-//         createdOn: '2017/01/01',
-//         activityType: 'Action',
-//         activityStatus: 'Open',
-//         linkedDashboardList: [],
-//         activityText: 'Refactor Widget for coal levels',
-//         activityComments: ['2017/01/01 @BorisN Levels in tenk 1-A checked and good']
-//     }
-// ];
-
-// const canvasAlerts: CanvasAlert[] =
-// [
-//     {
-//         id: 1,
-//         sentOn: '2017/01/01',
-//         recipient: 'BonitaS',
-//         read: false,
-//         alertText: 'Schedule Weekly reports failed',
-//     },
-//     {
-//         id: 2,
-//         sentOn: '2017/01/01',
-//         recipient: 'AlisonW',
-//         read: true,
-//         alertText: 'Please log out for maintenance',
-//     },
-//     {
-//         id: 3,
-//         sentOn: '2017/01/01',
-//         recipient: 'GavinO',
-//         read: false,
-//         alertText: 'Longrunning query finished',
-//     },
-//     {
-//         id: 4,
-//         sentOn: '2017/01/01',
-//         recipient: 'WendyA',
-//         read: true,
-//         alertText: 'Query xyz failed',
-//     }
-// ];
-
-// const canvasMessages: CanvasMessage[] =
-// [
-//     {
-//         id: 1,
-//         sentBy: 'GinaU',
-//         sentOn: '2017/01/01',
-//         toUsers: ['GinaU'],
-//         toGroups: [''],
-//         recipient: '',
-//         read: false,
-//         subject: 'Please QA attached Dashboard',
-//         body: 'I have amended the graph type for marketing expenses',
-//         dashboardID: 12
-//     },
-//     {
-//         id: 2,
-//         sentBy: 'PeterJ',
-//         sentOn: '2017/01/01',
-//         toUsers: [''],
-//         toGroups: ['Admin'],
-//         recipient: 'QuintinY',
-//         read: true,
-//         subject: 'Admin cleanup',
-//         body: 'Cleanout old users',
-//         dashboardID: null
-//     },
-//     {
-//         id: 3,
-//         sentBy: 'RubinV',
-//         sentOn: '2017/01/01',
-//         toUsers: [''],
-//         toGroups: ['Admin'],
-//         recipient: 'YasserK',
-//         read: false,
-//         subject: 'Admin cleanup',
-//         body: 'Cleanout old users',
-//         dashboardID: null
-//     }
-// ];
-
-// const canvasComments: CanvasComment[] =
-// [
-//     {
-//         id: 1,
-//         dashboardID: 2,
-//         dashboardTabID: 1,
-//         widgetID: 4,
-//         shapeID: 0,
-//         comment: 'Checkpoints show more detail',
-//         creator: 'MarcoD',
-//         createdOn: '2017/01/01'
-//     }
-// ]
 
 
 // Data

@@ -11,7 +11,7 @@ This document describes items for later versions of Canvas.
 3. Use style.css for standard items, ie class="helpMessage"
 4. Standardize date format shown - as selected by the user, stored as settings
 5. Add a TABLE widget - similar look and feel as Simplus UI with filters, etc - maybe SlickDataGrid?
-6. Landing page: disable Menu & Statusbar?
+6. 
 7. Setting min Grid width - wait for Clarity Bug fix
 8. 
 9. LocalDB - how to add a table without deleting the IndexDB manually ??
@@ -23,7 +23,6 @@ This document describes items for later versions of Canvas.
 
 
 **1 Feb 2018**
-Structure on loading D:
 
 
 For now:
@@ -81,7 +80,6 @@ Auto-save / Undo:
 
 
 Other:
-- show a list of [dSet] from menu or at least when creating Sl - and can browse data too.  How does this fit into the current D design?
 - Sl over T can be clumsy - can use multi-T feature but is this enough?
 - Sl: can switch on/off per W -> suggest this will be confusing to users ...
 - can we hide T - will show in T list with hidden tick, can uncheck?

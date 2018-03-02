@@ -43,7 +43,7 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
     templateUrl: './slicer.single.component.html',
     styleUrls: ['./slicer.single.component.css']
 })
-export class SlicerSingleComponent {
+export class TableSingleComponent {
     @Input() slicer: Widget;
 
     @ViewChild('slicerDOM')  slicerDOM: ElementRef;

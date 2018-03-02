@@ -1,0 +1,11 @@
+.slicer {
+    overflow: hidden;
+}
+
+.slicerHolder {
+    overflow: hidden;
+}
+.slicerItem {
+    margin: 0;
+    padding: 2px 10px 2px 0px;
+}

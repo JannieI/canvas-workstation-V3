@@ -812,25 +812,25 @@
         [style.width.%]="row.titleWidth"
         (contextmenu)="contextmenuWidgetTitle($event, i, row.id)"
         >
-            <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
-                class="selectedSlicer"
-                title="Related Widget has been selected">
-                <clr-icon shape="check" size="12"></clr-icon>
-            </span>
-            <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality"
-                class="badge badge-danger widgetBadge1"
-                title="Data Quality issues">
-                {{ row.nrDataQualityIssues }}
-            </span>
-            <span *ngIf="(row.nrComments)  &&  showComments"
-                class="badge badge-warning widgetBadge2"
-                title="Comments"
-                >
-                {{ row.nrComments }}
-            </span>
+        <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
+            class="selectedSlicer"
+            title="Related Widget has been selected">
+            <clr-icon shape="check" size="12"></clr-icon>
+        </span>
+        <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality"
+            class="badge badge-danger widgetBadge1"
+            title="Data Quality issues">
+            {{ row.nrDataQualityIssues }}
+        </span>
+        <span *ngIf="(row.nrComments)  &&  showComments"
+            class="badge badge-warning widgetBadge2"
+            title="Comments"
+            >
+            {{ row.nrComments }}
+        </span>
 
-            <b>{{ row.titleText }}</b>
-        </div>
+        <b>{{ row.titleText }}</b>
+    </div>
 
     <!-- Graph Object -->
     <div class="widget" *ngIf="row.widgetType=='Graph'">
