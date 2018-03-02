@@ -901,6 +901,7 @@ export class GlobalVariableService {
     isDirtyCanvasActivities: boolean = true;
     isDirtyCanvasAlerts: boolean = true;
     isDirtyCanvasComments: boolean = true;
+    isDirtyCanvasMessages: boolean = true;
     // isDirtyTextAlignDropdown: boolean = true;
     // isDirtyBorderDropdown: boolean = true;
     // isDirtyBoxShadowDropdown: boolean = true;
@@ -2732,7 +2733,6 @@ export class GlobalVariableService {
 
     }
 
-
     getCanvasComments(): Promise<CanvasComment[]> {
         // Description: Gets all Canvas Comments
         // Returns: this.canvasComments array, unless:
@@ -2740,7 +2740,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCanvasComments ...', this.canvasComments.length);
 
         let url: string = 'getCanvasComments';
-        this.filePath = './assets/settings.canvascomments.json';
+        this.filePath = './assets/settings.canvasComments.json';
 
         return new Promise<CanvasComment[]>((resolve, reject) => {
 
@@ -2759,6 +2759,37 @@ export class GlobalVariableService {
             } else {
                 console.log('Global-Variables getCanvasComments 2', this.canvasComments)
                 resolve(this.canvasComments);
+            }
+        });
+
+    }
+
+    getCanvasMessages(): Promise<CanvasMessage[]> {
+        // Description: Gets all Canvas Messages
+        // Returns: this.canvasMessages array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getCanvasMessages ...', this.canvasMessages.length);
+
+        let url: string = 'getCanvasMessages';
+        this.filePath = './assets/settings.canvasMessages.json';
+
+        return new Promise<CanvasMessage[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.canvasMessages.length == 0)  ||  (this.isDirtyCanvasMessages) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.canvasMessages = data.filter(d => (!d.isTrashed) );
+
+                        this.isDirtyCanvasMessages = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('Global-Variables getCanvasMessages 1', this.canvasMessages)
+                        resolve(this.canvasMessages);
+                    });
+            } else {
+                console.log('Global-Variables getCanvasMessages 2', this.canvasMessages)
+                resolve(this.canvasMessages);
             }
         });
 
