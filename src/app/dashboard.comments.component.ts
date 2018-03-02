@@ -39,7 +39,9 @@ export class DashboardCommentsComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.canvasComments = this.globalVariableService.canvasComments;
+        this.globalVariableService.getCanvasComments().then(i =>
+            this.canvasComments = i
+        );
     }
 
     clickClose(action: string) {

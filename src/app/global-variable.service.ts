@@ -2734,13 +2734,13 @@ export class GlobalVariableService {
 
 
     getCanvasComments(): Promise<CanvasComment[]> {
-        // Description: Gets all Canvas Alerts
-        // Returns: this.canvasalerts array, unless:
+        // Description: Gets all Canvas Comments
+        // Returns: this.canvasComments array, unless:
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getCanvasComments ...', this.canvasComments.length);
 
         let url: string = 'getCanvasComments';
-        this.filePath = './assets/settings.canvasComments.json';
+        this.filePath = './assets/settings.canvascomments.json';
 
         return new Promise<CanvasComment[]>((resolve, reject) => {
 
