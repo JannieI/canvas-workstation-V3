@@ -31,15 +31,6 @@ export class TableSingleComponent {
     currentData: any = [];
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
     dataFieldNames: string[] = [];
-    editMode: boolean;
-    endWidgetNumber: number;
-    isBusyResizing: boolean = false;
-    refreshGraphs: boolean = false;
-    slicerItemClicked: boolean = false;     // True if Item was clicked -> dont click others
-    startX: number;
-    startY: number;
-    startWidgetNumber: number;
-    selectedWidgetIDs: number[] = [];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -83,77 +74,11 @@ export class TableSingleComponent {
         console.log('xx Tbl ', this.table)
     }
 
-    clickSlicer(index: number, id: number) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicer', '@Start');
+    clickTable() {
+        // Handles click event on a Table
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTable', '@Start');
 
-        // Item handles things
-        if (this.slicerItemClicked) {
-            this.slicerItemClicked = false;
-            return;
-        }
-    }
 
-    clickSlicerItem(
-        index: number,
-        id: number,
-        datasourceID: number,
-        datasetID: number,
-        fieldValue: string,
-        ev: any
-        ) {
-        // Clicked a Slicer item - now filter the data, and then update related Ws
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerItem', '@Start');
-
-        // Indicate the Item was clicked
-        this.slicerItemClicked = true;
-
-        // Update Sl
-        this.table.slicerSelection.forEach(sel => {
-            if (sel.fieldValue == fieldValue) {
-                sel.isSelected = !sel.isSelected;
-            }
-        });
-
-        // Adjust the global Sl selection, for next time
-        this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.id == id) {
-
-                // Update the selected item
-                w.slicerSelection.forEach(sel => {
-                    if (sel.fieldValue == fieldValue) {
-                        sel.isSelected = ev.target.checked;
-                    }
-                })
-
-            }
-        });
-
-        // Adjust the current Slicer
-        this.table.slicerSelection.forEach(sel => {
-            if (sel.fieldValue == fieldValue) {
-                sel.isSelected = ev.target.checked;
-            }
-        })
-
-        // Filter the data in the dSets to which the Sl points.
-        // In addition, apply all Sl that relates to each one
-        this.globalVariableService.currentDatasets.forEach(cd => {
-            if (cd.id == datasetID) {
-
-                this.globalVariableService.filterSlicer(cd);
-            }
-        }
-        );
-
-        // Refresh Ws that are related to Sl
-        let wIDs: number[] = [];
-        this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.datasourceID == datasourceID  &&  w.datasetID == datasetID  && w.widgetType != 'Slicer') {
-                // wIDs.push(w.id);
-                this.globalVariableService.changedWidget.next(w);
-            }
-        })
     }
 
 }

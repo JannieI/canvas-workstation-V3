@@ -1,10 +1,10 @@
-<div #tableDOM class="slicer"
+<div #tableDOM class="table"
     [style.zindex]="100"
-    (click)="clickSlicer(i)"
+    (click)="clickTable()"
     [style.height.px]="table.containerHeight-2"
     [style.width.px]="table.containerWidth-2"
     >
-    <div class="slicerHolder"
+    <div class="tableHolder"
         [style.height.px]="table.containerHasTitle? table.containerHeight-34 : table.containerHeight-8"
         [style.width.px]="table.containerWidth-18"
         >
