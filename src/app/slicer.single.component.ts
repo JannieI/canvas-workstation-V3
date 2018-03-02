@@ -49,8 +49,6 @@ export class SlicerSingleComponent {
     ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        console.log('xx sl w', this.slicer)
     }
 
     clickSlicer(index: number, id: number) {

@@ -15,6 +15,7 @@ import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
 import { Widget }                     from './models'
+import { Datasource }                 from './models';
 
 
 @Component({
@@ -23,10 +24,13 @@ import { Widget }                     from './models'
     styleUrls: ['./table.single.component.css']
 })
 export class TableSingleComponent {
-    @Input() slicer: Widget;
+    @Input() table: Widget;
 
-    @ViewChild('slicerDOM')  slicerDOM: ElementRef;
+    @ViewChild('tableDOM')  tableDOM: ElementRef;
 
+    currentData: any = [];
+    currentDatasources: Datasource[] = null;               // Current DS for the selected W
+    dataFieldNames: string[] = [];
     editMode: boolean;
     endWidgetNumber: number;
     isBusyResizing: boolean = false;
@@ -50,7 +54,33 @@ export class TableSingleComponent {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        console.log('xx sl w', this.slicer)
+        // Get latest dSet for the selected DS
+        let ds: number[]=[];
+        let dSetID: number = 0;
+
+        for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
+            if(this.globalVariableService.currentDatasets[i].datasourceID == this.table.datasourceID) {
+                ds.push(this.globalVariableService.currentDatasets[i].id)
+            }
+        };
+        if (ds.length > 0) {
+            dSetID = Math.max(...ds);
+        } else {
+            // Make proper error handling
+            alert('Error: no dataSet in glob vars for DSid = ' + this.table.datasourceID)
+        };
+
+        // Load first few rows into preview
+        this.currentData = this.globalVariableService.currentDatasets.filter(
+            d => d.id == dSetID)[0].data.slice(0,5);
+
+        // Get DS
+        this.currentDatasources = this.globalVariableService.currentDatasources
+            .filter(ds => ds.id == this.table.datasourceID)
+        this.dataFieldNames = this.currentDatasources[0].dataFields;
+
+
+        console.log('xx Tbl ', this.table)
     }
 
     clickSlicer(index: number, id: number) {
@@ -79,7 +109,7 @@ export class TableSingleComponent {
         this.slicerItemClicked = true;
 
         // Update Sl
-        this.slicer.slicerSelection.forEach(sel => {
+        this.table.slicerSelection.forEach(sel => {
             if (sel.fieldValue == fieldValue) {
                 sel.isSelected = !sel.isSelected;
             }
@@ -100,7 +130,7 @@ export class TableSingleComponent {
         });
 
         // Adjust the current Slicer
-        this.slicer.slicerSelection.forEach(sel => {
+        this.table.slicerSelection.forEach(sel => {
             if (sel.fieldValue == fieldValue) {
                 sel.isSelected = ev.target.checked;
             }

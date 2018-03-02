@@ -1,14 +1,32 @@
-<div #slicerDOM class="slicer"
+<div #tableDOM class="slicer"
     [style.zindex]="100"
     (click)="clickSlicer(i)"
-    [style.height.px]="slicer.containerHeight-2"
-    [style.width.px]="slicer.containerWidth-2"
+    [style.height.px]="table.containerHeight-2"
+    [style.width.px]="table.containerWidth-2"
     >
     <div class="slicerHolder"
-        [style.height.px]="slicer.containerHasTitle? slicer.containerHeight-34 : slicer.containerHeight-8"
-        [style.width.px]="slicer.containerWidth-18"
+        [style.height.px]="table.containerHasTitle? table.containerHeight-34 : table.containerHeight-8"
+        [style.width.px]="table.containerWidth-18"
         >
         Table Info
+        <clr-datagrid class="gridIdentifyDataPreviewGrid">
+
+            <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+            <clr-dg-row *ngFor="let row of currentData">
+
+                <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+                        {{ row[col] }}
+                </clr-dg-cell>
+            </clr-dg-row>
+
+            <clr-dg-footer>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                of {{pagination.totalItems}} rows
+                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+            </clr-dg-footer>
+
+        </clr-datagrid>
+        
         <!-- <div *ngFor="let d of slicer.slicerSelection; let i = index" class="slicerItem"
             [style.background-color]="d.isSelected ? 'rgb(199, 199, 199)' : 'white'"
             [style.width.px]="slicer.containerWidth-18"
