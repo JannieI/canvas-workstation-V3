@@ -184,6 +184,7 @@ export class AppComponent implements OnInit {
     showModalData: boolean = false;
     showModalDataSlicers: boolean = false;
     showModalSlicerTablist: boolean = false;
+    showModalTables: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalDataShare: boolean = false;
@@ -1259,6 +1260,23 @@ export class AppComponent implements OnInit {
     }
 
 
+
+
+
+    // ***********************  CLICK TABLE MENU OPTIONS ************************ //
+
+
+    clickMenuTableAdd() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableAdd', '@Start');
+        
+        this.menuOptionClickPreAction();
+
+        this.newWidget = true;
+        
+        this.showModalTables = true;
+
+    }
 
 
 
