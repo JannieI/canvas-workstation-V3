@@ -1278,6 +1278,25 @@ export class AppComponent implements OnInit {
 
     }
 
+    clickMenuTableEdit() {
+        // Edits the selected Slicer
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableEdit', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget('Table')) { return};
+        
+        this.newWidget = false;
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Table') {
+                this.selectedWidget = w;
+            };
+        });
+
+        this.showModalTables = true;
+    }
+
 
 
     // ***********************  CLICK SLICER MENU OPTIONS ************************ //
