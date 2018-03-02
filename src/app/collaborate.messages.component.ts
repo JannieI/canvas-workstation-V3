@@ -40,7 +40,9 @@ export class CollaborateMessagesComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.canvasMessages = this.globalVariableService.canvasMessages;
+        this.globalVariableService.getCanvasMessages().then(i =>
+            this.canvasMessages = i
+        );
     }
 
     clickClose(action: string) {
