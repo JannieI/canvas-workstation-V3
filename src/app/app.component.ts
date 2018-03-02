@@ -184,7 +184,7 @@ export class AppComponent implements OnInit {
     showModalData: boolean = false;
     showModalDataSlicers: boolean = false;
     showModalSlicerTablist: boolean = false;
-    showModalTables: boolean = false;
+    showModalTableEditor: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalDataShare: boolean = false;
@@ -649,6 +649,13 @@ export class AppComponent implements OnInit {
 
         // Hide modal form
         this.showModalWidgetDelete = false;
+    }
+
+    handleCloseTableEditor(changedTable: Widget) {    //widgetsToRefresh: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseTableEditor', '@Start');
+
+        this.showModalTableEditor = false;
     }
 
     handleCloseCollaborateAlerts(action: string) {
@@ -1273,8 +1280,9 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.newWidget = true;
+        this.showDatasourcePopup = true;
         
-        this.showModalTables = true;
+        this.showModalTableEditor = true;
 
     }
 
@@ -1293,8 +1301,9 @@ export class AppComponent implements OnInit {
                 this.selectedWidget = w;
             };
         });
-
-        this.showModalTables = true;
+        console.log('xx this.selectedWidget', this.newWidget, this.selectedWidget)
+        this.showDatasourcePopup = false;
+        this.showModalTableEditor = true;
     }
 
     clickMenuTableExpand() {

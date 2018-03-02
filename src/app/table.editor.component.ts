@@ -143,7 +143,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     opened: boolean = true;
     presentationMode: boolean;
     rowField: string = 'Drag a field here ...';
-    selectedViz: string = 'Graph';
     showRowFieldAdvanced: boolean = false;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
@@ -706,20 +705,13 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Continue to design / edit the W, and close the form for the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
 
-        if (this.selectedViz=='Table') {
-            this.showTable = true;
-        } else {
-            this.showTable = false;
-        };
-
         this.showDatasourcePopup = false;
+        this.showTable = true;
     }
 
     clickSelectViz(selection: string) {
         // Set the selected Visualisation
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectViz', '@Start');
-
-        this.selectedViz = selection;
 
     }
 
