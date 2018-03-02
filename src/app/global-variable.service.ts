@@ -544,19 +544,19 @@ const canvasMessages: CanvasMessage[] =
     }
 ];
 
-const canvasComments: CanvasComment[] =
-[
-    {
-        id: 1,
-        dashboardID: 2,
-        dashboardTabID: 1,
-        widgetID: 4,
-        shapeID: 0,
-        comment: 'Checkpoints show more detail',
-        creator: 'MarcoD',
-        createdOn: '2017/01/01'
-    }
-]
+// const canvasComments: CanvasComment[] =
+// [
+//     {
+//         id: 1,
+//         dashboardID: 2,
+//         dashboardTabID: 1,
+//         widgetID: 4,
+//         shapeID: 0,
+//         comment: 'Checkpoints show more detail',
+//         creator: 'MarcoD',
+//         createdOn: '2017/01/01'
+//     }
+// ]
 
 
 // Data
@@ -752,7 +752,7 @@ export class GlobalVariableService {
     backgroundcolors: CSScolor[];
     canvasActivities: CanvasActivity[];
     canvasAlerts: CanvasAlert[];
-    canvasComments: CanvasComment[] = canvasComments;
+    canvasComments: CanvasComment[]De;
     canvasMessages: CanvasMessage[] =  canvasMessages;
     filePath: string;
     shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
