@@ -1316,7 +1316,19 @@ export class AppComponent implements OnInit {
         this.showModalWidgetExpand = true;
     }
 
-  
+    clickMenuTableDelete() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDelete', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        // Make sure we have only one, then delete it
+        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget('Slicer')) { return};
+
+        this.deleteWidget('Slicer')
+        
+    }
 
 
     // ***********************  CLICK SLICER MENU OPTIONS ************************ //
