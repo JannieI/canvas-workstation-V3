@@ -1,7 +1,79 @@
 .table {
+    margin: 0;
+    margin-top: 0.1 rem !important;
+    padding: 3px 0 3px 10px;
     overflow: hidden;
 }
 
-.tableHolder {
-    overflow: hidden;
+/* .tableHolder {
+    overflow: scroll;
+} */
+
+.datagrid {
+    margin-top: 0.1 rem !important;
+    margin: 0px 0px 0px 0px !important;
+    padding: 0 !important;
+    overflow: scroll !important;
+    width: 200px !important;
 }
+
+.datagrid-column {
+    height: 0.6rem !important;
+    margin: 0 !important;
+    padding: 0 0 0 15px !important;
+}
+
+.datagrid-column.datagrid-fixed-width {
+    height: 0.6rem !important;
+    margin: 0 !important;
+    padding: 0 0 0 15px !important;
+}
+
+.datagrid-cell {
+    font-size: 0.45rem !important;
+    height: 0.6rem !important;
+    margin: 0 !important;
+    overflow: hidden;
+    padding: 0 0 0 15px !important;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+
+.datagrid-head {
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 0 0 15px !important;
+
+}
+
+.datagrid-foot {
+    background-color: transparent;
+    border: transparent;
+    font-size: 0.45rem !important;
+    height: 24px;
+    padding-top: 2px;
+    position: absolute !important;
+    right: 0 !important;
+    /* TODO - Reset height & top if Widget Grid in app.html changes !   OR, non-hard-code*/
+    top: 22px;      
+    vertical-align:text-top;
+}
+
+
+
+
+
+/* Other Clarity elements */
+/* datagrid-host */
+/* datagrid-overlay-wrapper */
+/* datagrid-scroll-wrapper */
+
+/* datagrid-column-title */
+/* datagrid-column-flex */
+/* datagrid-fixed-width */
+/* datagrid-footer */
+/* datagrid-table-wrapper */
+/* datagrid-head */
+/* datagrid-body */
+/* datagrid-foot */

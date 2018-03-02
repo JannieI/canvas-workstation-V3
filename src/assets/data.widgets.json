@@ -28,7 +28,7 @@
         "datasetID": 7,
         "data": "",
         "dataFields": "",
-        "dataFieldTywidgetTypepes": "",
+        "dataFieldTypes": "",
         "dataFieldLengths": "",
         "dataParameters":
         [
@@ -148,7 +148,7 @@
         "datasetID": 7,
         "data": "",
         "dataFields": "",
-        "dataFieldTywidgetTypepes": "",
+        "dataFieldTypes": "",
         "dataFieldLengths": "",
         "dataParameters":
         [
@@ -168,7 +168,7 @@
         "containerBoxshadow": "2px 2px gray",
         "containerColor": "white",
         "containerFontsize": 12,
-        "containerHeight": 180,
+        "containerHeight": 120,
         "containerLeft": 850,
         "containerHasTitle": true,
         "containerTop": 80,
@@ -268,7 +268,7 @@
         "datasetID": 7,
         "data": "",
         "dataFields": "",
-        "dataFieldTywidgetTypepes": "",
+        "dataFieldTypes": "",
         "dataFieldLengths": "",
         "dataParameters":
         [
@@ -288,11 +288,11 @@
         "containerBoxshadow": "2px 2px gray",
         "containerColor": "white",
         "containerFontsize": 12,
-        "containerHeight": 180,
+        "containerHeight": 300,
         "containerLeft": 550,
         "containerHasTitle": true,
-        "containerTop": 200,
-        "containerWidth": 160,
+        "containerTop": 210,
+        "containerWidth": 690,
         "containerZindex": 50,
         "titleText": "Table id 18",
         "titleBackgroundColor": "#192b35",

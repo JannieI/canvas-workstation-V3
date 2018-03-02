@@ -31,6 +31,9 @@ export class TableSingleComponent {
     currentData: any = [];
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
     dataFieldNames: string[] = [];
+    dataFieldLengths: number[] = [];
+    nrRecords: number = 0;
+    pageSize: number = 10;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -63,15 +66,19 @@ export class TableSingleComponent {
 
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
-            d => d.id == dSetID)[0].data.slice(0,5);
+            d => d.id == dSetID)[0].data.slice(0, 50);
+
+        // Totals
+        this.nrRecords = this.currentData.length;
 
         // Get DS
         this.currentDatasources = this.globalVariableService.currentDatasources
             .filter(ds => ds.id == this.table.datasourceID)
         this.dataFieldNames = this.currentDatasources[0].dataFields;
+        this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
+        
 
-
-        console.log('xx Tbl ', this.table)
+        console.log('xx Tbl ', this.table, this.dataFieldLengths, this.currentData )
     }
 
     clickTable() {

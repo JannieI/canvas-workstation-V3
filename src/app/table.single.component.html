@@ -1,29 +1,35 @@
 <div #tableDOM class="table"
     [style.zindex]="100"
     (click)="clickTable()"
-    [style.height.px]="table.containerHeight-2"
+    [style.height.px]="table.containerHeight-52"
     [style.width.px]="table.containerWidth-2"
     >
     <div class="tableHolder"
-        [style.height.px]="table.containerHasTitle? table.containerHeight-34 : table.containerHeight-8"
+        [style.height.px]="table.containerHasTitle? table.containerHeight-84 : table.containerHeight-58"
         [style.width.px]="table.containerWidth-18"
         >
-        Table Info
-        <clr-datagrid class="gridIdentifyDataPreviewGrid">
+        <clr-datagrid class="">
 
-            <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-            <clr-dg-row *ngFor="let row of currentData">
+            <clr-dg-column *ngFor="let row of dataFieldNames">
+                {{row}}
+            </clr-dg-column>
 
+            <clr-dg-row *clrDgItems="let row of currentData">
                 <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                        {{ row[col] }}
+                    {{ row[col] }}
                 </clr-dg-cell>
             </clr-dg-row>
 
             <clr-dg-footer>
-                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                of {{pagination.totalItems}} rows
-                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
-            </clr-dg-footer>
+                <span *ngIf="nrRecords">
+                    There are {{ nrRecords }} records in total, shown in batches of {{ pageSize }}. 
+                </span>
+
+                <clr-dg-pagination #pagination [clrDgPageSize]="pageSize">
+                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                    of {{pagination.totalItems}} users
+                </clr-dg-pagination>
+            </clr-dg-footer>            
 
         </clr-datagrid>
 
