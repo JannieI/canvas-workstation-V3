@@ -29,7 +29,7 @@ export class WidgetLinksComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
-    isFirstTimeDashboardOpen: boolean;
+    isFirstTimeWidgetLinked: boolean;
     showAdvancedFilters: boolean = false;
 
 	constructor(
@@ -39,8 +39,8 @@ export class WidgetLinksComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.globalVariableService.isFirstTimeDashboard.subscribe(
-            i => this.isFirstTimeDashboardOpen = i
+        this.globalVariableService.isFirstTimeWidgetLinked.subscribe(
+            i => this.isFirstTimeWidgetLinked = i
         )
     }
 
