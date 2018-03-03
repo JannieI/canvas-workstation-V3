@@ -64,21 +64,30 @@
         overflow-y: scroll;
     }
 
+    .dashboardPropertyHeading {
+        text-align: center;
+    }
+
     .dashboardProperties {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 26;
         grid-column-end: 40;
         grid-row-start: 3;
-        grid-row-end: 12;
+        grid-row-end: 21;
         margin: 2px 2px 2px 20px;
     }
 
-    
+        .dashboardLabel {
+            font-size: 0.55rem;
+            margin: 2px 2px 2px 20px;
+        }
 
+        .dashboardLine {
+            font-size: 0.55rem;
+            margin: 2px 2px 2px 20px;
+        }
 
-
-
-.propertyLine {
-    margin: 5px;
-}
+        .propertyLine {
+            margin: 2px 2px 2px 20px;
+        }

@@ -31,6 +31,10 @@ export class WidgetLinksComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
     dashboardTabs: DashboardTab[];
+    dashboardNrWidgets: string;
+    dashboardNrRecords: string;
+    dashboardCreator: string;
+    dashboardNrTimesOpened: string;
     isFirstTimeWidgetLinked: boolean;
     showAdvancedFilters: boolean = false;
 
@@ -68,10 +72,19 @@ export class WidgetLinksComponent implements OnInit {
 
     }
 
-    clickSelectRow(id: number) {
+    clickSelectRow(id: number, 
+        nrWidgets: string,
+        nrRecords: string,
+        creator: string,
+        nrTimesOpened: string
+        ) {
         // Select a row in D grid
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRow', '@Start');
 
+        this.dashboardNrWidgets = nrWidgets;
+        this.dashboardNrRecords = nrRecords;
+        this.dashboardCreator = creator;
+        this.dashboardNrTimesOpened = nrTimesOpened;
     }
 
     clickShowAdvancedFilters() {
