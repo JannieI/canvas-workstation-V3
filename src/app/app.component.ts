@@ -2108,14 +2108,18 @@ export class AppComponent implements OnInit {
             if (this.checkForOnlyOneWidget('Slicer', true)) {
                 this.clickMenuSlicerEdit();
             } else {
-                // Lost
-                this.showStatusBarMessage(
-                    'Select a graph or slicer',
-                    'StatusBar',
-                    'Warning',
-                    3000,
-                    ''
-                );                
+                if (this.checkForOnlyOneWidget('Table', true)) {
+                    this.clickMenuTableEdit();
+                } else {
+                    // Lost
+                    this.showStatusBarMessage(
+                        'Select a graph, slicer or table',
+                        'StatusBar',
+                        'Warning',
+                        3000,
+                        ''
+                    );                
+                };
             };
         };
     }
