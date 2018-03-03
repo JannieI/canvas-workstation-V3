@@ -472,12 +472,13 @@ export class Widget {
     graphColorType: string;
 
     // Table - to be determined later ...
-    tableBackgroundColor: string;                 // Text color
+    tableBackgroundColor: string;       // Background color
     tableColor: string;                 // Text color
     tableCols: number;                  // Nr of cols, 0 means all
     tableHeight: number;                // in px, cuts of rest if bigger than this
-    tableHideHeader: boolean;           
+    tableHideHeader: boolean;           // False to hide the column header row         
     tableLeft: number;                  // in px (for later use)
+    tableLineHeight: number;            // Background color (for later use)
     tableRows: number;                  // Nr of rows in the data, excluding header: 0 means all
     tableTop: number;                   // in px (for later use)
     tableWidth: number;                 // in px, cuts of rest if bigger than this (for later use)

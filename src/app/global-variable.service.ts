@@ -221,6 +221,7 @@ const widgetTemplate: Widget =
         "tableHeight": 1,
         "tableHideHeader": false,
         "tableLeft": 1,
+        "tableLineHeight": 12,
         "tableRows": 1,
         "tableTop": 1,
         "tableWidth": 1,
@@ -2904,6 +2905,7 @@ export class GlobalVariableService {
                 {key: 'tableHeight', 				type: 'int'},
                 {key: 'tableHideHeader', 			type: 'bool'},
                 {key: 'tableLeft', 					type: 'int'},
+                {key: 'tableLineHeight', 			type: 'int'},
                 {key: 'tableRows', 					type: 'int'},
                 {key: 'tableTop', 					type: 'int'},
                 {key: 'tableWidth', 				type: 'int'},
@@ -3251,11 +3253,13 @@ export class GlobalVariableService {
                 w.graphColorField = changedWidget.graphColorField;
                 w.graphColorType = changedWidget.graphColorType;
                 w.graphData = changedWidget.graphData;
+                w.tableBackgroundColor = changedWidget.tableBackgroundColor;
                 w.tableColor = changedWidget.tableColor;
                 w.tableCols = changedWidget.tableCols;
                 w.tableHeight = changedWidget.tableHeight;
                 w.tableHideHeader = changedWidget.tableHideHeader;
                 w.tableLeft = changedWidget.tableLeft;
+                w.tableLineHeight = changedWidget.tableLineHeight;
                 w.tableRows = changedWidget.tableRows;
                 w.tableTop = changedWidget.tableTop;
                 w.tableWidth = changedWidget.tableWidth;
