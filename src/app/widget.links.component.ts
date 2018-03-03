@@ -17,6 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
+import { DashboardTab }               from './models';
 
 @Component({
     selector: 'widget-links',
@@ -29,6 +30,7 @@ export class WidgetLinksComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
+    dashboardTabs: DashboardTab[];
     isFirstTimeWidgetLinked: boolean;
     showAdvancedFilters: boolean = false;
 
@@ -42,6 +44,8 @@ export class WidgetLinksComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.dashboards = this.globalVariableService.dashboards;
+        this.dashboardTabs = this.globalVariableService.dashboardTabs;
+        
         this.globalVariableService.isFirstTimeWidgetLinked.subscribe(
             i => this.isFirstTimeWidgetLinked = i
         )
@@ -64,7 +68,7 @@ export class WidgetLinksComponent implements OnInit {
 
     }
 
-    clickSelectRow() {
+    clickSelectRow(id: number) {
         // Select a row in D grid
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRow', '@Start');
 
