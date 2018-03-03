@@ -169,6 +169,17 @@ import { GlobalVariableService }      from './global-variable.service';
             };
         };
 
+        // Tell user
+        this.globalVariableService.statusBarMessage.next(
+            {
+                message: 'Table Saved',
+                uiArea: 'StatusBar',
+                classfication: 'Info',
+                timeout: 3000,
+                defaultMessage: ''
+            }
+        );
+        
         this.localWidget.containerHasTitle = this.containerHasTitle;
         this.formWidgetEditorClosed.emit(this.localWidget);
     }
