@@ -2259,12 +2259,19 @@ export class AppComponent implements OnInit {
 
         // Create array to loop on
         let draggables: number[] = [];
+        // There is no group
         if (this.widgetGroup.length == 0) {
             draggables = [id];
         } else {
-            this.widgetGroup.forEach( wg => {
-                draggables.push(wg)
-            });
+            // Dragged one is part of group, so move group
+            if (this.widgetGroup.indexOf(id) >= 0) {
+                this.widgetGroup.forEach( wg => {
+                    draggables.push(wg)
+                });
+            } else {
+                // Solitary move
+                draggables = [id];
+            }
         };
 
         // Reset current and globalVar values
