@@ -40,7 +40,8 @@
                     <clr-dg-column>Creator</clr-dg-column>
                     <clr-dg-column>#Opened</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let row of dashboards">
+                    <clr-dg-row *ngFor="let row of dashboards"
+                        (click)="clickSelectRow()">
                         <clr-dg-cell>{{row.name}}</clr-dg-cell>
                         <clr-dg-cell>{{row.description}}</clr-dg-cell>
                         <clr-dg-cell>{{row.nrWidgets}}</clr-dg-cell>

@@ -38,6 +38,9 @@ export class WidgetLinksComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
         this.globalVariableService.isFirstTimeWidgetLinked.subscribe(
             i => this.isFirstTimeWidgetLinked = i
@@ -45,16 +48,32 @@ export class WidgetLinksComponent implements OnInit {
     }
 
     clickClose(action: string) {
+        // Close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         console.log('clickClose')
 
 		this.formWidgetLinksClosed.emit(action);
     }
 
     clickGotIt() {
-        this.globalVariableService.isFirstTimeDashboard.next(false);
+        // Until var for help boxie
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
+
+        this.globalVariableService.isFirstTimeWidgetLinked.next(false);
+
+    }
+
+    clickSelectRow() {
+        // Select a row in D grid
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRow', '@Start');
+
     }
 
     clickShowAdvancedFilters() {
+        // Show Advanced Filters - TODO: add to html, or delete here
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
+
         this.showAdvancedFilters = !this.showAdvancedFilters;
     }
 
