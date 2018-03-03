@@ -10,21 +10,9 @@
                     </div>
     
                     <div class="datasources" *ngIf="showDatasourcePopup">
-                        Select a <b>Datasources</b> added before, and how it should be visualised:
+                        Select a <b>Datasources</b> added before, and click Continue.
     
-                        <clr-dropdown class="datasourceDropdown" *ngIf="hasClicked">
-                            <button
-                                type="button"
-                                class="btn btn-link btn-sm"
-                                clrDropdownTrigger
-                                >
-                                Visualisation
-                                <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
-                            </button>
-                        </clr-dropdown>
-    
-                        <button *ngIf="hasClicked"
-                            class="btn btn-sm btn-secondary datasourceButton"
+                        <button class="btn btn-sm btn-secondary datasourceButton"
                             (click)="clickContinue()">
                             Continue
                         </button>
@@ -91,9 +79,9 @@
                             </div>
     
                             <div>
-                                <clr-datagrid>
+                                <clr-datagrid [(clrDgSelected)]="selectedRow" [clDgRowSelection]="true">
                                     <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
-                                    <clr-dg-row *ngFor="let row of dataFieldNames">
+                                    <clr-dg-row *clrDgItems="let row of dataFieldNames" [clrDgItem]="row">
                                         <clr-dg-cell
                                             id="fld"
                                             draggable="true"
@@ -103,6 +91,7 @@
                                         </clr-dg-cell>
                                     </clr-dg-row>
                                 </clr-datagrid>
+                                Selected rows: <span *ngFor="let item of selectedRow">{{ item }}</span>
                             </div>
                         </nav>
                     </div>

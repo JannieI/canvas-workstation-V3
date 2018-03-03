@@ -48,6 +48,7 @@ import { GlobalVariableService }      from './global-variable.service';
     opened: boolean = true;
     presentationMode: boolean;
     rowField: string = 'Drag a field here ...';
+    selectedRow: string[] = [];
     showRowFieldAdvanced: boolean = false;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;

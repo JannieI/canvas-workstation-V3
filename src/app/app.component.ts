@@ -655,6 +655,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseTableEditor', '@Start');
 
+        this.globalVariableService.changedWidget.next(changedTable);
+
         this.showModalTableEditor = false;
     }
 
