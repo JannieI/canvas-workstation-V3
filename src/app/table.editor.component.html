@@ -96,7 +96,6 @@
                         </nav>
                     </div>
     
-    
                     <div class="hasTitle">
                         <div class="checkbox">
                             <input type="checkbox" id="checkTitle" [(ngModel)]="containerHasTitle">
@@ -104,8 +103,103 @@
                         </div>
                     </div>
     
+                    <div class="propertyButton" *ngIf="!presentationMode">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            title="Show more table properties"
+                            (click)="clickProperties()"
+                            >
+                            More ...
+                        </button>
+                    </div>
+
+                    <div class="propertiesArea" *ngIf="showPropertiesArea">
+                            <div for="dashboardName" class="popupLabel">
+                                Table properties
+                            </div>
     
+                            <br>
+                            <label for="backgroundColor" class="popupLabel">
+                                    BackgroundColor:
+                            </label>
+                            <select class="popupLabel" id="backgroundColor">
+                                <option *ngFor="let row of backgroundColor">
+                                    {{ row }}
+                                </option>
+                            </select>
+
+                            <br>
+                            <label for="dashboardName" class="popupLabel">
+                                Text Color:
+                            </label>
+                            <select class="popupLabel" id="textColor">
+                                <option *ngFor="let row of backgroundColor">
+                                    {{ row }}
+                                </option>
+                            </select>
+
+                            <br>
+                            <label for="nrColumns" class="popupLabel">
+                                Columns:
+                            </label>
+                            <input type="text" id="nrColumns" placeholder="Nr of nrColumns">
+
+                            <br>
+                            <label for="tableHeight" class="popupLabel">
+                                Height:
+                            </label>
+                            <input type="text" id="tableHeight" placeholder="Nr of tableHeight">
+
+                            <br>
+                            <label for="tableHideHeader" class="popupLabel">
+                                Hide Header:
+                            </label>
+                            <input type="text" id="tableHideHeader" placeholder="Nr of tableHideHeader">
+                            
+                            <br>
+                            <label for="tableLeft" class="popupLabel">
+                                Left:
+                            </label>
+                            <input type="text" id="tableLeft" placeholder="Nr of tableLeft">
+                            
+                            <br>
+                            <label for="tableLineHeight" class="popupLabel">
+                                Line Height:
+                            </label>
+                            <input type="text" id="tableLineHeight" placeholder="Nr of tableLineHeight">
+                            
+                            <br>
+                            <label for="tableRows" class="popupLabel">
+                                Rows:
+                            </label>
+                            <input type="text" id="tableRows" placeholder="Nr of tableRows">
+                            
+                            <br>
+                            <label for="tableTop" class="popupLabel">
+                                Top:
+                            </label>
+                            <input type="text" id="tableTop" placeholder="Nr of tableTop">
+                            
+                            <br>
+                            <label for="tableWidth" class="popupLabel">
+                                tableWidth:
+                            </label>
+                            <input type="text" id="tableWidth" placeholder="Nr of tableWidth">
+
+                            <button
+                                class="btn btn-sm btn-secondary"
+                                (click)="clickApplyProperties('Close')">
+                                Close
+                            </button>
     
+                            <button
+                                class="btn btn-sm btn-secondary"
+                                (click)="clickApplyProperties('Save')">
+                                Apply
+                            </button>
+                    </div>
+                            
                     <div *ngIf="showTable" class="tableArea">
                         <clr-datagrid class="gridIdentifyDataPreviewGrid">
     
@@ -123,11 +217,10 @@
                         Last refreshed: 2017/01/01 08:31
                     </div>
     
-    
                     <div class="saveButton" *ngIf="!presentationMode">
                         <button
                             type="button"
-                            class="btn btn-secondary"
+                            class="btn btn-primary"
                             (click)="clickSave('Saved')"
                             >
                             Save

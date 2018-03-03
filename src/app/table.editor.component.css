@@ -57,7 +57,7 @@
 
     .fieldList {
         grid-column-start: 1;
-        grid-column-end: 4;
+        grid-column-end: 6;
         grid-row-start: 2;
         grid-row-end: 25;
         margin-bottom: 0;
@@ -65,13 +65,41 @@
     }
 
     .hasTitle {
-        grid-column-start: 6;
-        grid-column-end: 7;
-        grid-row-start: 21;
-        grid-row-end: 22;
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 23;
+        grid-row-end: 23;
         margin: 0;
         padding: 0 0 0 10px;
     }
+
+    .propertyButton {
+        grid-column-start: 9;
+        grid-column-end: 11;
+        grid-row-start: 22;
+        grid-row-end: 23;
+        margin: 0;
+        padding: 0 0 0 10px;
+    }
+
+    .propertiesArea {
+        background: rgb(231, 230, 230);
+        border: 1px solid black;
+        grid-column-start: 4;
+        grid-column-end: 10;
+        grid-row-start: 4;
+        grid-row-end: 23;
+        margin-bottom: 0;
+        padding: 5px;
+        text-align: left;
+        z-index: 9000
+    }
+        
+        .popupLabel {
+            font-size: .5rem !important;
+            margin: 0 0 0 10px !important;
+            width: 3rem !important;
+        }
 
     .tableArea {
         background-color: white;

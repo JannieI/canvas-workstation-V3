@@ -47,6 +47,7 @@ import { GlobalVariableService }      from './global-variable.service';
     localWidget: Widget;                            // W to modify, copied from selected
     opened: boolean = true;
     presentationMode: boolean;
+    showPropertiesArea: boolean;
     rowField: string = 'Drag a field here ...';
     selectedRow: string[] = [];
     showRowFieldAdvanced: boolean = false;
@@ -338,6 +339,26 @@ import { GlobalVariableService }      from './global-variable.service';
 
         this.showDatasourcePopup = false;
         this.showTable = true;
+    }
+
+    clickProperties(){
+        // Show popup for full list of Table Properties
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickProperties', '@Start');
+
+        this.showPropertiesArea = true;
+    }
+
+    clickApplyProperties(action: string) {
+        // Apply changes to Table properties
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickApplyProperties', '@Start');
+
+        if (action == 'Close') {
+            this.showPropertiesArea = false;
+            return;
+        }
+
+        // TODO - save to DB
+        this.showPropertiesArea = false;
     }
 
   }
