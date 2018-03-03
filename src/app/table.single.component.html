@@ -22,7 +22,7 @@
 
             <clr-dg-footer>
                 <span *ngIf="nrRecords">
-                    There are {{ nrRecords }} records in total, shown in batches of {{ pageSize }}. 
+                    Showing {{ nrRecords }} records in batches of {{ pageSize }}. 
                 </span>
 
                 <clr-dg-pagination #pagination [clrDgPageSize]="pageSize">

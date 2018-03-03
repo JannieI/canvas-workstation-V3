@@ -97,7 +97,13 @@
         >
         {{ statusBarCancelRefresh }}
     </span>
-
+    <span *ngIf="widgetGroupText"  class="statusBarText statusBarTextBorder"
+        title="Show nr of widgets grouped together"
+        style="width: 51vw;"
+        (click)="clickWigetGroup()"
+        >
+        {{ widgetGroupText }}
+    </span>
     <span class="statusBarText"
         title="Working standalone (local) or logged into a server"
         style="width: 46vw;"

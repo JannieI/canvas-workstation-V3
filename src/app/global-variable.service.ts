@@ -726,6 +726,7 @@ export class GlobalVariableService {
     menuActionResize = new BehaviorSubject<boolean>(false);
     userID: string = 'JannieI';  // TODO - unHardCode
     dsIDs: number[] = [];           // Dataset IDs
+    widgetGroup = new BehaviorSubject<number[]>([]);
 
     // StatusBar
     statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);

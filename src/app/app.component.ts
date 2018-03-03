@@ -1780,8 +1780,13 @@ export class AppComponent implements OnInit {
                 this.widgetGroup.push(w.id);
             }
         });
+
+        // Inform others
+        this.globalVariableService.widgetGroup.next(this.widgetGroup)
+
+        // Tell the user
         this.showStatusBarMessage(
-            'New group of ' + this.widgetGroup.length,
+            'New group of ' + this.widgetGroup.length.toString() + ' widgets',
             'StatusBar',
             'Info',
             3000,
@@ -1799,6 +1804,10 @@ export class AppComponent implements OnInit {
         // Clear
         this.widgetGroup = [];
 
+        // Inform others
+        this.globalVariableService.widgetGroup.next(this.widgetGroup)
+
+        // Tell the user
         this.showStatusBarMessage(
             'Group cleared ',
             'StatusBar',

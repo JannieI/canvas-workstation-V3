@@ -130,13 +130,14 @@ export class StatusbarComponent {
     dashboardDescription: string;
     dashboardTabDescription: string;
     loggedIntoServerText: string;
+    menuActionResize: boolean;
     showDashboardDescription: boolean = false;
     showDashboardTabDescription: boolean = false;
     showNewTab: boolean = false;
     showTabList: boolean = false;
     statusBarMessageText: string = '';
     statusBarMessageColour: string = 'rgb(197, 194, 194)';
-    menuActionResize: boolean;
+    widgetGroupText: string;
 
 
     constructor(
@@ -150,6 +151,15 @@ export class StatusbarComponent {
     ngOnInit() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Nr of Ws in group
+        this.globalVariableService.widgetGroup.subscribe(wg => {
+            if (wg.length == 0) {
+                this.widgetGroupText = '';
+            } else {
+                this.widgetGroupText = 'Group: ' + wg.length.toString();
+            };
+        });
 
         // Adjust Local / Server
         this.globalVariableService.loggedIntoServer.subscribe(i => {
