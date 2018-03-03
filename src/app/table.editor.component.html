@@ -115,8 +115,8 @@
                     </div>
 
                     <div class="propertiesArea" *ngIf="showPropertiesArea">
-                            <div for="dashboardName" class="popupLabel">
-                                Table properties
+                            <div for="dashboardName" class="popupHeader">
+                                <b>Table properties</b>
                             </div>
     
                             <br>
@@ -143,50 +143,84 @@
                             <label for="nrColumns" class="popupLabel">
                                 Columns:
                             </label>
-                            <input type="text" id="nrColumns" placeholder="Nr of nrColumns">
+                            <input type="text" 
+                                id="nrColumns" 
+                                placeholder="Nr of Columns"
+                                class="popupInput"
+                                >
 
                             <br>
                             <label for="tableHeight" class="popupLabel">
                                 Height:
                             </label>
-                            <input type="text" id="tableHeight" placeholder="Nr of tableHeight">
+                            <input type="text" 
+                                id="tableHeight" 
+                                placeholder="Total Table Height"
+                                class="popupInput"
+                                >
 
                             <br>
                             <label for="tableHideHeader" class="popupLabel">
                                 Hide Header:
                             </label>
-                            <input type="text" id="tableHideHeader" placeholder="Nr of tableHideHeader">
+                            <input type="text" 
+                                id="tableHideHeader" 
+                                placeholder="Hide Header row"
+                                class="popupInput"
+                                >
                             
                             <br>
                             <label for="tableLeft" class="popupLabel">
                                 Left:
                             </label>
-                            <input type="text" id="tableLeft" placeholder="Nr of tableLeft">
+                            <input type="text" 
+                                id="tableLeft" 
+                                placeholder="Table Left"
+                                class="popupInput"
+                                >
                             
                             <br>
                             <label for="tableLineHeight" class="popupLabel">
                                 Line Height:
                             </label>
-                            <input type="text" id="tableLineHeight" placeholder="Nr of tableLineHeight">
+                            <input type="text" 
+                                id="tableLineHeight" 
+                                placeholder="Line Height"
+                                class="popupInput"
+                                >
                             
                             <br>
                             <label for="tableRows" class="popupLabel">
                                 Rows:
                             </label>
-                            <input type="text" id="tableRows" placeholder="Nr of tableRows">
+                            <input type="text" 
+                                id="tableRows" 
+                                placeholder="Nr of Rows"
+                                class="popupInput"
+                                >
                             
                             <br>
                             <label for="tableTop" class="popupLabel">
                                 Top:
                             </label>
-                            <input type="text" id="tableTop" placeholder="Nr of tableTop">
+                            <input type="text" 
+                                id="tableTop" 
+                                placeholder="Table Top"
+                                class="popupInput"
+                                >
                             
                             <br>
                             <label for="tableWidth" class="popupLabel">
-                                tableWidth:
+                                Width:
                             </label>
-                            <input type="text" id="tableWidth" placeholder="Nr of tableWidth">
+                            <input type="text" 
+                                id="tableWidth" 
+                                placeholder="Table Width"
+                                class="popupInput"
+                                >
 
+                            <br>
+                            <br>
                             <button
                                 class="btn btn-sm btn-secondary"
                                 (click)="clickApplyProperties('Close')">

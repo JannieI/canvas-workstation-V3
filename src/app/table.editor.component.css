@@ -85,17 +85,25 @@
     .propertiesArea {
         background: rgb(231, 230, 230);
         border: 1px solid black;
-        grid-column-start: 4;
-        grid-column-end: 10;
-        grid-row-start: 4;
-        grid-row-end: 23;
+        grid-column-start: 3;
+        grid-column-end: 11;
+        grid-row-start: 3;
+        grid-row-end: 24;
         margin-bottom: 0;
         padding: 5px;
         text-align: left;
         z-index: 9000
     }
-        
+        .popupHeader {
+            font-size: .6rem !important;
+            margin: 0 0 0 10px !important;
+        }        
         .popupLabel {
+            font-size: .5rem !important;
+            margin: 8px 0 0 10px !important;
+            width: 3rem !important;
+        }
+        .popupInput {
             font-size: .5rem !important;
             margin: 0 0 0 10px !important;
             width: 3rem !important;
