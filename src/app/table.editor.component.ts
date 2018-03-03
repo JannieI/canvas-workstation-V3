@@ -355,7 +355,7 @@ import { GlobalVariableService }      from './global-variable.service';
         if (action == 'Close') {
             this.showPropertiesArea = false;
             return;
-        }
+        };
 
         // TODO - save to DB
         this.showPropertiesArea = false;
