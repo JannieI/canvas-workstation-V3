@@ -28,7 +28,6 @@ export class WidgetLinksComponent implements OnInit {
 
     @Output() formWidgetLinksClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
     dashboardTabs: DashboardTab[];
     dashboardNrWidgets: string;
@@ -36,7 +35,9 @@ export class WidgetLinksComponent implements OnInit {
     dashboardCreator: string;
     dashboardNrTimesOpened: string;
     isFirstTimeWidgetLinked: boolean;
+    selectedDashboardTabs: DashboardTab[] = [];
     showAdvancedFilters: boolean = false;
+    showTypeDashboard: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -81,10 +82,14 @@ export class WidgetLinksComponent implements OnInit {
         // Select a row in D grid
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRow', '@Start');
 
+        // Set D properties
         this.dashboardNrWidgets = nrWidgets;
         this.dashboardNrRecords = nrRecords;
         this.dashboardCreator = creator;
         this.dashboardNrTimesOpened = nrTimesOpened;
+
+        // Filter its Tabs
+        this.selectedDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == id);
     }
 
     clickShowAdvancedFilters() {
