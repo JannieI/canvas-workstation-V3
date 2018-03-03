@@ -266,6 +266,17 @@ import { GlobalVariableService }      from './global-variable.service';
         );
         let widgetsToRefresh: number = this.localWidget.id;
 
+        // Tell user
+        this.globalVariableService.statusBarMessage.next(
+            {
+                message: 'Slicer Saved',
+                uiArea: 'StatusBar',
+                classfication: 'Info',
+                timeout: 3000,
+                defaultMessage: ''
+            }
+        );
+        
 	  	this.formDataSlicersClosed.emit(this.localWidget);
     }
 
