@@ -472,14 +472,15 @@ export class Widget {
     graphColorType: string;
 
     // Table - to be determined later ...
+    tableBackgroundColor: string;                 // Text color
     tableColor: string;                 // Text color
     tableCols: number;                  // Nr of cols, 0 means all
     tableHeight: number;                // in px, cuts of rest if bigger than this
-    tableHideHeader: boolean;
-    tableLeft: number;                  // in px
+    tableHideHeader: boolean;           
+    tableLeft: number;                  // in px (for later use)
     tableRows: number;                  // Nr of rows in the data, excluding header: 0 means all
-    tableTop: number;                   // in px
-    tableWidth: number;                 // in px, cuts of rest if bigger than this
+    tableTop: number;                   // in px (for later use)
+    tableWidth: number;                 // in px, cuts of rest if bigger than this (for later use)
 
     // Shape
     shapeCx: string;                             // circle svg cx in px - ie '50' without dimension

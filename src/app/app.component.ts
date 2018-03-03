@@ -6,6 +6,7 @@
 import { Component }                  from '@angular/core';
 import { DOCUMENT }                   from '@angular/platform-browser';
 import { ElementRef }                 from '@angular/core';
+import { HostListener }               from '@angular/core';
 import { Inject }                     from "@angular/core";
 import { Input }                      from "@angular/core";
 import { OnInit }                     from '@angular/core';
@@ -111,6 +112,13 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         }
 };
 
+export enum KEY_CODE {
+    LEFT_ARROW = 37,
+    UP_ARROW = 38,
+    RIGHT_ARROW = 39,
+    DOWN_ARROW = 40
+}
+
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
@@ -120,7 +128,19 @@ export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
     @ViewChild('widgetDOM')  widgetDOM: WidgetSingleComponent;
-
+    @HostListener('window:keyup', ['$event'])
+    keyEvent(event: KeyboardEvent) {
+      console.log(event);
+      
+      // TODO - add code to move SELECTED Ws the gridsize, say 3px
+      if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
+        // this.increment();
+      }
+  
+      if (event.keyCode === KEY_CODE.LEFT_ARROW) {
+        // this.decrement();
+      }
+    }
     companyName: string = this.globalVariableService.companyName;
     currentDashboardName: string = '';
     currentDatasources: Datasource[];
