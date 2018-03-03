@@ -1274,7 +1274,6 @@ export class AppComponent implements OnInit {
 
     // ***********************  CLICK TABLE MENU OPTIONS ************************ //
 
-
     clickMenuTableAdd() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableAdd', '@Start');
@@ -2103,10 +2102,10 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
         
         // Decide which way
-        if (this.checkForOnlyOneWidget('Graph')) {
+        if (this.checkForOnlyOneWidget('Graph', true)) {
             this.clickMenuWidgetEdit();
         } else {
-            if (this.checkForOnlyOneWidget('Slicer')) {
+            if (this.checkForOnlyOneWidget('Slicer', true)) {
                 this.clickMenuSlicerEdit();
             } else {
                 // Lost
@@ -2126,10 +2125,10 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteExpand', '@Start');
         
         // Decide which way
-        if (this.checkForOnlyOneWidget('Graph')) {
+        if (this.checkForOnlyOneWidget('Graph', true)) {
             this.clickMenuWidgetExpand();
         } else {
-            if (this.checkForOnlyOneWidget('Slicer')) {
+            if (this.checkForOnlyOneWidget('Slicer', true)) {
                 this.clickMenuSlicerExpand();
             } else {
                 // Lost
@@ -2171,7 +2170,7 @@ export class AppComponent implements OnInit {
         return row ? row.id : undefined;
     }
 
-    checkForOnlyOneWidget(widgetType: string = 'All'): boolean {
+    checkForOnlyOneWidget(widgetType: string = 'All', silent: boolean = false): boolean {
         // Returns true if one and only widget was selected, else false
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForOnlyOneWidget', '@Start');
 
@@ -2180,24 +2179,29 @@ export class AppComponent implements OnInit {
             w => (w.isSelected  &&  (w.widgetType == widgetType  ||  widgetType == 'All')  
                  ) ).length;
 
+        // Show messages if silent = false
         if (nrWidgetsSelected == 0) {
-            this.showStatusBarMessage(
+            if (!silent) {
+                this.showStatusBarMessage(
                     widgetType=='All'? 'Nothing selected' : 'No ' + widgetType + ' selected',
-                   'StatusBar',
-                   'Warning',
-                   3000,
-                   ''
-            );
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+            };
             return false;
         };
         if (nrWidgetsSelected > 1) {
-            this.showStatusBarMessage(
-                widgetType=='All'? 'Multiple selected' : 'More than 1 ' + widgetType + ' selected',
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
+            if (!silent) {
+                this.showStatusBarMessage(
+                    widgetType=='All'? 'Multiple selected' : 'More than 1 ' + widgetType + ' selected',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+            };
             return false;
         };
 
