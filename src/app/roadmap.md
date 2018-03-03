@@ -135,6 +135,7 @@ Shapes:
 27.Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  
 THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
 28.Delete Slicer has no confirmation - maybe it should be done.  Then decide, in app component or new component.
+29.Consider showing #W selected on StatusBar - dont think it will make a diff, as it is easier to see visually on W what is going on.  If move and some grouped, will figure it out methinks
 
 
 **Data**

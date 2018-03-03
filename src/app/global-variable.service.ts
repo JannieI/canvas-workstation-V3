@@ -1193,8 +1193,11 @@ export class GlobalVariableService {
                         alert('Dashboard template id does not exist in Dashboards Array')
                     } else {
                         this.currentDashboards.push(templeteDashboard[0]);
+                        this.templateInUse.next(true);
                     }
-                }
+                } else {
+                    this.templateInUse.next(false);
+                };
                 // this.currentDashboards.next(currentDashboards);
                 console.log('Global-Variables getCurrentDashboards 2', dashboardID, this.currentDashboards)
                 resolve(this.currentDashboards);
