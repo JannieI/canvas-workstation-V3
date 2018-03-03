@@ -161,7 +161,7 @@ export class StatusbarComponent {
                 this.templateInUse = ''
             };
         });
-        
+
         // Close any open popus when a new D is opened
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => {
@@ -323,17 +323,6 @@ export class StatusbarComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddTab', '@Start');
 
         this.showNewTab = true;
-    }
-
-    clickStatusTemplate() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickStatusTemplate', '@Start');
-
-        if (this.templateInUse == 'Tmpl Used') {
-            this.templateInUse = 'Tmpl Disabled ';
-        } else {
-            this.templateInUse = 'Tmpl Used';
-        }
     }
 
     handleCloseDashboardTab(action: string) {
