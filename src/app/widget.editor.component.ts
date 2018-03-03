@@ -329,6 +329,17 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             };
         };
 
+        // Tell user
+        this.globalVariableService.statusBarMessage.next(
+            {
+                message: 'Widget Saved',
+                uiArea: 'StatusBar',
+                classfication: 'Info',
+                timeout: 3000,
+                defaultMessage: ''
+            }
+        );
+        
         this.localWidget.containerHasTitle = this.containerHasTitle;
         this.formWidgetEditorClosed.emit(this.localWidget);
     }
