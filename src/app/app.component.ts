@@ -1178,6 +1178,16 @@ export class AppComponent implements OnInit {
             newID = Math.max(...wIDs) + 1;
         };
 
+        // Find latest copy #
+        let copyPosition: number = 1;
+        for (var i = 0; i < 21; i++) {
+            this.currentWidgets.forEach(w => {
+                if ( w.titleText.includes(' (copy ' + i.toString() + ')') ) {
+                    copyPosition = i + 1;
+                };
+            });
+        };
+
         this.currentWidgets.forEach(w => {
 
             if (w.isSelected) {
@@ -1188,7 +1198,8 @@ export class AppComponent implements OnInit {
                 copiedWidget.isSelected = false;
                 copiedWidget.containerLeft = 120;
                 copiedWidget.containerTop = 120;
-                copiedWidget.titleText = copiedWidget.titleText + ' (copy)';
+                copiedWidget.titleText = copiedWidget.titleText + ' (copy ' + 
+                    copyPosition.toString() + ')';
 
                 // Add to all and current W
                 this.globalVariableService.widgets.push(copiedWidget);
