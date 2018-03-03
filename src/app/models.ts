@@ -475,6 +475,7 @@ export class Widget {
     tableBackgroundColor: string;       // Background color
     tableColor: string;                 // Text color
     tableCols: number;                  // Nr of cols, 0 means all
+    fontSize: number;                   // Font size of text
     tableHeight: number;                // in px, cuts of rest if bigger than this
     tableHideHeader: boolean;           // False to hide the column header row         
     tableLeft: number;                  // in px (for later use)
