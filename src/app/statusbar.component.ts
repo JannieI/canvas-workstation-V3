@@ -153,6 +153,15 @@ export class StatusbarComponent {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Adjust for templates
+        this.globalVariableService.templateInUse.subscribe(i => {
+            if (i) {
+                this.templateInUse = 'Tmpl Used '
+            } else {
+                this.templateInUse = ''
+            };
+        });
+        
         // Close any open popus when a new D is opened
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => {

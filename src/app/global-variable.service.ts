@@ -714,6 +714,7 @@ export class GlobalVariableService {
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     currentDashboardID:number = 0; // = new BehaviorSubject<number>(null);
     currentDashboardTabID:number = 0; //  = new BehaviorSubject<number>(1);
+    templateInUse = new BehaviorSubject<boolean>(false);
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     datasourceToEditID = new BehaviorSubject<number>(null);
@@ -1159,7 +1160,10 @@ export class GlobalVariableService {
                                     alert('Dashboard template id does not exist in Dashboards Array')
                                 } else {
                                     this.currentDashboards.push(templeteDashboard[0]);
+                                    this.templateInUse.next(true);
                                 }
+                            } else {
+                                this.templateInUse.next(false);
                             };
                         }
                         // this.currentDashboards.next(currentDashboards);

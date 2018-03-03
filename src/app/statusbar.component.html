@@ -113,8 +113,8 @@
         >
       V 1.02
     </span>
-    <span class="statusBarText"
-        title="Indicates if a Template is being used (which is readonly)"
+    <span *ngIf="templateInUse" class="statusBarText"
+        title="Indicates that a Template is being used (which is readonly)"
         style="width: 66vw;"
         (click)="clickStatusTemplate()"
         >
