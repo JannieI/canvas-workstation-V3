@@ -98,10 +98,13 @@ import { GlobalVariableService }      from './global-variable.service';
 
             // Get local vars - easier for ngFor
             this.containerHasTitle = this.localWidget.containerHasTitle;
-            this.dataFieldNames = this.currentDatasources[0].dataFields;
-            this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
-            this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
 
+            // this.dataFieldNames = this.currentDatasources[0].dataFields;
+            // this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
+            // this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
+
+            this.showTable = true;
+            this.clickDSrow(this.localWidget.datasourceID)
         }
 
         this.globalVariableService.presentationMode.subscribe(
@@ -284,7 +287,7 @@ import { GlobalVariableService }      from './global-variable.service';
         this.dragoverColor = false;
     }
 
-    clickDSrow(datasourceID: number, index: number) {
+    clickDSrow(datasourceID: number) {
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
@@ -318,7 +321,6 @@ import { GlobalVariableService }      from './global-variable.service';
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data.slice(0,5);
-
 
         // Fill in data info
         if (this.newWidget) {
