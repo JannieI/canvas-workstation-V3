@@ -124,12 +124,12 @@ export class StatusbarComponent {
     @Input() currentTabName: string;
     @Input() statusBarRunning: string;
     @Input() statusBarCancelRefresh: string;
-    @Input() loggedIntoServerText: string;
     @Input() templateInUse: string;
 
     currentDashboardTabs: DashboardTab[];
     dashboardDescription: string;
     dashboardTabDescription: string;
+    loggedIntoServerText: string;
     showDashboardDescription: boolean = false;
     showDashboardTabDescription: boolean = false;
     showNewTab: boolean = false;
@@ -137,8 +137,6 @@ export class StatusbarComponent {
     statusBarMessageText: string = '';
     statusBarMessageColour: string = 'rgb(197, 194, 194)';
     menuActionResize: boolean;
-
-    // currentTabName: string;
 
 
     constructor(
@@ -152,6 +150,15 @@ export class StatusbarComponent {
     ngOnInit() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Adjust Local / Server
+        this.globalVariableService.loggedIntoServer.subscribe(i => {
+            if (i) {
+                this.loggedIntoServerText = 'Server';
+            } else {
+                this.loggedIntoServerText = 'Local';
+            };
+        });
 
         // Adjust for templates
         this.globalVariableService.templateInUse.subscribe(i => {

@@ -44,10 +44,12 @@ export class LoginComponent implements OnInit {
     }
 
     clickClose(action: string) {
-        //
+        // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        console.log('clickClose')
+        this.globalVariableService.loggedIntoServer.next(
+            !this.globalVariableService.loggedIntoServer.value
+        )
 
 		this.formUserLoginClosed.emit(action);
     }
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLocalServer', '@Start');
 
+        // TODO - fix when values read from form
         this.globalVariableService.loggedIntoServer.next(
             !this.globalVariableService.loggedIntoServer.value
         )
