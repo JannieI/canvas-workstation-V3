@@ -1419,6 +1419,29 @@ export class AppComponent implements OnInit {
         });
     }
 
+    clickMenuTableComments() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableComments', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        if (!this.checkForOnlyOneWidget('Table')) { 
+            return
+        };
+
+        this.menuOptionClickPreAction();
+
+        // Set the selected W id
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidgetID = w.id;
+            }
+        })
+
+        this.showModalDashboardComments = true;
+
+    }
+
     clickMenuTableExpand() {
         // Expand DS u-sed in table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExpand', '@Start');
