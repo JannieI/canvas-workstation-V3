@@ -17,7 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
-import { CanvasComment }              from './models';
+import { DataQualityIssue }           from './models';
 
 @Component({
     selector: 'dashboard-comments',
@@ -29,7 +29,7 @@ export class DashboardCommentsComponent implements OnInit {
     @Output() formDashboardCommentsClosed: EventEmitter<string> = new EventEmitter();
     @Input() selectedWidgetID: number;
 
-    canvasComments: CanvasComment[] = [];
+    canvasDataQuality: DataQualityIssue[] = [];
     dashboards: Dashboard[];
     headerText: string;
     showTypeDashboard: boolean = false;
@@ -47,13 +47,13 @@ export class DashboardCommentsComponent implements OnInit {
             this.headerText = 'selected Widget';
         };
 
-        this.globalVariableService.getCanvasComments().then(cC => {
+        this.globalVariableService.getDataQualityIssues().then(cC => {
              cC.forEach(i => {
-                 if (i.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) {
-                     this.canvasComments.push(i)
+                 if (i.datasourceID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) {
+                     this.canvasDataQuality.push(i)
                  };
             });
-            console.log('xx comm', cC, this.canvasComments)
+            console.log('xx comm', cC, this.canvasDataQuality)
         });
     }
 
