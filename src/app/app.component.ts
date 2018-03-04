@@ -1185,6 +1185,11 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDataQuality', '@Start');
 
         this.menuOptionClickPreAction();
+
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
+        };
+
         this.selectedWidgetID = -1;
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -1603,6 +1608,25 @@ export class AppComponent implements OnInit {
 
     }
 
+
+    clickMenuSlicerDataQuality() {
+        // Show the form of Data Quality Issues for selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDataQuality', '@Start');
+
+        if (!this.checkForOnlyOneWidget('Slicer')) { 
+            return
+        };
+
+        this.menuOptionClickPreAction();
+        this.selectedWidgetID = -1;
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidgetID = w.id;
+            }
+        })
+        this.showModalDashboardDataQuality = true;
+    }
+    
     clickMenuSlicerExpand() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExpand', '@Start');
