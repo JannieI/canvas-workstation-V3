@@ -235,8 +235,8 @@ BUG: if using a custom vega spec, the editor does not understand this.
 
 **Widget**
 1. Issue: how to call code ~WidgetEdit, etc from explore NOT duplicating code ...
-2.
-3. Fix bug: isTrash => Widget does not disappear !
+2. Add Copy and Paste options - if needed.  Remember to consider (copy i) notation, as the same W could have been Duplicated since the Copy and before the Paste ...
+3. 
 4. Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
  + Dont show top if now Dataset - rather appropriate Unexpected Error msg
 5. Slicerresize: only goes to a min size (maybe min-size in css), but internals shrinks further.  Not bad functionally but not right - have a look.

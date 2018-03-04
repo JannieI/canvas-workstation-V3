@@ -11,6 +11,15 @@
     top: 0;
 }
 
-.propertyLine {
-    margin: 5px;
+.messageArea {
+    border: 1px solid gray;
+    margin: 15px 5px 15px 5px;
+}
+
+.textHeader {
+    margin-left: 10px;
+    text-align: center;
+}
+.textLine {
+    margin-left: 10px;
 }
