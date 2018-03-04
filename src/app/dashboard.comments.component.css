@@ -1,5 +1,5 @@
 .modalBox {
-	background-color: rgba(0,0,0,0.4); 
+	background-color: rgba(0,0,0,0.4);
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
@@ -11,15 +11,36 @@
     top: 0;
 }
 
-.messageArea {
-    border: 1px solid gray;
-    margin: 15px 5px 15px 5px;
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-auto-rows: 0.8rem;
+    margin-top: 2px;
 }
 
-.textHeader {
-    margin-left: 10px;
-    text-align: center;
-}
-.textLine {
-    margin-left: 10px;
-}
+    .newMessageArea {
+        border: 1px solid gray;
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 2;
+        grid-row-end: 8;
+        margin: 5px;
+    }
+
+        .textHeader {
+            margin-left: 10px;
+            text-align: center;
+        }
+        .textLine {
+            margin-left: 10px;
+        }
+
+    .messagesArea {
+        border: 1px solid gray;
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 8;
+        grid-row-end: 25;
+        margin: 5px;
+        overflow: scroll;
+    }

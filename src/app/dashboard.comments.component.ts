@@ -45,7 +45,7 @@ export class DashboardCommentsComponent implements OnInit {
                  if (i.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) {
                      this.canvasComments.push(i)
                  };
-            });   
+            });
             console.log('xx comm', cC, this.canvasComments)
         });
     }
