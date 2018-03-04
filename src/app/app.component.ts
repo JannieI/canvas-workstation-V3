@@ -147,6 +147,7 @@ export class AppComponent implements OnInit {
     currentShapeSpec: any;          // TODO - fill this var !!  not working at moment
     currentTabName: string = '';
     currentWidgets: Widget[] = [];
+    draggableWidgets: number[] = [];
     editMode: boolean;
     hasDatasources: boolean = false;
     editMenuText: string;
@@ -2571,7 +2572,7 @@ export class AppComponent implements OnInit {
         this.startY = ev.y;
     }
 
-    clickWidgetContainerDragEnd(ev: MouseEvent, index: number, id: number) {
+    clickWidgetContainerDragEnd(ev: MouseEvent, id: number) {
         // Move the W containter at the end of the drag event
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragEnd', '@Start');
 
@@ -2587,38 +2588,46 @@ export class AppComponent implements OnInit {
             return;
         };
 
-
+        // Get final coordinates of cursor after move
         this.endX = ev.x;
         this.endY = ev.y;
 
         // Create array to loop on
-        let draggables: number[] = [];
+        this.draggableWidgets = [];
         // There is no group
         if (this.widgetGroup.length == 0) {
-            draggables = [id];
+            this.draggableWidgets = [id];
         } else {
             // Dragged one is part of group, so move group
             if (this.widgetGroup.indexOf(id) >= 0) {
                 this.widgetGroup.forEach( wg => {
-                    draggables.push(wg)
+                    this.draggableWidgets.push(wg)
                 });
             } else {
                 // Solitary move
-                draggables = [id];
+                this.draggableWidgets = [id];
             }
         };
+
+        // Move the draggable ones
+        this.moveWidgets();
+    }
+    
+    moveWidgets() {
+        // Do Actual Move of draggable Ws
+        this.globalFunctionService.printToConsole(this.constructor.name,'moveWidgets', '@Start');
 
         // Reset current and globalVar values
         this.currentWidgets.forEach( w => {
             
-            if (draggables.indexOf(w.id) >= 0) {
+            if (this.draggableWidgets.indexOf(w.id) >= 0) {
                 w.containerLeft = w.containerLeft - this.startX + this.endX;
                 w.containerTop = w.containerTop - this.startY + this.endY;
             }
         });
         this.globalVariableService.currentWidgets.forEach( w => {
             
-            if (draggables.indexOf(w.id) >= 0) {
+            if (this.draggableWidgets.indexOf(w.id) >= 0) {
                 w.containerLeft = w.containerLeft - this.startX + this.endX;
                 w.containerTop = w.containerTop - this.startY + this.endY;
             }
