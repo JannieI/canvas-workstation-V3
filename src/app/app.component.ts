@@ -1525,6 +1525,29 @@ export class AppComponent implements OnInit {
 
     }
 
+    clickMenuSlicerComments() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerComments', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        if (!this.checkForOnlyOneWidget('Slicer')) { 
+            return
+        };
+
+        this.menuOptionClickPreAction();
+
+        // Set the selected W id
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidgetID = w.id;
+            }
+        })
+
+        this.showModalDashboardComments = true;
+
+    }
+
     clickMenuSlicerExpand() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExpand', '@Start');

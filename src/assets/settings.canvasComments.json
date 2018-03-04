@@ -38,5 +38,15 @@
         "comment": "Comment on D=2, T=1, W=4",
         "creator": "MarcoD",
         "createdOn": "2017/01/01"
+    },
+    {
+        "id": 5,
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "widgetID": 18,
+        "shapeID": 0,
+        "comment": "Comment on D=1, T=1, W=18",
+        "creator": "MarcoD",
+        "createdOn": "2017/01/01"
     }
 ]
