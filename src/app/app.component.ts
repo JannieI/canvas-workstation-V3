@@ -229,6 +229,8 @@ export class AppComponent implements OnInit {
     showTitleForm: boolean = false;
     startX: number;
     startY: number;
+    endX: number;
+    endY: number;
     statusBarCancelRefresh: boolean = false;
     statusBarRunning: boolean = false;
     stuckCount: number = 0;
@@ -2585,6 +2587,10 @@ export class AppComponent implements OnInit {
             return;
         };
 
+
+        this.endX = ev.x;
+        this.endY = ev.y;
+
         // Create array to loop on
         let draggables: number[] = [];
         // There is no group
@@ -2606,15 +2612,15 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach( w => {
             
             if (draggables.indexOf(w.id) >= 0) {
-                w.containerLeft = w.containerLeft - this.startX + ev.x;
-                w.containerTop = w.containerTop - this.startY + ev.y;
+                w.containerLeft = w.containerLeft - this.startX + this.endX;
+                w.containerTop = w.containerTop - this.startY + this.endY;
             }
         });
         this.globalVariableService.currentWidgets.forEach( w => {
             
             if (draggables.indexOf(w.id) >= 0) {
-                w.containerLeft = w.containerLeft - this.startX + ev.x;
-                w.containerTop = w.containerTop - this.startY + ev.y;
+                w.containerLeft = w.containerLeft - this.startX + this.endX;
+                w.containerTop = w.containerTop - this.startY + this.endY;
             }
         });
 
