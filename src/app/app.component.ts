@@ -195,7 +195,6 @@ export class AppComponent implements OnInit {
     showModalDashboardSubscribe: boolean = false;
     showMainMenu: boolean = true;
     showModalWidgetCheckpoints: boolean = false;
-    showModalWidgetComments: boolean = false;
     showModalWidgetLinks: boolean = false;
     showModalWidgetRefresh: boolean = false;
     showModalWidgetExpand: boolean = false;
@@ -629,13 +628,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetCheckpoints', '@Start');
 
         this.showModalWidgetCheckpoints = false;
-    }
-
-    handleCloseWidgetComments(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetComments', '@Start');
-
-        this.showModalWidgetComments = false;
     }
 
     handleCloseWidgetLinks(action: string) {
@@ -1156,6 +1148,10 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
+        this.selectedWidgetID = -1;
+        this.showModalDashboardComments = true;
 
         this.showModalWidgetComments = true;
     }
