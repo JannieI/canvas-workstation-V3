@@ -31,7 +31,7 @@ export class DashboardCommentsComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
-    canvasComments: CanvasComment[];
+    canvasComments: CanvasComment[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -40,9 +40,14 @@ export class DashboardCommentsComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-        this.globalVariableService.getCanvasComments().then(i =>
-            this.canvasComments = i
-        );
+        this.globalVariableService.getCanvasComments().then(cC => {
+             cC.forEach(i => {
+                 if (i.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) {
+                     this.canvasComments.push(i)
+                 };
+            });   
+            console.log('xx comm', cC, this.canvasComments)
+        });
     }
 
     clickClose(action: string) {

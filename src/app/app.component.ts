@@ -957,7 +957,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailComments', '@Start');
 
         this.menuOptionClickPreAction();
-        this.selectedWidgetID = 4;
+        this.selectedWidgetID = -1;
         this.showModalDashboardComments = true;
     }
 

@@ -1,11 +1,41 @@
 [
     {
         "id": 1,
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "widgetID": 1,
+        "shapeID": 0,
+        "comment": "Checkpoints show more detail",
+        "creator": "MarcoD",
+        "createdOn": "2017/01/01"
+    },
+    {
+        "id": 2,
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "widgetID": 1,
+        "shapeID": 0,
+        "comment": "Comment on D=1, T=1, W=1",
+        "creator": "MarcoD",
+        "createdOn": "2017/01/01"
+    },
+    {
+        "id": 3,
+        "dashboardID": 1,
+        "dashboardTabID": 1,
+        "widgetID": 17,
+        "shapeID": 0,
+        "comment": "Comment on D=1, T=1, W=17",
+        "creator": "MarcoD",
+        "createdOn": "2017/01/01"
+    },
+    {
+        "id": 4,
         "dashboardID": 2,
         "dashboardTabID": 1,
         "widgetID": 4,
         "shapeID": 0,
-        "comment": "Checkpoints show more detail",
+        "comment": "Comment on D=2, T=1, W=4",
         "creator": "MarcoD",
         "createdOn": "2017/01/01"
     }
