@@ -1439,6 +1439,22 @@ export class AppComponent implements OnInit {
         this.showModalWidgetExpand = true;
     }
 
+    clickMenuTableExport() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExport', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Table')) { 
+            return
+        };
+
+        this.showModalWidgetExport = true;
+    }
+
     clickMenuTableDelete() {
         // Delete Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDelete', '@Start');
