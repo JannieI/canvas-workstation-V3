@@ -170,6 +170,13 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
+                                    (click)="clickMenuDashboardDetailDataQuality()"
+                                    >
+                                    Data Quality
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuDashboardDetailTheme()"
                                     >
                                     Theme
@@ -1382,6 +1389,15 @@
     [selectedWidgetID]="selectedWidgetID"
     (formDashboardCommentsClosed)="handleCloseDashboardComments($event)">Load Comments ...
 </dashboard-comments>
+
+
+<!-- Modal: DataQuality -->
+<dashboard-dataquality
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardDataQuality"
+    [selectedWidgetID]="selectedWidgetID"
+    (formDashboardDataQualityClosed)="handleCloseDashboardDataQuality($event)">Load DataQuality ...
+</dashboard-dataquality>
 
 
 <!-- Modal: Dashboard Print -->

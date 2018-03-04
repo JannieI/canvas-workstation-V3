@@ -20,7 +20,7 @@ import { Dashboard }                  from './models';
 import { CanvasComment }              from './models';
 
 @Component({
-    selector: 'dashboard-dataQuality',
+    selector: 'dashboard-dataquality',
     templateUrl: './dashboard.dataQuality.component.html',
     styleUrls: ['./dashboard.dataQuality.component.css']
 })

@@ -182,6 +182,7 @@ export class AppComponent implements OnInit {
     showModalDashboardLogin: boolean = false;
     showModalDashboardLogout: boolean = false;
     showModalDashboardComments: boolean = false;
+    showModalDashboardDataQuality: boolean = false;
     showModalDashboardRename: boolean = false;
     showModalDashboardDetails: boolean = false;
     showModalDashboardDescription: boolean = false;
@@ -572,6 +573,13 @@ export class AppComponent implements OnInit {
         this.showModalDashboardComments = false;
     }
 
+    handleCloseDashboardDataQuality(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDataQuality', '@Start');
+
+        this.showModalDashboardDataQuality = false;
+    }
+
     handleCloseDashboardPrint(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardPrint', '@Start');
@@ -951,6 +959,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
         this.selectedWidgetID = -1;
         this.showModalDashboardComments = true;
+    }
+
+    clickMenuDashboardDetailDataQuality() {
+        //
+    this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDataQuality', '@Start');
+
+    this.menuOptionClickPreAction();
+    this.selectedWidgetID = -1;
+    this.showModalDashboardDataQuality = true;
     }
 
     clickMenuDashboardDetailTheme() {
