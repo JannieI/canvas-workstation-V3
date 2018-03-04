@@ -962,12 +962,12 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardDetailDataQuality() {
-        //
-    this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDataQuality', '@Start');
+        // Show the form of Data Quality Issues
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDataQuality', '@Start');
 
-    this.menuOptionClickPreAction();
-    this.selectedWidgetID = -1;
-    this.showModalDashboardDataQuality = true;
+        this.menuOptionClickPreAction();
+        this.selectedWidgetID = -1;
+        this.showModalDashboardDataQuality = true;
     }
 
     clickMenuDashboardDetailTheme() {
@@ -1169,6 +1169,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         // Set the selected W id
+        this.selectedWidgetID = -1;
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 this.selectedWidgetID = w.id;
@@ -1177,6 +1178,20 @@ export class AppComponent implements OnInit {
 
         this.showModalDashboardComments = true;
 
+    }
+
+    clickMenuWidgetDataQuality() {
+        // Show the form of Data Quality Issues for selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDataQuality', '@Start');
+
+        this.menuOptionClickPreAction();
+        this.selectedWidgetID = -1;
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidgetID = w.id;
+            }
+        })
+        this.showModalDashboardDataQuality = true;
     }
 
     clickMenuWidgetLinks() {
