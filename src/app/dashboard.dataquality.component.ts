@@ -20,13 +20,13 @@ import { Dashboard }                  from './models';
 import { CanvasComment }              from './models';
 
 @Component({
-    selector: 'dashboard-comments',
-    templateUrl: './dashboard.comments.component.html',
-    styleUrls: ['./dashboard.comments.component.css']
+    selector: 'dashboard-dataQuality',
+    templateUrl: './dashboard.dataQuality.component.html',
+    styleUrls: ['./dashboard.dataQuality.component.css']
 })
-export class DashboardCommentsComponent implements OnInit {
+export class DashboardDataQualityComponent implements OnInit {
 
-    @Output() formDashboardCommentsClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardDataQualityClosed: EventEmitter<string> = new EventEmitter();
     @Input() selectedWidgetID: number;
 
     canvasComments: CanvasComment[] = [];
@@ -60,6 +60,6 @@ export class DashboardCommentsComponent implements OnInit {
     clickClose(action: string) {
         console.log('clickClose')
 
-		this.formDashboardCommentsClosed.emit(action);
+		this.formDashboardDataQualityClosed.emit(action);
     }
 }

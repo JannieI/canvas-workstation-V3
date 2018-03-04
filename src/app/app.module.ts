@@ -42,6 +42,7 @@ import { DashboardHelpPresentationComponent }  from './dashboard.helpPresentatio
 import { DashboardTreeviewComponent } from './dashboard.treeview.component';
 import { DashboardSubscribeComponent }         from './dashboard.subscribe.component';
 import { DashboardImportComponent }   from './dashboard.import.component';
+import { DashboardDataQualityComponent }       from './dashboard.dataquality.component';
 
 import { WidgetEditorComponent }      from './widget.editor.component';
 import { WidgetCheckpointsComponent }       from './widget.checkpoints.component';
@@ -126,9 +127,10 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardTreeviewComponent,
         DashboardSubscribeComponent,
         DashboardImportComponent,
+        DashboardDataQualityComponent,
+
         DataPopupComponent,
         DataCombinationComponent,
-        SlicerEditorComponent,
         DataRefreshComponent,
         DatasourceShareComponent,
 
@@ -143,6 +145,7 @@ import { StatusbarComponent }         from './statusbar.component';
         TableSingleComponent,
         TableEditorComponent,
 
+        SlicerEditorComponent,
         SlicerTablistComponent,
 
         ShapeEditComponent,
