@@ -22,7 +22,7 @@
         border: 1px solid gray;
         grid-column-start: 1;
         grid-column-end: 21;
-        grid-row-start: 2;
+        grid-row-start: 1;
         grid-row-end: 8;
         margin: 5px;
     }
