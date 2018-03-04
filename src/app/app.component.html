@@ -76,11 +76,16 @@
                         type="button"
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
+                        title="All actions related to Dashboards"
                         >
                         Dashboard
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickDashboardNew()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Add a new Dashboard"
+                            (click)="clickDashboardNew()"
+                            >
                             New
                         </button>
                         <clr-dropdown>
@@ -88,6 +93,7 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
+                                title="Show recently opened Dashboards"
                                 >
                                 Recent
                             </button>
@@ -109,16 +115,23 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
+                                title="Open an existing Dashboard"
                                 >
                                 Open
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" clrDropdownItem
-                                (click)="clickDashboardOpen()">
+                                <button type="button" 
+                                    clrDropdownItem
+                                    title="Open a Dashboard"
+                                    (click)="clickDashboardOpen()"
+                                    >
                                     Existing Dashboard
                                 </button>
-                                <button type="button" clrDropdownItem
-                                (click)="clickDashboardImport()">
+                                <button type="button" 
+                                    clrDropdownItem
+                                    title="Import a previously exported Dashboard"
+                                    (click)="clickDashboardImport()"
+                                    >
                                     Import
                                 </button>
                             </clr-dropdown-menu>
