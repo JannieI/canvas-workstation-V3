@@ -27,6 +27,7 @@ import { CanvasComment }              from './models';
 export class DashboardCommentsComponent implements OnInit {
 
     @Output() formDashboardCommentsClosed: EventEmitter<string> = new EventEmitter();
+    @Input() selectedWidgetID: number;
 
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];

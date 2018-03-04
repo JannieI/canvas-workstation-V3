@@ -167,6 +167,7 @@ export class AppComponent implements OnInit {
     selectDatasetID: number;
     selectDatasourceID: number;
     selectedWidget: Widget;
+    selectedWidgetID: number;
     showGrid: boolean;
     showComments: boolean;
     showDatasourcePopup: boolean = false;
@@ -956,7 +957,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailComments', '@Start');
 
         this.menuOptionClickPreAction();
-
+        this.selectedWidgetID = 4;
         this.showModalDashboardComments = true;
     }
 

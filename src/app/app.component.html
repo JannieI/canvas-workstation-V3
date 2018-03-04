@@ -1372,6 +1372,7 @@
 <dashboard-comments
     class="formPopupDashboard"
     *ngIf="showModalDashboardComments"
+    [selectedWidgetID]="selectedWidgetID"
     (formDashboardCommentsClosed)="handleCloseDashboardComments($event)">Load Comments ...
 </dashboard-comments>
 
