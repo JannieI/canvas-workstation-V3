@@ -38,17 +38,33 @@
                         </button>
                         <div class="dropdown-divider"></div>
                         
-                        <button type="button" clrDropdownItem (click)="clickMenuEditUndo()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Undo previous action"
+                            (click)="clickMenuEditUndo()"
+                            >
                             Undo
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuEditRedo()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Redo previous action"
+                            (click)="clickMenuEditRedo()"
+                            >
                             Redo
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuEditSelectAllNone('All')">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Select all the Widgets on this Tab"
+                            (click)="clickMenuEditSelectAllNone('All')"
+                            >
                             Select All
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuEditSelectAllNone('None')">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="UnSelect all the Widgets on this Tab"
+                            (click)="clickMenuEditSelectAllNone('None')"
+                            >
                             Select None
                         </button>
                     </clr-dropdown-menu>
