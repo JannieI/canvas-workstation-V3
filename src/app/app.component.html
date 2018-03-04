@@ -826,6 +826,8 @@
     [style.left.px]="row.containerLeft"
     [style.top.px]="row.containerTop"
     [style.width.px]="row.containerWidth"
+    [style.transform]="editMode? scale(1) : scale(1.1)";
+    
     [style.zindex]="row.containerZindex"
     (click)="clickWidget($event, i, row.id)"
     (dragstart)="clickWidgetContainerDragStart($event, i)"
