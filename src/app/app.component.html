@@ -244,7 +244,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    title="Add/Detail a template for this Dashboard"
+                                    title="Add/Delete a template for this Dashboard"
                                     (click)="clickMenuDashboardDetailTemplate()"
                                     >
                                     Template
@@ -285,6 +285,7 @@
                         type="button"
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
+                        title="Manage Data available in this Dashboard"
                         >
                         Data
                     </button>
@@ -294,6 +295,7 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
+                                title="Datasources currently available to this Dashboard"
                                 >
                                 Current
                             </button>
@@ -311,10 +313,18 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuDataFromFile(-1)">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Add a Datasource to this Dashboard from a file"
+                            (click)="clickMenuDataFromFile(-1)"
+                            >
                             From File
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuDataFromServer()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Add a Datasource to this Dashboard from a server"
+                            (click)="clickMenuDataFromServer()"
+                            >
                             From Server
                         </button>
 
@@ -323,6 +333,7 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
+                                title="Sample Datasources"
                                 >
                                 Samples
                             </button>
@@ -346,33 +357,58 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
+                                title="Add more Datasources to this Dashboard"
                                 >
                                 More ...
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" clrDropdownItem>
+                                <button type="button" 
+                                    clrDropdownItem
+                                    title="Add a Datasource to this Dashboard from a Database"
+                                    >
                                     Database
                                 </button>
-                                <button type="button" clrDropdownItem>
+                                <button type="button" 
+                                    clrDropdownItem
+                                    title="Add a Datasource to this Dashboard from a service"
+                                    >
                                     Service
                                 </button>
-                                <button type="button" clrDropdownItem>
+                                <button type="button" 
+                                    clrDropdownItem
+                                    title="Add a Datasource to this Dashboard from a web page"
+                                    >
                                     Web
                                 </button>
-                                <button type="button" clrDropdownItem>
+                                <button type="button" 
+                                    clrDropdownItem
+                                    title="Add a Datasource to this Dashboard from a NoSQL database"
+                                    >
                                     NoSQL
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuDataCombinations()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Combine Datasources already available to this Dashboard"
+                            (click)="clickMenuDataCombinations()"
+                            >
                             Combinations
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuDataShare()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Share Datasources with other users"
+                            (click)="clickMenuDataShare()"
+                            >
                             Share
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuDataRefreshAll()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Refresh all the Datasources in this Dashboard"
+                            (click)="clickMenuDataRefreshAll()"
+                            >
                             Refresh All
                         </button>
                     </clr-dropdown-menu>
