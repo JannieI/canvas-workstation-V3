@@ -18,28 +18,11 @@
     margin-top: 2px;
 }
 
-    .newMessageArea {
-        border: 1px solid gray;
-        grid-column-start: 1;
-        grid-column-end: 21;
-        grid-row-start: 1;
-        grid-row-end: 8;
-        margin: 5px;
-    }
-
-        .textHeader {
-            margin-left: 10px;
-            text-align: center;
-        }
-        .textLine {
-            margin-left: 10px;
-        }
-
     .messagesArea {
         border: 1px solid gray;
         grid-column-start: 1;
         grid-column-end: 21;
-        grid-row-start: 8;
+        grid-row-start: 1;
         grid-row-end: 25;
         margin: 5px;
         overflow: scroll;

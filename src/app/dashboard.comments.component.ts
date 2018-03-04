@@ -30,7 +30,6 @@ export class DashboardCommentsComponent implements OnInit {
     @Input() selectedWidgetID: number;
 
     canvasDataQuality: DataQualityIssue[] = [];
-    dashboards: Dashboard[];
     headerText: string;
     showTypeDashboard: boolean = false;
 
@@ -40,7 +39,6 @@ export class DashboardCommentsComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards;
         if (this.selectedWidgetID == -1) {
             this.headerText = 'this Dashboard';
         } else {

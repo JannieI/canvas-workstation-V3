@@ -21,8 +21,8 @@ import { CanvasComment }              from './models';
 
 @Component({
     selector: 'dashboard-dataquality',
-    templateUrl: './dashboard.dataQuality.component.html',
-    styleUrls: ['./dashboard.dataQuality.component.css']
+    templateUrl: './dashboard.dataquality.component.html',
+    styleUrls: ['./dashboard.dataquality.component.css']
 })
 export class DashboardDataQualityComponent implements OnInit {
 
@@ -30,7 +30,6 @@ export class DashboardDataQualityComponent implements OnInit {
     @Input() selectedWidgetID: number;
 
     canvasComments: CanvasComment[] = [];
-    dashboards: Dashboard[];
     headerText: string;
     showTypeDashboard: boolean = false;
 
@@ -40,7 +39,6 @@ export class DashboardDataQualityComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards;
         if (this.selectedWidgetID == -1) {
             this.headerText = 'this Dashboard';
         } else {
