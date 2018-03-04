@@ -136,7 +136,10 @@ Shapes:
 THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
 28.Delete Slicer has no confirmation - maybe it should be done.  Then decide, in app component or new component.
 29.Consider showing #W selected on StatusBar - dont think it will make a diff, as it is easier to see visually on W what is going on.  If move and some grouped, will figure it out methinks
-
+30.Comments:
+- add filter on Sender/Receiver
+- consider adding message Thread
+- In ViewOnly mode: cannot select a W, thus cannot see Comments per selected ...
 
 **Data**
 1. Define Canvas datatype = TS ones?
@@ -205,7 +208,7 @@ BUG: if using a custom vega spec, the editor does not understand this.
 6. Reuse open Dashboard code between Open & Rename, if possible
 7. Test printing - and see if pagelayout can be changed
 8. Startup D: should this be settable as a pref, or should we always display the Landing page?
-10.View all Comments at once, with filter on messageText and Sender/Receiver
+10.
 11.Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
    at any point in the past.  It must be clearly marked for the user.  Must also be able to
    search the list, and see a list of undo actions.
@@ -219,6 +222,7 @@ BUG: if using a custom vega spec, the editor does not understand this.
 19.Set editMode per Recent - must be same mode as last saved
 20.Set editMode @startup as user pref
 21.Set editMode for ALL menu options: ie, cannot edit Title with RightClick in ViewOnly
+22.Consider quick access to EditMode - maybe dblClick 'ViewOnly' on StatusBar
 
 
 **Templates**

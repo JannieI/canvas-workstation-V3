@@ -871,7 +871,9 @@
         >
         <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
             class="selectedSlicer"
-            title="Related Widget has been selected">
+            [style.color]="row.titleColor? row.titleColor : 'black'"
+            title="Related Widget has been selected"
+            >
             <clr-icon shape="check" size="12"></clr-icon>
         </span>
         <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality"
@@ -1100,7 +1102,6 @@
 
 <!-- Palette -->
 <div class="palette" *ngIf="editMode  &&  !presentationMode">
-
 
     <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
         <clr-icon
