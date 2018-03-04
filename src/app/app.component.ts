@@ -1479,6 +1479,24 @@ export class AppComponent implements OnInit {
 
     }
 
+    clickMenuTableDataQuality() {
+        // Show the form of Data Quality Issues for selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDataQuality', '@Start');
+
+        if (!this.checkForOnlyOneWidget('Table')) { 
+            return
+        };
+
+        this.menuOptionClickPreAction();
+        this.selectedWidgetID = -1;
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidgetID = w.id;
+            }
+        })
+        this.showModalDashboardDataQuality = true;
+    }
+    
     clickMenuTableExpand() {
         // Expand DS u-sed in table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExpand', '@Start');
@@ -1607,7 +1625,6 @@ export class AppComponent implements OnInit {
         this.showModalDashboardComments = true;
 
     }
-
 
     clickMenuSlicerDataQuality() {
         // Show the form of Data Quality Issues for selected W
