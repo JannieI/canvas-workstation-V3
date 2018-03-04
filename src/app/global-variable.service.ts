@@ -830,7 +830,7 @@ export class GlobalVariableService {
     // defaultReportFilters: string = '';
     // environment: string = '';
     // frontendColorScheme: string = '';
-    // gridSize: number = 3;
+    gridSize: number = 3;
     // snapToGrid: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change

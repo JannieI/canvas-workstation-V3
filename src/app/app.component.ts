@@ -130,16 +130,36 @@ export class AppComponent implements OnInit {
     @ViewChild('widgetDOM')  widgetDOM: WidgetSingleComponent;
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
-      console.log(event);
-      
-      // TODO - add code to move SELECTED Ws the gridsize, say 3px
-      if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
-        // this.increment();
-      }
-  
-      if (event.keyCode === KEY_CODE.LEFT_ARROW) {
-        // this.decrement();
-      }
+        console.log(event);
+        event.preventDefault();
+
+        // Set start coordinates
+        this.startX = 0;
+        this.startY = 0;
+        // Set end coordinates
+        if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
+            this.endX = this.globalVariableService.gridSize;
+            this.endY = 0;
+        };
+        if (event.keyCode === KEY_CODE.LEFT_ARROW) {
+            this.endX = -1 * this.globalVariableService.gridSize;
+            this.endY = 0;
+        };
+        if (event.keyCode === KEY_CODE.UP_ARROW) {
+            this.endX = 0;
+            this.endY = -1 * this.globalVariableService.gridSize;
+        };
+        if (event.keyCode === KEY_CODE.DOWN_ARROW) {
+            this.endX = 0;
+            this.endY = this.globalVariableService.gridSize;
+        };
+
+        // Set draggables
+        this.draggableWidgets  = [];
+        this.currentWidgets.forEach(w => {
+            this.draggableWidgets
+        })
+        
     }
     companyName: string = this.globalVariableService.companyName;
     currentDashboardName: string = '';
