@@ -1139,23 +1139,6 @@ export class AppComponent implements OnInit {
         this.showModalWidgetCheckpoints = true;
     }
 
-    clickMenuWidgetComments() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetComments', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        if (!this.checkForOnlyOneWidget('Graph')) { 
-            return
-        };
-
-        this.menuOptionClickPreAction();
-        this.selectedWidgetID = -1;
-        this.showModalDashboardComments = true;
-
-        this.showModalWidgetComments = true;
-    }
-
     clickMenuWidgetLinks() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
