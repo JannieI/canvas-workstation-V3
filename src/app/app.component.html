@@ -137,19 +137,39 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
 
-                        <button type="button" clrDropdownItem (click)="clickDashboardRename()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Rename an existing Dashboard"
+                            (click)="clickDashboardRename()"
+                            >
                             Rename
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickDashboardSave()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Save or Export the current Dashboard"
+                            (click)="clickDashboardSave()"
+                            >
                             Save
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickDashboardDiscard()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Discard changes to the current Dashboard"
+                            (click)="clickDashboardDiscard()"
+                            >
                             Discard
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickDashboardShare()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Share access to a Dashboard"
+                            (click)="clickDashboardShare()"
+                            >
                             Share
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickDashboardSnapshots()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            title="Manage Snapshots of the current Dashboard"
+                            (click)="clickDashboardSnapshots()"
+                            >
                             Snapshots
                         </button>
                         <clr-dropdown>
@@ -157,16 +177,23 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
+                                title="Submenu with more options"
                                 >
                                 Details
                             </button>
                             <clr-dropdown-menu clrPosition="right-bottom" *clrIfOpen>
-                                <button type="button" clrDropdownItem
-                                (click)="clickMenuDashboardDetailDescription()">
+                                <button type="button" 
+                                    clrDropdownItem
+                                    title="Edit Dashboard Description details"
+                                    (click)="clickMenuDashboardDetailDescription()"
+                                    >
                                     Descripton
                                 </button>
-                                <button type="button" clrDropdownItem
-                                    (click)="showFav=!showFav">
+                                <button type="button" 
+                                    clrDropdownItem
+                                    title="Mark/UnMark this Dashboard as a favourite"
+                                    (click)="showFav=!showFav"
+                                    >
                                     Favourite
                                     <clr-icon
                                         shape="check"
@@ -177,6 +204,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
+                                    title="Manage tags for this Dashboard"
                                     (click)="clickMenuDashboardDetailTags()"
                                     >
                                     Tags
@@ -184,6 +212,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
+                                    title="Amend settings for this Dashboard"
                                     (click)="clickMenuDashboardDetailSettings()"
                                     >
                                     Settings
@@ -191,6 +220,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
+                                    title="See and add Comments for this Dashboard"
                                     (click)="clickMenuDashboardDetailComments()"
                                     >
                                     Comments
@@ -198,6 +228,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
+                                    title="View Data Quality issues for this Dashboard"
                                     (click)="clickMenuDashboardDetailDataQuality()"
                                     >
                                     Data Quality
@@ -205,6 +236,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
+                                    title="Manage Dashboard theme"
                                     (click)="clickMenuDashboardDetailTheme()"
                                     >
                                     Theme
@@ -212,6 +244,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
+                                    title="Add/Detail a template for this Dashboard"
                                     (click)="clickMenuDashboardDetailTemplate()"
                                     >
                                     Template
@@ -219,6 +252,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
+                                    title="Manage scheduled runs for this Dashboard"
                                     (click)="clickMenuDashboardDetailSchedule()"
                                     >
                                     Schedule
@@ -226,14 +260,18 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
 
-                        <button type="button" clrDropdownItem
-                        (click)="clickMenuDashboardPrint()">
+                        <button type="button" 
+                            clrDropdownItem
+                            title="Print the current Dashboard"
+                            (click)="clickMenuDashboardPrint()"
+                            >
                             Print
                         </button>
 
                         <button
                             type="button"
                             clrDropdownItem
+                            title="Delete the current Dashboard"
                             (click)="clickMenuDashboardDelete()"
                             >
                             Delete
