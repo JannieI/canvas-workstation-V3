@@ -9,7 +9,7 @@
         "dashboardTabIDs": [1],
         "id": 1,
         "name": "barchart for start",
-        "description": "bla-bla-bla",
+        "description": "Full description, as one does",
         "visualGrammar": "Vega-Lite",
         "version": 1,
         "isSelected": false,

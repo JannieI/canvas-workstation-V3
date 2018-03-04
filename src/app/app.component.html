@@ -1,6 +1,5 @@
 <!-- ***********************************  MAIN MENU ************************************ -->
 
-
 <!-- Main Dashboard & Tab Container -->
 <clr-main-container>
 
@@ -538,7 +537,7 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
 
-                        <button type="button" clrDropdownItem (click)="clickMenuViewZoom()">
+                        <button type="button" clrDropdownItem (click)="clickMenuViewZoom(0.6)">
                             Zoom 100%
                         </button>
                         <div class="dropdown-divider"></div>
@@ -807,27 +806,7 @@
         </clr-dropdown>
     </div>
 
-    <!-- Routed area -->
-    <div class="content-container"
-        [style.background-image]="showGrid? 'url(../images/gridBlock.png)' : ''"
-        >
-        <div  class="content-area" >
-            <router-outlet ></router-outlet>
-        </div>
-    </div>
 
-    <!-- Status Bar -->
-    <status-bar *ngIf="showMainMenu"
-        [editMode]="editMode"
-        [currentDashboardName]="currentDashboardName"
-        [currentTabName]="currentTabName"
-        [statusBarRunning]="statusBarRunning"
-        [statusBarCancelRefresh]="statusBarCancelRefresh"
-        [templateInUse]="templateInUse"
-        >
-    </status-bar>
-
-</clr-main-container>
 
 
 
@@ -1004,6 +983,30 @@
     </div>
 
 </div>
+
+
+
+    <!-- Routed area -->
+    <div class="content-container"
+        [style.background-image]="showGrid? 'url(../images/gridBlock.png)' : ''"
+        >
+        <div  class="content-area" >
+            <router-outlet ></router-outlet>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <status-bar *ngIf="showMainMenu"
+        [editMode]="editMode"
+        [currentDashboardName]="currentDashboardName"
+        [currentTabName]="currentTabName"
+        [statusBarRunning]="statusBarRunning"
+        [statusBarCancelRefresh]="statusBarCancelRefresh"
+        [templateInUse]="templateInUse"
+        >
+    </status-bar>
+
+</clr-main-container>
 
 
 

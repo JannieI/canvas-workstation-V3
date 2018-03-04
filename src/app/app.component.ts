@@ -235,6 +235,7 @@ export class AppComponent implements OnInit {
     titleFormLeft: number = 50;
     titleFormTop: number = 50;
     widgetGroup: number[] = [];
+    zoomFactor: string = 'scale(1)';
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -1800,12 +1801,19 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
     }
 
-    clickMenuViewZoom() {
-        //
+    clickMenuViewZoom(zoomPercentage: number): string {
+        // Zoom Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewZoom', '@Start');
 
         this.menuOptionClickPreAction();
 
+        if (zoomPercentage == null  ||  zoomPercentage == undefined) {
+            zoomPercentage = 0.6;
+        }
+
+        this.zoomFactor = 'scale(' + zoomPercentage.toString() + ')';
+        console.log('xx this.zoomFactor', zoomPercentage, this.zoomFactor)
+        return this.zoomFactor;
     }
 
 

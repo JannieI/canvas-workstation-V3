@@ -140,6 +140,9 @@ THEN: consider all currentXXX, where XXX = Objects to follow the same methodolog
 - add filter on Sender/Receiver
 - consider adding message Thread
 - In ViewOnly mode: cannot select a W, thus cannot see Comments per selected ...
+31.Add RouteGuard on 'Clarity Analytics', before going to web site ...
+32.Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
+
 
 **Data**
 1. Define Canvas datatype = TS ones?
@@ -240,7 +243,7 @@ BUG: if using a custom vega spec, the editor does not understand this.
 **Widget**
 1. Issue: how to call code ~WidgetEdit, etc from explore NOT duplicating code ...
 2. Add Copy and Paste options - if needed.  Remember to consider (copy i) notation, as the same W could have been Duplicated since the Copy and before the Paste ...
-3. 
+3. On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
 4. Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
  + Dont show top if now Dataset - rather appropriate Unexpected Error msg
 5. Slicerresize: only goes to a min size (maybe min-size in css), but internals shrinks further.  Not bad functionally but not right - have a look.

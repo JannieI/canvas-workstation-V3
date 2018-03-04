@@ -397,6 +397,7 @@
     .widgetContainer:hover {
         border: 1px dotted gray !important;
         box-shadow: 8px 8px gray;
+        transform: scale(1.1);
     }
 
     .widgetContainer:focus {
