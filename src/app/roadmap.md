@@ -183,16 +183,17 @@ THEN: consider all currentXXX, where XXX = Objects to follow the same methodolog
 - at start, add row, col, color fields
 - EDIT buggie - color stays, fails on T=2
 - new push
-- TABLE: 
-    - make faster, ie use raw <td> tags or superClick grid from Bradley
-    - add drag fields - to X = Add, Drag away = delete from headers
-    - add drag field to Y = Pivot!  Decide local or in backend
-    - add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here
 BUG: if using a custom vega spec, the editor does not understand this.
 - set properties of new Widget as a template - user pref
 - when open NEW and only 1 DS, then skip DS selection page?
 - when add NEW, ensure it is accessable: always same position top left + z-index = Max(rest)+1
 
+
+**Table** 
+- add drag fields - to X = Add, Drag away = delete from headers
+- add drag field to Y = Pivot!  Decide local or in backend
+- add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here
+- Does not have Links button - thinking was that one would not need to link a table to another tab, but this must be verified
 
 
 **Dashboard**
@@ -275,6 +276,7 @@ BUG: if using a custom vega spec, the editor does not understand this.
 Europe unselected, one has USA unselected.  Then data is only for Japan (3 values in dataset) - is this correct, or should it include all?
 2. Make look and feel customisable
 3. Warn user if 2 Sl on the same dataset for the same field?
+- Does not have Links button - thinking was that one would not need to link a table to another tab, but this must be verified
 
 
 

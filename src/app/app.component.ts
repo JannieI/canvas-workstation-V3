@@ -1117,7 +1117,9 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         // Can only edit one W at a time, so ignore if multiple selected
-        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
@@ -1137,7 +1139,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget('Graph')) { return};
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
+        };
 
         this.showModalWidgetCheckpoints = true;
     }
@@ -1148,7 +1152,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget('Graph')) { return};
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
+        };
 
         this.showModalWidgetComments = true;
     }
@@ -1159,7 +1165,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget('Graph')) { return};
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
+        };
 
         this.showModalWidgetLinks = true;
     }
@@ -1185,7 +1193,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget('Graph')) { return};
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
+        };
         
         // Get new ID
         // TODO - improve this when using a DB!
@@ -1236,8 +1246,12 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
-        if (!this.checkForOnlyOneWidget('Graph')) { return};
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
+        };
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -1255,7 +1269,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
 
         this.showModalWidgetExport = true;
     }
@@ -1293,8 +1309,12 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
-        if (!this.checkForOnlyOneWidget('Graph')) { return};
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
+        };
 
         this.showModalWidgetDelete = true;
     }
@@ -1324,8 +1344,12 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
-        if (!this.checkForOnlyOneWidget('Table')) { return};
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Table')) { 
+            return
+        };
         
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
@@ -1345,7 +1369,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget('Table')) { return};
+        if (!this.checkForOnlyOneWidget('Table')) { 
+            return
+        };
         
         // Get new ID
         // TODO - improve this when using a DB!
@@ -1396,8 +1422,12 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
-        if (!this.checkForOnlyOneWidget('Table')) { return};
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Table')) { 
+            return
+        };
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -1416,8 +1446,12 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         // Make sure we have only one, then delete it
-        if (!this.checkForOnlyOneWidget()) { return};
-        if (!this.checkForOnlyOneWidget('Table')) { return};
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Table')) { 
+            return
+        };
 
         this.deleteWidget('Table')
         
@@ -1444,7 +1478,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
         
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
@@ -1462,7 +1498,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
 
         this.showModalSlicerTablist = true;
 
@@ -1474,8 +1512,12 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { return};
-        if (!this.checkForOnlyOneWidget('Slicer')) { return};
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Slicer')) { 
+            return
+        };
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -1487,6 +1529,22 @@ export class AppComponent implements OnInit {
         this.showModalWidgetExpand = true;
     }
 
+    clickMenuSlicerExport() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExport', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Slicer')) { 
+            return
+        };
+
+        this.showModalWidgetExport = true;
+    }
+
     clickMenuSlicerDelete() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDelete', '@Start');
@@ -1494,8 +1552,12 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         // Make sure we have only one, then delete it
-        if (!this.checkForOnlyOneWidget()) { return};
-        if (!this.checkForOnlyOneWidget('Slicer')) { return};
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Slicer')) { 
+            return
+        };
 
         this.deleteWidget('Slicer')
         
@@ -1652,7 +1714,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForMultipleWidgets()) {return};
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
 
         let x: number = -1; 
 
@@ -1673,7 +1737,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForMultipleWidgets()) {return};
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
 
         let x: number = -1; 
 
@@ -1696,7 +1762,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForMultipleWidgets()) {return};
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
 
         let x: number = -1; 
 
@@ -1719,7 +1787,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForMultipleWidgets()) {return};
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
 
         let x: number = -1; 
 
@@ -1740,7 +1810,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForMultipleWidgets()) {return};
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
 
         let x: number = -1; 
 
@@ -1764,7 +1836,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForMultipleWidgets()) {return};
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
 
         let x: number = -1; 
 
@@ -1787,7 +1861,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForMultipleWidgets()) {return};
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
 
         let x: number = window.innerWidth / 2; 
 
@@ -1805,7 +1881,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForMultipleWidgets()) {return};
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
 
         let x: number = window.innerHeight / 2; 
 
@@ -1823,7 +1901,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForMultipleWidgets()) {return};
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
 
         // Clear, and add
         this.widgetGroup = [];
@@ -2028,7 +2108,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForMultipleWidgets()) {return};
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
 
         let x: number = -1; 
         let y: number = -1; 
