@@ -591,19 +591,32 @@
                         type="button"
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
+                        title="Manage how to view this Dashboard"
                         >
                         View
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickMenuViewPresentation()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuViewPresentation()"
+                            title="Toggle presentation mode on /off"
+                            >
                             Presention
                             <clr-icon shape="check" size="12" *ngIf="presentationMode"></clr-icon>
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuViewPrintPreview()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuViewPrintPreview()"
+                            title="Toggle print preview on/off"
+                            >
                             Print preview
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuDashboardTreeview()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuDashboardTreeview()"
+                            title="Create of TreeView of this Dashboard"
+                            >
                             Treeview
                         </button>
                         <div class="dropdown-divider"></div>
