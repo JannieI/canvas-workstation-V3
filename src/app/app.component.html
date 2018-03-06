@@ -620,22 +620,36 @@
                             Treeview
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuViewShowGrid()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuViewShowGrid()"
+                            title="Toggles a background grid"
+                            >
                             Show grid
                             <clr-icon shape="check" size="12" *ngIf="showGrid"></clr-icon>
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuViewShowDataQuality()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuViewShowDataQuality()"
+                            title="Show data qualitiy issus for Datasources in this Dashboard"
+                            >
                             Show DataQuality
                             <clr-icon shape="check" size="12" *ngIf="showDataQuality"></clr-icon>
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuViewShowComments()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuViewShowComments()"
+                            title="Show comments related to this Dashboard"
+                            >
                             Show Comments
                             <clr-icon shape="check" size="12" *ngIf="showComments"></clr-icon>
                         </button>
-
-
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuViewSnapToGrid()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuViewSnapToGrid()"
+                            title="Toggle whether resize and move will snap to a grid"
+                            >
                             Snap to Grid
                         </button>
                         <clr-dropdown>
@@ -643,6 +657,7 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
+                                title="Size of the grid for this Dashboard"
                                 >
                                 Grid size
                             </button>
@@ -658,6 +673,7 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
+                                title="Zoom % for this Dashboard"
                                 >
                                 Zoom %
                             </button>
@@ -669,8 +685,11 @@
                                 <button type="button" class="dropdown-item" clrDropdownItem>200%</button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-
-                        <button type="button" clrDropdownItem (click)="clickMenuViewZoom(0.6)">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuViewZoom(0.6)"
+                            title="100% zoom"
+                            >
                             Zoom 100%
                         </button>
                         <div class="dropdown-divider"></div>
