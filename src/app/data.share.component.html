@@ -36,10 +36,11 @@
                     <clr-dg-column>CanEdit</clr-dg-column>
 
                     <clr-dg-row *ngFor="let row of datasourcePermissions; let i = index">
-                        <clr-icon shape="times" *ngIf="showRowDeleteIcon"
-                            (click)="clickDeletePermission(row.id)">
-                        </clr-icon>
-
+                        <clr-dg-cell>
+                            <clr-icon shape="times"
+                                (click)="clickDeletePermission(row.id, i)">
+                            </clr-icon>
+                        </clr-dg-cell>
                         <clr-dg-cell>{{row.name}}</clr-dg-cell>
                         <clr-dg-cell>{{row.userID}}</clr-dg-cell>
                         <clr-dg-cell>{{row.groupID}}</clr-dg-cell>

@@ -3354,6 +3354,8 @@ export class GlobalVariableService {
         // Remove a record from the global and current DatasourcePermissions
         console.log('Global-Variables deleteDatasourcePermissions ...');
 
+        console.log('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
+        
         this.datasourcePermissions = this.datasourcePermissions.filter(
             dsp => dsp.id != id
         );

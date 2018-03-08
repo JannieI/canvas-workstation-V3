@@ -3,7 +3,7 @@
         "id": 1,
         "datasourceID": 1,
         "userID": "KilmarE",
-        "groupID": "",
+        "groupID": -1,
         "canView": true,
         "canEdit": false
     },
@@ -11,7 +11,7 @@
         "id": 2,
         "datasourceID": 1,
         "userID": "UweH",
-        "groupID": "",
+        "groupID": -1,
         "canView": false,
         "canEdit": true
     },
@@ -19,7 +19,7 @@
         "id": 3,
         "datasourceID": 2,
         "userID": "IgnusO",
-        "groupID": "",
+        "groupID": -1,
         "canView": true,
         "canEdit": true
     }
