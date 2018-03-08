@@ -142,6 +142,7 @@ THEN: consider all currentXXX, where XXX = Objects to follow the same methodolog
 - In ViewOnly mode: cannot select a W, thus cannot see Comments per selected ...
 31.Add RouteGuard on 'Clarity Analytics', before going to web site ...
 32.Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
+33.Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip for icons.
 
 
 **Data**

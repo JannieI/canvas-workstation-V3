@@ -31,58 +31,141 @@ export class DashboardTreeviewComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
 
-    rootDirectory: any[] = [
+    objectTree: any[] = [
         {
-            name: "Datasets",
+            name: "Datasources",
             icon: "folder",
             expanded: true,
-            files: [
+            children: [
                 {
-                    icon: "calendar",
-                    name: "Calendar Widget",
-                    active: true
+                    icon: 'data-cluster',
+                    name: 'Budget vs Inflation 2017',
+                    active: true,
+                    grandchildren: [
+                        {
+                            icon: "line-chart",
+                            name: "Graph: Economic review for 2017 (Bar, Inflation x Industry)",
+                            active: true
+                        },
+                        {
+                            icon: "line-chart",
+                            name: "Graph: Budget monthly review (Line, year x Costs)",
+                            active: false
+                        },
+                        {
+                            icon: "slider",
+                            name: "Slicer: Cost Centre (5, sorted on Volume)",
+                            active: false
+                        },
+                        {
+                            icon: "grid-view",
+                            name: "Table: Economic review for 2017, version 2",
+                            active: false
+                        }
+                    ]
                 },
                 {
-                    icon: "line-chart",
-                    name: "Line Charts",
-                    active: false
-                },
-                {
-                    icon: "dashboard",
-                    name: "Dashboard",
-                    active: false
-                },
-                {
-                    icon: "map",
-                    name: "Maps",
-                    active: false
-                },
+                    icon: 'data-cluster',
+                    name: 'Trades 2017',
+                    active: false,
+                    grandchildren: [
+                        {
+                            icon: "line-chart",
+                            name: "Graph: Value traded (Bar, Market x Month)",
+                            active: false
+                        },
+                        {
+                            icon: "line-chart",
+                            name: "Graph: Equity Trades ex-OD (Line, Month x Volume)",
+                            active: false
+                        },
+                        {
+                            icon: "slider",
+                            name: "Slicer: TradeType (5, sorted on Volume)",
+                            active: false
+                        },
+                        {
+                            icon: "grid-view",
+                            name: "Table: Top 10 brokers",
+                            active: false
+                        }
+                    ]
+                }
             ]
         },
         {
-            name: "Shapes",
+            name: "Widgets",
             icon: "folder",
             expanded: false,
-            files: [
+            children: [
                 {
-                    icon: "file",
-                    name: "Circle",
+                    icon: "line-chart",
+                    name: "Graph: Economic review for 2017 (Bar, Inflation x Industry)",
                     active: false
                 },
+                {
+                    icon: "line-chart",
+                    name: "Graph: Budget monthly review (Line, year x Costs)",
+                    active: false
+                },
+                {
+                    icon: "line-chart",
+                    name: "Graph: Value traded (Bar, Market x Month)",
+                    active: false
+                },
+                {
+                    icon: "line-chart",
+                    name: "Graph: Equity Trades ex-OD (Line, Month x Volume)",
+                    active: false
+                }
+            ]
+        },
+        {
+            name: "Tables",
+            icon: "folder",
+            expanded: false,
+            children: [
+                {
+                    icon: "grid-view",
+                    name: "Table: Economic review for 2017, version 2",
+                    active: false
+                },
+                {
+                    icon: "grid-view",
+                    name: "Table: Top 10 brokers",
+                    active: false
+                }
             ]
         },
         {
             name: "Slicers",
             icon: "folder",
             expanded: false,
-            files: [
+            children: [
                 {
-                    icon: "file",
-                    name: "TradeType",
+                    icon: "slider",
+                    name: "Slicer: Cost Centre (5, sorted on Volume)",
+                    active: false
+                },
+                {
+                    icon: "slider",
+                    name: "Slicer: TradeType (5, sorted on Volume)",
+                    active: false
+                }
+            ]
+        },
+        {
+            name: "Shapes",
+            icon: "folder",
+            expanded: false,
+            children: [
+                {
+                    icon: "objects",
+                    name: "Circle",
                     active: false
                 },
             ]
-        }
+        },
     ];
 
     constructor(
