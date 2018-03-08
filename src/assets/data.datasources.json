@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "name": "Share prices",
+        "name": "Share prices 2000 - 2009",
         "type": "File",
         "subType": "Excel",
         "typeVersion": "2010",
@@ -32,7 +32,7 @@
     },
     {
         "id": 2,
-        "name": "Share prices",
+        "name": "Share prices CSV",
         "type": "File",
         "subType": "CSV",
         "typeVersion": "Comma-Separator",

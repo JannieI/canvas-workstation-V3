@@ -36,6 +36,9 @@ export class DatasourceShareComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.globalVariableService.getDatasourcePermissions().then (dp => {
             this.datasourcePermissions = dp;
             this.datasourcePermissions.forEach(tdsp => {
@@ -47,7 +50,17 @@ export class DatasourceShareComponent implements OnInit {
 
     }
 
+    clickDeletePermission(id: number, index: number) {
+        // Delete the selected Permission
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeletePermission', '@Start');
+
+        this.datasourcePermissions.splice(index,1);
+        this.globalVariableService.deleteDatasourcePermissions();
+    }
     clickClose(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         console.log('clickClose')
 
 		this.formDataShareClosed.emit(action);

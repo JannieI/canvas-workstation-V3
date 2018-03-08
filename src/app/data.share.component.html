@@ -13,6 +13,7 @@
                     existing permissions, double click the View / Edit cell in the grid below.
                 </div>
                 <div class="propertyLine">
+                    <input type="text" id="formFields_7" placeholder="DS Name">
                     <input type="text" id="formFields_7" placeholder="User ID">
                     <input type="text" id="formFields_7" placeholder="Group ID">
                     <input type="text" id="formFields_7" placeholder="CanView">
@@ -27,12 +28,19 @@
                 </div>
 
                 <clr-datagrid>
+                    <clr-dg-column>Delete</clr-dg-column>
+                    <clr-dg-column>DS Name</clr-dg-column>
                     <clr-dg-column>User ID</clr-dg-column>
                     <clr-dg-column>Group ID</clr-dg-column>
                     <clr-dg-column>CanView</clr-dg-column>
                     <clr-dg-column>CanEdit</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let row of datasourcePermissions">
+                    <clr-dg-row *ngFor="let row of datasourcePermissions; let i = index">
+                        <clr-icon shape="times" *ngIf="showRowDeleteIcon"
+                            (click)="clickDeletePermission(row.id)">
+                        </clr-icon>
+
+                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
                         <clr-dg-cell>{{row.userID}}</clr-dg-cell>
                         <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
                         <clr-dg-cell>{{row.canView}}</clr-dg-cell>
