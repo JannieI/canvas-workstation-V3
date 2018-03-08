@@ -196,7 +196,8 @@ export class Datasource {
 export class DatasourcePermission {
     id: number;
     datasourceID: number;
-    userID: string;        // 1 of usr/grp filled in, one blank
+    name?: string;                      // Optional DS name - filled in @Runtime
+    userID: string;                     // 1 of usr/grp filled in, one blank
     groupID: string;
     canView: boolean;
     canEdit: boolean;

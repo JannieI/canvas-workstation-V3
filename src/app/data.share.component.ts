@@ -36,7 +36,15 @@ export class DatasourceShareComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.datasourcePermissions = this.globalVariableService.datasourcePermissions;
+        this.globalVariableService.getDatasourcePermissions().then (dp => {
+            this.datasourcePermissions = dp;
+            this.datasourcePermissions.forEach(tdsp => {
+                tdsp.name = this.globalVariableService.datasources.filter(
+                    ds => ds.id == tdsp.datasourceID)[0].name;
+            })
+            console.log('xx this.datasourcePermissions', this.datasourcePermissions)
+        });
+
     }
 
     clickClose(action: string) {
