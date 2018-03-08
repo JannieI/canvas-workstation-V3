@@ -2918,6 +2918,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
         
         this.showPopupMessage = false;
+        this.stuckCount = 0;
     }
 }
 

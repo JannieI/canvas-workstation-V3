@@ -85,8 +85,14 @@ export class TableSingleComponent {
     clickTable() {
         // Handles click event on a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTable', '@Start');
-
-
     }
 
+    clickNrRows(newValue: number) {
+        // Enter changed amount of rows
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNrRows', '@Start');
+
+        console.log('xx newV', newValue, this.nrRecords)
+        this.allowEdit = !this.allowEdit;
+        // "> <input type="text" [(ngModel)]="nrRecords"
+    }
 }
