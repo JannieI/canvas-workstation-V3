@@ -885,23 +885,47 @@
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
                 <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
-                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlerts()">
+                    <button type="button" 
+                        clrDropdownItem 
+                        (click)="clickMenuCollaborateAlerts()"
+                        title="Manage Alerts"
+                        >
                         Alerts
                     </button>
-                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateMessages()">
+                    <button type="button" 
+                        clrDropdownItem 
+                        (click)="clickMenuCollaborateMessages()"
+                        title="Manage Messages"
+                        >
                         Messages
                     </button>
-                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateActivities()">
+                    <button type="button" 
+                        clrDropdownItem 
+                        (click)="clickMenuCollaborateActivities()"
+                        title="Manage Activities"
+                        >
                         Activities
                     </button>
                     <div class="dropdown-divider"></div>
-                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
+                    <button type="button" 
+                        clrDropdownItem 
+                        (click)="clickMenuCollaborateAlert()"
+                        title="Send a Canvas Message"
+                        >
                         Send Message
                     </button>
-                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateAlert()">
+                    <button type="button" 
+                        clrDropdownItem 
+                        (click)="clickMenuCollaborateAlert()"
+                        title="Send an email"
+                        >
                         Send Email
                     </button>
-                    <button type="button" clrDropdownItem (click)="clickMenuCollaborateActivityAdd()">
+                    <button type="button" 
+                        clrDropdownItem 
+                        (click)="clickMenuCollaborateActivityAdd()"
+                        title="Add a new Activity"
+                        >
                         Add Activity
                     </button>
                 </clr-dropdown-menu>
