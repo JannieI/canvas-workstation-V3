@@ -28,6 +28,7 @@ export class TableSingleComponent {
 
     @ViewChild('tableDOM')  tableDOM: ElementRef;
 
+    allowEdit: boolean = false;
     currentData: any = [];
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
     dataFieldNames: string[] = [];

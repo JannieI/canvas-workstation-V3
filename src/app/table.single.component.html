@@ -22,7 +22,12 @@
 
             <clr-dg-footer>
                 <span *ngIf="nrRecords">
-                    Showing {{ nrRecords }} records in batches of {{ pageSize }}. 
+                    Showing 
+                    <span *ngIf="!allowEdit" (dblclick)="allowEdit=!allowEdit"> {{ nrRecords }} </span>
+                    <span *ngIf="allowEdit"> <input type="text" [(ngModel)]="nrRecords"> </span>
+                    records in batches of 
+                    {{ pageSize }}
+                    . 
                 </span>
 
                 <clr-dg-pagination #pagination [clrDgPageSize]="pageSize">

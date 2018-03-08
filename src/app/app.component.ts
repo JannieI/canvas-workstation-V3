@@ -2913,6 +2913,12 @@ export class AppComponent implements OnInit {
         this.showPopupMessage = false;
     }
 
+    clickGotIt() {
+        // Unshow popup message to help user get into Edit Mode
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
+        
+        this.showPopupMessage = false;
+    }
 }
 
 // Naming conventions
