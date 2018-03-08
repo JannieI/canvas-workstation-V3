@@ -144,14 +144,13 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     presentationMode: boolean;
     rowField: string = 'Drag a field here ...';
     selectedViz: string = 'Graph';
-    showRowFieldAdvanced: boolean = false;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
-    showRowFieldAdvancedArea: boolean = false;
-    showColumnDeleteIcon: boolean = false;
     showColourDeleteIcon: boolean = false;
+    showColumnDeleteIcon: boolean = false;
+    showRowFieldAdvanced: boolean = false;
+    showRowFieldAdvancedArea: boolean = false;
     showRowDeleteIcon: boolean = false;
-    showTable: boolean = false;
     showType: boolean = false;
 
     constructor(
@@ -339,7 +338,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 defaultMessage: ''
             }
         );
-        
+
         this.localWidget.containerHasTitle = this.containerHasTitle;
         this.formWidgetEditorClosed.emit(this.localWidget);
     }
@@ -717,21 +716,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Continue to design / edit the W, and close the form for the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
 
-        if (this.selectedViz=='Table') {
-            this.showTable = true;
-        } else {
-            this.showTable = false;
-        };
-
         this.showDatasourcePopup = false;
-    }
-
-    clickSelectViz(selection: string) {
-        // Set the selected Visualisation
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectViz', '@Start');
-
-        this.selectedViz = selection;
-
     }
 
     setGraphTypeFieldY(graphYtype: string) {

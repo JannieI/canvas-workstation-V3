@@ -12,39 +12,10 @@
                 <div class="datasources" *ngIf="showDatasourcePopup">
                     Select a <b>Datasources</b> added before, and how it should be visualised:
 
-                    <clr-dropdown class="datasourceDropdown" *ngIf="hasClicked">
-                        <button
-                            type="button"
-                            class="btn btn-link btn-sm"
-                            clrDropdownTrigger
-                            >
-                            Visualisation
-                            <clr-icon shape="caret down" class="selectIcon1" size="12"></clr-icon>
-                        </button>
-                        <clr-dropdown-menu
-                            clrPosition="bottom-left"
-                            *clrIfOpen
-                            class="datasourceDropdown"
-                            >
-                            <div class="datasourceDropdown"
-                                (click)="clickSelectViz('Graph')"
-                                clrDropdownItem
-                                >
-                                Graph
-                            </div>
-                            <div class="datasourceDropdown"
-                                (click)="clickSelectViz('Table')"
-                                clrDropdownItem
-                                >
-                                Table
-                            </div>
-                        </clr-dropdown-menu>
-                    </clr-dropdown>
-
                     <button *ngIf="hasClicked"
                         class="btn btn-sm btn-secondary datasourceButton"
                         (click)="clickContinue()">
-                        Edit {{ selectedViz }}
+                        Edit Graph
                     </button>
 
                     <div class="datasourceList">
@@ -125,7 +96,7 @@
                     </nav>
                 </div>
 
-                <div class="rowAdvanced" *ngIf="showRowFieldAdvancedArea">
+              <div class="rowAdvanced" *ngIf="showRowFieldAdvancedArea">
                     <span>
                         <label for="dashboardName" class="popupLabel">
                             Field : {{ rowField }}
@@ -324,18 +295,6 @@
                 <div class="graphArea" #dragWidget>
                 </div>
 
-                <div *ngIf="showTable" class="tableArea">
-                    <clr-datagrid class="gridIdentifyDataPreviewGrid">
-
-                        <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-                        <clr-dg-row *ngFor="let row of currentData">
-
-                            <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                                    {{ row[col] }}
-                            </clr-dg-cell>
-                        </clr-dg-row>
-                    </clr-datagrid>
-                </div>
                 <div class="graphType">
 
                     <div>
