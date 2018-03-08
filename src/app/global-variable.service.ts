@@ -3349,4 +3349,18 @@ export class GlobalVariableService {
 
         return vlSpecsNew;
     }
+
+    deleteDatasourcePermissions(id: number) {
+        // Remove a record from the global and current DatasourcePermissions
+        console.log('Global-Variables deleteDatasourcePermissions ...');
+
+        this.datasourcePermissions = this.datasourcePermissions.filter(
+            dsp => dsp.id != id
+        );
+        this.currentDatasourcePermissions = this.currentDatasourcePermissions.filter(
+            dsp => dsp.id != id
+        );
+
+        console.log('xx GV Perms', this.datasourcePermissions, this.currentDatasourcePermissions)
+    }
 }
