@@ -157,10 +157,18 @@ export class AppComponent implements OnInit {
         // Set draggables
         this.draggableWidgets  = [];
         this.currentWidgets.forEach(w => {
-            this.draggableWidgets
-        })
+            if (w.isSelected) {
+                this.draggableWidgets.push(w.id);
+            }
+        });
+
+        // Move the draggable ones
+        if (this.draggableWidgets.length > 0) {
+            this.moveWidgets()
+        }
         
     }
+
     companyName: string = this.globalVariableService.companyName;
     currentDashboardName: string = '';
     currentDatasources: Datasource[];
