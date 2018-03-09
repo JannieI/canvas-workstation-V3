@@ -2815,9 +2815,9 @@ export class AppComponent implements OnInit {
         if (message == notInEditModeMsg) {
             this.stuckCount = this.stuckCount + 1;
         } else {
-            this.stuckCount = 0;
+            // this.stuckCount = 0;
         };
-        if (this.stuckCount > 3) {
+        if (this.stuckCount == 4) {
             this.showPopupMessage = true;
         } else {
             this.showPopupMessage = false;
@@ -2918,7 +2918,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
         
         this.showPopupMessage = false;
-        this.stuckCount = 0;
+        // this.stuckCount = 0;
     }
 }
 

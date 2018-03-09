@@ -421,49 +421,89 @@
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
                         [disabled] = "!hasDatasources"
+                        title="Managing selected Widget"
                         >
                         Widget
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetNew()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuWidgetNew()"
+                            title="Add a new Widget"
+                            >
                             New
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetEdit()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuWidgetEdit()"
+                            title="Edit selected Widget"
+                            >
                             Edit
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetCheckpoints()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuWidgetCheckpoints()"
+                            title="Managing checkpoints for selected Widget"
+                            >
                             Checkpoints
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetComments()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuWidgetComments()"
+                            title="Comments for selected Widget"
+                            >
                             Comments
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetDataQuality()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuWidgetDataQuality()"
+                            title="Data quality issues for selected Widget"
+                            >
                             Data Quality
                         </button>
                         <button type="button" clrDropdownItem (click)="clickMenuWidgetLinks()">
                             Links
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetRefresh()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuWidgetRefresh()"
+                            title="Refresh Datasource linked to selected Widget"
+                            >
                             Refresh
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetDuplicate()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuWidgetDuplicate()"
+                            title="Duplicate selected Widget"
+                            >
                             Duplicate
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetExpand()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuWidgetExpand()"
+                            title="Expand Dataset for selected Widget"
+                            >
                             Expand
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetExport()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuWidgetExport()"
+                            title="Export Dataset for selected Widget"
+                            >
                             Export
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetDelete()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuWidgetDelete()"
+                            title="Delete selected Widget"
+                            >
                             Delete Widget
                         </button>
                     </clr-dropdown-menu>
                 </clr-dropdown>
-
 
                 <!-- Table menu -->
                 <clr-dropdown class="menuText">
