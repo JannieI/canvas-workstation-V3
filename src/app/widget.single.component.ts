@@ -231,22 +231,6 @@ export class WidgetSingleComponent {
 
 
 
-    clickWidgetContainerDragStart(ev: MouseEvent, index: number) {
-        // Register start of W container event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragStart', '@Start');
-
-        if (!this.editMode) {
-            return;
-        }
-
-        // Is busy with resizing, ignore this
-        if (this.isBusyResizing) {
-            return;
-        };
-
-        this.startX = ev.x;
-        this.startY = ev.y;
-    }
 
     clickWidgetContainerDragEnd(ev: MouseEvent, index: number) {
         // Move the W container at the end of the drag event
