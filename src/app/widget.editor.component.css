@@ -69,7 +69,7 @@
         margin-bottom: 0;
         padding: 5px;
         text-align: left;
-        z-index: 9000
+        z-index: 100
     }
 
     .rowField {
@@ -111,7 +111,7 @@
         margin-bottom: 0;
         padding: 5px;
         text-align: left;
-        z-index: 9000
+        z-index: 100
     }
 
     .colField {
