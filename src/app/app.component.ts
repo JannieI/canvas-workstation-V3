@@ -1845,7 +1845,7 @@ export class AppComponent implements OnInit {
     // ***********************  CLICK ARRANGE MENU OPTIONS ************************ //
     
     clickMenuArrangeBackward() {
-        //
+        // Decrease z-index of selected Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBackward', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1865,7 +1865,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuArrangeForward() {
-        //
+        // Increase z-index of selected Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeForward', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1886,7 +1886,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuArrangeBack() {
-        //
+        /// Move selected Ws to the lowest z-index
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBack', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1905,7 +1905,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuArrangeFront() {
-        //
+        // Move selected Ws to the highest z-index
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeFront', '@Start');
 
         this.menuOptionClickPreAction();
