@@ -2891,12 +2891,12 @@ export class AppComponent implements OnInit {
         );
 
         // Update the dataSet for local W, and refresh
-        this.currentWidgets.forEach(w => {
-            if (w.datasetID == datasetID) {
-                w.graphData = newDataset.data
-                this.widgetDOM.refreshWidget(w, 'app deleteWidget')
-            }
-        });
+        // this.currentWidgets.forEach(w => {
+        //     if (w.datasetID == datasetID) {
+        //         w.graphData = newDataset.data
+        //         this.widgetDOM.refreshWidget(w, 'app deleteWidget')
+        //     }
+        // });
 
     }
 

@@ -93,6 +93,8 @@ export class WidgetSingleComponent {
 
     refreshWidget(w: Widget, callingRoutine: string) {
         // Refreshes this W
+        // NOTE: the should not be called indivdually from another routine - let the ngFor loop
+        //       do the work.  Else the incorrect W will be refreshed
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidget', '@Start');
 
         console.log('xx refreshWidget start- calling, this.widget, w, selectedWidget: ', 
