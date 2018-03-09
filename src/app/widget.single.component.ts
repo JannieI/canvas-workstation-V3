@@ -229,38 +229,6 @@ export class WidgetSingleComponent {
         console.log('TEST refreshWidget end')
     }
 
-
-
-
-    clickWidgetContainerDragEnd(ev: MouseEvent, index: number) {
-        // Move the W container at the end of the drag event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragEnd', '@Start');
-
-        if (!this.editMode) {
-            return;
-        }
-
-        // Is busy with resizing, ignore this
-        if (this.isBusyResizing) {
-
-            // Done with resizing
-            this.isBusyResizing = false;
-            return;
-        };
-
-        // Reset current and globalVar values
-        this.widget.containerLeft =
-            this.widget.containerLeft - this.startX + ev.x;
-        this.globalVariableService.currentWidgets[index].containerLeft =
-            this.widget.containerLeft;
-
-        this.widget.containerTop =
-            this.widget.containerTop - this.startY + ev.y;
-        this.globalVariableService.currentWidgets[index].containerTop =
-            this.widget.containerTop;
-
-    }
-
     showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {
         // Returns True if a Widget is related to the selected Sl(s)
         // TODO - put back, but this fires ALL the time ...
