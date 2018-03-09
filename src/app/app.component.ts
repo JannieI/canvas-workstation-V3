@@ -2716,7 +2716,7 @@ export class AppComponent implements OnInit {
         //           2. Top and Left involves changing two aspects, ie Left and Width
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetUp', '@Start');
 
-        console.log('clickResizeUp starts index', index, this.startY, ev.y)
+        console.log('clickResizeWidgetUp starts index', index, this.startY, ev.y)
 
         // Top moved: adjust the height & top
         if (resizeTop) {
@@ -2780,7 +2780,7 @@ export class AppComponent implements OnInit {
                 this.currentWidgets[index].graphWidth;
         };
 
-        console.log('clickResizeUp width buttons ev x-move',
+        console.log('clickResizeWidgetUp width buttons ev x-move',
             this.currentWidgets[index].containerWidth, ev, 0 - this.startX + ev.x);
         
         // Refresh graphs
