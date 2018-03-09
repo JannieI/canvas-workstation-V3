@@ -809,20 +809,37 @@
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
                         [disabled] = "!(hasDatasources  &&  editMode)"
+                        title="Arrange selected Widgets"
                         >
                         Arrange
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickMenuArrangeBackward()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuArrangeBackward()"
+                            title="Move selected Widgets backward in z-plane"
+                            >
                             Backward
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuArrangeForward()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuArrangeForward()"
+                            title="Move selected Widgets forward in z-plane"
+                            >
                             Forward
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuArrangeBack()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuArrangeBack()"
+                            title="Move selected Widgets to the back in z-plane"
+                            >
                             Back
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuArrangeFront()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuArrangeFront()"
+                            title="Move selected Widgets to the front in z-plane"
+                            >
                             Front
                         </button>
                         <div class="dropdown-divider"></div>
@@ -832,46 +849,63 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
+                                title="Align selected Widgets"
                                 >
                                 Align
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" class="dropdown-item" clrDropdownItem
+                                <button type="button" class="dropdown-item" 
+                                    clrDropdownItem
                                     (click)="clickMenuArrangeAlignLeft()"
+                                    title="Align selected Widgets to the left"
                                     >
                                     Left
                                 </button>
-                                <button type="button" class="dropdown-item" clrDropdownItem
+                                <button type="button" class="dropdown-item" 
+                                    clrDropdownItem
                                     (click)="clickMenuArrangeAlignCenter()"
+                                    title="Align selected Widgets to the center"
                                     >
                                     Center</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem
+                                <button type="button" class="dropdown-item" 
+                                    clrDropdownItem
                                     (click)="clickMenuArrangeAlignRight()"
+                                    title="Align selected Widgets to the right"
                                     >
                                     Right</button>
                                 <div class="dropdown-divider"></div>
-                                <button type="button" class="dropdown-item" clrDropdownItem
+                                <button type="button" class="dropdown-item" 
+                                    clrDropdownItem
                                     (click)="clickMenuArrangeAlignTop()"
+                                    title="Align selected Widgets to the top"
                                     >
                                     Top
                                 </button>
-                                <button type="button" class="dropdown-item" clrDropdownItem
+                                <button type="button" class="dropdown-item" 
+                                    clrDropdownItem
                                     (click)="clickMenuArrangeAlignMiddle()"
+                                    title="Align selected Widgets to the middle"
                                     >
                                     Middle</button>
-                                <button type="button" class="dropdown-item" clrDropdownItem
+                                <button type="button" class="dropdown-item" 
+                                    clrDropdownItem
                                     (click)="clickMenuArrangeAlignBottom()"
+                                    title="Align selected Widgets to the bottom"
                                     >
                                     Bottom</button>
                                 <div class="dropdown-divider"></div>
-                                <button type="button" clrDropdownItem 
+                                <button type="button" 
+                                    clrDropdownItem 
                                     (click)="clickMenuArrangeAlignCenterHorisontally()"
+                                    title="Align selected Widgets horisontally on page"
                                     >
                                     Center horisontally
                                     <clr-icon shape="two-way-arrows down"></clr-icon>
                                 </button>
-                                <button type="button" clrDropdownItem 
+                                <button type="button" 
+                                    clrDropdownItem 
                                     (click)="clickMenuArrangeAlignCenterVertically()"
+                                    title="Align selected Widgets vertically on page"
                                     >
                                     Center vertically
                                     <clr-icon shape="two-way-arrows right"></clr-icon>
@@ -879,23 +913,38 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuArrangeGroup()">
+                        <button type="button" 
+                            clrDropdownItem (click)="clickMenuArrangeGroup()"
+                            title="Group selected Widgets"
+                            >
                             Group
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuArrangeUnGroup()">
+                        <button type="button" 
+                            clrDropdownItem (click)="clickMenuArrangeUnGroup()"
+                            title="Ungroup previosly selected Widgets"
+                            >
                             Ungroup
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuArrangeDistributeHorisontal()">
+                        <button type="button" 
+                            clrDropdownItem (click)="clickMenuArrangeDistributeHorisontal()"
+                            title="Distribute selected Widgets horisontally"
+                            >
                             Distribute 
                             <clr-icon shape="two-way-arrows"></clr-icon>
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuArrangeDistributeVertical()">
+                        <button type="button" 
+                            clrDropdownItem (click)="clickMenuArrangeDistributeVertical()"
+                            title="Distribute selected Widgets vertically"
+                            >
                             Distribute 
                             <clr-icon shape="two-way-arrows right"></clr-icon>
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuArrangeSameSize()">
+                        <button type="button" 
+                            clrDropdownItem (click)="clickMenuArrangeSameSize()"
+                            title="Make selected Widgets the same size"
+                            >
                             Same size
                         </button>
                     </clr-dropdown-menu>
