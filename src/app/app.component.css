@@ -73,9 +73,7 @@
 
 /* .aCircle {
     background-color: transparent;
-    /* border: 1px solid black; */
-    /* border-radius: 3px; */
-    /* display: inline-block;
+    display: inline-block;
     height: 110px;
     left: 20px;
     opacity: .5;
@@ -85,13 +83,11 @@
     top: 80px;
     width: 110px;
     z-index: 50;
-} */ */
+} */
 
 /* .aRectangle {
     background-color: transparent;
-    /* border: 1px solid black; */
-    /* border-radius: 3px; */
-    /* display: inline-block;
+    display: inline-block;
     height: 110px;
     left: 200px;
     opacity: .5;
@@ -101,13 +97,11 @@
     top: 200px;
     width: 110px;
     z-index: 50;
-} */ */
+} */
 
 /* .aImage {
     background-color: transparent;
-    /* border: 1px solid black; */
-    /* border-radius: 3px; */
-    /* display: inline-block;
+    display: inline-block;
     height: 110px;
     left: 400px;
     opacity: .5;
@@ -117,7 +111,7 @@
     top: 300px;
     width: 110px;
     z-index: 50;
-} */ */
+} */
 
 /* .aTextBox {
     background-color: lightgray;
@@ -174,7 +168,7 @@
     margin: 1px;
     padding: 2px;
 }
-/* 
+
 .slicerContainer {
     background-color: transparent;
     border: 1px solid lightgray;
@@ -221,12 +215,12 @@
             /* height: 2rem !important; */
             /* overflow: scroll; */
         /* } */
-        /* .slicerOption {
+        .slicerOption {
             border-bottom: 1px solid gray !important;
-        } */
+        }
 
 
-    /* .slicerContainerTopLeftHandle {
+    .slicerContainerTopLeftHandle {
         cursor: nwse-resize;
         grid-column-start: 1;
         grid-column-end: 3;
@@ -346,9 +340,9 @@
         margin: 0;
         padding: 0;
         background-color: #929699;
-    } */ */
+    }
 
-/* .tableContainer {
+.tableContainer {
     bottom: 100px;
     display: grid;
     grid-template-columns: 3px 7px 1fr 16px 1fr 7px 3px;
@@ -367,7 +361,7 @@
     .tableRow {
         background-color: rgb(219, 215, 215);
         border: 1px solid gray;
-    } */
+    }
 
 
 

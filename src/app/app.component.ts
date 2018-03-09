@@ -2491,6 +2491,34 @@ export class AppComponent implements OnInit {
         
     }
 
+    clickMenuPaletteDelete() {
+        // Clicked the Edit option on palette - decide what to do
+        this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
+        
+        // Decide which way
+        if (this.checkForOnlyOneWidget('Graph', true)) {
+            this.clickMenuWidgetDelete();
+        } else {
+            if (this.checkForOnlyOneWidget('Slicer', true)) {
+                this.clickMenuSlicerDelete();
+            } else {
+                if (this.checkForOnlyOneWidget('Table', true)) {
+                    this.clickMenuTableDelete();
+                } else {
+                    // Lost
+                    this.showStatusBarMessage(
+                        'Select a graph, slicer or table',
+                        'StatusBar',
+                        'Warning',
+                        3000,
+                        ''
+                    );                
+                };
+            };
+        };
+    }
+
+
 
     // ***********************  OTHER ************************ //
     
