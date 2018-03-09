@@ -133,6 +133,10 @@ export class AppComponent implements OnInit {
         console.log(event);
         event.preventDefault();
 
+        // Ignore certain ones
+        if (event.key == 'Tab') {
+            return;
+        }
         // Set start coordinates
         this.startX = 0;
         this.startY = 0;
