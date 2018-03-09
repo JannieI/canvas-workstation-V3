@@ -1910,6 +1910,17 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                this.currentWidgets[i].containerZindex = 
+                    this.globalVariableService.widgetsMaxZindex;
+                console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
+            };
+
+            // Refresh the Dashboard
+            this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
+        };
+
     }
 
     clickMenuArrangeAlignLeft() {
