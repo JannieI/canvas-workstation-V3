@@ -511,33 +511,66 @@
                         type="button"
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
+                        title="Manage selected Table"
                         >
                         Table
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickMenuTableAdd()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuTableAdd()"
+                            title="Add a new Table"
+                            >
                             Add Table
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuTableEdit()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuTableEdit()"
+                            title="Edit selected Table"
+                            >
                             Edit Table
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuTableDuplicate()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuTableDuplicate()"
+                            title="Duplicate selected Table"
+                            >
                             Duplicate Table
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuTableComments()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuTableComments()"
+                            title="Comments for selected Table"
+                            >
                             Comments
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuTableDataQuality()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuTableDataQuality()"
+                            title="Data quality issues for selected Table"
+                            >
                             Data Quality
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuTableExpand()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuTableExpand()"
+                            title="Expand Dataset for selected Table"
+                            >
                             Expand
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuTableExport()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuTableExport()"
+                            title="Export Dataset for selected Table"
+                            >
                             Export
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuTableDelete()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuTableDelete()"
+                            title=" selected Table"
+                            >
                             Delete Table
                         </button>
                     </clr-dropdown-menu>
