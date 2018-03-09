@@ -90,43 +90,6 @@ export class WidgetSingleComponent {
         }
     }
 
-    clickWidgetContainer(index: number) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainer', '@Start');
-
-        console.log("widget clickWidgetContainer @start", this.widget.datasourceID);
-
-        if (!this.editMode) {
-            this.globalVariableService.statusBarMessage.next(
-             {
-                message: 'Not in Edit Mode (see Edit menu Option)',
-                uiArea: 'StatusBar',
-                classfication: 'Warning',
-                timeout: 3000,
-                defaultMessage: ''
-             }
-            )
-            return;
-        }
-        this.globalVariableService.statusBarMessage.next(null);
-
-
-        this.widget.isSelected = !this.widget.isSelected;
-
-        // If now selected, add to the global selected list - if not already there
-        let pos: number = this.globalVariableService.selectedWidgetIDs.indexOf(this.widget.id);
-        if (this.widget.isSelected) {
-            if (pos < 0) {
-                this.globalVariableService.selectedWidgetIDs.push(this.widget.id);
-            }
-        } else {
-            if (pos >= 0) {
-                this.globalVariableService.selectedWidgetIDs.splice(pos,1);
-            }
-        }
-
-    }
-
     refreshWidget(w: Widget, callingRoutine: string) {
         // Refreshes this W
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidget', '@Start');
