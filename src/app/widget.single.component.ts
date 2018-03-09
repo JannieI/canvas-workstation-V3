@@ -229,20 +229,6 @@ export class WidgetSingleComponent {
         console.log('TEST refreshWidget end')
     }
 
-    clickResizeDown(ev: MouseEvent, index: number) {
-        // Mouse down event during resize, registers original x and y coordinates
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeDown', '@Start');
-
-        if (!this.editMode) {
-            return;
-        }
-
-        // Indicate that we are resizing - thus block the dragging action
-        this.isBusyResizing = true;
-        this.startX = ev.x;
-        this.startY = ev.y;
-
-    }
 
     clickResizeUp(ev: MouseEvent,
         index: number,
