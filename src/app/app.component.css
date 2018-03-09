@@ -52,7 +52,7 @@
     z-index: 100;
 }
 
-.aCircleRect {
+/* .aCircleRect {
     background-color: transparent !important;
     border: 1px solid black;
     display: block !important;
@@ -60,22 +60,22 @@
     padding: 0 !important;
     margin: 0 !important;
     width: 100px !important;
-}
+} */
 
-.aCircleDet {
+/* .aCircleDet {
     background-color: transparent !important;
     display: block !important;
     height: 100px !important;
     padding: 0 !important;
     margin: 0 !important;
     width: 100px !important;
-}
+} */
 
-.aCircle {
+/* .aCircle {
     background-color: transparent;
     /* border: 1px solid black; */
     /* border-radius: 3px; */
-    display: inline-block;
+    /* display: inline-block;
     height: 110px;
     left: 20px;
     opacity: .5;
@@ -85,13 +85,13 @@
     top: 80px;
     width: 110px;
     z-index: 50;
-}
+} */ */
 
-.aRectangle {
+/* .aRectangle {
     background-color: transparent;
     /* border: 1px solid black; */
     /* border-radius: 3px; */
-    display: inline-block;
+    /* display: inline-block;
     height: 110px;
     left: 200px;
     opacity: .5;
@@ -101,13 +101,13 @@
     top: 200px;
     width: 110px;
     z-index: 50;
-}
+} */ */
 
-.aImage {
+/* .aImage {
     background-color: transparent;
     /* border: 1px solid black; */
     /* border-radius: 3px; */
-    display: inline-block;
+    /* display: inline-block;
     height: 110px;
     left: 400px;
     opacity: .5;
@@ -117,9 +117,9 @@
     top: 300px;
     width: 110px;
     z-index: 50;
-}
+} */ */
 
-.aTextBox {
+/* .aTextBox {
     background-color: lightgray;
     border: 1px solid black;
     border-radius: 3px;
@@ -134,7 +134,7 @@
     top: 150px;
     width: 210px;
     z-index: 50;
-}
+} */
 
 .statusBar {
     background-color: #192b35;
