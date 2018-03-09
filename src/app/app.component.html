@@ -569,7 +569,7 @@
                         <button type="button" 
                             clrDropdownItem 
                             (click)="clickMenuTableDelete()"
-                            title=" selected Table"
+                            title="Delete selected Table"
                             >
                             Delete Table
                         </button>
@@ -582,33 +582,66 @@
                         type="button"
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
+                        title="Manage selected Slicer"
                         >
                         Slicer
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" clrDropdownItem (click)="clickMenuSlicerAdd()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuSlicerAdd()"
+                            title="Add a new Slicer"
+                            >
                             Add Slicer
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuSlicerEdit()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuSlicerEdit()"
+                            title="Edit selected Slicer"
+                            >
                             Edit Slicer
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuSlicerTablist()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuSlicerTablist()"
+                            title="Manage Tabs to which selected Slicer belongs"
+                            >
                             Tablist
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuSlicerComments()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuSlicerComments()"
+                            title="Comments for selected Slicer"
+                            >
                             Comments
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuSlicerDataQuality()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuSlicerDataQuality()"
+                            title="Data quality for selected Slicer"
+                            >
                             Data Quality
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuSlicerExpand()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuSlicerExpand()"
+                            title="Expand Dataset for selected Slicer"
+                            >
                             Expand
                         </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuSlicerExport()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuSlicerExport()"
+                            title="Export Dataset for selected Slicer"
+                            >
                             Export
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" clrDropdownItem (click)="clickMenuSlicerDelete()">
+                        <button type="button" 
+                            clrDropdownItem 
+                            (click)="clickMenuSlicerDelete()"
+                            title="Delete selected Slicer"
+                            >
                             Delete Slicer
                         </button>
                     </clr-dropdown-menu>
