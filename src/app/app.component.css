@@ -221,12 +221,12 @@
             /* height: 2rem !important; */
             /* overflow: scroll; */
         /* } */
-        .slicerOption {
+        /* .slicerOption {
             border-bottom: 1px solid gray !important;
-        }
+        } */
 
 
-    .slicerContainerTopLeftHandle {
+    /* .slicerContainerTopLeftHandle {
         cursor: nwse-resize;
         grid-column-start: 1;
         grid-column-end: 3;
@@ -346,9 +346,9 @@
         margin: 0;
         padding: 0;
         background-color: #929699;
-    } */
+    } */ */
 
-.tableContainer {
+/* .tableContainer {
     bottom: 100px;
     display: grid;
     grid-template-columns: 3px 7px 1fr 16px 1fr 7px 3px;
@@ -367,7 +367,7 @@
     .tableRow {
         background-color: rgb(219, 215, 215);
         border: 1px solid gray;
-    }
+    } */
 
 
 
