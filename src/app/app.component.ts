@@ -1852,12 +1852,14 @@ export class AppComponent implements OnInit {
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
-                this.currentWidgets[i].containerZindex = Math.min(
+                this.currentWidgets[i].containerZindex = Math.max(
                     this.globalVariableService.widgetsMinZindex,
                     this.currentWidgets[i].containerZindex - 1
                 );
+                console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
             };
-            console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
+
+            // Refresh the Dashboard
             this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
         };
     }
@@ -1874,8 +1876,10 @@ export class AppComponent implements OnInit {
                     this.globalVariableService.widgetsMaxZindex,
                     this.currentWidgets[i].containerZindex + 1
                 );
+                console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
             };
-            console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
+
+            // Refresh the Dashboard
             this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
         };
 
@@ -1886,6 +1890,17 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBack', '@Start');
 
         this.menuOptionClickPreAction();
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                this.currentWidgets[i].containerZindex = 
+                    this.globalVariableService.widgetsMinZindex;
+                console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
+            };
+
+            // Refresh the Dashboard
+            this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
+        };
 
     }
 
