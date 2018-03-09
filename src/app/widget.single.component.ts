@@ -229,24 +229,6 @@ export class WidgetSingleComponent {
         console.log('TEST refreshWidget end')
     }
 
-    showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {
-        // Returns True if a Widget is related to the selected Sl(s)
-        // TODO - put back, but this fires ALL the time ...
-        // this.globalFunctionService.printToConsole(this.constructor.name,'showWidgetForSlicer', '@Start');
-
-        // Get list of selected Sl
-        let result: boolean = false;
-        this.globalVariableService.currentWidgets.forEach(sl => {
-            if (sl.isSelected  &&  sl.widgetType == 'Slicer') {
-                if (sl.datasourceID == datasourceID  &&  sl.datasetID == datasetID) {
-                    result = true;
-                };
-            };
-        });
-
-        return result;
-    }
-
     clickSingleWidget(index: number, id: number) {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSingleWidget', '@Start');
