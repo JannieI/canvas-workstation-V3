@@ -1853,9 +1853,9 @@ export class AppComponent implements OnInit {
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex = Math.min(
-                    this.globalVariableService.widgetsMinZindex
-                    this.globalVariableService.widgetsMaxZindex,
-                    this.currentWidgets[i].containerZindex - 1);
+                    this.globalVariableService.widgetsMinZindex,
+                    this.currentWidgets[i].containerZindex - 1
+                );
             };
             console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
             this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
@@ -1870,8 +1870,13 @@ export class AppComponent implements OnInit {
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
-                this.currentWidgets[i].containerZindex = this.currentWidgets[i].containerZindex + 1;
+                this.currentWidgets[i].containerZindex = Math.min(
+                    this.globalVariableService.widgetsMaxZindex,
+                    this.currentWidgets[i].containerZindex + 1
+                );
             };
+            console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
+            this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
         };
 
     }
