@@ -1609,7 +1609,7 @@ export class GlobalVariableService {
             }
         });
 
-        console.log('xx filt Sl', this.currentWidgets, dataSet)
+        // console.log('xx filt Sl', this.currentWidgets, dataSet)
         return dataSet;
     }
 

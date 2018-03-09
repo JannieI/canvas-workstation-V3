@@ -1,5 +1,5 @@
 /*
- * Dashboard
+ * Manage a single Graph component
  */
 
 // From Angular
@@ -45,6 +45,7 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 })
 export class WidgetSingleComponent {
     @Input() widget: Widget;
+    @Input() selectedWidget: Widget;
     @Input() showDataQuality: boolean;
     @Input() showComments: boolean;
 
@@ -74,7 +75,7 @@ export class WidgetSingleComponent {
 
     }
     ngAfterViewInit() {
-        //
+        // After View Init
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
     }
 
@@ -94,10 +95,12 @@ export class WidgetSingleComponent {
         // Refreshes this W
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidget', '@Start');
 
-        console.log('xx refreshWidget from this.widget', callingRoutine, this.widget.id, this.widget.graphXfield, this.widget.graphYfield)
+        console.log('xx refreshWidget start- calling, this.widget, w, selectedWidget: ', 
+            callingRoutine, this.widget!=null? this.widget.id : 'this.widget = null', 
+            w!=null? w.id : 'w = null', 
+            this.selectedWidget!=null? this.selectedWidget.id : 'this.selectedW = null')
         if (w != null) {
             this.widget = w;
-            console.log('xx refreshWidget w', w.id, w.graphXfield, w.graphYfield)
         }
 
         if (this.widget.visualGrammar == 'Vega-Lite') {

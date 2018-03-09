@@ -1429,7 +1429,7 @@ export class AppComponent implements OnInit {
                 this.selectedWidget = w;
             };
         });
-        console.log('xx this.selectedWidget', this.newWidget, this.selectedWidget)
+
         this.showDatasourcePopup = false;
         this.showModalTableEditor = true;
     }
@@ -1843,7 +1843,7 @@ export class AppComponent implements OnInit {
         }
 
         this.zoomFactor = 'scale(' + zoomPercentage.toString() + ')';
-        console.log('xx this.zoomFactor', zoomPercentage, this.zoomFactor)
+        // console.log('xx this.zoomFactor', zoomPercentage, this.zoomFactor)
         return this.zoomFactor;
     }
 
@@ -2697,7 +2697,6 @@ export class AppComponent implements OnInit {
         this.isBusyResizing = true;
         this.startX = ev.x;
         this.startY = ev.y;
-        console.log('xx clickResizeWidgetDownp',  this.startY, ev.y);
 
     }
 
@@ -2715,8 +2714,6 @@ export class AppComponent implements OnInit {
         //     Note: 1. both the current and globalVar vars are changed
         //           2. Top and Left involves changing two aspects, ie Left and Width
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetUp', '@Start');
-
-        console.log('clickResizeWidgetUp starts index', index, this.startY, ev.y)
 
         // Top moved: adjust the height & top
         if (resizeTop) {
@@ -2780,12 +2777,9 @@ export class AppComponent implements OnInit {
                 this.currentWidgets[index].graphWidth;
         };
 
-        console.log('clickResizeWidgetUp width buttons ev x-move',
-            this.currentWidgets[index].containerWidth, ev, 0 - this.startX + ev.x);
-        
         // Refresh graphs
         if (this.currentWidgets[index].widgetType == 'Graph') {
-            this.widgetDOM.refreshWidget(this.currentWidgets[index], 'app Resize');
+            this.globalVariableService.changedWidget.next(this.currentWidgets[index]);
         };
     }
 

@@ -78,8 +78,6 @@ export class TableSingleComponent {
         this.dataFieldNames = this.currentDatasources[0].dataFields;
         this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
         
-
-        console.log('xx Tbl ', this.table, this.dataFieldLengths, this.currentData )
     }
 
     clickTable() {
