@@ -45,7 +45,6 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 })
 export class WidgetSingleComponent {
     @Input() widget: Widget;
-    @Input() selectedWidget: Widget;
     @Input() showDataQuality: boolean;
     @Input() showComments: boolean;
 
@@ -99,8 +98,7 @@ export class WidgetSingleComponent {
 
         console.log('xx refreshWidget start- calling, this.widget, w, selectedWidget: ', 
             callingRoutine, this.widget!=null? this.widget.id : 'this.widget = null', 
-            w!=null? w.id : 'w = null', 
-            this.selectedWidget!=null? this.selectedWidget.id : 'this.selectedW = null')
+            w!=null? w.id : 'w = null')
         if (w != null) {
             this.widget = w;
         }

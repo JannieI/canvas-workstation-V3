@@ -348,11 +348,6 @@ export class AppComponent implements OnInit {
                 // Add the given one
                 this.currentWidgets.push(newW);
 
-                // Refresh, only for graphs
-                // if (w.widgetType == 'Graph') {
-                //     this.widgetDOM.refreshWidget(w, 'app ')
-                // };
-
                 console.log('xx app changedWidget replaced', w, this.currentWidgets)
             };
         });
@@ -404,16 +399,12 @@ export class AppComponent implements OnInit {
         // TODO - switch on later, this fires ALL the time ...
         // this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewChecked', '@Start');
 
-        if (this.widgetDOM != undefined  &&  (!this.refreshGraphs) ) {
-            this.refreshGraphs = true;
-            // TODO - only refresh changed one after W-Editor
-            this.currentWidgets.forEach(w => {
-                if (w.id == 1) {
-
-                    // this.widgetDOM.refreshWidget(w, 'app ngAfterViewChecked')
-                }
-            })
-        }
+        // if (this.widgetDOM != undefined  &&  (!this.refreshGraphs) ) {
+        //     this.refreshGraphs = true;
+        //     // TODO - only refresh changed one after W-Editor
+        //     this.currentWidgets.forEach(w => {
+        //     })
+        // }
     }
 
     
@@ -2889,14 +2880,6 @@ export class AppComponent implements OnInit {
             }
         }
         );
-
-        // Update the dataSet for local W, and refresh
-        // this.currentWidgets.forEach(w => {
-        //     if (w.datasetID == datasetID) {
-        //         w.graphData = newDataset.data
-        //         this.widgetDOM.refreshWidget(w, 'app deleteWidget')
-        //     }
-        // });
 
     }
 
