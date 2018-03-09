@@ -1850,6 +1850,16 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                this.currentWidgets[i].containerZindex = Math.min(
+                    this.globalVariableService.widgetsMinZindex
+                    this.globalVariableService.widgetsMaxZindex,
+                    this.currentWidgets[i].containerZindex - 1);
+            };
+            console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
+            this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
+        };
     }
 
     clickMenuArrangeForward() {
@@ -1857,6 +1867,12 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeForward', '@Start');
 
         this.menuOptionClickPreAction();
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                this.currentWidgets[i].containerZindex = this.currentWidgets[i].containerZindex + 1;
+            };
+        };
 
     }
 

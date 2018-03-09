@@ -636,6 +636,8 @@ export class GlobalVariableService {
     QueryRunningMessage: string = 'Query running...';
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
+    widgetsMinZindex: number = 50;
+    widgetsMaxZindex: number = 59;
 
     // Permanent data - later to come from http
     backgroundcolors: CSScolor[];

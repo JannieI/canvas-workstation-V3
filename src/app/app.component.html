@@ -1195,7 +1195,7 @@
     [style.top.px]="row.containerTop"
     [style.width.px]="row.containerWidth"
     
-    [style.zindex]="row.containerZindex"
+    [style.z-index]="row.containerZindex"
     (click)="clickWidget($event, i, row.id)"
     (dragstart)="clickWidgetContainerDragStart($event, i)"
     (dragend)="clickWidgetContainerDragEnd($event, row.id)"
@@ -1204,7 +1204,7 @@
 
     <div class="widgetTitle" *ngIf="row.containerHasTitle"
         [style.background-color]="row.containerBackgroundcolor"
-        [style.zindex]="row.containerZindex+1"
+        [style.z-index]="row.containerZindex+1"
         
         [style.background-color]="row.titleBackgroundColor"
         [style.border]="row.titleBorder"
@@ -1592,7 +1592,7 @@
             shape="trash"
             size="20"
             class="buttonBarIcon"
-            (click)="Delete(i)"
+            (click)="clickMenuPaletteDelete(i)"
             >
         </clr-icon>
         <span class="tooltip-content">Delete selected Graph, Table or Slicer</span>
