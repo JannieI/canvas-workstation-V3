@@ -1770,6 +1770,14 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Make sure we have only one, then delete it
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Shape')) { 
+            return
+        };
+
         this.showModalShapeDelete = true;
     }
 
