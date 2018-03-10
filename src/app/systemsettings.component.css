@@ -11,7 +11,6 @@
     top: 0;
 }
 
-
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
@@ -19,263 +18,262 @@
     margin-top: 2px;
 }
 
-.gridTitle {
-    grid-column-start: 1;
-    grid-column-end: 21;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+    .gridTitle {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        display: grid;
+        margin-bottom: 0;
+        text-align: left;
+    }
 
-.gridCompanyTitle {
-    grid-column-start: 1;
-    grid-column-end: 21;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+    .gridCompanyTitle {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        display: grid;
+        margin-bottom: 0;
+        text-align: left;
+    }
 
+        .gridCompanyName {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridCompanyName {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 4;
-    grid-row-end: 5;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridCompanyLogo {
+            grid-column-start: 7;
+            grid-column-end: 13;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridCompanyLogo {
-    grid-column-start: 7;
-    grid-column-end: 14;
-    grid-row-start: 4;
-    grid-row-end: 5;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridCompanyTemplate {
+            grid-column-start: 14;
+            grid-column-end: 21;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridCompanyTemplate {
-    grid-column-start: 14;
-    grid-column-end: 21;
-    grid-row-start: 4;
-    grid-row-end: 5;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+    .gridMessagingTitle {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        display: grid;
+        margin-bottom: 0;
+        text-align: left;
+    }
 
-.gridMessagingTitle {
-    grid-column-start: 14;
-    grid-column-end: 21;
-    grid-row-start: 7;
-    grid-row-end: 8;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridMessagingNoQuery {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridMessagingNoQuery {
-    grid-column-start: 14;
-    grid-column-end: 21;
-    grid-row-start: 8;
-    grid-row-end: 9;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridMessagingRunning {
+            grid-column-start: 7;
+            grid-column-end: 13;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridMessagingRunning {
-    grid-column-start: 14;
-    grid-column-end: 21;
-    grid-row-start: 8;
-    grid-row-end: 9;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+    .gridOfflineTitle {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        display: grid;
+        margin-bottom: 0;
+        text-align: left;
+    }
 
-.gridOfflineTitle {
-    grid-column-start: 1;
-    grid-column-end: 21;
-    grid-row-start: 10;
-    grid-row-end: 11;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridOfflineData {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridOfflineData {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 11;
-    grid-row-end: 12;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridOfflineSchema {
+            grid-column-start: 7;
+            grid-column-end: 13;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridOfflineSchema {
-    grid-column-start: 7;
-    grid-column-end: 14;
-    grid-row-start: 11;
-    grid-row-end: 12;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridOfflineLogin {
+            grid-column-start: 14;
+            grid-column-end: 21;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridOfflineLogin {
-    grid-column-start: 14;
-    grid-column-end: 21;
-    grid-row-start: 11;
-    grid-row-end: 12;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+    .gridTableTitle {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        display: grid;
+        margin-bottom: 0;
+        text-align: left;
+    }
 
-.gridTableTitle {
-    grid-column-start: 1;
-    grid-column-end: 21;
-    grid-row-start: 13;
-    grid-row-end: 14;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridTableLength {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 13;
+            grid-row-end: 14;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridTableLength {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 14;
-    grid-row-end: 15;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+    .gridWidgetTitle {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 15;
+        grid-row-end: 16;
+        display: grid;
+        margin-bottom: 0;
+        text-align: left;
+    }
 
-.gridWidgetTitle {
-    grid-column-start: 1;
-    grid-column-end: 21;
-    grid-row-start: 16;
-    grid-row-end: 17;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridWidgetTemplate {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 16;
+            grid-row-end: 17;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridWidgetTemplate {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 17;
-    grid-row-end: 18;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridWidgetMinZindex {
+            grid-column-start: 7;
+            grid-column-end: 13;
+            grid-row-start: 16;
+            grid-row-end: 17;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridWidgetMinZindex {
-    grid-column-start: 7;
-    grid-column-end: 14;
-    grid-row-start: 17;
-    grid-row-end: 18;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridWidgetMaxZindex {
+            grid-column-start: 14;
+            grid-column-end: 21;
+            grid-row-start: 16;
+            grid-row-end: 17;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridWidgetMaxZindex {
-    grid-column-start: 14;
-    grid-column-end: 21;
-    grid-row-start: 17;
-    grid-row-end: 18;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+    .gridGridTitle {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 18;
+        grid-row-end: 19;
+        display: grid;
+        margin-bottom: 0;
+        text-align: left;
+    }
 
-.gridGridTitle {
-    grid-column-start: 1;
-    grid-column-end: 21;
-    grid-row-start: 19;
-    grid-row-end: 20;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridGridSize {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 19;
+            grid-row-end: 20;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridGridSize {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 21;
-    grid-row-end: 22;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridGridSnap {
+            grid-column-start: 7;
+            grid-column-end: 13;
+            grid-row-start: 19;
+            grid-row-end: 20;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridGridSnap {
-    grid-column-start: 7;
-    grid-column-end: 14;
-    grid-row-start: 21;
-    grid-row-end: 22;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+    .gridPrintTitle {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 21;
+        grid-row-end: 22;
+        display: grid;
+        margin-bottom: 0;
+        text-align: left;
+    }
 
-.gridPrintTitle {
-    grid-column-start: 1;
-    grid-column-end: 21;
-    grid-row-start: 23;
-    grid-row-end: 24;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridPrintDefault {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 22;
+            grid-row-end: 23;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridPrintDefault {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 24;
-    grid-row-end: 25;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridPrintSize {
+            grid-column-start: 7;
+            grid-column-end: 13;
+            grid-row-start: 22;
+            grid-row-end: 23;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridPrintSize {
-    grid-column-start: 7;
-    grid-column-end: 14;
-    grid-row-start: 24;
-    grid-row-end: 25;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridPrintLayout {
+            grid-column-start: 14;
+            grid-column-end: 21;
+            grid-row-start: 22;
+            grid-row-end: 23;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
 
-.gridPrintLayout {
-    grid-column-start: 14;
-    grid-column-end: 21;
-    grid-row-start: 24;
-    grid-row-end: 25;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
-
-.gridPrintColour {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 25;
-    grid-row-end: 26;
-    display: grid;
-    margin-bottom: 0;
-    text-align: left;
-}
+        .gridPrintColour {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 23;
+            grid-row-end: 24;
+            display: grid;
+            margin-bottom: 0;
+            text-align: left;
+        }
