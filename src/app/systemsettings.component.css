@@ -199,3 +199,33 @@ gridWidgetMaxZindex {
     margin-bottom: 0;
     text-align: left;
 }
+
+gridGridTitle {
+    grid-column-start: 1;
+    grid-column-end: 21;
+    grid-row-start: 19;
+    grid-row-end: 20;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridGridSize {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 21;
+    grid-row-end: 22;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridGridSnap {
+    grid-column-start: 7;
+    grid-column-end: 14;
+    grid-row-start: 21;
+    grid-row-end: 22;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
