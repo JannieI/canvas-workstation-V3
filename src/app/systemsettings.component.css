@@ -101,7 +101,7 @@ gridMessagingRunning {
 }
 
 gridOfflineTitle {
-    grid-column-start: 14;
+    grid-column-start: 1;
     grid-column-end: 21;
     grid-row-start: 10;
     grid-row-end: 11;
@@ -111,8 +111,8 @@ gridOfflineTitle {
 }
 
 gridOfflineData {
-    grid-column-start: 14;
-    grid-column-end: 21;
+    grid-column-start: 1;
+    grid-column-end: 7;
     grid-row-start: 11;
     grid-row-end: 12;
     display: grid;
@@ -121,8 +121,8 @@ gridOfflineData {
 }
 
 gridOfflineSchema {
-    grid-column-start: 14;
-    grid-column-end: 21;
+    grid-column-start: 7;
+    grid-column-end: 14;
     grid-row-start: 11;
     grid-row-end: 12;
     display: grid;
@@ -141,7 +141,7 @@ gridOfflineLogin {
 }
 
 gridTableTitle {
-    grid-column-start: 14;
+    grid-column-start: 1;
     grid-column-end: 21;
     grid-row-start: 13;
     grid-row-end: 14;
@@ -151,10 +151,50 @@ gridTableTitle {
 }
 
 gridTableLength {
-    grid-column-start: 14;
-    grid-column-end: 21;
+    grid-column-start: 1;
+    grid-column-end: 7;
     grid-row-start: 14;
     grid-row-end: 15;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridWidgetTitle {
+    grid-column-start: 1;
+    grid-column-end: 21;
+    grid-row-start: 16;
+    grid-row-end: 17;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridWidgetTemplate {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 17;
+    grid-row-end: 18;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridWidgetMinZindex {
+    grid-column-start: 7;
+    grid-column-end: 14;
+    grid-row-start: 17;
+    grid-row-end: 18;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridWidgetMaxZindex {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 17;
+    grid-row-end: 18;
     display: grid;
     margin-bottom: 0;
     text-align: left;
