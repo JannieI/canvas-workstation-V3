@@ -1270,7 +1270,18 @@
     <!-- Shape Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'">
         <!-- <table-single -->
-            Circle
+        <svg [style.height]="row.containerHeight"
+            [style.width]="row.containerWidth"
+            >
+            <circle 
+                [style.cx]="row.containerWidth/2" 
+                [style.cy]="row.containerWidth/2" 
+                [style.r]="row.containerWidth/2" 
+                [style.stroke]="row.shapeStroke" 
+                [style.stroke-width.px]="row.shapeStrokeWidth" 
+                [style.fill]="row.shapeFill" 
+                />
+        </svg>
             
         <!-- </table-single> -->
     </div>
