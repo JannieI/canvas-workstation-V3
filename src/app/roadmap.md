@@ -145,6 +145,14 @@ THEN: consider all currentXXX, where XXX = Objects to follow the same methodolog
 33.Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip for icons.
 34.Make Observable from keystrokes in app component - then debounce to make it less??  See BK mouse wheel scroll ...
 35.Improve getBackgroundColors (more propertie like rgb, etc), make more useful and make generic getCSSColours.  Then use in forms, somewhere
+26.Group: have a CLEAR definition of what this is and how it works:
+- only one, or many?
+- if click one in group, select all in group?
+- if move one in group and rest not selected, do they move as well?
+- if resize, one or all in group resizes?  Particularly if none selected.
+- if some W selected, say 1 in group of 4.  If move, does group also move?
+- better indication that groups are used, and maybe some help when Ws are group - say one- time help popup.
+
 
 
 **Data**
