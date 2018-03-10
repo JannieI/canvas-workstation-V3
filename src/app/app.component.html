@@ -1301,7 +1301,24 @@
                 />
         </svg>
     </div>
-    
+
+    <!-- Shape Rectangle Object -->
+    <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='rect'">
+        <svg [style.height.px]="row.containerHeight"
+            [style.width.px]="row.containerWidth"
+            [style.marginTop.px]="-25"
+            [style.marginLeft.px]="-9"
+            >
+            <rect 
+                [style.height.px]="row.containerHeight-10"
+                [style.width.px]="row.containerWidth-10"
+                [style.stroke]="row.shapeStroke" 
+                [style.stroke-width.px]="row.shapeStrokeWidth" 
+                [style.fill]="row.shapeFill" 
+                />
+        </svg>
+    </div>
+        
     <div class="widgetContainerTopLeftHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
