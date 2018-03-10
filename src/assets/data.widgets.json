@@ -1380,7 +1380,7 @@
         "rowLimit": 1,
         "addRestRow": false,
         "size": "",
-        "containerBackgroundcolor": "rgb(240, 238, 238)",
+        "containerBackgroundcolor": "darkorchid",
         "containerBorder": "none",
         "containerBorderRadius": "",
         "containerBoxshadow": "none",

@@ -1377,9 +1377,13 @@
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='value'">
         <span [style.height.px]="row.containerHeight"
             [style.width.px]="row.containerWidth"
+            [style.background-color]="row.containerBackgroundColor"
             [style.marginTop.px]="-25"
             [style.marginLeft.px]="-9"
-            [style.fontSize.px]="50"
+            [style.font-size.px]="50"
+            [style.font-style]="'italic'"
+            [style.font-weight]="'bold'"
+            [style.font-family]="'Arial, serif'"
             >
             {{ row.shapeText }}
         </span >
