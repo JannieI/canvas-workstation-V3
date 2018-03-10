@@ -1236,6 +1236,7 @@
             {{ row.nrComments }}
         </span>
 
+
         <b>{{ row.titleText }}</b>
     </div>
 
@@ -1265,7 +1266,15 @@
             >
         </table-single>
     </div>
-    
+
+    <!-- Shape Object -->
+    <div class="widget" *ngIf="row.widgetType=='Shape'">
+        <!-- <table-single -->
+            Circle
+            
+        <!-- </table-single> -->
+    </div>
+
     <div class="widgetContainerTopLeftHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
