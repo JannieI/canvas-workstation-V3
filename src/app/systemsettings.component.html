@@ -2,68 +2,100 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <div>
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
 
-                System Settings
-                <div class="propertyLine">
-                    These are settings done on the server, and applies to the overall system:
+
+            <div class="gridOverall">
+                <div class="gridTitle">
+                    System Settings.  <i>For networked installatons, these settings are done
+                    on the server.</i>
+                </div>
+
+                <div class="gridCompanyTitle">
+                    Company
+                </div>
+
+                <div class="gridCompanyName">
                     <input
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Store server data locally (T/F)"
-                        >
+                    type="text"
+                    id="formFields_7"
+                    placeholder="Company Name"
+                    >
+                </div>
+
+                <div class="gridCompanyLogo">
                     <input
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Store server schema locally (T/F)"
-                        >
-                    <input
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Can loging to a local server (T/F)"
-                        >
-                    <input
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Show View startup message (T/F)"
-                        >
-                    <input
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Show Discard startup message (T/F)"
-                        >
+                    type="text"
+                    id="formFields_7"
+                    placeholder="Company Logo"
+                    >
+                </div>
+        
+                <div class="gridCompanyTemplate">
                     <input
                         type="text"
                         id="formFields_7"
                         placeholder="Default Template"
                         >
-                    <input
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Pref 2"
-                        >
-
-                    <div class="propertyLine">
-                        Default Printer for this Dashboard
-                        <input type="text" id="formFields_7" placeholder="Local HP">
-                    </div>
-                    <div class="propertyLine">
-                        Default Page size
-                        <input type="text" id="formFields_7" placeholder="A4">
-                    </div>
-                    <div class="propertyLine">
-                        Default layout
-                        <input type="text" id="formFields_7" placeholder="Single page">
-                    </div>
-                    <div class="propertyLine">
-                        Default colour
-                        <input type="text" id="formFields_7" placeholder="Black and White">
-                    </div>
-
                 </div>
+Messaging                        
+                    NoQueryRunningMessage
+                    QueryRunningMessage
+
+working offline                    
+                <input
+                    type="text"
+                    id="formFields_7"
+                    placeholder="Store server data locally (T/F)"
+                    >
+                <input
+                    type="text"
+                    id="formFields_7"
+                    placeholder="Store server schema locally (T/F)"
+                    >
+                <input
+                    type="text"
+                    id="formFields_7"
+                    placeholder="Can loging to a local server (T/F)"
+                    >
+                <input
+                    type="text"
+                    id="formFields_7"
+                    placeholder="Pref 2"
+                    >
+
+Tables                        
+                    maxTableLength
+
+Widgets
+                    widgetTemplate
+                    widgetsMinZindex
+                    widgetsMaxZindex
+
+Grid                        
+                    gridSize
+                    snapToGrid
+
+Printing
+                <div class="propertyLine">
+                    Default Printer for this Dashboard
+                    <input type="text" id="formFields_7" placeholder="Local HP">
+                </div>
+                <div class="propertyLine">
+                    Default Page size
+                    <input type="text" id="formFields_7" placeholder="A4">
+                </div>
+                <div class="propertyLine">
+                    Default layout
+                    <input type="text" id="formFields_7" placeholder="Single page">
+                </div>
+                <div class="propertyLine">
+                    Default colour
+                    <input type="text" id="formFields_7" placeholder="Black and White">
+                </div>
+
             </div>
         </div>
     </div>

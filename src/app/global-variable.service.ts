@@ -631,14 +631,37 @@ const transformationsFormat: Transformation[] =
 @Injectable()
 export class GlobalVariableService {
 
-    // Constants
+    // Settings 
+    // TODO - get from DB, not Constants
+    gridSize: number = 3;
     maxTableLength: number = 500;
     NoQueryRunningMessage: string = 'No Query';
     QueryRunningMessage: string = 'Query running...';
+    snapToGrid: boolean = true;
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
     widgetsMinZindex: number = 50;
     widgetsMaxZindex: number = 59;
+
+    // Company related variables
+    companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig
+    companyLogo: string = '';                                   // Optional file name, set in SystemConfig
+
+    // System-wide related variables, set at Installation - for later use
+    // systemConfigurationID: number = -1;
+    // backendName: string = 'Eazl';
+    // backendUrl: string = '';                                    // RESTi url, set in SystemConfig
+    // defaultDaysToKeepResultSet: number = 1;                     // Optional, set in SystemConfig
+    // frontendName: string = 'Canvas';
+    // maxRowsDataReturned: number = 1000000;                      // Optional, set in SystemConfig
+    // maxRowsPerWidgetGraph: number = 1;                          // Optional, set in SystemConfig
+    // systemTitle: string = 'Canvas';
+    // averageWarningRuntime: number = 0;
+    // defaultWidgetConfiguration: string = '';
+    // dashboardIDStartup: number = null;
+    // defaultReportFilters: string = '';
+    // environment: string = '';
+    // frontendColorScheme: string = '';
 
     // Permanent data - later to come from http
     backgroundcolors: CSScolor[];
@@ -739,21 +762,6 @@ export class GlobalVariableService {
     dataGetFromSwitch = new BehaviorSubject<string>('File');
     // refreshDashboard = new BehaviorSubject<boolean>(false);      // True to refresh the D now
 
-
-    // Company related variables
-    companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig
-    companyLogo: string = '';                                   // Optional file name, set in SystemConfig
-
-    // System-wide related variables, set at Installation
-    // systemConfigurationID: number = -1;
-    // backendName: string = 'Eazl';
-    // backendUrl: string = '';                                    // RESTi url, set in SystemConfig
-    // defaultDaysToKeepResultSet: number = 1;                     // Optional, set in SystemConfig
-    // frontendName: string = 'Canvas';
-    // maxRowsDataReturned: number = 1000000;                      // Optional, set in SystemConfig
-    // maxRowsPerWidgetGraph: number = 1;                          // Optional, set in SystemConfig
-    // systemTitle: string = 'Canvas';
-
     // Current User
     // canvasUser = new BehaviorSubject<CanvasUser>(null);
     // isAuthenticatedOnEazl: boolean = false;        // True if authenticated
@@ -796,45 +804,6 @@ export class GlobalVariableService {
     isDirtyCanvasAlerts: boolean = true;
     isDirtyCanvasComments: boolean = true;
     isDirtyCanvasMessages: boolean = true;
-    // isDirtyTextAlignDropdown: boolean = true;
-    // isDirtyBorderDropdown: boolean = true;
-    // isDirtyBoxShadowDropdown: boolean = true;
-    // isDirtyBackgroundImageDropdown: boolean = true;
-    // isDirtyDashboardTab: boolean = true;
-    // isDirtyCanvasMessage: boolean = true;
-    // isDirtyCanvasMessageRecipient: boolean = true;
-    // isDirtyDashboardTag: boolean = true;
-    // isDirtyDashboardTagMembership: boolean = true;
-    // isDirtyDashboard: boolean = true;
-    // isDirtyDatasource: boolean = true;
-    // isDirtyFilter: boolean = true;
-    // isDirtyFontSizeDropdown: boolean = true;
-    // isDirtyFontWeightDropdown: boolean = true;
-    // isDirtyGraphType: boolean = true;
-    // isDirtyGridSizeDropdown: boolean = true;
-    // isDirtyGroup: boolean = true;
-    // isDirtyImageSourceDropdown: boolean = true;
-    // isDirtyPackageTask: boolean = true;
-    // isDirtyReport: boolean = true;
-    // isDirtyReportWidgetSet: boolean = true;
-    // isDirtyReportHistory: boolean = true;
-    // isDirtySystemConfiguration: boolean = true;
-    // isDirtyTextMarginDropdown: boolean = true;
-    // isDirtyTextPaddingDropdown: boolean = true;
-    // isDirtyTextPositionDropdown: boolean = true;
-    // isDirtyWidgetTemplate: boolean = true;
-    // isDirtyWidgetType: boolean = true;
-    // isDirtyUser: boolean = true;
-
-    // System & operation config
-    // averageWarningRuntime: number = 0;
-    // defaultWidgetConfiguration: string = '';
-    // dashboardIDStartup: number = null;
-    // defaultReportFilters: string = '';
-    // environment: string = '';
-    // frontendColorScheme: string = '';
-    gridSize: number = 3;
-    // snapToGrid: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)

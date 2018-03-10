@@ -10,3 +10,62 @@
     position: relative;
     top: 0;
 }
+
+
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-auto-rows: 0.8rem;
+    margin-top: 2px;
+}
+
+.gridTitle {
+    grid-column-start: 1;
+    grid-column-end: 21;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.gridCompanyTitle {
+    grid-column-start: 1;
+    grid-column-end: 21;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+
+.gridCompanyName {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.gridCompanyLogo {
+    grid-column-start: 7;
+    grid-column-end: 14;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.gridCompanyTemplate {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
