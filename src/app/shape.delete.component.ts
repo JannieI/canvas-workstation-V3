@@ -22,8 +22,8 @@ import { GlobalVariableService }      from './global-variable.service';
     selector: 'shape-delete',
     templateUrl: './shape.delete.component.html',
     styleUrls: ['./shape.delete.component.css']
-  })
-  export class ShapeDeleteComponent implements OnInit {
+})
+export class ShapeDeleteComponent implements OnInit {
 
     @Input() currentShapeSpec: any;
     @Output() formShapeDeleteClosed: EventEmitter<string> = new EventEmitter();
@@ -37,15 +37,22 @@ import { GlobalVariableService }      from './global-variable.service';
     ) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
     }
-
-    ngAfterViewInit() {
-
-    }
-
 
   	clickClose(action: string) {
-	  	this.formShapeDeleteClosed.emit(action);
-        }
+        // Close the form, no action
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
+  	  	this.formShapeDeleteClosed.emit(action);
+    }
+  
+    clickDelete() {
+        // Confirmed, delete the Shape
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+
+        this.formShapeDeleteClosed.emit('Delete');
+    }
   }
