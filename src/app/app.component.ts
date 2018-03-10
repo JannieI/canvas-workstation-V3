@@ -895,6 +895,9 @@ export class AppComponent implements OnInit {
             this.clickMenuEditSelectAllNone('None');
         }
 
+        // Exceed 4 ...
+        this.stuckCount = 5;
+
         // Toggle mode
         this.globalVariableService.editMode.next(!this.editMode);
     }

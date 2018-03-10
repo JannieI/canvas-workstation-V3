@@ -36,11 +36,15 @@ export class PreferencesComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardPreferencesClosed.emit(action);
     }
