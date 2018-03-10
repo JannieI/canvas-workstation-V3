@@ -42,11 +42,11 @@ export class ShapeDeleteComponent implements OnInit {
 
     }
 
-  	clickClose(action: string) {
+  	clickClose() {
         // Close the form, no action
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-  	  	this.formShapeDeleteClosed.emit(action);
+  	  	this.formShapeDeleteClosed.emit();
     }
   
     clickDelete() {
