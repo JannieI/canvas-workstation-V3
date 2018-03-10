@@ -26,13 +26,6 @@ export class SlicerTablistComponent implements OnInit {
 
     currentTabNames: {isSelected: boolean; name: string}[];
     errorMessage: boolean = false;
-    showTextBox: boolean = true;
-    showCircle: boolean = false;
-    showRectangle: boolean = false;
-    showLine: boolean = false;
-    showArrow: boolean = false;
-    showImage: boolean = false;
-    showTypeDashboard: boolean = false;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
