@@ -489,7 +489,8 @@ export class Widget {
     shapeR: string;                     // circle svg radius
     shapeStroke: string;                // colour of line
     shapeStrokeWidth: string;           // line thickness in px
-    shapeFill: string;                  // fill / inside (ie of circle)
+    shapeFill: string;                  // fill / inside (ie of circle, colour of text, etc)
+    shapeText: string;                  // Text in textbox
     
     // Created, updated and refreshed
     refreshMode: string;                // Manual, OnOpen, Repeatedly

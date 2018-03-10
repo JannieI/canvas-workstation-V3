@@ -230,6 +230,7 @@ const widgetTemplate: Widget =
         "shapeStroke": "",
         "shapeStrokeWidth": "",
         "shapeFill": "",
+        "shapeText": "",
         "refreshMode": "",
         "refreshFrequency": 1,
         "widgetRefreshedOn": "",
@@ -2886,6 +2887,7 @@ export class GlobalVariableService {
                 {key: 'shapeStroke', 				type: 'string'},
                 {key: 'shapeStrokeWidth', 			type: 'string'},
                 {key: 'shapeFill', 					type: 'string'},
+                {key: 'shapeText', 					type: 'string'},
                 {key: 'refreshMode', 				type: 'string'},
                 {key: 'refreshFrequency', 			type: 'int'},
                 {key: 'widgetRefreshedOn', 			type: 'string'},
@@ -3239,6 +3241,7 @@ export class GlobalVariableService {
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeFill = changedWidget.shapeFill;
+                w.shapeText = changedWidget.shapeText;
                 w.refreshMode = changedWidget.refreshMode;
                 w.refreshFrequency = changedWidget.refreshFrequency;
                 w.widgetRefreshedOn = changedWidget.widgetRefreshedOn;

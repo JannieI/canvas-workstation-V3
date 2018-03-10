@@ -1318,7 +1318,24 @@
                 />
         </svg>
     </div>
-        
+
+    <!-- Shape Text Object -->
+    <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='text'">
+        <svg [style.height.px]="row.containerHeight"
+            [style.width.px]="row.containerWidth"
+            [style.marginTop.px]="-25"
+            [style.marginLeft.px]="-9"
+            >
+            <text 
+                x="0" 
+                y="15" 
+                [style.fill]="row.shapeFill"
+                >
+                {{ row.shapeText }}
+            </text>
+        </svg>
+    </div>
+            
     <div class="widgetContainerTopLeftHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
