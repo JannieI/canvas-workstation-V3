@@ -590,6 +590,11 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeDelete', '@Start');
 
+        // Delete if so requested
+        if (action == 'Delete') {
+            this.deleteWidget('Shape');
+        };
+
         this.showModalShapeDelete = false;
     }
 
