@@ -1766,6 +1766,10 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
+        };
+
         this.showModalWidgetLinks = true;
     }
 
