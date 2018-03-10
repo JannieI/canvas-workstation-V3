@@ -69,3 +69,34 @@
     margin-bottom: 0;
     text-align: left;
 }
+
+gridMessagingTitle {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 7;
+    grid-row-end: 8;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridMessagingNoQuery {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 8;
+    grid-row-end: 9;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridMessagingRunning {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 8;
+    grid-row-end: 9;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
