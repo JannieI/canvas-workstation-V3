@@ -281,6 +281,11 @@ BUG: if using a custom vega spec, the editor does not understand this.
 2. Generate all shapes from data - not only circle which is static html at moment
 3. Add a DragHandle and Resize handle to popup menu.  This way it is simpler - just hover to make the buttons appear, drag and voila.  Similarly, consider removing the Drag and Resize handles from the Dashboard if this works.
 4. Keep Select button on Shape - make red border like Dashboard + can group/ungroup + can move/align/etc together with Widgets.  Make this code DRY.
+5. Add rotate to text box with transform="rotate(30 20,40)"
+6. Can / should other Shapes also rotate??
+7. Can / should Shapes have radial / linear blur inside??
+8. Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
+
 
 
 **Presentation**
