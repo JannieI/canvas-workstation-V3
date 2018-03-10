@@ -1194,7 +1194,6 @@
     [style.left.px]="row.containerLeft"
     [style.top.px]="row.containerTop"
     [style.width.px]="row.containerWidth"
-    
     [style.z-index]="row.containerZindex"
     (click)="clickWidget($event, i, row.id)"
     (dragstart)="clickWidgetContainerDragStart($event, i)"
@@ -1205,7 +1204,6 @@
     <div class="widgetTitle" *ngIf="row.containerHasTitle"
         [style.background-color]="row.containerBackgroundcolor"
         [style.z-index]="row.containerZindex+1"
-        
         [style.background-color]="row.titleBackgroundColor"
         [style.border]="row.titleBorder"
         [style.color]="row.titleColor"
@@ -1267,16 +1265,18 @@
         </table-single>
     </div>
 
-    <!-- Shape Object -->
+    <!-- Shape Circle Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'">
         <!-- <table-single -->
         <svg [style.height]="row.containerHeight"
             [style.width]="row.containerWidth"
+            [style.marginTop.px]="-30"
+            [style.marginLeft.px]="-16"
             >
             <circle 
                 [style.cx]="row.containerWidth/2" 
-                [style.cy]="row.containerWidth/2" 
-                [style.r]="row.containerWidth/2" 
+                [style.cy]="row.containerHeight/2" 
+                [style.r]="(row.containerWidth-26)/2" 
                 [style.stroke]="row.shapeStroke" 
                 [style.stroke-width.px]="row.shapeStrokeWidth" 
                 [style.fill]="row.shapeFill" 

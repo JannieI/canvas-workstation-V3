@@ -226,8 +226,6 @@ const widgetTemplate: Widget =
         "tableRows": 1,
         "tableTop": 1,
         "tableWidth": 1,
-        "shapeCx": "",
-        "shapeCy": "",
         "shapeR": "",
         "shapeStroke": "",
         "shapeStrokeWidth": "",
@@ -2884,8 +2882,6 @@ export class GlobalVariableService {
                 {key: 'tableRows', 					type: 'int'},
                 {key: 'tableTop', 					type: 'int'},
                 {key: 'tableWidth', 				type: 'int'},
-                {key: 'shapeCx', 					type: 'string'},
-                {key: 'shapeCy', 					type: 'string'},
                 {key: 'shapeR', 					type: 'string'},
                 {key: 'shapeStroke', 				type: 'string'},
                 {key: 'shapeStrokeWidth', 			type: 'string'},
@@ -3239,8 +3235,6 @@ export class GlobalVariableService {
                 w.tableRows = changedWidget.tableRows;
                 w.tableTop = changedWidget.tableTop;
                 w.tableWidth = changedWidget.tableWidth;
-                w.shapeCx = changedWidget.shapeCx;
-                w.shapeCy = changedWidget.shapeCy;
                 w.shapeR = changedWidget.shapeR;
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;

@@ -486,12 +486,10 @@ export class Widget {
     tableWidth: number;                 // in px, cuts of rest if bigger than this (for later use)
 
     // Shape
-    shapeCx: string;                             // circle svg cx in px - ie '50' without dimension
-    shapeCy: string;                             // circle svg cy
-    shapeR: string;                              // circle svg radius
-    shapeStroke: string;                         // colour of line
-    shapeStrokeWidth: string;                    // line thickness in px
-    shapeFill: string;                           // fill / inside (ie of circle)
+    shapeR: string;                     // circle svg radius
+    shapeStroke: string;                // colour of line
+    shapeStrokeWidth: string;           // line thickness in px
+    shapeFill: string;                  // fill / inside (ie of circle)
     
     // Created, updated and refreshed
     refreshMode: string;                // Manual, OnOpen, Repeatedly
