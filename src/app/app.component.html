@@ -1363,7 +1363,7 @@
             >
     </div>
 
-    <!-- Shape Image Object -->
+    <!-- Shape Bullets Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='bullets'">
         <ul
             >
@@ -1371,6 +1371,18 @@
             <li>Tea</li>
             <li>Coca Cola</li>
         </ul>
+    </div>
+
+    <!-- Shape Text Object -->
+    <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='value'">
+        <span [style.height.px]="row.containerHeight"
+            [style.width.px]="row.containerWidth"
+            [style.marginTop.px]="-25"
+            [style.marginLeft.px]="-9"
+            [style.fontSize.px]="50"
+            >
+            {{ row.shapeText }}
+        </span >
     </div>
 
     <div class="widgetContainerTopLeftHandle" *ngIf="editMode"

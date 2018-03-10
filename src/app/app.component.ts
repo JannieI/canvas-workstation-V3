@@ -1766,7 +1766,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget('Graph')) { 
+        if (!this.checkForOnlyOneWidget('Shape')) { 
             return
         };
 
