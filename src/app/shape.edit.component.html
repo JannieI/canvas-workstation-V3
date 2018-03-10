@@ -1,199 +1,256 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
-            <div class="modal-content modalContent">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
 
-                <div class="overall">
+            <div class="overall">
 
-                    <div class="shapeProperties">
-                        <button type="button" class="closeButton" (click)="clickClose()">
-                            X
-                        </button>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
 
-                        Shape
-                        <form>
-                            <section>
-                                <div class="form-group">
-                                    <label for="selects_4">Select a shape:</label>
-                                    <div class="select">
-                                        <select id="selects_3"
-                                            (change)="clickSelectShape($event)"
-                                            >
-                                            <option>TextBox</option>
-                                            <option>Circle</option>
-                                            <option>Rectangle</option>
-                                            <option>Line</option>
-                                            <option>Arrow</option>
-                                            <option>Image</option>
-                                        </select>
-                                    </div>
-                                </div>
+                <div class="gridHeading">
+                    Shapes
+                </div>
 
-                            </section>
-                        </form>
-                        <div class="propertyLine">
-                            Position:
-                            <input type="text" id="formFields_7" placeholder="Left">
-                            <input type="text" id="formFields_7" placeholder="Top">
-                        </div>
-
-                        <div class="propertyLine">
-                            Size:
-                            <input type="text" id="formFields_7" placeholder="Height">
-                            <input type="text" id="formFields_7" placeholder="Width">
-                        </div>
-                        <div class="propertyLine">
-                            Border:
-                            <input type="text" id="formFields_7" placeholder="1px solid Gray">
-                        </div>
-                        <div class="propertyLine">
-                            Background Colour:
-                            <input type="text" id="formFields_7" placeholder="Transparent">
-                        </div>
+                <div class="gridShapes">
+                    <label for="selects_4">Select a shape:</label>
+                    <div class="select">
+                        <select id="selects_3"
+                            (change)="clickSelectShape($event)"
+                            >
+                            <option>Circle</option>
+                            <option>Ellipse</option>
+                            <option>Rectangle</option>
+                            <option>Text</option>
+                            <option>Arrow</option>
+                            <option>Image</option>
+                            <option>Bullets</option>
+                            <option>Value</option>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="shapeTopText" *ngIf="showTextBox">
-                        <div class="shapeTopInner">
-                            The brown fox is tired
-                        </div>
+                <div class="shapeTopShape" *ngIf="showCircle">
+                    <svg height="200" width="200">
+                        <circle 
+                            [style.cx]="100" 
+                            [style.cy]="100" 
+                            [style.r]="40" 
+                            [style.stroke]="black" 
+                            [style.stroke-width.px]="1" 
+                            [style.fill]="green" 
+                            />
+                    </svg>
+                </div>
+
+                <div class="shapeTopShape" *ngIf="showEllipse">
+                    <svg height="200" width="200">
+                        <ellipse 
+                        [style.cx]="100" 
+                        [style.cy]="100" 
+                        [style.rx]="80" 
+                        [style.ry]="40" 
+                        [style.stroke]="black" 
+                        [style.stroke-width.px]="1" 
+                        [style.fill]="green" 
+                        />
+                    </svg>
+                </div>
+
+                <div class="shapeTopShape" *ngIf="showRectangle">
+                    <svg width="400" height="180">
+                        <rect 
+                            [style.height.px]="100"
+                            [style.width.px]="100"
+                            [style.stroke]="black" 
+                            [style.stroke-width.px]="1" 
+                            [style.fill]="green" 
+                            />
+                    </svg>
+                </div>
+
+                <div class="shapeTopShape" *ngIf="showTextBox">
+                    <svg>
+                        <text 
+                            x="0" 
+                            y="15" 
+                            [style.fill]="black"
+                            >
+                            {{ shapeText }}
+                        </text>
+                    </svg>
+                </div>
+        
+                <div class="shapeTopShape" *ngIf="showArrow">
+                    <svg [style.height.px]="100"
+                        [style.width.px]="100"
+                        >
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                            <path d="M0,0 L0,6 L9,3 z" fill="black" />
+                            </marker>
+                        </defs>
+                        
+                        <line x1="1" y1="1" x2="55" y2="55" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+                    </svg>
+                </div>  
+
+                <div class="shapeTopShape" *ngIf="showImage">
+                    <img [style.height.px]="100"
+                        [style.width.px]="100"
+                        src="../images/Tabs.png"
+                        >
+                </div>
+
+                <div class="shapeTopShape" *ngIf="showBullets">
+                    <ul
+                        >
+                        <li>Coffee</li>
+                        <li>Tea</li>
+                        <li>Coca Cola</li>
+                    </ul>
+                </div>
+
+                <div class="shapeTopShape" *ngIf="showValue">
+                    <span [style.height.px]="100"
+                        [style.width.px]="100"
+                        [style.font-size.px]="50"
+                        [style.font-style]="'italic'"
+                        [style.font-weight]="'bold'"
+                        [style.font-family]="'Arial, serif'"
+                        >
+                        {{ shapeText }}
+                    </span >
+                </div>
+
+
+
+                <div class="shapeBottomText" *ngIf="showCircle">
+                    Line Colour:
+                    <input type="text" id="formFields_7" placeholder="Black">
+                    Line thickness:
+                    <input type="text" id="formFields_7" placeholder="3">
+                    Fill colour:
+                    <input type="text" id="formFields_7" placeholder="Red">
+                </div>
+
+                <div class="shapeBottomText" *ngIf="showEllipse">
+                    Line Colour:
+                    <input type="text" id="formFields_7" placeholder="Black">
+                    Line thickness:
+                    <input type="text" id="formFields_7" placeholder="3">
+                    Fill colour:
+                    <input type="text" id="formFields_7" placeholder="Red">
+                </div>
+
+                <div class="shapeBottomShape" *ngIf="showRectangle">
+                    Fill Colour:
+                    <input type="text" id="formFields_7" placeholder="Pink">
+                    Line thickness:
+                    <input type="text" id="formFields_7" placeholder="3">
+                    Line Colour:
+                    <input type="text" id="formFields_7" placeholder="1px solid Black">
+                    Fill Opacity:
+                    <input type="text" id="formFields_7" placeholder="0-1">
+                    Line Opacity:
+                    <input type="text" id="formFields_7" placeholder="0-1">
+                    Corners:
+                    <input type="text" id="formFields_7" placeholder="Rounded/Not">
+                </div>
+    
+                <div class="shapeBottomText" *ngIf="showTextBox">
+                    <div class="propertyLine">
+                        Text input:
+                        <input type="text" id="formFields_7" placeholder="The brown fox ...">
                     </div>
-                    <div class="shapeBottomText" *ngIf="showTextBox">
+                    <div class="propertyLine">
                         <div class="propertyLine">
-                            Text input:
-                            <input type="text" id="formFields_7" placeholder="The brown fox ...">
+                        Text Font:
+                        <input type="text" id="formFields_7" placeholder="Font Size">
+                        <input type="text" id="formFields_7" placeholder="Font Family">
+                    </div>
+                    <div class="propertyLine">
+                        Text Look:
+                        <input type="text" id="formFields_7" placeholder="Bold/Italic/Underline">
+                    </div>
+                    <div class="propertyLine">
+                        Text Alignment:
+                        <input type="text" id="formFields_7" placeholder="Left/Center/Right">
+                    </div>
+                </div>
+
+                <div class="shapeBottomShape" *ngIf="showArrow">
+                    Direction ....
+                </div>
+
+                <div class="shapeBottomShape" *ngIf="showImage">
+                    Image:
+                    <input type="text" id="formFields_7" placeholder="Co. logo">
+                </div>
+
+                <div class="shapeBottomShape" *ngIf="showBullets">
+                    Values (array):
+                    <input type="text" id="formFields_7" placeholder="....">
+                </div>
+
+                <div class="shapeBottomText" *ngIf="showValue">
+                    <div class="propertyLine">
+                        Data:
+                        <div class="select">
+                            <select id="selects_3"
+                                (change)="clickSelectShape($event)"
+                                >
+                                <option>Budget</option>
+                                <option>Sales</option>
+                                <option>Testing</option>
+                            </select>
                         </div>
-                        <div class="propertyLine">
-                            Data:
-                            <div class="select">
+                        <div class="select">
                                 <select id="selects_3"
                                     (change)="clickSelectShape($event)"
                                     >
-                                    <option>Budget</option>
-                                    <option>Sales</option>
-                                    <option>Testing</option>
+                                    <option>Date</option>
+                                    <option>Value</option>
+                                    <option>Type field</option>
                                 </select>
                             </div>
-                            <div class="select">
-                                    <select id="selects_3"
-                                        (change)="clickSelectShape($event)"
-                                        >
-                                        <option>Date</option>
-                                        <option>Value</option>
-                                        <option>Type field</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectShape($event)"
-                                    >
-                                    <option>Sum</option>
-                                    <option>Average</option>
-                                    <option>First, etc ...</option>
-                                </select>
-                            </div>
-                            <div class="propertyLine">
-                            Text Font:
-                            <input type="text" id="formFields_7" placeholder="Font Size">
-                            <input type="text" id="formFields_7" placeholder="Font Family">
+                        </div>
+                        <div class="select">
+                            <select id="selects_3"
+                                (change)="clickSelectShape($event)"
+                                >
+                                <option>Sum</option>
+                                <option>Average</option>
+                                <option>First, etc ...</option>
+                            </select>
                         </div>
                         <div class="propertyLine">
-                            Text Look:
-                            <input type="text" id="formFields_7" placeholder="Bold/Italic/Underline">
-                        </div>
-                        <div class="propertyLine">
-                            Text Alignment:
-                            <input type="text" id="formFields_7" placeholder="Left/Center/Right">
-                        </div>
+                        Text Font:
+                        <input type="text" id="formFields_7" placeholder="Font Size">
+                        <input type="text" id="formFields_7" placeholder="Font Family">
                     </div>
+                    <div class="propertyLine">
+                        Text Look:
+                        <input type="text" id="formFields_7" placeholder="Bold/Italic/Underline">
+                    </div>
+                    <div class="propertyLine">
+                        Text Alignment:
+                        <input type="text" id="formFields_7" placeholder="Left/Center/Right">
+                    </div>
+                </div>
 
-                    <div class="shapeTopShape" *ngIf="showCircle">
-                        <svg height="200" width="200">
-                            <circle
-                                cx="100" cy="100" r="80" stroke="black"
-                                stroke-width="3" fill="red" />
-                        </svg>
-                    </div>
-                    <div class="shapeBottomShape" *ngIf="showCircle">
-                        Radius:
-                        <input type="text" id="formFields_7" placeholder="5-200px">
-                        Line Colour:
-                        <input type="text" id="formFields_7" placeholder="Black">
-                        Line thickness:
-                        <input type="text" id="formFields_7" placeholder="3">
-                        Fill colour:
-                        <input type="text" id="formFields_7" placeholder="Red">
-                    </div>
 
-                    <div class="shapeTopShape" *ngIf="showRectangle">
-                        <svg width="400" height="180">
-                        <rect x="100" y="20" rx="20" ry="20" width="150" height="150"
-                        style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
-                        </svg>
-                    </div>
-                    <div class="shapeBottomShape" *ngIf="showRectangle">
-                        Fill Colour:
-                        <input type="text" id="formFields_7" placeholder="Pink">
-                        Line thickness:
-                        <input type="text" id="formFields_7" placeholder="3">
-                        Line Colour:
-                        <input type="text" id="formFields_7" placeholder="1px solid Black">
-                        Fill Opacity:
-                        <input type="text" id="formFields_7" placeholder="0-1">
-                        Line Opacity:
-                        <input type="text" id="formFields_7" placeholder="0-1">
-                        Corners:
-                        <input type="text" id="formFields_7" placeholder="Rounded/Not">
-                    </div>
-
-                    <div class="shapeTopShape" *ngIf="showLine">
-                        <svg height="200" width="300">
-                            <line x1="10" y1="100" x2="2800" y2="100"
-                                style="stroke:rgb(255,0,0);stroke-width:2" />
-                        </svg>
-                    </div>
-                    <div class="shapeBottomShape" *ngIf="showLine">
-                        <div class="propertyLine">
-                            Direction:
-                            <input type="text" id="formFields_7" placeholder="Vertical/Horisontal">
-                            Line thickness:
-                            <input type="text" id="formFields_7" placeholder="3">
-                            Line Colour:
-                            <input type="text" id="formFields_7" placeholder="Red">
-                        </div>
-                    </div>
-
-                    <div class="shapeTopShape" *ngIf="showArrow">
-                        <p>Not sure how to get an arrow ... &#9754;</p>
-                    </div>
-                    <div class="shapeBottomShape" *ngIf="showArrow">
-                        Direction ....
-                    </div>
-
-                    <div class="shapeTopShape" *ngIf="showImage">
-                        <img
-                            [style.height.px]="200"
-                            [style.width.px]="200"
-                            src="../images/ChartCandleStick.png"
-                            >
-                    </div>
-                    <div class="shapeBottomShape" *ngIf="showImage">
-                        <div class="propertyLine" *ngIf="showImage">
-                            Image:
-                            <input type="text" id="formFields_7" placeholder="Co. logo">
-                        </div>
-                    </div>
-
-                    <div class="shapeButton">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            (click)="clickSave()"
-                            >
-                            Save
-                        </button>
-                    </div>
+                <div class="shapeButton">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickSave()"
+                        >
+                        Save
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 

@@ -21,16 +21,12 @@ export class ShapeEditComponent implements OnInit {
 
     @Output() formShapeEditClosed: EventEmitter<string> = new EventEmitter();
 
+    showTextBox: boolean = true;
     showCircle: boolean = false;
-    showEllipse: boolean = false;
     showRectangle: boolean = false;
-    showText: boolean = false;
+    showLine: boolean = false;
     showArrow: boolean = false;
     showImage: boolean = false;
-    showBullets: boolean = false;
-    showValue: boolean = false;
-
-    shapeText: string = 'The brown fox is tired'
 
     showTypeDashboard: boolean = false;
 
@@ -46,43 +42,55 @@ export class ShapeEditComponent implements OnInit {
 
     clickSelectShape(ev) {
         console.log(ev, ev.srcElement.value)
-        
-        // Get selected shape
         let shape: string = ev.srcElement.value;
-        
-        // Deselect all
-        this.showCircle = false;
-        this.showEllipse = false;
-        this.showRectangle = false;
-        this.showText = false;
-        this.showArrow = false;
-        this.showImage = false;
-        this.showBullets = false;
-        this.showValue = false;
 
-        if (shape == 'Circle') {
-            this.showCircle = true;
+        if (shape == 'TextBox') {
+            this.showTextBox = true;
+            this.showCircle = false;
+            this.showRectangle = false;
+            this.showLine = false;
+            this.showArrow = false;
+            this.showImage = false;
         }
-        if (shape == 'Ellipse') {
-            this.showEllipse = true;
+        if (shape == 'Circle') {
+            this.showTextBox = false;
+            this.showCircle = true;
+            this.showRectangle = false;
+            this.showLine = false;
+            this.showArrow = false;
+            this.showImage = false;
         }
         if (shape == 'Rectangle') {
+            this.showTextBox = false;
+            this.showCircle = false;
             this.showRectangle = true;
+            this.showLine = false;
+            this.showArrow = false;
+            this.showImage = false;
         }
-        if (shape == 'Text') {
-            this.showText = true;
+        if (shape == 'Line') {
+            this.showTextBox = false;
+            this.showCircle = false;
+            this.showRectangle = false;
+            this.showLine = true;
+            this.showArrow = false;
+            this.showImage = false;
         }
         if (shape == 'Arrow') {
+            this.showTextBox = false;
+            this.showCircle = false;
+            this.showRectangle = false;
+            this.showLine = false;
             this.showArrow = true;
+            this.showImage = false;
         }
         if (shape == 'Image') {
+            this.showTextBox = false;
+            this.showCircle = false;
+            this.showRectangle = false;
+            this.showLine = false;
+            this.showArrow = false;
             this.showImage = true;
-        }
-        if (shape == 'Bullets') {
-            this.showBullets = true;
-        }
-        if (shape == 'Value') {
-            this.showValue = true;
         }
 
     }

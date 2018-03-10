@@ -15,73 +15,53 @@
     margin: 5px;
 }
 
-.overall {
+.gridOverall {
     display: grid;
-    grid-template-columns: repeat(11, 3rem);
-    grid-template-rows:  repeat(8, 2rem);
+    grid-template-columns: repeat(20, 1fr);
+    grid-auto-rows: 0.8rem;
     margin-top: 2px;
 }
 
-    .shapeProperties {
+    .gridHeading {
         grid-column-start: 1;
-        grid-column-end: 6;
+        grid-column-end: 21;
         grid-row-start: 1;
-        grid-row-end: 12;
+        grid-row-end: 2;
+        text-align: left;
+    }
+
+    .gridShapes {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 2;
+        grid-row-end: 3;
         text-align: left;
     }
 
     .shapeTopShape {
-        display: flex;
-        grid-column-start: 7;
-        grid-column-end: 12;
-        grid-row-start: 1;
-        grid-row-end: 4;
-        justify-content: center;
-        margin-bottom: 0;
-        text-align: center;
+        grid-column-start: 2;
+        grid-column-end: 21;
+        grid-row-start: 4;
+        grid-row-end: 11;
+        text-align: left;
     }
-
-    .shapeTopText {
-        display: flex;
-        grid-column-start: 7;
-        grid-column-end: 12;
-        grid-row-start: 2;
-        grid-row-end: 3;
-        justify-content: center;
-        margin-bottom: 0;
-        text-align: center;
-    }
-
-        .shapeTopInner {
-            justify-content: center;
-        }
 
     .shapeBottomText {
         align-content: center;
         grid-column-start: 7;
         grid-column-end: 12;
-        grid-row-start: 3;
-        grid-row-end: 12;
-        margin-bottom: 0;
-        text-align: left;
-    }
-
-    .shapeBottomShape {
-        align-content: center;
-        grid-column-start: 7;
-        grid-column-end: 12;
-        grid-row-start: 5;
-        grid-row-end: 12;
+        grid-row-start: 12;
+        grid-row-end: 21;
         margin-bottom: 0;
         text-align: left;
     }
 
     .shapeButton {
-        grid-column-start: 11;
-        grid-column-end: 12;
-        grid-row-start: 8;
-        grid-row-end: 9;
+        align-content: center;
+        grid-column-start: 17;
+        grid-column-end: 18;
+        grid-row-start: 21;
+        grid-row-end: 22;
         margin-bottom: 0;
-        text-align: left;
     }
 
