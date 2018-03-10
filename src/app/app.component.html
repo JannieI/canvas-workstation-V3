@@ -1362,7 +1362,17 @@
             src="../images/Tabs.png"
             >
     </div>
-        
+
+    <!-- Shape Image Object -->
+    <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='bullets'">
+        <ul
+            >
+            <li>Coffee</li>
+            <li>Tea</li>
+            <li>Coca Cola</li>
+        </ul>
+    </div>
+
     <div class="widgetContainerTopLeftHandle" *ngIf="editMode"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (mousedown)="clickResizeWidgetDown($event, i)"
