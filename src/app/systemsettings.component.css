@@ -70,7 +70,7 @@
     text-align: left;
 }
 
-gridMessagingTitle {
+.gridMessagingTitle {
     grid-column-start: 14;
     grid-column-end: 21;
     grid-row-start: 7;
@@ -80,7 +80,7 @@ gridMessagingTitle {
     text-align: left;
 }
 
-gridMessagingNoQuery {
+.gridMessagingNoQuery {
     grid-column-start: 14;
     grid-column-end: 21;
     grid-row-start: 8;
@@ -90,7 +90,7 @@ gridMessagingNoQuery {
     text-align: left;
 }
 
-gridMessagingRunning {
+.gridMessagingRunning {
     grid-column-start: 14;
     grid-column-end: 21;
     grid-row-start: 8;
@@ -100,7 +100,7 @@ gridMessagingRunning {
     text-align: left;
 }
 
-gridOfflineTitle {
+.gridOfflineTitle {
     grid-column-start: 1;
     grid-column-end: 21;
     grid-row-start: 10;
@@ -110,7 +110,7 @@ gridOfflineTitle {
     text-align: left;
 }
 
-gridOfflineData {
+.gridOfflineData {
     grid-column-start: 1;
     grid-column-end: 7;
     grid-row-start: 11;
@@ -120,7 +120,7 @@ gridOfflineData {
     text-align: left;
 }
 
-gridOfflineSchema {
+.gridOfflineSchema {
     grid-column-start: 7;
     grid-column-end: 14;
     grid-row-start: 11;
@@ -130,7 +130,7 @@ gridOfflineSchema {
     text-align: left;
 }
 
-gridOfflineLogin {
+.gridOfflineLogin {
     grid-column-start: 14;
     grid-column-end: 21;
     grid-row-start: 11;
@@ -140,7 +140,7 @@ gridOfflineLogin {
     text-align: left;
 }
 
-gridTableTitle {
+.gridTableTitle {
     grid-column-start: 1;
     grid-column-end: 21;
     grid-row-start: 13;
@@ -150,7 +150,7 @@ gridTableTitle {
     text-align: left;
 }
 
-gridTableLength {
+.gridTableLength {
     grid-column-start: 1;
     grid-column-end: 7;
     grid-row-start: 14;
@@ -160,7 +160,7 @@ gridTableLength {
     text-align: left;
 }
 
-gridWidgetTitle {
+.gridWidgetTitle {
     grid-column-start: 1;
     grid-column-end: 21;
     grid-row-start: 16;
@@ -170,7 +170,7 @@ gridWidgetTitle {
     text-align: left;
 }
 
-gridWidgetTemplate {
+.gridWidgetTemplate {
     grid-column-start: 1;
     grid-column-end: 7;
     grid-row-start: 17;
@@ -180,7 +180,7 @@ gridWidgetTemplate {
     text-align: left;
 }
 
-gridWidgetMinZindex {
+.gridWidgetMinZindex {
     grid-column-start: 7;
     grid-column-end: 14;
     grid-row-start: 17;
@@ -190,7 +190,7 @@ gridWidgetMinZindex {
     text-align: left;
 }
 
-gridWidgetMaxZindex {
+.gridWidgetMaxZindex {
     grid-column-start: 14;
     grid-column-end: 21;
     grid-row-start: 17;
@@ -200,7 +200,7 @@ gridWidgetMaxZindex {
     text-align: left;
 }
 
-gridGridTitle {
+.gridGridTitle {
     grid-column-start: 1;
     grid-column-end: 21;
     grid-row-start: 19;
@@ -210,7 +210,7 @@ gridGridTitle {
     text-align: left;
 }
 
-gridGridSize {
+.gridGridSize {
     grid-column-start: 1;
     grid-column-end: 7;
     grid-row-start: 21;
@@ -220,11 +220,61 @@ gridGridSize {
     text-align: left;
 }
 
-gridGridSnap {
+.gridGridSnap {
     grid-column-start: 7;
     grid-column-end: 14;
     grid-row-start: 21;
     grid-row-end: 22;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.gridPrintTitle {
+    grid-column-start: 1;
+    grid-column-end: 21;
+    grid-row-start: 23;
+    grid-row-end: 24;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.gridPrintDefault {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 24;
+    grid-row-end: 25;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.gridPrintSize {
+    grid-column-start: 7;
+    grid-column-end: 14;
+    grid-row-start: 24;
+    grid-row-end: 25;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.gridPrintLayout {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 24;
+    grid-row-end: 25;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.gridPrintColour {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 25;
+    grid-row-end: 26;
     display: grid;
     margin-bottom: 0;
     text-align: left;
