@@ -2572,14 +2572,18 @@ export class AppComponent implements OnInit {
                 if (this.checkForOnlyOneWidget('Table', true)) {
                     this.clickMenuTableDelete();
                 } else {
-                    // Lost
-                    this.showStatusBarMessage(
-                        'Select a graph, slicer or table',
-                        'StatusBar',
-                        'Warning',
-                        3000,
-                        ''
-                    );                
+                    if (this.checkForOnlyOneWidget('Shape', true)) {
+                        this.clickMenuShapeDelete();
+                    } else {
+                        // Lost
+                        this.showStatusBarMessage(
+                            'Select a graph, slicer or table',
+                            'StatusBar',
+                            'Warning',
+                            3000,
+                            ''
+                        );                
+                    };
                 };
             };
         };
