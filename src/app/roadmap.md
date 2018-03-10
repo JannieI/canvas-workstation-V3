@@ -144,6 +144,7 @@ THEN: consider all currentXXX, where XXX = Objects to follow the same methodolog
 32.Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
 33.Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip for icons.
 34.Make Observable from keystrokes in app component - then debounce to make it less??  See BK mouse wheel scroll ...
+35.Improve getBackgroundColors (more propertie like rgb, etc), make more useful and make generic getCSSColours.  Then use in forms, somewhere
 
 
 **Data**

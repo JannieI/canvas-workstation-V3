@@ -65,9 +65,9 @@ export class TableSingleComponent {
             alert('Error: no dataSet in glob vars for DSid = ' + this.table.datasourceID)
         };
 
-        // Load first few rows into preview
+        // Load rows with a Max
         this.currentData = this.globalVariableService.currentDatasets.filter(
-            d => d.id == dSetID)[0].data.slice(0, 50);
+            d => d.id == dSetID)[0].data.slice(0, this.globalVariableService.maxTableLength);
 
         // Totals
         this.nrRecords = this.currentData.length;

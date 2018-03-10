@@ -632,6 +632,7 @@ const transformationsFormat: Transformation[] =
 export class GlobalVariableService {
 
     // Constants
+    maxTableLength: number = 500;
     NoQueryRunningMessage: string = 'No Query';
     QueryRunningMessage: string = 'Query running...';
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;

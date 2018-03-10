@@ -69,7 +69,7 @@
         grid-column-end: 8;
         grid-row-start: 3;
         grid-row-end: 5;
-        
+
     }
 
     .titleChevron1 {
@@ -401,7 +401,7 @@
         padding: 10px;
         z-index: 71;
     }
-    
+
     .gridTransformNewNames {
         margin-left: 20px;
         margin-bottom: 8px;
