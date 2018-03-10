@@ -139,3 +139,23 @@ gridOfflineLogin {
     margin-bottom: 0;
     text-align: left;
 }
+
+gridTableTitle {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 13;
+    grid-row-end: 14;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridTableLength {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 14;
+    grid-row-end: 15;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
