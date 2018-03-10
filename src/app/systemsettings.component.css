@@ -100,3 +100,42 @@ gridMessagingRunning {
     text-align: left;
 }
 
+gridOfflineTitle {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 10;
+    grid-row-end: 11;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridOfflineData {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 11;
+    grid-row-end: 12;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridOfflineSchema {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 11;
+    grid-row-end: 12;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+gridOfflineLogin {
+    grid-column-start: 14;
+    grid-column-end: 21;
+    grid-row-start: 11;
+    grid-row-end: 12;
+    display: grid;
+    margin-bottom: 0;
+    text-align: left;
+}
