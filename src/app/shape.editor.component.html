@@ -95,14 +95,19 @@
                     </svg>
                 </div>
 
-                <div class="gridShape" *ngIf="showText">
+                <div class="gridShape" *ngIf="showText"
+                    [style.font-style]="textIsItalic? 'italic' : 'normal'"
+                    [style.font-weight]="textIsBold? 'bold' : 'normal'"
+                    [style.font-family]="textFontFamily"
+                    [style.font-size.px]="textFontSize"
+                    >
                     <svg width="300" height="300">
                         <text
                             x="20"
                             y="150"
-                            [style.fill]="black"
+                            [style.fill]="textColour"
                             >
-                            {{ shapeText }}
+                            {{ textText }}
                         </text>
                     </svg>
                 </div>
@@ -236,34 +241,48 @@
                         <input type="text" 
                             placeholder="Corner Size in pz"
                             [(ngModel)]="rectangleCorner"
-                            >
+                            >15
                     </div>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showText">
                     <div class="propertyLine">
                         Text input:
-                        <input type="text" id="formFields_7" placeholder="The brown fox ...">
+                        <input type="text" 
+                            placeholder="The brown fox ..."
+                            [(ngModel)]="textText"
+                            >
                     </div>
                     <div class="propertyLine">
                         Font Size:
-                        <input type="text" id="formFields_7" placeholder="50 (px)">
+                        <input type="text" 
+                            placeholder="50 (px)"
+                            [(ngModel)]="textFontSize"
+                            >
                     </div>
                     <div class="propertyLine">
                         Font Family:
-                        <input type="text" id="formFields_7" placeholder="Arial, serif">
+                        <input type="text" 
+                            placeholder="Arial, serif"
+                            [(ngModel)]="textFontFamily"
+                            >
                     </div>
                     <div class="propertyLine">
                         Bold?:
-                        <input type="checkbox">
+                        <input type="checkbox"
+                            [(ngModel)]="textIsBold"
+                            >
                     </div>
                     <div class="propertyLine">
                         Italic?:
-                        <input type="checkbox">
+                        <input type="checkbox"
+                            [(ngModel)]="textIsItalic"
+                            >
                     </div>
                     <div class="propertyLine">
                         Colour:
                         <select
+                            [(ngModel)]="textColour"
                             >
                             <option>DarkRed</option>
                             <option>Black</option>
@@ -275,7 +294,7 @@
                         </select>
 
                     </div>
-                    </div>
+                </div>
 
                 <div class="gridShapeProperties" *ngIf="showArrow">
                     <div class="propertyLine">

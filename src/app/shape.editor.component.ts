@@ -33,8 +33,14 @@ export class ShapeEditComponent implements OnInit {
     rectangleFillColour: string = 'steelblue';
     rectangleOpacity: number = 0.9;
     rectangleCorner: number = 15;
+    textText: string = 'The brown fox is tired';
+    textFontSize: number = 12;
+    textFontFamily: string = 'Arial';
+    textIsBold: boolean = true;
+    textIsItalic: boolean = true;
+    textColour: string = 'darkred';
 
-    shapeText: string = 'The brown fox is tired'
+
     shapeValue: string = 'R 234m';
     showArrow: boolean = false;
     showBullets: boolean = false;
