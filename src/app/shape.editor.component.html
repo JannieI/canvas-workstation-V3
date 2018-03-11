@@ -312,6 +312,11 @@
                 <div class="gridShapeProperties" *ngIf="showBullets">
                     <div class="propertyLine">
                         Values:
+                        <input *ngIf="editBulletItem" [(ngModel)]="bulletValue">
+                        <button  *ngIf="editBulletItem" type="button" class="closeButton" (click)="clickEditDone()">
+                            Go
+                        </button>
+                
                         <div
                             [style.margin-left.px]="30"
                             [style.margin-top.px]="30"
@@ -324,6 +329,7 @@
                                     (click)="clickBulletAdd(i, row)">
                                 </clr-icon>
                                 {{ row }}
+                                
                             </div>
                         </div>
                     </div>

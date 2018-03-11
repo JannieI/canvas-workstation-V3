@@ -25,6 +25,11 @@ export class ShapeEditComponent implements OnInit {
     circleLineColor: string = 'black';
     circleLineThickness: number = 1;
     circleFillColour: string = 'steelblue';
+
+    bulletValue: string = 'new';
+    editBulletItem: boolean = false;
+
+
     ellipseLineColor: string = 'black';
     ellipseLineThickness: number = 1;
     ellipseFillColour: string = 'steelblue';
@@ -160,5 +165,27 @@ export class ShapeEditComponent implements OnInit {
             };
         };
         this.bulletArray = tempArr;
+        this.editBulletItem = true;
     }
+
+    clickEditDone() {
+        // Add item to bullet list
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
+    
+        // TODO - this must be done nicer
+        if (this.bulletValue != '') {
+            for (var i = 0; i < this.bulletArray.length; i++) {
+                console.log('xx i', i)
+                if (this.bulletArray[i] == '') {
+                    this.bulletArray[i] = this.bulletValue;
+                    break;
+                };
+            };
+        };
+
+        // Hide input area
+        this.editBulletItem = false;
+    
+    }
+
 }
