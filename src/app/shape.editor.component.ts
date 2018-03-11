@@ -139,7 +139,26 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletDelete', '@Start');
         
         // TODO - fix index, somehow not working!
-        this.bulletArray = this.bulletArray.filter(i => i != item);
+        this.bulletArray = this.bulletArray.filter(b => b != item);
     }
 
+    clickBulletAdd(index: number, item: string) {
+        // Add item to bullet list
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletAdd', '@Start');
+
+        // TODO - fix index, somehow not working!
+        // TODO - this is clumsy methinks - there must be a better way
+        let tempArr: string[] = [];
+        for (var i = 0; i < this.bulletArray.length; i++) {
+            console.log('xx i', i)
+            if (this.bulletArray[i] == item) {
+                console.log('xx inside', i)
+                tempArr.push(this.bulletArray[i]);
+                tempArr.push('');
+            } else {
+                tempArr.push(this.bulletArray[i]);
+            };
+        };
+        this.bulletArray = tempArr;
+    }
 }
