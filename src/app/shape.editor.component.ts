@@ -31,9 +31,6 @@ export class ShapeEditComponent implements OnInit {
     bulletValue: string = '';
     editBulletItem: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
-    rectangleOpacity: number = 0.9;
-    rectangleCorner: number = 15;
-    shapeValue: string = 'R 234m';
     showArrow: boolean = false;
     showBullets: boolean = false;
     showCircle: boolean = false;
@@ -43,17 +40,6 @@ export class ShapeEditComponent implements OnInit {
     showText: boolean = false;
     showTypeDashboard: boolean = false;
     showValue: boolean = false;
-    textText: string = 'The brown fox is tired';
-    textFontSize: number = 12;
-    textFontFamily: string = 'Arial';
-    textIsBold: boolean = true;
-    textIsItalic: boolean = true;
-    textColour: string = 'darkred';
-    valueFontSize: number = 50;
-    valueFontFamily: string = 'Arial';
-    valueIsBold: boolean = true;
-    valueIsItalic: boolean = false;
-    valueColour: string = 'darkred';
 
 
     constructor(

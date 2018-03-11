@@ -88,26 +88,26 @@
                             [style.stroke]="localWidget.shapeStroke"
                             [style.stroke-width.px]="shapeStrokeWidth"
                             [style.fill]="localWidget.shapeFill"
-                            [style.opacity]="rectangleOpacity"
-                            [style.rx]="rectangleCorner" 
-                            [style.ry]="rectangleCorner" 
+                            [style.opacity]="localWidget.shapeOpacity"
+                            [style.rx]="localWidget.shapeCorner" 
+                            [style.ry]="localWidget.shapeCorner" 
                             />
                     </svg>
                 </div>
 
                 <div class="gridShape" *ngIf="showText"
-                    [style.font-style]="textIsItalic? 'italic' : 'normal'"
-                    [style.font-weight]="textIsBold? 'bold' : 'normal'"
-                    [style.font-family]="textFontFamily"
-                    [style.font-size.px]="textFontSize"
+                    [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
+                    [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
+                    [style.font-family]="localWidget.shapeFontFamily"
+                    [style.font-size.px]="localWidget.shapeFontSize"
                     >
                     <svg width="300" height="300">
                         <text
                             x="20"
                             y="150"
-                            [style.fill]="textColour"
+                            [style.fill]="localWidget.shapeStroke"
                             >
-                            {{ textText }}
+                            {{ localWidget.shapeText }}
                         </text>
                     </svg>
                 </div>
@@ -148,15 +148,15 @@
                     <div [style.height.px]="100"
                         [style.font-size.px]="50"
 
-                        [style.font-style]="valueIsItalic? 'italic' : 'normal'"
-                        [style.font-weight]="valueIsBold? 'bold' : 'normal'"
-                        [style.font-family]="valueFontFamily"
-                        [style.font-size.px]="valueFontSize"
+                        [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
+                        [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
+                        [style.font-family]="localWidget.shapeFontFamily"
+                        [style.font-size.px]="localWidget.shapeFontSize"
                         [style.margin-left.px]="30"
                         [style.margin-top.px]="120"
-                        [style.color]="valueColour"
+                        [style.color]="localWidget.shapeStroke"
                         >
-                        {{ shapeValue }}
+                        {{ localWidget.shapeValue }}
                     </div >
                 </div>
 
@@ -235,14 +235,14 @@
                         Fill Opacity:
                         <input type="text" 
                             placeholder="0=opaque, 1=solid"
-                            [(ngModel)]="rectangleOpacity"
+                            [(ngModel)]="localWidget.shapeOpacity"
                             >
                     </div>
                     <div class="propertyLine">
                         Corners:
                         <input type="text" 
                             placeholder="Corner Size in pz"
-                            [(ngModel)]="rectangleCorner"
+                            [(ngModel)]="localWidget.shapeCorner"
                             >15
                     </div>
                 </div>
@@ -252,39 +252,39 @@
                         Text input:
                         <input type="text" 
                             placeholder="The brown fox ..."
-                            [(ngModel)]="textText"
+                            [(ngModel)]="localWidget.shapeText"
                             >
                     </div>
                     <div class="propertyLine">
                         Font Size:
                         <input type="text" 
                             placeholder="50 (px)"
-                            [(ngModel)]="textFontSize"
+                            [(ngModel)]="localWidget.shapeFontSize"
                             >
                     </div>
                     <div class="propertyLine">
                         Font Family:
                         <input type="text" 
                             placeholder="Arial, serif"
-                            [(ngModel)]="textFontFamily"
+                            [(ngModel)]="localWidget.shapeFontFamily"
                             >
                     </div>
                     <div class="propertyLine">
                         Bold?:
                         <input type="checkbox"
-                            [(ngModel)]="textIsBold"
+                            [(ngModel)]="localWidget.shapeIsBold"
                             >
                     </div>
                     <div class="propertyLine">
                         Italic?:
                         <input type="checkbox"
-                            [(ngModel)]="textIsItalic"
+                            [(ngModel)]="localWidget.shapeIsItalic"
                             >
                     </div>
                     <div class="propertyLine">
                         Colour:
                         <select
-                            [(ngModel)]="textColour"
+                            [(ngModel)]="localWidget.shapeStroke"
                             >
                             <option>DarkRed</option>
                             <option>Black</option>
@@ -376,32 +376,32 @@
                         Font Size:
                         <input type="text" 
                             placeholder="50 (px)"
-                            [(ngModel)]="valueFontSize"
+                            [(ngModel)]="localWidget.shapeFontSize"
                             >
                     </div>
                     <div class="propertyLine">
                         Font Family:
                         <input type="text" 
                             placeholder="Arial, serif"
-                            [(ngModel)]="valueFontFamily"
+                            [(ngModel)]="localWidget.shapeFontFamily"
                             >
                     </div>
                     <div class="propertyLine">
                         Bold?:
                         <input type="checkbox"
-                            [(ngModel)]="valueIsBold"
+                            [(ngModel)]="localWidget.shapeIsBold"
                             >
                     </div>
                     <div class="propertyLine">
                         Italic?:
                         <input type="checkbox"
-                            [(ngModel)]="valueIsItalic"
+                            [(ngModel)]="localWidget.shapeIsItalic"
                             >
                     </div>
                     <div class="propertyLine">
                         Colour:
                         <select
-                            [(ngModel)]="valueColour"
+                            [(ngModel)]="localWidget.shapeStroke"
                             >
                             <option>DarkRed</option>
                             <option>Black</option>
