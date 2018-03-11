@@ -147,12 +147,11 @@
                         [style.font-family]="'Arial, serif'"
                         [style.margin-left.px]="30"
                         [style.margin-top.px]="120"
+                        [style.color]="'darkred'"
                         >
                         {{ shapeValue }}
                     </div >
                 </div>
-
-
 
                 <div class="gridShapeProperties" *ngIf="showCircle">
                     <div class="propertyLine">
@@ -215,21 +214,35 @@
                     </div>
                     <div class="propertyLine">
                         Font Size:
-                        <input type="text" id="formFields_7" placeholder="Font Size">
+                        <input type="text" id="formFields_7" placeholder="50 (px)">
                     </div>
                     <div class="propertyLine">
                         Font Family:
-                        <input type="text" id="formFields_7" placeholder="Font Family">
+                        <input type="text" id="formFields_7" placeholder="Arial, serif">
                     </div>
                     <div class="propertyLine">
-                            Bold/Italic/Underline:
-                        <input type="text" id="formFields_7" placeholder="Bold/Italic/Underline">
+                        Bold?:
+                        <input type="checkbox">
                     </div>
                     <div class="propertyLine">
-                        Alignment:
-                        <input type="text" id="formFields_7" placeholder="Left/Center/Right">
+                        Italic?:
+                        <input type="checkbox">
                     </div>
-                </div>
+                    <div class="propertyLine">
+                        Colour:
+                        <select
+                            >
+                            <option>DarkRed</option>
+                            <option>Black</option>
+                            <option>Gray</option>
+                            <option>LightGray</option>
+                            <option>Green</option>
+                            <option>Blue</option>
+                            <option>Yellow</option>
+                        </select>
+
+                    </div>
+                    </div>
 
                 <div class="gridShapeProperties" *ngIf="showArrow">
                     <div class="propertyLine">
@@ -253,54 +266,70 @@
 
                 <div class="gridShapeProperties" *ngIf="showValue">
                     <div class="propertyLine">
-                        Data:
-                        <div class="select">
-                            <select id="selects_3"
-                                (change)="clickSelectShape($event)"
-                                >
-                                <option>Budget</option>
-                                <option>Sales</option>
-                                <option>Testing</option>
-                            </select>
-                        </div>
-                        <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectShape($event)"
-                                    >
-                                    <option>Date</option>
-                                    <option>Value</option>
-                                    <option>Type field</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="select">
-                            <select id="selects_3"
-                                (change)="clickSelectShape($event)"
-                                >
-                                <option>Sum</option>
-                                <option>Average</option>
-                                <option>First, etc ...</option>
-                            </select>
-                        </div>
-                        <div class="propertyLine">
-                        Text Font:
-                        <input type="text" id="formFields_7" placeholder="Font Size">
-                        <input type="text" id="formFields_7" placeholder="Font Family">
+                        In Datasource:
+                        <select id="selects_3"
+                            (change)="clickSelectShape($event)"
+                            >
+                            <option>Budget 2017-2018 Reviewed</option>
+                            <option>Sales</option>
+                            <option>Testing</option>
+                        </select>
+
+                        <br>
+                        Take the 
+                        <select id="selects_3"
+                            (change)="clickSelectShape($event)"
+                            >
+                            <option>Sum</option>
+                            <option>Average</option>
+                            <option>Count</option>
+                            <option>First</option>
+                            <option>Last</option>
+                            <option>Max</option>
+                            <option>Min</option>
+                        </select>
+
+                        of Field:
+                        <select id="selects_3"
+                            (change)="clickSelectShape($event)"
+                            >
+                            <option>Date</option>
+                            <option>Miles Per Gallon</option>
+                            <option>Make</option>
+                        </select>
+                    </div>
+
+                    <div class="propertyLine">
+                        Font Size:
+                        <input type="text" id="formFields_7" placeholder="50 (px)">
                     </div>
                     <div class="propertyLine">
-                        Text Look:
-                        <input type="text" id="formFields_7" placeholder="Bold/Italic/Underline">
+                        Font Family:
+                        <input type="text" id="formFields_7" placeholder="Arial, serif">
                     </div>
                     <div class="propertyLine">
-                        Text Alignment:
-                        <input type="text" id="formFields_7" placeholder="Left/Center/Right">
+                        Bold?:
+                        <input type="checkbox">
+                    </div>
+                    <div class="propertyLine">
+                        Italic?:
+                        <input type="checkbox">
+                    </div>
+                    <div class="propertyLine">
+                        Colour:
+                        <select
+                            >
+                            <option>DarkRed</option>
+                            <option>Black</option>
+                            <option>Gray</option>
+                            <option>LightGray</option>
+                            <option>Green</option>
+                            <option>Blue</option>
+                            <option>Yellow</option>
+                        </select>
+
                     </div>
                 </div>
-
-
-
-
-
             </div>
         </div>
     </div>
