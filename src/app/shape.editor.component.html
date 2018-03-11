@@ -90,7 +90,7 @@
                     </svg>
                 </div>
 
-                <div class="gridShape" *ngIf="showTextBox">
+                <div class="gridShape" *ngIf="showText">
                     <svg>
                         <text 
                             x="0" 
@@ -140,78 +140,111 @@
                         [style.font-weight]="'bold'"
                         [style.font-family]="'Arial, serif'"
                         >
-                        {{ shapeText }}
+                        {{ shapeValue }}
                     </span >
                 </div>
 
 
 
                 <div class="gridShapeProperties" *ngIf="showCircle">
-                    Line Colour:
-                    <input type="text" id="formFields_7" placeholder="Black">
-                    Line thickness:
-                    <input type="text" id="formFields_7" placeholder="3">
-                    Fill colour:
-                    <input type="text" id="formFields_7" placeholder="Red">
+                    <div class="propertyLine">
+                        Line Colour:
+                        <input type="text" id="formFields_7" placeholder="Black">
+                    </div>
+                    <div class="propertyLine">
+                        Line thickness:
+                        <input type="text" id="formFields_7" placeholder="3">
+                    </div>
+                    <div class="propertyLine">
+                        Fill colour:
+                        <input type="text" id="formFields_7" placeholder="Red">
+                    </div>
+    
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showEllipse">
-                    Line Colour:
-                    <input type="text" id="formFields_7" placeholder="Black">
-                    Line thickness:
-                    <input type="text" id="formFields_7" placeholder="3">
-                    Fill colour:
-                    <input type="text" id="formFields_7" placeholder="Red">
+                    <div class="propertyLine">
+                        Line Colour:
+                        <input type="text" id="formFields_7" placeholder="Black">
+                    </div>
+                    <div class="propertyLine">
+                        Line thickness:
+                        <input type="text" id="formFields_7" placeholder="3">
+                    </div>
+                    <div class="propertyLine">
+                        Fill colour:
+                        <input type="text" id="formFields_7" placeholder="Red">
+                    </div>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showRectangle">
-                    Fill Colour:
-                    <input type="text" id="formFields_7" placeholder="Pink">
-                    Line thickness:
-                    <input type="text" id="formFields_7" placeholder="3">
-                    Line Colour:
-                    <input type="text" id="formFields_7" placeholder="1px solid Black">
-                    Fill Opacity:
-                    <input type="text" id="formFields_7" placeholder="0-1">
-                    Line Opacity:
-                    <input type="text" id="formFields_7" placeholder="0-1">
-                    Corners:
-                    <input type="text" id="formFields_7" placeholder="Rounded/Not">
+                    <div class="propertyLine">
+                        Fill Colour:
+                        <input type="text" id="formFields_7" placeholder="Pink">
+                    </div>
+                    <div class="propertyLine">
+                        Line thickness:
+                        <input type="text" id="formFields_7" placeholder="3">
+                    </div>
+                    <div class="propertyLine">
+                        Line Colour:
+                        <input type="text" id="formFields_7" placeholder="1px solid Black">
+                    </div>
+                    <div class="propertyLine">
+                        Fill Opacity:
+                        <input type="text" id="formFields_7" placeholder="0-1">
+                    </div>
+                    <div class="propertyLine">
+                        Line Opacity:
+                        <input type="text" id="formFields_7" placeholder="0-1">
+                    </div>
+                    <div class="propertyLine">
+                        Corners:
+                        <input type="text" id="formFields_7" placeholder="Rounded/Not">
+                    </div>
                 </div>
     
-                <div class="gridShapeProperties" *ngIf="showTextBox">
+                <div class="gridShapeProperties" *ngIf="showText">
                     <div class="propertyLine">
                         Text input:
                         <input type="text" id="formFields_7" placeholder="The brown fox ...">
                     </div>
                     <div class="propertyLine">
-                        <div class="propertyLine">
-                        Text Font:
+                        Font Size:
                         <input type="text" id="formFields_7" placeholder="Font Size">
+                    </div>
+                    <div class="propertyLine">
+                        Font Family:
                         <input type="text" id="formFields_7" placeholder="Font Family">
                     </div>
                     <div class="propertyLine">
-                        Text Look:
+                            Bold/Italic/Underline:
                         <input type="text" id="formFields_7" placeholder="Bold/Italic/Underline">
                     </div>
                     <div class="propertyLine">
-                        Text Alignment:
+                        Alignment:
                         <input type="text" id="formFields_7" placeholder="Left/Center/Right">
                     </div>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showArrow">
-                    Direction ....
+                    <div class="propertyLine">
+                        Direction ....
+                    </div>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showImage">
-                    Image:
-                    <input type="text" id="formFields_7" placeholder="Co. logo">
+                    <div class="propertyLine">
+                        Image:
+                        <input type="text" id="formFields_7" placeholder="Co. logo">
+                    </div>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showBullets">
-                    Values (array):
-                    <input type="text" id="formFields_7" placeholder="....">
+                    <div class="propertyLine">
+                        Values (array):
+                        <input type="text" id="formFields_7" placeholder="....">
+                    </div>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showValue">

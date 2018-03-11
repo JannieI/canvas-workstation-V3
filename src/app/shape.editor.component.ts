@@ -22,18 +22,18 @@ export class ShapeEditComponent implements OnInit {
     @Output() formShapeEditClosed: EventEmitter<string> = new EventEmitter();
     @Input() newWidget: boolean; 
 
+    shapeText: string = 'The brown fox is tired'
+    shapeValue: string = 'R 234m';
+    showArrow: boolean = false;
+    showBullets: boolean = false;
     showCircle: boolean = false;
     showEllipse: boolean = false;
+    showImage: boolean = false;
     showRectangle: boolean = false;
     showText: boolean = false;
-    showArrow: boolean = false;
-    showImage: boolean = false;
-    showBullets: boolean = false;
+    showTypeDashboard: boolean = false;
     showValue: boolean = false;
 
-    shapeText: string = 'The brown fox is tired'
-
-    showTypeDashboard: boolean = false;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -44,7 +44,7 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         if (!this.newWidget) {
-            this.selectShape('circle');
+            this.selectShape('Circle');
         }
 
     }
