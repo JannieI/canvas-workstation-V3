@@ -138,9 +138,9 @@
                         [style.margin-left.px]="30"
                         [style.margin-top.px]="30"
                         >
-                        <li>Coffee</li>
-                        <li>Tea</li>
-                        <li>Coca Cola</li>
+                        <li *ngFor="let row of bulletArray">
+                            {{ row }}
+                        </li>
                     </ul>
                 </div>
 
@@ -311,8 +311,17 @@
 
                 <div class="gridShapeProperties" *ngIf="showBullets">
                     <div class="propertyLine">
-                        Values (array):
-                        <input type="text" id="formFields_7" placeholder="....">
+                        Values:
+                        <div
+                            [style.margin-left.px]="30"
+                            [style.margin-top.px]="30"
+                            >
+                            <div *ngFor="let row of bulletArray; let i = item" class="bulletLine">
+                                <clr-icon shape="times" (click)="clickBulletDelete(i, row)"></clr-icon>
+                                <clr-icon shape="plus" (click)="clickBulletAdd(i)"></clr-icon>
+                                {{ row }}
+                            </div>
+                        </div>
                     </div>
                 </div>
 

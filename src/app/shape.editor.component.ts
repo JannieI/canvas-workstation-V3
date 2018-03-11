@@ -39,7 +39,7 @@ export class ShapeEditComponent implements OnInit {
     textIsBold: boolean = true;
     textIsItalic: boolean = true;
     textColour: string = 'darkred';
-
+    bulletArray: string[] = ['Prepare','Execute','Review','']
 
     shapeValue: string = 'R 234m';
     showArrow: boolean = false;
@@ -133,4 +133,13 @@ export class ShapeEditComponent implements OnInit {
 
         this.formShapeEditClosed.emit('saved');
     }
+
+    clickBulletDelete(index: number, item: string) {
+        // Remove item from bullet list
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletDelete', '@Start');
+        
+        // TODO - fix index, somehow not working!
+        this.bulletArray = this.bulletArray.filter(i => i != item);
+    }
+
 }
