@@ -87,7 +87,10 @@
                             [style.width.px]="200"
                             [style.stroke]="'black'"
                             [style.stroke-width.px]="1"
-                            [style.fill]="'beige'"
+                            [style.fill]="'red'"
+                            [style.opacity]="0.9"
+                            [style.rx]="15" 
+                            [style.ry]="15" 
                             />
                     </svg>
                 </div>
@@ -185,27 +188,23 @@
                 <div class="gridShapeProperties" *ngIf="showRectangle">
                     <div class="propertyLine">
                         Fill Colour:
-                        <input type="text" id="formFields_7" placeholder="Pink">
+                        <input type="text" id="formFields_7" placeholder="Red">
                     </div>
                     <div class="propertyLine">
                         Line thickness:
-                        <input type="text" id="formFields_7" placeholder="3">
+                        <input type="text" id="formFields_7" placeholder="1">
                     </div>
                     <div class="propertyLine">
                         Line Colour:
-                        <input type="text" id="formFields_7" placeholder="1px solid Black">
+                        <input type="text" id="formFields_7" placeholder="Black">
                     </div>
                     <div class="propertyLine">
                         Fill Opacity:
-                        <input type="text" id="formFields_7" placeholder="0-1">
-                    </div>
-                    <div class="propertyLine">
-                        Line Opacity:
-                        <input type="text" id="formFields_7" placeholder="0-1">
+                        <input type="text" id="formFields_7" placeholder="0.9">
                     </div>
                     <div class="propertyLine">
                         Corners:
-                        <input type="text" id="formFields_7" placeholder="Rounded/Not">
+                        <input type="text" id="formFields_7" placeholder="15 (px)">
                     </div>
                 </div>
 
