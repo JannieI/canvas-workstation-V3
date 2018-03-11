@@ -147,12 +147,14 @@
                 <div class="gridShape" *ngIf="showValue">
                     <div [style.height.px]="100"
                         [style.font-size.px]="50"
-                        [style.font-style]="'italic'"
-                        [style.font-weight]="'bold'"
-                        [style.font-family]="'Arial, serif'"
+
+                        [style.font-style]="valueIsItalic? 'italic' : 'normal'"
+                        [style.font-weight]="valueIsBold? 'bold' : 'normal'"
+                        [style.font-family]="valueFontFamily"
+                        [style.font-size.px]="valueFontSize"
                         [style.margin-left.px]="30"
                         [style.margin-top.px]="120"
-                        [style.color]="'darkred'"
+                        [style.color]="valueColour"
                         >
                         {{ shapeValue }}
                     </div >
@@ -372,23 +374,34 @@
 
                     <div class="propertyLine">
                         Font Size:
-                        <input type="text" id="formFields_7" placeholder="50 (px)">
+                        <input type="text" 
+                            placeholder="50 (px)"
+                            [(ngModel)]="valueFontSize"
+                            >
                     </div>
                     <div class="propertyLine">
                         Font Family:
-                        <input type="text" id="formFields_7" placeholder="Arial, serif">
+                        <input type="text" 
+                            placeholder="Arial, serif"
+                            [(ngModel)]="valueFontFamily"
+                            >
                     </div>
                     <div class="propertyLine">
                         Bold?:
-                        <input type="checkbox">
+                        <input type="checkbox"
+                            [(ngModel)]="valueIsBold"
+                            >
                     </div>
                     <div class="propertyLine">
                         Italic?:
-                        <input type="checkbox">
+                        <input type="checkbox"
+                            [(ngModel)]="valueIsItalic"
+                            >
                     </div>
                     <div class="propertyLine">
                         Colour:
                         <select
+                            [(ngModel)]="valueColour"
                             >
                             <option>DarkRed</option>
                             <option>Black</option>

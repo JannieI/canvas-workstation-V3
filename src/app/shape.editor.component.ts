@@ -22,14 +22,12 @@ export class ShapeEditComponent implements OnInit {
     @Output() formShapeEditClosed: EventEmitter<string> = new EventEmitter();
     @Input() newWidget: boolean; 
 
+    bulletArray: string[] = ['Prepare','Execute','Review','']
+    bulletValue: string = '';
     circleLineColor: string = 'black';
     circleLineThickness: number = 1;
     circleFillColour: string = 'steelblue';
-
-    bulletValue: string = '';
     editBulletItem: boolean = false;
-
-
     ellipseLineColor: string = 'black';
     ellipseLineThickness: number = 1;
     ellipseFillColour: string = 'steelblue';
@@ -38,14 +36,6 @@ export class ShapeEditComponent implements OnInit {
     rectangleFillColour: string = 'steelblue';
     rectangleOpacity: number = 0.9;
     rectangleCorner: number = 15;
-    textText: string = 'The brown fox is tired';
-    textFontSize: number = 12;
-    textFontFamily: string = 'Arial';
-    textIsBold: boolean = true;
-    textIsItalic: boolean = true;
-    textColour: string = 'darkred';
-    bulletArray: string[] = ['Prepare','Execute','Review','']
-
     shapeValue: string = 'R 234m';
     showArrow: boolean = false;
     showBullets: boolean = false;
@@ -56,6 +46,17 @@ export class ShapeEditComponent implements OnInit {
     showText: boolean = false;
     showTypeDashboard: boolean = false;
     showValue: boolean = false;
+    textText: string = 'The brown fox is tired';
+    textFontSize: number = 12;
+    textFontFamily: string = 'Arial';
+    textIsBold: boolean = true;
+    textIsItalic: boolean = true;
+    textColour: string = 'darkred';
+    valueFontSize: number = 50;
+    valueFontFamily: string = 'Arial';
+    valueIsBold: boolean = true;
+    valueIsItalic: boolean = false;
+    valueColour: string = 'darkred';
 
 
     constructor(
