@@ -71,10 +71,10 @@
                         [style.cy]="150"
                         [style.rx]="120"
                         [style.ry]="80"
-                        [style.stroke]="'black'"
-                        [style.stroke-width.px]="1"
-                        [style.fill]="'springgreen'"
-                        />
+                        [style.stroke]="ellipseLineColor"
+                        [style.stroke-width.px]="ellipseLineThickness"
+                        [style.fill]="ellipseFillColour"
+                    />
                     </svg>
                 </div>
 
@@ -181,16 +181,26 @@
                 <div class="gridShapeProperties" *ngIf="showEllipse">
                     <div class="propertyLine">
                         Line Colour:
-                        <input type="text" id="formFields_7" placeholder="Black">
+                        <input type="text" 
+                            placeholder="Black"
+                            [(ngModel)]="ellipseLineColor"
+                            >
                     </div>
                     <div class="propertyLine">
                         Line thickness:
-                        <input type="text" id="formFields_7" placeholder="3">
+                        <input type="text" 
+                            placeholder="3"
+                            [(ngModel)]="ellipseLineThickness"
+                            >
                     </div>
                     <div class="propertyLine">
                         Fill colour:
-                        <input type="text" id="formFields_7" placeholder="Red">
+                        <input type="text" 
+                            placeholder="Red"
+                            [(ngModel)]="ellipseFillColour"
+                            >
                     </div>
+        
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showRectangle">
