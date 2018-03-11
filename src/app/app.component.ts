@@ -23,7 +23,8 @@ import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService } 	  from './global-function.service';
 
 // Our Models
-import { Field, Dataset }                      from './models'
+import { Field }                      from './models'
+import { Dataset }                    from './models'
 import { Datasource }                 from './models'
 import { Widget }                     from './models'
 
@@ -36,7 +37,6 @@ import { View }                       from 'vega';
 import * as dl from 'datalib';
 import { load } from 'datalib';
 import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
-import { ShapeEditComponent } from 'app/shape.edit.component';
 
 
 // Constants

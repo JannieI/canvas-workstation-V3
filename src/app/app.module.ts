@@ -59,7 +59,7 @@ import { TableEditorComponent }      from './table.editor.component';
 import { SlicerEditorComponent }      from './slicer.editor.component';
 import { SlicerTablistComponent }     from './slicer.tablist.component';
 
-import { ShapeEditComponent }         from './shape.edit.component';
+import { ShapeEditComponent }         from './shape.editor.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataPopupComponent }         from './data.popup.component';
