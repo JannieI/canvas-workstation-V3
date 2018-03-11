@@ -57,9 +57,9 @@
                             [style.cx]="150"
                             [style.cy]="150"
                             [style.r]="100"
-                            [style.stroke]="'black'"
-                            [style.stroke-width.px]="1"
-                            [style.fill]="'beige'"
+                            [style.stroke]="circleLineColor"
+                            [style.stroke-width.px]="circleLineThickness"
+                            [style.fill]="circleFillColour"
                             />
                     </svg>
                 </div>
@@ -73,7 +73,7 @@
                         [style.ry]="80"
                         [style.stroke]="'black'"
                         [style.stroke-width.px]="1"
-                        [style.fill]="'beige'"
+                        [style.fill]="'springgreen'"
                         />
                     </svg>
                 </div>
@@ -87,7 +87,7 @@
                             [style.width.px]="200"
                             [style.stroke]="'black'"
                             [style.stroke-width.px]="1"
-                            [style.fill]="'red'"
+                            [style.fill]="'slategray'"
                             [style.opacity]="0.9"
                             [style.rx]="15" 
                             [style.ry]="15" 
@@ -156,15 +156,24 @@
                 <div class="gridShapeProperties" *ngIf="showCircle">
                     <div class="propertyLine">
                         Line Colour:
-                        <input type="text" id="formFields_7" placeholder="Black">
+                        <input type="text" 
+                            placeholder="Black"
+                            [(ngModel)]="circleLineColor"
+                            >
                     </div>
                     <div class="propertyLine">
                         Line thickness:
-                        <input type="text" id="formFields_7" placeholder="3">
+                        <input type="text" 
+                            placeholder="3"
+                            [(ngModel)]="circleLineThickness"
+                            >
                     </div>
                     <div class="propertyLine">
                         Fill colour:
-                        <input type="text" id="formFields_7" placeholder="Red">
+                        <input type="text" 
+                            placeholder="Red"
+                            [(ngModel)]="circleFillColour"
+                            >
                     </div>
 
                 </div>

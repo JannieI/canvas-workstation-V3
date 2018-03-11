@@ -22,6 +22,9 @@ export class ShapeEditComponent implements OnInit {
     @Output() formShapeEditClosed: EventEmitter<string> = new EventEmitter();
     @Input() newWidget: boolean; 
 
+    circleLineColor: string = 'black';
+    circleLineThickness: number = 1;
+    circleFillColour: string = 'steelblue';
     shapeText: string = 'The brown fox is tired'
     shapeValue: string = 'R 234m';
     showArrow: boolean = false;
