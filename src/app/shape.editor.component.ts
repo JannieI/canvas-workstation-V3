@@ -26,7 +26,7 @@ export class ShapeEditComponent implements OnInit {
     circleLineThickness: number = 1;
     circleFillColour: string = 'steelblue';
 
-    bulletValue: string = 'new';
+    bulletValue: string = '';
     editBulletItem: boolean = false;
 
 
@@ -155,7 +155,7 @@ export class ShapeEditComponent implements OnInit {
         // TODO - this is clumsy methinks - there must be a better way
         let tempArr: string[] = [];
         for (var i = 0; i < this.bulletArray.length; i++) {
-            console.log('xx i', i)
+
             if (this.bulletArray[i] == item) {
                 console.log('xx inside', i)
                 tempArr.push(this.bulletArray[i]);
@@ -175,15 +175,27 @@ export class ShapeEditComponent implements OnInit {
         // TODO - this must be done nicer
         if (this.bulletValue != '') {
             for (var i = 0; i < this.bulletArray.length; i++) {
-                console.log('xx i', i)
                 if (this.bulletArray[i] == '') {
                     this.bulletArray[i] = this.bulletValue;
                     break;
                 };
             };
+        } else {
+            let index: number = -1;
+            for (var i = 0; i < this.bulletArray.length; i++) {
+                console.log('xx i', i)
+                if (this.bulletArray[i] == '') {
+                    index = i;
+                    break;
+                };
+            };
+            if (index >= 0) {
+                this.bulletArray.splice(index,1);
+            };
         };
 
         // Hide input area
+        this.bulletValue = '';
         this.editBulletItem = false;
     
     }
