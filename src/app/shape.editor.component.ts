@@ -28,7 +28,12 @@ export class ShapeEditComponent implements OnInit {
     ellipseLineColor: string = 'black';
     ellipseLineThickness: number = 1;
     ellipseFillColour: string = 'steelblue';
-    
+    rectangleLineColor: string = 'black';
+    rectangleLineThickness: number = 1;
+    rectangleFillColour: string = 'steelblue';
+    rectangleOpacity: number = 0.9;
+    rectangleCorner: number = 15;
+
     shapeText: string = 'The brown fox is tired'
     shapeValue: string = 'R 234m';
     showArrow: boolean = false;

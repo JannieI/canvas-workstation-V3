@@ -85,12 +85,12 @@
                             [style.y]="100"
                             [style.height.px]="100"
                             [style.width.px]="200"
-                            [style.stroke]="'black'"
-                            [style.stroke-width.px]="1"
-                            [style.fill]="'slategray'"
-                            [style.opacity]="0.9"
-                            [style.rx]="15" 
-                            [style.ry]="15" 
+                            [style.stroke]="rectangleLineColor"
+                            [style.stroke-width.px]="rectangleLineThickness"
+                            [style.fill]="rectangleFillColour"
+                            [style.opacity]="rectangleOpacity"
+                            [style.rx]="rectangleCorner" 
+                            [style.ry]="rectangleCorner" 
                             />
                     </svg>
                 </div>
@@ -200,29 +200,43 @@
                             [(ngModel)]="ellipseFillColour"
                             >
                     </div>
-        
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showRectangle">
                     <div class="propertyLine">
-                        Fill Colour:
-                        <input type="text" id="formFields_7" placeholder="Red">
+                        Line Colour:
+                        <input type="text" 
+                            placeholder="Black"
+                            [(ngModel)]="rectangleLineColor"
+                            >
                     </div>
                     <div class="propertyLine">
                         Line thickness:
-                        <input type="text" id="formFields_7" placeholder="1">
+                        <input type="text" 
+                            placeholder="3"
+                            [(ngModel)]="rectangleLineThickness"
+                            >
                     </div>
                     <div class="propertyLine">
-                        Line Colour:
-                        <input type="text" id="formFields_7" placeholder="Black">
+                        Fill colour:
+                        <input type="text" 
+                            placeholder="Red"
+                            [(ngModel)]="rectangleFillColour"
+                            >
                     </div>
                     <div class="propertyLine">
                         Fill Opacity:
-                        <input type="text" id="formFields_7" placeholder="0.9">
+                        <input type="text" 
+                            placeholder="0=opaque, 1=solid"
+                            [(ngModel)]="rectangleOpacity"
+                            >
                     </div>
                     <div class="propertyLine">
                         Corners:
-                        <input type="text" id="formFields_7" placeholder="15 (px)">
+                        <input type="text" 
+                            placeholder="Corner Size in pz"
+                            [(ngModel)]="rectangleCorner"
+                            >
                     </div>
                 </div>
 
