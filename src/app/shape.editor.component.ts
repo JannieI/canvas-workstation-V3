@@ -21,7 +21,7 @@ export class ShapeEditComponent implements OnInit {
 
     @Output() formShapeEditClosed: EventEmitter<string> = new EventEmitter();
     @Input() newWidget: boolean; 
-    
+
     showCircle: boolean = false;
     showEllipse: boolean = false;
     showRectangle: boolean = false;
@@ -42,6 +42,10 @@ export class ShapeEditComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        if (!this.newWidget) {
+            this.selectShape('circle');
+        }
 
     }
 
