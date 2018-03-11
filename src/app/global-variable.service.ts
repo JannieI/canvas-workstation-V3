@@ -226,11 +226,18 @@ const widgetTemplate: Widget =
         "tableRows": 1,
         "tableTop": 1,
         "tableWidth": 1,
-        "shapeR": "",
         "shapeStroke": "",
         "shapeStrokeWidth": "",
         "shapeFill": "",
         "shapeText": "",
+        "shapeValue": "",
+        "shapeBullets": [],
+        "shapeOpacity": 1,
+        "shapeCorner": 15,
+        "shapeFontSize": 24,
+        "shapeFontFamily": "",
+        "shapeIsBold": true,
+        "shapeIsItalic": false,
         "refreshMode": "",
         "refreshFrequency": 1,
         "widgetRefreshedOn": "",
@@ -2883,11 +2890,18 @@ export class GlobalVariableService {
                 {key: 'tableRows', 					type: 'int'},
                 {key: 'tableTop', 					type: 'int'},
                 {key: 'tableWidth', 				type: 'int'},
-                {key: 'shapeR', 					type: 'string'},
                 {key: 'shapeStroke', 				type: 'string'},
                 {key: 'shapeStrokeWidth', 			type: 'string'},
                 {key: 'shapeFill', 					type: 'string'},
                 {key: 'shapeText', 					type: 'string'},
+                {key: 'shapeValue', 				type: 'string'},
+                {key: 'shapeBullets', 				type: 'string'},
+                {key: 'shapeOpacity', 				type: 'int'},
+                {key: 'shapeCorner', 				type: 'int'},
+                {key: 'shapeFontSize', 				type: 'int'},
+                {key: 'shapeFontFamily', 			type: 'string'},
+                {key: 'shapeIsBold', 				type: 'bool'},
+                {key: 'shapeIsItalic', 				type: 'bool'},
                 {key: 'refreshMode', 				type: 'string'},
                 {key: 'refreshFrequency', 			type: 'int'},
                 {key: 'widgetRefreshedOn', 			type: 'string'},
@@ -3237,11 +3251,18 @@ export class GlobalVariableService {
                 w.tableRows = changedWidget.tableRows;
                 w.tableTop = changedWidget.tableTop;
                 w.tableWidth = changedWidget.tableWidth;
-                w.shapeR = changedWidget.shapeR;
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeFill = changedWidget.shapeFill;
                 w.shapeText = changedWidget.shapeText;
+                w.shapeValue = changedWidget.shapeValue;
+                w.shapeBullets = changedWidget.shapeBullets;
+                w.shapeOpacity = changedWidget.shapeOpacity;
+                w.shapeCorner = changedWidget.shapeCorner;
+                w.shapeFontSize = changedWidget.shapeFontSize;
+                w.shapeFontFamily = changedWidget.shapeFontFamily;
+                w.shapeIsBold = changedWidget.shapeIsBold;
+                w.shapeIsItalic = changedWidget.shapeIsItalic;
                 w.refreshMode = changedWidget.refreshMode;
                 w.refreshFrequency = changedWidget.refreshFrequency;
                 w.widgetRefreshedOn = changedWidget.widgetRefreshedOn;

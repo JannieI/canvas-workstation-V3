@@ -58,8 +58,8 @@
                             [style.cy]="150"
                             [style.r]="100"
                             [style.stroke]="localWidget.shapeStroke"
-                            [style.stroke-width.px]="circleLineThickness"
-                            [style.fill]="circleFillColour"
+                            [style.stroke-width.px]="shapeStrokeWidth"
+                            [style.fill]="localWidget.shapeFill"
                             />
                     </svg>
                 </div>
@@ -71,9 +71,9 @@
                         [style.cy]="150"
                         [style.rx]="120"
                         [style.ry]="80"
-                        [style.stroke]="ellipseLineColor"
-                        [style.stroke-width.px]="ellipseLineThickness"
-                        [style.fill]="ellipseFillColour"
+                        [style.stroke]="localWidget.shapeStroke"
+                        [style.stroke-width.px]="shapeStrokeWidth"
+                        [style.fill]="localWidget.shapeFill"
                     />
                     </svg>
                 </div>
@@ -85,9 +85,9 @@
                             [style.y]="100"
                             [style.height.px]="100"
                             [style.width.px]="200"
-                            [style.stroke]="rectangleLineColor"
-                            [style.stroke-width.px]="rectangleLineThickness"
-                            [style.fill]="rectangleFillColour"
+                            [style.stroke]="localWidget.shapeStroke"
+                            [style.stroke-width.px]="shapeStrokeWidth"
+                            [style.fill]="localWidget.shapeFill"
                             [style.opacity]="rectangleOpacity"
                             [style.rx]="rectangleCorner" 
                             [style.ry]="rectangleCorner" 
@@ -172,14 +172,14 @@
                         Line thickness:
                         <input type="text" 
                             placeholder="3"
-                            [(ngModel)]="circleLineThickness"
+                            [(ngModel)]="shapeStrokeWidth"
                             >
                     </div>
                     <div class="propertyLine">
                         Fill colour:
                         <input type="text" 
                             placeholder="Red"
-                            [(ngModel)]="circleFillColour"
+                            [(ngModel)]="localWidget.shapeFill"
                             >
                     </div>
 
@@ -190,21 +190,21 @@
                         Line Colour:
                         <input type="text" 
                             placeholder="Black"
-                            [(ngModel)]="ellipseLineColor"
+                            [(ngModel)]="localWidget.shapeStroke"
                             >
                     </div>
                     <div class="propertyLine">
                         Line thickness:
                         <input type="text" 
                             placeholder="3"
-                            [(ngModel)]="ellipseLineThickness"
+                            [(ngModel)]="shapeStrokeWidth"
                             >
                     </div>
                     <div class="propertyLine">
                         Fill colour:
                         <input type="text" 
                             placeholder="Red"
-                            [(ngModel)]="ellipseFillColour"
+                            [(ngModel)]="localWidget.shapeFill"
                             >
                     </div>
                 </div>
@@ -214,21 +214,21 @@
                         Line Colour:
                         <input type="text" 
                             placeholder="Black"
-                            [(ngModel)]="rectangleLineColor"
+                            [(ngModel)]="localWidget.shapeStroke"
                             >
                     </div>
                     <div class="propertyLine">
                         Line thickness:
                         <input type="text" 
                             placeholder="3"
-                            [(ngModel)]="rectangleLineThickness"
+                            [(ngModel)]="shapeStrokeWidth"
                             >
                     </div>
                     <div class="propertyLine">
                         Fill colour:
                         <input type="text" 
                             placeholder="Red"
-                            [(ngModel)]="rectangleFillColour"
+                            [(ngModel)]="localWidget.shapeFill"
                             >
                     </div>
                     <div class="propertyLine">

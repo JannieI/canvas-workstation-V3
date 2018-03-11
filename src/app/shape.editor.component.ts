@@ -29,17 +29,8 @@ export class ShapeEditComponent implements OnInit {
 
     bulletArray: string[] = ['Prepare','Execute','Review','']
     bulletValue: string = '';
-    circleLineColor: string = 'black';
-    circleLineThickness: number = 2;
-    circleFillColour: string = 'steelblue';
     editBulletItem: boolean = false;
-    ellipseLineColor: string = 'black';
-    ellipseLineThickness: number = 1;
-    ellipseFillColour: string = 'steelblue';
     localWidget: Widget;                            // W to modify, copied from selected
-    rectangleLineColor: string = 'black';
-    rectangleLineThickness: number = 1;
-    rectangleFillColour: string = 'steelblue';
     rectangleOpacity: number = 0.9;
     rectangleCorner: number = 15;
     shapeValue: string = 'R 234m';

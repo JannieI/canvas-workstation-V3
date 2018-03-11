@@ -486,12 +486,19 @@ export class Widget {
     tableWidth: number;                 // in px, cuts of rest if bigger than this (for later use)
 
     // Shape
-    shapeR: string;                     // circle svg radius
-    shapeStroke: string;                // colour of line
-    shapeStrokeWidth: string;           // line thickness in px
-    shapeFill: string;                  // fill / inside (ie of circle, colour of text, etc)
+    shapeStroke: string;                // Colour of line, text
+    shapeStrokeWidth: string;           // Line thickness in px
+    shapeFill: string;                  // Fill / inside (ie of circle, colour of text, etc)
     shapeText: string;                  // Text in textbox
-    
+    shapeValue: string;                 // Value to display
+    shapeBullets: string[];             // Array of bullet points
+    shapeOpacity: number;               // Opacity, between 0 and 1, ie of rectangle
+    shapeCorner: number;                // Corner size in px, ie 15
+    shapeFontSize: number;              // Size of font in px, ie 12
+    shapeFontFamily: string;            // Font, ie Aria, Sans Serif
+    shapeIsBold: boolean;               // True if text is bold
+    shapeIsItalic: boolean;             // True if text is italic
+
     // Created, updated and refreshed
     refreshMode: string;                // Manual, OnOpen, Repeatedly
     refreshFrequency: number;           // Nr of seconds if RefreshMode = Repeatedly
