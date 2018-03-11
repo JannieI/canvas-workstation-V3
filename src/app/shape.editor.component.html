@@ -2,20 +2,20 @@
     <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <div class="overall">
-
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
+    
+            <div class="gridOverall">
 
                 <div class="gridHeading">
-                    Shapes
+                    <b>Shape Editor</b>
                 </div>
 
-                <div class="gridShapes">
-                    <label for="selects_4">Select a shape:</label>
-                    <div class="select">
-                        <select id="selects_3"
+                <div class="gridShapeTypes">
+                    Select a shape sub-type:
+                    <span>
+                        <select
                             (change)="clickSelectShape($event)"
                             >
                             <option>Circle</option>
@@ -27,10 +27,31 @@
                             <option>Bullets</option>
                             <option>Value</option>
                         </select>
-                    </div>
+                    </span>
                 </div>
 
-                <div class="shapeTopShape" *ngIf="showCircle">
+
+                <div class="gridButtonCancel">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose()"
+                        >
+                        Cancel
+                    </button>
+                </div>
+                <div class="gridButtonSave">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickSave()"
+                        >
+                        Save
+                    </button>
+                </div>
+
+
+                <div class="gridShape" *ngIf="showCircle">
                     <svg height="200" width="200">
                         <circle 
                             [style.cx]="100" 
@@ -43,7 +64,7 @@
                     </svg>
                 </div>
 
-                <div class="shapeTopShape" *ngIf="showEllipse">
+                <div class="gridShape" *ngIf="showEllipse">
                     <svg height="200" width="200">
                         <ellipse 
                         [style.cx]="100" 
@@ -57,7 +78,7 @@
                     </svg>
                 </div>
 
-                <div class="shapeTopShape" *ngIf="showRectangle">
+                <div class="gridShape" *ngIf="showRectangle">
                     <svg width="400" height="180">
                         <rect 
                             [style.height.px]="100"
@@ -69,7 +90,7 @@
                     </svg>
                 </div>
 
-                <div class="shapeTopShape" *ngIf="showTextBox">
+                <div class="gridShape" *ngIf="showTextBox">
                     <svg>
                         <text 
                             x="0" 
@@ -81,7 +102,7 @@
                     </svg>
                 </div>
         
-                <div class="shapeTopShape" *ngIf="showArrow">
+                <div class="gridShape" *ngIf="showArrow">
                     <svg [style.height.px]="100"
                         [style.width.px]="100"
                         >
@@ -95,14 +116,14 @@
                     </svg>
                 </div>  
 
-                <div class="shapeTopShape" *ngIf="showImage">
+                <div class="gridShape" *ngIf="showImage">
                     <img [style.height.px]="100"
                         [style.width.px]="100"
                         src="../images/Tabs.png"
                         >
                 </div>
 
-                <div class="shapeTopShape" *ngIf="showBullets">
+                <div class="gridShape" *ngIf="showBullets">
                     <ul
                         >
                         <li>Coffee</li>
@@ -111,7 +132,7 @@
                     </ul>
                 </div>
 
-                <div class="shapeTopShape" *ngIf="showValue">
+                <div class="gridShape" *ngIf="showValue">
                     <span [style.height.px]="100"
                         [style.width.px]="100"
                         [style.font-size.px]="50"
@@ -125,7 +146,7 @@
 
 
 
-                <div class="shapeBottomText" *ngIf="showCircle">
+                <div class="gridShapeProperties" *ngIf="showCircle">
                     Line Colour:
                     <input type="text" id="formFields_7" placeholder="Black">
                     Line thickness:
@@ -134,7 +155,7 @@
                     <input type="text" id="formFields_7" placeholder="Red">
                 </div>
 
-                <div class="shapeBottomText" *ngIf="showEllipse">
+                <div class="gridShapeProperties" *ngIf="showEllipse">
                     Line Colour:
                     <input type="text" id="formFields_7" placeholder="Black">
                     Line thickness:
@@ -143,7 +164,7 @@
                     <input type="text" id="formFields_7" placeholder="Red">
                 </div>
 
-                <div class="shapeBottomShape" *ngIf="showRectangle">
+                <div class="gridShapeProperties" *ngIf="showRectangle">
                     Fill Colour:
                     <input type="text" id="formFields_7" placeholder="Pink">
                     Line thickness:
@@ -158,7 +179,7 @@
                     <input type="text" id="formFields_7" placeholder="Rounded/Not">
                 </div>
     
-                <div class="shapeBottomText" *ngIf="showTextBox">
+                <div class="gridShapeProperties" *ngIf="showTextBox">
                     <div class="propertyLine">
                         Text input:
                         <input type="text" id="formFields_7" placeholder="The brown fox ...">
@@ -179,21 +200,21 @@
                     </div>
                 </div>
 
-                <div class="shapeBottomShape" *ngIf="showArrow">
+                <div class="gridShapeProperties" *ngIf="showArrow">
                     Direction ....
                 </div>
 
-                <div class="shapeBottomShape" *ngIf="showImage">
+                <div class="gridShapeProperties" *ngIf="showImage">
                     Image:
                     <input type="text" id="formFields_7" placeholder="Co. logo">
                 </div>
 
-                <div class="shapeBottomShape" *ngIf="showBullets">
+                <div class="gridShapeProperties" *ngIf="showBullets">
                     Values (array):
                     <input type="text" id="formFields_7" placeholder="....">
                 </div>
 
-                <div class="shapeBottomText" *ngIf="showValue">
+                <div class="gridShapeProperties" *ngIf="showValue">
                     <div class="propertyLine">
                         Data:
                         <div class="select">
@@ -240,15 +261,9 @@
                 </div>
 
 
-                <div class="shapeButton">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="clickSave()"
-                        >
-                        Save
-                    </button>
-                </div>
+
+
+    
             </div>
         </div>
     </div>

@@ -1748,6 +1748,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        this.newWidget = true;
         this.showModalShapeEdit = true;
     }
 
@@ -1757,6 +1758,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        this.newWidget = false;
         this.showModalShapeEdit = true;
     }
 

@@ -14,13 +14,14 @@ import { GlobalFunctionService } 	  from './global-function.service';
 
 @Component({
     selector: 'shape-edit',
-    templateUrl: './shape.edit.component.html',
-    styleUrls: ['./shape.edit.component.css']
+    templateUrl: './shape.editor.component.html',
+    styleUrls: ['./shape.editor.component.css']
 })
 export class ShapeEditComponent implements OnInit {
 
     @Output() formShapeEditClosed: EventEmitter<string> = new EventEmitter();
-
+    @Input() newWidget: boolean; 
+    
     showCircle: boolean = false;
     showEllipse: boolean = false;
     showRectangle: boolean = false;
@@ -34,22 +35,39 @@ export class ShapeEditComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
 
+    constructor(
+        private globalFunctionService: GlobalFunctionService,
+    ){}
+
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
     }
 
     clickClose() {
+        // Close the form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
         console.log('clickClose')
 
 		this.formShapeEditClosed.emit('cancelled');
     }
 
     clickSelectShape(ev) {
+        // The user selected a shape subtype
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectShape', '@Start');
+
         console.log(ev, ev.srcElement.value)
         
-        // Get selected shape
-        let shape: string = ev.srcElement.value;
+        // Enact selected shape
+        this.selectShape(ev.srcElement.value);
         
+    }
+
+    selectShape(shapeType: string) {
+        // Change form according to the selected a shape subtype
+        this.globalFunctionService.printToConsole(this.constructor.name,'selectShape', '@Start');
+
         // Deselect all
         this.showCircle = false;
         this.showEllipse = false;
@@ -60,34 +78,37 @@ export class ShapeEditComponent implements OnInit {
         this.showBullets = false;
         this.showValue = false;
 
-        if (shape == 'Circle') {
+        if (shapeType == 'Circle') {
             this.showCircle = true;
         }
-        if (shape == 'Ellipse') {
+        if (shapeType == 'Ellipse') {
             this.showEllipse = true;
         }
-        if (shape == 'Rectangle') {
+        if (shapeType == 'Rectangle') {
             this.showRectangle = true;
         }
-        if (shape == 'Text') {
+        if (shapeType == 'Text') {
             this.showText = true;
         }
-        if (shape == 'Arrow') {
+        if (shapeType == 'Arrow') {
             this.showArrow = true;
         }
-        if (shape == 'Image') {
+        if (shapeType == 'Image') {
             this.showImage = true;
         }
-        if (shape == 'Bullets') {
+        if (shapeType == 'Bullets') {
             this.showBullets = true;
         }
-        if (shape == 'Value') {
+        if (shapeType == 'Value') {
             this.showValue = true;
         }
 
     }
 
     clickSave() {
-		this.formShapeEditClosed.emit('saved');
+        // Save the info on the form, and return
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        this.formShapeEditClosed.emit('saved');
     }
 }

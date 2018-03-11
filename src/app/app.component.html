@@ -2056,6 +2056,7 @@
 <shape-edit
     class="formPopupDashboard"
     *ngIf="showModalShapeEdit"
+    [newWidget]="newWidget"
     (formShapeEditClosed)="handleCloseShapeEdit($event)">Load Shape Edit ...
 </shape-edit>
 
