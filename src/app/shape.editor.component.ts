@@ -9,8 +9,12 @@ import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
+// Our Models
+import { Widget }                     from './models';
+
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 @Component({
     selector: 'shape-edit',
@@ -21,16 +25,18 @@ export class ShapeEditComponent implements OnInit {
 
     @Output() formShapeEditClosed: EventEmitter<string> = new EventEmitter();
     @Input() newWidget: boolean; 
+    @Input() selectedWidget: Widget;
 
     bulletArray: string[] = ['Prepare','Execute','Review','']
     bulletValue: string = '';
     circleLineColor: string = 'black';
-    circleLineThickness: number = 1;
+    circleLineThickness: number = 2;
     circleFillColour: string = 'steelblue';
     editBulletItem: boolean = false;
     ellipseLineColor: string = 'black';
     ellipseLineThickness: number = 1;
     ellipseFillColour: string = 'steelblue';
+    localWidget: Widget;                            // W to modify, copied from selected
     rectangleLineColor: string = 'black';
     rectangleLineThickness: number = 1;
     rectangleFillColour: string = 'steelblue';
@@ -61,6 +67,7 @@ export class ShapeEditComponent implements OnInit {
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
+        private globalVariableService: GlobalVariableService,
     ){}
 
     ngOnInit() {
@@ -70,6 +77,19 @@ export class ShapeEditComponent implements OnInit {
         if (!this.newWidget) {
             this.selectShape('Circle');
         }
+
+        if (this.newWidget) {
+
+            // Create new W
+            this.localWidget = this.globalVariableService.widgetTemplate;
+            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+            this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+            this.localWidget.widgetType = 'Shape';
+        } else {
+
+            this.localWidget = Object.assign({}, this.selectedWidget);
+            console.log('xx locW', this.localWidget)
+        };
 
     }
 

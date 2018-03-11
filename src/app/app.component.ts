@@ -1759,6 +1759,11 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.newWidget = false;
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Shape') {
+                this.selectedWidget = w;
+            };
+        });
         this.showModalShapeEdit = true;
     }
 

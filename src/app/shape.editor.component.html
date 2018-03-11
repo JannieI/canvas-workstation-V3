@@ -57,7 +57,7 @@
                             [style.cx]="150"
                             [style.cy]="150"
                             [style.r]="100"
-                            [style.stroke]="circleLineColor"
+                            [style.stroke]="localWidget.shapeStroke"
                             [style.stroke-width.px]="circleLineThickness"
                             [style.fill]="circleFillColour"
                             />
@@ -164,8 +164,8 @@
                     <div class="propertyLine">
                         Line Colour:
                         <input type="text" 
-                            placeholder="Black"
-                            [(ngModel)]="circleLineColor"
+                            placeholder="Color or circle, ie Black"
+                            [(ngModel)]="localWidget.shapeStroke"
                             >
                     </div>
                     <div class="propertyLine">

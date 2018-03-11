@@ -473,7 +473,7 @@
         "tableTop": 1,
         "tableWidth": 1,
         "shapeR": "40",
-        "shapeStroke": "red",
+        "shapeStroke": "darkred",
         "shapeStrokeWidth": "2",
         "shapeFill": "transparent",
         "refreshMode": "",
