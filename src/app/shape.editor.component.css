@@ -43,8 +43,8 @@
         border-left: 1px solid black;
         grid-column-start: 13;
         grid-column-end: 21;
-        grid-row-start: 4;
-        grid-row-end: 12;
+        grid-row-start: 3;
+        grid-row-end: 18;
         text-align: left;
     }
 

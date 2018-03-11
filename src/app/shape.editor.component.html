@@ -5,7 +5,7 @@
             <button type="button" class="closeButton" (click)="clickClose()">
                 X
             </button>
-    
+
             <div class="gridOverall">
 
                 <div class="gridHeading">
@@ -52,79 +52,83 @@
 
 
                 <div class="gridShape" *ngIf="showCircle">
-                    <svg height="200" width="200">
-                        <circle 
-                            [style.cx]="100" 
-                            [style.cy]="100" 
-                            [style.r]="40" 
-                            [style.stroke]="black" 
-                            [style.stroke-width.px]="1" 
-                            [style.fill]="green" 
+                    <svg height="300" width="300">
+                        <circle
+                            [style.cx]="150"
+                            [style.cy]="150"
+                            [style.r]="100"
+                            [style.stroke]="'black'"
+                            [style.stroke-width.px]="1"
+                            [style.fill]="'beige'"
                             />
                     </svg>
                 </div>
 
                 <div class="gridShape" *ngIf="showEllipse">
-                    <svg height="200" width="200">
-                        <ellipse 
-                        [style.cx]="100" 
-                        [style.cy]="100" 
-                        [style.rx]="80" 
-                        [style.ry]="40" 
-                        [style.stroke]="black" 
-                        [style.stroke-width.px]="1" 
-                        [style.fill]="green" 
+                    <svg height="300" width="300">
+                        <ellipse
+                        [style.cx]="150"
+                        [style.cy]="150"
+                        [style.rx]="120"
+                        [style.ry]="80"
+                        [style.stroke]="'black'"
+                        [style.stroke-width.px]="1"
+                        [style.fill]="'beige'"
                         />
                     </svg>
                 </div>
 
                 <div class="gridShape" *ngIf="showRectangle">
-                    <svg width="400" height="180">
-                        <rect 
+                    <svg width="300" height="300">
+                        <rect
+                            [style.x]="50" 
+                            [style.y]="100"
                             [style.height.px]="100"
-                            [style.width.px]="100"
-                            [style.stroke]="black" 
-                            [style.stroke-width.px]="1" 
-                            [style.fill]="green" 
+                            [style.width.px]="200"
+                            [style.stroke]="'black'"
+                            [style.stroke-width.px]="1"
+                            [style.fill]="'beige'"
                             />
                     </svg>
                 </div>
 
                 <div class="gridShape" *ngIf="showText">
-                    <svg>
-                        <text 
-                            x="0" 
-                            y="15" 
+                    <svg width="300" height="300">
+                        <text
+                            x="20"
+                            y="150"
                             [style.fill]="black"
                             >
                             {{ shapeText }}
                         </text>
                     </svg>
                 </div>
-        
+
                 <div class="gridShape" *ngIf="showArrow">
-                    <svg [style.height.px]="100"
-                        [style.width.px]="100"
-                        >
+                    <svg width="300" height="300">
                         <defs>
                             <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
                             <path d="M0,0 L0,6 L9,3 z" fill="black" />
                             </marker>
                         </defs>
-                        
-                        <line x1="1" y1="1" x2="55" y2="55" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+
+                        <line x1="100" y1="100" x2="155" y2="155" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
                     </svg>
-                </div>  
+                </div>
 
                 <div class="gridShape" *ngIf="showImage">
                     <img [style.height.px]="100"
                         [style.width.px]="100"
+                        [style.margin-left.px]="100"
+                        [style.margin-top.px]="100"
                         src="../images/Tabs.png"
                         >
                 </div>
 
                 <div class="gridShape" *ngIf="showBullets">
                     <ul
+                        [style.margin-left.px]="30"
+                        [style.margin-top.px]="30"
                         >
                         <li>Coffee</li>
                         <li>Tea</li>
@@ -133,15 +137,16 @@
                 </div>
 
                 <div class="gridShape" *ngIf="showValue">
-                    <span [style.height.px]="100"
-                        [style.width.px]="100"
+                    <div [style.height.px]="100"
                         [style.font-size.px]="50"
                         [style.font-style]="'italic'"
                         [style.font-weight]="'bold'"
                         [style.font-family]="'Arial, serif'"
+                        [style.margin-left.px]="30"
+                        [style.margin-top.px]="120"
                         >
                         {{ shapeValue }}
-                    </span >
+                    </div >
                 </div>
 
 
@@ -159,7 +164,7 @@
                         Fill colour:
                         <input type="text" id="formFields_7" placeholder="Red">
                     </div>
-    
+
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showEllipse">
@@ -203,7 +208,7 @@
                         <input type="text" id="formFields_7" placeholder="Rounded/Not">
                     </div>
                 </div>
-    
+
                 <div class="gridShapeProperties" *ngIf="showText">
                     <div class="propertyLine">
                         Text input:
@@ -296,7 +301,7 @@
 
 
 
-    
+
             </div>
         </div>
     </div>
