@@ -27,7 +27,6 @@ export class ShapeEditComponent implements OnInit {
     @Input() newWidget: boolean; 
     @Input() selectedWidget: Widget;
 
-    bulletArray: string[] = ['Prepare','Execute','Review','']
     bulletValue: string = '';
     editBulletItem: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
@@ -64,8 +63,11 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.widgetType = 'Shape';
         } else {
 
+            // Deep copy
             this.localWidget = Object.assign({}, this.selectedWidget);
-            console.log('xx locW', this.localWidget)
+
+            // Refresh the form with the sub type
+            this.selectShape(this.localWidget.widgetSubType);
         };
 
     }
@@ -142,7 +144,7 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletDelete', '@Start');
         
         // TODO - fix index, somehow not working!
-        this.bulletArray = this.bulletArray.filter(b => b != item);
+        this.localWidget.shapeBullets = this.localWidget.shapeBullets.filter(b => b != item);
     }
 
     clickBulletAdd(index: number, item: string) {
@@ -152,17 +154,17 @@ export class ShapeEditComponent implements OnInit {
         // TODO - fix index, somehow not working!
         // TODO - this is clumsy methinks - there must be a better way
         let tempArr: string[] = [];
-        for (var i = 0; i < this.bulletArray.length; i++) {
+        for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
 
-            if (this.bulletArray[i] == item) {
+            if (this.localWidget.shapeBullets[i] == item) {
                 console.log('xx inside', i)
-                tempArr.push(this.bulletArray[i]);
+                tempArr.push(this.localWidget.shapeBullets[i]);
                 tempArr.push('');
             } else {
-                tempArr.push(this.bulletArray[i]);
+                tempArr.push(this.localWidget.shapeBullets[i]);
             };
         };
-        this.bulletArray = tempArr;
+        this.localWidget.shapeBullets = tempArr;
         this.editBulletItem = true;
     }
 
@@ -172,23 +174,23 @@ export class ShapeEditComponent implements OnInit {
     
         // TODO - this must be done nicer
         if (this.bulletValue != '') {
-            for (var i = 0; i < this.bulletArray.length; i++) {
-                if (this.bulletArray[i] == '') {
-                    this.bulletArray[i] = this.bulletValue;
+            for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
+                if (this.localWidget.shapeBullets[i] == '') {
+                    this.localWidget.shapeBullets[i] = this.bulletValue;
                     break;
                 };
             };
         } else {
             let index: number = -1;
-            for (var i = 0; i < this.bulletArray.length; i++) {
+            for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
                 console.log('xx i', i)
-                if (this.bulletArray[i] == '') {
+                if (this.localWidget.shapeBullets[i] == '') {
                     index = i;
                     break;
                 };
             };
             if (index >= 0) {
-                this.bulletArray.splice(index,1);
+                this.localWidget.shapeBullets.splice(index,1);
             };
         };
 

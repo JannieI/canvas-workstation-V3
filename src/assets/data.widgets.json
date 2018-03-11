@@ -387,7 +387,7 @@
     },
     {
         "widgetType": "Shape",
-        "widgetSubType": "circle",
+        "widgetSubType": "Circle",
 
         "isTrashed": false,
         "dashboardID": 1,
@@ -515,7 +515,7 @@
     },
     {
         "widgetType": "Shape",
-        "widgetSubType": "ellipse",
+        "widgetSubType": "Ellipse",
 
         "isTrashed": false,
         "dashboardID": 1,
@@ -643,7 +643,7 @@
     },
     {
         "widgetType": "Shape",
-        "widgetSubType": "rect",
+        "widgetSubType": "Rectangle",
 
         "isTrashed": false,
         "dashboardID": 1,
@@ -771,7 +771,7 @@
     },
     {
         "widgetType": "Shape",
-        "widgetSubType": "text",
+        "widgetSubType": "Text",
 
         "isTrashed": false,
         "dashboardID": 1,
@@ -900,7 +900,7 @@
     },
     {
         "widgetType": "Shape",
-        "widgetSubType": "arrow",
+        "widgetSubType": "Arrow",
 
         "isTrashed": false,
         "dashboardID": 1,
@@ -1029,7 +1029,7 @@
     },
     {
         "widgetType": "Shape",
-        "widgetSubType": "img",
+        "widgetSubType": "Image",
 
         "isTrashed": false,
         "dashboardID": 1,
@@ -1158,7 +1158,7 @@
     },
     {
         "widgetType": "Shape",
-        "widgetSubType": "bullets",
+        "widgetSubType": "Bullets",
 
         "isTrashed": false,
         "dashboardID": 1,
@@ -1287,7 +1287,7 @@
     },
     {
         "widgetType": "Shape",
-        "widgetSubType": "value",
+        "widgetSubType": "Value",
 
         "isTrashed": false,
         "dashboardID": 1,

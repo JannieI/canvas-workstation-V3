@@ -358,7 +358,8 @@ export class Widget {
 
     // Type
     widgetType: string;                 // Graph, Table, Shape, Slicer
-    widgetSubType: string;              // Type of shape, ie Circle
+    widgetSubType: string;              // Type of shape, ie Circle.  NB spelling is case-
+                                        // sensitive, and used in Code !!
 
     // Trashed
     isTrashed: boolean;
