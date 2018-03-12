@@ -5,7 +5,7 @@ import { Injectable }                 from '@angular/core';
 // Our Serives
 
 // Our Models
-import { Action }                     from './models';
+import { CanvasAction }                     from './models';
 import { ButtonBarAvailable }         from './models';
 import { Dataset }                    from './models';
 import { ButtonBarSelected }          from './models';
@@ -761,7 +761,7 @@ export class GlobalVariableService {
     userID: string = 'JannieI';  // TODO - unHardCode
     dsIDs: number[] = [];           // Dataset IDs
     widgetGroup = new BehaviorSubject<number[]>([]);
-    actions: Action[] = [];
+    actions: CanvasAction[] = [];
 
     // StatusBar
     statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);
@@ -3391,7 +3391,7 @@ export class GlobalVariableService {
                 act.push(this.actions[i].id)
             };
             if (act.length > 0) {
-                actID = Math.max(...act);
+                actID = Math.max(...act) + 1;
             };
 
             this.actions.push({

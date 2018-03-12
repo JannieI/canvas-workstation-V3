@@ -1,7 +1,7 @@
 // ALL models (schema) are kept here
 
 // Setup / Settings / General
-export class Action {
+export class CanvasAction {
     id: number;                             // Unique id per action
     action: string;                         // Optional name, ie Move Widget 
     description: string;                    // Optional description, ie calling routine, etc

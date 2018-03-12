@@ -23,9 +23,10 @@ import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService } 	  from './global-function.service';
 
 // Our Models
-import { Field }                      from './models'
+import { CanvasAction }               from './models'
 import { Dataset }                    from './models'
 import { Datasource }                 from './models'
+import { Field }                      from './models'
 import { Widget }                     from './models'
 
 import { WidgetSingleComponent }      from './widget.single.component';
@@ -37,6 +38,7 @@ import { View }                       from 'vega';
 import * as dl from 'datalib';
 import { load } from 'datalib';
 import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
+import { Action } from 'rxjs/scheduler/Action';
 
 
 // Constants
@@ -807,6 +809,31 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+
+        // TODO - decide if lates / -1 is best choice here
+        let actID: number = 1;
+        let act: number[] = [];
+        for (var i = 0; i < this.globalVariableService.actions.length; i++) {
+            act.push(this.globalVariableService.actions[i].id)
+        };
+        if (act.length > 0) {
+            actID = Math.max(...act);
+        };
+
+        // Can only undo if something has been done before
+        if (act.length == 0) {
+            console.log('Nothing to undo')
+            return;
+        };
+
+        // Previous was not an UNDO, so just reverse it
+        let filAct: CanvasAction[] = this.globalVariableService.actions.filter(act =>
+            act.id == actID);
+        if (filAct[0].undoID == null) {
+            console.log('undo id ',filAct[0].id )
+        } else {
+            console.log('undo prev id ', filAct[0].undoID -1)
+        };
     }
 
     clickMenuEditRedo() {
