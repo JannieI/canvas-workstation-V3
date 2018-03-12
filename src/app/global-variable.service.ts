@@ -3367,5 +3367,28 @@ export class GlobalVariableService {
         console.log('xx GV Perms', this.datasourcePermissions, this.currentDatasourcePermissions)
     }
 
+    actionAdd(
+        id: number, 
+        action: string, 
+        description: string,
+        undoID: number, 
+        redoID: number, 
+        oldWidget: Widget, 
+        newWidget: Widget, 
+     ) {
+        // Add an action to the ActionLog
+        console.log('Global-Variables actionAdd ...');
 
+        this.actions.push({
+
+            id: id,
+            action: action,
+            description: description,
+            undoID: undoID,
+            redoID: redoID,
+            oldWidget: oldWidget,
+            newWidget: newWidget,
+        });
+        console.log('xx actions', this.actions)
+    }
 }
