@@ -3156,7 +3156,7 @@ export class AppComponent implements OnInit {
 
     duplicateWidget(originalWidget: Widget) {
         // Duplicate the given Widget
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'duplicateWidget', '@Start');
 
         // Get new ID
         // TODO - improve this when using a DB!
