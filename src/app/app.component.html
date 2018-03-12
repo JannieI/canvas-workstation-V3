@@ -1270,7 +1270,7 @@
         <svg [style.height]="row.containerHeight-8"
             [style.width]="row.containerWidth-8"
             [style.marginTop.px]="-26"
-            [style.marginLeft.px]="-12"
+            [style.marginLeft.px]="-10"
             >
             <circle 
                 [style.cx]="row.containerWidth/2" 
@@ -1285,10 +1285,10 @@
 
     <!-- Shape Ellipse Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Ellipse'">
-        <svg [style.height]="row.containerHeight"
-            [style.width]="row.containerWidth"
-            [style.marginTop.px]="-30"
-            [style.marginLeft.px]="-16"
+        <svg [style.height]="row.containerHeight-8"
+            [style.width]="row.containerWidth-8"
+            [style.marginTop.px]="-26"
+            [style.marginLeft.px]="-10"
             >
             <ellipse 
                 [style.cx]="row.containerWidth/2" 
@@ -1304,10 +1304,10 @@
 
     <!-- Shape Rectangle Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Rectangle'">
-        <svg [style.height.px]="row.containerHeight"
-            [style.width.px]="row.containerWidth"
-            [style.marginTop.px]="-25"
-            [style.marginLeft.px]="-9"
+        <svg [style.height.px]="row.containerHeight-8"
+            [style.width.px]="row.containerWidth-8"
+            [style.marginTop.px]="-26"
+            [style.marginLeft.px]="-10"
             >
             <rect 
                 [style.height.px]="row.containerHeight-10"
