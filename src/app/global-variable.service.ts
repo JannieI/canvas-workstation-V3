@@ -5,7 +5,9 @@ import { Injectable }                 from '@angular/core';
 // Our Serives
 
 // Our Models
-import { ButtonBarAvailable, Dataset }         from './models';
+import { Action }                     from './models';
+import { ButtonBarAvailable }         from './models';
+import { Dataset }                    from './models';
 import { ButtonBarSelected }          from './models';
 import { CanvasActivity }             from './models';
 import { CanvasAlert }                from './models';
@@ -759,6 +761,7 @@ export class GlobalVariableService {
     userID: string = 'JannieI';  // TODO - unHardCode
     dsIDs: number[] = [];           // Dataset IDs
     widgetGroup = new BehaviorSubject<number[]>([]);
+    actions: Action[] = [];
 
     // StatusBar
     statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);
@@ -3363,4 +3366,6 @@ export class GlobalVariableService {
 
         console.log('xx GV Perms', this.datasourcePermissions, this.currentDatasourcePermissions)
     }
+
+
 }

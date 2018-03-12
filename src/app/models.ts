@@ -1,6 +1,16 @@
 // ALL models (schema) are kept here
 
 // Setup / Settings / General
+export class Action {
+    id: number;                             // Unique id per action
+    action: string;                         // Optional name, ie Move Widget 
+    description: string;                    // Optional description, ie calling routine, etc
+    undoID: number;                         // Optional id of item in UNDO
+    redoID: number;                         // Optonal id of item in REDO
+    oldWidget: Widget;                      // Full W before action
+    newWidget: Widget;                      // Full W after action
+}
+
 export class StatusBarMessage {
     message: string;                        // Text to display
     uiArea: string;                         // Specific UI area to affect, ie StatusBar
