@@ -1405,10 +1405,29 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
         };
+
         
+        // Checked above that only one is selected, so the loop is okay
+        this.currentWidgets.forEach(w => {
+
+            if (w.isSelected) {
+        
+                // Make a (new) duplicate
+                this.duplicateWidget(w);
+            };
+        });
+    }
+
+    duplicateWidget(originalWidget: Widget) {
+        // Duplicate the given Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
+
         // Get new ID
         // TODO - improve this when using a DB!
         let newID: number = 1;
@@ -1430,26 +1449,20 @@ export class AppComponent implements OnInit {
             });
         };
 
-        this.currentWidgets.forEach(w => {
+        // Make a deep copy
+        let copiedWidget: Widget = Object.assign({}, originalWidget);
+        copiedWidget.id = newID;
+        copiedWidget.isSelected = false;
+        copiedWidget.containerLeft = 120;
+        copiedWidget.containerTop = 120;
+        copiedWidget.titleText = copiedWidget.titleText + ' (copy ' + 
+            copyPosition.toString() + ')';
 
-            if (w.isSelected) {
-        
-                // Make a deep copy
-                let copiedWidget: Widget = Object.assign({}, w);
-                copiedWidget.id = newID;
-                copiedWidget.isSelected = false;
-                copiedWidget.containerLeft = 120;
-                copiedWidget.containerTop = 120;
-                copiedWidget.titleText = copiedWidget.titleText + ' (copy ' + 
-                    copyPosition.toString() + ')';
+        // Add to all and current W
+        this.globalVariableService.widgets.push(copiedWidget);
+        this.globalVariableService.currentWidgets.push(copiedWidget);
+        this.globalVariableService.changedWidget.next(copiedWidget);
 
-                // Add to all and current W
-                this.globalVariableService.widgets.push(copiedWidget);
-                this.globalVariableService.currentWidgets.push(copiedWidget);
-                this.globalVariableService.changedWidget.next(copiedWidget);
-
-            };
-        });
     }
 
     clickMenuWidgetExpand() {
