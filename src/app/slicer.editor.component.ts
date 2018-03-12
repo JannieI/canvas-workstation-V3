@@ -29,7 +29,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
     currentDatasources: Datasource[] = [];
     dataFields: string[] = [];
-    dataValues: string[] = [];
+    dataValues: {isSelected: boolean; fieldValue: string;}[] = [];
     containerHasTitle: boolean = true;
     localWidget: Widget;                            // W to modify, copied from selected
     selectedDatasourceID: number = -1;
@@ -78,7 +78,10 @@ import { GlobalVariableService }      from './global-variable.service';
 
             // Get the data values
             this.localWidget.slicerSelection.forEach( sl =>
-                this.dataValues.push(sl.fieldValue)
+                this.dataValues.push({
+                    isSelected: sl.isSelected, 
+                    fieldValue: sl.fieldValue}
+                    )
             );
 
 
@@ -172,8 +175,11 @@ import { GlobalVariableService }      from './global-variable.service';
         // Get a distinct list
         // TODO - this could surely be done better
         tempData.forEach(t => {
-            if (this.dataValues.indexOf(t[this.selectedField]) < 0) {
-                this.dataValues.push(t[this.selectedField]);
+            if (this.dataValues.findIndex(dt => dt.fieldValue == t[this.selectedField]) < 0) {
+                this.dataValues.push({
+                    isSelected: true,
+                    fieldValue: t[this.selectedField]
+                });
             };
         });
 
@@ -258,12 +264,15 @@ import { GlobalVariableService }      from './global-variable.service';
         this.localWidget.titleText = this.selectedField;
         this.localWidget.slicerFieldName = this.selectedField;
         this.localWidget.slicerSelection = [];
-        this.dataValues.forEach(df =>
-            this.localWidget.slicerSelection.push(
-                {
-                    isSelected: true, fieldValue: df
-                })
-        );
+        console.log('xx this.dataValues', this.dataValues)
+        this.dataValues.forEach(df => {
+            if (df.isSelected) {
+                this.localWidget.slicerSelection.push(
+                    {
+                        isSelected: df.isSelected, fieldValue: df.fieldValue
+                    })
+            };
+        });
         let widgetsToRefresh: number = this.localWidget.id;
 
         // Tell user

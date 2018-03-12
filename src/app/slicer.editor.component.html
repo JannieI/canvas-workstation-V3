@@ -113,8 +113,8 @@
                             (click)="clickDataValue(row.id, i)"
                             >
                             <clr-dg-cell>
-                                    <input type="checkbox" id="checkrads_2" checked>
-                                {{ row }}
+                                <input type="checkbox" id="checkrads_2" [checked]="row.isSelected">
+                                {{ row.fieldValue }}
                             </clr-dg-cell>
                         </clr-dg-row>
                     </clr-datagrid>
