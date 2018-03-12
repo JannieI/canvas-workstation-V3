@@ -3367,35 +3367,60 @@ export class GlobalVariableService {
         console.log('xx GV Perms', this.datasourcePermissions, this.currentDatasourcePermissions)
     }
 
-    actionAdd(
+    actionUpsert(
+        id: number,
         action: string, 
         description: string,
         undoID: number, 
         redoID: number, 
         oldWidget: Widget, 
         newWidget: Widget, 
-     ) {
-        // Add an action to the ActionLog
-        console.log('Global-Variables actionAdd ...');
-        // TODO - decide if lates / -1 is best choice here
-        let act: number[] = [];
+     ): number {
         let actID: number = 1;
-        for (var i = 0; i < this.actions.length; i++) {
-            act.push(this.actions[i].id)
-        };
-        if (act.length > 0) {
-            actID = Math.max(...act);
+
+        if (id == null) {
+            // Add / Update an action to the ActionLog.  It returns id of new/updated record
+            // It returns -1 if it failed.
+            // NB: id = null => Add, else Update
+            // The update replaces any give non-null values
+            console.log('Global-Variables actionAdd ...');
+
+            // TODO - decide if lates / -1 is best choice here
+            let act: number[] = [];
+            for (var i = 0; i < this.actions.length; i++) {
+                act.push(this.actions[i].id)
+            };
+            if (act.length > 0) {
+                actID = Math.max(...act);
+            };
+
+            this.actions.push({
+                id: actID,
+                action: action,
+                description: description,
+                undoID: undoID,
+                redoID: redoID,
+                oldWidget: Object.assign({}, oldWidget),
+                newWidget: Object.assign({}, newWidget),
+            });
+        } else {
+            this.actions.forEach(ac => {
+                if (ac.id == id) {
+                    if (action != null) {ac.action = action};
+                    if (description != null) {ac.description = description};
+                    if (undoID != null) {ac.undoID = undoID};
+                    if (redoID != null) {ac.redoID = redoID};
+                    if (oldWidget != null) {ac.oldWidget =  Object.assign({}, oldWidget)};
+                    if (newWidget != null) {ac.newWidget = Object.assign({}, newWidget)};
+                    actID = id;
+                };
+            });
+            console.log('xx Update actions', this.actions)
         };
 
-        this.actions.push({
-            id: actID,
-            action: action,
-            description: description,
-            undoID: undoID,
-            redoID: redoID,
-            oldWidget: oldWidget,
-            newWidget: newWidget,
-        });
-        console.log('xx actions', this.actions)
+        // Return
+        return actID;
+            
     }
+
 }

@@ -2769,10 +2769,14 @@ export class AppComponent implements OnInit {
             if (this.draggableWidgets.indexOf(w.id) >= 0) {
 
                 // Action
-                this.globalVariableService.actionAdd
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null, 'Move', 'App', null, null, w, null);
 
                 w.containerLeft = w.containerLeft - this.startX + this.endX;
                 w.containerTop = w.containerTop - this.startY + this.endY;
+                actID = this.globalVariableService.actionUpsert(
+                    actID, null, null, null, null, null, w);
             }
         });
         this.globalVariableService.currentWidgets.forEach( w => {
