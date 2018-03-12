@@ -2334,6 +2334,11 @@ export class GlobalVariableService {
                                 w.shapeBullets = b.split(',');
                             };
 
+                            if (w.dashboardTabIDs != null) {
+                                let d: string = w.dashboardTabIDs.toString();
+                                let dA: string[] = d.split(',');
+                                console.log('xx dN', w.id, dA,w.dashboardTabIDs)
+                            }
                             if (w.slicerSelection != null) {
                                 let s: string = w.slicerSelection.toString();
                                 let sF: string[] = s.split(',');
@@ -2812,6 +2817,7 @@ export class GlobalVariableService {
                 {key: 'isTrashed', 					type: 'bool'},
                 {key: 'dashboardID', 				type: 'int'},
                 {key: 'dashboardTabID', 			type: 'int'},
+                {key: 'dashboardTabIDs', 			type: 'array'},
                 {key: 'id', 						type: 'int',		props:['pk','ai']},
                 {key: 'name', 						type: 'string'},
                 {key: 'description', 				type: 'string'},
