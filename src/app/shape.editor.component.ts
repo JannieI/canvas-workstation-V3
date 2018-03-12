@@ -23,7 +23,7 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class ShapeEditComponent implements OnInit {
 
-    @Output() formShapeEditClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formShapeEditClosed: EventEmitter<Widget> = new EventEmitter();
     @Input() newWidget: boolean; 
     @Input() selectedWidget: Widget;
 
@@ -77,7 +77,7 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
         console.log('clickClose')
 
-		this.formShapeEditClosed.emit('cancelled');
+		this.formShapeEditClosed.emit(null);
     }
 
     clickSelectShape(ev) {
@@ -130,13 +130,6 @@ export class ShapeEditComponent implements OnInit {
             this.showValue = true;
         }
 
-    }
-
-    clickSave() {
-        // Save the info on the form, and return
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-
-        this.formShapeEditClosed.emit('saved');
     }
 
     clickBulletDelete(index: number, item: string) {
@@ -199,5 +192,50 @@ export class ShapeEditComponent implements OnInit {
         this.editBulletItem = false;
     
     }
+
+    clickSave() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        if (this.newWidget) {
+
+            // TODO - improve this when using a DB!
+            let newID: number = 1;
+            let ws: number[]=[];
+            for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
+                ws.push(this.globalVariableService.widgets[i].id)
+            };
+            if (ws.length > 0) {
+                newID = Math.max(...ws) + 1;
+            };
+            this.localWidget.id = newID;
+            this.globalVariableService.widgets.push(this.localWidget);
+            this.globalVariableService.currentWidgets.push(this.localWidget);
+
+        } else {
+            // Replace the W
+            this.globalVariableService.widgetReplace(this.localWidget);
+        };
+
+        // Set Shape related data
+        let widgetsToRefresh: number = this.localWidget.id;
+
+        // Tell user
+        this.globalVariableService.statusBarMessage.next(
+            {
+                message: 'Shape Saved',
+                uiArea: 'StatusBar',
+                classfication: 'Info',
+                timeout: 3000,
+                defaultMessage: ''
+            }
+        );
+
+	  	this.formShapeEditClosed.emit(this.localWidget);
+    }
+
+
+
+
 
 }

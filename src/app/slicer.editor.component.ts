@@ -72,16 +72,16 @@ import { GlobalVariableService }      from './global-variable.service';
             // Get fields in this DS
             this.currentDatasources.forEach(ds => {
                 if (ds.id == this.localWidget.datasourceID) {
-                    this.dataFields = ds.dataFields;        
+                    this.dataFields = ds.dataFields;
                 };
             })
 
             // Get the data values
-            this.localWidget.slicerSelection.forEach( sl => 
+            this.localWidget.slicerSelection.forEach( sl =>
                 this.dataValues.push(sl.fieldValue)
             );
 
-            
+
             // Set the selected items
             this.selectedDatasourceID = this.localWidget.datasourceID;
             this.selectedDatasetID = this.localWidget.datasetID;
@@ -90,7 +90,7 @@ import { GlobalVariableService }      from './global-variable.service';
             this.slicerNumberToShow = this.localWidget.slicerNumberToShow;
             this.slicerSortField = this.localWidget.slicerSortField;
             this.slicerSortFieldOrder = this.localWidget.slicerSortFieldOrder;
-            
+
             this.changeValues();
         };
 
@@ -276,7 +276,7 @@ import { GlobalVariableService }      from './global-variable.service';
                 defaultMessage: ''
             }
         );
-        
+
 	  	this.formDataSlicersClosed.emit(this.localWidget);
     }
 

@@ -576,14 +576,13 @@ export class AppComponent implements OnInit {
         this.showModalDashboardSubscribe = false;
     }
 
-    handleCloseShapeEdit(action: string) {
+    handleCloseShapeEdit(changedWidget: Widget) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeEdit', '@Start');
 
+        this.globalVariableService.changedWidget.next(changedWidget);
+        
         this.showModalShapeEdit = false;
-        if (action == 'saved') {
-            alert('saved')
-        }
     }
 
     handleCloseShapeDelete(action: string) {
