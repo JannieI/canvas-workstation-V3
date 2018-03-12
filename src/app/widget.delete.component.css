@@ -65,14 +65,6 @@
     margin-top: 1rem;
 }
 
-.closeButton {
-    background-color: transparent;
-    border: none;
-    left: 0;
-    position: relative;
-    top: 0;
-}
-
 .graphArea {
     border: 1px solid gray;
     border-radius: 4px;

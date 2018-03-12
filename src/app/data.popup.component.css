@@ -1,8 +1,16 @@
-.closeButton {
+/* .closeButton {
     background-color: transparent;
     border: none;
     float: left;
     z-index: 11;
+} */
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    left: 0;
+    position: relative;
+    top: 0;
 }
 
 .gridHeading {
