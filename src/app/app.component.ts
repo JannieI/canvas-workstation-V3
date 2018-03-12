@@ -862,17 +862,56 @@ export class AppComponent implements OnInit {
             };
             filteredActions = this.globalVariableService.actions.filter(act => act.id == undoActID);
 
-            this.globalVariableService.actionUpsert(null,'Undo','', filteredActions[0].id,null,null,null)
-            
+            if (filteredActions[0].redoID == null) {
+                this.globalVariableService.actionUpsert(null,'Undo DO','', filteredActions[0].id,null,null,null)
+            } else {
+                this.globalVariableService.actionUpsert(null,'Undo REDO','', filteredActions[0].redoID,null,null,null)
+            };
+
             console.log('undo prev id ', filteredActions[0].id, this.globalVariableService.actions)
         };
     }
 
     clickMenuEditRedo() {
-        //
+        // Redo a previous action
+        // These are the rules:  DO = action, Undo = cancel DO, Redo = cancel Undo
+        // Redo:
+        // - can only reverse a previous Undo
+        // - can only continue this up to a DO (cannot go further)
+        // See Undo function for more detail.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditRedo', '@Start');
 
         this.menuOptionClickPreAction();
+
+        // TODO - decide if lates / -1 is best choice here
+        if (this.globalVariableService.actions.length == 0) {
+            console.log('Nothing to Redo');
+            return;
+        }
+
+        // Loop back, 1 at a time, and stop at first non-Undo
+        let redoIDs: number[] = [];
+        for (var i = this.globalVariableService.actions.length - 1; i >= 0; i--) {
+            if (this.globalVariableService.actions[i].redoID != null) {
+                redoIDs.push(this.globalVariableService.actions[i].redoID)
+            } else {
+                if (this.globalVariableService.actions[i].undoID == null) {
+                    // Previous was not an UNDO, so cannot reverse it
+                    console.log('Prev NOT an undo, so cannot redo it')
+                    break;
+                } else {
+                    
+                    if (redoIDs.indexOf(this.globalVariableService.actions[i].id)<0) {
+
+                        this.globalVariableService.actionUpsert(null, 'Redo', '', null,
+                            this.globalVariableService.actions[i].id, 
+                            null, null)
+                        console.log('Redo id', this.globalVariableService.actions[i].id)
+                        break;
+                    };
+                };
+            };
+        };
 
     }
 
