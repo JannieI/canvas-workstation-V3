@@ -1444,6 +1444,15 @@ export class AppComponent implements OnInit {
 
             if (w.isSelected) {
                 this.clipboardWidget = Object.assign({}, w);
+
+                this.showStatusBarMessage(
+                    'Widget copied',
+                    'StatusBar',
+                    'Info',
+                    3000,
+                    ''
+                );
+
             };
         });
     }
@@ -1454,11 +1463,23 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showStatusBarMessage(
+                notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         if (this.clipboardWidget == null  ||  this.clipboardWidget == undefined) { 
             this.showStatusBarMessage(
                 'Nothing copied previously',
                 'StatusBar',
-                'Info',
+                'Warning',
                 3000,
                 ''
             );
