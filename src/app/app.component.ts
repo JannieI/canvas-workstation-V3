@@ -1165,6 +1165,9 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
+        };
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
@@ -1611,6 +1614,9 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Slicer')) { 
             return
         };
         
