@@ -24,7 +24,7 @@ import { GlobalVariableService }      from './global-variable.service';
 export class ShapeEditComponent implements OnInit {
 
     @Output() formShapeEditClosed: EventEmitter<Widget> = new EventEmitter();
-    @Input() newWidget: boolean; 
+    @Input() newWidget: boolean;
     @Input() selectedWidget: Widget;
 
     bulletValue: string = '';
@@ -85,10 +85,10 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectShape', '@Start');
 
         console.log(ev, ev.srcElement.value)
-        
+
         // Enact selected shape
         this.selectShape(ev.srcElement.value);
-        
+
     }
 
     selectShape(shapeType: string) {
@@ -135,7 +135,7 @@ export class ShapeEditComponent implements OnInit {
     clickBulletDelete(index: number, item: string) {
         // Remove item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletDelete', '@Start');
-        
+
         // TODO - fix index, somehow not working!
         this.localWidget.shapeBullets = this.localWidget.shapeBullets.filter(b => b != item);
     }
@@ -164,7 +164,7 @@ export class ShapeEditComponent implements OnInit {
     clickEditDone() {
         // Add item to bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
-    
+
         // TODO - this must be done nicer
         if (this.bulletValue != '') {
             for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
@@ -190,7 +190,7 @@ export class ShapeEditComponent implements OnInit {
         // Hide input area
         this.bulletValue = '';
         this.editBulletItem = false;
-    
+
     }
 
     clickSave() {

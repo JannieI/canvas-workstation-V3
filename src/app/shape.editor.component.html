@@ -138,7 +138,9 @@
                     <ul
                         [style.margin-left.px]="30"
                         [style.margin-top.px]="30"
-                        >
+                        [style.font-family]="localWidget.shapeFontFamily"
+                        [style.font-size.px]="localWidget.shapeFontSize"
+                            >
                         <li *ngFor="let row of localWidget.shapeBullets">
                             {{ row }}
                         </li>
@@ -314,12 +316,26 @@
 
                 <div class="gridShapeProperties" *ngIf="showBullets">
                     <div class="propertyLine">
-                        Values:
+                        
                         <input *ngIf="editBulletItem" [(ngModel)]="bulletValue">
                         <button  *ngIf="editBulletItem" type="button" class="closeButton" (click)="clickEditDone()">
                             Go
                         </button>
-                
+                        <div class="propertyLine">
+                            Font Size:
+                            <input type="text" 
+                                placeholder="50 (px)"
+                                [(ngModel)]="localWidget.shapeFontSize"
+                                >
+                        </div>
+                        <div class="propertyLine">
+                            Font Family:
+                            <input type="text" 
+                                placeholder="Arial, serif"
+                                [(ngModel)]="localWidget.shapeFontFamily"
+                                >
+                        </div>
+        
                         <div
                             [style.margin-left.px]="30"
                             [style.margin-top.px]="30"
