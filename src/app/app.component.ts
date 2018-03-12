@@ -804,35 +804,67 @@ export class AppComponent implements OnInit {
     // ***********************  CLICK EDIT MENU OPTIONS ************************ //
     
     clickMenuEditUndo() {
-        //
+        // Undo a previous action
+        // These are the rules:  DO = action, Undo = cancel DO, Redo = cancel Undo
+        // Redo:
+        // - can only reverse a previous Undo
+        // - can only continue this up to a DO (cannot go further)
+        // Undo:
+        // - reverse previous DO or Redo
+        // - stores undoID = id of DO that was reversed
+        // - if multiple, takes DO prior to (prev undoID)
+        // - does not store oldW, newW as these are obtained from DO
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditUndo', '@Start');
 
         this.menuOptionClickPreAction();
 
-
         // TODO - decide if lates / -1 is best choice here
-        let actID: number = 1;
-        let act: number[] = [];
+        let maxActID: number = 1;
+        let tempActionIDs: number[] = [];
         for (var i = 0; i < this.globalVariableService.actions.length; i++) {
-            act.push(this.globalVariableService.actions[i].id)
+            tempActionIDs.push(this.globalVariableService.actions[i].id)
         };
-        if (act.length > 0) {
-            actID = Math.max(...act);
+        if (tempActionIDs.length > 0) {
+            maxActID = Math.max(...tempActionIDs);
         };
 
         // Can only undo if something has been done before
-        if (act.length == 0) {
+        if (tempActionIDs.length == 0) {
             console.log('Nothing to undo')
             return;
         };
 
-        // Previous was not an UNDO, so just reverse it
-        let filAct: CanvasAction[] = this.globalVariableService.actions.filter(act =>
-            act.id == actID);
-        if (filAct[0].undoID == null) {
-            console.log('undo id ',filAct[0].id )
+        let filteredActions: CanvasAction[] = [];
+        filteredActions = this.globalVariableService.actions.filter(act => act.id == maxActID);
+        if (filteredActions[0].undoID == null) {
+            // Previous was not an UNDO, so just reverse it
+            this.globalVariableService.actionUpsert(null,'Undo','', filteredActions[0].id,null,null,null)
+            console.log('undo prev DO, id ',filteredActions[0].id, this.globalVariableService.actions )
         } else {
-            console.log('undo prev id ', filAct[0].undoID -1)
+            // Get highest DO id < (undoID - 1)
+            let lastUndoID: number = filteredActions[0].undoID;
+            let undoActID: number = 1;
+            let tempActionIDs: number[] = [];
+            for (var i = 0; i < this.globalVariableService.actions.length; i++) {
+                if (this.globalVariableService.actions[i].undoID == null  &&
+                    this.globalVariableService.actions[i].id < lastUndoID) {
+                        tempActionIDs.push(this.globalVariableService.actions[i].id);
+                };
+            };
+            if (tempActionIDs.length > 0) {
+                undoActID = Math.max(...tempActionIDs);
+            };
+    
+            // Can only undo if something has been done before
+            if (tempActionIDs.length == 0) {
+                console.log('Nothing to undo 2')
+                return;
+            };
+            filteredActions = this.globalVariableService.actions.filter(act => act.id == undoActID);
+
+            this.globalVariableService.actionUpsert(null,'Undo','', filteredActions[0].id,null,null,null)
+            
+            console.log('undo prev id ', filteredActions[0].id, this.globalVariableService.actions)
         };
     }
 
