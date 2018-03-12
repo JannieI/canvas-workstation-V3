@@ -59,7 +59,7 @@
                             [style.cy]="150"
                             [style.r]="100"
                             [style.stroke]="localWidget.shapeStroke"
-                            [style.stroke-width.px]="shapeStrokeWidth"
+                            [style.stroke-width.px]="localWidget.shapeStrokeWidth"
                             [style.fill]="localWidget.shapeFill"
                             />
                     </svg>
@@ -73,7 +73,7 @@
                         [style.rx]="120"
                         [style.ry]="80"
                         [style.stroke]="localWidget.shapeStroke"
-                        [style.stroke-width.px]="shapeStrokeWidth"
+                        [style.stroke-width.px]="localWidget.shapeStrokeWidth"
                         [style.fill]="localWidget.shapeFill"
                     />
                     </svg>
@@ -87,7 +87,7 @@
                             [style.height.px]="100"
                             [style.width.px]="200"
                             [style.stroke]="localWidget.shapeStroke"
-                            [style.stroke-width.px]="shapeStrokeWidth"
+                            [style.stroke-width.px]="localWidget.shapeStrokeWidth"
                             [style.fill]="localWidget.shapeFill"
                             [style.opacity]="localWidget.shapeOpacity"
                             [style.rx]="localWidget.shapeCorner" 
@@ -173,7 +173,7 @@
                         Line thickness:
                         <input type="text" 
                             placeholder="3"
-                            [(ngModel)]="shapeStrokeWidth"
+                            [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
                     <div class="propertyLine">
@@ -198,7 +198,7 @@
                         Line thickness:
                         <input type="text" 
                             placeholder="3"
-                            [(ngModel)]="shapeStrokeWidth"
+                            [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
                     <div class="propertyLine">
@@ -222,7 +222,7 @@
                         Line thickness:
                         <input type="text" 
                             placeholder="3"
-                            [(ngModel)]="shapeStrokeWidth"
+                            [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
                     <div class="propertyLine">
