@@ -100,7 +100,7 @@ import { GlobalVariableService }      from './global-variable.service';
       }
 
     ngAfterViewInit() {
-        //
+        // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
       }
@@ -189,14 +189,15 @@ import { GlobalVariableService }      from './global-variable.service';
         }
     }
 
-    clickDataValue(id: number, index: number){
+    clickDataValue(id: number, index: number, ev: any){
         // Clicked a Value, now ....
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDataValue', '@Start');
 
+        this.dataValues[index]['isSelected'] = ev.target.checked;
     }
 
     clickSortField(sortField: string) {
-        //
+        // Sort the fields
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
 
         this.slicerSortField = sortField;
@@ -206,7 +207,7 @@ import { GlobalVariableService }      from './global-variable.service';
     }
 
     clickSortFieldOrder(sortFieldOrder: string) {
-        //
+        // Sort the fields by Asc/Desc
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
 
         this.slicerSortFieldOrder = sortFieldOrder;
@@ -224,14 +225,14 @@ import { GlobalVariableService }      from './global-variable.service';
     }
 
     clickClose(action: string) {
-        //
+        // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 	  	this.formDataSlicersClosed.emit(null);
     }
 
     clickSave() {
-        //
+        // Save the data, and close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         if (this.newWidget) {
@@ -288,5 +289,6 @@ import { GlobalVariableService }      from './global-variable.service';
 
 	  	this.formDataSlicersClosed.emit(this.localWidget);
     }
+
 
 }
