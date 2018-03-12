@@ -1426,7 +1426,7 @@ export class AppComponent implements OnInit {
 
     clickMenuWidgetCopy() {
         // Copy selected Widget to our 'clipboard'
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCopy', '@Start');
 
         this.menuOptionClickPreAction();
 
@@ -1448,6 +1448,21 @@ export class AppComponent implements OnInit {
         });
     }
 
+    clickMenuWidgetPaste() {
+        // Paste Widget previously copied to our 'clipboard'
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetPaste', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
+        };
+
+        this.duplicateWidget(this.clipboardWidget);
+    }
 
     clickMenuWidgetExpand() {
         //
@@ -1488,14 +1503,6 @@ export class AppComponent implements OnInit {
     clickMenuWidgetCut() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCut', '@Start');
-
-        this.menuOptionClickPreAction();
-
-    }
-
-    clickMenuWidgetPaste() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetPaste', '@Start');
 
         this.menuOptionClickPreAction();
 
