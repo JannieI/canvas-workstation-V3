@@ -1454,11 +1454,15 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget()) { 
-            return
-        };
-        if (!this.checkForOnlyOneWidget('Graph')) { 
-            return
+        if (this.clipboardWidget == null  ||  this.clipboardWidget == undefined) { 
+            this.showStatusBarMessage(
+                'Nothing copied previously',
+                'StatusBar',
+                'Info',
+                3000,
+                ''
+            );
+            return;
         };
 
         this.duplicateWidget(this.clipboardWidget);
