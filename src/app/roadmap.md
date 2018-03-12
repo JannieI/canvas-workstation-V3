@@ -87,27 +87,12 @@ Other:
 - decide if check/tick is shown on related Sl when a W is clicked.  
 - try to improve performance - trackedByFn ...
 
-Shapes:
-- have the following elements:
-    - headers, say 1-6
-    - text
-    - bullets
-    - numbered bullets
-    - links (to web and other D, T)
-    - images
-    - data field, maybe in brackets
-    - blocks / borders?
-    - formatting like background color?
-- use a simple MD language, parse to HTML and render
-- can have a View Window next to Design Window - can see how it looks
-- select data fields from existing DS and dSet
-- must be able to make a PowerPoint-light: front page(logo and title), agenda with bullets and optional links, pages with logo and title repeated at the top and bullets and W (graphs, etc) that are normal Canvas W => interactive and can add Sl, explore, expand, etc.
 
 **END 1 Feb 2018**
 
 
 **UI / ideas**
-1. See where and how to use tooltips on buttons (ie HTML title="" or via Clarity)
+1. See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be consistent!!
 2. GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.
 4. Review whether as beautiful as Simplus
 5. Test on different configs: screen resolution, 2 screens
@@ -252,24 +237,24 @@ BUG: if using a custom vega spec, the editor does not understand this.
 
 
 **Widget**
-1. Issue: how to call code ~WidgetEdit, etc from explore NOT duplicating code ...
+1. 
 2. Add Copy and Paste options - if needed.  Remember to consider (copy i) notation, as the same W could have been Duplicated since the Copy and before the Paste ...
 3. On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
 4. Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
- + Dont show top if now Dataset - rather appropriate Unexpected Error msg
-5. Slicerresize: only goes to a min size (maybe min-size in css), but internals shrinks further.  Not bad functionally but not right - have a look.
-6. Fix bug: [style.border]="row.isSelected? '2px solid black' : '2px solid red'" does not work
-7. Flag visible if it has a Note, Data Quality issues
+ + Dont show top if no Dataset - rather appropriate Unexpected Error msg
+5. 
+6. 
+7. 
 8. 
 9. Advanced box in Widget-Editor: consider and document z-index used here
 10.How to show comparison between current and previous period ?
-11.Issue - When resize Widget => add resize graph as well.
-12.Fix bug: graph moves inside another when Dragging - had this in v1 ...
+11.
+12.
 13.Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
-14.Bug fix: delete does not remove the Widget !
+14.
 15.Cross hair with showing values on axis - ie crypto trading websites!
 16.Show a Viz on the tooltip - this could be our explain ... !
-17.Annotate on Widget - our shapes with text and emojis, like the Tableau
+17.
 18.Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
 19.
 20.Serias work to be done - learning Vega and adding ALL features !!!
@@ -277,15 +262,16 @@ BUG: if using a custom vega spec, the editor does not understand this.
 
 
 **Shapes**
-1. Fix bug: circle flickers when hover over menu
-2. Generate all shapes from data - not only circle which is static html at moment
-3. Add a DragHandle and Resize handle to popup menu.  This way it is simpler - just hover to make the buttons appear, drag and voila.  Similarly, consider removing the Drag and Resize handles from the Dashboard if this works.
-4. Keep Select button on Shape - make red border like Dashboard + can group/ungroup + can move/align/etc together with Widgets.  Make this code DRY.
+- must be able to make a PowerPoint-light: front page(logo and title), agenda with bullets and optional links, pages with logo and title repeated at the top and bullets and W (graphs, etc) that are normal Canvas W => interactive and can add Sl, explore, expand, etc.
+1. Different shapes of bullets, ie square, etc
+2. Numbered bullets (abc or 123 - CSS can do it)
+3. links (to web and other D, T)
+4. Should be able to Duplicate Shape?  Can we consilidate Duplicate code for all types?
 5. Add rotate to text box with transform="rotate(30 20,40)"
 6. Can / should other Shapes also rotate??
 7. Can / should Shapes have radial / linear blur inside??
 8. Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
-
+9. Add emojis !?
 
 
 **Presentation**
