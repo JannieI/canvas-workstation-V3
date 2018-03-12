@@ -3182,6 +3182,8 @@ export class AppComponent implements OnInit {
         // Make a deep copy
         let copiedWidget: Widget = Object.assign({}, originalWidget);
         copiedWidget.id = newID;
+        copiedWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+        copiedWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
         copiedWidget.isSelected = false;
         copiedWidget.containerLeft = 120;
         copiedWidget.containerTop = 120;
