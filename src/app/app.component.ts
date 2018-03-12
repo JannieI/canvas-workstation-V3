@@ -175,6 +175,7 @@ export class AppComponent implements OnInit {
         
     }
 
+    clipboardWidget: Widget;
     companyName: string = this.globalVariableService.companyName;
     currentDashboardName: string = '';
     currentDatasources: Datasource[];
@@ -1411,7 +1412,6 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
         };
-
         
         // Checked above that only one is selected, so the loop is okay
         this.currentWidgets.forEach(w => {
@@ -1424,46 +1424,30 @@ export class AppComponent implements OnInit {
         });
     }
 
-    duplicateWidget(originalWidget: Widget) {
-        // Duplicate the given Widget
+    clickMenuWidgetCopy() {
+        // Copy selected Widget to our 'clipboard'
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
 
-        // Get new ID
-        // TODO - improve this when using a DB!
-        let newID: number = 1;
-        let wIDs: number[] = [];
-        this.globalVariableService.widgets.forEach(w => {
-            wIDs.push(w.id);
-        });
-        if (wIDs.length > 0) {
-            newID = Math.max(...wIDs) + 1;
-        };
+        this.menuOptionClickPreAction();
 
-        // Find latest copy #
-        let copyPosition: number = 1;
-        for (var i = 0; i < 21; i++) {
-            this.currentWidgets.forEach(w => {
-                if ( w.titleText.includes(' (copy ' + i.toString() + ')') ) {
-                    copyPosition = i + 1;
-                };
-            });
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
         };
 
         // Make a deep copy
-        let copiedWidget: Widget = Object.assign({}, originalWidget);
-        copiedWidget.id = newID;
-        copiedWidget.isSelected = false;
-        copiedWidget.containerLeft = 120;
-        copiedWidget.containerTop = 120;
-        copiedWidget.titleText = copiedWidget.titleText + ' (copy ' + 
-            copyPosition.toString() + ')';
+        
+        // Checked above that only one is selected, so the loop is okay
+        this.currentWidgets.forEach(w => {
 
-        // Add to all and current W
-        this.globalVariableService.widgets.push(copiedWidget);
-        this.globalVariableService.currentWidgets.push(copiedWidget);
-        this.globalVariableService.changedWidget.next(copiedWidget);
-
+            if (w.isSelected) {
+                this.clipboardWidget = Object.assign({}, w);
+            };
+        });
     }
+
 
     clickMenuWidgetExpand() {
         //
@@ -1499,17 +1483,6 @@ export class AppComponent implements OnInit {
         };
 
         this.showModalWidgetExport = true;
-    }
-
-    clickMenuWidgetCopy() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCopy', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        // Copies reference to existing datasource (of From Widget)
-        // For now, only per Dashboard - issue with Global paste is datasource
-        // What if not defined in the new Dashboard ?
     }
 
     clickMenuWidgetCut() {
@@ -3179,6 +3152,47 @@ export class AppComponent implements OnInit {
         
         this.showPopupMessage = false;
         // this.stuckCount = 0;
+    }
+
+    duplicateWidget(originalWidget: Widget) {
+        // Duplicate the given Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
+
+        // Get new ID
+        // TODO - improve this when using a DB!
+        let newID: number = 1;
+        let wIDs: number[] = [];
+        this.globalVariableService.widgets.forEach(w => {
+            wIDs.push(w.id);
+        });
+        if (wIDs.length > 0) {
+            newID = Math.max(...wIDs) + 1;
+        };
+
+        // Find latest copy #
+        let copyPosition: number = 1;
+        for (var i = 0; i < 21; i++) {
+            this.currentWidgets.forEach(w => {
+                if ( w.titleText.includes(' (copy ' + i.toString() + ')') ) {
+                    copyPosition = i + 1;
+                };
+            });
+        };
+
+        // Make a deep copy
+        let copiedWidget: Widget = Object.assign({}, originalWidget);
+        copiedWidget.id = newID;
+        copiedWidget.isSelected = false;
+        copiedWidget.containerLeft = 120;
+        copiedWidget.containerTop = 120;
+        copiedWidget.titleText = copiedWidget.titleText + ' (copy ' + 
+            copyPosition.toString() + ')';
+
+        // Add to all and current W
+        this.globalVariableService.widgets.push(copiedWidget);
+        this.globalVariableService.currentWidgets.push(copiedWidget);
+        this.globalVariableService.changedWidget.next(copiedWidget);
+
     }
 }
 
