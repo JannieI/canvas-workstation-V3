@@ -2767,6 +2767,10 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach( w => {
             
             if (this.draggableWidgets.indexOf(w.id) >= 0) {
+
+                // Action
+                this.globalVariableService.actionAdd
+
                 w.containerLeft = w.containerLeft - this.startX + this.endX;
                 w.containerTop = w.containerTop - this.startY + this.endY;
             }

@@ -3368,7 +3368,6 @@ export class GlobalVariableService {
     }
 
     actionAdd(
-        id: number, 
         action: string, 
         description: string,
         undoID: number, 
@@ -3378,10 +3377,18 @@ export class GlobalVariableService {
      ) {
         // Add an action to the ActionLog
         console.log('Global-Variables actionAdd ...');
+        // TODO - decide if lates / -1 is best choice here
+        let act: number[] = [];
+        let actID: number = 1;
+        for (var i = 0; i < this.actions.length; i++) {
+            act.push(this.actions[i].id)
+        };
+        if (act.length > 0) {
+            actID = Math.max(...act);
+        };
 
         this.actions.push({
-
-            id: id,
+            id: actID,
             action: action,
             description: description,
             undoID: undoID,
