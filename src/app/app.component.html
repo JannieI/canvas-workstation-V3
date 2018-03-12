@@ -1367,9 +1367,7 @@
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Bullets'">
         <ul
             >
-            <li>Coffee</li>
-            <li>Tea</li>
-            <li>Coca Cola</li>
+            <li *ngFor="let bullet of row.shapeBullets"> {{ bullet }} </li>
         </ul>
     </div>
 

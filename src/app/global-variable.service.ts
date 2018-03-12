@@ -2324,6 +2324,15 @@ export class GlobalVariableService {
 
                         // TODO - fix hardcoding, issue with datalib jsonTree
                         this.widgets.forEach(w => {
+
+                            if (w.widgetType == 'Shape') {
+
+                                let b: string = w.shapeBullets.toString();
+                                w.shapeBullets = b.split(',');
+console.log('xx w', w.shapeBullets)
+
+                            };
+
                             if (w.slicerSelection != null) {
                                 let s: string = w.slicerSelection.toString();
                                 let sF: string[] = s.split(',');
