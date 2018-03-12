@@ -487,7 +487,7 @@ export class Widget {
     tableWidth: number;                 // in px, cuts of rest if bigger than this (for later use)
 
     // Shape
-    shapeStroke: string;                // Colour of line, text
+    shapeStroke: string;                // Colour of line
     shapeStrokeWidth: string;           // Line thickness in px
     shapeFill: string;                  // Fill / inside (ie of circle, colour of text, etc)
     shapeText: string;                  // Text in textbox

@@ -1315,6 +1315,9 @@
                 [style.stroke]="row.shapeStroke" 
                 [style.stroke-width.px]="row.shapeStrokeWidth" 
                 [style.fill]="row.shapeFill" 
+                [style.opacity]="row.shapeOpacity"
+                [style.rx]="row.shapeCorner" 
+                [style.ry]="row.shapeCorner" 
                 />
         </svg>
     </div>
@@ -1325,6 +1328,10 @@
             [style.width.px]="row.containerWidth"
             [style.marginTop.px]="-25"
             [style.marginLeft.px]="-9"
+            [style.font-style]="row.shapeIsItalic? 'italic' : 'normal'"
+            [style.font-weight]="row.shapeIsBold? 'bold' : 'normal'"
+            [style.font-family]="row.shapeFontFamily"
+            [style.font-size.px]="row.shapeFontSize"
             >
             <text 
                 x="0" 

@@ -106,7 +106,7 @@
                         <text
                             x="20"
                             y="150"
-                            [style.fill]="localWidget.shapeStroke"
+                            [style.fill]="localWidget.shapeFill"
                             >
                             {{ localWidget.shapeText }}
                         </text>
@@ -242,9 +242,9 @@
                     <div class="propertyLine">
                         Corners:
                         <input type="text" 
-                            placeholder="Corner Size in pz"
+                            placeholder="Corner Size in px"
                             [(ngModel)]="localWidget.shapeCorner"
-                            >15
+                            >
                     </div>
                 </div>
 
@@ -285,7 +285,7 @@
                     <div class="propertyLine">
                         Colour:
                         <select
-                            [(ngModel)]="localWidget.shapeStroke"
+                            [(ngModel)]="localWidget.shapeFill"
                             >
                             <option>DarkRed</option>
                             <option>Black</option>
