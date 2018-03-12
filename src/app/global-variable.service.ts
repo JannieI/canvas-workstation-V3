@@ -2329,8 +2329,6 @@ export class GlobalVariableService {
 
                                 let b: string = w.shapeBullets.toString();
                                 w.shapeBullets = b.split(',');
-console.log('xx w', w.shapeBullets)
-
                             };
 
                             if (w.slicerSelection != null) {
@@ -2439,8 +2437,9 @@ console.log('xx w', w.shapeBullets)
             this.currentWidgets.forEach(w => {
 
                 // Only get data from Graphs and Text boxes
-                if ( (w.widgetType == 'Graph'  ||  w.widgetType == 'Shape')  &&
-                    (w.datasourceID >= 0) ) {
+                // if ( (w.widgetType == 'Graph'  ||  w.widgetType == 'Shape')  &&
+                //     (w.datasourceID >= 0) ) {
+                if (w.datasourceID != null  &&  w.datasetID != null) {
 
                     // Build array of promises, each getting data for 1 widget if not store already
                     if (dsCurrIDs.indexOf(w.datasetID) < 0) {
