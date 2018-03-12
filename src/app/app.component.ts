@@ -838,7 +838,14 @@ export class AppComponent implements OnInit {
         filteredActions = this.globalVariableService.actions.filter(act => act.id == maxActID);
         if (filteredActions[0].undoID == null) {
             // Previous was not an UNDO, so just reverse it
-            this.globalVariableService.actionUpsert(null,'Undo','', filteredActions[0].id,null,null,null)
+            this.globalVariableService.actionUpsert(
+                null,
+                'Undo',
+                '', 
+                filteredActions[0].id,
+                null,
+                filteredActions[0].newWidget,
+                filteredActions[0].oldWidget)
             this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
             
             console.log('undo prev DO, id ',filteredActions[0].id, this.globalVariableService.actions )
@@ -865,16 +872,28 @@ export class AppComponent implements OnInit {
             filteredActions = this.globalVariableService.actions.filter(act => act.id == undoActID);
 
             if (filteredActions[0].redoID == null) {
-                this.globalVariableService.actionUpsert(null,'Undo DO','', filteredActions[0].id,null,null,null)
+                this.globalVariableService.actionUpsert(
+                    null,
+                    'Undo DO',
+                    '', 
+                    filteredActions[0].id,
+                    null,
+                    filteredActions[0].newWidget,
+                    filteredActions[0].oldWidget
+                )
                 this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
                 
             } else {
-                this.globalVariableService.actionUpsert(null,'Undo REDO','', filteredActions[0].redoID,null,null,null)
-                this.globalVariableService.actions.forEach(ac => {
-                    if (ac.id == filteredActions[0].redoID) {
-                         this.globalVariableService.changedWidget.next(ac.oldWidget);
-                    };
-                });
+                this.globalVariableService.actionUpsert(
+                    null,
+                    'Undo REDO',
+                    '', 
+                    filteredActions[0].redoID,
+                    null,
+                    filteredActions[0].newWidget,
+                    filteredActions[0].oldWidget
+                );
+                this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
             };
 
             console.log('undo prev id ', filteredActions[0].id, this.globalVariableService.actions)
@@ -912,15 +931,20 @@ export class AppComponent implements OnInit {
                     
                     if (redoIDs.indexOf(this.globalVariableService.actions[i].id)<0) {
 
-                        this.globalVariableService.actions.forEach(ac => {
-                            if (ac.id == this.globalVariableService.actions[i].undoID) {
-                                 this.globalVariableService.changedWidget.next(ac.newWidget);
-                            };
-                        });
-
-                        this.globalVariableService.actionUpsert(null, 'Redo', '', null,
+                        // this.globalVariableService.actions.forEach(ac => {
+                        //     if (ac.id == this.globalVariableService.actions[i].undoID) {
+                        //          this.globalVariableService.changedWidget.next(ac.newWidget);
+                        //     };
+                        // });
+                        this.globalVariableService.changedWidget.next(this.globalVariableService.actions[i].oldWidget)
+                        this.globalVariableService.actionUpsert(
+                            null, 
+                            'Redo', 
+                            '', 
+                            null,
                             this.globalVariableService.actions[i].id, 
-                            null, null);
+                            this.globalVariableService.actions[i].newWidget, 
+                            this.globalVariableService.actions[i].oldWidget);
 
                         console.log('Redo id', this.globalVariableService.actions[i].id);
                         break;
