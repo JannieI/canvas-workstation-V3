@@ -1764,6 +1764,14 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Make sure we have only one, then delete it
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Shape')) { 
+            return
+        };
+        
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Shape') {
@@ -1779,6 +1787,10 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Make sure we have only one, then delete it
+        if (!this.checkForOnlyOneWidget()) { 
+            return
+        };
         if (!this.checkForOnlyOneWidget('Shape')) { 
             return
         };
