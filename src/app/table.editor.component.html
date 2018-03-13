@@ -1,22 +1,22 @@
 <div class="modal modalBox">
         <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
-    
+
                 <div class="overall">
                     <div class="closeButton">
                         <button type="button" class="closeButton" (click)="clickClose()">
                             X
                         </button>
                     </div>
-    
+
                     <div class="datasources" *ngIf="showDatasourcePopup">
                         Select a <b>Datasources</b> added before, and click Continue.
-    
+
                         <button class="btn btn-sm btn-secondary datasourceButton"
                             (click)="clickContinue()">
                             Continue
                         </button>
-    
+
                         <div class="datasourceList">
                             <nav
                                 >
@@ -30,42 +30,42 @@
                                             <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                             <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                                         </clr-dg-row>
-    
+
                                         <clr-dg-footer>
                                             {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                             of {{pagination.totalItems}} rows
                                             <clr-dg-pagination #pagination [clrDgPageSize]="7"></clr-dg-pagination>
                                         </clr-dg-footer>
-    
+
                                     </clr-datagrid>
                                 </div>
                             </nav>
                         </div>
-    
+
                         <div class="datasourcePreview" *ngIf="hasClicked">
                             <div>
                                 <clr-datagrid class="gridIdentifyDataPreviewGrid">
-    
+
                                     <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
                                     <clr-dg-row *ngFor="let row of currentData">
-    
+
                                         <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
                                                 {{ row[col] }}
                                         </clr-dg-cell>
                                     </clr-dg-row>
-    
+
                                     <clr-dg-footer>
                                         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                         of {{pagination.totalItems}} rows
                                         <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
                                     </clr-dg-footer>
-    
+
                                 </clr-datagrid>
                             </div>
                         </div>
-    
+
                     </div>
-    
+
                     <div class="fieldList">
                         <nav
                             id="wrapper"
@@ -73,11 +73,11 @@
                             [style.width.px]="sideNavWidth"
                             [style.min-width.rem]="sideNavMinWidth"
                             >
-    
+
                             <div class="selectedDatasource">
                                 Fields for: {{ currentDatasources[0].name }}
                             </div>
-    
+
                             <div>
                                 <clr-datagrid [(clrDgSelected)]="selectedRow" [clDgRowSelection]="true">
                                     <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
@@ -95,14 +95,14 @@
                             </div>
                         </nav>
                     </div>
-    
+
                     <div class="hasTitle">
                         <div class="checkbox">
                             <input type="checkbox" id="checkTitle" [(ngModel)]="containerHasTitle">
                             <label for="checkTitle">Has Title</label>
                         </div>
                     </div>
-    
+
                     <div class="propertyButton" *ngIf="!presentationMode">
                         <button
                             type="button"
@@ -115,141 +115,141 @@
                     </div>
 
                     <div class="propertiesArea" *ngIf="showPropertiesArea">
-                            <div for="dashboardName" class="popupHeader">
-                                <b>Table properties</b>
-                            </div>
-    
-                            <br>
-                            <label for="backgroundColor" class="popupLabel">
-                                    BackgroundColor:
-                            </label>
-                            <select class="popupLabel" id="backgroundColor">
-                                <option *ngFor="let row of backgroundColor">
-                                    {{ row }}
-                                </option>
-                            </select>
+                        <div for="dashboardName" class="popupHeader">
+                            <b>Table properties</b>
+                        </div>
 
-                            <br>
-                            <label for="dashboardName" class="popupLabel">
-                                Text Color:
-                            </label>
-                            <select class="popupLabel" id="textColor">
-                                <option *ngFor="let row of backgroundColor">
-                                    {{ row }}
-                                </option>
-                            </select>
+                        <br>
+                        <label for="backgroundColor" class="popupLabel">
+                                BackgroundColor:
+                        </label>
+                        <select class="popupLabel" id="backgroundColor">
+                            <option *ngFor="let row of backgroundColor">
+                                {{ row }}
+                            </option>
+                        </select>
 
-                            <br>
-                            <label for="nrColumns" class="popupLabel">
-                                Columns:
-                            </label>
-                            <input type="text" 
-                                id="nrColumns" 
-                                placeholder="Nr of Columns"
-                                class="popupInput"
-                                >
+                        <br>
+                        <label for="dashboardName" class="popupLabel">
+                            Text Color:
+                        </label>
+                        <select class="popupLabel" id="textColor">
+                            <option *ngFor="let row of backgroundColor">
+                                {{ row }}
+                            </option>
+                        </select>
 
-                            <br>
-                            <label for="fontSize" class="popupLabel">
-                                Font Size:
-                            </label>
-                            <input type="text" 
-                                id="fontSize" 
-                                placeholder="Font Size"
-                                class="popupInput"
-                                >
-    
-                            <br>
-                            <label for="tableHeight" class="popupLabel">
-                                Height:
-                            </label>
-                            <input type="text" 
-                                id="tableHeight" 
-                                placeholder="Total Table Height"
-                                class="popupInput"
-                                >
+                        <br>
+                        <label for="nrColumns" class="popupLabel">
+                            Columns:
+                        </label>
+                        <input type="text"
+                            id="nrColumns"
+                            placeholder="Nr of Columns"
+                            class="popupInput"
+                            >
 
-                            <br>
-                            <label for="tableHideHeader" class="popupLabel">
-                                Hide Header:
-                            </label>
-                            <input type="text" 
-                                id="tableHideHeader" 
-                                placeholder="Hide Header row"
-                                class="popupInput"
-                                >
-                            
-                            <br>
-                            <label for="tableLeft" class="popupLabel">
-                                Left:
-                            </label>
-                            <input type="text" 
-                                id="tableLeft" 
-                                placeholder="Table Left"
-                                class="popupInput"
-                                >
-                            
-                            <br>
-                            <label for="tableLineHeight" class="popupLabel">
-                                Line Height:
-                            </label>
-                            <input type="text" 
-                                id="tableLineHeight" 
-                                placeholder="Line Height"
-                                class="popupInput"
-                                >
-                            
-                            <br>
-                            <label for="tableRows" class="popupLabel">
-                                Rows:
-                            </label>
-                            <input type="text" 
-                                id="tableRows" 
-                                placeholder="Nr of Rows"
-                                class="popupInput"
-                                >
-                            
-                            <br>
-                            <label for="tableTop" class="popupLabel">
-                                Top:
-                            </label>
-                            <input type="text" 
-                                id="tableTop" 
-                                placeholder="Table Top"
-                                class="popupInput"
-                                >
-                            
-                            <br>
-                            <label for="tableWidth" class="popupLabel">
-                                Width:
-                            </label>
-                            <input type="text" 
-                                id="tableWidth" 
-                                placeholder="Table Width"
-                                class="popupInput"
-                                >
+                        <br>
+                        <label for="fontSize" class="popupLabel">
+                            Font Size:
+                        </label>
+                        <input type="text"
+                            id="fontSize"
+                            placeholder="Font Size"
+                            class="popupInput"
+                            >
 
-                            <br>
-                            <br>
-                            <button
-                                class="btn btn-sm btn-secondary propertyButton"
-                                (click)="clickApplyProperties('Close')">
-                                Close
-                            </button>
-    
-                            <button
-                                class="btn btn-sm btn-secondary propertyButton"
-                                (click)="clickApplyProperties('Save')">
-                                Apply
-                            </button>
+                        <br>
+                        <label for="tableHeight" class="popupLabel">
+                            Height:
+                        </label>
+                        <input type="text"
+                            id="tableHeight"
+                            placeholder="Total Table Height"
+                            class="popupInput"
+                            >
+
+                        <br>
+                        <label for="tableHideHeader" class="popupLabel">
+                            Hide Header:
+                        </label>
+                        <input type="text"
+                            id="tableHideHeader"
+                            placeholder="Hide Header row"
+                            class="popupInput"
+                            >
+
+                        <br>
+                        <label for="tableLeft" class="popupLabel">
+                            Left:
+                        </label>
+                        <input type="text"
+                            id="tableLeft"
+                            placeholder="Table Left"
+                            class="popupInput"
+                            >
+
+                        <br>
+                        <label for="tableLineHeight" class="popupLabel">
+                            Line Height:
+                        </label>
+                        <input type="text"
+                            id="tableLineHeight"
+                            placeholder="Line Height"
+                            class="popupInput"
+                            >
+
+                        <br>
+                        <label for="tableRows" class="popupLabel">
+                            Rows:
+                        </label>
+                        <input type="text"
+                            id="tableRows"
+                            placeholder="Nr of Rows"
+                            class="popupInput"
+                            >
+
+                        <br>
+                        <label for="tableTop" class="popupLabel">
+                            Top:
+                        </label>
+                        <input type="text"
+                            id="tableTop"
+                            placeholder="Table Top"
+                            class="popupInput"
+                            >
+
+                        <br>
+                        <label for="tableWidth" class="popupLabel">
+                            Width:
+                        </label>
+                        <input type="text"
+                            id="tableWidth"
+                            placeholder="Table Width"
+                            class="popupInput"
+                            >
+
+                        <br>
+                        <br>
+                        <button
+                            class="btn btn-sm btn-secondary propertyButton"
+                            (click)="clickApplyProperties('Close')">
+                            Close
+                        </button>
+
+                        <button
+                            class="btn btn-sm btn-secondary propertyButton"
+                            (click)="clickApplyProperties('Save')">
+                            Apply
+                        </button>
                     </div>
-                            
+
                     <div *ngIf="showTable" class="tableArea">
                         <clr-datagrid class="gridIdentifyDataPreviewGrid">
-    
+
                             <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
                             <clr-dg-row *ngFor="let row of currentData">
-    
+
                                 <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
                                         {{ row[col] }}
                                 </clr-dg-cell>
@@ -260,7 +260,7 @@
                     <div class="graphTypeMoreMsg">
                         Last refreshed: 2017/01/01 08:31
                     </div>
-    
+
                     <div class="saveButton" *ngIf="!presentationMode">
                         <button
                             type="button"
@@ -270,14 +270,14 @@
                             Save
                         </button>
                     </div>
-    
+
                     <span class="presentationNoSave" *ngIf="presentationMode"
                         >
                         Cannot save in Presentation Mode
                     </span>
-    
+
                 </div>
-    
+
             </div>
         </div>
     </div>
