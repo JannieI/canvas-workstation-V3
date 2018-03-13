@@ -136,42 +136,53 @@ export class AppComponent implements OnInit {
         event.preventDefault();
 
         // Ignore certain ones
-        if (event.key == 'Tab') {
+        if (event.key == 'Tab'  ||  event.key == 'Control') {
             return;
         }
-        // Set start coordinates
-        this.startX = 0;
-        this.startY = 0;
-        // Set end coordinates
-        if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
-            this.endX = this.globalVariableService.gridSize;
-            this.endY = 0;
-        };
-        if (event.keyCode === KEY_CODE.LEFT_ARROW) {
-            this.endX = -1 * this.globalVariableService.gridSize;
-            this.endY = 0;
-        };
-        if (event.keyCode === KEY_CODE.UP_ARROW) {
-            this.endX = 0;
-            this.endY = -1 * this.globalVariableService.gridSize;
-        };
-        if (event.keyCode === KEY_CODE.DOWN_ARROW) {
-            this.endX = 0;
-            this.endY = this.globalVariableService.gridSize;
-        };
 
-        // Set draggables
-        this.draggableWidgets  = [];
-        this.currentWidgets.forEach(w => {
-            if (w.isSelected) {
-                this.draggableWidgets.push(w.id);
-            }
-        });
-
-        // Move the draggable ones
-        if (this.draggableWidgets.length > 0) {
-            this.moveWidgets()
+        // Known ones
+        if (event.code == 'KeyZ'  &&  (event.ctrlKey) ) {
+            this.clickMenuEditUndo();
+            return;
         }
+
+        // Move with Arrow
+        if (event.key == 'ArrowRight'  ||  event.key == 'ArrowDown'  ||  
+            event.key == 'ArrowLeft'   ||  event.key == 'ArrowUp') {
+            // Set start coordinates
+            this.startX = 0;
+            this.startY = 0;
+            // Set end coordinates
+            if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
+                this.endX = this.globalVariableService.gridSize;
+                this.endY = 0;
+            };
+            if (event.keyCode === KEY_CODE.LEFT_ARROW) {
+                this.endX = -1 * this.globalVariableService.gridSize;
+                this.endY = 0;
+            };
+            if (event.keyCode === KEY_CODE.UP_ARROW) {
+                this.endX = 0;
+                this.endY = -1 * this.globalVariableService.gridSize;
+            };
+            if (event.keyCode === KEY_CODE.DOWN_ARROW) {
+                this.endX = 0;
+                this.endY = this.globalVariableService.gridSize;
+            };
+
+            // Set draggables
+            this.draggableWidgets  = [];
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected) {
+                    this.draggableWidgets.push(w.id);
+                }
+            });
+
+            // Move the draggable ones
+            if (this.draggableWidgets.length > 0) {
+                this.moveWidgets()
+            };
+        };
         
     }
 
