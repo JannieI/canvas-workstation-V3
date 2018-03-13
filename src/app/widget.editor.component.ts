@@ -195,18 +195,21 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             if (this.localWidget.graphXfield != ''   &&   this.localWidget.graphXfield != null) {
                 this.showColumnDeleteIcon = true;
                 this.colField = this.localWidget.graphXfield;
+                this.showColFieldAdvanced = true;
+                
             } else {
                 this.showColumnDeleteIcon = false;
                 this.colField = '';
-            }
+            };
 
             if (this.localWidget.graphYfield != ''   &&   this.localWidget.graphYfield != null) {
                 this.showRowDeleteIcon = true;
                 this.rowField = this.localWidget.graphYfield;
+                this.showRowFieldAdvanced = true;
             } else {
                 this.showRowDeleteIcon = false;
                 this.rowField = '';
-            }
+            };
 
             if (this.localWidget.graphColorField != ''   &&   this.localWidget.graphColorField != null) {
                 this.showColourDeleteIcon = true;
@@ -214,7 +217,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             } else {
                 this.showColourDeleteIcon = false;
                 this.graphColorField = '';
-            }
+            };
 
             // Get local vars - easier for ngFor
             this.containerHasTitle = this.localWidget.containerHasTitle;
