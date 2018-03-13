@@ -14,8 +14,12 @@ This document describes items for later versions of Canvas.
 7. Setting min Grid width - wait for Clarity Bug fix
 8. 
 9. LocalDB - how to add a table without deleting the IndexDB manually ??
-
-
+10.Need way to browse large volumes of data without killing browser - server must calc and warn user, plus also do pagination in the background. Also, data manipulation must be pushed onto the server as far as possible.
+11.If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
+12.Give hints/advice on W as to type of graph, insights, etc.
+13.Consider animation in presention mode ...
+14.PBI can change type of W after created, ie Table to Matrix
+15.How to incorporate fancy W types, ie half circle with needle / doughnut / etc ... 
 
 **API**
 1. Have flexible field selection: ie ..."fields": [A, B, F]
