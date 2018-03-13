@@ -1441,19 +1441,20 @@
 
     <!-- Shape Value Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Value'">
-        <span [style.height.px]="row.containerHeight"
+        <div 
             [style.width.px]="row.containerWidth"
             [style.background-color]="row.containerBackgroundColor"
-            [style.marginTop.px]="-25"
             [style.marginLeft.px]="-9"
+            [style.margin-top.px]="8"
             [style.font-size.px]="row.shapeFontSize"
             [style.font-style]="'italic'"
             [style.font-weight]="'bold'"
             [style.font-family]="row.shapeFontFamily"
             [style.color]="row.shapeStroke"
+            [style.text-align]="center"
             >
             {{ row.shapeText }}
-        </span >
+        </div >
     </div>
 
     <div class="widgetContainerTopLeftHandle" *ngIf="editMode"
