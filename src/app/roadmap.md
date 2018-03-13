@@ -214,6 +214,7 @@ BUG: if using a custom vega spec, the editor does not understand this.
 11.Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
    at any point in the past.  It must be clearly marked for the user.  Must also be able to
    search the list, and see a list of undo actions.
+12.How do we save actions for D, T, etc - current design is only for Ws ... ??
 14.The SPEC does NOT contain all Widgets - this allows Widgets to be standalone items, and can easily be connected to more than one Dashboard in future, if we decide so (not adivised as your Dashboard may suddenly change without warning).
 15.Import: check security, particularly for the Datasource.  Also, is the access rights
    stored with the text file (security risk)?  Also, can / should it over-write an
