@@ -101,7 +101,6 @@
                     [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
                     [style.font-family]="localWidget.shapeFontFamily"
                     [style.font-size.px]="localWidget.shapeFontSize"
-                    [style.color]="localWidget.shapeFill"
                     >
                     <svg width="300" height="300">
                         <text
@@ -150,8 +149,7 @@
 
                 <div class="gridShape" *ngIf="showValue">
                     <div [style.height.px]="100"
-                        [style.font-size.px]="50"
-
+                    
                         [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
                         [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
                         [style.font-family]="localWidget.shapeFontFamily"
@@ -160,7 +158,7 @@
                         [style.margin-top.px]="120"
                         [style.color]="localWidget.shapeStroke"
                         >
-                        {{ localWidget.shapeValue }}
+                        {{ localWidget.shapeText }} 
                     </div >
                 </div>
 

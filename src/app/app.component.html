@@ -1447,10 +1447,11 @@
             [style.background-color]="row.containerBackgroundColor"
             [style.marginTop.px]="-25"
             [style.marginLeft.px]="-9"
-            [style.font-size.px]="50"
+            [style.font-size.px]="row.shapeFontSize"
             [style.font-style]="'italic'"
             [style.font-weight]="'bold'"
-            [style.font-family]="'Arial, serif'"
+            [style.font-family]="row.shapeFontFamily"
+            [style.color]="row.shapeStroke"
             >
             {{ row.shapeText }}
         </span >
