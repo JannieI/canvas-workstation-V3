@@ -144,7 +144,11 @@ export class AppComponent implements OnInit {
         if (event.code == 'KeyZ'  &&  (event.ctrlKey) ) {
             this.clickMenuEditUndo();
             return;
-        }
+        };
+        if (event.code == 'KeyZ'  &&  (event.ctrlKey)   &&  (event.shiftKey) ) {
+            this.clickMenuEditRedo();
+            return;
+        };
 
         // Move with Arrow
         if (event.key == 'ArrowRight'  ||  event.key == 'ArrowDown'  ||  
