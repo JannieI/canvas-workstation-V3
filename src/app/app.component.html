@@ -638,6 +638,13 @@
                         </button>
                         <button type="button" 
                             clrDropdownItem 
+                            (click)="clickMenuWidgetContainer('Slicer')"
+                            title="Change container properties for selected Slicer"
+                            >
+                            Container
+                        </button>
+                        <button type="button" 
+                            clrDropdownItem 
                             (click)="clickMenuSlicerTablist()"
                             title="Manage Tabs to which selected Slicer belongs"
                             >
@@ -2027,7 +2034,7 @@
 <widget-container
     *ngIf="showModalWidgetContainer"
     [selectedWidget]="selectedWidget"
-    (formDataSlicersClosed)="handleCloseWidgetContainer($event)">Widget Containers ...
+    (formWidgetContainerClosed)="handleCloseWidgetContainer($event)">Widget Container ...
 </widget-container>
 
 
@@ -2095,7 +2102,7 @@
 </slicer-tablist>
 
 
-<!-- Modal: widget editor -->
+<!-- Modal: Table editor -->
 <table-editor
     *ngIf="showModalTableEditor"
     [showDatasourcePopup]="showDatasourcePopup"

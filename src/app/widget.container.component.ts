@@ -23,7 +23,7 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetContainerComponent implements OnInit {
 
-    @Output() formWidgetContainerClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formWidgetContainerClosed: EventEmitter<Widget> = new EventEmitter();
     @Input() selectedWidget: Widget;
 
     localWidget: Widget;                            // W to modify, copied from selected
@@ -48,7 +48,7 @@ export class WidgetContainerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
         console.log('clickClose')
 
-		this.formWidgetContainerClosed.emit('Close');
+		this.formWidgetContainerClosed.emit(null);
     }
 
     clickSave() {
@@ -69,7 +69,7 @@ export class WidgetContainerComponent implements OnInit {
             }
         );
 
-	  	this.formWidgetContainerClosed.emit('Saved');
+	  	this.formWidgetContainerClosed.emit(this.localWidget);
     }
 
 
