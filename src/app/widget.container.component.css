@@ -1,0 +1,58 @@
+.modalBox {
+	background-color: rgba(0,0,0,0.4);
+	-shadow: 0 2px 2px 0 lightgray;
+}
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+
+.propertyLine {
+    margin: 15px;
+}
+
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 0.8rem);
+    margin-top: 2px;
+}
+
+    .gridHeading {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+
+    .gridProperties {
+        grid-column-start: 1;
+        grid-column-end: 12;
+        grid-row-start: 4;
+        grid-row-end: 18;
+        margin-bottom: 0;
+        text-align: left;
+    }
+
+    .gridButtonCancel {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 19;
+        grid-row-end: 20;
+        margin-bottom: 15px;
+    }
+
+    .gridButtonSave {
+        grid-column-start: 5;
+        grid-column-end: 6;
+        grid-row-start: 19;
+        grid-row-end: 20;
+        margin-bottom: 15px;
+    }
+
+

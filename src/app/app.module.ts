@@ -25,9 +25,9 @@ import { DashboardSaveComponent }     from './dashboard.save.component';
 import { DashboardDiscardComponent }  from './dashboard.discard.component';
 import { DashboardRenameComponent }   from './dashboard.rename.component';
 import { DashboardSnapshotsComponent }      from './dashboard.snapshots.component';
+import { DashboardDescriptionComponent }    from './dashboard.description.component';
 import { DashboardShareComponent }    from './dashboard.share.component';
 import { DashboardDetailsComponent }  from './dashboard.details.component';
-import { DashboardDescriptionComponent }    from './dashboard.description.component';
 import { DashboardTagsComponent }     from './dashboard.tags.component';
 import { DashboardSettingsComponent } from './dashboard.settings.component';
 import { DashboardThemeComponent }    from './dashboard.theme.component';
@@ -38,10 +38,10 @@ import { DashboardCommentsComponent } from './dashboard.comments.component';
 import { DashboardPrintComponent }    from './dashboard.print.component';
 import { DashboardTabComponent }      from './dashboard.tab.component';
 import { DashboardHelpComponent }     from './dashboard.help.component';
-import { DashboardHelpPresentationComponent }  from './dashboard.helpPresentation.component';
 import { DashboardTreeviewComponent } from './dashboard.treeview.component';
-import { DashboardSubscribeComponent }         from './dashboard.subscribe.component';
 import { DashboardImportComponent }   from './dashboard.import.component';
+import { DashboardHelpPresentationComponent }  from './dashboard.helpPresentation.component';
+import { DashboardSubscribeComponent }         from './dashboard.subscribe.component';
 import { DashboardDataQualityComponent }       from './dashboard.dataquality.component';
 
 import { WidgetEditorComponent }      from './widget.editor.component';
@@ -51,11 +51,12 @@ import { WidgetExpandComponent }      from './widget.expand.component';
 import { WidgetExportComponent }      from './widget.export.component';
 import { WidgetDeleteComponent }      from './widget.delete.component';
 import { WidgetSingleComponent }      from './widget.single.component';
-import { SlicerSingleComponent }      from './slicer.single.component';
+import { WidgetContainerComponent }   from './widget.container.component';
+
 import { TableSingleComponent }       from './table.single.component';
+import { TableEditorComponent }       from './table.editor.component';
 
-import { TableEditorComponent }      from './table.editor.component';
-
+import { SlicerSingleComponent }      from './slicer.single.component';
 import { SlicerEditorComponent }      from './slicer.editor.component';
 import { SlicerTablistComponent }     from './slicer.tablist.component';
 
@@ -69,15 +70,15 @@ import { DatasourceShareComponent }   from './data.share.component';
 
 import { HelpComponent }              from './help.component';
 
-import { CollaborateAlertsComponent } from './collaborate.alerts.component';
+import { CollaborateAlertsComponent }       from './collaborate.alerts.component';
 import { CollaborateMessagesComponent }     from './collaborate.messages.component';
 import { CollaborateActivitiesComponent }   from './collaborate.activities.component';
 import { CollaborateActivityAddComponent }  from './collaborate.activityadd.component';
 
+import { UserWidgetButtonBarComponent}      from './user.widget.buttonbar.component';
 import { LoginComponent}              from './login.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
-import { UserWidgetButtonBarComponent}      from './user.widget.buttonbar.component';
 import { UserShapeButtonBarComponent} from './user.shape.buttonbar.component';
 import { SystemSettingsComponent }    from './systemsettings.component';
 import { UserOfflineComponent}        from './user.offline.component';
@@ -141,10 +142,12 @@ import { StatusbarComponent }         from './statusbar.component';
         WidgetExportComponent,
         WidgetDeleteComponent,
         WidgetSingleComponent,
-        SlicerSingleComponent,
+        WidgetContainerComponent,
+
         TableSingleComponent,
         TableEditorComponent,
-
+        
+        SlicerSingleComponent,
         SlicerEditorComponent,
         SlicerTablistComponent,
 

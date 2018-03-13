@@ -1,0 +1,100 @@
+<div class="modal modalBox">
+        <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+            <div class="modal-content modalContent">
+    
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+    
+                <div class="gridOverall">
+    
+                    <div class="gridHeading">
+                        <b>Container settings</b>
+                    </div>
+    
+    
+                    <div class="gridButtonCancel">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="gridButtonSave">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>
+    
+                    <div class="gridProperties">
+
+                        <div class="propertyLine">
+                            Background Colour:
+                            <select
+                                [(ngModel)]="localWidget.containerBackgroundcolor"
+                                >
+                                <option>DarkRed</option>
+                                <option>Black</option>
+                                <option>Gray</option>
+                                <option>LightGray</option>
+                                <option>Green</option>
+                                <option>Blue</option>
+                                <option>Yellow</option>
+                            </select>
+    
+                        </div>
+
+                        <div class="propertyLine">
+                            Border:
+                            <input type="text" 
+                                placeholder="Border, ie 1px solid black"
+                                [(ngModel)]="localWidget.containerBorder"
+                                >
+                        </div>
+
+                        <div class="propertyLine">
+                                containerBorderRadius:
+                            <input type="text" 
+                                placeholder="3"
+                                [(ngModel)]="localWidget.containerBorderRadius"
+                                >
+                        </div>
+
+                        <div class="propertyLine">
+                                containerBoxshadow:
+                            <input type="text" 
+                                placeholder="Red"
+                                [(ngModel)]="localWidget.containerBoxshadow"
+                                >
+                        </div>
+
+                        <div class="propertyLine">
+                            Background Colour:
+                            <select
+                                [(ngModel)]="localWidget.containerBackgroundcolor"
+                                >
+                                <option>DarkRed</option>
+                                <option>Black</option>
+                                <option>Gray</option>
+                                <option>LightGray</option>
+                                <option>Green</option>
+                                <option>Blue</option>
+                                <option>Yellow</option>
+                            </select>
+    
+                        </div>
+        
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    

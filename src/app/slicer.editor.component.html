@@ -110,10 +110,10 @@
 
                         <clr-dg-row
                             *ngFor="let row of dataValues; let i = index"
-                            
+
                             >
                             <clr-dg-cell>
-                                <input type="checkbox" 
+                                <input type="checkbox"
                                     [checked]="row.isSelected"
                                     (click)="clickDataValue(row.id, i, $event)"
                                     >
