@@ -249,7 +249,7 @@ export class StatusbarComponent {
 
         console.log('xx index', index, this.currentDashboardTabs)
         this.globalVariableService.refreshCurrentDashboard(
-            'statusbar-clickShowNextTab',
+            'statusbar-selectDashboardTab',
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
             this.currentDashboardTabs[index].id,
             ''

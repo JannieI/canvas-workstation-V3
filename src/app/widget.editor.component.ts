@@ -285,7 +285,17 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Update new/edit
+        this.localWidget.containerHasTitle = this.containerHasTitle;
+
         if (this.newWidget) {
+
+            if (this.localWidget.graphColorField != ''
+                &&  this.localWidget.graphColorField != null) {
+                this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
+            } else {
+                this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
+            };
 
             // TODO - improve this when using a DB!
             let newID: number = 1;
@@ -300,19 +310,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.globalVariableService.widgets.push(this.localWidget);
             this.globalVariableService.currentWidgets.push(this.localWidget);
         } else {
-            // Replace the W
-            this.globalVariableService.widgetReplace(this.localWidget);
-        };
-
-        // Set width, depending on ColorField change
-        if (this.newWidget) {
-            if (this.localWidget.graphColorField != ''
-                 &&  this.localWidget.graphColorField != null) {
-                this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
-            } else {
-                this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
-            };
-        } else {
             if (this.selectedWidget.graphColorField != ''
                 &&  this.selectedWidget.graphColorField != null) {
                     if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
@@ -326,6 +323,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                         this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
                     };
             };
+
+            // Update global W
+            this.globalVariableService.widgetReplace(this.localWidget);
         };
 
         // Tell user
@@ -339,7 +339,6 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             }
         );
 
-        this.localWidget.containerHasTitle = this.containerHasTitle;
         this.formWidgetEditorClosed.emit(this.localWidget);
     }
 
