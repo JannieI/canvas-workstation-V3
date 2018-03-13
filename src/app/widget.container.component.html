@@ -39,7 +39,6 @@
                         [style.border]="localWidget.containerBorder"
                         [style.border-radius]="localWidget.containerBorderRadius"
                         [style.box-shadow]="localWidget.containerBoxshadow"
-                        [style.color]="localWidget.containerColor"
                         [style.font-size.px]="localWidget.containerFontsize"
                         
                         >
@@ -109,23 +108,6 @@
                                 placeholder="12"
                                 [(ngModel)]="localWidget.containerFontsize"
                                 >
-                        </div>
-
-                        <div class="propertyLine">
-                            Colour:
-                            <select
-                                [(ngModel)]="localWidget.containerColor"
-                                >
-                                <option>none</option>
-                                <option>DarkRed</option>
-                                <option>Black</option>
-                                <option>Gray</option>
-                                <option>LightGray</option>
-                                <option>Green</option>
-                                <option>Blue</option>
-                                <option>Yellow</option>
-                            </select>
-
                         </div>
 
                     </div>

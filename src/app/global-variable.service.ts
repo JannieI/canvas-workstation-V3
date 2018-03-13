@@ -167,7 +167,6 @@ const widgetTemplate: Widget =
         "containerBorder": "2px solid black",
         "containerBorderRadius": "",
         "containerBoxshadow": "2px 2px gray",
-        "containerColor": "transparent",
         "containerFontsize": 12,
         "containerHeight": 320,
         "containerLeft": 10,
@@ -2858,7 +2857,6 @@ export class GlobalVariableService {
                 {key: 'containerBorder', 			type: 'string'},
                 {key: 'containerBorderRadius', 	    type: 'string'},
                 {key: 'containerBoxshadow', 		type: 'string'},
-                {key: 'containerColor', 			type: 'string'},
                 {key: 'containerFontsize', 			type: 'int'},
                 {key: 'containerHeight', 			type: 'int'},
                 {key: 'containerLeft', 				type: 'int'},
@@ -3220,7 +3218,6 @@ export class GlobalVariableService {
                 w.containerBorder = changedWidget.containerBorder;
                 w.containerBorderRadius = changedWidget.containerBorderRadius;
                 w.containerBoxshadow = changedWidget.containerBoxshadow;
-                w.containerColor = changedWidget.containerColor;
                 w.containerFontsize = changedWidget.containerFontsize;
                 w.containerHeight = changedWidget.containerHeight;
                 w.containerLeft = changedWidget.containerLeft;
@@ -3344,7 +3341,6 @@ export class GlobalVariableService {
                 w.containerBorder = changedWidget.containerBorder;
                 w.containerBorderRadius = changedWidget.containerBorderRadius;
                 w.containerBoxshadow = changedWidget.containerBoxshadow;
-                w.containerColor = changedWidget.containerColor;
                 w.containerFontsize = changedWidget.containerFontsize;
                 w.containerHeight = changedWidget.containerHeight;
                 w.containerLeft = changedWidget.containerLeft;

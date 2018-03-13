@@ -141,11 +141,11 @@ export class AppComponent implements OnInit {
         }
 
         // Known ones
-        if (event.code == 'KeyZ'  &&  (event.ctrlKey) ) {
+        if (event.code == 'KeyZ'  &&  (event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickMenuEditUndo();
             return;
         };
-        if (event.code == 'KeyZ'  &&  (event.ctrlKey)   &&  (event.shiftKey) ) {
+        if (event.code == 'KeyZ'  &&  (event.ctrlKey)  &&  (event.shiftKey) ) {
             this.clickMenuEditRedo();
             return;
         };

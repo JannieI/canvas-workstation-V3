@@ -423,7 +423,6 @@ export class Widget {
     containerBorder: string;
     containerBorderRadius: string;
     containerBoxshadow: string;
-    containerColor: string;
     containerFontsize: number;
     containerHeight: number;
     containerLeft: number;
