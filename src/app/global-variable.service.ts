@@ -2401,11 +2401,16 @@ export class GlobalVariableService {
                     .then(data => {
 
                         // Filter the widgets
+                        // data = data.filter(
+                        //     i => i.dashboardID == dashboardID  &&
+                        //          (dashboardTabID == -1  ||  i.dashboardTabID == dashboardTabID)
+                        //          &&  (!i.isTrashed)
+                        // );
                         // TODO - use i.dashboardTabIDs.indexOf(dashboardTabID) >= 0 once datalib
                         // reads arrays correctly.  That should be the only change ...
                         data = data.filter(
                             i => i.dashboardID == dashboardID  &&
-                                 (dashboardTabID == -1  ||  i.dashboardTabID == dashboardTabID)
+                                 (dashboardTabID == -1  ||  i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
                                  &&  (!i.isTrashed)
                         );
                         this.currentWidgets = data;
@@ -2421,7 +2426,7 @@ export class GlobalVariableService {
                 let data: Widget[];
                 data = this.widgets.filter(
                     i => i.dashboardID == dashboardID  &&
-                    (dashboardTabID == -1  ||  i.dashboardTabID == dashboardTabID)
+                    (dashboardTabID == -1  ||  i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
                     &&  (!i.isTrashed)
                 )
 
