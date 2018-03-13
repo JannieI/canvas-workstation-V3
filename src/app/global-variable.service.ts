@@ -2338,10 +2338,14 @@ export class GlobalVariableService {
                             // = "a,b,c", then all works.  Else, it gives a big number 1046785...
                             // irrespective ...
                             if (w.dashboardTabIDs != null) {
+                                // re = regEx
+                                var re = /t/gi;
                                 let d: string = w.dashboardTabIDs.toString();
-                                d = d.replace('t', '');
+                                d = d.replace(re, '');
                                 let dA: string[] = d.split(',');
-                                console.log('xx dN', w.id, dA,w.dashboardTabIDs)
+                                w.dashboardTabIDs = [];
+                                dA.forEach(da => w.dashboardTabIDs.push(+da));
+                                console.log('xx dN', w.id, d, dA, w.dashboardTabIDs, 'a')
                             }
                             if (w.slicerSelection != null) {
                                 let s: string = w.slicerSelection.toString();
