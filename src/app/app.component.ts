@@ -231,6 +231,7 @@ export class AppComponent implements OnInit {
     showModalDashboardTreeview: boolean = false;
     showModalDashboardSubscribe: boolean = false;
     showMainMenu: boolean = true;
+    showModalWidgetContainer: boolean = false;
     showModalWidgetCheckpoints: boolean = false;
     showModalWidgetLinks: boolean = false;
     showModalWidgetRefresh: boolean = false;
@@ -662,6 +663,16 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataShare', '@Start');
 
         this.showModalDataShare = false;
+    }
+
+
+    handleCloseWidgetContainer(changedWidget: Widget) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainer', '@Start');
+
+        this.globalVariableService.changedWidget.next(changedWidget);
+        
+        this.showModalWidgetContainer = false;
     }
 
     handleCloseWidgetCheckpoints(action: string) {
@@ -1314,6 +1325,20 @@ export class AppComponent implements OnInit {
         this.showDatasourcePopup = false;
 
         this.showModalWidgetEditor = true;
+    }
+
+    
+    clickMenuWidgetContainer() {
+        // Show popup to edit Widget Container properties
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainer', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        if (!this.checkForOnlyOneWidget('Graph')) { 
+            return
+        };
+
+        this.showModalWidgetContainer = true;
     }
 
     clickMenuWidgetCheckpoints() {

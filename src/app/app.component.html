@@ -443,15 +443,22 @@
                         <div class="dropdown-divider"></div>
 
                         <clr-dropdown>
-                                <button
-                                    type="button"
-                                    class="btn btn-link btn-sm"
-                                    clrDropdownTrigger
-                                    title="Submenu with more options"
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Submenu with more options"
+                                >
+                                Details
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+                                <button type="button" 
+                                    clrDropdownItem 
+                                    (click)="clickMenuWidgetContainer()"
+                                    title="Change container properties for selected Widget"
                                     >
-                                    Details
+                                    Ccontainer
                                 </button>
-                                <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
                                 <button type="button" 
                                     clrDropdownItem 
                                     (click)="clickMenuWidgetCheckpoints()"
@@ -486,7 +493,6 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-
 
                         <button type="button" 
                             clrDropdownItem 
@@ -2014,6 +2020,14 @@
     [selectedWidget]="selectedWidget"
     (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Widget Editor ...
 </widget-editor>
+
+
+<!-- Modal: Widget Container -->
+<widget-container
+    *ngIf="showModalWidgetContainer"
+    [selectedWidget]="selectedWidget"
+    (formDataSlicersClosed)="handleCloseWidgetContainer($event)">Widget Containers ...
+</widget-container>
 
 
 <!-- Modal: widget checkpoints -->
