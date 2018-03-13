@@ -30,6 +30,15 @@
         text-align: left;
     }
 
+    .gridShape {
+        border-left: 1px solid black;
+        grid-column-start: 13;
+        grid-column-end: 21;
+        grid-row-start: 3;
+        grid-row-end: 18;
+        text-align: center;
+    }
+
     .gridProperties {
         grid-column-start: 1;
         grid-column-end: 12;

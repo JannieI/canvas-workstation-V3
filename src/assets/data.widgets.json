@@ -46,7 +46,7 @@
         "containerBorder": "1px solid gray",
         "containerBorderRadius": "6px",
         "containerBoxshadow": "2px 2px gray",
-        "containerColor": "transparent",
+        "containerColor": "black",
         "containerFontsize": 12,
         "containerHeight": 320,
         "containerLeft": 50,

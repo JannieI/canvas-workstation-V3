@@ -1328,15 +1328,20 @@ export class AppComponent implements OnInit {
     }
 
     
-    clickMenuWidgetContainer() {
+    clickMenuWidgetContainer(widgetType: string) {
         // Show popup to edit Widget Container properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainer', '@Start');
 
         this.menuOptionClickPreAction();
 
-        if (!this.checkForOnlyOneWidget('Graph')) { 
+        if (!this.checkForOnlyOneWidget(widgetType)) { 
             return
         };
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == widgetType) {
+                this.selectedWidget = w;
+            };
+        });
 
         this.showModalWidgetContainer = true;
     }

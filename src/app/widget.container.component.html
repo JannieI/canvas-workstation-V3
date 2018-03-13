@@ -1,18 +1,18 @@
 <div class="modal modalBox">
         <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
-    
+
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
-    
+
                 <div class="gridOverall">
-    
+
                     <div class="gridHeading">
                         <b>Container settings</b>
                     </div>
-    
-    
+
+
                     <div class="gridButtonCancel">
                         <button
                             type="button"
@@ -31,7 +31,33 @@
                             Save
                         </button>
                     </div>
-    
+
+                    <div class="gridShape"
+                        [style.width.px]="300"
+                        [style.height.px]="300"
+                        [style.background-color]="localWidget.containerBackgroundcolor"
+                        [style.border]="localWidget.containerBorder"
+                        [style.border-radius]="localWidget.containerBorderRadius"
+                        [style.box-shadow]="localWidget.containerBoxshadow"
+                        [style.color]="localWidget.containerColor"
+                        >
+                        <br>
+                        <br>
+                        <br>
+                        Text
+                        <br>
+                        Text
+                        <br>
+                        Text
+                        <br>
+                        Text
+                        <br>
+                        Text
+                        <br>
+                        Text
+                        <br>
+                    </div>
+
                     <div class="gridProperties">
 
                         <div class="propertyLine">
@@ -47,37 +73,37 @@
                                 <option>Blue</option>
                                 <option>Yellow</option>
                             </select>
-    
+
                         </div>
 
                         <div class="propertyLine">
                             Border:
-                            <input type="text" 
+                            <input type="text"
                                 placeholder="Border, ie 1px solid black"
                                 [(ngModel)]="localWidget.containerBorder"
                                 >
                         </div>
 
                         <div class="propertyLine">
-                                containerBorderRadius:
-                            <input type="text" 
+                            Border Radius:
+                            <input type="text"
                                 placeholder="3"
                                 [(ngModel)]="localWidget.containerBorderRadius"
                                 >
                         </div>
 
                         <div class="propertyLine">
-                                containerBoxshadow:
-                            <input type="text" 
+                            Box Shadow:
+                            <input type="text"
                                 placeholder="Red"
                                 [(ngModel)]="localWidget.containerBoxshadow"
                                 >
                         </div>
 
                         <div class="propertyLine">
-                            Background Colour:
+                            Colour:
                             <select
-                                [(ngModel)]="localWidget.containerBackgroundcolor"
+                                [(ngModel)]="localWidget.containerColor"
                                 >
                                 <option>DarkRed</option>
                                 <option>Black</option>
@@ -87,14 +113,12 @@
                                 <option>Blue</option>
                                 <option>Yellow</option>
                             </select>
-    
+
                         </div>
-        
+
                     </div>
-    
                 </div>
             </div>
         </div>
     </div>
-    
-    
+

@@ -454,10 +454,10 @@
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
                                 <button type="button" 
                                     clrDropdownItem 
-                                    (click)="clickMenuWidgetContainer()"
+                                    (click)="clickMenuWidgetContainer('Graph')"
                                     title="Change container properties for selected Widget"
                                     >
-                                    Ccontainer
+                                    Container
                                 </button>
                                 <button type="button" 
                                     clrDropdownItem 
@@ -1221,6 +1221,7 @@
 <div class="widgetContainer" *ngFor="let row of currentWidgets; let i = index"
     #widgetContainer
     [style.background-color]="row.containerBackgroundColor"
+    [style.color]="row.containerColor"
     [style.border]="row.isSelected? '1px solid black' : row.containerBorder"
     [style.border-radius]="row.containerBorderRadius"
     [style.box-shadow]="row.containerBoxshadow"

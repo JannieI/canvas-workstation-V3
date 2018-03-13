@@ -17,7 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 @Component({
-    selector: 'shape-edit',
+    selector: 'widget-container',
     templateUrl: './widget.container.component.html',
     styleUrls: ['./widget.container.component.css']
 })
