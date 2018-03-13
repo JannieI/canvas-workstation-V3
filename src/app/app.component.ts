@@ -1024,9 +1024,9 @@ export class AppComponent implements OnInit {
         this.showModalDashboardOpen = true;
     }
 
-    clickDashboardEdit() {
+    clickMenuEditMode() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditMode', '@Start');
 
         this.menuOptionClickPreAction();
 

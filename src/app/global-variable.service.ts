@@ -2334,6 +2334,9 @@ export class GlobalVariableService {
                                 w.shapeBullets = b.split(',');
                             };
 
+                            // TODO - this does NOT work in datalib: if the first dashboardTabIDs
+                            // = "a,b,c", then all works.  Else, it gives a big number 1046785...
+                            // irrespective ...
                             if (w.dashboardTabIDs != null) {
                                 let d: string = w.dashboardTabIDs.toString();
                                 let dA: string[] = d.split(',');
