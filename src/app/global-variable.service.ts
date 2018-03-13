@@ -2339,6 +2339,7 @@ export class GlobalVariableService {
                             // irrespective ...
                             if (w.dashboardTabIDs != null) {
                                 let d: string = w.dashboardTabIDs.toString();
+                                d = d.replace('t', '');
                                 let dA: string[] = d.split(',');
                                 console.log('xx dN', w.id, dA,w.dashboardTabIDs)
                             }
