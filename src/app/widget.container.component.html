@@ -40,6 +40,8 @@
                         [style.border-radius]="localWidget.containerBorderRadius"
                         [style.box-shadow]="localWidget.containerBoxshadow"
                         [style.color]="localWidget.containerColor"
+                        [style.font-size.px]="localWidget.containerFontsize"
+                        
                         >
                         <br>
                         <br>
@@ -98,6 +100,14 @@
                             <input type="text"
                                 placeholder="Red"
                                 [(ngModel)]="localWidget.containerBoxshadow"
+                                >
+                        </div>
+
+                        <div class="propertyLine">
+                            Font size:
+                            <input type="text"
+                                placeholder="12"
+                                [(ngModel)]="localWidget.containerFontsize"
                                 >
                         </div>
 

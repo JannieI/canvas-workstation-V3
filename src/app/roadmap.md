@@ -137,6 +137,7 @@ THEN: consider all currentXXX, where XXX = Objects to follow the same methodolog
 - if resize, one or all in group resizes?  Particularly if none selected.
 - if some W selected, say 1 in group of 4.  If move, does group also move?
 - better indication that groups are used, and maybe some help when Ws are group - say one- time help popup.
+27.ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.  Else it gets confusing ...
 
 
 
