@@ -441,38 +441,55 @@
                             Edit
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
-                            (click)="clickMenuWidgetCheckpoints()"
-                            title="Managing checkpoints for selected Widget"
-                            >
-                            Checkpoints
-                        </button>
-                        <button type="button" 
-                            clrDropdownItem 
-                            (click)="clickMenuWidgetComments()"
-                            title="Comments for selected Widget"
-                            >
-                            Comments
-                        </button>
-                        <button type="button" 
-                            clrDropdownItem 
-                            (click)="clickMenuWidgetDataQuality()"
-                            title="Data quality issues for selected Widget"
-                            >
-                            Data Quality
-                        </button>
-                        <button type="button" clrDropdownItem (click)="clickMenuWidgetLinks()">
-                            Links
-                        </button>
-                        <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
-                            (click)="clickMenuWidgetRefresh()"
-                            title="Refresh Datasource linked to selected Widget"
-                            >
-                            Refresh
-                        </button>
+
+                        <clr-dropdown>
+                                <button
+                                    type="button"
+                                    class="btn btn-link btn-sm"
+                                    clrDropdownTrigger
+                                    title="Submenu with more options"
+                                    >
+                                    Details
+                                </button>
+                                <clr-dropdown-menu clrPosition="right-bottom" *clrIfOpen>
+    
+
+                                <button type="button" 
+                                    clrDropdownItem 
+                                    (click)="clickMenuWidgetCheckpoints()"
+                                    title="Managing checkpoints for selected Widget"
+                                    >
+                                    Checkpoints
+                                </button>
+                                <button type="button" 
+                                    clrDropdownItem 
+                                    (click)="clickMenuWidgetComments()"
+                                    title="Comments for selected Widget"
+                                    >
+                                    Comments
+                                </button>
+                                <button type="button" 
+                                    clrDropdownItem 
+                                    (click)="clickMenuWidgetDataQuality()"
+                                    title="Data quality issues for selected Widget"
+                                    >
+                                    Data Quality
+                                </button>
+                                <button type="button" clrDropdownItem (click)="clickMenuWidgetLinks()">
+                                    Links
+                                </button>
+                                <div class="dropdown-divider"></div>
+                                <button type="button" 
+                                    clrDropdownItem 
+                                    (click)="clickMenuWidgetRefresh()"
+                                    title="Refresh Datasource linked to selected Widget"
+                                    >
+                                    Refresh
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+
+                        
                         <button type="button" 
                             clrDropdownItem 
                             (click)="clickMenuWidgetDuplicate()"
