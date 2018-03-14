@@ -131,6 +131,31 @@ import { GlobalVariableService }      from './global-variable.service';
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Set width, depending on ColorField change
+        if (this.newWidget) {
+            if (this.localWidget.graphColorField != ''
+                    &&  this.localWidget.graphColorField != null) {
+                this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
+            } else {
+                this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
+            };
+        } else {
+            if (this.selectedWidget.graphColorField != ''
+                &&  this.selectedWidget.graphColorField != null) {
+                    if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
+                        this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
+                    };
+            };
+            if (this.selectedWidget.graphColorField == ''
+                ||  this.selectedWidget.graphColorField == null) {
+                    if (this.localWidget.graphColorField != ''
+                        &&  this.localWidget.graphColorField != null) {
+                        this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
+                    };
+            };
+        };
+        this.localWidget.containerHasTitle = this.containerHasTitle;
+
         if (this.newWidget) {
 
             // TODO - improve this when using a DB!
@@ -151,29 +176,6 @@ import { GlobalVariableService }      from './global-variable.service';
             this.globalVariableService.widgetReplace(this.localWidget);
         };
 
-        // Set width, depending on ColorField change
-        if (this.newWidget) {
-            if (this.localWidget.graphColorField != ''
-                 &&  this.localWidget.graphColorField != null) {
-                this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
-            } else {
-                this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
-            };
-        } else {
-            if (this.selectedWidget.graphColorField != ''
-                &&  this.selectedWidget.graphColorField != null) {
-                    if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
-                        this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
-                    };
-            };
-            if (this.selectedWidget.graphColorField == ''
-                ||  this.selectedWidget.graphColorField == null) {
-                    if (this.localWidget.graphColorField != ''
-                        &&  this.localWidget.graphColorField != null) {
-                        this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
-                    };
-            };
-        };
 
         // Tell user
         this.globalVariableService.statusBarMessage.next(
@@ -185,8 +187,7 @@ import { GlobalVariableService }      from './global-variable.service';
                 defaultMessage: ''
             }
         );
-        
-        this.localWidget.containerHasTitle = this.containerHasTitle;
+
         this.formWidgetEditorClosed.emit(this.localWidget);
     }
 
