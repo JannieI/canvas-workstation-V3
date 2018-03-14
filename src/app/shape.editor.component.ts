@@ -63,21 +63,22 @@ export class ShapeEditComponent implements OnInit {
                 value.currentDashboardID;
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.
                 value.currentDashboardTabID;
+
+            // Standard settings    
             this.localWidget.widgetType = 'Shape';
             this.localWidget.containerBackgroundcolor = 'transparent';
             this.localWidget.containerBorder = 'none';
             this.localWidget.containerBorderRadius = '';
             this.localWidget.containerHasTitle = false;
-            this.localWidget.containerWidth = 200;
             this.localWidget.containerHeight = 220;
-            this.localWidget.shapeFill = 'lightgray';
+            this.localWidget.containerWidth = 200;
             this.localWidget.shapeCorner = 15;
+            this.localWidget.shapeFill = 'lightgray';
             this.localWidget.shapeFontFamily = 'Arial, sans serif';
             this.localWidget.shapeIsBold = true;
-            this.localWidget.shapeStroke = '1px';
-            this.localWidget.shapeText = 'The brown fox is tired';
+            this.localWidget.shapeStroke = 'black';
+            this.localWidget.shapeStrokeWidth = '1px';
             
-            console.log('xx this.localWidget init', this.localWidget)
         } else {
 
             // Deep copy
@@ -92,7 +93,6 @@ export class ShapeEditComponent implements OnInit {
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-        console.log('clickClose')
 
 		this.formShapeEditClosed.emit(null);
     }
@@ -100,8 +100,6 @@ export class ShapeEditComponent implements OnInit {
     clickSelectShape(ev) {
         // The user selected a shape subtype
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectShape', '@Start');
-
-        console.log(ev, ev.srcElement.value)
 
         // Enact selected shape
         this.selectShape(ev.srcElement.value);
@@ -124,28 +122,31 @@ export class ShapeEditComponent implements OnInit {
 
         if (shapeType == 'Circle') {
             this.showCircle = true;
-        }
+        };
         if (shapeType == 'Ellipse') {
             this.showEllipse = true;
-        }
+        };
         if (shapeType == 'Rectangle') {
             this.showRectangle = true;
-        }
+        };
         if (shapeType == 'Text') {
             this.showText = true;
-        }
+            this.localWidget.shapeText = 'The brown fox is tired';
+        };
         if (shapeType == 'Arrow') {
             this.showArrow = true;
-        }
+        };
         if (shapeType == 'Image') {
             this.showImage = true;
-        }
+        };
         if (shapeType == 'Bullets') {
             this.showBullets = true;
-        }
+        };
         if (shapeType == 'Value') {
             this.showValue = true;
-        }
+            // TODO - get this value from the DB ...
+            this.localWidget.shapeText = 'R234m';
+        };
 
     }
 
@@ -167,7 +168,7 @@ export class ShapeEditComponent implements OnInit {
         for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
 
             if (this.localWidget.shapeBullets[i] == item) {
-                console.log('xx inside', i)
+
                 tempArr.push(this.localWidget.shapeBullets[i]);
                 tempArr.push('');
             } else {
@@ -193,7 +194,7 @@ export class ShapeEditComponent implements OnInit {
         } else {
             let index: number = -1;
             for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
-                console.log('xx i', i)
+
                 if (this.localWidget.shapeBullets[i] == '') {
                     index = i;
                     break;
@@ -226,7 +227,6 @@ export class ShapeEditComponent implements OnInit {
                 newID = Math.max(...ws) + 1;
             };
             this.localWidget.id = newID;
-            console.log('xx this.localWidget', this.localWidget)
             this.localWidget.dashboardTabIDs.push(this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
             this.globalVariableService.widgets.push(this.localWidget);
             this.globalVariableService.currentWidgets.push(this.localWidget);
@@ -236,9 +236,14 @@ export class ShapeEditComponent implements OnInit {
             this.globalVariableService.widgetReplace(this.localWidget);
         };
 
-        // Set Shape related data
-        let widgetsToRefresh: number = this.localWidget.id;
-
+        // Special settings
+        if (this.localWidget.widgetSubType == 'Ellipse') {
+            this.localWidget.containerWidth = this.localWidget.containerHeight * 2;
+        };
+        if (this.localWidget.widgetType == 'Value') {
+            this.localWidget.containerHasTitle = true;
+        };
+            
         // Tell user
         this.globalVariableService.statusBarMessage.next(
             {
@@ -249,6 +254,7 @@ export class ShapeEditComponent implements OnInit {
                 defaultMessage: ''
             }
         );
+        console.log('xx this.localWidget', this.localWidget)
 
 	  	this.formShapeEditClosed.emit(this.localWidget);
     }
