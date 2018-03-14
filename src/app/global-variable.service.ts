@@ -641,19 +641,26 @@ export class GlobalVariableService {
 
     // Settings 
     // TODO - get from DB, not Constants
-    gridSize: number = 3;
-    maxTableLength: number = 500;
-    NoQueryRunningMessage: string = 'No Query';
-    QueryRunningMessage: string = 'Query running...';
-    snapToGrid: boolean = true;
+
+    companyName = '';
+    companyLogo = '';
+    dashboardTemplate = '';
+    noQueryRunningMessage = 'No Query';
+    queryRunningMessage = 'Query running...';
+    offlineData = true;
+    offlineSchema = '';
+    offlineLogin = '';
+    maxTableLength = 500;
+    widgetsMinZindex = 50;
+    widgetsMaxZindex = 59;
+    gridSize = 3;
+    snapToGrid = true;
+    printDefault = '';
+    printSize = '';
+    printLayout = '';
+
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
-    widgetsMinZindex: number = 50;
-    widgetsMaxZindex: number = 59;
-
-    // Company related variables
-    companyName: string = 'Clarity Analytics';                  // Optional, set in SystemConfig
-    companyLogo: string = '';                                   // Optional file name, set in SystemConfig
 
     // System-wide related variables, set at Installation - for later use
     // systemConfigurationID: number = -1;
@@ -766,7 +773,7 @@ export class GlobalVariableService {
     
 
     // StatusBar
-    statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);
+    statusBarRunning = new BehaviorSubject<string>(this.noQueryRunningMessage);
     statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
     statusBarMessage = new BehaviorSubject<StatusBarMessage>(null)
 
@@ -1099,12 +1106,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboards = data;
                         this.isDirtyDashboards = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getDashboards 1', data)
                         resolve(this.dashboards);
                     });
@@ -1207,12 +1214,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardTabs = data;
                         this.isDirtyDashboardTabs = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardTabs 1', data)
                         resolve(this.dashboardTabs);
                     });
@@ -1304,7 +1311,7 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardsRecent = [];
@@ -1317,7 +1324,7 @@ export class GlobalVariableService {
                         });
                         console.log('Global-Variables dashboardsRecent 1', this.dashboardsRecent)
                         this.isDirtyDashboardsRecent = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         resolve(this.dashboardsRecent);
                     });
             } else {
@@ -1376,7 +1383,7 @@ export class GlobalVariableService {
         return new Promise<DashboardRecent[]>((resolve, reject) => {
 
             // Refresh from source at start
-            this.statusBarRunning.next(this.QueryRunningMessage);
+            this.statusBarRunning.next(this.queryRunningMessage);
             this.get(url).then(data => {
                 this.dashboardsRecent = [];
                 // TODO - http must be sorted => include in Options ...
@@ -1385,7 +1392,7 @@ export class GlobalVariableService {
                 )
                 console.log('Global-Variables dashboardsRecent 1', temp)
                 this.isDirtyDashboardsRecent = false;
-                this.statusBarRunning.next(this.NoQueryRunningMessage);
+                this.statusBarRunning.next(this.noQueryRunningMessage);
                 resolve(temp);
             });
         });
@@ -1440,12 +1447,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.datasets = data;
                         this.isDirtyDatasets = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getDataset 1', this.datasets)
                         resolve(this.datasets);
                     });
@@ -1610,12 +1617,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardSchedules = data;
                         this.isDirtyDashboardSchedules = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardSchedules 1')
                         resolve(this.dashboardSchedules);
                     });
@@ -1676,12 +1683,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardTags.length == 0)  ||  (this.isDirtyDashboardTags) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardTags = data;
                         this.isDirtyDashboardTags = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardTags 1')
                         resolve(this.dashboardTags);
                     });
@@ -1741,12 +1748,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardPermissions.length == 0)  ||  (this.isDirtyDashboardPermissions) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardPermissions = data;
                         this.isDirtyDashboardPermissions = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardPermissions 1')
                         resolve(this.dashboardPermissions);
                     });
@@ -1806,13 +1813,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
 
                 this.getLocal('DashboardSnapshot')
                     .then(data => {
                         this.dashboardSnapshots = data;
                         this.isDirtyDashboardSnapshots = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardSnapshots 1', data)
                         resolve(this.dashboardSnapshots);
                     });
@@ -1872,12 +1879,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardThemes.length == 0)  ||  (this.isDirtyDashboardThemes) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardThemes = data;
                         this.isDirtyDashboardThemes = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardThemes 1', data)
                         resolve(this.dashboardThemes);
                     });
@@ -1957,12 +1964,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.datasources = data;
                         this.isDirtyDatasources = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
 
                         this.datasources.forEach(ds => {
                             // TODO - remove this, currently datalib reads array as string 'a,b,c'
@@ -2025,7 +2032,7 @@ export class GlobalVariableService {
                             };
                             this.isDirtyDatasources = false;
                             this.currentDatasources = returnData;
-                            this.statusBarRunning.next(this.NoQueryRunningMessage);
+                            this.statusBarRunning.next(this.noQueryRunningMessage);
                             console.log('Global-Variables getCurrentDatasources 1',
                                 dashboardID, this.currentDatasources);
                             resolve(returnData);
@@ -2046,7 +2053,7 @@ export class GlobalVariableService {
                 };
                 this.isDirtyDatasources = false;
                 this.currentDatasources = returnData;
-                this.statusBarRunning.next(this.NoQueryRunningMessage);
+                this.statusBarRunning.next(this.noQueryRunningMessage);
                 console.log('Global-Variables getCurrentDatasources 2', dashboardID,
                     this.currentDatasources);
                 resolve(returnData);
@@ -2067,12 +2074,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.transformations.length == 0)  ||  (this.isDirtyTransformations) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.transformations = data;
                         this.isDirtyTransformations = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getTransformations 1',  data)
                         resolve(this.transformations);
                     });
@@ -2131,12 +2138,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dataQualityIssues = data;
                         this.isDirtyDataQualityIssues = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getDataQualityIssues 1', this.dataQualityIssues)
                         resolve(this.dataQualityIssues);
                     });
@@ -2195,12 +2202,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.datasourcePermissions = data;
                         this.isDirtyDatasourcePermissions = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getDatasourcePermissions 1', this.datasourcePermissions)
                         resolve(this.datasourcePermissions);
                     });
@@ -2259,12 +2266,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.datasourcePivots = data;
                         this.isDirtyDatasourcePivots = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getDatasourcePivots 1', this.datasourcePivots)
                         resolve(this.datasourcePivots);
                     });
@@ -2323,7 +2330,7 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasSettings.length == 0)  ||  (this.isDirtyCanvasSettings) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.canvasSettings = data;
@@ -2333,12 +2340,12 @@ export class GlobalVariableService {
                         this.companyName = data.companyName;
                         this.companyLogo = data.companyLogo;
                         // this.dashboardTemplate = data.dashboardTemplate;
-                        this.NoQueryRunningMessage = data.messagingNoQuery;
-                        this.QueryRunningMessage = data.messagingRunning;
+                        this.noQueryRunningMessage = data.messagingNoQuery;
+                        this.queryRunningMessage = data.queryRunningMessage;
                         // this.offlineData = data.offlineData;
                         // this.offlineSchema = data.offlineSchema;
                         // this.offlineLogin = data.offlineLogin;
-                        // this.tableLength = data.tableLength;
+                        // this.maxTableLength = data.maxTableLength;
                         // this.widgetTemplate = data.widgetTemplate;
                         this.widgetsMinZindex = data.widgetsMinZindex;
                         this.widgetsMaxZindex = data.widgetsMaxZindex;
@@ -2349,7 +2356,7 @@ export class GlobalVariableService {
                         // this.printLayout = data.printLayout;
 
                         this.isDirtyCanvasSettings = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getSystemSettings 1', this.canvasSettings)
                         resolve(this.canvasSettings);
                     });
@@ -2375,7 +2382,7 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.widgets = data.filter(d => (!d.isTrashed) );
@@ -2426,7 +2433,7 @@ export class GlobalVariableService {
                         });
 
                         this.isDirtyWidgets = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getWidgets 1', this.widgets)
                         resolve(this.widgets);
                     });
@@ -2611,13 +2618,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.backgroundcolors.length == 0)  ||  (this.isDirtyBackgroundColors) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.backgroundcolors = data.filter(d => (!d.isTrashed) );
 
                         this.isDirtyBackgroundColors = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getBackgroundColors 1', this.backgroundcolors)
                         resolve(this.backgroundcolors);
                     });
@@ -2642,13 +2649,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasActivities.length == 0)  ||  (this.isDirtyCanvasActivities) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.canvasActivities = data.filter(d => (!d.isTrashed) );
 
                         this.isDirtyCanvasActivities = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getCanvasActivities 1', this.canvasActivities)
                         resolve(this.canvasActivities);
                     });
@@ -2673,13 +2680,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasAlerts.length == 0)  ||  (this.isDirtyCanvasAlerts) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.canvasAlerts = data.filter(d => (!d.isTrashed) );
 
                         this.isDirtyCanvasAlerts = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getCanvasAlerts 1', this.canvasAlerts)
                         resolve(this.canvasAlerts);
                     });
@@ -2704,13 +2711,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasComments.length == 0)  ||  (this.isDirtyCanvasComments) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.canvasComments = data.filter(d => (!d.isTrashed) );
 
                         this.isDirtyCanvasComments = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getCanvasComments 1', this.canvasComments)
                         resolve(this.canvasComments);
                     });
@@ -2735,13 +2742,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasMessages.length == 0)  ||  (this.isDirtyCanvasMessages) ) {
-                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.statusBarRunning.next(this.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.canvasMessages = data.filter(d => (!d.isTrashed) );
 
                         this.isDirtyCanvasMessages = false;
-                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getCanvasMessages 1', this.canvasMessages)
                         resolve(this.canvasMessages);
                     });

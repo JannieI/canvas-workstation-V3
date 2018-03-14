@@ -30,6 +30,24 @@ export class SystemSettingsComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
 
+    companyName = this.globalVariableService.companyName;
+    companyLogo = this.globalVariableService.companyLogo;
+    dashboardTemplate = this.globalVariableService.dashboardTemplate;
+    noQueryRunningMessage = this.globalVariableService.noQueryRunningMessage;
+    queryRunningMessage = this.globalVariableService.queryRunningMessage;
+    offlineData = this.globalVariableService.offlineData;
+    offlineSchema = this.globalVariableService.offlineSchema;
+    offlineLogin = this.globalVariableService.offlineLogin;
+    maxTableLength = this.globalVariableService.maxTableLength;
+    widgetsMinZindex = this.globalVariableService.widgetsMinZindex;
+    widgetsMaxZindex = this.globalVariableService.widgetsMaxZindex;
+    gridSize = this.globalVariableService.gridSize;
+    snapToGrid = this.globalVariableService.snapToGrid;
+    printDefault = this.globalVariableService.printDefault;
+    printSize = this.globalVariableService.printSize;
+    printLayout = this.globalVariableService.printLayout;
+
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,

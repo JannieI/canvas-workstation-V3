@@ -5,12 +5,12 @@ export class CanvasSettings {
     companyName: string;                    // Company Name
     companyLogo: string;                    // Optional file name for Company logo
     dashboardTemplate: string;              // Default Dashboard Template (later use)
-    messagingNoQuery: string;               // No-Query-Running Message to display on StatusBar
-    messagingRunning: string;               // Query-Running Message to display on StatusBar
+    noQueryRunningMessage: string;          // No-Query-Running Message to display on StatusBar
+    queryRunningMessage: string;            // Query-Running Message to display on StatusBar
     offlineData: boolean;                   // Store server data locally (T/F)
     offlineSchema: boolean;                 // Store server schema locally (T/F)
     offlineLogin: boolean;                  // Can log into a local server (T/F)
-    tableLength: number;                    // Max Table Length (say 500 records)
+    maxTableLength: number;                 // Max Table Length (say 500 records)
     widgetTemplate: string;                 // Default Widget Template
     widgetsMinZindex: number;               // Widgets Min Zindex
     widgetsMaxZindex: number;               // Widgets Max Zindex

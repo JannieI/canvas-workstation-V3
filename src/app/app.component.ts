@@ -1462,7 +1462,7 @@ export class AppComponent implements OnInit {
         };
 
         this.showModalWidgetRefresh = true;
-        this.globalVariableService.statusBarRunning.next(this.globalVariableService.NoQueryRunningMessage);
+        this.globalVariableService.statusBarRunning.next(this.globalVariableService.noQueryRunningMessage);
         this.globalVariableService.statusBarCancelRefresh.next('Cancel');
     }
 

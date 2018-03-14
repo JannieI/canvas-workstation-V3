@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="gridCompanyName">
-                    <input
+                    <input [(ngModel)]="companyName"
                     type="text"
                     id="formFields_7"
                     placeholder="Company Name"
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="gridCompanyLogo">
-                    <input
+                    <input [(ngModel)]="companyLogo"
                     type="text"
                     id="formFields_7"
                     placeholder="Company Logo"
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="gridCompanyTemplate">
-                    <input
+                    <input [(ngModel)]="dashboardTemplate"
                         type="text"
                         id="formFields_7"
                         placeholder="Default Template"
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="gridMessagingNoQuery">
-                    <input
+                    <input [(ngModel)]="noQueryRunningMessage"
                         type="text"
                         id="formFields_7"
                         placeholder="NoQueryRunningMessage"
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="gridMessagingRunning">
-                    <input
+                    <input [(ngModel)]="queryRunningMessage"
                         type="text"
                         id="formFields_7"
                         placeholder="QueryRunningMessage"
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="gridOfflineData">
-                    <input
+                    <input [(ngModel)]="offlineData"
                         type="text"
                         id="formFields_7"
                         placeholder="Store server data locally (T/F)"
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="gridOfflineSchema">
-                    <input
+                    <input [(ngModel)]="offlineSchema"
                         type="text"
                         id="formFields_7"
                         placeholder="Store server schema locally (T/F)"
@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="gridOfflineLogin">
-                    <input
+                    <input [(ngModel)]="offlineLogin"
                         type="text"
                         id="formFields_7"
                         placeholder="Can log into a local server (T/F)"
@@ -94,7 +94,7 @@
                 </div>
 
                 <div class="gridTableLength">
-                    <input
+                    <input [(ngModel)]="maxTableLength"
                         type="text"
                         id="formFields_7"
                         placeholder="Max Table Length (500)"
@@ -106,7 +106,7 @@
                 </div>
 
                 <div class="gridWidgetTemplate">
-                    <input
+                    <input [(ngModel)]=""
                         type="text"
                         id="formFields_7"
                         placeholder="Widget Template"
@@ -114,7 +114,7 @@
                 </div>
 
                 <div class="gridWidgetMinZindex">
-                    <input
+                    <input [(ngModel)]="widgetsMinZindex"
                         type="text"
                         id="formFields_7"
                         placeholder="Widgets Min Zindex"
@@ -122,7 +122,7 @@
                 </div>
 
                 <div class="gridWidgetMaxZindex">
-                    <input
+                    <input [(ngModel)]="widgetsMaxZindex"
                         type="text"
                         id="formFields_7"
                         placeholder="Widgets Max Zindex"
@@ -134,7 +134,7 @@
                 </div>
 
                 <div class="gridGridSize">
-                    <input
+                    <input [(ngModel)]="gridSize"
                         type="text"
                         id="formFields_7"
                         placeholder="Size of the Grid"
@@ -142,7 +142,7 @@
                 </div>
 
                 <div class="gridGridSnap">
-                    <input
+                    <input [(ngModel)]="snapToGrid"
                         type="text"
                         id="formFields_7"
                         placeholder="Snap to grid (T/F)"
@@ -153,19 +153,19 @@
                     <b>Printing:</b>
                 </div>
                 <div class="gridPrintDefault">
-                    <input type="text" 
+                    <input [(ngModel)]="printDefault" type="text" 
                         id="formFields_7" 
                         placeholder="Deflt: Local HP"
                         >
                 </div>
                 <div class="gridPrintSize">
-                    <input type="text" 
+                    <input [(ngModel)]="printSize" type="text" 
                         id="formFields_7" 
                         placeholder="Deflt Page Size: A4"
                         >
                 </div>
                 <div class="gridPrintLayout">
-                    <input type="text" 
+                    <input [(ngModel)]="printLayout" type="text" 
                         id="formFields_7" 
                         placeholder="Deflt Layout: Single page, B and W"
                         >
