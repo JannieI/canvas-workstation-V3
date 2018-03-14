@@ -42,7 +42,7 @@ export class SlicerTablistComponent implements OnInit {
         //         slID.push(sl.dashboardTabID);
         //     };
         // });
-        console.log('xx currentWidgetDashboardTabIDs', this.currentWidgetDashboardTabIDs)
+
         // Build list of T names and position before showing it
         this.currentTabNames = [];
         this.globalVariableService.currentDashboardTabs.forEach(t => {
@@ -72,8 +72,6 @@ export class SlicerTablistComponent implements OnInit {
     clickSave(index: number) {
         // Save data and Close multi-tab-selection popup
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-
-        console.log('xx this.currentTabNames', this.currentTabNames)
 
         // Construct TabIDs array
         let tabIDs: number[] = [];

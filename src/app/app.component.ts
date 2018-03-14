@@ -368,8 +368,12 @@ export class AppComponent implements OnInit {
                     };
                 };
 
-                // Add the given one
-                this.currentWidgets.push(newW);
+                // Add the given one, if [TabID] has current TabID
+                if (newW.dashboardTabIDs.indexOf(
+                    this.globalVariableService.currentDashboardInfo.value.
+                    currentDashboardTabID) >= 0) {
+                    this.currentWidgets.push(newW);
+                };
 
                 console.log('xx app changedWidget replaced', w, this.currentWidgets)
             };
