@@ -36,16 +36,27 @@ export class SystemSettingsComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
     }
 
     clickClose(action: string) {
+        // Close form, no save
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         console.log('clickClose')
 
 		this.formDashboardSystemSettingsClosed.emit(action);
     }
 
-    //TODO
-    //1. Set global var isFirstTimeDashboard = T/F depending on user input
+    clickSave(action: string) {
+        // Save data and Close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        console.log('clickSave')
+
+		this.formDashboardSystemSettingsClosed.emit(action);
+    }
 }
