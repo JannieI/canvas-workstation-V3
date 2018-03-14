@@ -57,9 +57,11 @@ export class ShapeEditComponent implements OnInit {
         if (this.newWidget) {
 
             // Create new W
-            this.localWidget = this.globalVariableService.widgetTemplate;
-            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-            this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+            this.localWidget = Object.assign({}, this.globalVariableService.widgetTemplate);
+            this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.
+                value.currentDashboardID;
+            this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.
+                value.currentDashboardTabID;
             this.localWidget.widgetType = 'Shape';
         } else {
 

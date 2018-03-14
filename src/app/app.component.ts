@@ -1951,6 +1951,18 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showStatusBarMessage(
+                notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+        
         this.newWidget = true;
         this.showModalShapeEdit = true;
     }
