@@ -3174,7 +3174,7 @@ export class GlobalVariableService {
 
     widgetReplace(changedWidget: Widget) {
         // Replaces (ByVal) the global W and currentW
-        console.log('Global-Variables sleep ... widgetReplace', changedWidget.id);
+        console.log('Global-Variables ... widgetReplace', changedWidget.id);
 
         // TODO - this is not DRY - there must be a better way!!
         this.widgets.forEach(w => {

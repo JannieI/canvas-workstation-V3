@@ -144,6 +144,9 @@ THEN: consider all currentXXX, where XXX = Objects to follow the same methodolog
 27.ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.  Else it gets confusing ...
 28.Consider copy + paste for Slicer, Shape and Table.  For now, I think it is okay
 29.Consider cut as well, cut = copy + delete ...
+30.Relook at ALL forms:
+- consistent layout, look and feel - INcluding the popups like the W title
+- x top left on all, so that it can close if screen is too small and the save button overflow beyond the screen
 
 
 

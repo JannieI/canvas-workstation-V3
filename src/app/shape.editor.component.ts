@@ -72,6 +72,7 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.containerHasTitle = false;
             this.localWidget.containerHeight = 220;
             this.localWidget.containerWidth = 200;
+            this.localWidget.shapeBullets = ["Text ..."];
             this.localWidget.shapeCorner = 15;
             this.localWidget.shapeFill = 'lightgray';
             this.localWidget.shapeFontFamily = 'Arial, sans serif';
