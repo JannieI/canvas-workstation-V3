@@ -1,6 +1,26 @@
 // ALL models (schema) are kept here
 
 // Setup / Settings / General
+export class CanvasSettings {
+    companyName: string;                    // Company Name
+    companyLogo: string;                    // Optional file name for Company logo
+    dashboardTemplate: string;              // Default Dashboard Template (later use)
+    messagingNoQuery: string;               // No-Query-Running Message to display on StatusBar
+    messagingRunning: string;               // Query-Running Message to display on StatusBar
+    offlineData: string;                    // Store server data locally (T/F)
+    offlineSchema: string;                  // Store server schema locally (T/F)
+    offlineLogin: string;                   // Can log into a local server (T/F)
+    tableLength: string;                    // Max Table Length (say 500 records)
+    widgetTemplate: string;                 // Default Widget Template
+    widgetMinZindex: string;                // Widgets Min Zindex
+    widgetMaxZindex: string;                // Widgets Max Zindex
+    gridSize: string;                       // Size of the Grid
+    gridSnap: string;                       // Snap to grid (T/F)
+    printDefault: string;                   // Deflt: Local HP
+    printSize: string;                      // Deflt Page Size: A4
+    printLayout: string;                    // Deflt Layout: Single page, B and W
+}
+
 export class CanvasAction {
     id: number;                             // Unique id per action
     action: string;                         // Optional name, ie Move Widget 
