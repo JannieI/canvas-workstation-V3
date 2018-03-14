@@ -120,6 +120,10 @@ export class ShapeEditComponent implements OnInit {
         this.showBullets = false;
         this.showValue = false;
 
+        // Reset defaults
+        this.localWidget.containerHasTitle = false;
+        this.localWidget.shapeText = '';
+        
         if (shapeType == 'Circle') {
             this.showCircle = true;
         };
@@ -144,6 +148,7 @@ export class ShapeEditComponent implements OnInit {
         };
         if (shapeType == 'Value') {
             this.showValue = true;
+            this.localWidget.containerHasTitle = true;
             // TODO - get this value from the DB ...
             this.localWidget.shapeText = 'R234m';
         };
@@ -238,10 +243,16 @@ export class ShapeEditComponent implements OnInit {
 
         // Special settings
         if (this.localWidget.widgetSubType == 'Ellipse') {
+            this.localWidget.containerHeight = 100;
             this.localWidget.containerWidth = this.localWidget.containerHeight * 2;
         };
-        if (this.localWidget.widgetType == 'Value') {
-            this.localWidget.containerHasTitle = true;
+        if (this.localWidget.widgetSubType == 'Value') {
+            this.localWidget.containerBorder = '1px solid gray';
+            this.localWidget.containerBorderRadius = '5px';
+            this.localWidget.containerHeight = 80;
+            this.localWidget.titleBackgroundColor = 'transparent';
+            // TODO - make this the field name
+            this.localWidget.titleText = 'Value';
         };
             
         // Tell user
