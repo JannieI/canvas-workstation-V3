@@ -164,6 +164,9 @@ export class ShapeEditComponent implements OnInit {
 
         // TODO - fix index, somehow not working!
         this.localWidget.shapeBullets = this.localWidget.shapeBullets.filter(b => b != item);
+        if (this.localWidget.shapeBullets.length == 0) {
+            this.localWidget.shapeBullets = ["Text ..."];
+        };
     }
 
     clickBulletAdd(index: number, item: string) {
