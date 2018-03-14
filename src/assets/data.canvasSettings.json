@@ -1,0 +1,19 @@
+{
+    "companyName": "Clarity Analytics",
+    "companyLogo": "",
+    "dashboardTemplate": "",
+    "messagingNoQuery": "",
+    "messagingRunning": "",
+    "offlineData": true,
+    "offlineSchema": true,
+    "offlineLogin": true,
+    "tableLength": 500,
+    "widgetTemplate": "",
+    "widgetMinZindex": 50,
+    "widgetMaxZindex": 59,
+    "gridSize": 3,
+    "gridSnap": true,
+    "printDefault": "",
+    "printSize": "",
+    "printLayout": ""
+}

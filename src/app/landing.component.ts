@@ -69,13 +69,17 @@ export class LandingComponent implements OnInit {
 							k[x].dashboardID) {
 								k[x].stateAtRunTime = this.globalVariableService.dashboards[y].state;
 								k[x].nameAtRunTime = this.globalVariableService.dashboards[y].name;
-							}
-						}
-					}
+							};
+						};
+					};
 					this.recentDashboards = k;
-				})
-			})
-		})
+				});
+			});
+		});
+
+		// Load System Settings
+		this.globalVariableService.getSystemSettings().then(i => {
+		});
 	}
 
 	ngOnInit() {

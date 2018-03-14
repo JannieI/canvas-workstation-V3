@@ -2306,6 +2306,84 @@ export class GlobalVariableService {
 
     }
 
+
+    getSystemSettings(): Promise<Widget[]> {
+        // Description: Gets system settings
+        // Returns: this.widgets array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getWidgets ...', this.widgets.length);
+
+        let url: string = 'getWidgets';
+        this.filePath = './assets/data.widgets.json';
+
+        return new Promise<Widget[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
+                this.statusBarRunning.next(this.QueryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.widgets = data.filter(d => (!d.isTrashed) );
+
+                        // TODO - fix hardcoding, issue with datalib jsonTree
+                        this.widgets.forEach(w => {
+
+                            if (w.widgetType == 'Shape') {
+
+                                let b: string = w.shapeBullets.toString();
+                                w.shapeBullets = b.split(',');
+                            };
+
+                            // TODO - this does NOT work in datalib: if the first dashboardTabIDs
+                            // = "a,b,c", then all works.  Else, it gives a big number 1046785...
+                            // irrespective ...
+                            if (w.dashboardTabIDs != null) {
+                                // re = regEx
+                                var re = /t/gi;
+                                let d: string = w.dashboardTabIDs.toString();
+                                d = d.replace(re, '');
+                                let dA: string[] = d.split(',');
+                                w.dashboardTabIDs = [];
+                                dA.forEach(da => w.dashboardTabIDs.push(+da));
+                            }
+                            if (w.slicerSelection != null) {
+                                let s: string = w.slicerSelection.toString();
+                                let sF: string[] = s.split(',');
+                                let sO: {isSelected: boolean; fieldValue: string}[] = [];
+                                let i: number = 0;
+                                let oSel: boolean;
+                                let oFld: string;
+                                w.slicerSelection = [];
+                                sF.forEach(s => {
+                                    i = i + 1;
+                                    if (i == 1) {
+                                        oSel = (s == 'true');
+                                    } else {
+                                        oFld = s;
+                                        i = 0;
+                                        let o: {isSelected: boolean; fieldValue: string} = 
+                                            {isSelected: oSel, fieldValue: oFld};
+                                        w.slicerSelection.push(o);
+                                    }
+                                })
+                            };
+
+                        });
+
+                        this.isDirtyWidgets = false;
+                        this.statusBarRunning.next(this.NoQueryRunningMessage);
+                        console.log('Global-Variables getWidgets 1', this.widgets)
+                        resolve(this.widgets);
+                    });
+            } else {
+                console.log('Global-Variables getWidgets 2', this.widgets)
+                resolve(this.widgets);
+            }
+        });
+
+    }
+
+
     getWidgets(): Promise<Widget[]> {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
