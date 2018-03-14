@@ -169,6 +169,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
             // Create new W
             // this.localWidget = this.globalVariableService.widgetTemplate;
+            // let cloned = source.map(x => Object.assign({}, x));
             this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
             this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;

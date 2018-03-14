@@ -64,6 +64,19 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.
                 value.currentDashboardTabID;
             this.localWidget.widgetType = 'Shape';
+            this.localWidget.containerBackgroundcolor = 'transparent';
+            this.localWidget.containerBorder = 'none';
+            this.localWidget.containerBorderRadius = '';
+            this.localWidget.containerHasTitle = false;
+            this.localWidget.containerWidth = 200;
+            this.localWidget.containerHeight = 220;
+            this.localWidget.shapeFill = 'lightgray';
+            this.localWidget.shapeCorner = 15;
+            this.localWidget.shapeFontFamily = 'Arial, sans serif';
+            this.localWidget.shapeIsBold = true;
+            this.localWidget.shapeStroke = '1px';
+            this.localWidget.shapeText = 'The brown fox is tired';
+            
             console.log('xx this.localWidget init', this.localWidget)
         } else {
 
