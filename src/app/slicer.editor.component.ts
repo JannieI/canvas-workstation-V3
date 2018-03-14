@@ -235,6 +235,24 @@ import { GlobalVariableService }      from './global-variable.service';
         // Save the data, and close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Set Slicer related data
+        this.localWidget.containerHasTitle = this.containerHasTitle;
+        this.localWidget.slicerNumberToShow = this.slicerNumberToShow;
+        this.localWidget.slicerSortField = this.slicerSortField;
+        this.localWidget.slicerSortFieldOrder = this.slicerSortFieldOrder;
+        this.localWidget.titleText = this.selectedField;
+        this.localWidget.slicerFieldName = this.selectedField;
+        this.localWidget.slicerSelection = [];
+
+        this.dataValues.forEach(df => {
+            if (df.isSelected) {
+                this.localWidget.slicerSelection.push(
+                    {
+                        isSelected: df.isSelected, fieldValue: df.fieldValue
+                    })
+            };
+        });
+
         if (this.newWidget) {
 
             // TODO - improve this when using a DB!
@@ -257,25 +275,6 @@ import { GlobalVariableService }      from './global-variable.service';
             // Replace the W
             this.globalVariableService.widgetReplace(this.localWidget);
         };
-
-        // Set Slicer related data
-        this.localWidget.containerHasTitle = this.containerHasTitle;
-        this.localWidget.slicerNumberToShow = this.slicerNumberToShow;
-        this.localWidget.slicerSortField = this.slicerSortField;
-        this.localWidget.slicerSortFieldOrder = this.slicerSortFieldOrder;
-        this.localWidget.titleText = this.selectedField;
-        this.localWidget.slicerFieldName = this.selectedField;
-        this.localWidget.slicerSelection = [];
-        console.log('xx this.dataValues', this.dataValues)
-        this.dataValues.forEach(df => {
-            if (df.isSelected) {
-                this.localWidget.slicerSelection.push(
-                    {
-                        isSelected: df.isSelected, fieldValue: df.fieldValue
-                    })
-            };
-        });
-        let widgetsToRefresh: number = this.localWidget.id;
 
         // Tell user
         this.globalVariableService.statusBarMessage.next(
