@@ -57,12 +57,14 @@ export class ShapeEditComponent implements OnInit {
         if (this.newWidget) {
 
             // Create new W
-            this.localWidget = Object.assign({}, this.globalVariableService.widgetTemplate);
+            // this.localWidget = Object.assign({}, this.globalVariableService.widgetTemplate);
+            this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
             this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.
                 value.currentDashboardID;
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.
                 value.currentDashboardTabID;
             this.localWidget.widgetType = 'Shape';
+            console.log('xx this.localWidget init', this.localWidget)
         } else {
 
             // Deep copy
@@ -211,6 +213,7 @@ export class ShapeEditComponent implements OnInit {
                 newID = Math.max(...ws) + 1;
             };
             this.localWidget.id = newID;
+            console.log('xx this.localWidget', this.localWidget)
             this.localWidget.dashboardTabIDs.push(this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
             this.globalVariableService.widgets.push(this.localWidget);
             this.globalVariableService.currentWidgets.push(this.localWidget);
