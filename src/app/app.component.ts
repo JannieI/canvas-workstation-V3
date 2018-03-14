@@ -197,6 +197,7 @@ export class AppComponent implements OnInit {
     currentShapeSpec: any;          // TODO - fill this var !!  not working at moment
     currentTabName: string = '';
     currentWidgets: Widget[] = [];
+    currentWidgetDashboardTabIDs: number[] = [];  // Of current W
     draggableWidgets: number[] = [];
     editMode: boolean;
     hasDatasources: boolean = false;
@@ -1850,6 +1851,13 @@ export class AppComponent implements OnInit {
             return;
         };
 
+        // Send list of current Tabs it belongs to
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.currentWidgetDashboardTabIDs = w.dashboardTabIDs;
+            }
+        })
+         
         this.showModalSlicerTablist = true;
 
     }

@@ -23,6 +23,7 @@ import { GlobalVariableService }      from './global-variable.service';
 export class SlicerTablistComponent implements OnInit {
 
     @Output() formSlicerTablistClosed: EventEmitter<number[]> = new EventEmitter();
+    @Input() currentWidgetDashboardTabIDs: number[];
 
     currentTabNames: { isSelected: boolean; name: string; id: number }[];
     errorMessage: boolean = false;
@@ -35,26 +36,29 @@ export class SlicerTablistComponent implements OnInit {
 
     ngOnInit() {
         // Build list of T to which SINGLE selected Sl belongs
-        let slID: number[] = [];
-        this.globalVariableService.currentWidgets.forEach(sl => {
-            if (sl.isSelected  &&  sl.widgetType == 'Slicer') {
-                slID.push(sl.dashboardTabID);
-            };
-        });
-
+        // let slID: number[] = [];
+        // this.globalVariableService.currentWidgets.forEach(sl => {
+        //     if (sl.isSelected  &&  sl.widgetType == 'Slicer') {
+        //         slID.push(sl.dashboardTabID);
+        //     };
+        // });
+        console.log('xx currentWidgetDashboardTabIDs', this.currentWidgetDashboardTabIDs)
         // Build list of T names and position before showing it
         this.currentTabNames = [];
         this.globalVariableService.currentDashboardTabs.forEach(t => {
             if (this.currentTabNames == undefined) {
-                this.currentTabNames = [{isSelected: true, name: t.name, id: t.id}];
+                if (this.currentWidgetDashboardTabIDs.indexOf(t.id) >= 0) {
+                    this.currentTabNames = [{isSelected: true, name: t.name, id: t.id}];
+                } else {
+                    this.currentTabNames = [{isSelected: false, name: t.name, id: t.id}];
+                };
             } else {
-                if (slID.indexOf(t.id) >= 0) {
+                if (this.currentWidgetDashboardTabIDs.indexOf(t.id) >= 0) {
                     this.currentTabNames.push({isSelected: true, name: t.name, id: t.id})
                 } else {
                     this.currentTabNames.push({isSelected: false, name: t.name, id: t.id})
-                }
-
-            }
+                };
+            };
         });
     }
 

@@ -2114,6 +2114,7 @@
 <!-- Modal: Slicer Tablist -->
 <slicer-tablist
     *ngIf="showModalSlicerTablist"
+    [currentWidgetDashboardTabIDs]="currentWidgetDashboardTabIDs"
     (formSlicerTablistClosed)="handleCloseSlicerTablist($event)">Load Slicer Tablist ...
 </slicer-tablist>
 
