@@ -13,6 +13,7 @@ import { CanvasActivity }             from './models';
 import { CanvasAlert }                from './models';
 import { CanvasComment }              from './models';
 import { CanvasMessage }              from './models';
+import { CanvasSettings }             from './models';
 import { CanvasUser}                  from './models';
 import { Combination }                from './models';
 import { CombinationDetail }          from './models';
@@ -676,6 +677,7 @@ export class GlobalVariableService {
     canvasAlerts: CanvasAlert[] = [];
     canvasComments: CanvasComment[] = [];
     canvasMessages: CanvasMessage[] = [];
+    canvasSettings: CanvasSettings[] = [];
     filePath: string;
     shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
     widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
@@ -761,6 +763,7 @@ export class GlobalVariableService {
     dsIDs: number[] = [];           // Dataset IDs
     widgetGroup = new BehaviorSubject<number[]>([]);
     actions: CanvasAction[] = [];
+    
 
     // StatusBar
     statusBarRunning = new BehaviorSubject<string>(this.NoQueryRunningMessage);
@@ -812,6 +815,7 @@ export class GlobalVariableService {
     isDirtyCanvasAlerts: boolean = true;
     isDirtyCanvasComments: boolean = true;
     isDirtyCanvasMessages: boolean = true;
+    isDirtyCanvasSettings: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
@@ -2306,78 +2310,32 @@ export class GlobalVariableService {
 
     }
 
-
-    getSystemSettings(): Promise<Widget[]> {
+    getSystemSettings(): Promise<CanvasSettings[]> {
         // Description: Gets system settings
-        // Returns: this.widgets array, unless:
+        // Returns: this.canvasSettings object, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getWidgets ...', this.widgets.length);
+        console.log('Global-Variables getSystemSettings ...');
 
-        let url: string = 'getWidgets';
-        this.filePath = './assets/data.widgets.json';
+        let url: string = 'getSystemSettings';
+        this.filePath = './assets/data.canvasSettings.json';
 
-        return new Promise<Widget[]>((resolve, reject) => {
+        return new Promise<CanvasSettings[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
+            if ( (this.canvasSettings.length == 0)  ||  (this.isDirtyCanvasSettings) ) {
                 this.statusBarRunning.next(this.QueryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.widgets = data.filter(d => (!d.isTrashed) );
+                        this.canvasSettings = data;
 
-                        // TODO - fix hardcoding, issue with datalib jsonTree
-                        this.widgets.forEach(w => {
-
-                            if (w.widgetType == 'Shape') {
-
-                                let b: string = w.shapeBullets.toString();
-                                w.shapeBullets = b.split(',');
-                            };
-
-                            // TODO - this does NOT work in datalib: if the first dashboardTabIDs
-                            // = "a,b,c", then all works.  Else, it gives a big number 1046785...
-                            // irrespective ...
-                            if (w.dashboardTabIDs != null) {
-                                // re = regEx
-                                var re = /t/gi;
-                                let d: string = w.dashboardTabIDs.toString();
-                                d = d.replace(re, '');
-                                let dA: string[] = d.split(',');
-                                w.dashboardTabIDs = [];
-                                dA.forEach(da => w.dashboardTabIDs.push(+da));
-                            }
-                            if (w.slicerSelection != null) {
-                                let s: string = w.slicerSelection.toString();
-                                let sF: string[] = s.split(',');
-                                let sO: {isSelected: boolean; fieldValue: string}[] = [];
-                                let i: number = 0;
-                                let oSel: boolean;
-                                let oFld: string;
-                                w.slicerSelection = [];
-                                sF.forEach(s => {
-                                    i = i + 1;
-                                    if (i == 1) {
-                                        oSel = (s == 'true');
-                                    } else {
-                                        oFld = s;
-                                        i = 0;
-                                        let o: {isSelected: boolean; fieldValue: string} = 
-                                            {isSelected: oSel, fieldValue: oFld};
-                                        w.slicerSelection.push(o);
-                                    }
-                                })
-                            };
-
-                        });
-
-                        this.isDirtyWidgets = false;
+                        this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
-                        console.log('Global-Variables getWidgets 1', this.widgets)
-                        resolve(this.widgets);
+                        console.log('Global-Variables getSystemSettings 1', this.canvasSettings)
+                        resolve(this.canvasSettings);
                     });
             } else {
-                console.log('Global-Variables getWidgets 2', this.widgets)
-                resolve(this.widgets);
+                console.log('Global-Variables getSystemSettings 2', this.canvasSettings)
+                resolve(this.canvasSettings);
             }
         });
 
