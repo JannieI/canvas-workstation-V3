@@ -74,7 +74,8 @@ import { GlobalVariableService }      from './global-variable.service';
             this.currentDatasources = this.globalVariableService.currentDatasources;
 
             // Create new W
-            this.localWidget = this.globalVariableService.widgetTemplate;
+            // this.localWidget = this.globalVariableService.widgetTemplate;
+            this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
             this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
             this.localWidget.widgetType = 'Table';
