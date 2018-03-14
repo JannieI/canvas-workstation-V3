@@ -14,7 +14,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-auto-rows: 0.8rem;
+    grid-template-rows: repeat(26, 0.8rem);
     margin-top: 2px;
 }
 
@@ -23,8 +23,6 @@
         grid-column-end: 21;
         grid-row-start: 1;
         grid-row-end: 2;
-        display: grid;
-        margin-bottom: 0;
         text-align: left;
     }
 
@@ -33,8 +31,6 @@
         grid-column-end: 21;
         grid-row-start: 3;
         grid-row-end: 4;
-        display: grid;
-        margin-bottom: 0;
         text-align: left;
     }
 
@@ -43,8 +39,6 @@
             grid-column-end: 6;
             grid-row-start: 4;
             grid-row-end: 5;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -53,8 +47,6 @@
             grid-column-end: 13;
             grid-row-start: 4;
             grid-row-end: 5;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -63,8 +55,6 @@
             grid-column-end: 21;
             grid-row-start: 4;
             grid-row-end: 5;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -73,8 +63,6 @@
         grid-column-end: 21;
         grid-row-start: 6;
         grid-row-end: 7;
-        display: grid;
-        margin-bottom: 0;
         text-align: left;
     }
 
@@ -83,8 +71,6 @@
             grid-column-end: 6;
             grid-row-start: 7;
             grid-row-end: 8;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -93,8 +79,6 @@
             grid-column-end: 13;
             grid-row-start: 7;
             grid-row-end: 8;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -103,8 +87,6 @@
         grid-column-end: 21;
         grid-row-start: 9;
         grid-row-end: 10;
-        display: grid;
-        margin-bottom: 0;
         text-align: left;
     }
 
@@ -113,8 +95,6 @@
             grid-column-end: 6;
             grid-row-start: 10;
             grid-row-end: 11;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -123,8 +103,6 @@
             grid-column-end: 13;
             grid-row-start: 10;
             grid-row-end: 11;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -133,8 +111,6 @@
             grid-column-end: 21;
             grid-row-start: 10;
             grid-row-end: 11;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -143,8 +119,6 @@
         grid-column-end: 21;
         grid-row-start: 12;
         grid-row-end: 13;
-        display: grid;
-        margin-bottom: 0;
         text-align: left;
     }
 
@@ -153,8 +127,6 @@
             grid-column-end: 6;
             grid-row-start: 13;
             grid-row-end: 14;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -163,8 +135,6 @@
         grid-column-end: 21;
         grid-row-start: 15;
         grid-row-end: 16;
-        display: grid;
-        margin-bottom: 0;
         text-align: left;
     }
 
@@ -173,8 +143,6 @@
             grid-column-end: 6;
             grid-row-start: 16;
             grid-row-end: 17;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -183,8 +151,6 @@
             grid-column-end: 13;
             grid-row-start: 16;
             grid-row-end: 17;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -193,7 +159,6 @@
             grid-column-end: 21;
             grid-row-start: 16;
             grid-row-end: 17;
-            display: grid;
             margin-bottom: 0;
             text-align: left;
         }
@@ -203,8 +168,6 @@
         grid-column-end: 21;
         grid-row-start: 18;
         grid-row-end: 19;
-        display: grid;
-        margin-bottom: 0;
         text-align: left;
     }
 
@@ -213,8 +176,6 @@
             grid-column-end: 6;
             grid-row-start: 19;
             grid-row-end: 20;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -223,8 +184,6 @@
             grid-column-end: 13;
             grid-row-start: 19;
             grid-row-end: 20;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -233,8 +192,6 @@
         grid-column-end: 21;
         grid-row-start: 21;
         grid-row-end: 22;
-        display: grid;
-        margin-bottom: 0;
         text-align: left;
     }
 
@@ -243,8 +200,6 @@
             grid-column-end: 6;
             grid-row-start: 22;
             grid-row-end: 23;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -253,8 +208,6 @@
             grid-column-end: 13;
             grid-row-start: 22;
             grid-row-end: 23;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -263,8 +216,6 @@
             grid-column-end: 21;
             grid-row-start: 22;
             grid-row-end: 23;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
 
@@ -273,7 +224,22 @@
             grid-column-end: 6;
             grid-row-start: 23;
             grid-row-end: 24;
-            display: grid;
-            margin-bottom: 0;
             text-align: left;
         }
+
+        .gridButtonCancel {
+            grid-column-start: 4;
+            grid-column-end: 6;
+            grid-row-start: 25;
+            grid-row-end: 26;
+            text-align: left;
+        }
+    
+        .gridButtonSave {
+            grid-column-start: 8;
+            grid-column-end: 10;
+            grid-row-start: 25;
+            grid-row-end: 26;
+            text-align: left;
+        }
+    

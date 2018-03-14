@@ -6,8 +6,8 @@
                 X
             </button>
 
-
             <div class="gridOverall">
+                
                 <div class="gridTitle">
                     System Settings:  For networked installatons, these settings are done
                     on the server.
@@ -151,15 +151,45 @@
 
                 <div class="gridPrintTitle">
                     <b>Printing:</b>
+                </div>
                 <div class="gridPrintDefault">
-                    <input type="text" id="formFields_7" placeholder="Deflt: Local HP">
+                    <input type="text" 
+                        id="formFields_7" 
+                        placeholder="Deflt: Local HP"
+                        >
                 </div>
                 <div class="gridPrintSize">
-                    <input type="text" id="formFields_7" placeholder="Deflt Page Size: A4">
+                    <input type="text" 
+                        id="formFields_7" 
+                        placeholder="Deflt Page Size: A4"
+                        >
                 </div>
                 <div class="gridPrintLayout">
-                    <input type="text" id="formFields_7" placeholder="Deflt Layout: Single page, B and W">
+                    <input type="text" 
+                        id="formFields_7" 
+                        placeholder="Deflt Layout: Single page, B and W"
+                        >
                 </div>
+
+                <div class="gridButtonCancel">
+                        <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickSave('Close')"
+                        >
+                        Save
+                    </button>
+                </div>
+                <div class="gridButtonSave">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickSave('Close')"
+                        >
+                        Save
+                    </button>
+                </div>
+    
             </div>
         </div>
     </div>
