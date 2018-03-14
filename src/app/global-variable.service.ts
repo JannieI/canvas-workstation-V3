@@ -2339,21 +2339,20 @@ export class GlobalVariableService {
                         // TODO - create glob vars when needed, or delete totally
                         this.companyName = data.companyName;
                         this.companyLogo = data.companyLogo;
-                        // this.dashboardTemplate = data.dashboardTemplate;
-                        this.noQueryRunningMessage = data.messagingNoQuery;
+                        this.dashboardTemplate = data.dashboardTemplate;
+                        this.noQueryRunningMessage = data.noQueryRunningMessage;
                         this.queryRunningMessage = data.queryRunningMessage;
-                        // this.offlineData = data.offlineData;
-                        // this.offlineSchema = data.offlineSchema;
-                        // this.offlineLogin = data.offlineLogin;
-                        // this.maxTableLength = data.maxTableLength;
-                        // this.widgetTemplate = data.widgetTemplate;
+                        this.offlineData = data.offlineData;
+                        this.offlineSchema = data.offlineSchema;
+                        this.offlineLogin = data.offlineLogin;
+                        this.maxTableLength = data.maxTableLength;
                         this.widgetsMinZindex = data.widgetsMinZindex;
                         this.widgetsMaxZindex = data.widgetsMaxZindex;
                         this.gridSize = data.gridSize;
                         this.snapToGrid = data.snapToGrid;
-                        // this.printDefault = data.printDefault;
-                        // this.printSize = data.printSize;
-                        // this.printLayout = data.printLayout;
+                        this.printDefault = data.printDefault;
+                        this.printSize = data.printSize;
+                        this.printLayout = data.printLayout;
 
                         this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.noQueryRunningMessage);
