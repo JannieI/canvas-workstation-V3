@@ -647,17 +647,41 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseSlicerTablist(tabIDs: number[]) {
-        //
+        // Handle close of Tablist form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseSlicerTablist', '@Start');
-        
-        // Update
+
+        // Close without change returns null
         if (tabIDs != null) {
+        
+            let removeFromTab: boolean = false;
+
+            // Work on selected W
             this.currentWidgets.forEach(w => {
                 if (w.isSelected) {
+                    
+                    // Determine if it was removed from Current Tab
+                    if ( 
+                            (tabIDs.indexOf(
+                                this.globalVariableService.currentDashboardInfo.value.
+                                currentDashboardTabID ) < 0
+                            )
+                            &&  
+                            (w.dashboardTabIDs.indexOf(
+                                this.globalVariableService.currentDashboardInfo.value.
+                                currentDashboardTabID) >= 0
+                            )
+                        ) {
+                            // Set up remove, for after Update
+                            removeFromTab = true;
+                    };
+
+                    // Update local, and global Ws
                     w.dashboardTabIDs = tabIDs;
                     this.globalVariableService.widgetReplace(w);
-                };
+                    this.globalVariableService.changedWidget.next(w);
+                }
             });
+        
         };
 
         this.showModalSlicerTablist = false;
@@ -1856,7 +1880,7 @@ export class AppComponent implements OnInit {
             if (w.isSelected) {
                 this.currentWidgetDashboardTabIDs = w.dashboardTabIDs;
             }
-        })
+        });
          
         this.showModalSlicerTablist = true;
 
