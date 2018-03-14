@@ -645,9 +645,19 @@ export class AppComponent implements OnInit {
         this.showModalDataSlicers = false;
     }
 
-    handleCloseSlicerTablist(action: string) {
+    handleCloseSlicerTablist(tabIDs: number[]) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseSlicerTablist', '@Start');
+        
+        // Update
+        if (tabIDs != null) {
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected) {
+                    w.dashboardTabIDs = tabIDs;
+                    this.globalVariableService.widgetReplace(w);
+                };
+            });
+        };
 
         this.showModalSlicerTablist = false;
     }
@@ -1834,7 +1844,10 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         if (!this.checkForOnlyOneWidget()) { 
-            return
+            return;
+        };
+        if (!this.checkForOnlyOneWidget('Slicer')) { 
+            return;
         };
 
         this.showModalSlicerTablist = true;
@@ -1962,7 +1975,7 @@ export class AppComponent implements OnInit {
             );
             return;
         };
-        
+
         this.newWidget = true;
         this.showModalShapeEdit = true;
     }

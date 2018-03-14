@@ -22,9 +22,9 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class SlicerTablistComponent implements OnInit {
 
-    @Output() formSlicerTablistClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formSlicerTablistClosed: EventEmitter<number[]> = new EventEmitter();
 
-    currentTabNames: {isSelected: boolean; name: string}[];
+    currentTabNames: { isSelected: boolean; name: string; id: number }[];
     errorMessage: boolean = false;
 
     constructor(
@@ -46,12 +46,12 @@ export class SlicerTablistComponent implements OnInit {
         this.currentTabNames = [];
         this.globalVariableService.currentDashboardTabs.forEach(t => {
             if (this.currentTabNames == undefined) {
-                this.currentTabNames = [{isSelected: true, name: t.name}];
+                this.currentTabNames = [{isSelected: true, name: t.name, id: t.id}];
             } else {
                 if (slID.indexOf(t.id) >= 0) {
-                    this.currentTabNames.push({isSelected: true, name: t.name})
+                    this.currentTabNames.push({isSelected: true, name: t.name, id: t.id})
                 } else {
-                    this.currentTabNames.push({isSelected: false, name: t.name})
+                    this.currentTabNames.push({isSelected: false, name: t.name, id: t.id})
                 }
 
             }
@@ -59,27 +59,36 @@ export class SlicerTablistComponent implements OnInit {
     }
 
     clickClose() {
-        console.log('clickClose')
+        // Close multi-tab-selection popup, no changes
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formSlicerTablistClosed.emit('cancelled');
+		this.formSlicerTablistClosed.emit(null);
     }
 
-    clickMultiTabClose(index: number) {
-        // Close multi-tab-selection popup
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMultiTabClose', '@Start');
+    clickSave(index: number) {
+        // Save data and Close multi-tab-selection popup
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        let x: number = 0;
+        console.log('xx this.currentTabNames', this.currentTabNames)
+
+        // Construct TabIDs array
+        let tabIDs: number[] = [];
+        
         this.currentTabNames.forEach(t => {
-            if (t.isSelected) {x++}
+            if (t.isSelected) {
+                tabIDs.push(t.id)
+            };
         });
-        if (x == 0) {
+
+        // Have to select at least one
+        if (tabIDs.length == 0) {
             this.errorMessage = true;
             return;
-        } else {
-		this.formSlicerTablistClosed.emit('saved');
-        }
-    }
+        };
 
+		this.formSlicerTablistClosed.emit(tabIDs);
+
+    }
 
     clickMultiTabSelect(index: number, ev: any) {
         // Select/UnSelect a T
@@ -87,6 +96,6 @@ export class SlicerTablistComponent implements OnInit {
 
         if (ev.target.localName == 'input') {
             this.currentTabNames[index].isSelected = ev.target.checked;
-        }
+        };
     }
 }
