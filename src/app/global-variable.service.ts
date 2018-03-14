@@ -2328,6 +2328,26 @@ export class GlobalVariableService {
                     .then(data => {
                         this.canvasSettings = data;
 
+                        // Load global Vars
+                        // TODO - create glob vars when needed, or delete totally
+                        this.companyName = data.companyName;
+                        this.companyLogo = data.companyLogo;
+                        // this.dashboardTemplate = data.dashboardTemplate;
+                        this.NoQueryRunningMessage = data.messagingNoQuery;
+                        this.QueryRunningMessage = data.messagingRunning;
+                        // this.offlineData = data.offlineData;
+                        // this.offlineSchema = data.offlineSchema;
+                        // this.offlineLogin = data.offlineLogin;
+                        // this.tableLength = data.tableLength;
+                        // this.widgetTemplate = data.widgetTemplate;
+                        this.widgetsMinZindex = data.widgetsMinZindex;
+                        this.widgetsMaxZindex = data.widgetsMaxZindex;
+                        this.gridSize = data.gridSize;
+                        this.snapToGrid = data.snapToGrid;
+                        // this.printDefault = data.printDefault;
+                        // this.printSize = data.printSize;
+                        // this.printLayout = data.printLayout;
+
                         this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.NoQueryRunningMessage);
                         console.log('Global-Variables getSystemSettings 1', this.canvasSettings)

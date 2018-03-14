@@ -12,10 +12,10 @@ export class CanvasSettings {
     offlineLogin: boolean;                  // Can log into a local server (T/F)
     tableLength: number;                    // Max Table Length (say 500 records)
     widgetTemplate: string;                 // Default Widget Template
-    widgetMinZindex: number;                // Widgets Min Zindex
-    widgetMaxZindex: number;                // Widgets Max Zindex
+    widgetsMinZindex: number;               // Widgets Min Zindex
+    widgetsMaxZindex: number;               // Widgets Max Zindex
     gridSize: number;                       // Size of the Grid
-    gridSnap: boolean;                      // Snap to grid (T/F)
+    snapToGrid: boolean;                    // Snap to grid (T/F)
     printDefault: string;                   // Deflt: Local HP
     printSize: string;                      // Deflt Page Size: A4
     printLayout: string;                    // Deflt Layout: Single page, B and W
