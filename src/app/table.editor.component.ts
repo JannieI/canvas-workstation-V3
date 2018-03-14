@@ -142,6 +142,7 @@ import { GlobalVariableService }      from './global-variable.service';
                 newID = Math.max(...ws) + 1;
             };
             this.localWidget.id = newID;
+            this.localWidget.dashboardTabIDs.push(this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
             this.globalVariableService.widgets.push(this.localWidget);
             this.globalVariableService.currentWidgets.push(this.localWidget);
         } else {
