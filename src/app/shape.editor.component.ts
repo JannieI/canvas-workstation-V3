@@ -77,7 +77,7 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeFontFamily = 'Arial, sans serif';
             this.localWidget.shapeIsBold = true;
             this.localWidget.shapeStroke = 'black';
-            this.localWidget.shapeStrokeWidth = '1px';
+            this.localWidget.shapeStrokeWidth = '1';
             
         } else {
 
@@ -120,9 +120,11 @@ export class ShapeEditComponent implements OnInit {
         this.showBullets = false;
         this.showValue = false;
 
-        // Reset defaults
-        this.localWidget.containerHasTitle = false;
-        this.localWidget.shapeText = '';
+        // Reset defaults, making sure localWidget exists
+        if (this.localWidget) {
+            this.localWidget.containerHasTitle = false;
+            this.localWidget.shapeText = '';
+        };
         
         if (shapeType == 'Circle') {
             this.showCircle = true;
@@ -242,6 +244,9 @@ export class ShapeEditComponent implements OnInit {
         };
 
         // Special settings
+        if (this.localWidget.widgetSubType == 'Circle') {
+            this.localWidget.containerHeight = this.localWidget.containerWidth;
+        };
         if (this.localWidget.widgetSubType == 'Ellipse') {
             this.localWidget.containerHeight = 100;
             this.localWidget.containerWidth = this.localWidget.containerHeight * 2;
@@ -269,9 +274,5 @@ export class ShapeEditComponent implements OnInit {
 
 	  	this.formShapeEditClosed.emit(this.localWidget);
     }
-
-
-
-
 
 }
