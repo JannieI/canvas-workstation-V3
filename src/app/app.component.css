@@ -52,87 +52,6 @@
     z-index: 100;
 }
 
-/* .aCircleRect {
-    background-color: transparent !important;
-    border: 1px solid black;
-    display: block !important;
-    height: 100px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    width: 100px !important;
-} */
-
-/* .aCircleDet {
-    background-color: transparent !important;
-    display: block !important;
-    height: 100px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    width: 100px !important;
-} */
-
-/* .aCircle {
-    background-color: transparent;
-    display: inline-block;
-    height: 110px;
-    left: 20px;
-    opacity: .5;
-    overflow: auto;
-    position: absolute;
-    resize: none;
-    top: 80px;
-    width: 110px;
-    z-index: 50;
-} */
-
-/* .aRectangle {
-    background-color: transparent;
-    display: inline-block;
-    height: 110px;
-    left: 200px;
-    opacity: .5;
-    overflow: auto;
-    position: absolute;
-    resize: none;
-    top: 200px;
-    width: 110px;
-    z-index: 50;
-} */
-
-/* .aImage {
-    background-color: transparent;
-    display: inline-block;
-    height: 110px;
-    left: 400px;
-    opacity: .5;
-    overflow: auto;
-    position: absolute;
-    resize: none;
-    top: 300px;
-    width: 110px;
-    z-index: 50;
-} */
-
-/* .aTextBox {
-    background-color: lightgray;
-    border: 1px solid black;
-    border-radius: 3px;
-    display: inline-block;
-    height: 100px;
-    left: 1000px;
-    opacity: .5;
-    overflow: auto;
-    position: absolute;
-    resize: none;
-    text-align: center;
-    top: 150px;
-    width: 210px;
-    z-index: 50;
-} */
-
-
-
-
 /* Palette */
 .palette {
     background-color: #293841;
@@ -154,21 +73,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-/* New way - experiment with W container in app.component */
 /* Widgets */
 .widgetContainer {
     display: inline-block;
