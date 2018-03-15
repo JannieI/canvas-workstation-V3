@@ -50,11 +50,7 @@ export class ShapeEditComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        if (!this.newWidget) {
-            this.selectShape('Circle');
-        }
-
-        if (this.newWidget) {
+         if (this.newWidget) {
 
             // Create new W
             // this.localWidget = Object.assign({}, this.globalVariableService.widgetTemplate);
@@ -124,7 +120,6 @@ export class ShapeEditComponent implements OnInit {
         // Reset defaults, making sure localWidget exists
         if (this.localWidget) {
             this.localWidget.containerHasTitle = false;
-            this.localWidget.shapeText = '';
         };
         
         if (shapeType == 'Circle') {
@@ -138,7 +133,9 @@ export class ShapeEditComponent implements OnInit {
         };
         if (shapeType == 'Text') {
             this.showText = true;
-            this.localWidget.shapeText = 'The brown fox is tired';
+            if (this.localWidget.shapeText == ''  ||  this.localWidget.shapeText == null) {
+                this.localWidget.shapeText = 'The brown fox is tired';
+            };
         };
         if (shapeType == 'Arrow') {
             this.showArrow = true;
