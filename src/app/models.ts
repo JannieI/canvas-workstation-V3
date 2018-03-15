@@ -9,7 +9,6 @@ export class CanvasSettings {
     offlineSchema: boolean;                 // Store server schema locally (T/F)
     offlineLogin: boolean;                  // Can log into a local server (T/F)
     maxTableLength: number;                 // Max Table Length (say 500 records)
-    widgetTemplate: string;                 // Default Widget Template
     widgetsMinZindex: number;               // Widgets Min Zindex
     widgetsMaxZindex: number;               // Widgets Max Zindex
     gridSize: number;                       // Size of the Grid

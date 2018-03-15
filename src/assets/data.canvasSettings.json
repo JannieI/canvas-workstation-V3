@@ -6,7 +6,6 @@
     "offlineSchema": true,
     "offlineLogin": true,
     "maxTableLength": 500,
-    "widgetTemplate": "",
     "widgetsMinZindex": 50,
     "widgetsMaxZindex": 59,
     "gridSize": 3,

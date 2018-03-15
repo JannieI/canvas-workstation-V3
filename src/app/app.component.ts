@@ -331,8 +331,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        //
-        this.companyName = this.globalVariableService.companyName;
+        // Initial
         
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
@@ -386,6 +385,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => {
                 if (i) {
+                    this.companyName = this.globalVariableService.companyName;
 
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
