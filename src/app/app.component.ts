@@ -398,6 +398,9 @@ export class AppComponent implements OnInit {
                                     currentDashboardTabs[x].name;
                                 this.currentTabColor = this.globalVariableService.
                                     currentDashboardTabs[x].color;
+                                if (this.currentTabColor == ''  ||  this.currentTabColor == null) {
+                                    this.currentTabColor = '#192b35';
+                                };                                    
                                 this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
 

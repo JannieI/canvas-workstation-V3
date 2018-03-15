@@ -36,6 +36,7 @@
     <span class="statusBarText statusBarTextBorder"
         title="Current Tab"
         style="width: 80vw;"
+        [style.background-color]="currentTabColor"
         (click)="clickShowTabDescription()"
         >
         <b>{{ currentTabName }}</b>

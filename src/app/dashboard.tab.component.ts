@@ -90,6 +90,7 @@ export class DashboardTabComponent implements OnInit {
         this.globalVariableService.currentDashboardTabs.push(newTab);
         this.globalVariableService.dashboardTabs.push(newTab);
 
+        console.log('xx currT', this.globalVariableService.currentDashboardTabs)
         // Browse to it
         this.globalVariableService.refreshCurrentDashboard(
             'tabNew-clickSave',
