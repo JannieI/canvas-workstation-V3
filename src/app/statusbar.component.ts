@@ -28,6 +28,7 @@ export class StatusbarComponent {
 
     @Input() currentDashboardName: string;
     @Input() currentTabName: string;
+    @Input() currentDashboardTabIndex: number;
     @Input() currentTabBackgroundColor: string;
     @Input() currentTabColor: string;
     @Input() statusBarRunning: string;

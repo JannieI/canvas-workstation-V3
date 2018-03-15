@@ -195,6 +195,7 @@ export class AppComponent implements OnInit {
     currentDatasources: Datasource[];
     currentShapeSpec: any;          // TODO - fill this var !!  not working at moment
     currentTabName: string = '';
+    currentDashboardTabIndex: number = 0;
     currentTabBackgroundColor: string = '';
     currentTabColor: string = '';
     currentWidgets: Widget[] = [];
@@ -393,19 +394,19 @@ export class AppComponent implements OnInit {
                             currentDashboardTabID).then(j =>
                             {
                                 this.refreshGraphs = false;
-                                let x: number = this.globalVariableService.currentDashboardInfo.value.
+                                this.currentDashboardTabIndex = this.globalVariableService.currentDashboardInfo.value.
                                     currentDashboardTabIndex;
                                 this.currentDashboardName = this.globalVariableService.
                                     currentDashboards[0].name;
                                 this.currentTabName = this.globalVariableService.
-                                    currentDashboardTabs[x].name;
+                                    currentDashboardTabs[this.currentDashboardTabIndex].name;
                                 this.currentTabBackgroundColor = this.globalVariableService.
-                                    currentDashboardTabs[x].backgroundColor;
+                                    currentDashboardTabs[this.currentDashboardTabIndex].backgroundColor;
                                 if (this.currentTabBackgroundColor == ''  ||  this.currentTabBackgroundColor == null) {
                                     this.currentTabBackgroundColor = '#192b35';
                                 };                                    
                                 this.currentTabColor = this.globalVariableService.
-                                    currentDashboardTabs[x].color;
+                                    currentDashboardTabs[this.currentDashboardTabIndex].color;
                                 if (this.currentTabColor == ''  ||  this.currentTabColor == null) {
                                     this.currentTabColor = 'white';
                                 };                                    
