@@ -9,7 +9,7 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { Datasource }                 from './models';
+import { Datasource, DashboardTab }                 from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -21,10 +21,16 @@ import { GlobalVariableService }      from './global-variable.service';
     selector: 'dashboard-tab',
     templateUrl: './dashboard.tab.component.html',
     styleUrls: ['./dashboard.tab.component.css']
-  })
-  export class DashboardTabComponent implements OnInit {
+})
+export class DashboardTabComponent implements OnInit {
 
     @Output() formDashboardTabClosed: EventEmitter<string> = new EventEmitter();
+
+    dashboardID: number;                  // FK to DashboardID to which widget belongs
+    name: string = '';                    // Name of new T
+    description: string = '';             // T description
+    color: string = '';                   // CSS color of T
+
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -34,8 +40,44 @@ import { GlobalVariableService }      from './global-variable.service';
 
     ngOnInit() {}
 
-  	clickClose(action: string) {
-	  	this.formDashboardTabClosed.emit(action);
+  	clickClose() {
+        // Close form, no save
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+	  	  this.formDashboardTabClosed.emit();
     }
 
+  	clickSave() {
+        // Save new Tab, and close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Get new DSid
+        // TODO - do better with DB
+        let newTid: number = 1;
+        let tIDs: number[] = [];
+        this.globalVariableService.dashboardTabs.forEach(t => tIDs.push(t.id));
+        newTid = Math.max(...tIDs) + 1;
+
+        // Add new one
+        
+        let newTab: DashboardTab = {
+            id: newTid,
+            dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            name: this.name,
+            description: this.description,
+            color: this.color
+        }
+
+        this.globalVariableService.currentDashboardTabs.push(newTab);
+        this.globalVariableService.dashboardTabs.push(newTab);
+
+        // Browse to it
+        this.globalVariableService.refreshCurrentDashboard(
+            'tabNew-clickSave',
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            0,
+            'Last'
+        );
+        this.formDashboardTabClosed.emit();
+    }
   }
