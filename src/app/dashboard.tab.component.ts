@@ -29,7 +29,8 @@ export class DashboardTabComponent implements OnInit {
     dashboardID: number;                  // FK to DashboardID to which widget belongs
     name: string = '';                    // Name of new T
     description: string = '';             // T description
-    color: string = '';                   // CSS color of T
+    backgroundColor: string = 'white';    // Bg Color of T
+    color: string = 'black';              // CSS color of T
     showErrorMessage: boolean = false;
     errorMessageText: string = '';
 
@@ -84,6 +85,7 @@ export class DashboardTabComponent implements OnInit {
             dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
             name: this.name,
             description: this.description,
+            backgroundColor: this.backgroundColor,
             color: this.color
         }
 

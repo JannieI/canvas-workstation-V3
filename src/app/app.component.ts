@@ -195,6 +195,7 @@ export class AppComponent implements OnInit {
     currentDatasources: Datasource[];
     currentShapeSpec: any;          // TODO - fill this var !!  not working at moment
     currentTabName: string = '';
+    currentBackgroundColor: string = '';
     currentTabColor: string = '';
     currentWidgets: Widget[] = [];
     currentWidgetDashboardTabIDs: number[] = [];  // Of current W
@@ -396,6 +397,8 @@ export class AppComponent implements OnInit {
                                     currentDashboards[0].name;
                                 this.currentTabName = this.globalVariableService.
                                     currentDashboardTabs[x].name;
+                                this.currentBackgroundColor = this.globalVariableService.
+                                currentDashboardTabs[x].backgroundColor;
                                 this.currentTabColor = this.globalVariableService.
                                     currentDashboardTabs[x].color;
                                 if (this.currentTabColor == ''  ||  this.currentTabColor == null) {
