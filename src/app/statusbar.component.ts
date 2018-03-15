@@ -260,24 +260,37 @@ export class StatusbarComponent {
             );
             return;
         };
-
-        this.globalVariableService.dashboardTabs.splice(x, 1)
-        this.globalVariableService.refreshCurrentDashboard(
-            'statusbar-clickShowLastTab',
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            0,
-            'Previous'
-        );
         this.showNewTab = true;
     }
 
     clickTabDelete() {
         // Delete a Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');
+        
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.globalVariableService.statusBarMessage.next(
+                {
+                    message: this.globalVariableService.notInEditModeMsg,
+                    uiArea: 'StatusBar',
+                    classfication: 'Warning',
+                    timeout: 3000,
+                    defaultMessage: ''
+                }
+            );
+            return;
+        };
 
+        // Can only delete Tab if it has no W on it
         let nrWperT: number = 0;
-        nrWperT = this.globalVariableService.currentWidgets.filter(w => {
-            w.dashboardTabIDs.indexOf(this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID)
+        nrWperT = this.globalVariableService.widgets.filter(w => {
+            if (w.dashboardID == this.globalVariableService.currentDashboardInfo.value.
+                currentDashboardID
+            &&
+            w.dashboardTabIDs.indexOf(this.globalVariableService.currentDashboardInfo.
+                value.currentDashboardTabID) >= 0) {
+                    return w;
+                }
         }).length;
         if (nrWperT > 0) {
             this.globalVariableService.statusBarMessage.next(
@@ -292,6 +305,17 @@ export class StatusbarComponent {
             return;
         };
 
+        // Delete, and refresh
+        this.globalVariableService.dashboardTabs.splice(this.currentDashboardTabIndex, 1);
+        console.log ('xx this.globalVariableService.dashboardTabs', this.globalVariableService.dashboardTabs)
+        this.globalVariableService.refreshCurrentDashboard(
+            'statusbar-clickTabDelete',
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            0,
+            'Previous'
+        );
+
+        // Close popup form
         this.showDashboardTabDescription = false;
     }
 
