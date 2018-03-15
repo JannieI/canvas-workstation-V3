@@ -44,8 +44,16 @@
                 <div class="gridMessagingTitle">
                     <b>Messaging:</b>
                 </div>
+                
+                <div class="gridNotInEditModeMsg">
+                    <input [(ngModel)]="notInEditModeMsg"
+                        type="text"
+                        id="formFields_7"
+                        placeholder="notInEditModeMsg"
+                        >
+                </div>
 
-                <div class="gridMessagingNoQuery">
+                <div class="gridNoQueryRunningMessage">
                     <input [(ngModel)]="noQueryRunningMessage"
                         type="text"
                         id="formFields_7"
@@ -53,7 +61,7 @@
                         >
                 </div>
 
-                <div class="gridMessagingRunning">
+                <div class="gridQueryRunningMessage">
                     <input [(ngModel)]="queryRunningMessage"
                         type="text"
                         id="formFields_7"
