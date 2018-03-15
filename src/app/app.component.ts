@@ -42,7 +42,6 @@ import { Action } from 'rxjs/scheduler/Action';
 
 
 // Constants
-const notInEditModeMsg: string = 'Not in Edit Mode (see Edit menu Option)';
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
@@ -1013,7 +1012,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                notInEditModeMsg,
+                this.globalVariableService.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -1322,7 +1321,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                notInEditModeMsg,
+                this.globalVariableService.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -1532,7 +1531,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                notInEditModeMsg,
+                this.globalVariableService.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -1985,7 +1984,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                notInEditModeMsg,
+                this.globalVariableService.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -3041,7 +3040,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                notInEditModeMsg,
+                this.globalVariableService.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -3177,7 +3176,7 @@ export class AppComponent implements OnInit {
         };
 
         // In addition, make sure the user is not stuck
-        if (message == notInEditModeMsg) {
+        if (message == this.globalVariableService.notInEditModeMsg) {
             this.stuckCount = this.stuckCount + 1;
         } else {
             // this.stuckCount = 0;
