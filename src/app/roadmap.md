@@ -120,7 +120,7 @@ Other:
 23.Consider to move ALL selected objects - remember complexity since Sl and W sits in different components ...
 24.Refactor: Change all components to use central (global var) createVegaLiteSpec ...
 25.Consider CAREFULLY skipping all currentXX routines and data ... this can work is all controlled by App Component.  Not sure what the FULL implications are ...
-26.Consider array.spice() instead of current deep copy - is more TS-like ...
+26.Consider array.spice() instead of current deep copy - is more TS-like ...  Review ALL deep copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
 27.Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  
 THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
 28.Delete Slicer has no confirmation - maybe it should be done.  Then decide, in app component or new component.
@@ -173,6 +173,8 @@ THEN: consider all currentXXX, where XXX = Objects to follow the same methodolog
 3. How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How is locale used?
 4. How does types tranform into Vega field types, ie on Editor?
 5. Consider dataQuality on own menu item, or on W menu
+6. Should we de-select all Ws when we change Tabs, or load a new D?  If not, may be confusing but handy.  If do, where do we do it - GlobVar functions, or in App component (and update Globals back, which does not make sense)
+7. Rev
 
 
 **Admin module**
