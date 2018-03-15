@@ -645,8 +645,6 @@ export class GlobalVariableService {
     companyName = '';
     companyLogo = '';
     dashboardTemplate = '';
-    noQueryRunningMessage = 'No Query';
-    queryRunningMessage = 'Query running...';
     offlineData = true;
     offlineSchema = '';
     offlineLogin = '';
@@ -658,6 +656,9 @@ export class GlobalVariableService {
     printDefault = '';
     printSize = '';
     printLayout = '';
+    notInEditModeMsg = 'Not in Edit Mode (see Edit menu Option);'
+    noQueryRunningMessage = 'No Query';
+    queryRunningMessage = 'Query running...';
 
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
@@ -2340,8 +2341,6 @@ export class GlobalVariableService {
                         this.companyName = data.companyName;
                         this.companyLogo = data.companyLogo;
                         this.dashboardTemplate = data.dashboardTemplate;
-                        this.noQueryRunningMessage = data.noQueryRunningMessage;
-                        this.queryRunningMessage = data.queryRunningMessage;
                         this.offlineData = data.offlineData;
                         this.offlineSchema = data.offlineSchema;
                         this.offlineLogin = data.offlineLogin;
@@ -2353,6 +2352,9 @@ export class GlobalVariableService {
                         this.printDefault = data.printDefault;
                         this.printSize = data.printSize;
                         this.printLayout = data.printLayout;
+                        this.notInEditModeMsg = data.notInEditModeMsg;
+                        this.noQueryRunningMessage = data.noQueryRunningMessage;
+                        this.queryRunningMessage = data.queryRunningMessage;
 
                         this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.noQueryRunningMessage);

@@ -5,8 +5,6 @@ export class CanvasSettings {
     companyName: string;                    // Company Name
     companyLogo: string;                    // Optional file name for Company logo
     dashboardTemplate: string;              // Default Dashboard Template (later use)
-    noQueryRunningMessage: string;          // No-Query-Running Message to display on StatusBar
-    queryRunningMessage: string;            // Query-Running Message to display on StatusBar
     offlineData: boolean;                   // Store server data locally (T/F)
     offlineSchema: boolean;                 // Store server schema locally (T/F)
     offlineLogin: boolean;                  // Can log into a local server (T/F)
@@ -19,6 +17,12 @@ export class CanvasSettings {
     printDefault: string;                   // Deflt: Local HP
     printSize: string;                      // Deflt Page Size: A4
     printLayout: string;                    // Deflt Layout: Single page, B and W
+
+    // System-wide Messages
+    notInEditModeMsg: string;               // Not-In-EditMode Message to display on StatusBar
+    noQueryRunningMessage: string;          // No-Query-Running Message to display on StatusBar
+    queryRunningMessage: string;            // Query-Running Message to display on StatusBar
+
 }
 
 export class CanvasAction {

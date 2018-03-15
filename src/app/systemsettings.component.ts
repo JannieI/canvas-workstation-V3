@@ -33,8 +33,6 @@ export class SystemSettingsComponent implements OnInit {
     companyName = this.globalVariableService.companyName;
     companyLogo = this.globalVariableService.companyLogo;
     dashboardTemplate = this.globalVariableService.dashboardTemplate;
-    noQueryRunningMessage = this.globalVariableService.noQueryRunningMessage;
-    queryRunningMessage = this.globalVariableService.queryRunningMessage;
     offlineData = this.globalVariableService.offlineData;
     offlineSchema = this.globalVariableService.offlineSchema;
     offlineLogin = this.globalVariableService.offlineLogin;
@@ -46,6 +44,9 @@ export class SystemSettingsComponent implements OnInit {
     printDefault = this.globalVariableService.printDefault;
     printSize = this.globalVariableService.printSize;
     printLayout = this.globalVariableService.printLayout;
+    notInEditModeMsg = this.globalVariableService.notInEditModeMsg;
+    noQueryRunningMessage = this.globalVariableService.noQueryRunningMessage;
+    queryRunningMessage = this.globalVariableService.queryRunningMessage;
 
 
 	constructor(

@@ -2,8 +2,6 @@
     "companyName": "Clarity Analytics",
     "companyLogo": "",
     "dashboardTemplate": "",
-    "noQueryRunningMessage": "No Query",
-    "queryRunningMessage": "Query running...",
     "offlineData": true,
     "offlineSchema": true,
     "offlineLogin": true,
@@ -15,5 +13,8 @@
     "gridSnap": true,
     "printDefault": "",
     "printSize": "",
-    "printLayout": ""
+    "printLayout": "",
+    "notInEditModeMsg": "Not in Edit Mode (see Edit menu Option)",
+    "noQueryRunningMessage": "No Query",
+    "queryRunningMessage": "Query running..."
 }
