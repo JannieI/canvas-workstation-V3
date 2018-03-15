@@ -155,7 +155,6 @@ export class StatusbarComponent {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'selectDashboardTab', '@Start');
 
-        console.log('xx index', index, this.currentDashboardTabs)
         this.globalVariableService.refreshCurrentDashboard(
             'statusbar-selectDashboardTab',
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
@@ -305,9 +304,17 @@ export class StatusbarComponent {
             return;
         };
 
-        // Delete, and refresh
-        this.globalVariableService.dashboardTabs.splice(this.currentDashboardTabIndex, 1);
-        console.log ('xx this.globalVariableService.dashboardTabs', this.globalVariableService.dashboardTabs)
+        // Get the index, Delete, and refresh
+        // TODO - improve when working with a DB
+        for (var x = 0; x < this.globalVariableService.dashboardTabs.length; x++) {
+            if (this.globalVariableService.dashboardTabs[x].id == 
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID) {
+                    break;
+            };
+        };
+
+        this.globalVariableService.dashboardTabs.splice(x, 1);
+
         this.globalVariableService.refreshCurrentDashboard(
             'statusbar-clickTabDelete',
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
