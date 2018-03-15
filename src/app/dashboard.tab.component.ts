@@ -56,9 +56,9 @@ export class DashboardTabComponent implements OnInit {
         this.showErrorMessage = false;
         this.errorMessageText = '';
 
-        if (this.name == ''  ||  this.name.length > 25) { 
+        if (this.name == ''  ||  this.name.length > 20) { 
             this.showErrorMessage = true;
-            this.errorMessageText = 'Please enter a name, and less than 25 char';
+            this.errorMessageText = 'Please enter a name, and less than 20 char';
         };
 
         if (this.description == '') { 

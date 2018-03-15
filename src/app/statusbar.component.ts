@@ -121,6 +121,7 @@ export class StatusbarComponent {
 
     @Input() currentDashboardName: string;
     @Input() currentTabName: string;
+    @Input() currentTabColor: string;
     @Input() statusBarRunning: string;
     @Input() statusBarCancelRefresh: string;
     @Input() templateInUse: string;

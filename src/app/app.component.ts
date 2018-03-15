@@ -195,6 +195,7 @@ export class AppComponent implements OnInit {
     currentDatasources: Datasource[];
     currentShapeSpec: any;          // TODO - fill this var !!  not working at moment
     currentTabName: string = '';
+    currentTabColor: string = '';
     currentWidgets: Widget[] = [];
     currentWidgetDashboardTabIDs: number[] = [];  // Of current W
     draggableWidgets: number[] = [];
@@ -395,6 +396,8 @@ export class AppComponent implements OnInit {
                                     currentDashboards[0].name;
                                 this.currentTabName = this.globalVariableService.
                                     currentDashboardTabs[x].name;
+                                this.currentTabColor = this.globalVariableService.
+                                    currentDashboardTabs[x].color;
                                 this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
 
