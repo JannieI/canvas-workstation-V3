@@ -36,11 +36,11 @@
     <span class="statusBarText statusBarTextBorder"
         title="Current Tab"
         style="width: 80vw;"
-        [style.background-color]="currentBackgroundColor"
+        [style.background-color]="currentTabBackgroundColor"
         [style.color]="currentTabColor"
         (click)="clickShowTabDescription()"
         >
-        <b>{{ currentTabName }}</b>
+        <b>{{ currentTabName }}</b> 
     </span>
     <span class="statusBarText statusBarTextBorder"
         title="Click to show next Tab "
