@@ -30,7 +30,8 @@ export class DashboardTabComponent implements OnInit {
     name: string = '';                    // Name of new T
     description: string = '';             // T description
     color: string = '';                   // CSS color of T
-
+    showErrorMessage: boolean = false;
+    errorMessageText: string = '';
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -50,6 +51,24 @@ export class DashboardTabComponent implements OnInit {
   	clickSave() {
         // Save new Tab, and close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Validation
+        this.showErrorMessage = false;
+        this.errorMessageText = '';
+
+        if (this.name == ''  ||  this.name.length > 25) { 
+            this.showErrorMessage = true;
+            this.errorMessageText = 'Please enter a name, and less than 25 char';
+        };
+
+        if (this.description == '') { 
+            this.showErrorMessage = true;
+            this.errorMessageText = 'Please enter a description';
+        };
+
+        if (this.showErrorMessage) {
+            return;
+        }
 
         // Get new DSid
         // TODO - do better with DB

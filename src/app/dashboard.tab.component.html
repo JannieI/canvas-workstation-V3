@@ -1,28 +1,32 @@
 <div class="modal modalBox">
-	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
 
-            <div class="overall">
-                <div class="closeButton">
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
+
+            <div class="gridOverall">
+
+                <div class="gridTitle">
+                    <b>Dashboard Tab</b>
                 </div>
 
-                Dashboard Tab
-                <br>
-                <label for="dashboardName" class="popupLabel">Name (25 char):</label>
-                <input type="text" id="dashboardName" placeholder="Enter short name here"
-                    class="popupInput" [(ngModel)]="name">
+                <div class="gridName">
+                    <label for="dashboardName" class="popupLabel">Name (25 char):</label>
+                    <input type="text" id="dashboardName" placeholder="Enter short name here"
+                        class="popupInput" [(ngModel)]="name">
+                </div>
 
-                <br>
-                <label for="dashboardName" class="popupLabel">Description :</label>
-                <input type="text" id="dashboardName" placeholder="Enter Tab description"
-                    class="popupInput" [(ngModel)]="description">
+                <div class="gridDescription">
+                    <label for="dashboardName" class="popupLabel">Description :</label>
+                    <input type="text" id="dashboardName" placeholder="Enter Tab description"
+                        class="popupInput" [(ngModel)]="description">
+                </div>
 
-                <br>
-                <label for="selects_4">Tab colour:</label>
-                <div class="select">
+                <div class="gridColor">
+    
+                    <label for="selects_4">Tab colour:</label>
                     <select id="selects_3"
                         [(ngModel)]="color"
                         >
@@ -32,14 +36,20 @@
                     </select>
                 </div>
 
-                <br>
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    (click)="clickSave()"
-                    >
-                    Save
-                </button>
+                <div class="gridErrorMessage" *ngIf="showErrorMessage">
+                    {{ errorMessageText}}
+                </div>
+
+                <div class="gridButtonSave">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickSave()"
+                        >
+                        Save
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
