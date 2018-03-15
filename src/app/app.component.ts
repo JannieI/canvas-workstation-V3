@@ -190,7 +190,7 @@ export class AppComponent implements OnInit {
     }
 
     clipboardWidget: Widget;
-    companyName: string = this.globalVariableService.companyName;
+    companyName: string = '';
     currentDashboardName: string = '';
     currentDatasources: Datasource[];
     currentShapeSpec: any;          // TODO - fill this var !!  not working at moment
@@ -332,6 +332,8 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         //
+        this.companyName = this.globalVariableService.companyName;
+        
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.presentationMode.subscribe(
