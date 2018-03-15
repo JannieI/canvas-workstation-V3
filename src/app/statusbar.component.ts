@@ -119,16 +119,16 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
 export class StatusbarComponent {
 
-    @Input() editMode: boolean;
     @Input() currentDashboardName: string;
     @Input() currentTabName: string;
     @Input() statusBarRunning: string;
     @Input() statusBarCancelRefresh: string;
     @Input() templateInUse: string;
-
+    
     currentDashboardTabs: DashboardTab[];
     dashboardDescription: string;
     dashboardTabDescription: string;
+    editMode: boolean = false;
     loggedIntoServerText: string;
     menuActionResize: boolean;
     showDashboardDescription: boolean = false;
@@ -151,6 +151,12 @@ export class StatusbarComponent {
     ngOnInit() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        this.globalVariableService.editMode.subscribe(
+            i => {
+                    this.editMode = i;
+                 }
+        );
 
         // Nr of Ws in group
         this.globalVariableService.widgetGroup.subscribe(wg => {
@@ -211,12 +217,6 @@ export class StatusbarComponent {
 
         )
     }
-
-    // ngAfterViewChecked(){
-    //     // For Testing
-    //     console.log('ngAfterViewChecked W, Sl', this.currentWidgets,
-    //         this.widgetContainters.toArray())
-    // }
 
     ngAfterViewInit() {
         //
