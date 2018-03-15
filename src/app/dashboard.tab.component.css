@@ -9,7 +9,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(11, 1fr);
-    grid-template-rows: repeat(14, 0.8rem);
+    grid-template-rows: repeat(15, 0.8rem);
     margin-top: 2px;
 }
 
@@ -37,7 +37,7 @@
         text-align: left;
     }
 
-    .gridColor {
+    .gridBgColor {
         grid-column-start: 2;
         grid-column-end: 8;
         grid-row-start: 8;
@@ -45,8 +45,7 @@
         text-align: left;
     }
 
-    .gridErrorMessage {
-        color: red;
+    .gridColor {
         grid-column-start: 2;
         grid-column-end: 8;
         grid-row-start: 10;
@@ -54,10 +53,19 @@
         text-align: left;
     }
 
+    .gridErrorMessage {
+        color: red;
+        grid-column-start: 2;
+        grid-column-end: 8;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        text-align: left;
+    }
+
     .gridButtonSave {
         grid-column-start: 6;
         grid-column-end: 8;
-        grid-row-start: 13;
-        grid-row-end: 14;
+        grid-row-start: 14;
+        grid-row-end: 15;
         text-align: left;
     }
