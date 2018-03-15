@@ -336,8 +336,22 @@ export class StatusbarComponent {
     }
 
     clickAddTab() {
-        //
+        // Add a new Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddTab', '@Start');
+        
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.globalVariableService.statusBarMessage.next(
+                {
+                    message: this.globalVariableService.notInEditModeMsg,
+                    uiArea: 'StatusBar',
+                    classfication: 'Warning',
+                    timeout: 3000,
+                    defaultMessage: ''
+                }
+            );
+            return;
+        };
 
         this.showNewTab = true;
     }
