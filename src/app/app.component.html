@@ -589,6 +589,13 @@
                         </button>
                         <button type="button" 
                             clrDropdownItem 
+                            (click)="clickMenuWidgetTablist()"
+                            title="Manage Tabs to which selected Table belongs"
+                            >
+                            Tablist
+                        </button>
+                        <button type="button" 
+                            clrDropdownItem 
                             (click)="clickMenuTableDataQuality()"
                             title="Data quality issues for selected Table"
                             >
@@ -654,7 +661,7 @@
                         </button>
                         <button type="button" 
                             clrDropdownItem 
-                            (click)="clickMenuSlicerTablist()"
+                            (click)="clickMenuWidgetTablist()"
                             title="Manage Tabs to which selected Slicer belongs"
                             >
                             Tablist
@@ -734,7 +741,7 @@
                         </button>
                         <button type="button" 
                             clrDropdownItem 
-                            (click)="clickMenuSlicerTablist()"
+                            (click)="clickMenuWidgetTablist()"
                             title="Manage Tabs to which selected Slicer belongs"
                             >
                             Tablist
@@ -2143,12 +2150,12 @@
 </slicer-editor>
 
 
-<!-- Modal: Slicer Tablist -->
-<slicer-tablist
-    *ngIf="showModalSlicerTablist"
+<!-- Modal: Widget Tablist -->
+<widget-tablist
+    *ngIf="showModalWidgetTablist"
     [currentWidgetDashboardTabIDs]="currentWidgetDashboardTabIDs"
-    (formWidgetTablistClosed)="handleCloseSlicerTablist($event)">Load Slicer Tablist ...
-</slicer-tablist>
+    (formWidgetTablistClosed)="handleCloseWidgetTablist($event)">Load Widget Tablist ...
+</widget-tablist>
 
 
 <!-- Modal: Slicer Delete -->

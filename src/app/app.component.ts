@@ -263,7 +263,7 @@ export class AppComponent implements OnInit {
     showModalDashboardPrint: boolean = false;
     showModalData: boolean = false;
     showModalDataSlicers: boolean = false;
-    showModalSlicerTablist: boolean = false;
+    showModalWidgetTablist: boolean = false;
     showModalTableEditor: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
@@ -670,9 +670,9 @@ export class AppComponent implements OnInit {
         this.showModalDataSlicers = false;
     }
 
-    handleCloseSlicerTablist(tabIDs: number[]) {
+    handleCloseWidgetTablist(tabIDs: number[]) {
         // Handle close of Tablist form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseSlicerTablist', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetTablist', '@Start');
 
         // Close without change returns null
         if (tabIDs != null) {
@@ -690,7 +690,7 @@ export class AppComponent implements OnInit {
         
         };
 
-        this.showModalSlicerTablist = false;
+        this.showModalWidgetTablist = false;
     }
 
     handleCloseData(action: string) {
@@ -1907,9 +1907,9 @@ export class AppComponent implements OnInit {
         this.showModalDataSlicers = true;
     }
 
-    clickMenuSlicerTablist() {
-        // Open the list of tabs to which a Sl belongs
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerTablist', '@Start');
+    clickMenuWidgetTablist() {
+        // Open the list of tabs to which the selected W belongs
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTablist', '@Start');
 
         this.menuOptionClickPreAction();
 
@@ -1924,7 +1924,7 @@ export class AppComponent implements OnInit {
             }
         });
          
-        this.showModalSlicerTablist = true;
+        this.showModalWidgetTablist = true;
 
     }
 

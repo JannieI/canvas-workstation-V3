@@ -16,9 +16,9 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 @Component({
-    selector: 'slicer-tablist',
-    templateUrl: './slicer.tablist.component.html',
-    styleUrls: ['./slicer.tablist.component.css']
+    selector: 'widget-tablist',
+    templateUrl: './widget.tablist.component.html',
+    styleUrls: ['./widget.tablist.component.css']
 })
 export class WidgetTablistComponent implements OnInit {
 
