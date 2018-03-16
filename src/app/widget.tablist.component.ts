@@ -20,9 +20,9 @@ import { GlobalVariableService }      from './global-variable.service';
     templateUrl: './slicer.tablist.component.html',
     styleUrls: ['./slicer.tablist.component.css']
 })
-export class SlicerTablistComponent implements OnInit {
+export class WidgetTablistComponent implements OnInit {
 
-    @Output() formSlicerTablistClosed: EventEmitter<number[]> = new EventEmitter();
+    @Output() formWidgetTablistClosed: EventEmitter<number[]> = new EventEmitter();
     @Input() currentWidgetDashboardTabIDs: number[];
 
     currentTabNames: { isSelected: boolean; name: string; id: number }[];
@@ -66,7 +66,7 @@ export class SlicerTablistComponent implements OnInit {
         // Close multi-tab-selection popup, no changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formSlicerTablistClosed.emit(null);
+		this.formWidgetTablistClosed.emit(null);
     }
 
     clickSave(index: number) {
@@ -88,7 +88,7 @@ export class SlicerTablistComponent implements OnInit {
             return;
         };
 
-		this.formSlicerTablistClosed.emit(tabIDs);
+		this.formWidgetTablistClosed.emit(tabIDs);
 
     }
 

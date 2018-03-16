@@ -59,7 +59,6 @@ import { TableDeleteComponent }       from './table.delete.component';
 
 import { SlicerSingleComponent }      from './slicer.single.component';
 import { SlicerEditorComponent }      from './slicer.editor.component';
-import { SlicerTablistComponent }     from './slicer.tablist.component';
 import { SlicerDeleteComponent }      from './slicer.delete.component';
 
 import { ShapeEditComponent }         from './shape.editor.component';
@@ -85,6 +84,8 @@ import { UserShapeButtonBarComponent} from './user.shape.buttonbar.component';
 import { SystemSettingsComponent }    from './systemsettings.component';
 import { UserOfflineComponent}        from './user.offline.component';
 import { LogoutComponent}             from './logout.component';
+
+import { WidgetTablistComponent }     from './widget.tablist.component';
 
 import { PipeFilterDSType }           from './pipe.filter.component';
 
@@ -152,7 +153,6 @@ import { StatusbarComponent }         from './statusbar.component';
         
         SlicerSingleComponent,
         SlicerEditorComponent,
-        SlicerTablistComponent,
         SlicerDeleteComponent,
 
         ShapeEditComponent,
@@ -177,6 +177,8 @@ import { StatusbarComponent }         from './statusbar.component';
 
         PipeFilterDSType,
         StatusbarComponent,
+
+        WidgetTablistComponent,
 
     ],
     imports: [

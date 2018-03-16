@@ -734,6 +734,13 @@
                         </button>
                         <button type="button" 
                             clrDropdownItem 
+                            (click)="clickMenuSlicerTablist()"
+                            title="Manage Tabs to which selected Slicer belongs"
+                            >
+                            Tablist
+                        </button>
+                        <button type="button" 
+                            clrDropdownItem 
                             (click)="clickMenuShapeLinks()"
                             title="Manage links on selected Shape"
                             >
@@ -2140,7 +2147,7 @@
 <slicer-tablist
     *ngIf="showModalSlicerTablist"
     [currentWidgetDashboardTabIDs]="currentWidgetDashboardTabIDs"
-    (formSlicerTablistClosed)="handleCloseSlicerTablist($event)">Load Slicer Tablist ...
+    (formWidgetTablistClosed)="handleCloseSlicerTablist($event)">Load Slicer Tablist ...
 </slicer-tablist>
 
 

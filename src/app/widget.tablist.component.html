@@ -9,7 +9,7 @@
                 </button>
 
                 <div class="multiTabMenuHeader">Select the Tabs on this Dashboard on which 
-                        to show this Slicer:
+                        to show the selected Widget:
                     <div *ngFor="let row of currentTabNames; let i = index" class="multiTabOption">
                         <clr-checkbox [clrChecked]="row.isSelected"
                             [name]="row.name"

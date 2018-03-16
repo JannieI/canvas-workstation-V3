@@ -1916,9 +1916,6 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget()) { 
             return;
         };
-        if (!this.checkForOnlyOneWidget('Slicer')) { 
-            return;
-        };
 
         // Send list of current Tabs it belongs to
         this.currentWidgets.forEach(w => {
