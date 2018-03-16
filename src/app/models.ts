@@ -26,6 +26,9 @@ export class CanvasSettings {
 
 export class CanvasAction {
     id: number;                             // Unique id per action
+    dashboardID: number;                    // Where action took place
+    dashboardTabID: number;                 // Where action took place
+    objectType: string;                     // Type, ie Dashboard, Widget
     action: string;                         // Optional name, ie Move Widget 
     description: string;                    // Optional description, ie calling routine, etc
     undoID: number;                         // Optional id of item in UNDO

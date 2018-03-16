@@ -5,7 +5,7 @@ import { Injectable }                 from '@angular/core';
 // Our Serives
 
 // Our Models
-import { CanvasAction }                     from './models';
+import { CanvasAction }               from './models';
 import { ButtonBarAvailable }         from './models';
 import { Dataset }                    from './models';
 import { ButtonBarSelected }          from './models';
@@ -3583,6 +3583,9 @@ export class GlobalVariableService {
 
     actionUpsert(
         id: number,
+        dashboardID, 
+        dashboardTabID,
+        objectType,
         action: string, 
         description: string,
         undoID: number, 
@@ -3610,6 +3613,9 @@ export class GlobalVariableService {
 
             this.actions.push({
                 id: actID,
+                dashboardID: dashboardID,
+                dashboardTabID: dashboardTabID,
+                objectType: objectType,
                 action: action,
                 description: description,
                 undoID: undoID,

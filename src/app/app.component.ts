@@ -910,7 +910,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        // TODO - decide if lates / -1 is best choice here
+        // TODO - decide if latest / previous is best choice here
         let maxActID: number = 1;
         let tempActionIDs: number[] = [];
         for (var i = 0; i < this.globalVariableService.actions.length; i++) {
@@ -932,6 +932,9 @@ export class AppComponent implements OnInit {
             // Previous was not an UNDO, so just reverse it
             this.globalVariableService.actionUpsert(
                 null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Widget',
                 'Undo',
                 '', 
                 filteredActions[0].id,
@@ -966,6 +969,9 @@ export class AppComponent implements OnInit {
             if (filteredActions[0].redoID == null) {
                 this.globalVariableService.actionUpsert(
                     null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    'Widget',
                     'Undo DO',
                     '', 
                     filteredActions[0].id,
@@ -978,6 +984,9 @@ export class AppComponent implements OnInit {
             } else {
                 this.globalVariableService.actionUpsert(
                     null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    'Widget',
                     'Undo REDO',
                     '', 
                     filteredActions[0].redoID,
@@ -1031,6 +1040,9 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.changedWidget.next(this.globalVariableService.actions[i].oldWidget)
                         this.globalVariableService.actionUpsert(
                             null, 
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                            'Widget',
                             'Redo', 
                             '', 
                             null,
@@ -3121,12 +3133,31 @@ export class AppComponent implements OnInit {
                 // Action
                 // TODO - cater for errors + make more generic
                 let actID: number = this.globalVariableService.actionUpsert(
-                    null, 'Move', 'App', null, null, w, null);
+                    null, 
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    'Widget',
+                    'Move', 
+                    'App', 
+                    null, 
+                    null, 
+                    w, 
+                    null);
 
                 w.containerLeft = w.containerLeft - this.startX + this.endX;
                 w.containerTop = w.containerTop - this.startY + this.endY;
                 actID = this.globalVariableService.actionUpsert(
-                    actID, null, null, null, null, null, w);
+                    actID, 
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    'Widget',
+                    null, 
+                    null, 
+                    null, 
+                    null, 
+                    null, 
+                    w
+                );
             }
         });
         this.globalVariableService.currentWidgets.forEach( w => {
