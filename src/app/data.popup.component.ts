@@ -210,13 +210,13 @@ export class DataPopupComponent implements OnInit {
         this.errorMessage = '';
         this.showDataPreview = false;
 
-        // Get the folder and file, setting some defaults
-        if (this.folderName == ''  ||  this.folderName == undefined) {
-            this.folderName = './assets/vega-datasets/';
-        }
-        if (this.fileName ==''  ||  this.fileName == undefined) {
-            this.fileName = 'stocks.csv';
-        };
+        // // Get the folder and file, setting some defaults
+        // if (this.folderName == ''  ||  this.folderName == undefined) {
+        //     this.folderName = './assets/vega-datasets/';
+        // }
+        // if (this.fileName ==''  ||  this.fileName == undefined) {
+        //     this.fileName = 'stocks.csv';
+        // };
 
         // Load synchronously
         // var csv_data = dl.load({url: folderName + this.fileName});
@@ -455,7 +455,7 @@ export class DataPopupComponent implements OnInit {
             datasourceID: newDSID,
             sourceLocation: 'localDB',
             folderName: '',
-            filename: '',
+            fileName: '',
             data: this.currentData,
             dataRaw: this.currentData
         };
@@ -542,11 +542,6 @@ export class DataPopupComponent implements OnInit {
             let tempData: any[] = this.globalVariableService.currentDatasets.filter(d =>
                d.datasourceID == id);
             this.currentData = tempData[0].data;
-            console.log('xx cDS DS', id, this.currentDatasources,
-                this.globalVariableService.currentDatasources, 
-                this.globalVariableService.currentDatasets,
-                tempData,
-                this.currentData)
 
             this.transformationsFormat = this.globalVariableService.transformationsFormat;
             this.currentTransformations = this.globalVariableService.currentTransformations;
@@ -574,9 +569,9 @@ export class DataPopupComponent implements OnInit {
 
             // Show the preview
             this.folderName = tempData[0].folderName;
-            this.fileName = tempData[0].filename;
+            this.fileName = tempData[0].fileName;
             this.showDataPreview = true;
-
+console.log('xx tempData[0]', tempData[0])
             // Show the top steps
             this.showTopSteps = true;
 

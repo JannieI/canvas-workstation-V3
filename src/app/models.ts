@@ -148,7 +148,7 @@ export class Dataset {
     datasourceID: number;
     sourceLocation: string;                 // Where data lives: file, localDB, MSSQL, etc
     folderName: string;                     // Optional folder name where data is stored
-    filename: string;                       // Optional file name where data is stored
+    fileName: string;                       // Optional file name where data is stored
     data: any;                              // Filtered data as json
     dataRaw: any;                           // Unfiltered data as json
 }

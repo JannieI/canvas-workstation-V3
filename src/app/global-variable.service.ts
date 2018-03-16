@@ -1486,12 +1486,12 @@ export class GlobalVariableService {
                 if (ds.folderName == ''  ||  ds.folderName == null) {
                     ds.folderName = '../assets/';
                 };
-                if (ds.filename == ''  ||  ds.filename == null) {
-                    ds.filename = 'data.dataset' + ds.id.toString() + '.json';
+                if (ds.fileName == ''  ||  ds.fileName == null) {
+                    ds.fileName = 'data.dataset' + ds.id.toString() + '.json';
                 };
                 folderName = ds.folderName;
                 fileName = ds.fileName;
-                this.filePath = ds.folderName + ds.filename;
+                this.filePath = ds.folderName + ds.fileName;
             }
         });
 
@@ -1531,7 +1531,7 @@ export class GlobalVariableService {
                             datasourceID: datasourceID,
                             sourceLocation: 'file',
                             folderName: folderName,
-                            filename: fileName,
+                            fileName: fileName,
                             data: dataFile,
                             dataRaw: dataFile
                         };
@@ -2866,7 +2866,7 @@ export class GlobalVariableService {
                 {key:'id', type: 'int', props:['pk', 'ai']},
                 {key:'datasourceID', type: 'int'},
                 {key:'folderName', type: 'string'},
-                {key:'filename', type: 'string'},
+                {key:'fileName', type: 'string'},
                 {key:'data', type: 'array'},
                 {key:'dataRaw', type: 'array'}
             ])
