@@ -906,4 +906,8 @@ datagrid-placeholder-container {
 
 .errorMessage {
     color: red;
+    grid-column-start: 16;
+    grid-column-end: 21;
+    grid-row-start: 8;
+    grid-row-end: 9;
 }

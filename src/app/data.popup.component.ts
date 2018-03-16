@@ -49,6 +49,7 @@ export class DataPopupComponent implements OnInit {
     addNewTransformation: boolean = false;
     aggField: string = 'Drag a field here ...';
     changeVar: number = 2;
+    clickedDeleteDS: boolean = false;
     colField: string = 'Drag a field here ...';
     currentDatasources: Datasource[] = [];
     currentData: any = [];
@@ -181,12 +182,15 @@ export class DataPopupComponent implements OnInit {
         // Delete the selected current DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDSDelete', '@Start');
 
+        // Prevent other actions
+        this.clickedDeleteDS = true;
+
         // Validation
         let linkedWidgets: number = this.globalVariableService.currentWidgets.filter(w =>
             w.datasourceID == this.currentDatasources[index].id
         ).length;
         if (linkedWidgets > 0) {
-            this.errorMessage = 'There are Widgets linked to this datasource'
+            this.errorMessage = 'No delete - linked Widgets'
             return;
         }
 
@@ -511,6 +515,12 @@ export class DataPopupComponent implements OnInit {
     clickCurrentDatasource(id: number, index: number) {
         // Clicked and existing DS -> Load related data for the selected DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDatasource', '@Start');
+
+        // If this was a delete, no further actions
+        if (this.clickedDeleteDS) {
+            this.clickedDeleteDS = false;
+            return;
+        };
 
         // Reset
         this.errorMessage = '';
