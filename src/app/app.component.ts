@@ -2638,7 +2638,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuArrangeSameSize() {
-        //
+        // Make selected Ws same size, height and width
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
 
         this.menuOptionClickPreAction();
@@ -2664,6 +2664,54 @@ export class AppComponent implements OnInit {
         };
     }
 
+    clickMenuArrangeSameSizeVertically() {
+        // Make selected Ws same Height (vertically)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
+
+        let y: number = -1; 
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                if (y == -1) {
+                    y = this.currentWidgets[i].containerHeight; 
+                        
+                } else {
+                    this.currentWidgets[i].containerHeight = y; 
+                };
+            };
+        };
+    }
+
+
+    clickMenuArrangeSameSizeHorisontally() {
+        // Make selected Ws same width (horisontally)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        if (!this.checkForMultipleWidgets()) {
+            return
+        };
+
+        let x: number = -1; 
+
+        for (var i = 0; i < this.currentWidgets.length; i++) {
+            if (this.currentWidgets[i].isSelected) {
+                if (x == -1) {
+                    x = this.currentWidgets[i].containerWidth; 
+                        
+                } else {
+                    this.currentWidgets[i].containerWidth = x; 
+                };
+            };
+        };
+    }
 
 
 

@@ -1012,18 +1012,26 @@
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
 
                                 <button type="button" 
-                                    clrDropdownItem (click)="clickMenuArrangeSameSize()"
+                                    clrDropdownItem (click)="clickMenuArrangeSameSizeVertically()"
                                     title="Make selected Widgets the same size vertically"
                                     >
                                     Same vertically
                                 </button>
         
                                 <button type="button" 
-                                    clrDropdownItem (click)="clickMenuArrangeSameSize()"
+                                    clrDropdownItem (click)="clickMenuArrangeSameSizeHorisontally()"
                                     title="Make selected Widgets the same size horisontally"
                                     >
                                     Same horisontally
                                 </button>
+        
+                                <button type="button" 
+                                    clrDropdownItem (click)="clickMenuArrangeSameSize()"
+                                    title="Make selected Widgets the same size"
+                                    >
+                                    Same both
+                                </button>
+
                             </clr-dropdown-menu>
                         </clr-dropdown>
                     </clr-dropdown-menu>
