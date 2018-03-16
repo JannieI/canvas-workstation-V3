@@ -73,7 +73,8 @@ export class DataPopupComponent implements OnInit {
     filterDataset: string = '';
     filterTransformation: string = '';
     filterPivotFields: string = '';
-    fileName: string = 'stocks.csv';
+    fileName: string = '';
+    folderName: string = '';
     finalFields: any = [];
     gridViewOverview: boolean = true;
     gridViewFields: boolean = false;
@@ -171,7 +172,7 @@ export class DataPopupComponent implements OnInit {
         }
     }
 
-    clickFileBrowse(folderName: string, filename: string) {
+    clickFileBrowse() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
 
@@ -181,6 +182,9 @@ export class DataPopupComponent implements OnInit {
     clickCurrentDSDelete(index: number) {
         // Delete the selected current DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDSDelete', '@Start');
+
+        // Reset
+        this.errorMessage = '';
 
         // Prevent other actions
         this.clickedDeleteDS = true;
@@ -198,18 +202,17 @@ export class DataPopupComponent implements OnInit {
         this.globalVariableService.currentDatasourceDelete(index);
     }
 
-    clickDSPreview(folderName: string, fileName: string) {
+    clickDSPreview() {
         // Load the new DS in the ID section, and show in Preview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview',           '@Start');
 
         // Reset
         this.errorMessage = '';
-        this.fileName = fileName;
         this.showDataPreview = false;
 
         // Get the folder and file, setting some defaults
-        if (folderName == ''  ||  folderName == undefined) {
-            folderName = './assets/vega-datasets/';
+        if (this.folderName == ''  ||  this.folderName == undefined) {
+            this.folderName = './assets/vega-datasets/';
         }
         if (this.fileName ==''  ||  this.fileName == undefined) {
             this.fileName = 'stocks.csv';
@@ -217,9 +220,9 @@ export class DataPopupComponent implements OnInit {
 
         // Load synchronously
         // var csv_data = dl.load({url: folderName + this.fileName});
-        console.log('DataPopup clickDSPreview LOAD data start:')
+        console.log('DataPopup clickDSPreview LOAD data start:', this.folderName, this.fileName)
         // let fileFolder: string = './assets/vega-datasets/';
-        let filePath: string = folderName + this.fileName;
+        let filePath: string = this.folderName + this.fileName;
 
         let fileSuffix = this.fileName.substr(this.fileName.lastIndexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
 
@@ -570,6 +573,8 @@ export class DataPopupComponent implements OnInit {
             this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
 
             // Show the preview
+            this.folderName = tempData[0].folderName;
+            this.fileName = tempData[0].filename;
             this.showDataPreview = true;
 
             // Show the top steps

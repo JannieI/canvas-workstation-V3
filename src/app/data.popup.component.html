@@ -153,19 +153,19 @@
 
                         <div class="gridIdentifyDataIDfile" *ngIf="dataGetFromSwitch==='File'">
                             <span>Folder:</span>
-                            <input type="text" #folderName
+                            <input type="text" [(ngModel)]="folderName"
                                 placeholder="./assets/vega-datasets/"
                                 class="selectFile"
                                 >
                             <span>Filename:</span>
-                            <input type="text" #filename
+                            <input type="text" [(ngModel)]="fileName"
                                 placeholder="stocks.csv"
                                 class="selectFile"
                                 >
                             <button
                                 type="button"
                                 class="btn btn-link"
-                                (click)="clickFileBrowse(folderName.value, filename.value)"
+                                (click)="clickFileBrowse()"
                                 >
                                 Browse
                             </button>
@@ -193,7 +193,7 @@
                             <button
                                 type="button"
                                 class="btn btn-secondary selectButton"
-                                (click)="clickDSPreview(folderName.value, filename.value)"
+                                (click)="clickDSPreview()"
                                 >
                                 Preview
                             </button>
