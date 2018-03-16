@@ -55,6 +55,7 @@ import { WidgetContainerComponent }   from './widget.container.component';
 
 import { TableSingleComponent }       from './table.single.component';
 import { TableEditorComponent }       from './table.editor.component';
+import { TableDeleteComponent }       from './table.delete.component';
 
 import { SlicerSingleComponent }      from './slicer.single.component';
 import { SlicerEditorComponent }      from './slicer.editor.component';
@@ -147,6 +148,7 @@ import { StatusbarComponent }         from './statusbar.component';
 
         TableSingleComponent,
         TableEditorComponent,
+        TableDeleteComponent,
         
         SlicerSingleComponent,
         SlicerEditorComponent,
