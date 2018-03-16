@@ -19,11 +19,11 @@ import { GlobalVariableService }      from './global-variable.service';
 
 
 @Component({
-    selector: 'shape-delete',
-    templateUrl: './shape.delete.component.html',
-    styleUrls: ['./shape.delete.component.css']
+    selector: 'slicer-delete',
+    templateUrl: './slicer.delete.component.html',
+    styleUrls: ['./slicer.delete.component.css']
 })
-export class ShapeDeleteComponent implements OnInit {
+export class SlicerDeleteComponent implements OnInit {
 
     @Input() currentShapeSpec: any;
     @Output() formShapeDeleteClosed: EventEmitter<string> = new EventEmitter();
