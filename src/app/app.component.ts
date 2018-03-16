@@ -1091,6 +1091,19 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Can only edit if we have DS
+        if (!this.hasDatasources) {
+            this.showStatusBarMessage(
+                'First Add Datasources from Data menu',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+
         // Switch off all selections if going to View Mode
         if (this.editMode) {
             this.clickMenuEditSelectAllNone('None');
