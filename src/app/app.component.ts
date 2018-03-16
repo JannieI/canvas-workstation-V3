@@ -270,6 +270,7 @@ export class AppComponent implements OnInit {
     showModalDataShare: boolean = false;
     showModalShapeEdit: boolean = false;
     showModalShapeDelete: boolean = false;
+    showModalTableDelete: boolean = false;
     showFav: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalCollaborateAlerts: boolean = false;
@@ -777,6 +778,18 @@ export class AppComponent implements OnInit {
         this.globalVariableService.changedWidget.next(changedTable);
 
         this.showModalTableEditor = false;
+    }
+
+    handleCloseTableDelete(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseTableDelete', '@Start');
+
+        // Delete if so requested
+        if (action == 'Delete') {
+            this.deleteWidget('Table');
+        };
+
+        this.showModalTableDelete = false;
     }
 
     handleCloseCollaborateAlerts(action: string) {
@@ -1837,9 +1850,11 @@ export class AppComponent implements OnInit {
             return
         };
 
-        this.deleteWidget('Table')
+        this.showModalTableDelete = true;
         
     }
+
+
 
 
     // ***********************  CLICK SLICER MENU OPTIONS ************************ //
@@ -2714,7 +2729,7 @@ export class AppComponent implements OnInit {
     }
 
 
-    
+
 
 
     // ***********************  CLICK HELP MENU OPTIONS ************************ //

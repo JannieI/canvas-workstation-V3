@@ -2154,6 +2154,15 @@
 </table-editor>
 
 
+<!-- Modal: Table Delete -->
+<table-delete
+    class="formPopupDashboard"
+    *ngIf="showModalTableDelete"
+    [currentTableSpec]="currentTableSpec"
+    (formTableDeleteClosed)="handleCloseTableDelete($event)">Load Table Delete ...
+</table-delete>
+
+
 <!-- Modal: Shape Edit -->
 <shape-edit
     class="formPopupDashboard"
