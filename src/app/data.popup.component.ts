@@ -493,13 +493,19 @@ export class DataPopupComponent implements OnInit {
         console.log('done', this.currentDatasources, this.globalVariableService.datasources)
     }
 
-    clickDatasourceRow(dsName: string) {
+    clickDatasourceRow(id: number, dsName: string) {
         // Click on an existing DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasourceRow', '@Start');
 
         // Reset
         this.errorMessage = '';
 
+        let tempData: any[] = this.globalVariableService.datasets.filter(d =>
+            d.datasourceID == id);
+        this.folderName = tempData[0].folderName;
+        this.fileName = tempData[0].fileName;
+
+        console.log('xx tempData[0]', tempData[0])
         this.currentDatasetName = '';
         this.existingDSName = dsName;
 
@@ -571,7 +577,7 @@ export class DataPopupComponent implements OnInit {
             this.folderName = tempData[0].folderName;
             this.fileName = tempData[0].fileName;
             this.showDataPreview = true;
-console.log('xx tempData[0]', tempData[0])
+
             // Show the top steps
             this.showTopSteps = true;
 

@@ -142,7 +142,7 @@
                             <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-row
                                     *ngFor="let row of datasources"
-                                    (click)="clickDatasourceRow(row.name)"
+                                    (click)="clickDatasourceRow(row.id, row.name)"
                                     >
                                     <clr-dg-cell>
                                         {{row.name}}
@@ -220,7 +220,7 @@
 
                                 <clr-dg-row
                                     *ngFor="let row of datasources | filterDSType:'server'"
-                                    (click)="clickDatasourceRow(row.name)"
+                                    (click)="clickDatasourceRow(row.id, row.name)"
                                     >
                                     <clr-dg-cell>
                                         <clr-icon shape="times"></clr-icon>
