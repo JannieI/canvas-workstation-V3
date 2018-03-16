@@ -899,7 +899,8 @@ export class GlobalVariableService {
 
                                     this.currentDashboardID = dashboardID
                                     this.currentDashboardTabID = dashboardTabID
-                                    if (this.currentWidgets.length > 0) {
+                                    console.log('xx currentDatasources', this.currentDatasources)
+                                    if (this.currentDatasources.length > 0) {
                                         this.hasDatasources.next(true);
                                     } else {
                                         this.hasDatasources.next(false);
@@ -2020,9 +2021,13 @@ export class GlobalVariableService {
                     .then(ds =>
                         {
                             let ids: number[] = [];
-                            for (var i = 0; i < this.currentWidgets.length; i++) {
-                                if (ids.indexOf(this.currentWidgets[i].datasourceID) < 0) {
-                                    ids.push(this.currentWidgets[i].datasourceID)
+                            let dashboardWidgets: Widget[] = this.widgets.filter(
+                                w => w.dashboardID = dashboardID
+                            );
+
+                            for (var i = 0; i < dashboardWidgets.length; i++) {
+                                if (ids.indexOf(dashboardWidgets[i].datasourceID) < 0) {
+                                    ids.push(dashboardWidgets[i].datasourceID)
                                 }
                             };
                             let returnData: Datasource[] = [];
@@ -2041,9 +2046,13 @@ export class GlobalVariableService {
                     )
             } else {
                 let ids: number[] = [];
-                for (var i = 0; i < this.currentWidgets.length; i++) {
-                    if (ids.indexOf(this.currentWidgets[i].datasourceID) < 0) {
-                        ids.push(this.currentWidgets[i].datasourceID)
+                let dashboardWidgets: Widget[] = this.widgets.filter(
+                    w => w.dashboardID = dashboardID
+                );
+
+                for (var i = 0; i < dashboardWidgets.length; i++) {
+                    if (ids.indexOf(dashboardWidgets[i].datasourceID) < 0) {
+                        ids.push(dashboardWidgets[i].datasourceID)
                     };
                 };
                 let returnData: Datasource[] = [];

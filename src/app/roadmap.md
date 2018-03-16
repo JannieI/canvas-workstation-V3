@@ -286,6 +286,7 @@ BUG: if using a custom vega spec, the editor does not understand this.
 8. Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
 9. Add emojis !?
 10.Do we need both shapeText and shapeValue?  Maybe delete shapeValue ...
+11.Consider MarkDown / HTML formatting to Text shape - do we really need this?
 
 
 **Presentation**
