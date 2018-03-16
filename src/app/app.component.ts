@@ -894,7 +894,7 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK EDIT MENU OPTIONS ************************ //
-    
+
     clickMenuEditUndo() {
         // Undo a previous action
         // These are the rules:  DO = action, Undo = cancel DO, Redo = cancel Undo
@@ -910,24 +910,33 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        // TODO - decide if latest / previous is best choice here
-        let maxActID: number = 1;
-        let tempActionIDs: number[] = [];
-        for (var i = 0; i < this.globalVariableService.actions.length; i++) {
-            tempActionIDs.push(this.globalVariableService.actions[i].id)
-        };
-        if (tempActionIDs.length > 0) {
-            maxActID = Math.max(...tempActionIDs);
-        };
+        // Get action for current D and T
+        let ourActions: CanvasAction[] = [];
+        ourActions = this.globalVariableService.actions.filter(act =>
+            act.dashboardID == 
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+            &&
+            act.dashboardTabID == 
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+        );
 
         // Can only undo if something has been done before
-        if (tempActionIDs.length == 0) {
+        if (ourActions.length == 0) {
             console.log('Nothing to undo')
             return;
         };
 
+        // Get last actionID for it
+        let tempActionIDs: number[] = [];
+        for (var i = 0; i < ourActions.length; i++) {
+            tempActionIDs.push(ourActions[i].id)
+        };
+        let maxActID: number = Math.max(...tempActionIDs);
+        
+        // Get last action
         let filteredActions: CanvasAction[] = [];
-        filteredActions = this.globalVariableService.actions.filter(act => act.id == maxActID);
+        filteredActions = ourActions.filter(act => act.id == maxActID);
+
         if (filteredActions[0].undoID == null) {
             // Previous was not an UNDO, so just reverse it
             this.globalVariableService.actionUpsert(
@@ -949,10 +958,12 @@ export class AppComponent implements OnInit {
             let lastUndoID: number = filteredActions[0].undoID;
             let undoActID: number = 1;
             let tempActionIDs: number[] = [];
-            for (var i = 0; i < this.globalVariableService.actions.length; i++) {
-                if (this.globalVariableService.actions[i].undoID == null  &&
-                    this.globalVariableService.actions[i].id < lastUndoID) {
-                        tempActionIDs.push(this.globalVariableService.actions[i].id);
+            for (var i = ourActions.length - 1; i >= 0; i--) {
+                if (ourActions[i].undoID == null  &&
+                    ourActions[i].id < lastUndoID) {
+                        tempActionIDs.push(ourActions[i].id);
+                } else {
+                    break;
                 };
             };
             if (tempActionIDs.length > 0) {
@@ -961,45 +972,134 @@ export class AppComponent implements OnInit {
     
             // Can only undo if something has been done before
             if (tempActionIDs.length == 0) {
-                console.log('Nothing to undo 2')
+                console.log('Nothing more to undo')
                 return;
             };
             filteredActions = this.globalVariableService.actions.filter(act => act.id == undoActID);
 
-            if (filteredActions[0].redoID == null) {
-                this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    'Widget',
-                    'Undo DO',
-                    '', 
-                    filteredActions[0].id,
-                    null,
-                    filteredActions[0].newWidget,
-                    filteredActions[0].oldWidget
-                )
-                this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
-                
-            } else {
-                this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    'Widget',
-                    'Undo REDO',
-                    '', 
-                    filteredActions[0].redoID,
-                    null,
-                    filteredActions[0].newWidget,
-                    filteredActions[0].oldWidget
-                );
-                this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
-            };
+            this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Widget',
+                'Undo ' + filteredActions[0].redoID == null? 'DO' : 'REDO',
+                '', 
+                filteredActions[0].id,
+                null,
+                filteredActions[0].newWidget,
+                filteredActions[0].oldWidget
+            )
+            this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
 
             console.log('undo prev id ', filteredActions[0].id, this.globalVariableService.actions)
         };
     }
+
+    // clickMenuEditUndo() {
+    //     // Undo a previous action
+    //     // These are the rules:  DO = action, Undo = cancel DO, Redo = cancel Undo
+    //     // Redo:
+    //     // - can only reverse a previous Undo
+    //     // - can only continue this up to a DO (cannot go further)
+    //     // Undo:
+    //     // - reverse previous DO or Redo
+    //     // - stores undoID = id of DO that was reversed
+    //     // - if multiple, takes DO prior to (prev undoID)
+    //     // - does not store oldW, newW as these are obtained from DO
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditUndo', '@Start');
+
+    //     this.menuOptionClickPreAction();
+
+    //     // Get latest action
+    //     let maxActID: number = 1;
+    //     let tempActionIDs: number[] = [];
+    //     for (var i = 0; i < this.globalVariableService.actions.length; i++) {
+    //         tempActionIDs.push(this.globalVariableService.actions[i].id)
+    //     };
+    //     if (tempActionIDs.length > 0) {
+    //         maxActID = Math.max(...tempActionIDs);
+    //     };
+
+    //     // Can only undo if something has been done before
+    //     if (tempActionIDs.length == 0) {
+    //         console.log('Nothing to undo')
+    //         return;
+    //     };
+
+    //     let filteredActions: CanvasAction[] = [];
+    //     filteredActions = this.globalVariableService.actions.filter(act => act.id == maxActID);
+    //     if (filteredActions[0].undoID == null) {
+    //         // Previous was not an UNDO, so just reverse it
+    //         this.globalVariableService.actionUpsert(
+    //             null,
+    //             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+    //             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+    //             'Widget',
+    //             'Undo',
+    //             '', 
+    //             filteredActions[0].id,
+    //             null,
+    //             filteredActions[0].newWidget,
+    //             filteredActions[0].oldWidget)
+    //         this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+            
+    //         console.log('undo prev DO, id ',filteredActions[0].id, this.globalVariableService.actions )
+    //     } else {
+    //         // Get highest DO id < (undoID - 1)
+    //         let lastUndoID: number = filteredActions[0].undoID;
+    //         let undoActID: number = 1;
+    //         let tempActionIDs: number[] = [];
+    //         for (var i = 0; i < this.globalVariableService.actions.length; i++) {
+    //             if (this.globalVariableService.actions[i].undoID == null  &&
+    //                 this.globalVariableService.actions[i].id < lastUndoID) {
+    //                     tempActionIDs.push(this.globalVariableService.actions[i].id);
+    //             };
+    //         };
+    //         if (tempActionIDs.length > 0) {
+    //             undoActID = Math.max(...tempActionIDs);
+    //         };
+    
+    //         // Can only undo if something has been done before
+    //         if (tempActionIDs.length == 0) {
+    //             console.log('Nothing to undo 2')
+    //             return;
+    //         };
+    //         filteredActions = this.globalVariableService.actions.filter(act => act.id == undoActID);
+
+    //         if (filteredActions[0].redoID == null) {
+    //             this.globalVariableService.actionUpsert(
+    //                 null,
+    //                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+    //                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+    //                 'Widget',
+    //                 'Undo DO',
+    //                 '', 
+    //                 filteredActions[0].id,
+    //                 null,
+    //                 filteredActions[0].newWidget,
+    //                 filteredActions[0].oldWidget
+    //             )
+    //             this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+                
+    //         } else {
+    //             this.globalVariableService.actionUpsert(
+    //                 null,
+    //                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+    //                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+    //                 'Widget',
+    //                 'Undo REDO',
+    //                 '', 
+    //                 filteredActions[0].redoID,
+    //                 null,
+    //                 filteredActions[0].newWidget,
+    //                 filteredActions[0].oldWidget
+    //             );
+    //             this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+    //         };
+
+    //         console.log('undo prev id ', filteredActions[0].id, this.globalVariableService.actions)
+    //     };
+    // }
 
     clickMenuEditRedo() {
         // Redo a previous action
