@@ -1112,32 +1112,36 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Get action for current D and T
+        let ourActions: CanvasAction[] = [];
+        ourActions = this.globalVariableService.actions.filter(act =>
+            act.dashboardID == 
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+            &&
+            act.dashboardTabID == 
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+        );
+
         // TODO - decide if lates / -1 is best choice here
-        if (this.globalVariableService.actions.length == 0) {
+        if (ourActions.length == 0) {
             console.log('Nothing to Redo');
             return;
-        }
+        };
 
         // Loop back, 1 at a time, and stop at first non-Undo
         let redoIDs: number[] = [];
-        for (var i = this.globalVariableService.actions.length - 1; i >= 0; i--) {
-            if (this.globalVariableService.actions[i].redoID != null) {
-                redoIDs.push(this.globalVariableService.actions[i].redoID)
+        for (var i = ourActions.length - 1; i >= 0; i--) {
+            if (ourActions[i].redoID != null) {
+                redoIDs.push(ourActions[i].redoID)
             } else {
-                if (this.globalVariableService.actions[i].undoID == null) {
+                if (ourActions[i].undoID == null) {
                     // Previous was not an UNDO, so cannot reverse it
                     console.log('Prev NOT an undo, so cannot redo it')
                     break;
                 } else {
                     
-                    if (redoIDs.indexOf(this.globalVariableService.actions[i].id)<0) {
+                    if (redoIDs.indexOf(ourActions[i].id)<0) {
 
-                        // this.globalVariableService.actions.forEach(ac => {
-                        //     if (ac.id == this.globalVariableService.actions[i].undoID) {
-                        //          this.globalVariableService.changedWidget.next(ac.newWidget);
-                        //     };
-                        // });
-                        this.globalVariableService.changedWidget.next(this.globalVariableService.actions[i].oldWidget)
                         this.globalVariableService.actionUpsert(
                             null, 
                             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
@@ -1146,11 +1150,12 @@ export class AppComponent implements OnInit {
                             'Redo', 
                             '', 
                             null,
-                            this.globalVariableService.actions[i].id, 
-                            this.globalVariableService.actions[i].newWidget, 
-                            this.globalVariableService.actions[i].oldWidget);
+                            ourActions[i].id, 
+                            ourActions[i].newWidget, 
+                            ourActions[i].oldWidget);
+                        this.globalVariableService.changedWidget.next(ourActions[i].oldWidget)
 
-                        console.log('Redo id', this.globalVariableService.actions[i].id);
+                        console.log('Redo id', ourActions[i].id);
                         break;
                     };
                 };
@@ -1158,6 +1163,64 @@ export class AppComponent implements OnInit {
         };
 
     }
+
+    // clickMenuEditRedo() {
+    //     // Redo a previous action
+    //     // These are the rules:  DO = action, Undo = cancel DO, Redo = cancel Undo
+    //     // Redo:
+    //     // - can only reverse a previous Undo
+    //     // - can only continue this up to a DO (cannot go further)
+    //     // See Undo function for more detail.
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditRedo', '@Start');
+
+    //     this.menuOptionClickPreAction();
+
+    //     // TODO - decide if lates / -1 is best choice here
+    //     if (this.globalVariableService.actions.length == 0) {
+    //         console.log('Nothing to Redo');
+    //         return;
+    //     }
+
+    //     // Loop back, 1 at a time, and stop at first non-Undo
+    //     let redoIDs: number[] = [];
+    //     for (var i = this.globalVariableService.actions.length - 1; i >= 0; i--) {
+    //         if (this.globalVariableService.actions[i].redoID != null) {
+    //             redoIDs.push(this.globalVariableService.actions[i].redoID)
+    //         } else {
+    //             if (this.globalVariableService.actions[i].undoID == null) {
+    //                 // Previous was not an UNDO, so cannot reverse it
+    //                 console.log('Prev NOT an undo, so cannot redo it')
+    //                 break;
+    //             } else {
+                    
+    //                 if (redoIDs.indexOf(this.globalVariableService.actions[i].id)<0) {
+
+    //                     // this.globalVariableService.actions.forEach(ac => {
+    //                     //     if (ac.id == this.globalVariableService.actions[i].undoID) {
+    //                     //          this.globalVariableService.changedWidget.next(ac.newWidget);
+    //                     //     };
+    //                     // });
+    //                     this.globalVariableService.changedWidget.next(this.globalVariableService.actions[i].oldWidget)
+    //                     this.globalVariableService.actionUpsert(
+    //                         null, 
+    //                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+    //                         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+    //                         'Widget',
+    //                         'Redo', 
+    //                         '', 
+    //                         null,
+    //                         this.globalVariableService.actions[i].id, 
+    //                         this.globalVariableService.actions[i].newWidget, 
+    //                         this.globalVariableService.actions[i].oldWidget);
+
+    //                     console.log('Redo id', this.globalVariableService.actions[i].id);
+    //                     break;
+    //                 };
+    //             };
+    //         };
+    //     };
+
+    // }
 
     clickMenuEditSelectAllNone(size: string) {
         // Deselect n objects on the D based on size, All, None, Auto
