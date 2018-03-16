@@ -271,6 +271,7 @@ export class AppComponent implements OnInit {
     showModalShapeEdit: boolean = false;
     showModalShapeDelete: boolean = false;
     showModalTableDelete: boolean = false;
+    showModalSlicerDelete: boolean = false;
     showFav: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalCollaborateAlerts: boolean = false;
@@ -790,6 +791,18 @@ export class AppComponent implements OnInit {
         };
 
         this.showModalTableDelete = false;
+    }
+
+    handleCloseSlicerDelete(action: string) {
+        // Once deletion confirmation form has closed, delete it if so requested
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseSlicerDelete', '@Start');
+
+        // Delete if so requested
+        if (action == 'Delete') {
+            this.deleteWidget('Slicer');
+        };
+
+        this.showModalSlicerDelete = false;
     }
 
     handleCloseCollaborateAlerts(action: string) {
@@ -2012,7 +2025,7 @@ export class AppComponent implements OnInit {
             return
         };
 
-        this.deleteWidget('Slicer')
+        this.showModalSlicerDelete = true;
         
     }
 

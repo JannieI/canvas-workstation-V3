@@ -25,8 +25,8 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class SlicerDeleteComponent implements OnInit {
 
-    @Input() currentShapeSpec: any;
-    @Output() formShapeDeleteClosed: EventEmitter<string> = new EventEmitter();
+    @Input() currentSlicerSpec: any;
+    @Output() formSlicerDeleteClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
@@ -46,13 +46,13 @@ export class SlicerDeleteComponent implements OnInit {
         // Close the form, no action
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-  	  	this.formShapeDeleteClosed.emit();
+  	  	this.formSlicerDeleteClosed.emit();
     }
 
     clickDelete() {
-        // Confirmed, delete the Shape
+        // Confirmed, delete the Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
-        this.formShapeDeleteClosed.emit('Delete');
+        this.formSlicerDeleteClosed.emit('Delete');
     }
   }
