@@ -189,6 +189,8 @@ export class DataPopupComponent implements OnInit {
             this.errorMessage = 'There are Widgets linked to this datasource'
             return;
         }
+
+        this.showDataPreview = false;
         this.globalVariableService.currentDatasourceDelete(index);
     }
 
@@ -512,10 +514,9 @@ export class DataPopupComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
-
         this.globalVariableService.refreshCurrentDatasourceInfo(id).then(i => {
 
-            this.currentDatasources = this.globalVariableService.currentDatasources;
+            // this.currentDatasources = this.globalVariableService.currentDatasources;
             this.currentDatasources.forEach(ds => {
                 if (ds.id == id) {
                     this.dataFieldNames = ds.dataFields;
@@ -525,7 +526,15 @@ export class DataPopupComponent implements OnInit {
             });
 
             // TODO - using index below assumes currentDS and currentDSET has same lengths - wise ?
-            this.currentData = this.globalVariableService.currentDatasets[index].data;
+            let tempData: any[] = this.globalVariableService.currentDatasets.filter(d =>
+               d.datasourceID == id);
+            this.currentData = tempData[0].data;
+            console.log('xx cDS DS', id, this.currentDatasources,
+                this.globalVariableService.currentDatasources, 
+                this.globalVariableService.currentDatasets,
+                tempData,
+                this.currentData)
+
             this.transformationsFormat = this.globalVariableService.transformationsFormat;
             this.currentTransformations = this.globalVariableService.currentTransformations;
             this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
