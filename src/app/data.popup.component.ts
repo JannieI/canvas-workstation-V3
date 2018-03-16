@@ -178,9 +178,17 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickCurrentDSDelete(index: number) {
-        //
+        // Delete the selected current DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDSDelete', '@Start');
 
+        // Validation
+        let linkedWidgets: number = this.globalVariableService.currentWidgets.filter(w =>
+            w.datasourceID == this.currentDatasources[index].id
+        ).length;
+        if (linkedWidgets > 0) {
+            this.errorMessage = 'There are Widgets linked to this datasource'
+            return;
+        }
         this.globalVariableService.currentDatasourceDelete(index);
     }
 
@@ -477,8 +485,11 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickDatasourceRow(dsName: string) {
-        //
+        // Click on an existing DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasourceRow', '@Start');
+
+        // Reset
+        this.errorMessage = '';
 
         this.currentDatasetName = '';
         this.existingDSName = dsName;
@@ -496,8 +507,11 @@ export class DataPopupComponent implements OnInit {
     }
 
     clickCurrentDatasource(id: number, index: number) {
-        // Load related data for the selected DS
+        // Clicked and existing DS -> Load related data for the selected DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDatasource', '@Start');
+
+        // Reset
+        this.errorMessage = '';
 
         this.globalVariableService.refreshCurrentDatasourceInfo(id).then(i => {
 
