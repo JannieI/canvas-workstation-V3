@@ -2476,14 +2476,16 @@ export class GlobalVariableService {
                         // TODO - use i.dashboardTabIDs.indexOf(dashboardTabID) >= 0 once datalib
                         // reads arrays correctly.  That should be the only change ...
                         data = data.filter(
-                            i => i.dashboardID == dashboardID  &&
+                            i => (i.dashboardID == dashboardID)  
+                                 &&
                                  (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
-                                 &&  (!i.isTrashed)
+                                 &&  
+                                 (!i.isTrashed)
                         );
                         this.currentWidgets = data;
 
                         console.log('Global-Variables getCurrentWidgets 1', this.currentWidgets)
-                        resolve(data);
+                        resolve(this.currentWidgets);
                 })
              })
         } else {
@@ -2501,7 +2503,7 @@ export class GlobalVariableService {
 
                 this.currentWidgets = data;
                 console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, data)
-                resolve(data);
+                resolve(this.currentWidgets);
 
             });
         };
