@@ -1000,12 +1000,32 @@
                             <clr-icon shape="two-way-arrows right"></clr-icon>
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem (click)="clickMenuArrangeSameSize()"
-                            title="Make selected Widgets the same size"
-                            >
-                            Same size
-                        </button>
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Make selected Widgets the same size"
+                                >
+                                Same size
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+
+                                <button type="button" 
+                                    clrDropdownItem (click)="clickMenuArrangeSameSize()"
+                                    title="Make selected Widgets the same size vertically"
+                                    >
+                                    Same vertically
+                                </button>
+        
+                                <button type="button" 
+                                    clrDropdownItem (click)="clickMenuArrangeSameSize()"
+                                    title="Make selected Widgets the same size horisontally"
+                                    >
+                                    Same horisontally
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
