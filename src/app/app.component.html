@@ -546,6 +546,7 @@
                         type="button"
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
+                        [disabled] = "!hasDatasources"
                         title="Manage selected Table"
                         >
                         Table
@@ -624,6 +625,7 @@
                         type="button"
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
+                        [disabled] = "!hasDatasources"
                         title="Manage selected Slicer"
                         >
                         Slicer
@@ -702,6 +704,7 @@
                         type="button"
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
+                        [disabled] = "!hasDatasources"
                         title="Manage Shapes in this Dashboard"
                         >
                         Shape
