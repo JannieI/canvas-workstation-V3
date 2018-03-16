@@ -148,6 +148,10 @@ export class AppComponent implements OnInit {
             this.clickMenuEditRedo();
             return;
         };
+        if (event.code == 'Delete'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
+            this.clickMenuPaletteDelete();
+            return;
+        };
 
         // Move with Arrow
         if (event.key == 'ArrowRight'  ||  event.key == 'ArrowDown'  ||  
@@ -2877,7 +2881,7 @@ export class AppComponent implements OnInit {
                     } else {
                         // Lost
                         this.showStatusBarMessage(
-                            'Select a graph, slicer or table',
+                            'Select a graph, slicer, table or shape',
                             'StatusBar',
                             'Warning',
                             3000,
