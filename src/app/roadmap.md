@@ -276,7 +276,7 @@ BUG: if using a custom vega spec, the editor does not understand this.
 
 **Shapes**
 - must be able to make a PowerPoint-light: front page(logo and title), agenda with bullets and optional links, pages with logo and title repeated at the top and bullets and W (graphs, etc) that are normal Canvas W => interactive and can add Sl, explore, expand, etc.
-1. Different shapes of bullets, ie square, etc
+1. 
 2. Numbered bullets (abc or 123 - CSS can do it)
 3. links (to web and other D, T)
 4. Should be able to Duplicate Shape?  Can we consilidate Duplicate code for all types?
@@ -296,11 +296,9 @@ BUG: if using a custom vega spec, the editor does not understand this.
 
 
 **Slicers**
-1. Philosopy: currently is UNselects anyone unselected: say 2 Sl on Origin field, one has 
-Europe unselected, one has USA unselected.  Then data is only for Japan (3 values in dataset) - is this correct, or should it include all?
-2. Make look and feel customisable
+1. 
+2. 
 3. Warn user if 2 Sl on the same dataset for the same field?
-- Does not have Links button - thinking was that one would not need to link a table to another tab, but this must be verified
 4. Add bands on numeric values: 0-10, 11-20, 21+
 5. Add groups on string: NorthAmerica = [Canada, US] - and remember these!!!  Like Tableau
 6. Add REST Sl item = all the others (not mentioned in items) ??
@@ -308,7 +306,7 @@ Europe unselected, one has USA unselected.  Then data is only for Japan (3 value
 
 
 **Scheduler**
-1. Determines tech and where/how it runs
+1. Determine tech and where/how it runs
 2. How does standalone work - does it have a schedule?
 3. How are users notified and also when scheduler is down
 4. How is dataset stored - per Dashboard as more than one can be linked ..

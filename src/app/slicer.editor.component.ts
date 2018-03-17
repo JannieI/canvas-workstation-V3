@@ -36,11 +36,13 @@ import { GlobalVariableService }      from './global-variable.service';
     selectedDatasetID: number = -1;
     selectedField: string = '';
     showNumber: boolean = false;
+    showSlicerType: boolean = false;
     showSortFields: boolean = false;
     showSortFieldOrder: boolean = false;
     slicerNumberToShow: string = 'All';
     slicerSortField: string = '';
     slicerSortFieldOrder: string = 'Ascending';
+    slicerSlicerType: string = 'List';
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -80,7 +82,7 @@ import { GlobalVariableService }      from './global-variable.service';
             // Get the data values
             this.localWidget.slicerSelection.forEach( sl =>
                 this.dataValues.push({
-                    isSelected: sl.isSelected, 
+                    isSelected: sl.isSelected,
                     fieldValue: sl.fieldValue}
                     )
             );
@@ -214,6 +216,7 @@ import { GlobalVariableService }      from './global-variable.service';
         this.showSortFieldOrder = false;
         this.changeValues();
     }
+
 
     clickShowNumber(numberToShow: string) {
         // Clicked the number of records to show

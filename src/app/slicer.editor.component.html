@@ -97,6 +97,16 @@
                         </select>
                     </div>
 
+                    <br>
+                    <clr-icon shape="bars" (click)="showSlicerType=true"></clr-icon>
+                    <label>Type: </label> <i> {{ slicerSortFieldOrder }} </i>
+                    <div class="select textLine" *ngIf="showSlicerType">
+                        <select (click)="clickSlicerType($event.target.value)">
+                            <option>List</option>
+                            <option>Bins</option>
+                        </select>
+                    </div>
+
                 </div>
 
                 <div class="valueList">
