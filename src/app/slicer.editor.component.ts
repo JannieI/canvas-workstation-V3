@@ -30,6 +30,7 @@ import { GlobalVariableService }      from './global-variable.service';
     currentDatasources: Datasource[] = [];
     dataFields: string[] = [];
     dataValues: {isSelected: boolean; fieldValue: string;}[] = [];
+    dataBins: {name: string; fromValue: number; toValue: number}[] = [];
     containerHasTitle: boolean = true;
     localWidget: Widget;                            // W to modify, copied from selected
     selectedDatasourceID: number = -1;
@@ -197,6 +198,13 @@ import { GlobalVariableService }      from './global-variable.service';
 
         this.dataValues[index]['isSelected'] = ev.target.checked;
     }
+
+    clickDataBins(id: number, index: number, ev: any){
+        // Clicked a Bin, now ....
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDataBins', '@Start');
+
+    }
+
 
     clickSortField(sortField: string) {
         // Sort the fields

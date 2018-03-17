@@ -109,7 +109,7 @@
 
                 </div>
 
-                <div class="valueList">
+                <div class="valueList" *ngIf="slicerType=='List'">
                     <div class="headerLine">
                         Values for Field
                     </div>
@@ -128,6 +128,33 @@
                                     (click)="clickDataValue(row.id, i, $event)"
                                     >
                                 {{ row.fieldValue }}
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+                </div>
+
+                <div class="valueList" *ngIf="slicerType=='Bins'">
+                    <div class="headerLine">
+                        Bins
+                    </div>
+                    <clr-datagrid class="fieldsDataGrid datagrid-compact">
+                        <clr-dg-placeholder>
+                            No records ...
+                        </clr-dg-placeholder>
+
+                        <clr-dg-row
+                            *ngFor="let row of dataBins; let i = index"
+
+                            >
+                            <clr-dg-cell>
+                                <input type="checkbox"
+                                    [checked]="row.isSelected"
+                                    (click)="clickDataBins(row.id, i, $event)"
+                                    >
+                                {{ row.name }}
+                                {{ row.fromValue }}
+                                {{ row.toValue }}
+                                  
                             </clr-dg-cell>
                         </clr-dg-row>
                     </clr-datagrid>
