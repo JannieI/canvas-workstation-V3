@@ -58,13 +58,10 @@ import { GlobalVariableService }      from './global-variable.service';
         this.currentDatasources = this.globalVariableService.currentDatasources;
         this.dataFields = [];
         this.dataValues = [];
+        this.dataBins = [];
 
         // TODO - fix hardcoding
         // Get Bin values
-        this.dataBins.push({isSelected: true, name: 'Small', fromValue: 0, toValue: 10});
-        this.dataBins.push({isSelected: true, name: 'Medium', fromValue: 11, toValue: 35});
-        this.dataBins.push({isSelected: true, name: 'Large', fromValue: 35, toValue: 9999});
-console.log('xx dataBins', this.dataBins)
 
         if (this.newWidget) {
 
@@ -95,10 +92,15 @@ console.log('xx dataBins', this.dataBins)
                     )
             );
 
-            // Get Bin values
-            this.dataBins.push({isSelected:  true, name: 'Small', fromValue: 0, toValue: 10});
-            this.dataBins.push({isSelected:  true, name: 'Medium', fromValue: 11, toValue: 35});
-            this.dataBins.push({isSelected:  true, name: 'Large', fromValue: 35, toValue: 9999});
+            // Get the data Bins
+            this.localWidget.slicerBins.forEach( sl =>
+                this.dataBins.push({
+                    isSelected: sl.isSelected,
+                    name: sl.name,
+                    fromValue: sl.fromValue,
+                    toValue: sl.toValue}
+                    )
+            );
 console.log('xx dataBins', this.dataBins)
             // Set the selected items
             this.selectedDatasourceID = this.localWidget.datasourceID;
