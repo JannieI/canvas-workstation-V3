@@ -275,6 +275,7 @@ console.log('xx dataBins', this.dataBins)
         this.localWidget.slicerFieldName = this.selectedField;
         this.localWidget.slicerSelection = [];
 
+        // Store selected items
         this.dataValues.forEach(df => {
             if (df.isSelected) {
                 this.localWidget.slicerSelection.push(
@@ -283,6 +284,8 @@ console.log('xx dataBins', this.dataBins)
                     })
             };
         });
+
+        // Store bins
 
         if (this.newWidget) {
 

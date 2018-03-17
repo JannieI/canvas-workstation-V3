@@ -519,13 +519,14 @@ export class Widget {
     tableWidth: number;                 // in px, cuts of rest if bigger than this (for later use)
 
     // Slicer
-    slicerType: string;                     // Type of Slicer, ie List, Bin 
-    slicerNumberToShow: string;             // Nr fields (values) to show in Slicer - default = All
-    slicerSortField: string;                // Name of Field to sort Slicer dataset on
-    slicerSortFieldOrder: string;           // Sort order for Slicer dataset, Ascending, Descending
-    slicerFieldName: string;                // Name to filter on
+    slicerType: string;                 // Type of Slicer, ie List, Bin 
+    slicerNumberToShow: string;         // Nr fields (values) to show in Slicer - default = All
+    slicerSortField: string;            // Name of Field to sort Slicer dataset on
+    slicerSortFieldOrder: string;       // Sort order for Slicer dataset, Ascending, Descending
+    slicerFieldName: string;            // Name to filter on
     slicerSelection: {isSelected: boolean; fieldValue: string;}[];
-
+    slicerBins: {isSelected: boolean; name: string; fromValue: number; toValue: number}[];
+    
     // Shape
     shapeBullets: string[];             // Array of bullet points
     shapeCorner: number;                // Corner size in px, ie 15
