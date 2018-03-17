@@ -4,7 +4,7 @@
     [style.height.px]="slicer.containerHeight-2"
     [style.width.px]="slicer.containerWidth-2"
     >
-    <div class="slicerHolder"
+    <div class="slicerHolder" *ngIf="slicer.slicerType=='List'"
         [style.height.px]="slicer.containerHasTitle? slicer.containerHeight-34 : slicer.containerHeight-8"
         [style.width.px]="slicer.containerWidth-18"
         >
@@ -30,5 +30,34 @@
             </label>
         </div>
     </div>
+
+    <div class="slicerHolder" *ngIf="slicer.slicerType=='Bins'"
+        [style.height.px]="slicer.containerHasTitle? slicer.containerHeight-34 : slicer.containerHeight-8"
+        [style.width.px]="slicer.containerWidth-18"
+        >
+        <div *ngFor="let d of slicer.slicerBins; let i = index" class="slicerItem"
+            [style.background-color]="d.isSelected ? slicer.containerBackgroundcolor : 'white'"
+            [style.width.px]="slicer.containerWidth-18"
+            >
+            <input type="checkbox"
+                id="checkbox"
+                [checked]="d.isSelected"
+                (click)="clickSlicerItem(
+                    i,
+                    slicer.id,
+                    slicer.datasourceID,
+                    slicer.datasetID,
+                    d.fieldValue,
+                    $event)"
+                >
+            <label for="checkbox"
+                [style.background-color]="d.isSelected ? slicer.containerBackgroundcolor : 'white'"
+                >
+                {{ d.name }} ( {{d.fromValue }} to {{ d.toValue}} )
+            </label>
+        </div>
+    </div>
+
+
 </div>
 

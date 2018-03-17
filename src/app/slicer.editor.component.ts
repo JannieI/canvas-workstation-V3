@@ -240,9 +240,9 @@ import { GlobalVariableService }      from './global-variable.service';
             let maxValueBinMedium: number = Math.round(maxValueBinLarge / 3 * 2 * 100) / 100;
             let maxValueBinSmall: number = Math.round(maxValueBinLarge / 3 * 100) / 100;
 
-            let minValueBinSmall: number = Math.min(...fieldValues);
-            let minValueBinMedium: number = maxValueBinSmall + 0.01;
-            let minValueBinLarge: number = maxValueBinMedium + 0.01;
+            let minValueBinSmall: number = Math.round( (Math.min(...fieldValues) - 0.01) * 100) / 100;
+            let minValueBinMedium: number = maxValueBinSmall;
+            let minValueBinLarge: number = maxValueBinMedium;
 
             this.dataBins = [];
             // TODO - consider case where initial data is only 1 or 2 values
