@@ -2062,6 +2062,18 @@ export class AppComponent implements OnInit {
     clickMenuSlicerAdd() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerAdd', '@Start');
+                
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showStatusBarMessage(
+                this.globalVariableService.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
         
         this.menuOptionClickPreAction();
 
