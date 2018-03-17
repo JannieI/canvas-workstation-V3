@@ -30,7 +30,7 @@ import { GlobalVariableService }      from './global-variable.service';
     currentDatasources: Datasource[] = [];
     dataFields: string[] = [];
     dataValues: {isSelected: boolean; fieldValue: string;}[] = [];
-    dataBins: {name: string; fromValue: number; toValue: number}[] = [];
+    dataBins: {isSelected: boolean; name: string; fromValue: number; toValue: number}[] = [];
     containerHasTitle: boolean = true;
     localWidget: Widget;                            // W to modify, copied from selected
     selectedDatasourceID: number = -1;
@@ -58,6 +58,13 @@ import { GlobalVariableService }      from './global-variable.service';
         this.currentDatasources = this.globalVariableService.currentDatasources;
         this.dataFields = [];
         this.dataValues = [];
+
+        // TODO - fix hardcoding
+        // Get Bin values
+        this.dataBins.push({isSelected: true, name: 'Small', fromValue: 0, toValue: 10});
+        this.dataBins.push({isSelected: true, name: 'Medium', fromValue: 11, toValue: 35});
+        this.dataBins.push({isSelected: true, name: 'Large', fromValue: 35, toValue: 9999});
+console.log('xx dataBins', this.dataBins)
 
         if (this.newWidget) {
 
@@ -88,6 +95,11 @@ import { GlobalVariableService }      from './global-variable.service';
                     )
             );
 
+            // Get Bin values
+            this.dataBins.push({isSelected:  true, name: 'Small', fromValue: 0, toValue: 10});
+            this.dataBins.push({isSelected:  true, name: 'Medium', fromValue: 11, toValue: 35});
+            this.dataBins.push({isSelected:  true, name: 'Large', fromValue: 35, toValue: 9999});
+console.log('xx dataBins', this.dataBins)
             // Set the selected items
             this.selectedDatasourceID = this.localWidget.datasourceID;
             this.selectedDatasetID = this.localWidget.datasetID;
@@ -147,7 +159,7 @@ import { GlobalVariableService }      from './global-variable.service';
         });
         this.selectedDatasetID = Math.max(...dSetIDs);
 
-        // More into array
+        // Move into array
         this.dataValues = [];
         let tempData: any[] = this.globalVariableService.currentDatasets.filter(ds =>
             ds.id == this.selectedDatasetID)[0].dataRaw //['Origin'];

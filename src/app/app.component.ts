@@ -1857,6 +1857,18 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableAdd', '@Start');
         
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showStatusBarMessage(
+                this.globalVariableService.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         this.menuOptionClickPreAction();
 
         this.newWidget = true;
