@@ -29,6 +29,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
     currentDatasources: Datasource[] = [];
     dataFields: string[] = [];
+    dataFieldTypes: string[] = [];
     dataValues: {isSelected: boolean; fieldValue: string;}[] = [];
     dataBins: {isSelected: boolean; name: string; fromValue: number; toValue: number}[] = [];
     containerHasTitle: boolean = true;
@@ -36,6 +37,8 @@ import { GlobalVariableService }      from './global-variable.service';
     selectedDatasourceID: number = -1;
     selectedDatasetID: number = -1;
     selectedField: string = '';
+    selectedFieldType: string = '';
+    showMultipleBins: boolean = false;
     showNumber: boolean = false;
     showSlicerType: boolean = false;
     showSortFields: boolean = false;
@@ -57,8 +60,10 @@ import { GlobalVariableService }      from './global-variable.service';
 
         this.currentDatasources = this.globalVariableService.currentDatasources;
         this.dataFields = [];
+        this.dataFieldTypes = [];
         this.dataValues = [];
         this.dataBins = [];
+        this.slicerType = 'List';
 
         // TODO - fix hardcoding
         // Get Bin values
@@ -75,14 +80,23 @@ import { GlobalVariableService }      from './global-variable.service';
 
             this.localWidget = Object.assign({}, this.selectedWidget);
             this.dataFields = this.localWidget.dataFields;
+            this.dataFieldTypes = this.localWidget.dataFieldTypes;
             this.containerHasTitle = this.localWidget.containerHasTitle;
+            this.slicerType = this.localWidget.slicerType;
 
             // Get fields in this DS
             this.currentDatasources.forEach(ds => {
                 if (ds.id == this.localWidget.datasourceID) {
                     this.dataFields = ds.dataFields;
                 };
-            })
+            });
+
+            // Get field Typess in this DS
+            this.currentDatasources.forEach(ds => {
+                if (ds.id == this.localWidget.datasourceID) {
+                    this.dataFieldTypes = ds.dataFieldTypes;
+                };
+            });
 
             // Get the data values
             this.localWidget.slicerSelection.forEach( sl =>
@@ -131,6 +145,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
         // Get fields in this DS
         this.dataFields = this.currentDatasources[index].dataFields;
+        this.dataFieldTypes = this.currentDatasources[index].dataFieldTypes;
 
     }
 
@@ -140,6 +155,12 @@ import { GlobalVariableService }      from './global-variable.service';
 
         // Set field, and refresh
         this.selectedField = this.dataFields[index];
+        this.selectedFieldType = this.dataFieldTypes[index];
+        if (this.selectedFieldType == 'number') {
+            this.showMultipleBins = true;
+        } else {
+            this.showMultipleBins = false;
+        };
         this.changeValues();
     }
 
