@@ -82,7 +82,6 @@ import { GlobalVariableService }      from './global-variable.service';
             this.dataFields = this.localWidget.dataFields;
             this.dataFieldTypes = this.localWidget.dataFieldTypes;
             this.containerHasTitle = this.localWidget.containerHasTitle;
-            this.slicerType = this.localWidget.slicerType;
 
             // Get fields in this DS
             this.currentDatasources.forEach(ds => {
@@ -156,8 +155,11 @@ import { GlobalVariableService }      from './global-variable.service';
         // Set field, and refresh
         this.selectedField = this.dataFields[index];
         this.selectedFieldType = this.dataFieldTypes[index];
+
+        // Show type(s) of Slicer based on data type
         if (this.selectedFieldType == 'number') {
             this.showMultipleBins = true;
+
         } else {
             this.showMultipleBins = false;
         };
@@ -212,12 +214,17 @@ import { GlobalVariableService }      from './global-variable.service';
 
         // Get a distinct list
         // TODO - this could surely be done better
+        let fieldValues: number[] = [];
         tempData.forEach(t => {
             if (this.dataValues.findIndex(dt => dt.fieldValue == t[this.selectedField]) < 0) {
                 this.dataValues.push({
                     isSelected: true,
                     fieldValue: t[this.selectedField]
                 });
+
+                if (this.showMultipleBins) {
+                    fieldValues.push(t[this.selectedField]);
+                };
             };
         });
 
@@ -225,6 +232,30 @@ import { GlobalVariableService }      from './global-variable.service';
         if (this.slicerNumberToShow != 'All'  &&  this.slicerNumberToShow != null) {
             this.dataValues = this.dataValues.splice(0, +this.slicerNumberToShow);
         }
+
+        // Determine 3 bins
+        if (this.showMultipleBins) {
+        
+            let maxValueBinLarge: number = Math.max(...fieldValues);
+            let maxValueBinMedium: number = Math.round(maxValueBinLarge / 3 * 2 * 100) / 100;
+            let maxValueBinSmall: number = Math.round(maxValueBinLarge / 3 * 100) / 100;
+
+            let minValueBinSmall: number = Math.min(...fieldValues);
+            let minValueBinMedium: number = maxValueBinSmall + 0.01;
+            let minValueBinLarge: number = maxValueBinMedium + 0.01;
+
+            this.dataBins = [];
+            // TODO - consider case where initial data is only 1 or 2 values
+            this.dataBins.push({
+                isSelected: true, name: 'Small', fromValue: minValueBinSmall, toValue: maxValueBinSmall}
+            );
+            this.dataBins.push({
+                isSelected: true, name: 'Medium', fromValue: minValueBinMedium, toValue: maxValueBinMedium}
+            );
+            this.dataBins.push({
+                isSelected: true, name: 'Large', fromValue: minValueBinLarge, toValue: maxValueBinLarge}
+            );
+        };
     }
 
     clickDataValue(id: number, index: number, ev: any){

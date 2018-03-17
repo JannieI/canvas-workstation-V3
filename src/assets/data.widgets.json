@@ -231,7 +231,7 @@
         "tableRows": 1,
         "tableTop": 1,
         "tableWidth": 1,
-        "slicerType": "",
+        "slicerType": "List",
         "slicerNumberToShow": "All",
         "slicerSortField": "",
         "slicerSortFieldOrder": "Ascending",
