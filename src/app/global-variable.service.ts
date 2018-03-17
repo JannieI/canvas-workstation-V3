@@ -1578,22 +1578,65 @@ export class GlobalVariableService {
         // Loop on related Sl and filter data
         relatedSlicers.forEach(w => {
 
-            // Build array of selection values
-            let fieldValue: string[] = [];
-            w.slicerSelection.forEach(f => {
-                if (f.isSelected) { fieldValue.push(f.fieldValue)}
-            });
+            // Type = List
+            if (w.slicerType == 'List') {
+                // Build array of selection values
+                let fieldValue: string[] = [];
+                w.slicerSelection.forEach(f => {
+                    if (f.isSelected) { fieldValue.push(f.fieldValue)}
+                });
 
-            // Apply selected once, empty means all
-            if (fieldValue.length > 0) {
-                let tempData: any = [];
-                tempData = dataSet.data.filter(d =>
-                     fieldValue.indexOf(d[w.slicerFieldName]) >= 0
-                );
+                // Apply selected once, empty means all
+                if (fieldValue.length > 0) {
+                    let tempData: any = [];
+                    tempData = dataSet.data.filter(d =>
+                        fieldValue.indexOf(d[w.slicerFieldName]) >= 0
+                    );
+
+                    // Replace the filtered data, used by the graph
+                    dataSet.data = tempData;
+                };
+            };
+
+            // Type = Bins
+            if (w.slicerType == 'Bins') {
+
+                // Build array of selection values
+                let rangeValues: {fromValue: number; toValue:number}[] = [];
+                w.slicerBins.forEach(bn => {
+                    if (bn.isSelected) { 
+                        rangeValues.push(
+                            {fromValue: bn.fromValue, toValue: bn.toValue}
+                        )
+                    };
+                });
+console.log('xx rangeValues', rangeValues)
+                let filterBinData: any = [];
+
+                rangeValues.forEach(rv => {
+                    // filterBinData = startBinData.filter(d => {
+                    //     if (
+                    //         +d[w.slicerFieldName] >= rv.fromValue  
+                    //         &&  
+                    //         +d[w.slicerFieldName] <= rv.toValue) {
+                    //             return d
+                    //     };
+                    // });
+                    // endBinData.concat(filterBinData);
+                    dataSet.data.forEach(d => {
+                        if (+d[w.slicerFieldName] >= rv.fromValue  
+                            &&  
+                            +d[w.slicerFieldName] <= rv.toValue) {
+                                filterBinData.push(d);
+                        };
+                    });
+                    console.log('xx flt', w.slicerFieldName, rv.fromValue, rv.toValue, filterBinData)
+                });
 
                 // Replace the filtered data, used by the graph
-                dataSet.data = tempData;
-            }
+                dataSet.data = filterBinData;
+                console.log('xx end', w.slicerFieldName, filterBinData)
+            };
         });
 
         // Filter data in [W] related to this dSet
@@ -2445,8 +2488,6 @@ export class GlobalVariableService {
                                     }
                                 })
                             };
-
-
 
                             // TODO - fix when using DB
                             // Update slicerBins
