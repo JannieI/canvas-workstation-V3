@@ -42,7 +42,7 @@ import { GlobalVariableService }      from './global-variable.service';
     slicerNumberToShow: string = 'All';
     slicerSortField: string = '';
     slicerSortFieldOrder: string = 'Ascending';
-    slicerSlicerType: string = 'List';
+    slicerType: string = 'List';
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -91,7 +91,7 @@ import { GlobalVariableService }      from './global-variable.service';
             this.selectedDatasourceID = this.localWidget.datasourceID;
             this.selectedDatasetID = this.localWidget.datasetID;
             this.selectedField = this.localWidget.slicerFieldName;
-
+            this.slicerType = this.localWidget.slicerType,
             this.slicerNumberToShow = this.localWidget.slicerNumberToShow;
             this.slicerSortField = this.localWidget.slicerSortField;
             this.slicerSortFieldOrder = this.localWidget.slicerSortFieldOrder;
@@ -221,7 +221,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // Determine type of Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
 
-        this.slicerSlicerType = slicerType;
+        this.slicerType = slicerType;
         this.showSlicerType = false;
         this.changeValues();
     }

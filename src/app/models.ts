@@ -425,12 +425,8 @@ export class Widget {
     
     // Data related
     datasourceID: number;                   // Specific ID that this W points to.  For a W, 
+
     // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
-    slicerNumberToShow: string;             // Nr fields (values) to show in Slicer - default = All
-    slicerSortField: string;                // Name of Field to sort Slicer dataset on
-    slicerSortFieldOrder: string;           // Sort order for Slicer dataset, Ascending, Descending
-    slicerFieldName: string;                // Name to filter on
-    slicerSelection: {isSelected: boolean; fieldValue: string;}[];
     datasetID: number;                      // Specific ID that this W points to.  For a W, 
     // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
     // For a W, -1 = latest dataset of the DS-id.  For now, Sl must have a datsetID <> -1
@@ -521,6 +517,14 @@ export class Widget {
     tableRows: number;                  // Nr of rows in the data, excluding header: 0 means all
     tableTop: number;                   // in px (for later use)
     tableWidth: number;                 // in px, cuts of rest if bigger than this (for later use)
+
+    // Slicer
+    slicerType: string;                     // Type of Slicer, ie List, Bin 
+    slicerNumberToShow: string;             // Nr fields (values) to show in Slicer - default = All
+    slicerSortField: string;                // Name of Field to sort Slicer dataset on
+    slicerSortFieldOrder: string;           // Sort order for Slicer dataset, Ascending, Descending
+    slicerFieldName: string;                // Name to filter on
+    slicerSelection: {isSelected: boolean; fieldValue: string;}[];
 
     // Shape
     shapeBullets: string[];             // Array of bullet points

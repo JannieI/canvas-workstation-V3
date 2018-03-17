@@ -152,11 +152,6 @@ const widgetTemplate: Widget =
         "dataFields": null,
         "dataFieldTypes": null,
         "dataFieldLengths": null,
-        "slicerNumberToShow": '',
-        "slicerSortField": '',
-        "slicerSortFieldOrder": '',
-        "slicerFieldName": "",
-        "slicerSelection": null,
         "datasetID": null,
         "dataParameters": [],
         "reportID": null,
@@ -228,6 +223,12 @@ const widgetTemplate: Widget =
         "tableRows": 1,
         "tableTop": 1,
         "tableWidth": 1,
+        "slicerType": "",
+        "slicerNumberToShow": '',
+        "slicerSortField": '',
+        "slicerSortFieldOrder": '',
+        "slicerFieldName": "",
+        "slicerSelection": null,
         "shapeStroke": "",
         "shapeStrokeWidth": "",
         "shapeFill": "",
@@ -2914,11 +2915,6 @@ export class GlobalVariableService {
                 {key: 'hyperlinkDashboardID', 		type: 'int'},
                 {key: 'hyperlinkDashboardTabID', 	type: 'int'},
                 {key: 'datasourceID', 				type: 'int'},
-                {key: 'slicerNumberToShow', 		type: 'string'},
-                {key: 'sortField', 				    type: 'string'},
-                {key: 'sortFieldOrder', 			type: 'string'},
-                {key: 'slicerFieldName', 			type: 'string'},
-                {key: 'slicerSelection', 			type: 'array'},
                 {key: 'datasetID', 					type: 'int'},
                 {key: 'dataParameters', 			type: 'array'},
                 {key: 'reportID', 					type: 'int'},
@@ -2990,6 +2986,12 @@ export class GlobalVariableService {
                 {key: 'tableRows', 					type: 'int'},
                 {key: 'tableTop', 					type: 'int'},
                 {key: 'tableWidth', 				type: 'int'},
+                {key: 'slicerType', 				type: 'string'},
+                {key: 'slicerNumberToShow', 		type: 'string'},
+                {key: 'slicerSortField', 			type: 'string'},
+                {key: 'slicerSortFieldOrder', 		type: 'string'},
+                {key: 'slicerFieldName', 			type: 'string'},
+                {key: 'slicerSelection', 			type: 'array'},
                 {key: 'shapeStroke', 				type: 'string'},
                 {key: 'shapeStrokeWidth', 			type: 'string'},
                 {key: 'shapeFill', 					type: 'string'},
@@ -3271,11 +3273,6 @@ export class GlobalVariableService {
                 w.hyperlinkDashboardID = changedWidget.hyperlinkDashboardID;
                 w.hyperlinkDashboardTabID = changedWidget.hyperlinkDashboardTabID;
                 w.datasourceID = changedWidget.datasourceID;
-                w.slicerNumberToShow = changedWidget.slicerNumberToShow;
-                w.slicerSortField = changedWidget.slicerSortField;
-                w.slicerSortFieldOrder = changedWidget.slicerSortFieldOrder;
-                w.slicerFieldName = changedWidget.slicerFieldName;
-                w.slicerSelection = changedWidget.slicerSelection;
                 w.datasetID = changedWidget.datasetID;
                 w.data = changedWidget.data;
                 w.dataFields = changedWidget.dataFields;
@@ -3351,6 +3348,12 @@ export class GlobalVariableService {
                 w.tableRows = changedWidget.tableRows;
                 w.tableTop = changedWidget.tableTop;
                 w.tableWidth = changedWidget.tableWidth;
+                w.slicerType = changedWidget.slicerType,
+                w.slicerNumberToShow = changedWidget.slicerNumberToShow;
+                w.slicerSortField = changedWidget.slicerSortField;
+                w.slicerSortFieldOrder = changedWidget.slicerSortFieldOrder;
+                w.slicerFieldName = changedWidget.slicerFieldName;
+                w.slicerSelection = changedWidget.slicerSelection;
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeFill = changedWidget.shapeFill;
@@ -3394,11 +3397,6 @@ export class GlobalVariableService {
                 w.hyperlinkDashboardID = changedWidget.hyperlinkDashboardID;
                 w.hyperlinkDashboardTabID = changedWidget.hyperlinkDashboardTabID;
                 w.datasourceID = changedWidget.datasourceID;
-                w.slicerNumberToShow = changedWidget.slicerNumberToShow;
-                w.slicerSortField = changedWidget.slicerSortField;
-                w.slicerSortFieldOrder = changedWidget.slicerSortFieldOrder;
-                w.slicerFieldName = changedWidget.slicerFieldName;
-                w.slicerSelection = changedWidget.slicerSelection;
                 w.datasetID = changedWidget.datasetID;
                 w.data = changedWidget.data;
                 w.dataFields = changedWidget.dataFields;
@@ -3474,6 +3472,12 @@ export class GlobalVariableService {
                 w.tableRows = changedWidget.tableRows;
                 w.tableTop = changedWidget.tableTop;
                 w.tableWidth = changedWidget.tableWidth;
+                w.slicerType = changedWidget.slicerType,
+                w.slicerNumberToShow = changedWidget.slicerNumberToShow;
+                w.slicerSortField = changedWidget.slicerSortField;
+                w.slicerSortFieldOrder = changedWidget.slicerSortFieldOrder;
+                w.slicerFieldName = changedWidget.slicerFieldName;
+                w.slicerSelection = changedWidget.slicerSelection;
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeFill = changedWidget.shapeFill;
