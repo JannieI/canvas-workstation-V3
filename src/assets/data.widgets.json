@@ -237,7 +237,7 @@
         "slicerSortFieldOrder": "Ascending",
         "slicerFieldName": "Origin",
         "slicerSelection": "true,USA,true,Europe,true,Japan",
-        "slicerBins": null,
+        "slicerBins": "true,Small,0,10,true,Medium,11,20,true,Large,21,9999",
         "shapeStroke": "",
         "shapeStrokeWidth": 1,
         "shapeFill": "transparent",

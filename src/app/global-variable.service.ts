@@ -2421,6 +2421,9 @@ export class GlobalVariableService {
                                 w.dashboardTabIDs = [];
                                 dA.forEach(da => w.dashboardTabIDs.push(+da));
                             }
+
+                            // TODO - fix when using DB
+                            // Update slicerSelection
                             if (w.slicerSelection != null) {
                                 let s: string = w.slicerSelection.toString();
                                 let sF: string[] = s.split(',');
@@ -2442,6 +2445,47 @@ export class GlobalVariableService {
                                     }
                                 })
                             };
+
+
+
+                            // TODO - fix when using DB
+                            // Update slicerBins
+                            if (w.slicerBins != null) {
+                                let s: string = w.slicerBins.toString();
+                                let sF: string[] = s.split(',');
+                                let sO: {
+                                    isSelected: boolean; name: string; fromValue: number; toValue: number
+                                }[] = [];
+                                let i: number = 0;
+                                let oSel: boolean;
+                                let oName: string;
+                                let oFrom: number;
+                                let oTo: number;
+                                w.slicerBins = [];
+                                sF.forEach(s => {
+                                    i = i + 1;
+                                    if (i == 1) {
+                                        oSel = (s == 'true');
+                                    };
+                                    if (i == 2) {
+                                        oName = s;
+                                    };
+                                    if (i == 3) {
+                                        oFrom = +s;
+                                    };
+                                    if (i == 4) {
+                                        oTo  = +s;
+                                        i = 0;
+                                        let o: {isSelected: boolean; name: string; fromValue: number; toValue: number} = 
+                                            {isSelected: oSel, name: oName, fromValue: oFrom, toValue: oTo};
+                                            
+                                        w.slicerBins.push(o);
+                                    }
+                                })
+                            };
+
+
+
 
                         });
 
