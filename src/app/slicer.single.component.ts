@@ -55,6 +55,7 @@ export class SlicerSingleComponent {
     }
 
     clickSlicerItem(
+        slicerType: string,
         index: number,
         id: number,
         datasourceID: number,
@@ -69,12 +70,20 @@ export class SlicerSingleComponent {
         this.slicerItemClicked = true;
 
         // Update Sl
-        this.slicer.slicerSelection.forEach(sel => {
-            if (sel.fieldValue == fieldValue) {
-                sel.isSelected = !sel.isSelected;
-            }
-        });
-
+        if (slicerType == 'Bins') {
+            this.slicer.slicerBins.forEach(sel => {
+                if (sel.name == fieldValue) {
+                    sel.isSelected = !sel.isSelected;
+                }
+            });
+        };
+        if (slicerType == 'List') {
+            this.slicer.slicerSelection.forEach(sel => {
+                if (sel.fieldValue == fieldValue) {
+                    sel.isSelected = !sel.isSelected;
+                }
+            });
+        };
         // Adjust the global Sl selection, for next time
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.id == id) {

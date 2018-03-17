@@ -16,6 +16,7 @@
                 id="checkbox"
                 [checked]="d.isSelected"
                 (click)="clickSlicerItem(
+                    slicer.slicerType,
                     i,
                     slicer.id,
                     slicer.datasourceID,
@@ -43,11 +44,12 @@
                 id="checkbox"
                 [checked]="d.isSelected"
                 (click)="clickSlicerItem(
+                    slicer.slicerType,
                     i,
                     slicer.id,
                     slicer.datasourceID,
                     slicer.datasetID,
-                    d.fieldValue,
+                    d.name,
                     $event)"
                 >
             <label for="checkbox"
