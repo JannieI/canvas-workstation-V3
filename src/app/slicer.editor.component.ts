@@ -217,6 +217,14 @@ import { GlobalVariableService }      from './global-variable.service';
         this.changeValues();
     }
 
+    clickSlicerType(slicerType: string) {
+        // Determine type of Slicer
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
+
+        this.slicerSlicerType = slicerType;
+        this.showSlicerType = false;
+        this.changeValues();
+    }
 
     clickShowNumber(numberToShow: string) {
         // Clicked the number of records to show
