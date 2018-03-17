@@ -101,7 +101,7 @@ import { GlobalVariableService }      from './global-variable.service';
                     toValue: sl.toValue}
                     )
             );
-console.log('xx dataBins', this.dataBins)
+
             // Set the selected items
             this.selectedDatasourceID = this.localWidget.datasourceID;
             this.selectedDatasetID = this.localWidget.datasetID;
@@ -216,6 +216,8 @@ console.log('xx dataBins', this.dataBins)
     clickDataBins(id: number, index: number, ev: any){
         // Clicked a Bin, now ....
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDataBins', '@Start');
+
+        this.dataBins[index]['isSelected'] = ev.target.checked;
 
     }
 
