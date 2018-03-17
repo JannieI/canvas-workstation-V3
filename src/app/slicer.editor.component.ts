@@ -273,7 +273,9 @@ console.log('xx dataBins', this.dataBins)
         this.localWidget.slicerSortFieldOrder = this.slicerSortFieldOrder;
         this.localWidget.titleText = this.selectedField;
         this.localWidget.slicerFieldName = this.selectedField;
+        this.localWidget.slicerType = this.slicerType;
         this.localWidget.slicerSelection = [];
+        this.localWidget.slicerBins = [];
 
         // Store selected items
         this.dataValues.forEach(df => {
@@ -286,6 +288,17 @@ console.log('xx dataBins', this.dataBins)
         });
 
         // Store bins
+        this.dataBins.forEach(bn => {
+            if (bn.isSelected) {
+                this.localWidget.slicerBins.push(
+                    {
+                        isSelected: bn.isSelected,
+                        name: bn.name, 
+                        fromValue: bn.fromValue, 
+                        toValue: bn.toValue
+                    })
+            };
+        });
 
         if (this.newWidget) {
 
