@@ -42,6 +42,7 @@ export class WidgetTitleComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.localWidget = Object.assign({}, this.selectedWidget);
+        console.log('xx localW', this.localWidget)
     }
 
   	clickClose() {
