@@ -39,6 +39,15 @@ export class DashboardDiscardComponent implements OnInit {
         )
     }
 
+    ngOnDestroy() {
+        // Cleanup just before Angular destroys the directive/component. 
+        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
+        // Called just before Angular destroys the directive/component.
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
+
+        this.globalVariableService.isFirstTimeDashboardDiscard.unsubscribe();
+    }
+    
     clickClose(action: string) {
         console.log('clickClose')
 

@@ -459,7 +459,7 @@ export class AppComponent implements OnInit {
         // Cleanup just before Angular destroys the directive/component. 
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
         this.globalVariableService.presentationMode.unsubscribe();
         this.globalVariableService.showGrid.unsubscribe();
