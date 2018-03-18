@@ -145,7 +145,8 @@
                 </div>
 
                 <div class="gridShape" *ngIf="showBullets">
-                    <ul [style.list-style-type]="localWidget.shapeBulletStyleType"
+                    <ul *ngIf="!localWidget.shapeBulletsOrdered"
+                        [style.list-style-type]="localWidget.shapeBulletStyleType"
                         [style.margin-left.px]="30"
                         [style.margin-top.px]="30"
                         [style.font-family]="localWidget.shapeFontFamily"
@@ -155,6 +156,16 @@
                             {{ row }}
                         </li>
                     </ul>
+                    <ol *ngIf="localWidget.shapeBulletsOrdered" 
+                        [style.margin-left.px]="30"
+                        [style.margin-top.px]="30"
+                        [style.font-family]="localWidget.shapeFontFamily"
+                        [style.font-size.px]="localWidget.shapeFontSize"
+                            >
+                        <li *ngFor="let row of localWidget.shapeBullets">
+                            {{ row }}
+                        </li>
+                    </ol>                    
                 </div>
 
                 <div class="gridShape" *ngIf="showValue">
@@ -352,6 +363,13 @@
                             <input type="text" 
                                 placeholder="disc, circle, square, none"
                                 [(ngModel)]="localWidget.shapeBulletStyleType"
+                                >
+                        </div>
+                        <div class="propertyLine">
+                            Ordered?:
+                            <input type="text" 
+                                placeholder="true, false"
+                                [(ngModel)]="localWidget.shapeBulletsOrdered"
                                 >
                         </div>
                         

@@ -238,6 +238,7 @@ const widgetTemplate: Widget =
         "shapeValue": "",
         "shapeBullets": [],
         "shapeBulletStyleType": "",
+        "shapeBulletsOrdered": false,
         "shapeOpacity": 1,
         "shapeRotation": 0,
         "shapeCorner": 15,
@@ -3101,6 +3102,7 @@ export class GlobalVariableService {
                 {key: 'shapeValue', 				type: 'string'},
                 {key: 'shapeBullets', 				type: 'string'},
                 {key: 'shapeBulletStyleType', 		type: 'int'},
+                {key: 'shapeBulletsOrdered', 		type: 'bool'},
                 {key: 'shapeOpacity', 				type: 'int'},
                 {key: 'shapeRotation', 				type: 'int'},
                 {key: 'shapeCorner', 				type: 'int'},
@@ -3467,6 +3469,7 @@ export class GlobalVariableService {
                 w.shapeValue = changedWidget.shapeValue;
                 w.shapeBullets = changedWidget.shapeBullets;
                 w.shapeBulletStyleType = changedWidget.shapeBulletStyleType;
+                w.shapeBulletsOrdered = changedWidget.shapeBulletsOrdered;
                 w.shapeOpacity = changedWidget.shapeOpacity;
                 w.shapeRotation = changedWidget.shapeRotation;
                 w.shapeCorner = changedWidget.shapeCorner;
@@ -3595,6 +3598,7 @@ export class GlobalVariableService {
                 w.shapeValue = changedWidget.shapeValue;
                 w.shapeBullets = changedWidget.shapeBullets;
                 w.shapeBulletStyleType = changedWidget.shapeBulletStyleType;
+                w.shapeBulletsOrdered = changedWidget.shapeBulletsOrdered;
                 w.shapeOpacity = changedWidget.shapeOpacity;
                 w.shapeRotation = changedWidget.shapeRotation;
                 w.shapeCorner = changedWidget.shapeCorner;
