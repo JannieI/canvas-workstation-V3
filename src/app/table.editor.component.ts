@@ -114,6 +114,15 @@ import { GlobalVariableService }      from './global-variable.service';
         );
     }
 
+    ngOnDestroy() {
+        // Cleanup just before Angular destroys the directive/component. 
+        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
+        // Called just before Angular destroys the directive/component.
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
+
+        this.globalVariableService.presentationMode.unsubscribe();
+    }
+    
     ngAfterViewInit() {
         // ngAfterViewInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
