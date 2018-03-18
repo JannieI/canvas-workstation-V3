@@ -27,6 +27,7 @@ export class ShapeEditComponent implements OnInit {
     @Input() newWidget: boolean;
     @Input() selectedWidget: Widget;
 
+    bulletIndex: number = 0;
     bulletValue: string = '';
     editBulletItem: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
@@ -164,7 +165,10 @@ export class ShapeEditComponent implements OnInit {
         // TODO - fix index, somehow not working!
         this.localWidget.shapeBullets = this.localWidget.shapeBullets.filter(b => b != item);
         if (this.localWidget.shapeBullets.length == 0) {
-            this.localWidget.shapeBullets = ["Text ..."];
+            this.localWidget.shapeBullets = [];
+            this.bulletValue = '';
+            this.editBulletItem = false;
+            
         };
     }
 
@@ -172,29 +176,43 @@ export class ShapeEditComponent implements OnInit {
         // Add item to bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletAdd', '@Start');
 
-        // TODO - this is clumsy methinks - there must be a better way
-        let tempArr: string[] = [];
-        for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
+        // // TODO - this is clumsy methinks - there must be a better way
+        // let tempArr: string[] = [];
+        // for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
 
-            if (this.localWidget.shapeBullets[i] == item) {
+        //     if (this.localWidget.shapeBullets[i] == item) {
 
-                tempArr.push(this.localWidget.shapeBullets[i]);
-                tempArr.push('');
-            } else {
-                tempArr.push(this.localWidget.shapeBullets[i]);
-            };
-        };
-        this.localWidget.shapeBullets = tempArr;
-        this.editBulletItem = true;
+        //         tempArr.push(this.localWidget.shapeBullets[i]);
+        //         tempArr.push('');
+        //     } else {
+        //         tempArr.push(this.localWidget.shapeBullets[i]);
+        //     };
+        // };
+        // this.localWidget.shapeBullets = tempArr;
+        this.bulletValue = '';
+        this.editBulletItem = false;
     }
 
     clickBulletEdit(index: number, item: string) {
         // Edit item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEdit', '@Start');
 
+        this.bulletIndex = index;
         this.bulletValue = this.localWidget.shapeBullets[index];
         this.editBulletItem = true;
         
+    }
+    clickUpdate() {
+        // Add item to bullet list
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
+
+        this.localWidget.shapeBullets[this.bulletIndex] = this.bulletValue;
+    }
+    clickAdd() {
+        // Add item to bullet list
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        this.localWidget.shapeBullets.push(this.bulletValue);
     }
 
     clickEditDone() {

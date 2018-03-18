@@ -152,7 +152,7 @@
                         [style.font-family]="localWidget.shapeFontFamily"
                         [style.font-size.px]="localWidget.shapeFontSize"
                             >
-                        <li *ngFor="let row of localWidget.shapeBullets; let i = item">
+                        <li *ngFor="let row of localWidget.shapeBullets; let i = index">
                             <clr-icon shape="times" 
                                 (click)="clickBulletDelete(i, row)">
                             </clr-icon>
@@ -171,7 +171,7 @@
                         [style.font-family]="localWidget.shapeFontFamily"
                         [style.font-size.px]="localWidget.shapeFontSize"
                             >
-                        <li *ngFor="let row of localWidget.shapeBullets; let i = item">
+                        <li *ngFor="let row of localWidget.shapeBullets; let i = index">
                             <clr-icon shape="times" 
                                 (click)="clickBulletDelete(i, row)">
                             </clr-icon>
@@ -358,10 +358,6 @@
                 <div class="gridShapeProperties" *ngIf="showBullets">
                     <div class="propertyLine">
                         
-                        <input *ngIf="editBulletItem" [(ngModel)]="bulletValue">
-                        <button  *ngIf="editBulletItem" type="button" class="closeButton" (click)="clickEditDone()">
-                            Go
-                        </button>
                         <div class="propertyLine">
                             Font Size:
                             <input type="text" 
@@ -390,8 +386,14 @@
                                 [(ngModel)]="localWidget.shapeBulletsOrdered"
                                 >
                         </div>
-                        
-                        <div
+
+                        <input [(ngModel)]="bulletValue">
+                        <button type="button" class="closeButton">
+                            <span  *ngIf="editBulletItem" (click)="clickUpdate()">Update</span> 
+                            <span  *ngIf="!editBulletItem" (click)="clickAdd()">Add</span> 
+                        </button>
+
+                        <!-- <div
                             [style.margin-left.px]="30"
                             [style.margin-top.px]="30"
                             >
@@ -405,7 +407,7 @@
                                 {{ row }}
                                 
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
