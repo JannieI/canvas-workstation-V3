@@ -490,24 +490,6 @@ export class AppComponent implements OnInit {
         };
     }
 
-    handleCloseWidgetEditor(changedWidget: Widget) {    //widgetsToRefresh: number) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
-
-        // Note: amend this.currentWidgets as it is a ByRef to 
-        // this.gv.currentWidgets, which Angular does not register that it has changed
-
-        // for (var i = 0; i < this.currentWidgets.length; i++) {
-        //     if (this.currentWidgets[i].id == changedWidget.id) {
-        //         this.currentWidgets.splice(i, 1);
-        //     };
-        // };
-        // this.currentWidgets.push(changedWidget);
-        this.globalVariableService.changedWidget.next(changedWidget);
-
-        this.showModalWidgetEditor = false;
-    }
-
     handleCloseDashboardNew(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardNew', '@Start');
@@ -683,6 +665,34 @@ export class AppComponent implements OnInit {
         this.globalVariableService.changedWidget.next(changedWidget);
         
         this.showModalDataSlicers = false;
+    }
+
+    handleCloseWidgetTitle(changedWidget: Widget) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalWidgetTitle', '@Start');
+
+        this.globalVariableService.changedWidget.next(changedWidget);
+        
+        this.showModalDataSlicers = false;
+    }
+
+
+    handleCloseWidgetEditor(changedWidget: Widget) {    //widgetsToRefresh: number) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
+
+        // Note: amend this.currentWidgets as it is a ByRef to 
+        // this.gv.currentWidgets, which Angular does not register that it has changed
+
+        // for (var i = 0; i < this.currentWidgets.length; i++) {
+        //     if (this.currentWidgets[i].id == changedWidget.id) {
+        //         this.currentWidgets.splice(i, 1);
+        //     };
+        // };
+        // this.currentWidgets.push(changedWidget);
+        this.globalVariableService.changedWidget.next(changedWidget);
+
+        this.showModalWidgetEditor = false;
     }
 
     handleCloseWidgetTablist(tabIDs: number[]) {
