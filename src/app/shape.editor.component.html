@@ -121,9 +121,10 @@
                 </div>
 
                 <div class="gridShape" *ngIf="showArrow"
-                    [style.transform]="'rotate(90deg)'"
                     >
-                    <svg width="300" height="300">
+                    <svg width="300" height="300"
+                        [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
+                        >
                         <defs>
                             <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
                             <path d="M0,0 L0,6 L9,3 z" fill="black" />
@@ -311,14 +312,17 @@
 
                 <div class="gridShapeProperties" *ngIf="showArrow">
                     <div class="propertyLine">
-                        Direction ....
+                        Direction:
+                        <input type="text" [(ngModel)]="localWidget.shapeRotation"
+                            placeholder="Degrees rotation"
+                            >
                     </div>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showImage">
                     <div class="propertyLine">
                         Image:
-                        <input type="text" id="formFields_7" placeholder="Co. logo">
+                        <input type="text" placeholder="Co. logo">
                     </div>
                 </div>
 
