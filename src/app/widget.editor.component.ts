@@ -246,6 +246,15 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
     }
 
+    ngOnDestroy() {
+        // Cleanup just before Angular destroys the directive/component. 
+        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
+        // Called just before Angular destroys the directive/component.
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
+
+        this.globalVariableService.presentationMode.unsubscribe();
+    }
+  
     renderGraph(definition: any) {
         // Render the graph on the form
         this.globalFunctionService.printToConsole(this.constructor.name,'renderGraph', '@Start');
