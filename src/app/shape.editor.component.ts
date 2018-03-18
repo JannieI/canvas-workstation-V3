@@ -215,38 +215,6 @@ export class ShapeEditComponent implements OnInit {
         this.localWidget.shapeBullets.push(this.bulletValue);
     }
 
-    clickEditDone() {
-        // Add item to bullet list
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
-
-        // TODO - this must be done nicer
-        if (this.bulletValue != '') {
-            for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
-                if (this.localWidget.shapeBullets[i] == '') {
-                    this.localWidget.shapeBullets[i] = this.bulletValue;
-                    break;
-                };
-            };
-        } else {
-            let index: number = -1;
-            for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
-
-                if (this.localWidget.shapeBullets[i] == '') {
-                    index = i;
-                    break;
-                };
-            };
-            if (index >= 0) {
-                this.localWidget.shapeBullets.splice(index,1);
-            };
-        };
-
-        // Hide input area
-        this.bulletValue = '';
-        this.editBulletItem = false;
-
-    }
-
     clickSave() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
