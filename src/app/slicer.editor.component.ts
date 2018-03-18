@@ -33,11 +33,13 @@ import { GlobalVariableService }      from './global-variable.service';
     dataValues: {isSelected: boolean; fieldValue: string;}[] = [];
     dataBins: {isSelected: boolean; name: string; fromValue: number; toValue: number}[] = [];
     containerHasTitle: boolean = true;
+    containerslicerAddRest: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     selectedDatasourceID: number = -1;
     selectedDatasetID: number = -1;
     selectedField: string = '';
     selectedFieldType: string = '';
+    showContainerslicerAddRest: boolean = false;
     showMultipleBins: boolean = false;
     showNumber: boolean = false;
     showSlicerType: boolean = false;
@@ -82,6 +84,7 @@ import { GlobalVariableService }      from './global-variable.service';
             this.dataFields = this.localWidget.dataFields;
             this.dataFieldTypes = this.localWidget.dataFieldTypes;
             this.containerHasTitle = this.localWidget.containerHasTitle;
+            this.containerslicerAddRest = this.localWidget.slicerAddRest;
 
             // Get fields in this DS
             this.currentDatasources.forEach(ds => {
@@ -123,7 +126,11 @@ import { GlobalVariableService }      from './global-variable.service';
             this.slicerNumberToShow = this.localWidget.slicerNumberToShow;
             this.slicerSortField = this.localWidget.slicerSortField;
             this.slicerSortFieldOrder = this.localWidget.slicerSortFieldOrder;
-
+            if (this.slicerType == 'List') {
+                this.showContainerslicerAddRest = true;
+            } else {
+                this.showContainerslicerAddRest = false
+            };
             this.changeValues();
         };
 
@@ -161,8 +168,15 @@ import { GlobalVariableService }      from './global-variable.service';
             this.showMultipleBins = true;
 
         } else {
+            this.slicerType = 'List';
             this.showMultipleBins = false;
         };
+        if (this.slicerType == 'List') {
+            this.showContainerslicerAddRest = true;
+        } else {
+            this.showContainerslicerAddRest = false
+        };
+
         this.changeValues();
     }
 
@@ -274,10 +288,15 @@ import { GlobalVariableService }      from './global-variable.service';
         // Clicked a Bin, now ....
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDataBins', '@Start');
 
+        if (this.slicerType == 'List') {
+            this.showContainerslicerAddRest = true;
+        } else {
+            this.showContainerslicerAddRest = false
+        };
+
         this.dataBins[index]['isSelected'] = ev.target.checked;
 
     }
-
 
     clickSortField(sortField: string) {
         // Sort the fields
@@ -329,6 +348,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
         // Set Slicer related data
         this.localWidget.containerHasTitle = this.containerHasTitle;
+        this.localWidget.slicerAddRest = this.containerslicerAddRest;
         this.localWidget.slicerNumberToShow = this.slicerNumberToShow;
         this.localWidget.slicerSortField = this.slicerSortField;
         this.localWidget.slicerSortFieldOrder = this.slicerSortFieldOrder;

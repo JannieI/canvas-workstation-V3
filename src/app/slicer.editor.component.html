@@ -98,13 +98,13 @@
                     </div>
 
                     <br>
-                    <div *ngIf="showMultipleBins">
+                    <div>
                         <clr-icon shape="bars" (click)="showSlicerType=true"></clr-icon>
                         <label>Type: </label> <i> {{ slicerType }} </i>
                         <div class="select textLine" *ngIf="showSlicerType">
                             <select (click)="clickSlicerType($event.target.value)">
                                 <option>List</option>
-                                <option>Bins</option>
+                                <option *ngIf="showMultipleBins">Bins</option>
                             </select>
                         </div>
                     </div>
@@ -190,6 +190,13 @@
                         </div>
                     </div>
 
+                    <div class="slicerAddRest" *ngIf="showContainerslicerAddRest">
+                        <div class="checkbox">
+                            <input type="checkbox" id="checkSlicerAddRest" [(ngModel)]="containerslicerAddRest">
+                            <label for="checkSlicerAddRest">Add Rest</label>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="slicerButton">
                     <button
