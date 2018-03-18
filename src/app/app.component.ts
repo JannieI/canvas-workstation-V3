@@ -10,6 +10,7 @@ import { HostListener }               from '@angular/core';
 import { Inject }                     from "@angular/core";
 import { Input }                      from "@angular/core";
 import { OnInit }                     from '@angular/core';
+import { OnDestroy }                  from '@angular/core';
 import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
@@ -454,6 +455,20 @@ export class AppComponent implements OnInit {
         // }
     }
 
+    ngOnDestroy() {
+        // Cleanup just before Angular destroys the directive/component. 
+        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
+        // Called just before Angular destroys the directive/component.
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
+
+        this.globalVariableService.presentationMode.unsubscribe();
+        this.globalVariableService.showGrid.unsubscribe();
+        this.globalVariableService.hasDatasources.unsubscribe();
+        this.globalVariableService.editMode.unsubscribe();
+        this.globalVariableService.changedWidget.unsubscribe();
+        this.globalVariableService.currentDashboardInfo.unsubscribe();
+
+    }
     
     // ***********************  HANDLE RETURN AFTER MODAL FORM CLOSES ************************ //
     
@@ -2074,7 +2089,7 @@ export class AppComponent implements OnInit {
             );
             return;
         };
-        
+
         this.menuOptionClickPreAction();
 
         this.newWidget = true;
