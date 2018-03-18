@@ -1610,19 +1610,11 @@ export class GlobalVariableService {
                         )
                     };
                 });
-console.log('xx rangeValues', rangeValues)
+
+                // Loop on Bins, and add filtered ones
                 let filterBinData: any = [];
 
                 rangeValues.forEach(rv => {
-                    // filterBinData = startBinData.filter(d => {
-                    //     if (
-                    //         +d[w.slicerFieldName] >= rv.fromValue  
-                    //         &&  
-                    //         +d[w.slicerFieldName] <= rv.toValue) {
-                    //             return d
-                    //     };
-                    // });
-                    // endBinData.concat(filterBinData);
                     dataSet.data.forEach(d => {
                         if (+d[w.slicerFieldName] >= rv.fromValue  
                             &&  
@@ -1630,14 +1622,13 @@ console.log('xx rangeValues', rangeValues)
                                 filterBinData.push(d);
                         };
                     });
-                    console.log('xx flt', w.slicerFieldName, rv.fromValue, rv.toValue, filterBinData)
                 });
 
                 // Replace the filtered data, used by the graph
                 dataSet.data = filterBinData;
-                console.log('xx end', w.slicerFieldName, filterBinData)
             };
         });
+        console.log('xx filt Sl', this.currentWidgets, dataSet)
 
         // Filter data in [W] related to this dSet
         // TODO - cater later for cases for we use graphUrl
@@ -1648,7 +1639,7 @@ console.log('xx rangeValues', rangeValues)
             }
         });
 
-        // console.log('xx filt Sl', this.currentWidgets, dataSet)
+        console.log('xx filt Sl', this.currentWidgets, dataSet)
         return dataSet;
     }
 
@@ -3589,7 +3580,7 @@ console.log('xx rangeValues', rangeValues)
                 w.widgetUpdatedBy = changedWidget.widgetUpdatedBy;
             };
         });
-        console.log('xx this.currentWidgets', this.currentWidgets)
+        // console.log('xx this.currentWidgets', this.currentWidgets)
     }
 
     sleep(milliseconds: number) {
