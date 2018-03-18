@@ -347,7 +347,14 @@
                                 [(ngModel)]="localWidget.shapeFontFamily"
                                 >
                         </div>
-        
+                        <div class="propertyLine">
+                            Item Marker:
+                            <input type="text" 
+                                placeholder="disc, circle, square, none"
+                                [(ngModel)]="localWidget.shapeBulletStyleType"
+                                >
+                        </div>
+                        
                         <div
                             [style.margin-left.px]="30"
                             [style.margin-top.px]="30"
