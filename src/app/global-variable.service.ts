@@ -230,6 +230,7 @@ const widgetTemplate: Widget =
         "slicerFieldName": "",
         "slicerSelection": null,
         "slicerBins": null,
+        "slicerAddRest": false,
         "shapeStroke": "",
         "shapeStrokeWidth": "",
         "shapeFill": "",
@@ -3064,6 +3065,7 @@ export class GlobalVariableService {
                 {key: 'tableTop', 					type: 'int'},
                 {key: 'tableWidth', 				type: 'int'},
                 {key: 'slicerType', 				type: 'string'},
+                {key: 'slicerAddRest', 				type: 'bool'},
                 {key: 'slicerNumberToShow', 		type: 'string'},
                 {key: 'slicerSortField', 			type: 'string'},
                 {key: 'slicerSortFieldOrder', 		type: 'string'},
@@ -3433,6 +3435,7 @@ export class GlobalVariableService {
                 w.slicerFieldName = changedWidget.slicerFieldName;
                 w.slicerSelection = changedWidget.slicerSelection;
                 w.slicerBins = changedWidget.slicerBins;
+                w.slicerAddRest = changedWidget.slicerAddRest;
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeFill = changedWidget.shapeFill;
@@ -3558,6 +3561,7 @@ export class GlobalVariableService {
                 w.slicerFieldName = changedWidget.slicerFieldName;
                 w.slicerSelection = changedWidget.slicerSelection;
                 w.slicerBins = changedWidget.slicerBins;
+                w.slicerAddRest = changedWidget.slicerAddRest;
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeFill = changedWidget.shapeFill;

@@ -526,7 +526,8 @@ export class Widget {
     slicerFieldName: string;            // Name to filter on
     slicerSelection: {isSelected: boolean; fieldValue: string;}[];
     slicerBins: {isSelected: boolean; name: string; fromValue: number; toValue: number}[];
-    
+    slicerAddRest: boolean;             // True to add everything NOT in slicerSelection
+
     // Shape
     shapeBullets: string[];             // Array of bullet points
     shapeCorner: number;                // Corner size in px, ie 15
