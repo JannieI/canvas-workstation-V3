@@ -3639,6 +3639,14 @@ export class AppComponent implements OnInit {
         this.showPopupMessage = false;
     }
 
+    menuOptionClickPostAction() {
+        // Actions performed at the END of a menu item click, POST any other work
+        this.globalFunctionService.printToConsole(this.constructor.name,'menuOptionClickPostAction', '@Start');
+        
+        this.modalFormOpen = false;
+        this.showPopupMessage = false;
+    }
+
     clickGotIt() {
         // Unshow popup message to help user get into Edit Mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
