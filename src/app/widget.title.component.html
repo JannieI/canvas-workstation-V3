@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-	<div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
 
             <div class="gridOverall">
@@ -8,8 +8,6 @@
                         X
                     </button>
                 </div>
-
-                Edit the Title
 
                 <div class="titleHeader">
                     <b>Title properties</b>
@@ -63,14 +61,14 @@
                 <button 
                     type="button"
                     class="btn btn-secondary titleButtonCancel"
-                    (click)="showtitle=false"
+                    (click)="clickClose()"
                     >
                     Cancel
                 </button>
                 <button
                     type="button"
                     class="btn btn-primary titleButtonSave"
-                    (click)="showtitle=false"
+                    (click)="clickSave()"
                     >
                     Save
                 </button>

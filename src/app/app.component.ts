@@ -671,7 +671,9 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalWidgetTitle', '@Start');
 
-        this.globalVariableService.changedWidget.next(changedWidget);
+        if (changedWidget != null) {
+            this.globalVariableService.changedWidget.next(changedWidget);
+        };
         
         this.showTitleForm = false;
     }

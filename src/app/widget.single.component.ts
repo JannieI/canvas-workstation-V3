@@ -96,8 +96,8 @@ export class WidgetSingleComponent {
         //       do the work.  Else the incorrect W will be refreshed
         this.globalFunctionService.printToConsole(this.constructor.name,'refreshWidget', '@Start');
 
-        console.log('xx refreshWidget start- calling, this.widget, w, selectedWidget: ', 
-            callingRoutine, this.widget!=null? this.widget.id : 'this.widget = null', 
+        console.log('xx refreshWidget start- calling, this.widget, w, selectedWidget: ',
+            callingRoutine, this.widget!=null? this.widget.id : 'this.widget = null',
             w!=null? w.id : 'w = null')
         if (w != null) {
             this.widget = w;

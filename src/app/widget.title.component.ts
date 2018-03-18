@@ -10,6 +10,7 @@ import { ViewChild }                  from '@angular/core';
 
 // Our models
 import { Datasource }                 from './models';
+import { Widget }                     from './models'
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -25,10 +26,10 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetTitleComponent implements OnInit {
 
-    @Input() currentSlicerSpec: any;
-    @Output() formWidgetTitleClosed: EventEmitter<string> = new EventEmitter();
+    @Input() selectedWidget: Widget;
+    @Output() formWidgetTitleClosed: EventEmitter<Widget> = new EventEmitter();
 
-    @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
+    localWidget: Widget;                            // W to modify, copied from selected
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -40,19 +41,31 @@ export class WidgetTitleComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.localWidget = Object.assign({}, this.selectedWidget);
     }
 
   	clickClose() {
         // Close the form, no action
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-  	  	this.formWidgetTitleClosed.emit();
+  	  	this.formWidgetTitleClosed.emit(null);
     }
 
-    clickDelete() {
-        // Confirmed, delete the Slicer
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+    clickSave() {
+        // Save and close the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.formWidgetTitleClosed.emit('Delete');
+        // Tell user
+        this.globalVariableService.statusBarMessage.next(
+            {
+                message: 'Slicer Saved',
+                uiArea: 'StatusBar',
+                classfication: 'Info',
+                timeout: 3000,
+                defaultMessage: ''
+            }
+        );
+
+        this.formWidgetTitleClosed.emit(this.localWidget);
     }
   }

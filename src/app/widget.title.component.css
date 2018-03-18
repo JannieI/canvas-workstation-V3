@@ -128,7 +128,7 @@
     }
 
     .titleButtonCancel {
-        grid-column-start: 7;
+        grid-column-start: 6;
         grid-column-end: 9;
         grid-row-start: 18;
         grid-row-end: 20;
