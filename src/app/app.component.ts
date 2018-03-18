@@ -673,7 +673,7 @@ export class AppComponent implements OnInit {
 
         this.globalVariableService.changedWidget.next(changedWidget);
         
-        this.showModalDataSlicers = false;
+        this.showTitleForm = false;
     }
 
 

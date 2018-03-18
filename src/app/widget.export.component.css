@@ -11,13 +11,6 @@
     top: 0;
 }
 
-.graphArea {
-    border: 1px solid gray;
-    border-radius: 4px;
-    margin: 2rem;
-    text-align: center;
-}
-
 .selectStep {
     border-radius: 4px;
     margin: 10px;
