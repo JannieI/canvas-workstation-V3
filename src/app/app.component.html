@@ -1481,7 +1481,8 @@
 
     <!-- Shape Bullets Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Bullets'">
-        <ul
+        <ul 
+            [style.list-style-type]="row.shapeBulletStyleType"
             >
             <li *ngFor="let bullet of row.shapeBullets"
                 [style.font-family]="row.shapeFontFamily"
