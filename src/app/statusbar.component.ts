@@ -131,6 +131,20 @@ export class StatusbarComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
     }
 
+    ngOnDestroy() {
+        // Cleanup just before Angular destroys the directive/component. 
+        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
+        // Called just before Angular destroys the directive/component.
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
+
+        this.globalVariableService.editMode.unsubscribe();
+        this.globalVariableService.widgetGroup.unsubscribe();
+        this.globalVariableService.loggedIntoServer.unsubscribe();
+        this.globalVariableService.templateInUse.unsubscribe();
+        this.globalVariableService.currentDashboardInfo.unsubscribe();
+        this.globalVariableService.statusBarMessage.unsubscribe();
+    }
+
     clickDashboardDescription() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDescription', '@Start');
