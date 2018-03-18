@@ -1582,21 +1582,41 @@ export class GlobalVariableService {
             // Type = List
             if (w.slicerType == 'List') {
                 // Build array of selection values
-                let fieldValue: string[] = [];
+                let selectedValues: string[] = [];
+                let unSelectedValues: string[] = [];
+
                 w.slicerSelection.forEach(f => {
-                    if (f.isSelected) { fieldValue.push(f.fieldValue)}
+                    if (f.isSelected) { 
+                        selectedValues.push(f.fieldValue);
+                    } else {
+                        unSelectedValues.push(f.fieldValue);
+                    };
                 });
 
                 // Apply selected once, empty means all
-                if (fieldValue.length > 0) {
-                    let tempData: any = [];
-                    tempData = dataSet.data.filter(d =>
-                        fieldValue.indexOf(d[w.slicerFieldName]) >= 0
-                    );
-
-                    // Replace the filtered data, used by the graph
-                    dataSet.data = tempData;
+                let tempData: any = [];
+                if (selectedValues.length > 0) {
+                    // tempData = dataSet.data.filter(d =>
+                    //     fieldValue.indexOf(d[w.slicerFieldName]) >= 0
+                    //     ||
+                    //     ( (w.slicerAddRest)  &&  fieldValue.indexOf(d[w.slicerFieldName]) < 0 )
+                    // );
+                    dataSet.data.forEach(d => {
+                        if (selectedValues.indexOf(d[w.slicerFieldName]) >= 0) {
+                            tempData.push(d);
+                        };
+                        if ( (w.slicerAddRest)  
+                              &&
+                              unSelectedValues.indexOf(d[w.slicerFieldName]) < 0
+                              &&  
+                              selectedValues.indexOf(d[w.slicerFieldName]) < 0 ) {
+                                  tempData.push(d);
+                        };
+                    });
                 };
+
+                // Replace the filtered data, used by the graph
+                dataSet.data = tempData;
             };
 
             // Type = Bins
