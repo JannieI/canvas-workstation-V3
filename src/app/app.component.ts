@@ -3563,10 +3563,14 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetTitle', '@Start');
 
         ev.preventDefault();
+        // Indicate edit W and open Editor, which will work with selected W
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Graph') {
+                this.selectedWidget = w;
+            };
+        });
+        
         this.showTitleForm = true;
-        this.titleFormLeft = this.currentWidgets[index].containerLeft;
-        this.titleFormTop = this.currentWidgets[index].containerTop;
-
     }
 
     deleteWidget(widgetType) {
