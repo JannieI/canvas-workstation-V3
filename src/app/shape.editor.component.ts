@@ -162,14 +162,9 @@ export class ShapeEditComponent implements OnInit {
         // Remove item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletDelete', '@Start');
 
-        // TODO - fix index, somehow not working!
-        this.localWidget.shapeBullets = this.localWidget.shapeBullets.filter(b => b != item);
-        if (this.localWidget.shapeBullets.length == 0) {
-            this.localWidget.shapeBullets = [];
-            this.bulletValue = '';
-            this.editBulletItem = false;
-            
-        };
+        this.localWidget.shapeBullets.splice(index,1);
+        this.bulletValue = '';
+        this.editBulletItem = false;
     }
 
     clickBulletAdd(index: number, item: string) {
@@ -207,6 +202,8 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
 
         this.localWidget.shapeBullets[this.bulletIndex] = this.bulletValue;
+        this.editBulletItem = false;
+        
     }
     clickAdd() {
         // Add item to bullet list
