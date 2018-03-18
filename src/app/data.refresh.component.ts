@@ -38,16 +38,19 @@ export class DataRefreshComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        // this.globalVariableService.currentDatasources.subscribe(
-        //     i => this.currentDatasources = i
-        // );
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
     }
 
   	clickClose(action: string) {
+        // Close the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
   	  	this.formDataRefreshClosed.emit(action);
     }
 
     clickDatasourceRow(id: number) {
+        // Select a DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasourceRow', '@Start');
         
     }
 
