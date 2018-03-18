@@ -135,6 +135,11 @@ export class AppComponent implements OnInit {
         console.log(event);
         event.preventDefault();
 
+        // No key actions while a modal form is open
+        if (this.modalFormOpen) {
+            return;
+        };
+
         // Ignore certain ones
         if (event.key == 'Tab'  ||  event.key == 'Control') {
             return;
@@ -211,6 +216,7 @@ export class AppComponent implements OnInit {
     editMenuText: string;
     fields: Field[];
     isBusyResizing: boolean = false;
+    modalFormOpen: boolean = false;
     moveStartX: number;
     moveStartY: number;
     moveEndX: number;
@@ -1253,8 +1259,6 @@ export class AppComponent implements OnInit {
         // Deselect n objects on the D based on size, All, None, Auto
         // Auto will select All if none is selected, None is any is selected
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAllNone', '@Start');
-
-        this.menuOptionClickPreAction();
         
         // Has to be in editMode
         if (!this.editMode) {
@@ -1267,6 +1271,8 @@ export class AppComponent implements OnInit {
             );
             return;
         };
+
+        this.menuOptionClickPreAction();
         
         if (size == 'None') {
             this.currentWidgets.forEach(w => {w.isSelected  = false});
@@ -1321,8 +1327,6 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditMode', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Can only edit if we have DS
         if (!this.hasDatasources) {
             this.showStatusBarMessage(
@@ -1335,6 +1339,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
+        this.menuOptionClickPreAction();
 
         // Switch off all selections if going to View Mode
         if (this.editMode) {
@@ -1360,6 +1365,8 @@ export class AppComponent implements OnInit {
     clickDashboardShare() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
+
+        this.menuOptionClickPreAction();
 
         this.showModalDashboardShare = true;
     }
@@ -1433,6 +1440,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailComments', '@Start');
 
         this.menuOptionClickPreAction();
+
         this.selectedWidgetID = -1;
         this.showModalDashboardComments = true;
     }
@@ -1576,8 +1584,6 @@ export class AppComponent implements OnInit {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
@@ -1590,6 +1596,8 @@ export class AppComponent implements OnInit {
             return;
         };
 
+        this.menuOptionClickPreAction();
+
         // Indicate new W and open Editor
         this.newWidget = true;
         this.showDatasourcePopup = true;
@@ -1600,8 +1608,6 @@ export class AppComponent implements OnInit {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Can only edit one W at a time, so ignore if multiple selected
         if (!this.checkForOnlyOneWidget()) { 
             return
@@ -1609,6 +1615,8 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
@@ -1627,11 +1635,12 @@ export class AppComponent implements OnInit {
         // Show popup to edit Widget Container properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainer', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget(widgetType)) { 
             return
         };
+
+        this.menuOptionClickPreAction();
+
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == widgetType) {
                 this.selectedWidget = w;
@@ -1645,11 +1654,11 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCheckpoints', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.showModalWidgetCheckpoints = true;
     }
@@ -1657,8 +1666,6 @@ export class AppComponent implements OnInit {
     clickMenuWidgetComments() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetComments', '@Start');
-
-        this.menuOptionClickPreAction();
 
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
@@ -1682,11 +1689,11 @@ export class AppComponent implements OnInit {
         // Show the form of Data Quality Issues for selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDataQuality', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.selectedWidgetID = -1;
         this.currentWidgets.forEach(w => {
@@ -1701,11 +1708,11 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.showModalWidgetLinks = true;
     }
@@ -1714,11 +1721,11 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetRefresh', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) {
             return;
         };
+
+        this.menuOptionClickPreAction();
 
         this.showModalWidgetRefresh = true;
         this.globalVariableService.statusBarRunning.next(this.globalVariableService.noQueryRunningMessage);
@@ -1729,14 +1736,14 @@ export class AppComponent implements OnInit {
         // Duplicate selected Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
         
         // Checked above that only one is selected, so the loop is okay
         this.currentWidgets.forEach(w => {
@@ -1753,14 +1760,14 @@ export class AppComponent implements OnInit {
         // Copy selected Widget to our 'clipboard'
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCopy', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         // Make a deep copy
         
@@ -1786,8 +1793,6 @@ export class AppComponent implements OnInit {
         // Paste Widget previously copied to our 'clipboard'
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetPaste', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
@@ -1811,6 +1816,8 @@ export class AppComponent implements OnInit {
             return;
         };
 
+        this.menuOptionClickPreAction();
+
         this.duplicateWidget(this.clipboardWidget);
     }
 
@@ -1818,14 +1825,14 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExpand', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -1841,11 +1848,11 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExport', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.showModalWidgetExport = true;
     }
@@ -1862,14 +1869,14 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDelete', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
         if (!this.checkForOnlyOneWidget('Graph')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.showModalWidgetDelete = true;
     }
@@ -1909,14 +1916,14 @@ export class AppComponent implements OnInit {
         // Edits the selected Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableEdit', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
         if (!this.checkForOnlyOneWidget('Table')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
         
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
@@ -1934,11 +1941,11 @@ export class AppComponent implements OnInit {
         // Duplicate selected Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDuplicate', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget('Table')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
         
         // Get new ID
         // TODO - improve this when using a DB!
@@ -1987,8 +1994,6 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableComments', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget('Table')) { 
             return
         };
@@ -2015,6 +2020,7 @@ export class AppComponent implements OnInit {
         };
 
         this.menuOptionClickPreAction();
+
         this.selectedWidgetID = -1;
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -2028,14 +2034,14 @@ export class AppComponent implements OnInit {
         // Expand DS u-sed in table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExpand', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
         if (!this.checkForOnlyOneWidget('Table')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -2051,14 +2057,14 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExport', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
         if (!this.checkForOnlyOneWidget('Table')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.showModalWidgetExport = true;
     }
@@ -2067,8 +2073,6 @@ export class AppComponent implements OnInit {
         // Delete Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDelete', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) { 
             return
@@ -2076,6 +2080,8 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget('Table')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.showModalTableDelete = true;
         
@@ -2114,14 +2120,14 @@ export class AppComponent implements OnInit {
         // Edits the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
         if (!this.checkForOnlyOneWidget('Slicer')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
         
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
@@ -2137,11 +2143,11 @@ export class AppComponent implements OnInit {
         // Open the list of tabs to which the selected W belongs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTablist', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return;
         };
+
+        this.menuOptionClickPreAction();
 
         // Send list of current Tabs it belongs to
         this.currentWidgets.forEach(w => {
@@ -2157,8 +2163,6 @@ export class AppComponent implements OnInit {
     clickMenuSlicerComments() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerComments', '@Start');
-
-        this.menuOptionClickPreAction();
 
         if (!this.checkForOnlyOneWidget('Slicer')) { 
             return
@@ -2186,6 +2190,7 @@ export class AppComponent implements OnInit {
         };
 
         this.menuOptionClickPreAction();
+
         this.selectedWidgetID = -1;
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -2199,14 +2204,14 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExpand', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
         if (!this.checkForOnlyOneWidget('Slicer')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -2222,14 +2227,14 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExport', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForOnlyOneWidget()) { 
             return
         };
         if (!this.checkForOnlyOneWidget('Slicer')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.showModalWidgetExport = true;
     }
@@ -2238,8 +2243,6 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDelete', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) { 
             return
@@ -2247,6 +2250,8 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget('Slicer')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.showModalSlicerDelete = true;
         
@@ -2262,8 +2267,6 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeNew', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
@@ -2276,6 +2279,8 @@ export class AppComponent implements OnInit {
             return;
         };
 
+        this.menuOptionClickPreAction();
+
         this.newWidget = true;
         this.showModalShapeEdit = true;
     }
@@ -2284,8 +2289,6 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEdit', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) { 
             return
@@ -2293,6 +2296,8 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget('Shape')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
         
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
@@ -2307,8 +2312,6 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeLinks', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) { 
             return
@@ -2316,6 +2319,8 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget('Shape')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.showModalWidgetLinks = true;
     }
@@ -2324,8 +2329,6 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDelete', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) { 
             return
@@ -2333,6 +2336,8 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget('Shape')) { 
             return
         };
+
+        this.menuOptionClickPreAction();
 
         this.showModalShapeDelete = true;
     }
@@ -2498,11 +2503,11 @@ export class AppComponent implements OnInit {
         // Align the lefts of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignLeft', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
+
+        this.menuOptionClickPreAction();
 
         let x: number = -1; 
 
@@ -2521,11 +2526,11 @@ export class AppComponent implements OnInit {
         // Align the centers of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenter', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
+
+        this.menuOptionClickPreAction();
 
         let x: number = -1; 
 
@@ -2546,11 +2551,11 @@ export class AppComponent implements OnInit {
         // Align the Rights of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignRight', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
+
+        this.menuOptionClickPreAction();
 
         let x: number = -1; 
 
@@ -2571,11 +2576,11 @@ export class AppComponent implements OnInit {
         // Align the tops of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignTop', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
+
+        this.menuOptionClickPreAction();
 
         let x: number = -1; 
 
@@ -2594,11 +2599,11 @@ export class AppComponent implements OnInit {
         // Align the Middles of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignMiddle', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
+
+        this.menuOptionClickPreAction();
 
         let x: number = -1; 
 
@@ -2620,11 +2625,11 @@ export class AppComponent implements OnInit {
         // Align the Bottoms of the selected widgets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignBottom', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
+
+        this.menuOptionClickPreAction();
 
         let x: number = -1; 
 
@@ -2645,11 +2650,11 @@ export class AppComponent implements OnInit {
         // Center horisontally across page
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterHorisontally', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
+
+        this.menuOptionClickPreAction();
 
         let x: number = window.innerWidth / 2; 
 
@@ -2665,11 +2670,11 @@ export class AppComponent implements OnInit {
         // Center vertically across page
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterVertically', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
+
+        this.menuOptionClickPreAction();
 
         let x: number = window.innerHeight / 2; 
 
@@ -2685,11 +2690,11 @@ export class AppComponent implements OnInit {
         // Groups the selected Widgets into a single group
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeGroup', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
+
+        this.menuOptionClickPreAction();
 
         // Clear, and add
         this.widgetGroup = [];
@@ -2919,11 +2924,11 @@ export class AppComponent implements OnInit {
         // Make selected Ws same Height (vertically)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
+
+        this.menuOptionClickPreAction();
 
         let y: number = -1; 
 
@@ -2944,11 +2949,11 @@ export class AppComponent implements OnInit {
         // Make selected Ws same width (horisontally)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
+
+        this.menuOptionClickPreAction();
 
         let x: number = -1; 
 
@@ -3570,6 +3575,8 @@ export class AppComponent implements OnInit {
             return
         };
 
+        this.menuOptionClickPreAction();
+        
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
@@ -3628,6 +3635,7 @@ export class AppComponent implements OnInit {
         // Actions performed at the START of a menu item click, PRE any other work
         this.globalFunctionService.printToConsole(this.constructor.name,'menuOptionClickPreAction', '@Start');
         
+        this.modalFormOpen = true;
         this.showPopupMessage = false;
     }
 
