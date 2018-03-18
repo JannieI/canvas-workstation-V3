@@ -153,6 +153,15 @@
                         [style.font-size.px]="localWidget.shapeFontSize"
                             >
                         <li *ngFor="let row of localWidget.shapeBullets">
+                            <clr-icon shape="times" 
+                                (click)="clickBulletDelete(i, row)">
+                            </clr-icon>
+                            <clr-icon shape="plus" 
+                                (click)="clickBulletAdd(i, row)">
+                            </clr-icon>
+                            <clr-icon shape="pencil" 
+                                (click)="clickBulletEdit(i, row)">
+                            </clr-icon>
                             {{ row }}
                         </li>
                     </ul>
@@ -163,6 +172,15 @@
                         [style.font-size.px]="localWidget.shapeFontSize"
                             >
                         <li *ngFor="let row of localWidget.shapeBullets">
+                            <clr-icon shape="times" 
+                                (click)="clickBulletDelete(i, row)">
+                            </clr-icon>
+                            <clr-icon shape="plus" 
+                                (click)="clickBulletAdd(i, row)">
+                            </clr-icon>
+                            <clr-icon shape="pencil" 
+                                (click)="clickBulletEdit(i, row)">
+                            </clr-icon>
                             {{ row }}
                         </li>
                     </ol>                    
