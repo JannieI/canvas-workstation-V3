@@ -3561,13 +3561,15 @@ export class AppComponent implements OnInit {
     contextmenuWidgetTitle(ev: MouseEvent, index: number) {
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetTitle', '@Start');
+        
+        // Must be first, else default behaviour takes over
+        ev.preventDefault();
 
         // Check for only one W
-        if (!this.checkForMultipleWidgets()) {
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
 
-        ev.preventDefault();
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
