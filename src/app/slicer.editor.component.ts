@@ -255,10 +255,11 @@ import { GlobalVariableService }      from './global-variable.service';
             if (maxValueBinLarge == minValueBinSmall) {
                 maxValueBinLarge = minValueBinSmall + 1;
             };
-            let maxValueBinMedium: number = Math.round( 
-                (maxValueBinLarge-minValueBinSmall) / 3 * 2 * 100) / 100;
+            let gap: number = (maxValueBinLarge - minValueBinSmall) / 3;
+            let maxValueBinMedium: number = Math.round(  
+                ( minValueBinSmall + ( gap * 2 ) ) * 100) / 100;
             let maxValueBinSmall: number = Math.round( 
-                (maxValueBinLarge-minValueBinSmall) / 3 * 100) / 100;
+                ( minValueBinSmall + gap) * 100) / 100;
 
             let minValueBinMedium: number = maxValueBinSmall;
             let minValueBinLarge: number = maxValueBinMedium;
