@@ -238,6 +238,7 @@ const widgetTemplate: Widget =
         "shapeValue": "",
         "shapeBullets": [],
         "shapeOpacity": 1,
+        "shapeRotation": 0,
         "shapeCorner": 15,
         "shapeFontSize": 24,
         "shapeFontFamily": "",
@@ -3099,6 +3100,7 @@ export class GlobalVariableService {
                 {key: 'shapeValue', 				type: 'string'},
                 {key: 'shapeBullets', 				type: 'string'},
                 {key: 'shapeOpacity', 				type: 'int'},
+                {key: 'shapeRotation', 				type: 'int'},
                 {key: 'shapeCorner', 				type: 'int'},
                 {key: 'shapeFontSize', 				type: 'int'},
                 {key: 'shapeFontFamily', 			type: 'string'},
@@ -3463,6 +3465,7 @@ export class GlobalVariableService {
                 w.shapeValue = changedWidget.shapeValue;
                 w.shapeBullets = changedWidget.shapeBullets;
                 w.shapeOpacity = changedWidget.shapeOpacity;
+                w.shapeRotation = changedWidget.shapeRotation;
                 w.shapeCorner = changedWidget.shapeCorner;
                 w.shapeFontSize = changedWidget.shapeFontSize;
                 w.shapeFontFamily = changedWidget.shapeFontFamily;
@@ -3589,6 +3592,7 @@ export class GlobalVariableService {
                 w.shapeValue = changedWidget.shapeValue;
                 w.shapeBullets = changedWidget.shapeBullets;
                 w.shapeOpacity = changedWidget.shapeOpacity;
+                w.shapeRotation = changedWidget.shapeRotation;
                 w.shapeCorner = changedWidget.shapeCorner;
                 w.shapeFontSize = changedWidget.shapeFontSize;
                 w.shapeFontFamily = changedWidget.shapeFontFamily;

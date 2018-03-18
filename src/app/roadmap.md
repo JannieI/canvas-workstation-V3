@@ -299,9 +299,9 @@ BUG: if using a custom vega spec, the editor does not understand this.
 1. 
 2. 
 3. Warn user if 2 Sl on the same dataset for the same field?
-4. Add bands on numeric values: 0-10, 11-20, 21+
-5. Add groups on string: NorthAmerica = [Canada, US] - and remember these!!!  Like Tableau
-6. Add REST Sl item = all the others (not mentioned in items) ??
+4. 
+5. 
+6. 
 7. Consider not increasing stuckCount in App if an item is selected/deselected. This does mean to pass event back from slicer.single component.
 
 

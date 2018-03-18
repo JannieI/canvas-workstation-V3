@@ -120,7 +120,9 @@
                     </svg>
                 </div>
 
-                <div class="gridShape" *ngIf="showArrow">
+                <div class="gridShape" *ngIf="showArrow"
+                    [style.transform]="'rotate(90deg)'"
+                    >
                     <svg width="300" height="300">
                         <defs>
                             <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">

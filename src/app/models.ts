@@ -519,14 +519,14 @@ export class Widget {
     tableWidth: number;                 // in px, cuts of rest if bigger than this (for later use)
 
     // Slicer
-    slicerType: string;                 // Type of Slicer, ie List, Bin 
+    slicerAddRest: boolean;             // True to add everything NOT in slicerSelection
+    slicerBins: {isSelected: boolean; name: string; fromValue: number; toValue: number}[];
+    slicerFieldName: string;            // Name to filter on
     slicerNumberToShow: string;         // Nr fields (values) to show in Slicer - default = All
+    slicerSelection: {isSelected: boolean; fieldValue: string;}[];
     slicerSortField: string;            // Name of Field to sort Slicer dataset on
     slicerSortFieldOrder: string;       // Sort order for Slicer dataset, Ascending, Descending
-    slicerFieldName: string;            // Name to filter on
-    slicerSelection: {isSelected: boolean; fieldValue: string;}[];
-    slicerBins: {isSelected: boolean; name: string; fromValue: number; toValue: number}[];
-    slicerAddRest: boolean;             // True to add everything NOT in slicerSelection
+    slicerType: string;                 // Type of Slicer, ie List, Bin 
 
     // Shape
     shapeBullets: string[];             // Array of bullet points
@@ -537,6 +537,7 @@ export class Widget {
     shapeIsBold: boolean;               // True if text is bold
     shapeIsItalic: boolean;             // True if text is italic
     shapeOpacity: number;               // Opacity, between 0 and 1, ie of rectangle
+    shapeRotation: number;              // Nr of degrees to rotate a Shape
     shapeStroke: string;                // Colour of line
     shapeStrokeWidth: string;           // Line thickness in px
     shapeText: string;                  // Text in textbox
