@@ -11,6 +11,10 @@
     top: 0;
 }
 
+.selecteAll {
+    margin: 0 0 0 13px;
+}
+
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(40, 1fr);

@@ -114,6 +114,13 @@
                     <div class="headerLine">
                         Values for Field
                     </div>
+                    <span>
+                        <input type="checkbox" id="selecteAll" class="selecteAll"
+                            (click)="clickSelectAll($event)"
+                            >
+                        <label for="selecteAll"><i>Select All</i></label>
+                            
+                    </span>
                     <clr-datagrid class="fieldsDataGrid datagrid-compact">
                         <clr-dg-placeholder>
                             No records ...

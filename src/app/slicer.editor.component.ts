@@ -128,8 +128,10 @@ import { GlobalVariableService }      from './global-variable.service';
             this.slicerSortFieldOrder = this.localWidget.slicerSortFieldOrder;
             if (this.slicerType == 'List') {
                 this.showContainerslicerAddRest = true;
+                this.showMultipleBins = false;
             } else {
-                this.showContainerslicerAddRest = false
+                this.showContainerslicerAddRest = false;
+                this.showMultipleBins = true;
             };
             this.changeValues();
         };
@@ -419,5 +421,18 @@ import { GlobalVariableService }      from './global-variable.service';
 	  	this.formDataSlicersClosed.emit(this.localWidget);
     }
 
+    clickSelectAll(ev: any){
+        // Select/UnSelect all data values
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectAll', '@Start');
+
+        this.dataValues.forEach(dv => {
+            if (ev.target.checked) {
+                dv['isSelected'] = true;
+            } else {
+                dv['isSelected'] = false;
+
+            };
+        });
+    }
 
 }
