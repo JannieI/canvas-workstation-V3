@@ -137,12 +137,13 @@ export class StatusbarComponent {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        this.globalVariableService.editMode.unsubscribe();
-        this.globalVariableService.widgetGroup.unsubscribe();
-        this.globalVariableService.loggedIntoServer.unsubscribe();
-        this.globalVariableService.templateInUse.unsubscribe();
-        this.globalVariableService.currentDashboardInfo.unsubscribe();
-        this.globalVariableService.statusBarMessage.unsubscribe();
+        // Throws an error on second Slicer selection who wants to pass a message ...
+        // this.globalVariableService.editMode.unsubscribe();
+        // this.globalVariableService.widgetGroup.unsubscribe();
+        // this.globalVariableService.loggedIntoServer.unsubscribe();
+        // this.globalVariableService.templateInUse.unsubscribe();
+        // this.globalVariableService.currentDashboardInfo.unsubscribe();
+        // this.globalVariableService.statusBarMessage.unsubscribe();
     }
 
     clickDashboardDescription() {

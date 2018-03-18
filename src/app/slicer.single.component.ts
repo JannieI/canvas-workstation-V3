@@ -119,7 +119,7 @@ export class SlicerSingleComponent {
         let wIDs: number[] = [];
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.datasourceID == datasourceID  &&  w.datasetID == datasetID  && w.widgetType != 'Slicer') {
-                // wIDs.push(w.id);
+                console.log('xx Sl sng', w.id, w.widgetType, w.containerWidth)
                 this.globalVariableService.changedWidget.next(w);
             }
         })
