@@ -1,0 +1,34 @@
+<div class="modal modalBox">
+	<div class="modal-dialog modal-sm" role="dialog" aria-hidden="true">
+		<div class="modal-content modalContent">
+
+            <div class="overall">
+                <div class="closeButton">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+                </div>
+
+                Delete a Slicer
+                <div>
+                    <label>Are you sure you want to delete the selected Slicer?</label>
+                    <br>
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose()"
+                        >
+                        Cancel
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickDelete()"
+                        >
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

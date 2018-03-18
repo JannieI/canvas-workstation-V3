@@ -1628,6 +1628,10 @@
 
 <!-- ****************************  POPUP FORMS / WINDOWS ***************************** -->
 
+<landing *ngIf="showModalLanding"
+    (formLandingClosed)="handleCloseModalLanding($event)">Load landing page ...
+</landing>
+
 <!-- Form to edit Title Properties -->
 <div class="titleForm" *ngIf="showTitleForm"
     [style.left.px]="titleFormLeft"
