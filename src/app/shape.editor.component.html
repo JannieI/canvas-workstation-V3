@@ -152,7 +152,7 @@
                         [style.font-family]="localWidget.shapeFontFamily"
                         [style.font-size.px]="localWidget.shapeFontSize"
                             >
-                        <li *ngFor="let row of localWidget.shapeBullets">
+                        <li *ngFor="let row of localWidget.shapeBullets; let i = item">
                             <clr-icon shape="times" 
                                 (click)="clickBulletDelete(i, row)">
                             </clr-icon>
@@ -171,7 +171,7 @@
                         [style.font-family]="localWidget.shapeFontFamily"
                         [style.font-size.px]="localWidget.shapeFontSize"
                             >
-                        <li *ngFor="let row of localWidget.shapeBullets">
+                        <li *ngFor="let row of localWidget.shapeBullets; let i = item">
                             <clr-icon shape="times" 
                                 (click)="clickBulletDelete(i, row)">
                             </clr-icon>

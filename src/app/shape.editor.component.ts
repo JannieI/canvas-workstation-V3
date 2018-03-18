@@ -172,7 +172,6 @@ export class ShapeEditComponent implements OnInit {
         // Add item to bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletAdd', '@Start');
 
-        // TODO - fix index, somehow not working!
         // TODO - this is clumsy methinks - there must be a better way
         let tempArr: string[] = [];
         for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
@@ -194,6 +193,8 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEdit', '@Start');
 
         this.bulletValue = this.localWidget.shapeBullets[index];
+        this.editBulletItem = true;
+        
     }
 
     clickEditDone() {
