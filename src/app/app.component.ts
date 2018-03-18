@@ -500,12 +500,17 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardNew', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDashboardNew = false;
+
     }
 
     handleCloseDashboardOpen(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardOpen', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardOpen = false;
     }
@@ -514,12 +519,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSave', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDashboardSave = false;
     }
 
     handleCloseDashboardSnapshots(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSnapshots', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardSnapshots = false;
     }
@@ -528,12 +537,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardShare', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDashboardShare = false;
     }
 
     handleCloseDashboardImport(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardImport', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardImport = false;
     }
@@ -542,12 +555,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDiscard', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDashboardDiscard = false;
     }
 
     handleCloseDashboardRename(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardRename', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardRename = false;
     }
@@ -556,12 +573,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDetails', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDashboardDetails = false;
     }
 
     handleCloseDashboardDescription() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDescription', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardDescription = false;
     }
@@ -570,12 +591,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTags', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDashboardTags = false;
     }
 
     handleCloseDashboardSettings(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSettings', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardSettings = false;
     }
@@ -584,12 +609,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTheme', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDashboardTheme = false;
     }
 
     handleCloseDashboardTemplate(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTemplate', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardTemplate = false;
     }
@@ -598,12 +627,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSchedule', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDashboardSchedule = false;
     }
 
     handleCloseDashboardDelete(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDelete', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardDelete = false;
     }
@@ -612,12 +645,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTreeview', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDashboardTreeview = false;
     }
 
     handleCloseDashboardSubscribe(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSubscribe', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardSubscribe = false;
     }
@@ -627,6 +664,8 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeEdit', '@Start');
 
         this.globalVariableService.changedWidget.next(changedWidget);
+
+        this.menuOptionClickPostAction();
         
         this.showModalShapeEdit = false;
     }
@@ -640,12 +679,16 @@ export class AppComponent implements OnInit {
             this.deleteWidget('Shape');
         };
 
+        this.menuOptionClickPostAction();
+
         this.showModalShapeDelete = false;
     }
 
     handleCloseDashboardComments(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardComments', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardComments = false;
     }
@@ -654,12 +697,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDataQuality', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDashboardDataQuality = false;
     }
 
     handleCloseDashboardPrint(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardPrint', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardPrint = false;
     }
@@ -669,6 +716,8 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSlicers', '@Start');
 
         this.globalVariableService.changedWidget.next(changedWidget);
+
+        this.menuOptionClickPostAction();
         
         this.showModalDataSlicers = false;
     }
@@ -680,6 +729,8 @@ export class AppComponent implements OnInit {
         if (changedWidget != null) {
             this.globalVariableService.changedWidget.next(changedWidget);
         };
+
+        this.menuOptionClickPostAction();
         
         this.showTitleForm = false;
     }
@@ -699,6 +750,8 @@ export class AppComponent implements OnInit {
         // };
         // this.currentWidgets.push(changedWidget);
         this.globalVariableService.changedWidget.next(changedWidget);
+
+        this.menuOptionClickPostAction();
 
         this.showModalWidgetEditor = false;
     }
@@ -723,12 +776,16 @@ export class AppComponent implements OnInit {
         
         };
 
+        this.menuOptionClickPostAction();
+
         this.showModalWidgetTablist = false;
     }
 
     handleCloseData(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalData = false;
     }
@@ -737,6 +794,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCombination', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDataCombination = false;
     }
 
@@ -744,12 +803,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataRefresh', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDataRefresh = false;
     }
 
     handleCloseDataShare(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataShare', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDataShare = false;
     }
@@ -761,12 +824,16 @@ export class AppComponent implements OnInit {
 
         this.globalVariableService.changedWidget.next(changedWidget);
         
+        this.menuOptionClickPostAction();
+
         this.showModalWidgetContainer = false;
     }
 
     handleCloseWidgetCheckpoints(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetCheckpoints', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalWidgetCheckpoints = false;
     }
@@ -775,6 +842,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetLinks', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalWidgetLinks = false;
     }
 
@@ -782,12 +851,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExpand', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalWidgetExpand = false;
     }
 
     handleCloseWidgetExport(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExport', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalWidgetExport = false;
     }
@@ -801,6 +874,8 @@ export class AppComponent implements OnInit {
             this.deleteWidget('Graph');
         };
 
+        this.menuOptionClickPostAction();
+
         // Hide modal form
         this.showModalWidgetDelete = false;
     }
@@ -810,6 +885,8 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseTableEditor', '@Start');
 
         this.globalVariableService.changedWidget.next(changedTable);
+
+        this.menuOptionClickPostAction();
 
         this.showModalTableEditor = false;
     }
@@ -823,6 +900,8 @@ export class AppComponent implements OnInit {
             this.deleteWidget('Table');
         };
 
+        this.menuOptionClickPostAction();
+
         this.showModalTableDelete = false;
     }
 
@@ -835,12 +914,16 @@ export class AppComponent implements OnInit {
             this.deleteWidget('Slicer');
         };
 
+        this.menuOptionClickPostAction();
+
         this.showModalSlicerDelete = false;
     }
 
     handleCloseCollaborateAlerts(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateAlerts', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalCollaborateAlerts = false;
     }
@@ -849,12 +932,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivityAdd', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalCollaborateActivityAdd = false;
     }
 
     handleCloseCollaborateMessages(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateMessages', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalCollaborateMessages = false;
     }
@@ -863,12 +950,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivities', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalCollaborateActivities = false;
     }
 
     handleCloseUserLogin(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserLogin', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalDashboardLogin = false;
     }
@@ -877,12 +968,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserLogout', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalDashboardLogout = false;
     }
 
     handleCloseUserPreferences(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserPreferences', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalUserPreferences = false;
     }
@@ -891,12 +986,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserdMyProfile', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalUserMyProfile = false;
     }
 
     handleCloseUserWidgetButtonBar(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserWidgetButtonBar', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalUserWidgetButtonBar = false;
     }
@@ -905,6 +1004,8 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserShapeButtonBar', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalUserShapeButtonBar = false;
     }
 
@@ -912,12 +1013,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserSystemSettings', '@Start');
 
+        this.menuOptionClickPostAction();
+
         this.showModalUserSystemSettings = false;
     }
 
     handleCloseUserOffline(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserOffline', '@Start');
+
+        this.menuOptionClickPostAction();
 
         this.showModalUserOffline = false;
     }
@@ -956,6 +1061,8 @@ export class AppComponent implements OnInit {
         // Can only undo if something has been done before
         if (ourActions.length == 0) {
             console.log('Nothing to undo')
+
+            this.menuOptionClickPostAction();
             return;
         };
 
@@ -1006,6 +1113,8 @@ export class AppComponent implements OnInit {
             // Can only undo if something has been done before
             if (tempActionIDs.length == 0) {
                 console.log('Nothing more to undo')
+
+                this.menuOptionClickPostAction();
                 return;
             };
             filteredActions = this.globalVariableService.actions.filter(act => act.id == undoActID);
@@ -1158,6 +1267,8 @@ export class AppComponent implements OnInit {
         // TODO - decide if lates / -1 is best choice here
         if (ourActions.length == 0) {
             console.log('Nothing to Redo');
+
+            this.menuOptionClickPostAction();
             return;
         };
 
