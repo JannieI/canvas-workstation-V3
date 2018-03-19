@@ -219,7 +219,7 @@ BUG: if using a custom vega spec, the editor does not understand this.
 6. Reuse open Dashboard code between Open & Rename, if possible
 7. Test printing - and see if pagelayout can be changed
 8. Startup D: should this be settable as a pref, or should we always display the Landing page?
-10.
+10.Show Grid - currently a .png -> how to make this dynamic ?
 11.Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
    at any point in the past.  It must be clearly marked for the user.  Must also be able to
    search the list, and see a list of undo actions.

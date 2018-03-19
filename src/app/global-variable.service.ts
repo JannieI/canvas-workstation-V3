@@ -3701,15 +3701,15 @@ export class GlobalVariableService {
 
     actionUpsert(
         id: number,
-        dashboardID, 
-        dashboardTabID,
-        objectType,
+        dashboardID: number, 
+        dashboardTabID: number,
+        objectType: string,
         action: string, 
         description: string,
         undoID: number, 
         redoID: number, 
-        oldWidget: Widget, 
-        newWidget: Widget, 
+        oldWidget: any, 
+        newWidget: any, 
      ): number {
         let actID: number = 1;
 
