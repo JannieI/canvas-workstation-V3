@@ -877,6 +877,21 @@ export class AppComponent implements OnInit {
 
         // Delete, if so requested
         if (action == 'delete') {
+
+            // Add to Action log
+            this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Widget',
+                'Delete',
+                'App handleCloseWidgetDelete',
+                null,
+                null,
+                this.selectedWidget,
+                null
+            );
+
             this.deleteWidget('Graph');
         };
 
@@ -1879,7 +1894,11 @@ export class AppComponent implements OnInit {
         };
 
         this.menuOptionClickPreAction();
-
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Graph') {
+                this.selectedWidget = w;
+            };
+        });        
         this.showModalWidgetDelete = true;
     }
 
