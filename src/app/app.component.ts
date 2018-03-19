@@ -1096,7 +1096,7 @@ export class AppComponent implements OnInit {
                 filteredActions[0].oldWidget
             );
             if (filteredActions[0].objectType == 'Widget') {
-                if (filteredActions[0].action == 'Add') {
+                if (filteredActions[0].oldWidget == null) {
                     this.deleteWidget('Graph',filteredActions[0].newWidget.id);
                 } else {
                 this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
@@ -1148,7 +1148,7 @@ export class AppComponent implements OnInit {
 
             // Diff Object Types
             if (filteredActions[0].objectType == 'Widget') {
-                if (filteredActions[0].action == 'Add') {
+                if (filteredActions[0].oldWidget == null) {
                     this.deleteWidget('Graph',filteredActions[0].newWidget.id);
                 } else {
                     this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);

@@ -3738,8 +3738,8 @@ export class GlobalVariableService {
                 description: description,
                 undoID: undoID,
                 redoID: redoID,
-                oldWidget: Object.assign({}, oldWidget),
-                newWidget: Object.assign({}, newWidget),
+                oldWidget: oldWidget == null? null : Object.assign({}, oldWidget),
+                newWidget: newWidget == null? null : Object.assign({}, newWidget),
             });
         } else {
             this.actions.forEach(ac => {
