@@ -3682,16 +3682,21 @@ export class AppComponent implements OnInit {
         this.showTitleForm = true;
     }
 
-    deleteWidget(widgetType) {
+    deleteWidget(widgetType, widgetID: number = null) {
         // Delete the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
 
         let datasetID: number = -1;
+
         // Delete the local one
         let delIDs: number[] = [];
         for (var i = 0; i < this.currentWidgets.length; i++) {
-            if (this.currentWidgets[i].isSelected  &&
-                this.currentWidgets[i].widgetType == widgetType) {
+            if (  (widgetID == null  ||  this.currentWidgets[i].id == widgetID)
+                   &&
+                   this.currentWidgets[i].isSelected  
+                   &&
+                   this.currentWidgets[i].widgetType == widgetType
+                ) {
 
                 datasetID = this.currentWidgets[i].datasetID;
                 delIDs.push(this.currentWidgets[i].id);
@@ -3702,13 +3707,11 @@ export class AppComponent implements OnInit {
         // Delete the global ones
         for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
             if (delIDs.indexOf(this.globalVariableService.widgets[i].id) >= 0) {
-
                 this.globalVariableService.widgets.splice(i,1)
             };
         };
         for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
             if (delIDs.indexOf(this.globalVariableService.currentWidgets[i].id) >= 0) {
-
                 this.globalVariableService.currentWidgets.splice(i,1)
             };
         };
@@ -3718,7 +3721,6 @@ export class AppComponent implements OnInit {
         let newDataset: Dataset;
         this.globalVariableService.currentDatasets.forEach(cd => {
             if (cd.id == datasetID) {
-
                 newDataset = this.globalVariableService.filterSlicer(cd);
             }
         }
