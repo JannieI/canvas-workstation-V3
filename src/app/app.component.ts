@@ -1110,11 +1110,12 @@ export class AppComponent implements OnInit {
             let undoActID: number = 1;
             let tempActionIDs: number[] = [];
             for (var i = ourActions.length - 1; i >= 0; i--) {
-                if (ourActions[i].undoID == null  &&
-                    ourActions[i].id < lastUndoID) {
+                if (ourActions[i].id < lastUndoID) {
+                    if (ourActions[i].undoID == null) {
                         tempActionIDs.push(ourActions[i].id);
-                } else {
-                    break;
+                    } else {
+                        break;
+                    };
                 };
             };
             if (tempActionIDs.length > 0) {
