@@ -1730,8 +1730,6 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        // Make a deep copy
-
         // Checked above that only one is selected, so the loop is okay
         this.currentWidgets.forEach(w => {
 
@@ -1836,16 +1834,6 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalWidgetExport = true;
-    }
-
-    clickMenuWidgetCut() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCut', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.menuOptionClickPostAction();
-
     }
 
     clickMenuWidgetDelete() {
