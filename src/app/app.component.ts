@@ -294,6 +294,7 @@ export class AppComponent implements OnInit {
     showModalUserOffline: boolean = false;
     showPopupMessage: boolean = false;
     showTitleForm: boolean = false;
+    snapToGrid: boolean = true;
     startX: number;
     startY: number;
     endX: number;
@@ -2379,6 +2380,8 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        this.snapToGrid = !this.snapToGrid;
+        this.globalVariableService.snapToGrid = this.snapToGrid;
         this.menuOptionClickPostAction();
     }
 
