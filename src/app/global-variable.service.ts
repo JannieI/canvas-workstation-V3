@@ -3762,4 +3762,23 @@ export class GlobalVariableService {
             
     }
 
+    alignToGripPoint(inputValue: number) {
+        // This routine recalcs a value to a gridpoint IF if snapping is enabled
+        console.log('Global-Variables snapToGrid ...');
+
+        // Set startup stuffies
+        this.snapToGrid = this.snapToGrid;
+        this.gridSize = this.gridSize;
+
+        if (this.snapToGrid) {
+            if ( (inputValue % this.gridSize) >= (this.gridSize / 2)) {
+                inputValue = inputValue + this.gridSize - (inputValue % this.gridSize);
+            } else {
+                inputValue = inputValue - (inputValue % this.gridSize);
+            }
+        }
+
+        // Return the value
+        return inputValue;
+    }
 }
