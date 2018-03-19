@@ -3753,8 +3753,10 @@ export class GlobalVariableService {
                     actID = id;
                 };
             });
-            console.log('xx Update actions', this.actions)
+            
         };
+
+        console.log('xx actionUpsert', this.actions)
 
         // Return
         return actID;
@@ -3772,7 +3774,7 @@ export class GlobalVariableService {
                 inputValue = inputValue - (inputValue % this.gridSize);
             }
         };
-console.log('xx', this.snapToGrid, this.gridSize, inputValue)
+
         // Return the value
         return inputValue;
     }

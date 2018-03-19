@@ -741,15 +741,20 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
-        // Note: amend this.currentWidgets as it is a ByRef to
-        // this.gv.currentWidgets, which Angular does not register that it has changed
+        // Add to Action log
+        this.globalVariableService.actionUpsert(
+            null,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+            'Widget',
+            this.newWidget? 'Add' : 'Edit',
+            'App handleCloseWidgetEditor',
+            null,
+            null,
+            this.newWidget? null :this.selectedWidget,
+            changedWidget
+        );
 
-        // for (var i = 0; i < this.currentWidgets.length; i++) {
-        //     if (this.currentWidgets[i].id == changedWidget.id) {
-        //         this.currentWidgets.splice(i, 1);
-        //     };
-        // };
-        // this.currentWidgets.push(changedWidget);
         this.globalVariableService.changedWidget.next(changedWidget);
 
         this.menuOptionClickPostAction();
@@ -1091,6 +1096,9 @@ export class AppComponent implements OnInit {
                 filteredActions[0].oldWidget
             );
             if (filteredActions[0].objectType == 'Widget') {
+                if (filteredActions[0].action == 'Add') {
+                    this.deleteWidget
+                }
                 this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
             };
 

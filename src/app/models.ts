@@ -33,8 +33,8 @@ export class CanvasAction {
     description: string;                    // Optional description, ie calling routine, etc
     undoID: number;                         // Optional id of item in UNDO
     redoID: number;                         // Optonal id of item in REDO
-    oldWidget: Widget;                      // Full W before action
-    newWidget: Widget;                      // Full W after action
+    oldWidget: any;                         // Full W before action
+    newWidget: any;                         // Full W after action
 }
 
 export class StatusBarMessage {
