@@ -1703,6 +1703,14 @@ export class AppComponent implements OnInit {
 
                 // Make a (new) duplicate
                 this.duplicateWidget(w);
+
+                this.showStatusBarMessage(
+                    'Widget copied',
+                    'StatusBar',
+                    'Info',
+                    3000,
+                    ''
+                );
             };
         });
 
@@ -1771,7 +1779,23 @@ export class AppComponent implements OnInit {
             return;
         };
 
+        if (this.clipboardWidget.dashboardID != this.globalVariableService.
+            currentDashboardInfo.value.currentDashboardID) {
+            this.showStatusBarMessage(
+                'Previous copy for different Dashboard',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+
+        };
+
         this.menuOptionClickPreAction();
+
+        this.clipboardWidget.dashboardTabID = this.globalVariableService.
+            currentDashboardInfo.value.currentDashboardTabID; 
 
         this.duplicateWidget(this.clipboardWidget);
 
