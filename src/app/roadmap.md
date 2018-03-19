@@ -4,160 +4,111 @@ This document describes items for later versions of Canvas.
 
 ## Due in v2 (just not shown on forms)
 
-
-**Global / Overall issues / Settings**
-1. Test everything with 1000 - ie Dashboards, Widgets per D, etc - to check performance and to see it form layout (ie grids sizes) will copy with large volume
-2. 
-6. 
-7. Setting min Grid width - wait for Clarity Bug fix
-8. 
-9. LocalDB - how to add a table without deleting the IndexDB manually ??
-10.Need way to browse large volumes of data without killing browser - server must calc and warn user, plus also do pagination in the background. Also, data manipulation must be pushed onto the server as far as possible.
-11.If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
-12.Give hints/advice on W as to type of graph, insights, etc.
-13.Consider animation in presention mode ...
-14.PBI can change type of W after created, ie Table to Matrix
-15.How to incorporate fancy W types, ie half circle with needle / doughnut / etc ... 
-
-**API**
-1. Have flexible field selection: ie ..."fields": [A, B, F]
-
-
-**1 Feb 2018**
-
-
-For now:
-- it is possible to use Vega sliders as well - these apply only to the graph on which it appears, and is applied after the Sl is applied.  Important, if Sl has no W linked to it, the dSet must still be obtained.
-- all W use same WidgetComponent => drag and drop, resize, selection, align, delete, refresh-DS, etc are DRY. But the following is different according to the different types: refreshing, clicking (ie Sl refreshes data) ?
-
-
-Different versions of Vega:
-- keep version on W in DB
-- Upgrade Util: converts W to new version, creates new record and keeps old one as IsTrashed=True.  Thus, can always see what it looked like before.  More thinking required here.
-- see DRF guidelines about the steps to do
-- a version of Canvas will only work with a specified version(s) of W - inside code.  This way, can load any version of Canvas and it will work provided the W version is in acceptable range - hardcoded in TS.  The version is set per W, thus can have different versions of Graphs (Vega), Sl, etc.
-
-Warning:
-- when a W is rendered and some fields dont exist, error occured, display a warning image + message inside W.  User can edit this, fix the fields and save
-- before saving a W, Canvas checks that the fields are valid, that it renders, etc and warns if not (but allows to save) - how does this fit in with auto-save policy?
-
-Caching:
-- option to switch caching on or not at the server level and local level (if server allows it)
-- stores all currentD info, users, etc
-- refreshed via WS from DB
-- also used for auto-save: all the steps are saved here, and synced to server at specified interval (setting on client)
-
-
-
- 
-
-Local DB:
-This seems useful for the following:
-- caching more than the current, for example load top 10 recently used D async while user is working => they are ready immediately when opened
-- quicker startup as the last used D will be available locally.  How do we synch it if it has changed since?
-- streaming: a WS is updating the local DB constantly, W refreshes at intervals
-- will not be allowed with sensitive data
-- handle big dSet -> store locally from DB and prompt user to have a Sl - which reduces the amount of data in [dSet*] which is in RAM
-- lazy loading on Tbl, so a Table can show any size data.  Filters on Tbl will re-extract from local DB, and paginate again.
-- take serious note of browser compatibility
-- auto-save can be done here - should make it faster, and less calls to server
-
-
-
-
-
-
-
 **UI / ideas**
-1. Tooltips:
-- Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be consistent!!  
+    1. Tooltips:
+    - Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip   for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be   consistent!!  
 
-2. Overall design and layout 
-- GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.
-- Review whether as beautiful as Simplus
-- Relook at ALL forms for consistent layout, look and feel, INcluding the popups like the W title
-- Add 'X' top left on all, so that it can close if screen is too small and the save button overflow beyond the screen
-- Test on different configs: screen resolution, 2 screens
-- Test on different devices, ie Tablet and Phone
-- Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure there is a preference to switch it back on manually.
-Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
-- Use style.css for standard items, ie class="helpMessage"
-- Standardize date format shown - as selected by the user, stored as settings
-- Consider highlight of selected row in Snapshots.  If good, apply to all Grids.  Better: consider a GRID-COMPONENT ...
--Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that browser has own set.  Try to make it dynamic, ie use can define it!
-- Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
-Multi-T display: show nr of Tabs where a W is displayed in header as a badge
-Presentation: 
-- must be able to make a PowerPoint-light: front page(logo and title), agenda with bullets and optional links, pages with logo and title repeated at the top and bullets and W (graphs, etc) that are normal Canvas W => interactive and can add Sl, explore, expand, etc.
-- See if can print, and if so: allow different layouts and formats, for example one
-   Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
+    2. Overall design and layout 
+    - GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.  If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
+    - Review whether as beautiful as Simplus
+    - Relook at ALL forms for consistent layout, look and feel, INcluding the popups like the W     title
+    - Add 'X' top left on all, so that it can close if screen is too small and the save button  overflow beyond the screen
+    - Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure   there is a preference to switch it back on manually.
+    Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
+    - Use style.css for standard items, ie class="helpMessage"
+    - Standardize date format shown - as selected by the user, stored as settings
+    - Consider highlight of selected row in Snapshots.  If good, apply to all Grids.  Better:   consider a GRID-COMPONENT ...
+    -Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that     browser has own set.  Try to make it dynamic, ie use can define it!
+    - Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of   main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not   needed
+    Testing:
+    - test everything with 1000 - ie Dashboards, Widgets per D, etc - to check performance and to see it form layout (ie grids sizes) will copy with large volume
+    - Test on different configs: screen resolution, 2 screens
+    - Test on different devices, ie Tablet and Phone
+    Multi-T display: show nr of Tabs where a W is displayed in header as a badge
+    Presentation: 
+    - must be able to make a PowerPoint-light: front page(logo and title), agenda with bullets and  optional links, pages with logo and title repeated at the top and bullets and W (graphs, etc)    that are normal Canvas W => interactive and can add Sl, explore, expand, etc.
+    - See if can print, and if so: allow different layouts and formats, for example one
+       Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
 
-3. Admin module and Users
-- Users, groups, permissions
-- Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
-- Global var with userLoggedIn
-- What and how is cached locally - and how refreshed
-- Finalise group membership / roles
-- Where system settings like Security Model ?
-- Add UserID to ALL data and code -> where needed ...
-- It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
+    3. Admin module and Users
+    - Users, groups, permissions
+    - Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
+    - Global var with userLoggedIn
+    - What and how is cached locally - and how refreshed
+    - Finalise group membership / roles
+    - Where system settings like Security Model ?
+    - Add UserID to ALL data and code -> where needed ...
+    - It must be impossible to lock out all users - admin keeps access and at least one is kept.    Also, if a W is locked and the owner on leave, someone must be able to unlock it.
 
-4. Refactoring / tech debt / necessary improvements:
-- Some models like Shape has dashboardTabName - suggest we delete this
-- review and check: it should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
-- Change all components to use central (global var) createVegaLiteSpec ...
-- Consider CAREFULLY skipping all currentXX routines and data ... this can work is all controlled by App Component.  Not sure what the FULL implications are ...
-- Consider array.spice() instead of current deep copy - is more TS-like ...  Review ALL deep copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
-- Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  
-THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
-- Add RouteGuard on 'Clarity Analytics', before going to web site ...
-- Improve getBackgroundColors (more propertie like rgb, etc), make more useful and make generic getCSSColours.  Then use in forms, somewhere
-Group: have a CLEAR definition of what this is and how it works:
-- only one, or many?
-- if click one in group, select all in group?
-- if move one in group and rest not selected, do they move as well?
-- if resize, one or all in group resizes?  Particularly if none selected.
-- if some W selected, say 1 in group of 4.  If move, does group also move?
-- better indication that groups are used, and maybe some help when Ws are group - say one- time help popup.
-ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.  Else it gets confusing ...
-- Consider not increasing stuckCount in App if an item is selected/deselected. This does mean to pass event back from slicer.single component.
-On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
-Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
- + Dont show top if no Dataset - rather appropriate Unexpected Error msg
-Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
-Shapes: 
-- links (to web and other D, T)
-- Should be able to Duplicate Shape?  Can we consilidate Duplicate code for all types?
-- Do we need both shapeText and shapeValue?  Maybe delete shapeValue ...
-
+    4. Refactoring / tech debt / necessary improvements:
+    - Some models like Shape has dashboardTabName - suggest we delete this
+    - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI   function for changing things.  And always by the users, with rights if necessary.
+    - Change all components to use central (global var) createVegaLiteSpec ...
+    - Consider CAREFULLY skipping all currentXX routines and data ... this can work is all  controlled by App Component.  Not sure what the FULL implications are ...
+    - Consider array.spice() instead of current deep copy - is more TS-like ...  Review ALL deep    copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
+    - Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make  app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh  gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  
+    THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
+    - Add RouteGuard on 'Clarity Analytics', before going to web site ...
+    - Improve getBackgroundColors (more propertie like rgb, etc), make more useful and make generic     getCSSColours.  Then use in forms, somewhere
+    Group: have a CLEAR definition of what this is and how it works:
+    - only one, or many?
+    - if click one in group, select all in group?
+    - if move one in group and rest not selected, do they move as well?
+    - if resize, one or all in group resizes?  Particularly if none selected.
+    - if some W selected, say 1 in group of 4.  If move, does group also move?
+    - better indication that groups are used, and maybe some help when Ws are group - say one- time     help popup.
+    ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.      Else it gets confusing ...
+    - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean   to pass event back from slicer.single component.
+    On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
+    Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
+     + Dont show top if no Dataset - rather appropriate Unexpected Error msg
+    Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change     the graphW & -H as well
+    Shapes: 
+    - links (to web and other D, T)
+    - Should be able to Duplicate Shape?  Can we consilidate Duplicate code for all types?
+    - Do we need both shapeText and shapeValue?  Maybe delete shapeValue ...
+    Different versions of Vega:
+    - keep version on W in DB
+    - Upgrade Util: converts W to new version, creates new record and keeps old one as IsTrashed=True.  Thus, can always see what it looked like before.  More thinking required here.
+    - see DRF guidelines about the steps to do
+    - a version of Canvas will only work with a specified version(s) of W - inside code.  This way, can load any version of Canvas and it will work provided the W version is in acceptable range - hardcoded in TS.  The version is set per W, thus can have different versions of Graphs (Vega), Sl, etc.
+    API: Have flexible field selection: ie ..."fields": [A, B, F]
+    Setting min Grid width - wait for Clarity Bug fix
+    - Need way to browse large volumes of data without killing browser - server must calc and warn user, plus also do pagination in the background. Also, data manipulation must be pushed onto the server as far as possible.
+    Warning:
+    - when a W is rendered and some fields dont exist, error occured, display a warning image +     message inside W.  User can edit this, fix the fields and save
+    - before saving a W, Canvas checks that the fields are valid, that it renders, etc and warns if not (but allows to save) - how does this fit in with auto-save policy?
+    Local DB:
+    - how to add a table without deleting the IndexDB manually ??
+    Caching:
+    - option to switch caching on or not at the server level and local level (if server allows it)
+    - stores all currentD info, users, etc
+    - refreshed via WS from DB
+    - also used for auto-save: all the steps are saved here, and synced to server at specified  interval (setting on client)
+    ButtonBars: Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now,palette cannot be changed.
+    17.Decide what buttons to keep on widget - for now can only think about link button in  presentation mode.
+    Should we de-select all Ws when we change Tabs, or load a new D?  If not, may be confusing but handy.  If do, where do we do it - GlobVar functions, or in App component (and update Globals back, which does not make sense)
 
 
 **Data**
-1. Define Canvas datatype = TS ones?
-2. Is heading 'Existing Dataset' = ... DataSOURCES ?
-3. Make sure terminology is consitent: Datasource -> Transform -> Dataset
-4. I used FieldNames (string) in ie Pivot - is that okay?
-5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields, FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
-6. Check Definition of DS = source, location, authentication, F, Tr, Pv etc.  Dataset is just the data, with an ID / url to find it.
-8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or not?
-9. Data Quality issues: add place to add detail values.  An overall statement can say all data has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
-10.Similtaneous update of LOCAL and GLOBAL vars!  Ie: app sends [widgets] to widget component, which is the local widgets.  Who and where are Global widgets synced !!!!????  Maybe use observables where the local ones just subscribe to the global ones.  Anyway, make this method standard across app. 
-11.Determine which transformations live on server and which on client, and whether some/all
-   lives on both.
-12.Remember usage - and can sort by popular ones or show it for all relevant objects
-13.Allow own profile pic upload!
-14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
-15.Telegram interface with bot ...
-16.Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now, palette cannot be changed.
-17.Decide what buttons to keep on widget - for now can only think about link button in presentation mode.
-1. Define Canvas data types: which module creates this for data and where?  Are all numbers equal?
-2. Data field lengths: where defined, by what means, and how are they used?  Is it display side only?  Can the user change it?  What if an actual field is wider than the stated length - will it truncate displayed data?  Does numbers have a length?
-3. How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How is locale used?
-4. How does types tranform into Vega field types, ie on Editor?
-5. Consider dataQuality on own menu item, or on W menu
-6. Should we de-select all Ws when we change Tabs, or load a new D?  If not, may be confusing but handy.  If do, where do we do it - GlobVar functions, or in App component (and update Globals back, which does not make sense)
-7. Rev
-- after Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field may not exist any longer in DS)
+    1. Define Canvas datatype = TS ones?  Define Canvas data types: which module creates this for   data and where?  Are all numbers equal?
+    2. Make sure terminology is consitent: Datasource -> Transform -> Dataset
+    4. I used FieldNames (string) in ie Pivot - is that okay?
+    5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields,    FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over   time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
+    6. Check Definition of DS = source, location, authentication, F, Tr, Pv etc.  Dataset is just   the data, with an ID / url to find it.
+    8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so,     then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or  not?
+    9. Data Quality issues: add place to add detail values.  An overall statement can say all data  has an issue, but a specific one must identify the column(s) and row(s) affected, thus given     the IDs or key values.
+    10.Similtaneous update of LOCAL and GLOBAL vars!  Ie: app sends [widgets] to widget component,  which is the local widgets.  Who and where are Global widgets synced !!!!????  Maybe use     observables where the local ones just subscribe to the global ones.  Anyway, make this method   standard across app. 
+    11.Determine which transformations live on server and which on client, and whether some/all
+       lives on both.
+    12.Remember usage - and can sort by popular ones or show it for all relevant objects
+    13.Allow own profile pic upload!
+    14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload   each time ...
+    15.Data types and field lengths:
+    - where defined, by what means, and how are they used?  Is it display side only?  Can the user  change it?  What if an actual field is wider than the stated length - will it truncate   displayed data?  Does numbers have a length?
+    - How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How  is locale used?
+    - How does types tranform into Vega field types, ie on Editor?
+    16.After Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field  may not exist any longer in DS)
 
 
 
@@ -181,7 +132,9 @@ Shapes:
     - Cross hair with showing values on axis - ie crypto trading websites!
     - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
     - Serias work to be done - learning Vega and adding ALL features !!!
-    - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new     templates, and a new UI.  
+    - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new     templates, and a new UI. 
+    - Give hints/advice on W as to type of graph, insights, etc.
+
 
 **Table (Bradley SmartTable)** 
     - add drag fields - to X = Add, Drag away = delete from headers
@@ -208,51 +161,35 @@ Shapes:
 
 
 **Dashboard**
-1. Easy to drill in and out of dates - year - month - day, etc
-2. Open: all Ds using a given Template
-4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
-   for March last year, or compare all to last year ... NB
-5. Also, easy way to jump to previous period:  loaded at start with data ??
-6. Reuse open Dashboard code between Open & Rename, if possible
-7. Test printing - and see if pagelayout can be changed
-8. Startup D: should this be settable as a pref, or should we always display the Landing page?
-10.Show Grid - currently a .png -> how to make this dynamic ?
-11.Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
-   at any point in the past.  It must be clearly marked for the user.  Must also be able to
-   search the list, and see a list of undo actions.
-12.How do we save actions for D, T, etc - current design is only for Ws ... ??
-14.The SPEC does NOT contain all Widgets - this allows Widgets to be standalone items, and can easily be connected to more than one Dashboard in future, if we decide so (not adivised as your Dashboard may suddenly change without warning).
-15.Import: check security, particularly for the Datasource.  Also, is the access rights
-   stored with the text file (security risk)?  Also, can / should it over-write an
-   existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
-16.Fix bug: Recent Dashboard refreshes 1 cycle too late
-17.Fix Bug: grid shows on top of widgets -> cannot click them
-18.StatusBar must not grow beyond screen width, or to double line
-19.Set editMode per Recent - must be same mode as last saved
-20.Set editMode @startup as user pref
-21.Set editMode for ALL menu options: ie, cannot edit Title with RightClick in ViewOnly
-22.Consider quick access to EditMode - maybe dblClick 'ViewOnly' on StatusBar
+    1. Easy to drill in and out of dates - year - month - day, etc
+    2. Open: all Ds using a given Template
+    4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
+       for March last year, or compare all to last year ... NB
+    5. Also, easy way to jump to previous period:  loaded at start with data ??
+    6. Startup D: should this be settable as a pref, or should we always display the Landing page?
+    7 .Show Grid - currently a .png -> how to make this dynamic ?
+    8 .Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
+       at any point in the past.  It must be clearly marked for the user.  Must also be able to
+       search the list, and see a list of undo actions.
+    9 .Import: check security, particularly for the Datasource.  Also, is the access rights
+       stored with the text file (security risk)?  Also, can / should it over-write an
+       existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
+    10.Fix bug: Recent Dashboard refreshes 1 cycle too late
+    11.StatusBar must not grow beyond screen width, or to double line
+    12.Set editMode per Recent - must be same mode as last saved
+    13.Set editMode @startup as user pref ?  How will this work if a D is opened read-only
+    14.Consider quick access to EditMode - maybe dblClick 'ViewOnly' on StatusBar
 
 
 **Templates**
-1. Loading a template - make sure to respect security / rights + all is read-only
-2. D used as Templates may include templates already!  This is to simplify things, and a string of dependencies - it is thus restricted to one level.  A T can be used in may D, no issue.
-3. Add Datasources to Dashboard, but flag them as invisible.  Thus, Dashboard can use them
-   in Template only, and user cannot use them.  If the user needs that Datasource, he can
-   add it, in which case it will be duplicated, one invisible.
-4. If this gets too complicated, only use Shapes on Templates.
-5. Ensure Templates are on different layers / z-index
-6. When a T is changed, the user is warned which Ds use it - he can see their names and maybe even open them.
-
-
-
-
-
-
-
-
-
-
+    1. Loading a template - make sure to respect security / rights + all is read-only
+    2. D used as Templates may include templates already!  This is to simplify things, and a string     of dependencies - it is thus restricted to one level.  A T can be used in may D, no issue.
+    3. Add Datasources to Dashboard, but flag them as invisible.  Thus, Dashboard can use them
+       in Template only, and user cannot use them.  If the user needs that Datasource, he can
+       add it, in which case it will be duplicated, one invisible.
+    4. If this gets too complicated, only use Shapes on Templates.
+    5. Ensure Templates are on different layers / z-index
+    6. When a T is changed, the user is warned which Ds use it - he can see their names and maybe   even open them.
 
 
 **Scheduler**
@@ -293,6 +230,7 @@ Menu functions:
 - Consider cut as well, cut = copy + delete ...
 External contact:
 - Use cell phone to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
+- Telegram interface with bot ...
 Comments:
 - add filter on Sender/Receiver
 - consider adding message Thread
@@ -303,3 +241,7 @@ Shapes:
 - Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
 - Add emojis !?
 - Consider MarkDown / HTML formatting to Text shape - do we really need this?
+- Consider animation in presention mode ...
+- PBI can change type of W after created, ie Table to Matrix
+- How to incorporate fancy W types, ie half circle with needle / doughnut / etc ... 
+Consider dataQuality on own menu item, or on W menu
