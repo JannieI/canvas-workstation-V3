@@ -3828,6 +3828,20 @@ export class AppComponent implements OnInit {
         this.globalVariableService.currentWidgets.push(copiedWidget);
         this.globalVariableService.changedWidget.next(copiedWidget);
 
+        // Add to Action log
+        this.globalVariableService.actionUpsert(
+            null,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+            'Widget',
+            'Duplicate',
+            'App clickMenuWidgetDuplicate',
+            null,
+            null,
+            null,
+            copiedWidget
+        );
+
     }
 }
 
