@@ -3772,7 +3772,7 @@ export class GlobalVariableService {
                 inputValue = inputValue - (inputValue % this.gridSize);
             }
         };
-
+console.log('xx', this.snapToGrid, this.gridSize, inputValue)
         // Return the value
         return inputValue;
     }

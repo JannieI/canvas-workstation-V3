@@ -255,7 +255,7 @@ BUG: if using a custom vega spec, the editor does not understand this.
 3. On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
 4. Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
  + Dont show top if no Dataset - rather appropriate Unexpected Error msg
-5. 
+5. Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
 6. 
 7. 
 8. 

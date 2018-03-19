@@ -3363,12 +3363,6 @@ export class AppComponent implements OnInit {
         this.endX = ev.x;
         this.endY = ev.y;
 
-        // Cater for snapping to Grid
-        if (this.snapToGrid) {
-            this.endX = this.globalVariableService.alignToGripPoint(this.endX)
-            this.endY = this.globalVariableService.alignToGripPoint(this.endY)
-        };
-
         // Create array to loop on
         this.draggableWidgets = [];
         // There is no group
@@ -3394,12 +3388,6 @@ export class AppComponent implements OnInit {
         // Do Actual Move of draggable Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'moveWidgets', '@Start');
 
-        // Cater for snapping to Grid
-        if (this.snapToGrid) {
-            this.endX = this.globalVariableService.alignToGripPoint(this.endX)
-            this.endY = this.globalVariableService.alignToGripPoint(this.endY)
-        };
-
         // Reset current and globalVar values
         this.currentWidgets.forEach( w => {
 
@@ -3417,10 +3405,20 @@ export class AppComponent implements OnInit {
                     null,
                     null,
                     w,
-                    null);
+                    null
+                );
 
                 w.containerLeft = w.containerLeft - this.startX + this.endX;
                 w.containerTop = w.containerTop - this.startY + this.endY;
+
+                // Cater for snapping to Grid
+                if (this.snapToGrid) {
+                    w.containerLeft = this.globalVariableService.alignToGripPoint(
+                        w.containerLeft);
+                    w.containerTop = this.globalVariableService.alignToGripPoint(
+                        w.containerTop);
+                };
+                
                 actID = this.globalVariableService.actionUpsert(
                     actID,
                     this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
@@ -3440,6 +3438,14 @@ export class AppComponent implements OnInit {
             if (this.draggableWidgets.indexOf(w.id) >= 0) {
                 w.containerLeft = w.containerLeft - this.startX + this.endX;
                 w.containerTop = w.containerTop - this.startY + this.endY;
+
+                // Cater for snapping to Grid
+                if (this.snapToGrid) {
+                    w.containerLeft = this.globalVariableService.alignToGripPoint(
+                        w.containerLeft);
+                    w.containerTop = this.globalVariableService.alignToGripPoint(
+                        w.containerTop);
+                };
             }
         });
 
