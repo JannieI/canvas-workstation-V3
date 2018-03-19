@@ -3388,6 +3388,12 @@ export class AppComponent implements OnInit {
         // Do Actual Move of draggable Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'moveWidgets', '@Start');
 
+        // Cater for snapping to Grid
+        if (this.snapToGrid) {
+            this.endX = this.globalVariableService.alignToGripPoint(this.endX)
+            this.endY = this.globalVariableService.alignToGripPoint(this.endY)
+        };
+        
         // Reset current and globalVar values
         this.currentWidgets.forEach( w => {
 

@@ -2425,7 +2425,6 @@ export class GlobalVariableService {
                         this.notInEditModeMsg = data.notInEditModeMsg;
                         this.noQueryRunningMessage = data.noQueryRunningMessage;
                         this.queryRunningMessage = data.queryRunningMessage;
-
                         this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.noQueryRunningMessage);
                         console.log('Global-Variables getSystemSettings 1', this.canvasSettings)
@@ -3763,12 +3762,8 @@ export class GlobalVariableService {
     }
 
     alignToGripPoint(inputValue: number) {
-        // This routine recalcs a value to a gridpoint IF if snapping is enabled
-        console.log('Global-Variables snapToGrid ...');
-
-        // Set startup stuffies
-        this.snapToGrid = this.snapToGrid;
-        this.gridSize = this.gridSize;
+        // This routine recalcs a value to a gridpoint IF snapping is enabled
+        console.log('Global-Variables snapToGrid ...', inputValue);
 
         if (this.snapToGrid) {
             if ( (inputValue % this.gridSize) >= (this.gridSize / 2)) {
@@ -3776,7 +3771,7 @@ export class GlobalVariableService {
             } else {
                 inputValue = inputValue - (inputValue % this.gridSize);
             }
-        }
+        };
 
         // Return the value
         return inputValue;
