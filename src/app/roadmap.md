@@ -7,9 +7,7 @@ This document describes items for later versions of Canvas.
 
 **Global / Overall issues / Settings**
 1. Test everything with 1000 - ie Dashboards, Widgets per D, etc - to check performance and to see it form layout (ie grids sizes) will copy with large volume
-2. Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
-3. Use style.css for standard items, ie class="helpMessage"
-4. Standardize date format shown - as selected by the user, stored as settings
+2. 
 6. 
 7. Setting min Grid width - wait for Clarity Bug fix
 8. 
@@ -50,10 +48,7 @@ Caching:
 - also used for auto-save: all the steps are saved here, and synced to server at specified interval (setting on client)
 
 
-Multi-T display:
-- can add W from other D on the NEW W form -> makes a copy of it locally, and stores a reference to the original.  This is not maintained automatically, the user has to delete and re-copy to local to get the latest.  It is thus different to templates.
-- on DS menu: indicate all W (graph + Sl) influenced by this DS
-- on W menu: indicate all Sl affecting this W
+
  
 
 Local DB:
@@ -67,86 +62,73 @@ This seems useful for the following:
 - take serious note of browser compatibility
 - auto-save can be done here - should make it faster, and less calls to server
 
-Auto-save / Undo:
-- this is a key feature
-- options:
-    1. could save all info relating to the D: speed (ie to undo, the whole D will be recreated), easier to manage (all or nothing)
-    2. save steps (action, old value, new value): more complicated to sync, and how will snapshots work?
-    3. Combination of above, ie drag and resize as nr 2, rest as nr 1 ...
-    For NOW: 
-    - have a set of stores, one per entity with snapshot-id (-1 = optional), entity-id, {}
-    - have one list: entity, id, action, old, new
-    - single property changes, ie resize: graph, 3, change-container-width, old-width, new-width
-    - significant changes to one entity: graph, 1, replace, old-spec-id, new-spec-id
-    - snapshot: whole-dashboard, 2, snapshot, old-snapshot-id, new-snapshot-id
-       This will replace all current entities (D, T, W, etc) from the respective stores where the snapshot-id matches
 
 
-Other:
-- Sl over T can be clumsy - can use multi-T feature but is this enough?
-- Sl: can switch on/off per W -> suggest this will be confusing to users ...
-- can we hide T - will show in T list with hidden tick, can uncheck?
-- getting a W from another D - only show those where the user has access to the DS
-- after Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field may not exist any longer in DS)
-- decide if check/tick is shown on related Sl when a W is clicked.  
-- try to improve performance - trackedByFn ...
 
 
-**END 1 Feb 2018**
 
 
 **UI / ideas**
-1. See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be consistent!!
-2. GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.
-4. Review whether as beautiful as Simplus
-5. Test on different configs: screen resolution, 2 screens
-6. Test on different devices, ie Tablet and Phone
-7. Install at user as pilot, may Liaan ...
-8. Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure there is a preference to switch it back on manually.
-9. Some models like Shape has dashboardTabName - suggest we delete this
-10.Consider highlight of selected row in Snapshots.  If good, apply to all Grids.  Better: consider a GRID-COMPONENT ...
-11.It should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
-12.It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
-13.Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that browser has own set.  Try to make it dynamic, ie use can define it!
-14. Have verticle and horisontal hairlines when moving W - experiment a bit
-15. When equi-distant - keep order on screen, not order selected
-16. Thumbnail view of all T - can selected ala PowerPoint
-17. Have popup thumbnail of D on Landing page
-18. Use thumbnails to select a W from another D - have thumbnails are on/off option for performance perhaps
-19. Look at function in MS staff hub
-20. Incorporate tasks into Landing page?
-21. Give the user a vote - via like?  Create a sense of belonging and community
-22. Use cell to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
-23.Consider to move ALL selected objects - remember complexity since Sl and W sits in different components ...
-24.Refactor: Change all components to use central (global var) createVegaLiteSpec ...
-25.Consider CAREFULLY skipping all currentXX routines and data ... this can work is all controlled by App Component.  Not sure what the FULL implications are ...
-26.Consider array.spice() instead of current deep copy - is more TS-like ...  Review ALL deep copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
-27.Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  
+1. Tooltips:
+- Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be consistent!!  
+
+2. Overall design and layout 
+- GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.
+- Review whether as beautiful as Simplus
+- Relook at ALL forms for consistent layout, look and feel, INcluding the popups like the W title
+- Add 'X' top left on all, so that it can close if screen is too small and the save button overflow beyond the screen
+- Test on different configs: screen resolution, 2 screens
+- Test on different devices, ie Tablet and Phone
+- Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure there is a preference to switch it back on manually.
+Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
+- Use style.css for standard items, ie class="helpMessage"
+- Standardize date format shown - as selected by the user, stored as settings
+- Consider highlight of selected row in Snapshots.  If good, apply to all Grids.  Better: consider a GRID-COMPONENT ...
+-Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that browser has own set.  Try to make it dynamic, ie use can define it!
+- Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
+Multi-T display: show nr of Tabs where a W is displayed in header as a badge
+Presentation: 
+- must be able to make a PowerPoint-light: front page(logo and title), agenda with bullets and optional links, pages with logo and title repeated at the top and bullets and W (graphs, etc) that are normal Canvas W => interactive and can add Sl, explore, expand, etc.
+- See if can print, and if so: allow different layouts and formats, for example one
+   Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
+
+3. Admin module and Users
+- Users, groups, permissions
+- Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
+- Global var with userLoggedIn
+- What and how is cached locally - and how refreshed
+- Finalise group membership / roles
+- Where system settings like Security Model ?
+- Add UserID to ALL data and code -> where needed ...
+- It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
+
+4. Refactoring / tech debt / necessary improvements:
+- Some models like Shape has dashboardTabName - suggest we delete this
+- review and check: it should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
+- Change all components to use central (global var) createVegaLiteSpec ...
+- Consider CAREFULLY skipping all currentXX routines and data ... this can work is all controlled by App Component.  Not sure what the FULL implications are ...
+- Consider array.spice() instead of current deep copy - is more TS-like ...  Review ALL deep copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
+- Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  
 THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
-28.Delete Slicer has no confirmation - maybe it should be done.  Then decide, in app component or new component.
-29.Consider showing #W selected on StatusBar - dont think it will make a diff, as it is easier to see visually on W what is going on.  If move and some grouped, will figure it out methinks
-30.Comments:
-- add filter on Sender/Receiver
-- consider adding message Thread
-- In ViewOnly mode: cannot select a W, thus cannot see Comments per selected ...
-31.Add RouteGuard on 'Clarity Analytics', before going to web site ...
-32.Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
-33.Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip for icons.
-34.Make Observable from keystrokes in app component - then debounce to make it less??  See BK mouse wheel scroll ...
-35.Improve getBackgroundColors (more propertie like rgb, etc), make more useful and make generic getCSSColours.  Then use in forms, somewhere
-26.Group: have a CLEAR definition of what this is and how it works:
+- Add RouteGuard on 'Clarity Analytics', before going to web site ...
+- Improve getBackgroundColors (more propertie like rgb, etc), make more useful and make generic getCSSColours.  Then use in forms, somewhere
+Group: have a CLEAR definition of what this is and how it works:
 - only one, or many?
 - if click one in group, select all in group?
 - if move one in group and rest not selected, do they move as well?
 - if resize, one or all in group resizes?  Particularly if none selected.
 - if some W selected, say 1 in group of 4.  If move, does group also move?
 - better indication that groups are used, and maybe some help when Ws are group - say one- time help popup.
-27.ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.  Else it gets confusing ...
-28.Consider copy + paste for Slicer, Shape and Table.  For now, I think it is okay
-29.Consider cut as well, cut = copy + delete ...
-30.Relook at ALL forms:
-- consistent layout, look and feel - INcluding the popups like the W title
-- x top left on all, so that it can close if screen is too small and the save button overflow beyond the screen
+ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.  Else it gets confusing ...
+- Consider not increasing stuckCount in App if an item is selected/deselected. This does mean to pass event back from slicer.single component.
+On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
+Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
+ + Dont show top if no Dataset - rather appropriate Unexpected Error msg
+Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
+Shapes: 
+- links (to web and other D, T)
+- Should be able to Duplicate Shape?  Can we consilidate Duplicate code for all types?
+- Do we need both shapeText and shapeValue?  Maybe delete shapeValue ...
 
 
 
@@ -175,39 +157,54 @@ THEN: consider all currentXXX, where XXX = Objects to follow the same methodolog
 5. Consider dataQuality on own menu item, or on W menu
 6. Should we de-select all Ws when we change Tabs, or load a new D?  If not, may be confusing but handy.  If do, where do we do it - GlobVar functions, or in App component (and update Globals back, which does not make sense)
 7. Rev
-
-
-**Admin module**
-1. Users, groups, permissions
-2. Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
-3. Global var with userLoggedIn
-4. What and how is cached locally - and how refreshed
-5. Finalise group membership / roles
-6. Where system settings like Security Model ?
-7. Add UserID to ALL data and code -> where needed ...
+- after Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field may not exist any longer in DS)
 
 
 
 
-**Widget Editor**
-- user can change Vega field types on Adv form
-- our field type -> vega types: take a best guess
-- APPLY on Adv form must re-render
-- DESIGn: Adv form
-- at start, add row, col, color fields
-- EDIT buggie - color stays, fails on T=2
-- new push
-BUG: if using a custom vega spec, the editor does not understand this.
-- set properties of new Widget as a template - user pref
-- when open NEW and only 1 DS, then skip DS selection page?
-- when add NEW, ensure it is accessable: always same position top left + z-index = Max(rest)+1
 
 
-**Table** 
-- add drag fields - to X = Add, Drag away = delete from headers
-- add drag field to Y = Pivot!  Decide local or in backend
-- add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here
-- Does not have Links button - thinking was that one would not need to link a table to another tab, but this must be verified
+
+**Widget Editor - Adv**
+    - DESIGn: Adv form
+    - user can change Vega field types on Adv form
+    - our field type -> vega types: take a best guess
+    - APPLY on Adv form must re-render
+    - at start, add row, col, color fields
+    - EDIT buggie - color stays, fails on T=2
+    BUG: if using a custom vega spec, the editor does not understand this.
+    - set properties of new Widget as a template - user pref
+    - when open NEW and only 1 DS, then skip DS selection page?
+    - when add NEW, ensure it is accessable: always same position top left + z-index = Max(rest)+1
+    - How to show comparison between current and previous period ?
+    - Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at    the moment
+    - Cross hair with showing values on axis - ie crypto trading websites!
+    - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
+    - Serias work to be done - learning Vega and adding ALL features !!!
+    - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new     templates, and a new UI.  
+
+**Table (Bradley SmartTable)** 
+    - add drag fields - to X = Add, Drag away = delete from headers
+    - add drag field to Y = Pivot!  Decide local or in backend
+    - add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here
+    - Does not have Links button - thinking was that one would not need to link a table to another  tab, but this must be verified
+    - Right click to get popup menu with clever info
+    - can set whether a user can change properties at runtime, or not
+    - export to csv, Excel, etc
+    - grouping of cols under another
+    - filter on any col
+    - sort on all cols
+    - conditional formatting
+    - tooltips, which give data type, etc
+    - freeze rows, cols, both
+    - col header buttons, which can be on/off
+    - powerful sizing and resizing
+    - totals row and col
+    - custom event handling
+    - in-cell editing, with validation
+    - cell background and colour and font size
+    - resize row and col
+    - support 10m rows
 
 
 **Dashboard**
@@ -249,67 +246,60 @@ BUG: if using a custom vega spec, the editor does not understand this.
 
 
 
-**Widget**
-1. 
-2. Add Copy and Paste options - if needed.  Remember to consider (copy i) notation, as the same W could have been Duplicated since the Copy and before the Paste ...
-3. On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
-4. Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
- + Dont show top if no Dataset - rather appropriate Unexpected Error msg
-5. Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
-6. 
-7. 
-8. 
-9. Advanced box in Widget-Editor: consider and document z-index used here
-10.How to show comparison between current and previous period ?
-11.
-12.
-13.Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
-14.
-15.Cross hair with showing values on axis - ie crypto trading websites!
-16.Show a Viz on the tooltip - this could be our explain ... !
-17.
-18.Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
-19.
-20.Serias work to be done - learning Vega and adding ALL features !!!
-21.Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI.  
 
 
-**Shapes**
-- must be able to make a PowerPoint-light: front page(logo and title), agenda with bullets and optional links, pages with logo and title repeated at the top and bullets and W (graphs, etc) that are normal Canvas W => interactive and can add Sl, explore, expand, etc.
-1. 
-2. Numbered bullets (abc or 123 - CSS can do it)
-3. links (to web and other D, T)
-4. Should be able to Duplicate Shape?  Can we consilidate Duplicate code for all types?
-5. Add rotate to text box with transform="rotate(30 20,40)"
-6. Can / should other Shapes also rotate??
-7. Can / should Shapes have radial / linear blur inside??
-8. Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
-9. Add emojis !?
-10.Do we need both shapeText and shapeValue?  Maybe delete shapeValue ...
-11.Consider MarkDown / HTML formatting to Text shape - do we really need this?
 
 
-**Presentation**
-1. See if can print, and if so: allow different layouts and formats, for example one
-   Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
-2. Issue: Make sure access rights are still respected at all levels: Dashboard, Widget, Datasource
 
 
-**Slicers**
-1. 
-2. 
-3. Warn user if 2 Sl on the same dataset for the same field?
-4. 
-5. 
-6. 
-7. Consider not increasing stuckCount in App if an item is selected/deselected. This does mean to pass event back from slicer.single component.
+
 
 
 **Scheduler**
-1. Determine tech and where/how it runs
-2. How does standalone work - does it have a schedule?
-3. How are users notified and also when scheduler is down
-4. How is dataset stored - per Dashboard as more than one can be linked ..
-5.
+    1. Determine tech and where/how it runs
+    2. How does standalone work - does it have a schedule?
+    3. How are users notified and also when scheduler is down
+    4. How is dataset stored - per Dashboard as more than one can be linked ..
 
 
+
+## Later versions
+To consider for LATER versions:
+User feedback:
+- Install at user as pilot, may Liaan ...
+Tabs:
+- can we hide T - will show in T list with hidden tick, can uncheck?
+Widgets:
+- Decide to get a W from another D - only show those where the user has access to the DS
+- Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
+- Give the user a vote - via like?  Create a sense of belonging and community
+- Consider multi-W actions, ie to move ALL selected objects - remember complexity since Sl and W sits in different components ...  Also, the current code is specific to ONE
+Performance:
+- try to improve performance - trackedByFn ...
+Thumbnails: 
+- view of all T - can selected ala PowerPoint
+- Have popup thumbnail of D on Landing page
+- Use thumbnails to select a W from another D - have thumbnails are on/off option for performance perhaps
+UI:
+- Have verticle and horisontal hairlines when moving W - experiment a bit
+- Make Observable from keystrokes in app component - then debounce to make it less??  See BK mouse wheel scroll ...
+- Consider to Warn user if 2 Sl on the same dataset for the same field - not sure it is needed
+Tooltip:
+- Show a Viz on the tooltip - this could be our explain ... !
+Landing page:
+- Incorporate tasks into Landing page?
+Menu functions:
+- Consider copy + paste for Slicer, Shape and Table.  For now, I think it is okay
+- Consider cut as well, cut = copy + delete ...
+External contact:
+- Use cell phone to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
+Comments:
+- add filter on Sender/Receiver
+- consider adding message Thread
+- In ViewOnly mode: cannot select a W, thus cannot see Comments per selected ...
+Shapes:
+- Can / should other Shapes (ie TEXT) also rotate with transform="rotate(30 20,40)"??
+- Can / should Shapes have radial / linear blur inside??
+- Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
+- Add emojis !?
+- Consider MarkDown / HTML formatting to Text shape - do we really need this?
