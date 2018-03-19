@@ -3748,6 +3748,9 @@ export class AppComponent implements OnInit {
         copiedWidget.id = newID;
         copiedWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         copiedWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+
+        // Assume this is a NEW W, so forget about tabs that original belongs
+        copiedWidget.dashboardTabIDs = [copiedWidget.dashboardTabID];
         copiedWidget.isSelected = false;
         copiedWidget.containerLeft = 120;
         copiedWidget.containerTop = 120;
