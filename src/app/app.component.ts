@@ -1233,8 +1233,12 @@ export class AppComponent implements OnInit {
 
                             // Diff Object Types
                             if (ourActions[i].objectType == 'Widget') {
-                                this.globalVariableService.changedWidget.next(
-                                    ourActions[i].oldWidget)
+                                if (ourActions[i].oldWidget == null) {
+                                    this.deleteWidget('Graph',ourActions[i].newWidget.id);
+                                } else {
+                                    this.globalVariableService.changedWidget.next(
+                                        ourActions[i].oldWidget);
+                                };
                             };
 
                         console.log('Redo id', ourActions[i].id);
