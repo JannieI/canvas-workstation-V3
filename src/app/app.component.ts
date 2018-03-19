@@ -3363,6 +3363,12 @@ export class AppComponent implements OnInit {
         this.endX = ev.x;
         this.endY = ev.y;
 
+        // Cater for snapping to Grid
+        if (this.snapToGrid) {
+            this.endX = this.globalVariableService.alignToGripPoint(this.endX)
+            this.endY = this.globalVariableService.alignToGripPoint(this.endY)
+        };
+
         // Create array to loop on
         this.draggableWidgets = [];
         // There is no group
@@ -3393,7 +3399,7 @@ export class AppComponent implements OnInit {
             this.endX = this.globalVariableService.alignToGripPoint(this.endX)
             this.endY = this.globalVariableService.alignToGripPoint(this.endY)
         };
-        
+
         // Reset current and globalVar values
         this.currentWidgets.forEach( w => {
 

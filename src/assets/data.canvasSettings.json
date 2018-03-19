@@ -8,7 +8,7 @@
     "maxTableLength": 500,
     "widgetsMinZindex": 50,
     "widgetsMaxZindex": 59,
-    "gridSize": 15,
+    "gridSize": 50,
     "snapToGrid": true,
     "printDefault": "",
     "printSize": "",
