@@ -1084,12 +1084,15 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
                 'Widget',
                 'Undo',
-                '',
+                'App clickMenuEditUndo',
                 filteredActions[0].id,
                 null,
                 filteredActions[0].newWidget,
-                filteredActions[0].oldWidget)
-            this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+                filteredActions[0].oldWidget
+            );
+            if (filteredActions[0].objectType == 'Widget') {
+                this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+            };
 
             console.log('undo prev DO, id ',filteredActions[0].id, this.globalVariableService.actions )
         } else {
@@ -1116,21 +1119,28 @@ export class AppComponent implements OnInit {
                 this.menuOptionClickPostAction();
                 return;
             };
-            filteredActions = this.globalVariableService.actions.filter(act => act.id == undoActID);
 
+            filteredActions = this.globalVariableService.actions.filter(
+                    act => act.id == undoActID);
+
+            // Add to Actions
             this.globalVariableService.actionUpsert(
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
                 'Widget',
                 'Undo ' + filteredActions[0].redoID == null? 'DO' : 'REDO',
-                '',
+                'App clickMenuEditUndo',
                 filteredActions[0].id,
                 null,
                 filteredActions[0].newWidget,
                 filteredActions[0].oldWidget
-            )
-            this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+            );
+
+            // Diff Object Types
+            if (filteredActions[0].objectType == 'Widget') {
+                this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+            };
 
             console.log('undo prev id ', filteredActions[0].id, this.globalVariableService.actions)
         };
@@ -1185,12 +1195,17 @@ export class AppComponent implements OnInit {
                             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
                             'Widget',
                             'Redo',
-                            '',
+                            'App clickMenuEditRedo',
                             null,
                             ourActions[i].id,
                             ourActions[i].newWidget,
                             ourActions[i].oldWidget);
-                        this.globalVariableService.changedWidget.next(ourActions[i].oldWidget)
+
+                            // Diff Object Types
+                            if (ourActions[i].objectType == 'Widget') {
+                                this.globalVariableService.changedWidget.next(
+                                    ourActions[i].oldWidget)
+                            };
 
                         console.log('Redo id', ourActions[i].id);
                         break;
@@ -3401,7 +3416,7 @@ export class AppComponent implements OnInit {
                     this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
                     'Widget',
                     'Move',
-                    'App',
+                    'App moveWidgets',
                     null,
                     null,
                     w,
@@ -3423,7 +3438,7 @@ export class AppComponent implements OnInit {
                     actID,
                     this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                     this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    'Widget',
+                    null,
                     null,
                     null,
                     null,
