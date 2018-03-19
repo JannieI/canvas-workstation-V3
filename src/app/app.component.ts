@@ -160,7 +160,7 @@ export class AppComponent implements OnInit {
         };
 
         // Move with Arrow
-        if (event.key == 'ArrowRight'  ||  event.key == 'ArrowDown'  ||  
+        if (event.key == 'ArrowRight'  ||  event.key == 'ArrowDown'  ||
             event.key == 'ArrowLeft'   ||  event.key == 'ArrowUp') {
             // Set start coordinates
             this.startX = 0;
@@ -196,7 +196,7 @@ export class AppComponent implements OnInit {
                 this.moveWidgets()
             };
         };
-        
+
     }
 
     clipboardWidget: Widget;
@@ -346,7 +346,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         // Initial
-        
+
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.presentationMode.subscribe(
@@ -367,11 +367,11 @@ export class AppComponent implements OnInit {
                     else {this.editMenuText = 'View Mode'};
                  }
         );
-        
+
         // This refreshes one W
         this.globalVariableService.changedWidget.subscribe(w => {
             if (w != null) {
-                // Note: amend this.currentWidgets as it is a ByRef to 
+                // Note: amend this.currentWidgets as it is a ByRef to
                 // this.gv.currentWidgets, which Angular does not register that it has changed
 
                 // Deep copy
@@ -417,23 +417,23 @@ export class AppComponent implements OnInit {
                                     currentDashboardTabs[this.currentDashboardTabIndex].backgroundColor;
                                 if (this.currentTabBackgroundColor == ''  ||  this.currentTabBackgroundColor == null) {
                                     this.currentTabBackgroundColor = '#192b35';
-                                };                                    
+                                };
                                 this.currentTabColor = this.globalVariableService.
                                     currentDashboardTabs[this.currentDashboardTabIndex].color;
                                 if (this.currentTabColor == ''  ||  this.currentTabColor == null) {
                                     this.currentTabColor = 'white';
-                                };                                    
+                                };
                                 this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
 
                                 // Loop on All/Indicated Ws
                                 this.currentWidgets = [];
                                 for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
-                                    let w: Widget = Object.assign({}, 
+                                    let w: Widget = Object.assign({},
                                         this.globalVariableService.currentWidgets[i]);
                                     this.currentWidgets.push(w)
                                 }
-                                console.log('xx app end', this.currentWidgets);        
+                                console.log('xx app end', this.currentWidgets);
 
                             }
 
@@ -462,7 +462,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
+        // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
@@ -475,9 +475,9 @@ export class AppComponent implements OnInit {
         this.globalVariableService.currentDashboardInfo.unsubscribe();
 
     }
-    
+
     // ***********************  HANDLE RETURN AFTER MODAL FORM CLOSES ************************ //
-    
+
     handleCloseModalLanding(action: string) {
         // Close Modal form Landing page
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseModalLanding', '@Start');
@@ -666,7 +666,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.changedWidget.next(changedWidget);
 
         this.menuOptionClickPostAction();
-        
+
         this.showModalShapeEdit = false;
     }
 
@@ -718,7 +718,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.changedWidget.next(changedWidget);
 
         this.menuOptionClickPostAction();
-        
+
         this.showModalDataSlicers = false;
     }
 
@@ -731,7 +731,7 @@ export class AppComponent implements OnInit {
         };
 
         this.menuOptionClickPostAction();
-        
+
         this.showTitleForm = false;
     }
 
@@ -740,7 +740,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
-        // Note: amend this.currentWidgets as it is a ByRef to 
+        // Note: amend this.currentWidgets as it is a ByRef to
         // this.gv.currentWidgets, which Angular does not register that it has changed
 
         // for (var i = 0; i < this.currentWidgets.length; i++) {
@@ -766,14 +766,14 @@ export class AppComponent implements OnInit {
             // Work on selected W
             this.currentWidgets.forEach(w => {
                 if (w.isSelected) {
-                    
+
                     // Update local, and global Ws
                     w.dashboardTabIDs = tabIDs;
                     this.globalVariableService.widgetReplace(w);
                     this.globalVariableService.changedWidget.next(w);
                 }
             });
-        
+
         };
 
         this.menuOptionClickPostAction();
@@ -823,7 +823,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainer', '@Start');
 
         this.globalVariableService.changedWidget.next(changedWidget);
-        
+
         this.menuOptionClickPostAction();
 
         this.showModalWidgetContainer = false;
@@ -1046,25 +1046,23 @@ export class AppComponent implements OnInit {
         // - does not store oldW, newW as these are obtained from DO
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditUndo', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Get action for current D and T
         let ourActions: CanvasAction[] = [];
         ourActions = this.globalVariableService.actions.filter(act =>
-            act.dashboardID == 
+            act.dashboardID ==
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID
             &&
-            act.dashboardTabID == 
+            act.dashboardTabID ==
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
         );
 
         // Can only undo if something has been done before
         if (ourActions.length == 0) {
             console.log('Nothing to undo')
-
-            this.menuOptionClickPostAction();
             return;
         };
+
+        this.menuOptionClickPreAction();
 
         // Get last actionID for it
         let tempActionIDs: number[] = [];
@@ -1072,7 +1070,7 @@ export class AppComponent implements OnInit {
             tempActionIDs.push(ourActions[i].id)
         };
         let maxActID: number = Math.max(...tempActionIDs);
-        
+
         // Get last action
         let filteredActions: CanvasAction[] = [];
         filteredActions = ourActions.filter(act => act.id == maxActID);
@@ -1085,13 +1083,13 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
                 'Widget',
                 'Undo',
-                '', 
+                '',
                 filteredActions[0].id,
                 null,
                 filteredActions[0].newWidget,
                 filteredActions[0].oldWidget)
             this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
-            
+
             console.log('undo prev DO, id ',filteredActions[0].id, this.globalVariableService.actions )
         } else {
             // Get highest DO id < (undoID - 1)
@@ -1109,7 +1107,7 @@ export class AppComponent implements OnInit {
             if (tempActionIDs.length > 0) {
                 undoActID = Math.max(...tempActionIDs);
             };
-    
+
             // Can only undo if something has been done before
             if (tempActionIDs.length == 0) {
                 console.log('Nothing more to undo')
@@ -1125,7 +1123,7 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
                 'Widget',
                 'Undo ' + filteredActions[0].redoID == null? 'DO' : 'REDO',
-                '', 
+                '',
                 filteredActions[0].id,
                 null,
                 filteredActions[0].newWidget,
@@ -1135,6 +1133,8 @@ export class AppComponent implements OnInit {
 
             console.log('undo prev id ', filteredActions[0].id, this.globalVariableService.actions)
         };
+
+        this.menuOptionClickPostAction();
     }
 
     // clickMenuEditUndo() {
@@ -1178,13 +1178,13 @@ export class AppComponent implements OnInit {
     //             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
     //             'Widget',
     //             'Undo',
-    //             '', 
+    //             '',
     //             filteredActions[0].id,
     //             null,
     //             filteredActions[0].newWidget,
     //             filteredActions[0].oldWidget)
     //         this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
-            
+
     //         console.log('undo prev DO, id ',filteredActions[0].id, this.globalVariableService.actions )
     //     } else {
     //         // Get highest DO id < (undoID - 1)
@@ -1200,7 +1200,7 @@ export class AppComponent implements OnInit {
     //         if (tempActionIDs.length > 0) {
     //             undoActID = Math.max(...tempActionIDs);
     //         };
-    
+
     //         // Can only undo if something has been done before
     //         if (tempActionIDs.length == 0) {
     //             console.log('Nothing to undo 2')
@@ -1215,14 +1215,14 @@ export class AppComponent implements OnInit {
     //                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
     //                 'Widget',
     //                 'Undo DO',
-    //                 '', 
+    //                 '',
     //                 filteredActions[0].id,
     //                 null,
     //                 filteredActions[0].newWidget,
     //                 filteredActions[0].oldWidget
     //             )
     //             this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
-                
+
     //         } else {
     //             this.globalVariableService.actionUpsert(
     //                 null,
@@ -1230,7 +1230,7 @@ export class AppComponent implements OnInit {
     //                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
     //                 'Widget',
     //                 'Undo REDO',
-    //                 '', 
+    //                 '',
     //                 filteredActions[0].redoID,
     //                 null,
     //                 filteredActions[0].newWidget,
@@ -1252,25 +1252,23 @@ export class AppComponent implements OnInit {
         // See Undo function for more detail.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditRedo', '@Start');
 
-        this.menuOptionClickPreAction();
-
         // Get action for current D and T
         let ourActions: CanvasAction[] = [];
         ourActions = this.globalVariableService.actions.filter(act =>
-            act.dashboardID == 
+            act.dashboardID ==
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID
             &&
-            act.dashboardTabID == 
+            act.dashboardTabID ==
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
         );
 
         // TODO - decide if lates / -1 is best choice here
         if (ourActions.length == 0) {
             console.log('Nothing to Redo');
-
-            this.menuOptionClickPostAction();
             return;
         };
+
+        this.menuOptionClickPreAction();
 
         // Loop back, 1 at a time, and stop at first non-Undo
         let redoIDs: number[] = [];
@@ -1283,19 +1281,19 @@ export class AppComponent implements OnInit {
                     console.log('Prev NOT an undo, so cannot redo it')
                     break;
                 } else {
-                    
+
                     if (redoIDs.indexOf(ourActions[i].id)<0) {
 
                         this.globalVariableService.actionUpsert(
-                            null, 
+                            null,
                             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
                             'Widget',
-                            'Redo', 
-                            '', 
+                            'Redo',
+                            '',
                             null,
-                            ourActions[i].id, 
-                            ourActions[i].newWidget, 
+                            ourActions[i].id,
+                            ourActions[i].newWidget,
                             ourActions[i].oldWidget);
                         this.globalVariableService.changedWidget.next(ourActions[i].oldWidget)
 
@@ -1305,6 +1303,8 @@ export class AppComponent implements OnInit {
                 };
             };
         };
+
+        this.menuOptionClickPostAction();
 
     }
 
@@ -1336,7 +1336,7 @@ export class AppComponent implements OnInit {
     //                 console.log('Prev NOT an undo, so cannot redo it')
     //                 break;
     //             } else {
-                    
+
     //                 if (redoIDs.indexOf(this.globalVariableService.actions[i].id)<0) {
 
     //                     // this.globalVariableService.actions.forEach(ac => {
@@ -1346,15 +1346,15 @@ export class AppComponent implements OnInit {
     //                     // });
     //                     this.globalVariableService.changedWidget.next(this.globalVariableService.actions[i].oldWidget)
     //                     this.globalVariableService.actionUpsert(
-    //                         null, 
+    //                         null,
     //                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
     //                         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
     //                         'Widget',
-    //                         'Redo', 
-    //                         '', 
+    //                         'Redo',
+    //                         '',
     //                         null,
-    //                         this.globalVariableService.actions[i].id, 
-    //                         this.globalVariableService.actions[i].newWidget, 
+    //                         this.globalVariableService.actions[i].id,
+    //                         this.globalVariableService.actions[i].newWidget,
     //                         this.globalVariableService.actions[i].oldWidget);
 
     //                     console.log('Redo id', this.globalVariableService.actions[i].id);
@@ -1370,7 +1370,7 @@ export class AppComponent implements OnInit {
         // Deselect n objects on the D based on size, All, None, Auto
         // Auto will select All if none is selected, None is any is selected
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAllNone', '@Start');
-        
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
@@ -1384,7 +1384,7 @@ export class AppComponent implements OnInit {
         };
 
         this.menuOptionClickPreAction();
-        
+
         if (size == 'None') {
             this.currentWidgets.forEach(w => {w.isSelected  = false});
             this.globalVariableService.currentWidgets.forEach(w => {
@@ -1406,6 +1406,8 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.currentWidgets.forEach(w => w.isSelected = false);
             }
         };
+
+        this.menuOptionClickPostAction();
     }
 
 
@@ -1413,13 +1415,13 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK DASHBOARD MENU OPTIONS ************************ //
-    
+
     clickDashboardNew() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardNew', '@Start');
 
         this.menuOptionClickPreAction();
-        
+
         console.log('App clickDashboardNew')
         this.showModalDashboardNew = true;
     }
@@ -1429,7 +1431,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardOpen', '@Start');
 
         this.menuOptionClickPreAction();
-        
+
         console.log('App clickDashboardOpen')
         this.showModalDashboardOpen = true;
     }
@@ -1462,6 +1464,8 @@ export class AppComponent implements OnInit {
 
         // Toggle mode
         this.globalVariableService.editMode.next(!this.editMode);
+
+        this.menuOptionClickPostAction();
     }
 
     clickDashboardDiscard() {
@@ -1632,7 +1636,7 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK DATA MENU OPTIONS ************************ //
-    
+
     clickMenuDataFromFile(id: number) {
         // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
@@ -1690,7 +1694,7 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK WIDGET MENU OPTIONS ************************ //
-    
+
     clickMenuWidgetNew() {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
@@ -1720,10 +1724,10 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
         // Can only edit one W at a time, so ignore if multiple selected
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Graph')) { 
+        if (!this.checkForOnlyOneWidget('Graph')) {
             return
         };
 
@@ -1741,12 +1745,12 @@ export class AppComponent implements OnInit {
         this.showModalWidgetEditor = true;
     }
 
-    
+
     clickMenuWidgetContainer(widgetType: string) {
         // Show popup to edit Widget Container properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainer', '@Start');
 
-        if (!this.checkForOnlyOneWidget(widgetType)) { 
+        if (!this.checkForOnlyOneWidget(widgetType)) {
             return
         };
 
@@ -1765,7 +1769,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCheckpoints', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Graph')) { 
+        if (!this.checkForOnlyOneWidget('Graph')) {
             return
         };
 
@@ -1778,7 +1782,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetComments', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Graph')) { 
+        if (!this.checkForOnlyOneWidget('Graph')) {
             return
         };
 
@@ -1800,7 +1804,7 @@ export class AppComponent implements OnInit {
         // Show the form of Data Quality Issues for selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDataQuality', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Graph')) { 
+        if (!this.checkForOnlyOneWidget('Graph')) {
             return
         };
 
@@ -1819,7 +1823,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Graph')) { 
+        if (!this.checkForOnlyOneWidget('Graph')) {
             return
         };
 
@@ -1847,41 +1851,43 @@ export class AppComponent implements OnInit {
         // Duplicate selected Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Graph')) { 
+        if (!this.checkForOnlyOneWidget('Graph')) {
             return
         };
 
         this.menuOptionClickPreAction();
-        
+
         // Checked above that only one is selected, so the loop is okay
         this.currentWidgets.forEach(w => {
 
             if (w.isSelected) {
-        
+
                 // Make a (new) duplicate
                 this.duplicateWidget(w);
             };
         });
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuWidgetCopy() {
         // Copy selected Widget to our 'clipboard'
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCopy', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Graph')) { 
+        if (!this.checkForOnlyOneWidget('Graph')) {
             return
         };
 
         this.menuOptionClickPreAction();
 
         // Make a deep copy
-        
+
         // Checked above that only one is selected, so the loop is okay
         this.currentWidgets.forEach(w => {
 
@@ -1898,6 +1904,8 @@ export class AppComponent implements OnInit {
 
             };
         });
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuWidgetPaste() {
@@ -1916,7 +1924,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (this.clipboardWidget == null  ||  this.clipboardWidget == undefined) { 
+        if (this.clipboardWidget == null  ||  this.clipboardWidget == undefined) {
             this.showStatusBarMessage(
                 'Nothing copied previously',
                 'StatusBar',
@@ -1930,16 +1938,18 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.duplicateWidget(this.clipboardWidget);
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuWidgetExpand() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExpand', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Graph')) { 
+        if (!this.checkForOnlyOneWidget('Graph')) {
             return
         };
 
@@ -1959,7 +1969,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExport', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
 
@@ -1974,16 +1984,18 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        this.menuOptionClickPostAction();
+
     }
 
     clickMenuWidgetDelete() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDelete', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Graph')) { 
+        if (!this.checkForOnlyOneWidget('Graph')) {
             return
         };
 
@@ -2001,7 +2013,7 @@ export class AppComponent implements OnInit {
     clickMenuTableAdd() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableAdd', '@Start');
-        
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
@@ -2018,7 +2030,7 @@ export class AppComponent implements OnInit {
 
         this.newWidget = true;
         this.showDatasourcePopup = true;
-        
+
         this.showModalTableEditor = true;
 
     }
@@ -2027,15 +2039,15 @@ export class AppComponent implements OnInit {
         // Edits the selected Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableEdit', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Table')) { 
+        if (!this.checkForOnlyOneWidget('Table')) {
             return
         };
 
         this.menuOptionClickPreAction();
-        
+
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Table') {
@@ -2052,12 +2064,12 @@ export class AppComponent implements OnInit {
         // Duplicate selected Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDuplicate', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Table')) { 
+        if (!this.checkForOnlyOneWidget('Table')) {
             return
         };
 
         this.menuOptionClickPreAction();
-        
+
         // Get new ID
         // TODO - improve this when using a DB!
         let newID: number = 1;
@@ -2082,14 +2094,14 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach(w => {
 
             if (w.isSelected) {
-        
+
                 // Make a deep copy
                 let copiedWidget: Widget = Object.assign({}, w);
                 copiedWidget.id = newID;
                 copiedWidget.isSelected = false;
                 copiedWidget.containerLeft = 120;
                 copiedWidget.containerTop = 120;
-                copiedWidget.titleText = copiedWidget.titleText + ' (copy ' + 
+                copiedWidget.titleText = copiedWidget.titleText + ' (copy ' +
                     copyPosition.toString() + ')';
 
                 // Add to all and current W
@@ -2099,13 +2111,15 @@ export class AppComponent implements OnInit {
 
             };
         });
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuTableComments() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableComments', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Table')) { 
+        if (!this.checkForOnlyOneWidget('Table')) {
             return
         };
 
@@ -2126,7 +2140,7 @@ export class AppComponent implements OnInit {
         // Show the form of Data Quality Issues for selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDataQuality', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Table')) { 
+        if (!this.checkForOnlyOneWidget('Table')) {
             return
         };
 
@@ -2140,15 +2154,15 @@ export class AppComponent implements OnInit {
         })
         this.showModalDashboardDataQuality = true;
     }
-    
+
     clickMenuTableExpand() {
         // Expand DS u-sed in table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExpand', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Table')) { 
+        if (!this.checkForOnlyOneWidget('Table')) {
             return
         };
 
@@ -2168,10 +2182,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExport', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Table')) { 
+        if (!this.checkForOnlyOneWidget('Table')) {
             return
         };
 
@@ -2185,28 +2199,28 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDelete', '@Start');
 
         // Make sure we have only one, then delete it
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Table')) { 
+        if (!this.checkForOnlyOneWidget('Table')) {
             return
         };
 
         this.menuOptionClickPreAction();
 
         this.showModalTableDelete = true;
-        
+
     }
 
 
 
 
     // ***********************  CLICK SLICER MENU OPTIONS ************************ //
-        
+
     clickMenuSlicerAdd() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerAdd', '@Start');
-                
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
@@ -2222,7 +2236,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.newWidget = true;
-        
+
         this.showModalDataSlicers = true;
 
     }
@@ -2231,15 +2245,15 @@ export class AppComponent implements OnInit {
         // Edits the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Slicer')) { 
+        if (!this.checkForOnlyOneWidget('Slicer')) {
             return
         };
 
         this.menuOptionClickPreAction();
-        
+
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Slicer') {
@@ -2254,7 +2268,7 @@ export class AppComponent implements OnInit {
         // Open the list of tabs to which the selected W belongs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTablist', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return;
         };
 
@@ -2266,7 +2280,7 @@ export class AppComponent implements OnInit {
                 this.currentWidgetDashboardTabIDs = w.dashboardTabIDs;
             }
         });
-         
+
         this.showModalWidgetTablist = true;
 
     }
@@ -2275,7 +2289,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerComments', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Slicer')) { 
+        if (!this.checkForOnlyOneWidget('Slicer')) {
             return
         };
 
@@ -2296,7 +2310,7 @@ export class AppComponent implements OnInit {
         // Show the form of Data Quality Issues for selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDataQuality', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Slicer')) { 
+        if (!this.checkForOnlyOneWidget('Slicer')) {
             return
         };
 
@@ -2310,15 +2324,15 @@ export class AppComponent implements OnInit {
         })
         this.showModalDashboardDataQuality = true;
     }
-    
+
     clickMenuSlicerExpand() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExpand', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Slicer')) { 
+        if (!this.checkForOnlyOneWidget('Slicer')) {
             return
         };
 
@@ -2338,10 +2352,10 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExport', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Slicer')) { 
+        if (!this.checkForOnlyOneWidget('Slicer')) {
             return
         };
 
@@ -2355,17 +2369,17 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDelete', '@Start');
 
         // Make sure we have only one, then delete it
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Slicer')) { 
+        if (!this.checkForOnlyOneWidget('Slicer')) {
             return
         };
 
         this.menuOptionClickPreAction();
 
         this.showModalSlicerDelete = true;
-        
+
     }
 
 
@@ -2373,7 +2387,7 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK SHAPE MENU OPTIONS ************************ //
-    
+
     clickMenuShapeNew() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeNew', '@Start');
@@ -2401,15 +2415,15 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEdit', '@Start');
 
         // Make sure we have only one, then delete it
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Shape')) { 
+        if (!this.checkForOnlyOneWidget('Shape')) {
             return
         };
 
         this.menuOptionClickPreAction();
-        
+
         this.newWidget = false;
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Shape') {
@@ -2424,10 +2438,10 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeLinks', '@Start');
 
         // Make sure we have only one, then delete it
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Shape')) { 
+        if (!this.checkForOnlyOneWidget('Shape')) {
             return
         };
 
@@ -2441,10 +2455,10 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDelete', '@Start');
 
         // Make sure we have only one, then delete it
-        if (!this.checkForOnlyOneWidget()) { 
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Shape')) { 
+        if (!this.checkForOnlyOneWidget('Shape')) {
             return
         };
 
@@ -2458,7 +2472,7 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK VIEW MENU OPTIONS ************************ //
-    
+
     clickMenuViewPresentation() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPresentation', '@Start');
@@ -2467,13 +2481,17 @@ export class AppComponent implements OnInit {
 
         this.globalVariableService.presentationMode.next(!this.presentationMode);
         this.showMainMenu = false;
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuViewPrintPreview(){
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPrintPreview', '@Start');
-   
+
         this.menuOptionClickPreAction();
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuViewShowGrid() {
@@ -2483,6 +2501,8 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.globalVariableService.showGrid.next(!this.showGrid);
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuViewShowDataQuality() {
@@ -2492,6 +2512,8 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showDataQuality = !this.showDataQuality;
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuViewShowComments() {
@@ -2508,6 +2530,8 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewSnapToGrid', '@Start');
 
         this.menuOptionClickPreAction();
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuViewZoom(zoomPercentage: number): string {
@@ -2522,6 +2546,8 @@ export class AppComponent implements OnInit {
 
         this.zoomFactor = 'scale(' + zoomPercentage.toString() + ')';
         // console.log('xx this.zoomFactor', zoomPercentage, this.zoomFactor)
+
+        this.menuOptionClickPostAction();
         return this.zoomFactor;
     }
 
@@ -2530,7 +2556,7 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK ARRANGE MENU OPTIONS ************************ //
-    
+
     clickMenuArrangeBackward() {
         // Decrease z-index of selected Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeBackward', '@Start');
@@ -2549,6 +2575,8 @@ export class AppComponent implements OnInit {
             // Refresh the Dashboard
             this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
         };
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuArrangeForward() {
@@ -2570,6 +2598,8 @@ export class AppComponent implements OnInit {
             this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
         };
 
+        this.menuOptionClickPostAction();
+
     }
 
     clickMenuArrangeBack() {
@@ -2580,7 +2610,7 @@ export class AppComponent implements OnInit {
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
-                this.currentWidgets[i].containerZindex = 
+                this.currentWidgets[i].containerZindex =
                     this.globalVariableService.widgetsMinZindex;
                 console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
             };
@@ -2588,6 +2618,8 @@ export class AppComponent implements OnInit {
             // Refresh the Dashboard
             this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
         };
+
+        this.menuOptionClickPostAction();
 
     }
 
@@ -2599,7 +2631,7 @@ export class AppComponent implements OnInit {
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
-                this.currentWidgets[i].containerZindex = 
+                this.currentWidgets[i].containerZindex =
                     this.globalVariableService.widgetsMaxZindex;
                 console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
             };
@@ -2607,6 +2639,8 @@ export class AppComponent implements OnInit {
             // Refresh the Dashboard
             this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
         };
+
+        this.menuOptionClickPostAction();
 
     }
 
@@ -2620,7 +2654,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        let x: number = -1; 
+        let x: number = -1;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
@@ -2631,6 +2665,8 @@ export class AppComponent implements OnInit {
                 };
             };
         };
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuArrangeAlignCenter() {
@@ -2643,19 +2679,21 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        let x: number = -1; 
+        let x: number = -1;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 if (x == -1) {
-                    x = this.currentWidgets[i].containerLeft + 
+                    x = this.currentWidgets[i].containerLeft +
                         (this.currentWidgets[i].containerWidth / 2);
                 } else {
-                    this.currentWidgets[i].containerLeft = x - 
+                    this.currentWidgets[i].containerLeft = x -
                         (this.currentWidgets[i].containerWidth / 2);
                 };
             };
         };
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuArrangeAlignRight() {
@@ -2668,19 +2706,21 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        let x: number = -1; 
+        let x: number = -1;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 if (x == -1) {
-                    x = this.currentWidgets[i].containerLeft + 
+                    x = this.currentWidgets[i].containerLeft +
                         this.currentWidgets[i].containerWidth;
                 } else {
-                    this.currentWidgets[i].containerLeft = x - 
+                    this.currentWidgets[i].containerLeft = x -
                         this.currentWidgets[i].containerWidth;
                 };
             };
         };
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuArrangeAlignTop() {
@@ -2693,7 +2733,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        let x: number = -1; 
+        let x: number = -1;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
@@ -2704,6 +2744,8 @@ export class AppComponent implements OnInit {
                 };
             };
         };
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuArrangeAlignMiddle() {
@@ -2716,19 +2758,21 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        let x: number = -1; 
+        let x: number = -1;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 if (x == -1) {
-                    x = this.currentWidgets[i].containerTop + 
+                    x = this.currentWidgets[i].containerTop +
                         (this.currentWidgets[i].containerHeight / 2);
                 } else {
-                    this.currentWidgets[i].containerTop = x - 
+                    this.currentWidgets[i].containerTop = x -
                         (this.currentWidgets[i].containerHeight / 2);
                 };
             };
         };
+
+        this.menuOptionClickPostAction();
     }
 
 
@@ -2742,19 +2786,21 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        let x: number = -1; 
+        let x: number = -1;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 if (x == -1) {
-                    x = this.currentWidgets[i].containerTop + 
+                    x = this.currentWidgets[i].containerTop +
                         (this.currentWidgets[i].containerHeight);
                 } else {
-                    this.currentWidgets[i].containerTop = x - 
+                    this.currentWidgets[i].containerTop = x -
                         (this.currentWidgets[i].containerHeight);
                 };
             };
         };
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuArrangeAlignCenterHorisontally() {
@@ -2767,14 +2813,16 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        let x: number = window.innerWidth / 2; 
+        let x: number = window.innerWidth / 2;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
-                this.currentWidgets[i].containerLeft = x - 
+                this.currentWidgets[i].containerLeft = x -
                     (this.currentWidgets[i].containerWidth / 2);
             };
-        };        
+        };
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuArrangeAlignCenterVertically() {
@@ -2787,14 +2835,16 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        let x: number = window.innerHeight / 2; 
+        let x: number = window.innerHeight / 2;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
-                this.currentWidgets[i].containerTop = x - 
+                this.currentWidgets[i].containerTop = x -
                     (this.currentWidgets[i].containerHeight / 2);
             };
-        };   
+        };
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuArrangeGroup() {
@@ -2827,6 +2877,8 @@ export class AppComponent implements OnInit {
             ''
         );
 
+        this.menuOptionClickPostAction();
+
     }
 
     clickMenuArrangeUnGroup() {
@@ -2849,26 +2901,26 @@ export class AppComponent implements OnInit {
             3000,
             ''
         );
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuArrangeDistributeHorisontal() {
         // Equally distribute the selected Ws horisontally.
         // Assume the selected Ws are W1 (first), W2, ..., Wn (last)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeHorisontal', '@Start');
-        
-        this.menuOptionClickPreAction();
 
         // Get selected, sorted by .left  = [Wi]
-        let selectedOnes = []; 
+        let selectedOnes = [];
         for (var i = 0; i < (this.currentWidgets.length); i++) {
             if (this.currentWidgets[i].isSelected) {
                 selectedOnes.push({
-                    position: i, 
-                    id: this.currentWidgets[i].id, 
+                    position: i,
+                    id: this.currentWidgets[i].id,
                     height: this.currentWidgets[i].containerHeight,
-                    width: this.currentWidgets[i].containerWidth, 
-                    left: this.currentWidgets[i].containerLeft, 
-                    newLeft: this.currentWidgets[i].containerLeft, 
+                    width: this.currentWidgets[i].containerWidth,
+                    left: this.currentWidgets[i].containerLeft,
+                    newLeft: this.currentWidgets[i].containerLeft,
                     top: this.currentWidgets[i].containerTop,
                     newTop: this.currentWidgets[i].containerTop
                 });
@@ -2884,8 +2936,11 @@ export class AppComponent implements OnInit {
                 3000,
                 ''
             );
-            return;            
+            return;
         }
+
+        this.menuOptionClickPreAction();
+
         selectedOnes.sort( (obj1,obj2) => {
             if (obj1.left > obj2.left) {
                 return 1;
@@ -2895,8 +2950,8 @@ export class AppComponent implements OnInit {
             };
             return 0;
         });
-        
-        // Count number with spaces: x  =  nr selected -1  =  [Wi].length - 1 
+
+        // Count number with spaces: x  =  nr selected -1  =  [Wi].length - 1
         let x: number = selectedOnes.length - 1;
 
         // Calc d  =  distance between left- and right-most  =  (Wn.left - W1.left)
@@ -2915,37 +2970,37 @@ export class AppComponent implements OnInit {
         // Wi.left = W(i-1).left + W(i-1).width + g
         for (var i = 0; i < (selectedOnes.length - 1); i++) {
             if (i > 0) {
-                selectedOnes[i].newLeft = selectedOnes[i-1].newLeft + 
+                selectedOnes[i].newLeft = selectedOnes[i-1].newLeft +
                     selectedOnes[i-1].width + g;
-                this.currentWidgets[selectedOnes[i].position].containerLeft = 
+                this.currentWidgets[selectedOnes[i].position].containerLeft =
                     selectedOnes[i].newLeft;
                 this.globalVariableService.currentWidgets[selectedOnes[i].position].
                     containerLeft = selectedOnes[i].newLeft;
             } else {
                 selectedOnes[i].newLeft = selectedOnes[i].newLeft;
             }
-        }
-        
+        };
+
+        this.menuOptionClickPostAction();
+
     }
 
     clickMenuArrangeDistributeVertical() {
         // Vertically arrange selected Ws, equally spaced
         // Assume the selected Ws are W1 (first), W2, ..., Wn (last)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeDistributeVertical', '@Start');
-        
-        this.menuOptionClickPreAction();
 
         // Get selected, sorted by .top  = [Wi]
-        let selectedOnes = []; 
+        let selectedOnes = [];
         for (var i = 0; i < (this.currentWidgets.length); i++) {
             if (this.currentWidgets[i].isSelected) {
                 selectedOnes.push({
-                    position: i, 
-                    id: this.currentWidgets[i].id, 
+                    position: i,
+                    id: this.currentWidgets[i].id,
                     height: this.currentWidgets[i].containerHeight,
-                    width: this.currentWidgets[i].containerWidth, 
-                    left: this.currentWidgets[i].containerLeft, 
-                    newLeft: this.currentWidgets[i].containerLeft, 
+                    width: this.currentWidgets[i].containerWidth,
+                    left: this.currentWidgets[i].containerLeft,
+                    newLeft: this.currentWidgets[i].containerLeft,
                     top: this.currentWidgets[i].containerTop,
                     newTop: this.currentWidgets[i].containerTop
                 });
@@ -2960,8 +3015,11 @@ export class AppComponent implements OnInit {
                 3000,
                 ''
             );
-            return;            
+            return;
         }
+
+        this.menuOptionClickPreAction();
+
         selectedOnes.sort( (obj1,obj2) => {
             if (obj1.top > obj2.top) {
                 return 1;
@@ -2971,7 +3029,7 @@ export class AppComponent implements OnInit {
             };
             return 0;
         });
-        // Count number with spaces: x  =  nr selected -1  =  [Wi].length - 1 
+        // Count number with spaces: x  =  nr selected -1  =  [Wi].length - 1
         let x: number = selectedOnes.length - 1;
 
         // Calc d  =  distance between top- and lower-most  =  (Wn.top - W1.top)
@@ -2991,16 +3049,18 @@ export class AppComponent implements OnInit {
         // Wi.top = W(i-1).top + W(i-1).heigth + g
         for (var i = 0; i < (selectedOnes.length - 1); i++) {
             if (i > 0) {
-                selectedOnes[i].newTop = selectedOnes[i-1].newTop + 
+                selectedOnes[i].newTop = selectedOnes[i-1].newTop +
                     selectedOnes[i-1].height + g;
-                this.currentWidgets[selectedOnes[i].position].containerTop = 
+                this.currentWidgets[selectedOnes[i].position].containerTop =
                     selectedOnes[i].newTop;
                 this.globalVariableService.currentWidgets[selectedOnes[i].position].
                     containerTop = selectedOnes[i].newTop;
             } else {
                 selectedOnes[i].newTop = selectedOnes[i].newTop;
             }
-        }
+        };
+
+        this.menuOptionClickPostAction();
 
     }
 
@@ -3008,27 +3068,29 @@ export class AppComponent implements OnInit {
         // Make selected Ws same size, height and width
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
 
-        this.menuOptionClickPreAction();
-
         if (!this.checkForMultipleWidgets()) {
             return
         };
 
-        let x: number = -1; 
-        let y: number = -1; 
+        this.menuOptionClickPreAction();
+
+        let x: number = -1;
+        let y: number = -1;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 if (x == -1) {
-                    x = this.currentWidgets[i].containerWidth; 
-                    y = this.currentWidgets[i].containerHeight; 
-                        
+                    x = this.currentWidgets[i].containerWidth;
+                    y = this.currentWidgets[i].containerHeight;
+
                 } else {
-                    this.currentWidgets[i].containerWidth = x; 
-                    this.currentWidgets[i].containerHeight = y; 
+                    this.currentWidgets[i].containerWidth = x;
+                    this.currentWidgets[i].containerHeight = y;
                 };
             };
         };
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuArrangeSameSizeVertically() {
@@ -3041,18 +3103,20 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        let y: number = -1; 
+        let y: number = -1;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 if (y == -1) {
-                    y = this.currentWidgets[i].containerHeight; 
-                        
+                    y = this.currentWidgets[i].containerHeight;
+
                 } else {
-                    this.currentWidgets[i].containerHeight = y; 
+                    this.currentWidgets[i].containerHeight = y;
                 };
             };
         };
+
+        this.menuOptionClickPostAction();
     }
 
 
@@ -3066,18 +3130,20 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        let x: number = -1; 
+        let x: number = -1;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 if (x == -1) {
-                    x = this.currentWidgets[i].containerWidth; 
-                        
+                    x = this.currentWidgets[i].containerWidth;
+
                 } else {
-                    this.currentWidgets[i].containerWidth = x; 
+                    this.currentWidgets[i].containerWidth = x;
                 };
             };
         };
+
+        this.menuOptionClickPostAction();
     }
 
 
@@ -3085,7 +3151,7 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK HELP MENU OPTIONS ************************ //
-    
+
     clickMenuHelpDemo() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuHelpDemo', '@Start');
@@ -3093,6 +3159,8 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.router.navigate(['/help']);
+
+        this.menuOptionClickPostAction();
     }
 
 
@@ -3100,7 +3168,7 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK COLLABORATE MENU OPTIONS ************************ //
-    
+
     clickMenuCollaborateAlerts() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateAlerts', '@Start');
@@ -3108,6 +3176,8 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalCollaborateAlerts = true;
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuCollaborateActivityAdd() {
@@ -3117,6 +3187,8 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalCollaborateActivityAdd = true;
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuCollaborateMessages() {
@@ -3126,6 +3198,8 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalCollaborateMessages = true;
+
+        this.menuOptionClickPostAction();
     }
 
     clickMenuCollaborateActivities() {
@@ -3135,6 +3209,8 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalCollaborateActivities = true;
+
+        this.menuOptionClickPostAction();
     }
 
 
@@ -3142,7 +3218,7 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK USER MENU OPTIONS ************************ //
-    
+
     clickMenuUserLogin() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserLogin', '@Start');
@@ -3225,7 +3301,7 @@ export class AppComponent implements OnInit {
     clickMenuPaletteEdit() {
         // Clicked the Edit option on palette - decide what to do
         this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
-        
+
         // Decide which way
         if (this.checkForOnlyOneWidget('Graph', true)) {
             this.clickMenuWidgetEdit();
@@ -3246,7 +3322,7 @@ export class AppComponent implements OnInit {
                             'Warning',
                             3000,
                             ''
-                        );                
+                        );
                     };
                 };
             };
@@ -3256,7 +3332,7 @@ export class AppComponent implements OnInit {
     clickMenuPaletteExpand() {
         // Clicked the Edit option on palette - decide what to do
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteExpand', '@Start');
-        
+
         // Decide which way
         if (this.checkForOnlyOneWidget('Graph', true)) {
             this.clickMenuWidgetExpand();
@@ -3271,17 +3347,17 @@ export class AppComponent implements OnInit {
                     'Warning',
                     3000,
                     ''
-                );                
+                );
             };
         };
 
-        
+
     }
 
     clickMenuPaletteDelete() {
         // Clicked the Edit option on palette - decide what to do
         this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
-        
+
         // Decide which way
         if (this.checkForOnlyOneWidget('Graph', true)) {
             this.clickMenuWidgetDelete();
@@ -3302,7 +3378,7 @@ export class AppComponent implements OnInit {
                             'Warning',
                             3000,
                             ''
-                        );                
+                        );
                     };
                 };
             };
@@ -3312,7 +3388,7 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  OTHER ************************ //
-    
+
     showRecentDashboard(index: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
@@ -3341,7 +3417,7 @@ export class AppComponent implements OnInit {
 
         // Get nr of W selected
         let nrWidgetsSelected: number = this.currentWidgets.filter(
-            w => (w.isSelected  &&  (w.widgetType == widgetType  ||  widgetType == 'All')  
+            w => (w.isSelected  &&  (w.widgetType == widgetType  ||  widgetType == 'All')
                  ) ).length;
 
         // Show messages if silent = false
@@ -3406,8 +3482,12 @@ export class AppComponent implements OnInit {
             return;
         };
 
+        this.menuOptionClickPreAction();
+
         this.startX = ev.x;
         this.startY = ev.y;
+
+        this.menuOptionClickPostAction();
     }
 
     clickWidgetContainerDragEnd(ev: MouseEvent, id: number) {
@@ -3425,6 +3505,8 @@ export class AppComponent implements OnInit {
             this.isBusyResizing = false;
             return;
         };
+
+        this.menuOptionClickPreAction();
 
         // Get final coordinates of cursor after move
         this.endX = ev.x;
@@ -3450,53 +3532,55 @@ export class AppComponent implements OnInit {
         // Move the draggable ones
         this.moveWidgets();
     }
-    
+
     moveWidgets() {
         // Do Actual Move of draggable Ws
         this.globalFunctionService.printToConsole(this.constructor.name,'moveWidgets', '@Start');
 
         // Reset current and globalVar values
         this.currentWidgets.forEach( w => {
-            
+
             if (this.draggableWidgets.indexOf(w.id) >= 0) {
 
                 // Action
                 // TODO - cater for errors + make more generic
                 let actID: number = this.globalVariableService.actionUpsert(
-                    null, 
+                    null,
                     this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                     this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
                     'Widget',
-                    'Move', 
-                    'App', 
-                    null, 
-                    null, 
-                    w, 
+                    'Move',
+                    'App',
+                    null,
+                    null,
+                    w,
                     null);
 
                 w.containerLeft = w.containerLeft - this.startX + this.endX;
                 w.containerTop = w.containerTop - this.startY + this.endY;
                 actID = this.globalVariableService.actionUpsert(
-                    actID, 
+                    actID,
                     this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                     this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
                     'Widget',
-                    null, 
-                    null, 
-                    null, 
-                    null, 
-                    null, 
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
                     w
                 );
             }
         });
         this.globalVariableService.currentWidgets.forEach( w => {
-            
+
             if (this.draggableWidgets.indexOf(w.id) >= 0) {
                 w.containerLeft = w.containerLeft - this.startX + this.endX;
                 w.containerTop = w.containerTop - this.startY + this.endY;
             }
         });
+
+        this.menuOptionClickPostAction();
 
     }
 
@@ -3530,10 +3614,14 @@ export class AppComponent implements OnInit {
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetDown', '@Start');
 
+        this.menuOptionClickPreAction();
+
         // Indicate that we are resizing - thus block the dragging action
         this.isBusyResizing = true;
         this.startX = ev.x;
         this.startY = ev.y;
+
+        this.menuOptionClickPostAction();
 
     }
 
@@ -3551,6 +3639,8 @@ export class AppComponent implements OnInit {
         //     Note: 1. both the current and globalVar vars are changed
         //           2. Top and Left involves changing two aspects, ie Left and Width
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetUp', '@Start');
+
+        this.menuOptionClickPreAction();
 
         // Top moved: adjust the height & top
         if (resizeTop) {
@@ -3618,25 +3708,27 @@ export class AppComponent implements OnInit {
         if (this.currentWidgets[index].widgetType == 'Graph') {
             this.globalVariableService.changedWidget.next(this.currentWidgets[index]);
         };
+
+        this.menuOptionClickPostAction();
     }
 
     showStatusBarMessage(
-        message: string, 
+        message: string,
         uiArea: string,
         classfication: string,
         timeout: number,
         defaultMessage: string,): void {
         // Shows a message in the right area, ie StatusBar
         this.globalFunctionService.printToConsole(this.constructor.name,'showStatusBarMessage', '@Start');
-        
+
         // Pop message in right area
         if (uiArea == 'StatusBar') {
             this.globalVariableService.statusBarMessage.next(
                 {
-                    message, 
-                    uiArea, 
-                    classfication, 
-                    timeout, 
+                    message,
+                    uiArea,
+                    classfication,
+                    timeout,
                     defaultMessage
                 }
             );
@@ -3653,7 +3745,7 @@ export class AppComponent implements OnInit {
         } else {
             this.showPopupMessage = false;
         };
-        
+
     }
 
     showWidgetForSlicer(id: number, datasourceID: number, datasetID: number) {
@@ -3664,7 +3756,7 @@ export class AppComponent implements OnInit {
         // Get list of selected Sl
         let result: boolean = false;
         this.currentWidgets.forEach(sl => {
-            if (sl.isSelected   &&   sl.widgetType == 'Slicer'  && 
+            if (sl.isSelected   &&   sl.widgetType == 'Slicer'  &&
                 sl.datasourceID == datasourceID   &&   sl.datasetID == datasetID
                 &&  sl.id != id) {
                     result = true;
@@ -3677,7 +3769,7 @@ export class AppComponent implements OnInit {
     contextmenuWidgetTitle(ev: MouseEvent, index: number) {
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetTitle', '@Start');
-        
+
         // Must be first, else default behaviour takes over
         ev.preventDefault();
 
@@ -3687,26 +3779,26 @@ export class AppComponent implements OnInit {
         };
 
         this.menuOptionClickPreAction();
-        
+
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 this.selectedWidget = w;
             };
         });
-        
+
         this.showTitleForm = true;
     }
 
     deleteWidget(widgetType) {
         // Delete the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
-        
+
         let datasetID: number = -1;
         // Delete the local one
         let delIDs: number[] = [];
         for (var i = 0; i < this.currentWidgets.length; i++) {
-            if (this.currentWidgets[i].isSelected  &&  
+            if (this.currentWidgets[i].isSelected  &&
                 this.currentWidgets[i].widgetType == widgetType) {
 
                 datasetID = this.currentWidgets[i].datasetID;
@@ -3714,7 +3806,7 @@ export class AppComponent implements OnInit {
                 this.currentWidgets.splice(i,1);
             };
         };
-        
+
         // Delete the global ones
         for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
             if (delIDs.indexOf(this.globalVariableService.widgets[i].id) >= 0) {
@@ -3745,7 +3837,7 @@ export class AppComponent implements OnInit {
     menuOptionClickPreAction() {
         // Actions performed at the START of a menu item click, PRE any other work
         this.globalFunctionService.printToConsole(this.constructor.name,'menuOptionClickPreAction', '@Start');
-        
+
         this.modalFormOpen = true;
         this.showPopupMessage = false;
     }
@@ -3753,7 +3845,7 @@ export class AppComponent implements OnInit {
     menuOptionClickPostAction() {
         // Actions performed at the END of a menu item click, POST any other work
         this.globalFunctionService.printToConsole(this.constructor.name,'menuOptionClickPostAction', '@Start');
-        
+
         this.modalFormOpen = false;
         this.showPopupMessage = false;
     }
@@ -3761,7 +3853,7 @@ export class AppComponent implements OnInit {
     clickGotIt() {
         // Unshow popup message to help user get into Edit Mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
-        
+
         this.showPopupMessage = false;
         // this.stuckCount = 0;
     }
@@ -3799,7 +3891,7 @@ export class AppComponent implements OnInit {
         copiedWidget.isSelected = false;
         copiedWidget.containerLeft = 120;
         copiedWidget.containerTop = 120;
-        copiedWidget.titleText = copiedWidget.titleText + ' (copy ' + 
+        copiedWidget.titleText = copiedWidget.titleText + ' (copy ' +
             copyPosition.toString() + ')';
 
         // Add to all and current W
