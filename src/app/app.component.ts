@@ -1097,9 +1097,10 @@ export class AppComponent implements OnInit {
             );
             if (filteredActions[0].objectType == 'Widget') {
                 if (filteredActions[0].action == 'Add') {
-                    this.deleteWidget
-                }
+                    this.deleteWidget('Graph',filteredActions[0].newWidget.id);
+                } else {
                 this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+                };
             };
 
             console.log('undo prev DO, id ',filteredActions[0].id, this.globalVariableService.actions )
@@ -1147,7 +1148,12 @@ export class AppComponent implements OnInit {
 
             // Diff Object Types
             if (filteredActions[0].objectType == 'Widget') {
-                this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+                if (filteredActions[0].action == 'Add') {
+                    this.deleteWidget('Graph',filteredActions[0].newWidget.id);
+                } else {
+                    this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+                };
+
             };
 
             console.log('undo prev id ', filteredActions[0].id, this.globalVariableService.actions)
@@ -3691,9 +3697,11 @@ export class AppComponent implements OnInit {
         // Delete the local one
         let delIDs: number[] = [];
         for (var i = 0; i < this.currentWidgets.length; i++) {
+
+            // Get given ID, else all selected
             if (  (widgetID == null  ||  this.currentWidgets[i].id == widgetID)
                    &&
-                   this.currentWidgets[i].isSelected  
+                   (widgetID != null  ||  this.currentWidgets[i].isSelected)  
                    &&
                    this.currentWidgets[i].widgetType == widgetType
                 ) {
