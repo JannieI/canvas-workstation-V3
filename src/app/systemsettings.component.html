@@ -17,91 +17,103 @@
                     <b>Company:</b>
                 </div>
 
-                <div class="gridCompanyName">
-                    <input [(ngModel)]="companyName"
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Company Name"
-                        size="35"
-                        >
-                </div>
+                    <div class="gridCompanyName">
+                        <input [(ngModel)]="companyName"
+                            type="text"
+                            id="formFields_7"
+                            placeholder="Company Name"
+                            size="35"
+                            >
+                    </div>
 
-                <div class="gridCompanyLogo">
-                    <input [(ngModel)]="companyLogo"
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Company Logo"
-                        size="35"
-                        >
-                </div>
+                    <div class="gridCompanyLogo">
+                        <input [(ngModel)]="companyLogo"
+                            type="text"
+                            id="formFields_7"
+                            placeholder="Company Logo"
+                            size="35"
+                            >
+                    </div>
 
-                <div class="gridCompanyTemplate">
-                    <input [(ngModel)]="dashboardTemplate"
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Default Template"
-                        size="35"
-                        >
-                </div>
+                    <div class="gridCompanyTemplate">
+                        <input [(ngModel)]="dashboardTemplate"
+                            type="text"
+                            id="formFields_7"
+                            placeholder="Default Template"
+                            size="35"
+                            >
+                    </div>
 
                 <div class="gridMessagingTitle">
                     <b>Messaging:</b>
                 </div>
 
-                <div class="gridNotInEditModeMsg">
-                    <input [(ngModel)]="notInEditModeMsg"
-                        type="text"
-                        id="formFields_7"
-                        placeholder="notInEditModeMsg"
-                        size="35"
-                        >
-                </div>
+                    <div class="gridNotInEditModeMsg">
+                        <input [(ngModel)]="notInEditModeMsg"
+                            type="text"
+                            id="formFields_7"
+                            placeholder="notInEditModeMsg"
+                            size="35"
+                            >
+                    </div>
 
-                <div class="gridNoQueryRunningMessage">
-                    <input [(ngModel)]="noQueryRunningMessage"
-                        type="text"
-                        id="formFields_7"
-                        placeholder="NoQueryRunningMessage"
-                        size="35"
-                        >
-                </div>
+                    <div class="gridNoQueryRunningMessage">
+                        <input [(ngModel)]="noQueryRunningMessage"
+                            type="text"
+                            id="formFields_7"
+                            placeholder="NoQueryRunningMessage"
+                            size="35"
+                            >
+                    </div>
 
-                <div class="gridQueryRunningMessage">
-                    <input [(ngModel)]="queryRunningMessage"
-                        type="text"
-                        id="formFields_7"
-                        placeholder="QueryRunningMessage"
-                        size="35"
-                        >
-                </div>
+                    <div class="gridQueryRunningMessage">
+                        <input [(ngModel)]="queryRunningMessage"
+                            type="text"
+                            id="formFields_7"
+                            placeholder="QueryRunningMessage"
+                            size="35"
+                            >
+                    </div>
 
                 <div class="gridOfflineTitle">
                     <b>Working Offline:</b>
                 </div>
 
-                <div class="gridOfflineData">
-                    <input [(ngModel)]="offlineData"
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Store server data locally (T/F)"
-                        >
-                </div>
+                    <div class="gridOfflineDataTitle">
+                        <b>Data:</b>
+                    </div>
+                    <div class="gridOfflineData">
+                        <input [(ngModel)]="offlineData"
+                            type="text"
+                            id="formFields_7"
+                            placeholder="Store server data locally (T/F)"
+                            size="5"
+                            >
+                    </div>
 
-                <div class="gridOfflineSchema">
-                    <input [(ngModel)]="offlineSchema"
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Store server schema locally (T/F)"
-                        >
-                </div>
+                    <div class="gridOfflineSchemaTitle">
+                        <b>Schema:</b>
+                    </div>
+                    <div class="gridOfflineSchema">
+                        <input [(ngModel)]="offlineSchema"
+                            type="text"
+                            id="formFields_7"
+                            placeholder="Store server schema locally (T/F)"
+                            size="5"
+                            >
+                    </div>
 
-                <div class="gridOfflineLogin">
-                    <input [(ngModel)]="offlineLogin"
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Can log into a local server (T/F)"
-                        >
-                </div>
+                    <div class="gridOfflineLoginTitle">
+                        <b>Login:</b>
+                    </div>
+                    <div class="gridOfflineLogin">
+                        <input [(ngModel)]="offlineLogin"
+                            type="text"
+                            id="formFields_7"
+                            placeholder="Can log into a local server (T/F)"
+                            size="5"
+                            >
+                    </div>
 
                 <div class="gridTableTitle">
                     <b>Tables:</b>
@@ -112,6 +124,7 @@
                         type="text"
                         id="formFields_7"
                         placeholder="Max Table Length (500)"
+                        size="5"
                         >
                 </div>
 
@@ -124,6 +137,7 @@
                         type="text"
                         id="formFields_7"
                         placeholder="Widget Template (later)"
+                        size="35"
                         >
                 </div>
 
@@ -132,6 +146,7 @@
                         type="text"
                         id="formFields_7"
                         placeholder="Widgets Min Zindex"
+                        size="5"
                         >
                 </div>
 
@@ -140,6 +155,7 @@
                         type="text"
                         id="formFields_7"
                         placeholder="Widgets Max Zindex"
+                        size="5"
                         >
                 </div>
 
@@ -152,6 +168,7 @@
                         type="text"
                         id="formFields_7"
                         placeholder="Size of the Grid"
+                        size="5"
                         >
                 </div>
 
@@ -160,6 +177,7 @@
                         type="text"
                         id="formFields_7"
                         placeholder="Snap to grid (T/F)"
+                        size="5"
                         >
                 </div>
 
@@ -170,18 +188,21 @@
                     <input [(ngModel)]="printDefault" type="text"
                         id="formFields_7"
                         placeholder="Deflt: Local HP"
+                        size="35"
                         >
                 </div>
                 <div class="gridPrintSize">
                     <input [(ngModel)]="printSize" type="text"
                         id="formFields_7"
                         placeholder="Deflt Page Size: A4"
+                        size="35"
                         >
                 </div>
                 <div class="gridPrintLayout">
                     <input [(ngModel)]="printLayout" type="text"
                         id="formFields_7"
                         placeholder="Deflt Layout: Single page, B and W"
+                        size="35"
                         >
                 </div>
 

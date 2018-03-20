@@ -104,27 +104,51 @@
         text-align: left;
     }
 
-        .gridOfflineData {
+        .gridOfflineDataTitle {
             grid-column-start: 1;
-            grid-column-end: 6;
+            grid-column-end: 2;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridOfflineData {
+            grid-column-start: 2;
+            grid-column-end: 3;
             grid-row-start: 10;
             grid-row-end: 11;
             margin-left: 20px;
             text-align: left;
         }
 
-        .gridOfflineSchema {
+        .gridOfflineSchemaTitle {
             grid-column-start: 7;
-            grid-column-end: 12;
+            grid-column-end: 8;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridOfflineSchema {
+            grid-column-start: 8;
+            grid-column-end: 9;
             grid-row-start: 10;
             grid-row-end: 11;
             margin-left: 20px;
             text-align: left;
         }
 
-        .gridOfflineLogin {
+        .gridOfflineLoginTitle {
             grid-column-start: 13;
-            grid-column-end: 18;
+            grid-column-end: 14;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridOfflineLogin {
+            grid-column-start: 14;
+            grid-column-end: 15;
             grid-row-start: 10;
             grid-row-end: 11;
             margin-left: 20px;
