@@ -1259,7 +1259,7 @@ export class AppComponent implements OnInit {
 
         // Has to be in editMode
         if (!this.editMode) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
@@ -1328,7 +1328,7 @@ export class AppComponent implements OnInit {
 
         // Can only edit if we have DS
         if (!this.hasDatasources) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 'First Add Datasources from Data menu',
                 'StatusBar',
                 'Warning',
@@ -1587,7 +1587,7 @@ export class AppComponent implements OnInit {
 
         // Has to be in editMode
         if (!this.editMode) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
@@ -1754,7 +1754,7 @@ export class AppComponent implements OnInit {
                 // Make a (new) duplicate
                 this.duplicateWidget(w);
 
-                this.showStatusBarMessage(
+                this.showMessage(
                     'Widget copied',
                     'StatusBar',
                     'Info',
@@ -1786,7 +1786,7 @@ export class AppComponent implements OnInit {
             if (w.isSelected) {
                 this.clipboardWidget = Object.assign({}, w);
 
-                this.showStatusBarMessage(
+                this.showMessage(
                     'Widget copied',
                     'StatusBar',
                     'Info',
@@ -1806,7 +1806,7 @@ export class AppComponent implements OnInit {
 
         // Has to be in editMode
         if (!this.editMode) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
@@ -1817,7 +1817,7 @@ export class AppComponent implements OnInit {
         };
 
         if (this.clipboardWidget == null  ||  this.clipboardWidget == undefined) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 'Nothing copied previously',
                 'StatusBar',
                 'Warning',
@@ -1829,7 +1829,7 @@ export class AppComponent implements OnInit {
 
         if (this.clipboardWidget.dashboardID != this.globalVariableService.
             currentDashboardInfo.value.currentDashboardID) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 'Previous copy for different Dashboard',
                 'StatusBar',
                 'Warning',
@@ -1918,7 +1918,7 @@ export class AppComponent implements OnInit {
 
         // Has to be in editMode
         if (!this.editMode) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
@@ -2125,7 +2125,7 @@ export class AppComponent implements OnInit {
 
         // Has to be in editMode
         if (!this.editMode) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
@@ -2296,7 +2296,7 @@ export class AppComponent implements OnInit {
 
         // Has to be in editMode
         if (!this.editMode) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
@@ -2773,7 +2773,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.widgetGroup.next(this.widgetGroup)
 
         // Tell the user
-        this.showStatusBarMessage(
+        this.showMessage(
             'New group of ' + this.widgetGroup.length.toString() + ' widgets',
             'StatusBar',
             'Info',
@@ -2798,7 +2798,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.widgetGroup.next(this.widgetGroup)
 
         // Tell the user
-        this.showStatusBarMessage(
+        this.showMessage(
             'Group cleared ',
             'StatusBar',
             'Info',
@@ -2833,7 +2833,7 @@ export class AppComponent implements OnInit {
 
         // Ensure we have selected > 2, else we may have divid 0 ...
         if (selectedOnes.length < 3) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 'Select at least 2 ',
                 'StatusBar',
                 'Info',
@@ -2912,7 +2912,7 @@ export class AppComponent implements OnInit {
         };
         // Ensure we have selected > 2, else we may have divid 0 ...
         if (selectedOnes.length < 3) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 'Select at least 2 ',
                 'StatusBar',
                 'Info',
@@ -3220,7 +3220,7 @@ export class AppComponent implements OnInit {
                         this.clickMenuShapeEdit();
                     } else {
                         // Lost
-                        this.showStatusBarMessage(
+                        this.showMessage(
                             'Select a graph, slicer, table or shape',
                             'StatusBar',
                             'Warning',
@@ -3245,7 +3245,7 @@ export class AppComponent implements OnInit {
                 this.clickMenuSlicerExpand();
             } else {
                 // Lost
-                this.showStatusBarMessage(
+                this.showMessage(
                     'Select a graph or slicer',
                     'StatusBar',
                     'Warning',
@@ -3276,7 +3276,7 @@ export class AppComponent implements OnInit {
                         this.clickMenuShapeDelete();
                     } else {
                         // Lost
-                        this.showStatusBarMessage(
+                        this.showMessage(
                             'Select a graph, slicer, table or shape',
                             'StatusBar',
                             'Warning',
@@ -3327,7 +3327,7 @@ export class AppComponent implements OnInit {
         // Show messages if silent = false
         if (nrWidgetsSelected == 0) {
             if (!silent) {
-                this.showStatusBarMessage(
+                this.showMessage(
                     widgetType=='All'? 'Nothing selected' : 'No ' + widgetType + ' selected',
                     'StatusBar',
                     'Warning',
@@ -3339,7 +3339,7 @@ export class AppComponent implements OnInit {
         };
         if (nrWidgetsSelected > 1) {
             if (!silent) {
-                this.showStatusBarMessage(
+                this.showMessage(
                     widgetType=='All'? 'Multiple selected' : 'More than 1 ' + widgetType + ' selected',
                     'StatusBar',
                     'Warning',
@@ -3359,7 +3359,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'checkForMultipleWidgets', '@Start');
 
         if (this.currentWidgets.filter(w => w.isSelected).length < 2) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 'Select multiple Widgets',
                 'StatusBar',
                 'Warning',
@@ -3512,7 +3512,7 @@ export class AppComponent implements OnInit {
 
         // Has to be in editMode
         if (!this.editMode) {
-            this.showStatusBarMessage(
+            this.showMessage(
                 this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
@@ -3634,7 +3634,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
     }
 
-    showStatusBarMessage(
+    showMessage(
         message: string,
         uiArea: string,
         classfication: string,
@@ -3644,17 +3644,13 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'showStatusBarMessage', '@Start');
 
         // Pop message in right area
-        if (uiArea == 'StatusBar') {
-            this.globalVariableService.statusBarMessage.next(
-                {
-                    message,
-                    uiArea,
-                    classfication,
-                    timeout,
-                    defaultMessage
-                }
-            );
-        };
+        this.globalVariableService.showStatusBarMessage(
+            message,
+            uiArea,
+            classfication,
+            timeout,
+            defaultMessage
+        );
 
         // In addition, make sure the user is not stuck
         if (message == this.globalVariableService.canvasSettings.notInEditModeMsg) {
