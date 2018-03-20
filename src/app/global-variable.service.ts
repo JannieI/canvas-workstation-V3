@@ -2891,7 +2891,8 @@ export class GlobalVariableService {
 
         if (this.filePath == './assets/data.widgets.json') {
             return new Promise((resolve, reject) => {
-                this.http.get(this.filePath).subscribe(res => resolve(res));
+                // this.http.get(this.filePath).subscribe(res => resolve(res));
+                this.http.get('http://localhost:3000/widgets').subscribe(res => resolve(res));
                 }
             );
 
