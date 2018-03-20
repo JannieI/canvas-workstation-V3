@@ -150,6 +150,7 @@ export class Dataset {
     id: number;
     datasourceID: number;
     sourceLocation: string;                 // Where data lives: file, localDB, MSSQL, etc
+    url: string;                            // URL for http request
     folderName: string;                     // Optional folder name where data is stored
     fileName: string;                       // Optional file name where data is stored
     data: any;                              // Filtered data as json

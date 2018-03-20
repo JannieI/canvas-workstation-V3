@@ -2,6 +2,9 @@
 import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
 import { HttpClient }                 from '@angular/common/http';
+import { HttpErrorResponse }          from '@angular/common/http';
+import { HttpParams }                 from "@angular/common/http";
+import { HttpHeaders }                from "@angular/common/http";
 
 // Our Models
 import { CanvasAction }               from './models';
@@ -1107,7 +1110,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDashboards ...');
 
-        let url: string = 'getDashboards';
+        let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<Dashboard[]>((resolve, reject) => {
@@ -1215,7 +1218,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDashboardTabs ...');
 
-        let url: string = 'getDashboardTabs';
+        let url: string = 'dashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
 
         return new Promise<DashboardTab[]>((resolve, reject) => {
@@ -1312,7 +1315,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDashboardsRecentList ...');
 
-        let url: string = 'getDashboardsRecentList';
+        let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
 
         return new Promise<number[]>((resolve, reject) => {
@@ -1385,7 +1388,7 @@ export class GlobalVariableService {
         // Returns: return array from source, not cached
         console.log('Global-Variables getDashboardsRecent ...');
 
-        let url: string = 'getDashboardsRecent';
+        let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
 
         return new Promise<DashboardRecent[]>((resolve, reject) => {
@@ -1448,7 +1451,7 @@ export class GlobalVariableService {
         // Returns: this.dataset
         console.log('Global-Variables getDataset ...');
 
-        let url: string = 'getDataset';
+        let url: string = 'datasets';
         this.filePath = './assets/data.datasets.json';
 
         return new Promise<Dataset[]>((resolve, reject) => {
@@ -1477,7 +1480,7 @@ export class GlobalVariableService {
         // Returns: dataset
         console.log('Global-Variables getCurrentDataset ...');
 
-        let url: string = 'getDataset';
+        let url: string = 'dataset1';
         this.filePath = './assets/data.datasets.json';
 
         // Get list of dSet-ids to make array work easier
@@ -1494,6 +1497,9 @@ export class GlobalVariableService {
                 };
                 if (ds.fileName == ''  ||  ds.fileName == null) {
                     ds.fileName = 'data.dataset' + ds.id.toString() + '.json';
+                    url = 'dataset' + ds.id.toString();
+                } else {
+                    url = ds.fileName;
                 };
                 folderName = ds.folderName;
                 fileName = ds.fileName;
@@ -1673,7 +1679,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDashboardSchedules ...');
 
-        let url: string = 'getSchedules';
+        let url: string = 'dashboardSchedules';
         this.filePath = './assets/data.dashboardSchedules.json';
 
         return new Promise<DashboardSchedule[]>((resolve, reject) => {
@@ -1739,7 +1745,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDashboardTags ...');
 
-        let url: string = 'getDashboardTags';
+        let url: string = 'dashboardTags';
         this.filePath = './assets/data.dashboardTags.json';
 
         return new Promise<DashboardTag[]>((resolve, reject) => {
@@ -1804,7 +1810,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDashboardPermissions ...');
 
-        let url: string = 'getDashboardPermissions';
+        let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
 
         return new Promise<DashboardPermission[]>((resolve, reject) => {
@@ -1869,7 +1875,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDashboardSnapshots ...');
 
-        let url: string = 'getDashboardSnapshots';
+        let url: string = 'dashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
 
         return new Promise<DashboardSnapshot[]>((resolve, reject) => {
@@ -1935,7 +1941,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDashboardThemes ...');
 
-        let url: string = 'getDashboardThemes';
+        let url: string = 'dashboardThemes';
         this.filePath = './assets/data.dashboardThemes.json';
 
         return new Promise<DashboardTheme[]>((resolve, reject) => {
@@ -2020,7 +2026,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDatasources ...');
 
-        let url: string = 'getDatasources';
+        let url: string = 'datasources';
         this.filePath = './assets/data.datasources.json';
 
         return new Promise<Datasource[]>((resolve, reject) => {
@@ -2070,7 +2076,7 @@ export class GlobalVariableService {
         // NB: assume this.currentWidgets exists !!
         console.log('Global-Variables getCurrentDatasources ...');
 
-        let url: string = 'getDatasources';
+        let url: string = 'datasources';
         this.filePath = './assets/data.datasources.json';
 
         return new Promise<Datasource[]>((resolve, reject) => {
@@ -2138,7 +2144,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getTransformations ...');
 
-        let url: string = 'getTransformations';
+        let url: string = 'transformations';
         this.filePath = './assets/data.transformations.json';
 
         return new Promise<Transformation[]>((resolve, reject) => {
@@ -2168,7 +2174,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getCurrentTransformations ...');
 
-        let url: string = 'getTransformations';
+        let url: string = 'transformations';
         this.filePath = './assets/data.transformations.json';
 
         if ( (this.currentTransformations.length == 0)  ||  (this.isDirtyTransformations) ) {
@@ -2202,7 +2208,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDataQualityIssues ...');
 
-        let url: string = 'getDataQualityIssues';
+        let url: string = 'dataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
 
         return new Promise<DataQualityIssue[]>((resolve, reject) => {
@@ -2231,7 +2237,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getCurrentDataQualityIssues ...');
 
-        let url: string = 'getDataQualityIssues';
+        let url: string = 'dataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
 
         if ( (this.currentDataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
@@ -2266,7 +2272,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDatasourcePermissions ...');
 
-        let url: string = 'getDatasourcePermissions';
+        let url: string = 'datasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
 
         return new Promise<DatasourcePermission[]>((resolve, reject) => {
@@ -2295,7 +2301,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getCurrentDatasourcePermissions ...');
 
-        let url: string = 'getDatasourcePermissions';
+        let url: string = 'datasourcePermissions';
         this.filePath = './assets/data..datasourcePermissions.json';
 
         if ( (this.currentDatasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
@@ -2330,7 +2336,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDatasourcePivots ...');
 
-        let url: string = 'getDatasourcePivots';
+        let url: string = 'datasourcePivots';
         this.filePath = './assets/data.datasourcePivots.json';
 
         return new Promise<DatasourcePivot[]>((resolve, reject) => {
@@ -2359,7 +2365,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getCurrentDatasourcePivots ...');
 
-        let url: string = 'getDatasourcePivots';
+        let url: string = 'datasourcePivots';
         this.filePath = './assets/data..datasourcePivots.json';
 
         if ( (this.currentDatasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
@@ -2394,7 +2400,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getSystemSettings ...');
 
-        let url: string = 'getSystemSettings';
+        let url: string = 'canvasSettings';
         this.filePath = './assets/data.canvasSettings.json';
 
         return new Promise<CanvasSettings[]>((resolve, reject) => {
@@ -2445,7 +2451,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getWidgets ...', this.widgets.length);
 
-        let url: string = 'getWidgets';
+        let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
 
         return new Promise<Widget[]>((resolve, reject) => {
@@ -2722,7 +2728,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getBackgroundColors ...', this.backgroundcolors.length);
 
-        let url: string = 'getBackgroundColors';
+        let url: string = 'canvasBackgroundcolors';
         this.filePath = './assets/settings.backgroundcolors.json';
 
         return new Promise<CSScolor[]>((resolve, reject) => {
@@ -2753,7 +2759,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getCanvasActivities ...', this.canvasActivities.length);
 
-        let url: string = 'getCanvasActivities';
+        let url: string = 'canvasActivities';
         this.filePath = './assets/settings.canvasActivities.json';
 
         return new Promise<CanvasActivity[]>((resolve, reject) => {
@@ -2784,7 +2790,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getCanvasAlerts ...', this.canvasAlerts.length);
 
-        let url: string = 'getCanvasAlerts';
+        let url: string = 'canvasAlerts';
         this.filePath = './assets/settings.canvasAlerts.json';
 
         return new Promise<CanvasAlert[]>((resolve, reject) => {
@@ -2815,7 +2821,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getCanvasComments ...', this.canvasComments.length);
 
-        let url: string = 'getCanvasComments';
+        let url: string = 'canvasComments';
         this.filePath = './assets/settings.canvasComments.json';
 
         return new Promise<CanvasComment[]>((resolve, reject) => {
@@ -2846,7 +2852,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getCanvasMessages ...', this.canvasMessages.length);
 
-        let url: string = 'getCanvasMessages';
+        let url: string = 'canvasMessages';
         this.filePath = './assets/settings.canvasMessages.json';
 
         return new Promise<CanvasMessage[]>((resolve, reject) => {
@@ -2889,11 +2895,89 @@ export class GlobalVariableService {
         // Generic GET data, later to be replaced with http
         console.log('Global-Variables get (url, filePath) ...', url, this.filePath);
 
-        if (this.filePath == './assets/data.widgets.json') {
+        // TODO - cleaner switch to http?
+        // if (this.filePath == './assets/data.widgets.json') {
+        if (this.filePath == this.filePath) {
+            const params = new HttpParams()
+                .set('orderBy', '"dashboardTabID"')
+                .set('limitToFirst', "1");
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            // PUT
+            // this.http.put("/courses/-KgVwECOnlc-LHb_B0cQ.json",
+            // {
+            //     "courseListIcon": ".../main-page-logo-small-hat.png",
+            //     "description": "Angular Tutorial For Beginners TEST",
+            //     "iconUrl": ".../angular2-for-beginners.jpg",
+            //     "longDescription": "...",
+            //     "url": "new-value-for-url"
+            // },
+            // {headers})
+            // .subscribe(    
+
+            // MULTIPLE
+            // const parallel$ = Observable.forkJoin(
+            //     this.http.get('/courses/-KgVwEBq5wbFnjj7O8Fp.json'),
+            //     this.http.get('/courses/-KgVwECOnlc-LHb_B0cQ.json')
+            // );
+        
+            // parallel$.subscribe(
+
+            // IN SEQUENCE
+            // const sequence$ = this.http.get<Course>(
+            //     '/courses/-KgVwEBq5wbFnjj7O8Fp.json')
+            // .switchMap(course => {
+        
+            //     course.description+= ' - TEST ';
+        
+            //     return this.http.put(
+            //         '/courses/-KgVwEBq5wbFnjj7O8Fp.json', 
+            //         course)
+            // });
+            // sequence$.subscribe();            
+
+            // PROGRESS
+            // const req = new HttpRequest('GET', this.url, {
+            //     reportProgress: true
+            //   });
+          
+            //   this.http.request(req).subscribe((event: HttpEvent<any>) => {
+            //     switch (event.type) {
+            //       case HttpEventType.Sent:
+            //         console.log('Request sent!');
+            //         break;
+            //       case HttpEventType.ResponseHeader:
+            //         console.log('Response header received!');
+            //         break;
+            //       case HttpEventType.DownloadProgress:
+            //         const kbLoaded = Math.round(event.loaded / 1024);
+            //         console.log(`Download in progress! ${ kbLoaded }Kb loaded`);
+            //         break;
+            //       case HttpEventType.Response:
+            //         console.log('😺 Done!', event.body);
+            //     }
+            //   });
+
             return new Promise((resolve, reject) => {
                 // this.http.get(this.filePath).subscribe(res => resolve(res));
-                this.http.get('http://localhost:3000/widgets').subscribe(res => resolve(res));
-                }
+                this.http.get<Widget>('http://localhost:3000/' + url).subscribe(
+                    res => 
+                    {
+                        resolve(res);
+                    },
+                    (err: HttpErrorResponse) => {
+                        if (err.error instanceof Error) {
+                          console.log("Client-side error occured.");
+                        } else {
+                          console.log("Server-side error occured.");
+                        };
+                        console.log('ERROR Error',err.error);
+                        console.log('ERROR Name',err.name);
+                        console.log('ERROR Message',err.message);
+                        console.log('ERROR Status',err.status);
+                      }
+                )}
             );
 
         } else {
