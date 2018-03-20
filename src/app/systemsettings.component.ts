@@ -117,14 +117,17 @@ export class SystemSettingsComponent implements OnInit {
         this.globalVariableService.canvasSettings = data;
         this.globalVariableService.saveSystemSettings(data).then(
             res => 
-            {
-            //             this.showStatusBarMessage(
-            //             this.globalVariableService.canvasSettings.notInEditModeMsg,
-            //             'StatusBar',
-            //             'Warning',
-            //             3000,
-            //             ''
+                {
+                    this.globalVariableService.showStatusBarMessage(
+                        {
+                            message: 'Settings saved',
+                            uiArea: 'StatusBar',
+                            classfication: 'Warning',
+                            timeout: 3000,
+                            defaultMessage: ''
                         }
+                    );
+                }
             );
 
 		this.formDashboardSystemSettingsClosed.emit(action);
