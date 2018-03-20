@@ -3645,11 +3645,13 @@ export class AppComponent implements OnInit {
 
         // Pop message in right area
         this.globalVariableService.showStatusBarMessage(
-            message,
-            uiArea,
-            classfication,
-            timeout,
-            defaultMessage
+            {
+                message: message,
+                uiArea: uiArea,
+                classfication: classfication,
+                timeout: timeout,
+                defaultMessage: defaultMessage
+            }
         );
 
         // In addition, make sure the user is not stuck

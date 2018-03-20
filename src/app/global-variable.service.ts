@@ -3933,26 +3933,14 @@ export class GlobalVariableService {
         return inputValue;
     }
 
-    showStatusBarMessage(
-        message: string,
-        uiArea: string,
-        classfication: string,
-        timeout: number,
-        defaultMessage: string,): void {
+    showStatusBarMessage(statusBarMessage: StatusBarMessage
+        ): void {
         // Shows a message in the right area, ie StatusBar
         console.log('Global-Variables showStatusBarMessage ...');
 
         // Pop message in right area
-        if (uiArea == 'StatusBar') {
-            this.statusBarMessage.next(
-                {
-                    message,
-                    uiArea,
-                    classfication,
-                    timeout,
-                    defaultMessage
-                }
-            );
+        if (statusBarMessage.uiArea == 'StatusBar') {
+            this.statusBarMessage.next(statusBarMessage);
         };
     }
 }
