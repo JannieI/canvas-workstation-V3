@@ -10,7 +10,7 @@
         >
         <clr-datagrid class="">
 
-            <clr-dg-column *ngFor="let row of dataFieldNames">
+            <clr-dg-column *ngFor="let row of dataFieldNames">  
                 {{row}}
             </clr-dg-column>
 
@@ -21,6 +21,15 @@
             </clr-dg-row>
 
             <clr-dg-footer>
+                <span>
+                    <clr-signpost class="signpost">
+                        <clr-signpost-content *clrIfOpen>
+                            <h3>Default Signpost</h3>
+                            <p>Graph and Text: <code class="clr-code">ala Vega</code></p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </span>
+                
                 <span *ngIf="nrRecords">
                     Showing 
                     <span *ngIf="!allowEdit" (dblclick)="allowEdit=!allowEdit"> 

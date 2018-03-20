@@ -83,9 +83,15 @@ export class SystemSettingsComponent implements OnInit {
     clickClose(action: string) {
         // Close form, no save
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-
-        console.log('clickClose')
-
+        this.globalVariableService.showStatusBarMessage(
+            {
+                message: 'No changes',
+                uiArea: 'StatusBar',
+                classfication: 'Info',
+                timeout: 3000,
+                defaultMessage: ''
+            }
+        );
 		this.formDashboardSystemSettingsClosed.emit(action);
     }
 

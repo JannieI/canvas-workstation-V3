@@ -62,7 +62,21 @@
 
 
 
+signpost {
+    display: inline-block;
+    margin: 0px !important;
+    left: 5px;
+    line-height: 0.3rem !important;
+    min-height: 0.3rem !important;
+    padding: 0px !important;
+}
 
+/* .dg-column {
+    padding: 0px !important;
+    margin: 3px 0 0 0 !important;
+    line-height: 0.3rem !important;
+    min-height: 0.3rem !important;
+} */
 
 /* Other Clarity elements */
 /* datagrid-host */
@@ -77,3 +91,4 @@
 /* datagrid-head */
 /* datagrid-body */
 /* datagrid-foot */
+
