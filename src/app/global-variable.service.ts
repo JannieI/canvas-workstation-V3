@@ -1,8 +1,7 @@
 // Service to provide global variables
 import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
 import { Injectable }                 from '@angular/core';
-
-// Our Serives
+import { HttpClient }                 from '@angular/common/http';
 
 // Our Models
 import { CanvasAction }               from './models';
@@ -867,6 +866,7 @@ export class GlobalVariableService {
 
 
     constructor(
+        private http: HttpClient,
     ) {
      }
 
@@ -2889,18 +2889,26 @@ export class GlobalVariableService {
         // Generic GET data, later to be replaced with http
         console.log('Global-Variables get (url, filePath) ...', url, this.filePath);
 
-        return new Promise((resolve, reject) => {
-            // Get from source - files for now ...
-            dl.json({url: this.filePath}, {children: 'graphSpecification'}, (err, currentData) => {
-                if (err) {
-                    reject(err)
-                } else {
-                    if (options == 'metadata') {}
-                    resolve(currentData);
+        if (this.filePath == './assets/data.widgets.json') {
+            return new Promise((resolve, reject) => {
+                this.http.get(this.filePath).subscribe(res => resolve(res));
                 }
-                });
-            }
-        );
+            );
+
+        } else {
+            return new Promise((resolve, reject) => {
+                // Get from source - files for now ...
+                dl.json({url: this.filePath}, {children: 'graphSpecification'}, (err, currentData) => {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        if (options == 'metadata') {}
+                        resolve(currentData);
+                    }
+                    });
+                }
+            );
+        };
     }
 
     connectLocalDB<T>(): Promise<string | Object> {

@@ -6,9 +6,11 @@ This document describes items for later versions of Canvas.
 
 **UI / ideas**
     1. Tooltips:
+    ------------
     - Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip   for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be   consistent!!  
 
     2. Overall design and layout 
+    ----------------------------
     - GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.  If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
     - Review whether as beautiful as Simplus
     - Relook at ALL forms for consistent layout, look and feel, INcluding the popups like the W     title
@@ -20,17 +22,22 @@ This document describes items for later versions of Canvas.
     - Consider highlight of selected row in Snapshots.  If good, apply to all Grids.  Better:   consider a GRID-COMPONENT ...
     -Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that     browser has own set.  Try to make it dynamic, ie use can define it!
     - Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of   main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not   needed
+
     Testing:
+    --------
     - test everything with 1000 - ie Dashboards, Widgets per D, etc - to check performance and to see it form layout (ie grids sizes) will copy with large volume
     - Test on different configs: screen resolution, 2 screens
     - Test on different devices, ie Tablet and Phone
     Multi-T display: show nr of Tabs where a W is displayed in header as a badge
+    
     Presentation: 
+    -------------
     - must be able to make a PowerPoint-light: front page(logo and title), agenda with bullets and  optional links, pages with logo and title repeated at the top and bullets and W (graphs, etc)    that are normal Canvas W => interactive and can add Sl, explore, expand, etc.
     - See if can print, and if so: allow different layouts and formats, for example one
        Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
 
-    3. Admin module and Users
+    Admin module and Users
+    ----------------------
     - Users, groups, permissions
     - Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
     - Global var with userLoggedIn
@@ -40,7 +47,8 @@ This document describes items for later versions of Canvas.
     - Add UserID to ALL data and code -> where needed ...
     - It must be impossible to lock out all users - admin keeps access and at least one is kept.    Also, if a W is locked and the owner on leave, someone must be able to unlock it.
 
-    4. Refactoring / tech debt / necessary improvements:
+    Refactoring / tech debt / necessary improvements:
+    -------------------------------------------------
     - Some models like Shape has dashboardTabName - suggest we delete this
     - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI   function for changing things.  And always by the users, with rights if necessary.
     - Change all components to use central (global var) createVegaLiteSpec ...
@@ -50,13 +58,18 @@ This document describes items for later versions of Canvas.
     THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
     - Add RouteGuard on 'Clarity Analytics', before going to web site ...
     - Improve getBackgroundColors (more propertie like rgb, etc), make more useful and make generic     getCSSColours.  Then use in forms, somewhere
-    Group: have a CLEAR definition of what this is and how it works:
+    BUG/ISSUE: multi-tab Slicers and Ws only refresh on the first one - when are the others done?  To do them while hidden makes no sence - should we have a dirty flag, and filterSlicer on tab change??
+
+    Groups:
+    -------
+    - have a CLEAR definition of what this is and how it works:
     - only one, or many?
     - if click one in group, select all in group?
     - if move one in group and rest not selected, do they move as well?
     - if resize, one or all in group resizes?  Particularly if none selected.
     - if some W selected, say 1 in group of 4.  If move, does group also move?
     - better indication that groups are used, and maybe some help when Ws are group - say one- time     help popup.
+
     ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.      Else it gets confusing ...
     - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean   to pass event back from slicer.single component.
     On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
@@ -91,7 +104,7 @@ This document describes items for later versions of Canvas.
 
 
 **Data**
-    1. Define Canvas datatype = TS ones?  Define Canvas data types: which module creates this for   data and where?  Are all numbers equal?
+    1. 
     2. Make sure terminology is consitent: Datasource -> Transform -> Dataset
     4. I used FieldNames (string) in ie Pivot - is that okay?
     5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields,    FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over   time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
@@ -104,7 +117,10 @@ This document describes items for later versions of Canvas.
     12.Remember usage - and can sort by popular ones or show it for all relevant objects
     13.Allow own profile pic upload!
     14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload   each time ...
-    15.Data types and field lengths:
+
+    Data types and field lengths:
+    --------------------------------
+    - Define Canvas datatype = TS ones?  Define Canvas data types: which module creates this for   data and where?  Are all numbers equal?
     - where defined, by what means, and how are they used?  Is it display side only?  Can the user  change it?  What if an actual field is wider than the stated length - will it truncate   displayed data?  Does numbers have a length?
     - How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How  is locale used?
     - How does types tranform into Vega field types, ie on Editor?

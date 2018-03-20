@@ -8,9 +8,9 @@
 import { BrowserAnimationsModule }    from "@angular/platform-browser/animations";
 import { BrowserModule }              from '@angular/platform-browser';
 import { FormsModule }                from '@angular/forms';
-import { HttpModule }                 from '@angular/http';
 import { NgModule }                   from '@angular/core';
 import { ROUTING }                    from "./app.routing";
+import { HttpClientModule }           from '@angular/common/http';
 
 // Clarity Framework
 import { ClarityModule }              from 'clarity-angular';
@@ -187,9 +187,9 @@ import { StatusbarComponent }         from './statusbar.component';
         BrowserAnimationsModule,
         BrowserModule,
         FormsModule,
-        HttpModule,
         ClarityModule,
-        ROUTING
+        ROUTING,
+        HttpClientModule,
     ],
     providers: [
 
