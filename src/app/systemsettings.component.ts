@@ -113,7 +113,20 @@ export class SystemSettingsComponent implements OnInit {
             queryRunningMessage: this.queryRunningMessage,
         };
 
-        this.globalVariableService.saveSystemSettings(data);
+        // Save globally, and in DB
+        this.globalVariableService.canvasSettings = data;
+        this.globalVariableService.saveSystemSettings(data).then(
+            res => 
+            {
+            //             this.showStatusBarMessage(
+            //             this.globalVariableService.canvasSettings.notInEditModeMsg,
+            //             'StatusBar',
+            //             'Warning',
+            //             3000,
+            //             ''
+                        }
+            );
+
 		this.formDashboardSystemSettingsClosed.emit(action);
     }
 }

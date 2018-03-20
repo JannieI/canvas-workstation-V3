@@ -67,7 +67,7 @@ export class TableSingleComponent {
 
         // Load rows with a Max
         this.currentData = this.globalVariableService.currentDatasets.filter(
-            d => d.id == dSetID)[0].data.slice(0, this.globalVariableService.maxTableLength);
+            d => d.id == dSetID)[0].data.slice(0, this.globalVariableService.canvasSettings.maxTableLength);
 
         // Totals
         this.nrRecords = this.currentData.length;
