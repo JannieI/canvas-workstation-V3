@@ -19,6 +19,7 @@
 }
 
     .gridTitle {
+        font-size: 0.75rem;
         grid-column-start: 1;
         grid-column-end: 18;
         grid-row-start: 1;
@@ -27,6 +28,7 @@
     }
 
     .gridCompanyTitle {
+        font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
         grid-row-start: 3;
@@ -62,6 +64,7 @@
         }
 
     .gridMessagingTitle {
+        font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
         grid-row-start: 6;
@@ -97,6 +100,7 @@
         }
 
     .gridOfflineTitle {
+        font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
         grid-row-start: 9;
@@ -156,6 +160,7 @@
         }
 
     .gridTableTitle {
+        font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
         grid-row-start: 12;
@@ -173,6 +178,7 @@
         }
 
     .gridWidgetTitle {
+        font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
         grid-row-start: 15;
@@ -209,6 +215,7 @@
         }
 
     .gridGridTitle {
+        font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
         grid-row-start: 18;
@@ -235,6 +242,7 @@
         }
 
     .gridPrintTitle {
+        font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
         grid-row-start: 21;
@@ -269,19 +277,19 @@
             text-align: left;
         }
 
-        .gridButtonCancel {
-            grid-column-start: 3;
-            grid-column-end: 5;
-            grid-row-start: 25;
-            grid-row-end: 26;
-            text-align: left;
-        }
-    
-        .gridButtonSave {
-            grid-column-start: 7;
-            grid-column-end: 9;
-            grid-row-start: 25;
-            grid-row-end: 26;
-            text-align: left;
-        }
+    .gridButtonCancel {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 25;
+        grid-row-end: 26;
+        text-align: left;
+    }
+
+    .gridButtonSave {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 25;
+        grid-row-end: 26;
+        text-align: left;
+    }
     
