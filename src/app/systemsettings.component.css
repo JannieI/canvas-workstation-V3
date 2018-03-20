@@ -13,14 +13,14 @@
 
 .gridOverall {
     display: grid;
-    grid-template-columns: repeat(20, 1fr);
+    grid-template-columns: repeat(17, 1fr);
     grid-template-rows: repeat(26, 0.8rem);
     margin-top: 2px;
 }
 
     .gridTitle {
         grid-column-start: 1;
-        grid-column-end: 21;
+        grid-column-end: 18;
         grid-row-start: 1;
         grid-row-end: 2;
         text-align: left;
@@ -28,7 +28,7 @@
 
     .gridCompanyTitle {
         grid-column-start: 1;
-        grid-column-end: 21;
+        grid-column-end: 18;
         grid-row-start: 3;
         grid-row-end: 4;
         text-align: left;
@@ -39,28 +39,31 @@
             grid-column-end: 6;
             grid-row-start: 4;
             grid-row-end: 5;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridCompanyLogo {
             grid-column-start: 7;
-            grid-column-end: 13;
+            grid-column-end: 12;
             grid-row-start: 4;
             grid-row-end: 5;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridCompanyTemplate {
-            grid-column-start: 14;
-            grid-column-end: 21;
+            grid-column-start: 13;
+            grid-column-end: 18;
             grid-row-start: 4;
             grid-row-end: 5;
+            margin-left: 20px;
             text-align: left;
         }
 
     .gridMessagingTitle {
         grid-column-start: 1;
-        grid-column-end: 21;
+        grid-column-end: 18;
         grid-row-start: 6;
         grid-row-end: 7;
         text-align: left;
@@ -71,28 +74,31 @@
             grid-column-end: 6;
             grid-row-start: 7;
             grid-row-end: 8;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridNoQueryRunningMessage {
             grid-column-start: 7;
-            grid-column-end: 13;
+            grid-column-end: 12;
             grid-row-start: 7;
             grid-row-end: 8;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridQueryRunningMessage {
-            grid-column-start: 14;
-            grid-column-end: 21;
+            grid-column-start: 13;
+            grid-column-end: 18;
             grid-row-start: 7;
             grid-row-end: 8;
+            margin-left: 20px;
             text-align: left;
         }
 
     .gridOfflineTitle {
         grid-column-start: 1;
-        grid-column-end: 21;
+        grid-column-end: 18;
         grid-row-start: 9;
         grid-row-end: 10;
         text-align: left;
@@ -103,28 +109,31 @@
             grid-column-end: 6;
             grid-row-start: 10;
             grid-row-end: 11;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridOfflineSchema {
             grid-column-start: 7;
-            grid-column-end: 13;
+            grid-column-end: 12;
             grid-row-start: 10;
             grid-row-end: 11;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridOfflineLogin {
-            grid-column-start: 14;
-            grid-column-end: 21;
+            grid-column-start: 13;
+            grid-column-end: 18;
             grid-row-start: 10;
             grid-row-end: 11;
+            margin-left: 20px;
             text-align: left;
         }
 
     .gridTableTitle {
         grid-column-start: 1;
-        grid-column-end: 21;
+        grid-column-end: 18;
         grid-row-start: 12;
         grid-row-end: 13;
         text-align: left;
@@ -135,12 +144,13 @@
             grid-column-end: 6;
             grid-row-start: 13;
             grid-row-end: 14;
+            margin-left: 20px;
             text-align: left;
         }
 
     .gridWidgetTitle {
         grid-column-start: 1;
-        grid-column-end: 21;
+        grid-column-end: 18;
         grid-row-start: 15;
         grid-row-end: 16;
         text-align: left;
@@ -151,29 +161,32 @@
             grid-column-end: 6;
             grid-row-start: 16;
             grid-row-end: 17;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridWidgetMinZindex {
             grid-column-start: 7;
-            grid-column-end: 13;
+            grid-column-end: 12;
             grid-row-start: 16;
             grid-row-end: 17;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridWidgetMaxZindex {
-            grid-column-start: 14;
-            grid-column-end: 21;
+            grid-column-start: 13;
+            grid-column-end: 18;
             grid-row-start: 16;
             grid-row-end: 17;
             margin-bottom: 0;
+            margin-left: 20px;
             text-align: left;
         }
 
     .gridGridTitle {
         grid-column-start: 1;
-        grid-column-end: 21;
+        grid-column-end: 18;
         grid-row-start: 18;
         grid-row-end: 19;
         text-align: left;
@@ -184,20 +197,22 @@
             grid-column-end: 6;
             grid-row-start: 19;
             grid-row-end: 20;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridGridSnap {
             grid-column-start: 7;
-            grid-column-end: 13;
+            grid-column-end: 12;
             grid-row-start: 19;
             grid-row-end: 20;
+            margin-left: 20px;
             text-align: left;
         }
 
     .gridPrintTitle {
         grid-column-start: 1;
-        grid-column-end: 21;
+        grid-column-end: 18;
         grid-row-start: 21;
         grid-row-end: 22;
         text-align: left;
@@ -208,36 +223,39 @@
             grid-column-end: 6;
             grid-row-start: 22;
             grid-row-end: 23;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridPrintSize {
             grid-column-start: 7;
-            grid-column-end: 13;
+            grid-column-end: 12;
             grid-row-start: 22;
             grid-row-end: 23;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridPrintLayout {
-            grid-column-start: 14;
-            grid-column-end: 21;
+            grid-column-start: 13;
+            grid-column-end: 18;
             grid-row-start: 22;
             grid-row-end: 23;
+            margin-left: 20px;
             text-align: left;
         }
 
         .gridButtonCancel {
-            grid-column-start: 7;
-            grid-column-end: 9;
+            grid-column-start: 3;
+            grid-column-end: 5;
             grid-row-start: 25;
             grid-row-end: 26;
             text-align: left;
         }
     
         .gridButtonSave {
-            grid-column-start: 13;
-            grid-column-end: 15;
+            grid-column-start: 7;
+            grid-column-end: 9;
             grid-row-start: 25;
             grid-row-end: 26;
             text-align: left;
