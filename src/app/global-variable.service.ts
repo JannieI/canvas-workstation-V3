@@ -1492,14 +1492,12 @@ export class GlobalVariableService {
         this.datasets.forEach(ds => {
             if (ds.id == datasetID) {
                 dsSourceLocation = ds.sourceLocation;
+                url = ds.url;
                 if (ds.folderName == ''  ||  ds.folderName == null) {
                     ds.folderName = '../assets/';
                 };
                 if (ds.fileName == ''  ||  ds.fileName == null) {
                     ds.fileName = 'data.dataset' + ds.id.toString() + '.json';
-                    url = 'dataset' + ds.id.toString();
-                } else {
-                    url = ds.fileName;
                 };
                 folderName = ds.folderName;
                 fileName = ds.fileName;
@@ -1508,7 +1506,7 @@ export class GlobalVariableService {
         });
 
         return new Promise<any>((resolve, reject) => {
-
+            console.log('xx getCurrentDataset', url, dsSourceLocation)
             // Get data from the correct place
             if (dsSourceLocation == 'localDB') {
 
@@ -1541,7 +1539,41 @@ export class GlobalVariableService {
                         let newdSet: Dataset = {
                             id: datasetID,
                             datasourceID: datasourceID,
+                            url: url,
                             sourceLocation: 'file',
+                            folderName: folderName,
+                            fileName: fileName,
+                            data: dataFile,
+                            dataRaw: dataFile
+                        };
+
+                        // // Add to datasets (contains all data) - once
+                        // if (dSetIDs.indexOf(datasetID) < 0) {
+                        //     this.datasets.push(newdSet);
+                        // };
+
+                        // Add to Currentatasets (contains all data) - once
+                        if (dsCurrIDs.indexOf(datasetID) < 0) {
+                            this.currentDatasets.push(newdSet);
+                        };
+
+                        console.log('Global-Variables getCurrentDataset 1 from ', dsSourceLocation, datasourceID,
+                            datasetID, newdSet, 'currentDatasets', this.currentDatasets)
+                        resolve(newdSet);
+                    }
+                );
+            };
+
+            if (dsSourceLocation == 'HTTP') {
+                console.log('xx getCurrentDataset', url )
+                this.get(url)
+                    .then(dataFile => {
+
+                        let newdSet: Dataset = {
+                            id: datasetID,
+                            datasourceID: datasourceID,
+                            url: url,
+                            sourceLocation: 'HTTP',
                             folderName: folderName,
                             fileName: fileName,
                             data: dataFile,

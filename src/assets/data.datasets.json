@@ -2,7 +2,8 @@
     {
         "id": 1,
         "datasourceID": 1,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset1",
         "folderName": "../assets/",
         "fileName": "data.dataset1.json",
         "data": null,
@@ -11,7 +12,8 @@
     {
         "id": 2,
         "datasourceID": 1,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset2",
         "folderName": "../assets/",
         "fileName": "data.dataset2.json",
         "data": null,
@@ -20,7 +22,8 @@
     {
         "id": 3,
         "datasourceID": 2,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset3",
         "folderName": "../assets/",
         "fileName": "data.dataset3.json",
         "data": null,
@@ -29,7 +32,8 @@
     {
         "id": 4,
         "datasourceID": 3,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset4",
         "folderName": "../assets/",
         "fileName": "data.dataset4.json",
         "data": null,
@@ -38,7 +42,8 @@
     {
         "id": 5,
         "datasourceID": 3,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset5",
         "folderName": "../assets/",
         "fileName": "data.dataset5.json",
         "data": null,
@@ -47,7 +52,8 @@
     {
         "id": 6,
         "datasourceID": 3,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset6",
         "folderName": "../assets/",
         "fileName": "data.dataset6.json",
         "data": null,
@@ -56,7 +62,8 @@
     {
         "id": 7,
         "datasourceID": 4,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset7",
         "folderName": "../assets/",
         "fileName": "data.dataset7.json",
         "data": null,
@@ -65,7 +72,8 @@
     {
         "id": 8,
         "datasourceID": 5,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset8",
         "folderName": "../assets/",
         "fileName": "data.dataset8.json",
         "data": null,
@@ -74,7 +82,8 @@
     {
         "id": 9,
         "datasourceID": 6,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset9",
         "folderName": "../assets/",
         "fileName": "data.dataset9.json",
         "data": null,
@@ -83,7 +92,8 @@
     {
         "id": 10,
         "datasourceID": 7,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "luno",
         "folderName": "../assets/",
         "fileName": "data.luno.json",
         "data": null,
@@ -92,7 +102,8 @@
     {
         "id": 11,
         "datasourceID": 8,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset11",
         "folderName": "../assets/",
         "fileName": "data.dataset11.json",
         "data": null,
@@ -101,7 +112,8 @@
     {
         "id": 12,
         "datasourceID": 9,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset12",
         "folderName": "../assets/",
         "fileName": "data.dataset12.json",
         "data": null,
@@ -110,7 +122,8 @@
     {
         "id": 13,
         "datasourceID": 10,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset13",
         "folderName": "../assets/",
         "fileName": "data.dataset13.json",
         "data": null,
@@ -119,7 +132,8 @@
     {
         "id": 14,
         "datasourceID": 11,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset14",
         "folderName": "../assets/",
         "fileName": "data.dataset14.json",
         "data": null,
@@ -128,7 +142,8 @@
     {
         "id": 15,
         "datasourceID": 12,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset15",
         "folderName": "../assets/",
         "fileName": "data.dataset15.json",
         "data": null,
@@ -137,7 +152,8 @@
     {
         "id": 16,
         "datasourceID": 13,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset16",
         "folderName": "../assets/",
         "fileName": "data.dataset16.json",
         "data": null,
@@ -146,7 +162,8 @@
     {
         "id": 17,
         "datasourceID": 14,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset17",
         "folderName": "../assets/",
         "fileName": "data.dataset17.json",
         "data": null,
@@ -155,7 +172,8 @@
     {
         "id": 18,
         "datasourceID": 15,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset18",
         "folderName": "../assets/",
         "fileName": "data.dataset18.json",
         "data": null,
@@ -164,7 +182,8 @@
     {
         "id": 19,
         "datasourceID": 16,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset19",
         "folderName": "../assets/",
         "fileName": "data.dataset19.json",
         "data": null,
@@ -173,7 +192,8 @@
     {
         "id": 20,
         "datasourceID": 17,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset20",
         "folderName": "../assets/",
         "fileName": "data.dataset20.json",
         "data": null,
@@ -182,7 +202,8 @@
     {
         "id": 21,
         "datasourceID": 18,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset21",
         "folderName": "../assets/",
         "fileName": "data.dataset21.json",
         "data": null,
@@ -191,7 +212,8 @@
     {
         "id": 22,
         "datasourceID": 19,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset22",
         "folderName": "../assets/",
         "fileName": "data.dataset22.json",
         "data": null,
@@ -200,7 +222,8 @@
     {
         "id": 23,
         "datasourceID": 20,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset23",
         "folderName": "../assets/",
         "fileName": "data.dataset23.json",
         "data": null,
@@ -209,7 +232,8 @@
     {
         "id": 24,
         "datasourceID": 21,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset24",
         "folderName": "../assets/",
         "fileName": "data.dataset24.json",
         "data": null,
@@ -218,7 +242,8 @@
     {
         "id": 25,
         "datasourceID": 22,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset25",
         "folderName": "../assets/",
         "fileName": "data.dataset25.json",
         "data": null,
@@ -227,7 +252,8 @@
     {
         "id": 26,
         "datasourceID": 23,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset26",
         "folderName": "../assets/",
         "fileName": "data.dataset26.json",
         "data": null,
@@ -236,7 +262,8 @@
     {
         "id": 27,
         "datasourceID": 24,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset27",
         "folderName": "../assets/",
         "fileName": "data.dataset27.json",
         "data": null,
@@ -245,7 +272,8 @@
     {
         "id": 28,
         "datasourceID": 25,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset28",
         "folderName": "../assets/",
         "fileName": "data.dataset28.json",
         "data": null,
@@ -254,7 +282,8 @@
     {
         "id": 29,
         "datasourceID": 26,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset29",
         "folderName": "../assets/",
         "fileName": "data.dataset29.json",
         "data": null,
@@ -263,7 +292,8 @@
     {
         "id": 30,
         "datasourceID": 27,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset30",
         "folderName": "../assets/",
         "fileName": "data.dataset30.json",
         "data": null,
@@ -272,7 +302,8 @@
     {
         "id": 31,
         "datasourceID": 28,
-        "sourceLocation": "file",
+        "sourceLocation": "HTTP",
+        "url": "dataset31",
         "folderName": "../assets/",
         "fileName": "data.dataset31.json",
         "data": null,
