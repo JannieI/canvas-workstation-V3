@@ -255,7 +255,7 @@ export class ShapeEditComponent implements OnInit {
         };
             
         // Tell user
-        this.globalVariableService.statusBarMessage.next(
+        this.globalVariableService.showStatusBarMessage(
             {
                 message: 'Shape Saved',
                 uiArea: 'StatusBar',

@@ -59,7 +59,7 @@ export class WidgetContainerComponent implements OnInit {
         this.globalVariableService.widgetReplace(this.localWidget);
         
         // Tell user
-        this.globalVariableService.statusBarMessage.next(
+        this.globalVariableService.showStatusBarMessage(
             {
                 message: 'Container updated',
                 uiArea: 'StatusBar',

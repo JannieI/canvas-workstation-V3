@@ -344,7 +344,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         };
 
         // Tell user
-        this.globalVariableService.statusBarMessage.next(
+        this.globalVariableService.showStatusBarMessage(
             {
                 message: 'Widget Saved',
                 uiArea: 'StatusBar',

@@ -187,7 +187,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 
         // Tell user
-        this.globalVariableService.statusBarMessage.next(
+        this.globalVariableService.showStatusBarMessage(
             {
                 message: 'Table Saved',
                 uiArea: 'StatusBar',

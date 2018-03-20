@@ -57,7 +57,7 @@ export class WidgetTitleComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Tell user
-        this.globalVariableService.statusBarMessage.next(
+        this.globalVariableService.showStatusBarMessage(
             {
                 message: 'Slicer Saved',
                 uiArea: 'StatusBar',

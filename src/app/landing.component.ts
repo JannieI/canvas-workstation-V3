@@ -111,7 +111,7 @@ export class LandingComponent implements OnInit {
 
 		// Cannot open deleted ones 
 		if (this.recentDashboards[index].stateAtRunTime == 'Deleted') {
-			this.globalVariableService.statusBarMessage.next(
+			this.globalVariableService.showStatusBarMessage(
 				{
 					message: 'Cannot open deleted Dashboard',
 					uiArea: 'StatusBar',

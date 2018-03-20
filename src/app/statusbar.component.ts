@@ -263,9 +263,9 @@ export class StatusbarComponent {
         
         // Has to be in editMode
         if (!this.editMode) {
-            this.globalVariableService.statusBarMessage.next(
+            this.globalVariableService.showStatusBarMessage(
                 {
-                    message: this.globalVariableService.notInEditModeMsg,
+                    message: this.globalVariableService.canvasSettings.notInEditModeMsg,
                     uiArea: 'StatusBar',
                     classfication: 'Warning',
                     timeout: 3000,
@@ -283,9 +283,9 @@ export class StatusbarComponent {
         
         // Has to be in editMode
         if (!this.editMode) {
-            this.globalVariableService.statusBarMessage.next(
+            this.globalVariableService.showStatusBarMessage(
                 {
-                    message: this.globalVariableService.notInEditModeMsg,
+                    message: this.globalVariableService.canvasSettings.notInEditModeMsg,
                     uiArea: 'StatusBar',
                     classfication: 'Warning',
                     timeout: 3000,
@@ -307,7 +307,7 @@ export class StatusbarComponent {
                 }
         }).length;
         if (nrWperT > 0) {
-            this.globalVariableService.statusBarMessage.next(
+            this.globalVariableService.showStatusBarMessage(
                 {
                     message: 'First delete all Widgets',
                     uiArea: 'StatusBar',
