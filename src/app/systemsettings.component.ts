@@ -17,6 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
+import { CanvasSettings }             from './models';
 
 @Component({
     selector: 'systemsettings',
@@ -29,26 +30,24 @@ export class SystemSettingsComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
-
-    companyName = this.globalVariableService.companyName;
-    companyLogo = this.globalVariableService.companyLogo;
-    dashboardTemplate = this.globalVariableService.dashboardTemplate;
-    offlineData = this.globalVariableService.offlineData;
-    offlineSchema = this.globalVariableService.offlineSchema;
-    offlineLogin = this.globalVariableService.offlineLogin;
-    maxTableLength = this.globalVariableService.maxTableLength;
-    widgetsMinZindex = this.globalVariableService.widgetsMinZindex;
-    widgetsMaxZindex = this.globalVariableService.widgetsMaxZindex;
-    gridSize = this.globalVariableService.gridSize;
-    snapToGrid = this.globalVariableService.snapToGrid;
-    printDefault = this.globalVariableService.printDefault;
-    printSize = this.globalVariableService.printSize;
-    printLayout = this.globalVariableService.printLayout;
-    notInEditModeMsg = this.globalVariableService.notInEditModeMsg;
-    noQueryRunningMessage = this.globalVariableService.noQueryRunningMessage;
-    queryRunningMessage = this.globalVariableService.queryRunningMessage;
-
-
+    companyName: string;
+    companyLogo: string;
+    dashboardTemplate: string;
+    offlineData: boolean;
+    offlineSchema: boolean;
+    offlineLogin: boolean;
+    maxTableLength: number;
+    widgetsMinZindex: number;
+    widgetsMaxZindex: number;
+    gridSize: number;
+    snapToGrid: boolean;
+    printDefault: string;
+    printSize: string;
+    printLayout: string;
+    notInEditModeMsg: string;
+    noQueryRunningMessage: string;
+    queryRunningMessage: string;
+    
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -58,6 +57,26 @@ export class SystemSettingsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.companyName = this.globalVariableService.canvasSettings.companyName;
+        this.companyLogo = this.globalVariableService.canvasSettings.companyLogo;
+        this.dashboardTemplate = this.globalVariableService.canvasSettings.dashboardTemplate;
+        this.offlineData = this.globalVariableService.canvasSettings.offlineData;
+        this.offlineSchema = this.globalVariableService.canvasSettings.offlineSchema;
+        this.offlineLogin = this.globalVariableService.canvasSettings.offlineLogin;
+        this.maxTableLength = this.globalVariableService.canvasSettings.maxTableLength;
+        this.widgetsMinZindex = this.globalVariableService.canvasSettings.widgetsMinZindex;
+        this.widgetsMaxZindex = this.globalVariableService.canvasSettings.widgetsMaxZindex;
+        this.gridSize = this.globalVariableService.canvasSettings.gridSize;
+        this.snapToGrid = this.globalVariableService.canvasSettings.snapToGrid;
+        this.printDefault = this.globalVariableService.canvasSettings.printDefault;
+        this.printSize = this.globalVariableService.canvasSettings.printSize;
+        this.printLayout = this.globalVariableService.canvasSettings.printLayout;
+        this.notInEditModeMsg = this.globalVariableService.canvasSettings.notInEditModeMsg;
+        this.noQueryRunningMessage = this.globalVariableService.canvasSettings.noQueryRunningMessage;
+        this.queryRunningMessage = this.globalVariableService.canvasSettings.queryRunningMessage;
+
+
+        console.log('xx cs', this.globalVariableService.canvasSettings)
         this.dashboards = this.globalVariableService.dashboards;
     }
 
@@ -74,8 +93,27 @@ export class SystemSettingsComponent implements OnInit {
         // Save data and Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        console.log('clickSave')
+        let data: CanvasSettings = {
+            companyName: this.companyName,
+            companyLogo: this.companyLogo,
+            dashboardTemplate: this.dashboardTemplate,
+            offlineData: this.offlineData,
+            offlineSchema: this.offlineSchema,
+            offlineLogin: this.offlineLogin,
+            maxTableLength: this.maxTableLength,
+            widgetsMinZindex: this.widgetsMinZindex,
+            widgetsMaxZindex: this.widgetsMaxZindex,
+            gridSize: this.gridSize,
+            snapToGrid: this.snapToGrid,
+            printDefault: this.printDefault,
+            printSize: this.printSize,
+            printLayout: this.printLayout,
+            notInEditModeMsg: this.notInEditModeMsg,
+            noQueryRunningMessage: this.noQueryRunningMessage,
+            queryRunningMessage: this.queryRunningMessage,
+        };
 
+        this.globalVariableService.saveSystemSettings(data);
 		this.formDashboardSystemSettingsClosed.emit(action);
     }
 }

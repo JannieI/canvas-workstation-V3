@@ -167,20 +167,20 @@ export class AppComponent implements OnInit {
             this.startY = 0;
             // Set end coordinates
             if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
-                this.endX = this.globalVariableService.gridSize;
+                this.endX = this.globalVariableService.canvasSettings.gridSize;
                 this.endY = 0;
             };
             if (event.keyCode === KEY_CODE.LEFT_ARROW) {
-                this.endX = -1 * this.globalVariableService.gridSize;
+                this.endX = -1 * this.globalVariableService.canvasSettings.gridSize;
                 this.endY = 0;
             };
             if (event.keyCode === KEY_CODE.UP_ARROW) {
                 this.endX = 0;
-                this.endY = -1 * this.globalVariableService.gridSize;
+                this.endY = -1 * this.globalVariableService.canvasSettings.gridSize;
             };
             if (event.keyCode === KEY_CODE.DOWN_ARROW) {
                 this.endX = 0;
-                this.endY = this.globalVariableService.gridSize;
+                this.endY = this.globalVariableService.canvasSettings.gridSize;
             };
 
             // Set draggables
@@ -400,7 +400,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => {
                 if (i) {
-                    this.companyName = this.globalVariableService.companyName;
+                    this.companyName = this.globalVariableService.canvasSettings.companyName;
 
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
@@ -1260,7 +1260,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                this.globalVariableService.notInEditModeMsg,
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -1588,7 +1588,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                this.globalVariableService.notInEditModeMsg,
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -1729,7 +1729,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalWidgetRefresh = true;
-        this.globalVariableService.statusBarRunning.next(this.globalVariableService.noQueryRunningMessage);
+        this.globalVariableService.statusBarRunning.next(this.globalVariableService.canvasSettings.noQueryRunningMessage);
         this.globalVariableService.statusBarCancelRefresh.next('Cancel');
     }
 
@@ -1807,7 +1807,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                this.globalVariableService.notInEditModeMsg,
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -1919,7 +1919,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                this.globalVariableService.notInEditModeMsg,
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -2126,7 +2126,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                this.globalVariableService.notInEditModeMsg,
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -2297,7 +2297,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                this.globalVariableService.notInEditModeMsg,
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -2434,7 +2434,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.snapToGrid = !this.snapToGrid;
-        this.globalVariableService.snapToGrid = this.snapToGrid;
+        this.globalVariableService.canvasSettings.snapToGrid = this.snapToGrid;
         this.menuOptionClickPostAction();
     }
 
@@ -2470,7 +2470,7 @@ export class AppComponent implements OnInit {
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex = Math.max(
-                    this.globalVariableService.widgetsMinZindex,
+                    this.globalVariableService.canvasSettings.widgetsMinZindex,
                     this.currentWidgets[i].containerZindex - 1
                 );
                 console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
@@ -2492,7 +2492,7 @@ export class AppComponent implements OnInit {
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex = Math.min(
-                    this.globalVariableService.widgetsMaxZindex,
+                    this.globalVariableService.canvasSettings.widgetsMaxZindex,
                     this.currentWidgets[i].containerZindex + 1
                 );
                 console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
@@ -2515,7 +2515,7 @@ export class AppComponent implements OnInit {
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex =
-                    this.globalVariableService.widgetsMinZindex;
+                    this.globalVariableService.canvasSettings.widgetsMinZindex;
                 console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
             };
 
@@ -2536,7 +2536,7 @@ export class AppComponent implements OnInit {
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex =
-                    this.globalVariableService.widgetsMaxZindex;
+                    this.globalVariableService.canvasSettings.widgetsMaxZindex;
                 console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
             };
 
@@ -3513,7 +3513,7 @@ export class AppComponent implements OnInit {
         // Has to be in editMode
         if (!this.editMode) {
             this.showStatusBarMessage(
-                this.globalVariableService.notInEditModeMsg,
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -3657,7 +3657,7 @@ export class AppComponent implements OnInit {
         };
 
         // In addition, make sure the user is not stuck
-        if (message == this.globalVariableService.notInEditModeMsg) {
+        if (message == this.globalVariableService.canvasSettings.notInEditModeMsg) {
             this.stuckCount = this.stuckCount + 1;
         } else {
             // this.stuckCount = 0;

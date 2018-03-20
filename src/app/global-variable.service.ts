@@ -650,23 +650,25 @@ export class GlobalVariableService {
     // Settings 
     // TODO - get from DB, not Constants
 
-    companyName = '';
-    companyLogo = '';
-    dashboardTemplate = '';
-    offlineData = true;
-    offlineSchema = '';
-    offlineLogin = '';
-    maxTableLength = 500;
-    widgetsMinZindex = 50;
-    widgetsMaxZindex = 59;
-    gridSize = 3;
-    snapToGrid = true;
-    printDefault = '';
-    printSize = '';
-    printLayout = '';
-    notInEditModeMsg = 'Not in Edit Mode (see Edit menu Option);'
-    noQueryRunningMessage = 'No Query';
-    queryRunningMessage = 'Query running...';
+    canvasSettings: CanvasSettings = {
+        companyName: '',
+        companyLogo: '',
+        dashboardTemplate: '',
+        offlineData: false,
+        offlineSchema: false,
+        offlineLogin: false,
+        maxTableLength: 500,
+        widgetsMinZindex: 50,
+        widgetsMaxZindex: 59,
+        gridSize: 3,
+        snapToGrid: true,
+        printDefault: '',
+        printSize: '',
+        printLayout: '',
+        notInEditModeMsg: 'Not in Edit Mode (see Edit menu Option)',
+        noQueryRunningMessage: 'No Query',
+        queryRunningMessage: 'Query running...'
+    }
 
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
@@ -693,7 +695,6 @@ export class GlobalVariableService {
     canvasAlerts: CanvasAlert[] = [];
     canvasComments: CanvasComment[] = [];
     canvasMessages: CanvasMessage[] = [];
-    canvasSettings: CanvasSettings[] = [];
     filePath: string;
     shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
     widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
@@ -782,7 +783,7 @@ export class GlobalVariableService {
     
 
     // StatusBar
-    statusBarRunning = new BehaviorSubject<string>(this.noQueryRunningMessage);
+    statusBarRunning = new BehaviorSubject<string>(this.canvasSettings.noQueryRunningMessage);
     statusBarCancelRefresh = new BehaviorSubject<string>('Cancel');
     statusBarMessage = new BehaviorSubject<StatusBarMessage>(null)
 
@@ -1117,12 +1118,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboards = data;
                         this.isDirtyDashboards = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getDashboards 1', data)
                         resolve(this.dashboards);
                     });
@@ -1225,12 +1226,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardTabs = data;
                         this.isDirtyDashboardTabs = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardTabs 1', data)
                         resolve(this.dashboardTabs);
                     });
@@ -1322,7 +1323,7 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardsRecent = [];
@@ -1335,7 +1336,7 @@ export class GlobalVariableService {
                         });
                         console.log('Global-Variables dashboardsRecent 1', this.dashboardsRecent)
                         this.isDirtyDashboardsRecent = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         resolve(this.dashboardsRecent);
                     });
             } else {
@@ -1394,7 +1395,7 @@ export class GlobalVariableService {
         return new Promise<DashboardRecent[]>((resolve, reject) => {
 
             // Refresh from source at start
-            this.statusBarRunning.next(this.queryRunningMessage);
+            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
             this.get(url).then(data => {
                 this.dashboardsRecent = [];
                 // TODO - http must be sorted => include in Options ...
@@ -1403,7 +1404,7 @@ export class GlobalVariableService {
                 )
                 console.log('Global-Variables dashboardsRecent 1', temp)
                 this.isDirtyDashboardsRecent = false;
-                this.statusBarRunning.next(this.noQueryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                 resolve(temp);
             });
         });
@@ -1458,12 +1459,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.datasets = data;
                         this.isDirtyDatasets = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getDataset 1', this.datasets)
                         resolve(this.datasets);
                     });
@@ -1718,12 +1719,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardSchedules = data;
                         this.isDirtyDashboardSchedules = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardSchedules 1')
                         resolve(this.dashboardSchedules);
                     });
@@ -1784,12 +1785,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardTags.length == 0)  ||  (this.isDirtyDashboardTags) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardTags = data;
                         this.isDirtyDashboardTags = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardTags 1')
                         resolve(this.dashboardTags);
                     });
@@ -1849,12 +1850,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardPermissions.length == 0)  ||  (this.isDirtyDashboardPermissions) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardPermissions = data;
                         this.isDirtyDashboardPermissions = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardPermissions 1')
                         resolve(this.dashboardPermissions);
                     });
@@ -1914,13 +1915,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
                 this.getLocal('DashboardSnapshot')
                     .then(data => {
                         this.dashboardSnapshots = data;
                         this.isDirtyDashboardSnapshots = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardSnapshots 1', data)
                         resolve(this.dashboardSnapshots);
                     });
@@ -1980,12 +1981,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dashboardThemes.length == 0)  ||  (this.isDirtyDashboardThemes) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dashboardThemes = data;
                         this.isDirtyDashboardThemes = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getDashboardThemes 1', data)
                         resolve(this.dashboardThemes);
                     });
@@ -2065,12 +2066,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.datasources = data;
                         this.isDirtyDatasources = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                         this.datasources.forEach(ds => {
                             // TODO - remove this, currently datalib reads array as string 'a,b,c'
@@ -2137,7 +2138,7 @@ export class GlobalVariableService {
                             };
                             this.isDirtyDatasources = false;
                             this.currentDatasources = returnData;
-                            this.statusBarRunning.next(this.noQueryRunningMessage);
+                            this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                             console.log('Global-Variables getCurrentDatasources 1',
                                 dashboardID, this.currentDatasources);
                             resolve(this.currentDatasources);
@@ -2162,7 +2163,7 @@ export class GlobalVariableService {
                 };
                 this.isDirtyDatasources = false;
                 this.currentDatasources = returnData;
-                this.statusBarRunning.next(this.noQueryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                 console.log('Global-Variables getCurrentDatasources 2', dashboardID,
                     this.currentDatasources);
                 resolve(this.currentDatasources);
@@ -2183,12 +2184,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.transformations.length == 0)  ||  (this.isDirtyTransformations) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.transformations = data;
                         this.isDirtyTransformations = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getTransformations 1',  data)
                         resolve(this.transformations);
                     });
@@ -2247,12 +2248,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dataQualityIssues = data;
                         this.isDirtyDataQualityIssues = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getDataQualityIssues 1', this.dataQualityIssues)
                         resolve(this.dataQualityIssues);
                     });
@@ -2311,12 +2312,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.datasourcePermissions = data;
                         this.isDirtyDatasourcePermissions = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getDatasourcePermissions 1', this.datasourcePermissions)
                         resolve(this.datasourcePermissions);
                     });
@@ -2375,12 +2376,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.datasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.datasourcePivots = data;
                         this.isDirtyDatasourcePivots = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getDatasourcePivots 1', this.datasourcePivots)
                         resolve(this.datasourcePivots);
                     });
@@ -2426,7 +2427,7 @@ export class GlobalVariableService {
 
     }
 
-    getSystemSettings(): Promise<CanvasSettings[]> {
+    getSystemSettings(): Promise<CanvasSettings> {
         // Description: Gets system settings
         // Returns: this.canvasSettings object, unless:
         //   If not cached or if dirty, get from File
@@ -2435,36 +2436,37 @@ export class GlobalVariableService {
         let url: string = 'canvasSettings';
         this.filePath = './assets/data.canvasSettings.json';
 
-        return new Promise<CanvasSettings[]>((resolve, reject) => {
+        return new Promise<CanvasSettings>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.canvasSettings.length == 0)  ||  (this.isDirtyCanvasSettings) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+            if (this.isDirtyCanvasSettings) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.canvasSettings = data;
 
                         // Load global Vars
                         // TODO - create glob vars when needed, or delete totally
-                        this.companyName = data.companyName;
-                        this.companyLogo = data.companyLogo;
-                        this.dashboardTemplate = data.dashboardTemplate;
-                        this.offlineData = data.offlineData;
-                        this.offlineSchema = data.offlineSchema;
-                        this.offlineLogin = data.offlineLogin;
-                        this.maxTableLength = data.maxTableLength;
-                        this.widgetsMinZindex = data.widgetsMinZindex;
-                        this.widgetsMaxZindex = data.widgetsMaxZindex;
-                        this.gridSize = data.gridSize;
-                        this.snapToGrid = data.snapToGrid;
-                        this.printDefault = data.printDefault;
-                        this.printSize = data.printSize;
-                        this.printLayout = data.printLayout;
-                        this.notInEditModeMsg = data.notInEditModeMsg;
-                        this.noQueryRunningMessage = data.noQueryRunningMessage;
-                        this.queryRunningMessage = data.queryRunningMessage;
+                        this.canvasSettings.companyName = data.companyName;
+                        this.canvasSettings.companyLogo = data.companyLogo;
+                        this.canvasSettings.dashboardTemplate = data.dashboardTemplate;
+                        this.canvasSettings.offlineData = data.offlineData;
+                        this.canvasSettings.offlineSchema = data.offlineSchema;
+                        this.canvasSettings.offlineLogin = data.offlineLogin;
+                        this.canvasSettings.maxTableLength = data.maxTableLength;
+                        this.canvasSettings.widgetsMinZindex = data.widgetsMinZindex;
+                        this.canvasSettings.widgetsMaxZindex = data.widgetsMaxZindex;
+                        this.canvasSettings.gridSize = data.gridSize;
+                        this.canvasSettings.snapToGrid = data.snapToGrid;
+                        this.canvasSettings.printDefault = data.printDefault;
+                        this.canvasSettings.printSize = data.printSize;
+                        this.canvasSettings.printLayout = data.printLayout;
+                        this.canvasSettings.notInEditModeMsg = data.notInEditModeMsg;
+                        this.canvasSettings.noQueryRunningMessage = data.noQueryRunningMessage;
+                        this.canvasSettings.queryRunningMessage = data.queryRunningMessage;
+                        
                         this.isDirtyCanvasSettings = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getSystemSettings 1', this.canvasSettings)
                         resolve(this.canvasSettings);
                     });
@@ -2476,6 +2478,33 @@ export class GlobalVariableService {
 
     }
 
+    saveSystemSettings(data: CanvasSettings): Promise<string> {
+        // Description: Gets system settings
+        // Returns: this.canvasSettings object, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getSystemSettings ...');
+
+        let url: string = 'canvasSettings';
+        this.filePath = './assets/data.canvasSettings.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    console.log('xx saveSystemSettings SAVED')
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('xx saveSystemSettings FAILED');;
+                    resolve(err.Message.toString());
+                }
+            )
+        });
+    }
 
     getWidgets(): Promise<Widget[]> {
         // Description: Gets all W
@@ -2490,7 +2519,7 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.widgets = data.filter(d => (!d.isTrashed) );
@@ -2583,7 +2612,7 @@ export class GlobalVariableService {
                         });
 
                         this.isDirtyWidgets = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getWidgets 1', this.widgets)
                         resolve(this.widgets);
                     });
@@ -2767,13 +2796,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.backgroundcolors.length == 0)  ||  (this.isDirtyBackgroundColors) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.backgroundcolors = data.filter(d => (!d.isTrashed) );
 
                         this.isDirtyBackgroundColors = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getBackgroundColors 1', this.backgroundcolors)
                         resolve(this.backgroundcolors);
                     });
@@ -2798,13 +2827,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasActivities.length == 0)  ||  (this.isDirtyCanvasActivities) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.canvasActivities = data.filter(d => (!d.isTrashed) );
 
                         this.isDirtyCanvasActivities = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getCanvasActivities 1', this.canvasActivities)
                         resolve(this.canvasActivities);
                     });
@@ -2829,13 +2858,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasAlerts.length == 0)  ||  (this.isDirtyCanvasAlerts) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.canvasAlerts = data.filter(d => (!d.isTrashed) );
 
                         this.isDirtyCanvasAlerts = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getCanvasAlerts 1', this.canvasAlerts)
                         resolve(this.canvasAlerts);
                     });
@@ -2860,13 +2889,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasComments.length == 0)  ||  (this.isDirtyCanvasComments) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.canvasComments = data.filter(d => (!d.isTrashed) );
 
                         this.isDirtyCanvasComments = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getCanvasComments 1', this.canvasComments)
                         resolve(this.canvasComments);
                     });
@@ -2891,13 +2920,13 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.canvasMessages.length == 0)  ||  (this.isDirtyCanvasMessages) ) {
-                this.statusBarRunning.next(this.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.canvasMessages = data.filter(d => (!d.isTrashed) );
 
                         this.isDirtyCanvasMessages = false;
-                        this.statusBarRunning.next(this.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getCanvasMessages 1', this.canvasMessages)
                         resolve(this.canvasMessages);
                     });
@@ -2933,8 +2962,8 @@ export class GlobalVariableService {
             const params = new HttpParams()
                 .set('orderBy', '"dashboardTabID"')
                 .set('limitToFirst', "1");
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+            // const headers = new HttpHeaders()
+            //     .set("Content-Type", "application/json");
 
             // PUT
             // this.http.put("/courses/-KgVwECOnlc-LHb_B0cQ.json",
@@ -2993,7 +3022,7 @@ export class GlobalVariableService {
 
             return new Promise((resolve, reject) => {
                 // this.http.get(this.filePath).subscribe(res => resolve(res));
-                this.http.get<Widget>('http://localhost:3000/' + url).subscribe(
+                this.http.get('http://localhost:3000/' + url).subscribe(
                     res => 
                     {
                         resolve(res);
@@ -3892,11 +3921,11 @@ export class GlobalVariableService {
         // This routine recalcs a value to a gridpoint IF snapping is enabled
         console.log('Global-Variables snapToGrid ...', inputValue);
 
-        if (this.snapToGrid) {
-            if ( (inputValue % this.gridSize) >= (this.gridSize / 2)) {
-                inputValue = inputValue + this.gridSize - (inputValue % this.gridSize);
+        if (this.canvasSettings.snapToGrid) {
+            if ( (inputValue % this.canvasSettings.gridSize) >= (this.canvasSettings.gridSize / 2)) {
+                inputValue = inputValue + this.canvasSettings.gridSize - (inputValue % this.canvasSettings.gridSize);
             } else {
-                inputValue = inputValue - (inputValue % this.gridSize);
+                inputValue = inputValue - (inputValue % this.canvasSettings.gridSize);
             }
         };
 
