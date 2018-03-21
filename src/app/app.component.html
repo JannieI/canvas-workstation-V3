@@ -1792,9 +1792,34 @@
             (click)="clickMenuEditSelectAllNone('Auto')"
             >
         </clr-icon>
-        <span class="tooltip-content">Un-/Select none, some, all Widgets and Slicers 
-            (depending on what was selected)</span>
+        <span class="tooltip-content">
+            Un-/Select none, some, all Widgets and Slicers 
+            (depending on what was selected)
+        </span>
     </span>
+
+
+
+
+
+
+    
+    <span *ngFor="let row of paletteButtons; let i = index" role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
+        <clr-icon *ngIf="!presentationMode"
+            shape="cursor-arrow"
+            size="20"
+            class="buttonBarIcon"
+            (click)="paletteFunctionCall('clickMenuEditSelectAllNone', 'Auto')"
+            >
+        </clr-icon>
+        <span class="tooltip-content">testing ...</span>
+    </span>
+
+
+
+
+
+
 </div>
 
 

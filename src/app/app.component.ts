@@ -121,6 +121,19 @@ export enum KEY_CODE {
     DOWN_ARROW = 40
 }
 
+const paletteButtons = [
+    {
+        id: 1,
+        shape: "pencil",
+        size: "20",
+        class: "buttonBarIcon",
+        accesskey: "w",
+        click: "clickMenuPaletteEdit(i)",
+        tooltipContent: "Edit a selected Widget or Slicer"
+    }
+]
+
+
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html',
@@ -226,6 +239,7 @@ export class AppComponent implements OnInit {
     moveLastX: number = 0;
     moveLastY: number = 0;
     newWidget: boolean = false;
+    paletteButtons = paletteButtons;
     presentationMode: boolean;
     refreshGraphs: boolean = false;
     selectWidgetIndex: number;
@@ -3821,6 +3835,17 @@ export class AppComponent implements OnInit {
             copiedWidget
         );
 
+    }
+
+    paletteFunctionCall(methodName: string, methodParam) { 
+        // Call function in Var from Customised portion of Palette
+        this.globalFunctionService.printToConsole(this.constructor.name,'paletteFunctionCall', '@Start');
+
+        if(this[methodName]) {
+            // method exists on the component
+            let param = methodParam;
+            this[methodName](param); // call it
+        }
     }
 }
 
