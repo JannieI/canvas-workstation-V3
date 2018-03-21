@@ -414,7 +414,7 @@ export class DashboardSubscription {
     editmode: boolean;                  // Nofity if another user goes to EditMode on this D
     save: boolean;                      // Nofity if another user Saves this D
     delete: boolean;                    // Nofity if another user Deletes this D
-    dashboardname: string;              // D-Name filled in at Runtime
+    dashboardCode: string;              // D-Code filled in at Runtime
     notify: string;                     // How to be notified: Email, Message, Both
 }
 

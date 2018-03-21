@@ -17,7 +17,7 @@
 
                     <div class="select">
                         <select (change)="clickSelect($event)">
-                            <option *ngFor="let row of dashboardNames; let i = index">
+                            <option *ngFor="let row of dashboardCodes; let i = index">
                                 {{ row }}
                             </option>
                         </select>

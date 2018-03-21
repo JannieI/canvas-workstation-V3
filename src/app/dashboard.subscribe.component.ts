@@ -29,7 +29,7 @@ export class DashboardSubscribeComponent implements OnInit {
     @Output() formDashboardSubscribeClosed: EventEmitter<string> = new EventEmitter();
 
     dashboards: Dashboard[];
-    dashboardNames: string[] = [];
+    dashboardCodes: string[] = [];
     dashboardSubscriptions: DashboardSubscription[] = [];
     selectDashboard: string = '';
 
@@ -65,16 +65,17 @@ export class DashboardSubscribeComponent implements OnInit {
             let dsIDs: number[] = [];
             this.dashboardSubscriptions.forEach(ds => {
                 dsIDs.push(ds.dashboardID);
-            });        
+            });    
+
             this.dashboards.forEach(d => {
                 if (dsIDs.indexOf(d.id) < 0) {
-                    this.dashboardNames.push(d.name);
+                    this.dashboardCodes.push(d.name);
                 };
             });     
 
             // Get First one
-            if (this.dashboardNames.length > 0) {
-                this.selectDashboard = this.dashboardNames[0];
+            if (this.dashboardCodes.length > 0) {
+                this.selectDashboard = this.dashboardCodes[0];
             };
         });
         
@@ -83,7 +84,7 @@ export class DashboardSubscribeComponent implements OnInit {
     dblClickView(index: number, id: number) {
         // Toggle the View value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickView', '@Start');
-console.log('xx', this.dashboardSubscriptions[index])
+
         this.dashboardSubscriptions[index].view = !this.dashboardSubscriptions[index].view;
         this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
@@ -147,37 +148,60 @@ console.log('xx', this.dashboardSubscriptions[index])
     }
 
     clickAdd() {
-        // Close form, nothing saved
+        // Add record to Subscriptions, and reduce available options
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Nothing selected
         if (this.selectDashboard == '') {
             return;
         };
+        console.log('xx this.selectDashboard', this.selectDashboard, this.dashboards)
 
         // TODO - this assumes D-Name is unique ...
-        for (var i = 0; i < this.dashboardSubscriptions.length; i++) {
+        this.selectDashboard = 'Unknown Name';
+        let dID: number = -1;
+        for (var i = 0; i < this.dashboards.length; i++) {
             if (this.dashboards[i].name == this.selectDashboard) {
+                dID = i;
                 break;
-            }
+            };
         };
-        
+        console.log('xx dID', dID)
         // Add globally, then locally
-        let localData: DashboardSubscription = {
-            id: null,
-            dashboardID: 1,
-            userID: this.globalVariableService.userID,
-            view: false,
-            editmode: false,
-            save: false,
-            delete: false,
-            dashboardname: this.dashboards[i].name,
-            notify: "",
+        if (dID >= 0) {
+            let localData: DashboardSubscription = {
+                id: null,
+                dashboardID: 1,
+                userID: this.globalVariableService.userID,
+                view: false,
+                editmode: false,
+                save: false,
+                delete: false,
+                dashboardname: this.dashboards[dID].name,
+                notify: "",
+            };
+            console.log('xx this.dashboardSubscriptions', localData, JSON.parse(JSON.stringify(localData)))
+            this.globalVariableService.addDashboardSubscription(localData).then(data => {
+                
+                // Add locally
+                this.dashboardSubscriptions.push(data);
+
+                // Reduce selection list
+                let selID: number = -1;
+                for (var i = 0; i < this.dashboardCodes.length; i++) {
+                    if (this.dashboardCodes[i] == this.selectDashboard) {
+                        selID = i;
+                        break;
+                    }
+                };
+                if (selID >=0) {
+                    this.dashboardCodes.splice(selID, 1);
+                };
+
+            });
+        } else {
+            console.log('ERROR - dID = -1 which means its not in the list!  Ai toggie')
         };
-console.log('xx this.dashboardSubscriptions', localData, JSON.parse(JSON.stringify(localData)))
-        this.globalVariableService.addDashboardSubscription(localData).then(data => {
-            this.dashboardSubscriptions.push(data)
-        });
     }
 
 }
