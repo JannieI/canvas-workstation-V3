@@ -52,11 +52,11 @@ export class DashboardSubscribeComponent implements OnInit {
                 ds.userID == this.globalVariableService.userID
             );
 
-            // Refresh names
+            // Refresh Codes
             this.dashboards.forEach(d => {
                 this.dashboardSubscriptions.forEach(ds => {
                     if (ds.dashboardID == d.id) {
-                        ds.dashboardname = d.name;
+                        ds.dashboardCode = d.code;
                     };
                 });
             });
@@ -69,7 +69,7 @@ export class DashboardSubscribeComponent implements OnInit {
 
             this.dashboards.forEach(d => {
                 if (dsIDs.indexOf(d.id) < 0) {
-                    this.dashboardCodes.push(d.name);
+                    this.dashboardCodes.push(d.code);
                 };
             });     
 
@@ -157,11 +157,11 @@ export class DashboardSubscribeComponent implements OnInit {
         };
         console.log('xx this.selectDashboard', this.selectDashboard, this.dashboards)
 
-        // TODO - this assumes D-Name is unique ...
-        this.selectDashboard = 'Unknown Name';
+        // TODO - this assumes D-Code is unique ...
+        this.selectDashboard = 'Unknown Cdoe';
         let dID: number = -1;
         for (var i = 0; i < this.dashboards.length; i++) {
-            if (this.dashboards[i].name == this.selectDashboard) {
+            if (this.dashboards[i].code == this.selectDashboard) {
                 dID = i;
                 break;
             };
@@ -177,7 +177,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 editmode: false,
                 save: false,
                 delete: false,
-                dashboardname: this.dashboards[dID].name,
+                dashboardCode: this.dashboards[dID].code,
                 notify: "",
             };
             console.log('xx this.dashboardSubscriptions', localData, JSON.parse(JSON.stringify(localData)))
