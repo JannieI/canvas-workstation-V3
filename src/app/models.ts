@@ -1,6 +1,20 @@
 // ALL models (schema) are kept here
 
 // Setup / Settings / General
+export class UserPreferences {
+    preferenceAutoSync: boolean;                            // T/F - can auto sync
+    preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg
+    preferenceShowOpenDataCombinationMessage: boolean;      // T/F - show msg on open combination form
+    preferenceShowViewStartupMessage: boolean;              // T/F - show msg on open view form
+    preferenceShowDiscardStartupMessage: boolean;           // T/F - show msg on discard form
+    preferenceDefaultTemplate: string;                      // Default Template
+    preferenceDefaultDateformat: string;                    // Default Date Format, ie YYYY/MM/DD
+    preferenceDefaultFolder: string;                        // Default Folder
+    preferenceDefaultPrinter: string;                       // Default Printer
+    preferenceDefaultPageSize: string;                      // Default Page Size
+    preferenceDefaultPageLayout: string;                    // Default Page Layout
+}
+
 export class CanvasSettings {
     companyName: string;                    // Company Name
     companyLogo: string;                    // Optional file name for Company logo
@@ -29,7 +43,7 @@ export class CanvasAction {
     dashboardID: number;                    // Where action took place
     dashboardTabID: number;                 // Where action took place
     objectType: string;                     // Type, ie Dashboard, Widget
-    action: string;                         // Optional name, ie Move Widget 
+    action: string;                         // Optional name, ie Move Widget
     description: string;                    // Optional description, ie calling routine, etc
     undoID: number;                         // Optional id of item in UNDO
     redoID: number;                         // Optonal id of item in REDO
@@ -423,12 +437,12 @@ export class Widget {
     // Links @Runtime
     hyperlinkDashboardID: number;           // Optional Widget ID to jump to
     hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
-    
+
     // Data related
-    datasourceID: number;                   // Specific ID that this W points to.  For a W, 
+    datasourceID: number;                   // Specific ID that this W points to.  For a W,
 
     // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
-    datasetID: number;                      // Specific ID that this W points to.  For a W, 
+    datasetID: number;                      // Specific ID that this W points to.  For a W,
     // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
     // For a W, -1 = latest dataset of the DS-id.  For now, Sl must have a datsetID <> -1
     data: any;                          // Optional - can copy rawData into table
@@ -512,7 +526,7 @@ export class Widget {
     tableCols: number;                  // Nr of cols, 0 means all
     fontSize: number;                   // Font size of text
     tableHeight: number;                // in px, cuts of rest if bigger than this
-    tableHideHeader: boolean;           // False to hide the column header row         
+    tableHideHeader: boolean;           // False to hide the column header row
     tableLeft: number;                  // in px (for later use)
     tableLineHeight: number;            // Background color (for later use)
     tableRows: number;                  // Nr of rows in the data, excluding header: 0 means all
@@ -527,7 +541,7 @@ export class Widget {
     slicerSelection: {isSelected: boolean; fieldValue: string;}[];
     slicerSortField: string;            // Name of Field to sort Slicer dataset on
     slicerSortFieldOrder: string;       // Sort order for Slicer dataset, Ascending, Descending
-    slicerType: string;                 // Type of Slicer, ie List, Bin 
+    slicerType: string;                 // Type of Slicer, ie List, Bin
 
     // Shape
     shapeBullets: string[];             // Array of bullet points

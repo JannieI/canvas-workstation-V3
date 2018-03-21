@@ -15,7 +15,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(20, 1rem);
+    grid-template-rows: repeat(19, 1rem);
     margin-top: 2px;
 }
 
