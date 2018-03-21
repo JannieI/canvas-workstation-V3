@@ -406,6 +406,18 @@ export class DashboardPermission {
     canEdit: boolean;
 }
 
+export class DashboardSubscription {
+    id: number;                         // Unique ID
+    dashboardID: number;                // FK to Dashboard
+    userID: string;                     // User
+    view: boolean;                      // Nofity if another user Views this D
+    editmode: boolean;                  // Nofity if another user goes to EditMode on this D
+    save: boolean;                      // Nofity if another user Saves this D
+    delete: boolean;                    // Nofity if another user Deletes this D
+    dashboardname: boolean;             // D-Name filled in at Runtime
+    notify: boolean;                    // How to be notified: Email, Message, Both
+}
+
 export class Widget {
 
     // Type

@@ -1,0 +1,26 @@
+[
+    {
+        view: true,
+        editmode: true,
+        save: false,
+        delete: true,
+        dashboardname: 'Budget',
+        notify: 'Email'
+    },
+    {
+        view: false,
+        editmode: false,
+        save: false,
+        delete: true,
+        dashboardname: 'Budget',
+        notify: 'Msg'
+    },
+    {
+        view: false,
+        editmode: false,
+        save: false,
+        delete: true,
+        dashboardname: 'Budget',
+        notify: 'Msg'
+    }
+]
