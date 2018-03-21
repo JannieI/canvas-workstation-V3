@@ -26,6 +26,7 @@ import { DashboardPermission }        from './models';
 import { DashboardRecent}             from './models';
 import { DashboardSnapshot }          from './models';
 import { DashboardSchedule }          from './models';
+import { DashboardSubscription }      from './models';
 import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DashboardTemplate }          from './models';
@@ -751,6 +752,7 @@ export class GlobalVariableService {
     currentDashboardTags: DashboardTag[] = [];
     currentDashboardPermissions: DashboardPermission[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
+    currentDashboardSubscription: DashboardSubscription[] = [];
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
 
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
@@ -835,6 +837,7 @@ export class GlobalVariableService {
     isDirtyDashboardTags: boolean = true;
     isDirtyDashboardPermissions: boolean = true;
     isDirtyDashboardSnapshots: boolean = true;
+    isDirtyDashboardSubscription: boolean = true;
     isDirtyDashboardThemes: boolean = true;
     isDirtyDatasources: boolean = true;
     isDirtyTransformations: boolean = true;
@@ -2499,7 +2502,7 @@ export class GlobalVariableService {
         // Description: Gets system settings
         // Returns: this.canvasSettings object, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getSystemSettings ...');
+        console.log('Global-Variables saveSystemSettings ...');
 
         let url: string = 'canvasSettings';
         this.filePath = './assets/data.canvasSettings.json';
@@ -2570,7 +2573,7 @@ export class GlobalVariableService {
         // Description: Gets userPreferences
         // Returns: this.userPreferences object, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getUserPreferences ...');
+        console.log('Global-Variables saveUserPreferences ...');
 
         let url: string = 'userPreferences';
         this.filePath = './assets/data.userPreferences.json';
@@ -2592,6 +2595,37 @@ export class GlobalVariableService {
                 }
             )
         });
+    }
+
+    getDashboardSubscription(): Promise<DashboardSubscription[]> {
+        // Description: Gets currentDashboardSubscription 
+        // Returns: this.currentDashboardSubscription object, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables isDirtyDashboardSubscription ...');
+
+        let url: string = 'dashboardSubscriptions';
+        this.filePath = './assets/data.dashboardSubscriptions.json';
+
+        return new Promise<DashboardSubscription[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if (this.isDirtyDashboardSubscription) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.currentDashboardSubscription = data;
+
+                        this.isDirtyDashboardSubscription = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('Global-Variables getDashboardSubscription 1', this.currentDashboardSubscription)
+                        resolve(this.currentDashboardSubscription);
+                    });
+            } else {
+                console.log('Global-Variables getDashboardSubscription 2', this.currentDashboardSubscription)
+                resolve(this.currentDashboardSubscription);
+            }
+        });
+
     }
 
     getWidgets(): Promise<Widget[]> {
