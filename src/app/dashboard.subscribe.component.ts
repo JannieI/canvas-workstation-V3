@@ -117,14 +117,19 @@ export class DashboardSubscribeComponent implements OnInit {
         // Toggle the Notify value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickNotify', '@Start');
 
-        if (this.dashboardSubscriptions[index].notify == 'Email') {
-            this.dashboardSubscriptions[index].notify = 'Message';
-        } else {
-            if (this.dashboardSubscriptions[index].notify == 'Message') {
-                this.dashboardSubscriptions[index].notify = 'Both'
+        if (this.dashboardSubscriptions[index].notify == ''  ||  
+            this.dashboardSubscriptions[index].notify == null) {
+                this.dashboardSubscriptions[index].notify = 'Message';
             } else {
-                if (this.dashboardSubscriptions[index].notify == 'Both') {
-                    this.dashboardSubscriptions[index].notify = 'Email'
+            if (this.dashboardSubscriptions[index].notify == 'Email') {
+                this.dashboardSubscriptions[index].notify = 'Message';
+            } else {
+                if (this.dashboardSubscriptions[index].notify == 'Message') {
+                    this.dashboardSubscriptions[index].notify = 'Both'
+                } else {
+                    if (this.dashboardSubscriptions[index].notify == 'Both') {
+                        this.dashboardSubscriptions[index].notify = 'Email'
+                    };
                 };
             };
         };
@@ -155,10 +160,8 @@ export class DashboardSubscribeComponent implements OnInit {
         if (this.selectDashboard == '') {
             return;
         };
-        console.log('xx this.selectDashboard', this.selectDashboard, this.dashboards)
 
         // TODO - this assumes D-Code is unique ...
-        this.selectDashboard = 'Unknown Cdoe';
         let dID: number = -1;
         for (var i = 0; i < this.dashboards.length; i++) {
             if (this.dashboards[i].code == this.selectDashboard) {
@@ -166,25 +169,29 @@ export class DashboardSubscribeComponent implements OnInit {
                 break;
             };
         };
-        console.log('xx dID', dID)
+
         // Add globally, then locally
         if (dID >= 0) {
             let localData: DashboardSubscription = {
                 id: null,
-                dashboardID: 1,
+                dashboardID: this.dashboards[dID].id,
                 userID: this.globalVariableService.userID,
                 view: false,
                 editmode: false,
                 save: false,
                 delete: false,
                 dashboardCode: this.dashboards[dID].code,
-                notify: "",
+                notify: 'Message',
             };
-            console.log('xx this.dashboardSubscriptions', localData, JSON.parse(JSON.stringify(localData)))
+
+            // Add to DB
             this.globalVariableService.addDashboardSubscription(localData).then(data => {
                 
                 // Add locally
                 this.dashboardSubscriptions.push(data);
+        
+                // Add globally
+                this.globalVariableService.currentDashboardSubscription.push(data);
 
                 // Reduce selection list
                 let selID: number = -1;
