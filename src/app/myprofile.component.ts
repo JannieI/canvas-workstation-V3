@@ -37,7 +37,7 @@ export class MyProfileComponent implements OnInit {
 
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
-    }
+    } 
 
     clickClose(action: string) {
         console.log('clickClose')

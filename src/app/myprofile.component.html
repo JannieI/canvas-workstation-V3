@@ -1,44 +1,113 @@
 <div class="modal modalBox">
-    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <div>
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
+            
+            <div class="gridOverall">
 
-                My Profile
-                <div class="propertyLine">
-                    Rights:
-                    <div>
-                        <input type="text" id="formFields_7" placeholder="Dashboard Editor ...">
-                    </div>
-                    <div>
-                        <input type="text" id="formFields_7" placeholder="QA Dashboards ..">
-                    </div>
-                    <div>
-                        <input type="text" id="formFields_7" placeholder="Can work Offline">
-                    </div>
-                    <div>
-                        <input type="text" id="formFields_7" placeholder="Can copy Data locally">
-                    </div>
-                    <div>
-                        <input type="text" id="formFields_7" placeholder="Can copy Schema (no data) locally">
-                    </div>
-                    <br>
-                    <div>
-                        My roles for the current Dashboard:
-                    </div>
-                    <div>
-                        <input type="text" id="formFields_7" placeholder="CanView">
-                    </div>
-                    <div>
-                        <input type="text" id="formFields_7" placeholder="CanEdit">
-                    </div>
-
+                <div class="gridTitle">
+                    <b>My Profile: </b> 
+                </div>                
+                <div class="gridSubTitle">
+                    <i>  
+                        These are applicable to the current Dashboards and user.
+                    </i>
+                </div>                
+    
+                <div class="gridRightsTitle">
+                    <b>Dashboard Rights:</b>
                 </div>
+
+                <div class="gridRightsEditor">
+                    <b>Editor:</b>
+                    <input [(ngModel)]="preferenceAutoSync"
+                        type="checkbox"
+                        title="Can Edit the current Dashboard (T/F)"
+                        >
+                </div>
+
+                <div class="gridRightsQA">
+                    <b>QAer:</b>
+                    <input [(ngModel)]="preferenceShowOpenStartupMessage"
+                        type="checkbox"
+                        title="Can QA the current Dashboard (T/F)"
+                        >
+                </div>
+
+                <div class="gridOfflineTitle">
+                    <b>Offline Rights:</b>
+                </div>
+    
+                <div class="gridOfflineWork">
+                    <b>Work Offline:</b>
+                    <input [(ngModel)]="preferenceShowOpenDataCombinationMessage"
+                        type="checkbox"
+                        title="Can the user work Offline (T/F)"
+                        >
+                </div>
+
+                <div class="gridOfflineCopyData">
+                    <b>Copy Data:</b>
+                    <input [(ngModel)]="preferenceShowViewStartupMessage"
+                        type="checkbox"
+                        title="Can the user copy any data Offline (T/F)"
+                        >
+                </div>
+
+                <div class="gridOfflineCopySchema">
+                    <b>Copy Schema:</b>
+                    <input [(ngModel)]="preferenceShowDiscardStartupMessage"
+                        type="checkbox"
+                        title="Can the user copy only schemas Offline (T/F)"
+                        >
+                </div>
+
+                <div class="gridRolesTitle">
+                    <b>Roles for current Dashboard:</b>
+                </div>
+    
+                <div class="gridRolesCanView">
+                    <b>Can View:</b>
+                    <input [(ngModel)]="preferenceDefaultTemplate"
+                        type="checkbox"
+                        title="Default Template"
+                        >
+                </div>
+
+                <div class="gridRolesCanEdit">
+                    <b>Can Edit:</b>
+                    <input [(ngModel)]="preferenceDefaultDateformat"
+                        type="checkbox"
+                        title="Default Date format"
+                        placeholder="YYYY/MM/DD"
+                        >
+                </div>
+
+                <div class="gridButtonCancel">
+                        <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose('Close')"
+                        >
+                        Cancel
+                    </button>
+                </div>
+                
+                <div class="gridButtonSave">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickSave('Saved')"
+                        >
+                        Save
+                    </button>
+                </div>                
             </div>
         </div>
     </div>
 </div>
 
+    
