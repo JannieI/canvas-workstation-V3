@@ -15,7 +15,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(26, 0.8rem);
+    grid-template-rows: repeat(20, 1rem);
     margin-top: 2px;
 }
 
@@ -27,21 +27,28 @@
         grid-row-end: 2;
         text-align: left;
     }
+    .gridSubTitle {
+        grid-column-start: 4;
+        grid-column-end: 18;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
 
     .gridSettingsTitle {
+        font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
-        grid-row-start: 4;
-        grid-row-end: 5;
-        margin-left: 20px;
+        grid-row-start: 3;
+        grid-row-end: 4;
         text-align: left;
     }
 
         .gridSettingsAutoSync {
             grid-column-start: 1;
-            grid-column-end: 6;
-            grid-row-start: 5;
-            grid-row-end: 6;
+            grid-column-end: 7;
+            grid-row-start: 4;
+            grid-row-end: 5;
             margin-left: 20px;
             text-align: left;
         }
@@ -50,43 +57,43 @@
         font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 6;
+        grid-row-end: 7;
         text-align: left;
     }
 
         .gridMessagesStartup {
             grid-column-start: 1;
-            grid-column-end: 6;
-            grid-row-start: 8;
-            grid-row-end: 9;
+            grid-column-end: 7;
+            grid-row-start: 7;
+            grid-row-end: 8;
             margin-left: 20px;
             text-align: left;
         }
 
         .gridMessagesOpenCombo {
-            grid-column-start: 7;
-            grid-column-end: 12;
-            grid-row-start: 8;
-            grid-row-end: 9;
+            grid-column-start: 8;
+            grid-column-end: 15;
+            grid-row-start: 7;
+            grid-row-end: 89;
             margin-left: 20px;
             text-align: left;
         }
         
         .gridMessagesView {
             grid-column-start: 1;
-            grid-column-end: 6;
-            grid-row-start: 9;
-            grid-row-end: 10;
+            grid-column-end: 7;
+            grid-row-start: 8;
+            grid-row-end: 9;
             margin-left: 20px;
             text-align: left;
         }
         
         .gridMessagesDiscard {
-            grid-column-start: 7;
-            grid-column-end: 12;
-            grid-row-start: 9;
-            grid-row-end: 10;
+            grid-column-start: 8;
+            grid-column-end: 15;
+            grid-row-start: 8;
+            grid-row-end: 9;
             margin-left: 20px;
             text-align: left;
         }
@@ -95,70 +102,70 @@
         font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
-        grid-row-start: 11;
-        grid-row-end: 12;
+        grid-row-start: 10;
+        grid-row-end: 11;
         text-align: left;
     }
 
         .gridDefaultTemplate {
             grid-column-start: 1;
-            grid-column-end: 6;
-            grid-row-start: 12;
-            grid-row-end: 13;
+            grid-column-end: 7;
+            grid-row-start: 11;
+            grid-row-end: 12;
             margin-left: 20px;
             text-align: left;
         }
 
         .gridDefaultDateFormat {
-            grid-column-start: 7;
-            grid-column-end: 12;
+            grid-column-start: 8;
+            grid-column-end: 15;
+            grid-row-start: 11;
+            grid-row-end: 12;
+            margin-left: 20px;
+            text-align: left;
+        }
+    
+        .gridDefaultFolder {
+            grid-column-start: 1;
+            grid-column-end: 7;
             grid-row-start: 12;
             grid-row-end: 13;
             margin-left: 20px;
             text-align: left;
         }
+                
+    .gridPrintTitle {
+        font-size: 0.65rem;
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 14;
+        grid-row-end: 15;
+        text-align: left;
+    }
 
-        .gridFolderDefault {
-            grid-column-start: 1;
-            grid-column-end: 6;
-            grid-row-start: 13;
-            grid-row-end: 14;
-            margin-left: 20px;
-            text-align: left;
-        }
-        
         .gridPrintDefault {
-            grid-column-start: 7;
-            grid-column-end: 12;
-            grid-row-start: 13;
-            grid-row-end: 14;
+            grid-column-start: 1;
+            grid-column-end: 7;
+            grid-row-start: 15;
+            grid-row-end: 16;
             margin-left: 20px;
             text-align: left;
         }
 
         .gridPrintSize {
-            grid-column-start: 1;
-            grid-column-end: 6;
-            grid-row-start: 14;
-            grid-row-end: 15;
+            grid-column-start: 8;
+            grid-column-end: 15;
+            grid-row-start: 15;
+            grid-row-end: 16;
             margin-left: 20px;
             text-align: left;
         }
 
         .gridPrintLayout {
-            grid-column-start: 7;
-            grid-column-end: 12;
-            grid-row-start: 14;
-            grid-row-end: 15;
-            margin-left: 20px;
-            text-align: left;
-        }
-
-        .gridFolderDefault {
             grid-column-start: 1;
-            grid-column-end: 6;
-            grid-row-start: 15;
-            grid-row-end: 16;
+            grid-column-end: 7;
+            grid-row-start: 16;
+            grid-row-end: 17;
             margin-left: 20px;
             text-align: left;
         }
@@ -166,15 +173,15 @@
     .gridButtonCancel {
         grid-column-start: 1;
         grid-column-end: 3;
-        grid-row-start: 16;
-        grid-row-end: 17;
+        grid-row-start: 18;
+        grid-row-end: 19;
         text-align: left;
     }
 
     .gridButtonSave {
         grid-column-start: 3;
         grid-column-end: 5;
-        grid-row-start: 16;
-        grid-row-end: 17;
+        grid-row-start: 18;
+        grid-row-end: 19;
         text-align: left;
     }

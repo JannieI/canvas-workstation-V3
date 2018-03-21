@@ -10,11 +10,13 @@
 
                 <div class="gridTitle">
                     <b>My Preferences: </b> 
-                    <i>  These are applicable to all Dashboards for the 
-                        current user.
+                </div>                
+                <div class="gridSubTitle">
+                    <i>  
+                        These are applicable to all Dashboards for the current user.
                     </i>
                 </div>                
-
+    
                 <div class="gridSettingsTitle">
                     <b>Settings:</b>
                 </div>
@@ -63,9 +65,8 @@
                         >
                 </div>
 
-
                 <div class="gridDefaultTitle">
-                    <b>Settings:</b>
+                    <b>Defaults:</b>
                 </div>
     
                 <div class="gridDefaultTemplate">
@@ -73,20 +74,35 @@
                     <input [(ngModel)]="offlineData"
                         type="text"
                         title="Default Template"
-                        size="35"
+                        size="25"
                         >
                 </div>
 
                 <div class="gridDefaultDateFormat">
-                    <b>Defaults:</b>
+                    <b>Date Format:</b>
                     <input [(ngModel)]="offlineData"
                         type="text"
                         title="Default Date format"
+                        placeholder="YYYY/MM/DD"
                         size="20"
                         >
                 </div>
 
+                <div class="gridDefaultFolder">
+                    <b>Folder:</b>
+                    <input [(ngModel)]="printDefault" type="text"
+                        id="formFields_7"
+                        placeholder="Default Folder"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridPrintTitle">
+                    <b>Printer:</b>
+                </div>
+
                 <div class="gridPrintDefault">
+                    <b>Default:</b>
                     <input [(ngModel)]="printDefault" type="text"
                         id="formFields_7"
                         placeholder="Default: Local HP"
@@ -95,6 +111,7 @@
                 </div>
 
                 <div class="gridPrintSize">
+                    <b>Page Size:</b>
                     <input [(ngModel)]="printSize" type="text"
                         id="formFields_7"
                         placeholder="Default Page Size: A4"
@@ -103,17 +120,10 @@
                 </div>
 
                 <div class="gridPrintLayout">
+                    <b>Layout:</b>
                     <input [(ngModel)]="printLayout" type="text"
                         id="formFields_7"
                         placeholder="Default Layout: Single page, B and W"
-                        size="25"
-                        >
-                </div>
-
-                <div class="gridFolderDefault">
-                    <input [(ngModel)]="printDefault" type="text"
-                        id="formFields_7"
-                        placeholder="Default Folder"
                         size="25"
                         >
                 </div>
