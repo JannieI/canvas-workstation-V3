@@ -27,8 +27,6 @@ export class MyProfileComponent implements OnInit {
 
     @Output() formDashboardMyProfileClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -39,7 +37,6 @@ export class MyProfileComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards;
     } 
 
     clickClose(action: string) {
