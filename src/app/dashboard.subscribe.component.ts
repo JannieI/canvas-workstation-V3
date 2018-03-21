@@ -17,7 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
-import { DashboardSnapshot }                 from './models';
+import { DashboardSubscription }      from './models';
 
 @Component({
     selector: 'dashboard-subscribe',
@@ -30,35 +30,46 @@ export class DashboardSubscribeComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
-    subscriptions = [
-        {
-            view: true,
-            editmode: true,
-            save: false,
-            delete: true,
-            dashboardname: 'Budget',
-            notify: 'Email'
-        },
-        {
-            view: false,
-            editmode: false,
-            save: false,
-            delete: true,
-            dashboardname: 'Budget',
-            notify: 'Msg'
-        }
-    ]
+    dashboardSubscriptions: DashboardSubscription[] = [];
+    //     {
+    //         view: true,
+    //         editmode: true,
+    //         save: false,
+    //         delete: true,
+    //         dashboardname: 'Budget',
+    //         notify: 'Email'
+    //     },
+    //     {
+    //         view: false,
+    //         editmode: false,
+    //         save: false,
+    //         delete: true,
+    //         dashboardname: 'Budget',
+    //         notify: 'Msg'
+    //     }
+    // ]
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
+
+        this.globalVariableService.getDashboardSubscription().then(data =>
+             {
+                 this.dashboardSubscriptions = data;
+                console.log('xx data', this.dashboardSubscriptions)
+        });
+        
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardSubscribeClosed.emit(action);
     }
