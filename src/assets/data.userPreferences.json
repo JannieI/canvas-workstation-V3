@@ -1,0 +1,13 @@
+{
+    "preferenceAutoSync": true,
+    "preferenceShowOpenStartupMessage": true,
+    "preferenceShowOpenDataCombinationMessage": true,
+    "preferenceShowViewStartupMessage": true,
+    "preferenceShowDiscardStartupMessage": true,
+    "preferenceDefaultTemplate": "",
+    "preferenceDefaultDateformat": "YYYY/MM/DD",
+    "preferenceDefaultFolder": "./assets/",
+    "preferenceDefaultPrinter": "HP 6500 eZ",
+    "preferenceDefaultPageSize": "A4",
+    "preferenceDefaultPageLayout": "B & W"
+}
