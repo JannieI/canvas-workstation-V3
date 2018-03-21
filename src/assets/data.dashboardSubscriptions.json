@@ -1,26 +1,35 @@
 [
     {
-        view: true,
-        editmode: true,
-        save: false,
-        delete: true,
-        dashboardname: 'Budget',
-        notify: 'Email'
+        "id": 1,
+        "dashboardID": 1,
+        "userID": "JannieI",
+        "view": true,
+        "editmode": true,
+        "save": false,
+        "delete": true,
+        "dashboardname": "Budget",
+        "notify": "Email"
     },
     {
-        view: false,
-        editmode: false,
-        save: false,
-        delete: true,
-        dashboardname: 'Budget',
-        notify: 'Msg'
+        "id": 2,
+        "dashboardID": 1,
+        "userID": "JannieI",
+        "view": false,
+        "editmode": false,
+        "save": false,
+        "delete": true,
+        "dashboardname": "Budget",
+        "notify": "Msg"
     },
     {
-        view: false,
-        editmode: false,
-        save: false,
-        delete: true,
-        dashboardname: 'Budget',
-        notify: 'Msg'
+        "id": 3,
+        "dashboardID": 1,
+        "userID": "JannieI",
+        "view": false,
+        "editmode": false,
+        "save": false,
+        "delete": true,
+        "dashboardname": "Budget",
+        "notify": "Both"
     }
 ]
