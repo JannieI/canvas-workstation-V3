@@ -28,8 +28,6 @@ export class SystemSettingsComponent implements OnInit {
 
     @Output() formDashboardSystemSettingsClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
     companyName: string;
     companyLogo: string;
     dashboardTemplate: string;
@@ -76,7 +74,6 @@ export class SystemSettingsComponent implements OnInit {
         this.queryRunningMessage = this.globalVariableService.canvasSettings.queryRunningMessage;
 
         console.log('xx cs', this.globalVariableService.canvasSettings)
-        this.dashboards = this.globalVariableService.dashboards;
     }
 
     clickClose(action: string) {
