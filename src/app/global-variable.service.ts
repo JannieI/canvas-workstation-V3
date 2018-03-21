@@ -2566,6 +2566,34 @@ export class GlobalVariableService {
 
     }
 
+    saveUserPreferences(data: UserPreferences): Promise<string> {
+        // Description: Gets userPreferences
+        // Returns: this.userPreferences object, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getUserPreferences ...');
+
+        let url: string = 'userPreferences';
+        this.filePath = './assets/data.userPreferences.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    console.log('xx saveUserPreferences SAVED')
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('xx saveUserPreferences FAILED');;
+                    resolve(err.Message.toString());
+                }
+            )
+        });
+    }
+
     getWidgets(): Promise<Widget[]> {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
