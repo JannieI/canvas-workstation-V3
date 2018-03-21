@@ -15,6 +15,24 @@
                         Changes are saved automaticaly.
                     </div>
 
+                    <div class="select">
+                        <select (change)="clickSelect($event)">
+                            <option *ngFor="let row of dashboardNames; let i = index">
+                                {{ row }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="gridButtonSave">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickAdd()"
+                            >
+                            Add
+                        </button>
+                    </div>  
+
                     <clr-datagrid>
                         <clr-dg-column>Dashboard</clr-dg-column>
                         <clr-dg-column>View</clr-dg-column>

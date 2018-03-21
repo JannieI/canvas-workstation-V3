@@ -28,26 +28,12 @@ export class DashboardSubscribeComponent implements OnInit {
 
     @Output() formDashboardSubscribeClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
+    dashboardNames: string[] = [];
     dashboardSubscriptions: DashboardSubscription[] = [];
-    //     {
-    //         view: true,
-    //         editmode: true,
-    //         save: false,
-    //         delete: true,
-    //         dashboardname: 'Budget',
-    //         notify: 'Email'
-    //     },
-    //     {
-    //         view: false,
-    //         editmode: false,
-    //         save: false,
-    //         delete: true,
-    //         dashboardname: 'Budget',
-    //         notify: 'Msg'
-    //     }
-    // ]
+    selectDashboard: string = '';
+
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -57,11 +43,40 @@ export class DashboardSubscribeComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Get all dashboards
         this.dashboards = this.globalVariableService.dashboards;
 
-        this.globalVariableService.getDashboardSubscription().then(data =>
-             {
-                 this.dashboardSubscriptions = data;
+        // Get Subscriptions
+        if (this.dashboards.length > 0) {
+            this.selectDashboard = this.dashboards[0].name;
+        };
+
+        // Get subscriptions for current User
+        this.globalVariableService.getDashboardSubscription().then(data => {
+            this.dashboardSubscriptions = data.filter(ds => 
+                ds.userID == this.globalVariableService.userID
+            );
+
+            // Refresh names
+            this.dashboards.forEach(d => {
+                this.dashboardSubscriptions.forEach(ds => {
+                    if (ds.dashboardID == d.id) {
+                        ds.dashboardname = d.name;
+                    };
+                });
+            });
+
+            // Remaining D to show
+            let dsIDs: number[] = [];
+            this.dashboardSubscriptions.forEach(ds => {
+                dsIDs.push(ds.dashboardID);
+            });        
+            this.dashboards.forEach(d => {
+                if (dsIDs.indexOf(d.id) < 0) {
+                    this.dashboardNames.push(d.name);
+                };
+            });     
+
         });
         
     }
@@ -122,6 +137,48 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardSubscribeClosed.emit(action);
+    }
+
+    clickSelect(ev) {
+        // Changed selection of Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelect', '@Start');
+
+        console.log('xx ev', ev, ev.target.value)
+        this.selectDashboard = ev.target.value;
+    }
+
+    clickAdd() {
+        // Close form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Nothing selected
+        if (this.selectDashboard == '') {
+            return;
+        };
+
+        // TODO - this assumes D-Name is unique ...
+        for (var i = 0; i < this.dashboardSubscriptions.length; i++) {
+            if (this.dashboards[i].name == this.selectDashboard) {
+                break;
+            }
+        };
+        
+        // Add locally, and globally
+		this.dashboardSubscriptions.push({
+            id: null,
+            dashboardID: this.dashboards[i].id,
+            userID: this.globalVariableService.userID,
+            view: false,
+            editmode: false,
+            save: false,
+            delete: false,
+            dashboardname: this.dashboards[i].name,
+            notify: '',
+        });
+        console.log('xx i', this.selectDashboard, this.dashboardSubscriptions)
+        // this.globalVariableService.saveDashboardSubscription(
+        //     this.dashboardSubscriptions[this.dashboardSubscriptions.length - 1]
+        // );
     }
 
 }
