@@ -211,4 +211,75 @@ export class DashboardSubscribeComponent implements OnInit {
         };
     }
 
+    checkSubscriptionDelete(index: number, id: number) {
+        // Deletes a Subscription if all options = false
+        this.globalFunctionService.printToConsole(this.constructor.name,'checkSubscriptionDelete', '@Start');
+
+        // Nothing further to do if anyone is true
+        if (this.dashboardSubscriptions[id].view  ||  
+            this.dashboardSubscriptions[id].editmode  ||
+            this.dashboardSubscriptions[id].save  ||
+            this.dashboardSubscriptions[id].delete) {
+            return;
+        };
+
+        // Delete locally
+        this.dashboardSubscriptions.splice(index, 1);
+        
+        // Delete globally
+        let dID: number = -1;
+        for (var i = 0; i < this.globalVariableService.currentDashboardSubscription.length; i++) {
+            if (this.globalVariableService.currentDashboardSubscription[i].id == id) {
+                dID = i;
+                break;
+            };
+        };
+        if (dID >= 0) {
+        // Delete globally
+
+        // Delete DB
+
+        };
+
+
+        // Add globally, then locally
+        if (dID >= 0) {
+            let localData: DashboardSubscription = {
+                id: null,
+                dashboardID: this.dashboards[dID].id,
+                userID: this.globalVariableService.userID,
+                view: false,
+                editmode: false,
+                save: false,
+                delete: false,
+                dashboardCode: this.dashboards[dID].code,
+                notify: 'Message',
+            };
+
+            // Add to DB
+            this.globalVariableService.addDashboardSubscription(localData).then(data => {
+                
+                // Add locally
+                this.dashboardSubscriptions.push(data);
+        
+                // Add globally
+                this.globalVariableService.currentDashboardSubscription.push(data);
+
+                // Reduce selection list
+                let selID: number = -1;
+                for (var i = 0; i < this.dashboardCodes.length; i++) {
+                    if (this.dashboardCodes[i] == this.selectDashboard) {
+                        selID = i;
+                        break;
+                    }
+                };
+                if (selID >=0) {
+                    this.dashboardCodes.splice(selID, 1);
+                };
+
+            });
+        } else {
+            console.log('ERROR - dID = -1 which means its not in the list!  Ai toggie')
+        };
+    }
 }

@@ -2680,6 +2680,43 @@ export class GlobalVariableService {
         });
     }
 
+    deleteDashboardSubscription(id: number): Promise<string> {
+        // Description: Deletes a DashboardSubscription
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteDashboardSubscription ...');
+
+        let url: string = 'dashboardSubscriptions';
+        this.filePath = './assets/data.dashboardSubscriptions.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+                    let dID: number = -1;
+                    for (var i = 0; i < this.currentDashboardSubscription.length; i++) {
+                        if (this.currentDashboardSubscription[i].id == id) {
+                            dID = i;
+                            break;
+                        };
+                    };
+                    if (dID >=0) {
+                        this.currentDashboardSubscription.splice(dID, 1);
+                    };
+                    console.log('xx deleteDashboardSubscription DELETED', this.currentDashboardSubscription)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('xx deleteDashboardSubscription FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getWidgets(): Promise<Widget[]> {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
