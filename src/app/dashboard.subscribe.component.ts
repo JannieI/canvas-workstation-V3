@@ -86,7 +86,11 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickView', '@Start');
 
         this.dashboardSubscriptions[index].view = !this.dashboardSubscriptions[index].view;
-        this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
+
+        if (!this.checkSubscriptionDelete(index, id)) {
+            this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
+        };
+
     }
 
     dblClickEditMode(index: number, id: number) {
@@ -211,17 +215,21 @@ export class DashboardSubscribeComponent implements OnInit {
         };
     }
 
-    checkSubscriptionDelete(index: number, id: number) {
+    checkSubscriptionDelete(index: number, id: number): boolean {
         // Deletes a Subscription if all options = false
+        // If ALL false, then deletes and returns TRUE.
         this.globalFunctionService.printToConsole(this.constructor.name,'checkSubscriptionDelete', '@Start');
 
         // Nothing further to do if anyone is true
-        if (this.dashboardSubscriptions[id].view  ||  
-            this.dashboardSubscriptions[id].editmode  ||
-            this.dashboardSubscriptions[id].save  ||
-            this.dashboardSubscriptions[id].delete) {
-            return;
+        if (this.dashboardSubscriptions[index].view  ||  
+            this.dashboardSubscriptions[index].editmode  ||
+            this.dashboardSubscriptions[index].save  ||
+            this.dashboardSubscriptions[index].delete) {
+            return false;
         };
+
+        // Add to Selection List
+        this.dashboardCodes.push(this.dashboardSubscriptions[index].dashboardCode);
 
         // Delete locally
         this.dashboardSubscriptions.splice(index, 1);
@@ -229,5 +237,7 @@ export class DashboardSubscribeComponent implements OnInit {
         // Delete globally and in DB
         // TODO - Proper error handling
         this.globalVariableService.deleteDashboardSubscription(id);
+        console.log('xx del', this.dashboardSubscriptions, this.globalVariableService.currentDashboardSubscription)
+        return true;
     }
 }
