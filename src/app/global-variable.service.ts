@@ -2639,7 +2639,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url, data, {headers})
+            this.http.put('http://localhost:3000/' + url + data.id, data, {headers})
             .subscribe(
                 data => {
                     console.log('xx saveDashboardSubscription SAVED')

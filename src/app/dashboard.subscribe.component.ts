@@ -62,7 +62,6 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalVariableService.getDashboardSubscription().then(data =>
              {
                  this.dashboardSubscriptions = data;
-                console.log('xx data', this.dashboardSubscriptions)
         });
         
     }
@@ -80,7 +79,7 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickEditMode', '@Start');
 
         this.dashboardSubscriptions[index].editmode = !this.dashboardSubscriptions[index].editmode;
-        console.log('xx i', this.dashboardSubscriptions[index].editmode)
+        this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
     dblClickSave(index: number, id: number) {
@@ -88,7 +87,7 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickSave', '@Start');
 
         this.dashboardSubscriptions[index].save = !this.dashboardSubscriptions[index].save;
-        console.log('xx i', this.dashboardSubscriptions[index].save)
+        this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
     dblClickDelete(index: number, id: number) {
@@ -96,7 +95,7 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'v', '@Start');
 
         this.dashboardSubscriptions[index].delete = !this.dashboardSubscriptions[index].delete;
-        console.log('xx i', this.dashboardSubscriptions[index].delete)
+        this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
     dblClickNotify(index: number, id: number) {
@@ -115,7 +114,7 @@ export class DashboardSubscribeComponent implements OnInit {
             };
         };
 
-        console.log('xx i', this.dashboardSubscriptions[index].notify)
+        this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
     clickClose(action: string) {
