@@ -11,47 +11,67 @@
                     <div class="propertyLine">
                         You will be notified via a CanvasMessage or via email if the specified
                         event takes place on a Dashboard.  The subscription events are toggle
-                        switched - click in the required event column, or just click again to
-                        unsubscribe.
-                    </div>
-                    <div class="propertyLine">
-                        Snapshot the current Dashboard:
-                        <input type="text" id="formFields_7" placeholder="Dashboard name">
-                        <input type="text" id="formFields_7" placeholder="My Subscriptions">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            >
-                            Filter
-                        </button>
+                        switched - double click in the required cell to toggle the values. 
+                        Changes are saved automaticaly.
                     </div>
 
                     <clr-datagrid>
+                        <clr-dg-column>Dashboard</clr-dg-column>
                         <clr-dg-column>View</clr-dg-column>
                         <clr-dg-column>EditMode</clr-dg-column>
                         <clr-dg-column>Save</clr-dg-column>
                         <clr-dg-column>Delete</clr-dg-column>
-                        <clr-dg-column>Dashboard</clr-dg-column>
                         <clr-dg-column>Notify</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of dashboardSubscriptions">
+                        <clr-dg-row *ngFor="let row of dashboardSubscriptions; let i = index">
 
-                            <clr-dg-cell>
-                                <clr-icon *ngIf="row.view" shape="check" class="selectIcon1" size="12"></clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>
-                                <clr-icon *ngIf="row.editmode" shape="check" class="selectIcon1" size="12"></clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>
-                                <clr-icon *ngIf="row.save" shape="check" class="selectIcon1" size="12"></clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>
-                                <clr-icon *ngIf="row.delete" shape="check" class="selectIcon1" size="12"></clr-icon>
-                            </clr-dg-cell>
                             <clr-dg-cell>
                                 {{ row.dashboardname }}
                             </clr-dg-cell>
-                            <clr-dg-cell>
+                            
+                            <clr-dg-cell
+                                (dblclick)="dblClickView(i, row.id)"
+                                >
+                                <clr-icon *ngIf="row.view" 
+                                    shape="check" 
+                                    size="12"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+                            <clr-dg-cell
+                                (dblclick)="dblClickEditMode(i, row.id)"
+                                >
+                                <clr-icon *ngIf="row.editmode" 
+                                    shape="check" 
+                                    size="12"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+                            <clr-dg-cell
+                                (dblclick)="dblClickSave(i, row.id)"
+                                >
+                                <clr-icon *ngIf="row.save" 
+                                    shape="check" 
+                                    size="12"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+                            <clr-dg-cell
+                                (dblclick)="dblClickDelete(i, row.id)"
+                                >
+                                <clr-icon *ngIf="row.delete" 
+                                    shape="check" 
+                                    size="12"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+                            <clr-dg-cell
+                                (dblclick)="dblClickNotify(i, row.id)"
+                                >
                                 {{ row.notify }}
                             </clr-dg-cell>
                         </clr-dg-row>

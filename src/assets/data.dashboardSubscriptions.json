@@ -18,7 +18,7 @@
         "editmode": false,
         "save": false,
         "delete": true,
-        "dashboardname": "Budget",
+        "dashboardname": "European Stocks",
         "notify": "Msg"
     },
     {
@@ -29,7 +29,7 @@
         "editmode": false,
         "save": false,
         "delete": true,
-        "dashboardname": "Budget",
+        "dashboardname": "Bicycle Sales",
         "notify": "Both"
     }
 ]

@@ -415,7 +415,7 @@ export class DashboardSubscription {
     save: boolean;                      // Nofity if another user Saves this D
     delete: boolean;                    // Nofity if another user Deletes this D
     dashboardname: boolean;             // D-Name filled in at Runtime
-    notify: boolean;                    // How to be notified: Email, Message, Both
+    notify: string;                     // How to be notified: Email, Message, Both
 }
 
 export class Widget {

@@ -67,10 +67,62 @@ export class DashboardSubscribeComponent implements OnInit {
         
     }
 
+    dblClickView(index: number, id: number) {
+        // Toggle the View value for the given row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickView', '@Start');
+
+        this.dashboardSubscriptions[index].view = !this.dashboardSubscriptions[index].view;
+        this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
+    }
+
+    dblClickEditMode(index: number, id: number) {
+        // Toggle the EditMode value for the given row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickEditMode', '@Start');
+
+        this.dashboardSubscriptions[index].editmode = !this.dashboardSubscriptions[index].editmode;
+        console.log('xx i', this.dashboardSubscriptions[index].editmode)
+    }
+
+    dblClickSave(index: number, id: number) {
+        // Toggle the Save value for the given row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickSave', '@Start');
+
+        this.dashboardSubscriptions[index].save = !this.dashboardSubscriptions[index].save;
+        console.log('xx i', this.dashboardSubscriptions[index].save)
+    }
+
+    dblClickDelete(index: number, id: number) {
+        // Toggle the Delete value for the given row
+        this.globalFunctionService.printToConsole(this.constructor.name,'v', '@Start');
+
+        this.dashboardSubscriptions[index].delete = !this.dashboardSubscriptions[index].delete;
+        console.log('xx i', this.dashboardSubscriptions[index].delete)
+    }
+
+    dblClickNotify(index: number, id: number) {
+        // Toggle the Notify value for the given row
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickNotify', '@Start');
+
+        if (this.dashboardSubscriptions[index].notify == 'Email') {
+            this.dashboardSubscriptions[index].notify = 'Message';
+        } else {
+            if (this.dashboardSubscriptions[index].notify == 'Message') {
+                this.dashboardSubscriptions[index].notify = 'Both'
+            } else {
+                if (this.dashboardSubscriptions[index].notify == 'Both') {
+                    this.dashboardSubscriptions[index].notify = 'Email'
+                };
+            };
+        };
+
+        console.log('xx i', this.dashboardSubscriptions[index].notify)
+    }
+
     clickClose(action: string) {
         // Close form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardSubscribeClosed.emit(action);
     }
+
 }
