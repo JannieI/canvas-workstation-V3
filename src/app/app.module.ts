@@ -81,7 +81,6 @@ import { UserWidgetButtonBarComponent}      from './user.widget.buttonbar.compon
 import { LoginComponent}              from './login.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
-import { UserShapeButtonBarComponent} from './user.shape.buttonbar.component';
 import { SystemSettingsComponent }    from './systemsettings.component';
 import { UserOfflineComponent}        from './user.offline.component';
 import { LogoutComponent}             from './logout.component';
@@ -168,7 +167,6 @@ import { StatusbarComponent }         from './statusbar.component';
         MyProfileComponent,
         PreferencesComponent,
         UserWidgetButtonBarComponent,
-        UserShapeButtonBarComponent,
         SystemSettingsComponent,
         UserOfflineComponent,
         LoginComponent,
