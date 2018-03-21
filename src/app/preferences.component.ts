@@ -80,7 +80,6 @@ export class PreferencesComponent implements OnInit {
 		this.formDashboardPreferencesClosed.emit(action);
     }
 
-
     clickSave(action: string) {
         // Save data and Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
@@ -106,17 +105,19 @@ export class PreferencesComponent implements OnInit {
                 {
                     this.globalVariableService.showStatusBarMessage(
                         {
-                            message: 'Settings saved',
+                            message: 'Prefs saved',
                             uiArea: 'StatusBar',
-                            classfication: 'Warning',
+                            classfication: 'Info',
                             timeout: 3000,
                             defaultMessage: ''
                         }
                     );
                 }
         );
+		this.formDashboardPreferencesClosed.emit(action);
     }
-            //TODO
+    
+    //TODO
     //1. Set global var isFirstTimeDashboard = T/F depending on user input
 
 }

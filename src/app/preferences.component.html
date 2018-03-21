@@ -23,7 +23,7 @@
 
                 <div class="gridSettingsAutoSync">
                     <b>AutoSync:</b>
-                    <input [(ngModel)]="offlineData"
+                    <input [(ngModel)]="preferenceAutoSync"
                         type="checkbox"
                         title="AutoSync local on connecting to Server (T/F)"
                         >
@@ -35,7 +35,7 @@
     
                 <div class="gridMessagesStartup">
                     <b>Startup:</b>
-                    <input [(ngModel)]="offlineData"
+                    <input [(ngModel)]="preferenceShowOpenStartupMessage"
                         type="checkbox"
                         title="Show Open startup message (T/F)"
                         >
@@ -43,7 +43,7 @@
     
                 <div class="gridMessagesOpenCombo">
                     <b>OpenCombo:</b>
-                    <input [(ngModel)]="offlineData"
+                    <input [(ngModel)]="preferenceShowOpenDataCombinationMessage"
                         type="checkbox"
                         title="Show Open data combination message (T/F)"
                         >
@@ -51,7 +51,7 @@
 
                 <div class="gridMessagesView">
                     <b>View:</b>
-                    <input [(ngModel)]="offlineData"
+                    <input [(ngModel)]="preferenceShowViewStartupMessage"
                         type="checkbox"
                         title="Show View startup message (T/F)"
                         >
@@ -59,7 +59,7 @@
 
                 <div class="gridMessagesDiscard">
                     <b>Discard:</b>
-                    <input [(ngModel)]="offlineData"
+                    <input [(ngModel)]="preferenceShowDiscardStartupMessage"
                         type="checkbox"
                         title="Show Discard startup message (T/F)"
                         >
@@ -71,7 +71,7 @@
     
                 <div class="gridDefaultTemplate">
                     <b>Template:</b>
-                    <input [(ngModel)]="offlineData"
+                    <input [(ngModel)]="preferenceDefaultTemplate"
                         type="text"
                         title="Default Template"
                         size="25"
@@ -80,7 +80,7 @@
 
                 <div class="gridDefaultDateFormat">
                     <b>Date Format:</b>
-                    <input [(ngModel)]="offlineData"
+                    <input [(ngModel)]="preferenceDefaultDateformat"
                         type="text"
                         title="Default Date format"
                         placeholder="YYYY/MM/DD"
@@ -90,7 +90,7 @@
 
                 <div class="gridDefaultFolder">
                     <b>Folder:</b>
-                    <input [(ngModel)]="printDefault" type="text"
+                    <input [(ngModel)]="preferenceDefaultFolder" type="text"
                         id="formFields_7"
                         placeholder="Default Folder"
                         size="25"
@@ -103,7 +103,7 @@
 
                 <div class="gridPrintDefault">
                     <b>Default:</b>
-                    <input [(ngModel)]="printDefault" type="text"
+                    <input [(ngModel)]="preferenceDefaultPrinter" type="text"
                         id="formFields_7"
                         placeholder="Default: Local HP"
                         size="25"
@@ -112,7 +112,7 @@
 
                 <div class="gridPrintSize">
                     <b>Page Size:</b>
-                    <input [(ngModel)]="printSize" type="text"
+                    <input [(ngModel)]="preferenceDefaultPageSize" type="text"
                         id="formFields_7"
                         placeholder="Default Page Size: A4"
                         size="25"
@@ -121,7 +121,7 @@
 
                 <div class="gridPrintLayout">
                     <b>Layout:</b>
-                    <input [(ngModel)]="printLayout" type="text"
+                    <input [(ngModel)]="preferenceDefaultPageLayout" type="text"
                         id="formFields_7"
                         placeholder="Default Layout: Single page, B and W"
                         size="25"
@@ -142,7 +142,7 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        (click)="clickSave('Close')"
+                        (click)="clickSave('Saved')"
                         >
                         Save
                     </button>

@@ -127,7 +127,7 @@ export class SystemSettingsComponent implements OnInit {
                         {
                             message: 'Settings saved',
                             uiArea: 'StatusBar',
-                            classfication: 'Warning',
+                            classfication: 'Info',
                             timeout: 3000,
                             defaultMessage: ''
                         }
