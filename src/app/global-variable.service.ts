@@ -2642,12 +2642,39 @@ export class GlobalVariableService {
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 data => {
-                    console.log('xx saveDashboardSubscription SAVED')
+                    console.log('xx saveDashboardSubscription SAVED', data)
                     resolve('Saved');
                 },
                 err => {
-                    console.log('xx saveDashboardSubscription FAILED');;
-                    resolve(err.Message.toString());
+                    console.log('xx saveDashboardSubscription FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    addDashboardSubscription(data: DashboardSubscription): Promise<any> {
+        // Description: Adds a new DashboardSubscription
+        // Returns: Added Data or error message
+        console.log('Global-Variables addDashboardSubscription ...');
+
+        let url: string = 'dashboardSubscriptions';
+        this.filePath = './assets/data.dashboardSubscriptions.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    console.log('xx addDashboardSubscription ADDED', data)
+                    resolve(data);
+                },
+                err => {
+                    console.log('xx addDashboardSubscription FAILED', err);;
+                    resolve(err.Message);
                 }
             )
         });

@@ -46,11 +46,6 @@ export class DashboardSubscribeComponent implements OnInit {
         // Get all dashboards
         this.dashboards = this.globalVariableService.dashboards;
 
-        // Get Subscriptions
-        if (this.dashboards.length > 0) {
-            this.selectDashboard = this.dashboards[0].name;
-        };
-
         // Get subscriptions for current User
         this.globalVariableService.getDashboardSubscription().then(data => {
             this.dashboardSubscriptions = data.filter(ds => 
@@ -77,6 +72,10 @@ export class DashboardSubscribeComponent implements OnInit {
                 };
             });     
 
+            // Get First one
+            if (this.dashboardNames.length > 0) {
+                this.selectDashboard = this.dashboardNames[0];
+            };
         });
         
     }
@@ -84,7 +83,7 @@ export class DashboardSubscribeComponent implements OnInit {
     dblClickView(index: number, id: number) {
         // Toggle the View value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickView', '@Start');
-
+console.log('xx', this.dashboardSubscriptions[index])
         this.dashboardSubscriptions[index].view = !this.dashboardSubscriptions[index].view;
         this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
@@ -163,22 +162,22 @@ export class DashboardSubscribeComponent implements OnInit {
             }
         };
         
-        // Add locally, and globally
-		this.dashboardSubscriptions.push({
+        // Add globally, then locally
+        let localData: DashboardSubscription = {
             id: null,
-            dashboardID: this.dashboards[i].id,
+            dashboardID: 1,
             userID: this.globalVariableService.userID,
             view: false,
             editmode: false,
             save: false,
             delete: false,
             dashboardname: this.dashboards[i].name,
-            notify: '',
+            notify: "",
+        };
+console.log('xx this.dashboardSubscriptions', localData, JSON.parse(JSON.stringify(localData)))
+        this.globalVariableService.addDashboardSubscription(localData).then(data => {
+            this.dashboardSubscriptions.push(data)
         });
-        console.log('xx i', this.selectDashboard, this.dashboardSubscriptions)
-        // this.globalVariableService.saveDashboardSubscription(
-        //     this.dashboardSubscriptions[this.dashboardSubscriptions.length - 1]
-        // );
     }
 
 }
