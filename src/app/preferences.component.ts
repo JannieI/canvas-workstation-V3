@@ -28,8 +28,6 @@ export class PreferencesComponent implements OnInit {
 
     @Output() formDashboardPreferencesClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
     preferenceAutoSync: boolean;
     preferenceShowOpenStartupMessage: boolean;
     preferenceShowOpenDataCombinationMessage: boolean;
@@ -51,7 +49,6 @@ export class PreferencesComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards;
         this.preferenceAutoSync = this.globalVariableService.userPreferences.preferenceAutoSync;
         this.preferenceShowOpenStartupMessage = this.globalVariableService.userPreferences.preferenceShowOpenStartupMessage;
         this.preferenceShowOpenDataCombinationMessage = this.globalVariableService.userPreferences.preferenceShowOpenDataCombinationMessage;
