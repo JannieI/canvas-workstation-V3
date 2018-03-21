@@ -289,7 +289,6 @@ export class AppComponent implements OnInit {
     showModalUserMyProfile: boolean = false;
     showModalUserPreferences: boolean = false;
     showModalUserWidgetButtonBar: boolean = false;
-    showModalUserShapeButtonBar: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
     showPopupMessage: boolean = false;
@@ -1019,15 +1018,6 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalUserWidgetButtonBar = false;
-    }
-
-    handleCloseUserShapeButtonBar(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserShapeButtonBar', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalUserShapeButtonBar = false;
     }
 
     handleCloseUserSystemSettings(action: string) {
@@ -3159,15 +3149,6 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalUserWidgetButtonBar = true;
-    }
-
-    clickMenuUserShapeButtonBar() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserShapeButtonBar', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showModalUserShapeButtonBar = true;
     }
 
     clickMenuUserSystemSettings() {

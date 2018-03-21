@@ -1206,7 +1206,6 @@
                     <a clrDropdownItem (click)="clickMenuUserPreferences()">Preferences</a>
                     <a clrDropdownItem (click)="clickMenuDashboardSubscribe()">Subscribe</a>
                     <a clrDropdownItem (click)="clickMenuUserWidgetButtonBar()">Widget Button Bar</a>
-                    <a clrDropdownItem (click)="clickMenuUserShapeButtonBar()">Shape Button Bar</a>
                     <a clrDropdownItem (click)="clickMenuUserSystemSettings()">System Settings</a>
                     <a clrDropdownItem (click)="clickMenuUserOffline()">Work Offline</a>
                     <a clrDropdownItem (click)="clickMenuUserLogout()">Log out</a>
@@ -2194,15 +2193,6 @@
     (formUserWidgetButtonBarClosed)="handleCloseUserWidgetButtonBar($event)">
     Load Widget Button Bar ...
 </widget-buttonbar>
-
-
-<!-- Modal: Shape Button Bar -->
-<shape-buttonbar
-    class="formPopupUserShapeButtonBar"
-    *ngIf="showModalUserShapeButtonBar"
-    (formUserShapeButtonBarClosed)="handleCloseUserShapeButtonBar($event)">
-    Load Shape Button Bar ...
-</shape-buttonbar>
 
 
 <!-- Modal: System Settings -->

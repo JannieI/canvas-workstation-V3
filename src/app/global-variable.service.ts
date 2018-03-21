@@ -263,76 +263,6 @@ const widgetTemplate: Widget =
 
 // Setup / Settings / General
 
-const shapeButtonsAvailable: ButtonBarAvailable[] =
-[
-    {
-        id: 1,
-        buttonText: 'Edit',
-        description: 'Open the edit form to edit the Widget, for example the graph type.',
-        sortOrder: 1,
-        isDefault: true
-    },
-    {
-        id: 2,
-        buttonText: 'Duplicate',
-        description: 'Duplicates the current Shape with a new name (adding ... Copy n).  The Dataset is not duplicated.',
-        sortOrder: 2,
-        isDefault: true
-    },
-    {
-        id: 3,
-        buttonText: 'Backward',
-        description: 'Send the selected Widget backwards.',
-        sortOrder: 3,
-        isDefault: true
-    },
-    {
-        id: 4,
-        buttonText: 'Forward',
-        description: 'Bring the selected Widget forward.',
-        sortOrder: 4,
-        isDefault: true
-    },
-    {
-        id: 5,
-        buttonText: 'Delete',
-        description: 'Delete the selected Widget.',
-        sortOrder: 5,
-        isDefault: true
-    },
-    {
-        id: 6,
-        buttonText: 'Background toggle',
-        description: 'Toggle the background of the selected Shape on / of.',
-        sortOrder: 6,
-        isDefault: true
-    },
-    {
-        id: 7,
-        buttonText: 'Increase size',
-        description: 'Increase the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
-        sortOrder: 7,
-        isDefault: true
-    },
-    {
-        id: 8,
-        buttonText: 'Decrease',
-        description: 'Decrease the size of the container around the selected Widget.  Note that the graph itself may remain the same size - use the Widget Editor (Edit) for this.',
-        sortOrder: 8,
-        isDefault: true
-    }
-]
-
-const shapeButtonsSelected: ButtonBarSelected[] =
-[
-    {
-        id: 1,
-        buttonText: 'Edit',
-        description: 'Open the edit form to edit the Shape, for example the color of a circle.',
-        sortOrder: 1
-    }
-]
-
 const widgetButtonsAvailable: ButtonBarAvailable[] =
 [
     {
@@ -712,7 +642,6 @@ export class GlobalVariableService {
     canvasComments: CanvasComment[] = [];
     canvasMessages: CanvasMessage[] = [];
     filePath: string;
-    shapeButtonsAvailable: ButtonBarAvailable[] = shapeButtonsAvailable;
     widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
 
     dashboards: Dashboard[] = [];
@@ -790,7 +719,6 @@ export class GlobalVariableService {
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     datasourceToEditID = new BehaviorSubject<number>(null);
-    shapeButtonsSelected: ButtonBarSelected[] = shapeButtonsSelected;
     widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
     menuActionResize = new BehaviorSubject<boolean>(false);
     userID: string = 'JannieI';  // TODO - unHardCode
