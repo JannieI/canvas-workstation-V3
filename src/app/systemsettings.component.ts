@@ -75,7 +75,6 @@ export class SystemSettingsComponent implements OnInit {
         this.noQueryRunningMessage = this.globalVariableService.canvasSettings.noQueryRunningMessage;
         this.queryRunningMessage = this.globalVariableService.canvasSettings.queryRunningMessage;
 
-
         console.log('xx cs', this.globalVariableService.canvasSettings)
         this.dashboards = this.globalVariableService.dashboards;
     }
@@ -134,7 +133,7 @@ export class SystemSettingsComponent implements OnInit {
                         }
                     );
                 }
-            );
+        );
 
 		this.formDashboardSystemSettingsClosed.emit(action);
     }
