@@ -36,14 +36,42 @@ export class MyProfileComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
     } 
 
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close form, no changes
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
+        this.globalVariableService.showStatusBarMessage(
+            {
+                message: 'No changes',
+                uiArea: 'StatusBar',
+                classfication: 'Info',
+                timeout: 3000,
+                defaultMessage: ''
+            }
+        );
 		this.formDashboardMyProfileClosed.emit(action);
     }
 
+    clickSave(action: string) {
+        // Save data and close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        this.globalVariableService.showStatusBarMessage(
+            {
+                message: 'Fix save later ...',
+                uiArea: 'StatusBar',
+                classfication: 'Info',
+                timeout: 3000,
+                defaultMessage: ''
+            }
+        );
+		this.formDashboardMyProfileClosed.emit(action);
+    }
 
 }
