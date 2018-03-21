@@ -2499,9 +2499,8 @@ export class GlobalVariableService {
     }
 
     saveSystemSettings(data: CanvasSettings): Promise<string> {
-        // Description: Gets system settings
-        // Returns: this.canvasSettings object, unless:
-        //   If not cached or if dirty, get from File
+        // Description: Saves system settings
+        // Returns: 'Saved' or error message
         console.log('Global-Variables saveSystemSettings ...');
 
         let url: string = 'canvasSettings';
@@ -2570,9 +2569,8 @@ export class GlobalVariableService {
     }
 
     saveUserPreferences(data: UserPreferences): Promise<string> {
-        // Description: Gets userPreferences
-        // Returns: this.userPreferences object, unless:
-        //   If not cached or if dirty, get from File
+        // Description: Saves userPreferences
+        // Returns: 'Saved' or error message
         console.log('Global-Variables saveUserPreferences ...');
 
         let url: string = 'userPreferences';
@@ -2626,6 +2624,33 @@ export class GlobalVariableService {
             }
         });
 
+    }
+
+    saveDashboardSubscription(data: DashboardSubscription): Promise<string> {
+        // Description: Saves DashboardSubscription
+        // Returns: 'Saved' or error message
+        console.log('Global-Variables saveDashboardSubscription ...');
+
+        let url: string = 'dashboardSubscriptions';
+        this.filePath = './assets/data.dashboardSubscriptions.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    console.log('xx saveDashboardSubscription SAVED')
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('xx saveDashboardSubscription FAILED');;
+                    resolve(err.Message.toString());
+                }
+            )
+        });
     }
 
     getWidgets(): Promise<Widget[]> {
