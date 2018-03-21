@@ -128,9 +128,20 @@ const paletteButtons = [
         size: "20",
         class: "buttonBarIcon",
         accesskey: "w",
-        click: "clickMenuPaletteEdit(i)",
+        functionName: "clickMenuEditUndo",
+        params: "",
         tooltipContent: "Edit a selected Widget or Slicer"
-    }
+    },
+    {
+        id: 2,
+        shape: "pencil",
+        size: "20",
+        class: "buttonBarIcon",
+        accesskey: "w",
+        functionName: "clickMenuEditSelectAllNone",
+        params: "All",
+        tooltipContent: "Edit a selected Widget or Slicer"
+    },
 ]
 
 
@@ -1257,10 +1268,10 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuEditSelectAllNone(size: string) {
-        // Deselect n objects on the D based on size, All, None, Auto
+        // Selects/Deselects n objects on the D based on size, All, None, Auto
         // Auto will select All if none is selected, None is any is selected
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAllNone', '@Start');
-
+console.log('xx size', size)
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
@@ -3841,6 +3852,7 @@ export class AppComponent implements OnInit {
         // Call function in Var from Customised portion of Palette
         this.globalFunctionService.printToConsole(this.constructor.name,'paletteFunctionCall', '@Start');
 
+        console.log('xx this[methodName]',methodName, methodParam, this[methodName])
         if(this[methodName]) {
             // method exists on the component
             let param = methodParam;
