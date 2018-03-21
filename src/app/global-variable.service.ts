@@ -38,6 +38,7 @@ import { Field }                      from './models';
 import { FieldMetadata }              from './models';
 import { StatusBarMessage }           from './models';
 import { Transformation }             from './models';
+import { UserPreferences }            from './models';
 import { Widget }                     from './models';
 
 // External
@@ -670,6 +671,20 @@ export class GlobalVariableService {
         queryRunningMessage: 'Query running...'
     }
 
+    userPreferences: UserPreferences = {
+        preferenceAutoSync: true,
+        preferenceShowOpenStartupMessage: true,
+        preferenceShowOpenDataCombinationMessage: true,
+        preferenceShowViewStartupMessage: true,
+        preferenceShowDiscardStartupMessage: true,
+        preferenceDefaultTemplate: '',
+        preferenceDefaultDateformat: '',
+        preferenceDefaultFolder: '',
+        preferenceDefaultPrinter: '',
+        preferenceDefaultPageSize: '',
+        preferenceDefaultPageLayout: ''
+    }
+
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
 
@@ -833,6 +848,8 @@ export class GlobalVariableService {
     isDirtyCanvasComments: boolean = true;
     isDirtyCanvasMessages: boolean = true;
     isDirtyCanvasSettings: boolean = true;
+    isDirtyUserPreferences: boolean = true;
+    
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
@@ -2504,6 +2521,49 @@ export class GlobalVariableService {
                 }
             )
         });
+    }
+
+    getUserPreferences(): Promise<UserPreferences> {
+        // Description: Gets userPreferences 
+        // Returns: this.userPreferences object, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getUserPreferences ...');
+
+        let url: string = 'userPreferences';
+        this.filePath = './assets/data.userPreferences.json';
+
+        return new Promise<UserPreferences>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if (this.isDirtyUserPreferences) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.userPreferences = data;
+
+                        // Load global Vars
+                        // this.userPreferences.preferenceAutoSync = data.preferenceAutoSync;
+                        // this.userPreferences.preferenceShowOpenStartupMessage = data.preferenceShowOpenStartupMessage;
+                        // this.userPreferences.preferenceShowOpenDataCombinationMessage = data.preferenceShowOpenDataCombinationMessage;
+                        // this.userPreferences.preferenceShowViewStartupMessage = data.preferenceShowViewStartupMessage;
+                        // this.userPreferences.preferenceShowDiscardStartupMessage = data.preferenceShowDiscardStartupMessage;
+                        // this.userPreferences.preferenceDefaultTemplate = data.preferenceDefaultTemplate;
+                        // this.userPreferences.preferenceDefaultDateformat = data.preferenceDefaultDateformat;
+                        // this.userPreferences.preferenceDefaultFolder = data.preferenceDefaultFolder;
+                        // this.userPreferences.preferenceDefaultPrinter = data.preferenceDefaultPrinter;
+                        // this.userPreferences.preferenceDefaultPageSize = data.preferenceDefaultPageSize;
+                        // this.userPreferences.preferenceDefaultPageLayout = data.preferenceDefaultPageLayout;
+                        this.isDirtyUserPreferences = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('Global-Variables getUserPreferences 1', this.userPreferences)
+                        resolve(this.userPreferences);
+                    });
+            } else {
+                console.log('Global-Variables getUserPreferences 2', this.userPreferences)
+                resolve(this.userPreferences);
+            }
+        });
+
     }
 
     getWidgets(): Promise<Widget[]> {
