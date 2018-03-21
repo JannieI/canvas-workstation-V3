@@ -45,7 +45,7 @@ This document describes items for later versions of Canvas.
     - Finalise group membership / roles
     - Where system settings like Security Model ?
     - Add UserID to ALL data and code -> where needed ...
-    - It must be impossible to lock out all users - admin keeps access and at least one is kept.    Also, if a W is locked and the owner on leave, someone must be able to unlock it.
+    - It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
 
     Refactoring / tech debt / necessary improvements:
     -------------------------------------------------
@@ -80,18 +80,23 @@ This document describes items for later versions of Canvas.
     - links (to web and other D, T)
     - Should be able to Duplicate Shape?  Can we consilidate Duplicate code for all types?
     - Do we need both shapeText and shapeValue?  Maybe delete shapeValue ...
+
     Different versions of Vega:
+    ---------------------------
     - keep version on W in DB
     - Upgrade Util: converts W to new version, creates new record and keeps old one as IsTrashed=True.  Thus, can always see what it looked like before.  More thinking required here.
     - see DRF guidelines about the steps to do
     - a version of Canvas will only work with a specified version(s) of W - inside code.  This way, can load any version of Canvas and it will work provided the W version is in acceptable range - hardcoded in TS.  The version is set per W, thus can have different versions of Graphs (Vega), Sl, etc.
     API: Have flexible field selection: ie ..."fields": [A, B, F]
     Setting min Grid width - wait for Clarity Bug fix
+
     - Need way to browse large volumes of data without killing browser - server must calc and warn user, plus also do pagination in the background. Also, data manipulation must be pushed onto the server as far as possible.
     Warning:
     - when a W is rendered and some fields dont exist, error occured, display a warning image +     message inside W.  User can edit this, fix the fields and save
     - before saving a W, Canvas checks that the fields are valid, that it renders, etc and warns if not (but allows to save) - how does this fit in with auto-save policy?
+    
     Local DB:
+    ---------
     - how to add a table without deleting the IndexDB manually ??
     Caching:
     - option to switch caching on or not at the server level and local level (if server allows it)
@@ -99,6 +104,7 @@ This document describes items for later versions of Canvas.
     - refreshed via WS from DB
     - also used for auto-save: all the steps are saved here, and synced to server at specified  interval (setting on client)
     ButtonBars: Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now,palette cannot be changed.
+    
     17.Decide what buttons to keep on widget - for now can only think about link button in  presentation mode.
     Should we de-select all Ws when we change Tabs, or load a new D?  If not, may be confusing but handy.  If do, where do we do it - GlobVar functions, or in App component (and update Globals back, which does not make sense)
 
