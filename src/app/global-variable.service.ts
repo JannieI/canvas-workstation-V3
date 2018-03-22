@@ -40,6 +40,7 @@ import { FieldMetadata }              from './models';
 import { PaletteButtonBar }           from './models';
 import { StatusBarMessage }           from './models';
 import { Transformation }             from './models';
+import { UserPaletteButtonBar }       from './models';
 import { UserPreferences }            from './models';
 import { Widget }                     from './models';
 
@@ -681,6 +682,7 @@ export class GlobalVariableService {
     currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardTags: DashboardTag[] = [];
     currentPaletteButtonBar: PaletteButtonBar[];
+    currentUserPaletteButtonBar: UserPaletteButtonBar[];
     currentDashboardPermissions: DashboardPermission[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
     currentDashboardSubscription: DashboardSubscription[] = [];
@@ -783,6 +785,7 @@ export class GlobalVariableService {
     isDirtyCanvasSettings: boolean = true;
     isDirtyUserPreferences: boolean = true;
     isDirtyPaletteButtonBar: boolean = true;
+    isDirtyUserPaletteButtonBar: boolean = true;
     
     
 
@@ -2705,6 +2708,37 @@ export class GlobalVariableService {
                 }
             )
         });
+    }
+
+    getUserPaletteButtonBar(): Promise<UserPaletteButtonBar[]> {
+        // Description: Gets currentgetUserPaletteButtonBar 
+        // Returns: this.currentgetUserPaletteButtonBar object, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getUserPaletteButtonBar ...');
+
+        let url: string = 'userPaletteButtonBar';
+        this.filePath = './assets/data.userPaletteButtonBar.json';
+
+        return new Promise<UserPaletteButtonBar[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if (this.isDirtyUserPaletteButtonBar) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.currentUserPaletteButtonBar = data;
+
+                        this.isDirtyUserPaletteButtonBar = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('Global-Variables getgetUserPaletteButtonBar 1', this.currentUserPaletteButtonBar)
+                        resolve(this.currentUserPaletteButtonBar);
+                    });
+            } else {
+                console.log('Global-Variables getgetUserPaletteButtonBar 2', this.currentUserPaletteButtonBar)
+                resolve(this.currentUserPaletteButtonBar);
+            }
+        });
+
     }
 
     getWidgets(): Promise<Widget[]> {
