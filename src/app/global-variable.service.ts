@@ -2805,6 +2805,33 @@ export class GlobalVariableService {
         });
     }
 
+    addUserPaletteButtonBar(data: UserPaletteButtonBar): Promise<any> {
+        // Description: Adds a new UserPaletteButtonBar
+        // Returns: Added Data or error message
+        console.log('Global-Variables addUserPaletteButtonBar ...');
+
+        let url: string = 'userPaletteButtonBars';
+        this.filePath = './assets/data.userPaletteButtonBars.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    console.log('xx addUserPaletteButtonBar ADDED', data)
+                    resolve(data);
+                },
+                err => {
+                    console.log('xx addUserPaletteButtonBar FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getWidgets(): Promise<Widget[]> {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
