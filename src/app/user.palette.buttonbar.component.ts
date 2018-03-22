@@ -350,6 +350,9 @@ export class UserPaletteButtonBarComponent implements OnInit {
             };
         };
 
+        // Unselect all from target
+        this.paletteButtonsSelected.forEach(ps => ps.isSelected = false);
+
         // Delete the selected one, reverse order
         for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
             if(availID.indexOf(this.paletteButtons[i].id) >= 0) {
@@ -377,7 +380,38 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Then sort the altered list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
 
-        this.widgetButtonsSelected.splice(this.widgetButtonsSelected.length-1,1)
+        // Get selected in Selected, and add to Selected
+        let availID: number[] = [];
+        for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
+
+            if (this.paletteButtonsSelected[i].isSelected) {
+                availID.push(this.paletteButtonsSelected[i].id);
+                this.paletteButtons.push(this.paletteButtonsSelected[i]);
+            };
+        };
+
+        // Unselect all from target
+        this.paletteButtons.forEach(ps => ps.isSelected = false);
+        
+        // Delete the selected one, reverse order
+        for (var i = this.paletteButtonsSelected.length - 1; i >= 0; i--) {
+            if(availID.indexOf(this.paletteButtonsSelected[i].id) >= 0) {
+                this.paletteButtonsSelected.splice(i, 1);
+            };
+
+        };
+
+        // Sort the altered list
+        this.paletteButtons.sort( (obj1,obj2) => {
+            if (obj1.sortOrder > obj2.sortOrder) {
+                return 1;
+            };
+            if (obj1.sortOrder < obj2.sortOrder) {
+                return -1;
+            };
+            return 0;
+        });
+        console.log('xx add', this.userPaletteButtons, this.paletteButtonsSelected, this.paletteButtons)
     }
 
     clickItem(index: number) {
