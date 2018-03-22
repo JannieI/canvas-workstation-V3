@@ -529,6 +529,21 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Save data, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Delete all originals
+        // TODO - with DB, only change the Delta
+        this.globalVariableService.currentUserPaletteButtonBar.forEach(up =>
+            this.globalVariableService.saveUserPaletteButtonBar(up)
+        );
+        this.paletteButtonsSelected.forEach(ps => {
+            let newUserPaletteButtonBar: UserPaletteButtonBar = 
+                {
+                    id: null,
+                    userID: this.globalVariableService.userID,
+                    paletteButtonBarID: ps.id
+                }
+            this.globalVariableService.saveUserPaletteButtonBar(newUserPaletteButtonBar);
+        });
+
 		this.formUserWidgetButtonBarClosed.emit(action);
     }
 
