@@ -1948,14 +1948,14 @@
     {
         "id": 140,
         "mainmenuItem": "User",
-        "menuText": "Widget ButtonBar",
+        "menuText": "Palette ButtonBar",
         "shape": "",
         "size": "",
         "class": "",
         "accesskey": "",
         "sortOrder": 1,
         "isDefault": false,
-        "functionName": "clickMenuUserWidgetButtonBar",
+        "functionName": "clickMenuUserPaletteButtonBar",
         "params": "",
         "tooltipContent": ""
     },
@@ -2004,6 +2004,7 @@
     {
         "id": 144,
         "mainmenuItem": "Context",
+        "menuText": "Edit Title",
         "shape": "",
         "size": "",
         "class": "",
@@ -2011,6 +2012,7 @@
         "sortOrder": 1,
         "isDefault": false,
         "functionName": "contextmenuWidgetTitle",
-        "menuText": "Edit Title"
+        "params": "",
+        "tooltipContent": ""
     }
 ]

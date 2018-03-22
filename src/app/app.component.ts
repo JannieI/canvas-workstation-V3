@@ -3167,9 +3167,9 @@ console.log('xx size', size)
         this.showModalUserPreferences = true;
     }
 
-    clickMenuUserWidgetButtonBar() {
+    clickMenuUserPaletteButtonBar() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserWidgetButtonBar', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserPaletteButtonBar', '@Start');
 
         this.menuOptionClickPreAction();
 

@@ -71,6 +71,7 @@ export class CurrentDashboardInfo {
 export class PaletteButtonBar {
     id: number;
     mainmenuItem: string;
+    menuText: string;
     shape: string;
     size: number;
     class: string;
@@ -78,7 +79,8 @@ export class PaletteButtonBar {
     sortOrder: string;
     isDefault: boolean;
     functionName: string;
-    menuText: string;
+    params: string;
+    tooltipContent: string;
 }
 
 export class ButtonBarAvailable {

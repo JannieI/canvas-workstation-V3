@@ -22,6 +22,37 @@ import { ButtonBarAvailable}          from './models'
 import { ButtonBarSelected }          from './models';
 import { WidgetCheckpointsComponent } from 'app/widget.checkpoints.component';
 
+const paletteButtons = [
+    {
+        id: 1,
+        mainmenuItem: "Edit",
+        menuText: "Undo",
+        shape: "pencil",
+        size: "20",
+        class: "buttonBarIcon",
+        accesskey: "w",
+        sortOrder: 1,
+        isDefault: true,
+        functionName: "clickMenuEditUndo",
+        params: "",
+        tooltipContent: "Undo a previous action"
+    },
+    {
+        id: 2,
+        mainmenuItem: "Dashboard",
+        menuText: "Edit All",
+        shape: "times",
+        size: "20",
+        class: "buttonBarIcon",
+        accesskey: "w",
+        sortOrder: 1,
+        isDefault: true,
+        functionName: "clickMenuEditSelectAllNone",
+        params: "Auto",
+        tooltipContent: "Selected/Unselect Widgets"
+    },
+]
+
 @Component({
     selector: 'palette-buttonbar',
     templateUrl: './user.palette.buttonbar.component.html',
@@ -34,6 +65,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
     dashboardTags: DashboardTag[];
+    paletteButtons = paletteButtons;
     widgetButtonsAvailable: ButtonBarAvailable[];
     widgetButtonsSelected: ButtonBarSelected[];
 	constructor(

@@ -7,20 +7,37 @@
                         X
                     </button>
 
-                    Widget Button Bar
+                    Palette Button Bar
 
                     <div class="gridOverall">
                         <div class="gridAvailable">
                             Available
                             <nav>
                                 <ul class="nav-list">
-                                    <div
+                                    <!-- <div
                                         class="nav-link"
                                         *ngFor="let row of widgetButtonsAvailable; let i = index"
                                         (click)="clickItem(i)"
                                         >
                                         {{ row.buttonText }}
+                                    </div> -->
+                                    <div *ngFor="let row of paletteButtons; let i = index" 
+                                        role="tooltip" 
+                                        aria-haspopup="true" 
+                                        class="tooltip tooltip-md tooltip-right"
+                                        >
+                                        <clr-icon 
+                                            [attr.shape]="row.shape"
+                                            [attr.size]="row.size"
+                                            class="buttonBarIcon"
+                                            (click)="paletteFunctionCall(row.functionName, row.params)"
+                                            >
+                                        </clr-icon>
+                                        <span class="tooltip-content">{{ row.tooltipContent }}</span>
+                                        {{ row.mainmenuItem }} - {{ row.menuText }}
                                     </div>
+
+
                                 </ul>
                             </nav>
                         </div>
