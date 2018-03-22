@@ -2679,6 +2679,34 @@ export class GlobalVariableService {
         });
 
     }
+
+    savePaletteButtonBar(data: PaletteButtonBar): Promise<string> {
+        // Description: Saves PaletteButtonBar
+        // Returns: 'Saved' or error message
+        console.log('Global-Variables savePaletteButtonBar ...');
+
+        let url: string = 'paletteButtonBars';
+        this.filePath = './assets/data.paletteButtonBars.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                data => {
+                    console.log('xx savePaletteButtonBar SAVED', data)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('xx savePaletteButtonBar FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getWidgets(): Promise<Widget[]> {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
