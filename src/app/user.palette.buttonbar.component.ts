@@ -318,8 +318,11 @@ export class UserPaletteButtonBarComponent implements OnInit {
             };
         };
 
-        // Unselect all from target
-        this.paletteButtonsSelected.forEach(ps => ps.isSelected = false);
+        // Reset Selection Sort Order
+        for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
+            this.paletteButtonsSelected[i].isSelected = false
+            this.paletteButtonsSelected[i].sortOrderSelected = i;
+        };
 
         // Delete the selected one, reverse order
         for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
@@ -358,7 +361,10 @@ export class UserPaletteButtonBarComponent implements OnInit {
         };
 
         // Unselect all from target
-        this.paletteButtons.forEach(ps => ps.isSelected = false);
+        this.paletteButtons.forEach(ps => {
+            ps.isSelected = false
+            ps.sortOrderSelected = null
+        });
         
         // Delete the selected one, reverse order
         for (var i = this.paletteButtonsSelected.length - 1; i >= 0; i--) {
@@ -366,6 +372,12 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 this.paletteButtonsSelected.splice(i, 1);
             };
 
+        };
+
+        // Reset Selection Sort Order
+        for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
+            this.paletteButtonsSelected[i].isSelected = false
+            this.paletteButtonsSelected[i].sortOrderSelected = i;
         };
 
         // Sort the altered list
@@ -384,12 +396,13 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Move selected row(s) up
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveUp', '@Start');
 
-        // Swop sort order with predecessor
+        // Swop sort order with predecessor. Note: sorting happend on sortOrderSelected, which is
+        // only calced at Runtime, and null in DB
         for (var i = 1; i < this.paletteButtonsSelected.length; i++) {
             
             if (this.paletteButtonsSelected[i].isSelected) {
                 console.log('xx is selected: i id sortOder', i, this.paletteButtonsSelected[i].id, 
-                this.paletteButtonsSelected[i].sortOrder)
+                this.paletteButtonsSelected[i].sortOrderSelected)
 
                 // Count how many selected in this batch
                 let nrSel: number = 1;
@@ -404,16 +417,16 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 // Decrease those in this batch
                 for (var k = i; k < (i + nrSel); k++) {
                     
-                    this.paletteButtonsSelected[k].sortOrder = 
-                        this.paletteButtonsSelected[k].sortOrder - 1;
+                    this.paletteButtonsSelected[k].sortOrderSelected = 
+                        this.paletteButtonsSelected[k].sortOrderSelected - 1;
                 console.log('xx is loop k id sortOder', k, this.paletteButtonsSelected[k].id, 
-                    this.paletteButtonsSelected[k].sortOrder)
+                    this.paletteButtonsSelected[k].sortOrderSelected)
                         
                 };
 
                 // Increment original unselected
-                this.paletteButtonsSelected[i-1].sortOrder = 
-                    this.paletteButtonsSelected[i-1].sortOrder + nrSel;
+                this.paletteButtonsSelected[i-1].sortOrderSelected = 
+                    this.paletteButtonsSelected[i-1].sortOrderSelected + nrSel;
                     
                 // Set Pointer
                 i = i + nrSel;
@@ -423,10 +436,10 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         // Sort the altered list
         this.paletteButtonsSelected.sort( (obj1,obj2) => {
-            if (obj1.sortOrder > obj2.sortOrder) {
+            if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
                 return 1;
             };
-            if (obj1.sortOrder < obj2.sortOrder) {
+            if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
                 return -1;
             };
             return 0;
