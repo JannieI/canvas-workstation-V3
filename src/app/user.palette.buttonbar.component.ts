@@ -241,7 +241,8 @@ export class UserPaletteButtonBarComponent implements OnInit {
             this.globalVariableService.getUserPaletteButtonBar().then( up => {
                 this.paletteButtons = pb;
                 this.paletteButtonsSelected = pb;
-                this.userPaletteButtons = up;
+                this.userPaletteButtons = up.filter(u => u.userID == 'Jannie');
+                console.log('xx up', this.userPaletteButtons)
             });
         })
     }
@@ -251,6 +252,15 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
 
         this.paletteButtons[index]['isSelected'] = !this.paletteButtons[index]['isSelected'];
+        // selectedOnes.sort( (obj1,obj2) => {
+        //     if (obj1.left > obj2.left) {
+        //         return 1;
+        //     };
+        //     if (obj1.left < obj2.left) {
+        //         return -1;
+        //     };
+        //     return 0;
+        // });
     }
 
     clickSelected(id: number, index: number){
@@ -258,6 +268,15 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelected', '@Start');
 
         this.paletteButtonsSelected[index]['isSelected'] = !this.paletteButtonsSelected[index]['isSelected'];
+        // selectedOnes.sort( (obj1,obj2) => {
+        //     if (obj1.left > obj2.left) {
+        //         return 1;
+        //     };
+        //     if (obj1.left < obj2.left) {
+        //         return -1;
+        //     };
+        //     return 0;
+        // });
     }
 
     clickMoveUp() {
