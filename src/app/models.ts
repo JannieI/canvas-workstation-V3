@@ -69,6 +69,7 @@ export class CurrentDashboardInfo {
 }
 
 export class UserPaletteButtonBar {
+    id: number;
     userID: string;                         // User to which Button belongs
     paletteButtonBarID: number;             // FK to PaletteButtonBar
 }

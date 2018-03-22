@@ -16,10 +16,12 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
 import { DashboardTag }               from './models';
 import { ButtonBarAvailable}          from './models'
 import { ButtonBarSelected }          from './models';
+import { Dashboard }                  from './models';
+import { PaletteButtonBar }           from './models';
+import { UserPaletteButtonBar }       from './models';
 import { WidgetCheckpointsComponent } from 'app/widget.checkpoints.component';
 
 const paletteButtons = [
@@ -219,7 +221,8 @@ export class UserPaletteButtonBarComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
     dashboardTags: DashboardTag[];
-    paletteButtons = paletteButtons;
+    paletteButtons: PaletteButtonBar[];
+    userPaletteButtons: UserPaletteButtonBar[];
     widgetButtonsAvailable: ButtonBarAvailable[];
     widgetButtonsSelected: ButtonBarSelected[];
 	constructor(
@@ -233,7 +236,12 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.widgetButtonsAvailable = this. globalVariableService.widgetButtonsAvailable;
         this.widgetButtonsSelected = this. globalVariableService.widgetButtonsSelected;
 
-        this.
+        this.globalVariableService.getPaletteButtonBar().then( pb => {
+            this.globalVariableService.getUserPaletteButtonBar().then( up => {
+                this.paletteButtons = pb;
+                this.userPaletteButtons = up;
+            });
+        })
     }
 
     clickClose(action: string) {
