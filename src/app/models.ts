@@ -68,6 +68,19 @@ export class CurrentDashboardInfo {
     refreshDateTime: string;
 }
 
+export class PaletteButtonBar {
+    id: number;
+    mainmenuItem: string;
+    shape: string;
+    size: number;
+    class: string;
+    accesskey: string;
+    sortOrder: string;
+    isDefault: boolean;
+    functionName: string;
+    menuText: string;
+}
+
 export class ButtonBarAvailable {
     id: number;
     buttonText: string;
