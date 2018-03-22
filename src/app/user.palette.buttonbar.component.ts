@@ -532,8 +532,10 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Delete all originals
         // TODO - with DB, only change the Delta
         this.globalVariableService.currentUserPaletteButtonBar.forEach(up =>
-            this.globalVariableService.saveUserPaletteButtonBar(up)
+            this.globalVariableService.deleteUserPaletteButtonBar(up.id)
         );
+
+        // Add Selected ones
         this.paletteButtonsSelected.forEach(ps => {
             let newUserPaletteButtonBar: UserPaletteButtonBar = 
                 {
