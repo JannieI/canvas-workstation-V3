@@ -189,6 +189,10 @@ export class AppComponent implements OnInit {
             this.statusbarDOM.clickShowNextTab();
             return;
         };
+        if (event.code == 'PageUp'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
+            this.statusbarDOM.clickShowPreviousTab();
+            return;
+        };
 
         
         // Move with Arrow
