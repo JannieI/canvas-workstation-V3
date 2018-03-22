@@ -222,6 +222,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
     dashboards: Dashboard[];
     dashboardTags: DashboardTag[];
     paletteButtons: PaletteButtonBar[];
+    paletteButtonsSelected: PaletteButtonBar[];
     userPaletteButtons: UserPaletteButtonBar[];
     widgetButtonsAvailable: ButtonBarAvailable[];
     widgetButtonsSelected: ButtonBarSelected[];
@@ -239,6 +240,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalVariableService.getPaletteButtonBar().then( pb => {
             this.globalVariableService.getUserPaletteButtonBar().then( up => {
                 this.paletteButtons = pb;
+                this.paletteButtonsSelected = pb;
                 this.userPaletteButtons = up;
             });
         })
@@ -249,6 +251,34 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
 
         this.paletteButtons[index]['isSelected'] = !this.paletteButtons[index]['isSelected'];
+    }
+
+    clickSelected(id: number, index: number){
+        // Heighlight the clicked row
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelected', '@Start');
+
+        this.paletteButtonsSelected[index]['isSelected'] = !this.paletteButtonsSelected[index]['isSelected'];
+    }
+
+    clickMoveUp() {
+        // Move selected row(s) up
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveUp', '@Start');
+
+        this.paletteButtonsSelected.forEach(pb => {
+            if (pb.isSelected  &&  pb.sortOrder != 1) {
+                pb.sortOrder = pb.sortOrder - 1;
+            }
+        });
+    }
+
+    clickMoveDown() {
+        // Move selected row(s) down
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
+        this.paletteButtonsSelected.forEach(pb => {
+            if (pb.isSelected) {
+                pb.sortOrder = pb.sortOrder + 1;
+            }
+        });
     }
 
     clickClose(action: string) {
