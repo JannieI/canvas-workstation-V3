@@ -313,7 +313,7 @@ export class AppComponent implements OnInit {
     showModalLanding: boolean;
     showModalUserMyProfile: boolean = false;
     showModalUserPreferences: boolean = false;
-    showModalUserWidgetButtonBar: boolean = false;
+    showModalUserPaletteButtonBar: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
     showPopupMessage: boolean = false;
@@ -1036,13 +1036,13 @@ export class AppComponent implements OnInit {
         this.showModalUserMyProfile = false;
     }
 
-    handleCloseUserWidgetButtonBar(action: string) {
+    handleCloseUserPaletteButtonBar(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserWidgetButtonBar', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserPaletteButtonBar', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalUserWidgetButtonBar = false;
+        this.showModalUserPaletteButtonBar = false;
     }
 
     handleCloseUserSystemSettings(action: string) {
@@ -3173,7 +3173,7 @@ console.log('xx size', size)
 
         this.menuOptionClickPreAction();
 
-        this.showModalUserWidgetButtonBar = true;
+        this.showModalUserPaletteButtonBar = true;
     }
 
     clickMenuUserSystemSettings() {

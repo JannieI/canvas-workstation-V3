@@ -2216,12 +2216,11 @@
 
 
 <!-- Modal: Widget Button Bar -->
-<widget-buttonbar
-    class="formPopupUserWidgetButtonBar"
-    *ngIf="showModalUserWidgetButtonBar"
-    (formUserWidgetButtonBarClosed)="handleCloseUserWidgetButtonBar($event)">
+<palette-buttonbar
+    *ngIf="showModalUserPaletteButtonBar"
+    (formUserWidgetButtonBarClosed)="handleCloseUserPaletteButtonBar($event)">
     Load Widget Button Bar ...
-</widget-buttonbar>
+</palette-buttonbar>
 
 
 <!-- Modal: System Settings -->

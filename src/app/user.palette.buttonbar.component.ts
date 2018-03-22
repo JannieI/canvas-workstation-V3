@@ -23,11 +23,11 @@ import { ButtonBarSelected }          from './models';
 import { WidgetCheckpointsComponent } from 'app/widget.checkpoints.component';
 
 @Component({
-    selector: 'widget-buttonbar',
-    templateUrl: './user.widget.buttonbar.component.html',
-    styleUrls: ['./user.widget.buttonbar.component.css']
+    selector: 'palette-buttonbar',
+    templateUrl: './user.palette.buttonbar.component.html',
+    styleUrls: ['./user.palette.buttonbar.component.css']
 })
-export class UserWidgetButtonBarComponent implements OnInit {
+export class UserPaletteButtonBarComponent implements OnInit {
 
     @Output() formUserWidgetButtonBarClosed: EventEmitter<string> = new EventEmitter();
 
