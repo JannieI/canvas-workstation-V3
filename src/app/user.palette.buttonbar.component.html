@@ -22,19 +22,22 @@
                                         {{ row.buttonText }}
                                     </div> -->
                                     <div *ngFor="let row of paletteButtons; let i = index" 
-                                        role="tooltip" 
-                                        aria-haspopup="true" 
-                                        class="tooltip tooltip-md tooltip-right"
+                                        
                                         >
-                                        <clr-icon 
-                                            [attr.shape]="row.shape"
-                                            [attr.size]="row.size"
-                                            class="buttonBarIcon"
-                                            (click)="paletteFunctionCall(row.functionName, row.params)"
-                                            >
-                                        </clr-icon>
-                                        <span class="tooltip-content">{{ row.tooltipContent }}</span>
-                                        {{ row.mainmenuItem }} - {{ row.menuText }}
+                                        <span class="nav-link tooltip tooltip-md tooltip-right">
+                                            <clr-icon 
+                                                [attr.shape]="row.shape"
+                                                [attr.size]="row.size"
+                                                class="buttonBarIcon"
+                                                [style.background-color]="row.backgroundColor"
+                                                (click)="paletteFunctionCall(row.functionName, row.params)"
+                                                >
+                                            </clr-icon>
+                                            {{ row.mainmenuItem }} - {{ row.menuText }}
+                                            <span class="tooltip-content">
+                                                {{ row.tooltipContent }}
+                                            </span>
+                                        </span>
                                     </div>
 
 

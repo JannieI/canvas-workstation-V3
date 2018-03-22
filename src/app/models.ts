@@ -75,6 +75,7 @@ export class PaletteButtonBar {
     shape: string;
     size: number;
     class: string;
+    backgroundColor: string;
     accesskey: string;
     sortOrder: string;
     isDefault: boolean;
