@@ -232,6 +232,9 @@ export class UserPaletteButtonBarComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
         this.dashboardTags = this.globalVariableService.dashboardTags;
         this.widgetButtonsAvailable = this. globalVariableService.widgetButtonsAvailable;
@@ -239,10 +242,42 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         this.globalVariableService.getPaletteButtonBar().then( pb => {
             this.globalVariableService.getUserPaletteButtonBar().then( up => {
+                // Total list of available buttons
                 this.paletteButtons = pb;
-                this.paletteButtonsSelected = pb;
+                this.paletteButtonsSelected = [];
+
+                // Buttons for this user
                 this.userPaletteButtons = up.filter(u => u.userID == 'Jannie');
-                console.log('xx up', this.userPaletteButtons)
+
+                // If none as yet, give him default ones
+                if (this.userPaletteButtons == []) {
+                    this.paletteButtons.forEach(p => {
+                        if (p.isDefault) {
+                            this.userPaletteButtons.push(
+                                {
+                                    id: null,
+                                    userID: this.globalVariableService.userID,
+                                    paletteButtonBarID: p.id
+                                }
+                            )
+
+                        };
+                    });
+                };
+
+                // Mark user ones as selected
+                this.paletteButtons.forEach(pb => {
+                    this.userPaletteButtons.forEach(up => {
+                        if (pb.id == up.paletteButtonBarID) {
+                            pb.isSelected = true;
+                        };
+                    });
+                });
+
+                // Move selected ones across
+                this.clickAdd();
+
+                console.log('xx init', this.userPaletteButtons, this.paletteButtonsSelected, this.paletteButtons)
             });
         })
     }
@@ -268,15 +303,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelected', '@Start');
 
         this.paletteButtonsSelected[index]['isSelected'] = !this.paletteButtonsSelected[index]['isSelected'];
-        // selectedOnes.sort( (obj1,obj2) => {
-        //     if (obj1.left > obj2.left) {
-        //         return 1;
-        //     };
-        //     if (obj1.left < obj2.left) {
-        //         return -1;
-        //     };
-        //     return 0;
-        // });
     }
 
     clickMoveUp() {
@@ -293,6 +319,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
     clickMoveDown() {
         // Move selected row(s) down
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
+
         this.paletteButtonsSelected.forEach(pb => {
             if (pb.isSelected) {
                 pb.sortOrder = pb.sortOrder + 1;
@@ -301,26 +328,58 @@ export class UserPaletteButtonBarComponent implements OnInit {
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close the form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formUserWidgetButtonBarClosed.emit(action);
     }
 
     clickAdd() {
-        let x: ButtonBarSelected = {
-            id: 12,
-            buttonText: 'new one Added',
-            description: '',
-            sortOrder: 12
-        }
-        this.widgetButtonsSelected.push(x)
+        // Add all selected on Available list to Selected list, and unselect original
+        // Then sort the altered list
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Get selected in Available, and add to Selected
+        let availID: number[] = [];
+        for (var i = 0; i < this.paletteButtons.length; i++) {
+
+            if (this.paletteButtons[i].isSelected) {
+                availID.push(this.paletteButtons[i].id);
+                this.paletteButtonsSelected.push(this.paletteButtons[i]);
+            };
+        };
+
+        // Delete the selected one, reverse order
+        for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
+            this.paletteButtons.splice(i, 1);
+        };
+
+        // Sort the altered list
+        this.paletteButtonsSelected.sort( (obj1,obj2) => {
+            if (obj1.sortOrder > obj2.sortOrder) {
+                return 1;
+            };
+            if (obj1.sortOrder < obj2.sortOrder) {
+                return -1;
+            };
+            return 0;
+        });
+        console.log('xx add', this.userPaletteButtons, this.paletteButtonsSelected, this.paletteButtons)
+
     }
 
     clickDelete() {
+        // Add all selected on Selected list to Available list, and unselect original
+        // Then sort the altered list
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
+
         this.widgetButtonsSelected.splice(this.widgetButtonsSelected.length-1,1)
     }
 
     clickItem(index: number) {
+        // 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickItem', '@Start');
+
         console.log(index, this.widgetButtonsAvailable[index])
     }
 }
