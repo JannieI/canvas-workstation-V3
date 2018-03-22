@@ -1804,15 +1804,19 @@
 
 
     
-    <span *ngFor="let row of paletteButtons; let i = index" role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
+    <span *ngFor="let row of paletteButtons; let i = index" 
+        role="tooltip" 
+        aria-haspopup="true" 
+        class="tooltip tooltip-md tooltip-right"
+        >
         <clr-icon *ngIf="!presentationMode"
-            shape="cursor-arrow"
-            size="20"
+            [attr.shape]="row.shape"
+            [attr.size]="row.size"
             class="buttonBarIcon"
             (click)="paletteFunctionCall(row.functionName, row.params)"
             >
         </clr-icon>
-        <span class="tooltip-content">testing ...</span>
+        <span class="tooltip-content">{{ row.tooltipContent }}</span>
     </span>
 
 

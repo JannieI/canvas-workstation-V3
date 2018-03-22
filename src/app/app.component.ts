@@ -130,17 +130,17 @@ const paletteButtons = [
         accesskey: "w",
         functionName: "clickMenuEditUndo",
         params: "",
-        tooltipContent: "Edit a selected Widget or Slicer"
+        tooltipContent: "Undo a previous action"
     },
     {
         id: 2,
-        shape: "pencil",
+        shape: "times",
         size: "20",
         class: "buttonBarIcon",
         accesskey: "w",
         functionName: "clickMenuEditSelectAllNone",
-        params: "All",
-        tooltipContent: "Edit a selected Widget or Slicer"
+        params: "Auto",
+        tooltipContent: "Selected/Unselect Widgets"
     },
 ]
 

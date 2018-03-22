@@ -1,0 +1,96 @@
+[
+    {
+        "id": 1,
+        "mainmenuItem": "Edit",
+        "menuText": "Edit Mode",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuEditMode",
+        "params": "",
+        "tooltipContent": "Enable EditMode to make changes"
+    },
+    {
+        "id": 2,
+        "mainmenuItem": "Edit",
+        "menuText": "Undo",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuEditUndo",
+        "params": "",
+        "tooltipContent": "Undo previous action"
+    },
+    {
+        "id": 3,
+        "mainmenuItem": "Edit",
+        "menuText": "Redo",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuEditRedo",
+        "params": "",
+        "tooltipContent": "Redo previous action"
+    },
+    {
+        "id": 4,
+        "mainmenuItem": "Edit",
+        "menuText": "Select All",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuEditSelectAllNone('All')",
+        "params": "",
+        "tooltipContent": "Select all the Widgets on this Tab"
+    },
+    {
+        "id": 5,
+        "mainmenuItem": "Edit",
+        "menuText": "Select None",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuEditSelectAllNone('None')",
+        "params": "",
+        "tooltipContent": "UnSelect all the Widgets on this Tab"
+    },
+    {
+        "id": 6,
+        "mainmenuItem": "Edit",
+        "menuText": "Select Auto",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuEditSelectAllNone('Auto')",
+        "params": "",
+        "tooltipContent": "UnSelect all the Widgets on this Tab"
+    },
+  
+  
+   
+   
+  
+   
+   
+  
+   
+ 
+]
