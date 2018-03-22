@@ -497,13 +497,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
         
     }
 
-    clickItem(index: number) {
-        // 
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickItem', '@Start');
-
-        console.log(index, this.widgetButtonsAvailable[index])
-    }
-
     clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -515,6 +508,21 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Reset Selected to the Default list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickReset', '@Start');
 
+        // Empty Selected
+        this.paletteButtonsSelected = [];
+
+        // Move all the defaults across
+        for (var i = 0; i < this.paletteButtons.length; i++) {
+            if (this.paletteButtons[i].isDefault) {
+                this.paletteButtonsSelected.push(this.paletteButtons[i]);
+            };
+        };
+
+        // Reset Selection Sort Order
+        for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
+            this.paletteButtonsSelected[i].isSelected = false
+            this.paletteButtonsSelected[i].sortOrderSelected = i + 1;
+        };
     }
 
     clickSave(action: string) {
