@@ -244,11 +244,11 @@ export class UserPaletteButtonBarComponent implements OnInit {
             this.globalVariableService.getUserPaletteButtonBar().then( up => {
 
                 // Total list of available buttons
-                this.paletteButtons = pb;
+                this.paletteButtons = pb.slice();
                 this.paletteButtonsSelected = [];
 
                 // Buttons for this user
-                this.userPaletteButtons = up.filter(u => u.userID == 'Jannie');
+                this.userPaletteButtons = up.filter(u => u.userID == 'Jannie').slice();
 
                 // If none as yet, give him default ones
                 if (this.userPaletteButtons.length == 0) {
@@ -278,7 +278,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 // Move selected ones across
                 this.clickAdd();
 
-                console.log('xx init', this.userPaletteButtons, this.paletteButtonsSelected, this.paletteButtons)
             });
         })
     }
@@ -288,15 +287,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
 
         this.paletteButtons[index]['isSelected'] = !this.paletteButtons[index]['isSelected'];
-        // selectedOnes.sort( (obj1,obj2) => {
-        //     if (obj1.left > obj2.left) {
-        //         return 1;
-        //     };
-        //     if (obj1.left < obj2.left) {
-        //         return -1;
-        //     };
-        //     return 0;
-        // });
     }
 
     clickSelected(id: number, index: number){
@@ -304,28 +294,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelected', '@Start');
 
         this.paletteButtonsSelected[index]['isSelected'] = !this.paletteButtonsSelected[index]['isSelected'];
-    }
-
-    clickMoveUp() {
-        // Move selected row(s) up
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveUp', '@Start');
-
-        this.paletteButtonsSelected.forEach(pb => {
-            if (pb.isSelected  &&  pb.sortOrder != 1) {
-                pb.sortOrder = pb.sortOrder - 1;
-            }
-        });
-    }
-
-    clickMoveDown() {
-        // Move selected row(s) down
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
-
-        this.paletteButtonsSelected.forEach(pb => {
-            if (pb.isSelected) {
-                pb.sortOrder = pb.sortOrder + 1;
-            }
-        });
     }
 
     clickClose(action: string) {
@@ -371,7 +339,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
             };
             return 0;
         });
-        console.log('xx add', this.userPaletteButtons, this.paletteButtonsSelected, this.paletteButtons)
 
     }
 
@@ -411,7 +378,72 @@ export class UserPaletteButtonBarComponent implements OnInit {
             };
             return 0;
         });
-        console.log('xx add', this.userPaletteButtons, this.paletteButtonsSelected, this.paletteButtons)
+    }
+
+    clickMoveUp() {
+        // Move selected row(s) up
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveUp', '@Start');
+
+        // Swop sort order with predecessor
+        for (var i = 1; i < this.paletteButtonsSelected.length; i++) {
+            
+            if (this.paletteButtonsSelected[i].isSelected) {
+                console.log('xx is selected: i id sortOder', i, this.paletteButtonsSelected[i].id, 
+                this.paletteButtonsSelected[i].sortOrder)
+
+                // Count how many selected in this batch
+                let nrSel: number = 1;
+                for (var j = i + 1; j < this.paletteButtonsSelected.length; j++) {
+                    if (this.paletteButtonsSelected[j].isSelected) {
+                        nrSel = nrSel + 1;
+                    } else {
+                        break;
+                    };
+                };
+                console.log('xx nrSel', nrSel)
+                // Decrease those in this batch
+                for (var k = i; k < (i + nrSel); k++) {
+                    
+                    this.paletteButtonsSelected[k].sortOrder = 
+                        this.paletteButtonsSelected[k].sortOrder - 1;
+                console.log('xx is loop k id sortOder', k, this.paletteButtonsSelected[k].id, 
+                    this.paletteButtonsSelected[k].sortOrder)
+                        
+                };
+
+                // Increment original unselected
+                this.paletteButtonsSelected[i-1].sortOrder = 
+                    this.paletteButtonsSelected[i-1].sortOrder + nrSel;
+                    
+                // Set Pointer
+                i = i + nrSel;
+                console.log('xx end  k, i []', k, i, this.paletteButtonsSelected)
+            };
+        };
+
+        // Sort the altered list
+        this.paletteButtonsSelected.sort( (obj1,obj2) => {
+            if (obj1.sortOrder > obj2.sortOrder) {
+                return 1;
+            };
+            if (obj1.sortOrder < obj2.sortOrder) {
+                return -1;
+            };
+            return 0;
+        });
+        console.log('xx after sort', this.paletteButtonsSelected)
+        
+    }
+
+    clickMoveDown() {
+        // Move selected row(s) down
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
+
+        this.paletteButtonsSelected.forEach(pb => {
+            if (pb.isSelected) {
+                pb.sortOrder = pb.sortOrder + 1;
+            }
+        });
     }
 
     clickItem(index: number) {
