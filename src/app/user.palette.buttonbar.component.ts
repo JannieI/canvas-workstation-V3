@@ -296,13 +296,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.paletteButtonsSelected[index]['isSelected'] = !this.paletteButtonsSelected[index]['isSelected'];
     }
 
-    clickClose(action: string) {
-        // Close the form, nothing saved
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-
-		this.formUserWidgetButtonBarClosed.emit(action);
-    }
-
     clickAdd() {
         // Add all selected on Available list to Selected list, and unselect original
         // Then sort the altered list
@@ -510,4 +503,25 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         console.log(index, this.widgetButtonsAvailable[index])
     }
+
+    clickClose(action: string) {
+        // Close the form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+		this.formUserWidgetButtonBarClosed.emit(action);
+    }
+
+    clickReset() {
+        // Reset Selected to the Default list
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickReset', '@Start');
+
+    }
+
+    clickSave(action: string) {
+        // Save data, and Close the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+		this.formUserWidgetButtonBarClosed.emit(action);
+    }
+
 }
