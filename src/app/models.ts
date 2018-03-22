@@ -88,6 +88,7 @@ export class PaletteButtonBar {
     functionName: string;
     params: string;
     tooltipContent: string;
+    isSelected: boolean;                    // Toggled at Runtime
 }
 
 export class ButtonBarAvailable {

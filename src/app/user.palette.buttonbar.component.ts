@@ -244,6 +244,13 @@ export class UserPaletteButtonBarComponent implements OnInit {
         })
     }
 
+    clickAvailable(id: number, index: number, ev: any){
+        // Clicked a Value, now ....
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
+
+        this.paletteButtons[index]['isSelected'] = ev.target.checked;
+    }
+
     clickClose(action: string) {
         console.log('clickClose')
 

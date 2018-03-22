@@ -22,7 +22,9 @@
                                         {{ row.buttonText }}
                                     </div> -->
                                     <div *ngFor="let row of paletteButtons; let i = index" 
-                                        
+                                    [style.background-color]="row.isSelected? 'beige' : 'transparent'"
+                                    (click)="clickAvailable(row.id, i, $event)"
+
                                         >
                                         <span class="nav-link tooltip tooltip-md tooltip-right">
                                             <clr-icon 
