@@ -2658,8 +2658,8 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getPaletteButtonBar ...');
 
-        let url: string = 'paletteButtonBar';
-        this.filePath = './assets/data.paletteButtonBar.json';
+        let url: string = 'paletteButtonBars';
+        this.filePath = './assets/data.paletteButtonBars.json';
 
         return new Promise<PaletteButtonBar[]>((resolve, reject) => {
 
@@ -2716,8 +2716,8 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getUserPaletteButtonBar ...');
 
-        let url: string = 'userPaletteButtonBar';
-        this.filePath = './assets/data.userPaletteButtonBar.json';
+        let url: string = 'userPaletteButtonBars';
+        this.filePath = './assets/data.userPaletteButtonBars.json';
 
         return new Promise<UserPaletteButtonBar[]>((resolve, reject) => {
 
@@ -2746,8 +2746,8 @@ export class GlobalVariableService {
         // Returns: 'Deleted' or error message
         console.log('Global-Variables deleteUserPaletteButtonBar ...');
 
-        let url: string = 'UserPaletteButtonBars';
-        this.filePath = './assets/data.UserPaletteButtonBars.json';
+        let url: string = 'userPaletteButtonBars';
+        this.filePath = './assets/data.userPaletteButtonBars.json';
 
         return new Promise<any>((resolve, reject) => {
 

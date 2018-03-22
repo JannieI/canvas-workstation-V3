@@ -394,8 +394,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
         for (var i = 1; i < this.paletteButtonsSelected.length; i++) {
             
             if (this.paletteButtonsSelected[i].isSelected) {
-                console.log('xx is selected: i id sortOder', i, this.paletteButtonsSelected[i].id, 
-                this.paletteButtonsSelected[i].sortOrderSelected)
 
                 // Count how many selected in this batch
                 let nrSel: number = 1;
@@ -406,14 +404,12 @@ export class UserPaletteButtonBarComponent implements OnInit {
                         break;
                     };
                 };
-                console.log('xx nrSel', nrSel)
+
                 // Decrease those in this batch
                 for (var k = i; k < (i + nrSel); k++) {
                     
                     this.paletteButtonsSelected[k].sortOrderSelected = 
                         this.paletteButtonsSelected[k].sortOrderSelected - 1;
-                console.log('xx is loop k id sortOder', k, this.paletteButtonsSelected[k].id, 
-                    this.paletteButtonsSelected[k].sortOrderSelected)
                         
                 };
 
@@ -423,7 +419,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                     
                 // Set Pointer
                 i = i + nrSel;
-                console.log('xx end  k, i []', k, i, this.paletteButtonsSelected)
+
             };
         };
 
@@ -437,8 +433,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
             };
             return 0;
         });
-        console.log('xx after sort', this.paletteButtonsSelected)
-        
     }
 
     clickMoveDown() {
@@ -450,8 +444,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
         for (var i = 0; i < this.paletteButtonsSelected.length - 1; i++) {
             
             if (this.paletteButtonsSelected[i].isSelected) {
-                console.log('xx is selected: i id sortOder', i, this.paletteButtonsSelected[i].id, 
-                this.paletteButtonsSelected[i].sortOrderSelected)
 
                 // Count how many selected in this batch
                 let nrSel: number = 1;
@@ -462,14 +454,12 @@ export class UserPaletteButtonBarComponent implements OnInit {
                         break;
                     };
                 };
-                console.log('xx nrSel', nrSel)
+
                 // Increase those in this batch
                 for (var k = i; k < (i + nrSel); k++) {
                     
                     this.paletteButtonsSelected[k].sortOrderSelected = 
                         this.paletteButtonsSelected[k].sortOrderSelected + 1;
-                console.log('xx is loop k id sortOder', k, this.paletteButtonsSelected[k].id, 
-                    this.paletteButtonsSelected[k].sortOrderSelected)
                         
                 };
 
@@ -479,7 +469,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                     
                 // Set Pointer
                 i = i + nrSel;
-                console.log('xx end  k, i []', k, i, this.paletteButtonsSelected)
+
             };
         };
 
@@ -493,8 +483,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
             };
             return 0;
         });
-        console.log('xx after sort', this.paletteButtonsSelected)
-        
     }
 
     clickClose(action: string) {
@@ -529,11 +517,14 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Save data, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        console.log('xx save 1', this.globalVariableService.currentUserPaletteButtonBar)
         // Delete all originals
         // TODO - with DB, only change the Delta
-        this.globalVariableService.currentUserPaletteButtonBar.forEach(up =>
-            this.globalVariableService.deleteUserPaletteButtonBar(up.id)
-        );
+        this.globalVariableService.currentUserPaletteButtonBar.forEach(up => {
+            if (up.userID == this.globalVariableService.userID) {
+                this.globalVariableService.deleteUserPaletteButtonBar(up.id);
+            };
+        });
 
         // Add Selected ones
         this.paletteButtonsSelected.forEach(ps => {
@@ -542,8 +533,8 @@ export class UserPaletteButtonBarComponent implements OnInit {
                     id: null,
                     userID: this.globalVariableService.userID,
                     paletteButtonBarID: ps.id
-                }
-            this.globalVariableService.saveUserPaletteButtonBar(newUserPaletteButtonBar);
+                };
+            this.globalVariableService.addUserPaletteButtonBar(newUserPaletteButtonBar);
         });
 
 		this.formUserWidgetButtonBarClosed.emit(action);
