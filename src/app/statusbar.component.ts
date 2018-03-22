@@ -34,7 +34,7 @@ export class StatusbarComponent {
     @Input() statusBarRunning: string;
     @Input() statusBarCancelRefresh: string;
     @Input() templateInUse: string;
-    
+
     currentDashboardTabs: DashboardTab[];
     dashboardDescription: string;
     dashboardTabDescription: string;
@@ -132,7 +132,7 @@ export class StatusbarComponent {
     }
 
     ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
+        // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
@@ -260,7 +260,7 @@ export class StatusbarComponent {
     clickAddTab() {
         // Add a new Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddTab', '@Start');
-        
+
         // Has to be in editMode
         if (!this.editMode) {
             this.globalVariableService.showStatusBarMessage(
@@ -280,7 +280,7 @@ export class StatusbarComponent {
     clickTabDelete() {
         // Delete a Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');
-        
+
         // Has to be in editMode
         if (!this.editMode) {
             this.globalVariableService.showStatusBarMessage(
@@ -322,7 +322,7 @@ export class StatusbarComponent {
         // Get the index, Delete, and refresh
         // TODO - improve when working with a DB
         for (var x = 0; x < this.globalVariableService.dashboardTabs.length; x++) {
-            if (this.globalVariableService.dashboardTabs[x].id == 
+            if (this.globalVariableService.dashboardTabs[x].id ==
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID) {
                     break;
             };

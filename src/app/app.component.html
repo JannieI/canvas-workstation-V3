@@ -1620,6 +1620,7 @@
 
     <!-- Status Bar -->
     <status-bar *ngIf="showMainMenu"
+        #statusbarDOM
         [currentDashboardName]="currentDashboardName"
         [currentTabName]="currentTabName"
         [currentDashboardTabIndex]="currentDashboardTabIndex"

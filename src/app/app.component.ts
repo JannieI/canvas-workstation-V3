@@ -40,6 +40,7 @@ import * as dl from 'datalib';
 import { load } from 'datalib';
 import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 import { Action } from 'rxjs/scheduler/Action';
+import { StatusbarComponent } from './statusbar.component';
 
 
 // Constants
@@ -154,6 +155,8 @@ export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
     @ViewChild('widgetDOM')  widgetDOM: WidgetSingleComponent;
+    @ViewChild('statusbarDOM') statusbarDOM: StatusbarComponent;
+
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
         console.log(event);
@@ -182,7 +185,12 @@ export class AppComponent implements OnInit {
             this.clickMenuPaletteDelete();
             return;
         };
+        if (event.code == 'PageDown'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
+            this.statusbarDOM.clickShowNextTab();
+            return;
+        };
 
+        
         // Move with Arrow
         if (event.key == 'ArrowRight'  ||  event.key == 'ArrowDown'  ||
             event.key == 'ArrowLeft'   ||  event.key == 'ArrowUp') {
