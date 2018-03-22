@@ -43,7 +43,7 @@
                     <div class="gridSelected">
                         <nav>
                             <ul class="nav-list">
-                                <div *ngFor="let row of paletteButtons; let i = index" 
+                                <div *ngFor="let row of paletteButtonsSelected; let i = index" 
                                     [style.background-color]="row.isSelected? 'beige' : 'transparent'"
                                     (click)="clickSelected(row.id, i)"
                                     >

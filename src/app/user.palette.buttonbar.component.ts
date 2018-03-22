@@ -242,6 +242,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         this.globalVariableService.getPaletteButtonBar().then( pb => {
             this.globalVariableService.getUserPaletteButtonBar().then( up => {
+
                 // Total list of available buttons
                 this.paletteButtons = pb;
                 this.paletteButtonsSelected = [];
@@ -250,7 +251,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 this.userPaletteButtons = up.filter(u => u.userID == 'Jannie');
 
                 // If none as yet, give him default ones
-                if (this.userPaletteButtons == []) {
+                if (this.userPaletteButtons.length == 0) {
                     this.paletteButtons.forEach(p => {
                         if (p.isDefault) {
                             this.userPaletteButtons.push(
@@ -351,7 +352,10 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         // Delete the selected one, reverse order
         for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
-            this.paletteButtons.splice(i, 1);
+            if(availID.indexOf(this.paletteButtons[i].id) >= 0) {
+                this.paletteButtons.splice(i, 1);
+            };
+
         };
 
         // Sort the altered list
