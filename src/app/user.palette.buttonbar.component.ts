@@ -232,6 +232,8 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.dashboardTags = this.globalVariableService.dashboardTags;
         this.widgetButtonsAvailable = this. globalVariableService.widgetButtonsAvailable;
         this.widgetButtonsSelected = this. globalVariableService.widgetButtonsSelected;
+
+        this.
     }
 
     clickClose(action: string) {

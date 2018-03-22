@@ -68,6 +68,11 @@ export class CurrentDashboardInfo {
     refreshDateTime: string;
 }
 
+export class UserPaletteButtonBar {
+    userID: string;                         // User to which Button belongs
+    paletteButtonBarID: number;             // FK to PaletteButtonBar
+}
+
 export class PaletteButtonBar {
     id: number;
     mainmenuItem: string;
