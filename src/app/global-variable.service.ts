@@ -37,6 +37,7 @@ import { DatasourcePermission}        from './models';
 import { DatasourcePivot }            from './models';
 import { Field }                      from './models';
 import { FieldMetadata }              from './models';
+import { PaletteButtonBar }           from './models';
 import { StatusBarMessage }           from './models';
 import { Transformation }             from './models';
 import { UserPreferences }            from './models';
@@ -679,6 +680,7 @@ export class GlobalVariableService {
     currentWidgets: Widget[] = [];
     currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardTags: DashboardTag[] = [];
+    currentPaletteButtonBar: PaletteButtonBar[];
     currentDashboardPermissions: DashboardPermission[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
     currentDashboardSubscription: DashboardSubscription[] = [];
@@ -780,6 +782,8 @@ export class GlobalVariableService {
     isDirtyCanvasMessages: boolean = true;
     isDirtyCanvasSettings: boolean = true;
     isDirtyUserPreferences: boolean = true;
+    isDirtyPaletteButtonBar: boolean = true;
+    
     
 
     // Settings that can be set via UI for next time, from then on it will change
@@ -2527,7 +2531,7 @@ export class GlobalVariableService {
         // Description: Gets currentDashboardSubscription 
         // Returns: this.currentDashboardSubscription object, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables isDirtyDashboardSubscription ...');
+        console.log('Global-Variables getDashboardSubscription ...');
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -2645,6 +2649,36 @@ export class GlobalVariableService {
         });
     }
 
+    getPaletteButtonBar(): Promise<PaletteButtonBar[]> {
+        // Description: Gets currentgetPaletteButtonBar 
+        // Returns: this.currentgetPaletteButtonBar object, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getPaletteButtonBar ...');
+
+        let url: string = 'paletteButtonBar';
+        this.filePath = './assets/data.paletteButtonBar.json';
+
+        return new Promise<PaletteButtonBar[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if (this.isDirtyPaletteButtonBar) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.currentPaletteButtonBar = data;
+
+                        this.isDirtyPaletteButtonBar = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('Global-Variables getgetPaletteButtonBar 1', this.currentPaletteButtonBar)
+                        resolve(this.currentPaletteButtonBar);
+                    });
+            } else {
+                console.log('Global-Variables getgetPaletteButtonBar 2', this.currentPaletteButtonBar)
+                resolve(this.currentPaletteButtonBar);
+            }
+        });
+
+    }
     getWidgets(): Promise<Widget[]> {
         // Description: Gets all W
         // Returns: this.widgets array, unless:
