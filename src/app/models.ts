@@ -84,6 +84,7 @@ export class PaletteButtonBar {
     backgroundColor: string;
     accesskey: string;
     sortOrder: number;
+    sortOrderSelected: number;             // SortOrder once selected, null ind DB, calced @Runtime
     isDefault: boolean;
     functionName: string;
     params: string;
