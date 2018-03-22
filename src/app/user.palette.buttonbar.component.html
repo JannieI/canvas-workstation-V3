@@ -2,87 +2,80 @@
         <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
 
-                <div>
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
 
-                    Palette Button Bar
+                <div class="gridOverall">
+                    <div class="gridTitle">
+                        Palette Button Bar
+                    </div>
 
-                    <div class="gridOverall">
-                        <div class="gridAvailable">
-                            Available
+                    <div class="gridAvailableTitle">
+                        Available
+                    </div>
+                    <div class="gridAvailable">
+                        <nav>
+                            <ul class="nav-list">
+                                <div *ngFor="let row of paletteButtons; let i = index" 
+                                    [style.background-color]="row.isSelected? 'beige' : 'transparent'"
+                                    (click)="clickAvailable(row.id, i)"
+
+                                    >
+                                    <span class="nav-link tooltip tooltip-md tooltip-right">
+                                        <clr-icon 
+                                            [attr.shape]="row.shape"
+                                            [attr.size]="row.size"
+                                            class="buttonBarIcon"
+                                            [style.background-color]="row.backgroundColor"
+                                            (click)="paletteFunctionCall(row.functionName, row.params)"
+                                            >
+                                        </clr-icon>
+                                        {{ row.mainmenuItem }} - {{ row.menuText }}
+                                        <span class="tooltip-content">
+                                            {{ row.tooltipContent }}
+                                        </span>
+                                    </span>
+                                </div>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="gridSelected"
+                        (drop)="drop_pivot($event);"
+                        (dragover)="dragover_pivot($event);"
+                        >
+                        <div class="gridSelected">
+                            Selected
                             <nav>
                                 <ul class="nav-list">
-                                    <!-- <div
+                                    <div
                                         class="nav-link"
-                                        *ngFor="let row of widgetButtonsAvailable; let i = index"
-                                        (click)="clickItem(i)"
+                                        *ngFor="let row of widgetButtonsSelected"
                                         >
                                         {{ row.buttonText }}
-                                    </div> -->
-                                    <div *ngFor="let row of paletteButtons; let i = index" 
-                                    [style.background-color]="row.isSelected? 'beige' : 'transparent'"
-                                    (click)="clickAvailable(row.id, i, $event)"
-
-                                        >
-                                        <span class="nav-link tooltip tooltip-md tooltip-right">
-                                            <clr-icon 
-                                                [attr.shape]="row.shape"
-                                                [attr.size]="row.size"
-                                                class="buttonBarIcon"
-                                                [style.background-color]="row.backgroundColor"
-                                                (click)="paletteFunctionCall(row.functionName, row.params)"
-                                                >
-                                            </clr-icon>
-                                            {{ row.mainmenuItem }} - {{ row.menuText }}
-                                            <span class="tooltip-content">
-                                                {{ row.tooltipContent }}
-                                            </span>
-                                        </span>
                                     </div>
-
-
                                 </ul>
                             </nav>
                         </div>
-                        <div class="gridSelected"
-                            (drop)="drop_pivot($event);"
-                            (dragover)="dragover_pivot($event);"
+                    </div>
+                    <div class="gridArrowAdd">
+                        <button
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                            (click)="clickAdd()"
                             >
-                            <div class="gridSelected">
-                                Selected
-                                <nav>
-                                    <ul class="nav-list">
-                                        <div
-                                            class="nav-link"
-                                            *ngFor="let row of widgetButtonsSelected"
-                                            >
-                                            {{ row.buttonText }}
-                                        </div>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                        <div class="gridArrowAdd">
-                            <button
-                                type="button"
-                                class="btn btn-secondary btn-sm"
-                                (click)="clickAdd()"
-                                >
-                                Add
-                            </button>
-                        </div>
-                        <div class="gridArrowDelete">
-                            <button
-                                type="button"
-                                class="btn btn-secondary btn-sm"
-                                (click)="clickDelete()"
-                                >
-                                Delete
-                            </button>
+                            Add
+                        </button>
+                    </div>
+                    <div class="gridArrowDelete">
+                        <button
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                            (click)="clickDelete()"
+                            >
+                            Delete
+                        </button>
 
-                        </div>
                     </div>
                 </div>
             </div>

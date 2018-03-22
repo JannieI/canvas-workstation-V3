@@ -244,11 +244,11 @@ export class UserPaletteButtonBarComponent implements OnInit {
         })
     }
 
-    clickAvailable(id: number, index: number, ev: any){
-        // Clicked a Value, now ....
+    clickAvailable(id: number, index: number){
+        // Heighlight the clicked row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
 
-        this.paletteButtons[index]['isSelected'] = ev.target.checked;
+        this.paletteButtons[index]['isSelected'] = !this.paletteButtons[index]['isSelected'];
     }
 
     clickClose(action: string) {
