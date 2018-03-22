@@ -321,7 +321,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Reset Selection Sort Order
         for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
             this.paletteButtonsSelected[i].isSelected = false
-            this.paletteButtonsSelected[i].sortOrderSelected = i;
+            this.paletteButtonsSelected[i].sortOrderSelected = i + 1;
         };
 
         // Delete the selected one, reverse order
@@ -334,10 +334,10 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         // Sort the altered list
         this.paletteButtonsSelected.sort( (obj1,obj2) => {
-            if (obj1.sortOrder > obj2.sortOrder) {
+            if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
                 return 1;
             };
-            if (obj1.sortOrder < obj2.sortOrder) {
+            if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
                 return -1;
             };
             return 0;
@@ -377,7 +377,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Reset Selection Sort Order
         for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
             this.paletteButtonsSelected[i].isSelected = false
-            this.paletteButtonsSelected[i].sortOrderSelected = i;
+            this.paletteButtonsSelected[i].sortOrderSelected = i + 1;
         };
 
         // Sort the altered list
@@ -452,11 +452,56 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Move selected row(s) down
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
 
-        this.paletteButtonsSelected.forEach(pb => {
-            if (pb.isSelected) {
-                pb.sortOrder = pb.sortOrder + 1;
-            }
+        // Swop sort order with predecessor. Note: sorting happend on sortOrderSelected, which is
+        // only calced at Runtime, and null in DB
+        for (var i = 0; i < this.paletteButtonsSelected.length - 1; i++) {
+            
+            if (this.paletteButtonsSelected[i].isSelected) {
+                console.log('xx is selected: i id sortOder', i, this.paletteButtonsSelected[i].id, 
+                this.paletteButtonsSelected[i].sortOrderSelected)
+
+                // Count how many selected in this batch
+                let nrSel: number = 1;
+                for (var j = i + 1; j < this.paletteButtonsSelected.length; j++) {
+                    if (this.paletteButtonsSelected[j].isSelected) {
+                        nrSel = nrSel + 1;
+                    } else {
+                        break;
+                    };
+                };
+                console.log('xx nrSel', nrSel)
+                // Increase those in this batch
+                for (var k = i; k < (i + nrSel); k++) {
+                    
+                    this.paletteButtonsSelected[k].sortOrderSelected = 
+                        this.paletteButtonsSelected[k].sortOrderSelected + 1;
+                console.log('xx is loop k id sortOder', k, this.paletteButtonsSelected[k].id, 
+                    this.paletteButtonsSelected[k].sortOrderSelected)
+                        
+                };
+
+                // Decrement unselected below
+                this.paletteButtonsSelected[i + nrSel].sortOrderSelected = 
+                    this.paletteButtonsSelected[i + nrSel].sortOrderSelected - nrSel;
+                    
+                // Set Pointer
+                i = i + nrSel;
+                console.log('xx end  k, i []', k, i, this.paletteButtonsSelected)
+            };
+        };
+
+        // Sort the altered list
+        this.paletteButtonsSelected.sort( (obj1,obj2) => {
+            if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
+                return 1;
+            };
+            if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
+                return -1;
+            };
+            return 0;
         });
+        console.log('xx after sort', this.paletteButtonsSelected)
+        
     }
 
     clickItem(index: number) {
