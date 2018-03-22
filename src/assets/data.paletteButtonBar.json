@@ -1049,7 +1049,90 @@
         "params": "",
         "tooltipContent": "Delete selected Slicer"
     },
-  
+    {
+        "id": 76,
+        "mainmenuItem": "Shape",
+        "menuText": "Add Shape",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuShapeNew",
+        "params": "",
+        "tooltipContent": "Add a new Shape to this Dashboard"
+    },
+    {
+        "id": 77,
+        "mainmenuItem": "Shape",
+        "menuText": "Edit Shape",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuShapeEdit",
+        "params": "",
+        "tooltipContent": "Edit the selected Shape"
+    },
+    {
+        "id": 78,
+        "mainmenuItem": "Shape",
+        "menuText": "Container",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuWidgetContainer('Shape')",
+        "params": "",
+        "tooltipContent": "Change container properties for selected Shape"
+    },
+    {
+        "id": 79,
+        "mainmenuItem": "Shape",
+        "menuText": "Tablist",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuWidgetTablist",
+        "params": "",
+        "tooltipContent": "Manage Tabs to which selected Slicer belongs"
+    },
+    {
+        "id": 80,
+        "mainmenuItem": "Shape",
+        "menuText": "Links",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuShapeLinks",
+        "params": "",
+        "tooltipContent": "Manage links on selected Shape"
+    },
+    {
+        "id": 81,
+        "mainmenuItem": "Shape",
+        "menuText": "Delete Shape",
+        "shape": "",
+        "size": "",
+        "class": "",
+        "accesskey": "",
+        "sortOrder": 1,
+        "isDefault": false,
+        "functionName": "clickMenuShapeDelete",
+        "params": "",
+        "tooltipContent": "Delete selected Shapes"
+    },
    
    
   
