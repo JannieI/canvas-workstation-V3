@@ -866,7 +866,7 @@ export class GlobalVariableService {
 
                                     this.currentDashboardID = dashboardID
                                     this.currentDashboardTabID = dashboardTabID
-                                    console.log('xx currentDatasources', this.currentDatasources)
+
                                     if (this.currentDatasources.length > 0) {
                                         this.hasDatasources.next(true);
                                     } else {

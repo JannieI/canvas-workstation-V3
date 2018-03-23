@@ -409,8 +409,7 @@ export class AppComponent implements OnInit {
         );
 
         this.globalVariableService.recentDashboards.subscribe(
-            i => { this.recentDashboards = i 
-            console.log('xx i', this.recentDashboards) }
+            i => this.recentDashboards = i.filter(j => j.stateAtRunTime != 'Deleted') 
         );
 
         // This refreshes one W
@@ -1291,7 +1290,7 @@ export class AppComponent implements OnInit {
         // Selects/Deselects n objects on the D based on size, All, None, Auto
         // Auto will select All if none is selected, None is any is selected
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditSelectAllNone', '@Start');
-console.log('xx size', size)
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
@@ -3230,7 +3229,7 @@ console.log('xx size', size)
     // ***********************  CLICK PALETTE (specific) MENU OPTIONS ************************ //
     clickMenuPaletteEdit() {
         // Clicked the Edit option on palette - decide what to do
-        this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteEdit', '@Start');
 
         // Decide which way
         if (this.checkForOnlyOneWidget('Graph', true)) {
@@ -3286,7 +3285,7 @@ console.log('xx size', size)
 
     clickMenuPaletteDelete() {
         // Clicked the Edit option on palette - decide what to do
-        this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteDelete', '@Start');
 
         // Decide which way
         if (this.checkForOnlyOneWidget('Graph', true)) {
@@ -3320,9 +3319,18 @@ console.log('xx size', size)
     // ***********************  OTHER ************************ //
 
     showRecentDashboard(index: number) {
-        //
+        // Open a Recently used D
         this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
 
+        this.globalVariableService.editMode.next(false);
+
+        // Open it
+		this.globalVariableService.refreshCurrentDashboard(
+            'openDashboard-showRecentDashboard', 
+            this.recentDashboards[index].dashboardID, 
+            this.recentDashboards[index].dashboardTabID, 
+            ''
+        );
     }
 
     clickClosePresentation() {
