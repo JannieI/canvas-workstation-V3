@@ -98,16 +98,14 @@
                                 Recent
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" clrDropdownItem
+                                    
+                                <button *ngFor="let row of recentDashboards; let i = index"
+                                    type="button" 
+                                    clrDropdownItem
                                     (click)="showRecentDashboard()">
-                                    1. Budget per Department
+                                    {{ i + 1 }} {{ row.nameAtRunTime}}
                                 </button>
-                                <button type="button" clrDropdownItem>
-                                    2. Economic Overview
-                                </button>
-                                <button type="button" clrDropdownItem>
-                                    3. Leave Summary
-                                </button>
+                                    
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <clr-dropdown>

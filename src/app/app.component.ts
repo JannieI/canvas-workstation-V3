@@ -409,9 +409,10 @@ export class AppComponent implements OnInit {
         );
 
         this.globalVariableService.recentDashboards.subscribe(
-            i => this.recentDashboards = i
+            i => { this.recentDashboards = i 
+            console.log('xx i', this.recentDashboards) }
         );
-        
+
         // This refreshes one W
         this.globalVariableService.changedWidget.subscribe(w => {
             if (w != null) {
