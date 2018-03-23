@@ -70,7 +70,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs => {
                     if (pb.id == pbs.paletteButtonBarID) {
                         pb.isSelected = true;
-                        console.log('xx id', pb.id)
                     };
                 });
             });
@@ -426,18 +425,18 @@ export class UserPaletteButtonBarComponent implements OnInit {
         //     this.globalVariableService.addUserPaletteButtonBar(newUserPaletteButtonBar);
         // });
 
-
-        // Delete the inital selected ones for this user
+console.log('xx sav1', this.globalVariableService.currentPaletteButtonsSelected.value)
+        // Delete the inital selected ones for this user from the DB only
         this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs => 
-            this.globalVariableService.deletep(pbs.id)
+            this.globalVariableService.deletePaletteButtonsSelected(pbs.id)
         )
 
-        // Add the new ones
+        // Add the new ones to the DB
         this.paletteButtonsSelected.forEach(pbs =>
-            this.globalVariableService.addUserPaletteButtonBar(pbs)
+            this.globalVariableService.addPaletteButtonsSelected(pbs)
         );
 
-        // Remember for next time
+        // Refresh global var, informing subscribers
         this.globalVariableService.currentPaletteButtonsSelected.next(
             this.paletteButtonsSelected);
 

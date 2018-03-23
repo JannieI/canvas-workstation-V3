@@ -2806,17 +2806,21 @@ export class GlobalVariableService {
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-                    let dID: number = -1;
-                    for (var i = 0; i < this.currentPaletteButtonsSelected.value.length; i++) {
-                        if (this.currentPaletteButtonsSelected[i].id == id) {
-                            dID = i;
-                            break;
-                        };
-                    };
-                    if (dID >=0) {
-                        this.currentPaletteButtonsSelected.value.splice(dID, 1);
-                    };
-                    console.log('xx deletePaletteButtonsSelected DELETED', this.currentPaletteButtonsSelected)
+
+                    // This is a different case: currentPaletteButtonsSelected is an 
+                    // Observable, and will be refreshed with a .next by the calling
+                    // routine
+                    // let dID: number = -1;
+                    // for (var i = 0; i < this.currentPaletteButtonsSelected.value.length; i++) {
+                    //     if (this.currentPaletteButtonsSelected[i].id == id) {
+                    //         dID = i;
+                    //         break;
+                    //     };
+                    // };
+                    // if (dID >=0) {
+                    //     this.currentPaletteButtonsSelected.value.splice(dID, 1);
+                    // };
+                    console.log('xx deletePaletteButtonsSelected DELETED', id)
                     resolve('Deleted');
                 },
                 err => {
