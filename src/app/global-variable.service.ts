@@ -2759,6 +2759,33 @@ export class GlobalVariableService {
 
     }
 
+    savePaletteButtonsSelected(data: PaletteButtonsSelected): Promise<string> {
+        // Description: Saves PaletteButtonsSelected
+        // Returns: 'Saved' or error message
+        console.log('Global-Variables savePaletteButtonsSelected ...');
+
+        let url: string = 'paletteButtonsSelecteds';
+        this.filePath = './assets/data.paletteButtonsSelecteds.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                data => {
+                    console.log('xx savePaletteButtonsSelected SAVED', data)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('xx savePaletteButtonsSelected FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getUserPaletteButtonBar(): Promise<UserPaletteButtonBar[]> {
         // Description: Gets currentgetUserPaletteButtonBar 
         // Returns: this.currentgetUserPaletteButtonBar object, unless:
