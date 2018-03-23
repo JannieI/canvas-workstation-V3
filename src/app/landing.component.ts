@@ -62,16 +62,6 @@ export class LandingComponent implements OnInit {
 
 				// Recent D
 				this.globalVariableService.getDashboardsRecent(this.globalVariableService.currentUser.userID).then(k => {
-					for (var x = 0; x < k.length; x++) {
-						k[x].stateAtRunTime = 'Deleted';
-						for (var y = 0; y < this.globalVariableService.dashboards.length; y++) {
-							if (this.globalVariableService.dashboards[y].id ==
-							k[x].dashboardID) {
-								k[x].stateAtRunTime = this.globalVariableService.dashboards[y].state;
-								k[x].nameAtRunTime = this.globalVariableService.dashboards[y].name;
-							};
-						};
-					};
 					this.recentDashboards = k;
 
 					// Globally

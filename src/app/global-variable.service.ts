@@ -1358,7 +1358,20 @@ export class GlobalVariableService {
                 // TODO - http must be sorted => include in Options ...
                 let temp: DashboardRecent[] = data.filter(
                     i => i.userID == userID
-                )
+                );
+
+                // Add State and Name, at Runtime
+                for (var x = 0; x < temp.length; x++) {
+                    temp[x].stateAtRunTime = 'Deleted';
+                    for (var y = 0; y < this.dashboards.length; y++) {
+                        if (this.dashboards[y].id ==
+                            temp[x].dashboardID) {
+                                temp[x].stateAtRunTime = this.dashboards[y].state;
+                                temp[x].nameAtRunTime = this.dashboards[y].name;
+                        };
+                    };
+                };
+
                 console.log('Global-Variables dashboardsRecent 1', temp)
                 this.isDirtyDashboardsRecent = false;
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
