@@ -715,6 +715,7 @@ export class GlobalVariableService {
     selectedWidgetIDs: number[] = [];
 
     // Session
+    getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
     currentUser: CanvasUser;
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     currentDashboardID:number = 0; // = new BehaviorSubject<number>(null);
@@ -3284,7 +3285,7 @@ export class GlobalVariableService {
 
         // TODO - cleaner switch to http?
         // if (this.filePath == './assets/data.widgets.json') {
-        if (this.filePath == this.filePath) {
+        if (this.getSource = 'Test') {
             const params = new HttpParams()
                 .set('orderBy', '"dashboardTabID"')
                 .set('limitToFirst', "1");
@@ -3367,7 +3368,9 @@ export class GlobalVariableService {
                 )}
             );
 
-        } else {
+        };
+        
+        if (this.getSource == 'File') {
             return new Promise((resolve, reject) => {
                 // Get from source - files for now ...
                 dl.json({url: this.filePath}, {children: 'graphSpecification'}, (err, currentData) => {

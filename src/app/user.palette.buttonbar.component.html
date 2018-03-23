@@ -41,7 +41,7 @@
                         </nav>
                     </div>
 
-                    <div class="gridSelectedTitle">
+                    <div class="gridSelectedTitle" *ngIf="paletteButtonsSelected">
                         Selected: {{ paletteButtonsSelected.length }}
                     </div>
                     <div class="gridSelected">
