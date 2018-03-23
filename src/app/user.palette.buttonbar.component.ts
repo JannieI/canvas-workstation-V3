@@ -58,23 +58,24 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.widgetButtonsSelected = this. globalVariableService.widgetButtonsSelected;
 
 
-
+        // Set Available and Selected Arrays
         this.globalVariableService.getPaletteButtonBar().then( pb => {
 
             // Total list of available buttons
             this.paletteButtons = pb.slice();
             this.paletteButtonsSelected = [];
 
-            // Mark user ones as selected
+            // Loop on ones for this user, and mark as selected in Available
             this.paletteButtons.forEach(pb => {
-                this.paletteButtonsSelected.forEach(pbs => {
+                this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs => {
                     if (pb.id == pbs.paletteButtonBarID) {
                         pb.isSelected = true;
+                        console.log('xx id', pb.id)
                     };
                 });
             });
 
-            // Move selected ones across
+            // Move selected ones from Available to Selected
             this.clickAdd();
 
         });
@@ -428,7 +429,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         // Delete the inital selected ones for this user
         this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs => 
-            this.globalVariableService.deleteUserPaletteButtonBar(pbs.id)
+            this.globalVariableService.deletep(pbs.id)
         )
 
         // Add the new ones

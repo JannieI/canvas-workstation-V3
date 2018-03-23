@@ -2790,6 +2790,42 @@ export class GlobalVariableService {
         });
     }
 
+    deletePaletteButtonsSelected(id: number): Promise<string> {
+        // Description: Deletes a PaletteButtonsSelected
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deletePaletteButtonsSelected ...');
+
+        let url: string = 'paletteButtonsSelecteds';
+        this.filePath = './assets/data.paletteButtonsSelecteds.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+                    let dID: number = -1;
+                    for (var i = 0; i < this.currentPaletteButtonsSelected.value.length; i++) {
+                        if (this.currentPaletteButtonsSelected[i].id == id) {
+                            dID = i;
+                            break;
+                        };
+                    };
+                    if (dID >=0) {
+                        this.currentPaletteButtonsSelected.value.splice(dID, 1);
+                    };
+                    console.log('xx deletePaletteButtonsSelected DELETED', this.currentPaletteButtonsSelected)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('xx deletePaletteButtonsSelected FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
 
     addPaletteButtonsSelected(data: PaletteButtonsSelected): Promise<any> {
         // Description: Adds a new PaletteButtonsSelected

@@ -18,7 +18,7 @@
                         <nav>
                             <ul class="nav-list">
                                 <div *ngFor="let row of paletteButtons; let i = index" 
-                                    [style.background-color]="row.isSelected? 'beige' : 'transparent'"
+                                    [style.background-color]="row.isSelected? 'rgb(212, 212, 208)' : 'transparent'"
                                     (click)="clickAvailable(row.id, i)"
 
                                     >
@@ -48,7 +48,7 @@
                         <nav>
                             <ul class="nav-list">
                                 <div *ngFor="let row of paletteButtonsSelected; let i = index" 
-                                    [style.background-color]="row.isSelected? 'beige' : 'transparent'"
+                                    [style.background-color]="row.isSelected? 'rgb(212, 212, 208)' : 'transparent'"
                                     (click)="clickSelected(row.id, i)"
                                     >
                                     <span class="nav-link tooltip tooltip-md tooltip-right">
