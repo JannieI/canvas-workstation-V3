@@ -715,21 +715,22 @@ export class GlobalVariableService {
     selectedWidgetIDs: number[] = [];
 
     // Session
-    getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
+    actions: CanvasAction[] = [];
     currentUser: CanvasUser;
-    loggedIntoServer = new BehaviorSubject<boolean>(true);
+    datasourceToEditID = new BehaviorSubject<number>(null);
+    dsIDs: number[] = [];           // Dataset IDs
+    getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
     currentDashboardID:number = 0; // = new BehaviorSubject<number>(null);
     currentDashboardTabID:number = 0; //  = new BehaviorSubject<number>(1);
-    templateInUse = new BehaviorSubject<boolean>(false);
+    loggedIntoServer = new BehaviorSubject<boolean>(true);
+    menuActionResize = new BehaviorSubject<boolean>(false);
+	recentDashboards = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
-    datasourceToEditID = new BehaviorSubject<number>(null);
+    templateInUse = new BehaviorSubject<boolean>(false);
     widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
-    menuActionResize = new BehaviorSubject<boolean>(false);
-    userID: string = 'JannieI';  // TODO - unHardCode
-    dsIDs: number[] = [];           // Dataset IDs
     widgetGroup = new BehaviorSubject<number[]>([]);
-    actions: CanvasAction[] = [];
+    userID: string = 'JannieI';  // TODO - unHardCode
     
 
     // StatusBar

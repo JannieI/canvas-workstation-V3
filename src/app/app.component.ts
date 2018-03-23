@@ -25,6 +25,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 
 // Our Models
 import { CanvasAction }               from './models'
+import { DashboardRecent }            from './models'
 import { Dataset }                    from './models'
 import { Datasource }                 from './models'
 import { Field }                      from './models'
@@ -264,6 +265,7 @@ export class AppComponent implements OnInit {
     newWidget: boolean = false;
     paletteButtons = paletteButtons;
     presentationMode: boolean;
+	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
     selectWidgetIndex: number;
     selectDatasetID: number;
@@ -397,6 +399,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.hasDatasources.subscribe(
             i => this.hasDatasources = i
         );
+
         this.globalVariableService.editMode.subscribe(
             i => {
                     this.editMode = i;
@@ -405,6 +408,10 @@ export class AppComponent implements OnInit {
                  }
         );
 
+        this.globalVariableService.recentDashboards.subscribe(
+            i => this.recentDashboards = i
+        );
+        
         // This refreshes one W
         this.globalVariableService.changedWidget.subscribe(w => {
             if (w != null) {
@@ -3871,6 +3878,8 @@ console.log('xx size', size)
             this[methodName](param); // call it
         }
     }
+
+
 }
 
 // Naming conventions

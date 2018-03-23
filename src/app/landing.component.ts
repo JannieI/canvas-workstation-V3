@@ -73,6 +73,9 @@ export class LandingComponent implements OnInit {
 						};
 					};
 					this.recentDashboards = k;
+
+					// Globally
+					this.globalVariableService.recentDashboards.next(k);
 				});
 			});
 		});
@@ -109,7 +112,7 @@ export class LandingComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenRecentDashboard', '@Start');
 
-		// Cannot open deleted ones 
+		// Cannot open deleted ones
 		if (this.recentDashboards[index].stateAtRunTime == 'Deleted') {
 			this.globalVariableService.showStatusBarMessage(
 				{
