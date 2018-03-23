@@ -21,6 +21,7 @@ import { ButtonBarAvailable}          from './models'
 import { ButtonBarSelected }          from './models';
 import { Dashboard }                  from './models';
 import { PaletteButtonBar }           from './models';
+import { PaletteButtonsSelected }     from './models';
 import { UserPaletteButtonBar }       from './models';
 import { WidgetCheckpointsComponent } from 'app/widget.checkpoints.component';
 
@@ -38,7 +39,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
     dashboards: Dashboard[];
     dashboardTags: DashboardTag[];
     paletteButtons: PaletteButtonBar[];
-    paletteButtonsSelected: PaletteButtonBar[];
+    paletteButtonsSelected: PaletteButtonsSelected[];
     userPaletteButtons: UserPaletteButtonBar[];
     widgetButtonsAvailable: ButtonBarAvailable[];
     widgetButtonsSelected: ButtonBarSelected[];
@@ -124,7 +125,26 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
             if (this.paletteButtons[i].isSelected) {
                 availID.push(this.paletteButtons[i].id);
-                this.paletteButtonsSelected.push(this.paletteButtons[i]);
+                this.paletteButtonsSelected.push(
+                    {
+                        id: this.paletteButtons[i].id,
+                        userID: this.globalVariableService.userID,
+                        mainmenuItem: this.paletteButtons[i].mainmenuItem,
+                        menuText: this.paletteButtons[i].menuText,
+                        shape: this.paletteButtons[i].shape,
+                        size: this.paletteButtons[i].size,
+                        class: this.paletteButtons[i].class,
+                        backgroundColor: this.paletteButtons[i].backgroundColor,
+                        accesskey: this.paletteButtons[i].accesskey,
+                        sortOrder: this.paletteButtons[i].sortOrder,
+                        sortOrderSelected: this.paletteButtons[i].sortOrderSelected,
+                        isDefault: this.paletteButtons[i].isDefault,
+                        functionName: this.paletteButtons[i].functionName,
+                        params: this.paletteButtons[i].params,
+                        tooltipContent: this.paletteButtons[i].tooltipContent,
+                        isSelected: this.paletteButtons[i].isSelected
+                    }
+                );
             };
         };
 
@@ -319,7 +339,26 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Move all the defaults across
         for (var i = 0; i < this.paletteButtons.length; i++) {
             if (this.paletteButtons[i].isDefault) {
-                this.paletteButtonsSelected.push(this.paletteButtons[i]);
+                this.paletteButtonsSelected.push(
+                    {
+                        id: this.paletteButtons[i].id,
+                        userID: this.globalVariableService.userID,
+                        mainmenuItem: this.paletteButtons[i].mainmenuItem,
+                        menuText: this.paletteButtons[i].menuText,
+                        shape: this.paletteButtons[i].shape,
+                        size: this.paletteButtons[i].size,
+                        class: this.paletteButtons[i].class,
+                        backgroundColor: this.paletteButtons[i].backgroundColor,
+                        accesskey: this.paletteButtons[i].accesskey,
+                        sortOrder: this.paletteButtons[i].sortOrder,
+                        sortOrderSelected: this.paletteButtons[i].sortOrderSelected,
+                        isDefault: this.paletteButtons[i].isDefault,
+                        functionName: this.paletteButtons[i].functionName,
+                        params: this.paletteButtons[i].params,
+                        tooltipContent: this.paletteButtons[i].tooltipContent,
+                        isSelected: this.paletteButtons[i].isSelected
+                    }
+                );
             };
         };
 
@@ -352,6 +391,12 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 };
             this.globalVariableService.addUserPaletteButtonBar(newUserPaletteButtonBar);
         });
+
+        // Remember for next time
+        this.globalVariableService.currentPaletteButtonsSelected = this.paletteButtonsSelected;
+        this.paletteButtonsSelected.forEach( ps => 
+            this.globalVariableService.savePaletteButtonsSelected(ps)
+        );
 
         // Inform subscribers
         this.globalVariableService.paletteButtons.next(this.paletteButtonsSelected);

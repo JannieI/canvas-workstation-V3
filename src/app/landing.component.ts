@@ -57,15 +57,59 @@ export class LandingComponent implements OnInit {
 		// Load D
 		this.globalVariableService.getDashboards().then(i => {
 			// Sample Dashboards
-			this.globalVariableService.getDashboardSamples().then(j => {
-				this.sampleDashboards = j;
+			this.globalVariableService.getDashboardSamples().then(sD => {
+				this.sampleDashboards = sD;
 
 				// Recent D
-				this.globalVariableService.getDashboardsRecent(this.globalVariableService.currentUser.userID).then(k => {
-					this.recentDashboards = k;
+				this.globalVariableService.getDashboardsRecent(
+					this.globalVariableService.currentUser.userID
+					).then(recD => {
+					this.recentDashboards = recD;
 
-					// Globally
-					this.globalVariableService.recentDashboards.next(k);
+					// Palette buttons for current user
+					this.globalVariableService.getPaletteButtonsSelected().then( 
+						pBsel => {
+							
+							if (pBsel.length == 0) {
+								// Load the default ones
+								this.globalVariableService.getPaletteButtonBar().then(pb => {
+									pb.forEach(p => {
+										if (p.isDefault) {
+											this.globalVariableService.currentPaletteButtonsSelected.push(
+												{
+													id: p.id,
+													userID: this.globalVariableService.userID,
+													mainmenuItem: p.mainmenuItem,
+													menuText: p.menuText,
+													shape: p.shape,
+													size: p.size,
+													class: p.class,
+													backgroundColor: p.backgroundColor,
+													accesskey: p.accesskey,
+													sortOrder: p.sortOrder,
+													sortOrderSelected: p.sortOrderSelected,
+													isDefault: p.isDefault,
+													functionName: p.functionName,
+													params: p.params,
+													tooltipContent: p.tooltipContent,
+													isSelected: p.isSelected
+												}
+											);
+										};
+									});
+								}); 
+							} else {
+								this.globalVariableService.currentPaletteButtonsSelected = 
+								pBsel.filter(s => s.userID == this.globalVariableService.userID);
+
+							};
+
+							// Store for app to use
+
+							// Globally
+							this.globalVariableService.recentDashboards.next(recD);
+						}
+					);
 				});
 			});
 		});

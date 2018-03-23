@@ -2786,6 +2786,34 @@ export class GlobalVariableService {
         });
     }
 
+
+    addPaletteButtonsSelected(data: PaletteButtonsSelected): Promise<any> {
+        // Description: Adds a new PaletteButtonsSelected
+        // Returns: Added Data or error message
+        console.log('Global-Variables addPaletteButtonsSelected ...');
+
+        let url: string = 'paletteButtonsSelecteds';
+        this.filePath = './assets/data.paletteButtonsSelecteds.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    console.log('xx addPaletteButtonsSelected ADDED', data)
+                    resolve(data);
+                },
+                err => {
+                    console.log('xx addPaletteButtonsSelected FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getUserPaletteButtonBar(): Promise<UserPaletteButtonBar[]> {
         // Description: Gets currentgetUserPaletteButtonBar 
         // Returns: this.currentgetUserPaletteButtonBar object, unless:
