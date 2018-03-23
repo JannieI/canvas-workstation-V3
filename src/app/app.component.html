@@ -102,7 +102,7 @@
                                 <button *ngFor="let row of recentDashboards; let i = index"
                                     type="button" 
                                     clrDropdownItem
-                                    (click)="showRecentDashboard(i)">
+                                    (click)="showRecentDashboard(row.dashboardID)">
                                     {{ i + 1 }} {{ row.nameAtRunTime }} ( {{row.stateAtRunTime}} )
                                 </button>
                                     
