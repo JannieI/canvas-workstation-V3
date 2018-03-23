@@ -67,9 +67,9 @@ export class LandingComponent implements OnInit {
 					this.recentDashboards = recD;
 
 					// Palette buttons for current user
-					this.globalVariableService.getPaletteButtonsSelected().then( 
+					this.globalVariableService.getPaletteButtonsSelected().then(
 						pBsel => {
-							
+
 							// User has no Buttons selected, which will be the case for new users
 							if (pBsel.length == 0) {
 								// Load the default ones
@@ -105,16 +105,16 @@ export class LandingComponent implements OnInit {
 									// Add to DB, and Globally
 									let pPostAdd: PaletteButtonsSelected[] = [];
 									pPreAdd.forEach(d => {
-										this.globalVariableService.addPaletteButtonsSelected(d).then(
+										this.globalVariableService.addPaletteButtonsSelected([d]).then(
 											res => pPostAdd.push(res)
 										)
 									});
 									console.log('xx empty', this.globalVariableService.currentPaletteButtonsSelected.value)
-									
+
 									// Inform subscribers
 									this.globalVariableService.currentPaletteButtonsSelected.next(pPostAdd);
 									this.globalVariableService.recentDashboards.next(recD);
-								}); 
+								});
 							} else {
 								pBsel = pBsel.filter(
 									s => s.userID == this.globalVariableService.userID

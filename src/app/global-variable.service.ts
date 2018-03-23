@@ -2820,7 +2820,7 @@ export class GlobalVariableService {
                     // if (dID >=0) {
                     //     this.currentPaletteButtonsSelected.value.splice(dID, 1);
                     // };
-                    console.log('xx deletePaletteButtonsSelected DELETED', id)
+                    console.log('xx deletePaletteButtonsSelected DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
@@ -2831,7 +2831,35 @@ export class GlobalVariableService {
         });
     }
 
-    addPaletteButtonsSelected(data: PaletteButtonsSelected): Promise<any> {
+    // addPaletteButtonsSelected(data: PaletteButtonsSelected): Promise<any> {
+    //     // Description: Adds a new PaletteButtonsSelected
+    //     // Returns: Added Data or error message
+    //     console.log('Global-Variables addPaletteButtonsSelected ...');
+
+    //     let url: string = 'paletteButtonsSelecteds';
+    //     this.filePath = './assets/data.paletteButtonsSelecteds.json';
+
+    //     return new Promise<any>((resolve, reject) => {
+
+    //         const headers = new HttpHeaders()
+    //             .set("Content-Type", "application/json");
+
+    //         this.http.post('http://localhost:3000/' + url, data, {headers})
+    //         .subscribe(
+    //             data => {
+    //                 console.log('xx addPaletteButtonsSelected ADDED', data)
+    //                 resolve(data);
+    //             },
+    //             err => {
+    //                 console.log('xx addPaletteButtonsSelected FAILED', err);;
+    //                 resolve(err.Message);
+    //             }
+    //         )
+    //     });
+    // }
+
+
+    addPaletteButtonsSelected(data: PaletteButtonsSelected[]): Promise<any> {
         // Description: Adds a new PaletteButtonsSelected
         // Returns: Added Data or error message
         console.log('Global-Variables addPaletteButtonsSelected ...');
@@ -2841,20 +2869,24 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
+            let results: any[] = [];
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
-            .subscribe(
-                data => {
-                    console.log('xx addPaletteButtonsSelected ADDED', data)
-                    resolve(data);
-                },
-                err => {
-                    console.log('xx addPaletteButtonsSelected FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
+            data.forEach(d => {
+                this.http.post('http://localhost:3000/' + url, d, {headers})
+                .subscribe(
+                    res => {
+                        console.log('xx addPaletteButtonsSelected ADDED', res)
+                        results.push(res)
+                    },
+                    err => {
+                        console.log('xx addPaletteButtonsSelected FAILED', err);;
+                        resolve(err.Message);
+                    }
+                )
+            });
+            resolve(results);
         });
     }
 

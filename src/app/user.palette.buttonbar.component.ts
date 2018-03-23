@@ -24,6 +24,7 @@ import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 import { UserPaletteButtonBar }       from './models';
 import { WidgetCheckpointsComponent } from 'app/widget.checkpoints.component';
+import { delimiter } from 'path';
 
 
 @Component({
@@ -57,76 +58,27 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.widgetButtonsAvailable = this. globalVariableService.widgetButtonsAvailable;
         this.widgetButtonsSelected = this. globalVariableService.widgetButtonsSelected;
 
-
-        // Set Available and Selected Arrays
+        // Set Selectec and Total Available Arrays
         this.globalVariableService.getPaletteButtonBar().then( pb => {
 
-            // Total list of available buttons
+            // Total list of available buttons - slice is NB for ByVal
             this.paletteButtons = pb.slice();
-            this.paletteButtonsSelected = [];
+            this.paletteButtonsSelected = this.globalVariableService
+                .currentPaletteButtonsSelected.value.slice();
 
-            // Loop on ones for this user, and mark as selected in Available
-            this.paletteButtons.forEach(pb => {
-                this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs => {
-                    if (pb.id == pbs.paletteButtonBarID) {
-                        pb.isSelected = true;
+            // Loop on selected ones in Available, and remove them
+            let delIDs: number[] = [];
+            for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
+                this.paletteButtonsSelected.forEach(pbs => {
+                    if (this.paletteButtons[i].id == pbs.paletteButtonBarID) {
+                        delIDs.push(i);
                     };
                 });
-            });
-
-            // Move selected ones from Available to Selected
-            this.clickAdd();
+            };
+            delIDs.forEach( p => this.paletteButtons.splice(p, 1))
 
         });
 
-
-
-
-
-
-
-        // Works !!!
-        // this.globalVariableService.getPaletteButtonBar().then( pb => {
-        //     this.globalVariableService.getUserPaletteButtonBar().then( up => {
-
-        //         // Total list of available buttons
-        //         this.paletteButtons = pb.slice();
-        //         this.paletteButtonsSelected = [];
-
-        //         // Buttons for this user
-        //         this.userPaletteButtons = up.filter(u => 
-        //             u.userID == this.globalVariableService.userID).slice();
-
-        //         // If none as yet, give him default ones
-        //         if (this.userPaletteButtons.length == 0) {
-        //             this.paletteButtons.forEach(p => {
-        //                 if (p.isDefault) {
-        //                     this.userPaletteButtons.push(
-        //                         {
-        //                             id: null,
-        //                             userID: this.globalVariableService.userID,
-        //                             paletteButtonBarID: p.id
-        //                         }
-        //                     )
-
-        //                 };
-        //             });
-        //         };
-
-        //         // Mark user ones as selected
-        //         this.paletteButtons.forEach(pb => {
-        //             this.userPaletteButtons.forEach(up => {
-        //                 if (pb.id == up.paletteButtonBarID) {
-        //                     pb.isSelected = true;
-        //                 };
-        //             });
-        //         });
-
-        //         // Move selected ones across
-        //         this.clickAdd();
-
-        //     });
-        // })
     }
 
     clickAvailable(id: number, index: number){
@@ -217,6 +169,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
             if (this.paletteButtonsSelected[i].isSelected) {
                 availID.push(this.paletteButtonsSelected[i].id);
                 this.paletteButtons.push(this.paletteButtonsSelected[i]);
+                console.log('xx pushed', i, availID, this.paletteButtons.length, this.paletteButtonsSelected.length)
             };
         };
 
@@ -404,41 +357,20 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Save data, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Delete all originals
-        // TODO - with DB, only change the Delta
-
-        //  WORKS !!!
-        // this.globalVariableService.currentUserPaletteButtonBar.forEach(up => {
-        //     if (up.userID == this.globalVariableService.userID) {
-        //         this.globalVariableService.deleteUserPaletteButtonBar(up.id);
-        //     };
-        // });
-
-        // Add Selected ones
-        // this.paletteButtonsSelected.forEach(ps => {
-        //     let newUserPaletteButtonBar: UserPaletteButtonBar = 
-        //         {
-        //             id: null,
-        //             userID: this.globalVariableService.userID,
-        //             paletteButtonBarID: ps.id
-        //         };
-        //     this.globalVariableService.addUserPaletteButtonBar(newUserPaletteButtonBar);
-        // });
-
 console.log('xx sav1', this.globalVariableService.currentPaletteButtonsSelected.value)
         // Delete the inital selected ones for this user from the DB only
         this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs => 
             this.globalVariableService.deletePaletteButtonsSelected(pbs.id)
         )
-
+        this.globalVariableService.addPaletteButtonsSelected(this.paletteButtonsSelected)
         // Add the new ones to the DB
         this.paletteButtonsSelected.forEach(pbs =>
-            this.globalVariableService.addPaletteButtonsSelected(pbs)
+            this.globalVariableService.addPaletteButtonsSelected([pbs]).then(res =>
+                this.globalVariableService.currentPaletteButtonsSelected.next(res)
+            )
         );
 
         // Refresh global var, informing subscribers
-        this.globalVariableService.currentPaletteButtonsSelected.next(
-            this.paletteButtonsSelected);
 
         // WORKS !!!
         // this.paletteButtonsSelected.forEach( ps => 
