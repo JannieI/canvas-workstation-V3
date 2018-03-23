@@ -1661,7 +1661,7 @@
 <!-- Palette -->
 <div class="palette" *ngIf="editMode  &&  !presentationMode">
 
-    <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
+    <!-- <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
         <clr-icon
             shape="pencil"
             size="20"
@@ -1795,7 +1795,7 @@
             Un-/Select none, some, all Widgets and Slicers 
             (depending on what was selected)
         </span>
-    </span>
+    </span> -->
 
 
 
@@ -1812,6 +1812,7 @@
             [attr.shape]="row.shape"
             [attr.size]="row.size"
             class="buttonBarIcon"
+            [style.background-color]="row.backgroundColor"
             (click)="paletteFunctionCall(row.functionName, row.params)"
             >
         </clr-icon>
@@ -2214,11 +2215,11 @@
 </login>
 
 
-<!-- Modal: Widget Button Bar -->
+<!-- Modal: Palette Button Bar -->
 <palette-buttonbar
     *ngIf="showModalUserPaletteButtonBar"
     (formUserWidgetButtonBarClosed)="handleCloseUserPaletteButtonBar($event)">
-    Load Widget Button Bar ...
+    Load Palette Button Bar ...
 </palette-buttonbar>
 
 

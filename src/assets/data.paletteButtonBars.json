@@ -1,6 +1,42 @@
 [
     {
         "id": 1,
+        "mainmenuItem": "General",
+        "menuText": "Edit Mode",
+        "shape": "pencil",
+        "size": "",
+        "class": "",
+        "backgroundColor": "lightgray",
+        "accesskey": "",
+        "sortOrder":  1,
+        "sortOrderSelected": null,
+        "isDefault": true,
+        "functionName": "clickMenuPaletteEdit",
+        "params": "i",
+        "tooltipContent": "Edit any Widget selected",
+        "isSelected": false
+    },
+    {
+        "id": 2,
+        "mainmenuItem": "General",
+        "menuText": "Edit Title",
+        "shape": "pencil",
+        "size": "",
+        "class": "",
+        "backgroundColor": "lightgray",
+        "accesskey": "",
+        "sortOrder":  144,
+        "sortOrderSelected": null,
+        "isDefault": false,
+        "functionName": "contextmenuWidgetTitle",
+        "params": "",
+        "tooltipContent": "",
+        "isSelected": false
+    },
+
+    
+    {
+        "id": 50,
         "mainmenuItem": "Edit",
         "menuText": "Edit Mode",
         "shape": "pencil",
@@ -8,7 +44,7 @@
         "class": "",
         "backgroundColor": "rgb(223, 223, 171)",
         "accesskey": "",
-        "sortOrder":  1,
+        "sortOrder":  50,
         "sortOrderSelected": null,
         "isDefault": true,
         "functionName": "clickMenuEditMode",
@@ -17,7 +53,7 @@
         "isSelected": false
     },
     {
-        "id": 2,
+        "id": 51,
         "mainmenuItem": "Edit",
         "menuText": "Undo",
         "shape": "pencil",
@@ -25,7 +61,7 @@
         "class": "",
         "backgroundColor": "rgb(223, 223, 171)",
         "accesskey": "",
-        "sortOrder":  2,
+        "sortOrder":  51,
         "sortOrderSelected": null,
         "isDefault": true,
         "functionName": "clickMenuEditUndo",
@@ -34,7 +70,7 @@
         "isSelected": false
     },
     {
-        "id": 3,
+        "id": 52,
         "mainmenuItem": "Edit",
         "menuText": "Redo",
         "shape": "pencil",
@@ -42,7 +78,7 @@
         "class": "",
         "backgroundColor": "rgb(223, 223, 171)",
         "accesskey": "",
-        "sortOrder":  3,
+        "sortOrder":  52,
         "sortOrderSelected": null,
         "isDefault": true,
         "functionName": "clickMenuEditRedo",
@@ -51,7 +87,7 @@
         "isSelected": false
     },
     {
-        "id": 4,
+        "id": 53,
         "mainmenuItem": "Edit",
         "menuText": "Select All",
         "shape": "pencil",
@@ -59,7 +95,7 @@
         "class": "",
         "backgroundColor": "rgb(223, 223, 171)",
         "accesskey": "",
-        "sortOrder":  4,
+        "sortOrder":  53,
         "sortOrderSelected": null,
         "isDefault": false,
         "functionName": "clickMenuEditSelectAllNone('All')",
@@ -68,7 +104,7 @@
         "isSelected": false
     },
     {
-        "id": 5,
+        "id": 54,
         "mainmenuItem": "Edit",
         "menuText": "Select None",
         "shape": "pencil",
@@ -76,7 +112,7 @@
         "class": "",
         "backgroundColor": "rgb(223, 223, 171)",
         "accesskey": "",
-        "sortOrder":  5,
+        "sortOrder":  54,
         "sortOrderSelected": null,
         "isDefault": false,
         "functionName": "clickMenuEditSelectAllNone('None')",
@@ -85,7 +121,7 @@
         "isSelected": false
     },
     {
-        "id": 6,
+        "id": 55,
         "mainmenuItem": "Edit",
         "menuText": "Select Auto",
         "shape": "pencil",
@@ -93,7 +129,7 @@
         "class": "",
         "backgroundColor": "rgb(223, 223, 171)",
         "accesskey": "",
-        "sortOrder":  6,
+        "sortOrder":  55,
         "sortOrderSelected": null,
         "isDefault": false,
         "functionName": "clickMenuEditSelectAllNone('Auto')",
@@ -101,6 +137,8 @@
         "tooltipContent": "UnSelect all the Widgets on this Tab",
         "isSelected": false
     },
+
+
     {
         "id": 7,
         "mainmenuItem": "Dashboard", 
@@ -2429,22 +2467,6 @@
         "params": "",
         "tooltipContent": "",
         "isSelected": false
-    },
-    {
-        "id": 144,
-        "mainmenuItem": "Context",
-        "menuText": "Edit Title",
-        "shape": "pencil",
-        "size": "",
-        "class": "",
-        "backgroundColor": "lightgray",
-        "accesskey": "",
-        "sortOrder":  144,
-        "sortOrderSelected": null,
-        "isDefault": false,
-        "functionName": "contextmenuWidgetTitle",
-        "params": "",
-        "tooltipContent": "",
-        "isSelected": false
     }
+
 ]

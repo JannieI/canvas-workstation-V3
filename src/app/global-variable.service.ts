@@ -724,7 +724,8 @@ export class GlobalVariableService {
     currentDashboardTabID:number = 0; //  = new BehaviorSubject<number>(1);
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
-	recentDashboards = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
+    paletteButtons = new BehaviorSubject<PaletteButtonBar[]>([]);
+    recentDashboards = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);

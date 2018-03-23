@@ -24,7 +24,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService } 	  from './global-function.service';
 
 // Our Models
-import { CanvasAction }               from './models'
+import { CanvasAction, PaletteButtonBar }               from './models'
 import { DashboardRecent }            from './models'
 import { Dataset }                    from './models'
 import { Datasource }                 from './models'
@@ -263,7 +263,7 @@ export class AppComponent implements OnInit {
     moveLastX: number = 0;
     moveLastY: number = 0;
     newWidget: boolean = false;
-    paletteButtons = paletteButtons;
+    paletteButtons: PaletteButtonBar[] = [];
     presentationMode: boolean;
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
@@ -385,7 +385,10 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         // Initial
-
+        this.globalVariableService.paletteButtons.subscribe(
+            i => this.paletteButtons = i
+        );
+        
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.presentationMode.subscribe(

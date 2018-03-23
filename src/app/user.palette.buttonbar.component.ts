@@ -354,6 +354,9 @@ export class UserPaletteButtonBarComponent implements OnInit {
             this.globalVariableService.addUserPaletteButtonBar(newUserPaletteButtonBar);
         });
 
+        // Inform subscribers
+        this.globalVariableService.paletteButtons.next(this.paletteButtonsSelected);
+
 		this.formUserWidgetButtonBarClosed.emit(action);
     }
 
