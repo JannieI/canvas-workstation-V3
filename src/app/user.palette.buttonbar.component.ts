@@ -57,47 +57,76 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.widgetButtonsAvailable = this. globalVariableService.widgetButtonsAvailable;
         this.widgetButtonsSelected = this. globalVariableService.widgetButtonsSelected;
 
+
+
         this.globalVariableService.getPaletteButtonBar().then( pb => {
-            this.globalVariableService.getUserPaletteButtonBar().then( up => {
 
-                // Total list of available buttons
-                this.paletteButtons = pb.slice();
-                this.paletteButtonsSelected = [];
+            // Total list of available buttons
+            this.paletteButtons = pb.slice();
+            this.paletteButtonsSelected = [];
 
-                // Buttons for this user
-                this.userPaletteButtons = up.filter(u => 
-                    u.userID == this.globalVariableService.userID).slice();
-
-                // If none as yet, give him default ones
-                if (this.userPaletteButtons.length == 0) {
-                    this.paletteButtons.forEach(p => {
-                        if (p.isDefault) {
-                            this.userPaletteButtons.push(
-                                {
-                                    id: null,
-                                    userID: this.globalVariableService.userID,
-                                    paletteButtonBarID: p.id
-                                }
-                            )
-
-                        };
-                    });
-                };
-
-                // Mark user ones as selected
-                this.paletteButtons.forEach(pb => {
-                    this.userPaletteButtons.forEach(up => {
-                        if (pb.id == up.paletteButtonBarID) {
-                            pb.isSelected = true;
-                        };
-                    });
+            // Mark user ones as selected
+            this.paletteButtons.forEach(pb => {
+                this.paletteButtonsSelected.forEach(pbs => {
+                    if (pb.id == pbs.paletteButtonBarID) {
+                        pb.isSelected = true;
+                    };
                 });
-
-                // Move selected ones across
-                this.clickAdd();
-
             });
-        })
+
+            // Move selected ones across
+            this.clickAdd();
+
+        });
+
+
+
+
+
+
+
+        // Works !!!
+        // this.globalVariableService.getPaletteButtonBar().then( pb => {
+        //     this.globalVariableService.getUserPaletteButtonBar().then( up => {
+
+        //         // Total list of available buttons
+        //         this.paletteButtons = pb.slice();
+        //         this.paletteButtonsSelected = [];
+
+        //         // Buttons for this user
+        //         this.userPaletteButtons = up.filter(u => 
+        //             u.userID == this.globalVariableService.userID).slice();
+
+        //         // If none as yet, give him default ones
+        //         if (this.userPaletteButtons.length == 0) {
+        //             this.paletteButtons.forEach(p => {
+        //                 if (p.isDefault) {
+        //                     this.userPaletteButtons.push(
+        //                         {
+        //                             id: null,
+        //                             userID: this.globalVariableService.userID,
+        //                             paletteButtonBarID: p.id
+        //                         }
+        //                     )
+
+        //                 };
+        //             });
+        //         };
+
+        //         // Mark user ones as selected
+        //         this.paletteButtons.forEach(pb => {
+        //             this.userPaletteButtons.forEach(up => {
+        //                 if (pb.id == up.paletteButtonBarID) {
+        //                     pb.isSelected = true;
+        //                 };
+        //             });
+        //         });
+
+        //         // Move selected ones across
+        //         this.clickAdd();
+
+        //     });
+        // })
     }
 
     clickAvailable(id: number, index: number){
@@ -127,8 +156,9 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 availID.push(this.paletteButtons[i].id);
                 this.paletteButtonsSelected.push(
                     {
-                        id: this.paletteButtons[i].id,
+                        id: null,
                         userID: this.globalVariableService.userID,
+                        paletteButtonBarID: this.paletteButtons[i].id,
                         mainmenuItem: this.paletteButtons[i].mainmenuItem,
                         menuText: this.paletteButtons[i].menuText,
                         shape: this.paletteButtons[i].shape,
@@ -154,7 +184,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
             this.paletteButtonsSelected[i].sortOrderSelected = i + 1;
         };
 
-        // Delete the selected one, reverse order
+        // Delete the selected one from the Available list, in reverse order
         for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
             if(availID.indexOf(this.paletteButtons[i].id) >= 0) {
                 this.paletteButtons.splice(i, 1);
@@ -341,8 +371,9 @@ export class UserPaletteButtonBarComponent implements OnInit {
             if (this.paletteButtons[i].isDefault) {
                 this.paletteButtonsSelected.push(
                     {
-                        id: this.paletteButtons[i].id,
+                        id: null,
                         userID: this.globalVariableService.userID,
+                        paletteButtonBarID: this.paletteButtons[i].id,
                         mainmenuItem: this.paletteButtons[i].mainmenuItem,
                         menuText: this.paletteButtons[i].menuText,
                         shape: this.paletteButtons[i].shape,
@@ -375,31 +406,47 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         // Delete all originals
         // TODO - with DB, only change the Delta
-        this.globalVariableService.currentUserPaletteButtonBar.forEach(up => {
-            if (up.userID == this.globalVariableService.userID) {
-                this.globalVariableService.deleteUserPaletteButtonBar(up.id);
-            };
-        });
+
+        //  WORKS !!!
+        // this.globalVariableService.currentUserPaletteButtonBar.forEach(up => {
+        //     if (up.userID == this.globalVariableService.userID) {
+        //         this.globalVariableService.deleteUserPaletteButtonBar(up.id);
+        //     };
+        // });
 
         // Add Selected ones
-        this.paletteButtonsSelected.forEach(ps => {
-            let newUserPaletteButtonBar: UserPaletteButtonBar = 
-                {
-                    id: null,
-                    userID: this.globalVariableService.userID,
-                    paletteButtonBarID: ps.id
-                };
-            this.globalVariableService.addUserPaletteButtonBar(newUserPaletteButtonBar);
-        });
+        // this.paletteButtonsSelected.forEach(ps => {
+        //     let newUserPaletteButtonBar: UserPaletteButtonBar = 
+        //         {
+        //             id: null,
+        //             userID: this.globalVariableService.userID,
+        //             paletteButtonBarID: ps.id
+        //         };
+        //     this.globalVariableService.addUserPaletteButtonBar(newUserPaletteButtonBar);
+        // });
 
-        // Remember for next time
-        this.globalVariableService.currentPaletteButtonsSelected = this.paletteButtonsSelected;
-        this.paletteButtonsSelected.forEach( ps => 
-            this.globalVariableService.savePaletteButtonsSelected(ps)
+
+        // Delete the inital selected ones for this user
+        this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs => 
+            this.globalVariableService.deleteUserPaletteButtonBar(pbs.id)
+        )
+
+        // Add the new ones
+        this.paletteButtonsSelected.forEach(pbs =>
+            this.globalVariableService.addUserPaletteButtonBar(pbs)
         );
 
+        // Remember for next time
+        this.globalVariableService.currentPaletteButtonsSelected.next(
+            this.paletteButtonsSelected);
+
+        // WORKS !!!
+        // this.paletteButtonsSelected.forEach( ps => 
+        //     this.globalVariableService.savePaletteButtonsSelected(ps)
+        // );
+
         // Inform subscribers
-        this.globalVariableService.paletteButtons.next(this.paletteButtonsSelected);
+        // this.globalVariableService.paletteButtons.next(this.paletteButtonsSelected);
 
 		this.formUserWidgetButtonBarClosed.emit(action);
     }

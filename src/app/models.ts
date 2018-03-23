@@ -76,7 +76,8 @@ export class UserPaletteButtonBar {
 
 export class PaletteButtonsSelected {
     id: number;
-    userID: string;                         // User to which Button belongs
+    userID: string;                         // FK to User, to which Button belongs
+    paletteButtonBarID: number;             // FK to PaletteButtonBar
     mainmenuItem: string;
     menuText: string;
     shape: string;

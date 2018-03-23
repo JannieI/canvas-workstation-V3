@@ -14,7 +14,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { Datasource } 				  from './models';
+import { Datasource, PaletteButtonsSelected } 				  from './models';
 import { Dashboard } 				  from './models';
 import { DashboardRecent } 			  from './models';
 import { DashboardTab } 			  from './models';
@@ -70,15 +70,19 @@ export class LandingComponent implements OnInit {
 					this.globalVariableService.getPaletteButtonsSelected().then( 
 						pBsel => {
 							
+							// User has no Buttons selected, which will be the case for new users
 							if (pBsel.length == 0) {
 								// Load the default ones
 								this.globalVariableService.getPaletteButtonBar().then(pb => {
+									let pPreAdd: PaletteButtonsSelected[] = [];
+
 									pb.forEach(p => {
 										if (p.isDefault) {
-											this.globalVariableService.currentPaletteButtonsSelected.push(
+											pPreAdd.push(
 												{
-													id: p.id,
+													id: null,
 													userID: this.globalVariableService.userID,
+													paletteButtonBarID: p.id,
 													mainmenuItem: p.mainmenuItem,
 													menuText: p.menuText,
 													shape: p.shape,
@@ -97,17 +101,36 @@ export class LandingComponent implements OnInit {
 											);
 										};
 									});
+
+									// Add to DB, and Globally
+									let pPostAdd: PaletteButtonsSelected[] = [];
+									pPreAdd.forEach(d => {
+										this.globalVariableService.addPaletteButtonsSelected(d).then(
+											res => pPostAdd.push(res)
+										)
+									});
+									console.log('xx empty', this.globalVariableService.currentPaletteButtonsSelected.value)
+									
+									// Inform subscribers
+									this.globalVariableService.currentPaletteButtonsSelected.next(pPostAdd);
+									this.globalVariableService.recentDashboards.next(recD);
 								}); 
 							} else {
-								this.globalVariableService.currentPaletteButtonsSelected = 
-								pBsel.filter(s => s.userID == this.globalVariableService.userID);
+								pBsel = pBsel.filter(
+									s => s.userID == this.globalVariableService.userID
+								);
+
+								console.log('xx exists', pBsel)
+
+								// Inform subscribers
+								this.globalVariableService.currentPaletteButtonsSelected
+									.next(pBsel);
+								this.globalVariableService.recentDashboards.next(recD);
 
 							};
 
 							// Store for app to use
 
-							// Globally
-							this.globalVariableService.recentDashboards.next(recD);
 						}
 					);
 				});

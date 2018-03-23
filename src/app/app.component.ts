@@ -385,7 +385,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         // Initial
-        this.globalVariableService.paletteButtons.subscribe(
+        this.globalVariableService.currentPaletteButtonsSelected.subscribe(
             i => this.paletteButtons = i
         );
         

@@ -725,8 +725,8 @@ export class GlobalVariableService {
     currentDashboardTabID:number = 0; //  = new BehaviorSubject<number>(1);
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
-    paletteButtons = new BehaviorSubject<PaletteButtonBar[]>([]);
-    currentPaletteButtonsSelected: PaletteButtonsSelected[] = [];
+    // paletteButtons = new BehaviorSubject<PaletteButtonBar[]>([]);
+    currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
     recentDashboards = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
@@ -2744,16 +2744,20 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.currentPaletteButtonsSelected = data;
+                        this.currentPaletteButtonsSelected.next(data);
 
                         this.isDirtyPaletteButtonsSelected = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getgetPaletteButtonsSelected 1', this.currentPaletteButtonsSelected)
-                        resolve(this.currentPaletteButtonsSelected);
+                        console.log('Global-Variables getgetPaletteButtonsSelected 1', 
+                            this.currentPaletteButtonsSelected.value);
+
+                        resolve(this.currentPaletteButtonsSelected.value);
                     });
             } else {
-                console.log('Global-Variables getgetPaletteButtonsSelected 2', this.currentPaletteButtonsSelected)
-                resolve(this.currentPaletteButtonsSelected);
+                console.log('Global-Variables getgetPaletteButtonsSelected 2', 
+                    this.currentPaletteButtonsSelected.value);
+
+                resolve(this.currentPaletteButtonsSelected.value);
             }
         });
 
