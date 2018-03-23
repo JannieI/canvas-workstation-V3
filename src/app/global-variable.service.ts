@@ -38,6 +38,7 @@ import { DatasourcePivot }            from './models';
 import { Field }                      from './models';
 import { FieldMetadata }              from './models';
 import { PaletteButtonBar }           from './models';
+import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';
 import { Transformation }             from './models';
 import { UserPaletteButtonBar }       from './models';
@@ -725,6 +726,7 @@ export class GlobalVariableService {
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
     paletteButtons = new BehaviorSubject<PaletteButtonBar[]>([]);
+    currentPaletteButtonsSelected: PaletteButtonsSelected[] = [];
     recentDashboards = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
@@ -789,7 +791,7 @@ export class GlobalVariableService {
     isDirtyUserPreferences: boolean = true;
     isDirtyPaletteButtonBar: boolean = true;
     isDirtyUserPaletteButtonBar: boolean = true;
-    
+    isDirtyPaletteButtonsSelected: boolean = true;
     
 
     // Settings that can be set via UI for next time, from then on it will change
@@ -2724,6 +2726,37 @@ export class GlobalVariableService {
                 }
             )
         });
+    }
+
+    getPaletteButtonsSelected(): Promise<PaletteButtonsSelected[]> {
+        // Description: Gets currentgetPaletteButtonsSelected 
+        // Returns: this.currentgetPaletteButtonsSelected object, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getPaletteButtonsSelected ...');
+
+        let url: string = 'paletteButtonsSelecteds';
+        this.filePath = './assets/data.paletteButtonsSelecteds.json';
+
+        return new Promise<PaletteButtonsSelected[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if (this.isDirtyPaletteButtonsSelected) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.currentPaletteButtonsSelected = data;
+
+                        this.isDirtyPaletteButtonsSelected = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('Global-Variables getgetPaletteButtonsSelected 1', this.currentPaletteButtonsSelected)
+                        resolve(this.currentPaletteButtonsSelected);
+                    });
+            } else {
+                console.log('Global-Variables getgetPaletteButtonsSelected 2', this.currentPaletteButtonsSelected)
+                resolve(this.currentPaletteButtonsSelected);
+            }
+        });
+
     }
 
     getUserPaletteButtonBar(): Promise<UserPaletteButtonBar[]> {
