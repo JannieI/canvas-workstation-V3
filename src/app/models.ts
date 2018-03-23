@@ -74,6 +74,26 @@ export class UserPaletteButtonBar {
     paletteButtonBarID: number;             // FK to PaletteButtonBar
 }
 
+export class PaletteButtonsSelected {
+    id: number;
+    userID: string;                         // User to which Button belongs
+    mainmenuItem: string;
+    menuText: string;
+    shape: string;
+    size: number;
+    class: string;
+    backgroundColor: string;
+    accesskey: string;
+    sortOrder: number;
+    sortOrderSelected: number;             // SortOrder once selected, null ind DB, calced @Runtime
+    isDefault: boolean;
+    functionName: string;
+    params: string;
+    tooltipContent: string;
+    isSelected: boolean;                    // Toggled at Runtime
+
+}
+
 export class PaletteButtonBar {
     id: number;
     mainmenuItem: string;
