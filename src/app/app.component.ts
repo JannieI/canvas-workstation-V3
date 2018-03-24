@@ -330,6 +330,7 @@ export class AppComponent implements OnInit {
     showModalUserPaletteButtonBar: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
+    showPalette: boolean = true;
     showPopupMessage: boolean = false;
     showTitleForm: boolean = false;
     snapToGrid: boolean = true;
@@ -402,9 +403,8 @@ export class AppComponent implements OnInit {
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
         );
-        this.globalVariableService.showGrid.subscribe(
-            sG => this.showGrid = sG
-        );
+        this.globalVariableService.showPalette.subscribe(i => this.showPalette = i);
+        this.globalVariableService.showGrid.subscribe(i => this.showGrid = i);
         this.showModalLanding = this.globalVariableService.showModalLanding.value;
 
         this.globalVariableService.hasDatasources.subscribe(
@@ -524,6 +524,7 @@ export class AppComponent implements OnInit {
 
         this.globalVariableService.presentationMode.unsubscribe();
         this.globalVariableService.showGrid.unsubscribe();
+        this.globalVariableService.showPalette.unsubscribe();
         this.globalVariableService.hasDatasources.unsubscribe();
         this.globalVariableService.editMode.unsubscribe();
         this.globalVariableService.changedWidget.unsubscribe();
@@ -2441,6 +2442,17 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
     }
 
+    clickMenuViewShowPalette() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowPalette', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.globalVariableService.showPalette.next(!this.showPalette);
+
+        this.menuOptionClickPostAction();
+    }
+
     clickMenuViewShowGrid() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
@@ -2454,7 +2466,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewShowDataQuality() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowDataQuality', '@Start');
 
         this.menuOptionClickPreAction();
 
@@ -2465,7 +2477,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewShowComments() {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowGrid', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowComments', '@Start');
 
         this.menuOptionClickPreAction();
 

@@ -806,6 +806,14 @@
                         <div class="dropdown-divider"></div>
                         <button type="button" 
                             clrDropdownItem 
+                            (click)="clickMenuViewShowPalette()"
+                            title="Toggles a background grid"
+                            >
+                            Show Palette
+                            <clr-icon shape="check" size="12" *ngIf="showPalette"></clr-icon>
+                        </button>
+                        <button type="button" 
+                            clrDropdownItem 
                             (click)="clickMenuViewShowGrid()"
                             title="Toggles a background grid"
                             >
@@ -1659,7 +1667,7 @@
 
 
 <!-- Palette -->
-<div class="palette" *ngIf="editMode  &&  !presentationMode">
+<div class="palette" *ngIf="editMode  &&  !presentationMode  &&  showPalette">
 
     <!-- <span role="tooltip" aria-haspopup="true" class="tooltip tooltip-md tooltip-right">
         <clr-icon
