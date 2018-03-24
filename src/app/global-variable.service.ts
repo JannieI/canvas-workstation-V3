@@ -1598,35 +1598,27 @@ export class GlobalVariableService {
             if (w.slicerType == 'List') {
                 // Build array of selection values
                 let selectedValues: string[] = [];
-                let unSelectedValues: string[] = [];
+                let allSelectedValues: string[] = [];
 
                 w.slicerSelection.forEach(f => {
                     if (f.isSelected) { 
                         selectedValues.push(f.fieldValue);
-                    } else {
-                        unSelectedValues.push(f.fieldValue);
                     };
+                    allSelectedValues.push(f.fieldValue);
                 });
-console.log('xx Sl 2 arr', selectedValues, unSelectedValues, w.slicerAddRest ,w.slicerAddRestValue)
-console.log('xx Sl 2 arr',(w.slicerAddRest  &&  w.slicerAddRestValue) )
+
                 // Apply selected once, empty means all
                 let tempData: any = [];
-                if (selectedValues.length > 0) {
                     dataSet.data.forEach(d => {
                         if (selectedValues.indexOf(d[w.slicerFieldName]) >= 0) {
                             tempData.push(d);
-                        } else {
-                            console.log('xx Sl 2 arr', d[w.slicerFieldName])
-                            console.log('xx Sl 2 arr',unSelectedValues.indexOf(d[w.slicerFieldName]) )
-                            console.log('xx Sl 2 arr', selectedValues.indexOf(d[w.slicerFieldName]) )
-                            if ( (w.slicerAddRest  &&  w.slicerAddRestValue)  
-                                &&
-                                unSelectedValues.indexOf(d[w.slicerFieldName]) < 0) {
-                                    tempData.push(d);
-                            };
+                        };
+                        if ( (w.slicerAddRest  &&  w.slicerAddRestValue)  
+                            &&
+                            allSelectedValues.indexOf(d[w.slicerFieldName]) < 0) {
+                                tempData.push(d);
                         };
                     });
-                };
 
                 // Replace the filtered data, used by the graph
                 dataSet.data = tempData;

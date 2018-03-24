@@ -92,8 +92,8 @@ export class SlicerSingleComponent {
                     w.slicerAddRestValue = ev.target.checked;
                 };                    
             });
-            console.log('xx sl', this.slicer.id, this.slicer.slicerAddRestValue, this.slicer.slicerAddRest)
         };
+
         // Adjust the global Sl selection, for next time
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.id == id) {
@@ -129,7 +129,7 @@ export class SlicerSingleComponent {
         let wIDs: number[] = [];
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.datasourceID == datasourceID  &&  w.datasetID == datasetID  && w.widgetType != 'Slicer') {
-                console.log('xx Sl sng', w.id, w.widgetType, w.containerWidth)
+                // console.log('xx Sl sng', w.id, w.widgetType, w.containerWidth)
                 this.globalVariableService.changedWidget.next(w);
             }
         })
