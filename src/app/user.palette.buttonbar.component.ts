@@ -221,6 +221,14 @@ console.log('xx added', this.paletteButtons.length)
         // Move selected row(s) up
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveUp', '@Start');
 
+        // Stop if only 1 in Array, or first one is selected (as it cannot move down any further)
+        if (this.paletteButtonsSelected.length == 1) {
+            return;
+        };
+        if (this.paletteButtonsSelected[0].isSelected) {
+            return;
+        };
+
         // Swop sort order with predecessor. Note: sorting happend on sortOrderSelected, which is
         // only calced at Runtime, and null in DB
         for (var i = 1; i < this.paletteButtonsSelected.length; i++) {
@@ -271,7 +279,6 @@ console.log('xx added', this.paletteButtons.length)
         // Move selected row(s) down
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
 
-
         // Stop if only 1 in Array, or last one is selected (as it cannot move down any further)
         if (this.paletteButtonsSelected.length == 1) {
             return;
@@ -279,7 +286,7 @@ console.log('xx added', this.paletteButtons.length)
         if (this.paletteButtonsSelected[this.paletteButtonsSelected.length - 1].isSelected) {
             return;
         };
-        
+
         // Swop sort order with predecessor. Note: sorting happend on sortOrderSelected, which is
         // only calced at Runtime, and null in DB
         for (var i = 0; i < this.paletteButtonsSelected.length - 1; i++) {
