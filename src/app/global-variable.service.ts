@@ -237,6 +237,7 @@ const widgetTemplate: Widget =
         "slicerSelection": null,
         "slicerBins": null,
         "slicerAddRest": false,
+        "slicerAddRestValue": false,
         "shapeStroke": "",
         "shapeStrokeWidth": "",
         "shapeFill": "",
@@ -1615,6 +1616,7 @@ export class GlobalVariableService {
                     //     ||
                     //     ( (w.slicerAddRest)  &&  fieldValue.indexOf(d[w.slicerFieldName]) < 0 )
                     // );
+                    //slicerAddRestValue
                     dataSet.data.forEach(d => {
                         if (selectedValues.indexOf(d[w.slicerFieldName]) >= 0) {
                             tempData.push(d);
@@ -3592,6 +3594,7 @@ export class GlobalVariableService {
                 {key: 'tableWidth', 				type: 'int'},
                 {key: 'slicerType', 				type: 'string'},
                 {key: 'slicerAddRest', 				type: 'bool'},
+                {key: 'slicerAddRestValue', 		type: 'bool'},
                 {key: 'slicerNumberToShow', 		type: 'string'},
                 {key: 'slicerSortField', 			type: 'string'},
                 {key: 'slicerSortFieldOrder', 		type: 'string'},
@@ -3965,6 +3968,7 @@ export class GlobalVariableService {
                 w.slicerSelection = changedWidget.slicerSelection;
                 w.slicerBins = changedWidget.slicerBins;
                 w.slicerAddRest = changedWidget.slicerAddRest;
+                w.slicerAddRestValue = changedWidget.slicerAddRestValue;
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeFill = changedWidget.shapeFill;
@@ -4094,6 +4098,7 @@ export class GlobalVariableService {
                 w.slicerSelection = changedWidget.slicerSelection;
                 w.slicerBins = changedWidget.slicerBins;
                 w.slicerAddRest = changedWidget.slicerAddRest;
+                w.slicerAddRestValue = changedWidget.slicerAddRestValue;
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeFill = changedWidget.shapeFill;

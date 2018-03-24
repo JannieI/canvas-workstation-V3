@@ -4,6 +4,10 @@
     [style.height.px]="slicer.containerHeight-2"
     [style.width.px]="slicer.containerWidth-2"
     >
+    <div class="slicerFooter" *ngIf="slicer.slicerAddRest">
+        <input type="checkbox" id="slicerRest">
+        <label for="slicerRest">Add the Rest*</label>
+    </div>
     <div class="slicerHolder" *ngIf="slicer.slicerType=='List'"
         [style.height.px]="slicer.containerHasTitle? slicer.containerHeight-34 : slicer.containerHeight-8"
         [style.width.px]="slicer.containerWidth-18"

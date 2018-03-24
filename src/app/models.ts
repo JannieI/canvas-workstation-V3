@@ -586,6 +586,8 @@ export class Widget {
 
     // Slicer
     slicerAddRest: boolean;             // True to add everything NOT in slicerSelection
+    slicerAddRestValue: boolean;        // True means add all NOT in Sl 
+    // 1. All in Sl selected + AddRest = 100% of data)  2. None in Sl + AddRest = Compliment
     slicerBins: {isSelected: boolean; name: string; fromValue: number; toValue: number}[];
     slicerFieldName: string;            // Name to filter on
     slicerNumberToShow: string;         // Nr fields (values) to show in Slicer - default = All
