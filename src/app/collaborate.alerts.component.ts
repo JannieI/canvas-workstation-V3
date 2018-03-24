@@ -28,9 +28,14 @@ export class CollaborateAlertsComponent implements OnInit {
 
     @Output() formCollaborateAlertsClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
     canvasAlerts: CanvasAlert[];
+    filterFromDate: string;
+    filterToDate: string;
+    filterTextContains: string;
+    filterRead: string;
+    filterRecipient: string;
+    today = Date.now();
+    showTypeDashboard: boolean = false;
 
 
 	constructor(
@@ -39,15 +44,46 @@ export class CollaborateAlertsComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards;
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.globalVariableService.getCanvasAlerts().then (i =>
             this.canvasAlerts = i
         );
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
+        
 		this.formCollaborateAlertsClosed.emit(action);
+    }
+
+    clickFilter(fromDate: string, toDate: string) {
+        // Filter the Grid
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
+
+        console.log('xx fromDate', fromDate, toDate, this.filterTextContains, 
+        this.filterRead, this.filterRecipient)
+
+        this.globalVariableService.getCanvasAlerts().then (i => {
+            this.canvasAlerts = i;
+            if (this.filterFromDate != null) {
+                console.log('from')
+            };
+            if (this.filterToDate != null) {
+                console.log('to')
+            };
+            if (this.filterTextContains != null) {
+                console.log('text')
+            };
+            if (this.filterRead != null) {
+                console.log('read')
+            };
+            if (this.filterRecipient != null) {
+                console.log('rec')
+            };
+        });
     }
 }

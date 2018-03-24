@@ -1593,9 +1593,11 @@ export class GlobalVariableService {
 
         // Loop on related Sl and filter data
         relatedSlicers.forEach(w => {
+            console.log('sl-filter 0', w.slicerType)
 
             // Type = List
             if (w.slicerType == 'List') {
+
                 // Build array of selection values
                 let selectedValues: string[] = [];
                 let allSelectedValues: string[] = [];
@@ -1620,7 +1622,7 @@ export class GlobalVariableService {
                         };
                     });
 
-                // Replace the filtered data, used by the graph
+                    // Replace the filtered data, used by the graph
                 dataSet.data = tempData;
             };
 
@@ -1654,7 +1656,6 @@ export class GlobalVariableService {
                 dataSet.data = filterBinData;
             };
         });
-        console.log('xx filt Sl', this.currentWidgets, dataSet)
 
         // Filter data in [W] related to this dSet
         // TODO - cater later for cases for we use graphUrl

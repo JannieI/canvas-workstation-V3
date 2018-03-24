@@ -6,16 +6,42 @@
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
-
+                <p>The custom date is {{today | date:'yyyy-MM-dd'}}</p>
                 Alerts
                 <div class="propertyLine">
-                    Filter on:
-                    <input type="text" id="formFields_7" placeholder="Daterange">
-                    <input type="text" id="formFields_7" placeholder="Text">
+
+                    From Date:
+                    <input type="date" 
+                        clrDate 
+                        #fromDate>
+
+                    To Date:
+                    <input type="date" 
+                        clrDate 
+                        #toDate
+                        >
+
+                    Text Contains:
+                    <input type="text" 
+                        placeholder="Text" 
+                        [(ngModel)]="filterTextContains"
+                        >
+
+                    Read?
+                    <input type="checkbox" 
+                        [(ngModel)]="filterRead"
+                        >
+
+                    Recipients: 
+                    <input type="text" 
+                        placeholder="Text" 
+                        [(ngModel)]="filterRecipient"
+                        >
+
                     <button
                         type="button"
                         class="btn btn-secondary"
-                        (click)="clickClose('Close')"
+                        (click)="clickFilter(fromDate.value, toDate.value)"
                         >
                         Filter
                     </button>

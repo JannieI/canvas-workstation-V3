@@ -194,18 +194,17 @@ import { GlobalVariableService }      from './global-variable.service';
         // Get ID of latest dSet for the selected DS
         let dSetIDs: number[] = [];
         this.globalVariableService.currentDatasets.forEach(ds => {
-console.log('xx ..', this.selectedDatasourceID, ds.datasourceID, this.globalVariableService.currentDatasets)
             if (ds.datasourceID == this.selectedDatasourceID) {
                 dSetIDs.push(ds.id);
             };
         });
         this.selectedDatasetID = Math.max(...dSetIDs);
-console.log('xx this.selectedDatasetID', this.selectedDatasetID, dSetIDs)
+
         // Move into array
         this.dataValues = [];
         let tempData: any[] = this.globalVariableService.currentDatasets.filter(ds =>
             ds.id == this.selectedDatasetID)[0].dataRaw //['Origin'];
-            console.log('xx tempData', tempData)
+
         // Sort, if so wished
         if (this.slicerSortField != '') {
             if (this.slicerSortField != '') {
@@ -387,14 +386,28 @@ console.log('xx this.selectedDatasetID', this.selectedDatasetID, dSetIDs)
 
         // Must slicer when not All were selected
         // TODO - fix this
-        // if (this.localWidget.slicerNumberToShow != 'All') {
-        //     this.globalVariableService.currentDatasets.forEach(cd => {
-        //         if (cd.id == this.localWidget.datasetID) {
-        //             this.globalVariableService.filterSlicer(cd);
-        //             // console.log('xx newDataset', newDataset)
-        //         };
-        //     });
-        // };
+        if (this.localWidget.slicerNumberToShow != 'All') {
+            console.log('xx hier', this.localWidget.datasetID, this.localWidget.datasourceID, this.localWidget.datasetID)
+            this.globalVariableService.currentDatasets.forEach(cd => {
+                if (cd.id == this.localWidget.datasetID) {
+                    console.log('xx len before', cd.data.length)
+                    let temp = this.globalVariableService.filterSlicer(cd);
+                    // console.log('xx newDataset', newDataset)
+                    console.log('xx len later', cd.data.length, temp.data.length)
+                };
+            });
+
+            // Refresh Ws that are related to Sl
+            this.globalVariableService.currentWidgets.forEach(w => {
+                if (w.datasourceID == this.localWidget.datasourceID  
+                    &&  
+                    w.datasetID == this.localWidget.datasetID  
+                    && w.widgetType != 'Slicer') {
+                    console.log('xx Sl-Edt flt', w.id, w.widgetType, w.containerWidth)
+                    this.globalVariableService.changedWidget.next(w);
+                }
+            });
+        };
 
         if (this.newWidget) {
 

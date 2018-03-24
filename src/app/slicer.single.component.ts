@@ -121,18 +121,16 @@ export class SlicerSingleComponent {
             if (cd.id == datasetID) {
 
                 this.globalVariableService.filterSlicer(cd);
-            }
-        }
-        );
+            };
+        });
 
         // Refresh Ws that are related to Sl
-        let wIDs: number[] = [];
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.datasourceID == datasourceID  &&  w.datasetID == datasetID  && w.widgetType != 'Slicer') {
                 // console.log('xx Sl sng', w.id, w.widgetType, w.containerWidth)
                 this.globalVariableService.changedWidget.next(w);
-            }
-        })
+            };
+        });
     }
 
 }

@@ -507,7 +507,6 @@ export class DataPopupComponent implements OnInit {
         this.folderName = tempData[0].folderName;
         this.fileName = tempData[0].fileName;
 
-        console.log('xx tempData[0]', tempData[0])
         this.currentDatasetName = '';
         this.existingDSName = dsName;
 
