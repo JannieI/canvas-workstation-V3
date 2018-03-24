@@ -84,6 +84,16 @@ export class SlicerSingleComponent {
                 }
             });
         };
+
+        if (slicerType == 'TheRest') {
+            this.slicer.slicerAddRestValue = ev.target.checked;
+            this.globalVariableService.currentWidgets.forEach(w => {
+                if (w.id == id) {
+                    w.slicerAddRestValue = ev.target.checked;
+                };                    
+            });
+            console.log('xx sl', this.slicer.id, this.slicer.slicerAddRestValue, this.slicer.slicerAddRest)
+        };
         // Adjust the global Sl selection, for next time
         this.globalVariableService.currentWidgets.forEach(w => {
             if (w.id == id) {

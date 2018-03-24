@@ -4,7 +4,15 @@
     [style.height.px]="slicer.containerHeight-2"
     [style.width.px]="slicer.containerWidth-2"
     >
-    <div class="slicerFooter" *ngIf="slicer.slicerAddRest">
+    <div class="slicerFooter" *ngIf="slicer.slicerAddRest"
+        (click)="clickSlicerItem(
+            'TheRest',
+            i,
+            slicer.id,
+            slicer.datasourceID,
+            slicer.datasetID,
+            '',
+            $event)">
         <input type="checkbox" id="slicerRest">
         <label for="slicerRest">Add the Rest*</label>
     </div>

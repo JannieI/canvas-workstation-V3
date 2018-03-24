@@ -1607,26 +1607,23 @@ export class GlobalVariableService {
                         unSelectedValues.push(f.fieldValue);
                     };
                 });
-
+console.log('xx Sl 2 arr', selectedValues, unSelectedValues, w.slicerAddRest ,w.slicerAddRestValue)
+console.log('xx Sl 2 arr',(w.slicerAddRest  &&  w.slicerAddRestValue) )
                 // Apply selected once, empty means all
                 let tempData: any = [];
                 if (selectedValues.length > 0) {
-                    // tempData = dataSet.data.filter(d =>
-                    //     fieldValue.indexOf(d[w.slicerFieldName]) >= 0
-                    //     ||
-                    //     ( (w.slicerAddRest)  &&  fieldValue.indexOf(d[w.slicerFieldName]) < 0 )
-                    // );
-                    //slicerAddRestValue
                     dataSet.data.forEach(d => {
                         if (selectedValues.indexOf(d[w.slicerFieldName]) >= 0) {
                             tempData.push(d);
-                        };
-                        if ( (w.slicerAddRest)  
-                              &&
-                              unSelectedValues.indexOf(d[w.slicerFieldName]) < 0
-                              &&  
-                              selectedValues.indexOf(d[w.slicerFieldName]) < 0 ) {
-                                  tempData.push(d);
+                        } else {
+                            console.log('xx Sl 2 arr', d[w.slicerFieldName])
+                            console.log('xx Sl 2 arr',unSelectedValues.indexOf(d[w.slicerFieldName]) )
+                            console.log('xx Sl 2 arr', selectedValues.indexOf(d[w.slicerFieldName]) )
+                            if ( (w.slicerAddRest  &&  w.slicerAddRestValue)  
+                                &&
+                                unSelectedValues.indexOf(d[w.slicerFieldName]) < 0) {
+                                    tempData.push(d);
+                            };
                         };
                     });
                 };
