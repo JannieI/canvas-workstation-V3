@@ -263,7 +263,10 @@ export class AppComponent implements OnInit {
     moveLastX: number = 0;
     moveLastY: number = 0;
     newWidget: boolean = false;
+    newWidgetContainerLeft: number = 0;
+    newWidgetContainerTop: number = 0;
     paletteButtons: PaletteButtonBar[] = [];
+    paletteDrag: boolean;
     presentationMode: boolean;
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
@@ -1656,6 +1659,14 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Reset position if not dragged.
+        if (!this.paletteDrag) {
+            this.newWidgetContainerLeft = 0;
+            this.newWidgetContainerTop = 0;
+        } else {
+            this.paletteDrag = false;
+        };
+
         // Indicate new W and open Editor
         this.newWidget = true;
         this.showDatasourcePopup = true;
@@ -1683,6 +1694,8 @@ export class AppComponent implements OnInit {
             };
         });
         this.newWidget = false;
+        this.newWidgetContainerLeft = 0;
+        this.newWidgetContainerTop = 0;
         this.showDatasourcePopup = false;
 
         this.showModalWidgetEditor = true;
@@ -3928,12 +3941,16 @@ export class AppComponent implements OnInit {
         console.log("dragstartPaletteButton", ev, ev.srcElement.innerText,
         ev.srcElement.innerText);
     }
+
     dragendPaletteButton(ev) {
         // Add the target element's id to the data transfer object
         ev.dataTransfer.setData("text/plain", ev.target.id);
         console.log("dragendPaletteButton", ev, ev.srcElement.innerText,
         ev,
         ev.srcElement.innerText);
+        this.paletteDrag = true;
+        this.newWidgetContainerLeft = 150;
+        this.newWidgetContainerTop = 150;
         this.clickMenuWidgetNew();
     }
 

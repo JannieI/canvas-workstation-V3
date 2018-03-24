@@ -114,6 +114,8 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     @Input() newWidget: boolean;
     @Input() showDatasourcePopup: boolean;
     @Input() selectedWidget: Widget;
+    @Input() newWidgetContainerLeft: number;
+    @Input() newWidgetContainerTop: number;
 
     @Output() formWidgetEditorClosed: EventEmitter<Widget> = new EventEmitter();
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
@@ -174,7 +176,12 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
             this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
             this.localWidget.widgetType = 'Graph';
-
+            if (this.newWidgetContainerLeft > 0) {
+                this.localWidget.containerLeft = this.newWidgetContainerLeft;
+            };
+            if (this.newWidgetContainerTop > 0) {
+                this.localWidget.containerTop = this.newWidgetContainerTop;
+            };
         } else {
 
             this.localWidget = Object.assign({}, this.selectedWidget);
@@ -198,7 +205,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
                 this.showColumnDeleteIcon = true;
                 this.colField = this.localWidget.graphXfield;
                 this.showColFieldAdvanced = true;
-                
+
             } else {
                 this.showColumnDeleteIcon = false;
                 this.colField = '';
@@ -247,14 +254,14 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
     }
 
     ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
+        // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
         // this.globalVariableService.presentationMode.unsubscribe();
     }
-  
+
     renderGraph(definition: any) {
         // Render the graph on the form
         this.globalFunctionService.printToConsole(this.constructor.name,'renderGraph', '@Start');
