@@ -40,6 +40,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
     dashboards: Dashboard[];
     dashboardTags: DashboardTag[];
     paletteButtons: PaletteButtonBar[];
+    paletteButtonsOriginal: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
     userPaletteButtons: UserPaletteButtonBar[];
     widgetButtonsAvailable: ButtonBarAvailable[];
@@ -63,6 +64,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
             // Total list of available buttons - slice is NB for ByVal
             this.paletteButtons = pb.slice();
+            this.paletteButtonsOriginal = pb.slice();
             this.paletteButtonsSelected = this.globalVariableService
                 .currentPaletteButtonsSelected.value.slice();
 
@@ -269,6 +271,15 @@ console.log('xx added', this.paletteButtons.length)
         // Move selected row(s) down
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
 
+
+        // Stop if only 1 in Array, or last one is selected (as it cannot move down any further)
+        if (this.paletteButtonsSelected.length == 1) {
+            return;
+        };
+        if (this.paletteButtonsSelected[this.paletteButtonsSelected.length - 1].isSelected) {
+            return;
+        };
+        
         // Swop sort order with predecessor. Note: sorting happend on sortOrderSelected, which is
         // only calced at Runtime, and null in DB
         for (var i = 0; i < this.paletteButtonsSelected.length - 1; i++) {
@@ -325,8 +336,10 @@ console.log('xx added', this.paletteButtons.length)
     clickReset() {
         // Reset Selected to the Default list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickReset', '@Start');
+        console.log('xx reset str', this.paletteButtons.length)
 
-        // Empty Selected
+        // Refill Available, Empty Selected
+        this.paletteButtons = this.paletteButtonsOriginal;
         this.paletteButtonsSelected = [];
 
         // Move all the defaults across
