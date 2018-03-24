@@ -2857,33 +2857,6 @@ export class GlobalVariableService {
         });
     }
 
-    saveUserPaletteButtonBar(data: UserPaletteButtonBar): Promise<string> {
-        // Description: Saves UserPaletteButtonBar
-        // Returns: 'Saved' or error message
-        console.log('Global-Variables saveUserPaletteButtonBar ...');
-
-        let url: string = 'UserPaletteButtonBars';
-        this.filePath = './assets/data.UserPaletteButtonBars.json';
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
-            .subscribe(
-                data => {
-                    console.log('xx saveUserPaletteButtonBar SAVED', data)
-                    resolve('Saved');
-                },
-                err => {
-                    console.log('xx saveUserPaletteButtonBar FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
-        });
-    }
-
     addUserPaletteButtonBar(data: UserPaletteButtonBar): Promise<any> {
         // Description: Adds a new UserPaletteButtonBar
         // Returns: Added Data or error message
