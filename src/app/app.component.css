@@ -172,6 +172,20 @@
         border-right: 2px solid black !important;
         color: white;
     }
+
+    .widgetFooter {
+        display: inline-block;
+        border: 2px solid black;
+        grid-column-start: 1;
+        grid-column-end: 12;
+        grid-row-start: 10;
+        grid-row-end: 12;
+    }
+    .slicerFooter {
+        height: 1rem;
+        margin: 4px 0 0 -1px;
+    }
+
     /* Style for Resize Handles */
     .widgetContainerTopLeftHandle {
         cursor: nwse-resize;

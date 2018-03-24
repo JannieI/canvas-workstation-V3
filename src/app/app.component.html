@@ -1315,6 +1315,7 @@
     draggable="true"
     >
 
+    <!-- Title -->
     <div class="widgetTitle" *ngIf="row.containerHasTitle"
         [style.background-color]="row.containerBackgroundcolor"
         [style.z-index]="row.containerZindex+1"
@@ -1365,6 +1366,10 @@
 
     <!-- Slicer Object -->
     <div class="widget" *ngIf="row.widgetType=='Slicer'">
+        <div class="slicerFooter">
+            <input type="checkbox" id="slicerRest">
+            <label for="slicerRest">Add the Rest*</label>
+        </div>
         <slicer-single
             [slicer]="row"
             >
