@@ -119,7 +119,7 @@
                             (click)="clickSelectAll($event)"
                             >
                         <label for="selecteAll"><i>Select All</i></label>
-                            
+
                     </span>
                     <clr-datagrid class="fieldsDataGrid datagrid-compact">
                         <clr-dg-placeholder>
@@ -162,7 +162,7 @@
                                     {{ row.name }} :
                                     {{ row.fromValue }} to
                                     {{ row.toValue }}
-                                  
+
                             </clr-dg-cell>
                         </clr-dg-row>
                     </clr-datagrid>
@@ -202,8 +202,13 @@
                             <input type="checkbox" id="checkSlicerAddRest" [(ngModel)]="containerslicerAddRest">
                             <label for="checkSlicerAddRest">Add Rest</label>
                         </div>
+                        <div>
+                            <i>
+                                Note: The Rest has no impact when all the values are selected.
+                            </i>
+                        </div>
                     </div>
-                    
+
                 </div>
                 <div class="slicerButton">
                     <button
