@@ -1824,7 +1824,7 @@
             (click)="paletteFunctionCall(row.functionName, row.params)"
             draggable="true"
             (dragstart)="dragstartPaletteButton($event)"
-            (dragend)="dragendPaletteButton($event)"
+            (dragend)="dragendPaletteButton($event, row.functionName)"
 
             >
         </clr-icon>

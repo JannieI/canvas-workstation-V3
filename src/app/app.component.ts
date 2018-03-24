@@ -3943,19 +3943,30 @@ export class AppComponent implements OnInit {
         console.log("dragstartPaletteButton", ev);
     }
 
-    dragendPaletteButton(ev) {
+    dragendPaletteButton(ev, functionName: string) {
         // Dragged a Palette button onto the D
         this.globalFunctionService.printToConsole(this.constructor.name,'paletteFunctionCall', '@Start');
 
         ev.dataTransfer.setData("text/plain", ev.target.id);
-
         console.log("dragendPaletteButton", ev);
-        this.paletteDrag = true;
 
-        // The end position depends on where the user clicked to start the drag
-        this.newWidgetContainerLeft = ev.clientX - 10;
-        this.newWidgetContainerTop = ev.clientY - 10;
-        this.clickMenuWidgetNew();
+        if (functionName == 'clickMenuWidgetNew') {
+
+            this.paletteDrag = true;
+
+            // The end position depends on where the user clicked to start the drag
+            this.newWidgetContainerLeft = ev.clientX - 10;
+            this.newWidgetContainerTop = ev.clientY - 10;
+            this.clickMenuWidgetNew();
+        } else {
+            this.showMessage(
+                'No drag Function exists for this button',
+                'StatusBar',
+                'Info',
+                3000,
+                ''
+            );
+        };
     }
 
 }

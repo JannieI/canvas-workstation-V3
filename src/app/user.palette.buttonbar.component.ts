@@ -22,8 +22,6 @@ import { ButtonBarSelected }          from './models';
 import { Dashboard }                  from './models';
 import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
-import { WidgetCheckpointsComponent } from 'app/widget.checkpoints.component';
-import { delimiter } from 'path';
 
 
 @Component({
