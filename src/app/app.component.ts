@@ -3949,8 +3949,10 @@ export class AppComponent implements OnInit {
         ev,
         ev.srcElement.innerText);
         this.paletteDrag = true;
-        this.newWidgetContainerLeft = 150;
-        this.newWidgetContainerTop = 150;
+
+        // The end position depends on where the user clicked to start the drag
+        this.newWidgetContainerLeft = ev.clientX - 10;
+        this.newWidgetContainerTop = ev.clientY - 10;
         this.clickMenuWidgetNew();
     }
 
