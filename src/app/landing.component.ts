@@ -105,7 +105,7 @@ export class LandingComponent implements OnInit {
 									// Add to DB, and Globally
 									let pPostAdd: PaletteButtonsSelected[] = [];
 									pPreAdd.forEach(d => {
-										this.globalVariableService.addPaletteButtonsSelected([d]).then(
+										this.globalVariableService.addPaletteButtonsSelected(d).then(
 											res => pPostAdd.push(res)
 										)
 									});

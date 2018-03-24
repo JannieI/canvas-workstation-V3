@@ -102,13 +102,23 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         // Get selected in Available, and add to Selected
         let availID: number[] = [];
+
+        // TODO - do this better with a DB
+        let maxIDs: number[] = [];
+        let maxID: number = 0;
+        this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs =>
+            maxIDs.push (pbs.id) 
+        );
+        maxID = Math.max(...maxIDs);
+
         for (var i = 0; i < this.paletteButtons.length; i++) {
 
             if (this.paletteButtons[i].isSelected) {
                 availID.push(this.paletteButtons[i].id);
+                maxID = maxID + 1;
                 this.paletteButtonsSelected.push(
                     {
-                        id: null,
+                        id: maxID,
                         userID: this.globalVariableService.userID,
                         paletteButtonBarID: this.paletteButtons[i].id,
                         mainmenuItem: this.paletteButtons[i].mainmenuItem,
@@ -154,7 +164,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
             };
             return 0;
         });
-
+console.log('xx added', this.paletteButtons.length)
     }
 
     clickDelete() {
@@ -322,35 +332,12 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Move all the defaults across
         for (var i = 0; i < this.paletteButtons.length; i++) {
             if (this.paletteButtons[i].isDefault) {
-                this.paletteButtonsSelected.push(
-                    {
-                        id: null,
-                        userID: this.globalVariableService.userID,
-                        paletteButtonBarID: this.paletteButtons[i].id,
-                        mainmenuItem: this.paletteButtons[i].mainmenuItem,
-                        menuText: this.paletteButtons[i].menuText,
-                        shape: this.paletteButtons[i].shape,
-                        size: this.paletteButtons[i].size,
-                        class: this.paletteButtons[i].class,
-                        backgroundColor: this.paletteButtons[i].backgroundColor,
-                        accesskey: this.paletteButtons[i].accesskey,
-                        sortOrder: this.paletteButtons[i].sortOrder,
-                        sortOrderSelected: this.paletteButtons[i].sortOrderSelected,
-                        isDefault: this.paletteButtons[i].isDefault,
-                        functionName: this.paletteButtons[i].functionName,
-                        params: this.paletteButtons[i].params,
-                        tooltipContent: this.paletteButtons[i].tooltipContent,
-                        isSelected: this.paletteButtons[i].isSelected
-                    }
-                );
+                this.paletteButtons[i].isSelected = true;
             };
         };
 
-        // Reset Selection Sort Order
-        for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
-            this.paletteButtonsSelected[i].isSelected = false
-            this.paletteButtonsSelected[i].sortOrderSelected = i + 1;
-        };
+        // Move all the defaults across
+        this.clickAdd();        
     }
 
     clickSave(action: string) {
@@ -362,12 +349,14 @@ console.log('xx sav1', this.globalVariableService.currentPaletteButtonsSelected.
         this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs => 
             this.globalVariableService.deletePaletteButtonsSelected(pbs.id)
         )
-        this.globalVariableService.addPaletteButtonsSelected(this.paletteButtonsSelected)
+
+        // Unselect all
+        this.paletteButtonsSelected.forEach(pbs => pbs.isSelected = false)
+        
         // Add the new ones to the DB
-        this.paletteButtonsSelected.forEach(pbs =>
-            this.globalVariableService.addPaletteButtonsSelected([pbs]).then(res =>
-                this.globalVariableService.currentPaletteButtonsSelected.next(res)
-            )
+        // TODO - note that IDs in paletteButtonsSelected sent to app is DIFF to DB ...
+        this.paletteButtonsSelected.forEach(pbs => 
+                this.globalVariableService.addPaletteButtonsSelected(pbs)
         );
 
         // Refresh global var, informing subscribers
@@ -378,7 +367,7 @@ console.log('xx sav1', this.globalVariableService.currentPaletteButtonsSelected.
         // );
 
         // Inform subscribers
-        // this.globalVariableService.paletteButtons.next(this.paletteButtonsSelected);
+        this.globalVariableService.currentPaletteButtonsSelected.next(this.paletteButtonsSelected);
 
 		this.formUserWidgetButtonBarClosed.emit(action);
     }

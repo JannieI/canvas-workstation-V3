@@ -386,7 +386,15 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalVariableService.currentPaletteButtonsSelected.subscribe(
-            i => this.paletteButtons = i
+            i => this.paletteButtons = i.sort( (obj1,obj2) => {
+                if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
+                    return 1;
+                };
+                if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
+                    return -1;
+                };
+                return 0;
+            })
         );
         
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
