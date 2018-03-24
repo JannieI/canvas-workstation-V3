@@ -2857,44 +2857,6 @@ export class GlobalVariableService {
         });
     }
 
-
-    deleteUserPaletteButtonBar(id: number): Promise<string> {
-        // Description: Deletes a UserPaletteButtonBar
-        // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteUserPaletteButtonBar ...');
-
-        let url: string = 'userPaletteButtonBars';
-        this.filePath = './assets/data.userPaletteButtonBars.json';
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
-            .subscribe(
-                data => {
-                    let dID: number = -1;
-                    for (var i = 0; i < this.currentUserPaletteButtonBar.length; i++) {
-                        if (this.currentUserPaletteButtonBar[i].id == id) {
-                            dID = i;
-                            break;
-                        };
-                    };
-                    if (dID >=0) {
-                        this.currentUserPaletteButtonBar.splice(dID, 1);
-                    };
-                    console.log('xx deleteUserPaletteButtonBar DELETED', this.currentUserPaletteButtonBar)
-                    resolve('Deleted');
-                },
-                err => {
-                    console.log('xx deleteUserPaletteButtonBar FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
-        });
-    }
-
     saveUserPaletteButtonBar(data: UserPaletteButtonBar): Promise<string> {
         // Description: Saves UserPaletteButtonBar
         // Returns: 'Saved' or error message
