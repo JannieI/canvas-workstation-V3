@@ -3833,9 +3833,8 @@ export class AppComponent implements OnInit {
         this.globalVariableService.currentDatasets.forEach(cd => {
             if (cd.id == datasetID) {
                 newDataset = this.globalVariableService.filterSlicer(cd);
-            }
-        }
-        );
+            };
+        });
 
     }
 

@@ -156,7 +156,7 @@ export class DataPopupComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load from global variables
-        this.currentDatasources = this.globalVariableService.currentDatasources;
+        this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.datasources = this.globalVariableService.datasources;
     }
 
@@ -473,7 +473,7 @@ export class DataPopupComponent implements OnInit {
         };
 
         // Reset data related to this DS
-        this.currentDatasources = this.globalVariableService.currentDatasources;
+        this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.currentTransformations = [];
         this.transformationsFormat = [];
         this.pivotAgg = [];

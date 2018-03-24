@@ -194,17 +194,18 @@ import { GlobalVariableService }      from './global-variable.service';
         // Get ID of latest dSet for the selected DS
         let dSetIDs: number[] = [];
         this.globalVariableService.currentDatasets.forEach(ds => {
+            console.log('xx ..', this.selectedDatasourceID, ds.datasourceID, this.globalVariableService.currentDatasets)
             if (ds.datasourceID == this.selectedDatasourceID) {
                 dSetIDs.push(ds.id);
             };
         });
         this.selectedDatasetID = Math.max(...dSetIDs);
-
+console.log('xx this.selectedDatasetID', this.selectedDatasetID, dSetIDs)
         // Move into array
         this.dataValues = [];
         let tempData: any[] = this.globalVariableService.currentDatasets.filter(ds =>
             ds.id == this.selectedDatasetID)[0].dataRaw //['Origin'];
-
+            console.log('xx tempData', tempData)
         // Sort, if so wished
         if (this.slicerSortField != '') {
             if (this.slicerSortField != '') {
@@ -383,6 +384,17 @@ import { GlobalVariableService }      from './global-variable.service';
                     })
             };
         });
+
+        // Must slicer when not All were selected
+        // TODO - fix this
+        // if (this.localWidget.slicerNumberToShow != 'All') {
+        //     this.globalVariableService.currentDatasets.forEach(cd => {
+        //         if (cd.id == this.localWidget.datasetID) {
+        //             this.globalVariableService.filterSlicer(cd);
+        //             // console.log('xx newDataset', newDataset)
+        //         };
+        //     });
+        // };
 
         if (this.newWidget) {
 
