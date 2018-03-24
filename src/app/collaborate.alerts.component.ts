@@ -29,8 +29,6 @@ export class CollaborateAlertsComponent implements OnInit {
     @Output() formCollaborateAlertsClosed: EventEmitter<string> = new EventEmitter();
 
     canvasAlerts: CanvasAlert[];
-    filterFromDate: string;
-    filterToDate: string;
     filterTextContains: string;
     filterRead: string;
     filterRecipient: string;
@@ -62,28 +60,37 @@ export class CollaborateAlertsComponent implements OnInit {
 
     clickFilter(fromDate: string, toDate: string) {
         // Filter the Grid
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
+        // this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
 
         console.log('xx fromDate', fromDate, toDate, this.filterTextContains, 
         this.filterRead, this.filterRecipient)
 
         this.globalVariableService.getCanvasAlerts().then (i => {
-            this.canvasAlerts = i;
-            if (this.filterFromDate != null) {
-                console.log('from')
+            let temp: CanvasAlert[] = i;
+
+            if (fromDate != undefined  &&  fromDate != ''  &&  fromDate != null) {
+                console.log('from', fromDate)
+                temp = temp.filter(a => a.sentOn >= fromDate);
             };
-            if (this.filterToDate != null) {
-                console.log('to')
+            if (toDate != undefined  &&  toDate != ''  &&  toDate != null) {
+                console.log('to', toDate)
+                temp = temp.filter(a => a.sentOn <= toDate);
             };
-            if (this.filterTextContains != null) {
-                console.log('text')
+            if (this.filterTextContains != ''  &&  this.filterTextContains != undefined) {
+                console.log('text', this.filterTextContains)
+                temp = temp.filter(a => a.alertText.indexOf(this.filterTextContains) >= 0);
             };
-            if (this.filterRead != null) {
+            if (this.filterRead) {
                 console.log('read')
+                temp = temp.filter(a => a.read);
             };
-            if (this.filterRecipient != null) {
+            if (this.filterRecipient != ''  &&  this.filterRecipient != undefined) {
                 console.log('rec')
+                temp = temp.filter(a => a.recipient.indexOf(this.filterRecipient) >=0);
             };
+
+            // Final result
+            this.canvasAlerts = temp;
         });
     }
 }
