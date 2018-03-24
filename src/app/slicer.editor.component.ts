@@ -60,7 +60,7 @@ import { GlobalVariableService }      from './global-variable.service';
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.currentDatasources = this.globalVariableService.currentDatasources;
+        this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.dataFields = [];
         this.dataFieldTypes = [];
         this.dataValues = [];
@@ -194,7 +194,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // Get ID of latest dSet for the selected DS
         let dSetIDs: number[] = [];
         this.globalVariableService.currentDatasets.forEach(ds => {
-            console.log('xx ..', this.selectedDatasourceID, ds.datasourceID, this.globalVariableService.currentDatasets)
+console.log('xx ..', this.selectedDatasourceID, ds.datasourceID, this.globalVariableService.currentDatasets)
             if (ds.datasourceID == this.selectedDatasourceID) {
                 dSetIDs.push(ds.id);
             };
