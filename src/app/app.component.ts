@@ -1384,6 +1384,17 @@ export class AppComponent implements OnInit {
             return;
         };
 
+        // Warning to make sure does not get stuck
+        if (!this.showPalette) {
+            this.showMessage(
+                'Make palette visible on View menu',
+                'StatusBar',
+                'Info',
+                3000,
+                ''
+            );
+        };
+
         this.menuOptionClickPreAction();
 
         // Switch off all selections if going to View Mode
