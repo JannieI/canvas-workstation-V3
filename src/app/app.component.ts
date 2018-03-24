@@ -3922,6 +3922,20 @@ export class AppComponent implements OnInit {
         }
     }
 
+    dragstartPaletteButton(ev) {
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+        console.log("dragstartPaletteButton", ev, ev.srcElement.innerText,
+        ev.srcElement.innerText);
+    }
+    dragendPaletteButton(ev) {
+        // Add the target element's id to the data transfer object
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+        console.log("dragendPaletteButton", ev, ev.srcElement.innerText,
+        ev,
+        ev.srcElement.innerText);
+        this.clickMenuWidgetNew();
+    }
 
 }
 

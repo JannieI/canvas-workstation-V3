@@ -1822,6 +1822,10 @@
             class="buttonBarIcon"
             [style.background-color]="row.backgroundColor"
             (click)="paletteFunctionCall(row.functionName, row.params)"
+            draggable="true"
+            (dragstart)="dragstartPaletteButton($event)"
+            (dragend)="dragendPaletteButton($event)"
+
             >
         </clr-icon>
         <span class="tooltip-content">{{ row.tooltipContent }}</span>
