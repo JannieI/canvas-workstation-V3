@@ -3936,18 +3936,20 @@ export class AppComponent implements OnInit {
     }
 
     dragstartPaletteButton(ev) {
-        // Add the target element's id to the data transfer object
+        // Start dragging a Palette button onto the D
+        this.globalFunctionService.printToConsole(this.constructor.name,'paletteFunctionCall', '@Start');
+
         ev.dataTransfer.setData("text/plain", ev.target.id);
-        console.log("dragstartPaletteButton", ev, ev.srcElement.innerText,
-        ev.srcElement.innerText);
+        console.log("dragstartPaletteButton", ev);
     }
 
     dragendPaletteButton(ev) {
-        // Add the target element's id to the data transfer object
+        // Dragged a Palette button onto the D
+        this.globalFunctionService.printToConsole(this.constructor.name,'paletteFunctionCall', '@Start');
+
         ev.dataTransfer.setData("text/plain", ev.target.id);
-        console.log("dragendPaletteButton", ev, ev.srcElement.innerText,
-        ev,
-        ev.srcElement.innerText);
+
+        console.log("dragendPaletteButton", ev);
         this.paletteDrag = true;
 
         // The end position depends on where the user clicked to start the drag

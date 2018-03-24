@@ -41,7 +41,6 @@ import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';
 import { Transformation }             from './models';
-import { UserPaletteButtonBar }       from './models';
 import { UserPreferences }            from './models';
 import { Widget }                     from './models';
 
@@ -683,7 +682,6 @@ export class GlobalVariableService {
     currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardTags: DashboardTag[] = [];
     currentPaletteButtonBar: PaletteButtonBar[];
-    currentUserPaletteButtonBar: UserPaletteButtonBar[];
     currentDashboardPermissions: DashboardPermission[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
     currentDashboardSubscription: DashboardSubscription[] = [];

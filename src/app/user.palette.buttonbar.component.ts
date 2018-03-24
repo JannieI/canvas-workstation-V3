@@ -22,7 +22,6 @@ import { ButtonBarSelected }          from './models';
 import { Dashboard }                  from './models';
 import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
-import { UserPaletteButtonBar }       from './models';
 import { WidgetCheckpointsComponent } from 'app/widget.checkpoints.component';
 import { delimiter } from 'path';
 
@@ -42,7 +41,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
     paletteButtons: PaletteButtonBar[];
     paletteButtonsOriginal: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
-    userPaletteButtons: UserPaletteButtonBar[];
     widgetButtonsAvailable: ButtonBarAvailable[];
     widgetButtonsSelected: ButtonBarSelected[];
 	constructor(

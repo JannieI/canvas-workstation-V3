@@ -77,7 +77,6 @@ import { CollaborateMessagesComponent }     from './collaborate.messages.compone
 import { CollaborateActivitiesComponent }   from './collaborate.activities.component';
 import { CollaborateActivityAddComponent }  from './collaborate.activityadd.component';
 
-import { UserPaletteButtonBarComponent}     from './user.palette.buttonbar.component';
 import { LoginComponent}              from './login.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
@@ -166,7 +165,6 @@ import { StatusbarComponent }         from './statusbar.component';
 
         MyProfileComponent,
         PreferencesComponent,
-        UserPaletteButtonBarComponent,
         SystemSettingsComponent,
         UserOfflineComponent,
         LoginComponent,
