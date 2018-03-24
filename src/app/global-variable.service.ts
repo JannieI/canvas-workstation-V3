@@ -2096,7 +2096,7 @@ export class GlobalVariableService {
                         {
                             let ids: number[] = [];
                             let dashboardWidgets: Widget[] = this.widgets.filter(
-                                w => w.dashboardID = dashboardID
+                                w => w.dashboardID == dashboardID
                             );
 
                             for (var i = 0; i < dashboardWidgets.length; i++) {
@@ -2121,7 +2121,7 @@ export class GlobalVariableService {
             } else {
                 let ids: number[] = [];
                 let dashboardWidgets: Widget[] = this.widgets.filter(
-                    w => w.dashboardID = dashboardID
+                    w => w.dashboardID == dashboardID
                 );
 
                 for (var i = 0; i < dashboardWidgets.length; i++) {
@@ -3081,10 +3081,6 @@ export class GlobalVariableService {
                                     }
                                 })
                             };
-
-
-
-
                         });
 
                         this.isDirtyWidgets = false;
@@ -3111,7 +3107,7 @@ export class GlobalVariableService {
         console.log('Global-Variables getCurrentWidgets ...');
 
         // Refresh from source at start, or if dirty
-        if ( (this.currentWidgets.length == 0)  ||  (this.isDirtyWidgets) ) {
+        if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
             return new Promise<Widget[]>((resolve, reject) => {
                 this.getWidgets()
                     .then(data => {
@@ -3135,7 +3131,7 @@ export class GlobalVariableService {
         } else {
             return new Promise<Widget[]>((resolve, reject) => {
 
-                // Filter all types belonging to this D
+                // Filter all Tabs belonging to this D
                 let data: Widget[];
                 data = this.widgets.filter(
                     i => (i.dashboardID == dashboardID)  
@@ -3146,7 +3142,8 @@ export class GlobalVariableService {
                 )
 
                 this.currentWidgets = data;
-                console.log('Global-Variables getCurrentWidgets 2', dashboardID, dashboardTabID, data)
+                console.log('Global-Variables getCurrentWidgets 2', dashboardID, 
+                    dashboardTabID,  this.currentWidgets, this.widgets)
                 resolve(this.currentWidgets);
 
             });
