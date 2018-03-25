@@ -1,6 +1,26 @@
 // ALL models (schema) are kept here
 
 // CA Datagrid
+export class DatagridHeader {
+    id: number; 
+    name: string; 
+    tooltip: string;
+    type: string; 
+    displayLength: number;
+    maxLength: number;
+    sortOrder: string;
+    filter: string;
+    backgroundColor: string;
+    color: string;
+    conditionalFormatColor: string;
+    nrDataQualityIssues: number;
+    maxValue: number;
+    minValue: number;
+    average: number;
+    linkedDashboardID: number;
+    linkedDashboardTabID: number;
+    isFrozen: boolean;
+}
 
 export class DatagridInput {
     dgHeaders: DatagridHeader;
