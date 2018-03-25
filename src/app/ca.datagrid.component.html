@@ -1,5 +1,14 @@
 <!-- Datagrid Component based on Clarity UI     -->
 <clr-datagrid [(clrDgSingleSelected)]="selectedData">
+
+        <!-- Batch Actions
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()"><clr-icon shape="plus"></clr-icon> Add
+                to group</button>
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" ><clr-icon shape="close"></clr-icon> Delete</button>
+            <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" ><clr-icon shape="pencil"></clr-icon> Edit</button>
+        </div> -->
+
     <clr-dg-column *ngFor="let col of datagriColumns; let i = index"
         [clrDgField]="col.fieldName"
         >
@@ -11,7 +20,17 @@
         </div>
     </clr-dg-column>
 
-    <clr-dg-row *clrDgItems="let row of datagridData"  [clrDgItem]="row">
+    <clr-dg-row *clrDgItems="let row of datagridData" [clrDgItem]="row" [(clrDgSelected)]="row.selected">
+
+        <!-- Action Popup Menu on Row -->
+        <div *ngIf="true">
+        <clr-dg-action-overflow>
+            <button class="action-item" (click)="onEdit(row)">Edit</button>
+            <button class="action-item" (click)="onDelete(row)">Delete</button>
+        </clr-dg-action-overflow>
+        </div>
+
+        <!-- Each Cell -->
         <clr-dg-cell *ngFor="let col of datagriColumns">
             
             <span *ngIf="col.fieldName!='id'">
