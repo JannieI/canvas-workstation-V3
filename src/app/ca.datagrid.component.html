@@ -1,7 +1,8 @@
 <!-- Datagrid Component based on Clarity UI     -->
 <clr-datagrid>
     <clr-dg-column *ngFor="let col of datagriColumns; let i = index"
-    >
+        [clrDgField]="col.fieldName"
+        >
         <div class="dg-header"
             (click)="clickHeader(i)"
             >
@@ -12,7 +13,19 @@
 
     <clr-dg-row *clrDgItems="let row of datagridData">
         <clr-dg-cell *ngFor="let col of datagriColumns">
-            {{ row[col.fieldName] }}
+            
+            <span *ngIf="col.fieldName!='id'">
+                {{ row[col.fieldName] }}
+            </span>
+
+            <div *ngIf="col.fieldName=='id'" 
+                class="color-square" 
+                [style.backgroundColor]="'lightgray'"
+                [style.width.%]="65"
+                >
+                X
+            </div>
+            
         </clr-dg-cell>
     </clr-dg-row>
 
@@ -20,10 +33,13 @@
     <clr-dg-footer>
         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
         of {{pagination.totalItems}} records
-        <clr-dg-pagination class="dg-paginationRight"
+        <clr-dg-pagination 
             #pagination 
             [clrDgPageSize]="2"
             [(clrDgPage)]="currentPage"
+            [clrDgLastPage]="lastPage"
+            [clrDgLastPage]="firstItem"
+            [clrDgLastPage]="lastItem"
             >
         </clr-dg-pagination>
     </clr-dg-footer>

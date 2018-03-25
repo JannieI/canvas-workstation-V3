@@ -20,14 +20,3 @@
     justify-content: space-between !important;
 }
 
-.dg-paginationRight {
-    display: block !important;
-    right: 0px !important;
-    float: right !important;
-}
-
-.pagination {
-    display: block !important;
-    right: 0px !important;
-    float: right !important;
-}
