@@ -48,7 +48,24 @@
                     </button>
                 </div>
 
-                <clr-datagrid>
+                <ca-datagrid
+                    [dgHeaders]="dgHeaders"
+                    [dgData]="dgData"
+                    [dgPagination]="dgPagination"
+                    [dgPaginationSize]="dgPaginationSize"
+                    [dgShowHeader]="dgShowHeader"
+                    [dgShowData]="dgShowData"
+                    [dgShowFooter]="dgShowFooter"
+                    [dgRowHeight]="dgRowHeight"
+                    [dguserCanChangeProperties]="userCanChangeProperties"
+                    [dgShowTotalsRow]="dgShowTotalsRow"
+                    [dgShowTotalsCol]="dgShowTotalsCol"
+                    [dgCanEditInCell]="dgCanEditInCell"
+                    [dgCanExportData]="dgCanExportData"
+                    >
+
+                </ca-datagrid>
+                <!-- <clr-datagrid>
                     <clr-dg-column  *ngFor="let row of dgHeaders"
                         [clrDgField]="row"
                         >
@@ -63,7 +80,7 @@
                         <clr-dg-cell>{{row.alertText}}</clr-dg-cell>
                     </clr-dg-row>
 
-                </clr-datagrid>
+                </clr-datagrid> -->
 
             </div>
         </div>

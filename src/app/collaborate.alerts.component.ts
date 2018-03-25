@@ -29,12 +29,46 @@ export class CollaborateAlertsComponent implements OnInit {
     @Output() formCollaborateAlertsClosed: EventEmitter<string> = new EventEmitter();
 
     canvasAlerts: CanvasAlert[];
-    dgHeaders: string[] = [
+    dgHeaders: 
+        {
+            id: number; 
+            name: string; 
+            tooltip: string;
+            type: string; 
+            displayLength: number;
+            maxLength: number;
+            sortOrder: string;
+            filter: string;
+            backgroundColor: string;
+            color: string;
+            conditionalFormatColor: string;
+            nrDataQualityIssues: number;
+            maxValue: number;
+            minValue: number;
+            average: number;
+            linkedDashboardID: number;
+            linkedDashboardTabID: number;
+            isFrozen: boolean;
+
+        }[] = [];
         "Dd", 
         "Sent On", 
         "Recipient", 
         "Read", 
         "AlertText"
+        dgHeaders
+        dgData
+        dgPagination
+        dgPaginationSize
+        dgShowHeader
+        dgShowData
+        dgShowFooter
+        dgRowHeight
+        dguserCanChangeProperties
+        dgShowTotalsRow
+        dgShowTotalsCol
+        dgCanEditInCell
+        dgCanExportData
     ];
     filterTextContains: string;
     filterRead: string;

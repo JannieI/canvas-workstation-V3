@@ -1,5 +1,23 @@
 // ALL models (schema) are kept here
 
+// CA Datagrid
+
+export class DatagridInput {
+    dgHeaders: DatagridHeader;
+    dgData: any;
+    dgPagination: boolean;
+    dgPaginationSize: number;
+    dgShowHeader: boolean;
+    dgShowData: boolean;
+    dgShowFooter: boolean;
+    dgRowHeight: number;
+    dguserCanChangeProperties: boolean;
+    dgShowTotalsRow: boolean;
+    dgShowTotalsCol: boolean;
+    dgCanEditInCell: boolean;
+    dgCanExportData: boolean;
+}
+
 // Setup / Settings / General
 export class UserPreferences {
     preferenceAutoSync: boolean;                            // T/F - can auto sync
