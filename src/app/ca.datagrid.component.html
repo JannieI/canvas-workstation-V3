@@ -8,7 +8,7 @@
     <clr-dg-row
         *clrDgItems="let row of datagridData">
         <clr-dg-cell *ngFor="let col of datagriColumns">
-            {{ row[col.displayName] }}
+            {{ row[col.fieldName] }}
         </clr-dg-cell>
     </clr-dg-row>
 

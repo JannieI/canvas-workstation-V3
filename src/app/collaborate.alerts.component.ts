@@ -36,9 +36,10 @@ export class CollaborateAlertsComponent implements OnInit {
     [
         {
             id: 1,
-            displayName: 'id',
-            databaseTableName: '',
-            databaseFieldName: '',
+            displayName: 'ID',
+            fieldName: 'id',
+            databaseDBTableName: '',
+            databaseDBFieldName: '',
             tooltip: '',
             datatype: 'string',
             prefix: '',
@@ -61,8 +62,9 @@ export class CollaborateAlertsComponent implements OnInit {
         {
             id: 2,
             displayName: 'Sent On',
-            databaseTableName: '',
-            databaseFieldName: '',
+            fieldName: 'sentOn',
+            databaseDBTableName: '',
+            databaseDBFieldName: '',
             tooltip: '',
             datatype: 'string',
             prefix: '',
@@ -85,8 +87,9 @@ export class CollaborateAlertsComponent implements OnInit {
         {
             id: 3,
             displayName: 'Recipient',
-            databaseTableName: '',
-            databaseFieldName: '',
+            fieldName: 'recipient',
+            databaseDBTableName: '',
+            databaseDBFieldName: '',
             tooltip: '',
             datatype: 'string',
             prefix: '',
@@ -109,8 +112,9 @@ export class CollaborateAlertsComponent implements OnInit {
         {
             id: 4,
             displayName: 'Read?',
-            databaseTableName: '',
-            databaseFieldName: '',
+            fieldName: 'read',
+            databaseDBTableName: '',
+            databaseDBFieldName: '',
             tooltip: '',
             datatype: 'string',
             prefix: '',
@@ -133,8 +137,9 @@ export class CollaborateAlertsComponent implements OnInit {
         {
             id: 5,
             displayName: 'Alert Text',
-            databaseTableName: '',
-            databaseFieldName: '',
+            fieldName: 'alertText',
+            databaseDBTableName: '',
+            databaseDBFieldName: '',
             tooltip: '',
             datatype: 'string',
             prefix: '',
@@ -158,7 +163,7 @@ export class CollaborateAlertsComponent implements OnInit {
     datagridInput: DatagridInput = 
     {
         datagriColumns: this.datagriColumns,
-        datagridData: true,
+        datagridData: null,
         datagridPagination: false,
         datagridPaginationSize: 10,
         datagridShowHeader: true,
@@ -189,7 +194,7 @@ export class CollaborateAlertsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.getCanvasAlerts().then (i =>
-            this.canvasAlerts = i
+            this.datagridInput.datagridData = i
         );
     }
 

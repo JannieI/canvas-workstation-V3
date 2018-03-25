@@ -4,8 +4,9 @@
 export class DatagridColumn {
     id: number;                             // Unique ID, for later use
     displayName: string;                    // Text displayed in Grid header
-    databaseTableName: string;              // Optional Table name in DB
-    databaseFieldName: string;              // Optional field name in DB
+    fieldName: string;                      // Field name in Array
+    databaseDBTableName: string;            // Optional Table name in DB
+    databaseDBFieldName: string;            // Optional Field name in DB
     tooltip: string;                        // Text string as tooltip
     datatype: string;                       // string, number, boolean
     prefix: string;                         // ie RK, or Rm
@@ -200,7 +201,7 @@ export class CanvasAlert {
     recipient: string;
     read: boolean;
     alertText: string;
-    alertData?: any;    //type of data, table name, field names, field values
+    alertData?: any;        // Type of data, table name, field names, field values
 }
 
 export class CanvasComment {
@@ -628,7 +629,7 @@ export class Widget {
 
     // Slicer
     slicerAddRest: boolean;             // True to add everything NOT in slicerSelection
-    slicerAddRestValue: boolean;        // True means add all NOT in Sl 
+    slicerAddRestValue: boolean;        // True means add all NOT in Sl
     // 1. All in Sl selected + AddRest = 100% of data)  2. None in Sl + AddRest = Compliment
     slicerBins: {isSelected: boolean; name: string; fromValue: number; toValue: number}[];
     slicerFieldName: string;            // Name to filter on
