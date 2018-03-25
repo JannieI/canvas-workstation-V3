@@ -42,6 +42,7 @@ export class CaDatagridComponent implements OnInit {
     @Input() datagridShowTotalsCol: boolean;                // True to show additional col of totals on right
     @Input() datagridCanEditInCell: boolean;                // True is user can edit inside cells
     @Input() datagridCanExportData: boolean;                // True if the data may be exported
+    @Input() datagridEmptyMessage: string;                  // Message to display if the grid is empty
 
     currentPage: number = 1;
     today = Date.now();
@@ -71,5 +72,19 @@ export class CaDatagridComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHeader', '@Start');
 
         console.log('xx', index, this.currentPage, this.lastPage, this.selectedData)
+    }
+
+    clickRowEdit() {
+        // Clicked Row Edit Action Menu
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRowEdit', '@Start');
+
+        // TODO - code this somehow
+    }
+    
+    clickColumnDelete() {
+        // Clicked Row Delete Action Menu
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickColumnDelete', '@Start');
+
+        // TODO - code this somehow
     }
 }

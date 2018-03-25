@@ -1,13 +1,7 @@
 <!-- Datagrid Component based on Clarity UI     -->
 <clr-datagrid [(clrDgSingleSelected)]="selectedData">
 
-        <!-- Batch Actions
-        <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-secondary" (click)="onAdd()"><clr-icon shape="plus"></clr-icon> Add
-                to group</button>
-            <button type="button" class="btn btn-sm btn-secondary" (click)="onDelete()" ><clr-icon shape="close"></clr-icon> Delete</button>
-            <button type="button" class="btn btn-sm btn-secondary" (click)="onEdit()" ><clr-icon shape="pencil"></clr-icon> Edit</button>
-        </div> -->
+    <clr-dg-placeholder>We couldn't find any users!</clr-dg-placeholder>
 
     <clr-dg-column *ngFor="let col of datagriColumns; let i = index"
         [clrDgField]="col.fieldName"
@@ -25,8 +19,8 @@
         <!-- Action Popup Menu on Row -->
         <div *ngIf="true">
         <clr-dg-action-overflow>
-            <button class="action-item" (click)="onEdit(row)">Edit</button>
-            <button class="action-item" (click)="onDelete(row)">Delete</button>
+            <button class="action-item" (click)="clickRowEdit(row)">Edit</button>
+            <button class="action-item" (click)="clickColumnDelete(row)">Delete</button>
         </clr-dg-action-overflow>
         </div>
 

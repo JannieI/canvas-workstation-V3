@@ -175,7 +175,8 @@ export class CollaborateAlertsComponent implements OnInit {
         datagridShowTotalsRow: false,
         datagridShowTotalsCol: false,
         datagridCanEditInCell: false,
-        datagridCanExportData: false
+        datagridCanExportData: false,
+        datagridEmptyMessage: 'No Alerts created so far'
     };
 
     filterTextContains: string;
@@ -195,7 +196,7 @@ export class CollaborateAlertsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.getCanvasAlerts().then (i =>
-            this.datagridInput.datagridData = i
+            this.datagridInput.datagridData = []
         );
     }
 
@@ -242,4 +243,5 @@ export class CollaborateAlertsComponent implements OnInit {
             this.canvasAlerts = temp;
         });
     }
+
 }

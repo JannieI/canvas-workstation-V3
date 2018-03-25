@@ -42,6 +42,7 @@ export class DatagridInput {
     datagridShowTotalsCol: boolean;               // True to show additional col of totals on right
     datagridCanEditInCell: boolean;               // True is user can edit inside cells
     datagridCanExportData: boolean;               // True if the data may be exported
+    datagridEmptyMessage: string;                 // Message to display if the grid is empty
 }
 
 // Setup / Settings / General
