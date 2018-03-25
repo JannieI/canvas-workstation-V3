@@ -4,7 +4,6 @@
 
 // Angular
 import { Component }                  from '@angular/core';
-import { EventEmitter }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
@@ -18,6 +17,9 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Dashboard }                  from './models';
 import { CanvasAlert }                from './models';
+import { DatagridInput }              from './models';
+import { DatagridColumn }             from './models';
+
 
 @Component({
     selector: 'ca-datagrid',
@@ -26,18 +28,20 @@ import { CanvasAlert }                from './models';
 })
 export class CaDatagridComponent implements OnInit {
 
+    @Input() datagridHeaders: DatagridColumn[];            // Cols, with info on each
+    @Input() datagridData: any;                            // Data Array
+    @Input() datagridPagination: boolean;                  // True if pagination is on
+    @Input() datagridPaginationSize: number;               // Size of each page, ie 10 (rows)
+    @Input() datagridShowHeader: boolean;                  // True to show Headers
+    @Input() datagridShowData: boolean;                    // True to show Data
+    @Input() datagridShowFooter: boolean;                  // True to show Footer
+    @Input() datagridRowHeight: number;                    // Height in px
+    @Input() datagriduserCanChangeProperties: boolean;     // False if use can change Nothing in grid, ie cannot even resize
+    @Input() datagridShowTotalsRow: boolean;               // True to show additional row of totals at bottom
+    @Input() datagridShowTotalsCol: boolean;               // True to show additional col of totals on right
+    @Input() datagridCanEditInCell: boolean;               // True is user can edit inside cells
+    @Input() datagridCanExportData: boolean;               // True if the data may be exported
 
-    canvasAlerts: CanvasAlert[];
-    dgHeaders: string[] = [
-        "Dd", 
-        "Sent On", 
-        "Recipient", 
-        "Read", 
-        "AlertText"
-    ];
-    filterTextContains: string;
-    filterRead: string;
-    filterRecipient: string;
     today = Date.now();
     showTypeDashboard: boolean = false;
 
@@ -51,9 +55,7 @@ export class CaDatagridComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasAlerts().then (i =>
-            this.canvasAlerts = i
-        );
+        console.log('xx dg datagridHeaders', this.datagridHeaders)
     }
 
 }

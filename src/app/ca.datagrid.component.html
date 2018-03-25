@@ -1,17 +1,15 @@
 <!-- Datagrid Component based on Clarity UI     -->
 <clr-datagrid>
-    <clr-dg-column  *ngFor="let row of dgHeaders"
-        [clrDgField]="row"
+    <clr-dg-column  *ngFor="let col of datagridHeaders"
         >
-        {{ row }}
+        {{ col.displayName }}
     </clr-dg-column>
 
-    <clr-dg-row *ngFor="let row of canvasAlerts">
-        <clr-dg-cell>{{row.id}}</clr-dg-cell>
-        <clr-dg-cell>{{row.sentOn}}</clr-dg-cell>
-        <clr-dg-cell>{{row.recipient}}</clr-dg-cell>
-        <clr-dg-cell>{{row.read}}</clr-dg-cell>
-        <clr-dg-cell>{{row.alertText}}</clr-dg-cell>
+    <clr-dg-row
+        *clrDgItems="let row of datagridData">
+        <clr-dg-cell *ngFor="let col of datagridHeaders">
+            {{ row[col.displayName] }}
+        </clr-dg-cell>
     </clr-dg-row>
 
 </clr-datagrid>
