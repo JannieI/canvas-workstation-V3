@@ -44,6 +44,7 @@ export class CaDatagridComponent implements OnInit {
 
     currentPage: number = 1;
     today = Date.now();
+    selectedData: any;
     showTypeDashboard: boolean = false;
 
     // TODO - the 3 properties below belongs to clrDgLastPage, but dont work
@@ -68,6 +69,6 @@ export class CaDatagridComponent implements OnInit {
         // Clicked a Header
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHeader', '@Start');
 
-        console.log('xx', index, this.currentPage, this.lastPage)
+        console.log('xx', index, this.currentPage, this.lastPage, this.selectedData)
     }
 }

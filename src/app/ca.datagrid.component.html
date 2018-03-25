@@ -1,5 +1,5 @@
 <!-- Datagrid Component based on Clarity UI     -->
-<clr-datagrid>
+<clr-datagrid [(clrDgSingleSelected)]="selectedData">
     <clr-dg-column *ngFor="let col of datagriColumns; let i = index"
         [clrDgField]="col.fieldName"
         >
@@ -11,7 +11,7 @@
         </div>
     </clr-dg-column>
 
-    <clr-dg-row *clrDgItems="let row of datagridData">
+    <clr-dg-row *clrDgItems="let row of datagridData"  [clrDgItem]="row">
         <clr-dg-cell *ngFor="let col of datagriColumns">
             
             <span *ngIf="col.fieldName!='id'">
