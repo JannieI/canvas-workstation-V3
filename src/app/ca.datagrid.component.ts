@@ -42,6 +42,7 @@ export class CaDatagridComponent implements OnInit {
     @Input() datagridCanEditInCell: boolean;               // True is user can edit inside cells
     @Input() datagridCanExportData: boolean;               // True if the data may be exported
 
+    currentPage: number = 1;
     today = Date.now();
     showTypeDashboard: boolean = false;
 
@@ -58,4 +59,10 @@ export class CaDatagridComponent implements OnInit {
         console.log('xx dg datagriColumns', this.datagriColumns)
     }
 
+    clickHeader(index: number) {
+        // Clicked a Header
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHeader', '@Start');
+
+        console.log('xx', index, this.currentPage)
+    }
 }
