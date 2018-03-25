@@ -18,6 +18,9 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Dashboard }                  from './models';
 import { CanvasAlert }                from './models';
+import { DatagridInput }              from './models';
+import { DatagridColumn }             from './models';
+
 
 @Component({
     selector: 'collaborate-alerts',
@@ -29,47 +32,146 @@ export class CollaborateAlertsComponent implements OnInit {
     @Output() formCollaborateAlertsClosed: EventEmitter<string> = new EventEmitter();
 
     canvasAlerts: CanvasAlert[];
-    dgHeaders: 
+    datagridHeaders: DatagridColumn[] =
+    [
         {
-            id: number; 
-            name: string; 
-            tooltip: string;
-            type: string; 
-            displayLength: number;
-            maxLength: number;
-            sortOrder: string;
-            filter: string;
-            backgroundColor: string;
-            color: string;
-            conditionalFormatColor: string;
-            nrDataQualityIssues: number;
-            maxValue: number;
-            minValue: number;
-            average: number;
-            linkedDashboardID: number;
-            linkedDashboardTabID: number;
-            isFrozen: boolean;
-
-        }[] = [];
-        "Dd", 
-        "Sent On", 
-        "Recipient", 
-        "Read", 
-        "AlertText"
-        dgHeaders
-        dgData
-        dgPagination
-        dgPaginationSize
-        dgShowHeader
-        dgShowData
-        dgShowFooter
-        dgRowHeight
-        dguserCanChangeProperties
-        dgShowTotalsRow
-        dgShowTotalsCol
-        dgCanEditInCell
-        dgCanExportData
+            id: 1,
+            displayName: 'id',
+            databaseTableName: '',
+            databaseFieldName: '',
+            tooltip: '',
+            datatype: 'string',
+            prefix: '',
+            divideBy: 0,
+            displayLength: 12,
+            maxLength: 0,
+            sortOrder: '',
+            filter: '',
+            backgroundColor: '',
+            color: '',
+            conditionalFormatColor: '',
+            nrDataQualityIssues: 0,
+            maxValue: 0,
+            minValue: 0,
+            average: 0,
+            linkedDashboardID: 0,
+            linkedDashboardTabID: 0,
+            isFrozen: false,
+        },
+        {
+            id: 2,
+            displayName: 'Sent On',
+            databaseTableName: '',
+            databaseFieldName: '',
+            tooltip: '',
+            datatype: 'string',
+            prefix: '',
+            divideBy: 0,
+            displayLength: 12,
+            maxLength: 0,
+            sortOrder: '',
+            filter: '',
+            backgroundColor: '',
+            color: '',
+            conditionalFormatColor: '',
+            nrDataQualityIssues: 0,
+            maxValue: 0,
+            minValue: 0,
+            average: 0,
+            linkedDashboardID: 0,
+            linkedDashboardTabID: 0,
+            isFrozen: false,
+        },
+        {
+            id: 3,
+            displayName: 'Recipient',
+            databaseTableName: '',
+            databaseFieldName: '',
+            tooltip: '',
+            datatype: 'string',
+            prefix: '',
+            divideBy: 0,
+            displayLength: 12,
+            maxLength: 0,
+            sortOrder: '',
+            filter: '',
+            backgroundColor: '',
+            color: '',
+            conditionalFormatColor: '',
+            nrDataQualityIssues: 0,
+            maxValue: 0,
+            minValue: 0,
+            average: 0,
+            linkedDashboardID: 0,
+            linkedDashboardTabID: 0,
+            isFrozen: false,
+        },
+        {
+            id: 4,
+            displayName: 'Read?',
+            databaseTableName: '',
+            databaseFieldName: '',
+            tooltip: '',
+            datatype: 'string',
+            prefix: '',
+            divideBy: 0,
+            displayLength: 12,
+            maxLength: 0,
+            sortOrder: '',
+            filter: '',
+            backgroundColor: '',
+            color: '',
+            conditionalFormatColor: '',
+            nrDataQualityIssues: 0,
+            maxValue: 0,
+            minValue: 0,
+            average: 0,
+            linkedDashboardID: 0,
+            linkedDashboardTabID: 0,
+            isFrozen: false,
+        },
+        {
+            id: 5,
+            displayName: 'Alert Text',
+            databaseTableName: '',
+            databaseFieldName: '',
+            tooltip: '',
+            datatype: 'string',
+            prefix: '',
+            divideBy: 0,
+            displayLength: 12,
+            maxLength: 0,
+            sortOrder: '',
+            filter: '',
+            backgroundColor: '',
+            color: '',
+            conditionalFormatColor: '',
+            nrDataQualityIssues: 0,
+            maxValue: 0,
+            minValue: 0,
+            average: 0,
+            linkedDashboardID: 0,
+            linkedDashboardTabID: 0,
+            isFrozen: false,
+        }
     ];
+    datagridInput: DatagridInput = 
+    {
+        datagridHeaders: this.datagridHeaders,
+        datagridData: true,
+        datagridPagination: false,
+        datagridPaginationSize: 10,
+        datagridShowHeader: true,
+        datagridShowData: true,
+        datagridShowFooter: false,
+        datagridRowHeight: 12,
+        datagriduserCanChangeProperties: false,
+        datagridShowTotalsRow: false,
+        datagridShowTotalsCol: false,
+        datagridCanEditInCell: false,
+        datagridCanExportData: false
+    };
+
     filterTextContains: string;
     filterRead: string;
     filterRecipient: string;
@@ -95,7 +197,7 @@ export class CollaborateAlertsComponent implements OnInit {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        
+
 		this.formCollaborateAlertsClosed.emit(action);
     }
 
@@ -103,7 +205,7 @@ export class CollaborateAlertsComponent implements OnInit {
         // Filter the Grid
         // this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
 
-        console.log('xx fromDate', fromDate, toDate, this.filterTextContains, 
+        console.log('xx fromDate', fromDate, toDate, this.filterTextContains,
         this.filterRead, this.filterRecipient)
 
         this.globalVariableService.getCanvasAlerts().then (i => {

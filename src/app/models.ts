@@ -1,41 +1,45 @@
 // ALL models (schema) are kept here
 
 // CA Datagrid
-export class DatagridHeader {
-    id: number; 
-    name: string; 
-    tooltip: string;
-    type: string; 
-    displayLength: number;
-    maxLength: number;
-    sortOrder: string;
-    filter: string;
-    backgroundColor: string;
-    color: string;
-    conditionalFormatColor: string;
-    nrDataQualityIssues: number;
-    maxValue: number;
-    minValue: number;
-    average: number;
-    linkedDashboardID: number;
-    linkedDashboardTabID: number;
-    isFrozen: boolean;
+export class DatagridColumn {
+    id: number;                             // Unique ID, for later use
+    displayName: string;                    // Text displayed in Grid header
+    databaseTableName: string;              // Optional Table name in DB
+    databaseFieldName: string;              // Optional field name in DB
+    tooltip: string;                        // Text string as tooltip
+    datatype: string;                       // string, number, boolean
+    prefix: string;                         // ie RK, or Rm
+    divideBy: number;                       // 1000, 1000 000.  If <=0 => no action
+    displayLength: number;                  // Max lenght in Grid, even if field is wider
+    maxLength: number;                      // 0 means ignore
+    sortOrder: string;                      // For later use - maybe add sort on startup
+    filter: string;                         //  For later use - maybe add filter on startup
+    backgroundColor: string;                // ie 'beige'
+    color: string;                          // ie 'black'
+    conditionalFormatColor: string;         // If '' then no condFmt.  ie 'blue'
+    nrDataQualityIssues: number;            // Optional nr of DataQual issues
+    maxValue: number;                       // Optional Max value in this col
+    minValue: number;                       // Optional Min value in this col
+    average: number;                        // Optional Avg value in this col
+    linkedDashboardID: number;              // Optional ID of linked Dashboard
+    linkedDashboardTabID: number;           // Optional ID of linked Tab
+    isFrozen: boolean;                      // Optional: true if freeze col
 }
 
 export class DatagridInput {
-    dgHeaders: DatagridHeader;
-    dgData: any;
-    dgPagination: boolean;
-    dgPaginationSize: number;
-    dgShowHeader: boolean;
-    dgShowData: boolean;
-    dgShowFooter: boolean;
-    dgRowHeight: number;
-    dguserCanChangeProperties: boolean;
-    dgShowTotalsRow: boolean;
-    dgShowTotalsCol: boolean;
-    dgCanEditInCell: boolean;
-    dgCanExportData: boolean;
+    datagridHeaders: DatagridColumn[];            // Cols, with info on each
+    datagridData: any;                            // Data Array
+    datagridPagination: boolean;                  // True if pagination is on
+    datagridPaginationSize: number;               // Size of each page, ie 10 (rows)
+    datagridShowHeader: boolean;                  // True to show Headers
+    datagridShowData: boolean;                    // True to show Data
+    datagridShowFooter: boolean;                  // True to show Footer
+    datagridRowHeight: number;                    // Height in px
+    datagriduserCanChangeProperties: boolean;     // False if use can change Nothing in grid, ie cannot even resize
+    datagridShowTotalsRow: boolean;               // True to show additional row of totals at bottom
+    datagridShowTotalsCol: boolean;               // True to show additional col of totals on right
+    datagridCanEditInCell: boolean;               // True is user can edit inside cells
+    datagridCanExportData: boolean;               // True if the data may be exported
 }
 
 // Setup / Settings / General
