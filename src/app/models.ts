@@ -27,7 +27,7 @@ export class DatagridColumn {
 }
 
 export class DatagridInput {
-    datagridHeaders: DatagridColumn[];            // Cols, with info on each
+    datagriColumns: DatagridColumn[];             // Cols, with info on each
     datagridData: any;                            // Data Array
     datagridPagination: boolean;                  // True if pagination is on
     datagridPaginationSize: number;               // Size of each page, ie 10 (rows)

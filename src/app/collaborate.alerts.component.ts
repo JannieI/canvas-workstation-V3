@@ -32,7 +32,7 @@ export class CollaborateAlertsComponent implements OnInit {
     @Output() formCollaborateAlertsClosed: EventEmitter<string> = new EventEmitter();
 
     canvasAlerts: CanvasAlert[];
-    datagridHeaders: DatagridColumn[] =
+    datagriColumns: DatagridColumn[] =
     [
         {
             id: 1,
@@ -157,7 +157,7 @@ export class CollaborateAlertsComponent implements OnInit {
     ];
     datagridInput: DatagridInput = 
     {
-        datagridHeaders: this.datagridHeaders,
+        datagriColumns: this.datagriColumns,
         datagridData: true,
         datagridPagination: false,
         datagridPaginationSize: 10,

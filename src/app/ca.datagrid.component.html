@@ -1,13 +1,13 @@
 <!-- Datagrid Component based on Clarity UI     -->
 <clr-datagrid>
-    <clr-dg-column  *ngFor="let col of datagridHeaders"
+    <clr-dg-column  *ngFor="let col of datagriColumns"
         >
         {{ col.displayName }}
     </clr-dg-column>
 
     <clr-dg-row
         *clrDgItems="let row of datagridData">
-        <clr-dg-cell *ngFor="let col of datagridHeaders">
+        <clr-dg-cell *ngFor="let col of datagriColumns">
             {{ row[col.displayName] }}
         </clr-dg-cell>
     </clr-dg-row>
