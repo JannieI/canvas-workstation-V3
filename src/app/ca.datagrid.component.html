@@ -12,6 +12,13 @@
         </clr-dg-cell>
     </clr-dg-row>
 
+    <!-- <clr-dg-footer>{{datagridData.length}} records</clr-dg-footer> -->
+    <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="2">
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+            of {{pagination.totalItems}} records
+        </clr-dg-pagination>
+    </clr-dg-footer>
 </clr-datagrid>
     
     
