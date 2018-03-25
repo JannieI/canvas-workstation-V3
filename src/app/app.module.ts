@@ -16,6 +16,8 @@ import { HttpClientModule }           from '@angular/common/http';
 import { ClarityModule }              from 'clarity-angular';
 
 // Own Components
+import { CaDatagridComponent }        from './ca.datagrid.component';
+
 import { AppComponent }               from './app.component';
 import { LandingComponent }           from './landing.component';
 
@@ -103,7 +105,8 @@ import { StatusbarComponent }         from './statusbar.component';
 @NgModule({
     declarations: [
 
-        // Main
+        CaDatagridComponent,
+
         AppComponent,
         HelpComponent,
         LandingComponent,

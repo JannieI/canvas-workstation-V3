@@ -29,6 +29,13 @@ export class CollaborateAlertsComponent implements OnInit {
     @Output() formCollaborateAlertsClosed: EventEmitter<string> = new EventEmitter();
 
     canvasAlerts: CanvasAlert[];
+    dgHeaders: string[] = [
+        "Dd", 
+        "Sent On", 
+        "Recipient", 
+        "Read", 
+        "AlertText"
+    ];
     filterTextContains: string;
     filterRead: string;
     filterRecipient: string;

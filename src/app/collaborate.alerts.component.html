@@ -49,11 +49,11 @@
                 </div>
 
                 <clr-datagrid>
-                    <clr-dg-column [clrDgField]="id">ID</clr-dg-column>
-                    <clr-dg-column [clrDgField]="sentOn">Sent On</clr-dg-column>
-                    <clr-dg-column [clrDgField]="recipient">Recipient</clr-dg-column>
-                    <clr-dg-column [clrDgField]="read">Read?</clr-dg-column>
-                    <clr-dg-column [clrDgField]="alertText">Text</clr-dg-column>
+                    <clr-dg-column  *ngFor="let row of dgHeaders"
+                        [clrDgField]="row"
+                        >
+                        {{ row }}
+                    </clr-dg-column>
 
                     <clr-dg-row *ngFor="let row of canvasAlerts">
                         <clr-dg-cell>{{row.id}}</clr-dg-cell>
