@@ -1,17 +1,21 @@
 <!-- Datagrid Component based on Clarity UI     -->
-<clr-datagrid [(clrDgSingleSelected)]="selectedData">
+<clr-datagrid class="datagrid-compact" [(clrDgSingleSelected)]="selectedData">
 
-    <clr-dg-placeholder>We couldn't find any users!</clr-dg-placeholder>
+    <clr-dg-placeholder>
+        {{ datagridEmptyMessage }} 
+    </clr-dg-placeholder>
 
     <clr-dg-column *ngFor="let col of datagriColumns; let i = index"
         [clrDgField]="col.fieldName"
         >
-        <div class="dg-header"
-            (click)="clickHeader(i)"
-            >
-            {{ col.displayName }}
+        <ng-container *clrDgHideableColumn="{hidden: false}">
+            <div class="dg-header"
+                (click)="clickHeader(i)"
+                >
+                {{ col.displayName }}
 
-        </div>
+            </div>
+        </ng-container>
     </clr-dg-column>
 
     <clr-dg-row *clrDgItems="let row of datagridData" [clrDgItem]="row" [(clrDgSelected)]="row.selected">
@@ -40,10 +44,12 @@
             </div>
             
         </clr-dg-cell>
+
     </clr-dg-row>
 
     <!-- <clr-dg-footer>{{datagridData.length}} records</clr-dg-footer> -->
     <clr-dg-footer>
+
         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
         of {{pagination.totalItems}} records
         <clr-dg-pagination 

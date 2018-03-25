@@ -8,6 +8,10 @@ import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
+// Clarity UI
+// import { ClrDatagridColumn } from 'clarity-angular/data/datagrid/';
+// import { ClrDatagridPagination, ClrDatagridRow, ClrDatagridCell } from 'clarity-angular/data/datagrid/datagrid-column';
+
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
 
