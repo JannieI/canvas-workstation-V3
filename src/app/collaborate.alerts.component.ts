@@ -81,11 +81,11 @@ export class CollaborateAlertsComponent implements OnInit {
                 temp = temp.filter(a => a.alertText.indexOf(this.filterTextContains) >= 0);
             };
             if (this.filterRead) {
-                console.log('read')
+                console.log('read', this.filterRead)
                 temp = temp.filter(a => a.read);
             };
             if (this.filterRecipient != ''  &&  this.filterRecipient != undefined) {
-                console.log('rec')
+                console.log('rec', this.filterRecipient)
                 temp = temp.filter(a => a.recipient.indexOf(this.filterRecipient) >=0);
             };
 
