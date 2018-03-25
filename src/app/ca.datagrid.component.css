@@ -11,3 +11,23 @@
     padding-top: 0px !important;
     padding-bottom: 0px !important;
 }
+
+.datagrid-foot-description {
+    text-align: left !important;
+}
+
+.datagrid-foot {
+    justify-content: space-between !important;
+}
+
+.dg-paginationRight {
+    display: block !important;
+    right: 0px !important;
+    float: right !important;
+}
+
+.pagination {
+    display: block !important;
+    right: 0px !important;
+    float: right !important;
+}

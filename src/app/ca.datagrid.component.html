@@ -10,8 +10,7 @@
         </div>
     </clr-dg-column>
 
-    <clr-dg-row
-        *clrDgItems="let row of datagridData">
+    <clr-dg-row *clrDgItems="let row of datagridData">
         <clr-dg-cell *ngFor="let col of datagriColumns">
             {{ row[col.fieldName] }}
         </clr-dg-cell>
@@ -19,10 +18,13 @@
 
     <!-- <clr-dg-footer>{{datagridData.length}} records</clr-dg-footer> -->
     <clr-dg-footer>
-        <clr-dg-pagination #pagination [clrDgPageSize]="2"
-        [(clrDgPage)]="currentPage">
-            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-            of {{pagination.totalItems}} records
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+        of {{pagination.totalItems}} records
+        <clr-dg-pagination class="dg-paginationRight"
+            #pagination 
+            [clrDgPageSize]="2"
+            [(clrDgPage)]="currentPage"
+            >
         </clr-dg-pagination>
     </clr-dg-footer>
 </clr-datagrid>
