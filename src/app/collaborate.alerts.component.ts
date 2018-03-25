@@ -167,6 +167,7 @@ export class CollaborateAlertsComponent implements OnInit {
         datagridPagination: false,
         datagridPaginationSize: 10,
         datagridShowHeader: true,
+        datagridShowRowActionMenu: false,
         datagridShowData: true,
         datagridShowFooter: false,
         datagridRowHeight: 12,

@@ -33,6 +33,7 @@ export class DatagridInput {
     datagridPagination: boolean;                  // True if pagination is on
     datagridPaginationSize: number;               // Size of each page, ie 10 (rows)
     datagridShowHeader: boolean;                  // True to show Headers
+    datagridShowRowActionMenu: boolean;           // True to show the action menu per row
     datagridShowData: boolean;                    // True to show Data
     datagridShowFooter: boolean;                  // True to show Footer
     datagridRowHeight: number;                    // Height in px

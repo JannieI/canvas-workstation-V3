@@ -28,19 +28,20 @@ import { DatagridColumn }             from './models';
 })
 export class CaDatagridComponent implements OnInit {
 
-    @Input() datagriColumns: DatagridColumn[];             // Cols, with info on each
-    @Input() datagridData: any;                            // Data Array
-    @Input() datagridPagination: boolean;                  // True if pagination is on
-    @Input() datagridPaginationSize: number;               // Size of each page, ie 10 (rows)
-    @Input() datagridShowHeader: boolean;                  // True to show Headers
-    @Input() datagridShowData: boolean;                    // True to show Data
-    @Input() datagridShowFooter: boolean;                  // True to show Footer
-    @Input() datagridRowHeight: number;                    // Height in px
-    @Input() datagriduserCanChangeProperties: boolean;     // False if use can change Nothing in grid, ie cannot even resize
-    @Input() datagridShowTotalsRow: boolean;               // True to show additional row of totals at bottom
-    @Input() datagridShowTotalsCol: boolean;               // True to show additional col of totals on right
-    @Input() datagridCanEditInCell: boolean;               // True is user can edit inside cells
-    @Input() datagridCanExportData: boolean;               // True if the data may be exported
+    @Input() datagriColumns: DatagridColumn[];              // Cols, with info on each
+    @Input() datagridData: any;                             // Data Array
+    @Input() datagridPagination: boolean;                   // True if pagination is on
+    @Input() datagridPaginationSize: number;                // Size of each page, ie 10 (rows)
+    @Input() datagridShowHeader: boolean;                   // True to show Headers
+    @Input() datagridShowRowActionMenu: boolean             // True to show the action menu per row
+    @Input() datagridShowData: boolean;                     // True to show Data
+    @Input() datagridShowFooter: boolean;                   // True to show Footer
+    @Input() datagridRowHeight: number;                     // Height in px
+    @Input() datagriduserCanChangeProperties: boolean;      // False if use can change Nothing in grid, ie cannot even resize
+    @Input() datagridShowTotalsRow: boolean;                // True to show additional row of totals at bottom
+    @Input() datagridShowTotalsCol: boolean;                // True to show additional col of totals on right
+    @Input() datagridCanEditInCell: boolean;                // True is user can edit inside cells
+    @Input() datagridCanExportData: boolean;                // True if the data may be exported
 
     currentPage: number = 1;
     today = Date.now();
