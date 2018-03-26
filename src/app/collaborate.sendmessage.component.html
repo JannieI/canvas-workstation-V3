@@ -1,0 +1,103 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
+            
+            <div class="gridOverall">
+
+                <div class="gridTitle">
+                    <b>Send Email: </b> 
+                </div>                
+                <div class="gridSubTitle">
+                    <i>  
+                        This will open a system email dialogue box.
+                    </i>
+                </div>                
+    
+                <div class="gridToUsersTitle">
+                    <b>To Users:</b>
+                </div>
+
+                <div class="gridToUsers">
+                    <input [(ngModel)]="toUsers"
+                        type="text"
+                        title="List of user recipients"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridToGroupsTitle">
+                    <b>To Groups:</b>
+                </div>
+    
+                <div class="gridToGroups">
+                    <input [(ngModel)]="toGroups"
+                        type="text"
+                        title="List of group recipients"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridSubjectTitle">
+                    <b>Subject:</b>
+                </div>
+    
+                <div class="gridSubject">
+                    <input [(ngModel)]="subject"
+                        type="text"
+                        title="Subject"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridBodyTitle">
+                    <b>Body:</b>
+                </div>
+
+                <div class="gridBody">
+                    <input [(ngModel)]="body"
+                        type="text"
+                        title="Body"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridLinkTitle">
+                    <b>Link this Dashboard and Tab:</b>
+                </div>
+
+                <div class="gridLink">
+                    <input [(ngModel)]="linked"
+                        type="checkbox"
+                        title="Link the current Dashboard (T/F)"
+                        >
+                </div>
+
+
+                <div class="gridButtonCancel">
+                        <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose('Close')"
+                        >
+                        Cancel
+                    </button>
+                </div>
+                
+                <div class="gridButtonSave">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickSave('Saved')"
+                        >
+                        Save
+                    </button>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+

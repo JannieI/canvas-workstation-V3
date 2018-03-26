@@ -79,6 +79,7 @@ import { CollaborateMessagesComponent }     from './collaborate.messages.compone
 import { CollaborateActivitiesComponent }   from './collaborate.activities.component';
 import { CollaborateActivityAddComponent }  from './collaborate.activityadd.component';
 import { CollaborateSendEmailComponent }    from './collaborate.sendemail.component';
+import { CollaborateSendMessageComponent }  from './collaborate.sendmessage.component';
 
 import { UserPaletteButtonBarComponent}     from './user.palette.buttonbar.component';
 import { LoginComponent}              from './login.component';
