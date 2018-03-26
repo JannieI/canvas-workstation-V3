@@ -236,6 +236,9 @@ export class AppComponent implements OnInit {
 
     }
 
+
+    showWidgetContextMenu: boolean = false;
+
     clipboardWidget: Widget;
     companyName: string = '';
     currentDashboardName: string = '';
@@ -3809,6 +3812,10 @@ export class AppComponent implements OnInit {
         return result;
     }
 
+    contextMenuOpen() {
+        this.showWidgetContextMenu = true;
+        return;
+    }
     contextmenuWidgetTitle(ev: MouseEvent, index: number) {
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetTitle', '@Start');

@@ -135,6 +135,12 @@
             float: right;
             width: 0.6rem;
         }
+        .titleMenu {
+            color: black;
+            float: right;
+            padding: 0;
+            z-index: 100;
+        }
     
 
     .widget {
