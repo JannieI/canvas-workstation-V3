@@ -14,16 +14,21 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-auto-rows: 0.8rem;
+    grid-template-rows: repeat(15, 0.8rem);
     margin-top: 2px;
 }
 
-    .messagesArea {
-        border: 1px solid gray;
+    .gridTitle {
         grid-column-start: 1;
         grid-column-end: 21;
         grid-row-start: 1;
-        grid-row-end: 25;
-        margin: 5px;
+        grid-row-end: 2;
+    }
+
+    .gridTable {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 3;
+        grid-row-end: 16;
         overflow: scroll;
     }

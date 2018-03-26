@@ -77,8 +77,10 @@ export class DashboardDataQualityComponent implements OnInit {
         //     console.log('xx comm', cC, this.canvasComments)
         // });
 
-        this.globalVariableService.getCanvasComments().then (ca => {
-            this.datagridInput.datagridData = ca;
+        this.globalVariableService.getDataQualityIssues().then (ca => {
+            this.datagridInput.datagridData = ca.filter(c =>
+                c['widgetID'] == this.selectedWidgetID  ||  this.selectedWidgetID == -1
+            );
             if (ca.length > 0) {
                 const columns = Object.keys(ca[0]);
                 for (var i = 0; i < columns.length; i++) {
