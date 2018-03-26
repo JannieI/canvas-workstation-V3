@@ -20,7 +20,7 @@ import { Dashboard }                  from './models';
 import { UserPreferences }            from './models';
 
 @Component({
-    selector: 'collaborate',
+    selector: 'collaborate-sendmessage',
     templateUrl: './collaborate.sendmessage.component.html',
     styleUrls: ['./collaborate.sendmessage.component.css']
 })

@@ -20,7 +20,7 @@ import { Dashboard }                  from './models';
 import { UserPreferences }            from './models';
 
 @Component({
-    selector: 'collaborate',
+    selector: 'collaborate-sendemail',
     templateUrl: './collaborate.sendemail.component.html',
     styleUrls: ['./collaborate.sendemail.component.css']
 })

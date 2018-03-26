@@ -1179,14 +1179,14 @@
                     <div class="dropdown-divider"></div>
                     <button type="button" 
                         clrDropdownItem 
-                        (click)="clickMenuCollaborateAlerts()"
+                        (click)="clickMenuCollaborateSendMessageAdd()"
                         title="Send a Canvas Message"
                         >
                         Send Message
                     </button>
                     <button type="button" 
                         clrDropdownItem 
-                        (click)="clickMenuCollaborateAlerts()"
+                        (click)="clickMenuCollaborateSendEmailAdd()"
                         title="Send an email"
                         >
                         Send Email
@@ -2163,6 +2163,28 @@
     *ngIf="showModalCollaborateActivityAdd"
     (formCollaborateActivityAddClosed)="handleCloseCollaborateActivityAdd($event)">Load ActivityAdd ...
 </collaborate-activityadd>
+
+
+<!-- Modal: Add Message -->
+<collaborate-sendmessage
+    class="formPopupDashboard"
+    *ngIf="showModalCollaborateSendMessage"
+    (formCollaborateActivityAddClosed)="handleCloseCollaborateSendMessageAdd($event)"
+    >
+    Add Message ...
+</collaborate-sendmessage>
+
+
+<!-- Modal: Add Email -->
+<collaborate-sendemail
+    class="formPopupDashboard"
+    *ngIf="showModalCollaborateSendEmail"
+    (formCollaborateActivityAddClosed)="handleCloseCollaborateSendEmailAdd($event)"
+    >
+    Add Email ...
+</collaborate-sendemail>
+
+
 
 
 

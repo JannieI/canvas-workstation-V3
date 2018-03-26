@@ -325,6 +325,8 @@ export class AppComponent implements OnInit {
     showModalWidgetEditor: boolean = false;
     showModalCollaborateAlerts: boolean = false;
     showModalCollaborateActivityAdd: boolean = false;
+    showModalCollaborateSendMessage: boolean = false;
+    showModalCollaborateSendEmail: boolean = false;
     showModalCollaborateMessages: boolean = false;
     showModalCollaborateActivities: boolean = false;
     showModalLanding: boolean;
@@ -1017,6 +1019,28 @@ export class AppComponent implements OnInit {
 
         this.showModalCollaborateActivityAdd = false;
     }
+
+
+
+    handleCloseCollaborateSendMessageAdd(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivityAdd', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalCollaborateSendMessage = false;
+    }
+
+    handleCloseCollaborateSendEmailAdd(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivityAdd', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalCollaborateSendEmail = false;
+    }
+    
+
 
     handleCloseCollaborateMessages(action: string) {
         //
@@ -3157,7 +3181,7 @@ export class AppComponent implements OnInit {
     // ***********************  CLICK COLLABORATE MENU OPTIONS ************************ //
 
     clickMenuCollaborateAlerts() {
-        //
+        // Show list of Canvas Alerts
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateAlerts', '@Start');
 
         this.menuOptionClickPreAction();
@@ -3167,19 +3191,8 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
     }
 
-    clickMenuCollaborateActivityAdd() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateActivityAdd', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showModalCollaborateActivityAdd = true;
-
-        this.menuOptionClickPostAction();
-    }
-
     clickMenuCollaborateMessages() {
-        //
+        // Show list of Canvas Messages
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateMessages', '@Start');
 
         this.menuOptionClickPreAction();
@@ -3190,7 +3203,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuCollaborateActivities() {
-        //
+        // Show list of Canvas Activities
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateActivities', '@Start');
 
         this.menuOptionClickPreAction();
@@ -3200,7 +3213,38 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
     }
 
+    clickMenuCollaborateActivityAdd() {
+        // Add a new Activity
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateActivityAdd', '@Start');
 
+        this.menuOptionClickPreAction();
+
+        this.showModalCollaborateActivityAdd = true;
+
+        this.menuOptionClickPostAction();
+    }
+
+    clickMenuCollaborateSendMessageAdd() {
+        // Send a Canvas Message
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateSendMessage', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalCollaborateSendMessage = true;
+
+        this.menuOptionClickPostAction();
+    }
+
+    clickMenuCollaborateSendEmailAdd() {
+        // Send an Email
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateSendEmail', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalCollaborateSendEmail = true;
+
+        this.menuOptionClickPostAction();
+    }
 
 
 
