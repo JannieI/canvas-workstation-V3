@@ -197,7 +197,12 @@ export class CanvasMessage {
     dashboardTabID: number;     // Optional Tab linked to this message
 }
 
-
+export class CanvasMessageSingle {
+    id: number;                 // Unique ID
+    messageID: number;          // FK to CanvasMessage
+    recipient: string;          // Single Recipient, deduced from To-lists in Message
+    read: boolean;              // True if Recipient has read the message.  Can toggle this
+}
 
 export class CanvasAlert {
     id: number;
