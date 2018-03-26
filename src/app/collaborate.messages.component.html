@@ -6,6 +6,36 @@
                     <button type="button" class="closeButton" (click)="clickClose()">
                         X
                     </button>
+                    <div>
+                        <b>Message</b>
+                        <i>A list of Messages between users.</i>
+                    </div>
+    
+                    <ca-datagrid
+                        [datagriColumns]="datagridInput.datagriColumns"
+                        [datagridData]="datagridInput.datagridData"
+                        [datagridPagination]="datagridInput.datagridPagination"
+                        [datagridPaginationSize]="datagridInput.datagridPaginationSize"
+                        [datagridShowHeader]="datagridInput.datagridShowHeader"
+                        [datagridShowRowActionMenu]="datagridInput.datagridShowRowActionMenu"
+                        [datagridShowData]="datagridInput.datagridShowData"
+                        [datagridShowFooter]="datagridInput.datagridShowFooter"
+                        [datagridRowHeight]="datagridInput.datagridRowHeight"
+                        [datagriduserCanChangeProperties]="datagridInput.uatagriderCanChangeProperties"
+                        [datagridShowTotalsRow]="datagridInput.datagridShowTotalsRow"
+                        [datagridShowTotalsCol]="datagridInput.datagridShowTotalsCol"
+                        [datagridCanEditInCell]="datagridInput.datagridCanEditInCell"
+                        [datagridCanExportData]="datagridInput.datagridCanExportData"
+                        [datagridEmptyMessage]="datagridInput.datagridEmptyMessage"
+                        >
+                    </ca-datagrid>
+    
+                </div>
+
+                <!-- <div>
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
 
                     Messages
                     <div class="propertyLine">
@@ -48,7 +78,7 @@
 
                     </clr-datagrid>
 
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
