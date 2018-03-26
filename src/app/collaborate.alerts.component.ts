@@ -32,7 +32,8 @@ export class CollaborateAlertsComponent implements OnInit {
     @Output() formCollaborateAlertsClosed: EventEmitter<string> = new EventEmitter();
 
     canvasAlerts: CanvasAlert[];
-    datagriColumns: DatagridColumn[] =
+    datagriColumns: DatagridColumn[] = [];
+    datagriColumns2: DatagridColumn[] =
     [
         {
             id: 1,
@@ -195,9 +196,40 @@ export class CollaborateAlertsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasAlerts().then (i =>
-            this.datagridInput.datagridData = i
-        );
+        this.globalVariableService.getCanvasAlerts().then (ca => {
+            this.datagridInput.datagridData = ca;
+            if (ca.length > 0) {
+                const columns = Object.keys(ca[0]);
+                for (var i = 0; i < ca.length; i++) {
+                    this.datagriColumns.push(
+                    {
+                        id: i,
+                        displayName: columns[i],
+                        fieldName: columns[i],
+                        databaseDBTableName: '',
+                        databaseDBFieldName: '',
+                        tooltip: '',
+                        datatype: 'string',
+                        prefix: '',
+                        divideBy: 0,
+                        displayLength: 12,
+                        maxLength: 0,
+                        sortOrder: '',
+                        filter: '',
+                        backgroundColor: '',
+                        color: '',
+                        conditionalFormatColor: '',
+                        nrDataQualityIssues: 0,
+                        maxValue: 0,
+                        minValue: 0,
+                        average: 0,
+                        linkedDashboardID: 0,
+                        linkedDashboardTabID: 0,
+                        isFrozen: false,
+                    });
+                };
+            };
+        });
     }
 
     clickClose(action: string) {

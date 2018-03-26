@@ -24,7 +24,7 @@
     <clr-dg-row *clrDgItems="let row of datagridData" [clrDgItem]="row" [(clrDgSelected)]="row.selected">
 
         <!-- Action Popup Menu on Row -->
-        <div *ngIf="true">
+        <div *ngIf="datagridShowRowActionMenu">
         <clr-dg-action-overflow>
             <button class="action-item" (click)="clickRowEdit(row)">Edit</button>
             <button class="action-item" (click)="clickColumnDelete(row)">Delete</button>
