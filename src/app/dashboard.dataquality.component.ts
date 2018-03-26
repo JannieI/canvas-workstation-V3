@@ -16,8 +16,9 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
 import { CanvasComment }              from './models';
+import { DatagridInput }              from './models';
+import { DatagridColumn }             from './models';
 
 @Component({
     selector: 'dashboard-dataquality',
@@ -31,7 +32,25 @@ export class DashboardDataQualityComponent implements OnInit {
 
     canvasComments: CanvasComment[] = [];
     headerText: string;
-    showTypeDashboard: boolean = false;
+    datagriColumns: DatagridColumn[] = [];
+    datagridInput: DatagridInput =
+    {
+        datagriColumns: this.datagriColumns,
+        datagridData: null,
+        datagridPagination: false,
+        datagridPaginationSize: 10,
+        datagridShowHeader: false,
+        datagridShowRowActionMenu: false,
+        datagridShowData: true,
+        datagridShowFooter: true,
+        datagridRowHeight: 12,
+        datagriduserCanChangeProperties: false,
+        datagridShowTotalsRow: false,
+        datagridShowTotalsCol: false,
+        datagridCanEditInCell: false,
+        datagridCanExportData: false,
+        datagridEmptyMessage: 'No Alerts created so far'
+    };
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -39,24 +58,64 @@ export class DashboardDataQualityComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Display the source
         if (this.selectedWidgetID == -1) {
             this.headerText = 'this Dashboard';
         } else {
             this.headerText = 'selected Widget';
         };
 
-        this.globalVariableService.getCanvasComments().then(cC => {
-             cC.forEach(i => {
-                 if (i.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) {
-                     this.canvasComments.push(i)
-                 };
-            });
-            console.log('xx comm', cC, this.canvasComments)
+        // this.globalVariableService.getCanvasComments().then(cC => {
+        //      cC.forEach(i => {
+        //          if (i.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) {
+        //              this.canvasComments.push(i)
+        //          };
+        //     });
+        //     console.log('xx comm', cC, this.canvasComments)
+        // });
+
+        this.globalVariableService.getCanvasComments().then (ca => {
+            this.datagridInput.datagridData = ca;
+            if (ca.length > 0) {
+                const columns = Object.keys(ca[0]);
+                for (var i = 0; i < columns.length; i++) {
+                    this.datagriColumns.push(
+                    {
+                        id: i,
+                        displayName: columns[i],
+                        fieldName: columns[i],
+                        databaseDBTableName: '',
+                        databaseDBFieldName: '',
+                        tooltip: '',
+                        datatype: 'string',
+                        prefix: '',
+                        divideBy: 0,
+                        displayLength: 12,
+                        maxLength: 0,
+                        sortOrder: '',
+                        filter: '',
+                        backgroundColor: '',
+                        color: '',
+                        conditionalFormatColor: '',
+                        nrDataQualityIssues: 0,
+                        maxValue: 0,
+                        minValue: 0,
+                        average: 0,
+                        linkedDashboardID: 0,
+                        linkedDashboardTabID: 0,
+                        isFrozen: false,
+                    });
+                };
+            };
         });
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardDataQualityClosed.emit(action);
     }

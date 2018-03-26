@@ -3816,6 +3816,9 @@ export class AppComponent implements OnInit {
         // Open context / dropdown Menu from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuOpen', '@Start');
 
+        // // Must be first, else default behaviour takes over
+        // ev.preventDefault();
+
         this.showWidgetContextMenu = true;
         return;
     }
@@ -3839,23 +3842,15 @@ export class AppComponent implements OnInit {
         );
     }
    
-    contextmenuWidgetTitle(ev: MouseEvent, index: number) {
+    contextmenuWidgetTitle(ev: MouseEvent, index: number, id: number) {
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetTitle', '@Start');
-
-        // Must be first, else default behaviour takes over
-        ev.preventDefault();
-
-        // Check for only one W
-        if (!this.checkForOnlyOneWidget()) {
-            return
-        };
 
         this.menuOptionClickPreAction();
 
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected) {
+            if (w.id == id) {
                 this.selectedWidget = w;
             };
         });

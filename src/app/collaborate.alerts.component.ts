@@ -32,7 +32,7 @@ export class CollaborateAlertsComponent implements OnInit {
 
     canvasAlerts: CanvasAlert[];
     datagriColumns: DatagridColumn[] = [];
-    datagridInput: DatagridInput = 
+    datagridInput: DatagridInput =
     {
         datagriColumns: this.datagriColumns,
         datagridData: null,
