@@ -20,13 +20,13 @@ import { Dashboard }                  from './models';
 import { UserPreferences }            from './models';
 
 @Component({
-    selector: 'preferences',
-    templateUrl: './preferences.component.html',
-    styleUrls: ['./preferences.component.css']
+    selector: 'collaboration',
+    templateUrl: './collaboration.sendemail.html',
+    styleUrls: ['./collaboration.sendemail.css']
 })
-export class PreferencesComponent implements OnInit {
+export class CollaborateSendEmailComponent implements OnInit {
 
-    @Output() formDashboardPreferencesClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardSendEmailClosed: EventEmitter<string> = new EventEmitter();
 
     preferenceAutoSync: boolean;
     preferenceShowOpenStartupMessage: boolean;
@@ -74,7 +74,7 @@ export class PreferencesComponent implements OnInit {
                 defaultMessage: ''
             }
         );
-		this.formDashboardPreferencesClosed.emit(action);
+		this.formDashboardSendEmailClosed.emit(action);
     }
 
     clickSave(action: string) {
@@ -111,7 +111,7 @@ export class PreferencesComponent implements OnInit {
                     );
                 }
         );
-		this.formDashboardPreferencesClosed.emit(action);
+		this.formDashboardSendEmailClosed.emit(action);
     }
 
     //TODO

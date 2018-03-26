@@ -185,18 +185,19 @@ export class CanvasActivity {
 }
 
 export class CanvasMessage {
-    id: number;
-    threadID: number;
-    sentBy: string;
-    sentOn: string;
-    toUsers: string[];      // Original list
-    toGroups: string[];     // Original list
-    recipient: string;      // Independant message, deduced from to lists
-    read: boolean;
-    subject: string;
-    body: string;
-    dashboardID: number;
-    dashboardTabID: number;
+    id: number;                 // Unique ID
+    threadID: number;           // Optional thread - to keep converstations together (later use)
+    sentBy: string;             // UserID who sent message
+    sentOn: string;             // DateTime message was sent
+    toUsers: string[];          // Original list of Users
+    toGroups: string[];         // Original list of Groups
+    recipient: string;          // Single Recipient, deduced from To-lists
+    // Messages are thus duplicated for each user in the To-lists
+    read: boolean;              // True if Recipient has read the message.  Can toggle this
+    subject: string;            // Message Subject
+    body: string;               // Message body
+    dashboardID: number;        // Optional Dashboard linked to this message
+    dashboardTabID: number;     // Optional Tab linked to this message
 }
 
 export class CanvasAlert {

@@ -1,0 +1,155 @@
+<div class="modal modalBox">
+        <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+            <div class="modal-content modalContent">
+    
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+                
+                <div class="gridOverall">
+    
+                    <div class="gridTitle">
+                        <b>Send Email: </b> 
+                    </div>                
+                    <div class="gridSubTitle">
+                        <i>  
+                            This will open a system email dialogue box.
+                        </i>
+                    </div>                
+        
+                    <div class="gridSettingsTitle">
+                        <b>Settings:</b>
+                    </div>
+    
+                    <div class="gridSettingsAutoSync">
+                        <b>AutoSync:</b>
+                        <input [(ngModel)]="preferenceAutoSync"
+                            type="checkbox"
+                            title="AutoSync local on connecting to Server (T/F)"
+                            >
+                    </div>
+    
+                    <div class="gridMessagesTitle">
+                        <b>Show messages:</b>
+                    </div>
+        
+                    <div class="gridMessagesStartup">
+                        <b>Startup:</b>
+                        <input [(ngModel)]="preferenceShowOpenStartupMessage"
+                            type="checkbox"
+                            title="Show Open startup message (T/F)"
+                            >
+                    </div>
+        
+                    <div class="gridMessagesOpenCombo">
+                        <b>OpenCombo:</b>
+                        <input [(ngModel)]="preferenceShowOpenDataCombinationMessage"
+                            type="checkbox"
+                            title="Show Open data combination message (T/F)"
+                            >
+                    </div>
+    
+                    <div class="gridMessagesView">
+                        <b>View:</b>
+                        <input [(ngModel)]="preferenceShowViewStartupMessage"
+                            type="checkbox"
+                            title="Show View startup message (T/F)"
+                            >
+                    </div>
+    
+                    <div class="gridMessagesDiscard">
+                        <b>Discard:</b>
+                        <input [(ngModel)]="preferenceShowDiscardStartupMessage"
+                            type="checkbox"
+                            title="Show Discard startup message (T/F)"
+                            >
+                    </div>
+    
+                    <div class="gridDefaultTitle">
+                        <b>Defaults:</b>
+                    </div>
+        
+                    <div class="gridDefaultTemplate">
+                        <b>Template:</b>
+                        <input [(ngModel)]="preferenceDefaultTemplate"
+                            type="text"
+                            title="Default Template"
+                            size="25"
+                            >
+                    </div>
+    
+                    <div class="gridDefaultDateFormat">
+                        <b>Date Format:</b>
+                        <input [(ngModel)]="preferenceDefaultDateformat"
+                            type="text"
+                            title="Default Date format"
+                            placeholder="YYYY/MM/DD"
+                            size="20"
+                            >
+                    </div>
+    
+                    <div class="gridDefaultFolder">
+                        <b>Folder:</b>
+                        <input [(ngModel)]="preferenceDefaultFolder" type="text"
+                            id="formFields_7"
+                            placeholder="Default Folder"
+                            size="25"
+                            >
+                    </div>
+    
+                    <div class="gridPrintTitle">
+                        <b>Printer:</b>
+                    </div>
+    
+                    <div class="gridPrintDefault">
+                        <b>Default:</b>
+                        <input [(ngModel)]="preferenceDefaultPrinter" type="text"
+                            id="formFields_7"
+                            placeholder="Default: Local HP"
+                            size="25"
+                            >
+                    </div>
+    
+                    <div class="gridPrintSize">
+                        <b>Page Size:</b>
+                        <input [(ngModel)]="preferenceDefaultPageSize" type="text"
+                            id="formFields_7"
+                            placeholder="Default Page Size: A4"
+                            size="25"
+                            >
+                    </div>
+    
+                    <div class="gridPrintLayout">
+                        <b>Layout:</b>
+                        <input [(ngModel)]="preferenceDefaultPageLayout" type="text"
+                            id="formFields_7"
+                            placeholder="Default Layout: Single page, B and W"
+                            size="25"
+                            >
+                    </div>
+    
+                    <div class="gridButtonCancel">
+                            <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose('Close')"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    
+                    <div class="gridButtonSave">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave('Saved')"
+                            >
+                            Save
+                        </button>
+                    </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
