@@ -17,116 +17,65 @@
                         </i>
                     </div>                
         
-                    <div class="gridSettingsTitle">
-                        <b>Settings:</b>
+                    <div class="gridToUsersTitle">
+                        <b>To Users:</b>
                     </div>
     
-                    <div class="gridSettingsAutoSync">
-                        <b>AutoSync:</b>
-                        <input [(ngModel)]="preferenceAutoSync"
-                            type="checkbox"
-                            title="AutoSync local on connecting to Server (T/F)"
-                            >
-                    </div>
-    
-                    <div class="gridMessagesTitle">
-                        <b>Show messages:</b>
-                    </div>
-        
-                    <div class="gridMessagesStartup">
-                        <b>Startup:</b>
-                        <input [(ngModel)]="preferenceShowOpenStartupMessage"
-                            type="checkbox"
-                            title="Show Open startup message (T/F)"
-                            >
-                    </div>
-        
-                    <div class="gridMessagesOpenCombo">
-                        <b>OpenCombo:</b>
-                        <input [(ngModel)]="preferenceShowOpenDataCombinationMessage"
-                            type="checkbox"
-                            title="Show Open data combination message (T/F)"
-                            >
-                    </div>
-    
-                    <div class="gridMessagesView">
-                        <b>View:</b>
-                        <input [(ngModel)]="preferenceShowViewStartupMessage"
-                            type="checkbox"
-                            title="Show View startup message (T/F)"
-                            >
-                    </div>
-    
-                    <div class="gridMessagesDiscard">
-                        <b>Discard:</b>
-                        <input [(ngModel)]="preferenceShowDiscardStartupMessage"
-                            type="checkbox"
-                            title="Show Discard startup message (T/F)"
-                            >
-                    </div>
-    
-                    <div class="gridDefaultTitle">
-                        <b>Defaults:</b>
-                    </div>
-        
-                    <div class="gridDefaultTemplate">
-                        <b>Template:</b>
-                        <input [(ngModel)]="preferenceDefaultTemplate"
+                    <div class="gridToUsers">
+                        <input [(ngModel)]="toUsers"
                             type="text"
-                            title="Default Template"
+                            title="List of user recipients"
                             size="25"
                             >
                     </div>
     
-                    <div class="gridDefaultDateFormat">
-                        <b>Date Format:</b>
-                        <input [(ngModel)]="preferenceDefaultDateformat"
+                    <div class="gridToGroupsTitle">
+                        <b>To Groups:</b>
+                    </div>
+        
+                    <div class="gridToGroups">
+                        <input [(ngModel)]="toGroups"
                             type="text"
-                            title="Default Date format"
-                            placeholder="YYYY/MM/DD"
-                            size="20"
-                            >
-                    </div>
-    
-                    <div class="gridDefaultFolder">
-                        <b>Folder:</b>
-                        <input [(ngModel)]="preferenceDefaultFolder" type="text"
-                            id="formFields_7"
-                            placeholder="Default Folder"
+                            title="List of group recipients"
                             size="25"
                             >
                     </div>
     
-                    <div class="gridPrintTitle">
-                        <b>Printer:</b>
+                    <div class="gridSubjectTitle">
+                        <b>Subject:</b>
                     </div>
-    
-                    <div class="gridPrintDefault">
-                        <b>Default:</b>
-                        <input [(ngModel)]="preferenceDefaultPrinter" type="text"
-                            id="formFields_7"
-                            placeholder="Default: Local HP"
+        
+                    <div class="gridSubject">
+                        <input [(ngModel)]="subject"
+                            type="text"
+                            title="Subject"
                             size="25"
                             >
                     </div>
     
-                    <div class="gridPrintSize">
-                        <b>Page Size:</b>
-                        <input [(ngModel)]="preferenceDefaultPageSize" type="text"
-                            id="formFields_7"
-                            placeholder="Default Page Size: A4"
+                    <div class="gridBodyTitle">
+                        <b>Body:</b>
+                    </div>
+    
+                    <div class="gridBody">
+                        <input [(ngModel)]="body"
+                            type="text"
+                            title="Body"
                             size="25"
                             >
                     </div>
     
-                    <div class="gridPrintLayout">
-                        <b>Layout:</b>
-                        <input [(ngModel)]="preferenceDefaultPageLayout" type="text"
-                            id="formFields_7"
-                            placeholder="Default Layout: Single page, B and W"
-                            size="25"
+                    <div class="gridLinkTitle">
+                        <b>Link this Dashboard and Tab:</b>
+                    </div>
+    
+                    <div class="gridLink">
+                        <input [(ngModel)]="linked"
+                            type="checkbox"
+                            title="Link the current Dashboard (T/F)"
                             >
                     </div>
+    
     
                     <div class="gridButtonCancel">
                             <button
