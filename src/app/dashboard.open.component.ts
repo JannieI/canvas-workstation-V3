@@ -90,7 +90,7 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     clickOpenView(dashboardID: number) {
-        //
+        // Open a Dashboard in ViewOnly Mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenView', '@Start');
 
         console.log('DashboardOpen clickOpenView id', dashboardID)
@@ -105,7 +105,7 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     clickOpenEdit(dashboardID: number) {
-        //
+        // Open a Dashboard in EditMode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenEdit', '@Start');
 
         console.log('DashboardOpen clickOpenEdit id', dashboardID)

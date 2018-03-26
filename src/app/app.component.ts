@@ -3813,9 +3813,32 @@ export class AppComponent implements OnInit {
     }
 
     contextMenuOpen() {
+        // Open context / dropdown Menu from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuOpen', '@Start');
+
         this.showWidgetContextMenu = true;
         return;
     }
+
+    contextMenuJumpToLinked(dashboardID: number, dashboardTabID: number) {
+        // Jumps to the linked Dashboard and Tab
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuJumpToLinked', '@Start');
+
+        // Exit if no Dashboard to jump to
+        if (dashboardID == null) {
+            return;
+        };
+
+        // Tab points to first one, if needed
+        if (dashboardTabID == null) {
+            dashboardTabID = -1;
+        };
+
+        this.globalVariableService.refreshCurrentDashboard(
+            'app-contextMenuJumpToLinked', dashboardID, dashboardTabID, ''
+        );
+    }
+   
     contextmenuWidgetTitle(ev: MouseEvent, index: number) {
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetTitle', '@Start');
