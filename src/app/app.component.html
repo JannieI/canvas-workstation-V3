@@ -1349,35 +1349,37 @@
             {{ row.nrComments }}
         </span>
 
-        <clr-dropdown class="titleMenu">
-            <clr-icon class="titleMenu" 
-                clrDropdownTrigger 
-                shape="caret down"
-                size="24"
-                >
-            </clr-icon>
-            <clr-dropdown-menu 
-                clrPosition="bottom-left" *clrIfOpen
-                >
-                <button class="dropdown-item" 
-                    type="button" 
-                    clrDropdownItem
-                    (click)="contextMenuJumpToLinked(
-                        row.hyperlinkDashboardID, 
-                        row.hyperlinkDashboardTabID
-                        )"
+        <div *ngIf="!presentationMode  &&  editMode">
+            <clr-dropdown class="titleMenu">
+                <clr-icon 
+                    clrDropdownTrigger 
+                    shape="caret down"
+                    size="24"
                     >
-                    Jump to link
-                </button>
-                <button class="dropdown-item" 
-                    type="button" 
-                    clrDropdownItem
-                    (click)="contextmenuWidgetTitle($event, i, row.id)"
+                </clr-icon>
+                <clr-dropdown-menu class="titleMenu"
+                    clrPosition="bottom-left" *clrIfOpen
                     >
-                    Edit Title
-                </button>
-            </clr-dropdown-menu>
-        </clr-dropdown>
+                    <button class="dropdown-item" *ngIf="row.hyperlinkDashboardID != null" 
+                        type="button" 
+                        clrDropdownItem
+                        (click)="contextMenuJumpToLinked(
+                            row.hyperlinkDashboardID, 
+                            row.hyperlinkDashboardTabID
+                            )"
+                        >
+                        Jump to link
+                    </button>
+                    <button class="dropdown-item" 
+                        type="button" 
+                        clrDropdownItem
+                        (click)="contextmenuWidgetTitle($event, i, row.id)"
+                        >
+                        Edit Title
+                    </button>
+                </clr-dropdown-menu>
+            </clr-dropdown>
+        </div>
 
 
 
