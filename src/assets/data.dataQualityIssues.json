@@ -2,6 +2,7 @@
     {
         "id": 1,
         "datasourceID": 1,
+        "datasourceTabID": 1,
         "status": "Open",
         "name": "Missing Data",
         "type": "Data",
@@ -14,7 +15,22 @@
     },
     {
         "id": 2,
-        "datasourceID": 4,
+        "datasourceID": 1,
+        "datasourceTabID": 17,
+        "status": "Open",
+        "name": "Missing Data",
+        "type": "Data",
+        "description": "bla-bla-bla",
+        "nrIssues": 0,
+        "loggedBy": "AstonK",
+        "loggedOn": "2017/01/01",
+        "solvedBy": "",
+        "solvedOn": ""
+    },
+    {
+        "id": 3,
+        "datasourceID": 6,
+        "datasourceTabID": 9,
         "status": "",
         "name": "Invalid Entries",
         "type": "Process",

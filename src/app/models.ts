@@ -280,6 +280,7 @@ export class CombinationDetail {
 export class DataQualityIssue {
     id: number;
     datasourceID: number;
+    datasourceTabID: number;
     status: string;
     name: string;
     type: string;

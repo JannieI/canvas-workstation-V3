@@ -28,7 +28,7 @@
     .gridTable {
         grid-column-start: 1;
         grid-column-end: 21;
-        grid-row-start: 3;
+        grid-row-start: 2;
         grid-row-end: 16;
         overflow: scroll;
     }
