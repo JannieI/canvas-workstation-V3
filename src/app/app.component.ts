@@ -3359,20 +3359,23 @@ export class AppComponent implements OnInit {
         if (this.checkForOnlyOneWidget('Graph', true)) {
             this.clickMenuWidgetExpand();
         } else {
-            if (this.checkForOnlyOneWidget('Slicer', true)) {
-                this.clickMenuSlicerExpand();
+            if (this.checkForOnlyOneWidget('Table', true)) {
+                this.clickMenuTableExpand();
             } else {
-                // Lost
-                this.showMessage(
-                    'Select a graph or slicer',
-                    'StatusBar',
-                    'Warning',
-                    3000,
-                    ''
-                );
+                if (this.checkForOnlyOneWidget('Slicer', true)) {
+                    this.clickMenuSlicerExpand();
+                } else {
+                    // Lost
+                    this.showMessage(
+                        'Select a graph or slicer',
+                        'StatusBar',
+                        'Warning',
+                        3000,
+                        ''
+                    );
+                };
             };
         };
-
 
     }
 
