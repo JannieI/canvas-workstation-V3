@@ -57,20 +57,8 @@ export class CollaborateMessagesComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        // this.globalVariableService.getCanvasMessages().then(i =>
-        //     this.canvasMessages = i
-        // );
-
-        // id
-        // sentBy
-        // sentOn
-        // toUsers
-        // toGroups
-        // recipient
-        // read
-        // subject
-        // body
-        // dashboardID
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
         
         this.globalVariableService.getCanvasMessages().then (ca => {
             this.datagridInput.datagridData = ca;
@@ -110,7 +98,8 @@ export class CollaborateMessagesComponent implements OnInit {
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formCollaborateMessagesClosed.emit(action);
     }

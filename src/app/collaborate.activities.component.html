@@ -2,7 +2,38 @@
         <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
 
+
                 <div>
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+                    <div>
+                        <b>Activities</b>
+                        <i>A list of activities created by users.</i>
+                    </div>
+    
+                    <ca-datagrid
+                        [datagriColumns]="datagridInput.datagriColumns"
+                        [datagridData]="datagridInput.datagridData"
+                        [datagridPagination]="datagridInput.datagridPagination"
+                        [datagridPaginationSize]="datagridInput.datagridPaginationSize"
+                        [datagridShowHeader]="datagridInput.datagridShowHeader"
+                        [datagridShowRowActionMenu]="datagridInput.datagridShowRowActionMenu"
+                        [datagridShowData]="datagridInput.datagridShowData"
+                        [datagridShowFooter]="datagridInput.datagridShowFooter"
+                        [datagridRowHeight]="datagridInput.datagridRowHeight"
+                        [datagriduserCanChangeProperties]="datagridInput.uatagriderCanChangeProperties"
+                        [datagridShowTotalsRow]="datagridInput.datagridShowTotalsRow"
+                        [datagridShowTotalsCol]="datagridInput.datagridShowTotalsCol"
+                        [datagridCanEditInCell]="datagridInput.datagridCanEditInCell"
+                        [datagridCanExportData]="datagridInput.datagridCanExportData"
+                        [datagridEmptyMessage]="datagridInput.datagridEmptyMessage"
+                        >
+                    </ca-datagrid>
+    
+                </div>
+        
+                <!-- <div>
                     <button type="button" class="closeButton" (click)="clickClose()">
                         X
                     </button>
@@ -42,7 +73,7 @@
 
                     </clr-datagrid>
 
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

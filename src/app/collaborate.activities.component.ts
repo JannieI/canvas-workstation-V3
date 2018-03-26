@@ -16,8 +16,9 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
 import { CanvasActivity }             from './models';
+import { DatagridInput }              from './models';
+import { DatagridColumn }             from './models';
 
 @Component({
     selector: 'collaborate-activities',
@@ -28,9 +29,26 @@ export class CollaborateActivitiesComponent implements OnInit {
 
     @Output() formCollaborateActivitiesClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
     canvasActivities: CanvasActivity[];
+    datagriColumns: DatagridColumn[] = [];
+    datagridInput: DatagridInput = 
+    {
+        datagriColumns: this.datagriColumns,
+        datagridData: null,
+        datagridPagination: false,
+        datagridPaginationSize: 10,
+        datagridShowHeader: false,
+        datagridShowRowActionMenu: false,
+        datagridShowData: true,
+        datagridShowFooter: true,
+        datagridRowHeight: 12,
+        datagriduserCanChangeProperties: false,
+        datagridShowTotalsRow: false,
+        datagridShowTotalsCol: false,
+        datagridCanEditInCell: false,
+        datagridCanExportData: false,
+        datagridEmptyMessage: 'No Alerts created so far'
+    };
 
 
 	constructor(
@@ -39,14 +57,49 @@ export class CollaborateActivitiesComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards;
-        this.globalVariableService.getCanvasActivities().then(i =>
-            this.canvasActivities = i
-        );
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        this.globalVariableService.getCanvasActivities().then (ca => {
+            this.datagridInput.datagridData = ca;
+            if (ca.length > 0) {
+                const columns = Object.keys(ca[0]);
+                for (var i = 0; i < columns.length; i++) {
+                    this.datagriColumns.push(
+                    {
+                        id: i,
+                        displayName: columns[i],
+                        fieldName: columns[i],
+                        databaseDBTableName: '',
+                        databaseDBFieldName: '',
+                        tooltip: '',
+                        datatype: 'string',
+                        prefix: '',
+                        divideBy: 0,
+                        displayLength: 12,
+                        maxLength: 0,
+                        sortOrder: '',
+                        filter: '',
+                        backgroundColor: '',
+                        color: '',
+                        conditionalFormatColor: '',
+                        nrDataQualityIssues: 0,
+                        maxValue: 0,
+                        minValue: 0,
+                        average: 0,
+                        linkedDashboardID: 0,
+                        linkedDashboardTabID: 0,
+                        isFrozen: false,
+                    });
+                };
+            };
+        });
+
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formCollaborateActivitiesClosed.emit(action);
     }

@@ -65,7 +65,7 @@ export class CollaborateAlertsComponent implements OnInit {
             this.datagridInput.datagridData = ca;
             if (ca.length > 0) {
                 const columns = Object.keys(ca[0]);
-                for (var i = 0; i < ca.length; i++) {
+                for (var i = 0; i < columns.length; i++) {
                     this.datagriColumns.push(
                     {
                         id: i,
@@ -100,7 +100,6 @@ export class CollaborateAlertsComponent implements OnInit {
     clickClose(action: string) {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-
 
 		this.formCollaborateAlertsClosed.emit(action);
     }
