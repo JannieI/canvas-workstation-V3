@@ -1011,37 +1011,6 @@ export class AppComponent implements OnInit {
         this.showModalCollaborateAlerts = false;
     }
 
-    handleCloseCollaborateActivityAdd(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivityAdd', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalCollaborateActivityAdd = false;
-    }
-
-
-
-    handleCloseCollaborateSendMessageAdd(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivityAdd', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalCollaborateSendMessage = false;
-    }
-
-    handleCloseCollaborateSendEmailAdd(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivityAdd', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalCollaborateSendEmail = false;
-    }
-    
-
-
     handleCloseCollaborateMessages(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateMessages', '@Start');
@@ -1058,6 +1027,33 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalCollaborateActivities = false;
+    }
+
+    handleCloseCollaborateActivityAdd(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivityAdd', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalCollaborateActivityAdd = false;
+    }
+
+    handleCloseSendMessageAdd(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseSendMessageAdd', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalCollaborateSendMessage = false;
+    }
+
+    handleCloseSendEmailAdd(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseSendEmailAdd', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalCollaborateSendEmail = false;
     }
 
     handleCloseUserLogin(action: string) {

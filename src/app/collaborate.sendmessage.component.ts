@@ -26,7 +26,7 @@ import { UserPreferences }            from './models';
 })
 export class CollaborateSendMessageComponent implements OnInit {
 
-    @Output() formDashboardSendEmailClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardMessageEmailClosed: EventEmitter<string> = new EventEmitter();
 
     toUsers: string;
     toGroups: string;
@@ -57,7 +57,7 @@ export class CollaborateSendMessageComponent implements OnInit {
                 defaultMessage: ''
             }
         );
-		this.formDashboardSendEmailClosed.emit(action);
+		this.formDashboardMessageEmailClosed.emit(action);
     }
 
     clickSave(action: string) {
@@ -94,7 +94,7 @@ export class CollaborateSendMessageComponent implements OnInit {
         //             );
         //         }
         // );
-		this.formDashboardSendEmailClosed.emit(action);
+		this.formDashboardMessageEmailClosed.emit(action);
     }
 
     //TODO

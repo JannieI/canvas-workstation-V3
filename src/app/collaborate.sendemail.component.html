@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
     
                 <button type="button" class="closeButton" (click)="clickClose()">
@@ -13,30 +13,18 @@
                     </div>                
                     <div class="gridSubTitle">
                         <i>  
-                            This will open a system email dialogue box.
+                            This will open a system email dialogue box with the following info:
                         </i>
                     </div>                
         
                     <div class="gridToUsersTitle">
-                        <b>To Users:</b>
+                        <b>To:</b>
                     </div>
     
                     <div class="gridToUsers">
                         <input [(ngModel)]="toUsers"
                             type="text"
-                            title="List of user recipients"
-                            size="25"
-                            >
-                    </div>
-    
-                    <div class="gridToGroupsTitle">
-                        <b>To Groups:</b>
-                    </div>
-        
-                    <div class="gridToGroups">
-                        <input [(ngModel)]="toGroups"
-                            type="text"
-                            title="List of group recipients"
+                            title="Recipients"
                             size="25"
                             >
                     </div>
@@ -64,18 +52,6 @@
                             size="25"
                             >
                     </div>
-    
-                    <div class="gridLinkTitle">
-                        <b>Link this Dashboard and Tab:</b>
-                    </div>
-    
-                    <div class="gridLink">
-                        <input [(ngModel)]="linked"
-                            type="checkbox"
-                            title="Link the current Dashboard (T/F)"
-                            >
-                    </div>
-    
     
                     <div class="gridButtonCancel">
                             <button

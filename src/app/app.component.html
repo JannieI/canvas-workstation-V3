@@ -37,31 +37,31 @@
                             {{ editMenuText }}
                         </button>
                         <div class="dropdown-divider"></div>
-                        
-                        <button type="button" 
-                            clrDropdownItem 
+
+                        <button type="button"
+                            clrDropdownItem
                             title="Undo previous action"
                             (click)="clickMenuEditUndo()"
                             >
                             Undo
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Redo previous action"
                             (click)="clickMenuEditRedo()"
                             >
                             Redo
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Select all the Widgets on this Tab"
                             (click)="clickMenuEditSelectAllNone('All')"
                             >
                             Select All
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="UnSelect all the Widgets on this Tab"
                             (click)="clickMenuEditSelectAllNone('None')"
                             >
@@ -69,7 +69,7 @@
                         </button>
                     </clr-dropdown-menu>
                 </clr-dropdown>
-        
+
                 <!-- Dashboard menu -->
                 <clr-dropdown class="menuText">
                     <button
@@ -81,8 +81,8 @@
                         Dashboard
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Add a new Dashboard"
                             (click)="clickDashboardNew()"
                             >
@@ -98,14 +98,14 @@
                                 Recent
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                    
+
                                 <button *ngFor="let row of recentDashboards; let i = index"
-                                    type="button" 
+                                    type="button"
                                     clrDropdownItem
                                     (click)="showRecentDashboard(i)">
                                     {{ i + 1 }} {{ row.nameAtRunTime }} ( {{row.stateAtRunTime}} )
                                 </button>
-                                    
+
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <clr-dropdown>
@@ -118,14 +118,14 @@
                                 Open
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" 
+                                <button type="button"
                                     clrDropdownItem
                                     title="Open a Dashboard"
                                     (click)="clickDashboardOpen()"
                                     >
                                     Existing Dashboard
                                 </button>
-                                <button type="button" 
+                                <button type="button"
                                     clrDropdownItem
                                     title="Import a previously exported Dashboard"
                                     (click)="clickDashboardImport()"
@@ -135,36 +135,36 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
 
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Rename an existing Dashboard"
                             (click)="clickDashboardRename()"
                             >
                             Rename
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Save or Export the current Dashboard"
                             (click)="clickDashboardSave()"
                             >
                             Save
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Discard changes to the current Dashboard"
                             (click)="clickDashboardDiscard()"
                             >
                             Discard
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Share access to a Dashboard"
                             (click)="clickDashboardShare()"
                             >
                             Share
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Manage Snapshots of the current Dashboard"
                             (click)="clickDashboardSnapshots()"
                             >
@@ -180,14 +180,14 @@
                                 Details
                             </button>
                             <clr-dropdown-menu clrPosition="right-bottom" *clrIfOpen>
-                                <button type="button" 
+                                <button type="button"
                                     clrDropdownItem
                                     title="Edit Dashboard Description details"
                                     (click)="clickMenuDashboardDetailDescription()"
                                     >
                                     Descripton
                                 </button>
-                                <button type="button" 
+                                <button type="button"
                                     clrDropdownItem
                                     title="Mark/UnMark this Dashboard as a favourite"
                                     (click)="showFav=!showFav"
@@ -258,7 +258,7 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
 
-                        <button type="button" 
+                        <button type="button"
                             clrDropdownItem
                             title="Print the current Dashboard"
                             (click)="clickMenuDashboardPrint()"
@@ -298,12 +298,12 @@
                                 Current
                             </button>
                             <clr-dropdown-menu
-                                clrPosition="right-top" 
+                                clrPosition="right-top"
                                 *clrIfOpen
                                 >
                                     <button  *ngFor="let row of currentDatasources"
-                                        type="button" 
-                                        clrDropdownItem 
+                                        type="button"
+                                        clrDropdownItem
                                         (click)="clickMenuDataFromFile(row.id)"
                                         >
                                         {{ row.name }}
@@ -311,15 +311,15 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Add a Datasource to this Dashboard from a file"
                             (click)="clickMenuDataFromFile(-1)"
                             >
                             From File
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Add a Datasource to this Dashboard from a server"
                             (click)="clickMenuDataFromServer()"
                             >
@@ -360,25 +360,25 @@
                                 More ...
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" 
+                                <button type="button"
                                     clrDropdownItem
                                     title="Add a Datasource to this Dashboard from a Database"
                                     >
                                     Database
                                 </button>
-                                <button type="button" 
+                                <button type="button"
                                     clrDropdownItem
                                     title="Add a Datasource to this Dashboard from a service"
                                     >
                                     Service
                                 </button>
-                                <button type="button" 
+                                <button type="button"
                                     clrDropdownItem
                                     title="Add a Datasource to this Dashboard from a web page"
                                     >
                                     Web
                                 </button>
-                                <button type="button" 
+                                <button type="button"
                                     clrDropdownItem
                                     title="Add a Datasource to this Dashboard from a NoSQL database"
                                     >
@@ -387,23 +387,23 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Combine Datasources already available to this Dashboard"
                             (click)="clickMenuDataCombinations()"
                             >
                             Combinations
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="User and Group access to Datasources"
                             (click)="clickMenuDataShare()"
                             >
                             Share
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             title="Refresh all the Datasources in this Dashboard"
                             (click)="clickMenuDataRefreshAll()"
                             >
@@ -424,15 +424,15 @@
                         Widget
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetNew()"
                             title="Add a new Widget"
                             >
                             Add Widget
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetEdit()"
                             title="Edit selected Widget"
                             >
@@ -450,36 +450,36 @@
                                 Details
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" 
-                                    clrDropdownItem 
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuWidgetContainer('Graph')"
                                     title="Change container properties for selected Widget"
                                     >
                                     Container
                                 </button>
-                                <button type="button" 
-                                    clrDropdownItem 
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuWidgetTablist()"
                                     title="Manage Tabs to which selected Widget belongs"
                                     >
                                     Tablist
                                 </button>
-                                <button type="button" 
-                                    clrDropdownItem 
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuWidgetCheckpoints()"
                                     title="Managing checkpoints for selected Widget"
                                     >
                                     Checkpoints
                                 </button>
-                                <button type="button" 
-                                    clrDropdownItem 
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuWidgetComments()"
                                     title="Comments for selected Widget"
                                     >
                                     Comments
                                 </button>
-                                <button type="button" 
-                                    clrDropdownItem 
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuWidgetDataQuality()"
                                     title="Data quality issues for selected Widget"
                                     >
@@ -489,8 +489,8 @@
                                     Links
                                 </button>
                                 <div class="dropdown-divider"></div>
-                                <button type="button" 
-                                    clrDropdownItem 
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuWidgetRefresh()"
                                     title="Refresh Datasource linked to selected Widget"
                                     >
@@ -499,44 +499,44 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
 
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetDuplicate()"
                             title="Duplicate selected Widget"
                             >
                             Duplicate
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetCopy()"
                             title="Copy selected Widget"
                             >
                             Copy
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetPaste()"
                             title="Paste previously copied Widget"
                             >
                             Paste
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetExpand()"
                             title="Expand Dataset for selected Widget"
                             >
                             Expand
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetExport()"
                             title="Export Dataset for selected Widget"
                             >
                             Export
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetDelete()"
                             title="Delete selected Widget"
                             >
@@ -557,72 +557,72 @@
                         Table
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuTableAdd()"
                             title="Add a new Table"
                             >
                             Add Table
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuTableEdit()"
                             title="Edit selected Table"
                             >
                             Edit Table
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuTableDuplicate()"
                             title="Duplicate selected Table"
                             >
                             Duplicate Table
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuTableComments()"
                             title="Comments for selected Table"
                             >
                             Comments
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetContainer('Table')"
                             title="Change container properties for selected Table"
                             >
                             Container
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetTablist()"
                             title="Manage Tabs to which selected Table belongs"
                             >
                             Tablist
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuTableDataQuality()"
                             title="Data quality issues for selected Table"
                             >
                             Data Quality
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuTableExpand()"
                             title="Expand Dataset for selected Table"
                             >
                             Expand
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuTableExport()"
                             title="Export Dataset for selected Table"
                             >
                             Export
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuTableDelete()"
                             title="Delete selected Table"
                             >
@@ -630,7 +630,7 @@
                         </button>
                     </clr-dropdown-menu>
                 </clr-dropdown>
-    
+
                 <!-- Slicer menu -->
                 <clr-dropdown class="menuText">
                     <button
@@ -643,65 +643,65 @@
                         Slicer
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuSlicerAdd()"
                             title="Add a new Slicer"
                             >
                             Add Slicer
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuSlicerEdit()"
                             title="Edit selected Slicer"
                             >
                             Edit Slicer
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetContainer('Slicer')"
                             title="Change container properties for selected Slicer"
                             >
                             Container
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetTablist()"
                             title="Manage Tabs to which selected Slicer belongs"
                             >
                             Tablist
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuSlicerComments()"
                             title="Comments for selected Slicer"
                             >
                             Comments
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuSlicerDataQuality()"
                             title="Data quality for selected Slicer"
                             >
                             Data Quality
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuSlicerExpand()"
                             title="Expand Dataset for selected Slicer"
                             >
                             Expand
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuSlicerExport()"
                             title="Export Dataset for selected Slicer"
                             >
                             Export
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuSlicerDelete()"
                             title="Delete selected Slicer"
                             >
@@ -722,45 +722,45 @@
                         Shape
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuShapeNew()"
                             title="Add a new Shape to this Dashboard"
                             >
                             Add Shape
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuShapeEdit()"
                             title="Edit the selected Shape"
                             >
                             Edit Shape
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetContainer('Shape')"
                             title="Change container properties for selected Shape"
                             >
                             Container
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetTablist()"
                             title="Manage Tabs to which selected Slicer belongs"
                             >
                             Tablist
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuShapeLinks()"
                             title="Manage links on selected Shape"
                             >
                             Links
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuShapeDelete()"
                             title="Delete selected Shapes"
                             >
@@ -780,8 +780,8 @@
                         View
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuViewPresentation()"
                             title="Toggle presentation mode on /off"
                             >
@@ -789,47 +789,47 @@
                             <clr-icon shape="check" size="12" *ngIf="presentationMode"></clr-icon>
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuViewPrintPreview()"
                             title="Toggle print preview on/off"
                             >
                             Print preview
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuDashboardTreeview()"
                             title="Create of TreeView of this Dashboard"
                             >
                             Treeview
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuViewShowPalette()"
                             title="Toggles a background grid"
                             >
                             Show Palette
                             <clr-icon shape="check" size="12" *ngIf="showPalette"></clr-icon>
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuViewShowGrid()"
                             title="Toggles a background grid"
                             >
                             Show grid
                             <clr-icon shape="check" size="12" *ngIf="showGrid"></clr-icon>
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuViewShowDataQuality()"
                             title="Show data qualitiy issus for Datasources in this Dashboard"
                             >
                             Show DataQuality
                             <clr-icon shape="check" size="12" *ngIf="showDataQuality"></clr-icon>
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuViewShowComments()"
                             title="Show comments related to this Dashboard"
                             >
@@ -837,8 +837,8 @@
                             <clr-icon shape="check" size="12" *ngIf="showComments"></clr-icon>
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuViewSnapToGrid()"
                             title="Toggle whether resize and move will snap to a grid"
                             >
@@ -878,8 +878,8 @@
                                 <button type="button" class="dropdown-item" clrDropdownItem>200%</button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuViewZoom(0.6)"
                             title="100% zoom"
                             >
@@ -901,29 +901,29 @@
                         Arrange
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuArrangeBackward()"
                             title="Move selected Widgets backward in z-plane"
                             >
                             Backward
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuArrangeForward()"
                             title="Move selected Widgets forward in z-plane"
                             >
                             Forward
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuArrangeBack()"
                             title="Move selected Widgets to the back in z-plane"
                             >
                             Back
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuArrangeFront()"
                             title="Move selected Widgets to the front in z-plane"
                             >
@@ -941,56 +941,56 @@
                                 Align
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                <button type="button" class="dropdown-item" 
+                                <button type="button" class="dropdown-item"
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignLeft()"
                                     title="Align selected Widgets to the left"
                                     >
                                     Left
                                 </button>
-                                <button type="button" class="dropdown-item" 
+                                <button type="button" class="dropdown-item"
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignCenter()"
                                     title="Align selected Widgets to the center"
                                     >
                                     Center</button>
-                                <button type="button" class="dropdown-item" 
+                                <button type="button" class="dropdown-item"
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignRight()"
                                     title="Align selected Widgets to the right"
                                     >
                                     Right</button>
                                 <div class="dropdown-divider"></div>
-                                <button type="button" class="dropdown-item" 
+                                <button type="button" class="dropdown-item"
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignTop()"
                                     title="Align selected Widgets to the top"
                                     >
                                     Top
                                 </button>
-                                <button type="button" class="dropdown-item" 
+                                <button type="button" class="dropdown-item"
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignMiddle()"
                                     title="Align selected Widgets to the middle"
                                     >
                                     Middle</button>
-                                <button type="button" class="dropdown-item" 
+                                <button type="button" class="dropdown-item"
                                     clrDropdownItem
                                     (click)="clickMenuArrangeAlignBottom()"
                                     title="Align selected Widgets to the bottom"
                                     >
                                     Bottom</button>
                                 <div class="dropdown-divider"></div>
-                                <button type="button" 
-                                    clrDropdownItem 
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuArrangeAlignCenterHorisontally()"
                                     title="Align selected Widgets horisontally on page"
                                     >
                                     Center horisontally
                                     <clr-icon shape="two-way-arrows down"></clr-icon>
                                 </button>
-                                <button type="button" 
-                                    clrDropdownItem 
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuArrangeAlignCenterVertically()"
                                     title="Align selected Widgets vertically on page"
                                     >
@@ -1000,31 +1000,31 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
+                        <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeGroup()"
                             title="Group selected Widgets"
                             >
                             Group
                         </button>
-                        <button type="button" 
+                        <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeUnGroup()"
                             title="Ungroup previosly selected Widgets"
                             >
                             Ungroup
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
+                        <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeDistributeHorisontal()"
                             title="Distribute selected Widgets horisontally"
                             >
-                            Distribute 
+                            Distribute
                             <clr-icon shape="two-way-arrows"></clr-icon>
                         </button>
-                        <button type="button" 
+                        <button type="button"
                             clrDropdownItem (click)="clickMenuArrangeDistributeVertical()"
                             title="Distribute selected Widgets vertically"
                             >
-                            Distribute 
+                            Distribute
                             <clr-icon shape="two-way-arrows right"></clr-icon>
                         </button>
                         <div class="dropdown-divider"></div>
@@ -1039,21 +1039,21 @@
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
 
-                                <button type="button" 
+                                <button type="button"
                                     clrDropdownItem (click)="clickMenuArrangeSameSizeVertically()"
                                     title="Make selected Widgets the same size vertically"
                                     >
                                     Same vertically
                                 </button>
-        
-                                <button type="button" 
+
+                                <button type="button"
                                     clrDropdownItem (click)="clickMenuArrangeSameSizeHorisontally()"
                                     title="Make selected Widgets the same size horisontally"
                                     >
                                     Same horisontally
                                 </button>
-        
-                                <button type="button" 
+
+                                <button type="button"
                                     clrDropdownItem (click)="clickMenuArrangeSameSize()"
                                     title="Make selected Widgets the same size"
                                     >
@@ -1076,66 +1076,66 @@
                         Help
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuHelpDemo()"
                             title="Demo Dashboards for clarification"
                             >
                             Demo
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickSave()"
                             title="Getting started with Canvas"
                             >
                             Getting started with Canvas
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickSave()"
                             title="How to add Datasources to a Dashboard"
                             >
                             Getting data
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickSave()"
                             title="Easy steps to create a Dashboard"
                             >
                             Creating a Dashboard
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickSave()"
                             title="Steps to create a Widget (graph, table, etc)"
                             >
                             Creating a Widget
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickSave()"
                             title="How to transform the data in a Datasource"
                             >
                             Transforming data
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickSave()"
                             title="Tutorials in selected functionality"
                             >
                             Tutorials
                         </button>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickSave()"
                             title="Full documentation"
                             >
                             Documentation
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button type="button" 
-                            clrDropdownItem 
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickSave()"
                             title="How and where to get support"
                             >
@@ -1155,44 +1155,44 @@
                 <clr-icon shape="caret down"></clr-icon>
                 </button>
                 <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
-                    <button type="button" 
-                        clrDropdownItem 
+                    <button type="button"
+                        clrDropdownItem
                         (click)="clickMenuCollaborateAlerts()"
                         title="Manage Alerts"
                         >
                         Alerts
                     </button>
-                    <button type="button" 
-                        clrDropdownItem 
+                    <button type="button"
+                        clrDropdownItem
                         (click)="clickMenuCollaborateMessages()"
                         title="Manage Messages"
                         >
                         Messages
                     </button>
-                    <button type="button" 
-                        clrDropdownItem 
+                    <button type="button"
+                        clrDropdownItem
                         (click)="clickMenuCollaborateActivities()"
                         title="Manage Activities"
                         >
                         Activities
                     </button>
                     <div class="dropdown-divider"></div>
-                    <button type="button" 
-                        clrDropdownItem 
+                    <button type="button"
+                        clrDropdownItem
                         (click)="clickMenuCollaborateSendMessageAdd()"
                         title="Send a Canvas Message"
                         >
                         Send Message
                     </button>
-                    <button type="button" 
-                        clrDropdownItem 
+                    <button type="button"
+                        clrDropdownItem
                         (click)="clickMenuCollaborateSendEmailAdd()"
                         title="Send an email"
                         >
                         Send Email
                     </button>
-                    <button type="button" 
-                        clrDropdownItem 
+                    <button type="button"
+                        clrDropdownItem
                         (click)="clickMenuCollaborateActivityAdd()"
                         title="Add a new Activity"
                         >
@@ -1387,13 +1387,13 @@
             [style.marginTop.px]="-26"
             [style.marginLeft.px]="-10"
             >
-            <circle 
-                [style.cx]="row.containerWidth/2" 
-                [style.cy]="row.containerHeight/2" 
-                [style.r]="(row.containerWidth-26)/2" 
-                [style.stroke]="row.shapeStroke" 
-                [style.stroke-width.px]="row.shapeStrokeWidth" 
-                [style.fill]="row.shapeFill" 
+            <circle
+                [style.cx]="row.containerWidth/2"
+                [style.cy]="row.containerHeight/2"
+                [style.r]="(row.containerWidth-26)/2"
+                [style.stroke]="row.shapeStroke"
+                [style.stroke-width.px]="row.shapeStrokeWidth"
+                [style.fill]="row.shapeFill"
                 />
         </svg>
     </div>
@@ -1405,14 +1405,14 @@
             [style.marginTop.px]="-26"
             [style.marginLeft.px]="-10"
             >
-            <ellipse 
-                [style.cx]="row.containerWidth/2" 
-                [style.cy]="row.containerHeight/2" 
-                [style.rx]="(row.containerWidth-26)/2" 
-                [style.ry]="(row.containerHeight-26)/2" 
-                [style.stroke]="row.shapeStroke" 
-                [style.stroke-width.px]="row.shapeStrokeWidth" 
-                [style.fill]="row.shapeFill" 
+            <ellipse
+                [style.cx]="row.containerWidth/2"
+                [style.cy]="row.containerHeight/2"
+                [style.rx]="(row.containerWidth-26)/2"
+                [style.ry]="(row.containerHeight-26)/2"
+                [style.stroke]="row.shapeStroke"
+                [style.stroke-width.px]="row.shapeStrokeWidth"
+                [style.fill]="row.shapeFill"
                 />
         </svg>
     </div>
@@ -1424,15 +1424,15 @@
             [style.marginTop.px]="-26"
             [style.marginLeft.px]="-10"
             >
-            <rect 
+            <rect
                 [style.height.px]="row.containerHeight-10"
                 [style.width.px]="row.containerWidth-10"
-                [style.stroke]="row.shapeStroke" 
-                [style.stroke-width.px]="row.shapeStrokeWidth" 
-                [style.fill]="row.shapeFill" 
+                [style.stroke]="row.shapeStroke"
+                [style.stroke-width.px]="row.shapeStrokeWidth"
+                [style.fill]="row.shapeFill"
                 [style.opacity]="row.shapeOpacity"
-                [style.rx]="row.shapeCorner" 
-                [style.ry]="row.shapeCorner" 
+                [style.rx]="row.shapeCorner"
+                [style.ry]="row.shapeCorner"
                 />
         </svg>
     </div>
@@ -1448,16 +1448,16 @@
             [style.font-family]="row.shapeFontFamily"
             [style.font-size.px]="row.shapeFontSize"
             >
-            <text 
-                x="0" 
-                y="50" 
+            <text
+                x="0"
+                y="50"
                 [style.fill]="row.shapeFill"
                 >
                 {{ row.shapeText }}
             </text>
         </svg>
     </div>
-  
+
     <!-- Shape Arrow Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
         <svg [style.height.px]="row.containerHeight"
@@ -1471,7 +1471,7 @@
                 <path d="M0,0 L0,6 L9,3 z" fill="black" />
                 </marker>
             </defs>
-            
+
             <line x1="1" y1="1" x2="55" y2="55" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
         </svg>
     </div>
@@ -1495,7 +1495,7 @@
                 [style.font-family]="row.shapeFontFamily"
                 [style.font-size.px]="row.shapeFontSize"
                 [style.color]="'darkgray'"
-                > {{ bullet }} 
+                > {{ bullet }}
             </li>
         </ul>
         <ol  *ngIf="row.shapeBulletsOrdered"
@@ -1504,14 +1504,14 @@
                 [style.font-family]="row.shapeFontFamily"
                 [style.font-size.px]="row.shapeFontSize"
                 [style.color]="'darkgray'"
-                > {{ bullet }} 
+                > {{ bullet }}
             </li>
         </ol>
     </div>
 
     <!-- Shape Value Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Value'">
-        <div 
+        <div
             [style.width.px]="row.containerWidth"
             [style.background-color]="row.containerBackgroundColor"
             [style.marginLeft.px]="-9"
@@ -1669,10 +1669,10 @@
 
 <!-- Palette -->
 <div class="palette" *ngIf="editMode  &&  !presentationMode  &&  showPalette">
-    
-    <span *ngFor="let row of paletteButtons; let i = index" 
-        role="tooltip" 
-        aria-haspopup="true" 
+
+    <span *ngFor="let row of paletteButtons; let i = index"
+        role="tooltip"
+        aria-haspopup="true"
         class="tooltip tooltip-md tooltip-right"
         >
         <clr-icon *ngIf="!presentationMode"
@@ -2169,7 +2169,7 @@
 <collaborate-sendmessage
     class="formPopupDashboard"
     *ngIf="showModalCollaborateSendMessage"
-    (formCollaborateActivityAddClosed)="handleCloseCollaborateSendMessageAdd($event)"
+    (formDashboardMessageEmailClosed)="handleCloseSendMessageAdd($event)"
     >
     Add Message ...
 </collaborate-sendmessage>
@@ -2179,7 +2179,7 @@
 <collaborate-sendemail
     class="formPopupDashboard"
     *ngIf="showModalCollaborateSendEmail"
-    (formCollaborateActivityAddClosed)="handleCloseCollaborateSendEmailAdd($event)"
+    (formDashboardSendEmailClosed)="handleCloseSendEmailAdd($event)"
     >
     Add Email ...
 </collaborate-sendemail>

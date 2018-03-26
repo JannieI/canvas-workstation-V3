@@ -78,8 +78,8 @@ import { CollaborateAlertsComponent }       from './collaborate.alerts.component
 import { CollaborateMessagesComponent }     from './collaborate.messages.component';
 import { CollaborateActivitiesComponent }   from './collaborate.activities.component';
 import { CollaborateActivityAddComponent }  from './collaborate.activityadd.component';
-import { CollaborateSendEmailComponent }    from './collaborate.sendemail.component';
 import { CollaborateSendMessageComponent }  from './collaborate.sendmessage.component';
+import { CollaborateSendEmailComponent }    from './collaborate.sendemail.component';
 
 import { UserPaletteButtonBarComponent}     from './user.palette.buttonbar.component';
 import { LoginComponent}              from './login.component';
@@ -168,6 +168,7 @@ import { StatusbarComponent }         from './statusbar.component';
         CollaborateMessagesComponent,
         CollaborateActivitiesComponent,
         CollaborateActivityAddComponent,
+        CollaborateSendMessageComponent,
         CollaborateSendEmailComponent,
 
         MyProfileComponent,
