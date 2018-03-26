@@ -44,7 +44,28 @@
                         </section>
                     </form>
 
-                    <clr-datagrid>
+
+                <ca-datagrid
+                    [datagriColumns]="datagridInput.datagriColumns"
+                    [datagridData]="datagridInput.datagridData"
+                    [datagridPagination]="datagridInput.datagridPagination"
+                    [datagridPaginationSize]="datagridInput.datagridPaginationSize"
+                    [datagridShowHeader]="datagridInput.datagridShowHeader"
+                    [datagridShowRowActionMenu]="datagridInput.datagridShowRowActionMenu"
+                    [datagridShowData]="datagridInput.datagridShowData"
+                    [datagridShowFooter]="datagridInput.datagridShowFooter"
+                    [datagridRowHeight]="datagridInput.datagridRowHeight"
+                    [datagriduserCanChangeProperties]="datagridInput.uatagriderCanChangeProperties"
+                    [datagridShowTotalsRow]="datagridInput.datagridShowTotalsRow"
+                    [datagridShowTotalsCol]="datagridInput.datagridShowTotalsCol"
+                    [datagridCanEditInCell]="datagridInput.datagridCanEditInCell"
+                    [datagridCanExportData]="datagridInput.datagridCanExportData"
+                    [datagridEmptyMessage]="datagridInput.datagridEmptyMessage"
+                    >
+                </ca-datagrid>
+
+
+                    <!-- <clr-datagrid>
                         <clr-dg-column *ngFor="let row of dataFieldNames">{{ row }}</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of dataset">
@@ -55,7 +76,7 @@
                             of {{pagination.totalItems}} rows
                             <clr-dg-pagination #pagination [clrDgPageSize]="records"></clr-dg-pagination>
                         </clr-dg-footer>
-                    </clr-datagrid>
+                    </clr-datagrid> -->
 
                 </div>
             </div>
