@@ -35,7 +35,7 @@ export class DatagridInput {
     datagridShowHeader: boolean;                  // True to show Headers
     datagridShowRowActionMenu: boolean;           // True to show the action menu per row
     datagridShowData: boolean;                    // True to show Data
-    datagridShowFooter: boolean;                  // True to show Footer
+    datagridShowFooter?: boolean;                  // True to show Footer
     datagridRowHeight: number;                    // Height in px
     datagriduserCanChangeProperties: boolean;     // False if use can change Nothing in grid, ie cannot even resize
     datagridShowTotalsRow: boolean;               // True to show additional row of totals at bottom

@@ -68,7 +68,7 @@ export class CaDatagridComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        console.log('xx dg datagriColumns', this.datagriColumns)
+        console.log('xx dg datagriColumns', this.datagridShowFooter)
     }
 
     clickHeader(index: number) {
