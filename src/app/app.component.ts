@@ -278,6 +278,7 @@ export class AppComponent implements OnInit {
     selectDatasourceID: number;
     selectedWidget: Widget;
     selectedWidgetID: number;
+    selectedDatasourceID: number;       // DS of selecte W, -1 for D
     showGrid: boolean;
     showComments: boolean;
     showDatasourcePopup: boolean = false;
@@ -1536,7 +1537,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDataQuality', '@Start');
 
         this.menuOptionClickPreAction();
-        this.selectedWidgetID = -1;
+        this.selectedDatasourceID = -1;
         this.showModalDashboardDataQuality = true;
     }
 
@@ -1791,10 +1792,10 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.selectedWidgetID = -1;
+        this.selectedDatasourceID = -1;
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
-                this.selectedWidgetID = w.id;
+                this.selectedDatasourceID = w.datasourceID;
             }
         })
         this.showModalDashboardDataQuality = true;
@@ -2143,10 +2144,10 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.selectedWidgetID = -1;
+        this.selectedDatasourceID = -1;
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
-                this.selectedWidgetID = w.id;
+                this.selectedDatasourceID = w.datasourceID;
             }
         })
         this.showModalDashboardDataQuality = true;
@@ -2313,10 +2314,10 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.selectedWidgetID = -1;
+        this.selectedDatasourceID = -1;
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
-                this.selectedWidgetID = w.id;
+                this.selectedDatasourceID = w.datasourceID;
             }
         })
         this.showModalDashboardDataQuality = true;

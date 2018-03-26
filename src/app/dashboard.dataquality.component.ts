@@ -28,8 +28,8 @@ import { DatagridColumn }             from './models';
 export class DashboardDataQualityComponent implements OnInit {
 
     @Output() formDashboardDataQualityClosed: EventEmitter<string> = new EventEmitter();
-    @Input() selectedWidgetID: number;
-
+    @Input() selectedDatasourceID: number;
+    
     canvasComments: CanvasComment[] = [];
     headerText: string;
     datagriColumns: DatagridColumn[] = [];
@@ -61,13 +61,18 @@ export class DashboardDataQualityComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Display the source
-        if (this.selectedWidgetID == -1) {
+        // Display the source, and set the array of DSids
+        let dsArray: number[] = [];
+        if (this.selectedDatasourceID == -1) {
             this.headerText = 'this Dashboard';
+            this.globalVariableService.currentDatasources.forEach(ds =>
+                dsArray.push(ds.id)
+            );
         } else {
             this.headerText = 'selected Widget';
+            dsArray = [this.selectedDatasourceID];
         };
-
+console.log('xx ds', dsArray)
         // this.globalVariableService.getCanvasComments().then(cC => {
         //      cC.forEach(i => {
         //          if (i.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) {
@@ -79,7 +84,7 @@ export class DashboardDataQualityComponent implements OnInit {
 
         this.globalVariableService.getDataQualityIssues().then (ca => {
             this.datagridInput.datagridData = ca.filter(c =>
-                c['widgetID'] == this.selectedWidgetID  ||  this.selectedWidgetID == -1
+                dsArray.indexOf(c['datasourceID']) >= 0
             );
             if (ca.length > 0) {
                 const columns = Object.keys(ca[0]);
