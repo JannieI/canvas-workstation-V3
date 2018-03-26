@@ -2,11 +2,15 @@
 <clr-datagrid class="datagrid-compact" [(clrDgSingleSelected)]="selectedData">
 
     <!-- Empty Message -->
+    <div *ngIf="datagridShowData">
     <clr-dg-placeholder>
         {{ datagridEmptyMessage }} 
     </clr-dg-placeholder>
-
+    </div>
+    
     <!-- Headers -->
+    <div *ngIf="datagridShowData">
+    
     <clr-dg-column *ngFor="let col of datagriColumns; let i = index"
         [clrDgField]="col.fieldName"
         >
@@ -19,8 +23,10 @@
             </div>
         </ng-container>
     </clr-dg-column>
+    </div>
 
     <!-- Each Row -->
+    <div *ngIf="datagridShowData">
     <clr-dg-row *clrDgItems="let row of datagridData" [clrDgItem]="row" [(clrDgSelected)]="row.selected">
 
         <!-- Action Popup Menu on Row -->
@@ -49,7 +55,7 @@
             
         </clr-dg-cell>
     </clr-dg-row>
-
+    </div>
     <!-- Footer -->
     <clr-dg-footer *ngIf="datagridShowFooter">
         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
