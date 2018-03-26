@@ -51,7 +51,7 @@
     </clr-dg-row>
 
     <!-- Footer -->
-    <clr-dg-footer>
+    <clr-dg-footer *ngIf="datagridShowFooter">
         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
         of {{pagination.totalItems}} records
         <clr-dg-pagination 
