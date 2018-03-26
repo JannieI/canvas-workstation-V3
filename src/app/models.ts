@@ -186,6 +186,7 @@ export class CanvasActivity {
 
 export class CanvasMessage {
     id: number;
+    threadID: number;
     sentBy: string;
     sentOn: string;
     toUsers: string[];      // Original list
@@ -195,6 +196,7 @@ export class CanvasMessage {
     subject: string;
     body: string;
     dashboardID: number;
+    dashboardTabID: number;
 }
 
 export class CanvasAlert {
