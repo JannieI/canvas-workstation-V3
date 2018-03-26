@@ -38,7 +38,7 @@ export class DashboardDataQualityComponent implements OnInit {
         datagriColumns: this.datagriColumns,
         datagridData: null,
         datagridPagination: false,
-        datagridPaginationSize: 10,
+        datagridPaginationSize: 5,
         datagridShowHeader: false,
         datagridShowRowActionMenu: false,
         datagridShowData: true,
