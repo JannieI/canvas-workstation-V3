@@ -1,10 +1,12 @@
 <!-- Datagrid Component based on Clarity UI     -->
 <clr-datagrid class="datagrid-compact" [(clrDgSingleSelected)]="selectedData">
 
+    <!-- Empty Message -->
     <clr-dg-placeholder>
         {{ datagridEmptyMessage }} 
     </clr-dg-placeholder>
 
+    <!-- Headers -->
     <clr-dg-column *ngFor="let col of datagriColumns; let i = index"
         [clrDgField]="col.fieldName"
         >
@@ -18,6 +20,7 @@
         </ng-container>
     </clr-dg-column>
 
+    <!-- Each Row -->
     <clr-dg-row *clrDgItems="let row of datagridData" [clrDgItem]="row" [(clrDgSelected)]="row.selected">
 
         <!-- Action Popup Menu on Row -->
@@ -35,6 +38,7 @@
                 {{ row[col.fieldName] }}
             </span>
 
+            <!-- Conditional Cell Content -->
             <div *ngIf="col.fieldName=='id'" 
                 class="color-square" 
                 [style.backgroundColor]="'lightgray'"
@@ -44,12 +48,10 @@
             </div>
             
         </clr-dg-cell>
-
     </clr-dg-row>
 
-    <!-- <clr-dg-footer>{{datagridData.length}} records</clr-dg-footer> -->
+    <!-- Footer -->
     <clr-dg-footer>
-
         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
         of {{pagination.totalItems}} records
         <clr-dg-pagination 

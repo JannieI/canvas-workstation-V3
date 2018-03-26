@@ -7,46 +7,7 @@
                     X
                 </button>
                 <p>The custom date is {{today | date:'yyyy-MM-dd'}}</p>
-                Alerts
-                <div class="propertyLine">
-
-                    From Date:
-                    <input type="date" 
-                        clrDate 
-                        #fromDate
-                        >
-
-                    To Date:
-                    <input type="date" 
-                        clrDate 
-                        #toDate
-                        >
-
-                    Text Contains:
-                    <input type="text" 
-                        placeholder="Text" 
-                        [(ngModel)]="filterTextContains"
-                        >
-
-                    Read?
-                    <input type="checkbox" 
-                        [(ngModel)]="filterRead"
-                        >
-
-                    Recipients: 
-                    <input type="text" 
-                        placeholder="Text" 
-                        [(ngModel)]="filterRecipient"
-                        >
-
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="clickFilter(fromDate.value, toDate.value)"
-                        >
-                        Filter
-                    </button>
-                </div>
+                <b>Alerts</b>
 
                 <ca-datagrid
                     [datagriColumns]="datagridInput.datagriColumns"
@@ -67,22 +28,6 @@
                     >
 
                 </ca-datagrid>
-                <!-- <clr-datagrid>
-                    <clr-dg-column  *ngFor="let row of dgHeaders"
-                        [clrDgField]="row"
-                        >
-                        {{ row }}
-                    </clr-dg-column>
-
-                    <clr-dg-row *ngFor="let row of canvasAlerts">
-                        <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.sentOn}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.recipient}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.read}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.alertText}}</clr-dg-cell>
-                    </clr-dg-row>
-
-                </clr-datagrid> -->
 
             </div>
         </div>

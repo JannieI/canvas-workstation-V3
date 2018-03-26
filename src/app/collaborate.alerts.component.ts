@@ -208,40 +208,4 @@ export class CollaborateAlertsComponent implements OnInit {
 		this.formCollaborateAlertsClosed.emit(action);
     }
 
-    clickFilter(fromDate: string, toDate: string) {
-        // Filter the Grid
-        // this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
-
-        console.log('xx fromDate', fromDate, toDate, this.filterTextContains,
-        this.filterRead, this.filterRecipient)
-
-        this.globalVariableService.getCanvasAlerts().then (i => {
-            let temp: CanvasAlert[] = i;
-
-            if (fromDate != undefined  &&  fromDate != ''  &&  fromDate != null) {
-                console.log('from', fromDate)
-                temp = temp.filter(a => a.sentOn >= fromDate);
-            };
-            if (toDate != undefined  &&  toDate != ''  &&  toDate != null) {
-                console.log('to', toDate)
-                temp = temp.filter(a => a.sentOn <= toDate);
-            };
-            if (this.filterTextContains != ''  &&  this.filterTextContains != undefined) {
-                console.log('text', this.filterTextContains)
-                temp = temp.filter(a => a.alertText.indexOf(this.filterTextContains) >= 0);
-            };
-            if (this.filterRead) {
-                console.log('read', this.filterRead)
-                temp = temp.filter(a => a.read);
-            };
-            if (this.filterRecipient != ''  &&  this.filterRecipient != undefined) {
-                console.log('rec', this.filterRecipient)
-                temp = temp.filter(a => a.recipient.indexOf(this.filterRecipient) >=0);
-            };
-
-            // Final result
-            this.canvasAlerts = temp;
-        });
-    }
-
 }
