@@ -30,10 +30,10 @@ export class CollaborateMessagesComponent implements OnInit {
     @Output() formCollaborateMessagesClosed: EventEmitter<string> = new EventEmitter();
 
     canvasMessages: CanvasMessage[];
-    datagriColumns: DatagridColumn[] = [];
+    datagridColumns: DatagridColumn[] = [];
     datagridInput: DatagridInput = 
     {
-        datagriColumns: this.datagriColumns,
+        datagridColumns: this.datagridColumns,
         datagridData: null,
         datagridPagination: false,
         datagridPaginationSize: 10,
@@ -66,7 +66,7 @@ export class CollaborateMessagesComponent implements OnInit {
                 const columns = Object.keys(ca[0]);
                 console.log('xx cols', columns)
                 for (var i = 0; i < columns.length; i++) {
-                    this.datagriColumns.push(
+                    this.datagridColumns.push(
                     {
                         id: i,
                         displayName: columns[i],

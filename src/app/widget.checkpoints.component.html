@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-    <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
             <button type="button" class="closeButton" (click)="clickClose()">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="gridSubTitle">
                     <i>
-                            Note: a Checkpoint is saved at a point in time, and shows how the Widget
+                            A Checkpoint is saved at a point in time, and shows how the Widget
                             looked then (including filters, colours, etc).  This could be usedful
                             during presentations as the same physical area on the screen can be used
                             to show different graphs, for example drill down into progressively more
@@ -22,7 +22,7 @@
                 </div>
     
                 <div class="gridCheckpointTitle">
-                    <b>Enter a Checkpoint Name:</b>
+                    <b>Name:</b>
                 </div>
 
                 <div class="gridCheckpoint">
@@ -44,9 +44,9 @@
                     </button>
                 </div>
 
-                <div class="gridCheckpointGrid">
+                <div class="gridCheckpointTable">
                     <ca-datagrid
-                        [datagriColumns]="datagridInput.datagriColumns"
+                        [datagridColumns]="datagridInput.datagridColumns"
                         [datagridData]="datagridInput.datagridData"
                         [datagridPagination]="datagridInput.datagridPagination"
                         [datagridPaginationSize]="datagridInput.datagridPaginationSize"

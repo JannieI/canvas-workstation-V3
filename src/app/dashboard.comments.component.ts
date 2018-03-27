@@ -33,10 +33,10 @@ export class DashboardCommentsComponent implements OnInit {
     canvasComments: CanvasComment[] = [];
     headerText: string;
     showTypeDashboard: boolean = false;
-    datagriColumns: DatagridColumn[] = [];
+    datagridColumns: DatagridColumn[] = [];
     datagridInput: DatagridInput =
     {
-        datagriColumns: this.datagriColumns,
+        datagridColumns: this.datagridColumns,
         datagridData: null,
         datagridPagination: false,
         datagridPaginationSize: 10,
@@ -88,7 +88,7 @@ export class DashboardCommentsComponent implements OnInit {
                 const columns = Object.keys(ca[0]);
                 for (var i = 0; i < columns.length; i++) {
                     
-                    this.datagriColumns.push(
+                    this.datagridColumns.push(
                     {
                         id: i,
                         displayName: columns[i],

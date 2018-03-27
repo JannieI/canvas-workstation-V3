@@ -31,10 +31,10 @@ export class WidgetExpandComponent implements OnInit {
     currentDatasetLength: number;
     datasources: Datasource[] = [];
     dataFieldNames: string[] = [];
-    datagriColumns: DatagridColumn[] = [];
+    datagridColumns: DatagridColumn[] = [];
     datagridInput: DatagridInput =
     {
-        datagriColumns: this.datagriColumns,
+        datagridColumns: this.datagridColumns,
         datagridData: null,
         datagridPagination: false,
         datagridPaginationSize: 7,
@@ -87,7 +87,7 @@ export class WidgetExpandComponent implements OnInit {
             if (ca.data.length > 0) {
                 const columns = Object.keys(ca.data[0]);
                 for (var i = 0; i < columns.length; i++) {
-                    this.datagriColumns.push(
+                    this.datagridColumns.push(
                     {
                         id: i,
                         displayName: columns[i],

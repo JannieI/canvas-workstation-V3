@@ -32,7 +32,7 @@ import { DatagridColumn }             from './models';
 })
 export class CaDatagridComponent implements OnInit {
 
-    @Input() datagriColumns: DatagridColumn[];              // Cols, with info on each
+    @Input() datagridColumns: DatagridColumn[];             // Cols, with info on each
     @Input() datagridData: any;                             // Data Array
     @Input() datagridPagination: boolean;                   // True if pagination is on
     @Input() datagridPaginationSize: number;                // Size of each page, ie 10 (rows)
@@ -68,7 +68,7 @@ export class CaDatagridComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        console.log('xx dg datagriColumns', this.datagridShowFooter)
+        console.log('xx dg datagridColumns', this.datagridShowFooter)
     }
 
     clickHeader(index: number) {

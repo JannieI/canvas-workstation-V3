@@ -30,10 +30,10 @@ export class CollaborateActivitiesComponent implements OnInit {
     @Output() formCollaborateActivitiesClosed: EventEmitter<string> = new EventEmitter();
 
     canvasActivities: CanvasActivity[];
-    datagriColumns: DatagridColumn[] = [];
-    datagridInput: DatagridInput = 
+    datagridColumns: DatagridColumn[] = [];
+    datagridInput: DatagridInput =
     {
-        datagriColumns: this.datagriColumns,
+        datagridColumns: this.datagridColumns,
         datagridData: null,
         datagridPagination: false,
         datagridPaginationSize: 10,
@@ -65,7 +65,7 @@ export class CollaborateActivitiesComponent implements OnInit {
             if (ca.length > 0) {
                 const columns = Object.keys(ca[0]);
                 for (var i = 0; i < columns.length; i++) {
-                    this.datagriColumns.push(
+                    this.datagridColumns.push(
                     {
                         id: i,
                         displayName: columns[i],

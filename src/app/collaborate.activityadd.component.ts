@@ -15,17 +15,13 @@ import { Datasource }                from './models';
 import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
-// Functions
-
-
-
 
 @Component({
     selector: 'collaborate-activityadd',
     templateUrl: './collaborate.activityadd.component.html',
     styleUrls: ['./collaborate.activityadd.component.css']
-  })
-  export class CollaborateActivityAddComponent implements OnInit {
+})
+export class CollaborateActivityAddComponent implements OnInit {
 
     @Output() formCollaborateActivityAddClosed: EventEmitter<string> = new EventEmitter();
 
@@ -38,15 +34,16 @@ import { GlobalVariableService }      from './global-variable.service';
     ) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
     }
-
-    ngAfterViewInit() {
-
-    }
-
 
   	clickClose(action: string) {
-	  	this.formCollaborateActivityAddClosed.emit(action);
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+	  	  this.formCollaborateActivityAddClosed.emit(action);
         }
 
-  }
+}

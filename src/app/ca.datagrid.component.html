@@ -7,7 +7,7 @@
     </clr-dg-placeholder>
 
     <!-- Headers -->
-    <clr-dg-column *ngFor="let col of datagriColumns; let i = index"
+    <clr-dg-column *ngFor="let col of datagridColumns; let i = index"
         [clrDgField]="col.fieldName"
         >
         <ng-container *clrDgHideableColumn="{hidden: false}">
@@ -32,7 +32,7 @@
         </div>
 
         <!-- Each Cell -->
-        <clr-dg-cell *ngFor="let col of datagriColumns">
+        <clr-dg-cell *ngFor="let col of datagridColumns">
             
             <span *ngIf="col.fieldName!='id'">
                 {{ row[col.fieldName] }}
