@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "dashboardID": 1,
+        "widgetID": 1,
+        "widgetSpec": 1,
+        "name": "Overall View",
+        "creator": "CharlieD",
+        "createdOn": "2017/01/01"
+    }
+]

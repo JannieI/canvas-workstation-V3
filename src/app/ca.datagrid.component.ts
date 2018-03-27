@@ -24,7 +24,7 @@ import { CanvasAlert }                from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 
-
+ 
 @Component({
     selector: 'ca-datagrid',
     templateUrl: './ca.datagrid.component.html',
@@ -51,7 +51,7 @@ export class CaDatagridComponent implements OnInit {
     currentPage: number = 1;
     today = Date.now();
     selectedData: any;
-    showTypeDashboard: boolean = false;
+    datagridColumnHidden = {hidden: false};
 
     // TODO - the 3 properties below belongs to clrDgLastPage, but dont work
     lastPage: any;
@@ -71,6 +71,11 @@ export class CaDatagridComponent implements OnInit {
         console.log('xx dg datagridColumns', this.datagridShowFooter)
     }
 
+    ngAfterViewInit() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+
+    }
     clickHeader(index: number) {
         // Clicked a Header
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHeader', '@Start');

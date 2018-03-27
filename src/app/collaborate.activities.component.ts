@@ -47,7 +47,8 @@ export class CollaborateActivitiesComponent implements OnInit {
         datagridShowTotalsCol: false,
         datagridCanEditInCell: false,
         datagridCanExportData: false,
-        datagridEmptyMessage: 'No Alerts created so far'
+        datagridEmptyMessage: 'No Alerts created so far',
+        datagridFields: ["activityType","activityStatus","activityText"]
     };
 
 
@@ -90,6 +91,9 @@ export class CollaborateActivitiesComponent implements OnInit {
                         linkedDashboardID: 0,
                         linkedDashboardTabID: 0,
                         isFrozen: false,
+                        datagridColumnHidden: 
+                            this.datagridInput.datagridFields.indexOf(columns[i])
+                            < 0 ? {hidden: true} :  {hidden: false}
                     });
                 };
             };

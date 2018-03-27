@@ -43,6 +43,7 @@ import { StatusBarMessage }           from './models';
 import { Transformation }             from './models';
 import { UserPreferences }            from './models';
 import { Widget }                     from './models';
+import { WidgetCheckpoint }           from './models';
 
 // External
 import * as dl                        from 'datalib';
@@ -644,6 +645,7 @@ export class GlobalVariableService {
     canvasAlerts: CanvasAlert[] = [];
     canvasComments: CanvasComment[] = [];
     canvasMessages: CanvasMessage[] = [];
+    widgetCheckpoints: WidgetCheckpoint[] = [];
     filePath: string;
     widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
 
@@ -792,7 +794,7 @@ export class GlobalVariableService {
     isDirtyPaletteButtonBar: boolean = true;
     isDirtyUserPaletteButtonBar: boolean = true;
     isDirtyPaletteButtonsSelected: boolean = true;
-    
+    isDirtyWidgetCheckpoints: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
@@ -3273,6 +3275,37 @@ export class GlobalVariableService {
             } else {
                 console.log('Global-Variables getCanvasMessages 2', this.canvasMessages)
                 resolve(this.canvasMessages);
+            }
+        });
+
+    }
+
+    getWidgetCheckpoints(): Promise<WidgetCheckpoint[]> {
+        // Description: Gets all Canvas Messages
+        // Returns: this.widgetCheckpoints array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getWidgetCheckpoints ...', this.widgetCheckpoints.length);
+
+        let url: string = 'widgetCheckpoints';
+        this.filePath = './assets/settings.widgetCheckpoints.json';
+
+        return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.widgetCheckpoints = data.filter(d => (!d.isTrashed) );
+
+                        this.isDirtyWidgetCheckpoints = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('Global-Variables getWidgetCheckpoints 1', this.widgetCheckpoints)
+                        resolve(this.widgetCheckpoints);
+                    });
+            } else {
+                console.log('Global-Variables getWidgetCheckpoints 2', this.widgetCheckpoints)
+                resolve(this.widgetCheckpoints);
             }
         });
 

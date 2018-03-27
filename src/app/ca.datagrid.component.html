@@ -10,7 +10,7 @@
     <clr-dg-column *ngFor="let col of datagridColumns; let i = index"
         [clrDgField]="col.fieldName"
         >
-        <ng-container *clrDgHideableColumn="{hidden: false}">
+        <ng-container *clrDgHideableColumn="col.datagridColumnHidden">
             <div class="dg-header"
                 (click)="clickHeader(i)"
                 >
@@ -19,7 +19,7 @@
             </div>
         </ng-container>
     </clr-dg-column>
-
+ 
     <!-- Each Row -->
     <clr-dg-row *clrDgItems="let row of datagridData" [clrDgItem]="row" [(clrDgSelected)]="row.selected">
 
@@ -39,13 +39,13 @@
             </span>
 
             <!-- Conditional Cell Content -->
-            <div *ngIf="col.fieldName=='id'" 
+            <!-- <div *ngIf="col.fieldName=='id'" 
                 class="color-square" 
                 [style.backgroundColor]="'lightgray'"
                 [style.width.%]="65"
                 >
                 X
-            </div>
+            </div> -->
             
         </clr-dg-cell>
     </clr-dg-row>

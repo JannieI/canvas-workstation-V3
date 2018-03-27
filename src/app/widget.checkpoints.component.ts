@@ -29,7 +29,7 @@ import { load } from 'datalib';
     selector: 'widget-checkpoints',
     templateUrl: './widget.checkpoints.component.html',
     styleUrls: ['./widget.checkpoints.component.css']
-  })
+})
 export class WidgetCheckpointsComponent implements OnInit {
 
     @Output() formWidgetCheckpointsClosed: EventEmitter<string> = new EventEmitter();
@@ -63,7 +63,7 @@ export class WidgetCheckpointsComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.globalVariableService.getCanvasActivities().then (ca => {
+        this.globalVariableService.getWidgetCheckpoints().then (ca => {
             this.datagridInput.datagridData = ca;
             if (ca.length > 0) {
                 const columns = Object.keys(ca[0]);
@@ -162,4 +162,4 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     }
 
-  }
+}

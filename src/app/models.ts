@@ -25,17 +25,18 @@ export class DatagridColumn {
     linkedDashboardID: number;              // Optional ID of linked Dashboard
     linkedDashboardTabID: number;           // Optional ID of linked Tab
     isFrozen: boolean;                      // Optional: true if freeze col
+    datagridColumnHidden?: any;
 }
 
 export class DatagridInput {
-    datagridColumns: DatagridColumn[];             // Cols, with info on each
+    datagridColumns: DatagridColumn[];            // Cols, with info on each
     datagridData: any;                            // Data Array
     datagridPagination: boolean;                  // True if pagination is on
     datagridPaginationSize: number;               // Size of each page, ie 10 (rows)
     datagridShowHeader: boolean;                  // True to show Headers
     datagridShowRowActionMenu: boolean;           // True to show the action menu per row
     datagridShowData: boolean;                    // True to show Data
-    datagridShowFooter?: boolean;                  // True to show Footer
+    datagridShowFooter?: boolean;                 // True to show Footer
     datagridRowHeight: number;                    // Height in px
     datagriduserCanChangeProperties: boolean;     // False if use can change Nothing in grid, ie cannot even resize
     datagridShowTotalsRow: boolean;               // True to show additional row of totals at bottom
@@ -43,6 +44,7 @@ export class DatagridInput {
     datagridCanEditInCell: boolean;               // True is user can edit inside cells
     datagridCanExportData: boolean;               // True if the data may be exported
     datagridEmptyMessage: string;                 // Message to display if the grid is empty
+    datagridFields?: string[];
 }
 
 // Setup / Settings / General
@@ -375,12 +377,13 @@ export class FieldMetadata{
 }
 
 export class WidgetCheckpoint {
-    id: number;
-    dashboardID: number;
-    widgetID: number;
-    widgetSpec: any;
-    creator: string;
-    createdOn: string;
+    id: number;                         // Unique ID
+    dashboardID: number;                // Linked to this D
+    widgetID: number;                   // Linked to this W
+    name: string;                       // Name of Checkpoint
+    widgetSpec: any;                    // json spec of W
+    creator: string;                    // UserID
+    createdOn: string;                  // DateTime of creation
 }
 
 export class Dashboard {
