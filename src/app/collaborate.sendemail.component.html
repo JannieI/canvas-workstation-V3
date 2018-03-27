@@ -1,80 +1,79 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
-            <div class="modal-content modalContent">
+    <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
+            
+            <div class="gridOverall">
+
+                <div class="gridTitle">
+                    <b>Send Email: </b> 
+                </div>                
+                <div class="gridSubTitle">
+                    <i>  
+                        This will open a system email dialogue box with the following info:
+                    </i>
+                </div>                
     
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
-                
-                <div class="gridOverall">
-    
-                    <div class="gridTitle">
-                        <b>Send Email: </b> 
-                    </div>                
-                    <div class="gridSubTitle">
-                        <i>  
-                            This will open a system email dialogue box with the following info:
-                        </i>
-                    </div>                
-        
-                    <div class="gridToUsersTitle">
-                        <b>To:</b>
-                    </div>
-    
-                    <div class="gridToUsers">
-                        <input [(ngModel)]="toUsers"
-                            type="text"
-                            title="Recipients"
-                            size="25"
-                            >
-                    </div>
-    
-                    <div class="gridSubjectTitle">
-                        <b>Subject:</b>
-                    </div>
-        
-                    <div class="gridSubject">
-                        <input [(ngModel)]="subject"
-                            type="text"
-                            title="Subject"
-                            size="25"
-                            >
-                    </div>
-    
-                    <div class="gridBodyTitle">
-                        <b>Body:</b>
-                    </div>
-    
-                    <div class="gridBody">
-                        <input [(ngModel)]="body"
-                            type="text"
-                            title="Body"
-                            size="25"
-                            >
-                    </div>
-    
-                    <div class="gridButtonCancel">
-                            <button
-                            type="button"
-                            class="btn btn-secondary"
-                            (click)="clickClose('Close')"
-                            >
-                            Cancel
-                        </button>
-                    </div>
-                    
-                    <div class="gridButtonSave">
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            (click)="clickSave('Saved')"
-                            >
-                            Save
-                        </button>
-                    </div>                
+                <div class="gridToUsersTitle">
+                    <b>To:</b>
                 </div>
+
+                <div class="gridToUsers">
+                    <input [(ngModel)]="toUsers"
+                        type="text"
+                        title="Recipients"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridSubjectTitle">
+                    <b>Subject:</b>
+                </div>
+    
+                <div class="gridSubject">
+                    <input [(ngModel)]="subject"
+                        type="text"
+                        title="Subject"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridBodyTitle">
+                    <b>Body:</b>
+                </div>
+
+                <div class="gridBody">
+                    <input [(ngModel)]="body"
+                        type="text"
+                        title="Body"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridButtonCancel">
+                        <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose('Close')"
+                        >
+                        Cancel
+                    </button>
+                </div>
+                
+                <div class="gridButtonSave">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickSave('Saved')"
+                        >
+                        Save
+                    </button>
+                </div>                
             </div>
         </div>
     </div>
-    
-    
+</div>
+

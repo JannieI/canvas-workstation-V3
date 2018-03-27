@@ -1,83 +1,67 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-        <div class="modal-content   ">
-            <div modalContent>
-                <div class="overall">
-                    <div class="closeButton">
-                        <button type="button" class="closeButton" (click)="clickClose()">
-                            X
-                        </button>
-                        <span class="propertyLine">
-                            Expand dataset
-                        </span>
+        <div class="modal-content modalContent">
+
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
+            
+            <div class="gridOverall">
+
+                <div class="gridTitle">
+                    <b>Expand dataset: </b> 
+                </div>                
+                <div class="gridSubTitle">
+                    <i>  
+                        Your dataset is <b>Current Budget</b>, which has 
+                        {{ currentDatasetLength }} rows.
+                    </i>
+                </div> 
+    
+                <div class="gridFileTitle">
+                    <b>To:</b>
+                </div>
+
+                <div class="gridFile">
+                    <div class="select">
+                        <select id="selects_3"
+                            (change)="clickSelectStep($event)"
+                            >
+                            <option>CSV</option>
+                            <option>Excel</option>
+                        </select>
                     </div>
+                </div>
 
-                    <p class="propertyLine">
-                        Your dataset is <b>Current Budget</b>, which has {{ currentDatasetLength }} rows.
-                    </p>
-                    <div class="propertyLine">
-                        Max lines to show  <i>(Note: It is not advisable to show more than 100 rows
-                        in the browser)</i>:
-                        <input type="text" id="formFields_7" placeholder="45">
-                    </div>
+                <div class="gridButtonExport">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose('Close')"
+                        >
+                        Export
+                    </button>
+                </div>
 
-                    <form>
-                        <section>
-                            <div class="form-group">
-                                <label for="selects_4" class="propertyLine">Export:</label>
-                                <div class="select">
-                                    <select id="selects_3"
-                                        (change)="clickSelectStep($event)"
-                                        >
-                                        <option>CSV</option>
-                                        <option>Excel</option>
-                                    </select>
-                                </div>
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    (click)="clickClose('Close')"
-                                    >
-                                    Export
-                                </button>
-                            </div>
-                        </section>
-                    </form>
-
-
-                <ca-datagrid
-                    [datagriColumns]="datagridInput.datagriColumns"
-                    [datagridData]="datagridInput.datagridData"
-                    [datagridPagination]="datagridInput.datagridPagination"
-                    [datagridPaginationSize]="datagridInput.datagridPaginationSize"
-                    [datagridShowHeader]="datagridInput.datagridShowHeader"
-                    [datagridShowRowActionMenu]="datagridInput.datagridShowRowActionMenu"
-                    [datagridShowData]="datagridInput.datagridShowData"
-                    [datagridShowFooter]="datagridInput.datagridShowFooter"
-                    [datagridRowHeight]="datagridInput.datagridRowHeight"
-                    [datagriduserCanChangeProperties]="datagridInput.uatagriderCanChangeProperties"
-                    [datagridShowTotalsRow]="datagridInput.datagridShowTotalsRow"
-                    [datagridShowTotalsCol]="datagridInput.datagridShowTotalsCol"
-                    [datagridCanEditInCell]="datagridInput.datagridCanEditInCell"
-                    [datagridCanExportData]="datagridInput.datagridCanExportData"
-                    [datagridEmptyMessage]="datagridInput.datagridEmptyMessage"
-                    >
-                </ca-datagrid>
-
-
-                    <!-- <clr-datagrid>
-                        <clr-dg-column *ngFor="let row of dataFieldNames">{{ row }}</clr-dg-column>
-
-                        <clr-dg-row *clrDgItems="let row of dataset">
-                            <clr-dg-cell *ngFor="let col of dataFieldNames">{{ row[col] }}</clr-dg-cell>
-                        </clr-dg-row>
-                        <clr-dg-footer>
-                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                            of {{pagination.totalItems}} rows
-                            <clr-dg-pagination #pagination [clrDgPageSize]="records"></clr-dg-pagination>
-                        </clr-dg-footer>
-                    </clr-datagrid> -->
-
+                <div class="gridDatagrid">
+                    <ca-datagrid
+                        [datagriColumns]="datagridInput.datagriColumns"
+                        [datagridData]="datagridInput.datagridData"
+                        [datagridPagination]="datagridInput.datagridPagination"
+                        [datagridPaginationSize]="datagridInput.datagridPaginationSize"
+                        [datagridShowHeader]="datagridInput.datagridShowHeader"
+                        [datagridShowRowActionMenu]="datagridInput.datagridShowRowActionMenu"
+                        [datagridShowData]="datagridInput.datagridShowData"
+                        [datagridShowFooter]="datagridInput.datagridShowFooter"
+                        [datagridRowHeight]="datagridInput.datagridRowHeight"
+                        [datagriduserCanChangeProperties]="datagridInput.uatagriderCanChangeProperties"
+                        [datagridShowTotalsRow]="datagridInput.datagridShowTotalsRow"
+                        [datagridShowTotalsCol]="datagridInput.datagridShowTotalsCol"
+                        [datagridCanEditInCell]="datagridInput.datagridCanEditInCell"
+                        [datagridCanExportData]="datagridInput.datagridCanExportData"
+                        [datagridEmptyMessage]="datagridInput.datagridEmptyMessage"
+                        >
+                    </ca-datagrid>
                 </div>
             </div>
         </div>
