@@ -61,20 +61,38 @@
                             <br>
                         </div>
 
-                        <clr-datagrid>
+                        <ca-datagrid
+                            [datagriColumns]="datagridInput.datagriColumns"
+                            [datagridData]="datagridInput.datagridData"
+                            [datagridPagination]="datagridInput.datagridPagination"
+                            [datagridPaginationSize]="datagridInput.datagridPaginationSize"
+                            [datagridShowHeader]="datagridInput.datagridShowHeader"
+                            [datagridShowRowActionMenu]="datagridInput.datagridShowRowActionMenu"
+                            [datagridShowData]="datagridInput.datagridShowData"
+                            [datagridShowFooter]="datagridInput.datagridShowFooter"
+                            [datagridRowHeight]="datagridInput.datagridRowHeight"
+                            [datagriduserCanChangeProperties]="datagridInput.uatagriderCanChangeProperties"
+                            [datagridShowTotalsRow]="datagridInput.datagridShowTotalsRow"
+                            [datagridShowTotalsCol]="datagridInput.datagridShowTotalsCol"
+                            [datagridCanEditInCell]="datagridInput.datagridCanEditInCell"
+                            [datagridCanExportData]="datagridInput.datagridCanExportData"
+                            [datagridEmptyMessage]="datagridInput.datagridEmptyMessage"
+                            >
+                        </ca-datagrid>
+                        <!-- <clr-datagrid>
                             <clr-dg-column>ID</clr-dg-column>
                             <clr-dg-column>Comment</clr-dg-column>
                             <clr-dg-column>Creator</clr-dg-column>
                             <clr-dg-column>CreatedOn</clr-dg-column>
 
-                            <clr-dg-row *ngFor="let row of canvasDataQuality">
+                            <clr-dg-row *ngFor="let row of canvasComments">
                                 <clr-dg-cell>{{row.id}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.comment}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.creator}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
                             </clr-dg-row>
 
-                        </clr-datagrid>
+                        </clr-datagrid> -->
                     </div>
                 </div>
             </div>

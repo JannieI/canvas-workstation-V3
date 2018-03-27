@@ -16,8 +16,9 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
-import { DataQualityIssue }           from './models';
+import { CanvasComment }              from './models';
+import { DatagridInput }              from './models';
+import { DatagridColumn }             from './models';
 
 @Component({
     selector: 'dashboard-comments',
@@ -29,10 +30,28 @@ export class DashboardCommentsComponent implements OnInit {
     @Output() formDashboardCommentsClosed: EventEmitter<string> = new EventEmitter();
     @Input() selectedWidgetID: number;
 
-    canvasDataQuality: DataQualityIssue[] = [];
+    canvasComments: CanvasComment[] = [];
     headerText: string;
     showTypeDashboard: boolean = false;
-
+    datagriColumns: DatagridColumn[] = [];
+    datagridInput: DatagridInput =
+    {
+        datagriColumns: this.datagriColumns,
+        datagridData: null,
+        datagridPagination: false,
+        datagridPaginationSize: 10,
+        datagridShowHeader: false,
+        datagridShowRowActionMenu: false,
+        datagridShowData: true,
+        datagridShowFooter: true,
+        datagridRowHeight: 12,
+        datagriduserCanChangeProperties: false,
+        datagridShowTotalsRow: false,
+        datagridShowTotalsCol: false,
+        datagridCanEditInCell: false,
+        datagridCanExportData: false,
+        datagridEmptyMessage: 'No Comments created so far'
+    };
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -45,13 +64,59 @@ export class DashboardCommentsComponent implements OnInit {
             this.headerText = 'selected Widget';
         };
 
-        this.globalVariableService.getDataQualityIssues().then(cC => {
-             cC.forEach(i => {
-                 if (i.datasourceID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) {
-                     this.canvasDataQuality.push(i)
-                 };
-            });
-            console.log('xx comm', cC, this.canvasDataQuality)
+        // this.globalVariableService.getCanvasComments().then(cC => {
+        //      cC.forEach(i => {
+        //          if (i.dashboardID == this.globalVariableService.currentDashboardInfo
+        //                 .value.currentDashboardID
+        //              &&
+        //              (i.widgetID == this.selectedWidgetID  ||  
+        //                 this.selectedWidgetID == -1) ) {
+        //              this.canvasComments.push(i)
+        //          };
+        //     });
+        //     console.log('xx comm', this.globalVariableService.currentDashboardInfo
+        //     .value.currentDashboardID, this.selectedWidgetID, this.canvasComments)
+        // });
+        this.globalVariableService.getCanvasComments().then (ca => {
+            this.datagridInput.datagridData = ca.filter( c =>
+                  (c.dashboardID == this.globalVariableService.currentDashboardInfo
+                        .value.currentDashboardID
+                   &&
+                  (c.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) )
+            ); 
+            if (ca.length > 0) {
+                const columns = Object.keys(ca[0]);
+                for (var i = 0; i < columns.length; i++) {
+                    
+                    this.datagriColumns.push(
+                    {
+                        id: i,
+                        displayName: columns[i],
+                        fieldName: columns[i],
+                        databaseDBTableName: '',
+                        databaseDBFieldName: '',
+                        tooltip: '',
+                        datatype: 'string',
+                        prefix: '',
+                        divideBy: 0,
+                        displayLength: 12,
+                        maxLength: 0,
+                        sortOrder: '',
+                        filter: '',
+                        backgroundColor: '',
+                        color: '',
+                        conditionalFormatColor: '',
+                        nrDataQualityIssues: 0,
+                        maxValue: 0,
+                        minValue: 0,
+                        average: 0,
+                        linkedDashboardID: 0,
+                        linkedDashboardTabID: 0,
+                        isFrozen: false,
+                    });
+                };
+            };
+            console.log('xx comm',  this.selectedWidgetID)
         });
     }
 
