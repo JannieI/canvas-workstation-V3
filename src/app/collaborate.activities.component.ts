@@ -48,7 +48,7 @@ export class CollaborateActivitiesComponent implements OnInit {
         datagridCanEditInCell: false,
         datagridCanExportData: false,
         datagridEmptyMessage: 'No Alerts created so far',
-        datagridFields: ["activityType","activityStatus","activityText"]
+        datagridVisibleFields: ["activityType","activityStatus","activityText"]
     };
 
 
@@ -92,7 +92,7 @@ export class CollaborateActivitiesComponent implements OnInit {
                         linkedDashboardTabID: 0,
                         isFrozen: false,
                         datagridColumnHidden: 
-                            this.datagridInput.datagridFields.indexOf(columns[i])
+                            this.datagridInput.datagridVisibleFields.indexOf(columns[i])
                             < 0 ? {hidden: true} :  {hidden: false}
                     });
                 };

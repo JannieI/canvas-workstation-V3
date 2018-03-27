@@ -44,6 +44,8 @@ import { Transformation }             from './models';
 import { UserPreferences }            from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
+import { DatagridInput }              from './models';
+import { DatagridColumn }             from './models';
 
 // External
 import * as dl                        from 'datalib';
@@ -4320,5 +4322,64 @@ export class GlobalVariableService {
         if (statusBarMessage.uiArea == 'StatusBar') {
             this.statusBarMessage.next(statusBarMessage);
         };
+    }
+
+    createDatagridColumns(
+        datagridInput: DatagridInput, 
+        data: any,
+        ): DatagridColumn[] {
+        // It will return an array of datagridColumns to use in the ca-datagrid
+        // for a given array of data and a set of columns to show, 
+        console.log('Global-Variables createDatagridColumns ...');
+
+        // Start, assuming nothing to return
+        let datagridColumns: DatagridColumn[] = [];
+        let columns: string[] = [];
+
+        // Get cols from the data
+        if (data.length > 0) {
+            const columns = Object.keys(data[0]);
+        };
+
+        // Make All visible if nothing was given
+        if (datagridInput.datagridVisibleFields.length == 0) {
+            datagridInput.datagridVisibleFields = columns;
+        };
+
+        // Loop on the cols, and create an object for each in the datagridColumns array
+        for (var i = 0; i < columns.length; i++) {
+            datagridColumns.push(
+            {
+                id: i,
+                displayName: columns[i],
+                fieldName: columns[i],
+                databaseDBTableName: '',
+                databaseDBFieldName: '',
+                tooltip: '',
+                datatype: 'string',
+                prefix: '',
+                divideBy: 0,
+                displayLength: 12,
+                maxLength: 0,
+                sortOrder: '',
+                filter: '',
+                backgroundColor: '',
+                color: '',
+                conditionalFormatColor: '',
+                nrDataQualityIssues: 0,
+                maxValue: 0,
+                minValue: 0,
+                average: 0,
+                linkedDashboardID: 0,
+                linkedDashboardTabID: 0,
+                isFrozen: false,
+                datagridColumnHidden: 
+                    datagridInput.datagridVisibleFields.indexOf(columns[i])
+                    < 0 ? {hidden: true} :  {hidden: false}
+            });
+        };
+        
+        return datagridColumns;
+
     }
 }
