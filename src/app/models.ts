@@ -428,7 +428,7 @@ export class Dashboard {
 
 export class DashboardTab {
     id: number;
-    dashboardID: number;                  // FK to DashboardID to which widget belongs
+    dashboardID: number;                // FK to DashboardID to which widget belongs
     name: string;
     description: string;
     backgroundColor: string;
@@ -437,12 +437,13 @@ export class DashboardTab {
 
 // List of Recently opened D
 export class DashboardRecent {
-    userID: string;
-    dashboardID: number;
-    dashboardTabID: number;
+    userID: string;                     // User who last saved the D
+    dashboardID: number;                // Last D position
+    dashboardTabID: number;             // Last T position
+    editMode: boolean;                  // EditMode when last saved
     accessed: string;                   // Last dateTime opened
-    stateAtRunTime: string;
-    nameAtRunTime: string;
+    stateAtRunTime: string;             // State when opened, ie Deleted
+    nameAtRunTime: string;              // Name when opened
 }
 
 export class DashboardTag {

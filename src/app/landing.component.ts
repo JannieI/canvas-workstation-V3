@@ -165,7 +165,11 @@ export class LandingComponent implements OnInit {
 		this.formLandingClosed.emit('OpenSample');
 	}
 
-	clickOpenRecentDashboard(dashboardID: number, dashboardTabID: number, index: number) {
+	clickOpenRecentDashboard(
+		dashboardID: number, 
+		dashboardTabID: number, 
+		editMode: boolean,
+		index: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenRecentDashboard', '@Start');
 
@@ -183,6 +187,7 @@ export class LandingComponent implements OnInit {
 				return;
 		};
 
+		this.globalVariableService.editMode.next(editMode)
         this.globalVariableService.refreshCurrentDashboard(
 			'landing-clickOpenRecentDashboard', dashboardID, dashboardTabID, ''
 		);
@@ -191,9 +196,9 @@ export class LandingComponent implements OnInit {
 		this.formLandingClosed.emit('OpenRecent');
 	}
 
-	deleteRecent(index: number) {
+	clickDeleteRecent(index: number) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'deleteRecent', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteRecent', '@Start');
 
 		// Delete from temp array, refresh
 		this.globalVariableService.deleteDashboardRecent(index).then(

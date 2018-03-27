@@ -2,33 +2,39 @@
     {
         "userID": "JannieI",
         "dashboardID": 1,
-        "dashboardTabID": 1
+        "dashboardTabID": 1,
+        "editMode" : true
     },
     {
         "userID": "JannieI",
         "dashboardID": 6,
-        "dashboardTabID": 9
+        "dashboardTabID": 9,
+        "editMode" : false
     },
     {
         "userID": "OliviaB",
         "dashboardID": 2,
-        "dashboardTabID": 1
+        "dashboardTabID": 1,
+        "editMode" : false
 
     },
     {
         "userID": "OliviaB",
         "dashboardID": 7,
-        "dashboardTabID": 10
+        "dashboardTabID": 10,
+        "editMode" : false
     },
     {
         "userID": "OliviaB",
         "dashboardID": 1,
-        "dashboardTabID": 1
+        "dashboardTabID": 1,
+        "editMode" : false
     },
     {
         "userID": "JannieI",
         "dashboardID": 491326,
         "dashboardTabID": 1,
+        "editMode" : false,
         "stateAtRunTime": "Deleted",
         "nameAtRunTime": "Wisconson Maths"
     }

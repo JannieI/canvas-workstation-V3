@@ -63,10 +63,16 @@
 							class="nav-link"
 							>
 							<clr-icon
-								(click)="deleteRecent(row.id)"
+								(click)="clickDeleteRecent(row.id)"
 								shape="trash">
 							</clr-icon>
-							<span (click)="clickOpenRecentDashboard(row.dashboardID, row.dashboardTabID, i)">
+							<span (click)="clickOpenRecentDashboard(
+											row.dashboardID, 
+											row.dashboardTabID,
+											row.editMode,
+											i
+										)"
+								>
 								{{row.nameAtRunTime}} ({{ row.stateAtRunTime }})
 							</span>
 						</a>
