@@ -2284,7 +2284,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuSlicerComments() {
-        //
+        // Manage comments for the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerComments', '@Start');
 
         if (!this.checkForOnlyOneWidget('Slicer')) {
@@ -2431,6 +2431,26 @@ export class AppComponent implements OnInit {
         this.showModalShapeEdit = true;
     }
 
+    clickMenuShapeComments() {
+        // Manage comments for the selected Shape
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeComments', '@Start');
+
+        if (!this.checkForOnlyOneWidget('Shape')) {
+            return
+        };
+
+        this.menuOptionClickPreAction();
+
+        // Set the selected W id
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidgetID = w.id;
+            }
+        })
+
+        this.showModalDashboardComments = true;
+
+    }
     clickMenuShapeLinks() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeLinks', '@Start');
