@@ -1764,6 +1764,9 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetComments', '@Start');
 
+        if (!this.checkForOnlyOneWidget()) {
+            return
+        };
         if (!this.checkForOnlyOneWidget('Graph')) {
             return
         };
@@ -2117,6 +2120,9 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableComments', '@Start');
 
+        if (!this.checkForOnlyOneWidget()) {
+            return
+        };
         if (!this.checkForOnlyOneWidget('Table')) {
             return
         };
@@ -2287,6 +2293,9 @@ export class AppComponent implements OnInit {
         // Manage comments for the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerComments', '@Start');
 
+        if (!this.checkForOnlyOneWidget()) {
+            return
+        };
         if (!this.checkForOnlyOneWidget('Slicer')) {
             return
         };
@@ -2435,6 +2444,10 @@ export class AppComponent implements OnInit {
         // Manage comments for the selected Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeComments', '@Start');
 
+
+        if (!this.checkForOnlyOneWidget()) {
+            return
+        };
         if (!this.checkForOnlyOneWidget('Shape')) {
             return
         };
