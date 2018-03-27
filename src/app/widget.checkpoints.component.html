@@ -1,60 +1,69 @@
 <div class="modal modalBox">
-	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-		<div class="modal-content modalContent">
+    <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
 
-            <div class="overall">
-                <div class="closeButton">
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
+
+            <div class="gridOverall">
+
+                <div class="gridTitle">
+                    <b>Widget Checkpoints: </b>
                 </div>
-                Widget Checkpoints
-                <div>
+                <div class="gridSubTitle">
                     <i>
-                        Note: a Checkpoint is saved at a point in time, and shows how the Widget
-                        looked then (including filters, colours, etc).  This could be usedful
-                        during presentations as the same physical area on the screen can be used
-                        to show different graphs, for example drill down into progressively more
-                        detail.
+                            Note: a Checkpoint is saved at a point in time, and shows how the Widget
+                            looked then (including filters, colours, etc).  This could be usedful
+                            during presentations as the same physical area on the screen can be used
+                            to show different graphs, for example drill down into progressively more
+                            detail.
                     </i>
                 </div>
-                <form>
-                    <section>
-                        <div class="form-group">
-                            <label for="selects1">Enter a Checkpoint Name:</label>
-                            <input type="text" id="selects1" placeholder="Checkpoint Name">
+    
+                <div class="gridCheckpointTitle">
+                    <b>Enter a Checkpoint Name:</b>
+                </div>
 
-                            <button
-                                type="button"
-                                class="btn btn-secondary btn-sm"
-                                (click)="clickAdd()"
-                                >
-                                Add
-                            </button>
+                <div class="gridCheckpoint">
+                    <input [(ngModel)]="checkpointName"
+                        type="text"
+                        title="Recipients"
+                        size="25"
+                        placeholder="Checkpoint Name"
+                        >
+                </div>
 
-                        </div>
-                        <div class="form-group">
+                <div class="gridCheckpointButton">
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        (click)="clickAdd()"
+                        >
+                        Add
+                    </button>
+                </div>
 
-                            <label for="selects_4">View saved Checkpoints:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Summary</option>
-                                    <option>Sales by Region</option>
-                                    <option>Sales by Persion</option>
-                                </select>
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary btn-sm"
-                                    (click)="clickAdd()"
-                                    >
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                </form>
+                <div class="gridCheckpointGrid">
+                    <ca-datagrid
+                        [datagriColumns]="datagridInput.datagriColumns"
+                        [datagridData]="datagridInput.datagridData"
+                        [datagridPagination]="datagridInput.datagridPagination"
+                        [datagridPaginationSize]="datagridInput.datagridPaginationSize"
+                        [datagridShowHeader]="datagridInput.datagridShowHeader"
+                        [datagridShowRowActionMenu]="datagridInput.datagridShowRowActionMenu"
+                        [datagridShowData]="datagridInput.datagridShowData"
+                        [datagridShowFooter]="datagridInput.datagridShowFooter"
+                        [datagridRowHeight]="datagridInput.datagridRowHeight"
+                        [datagriduserCanChangeProperties]="datagridInput.uatagriderCanChangeProperties"
+                        [datagridShowTotalsRow]="datagridInput.datagridShowTotalsRow"
+                        [datagridShowTotalsCol]="datagridInput.datagridShowTotalsCol"
+                        [datagridCanEditInCell]="datagridInput.datagridCanEditInCell"
+                        [datagridCanExportData]="datagridInput.datagridCanExportData"
+                        [datagridEmptyMessage]="datagridInput.datagridEmptyMessage"
+                        >
+                    </ca-datagrid>   
+                </div>
 
                 <div class="graphArea" #dragWidget>
 
