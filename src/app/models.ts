@@ -205,23 +205,21 @@ export class CanvasMessageSingle {
 }
 
 export class CanvasAlert {
-    id: number;
-    sentOn: string;
-    recipient: string;
-    read: boolean;
-    alertText: string;
-    alertData?: any;        // Type of data, table name, field names, field values
+    id: number;                 // Unique ID
+    sentOn: string;             // DateTime sent
+    recipient: string;          // UserID
+    read: boolean;              // True if recipient read the alert
+    alertText: string;          // Message
+    alertData?: any;            // Type of data, table name, field names, field values
 }
 
 export class CanvasComment {
-    id: number;
-    dashboardID: number;
-    dashboardTabID?: number;
-    widgetID: number;
-    shapeID: number;
-    comment: string;
-    creator: string;
-    createdOn: string;
+    id: number;                 // Unique ID
+    dashboardID: number;        // Dashboard to which comment is linked
+    widgetID: number;           // Optional Widget linked
+    comment: string;            // Comment Text
+    creator: string;            // UserID
+    createdOn: string;          // DateTime
 }
 
 export class CanvasUser {

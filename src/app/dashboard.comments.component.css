@@ -28,8 +28,18 @@
 }
 
     .textHeader {
+        background-color: white;
+        display: inline-block;
+        grid-column-start: 1;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 1;
         margin-left: 10px;
-        text-align: center;
+        margin-top: -1.5rem;
+        opacity: 1;
+        text-align: left;
+        z-index: 101;
+
     }
     .textLine {
         margin-left: 10px;
