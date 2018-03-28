@@ -36,26 +36,23 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
-    datagridColumns: DatagridColumn[] = [];
-    datagridInput: DatagridInput =
-    {
-        datagridColumns: this.datagridColumns,
-        datagridData: null,
-        datagridPagination: false,
-        datagridPaginationSize: 10,
-        datagridShowHeader: false,
-        datagridShowRowActionMenu: false,
-        datagridShowData: true,
-        datagridShowFooter: true,
-        datagridRowHeight: 12,
-        datagriduserCanChangeProperties: false,
-        datagridShowTotalsRow: false,
-        datagridShowTotalsCol: false,
-        datagridCanEditInCell: false,
-        datagridCanExportData: false,
-        datagridEmptyMessage: 'No Checkpoints created so far',
-        datagridVisibleFields: []
-    };
+    datagridColumns: DatagridColumn[];
+    datagridInput: DatagridInput = null;
+    datagridData: any;
+    datagridPagination: boolean = false;
+    datagridPaginationSize: number = 10;
+    datagridShowHeader: boolean = false;
+    datagridShowRowActionMenu: boolean = false;
+    datagridShowData: boolean = true;
+    datagridShowFooter: boolean = false;
+    datagridRowHeight: number = 12;
+    datagriduserCanChangeProperties: boolean = false;
+    datagridShowTotalsRow: boolean = false;
+    datagridShowTotalsCol: boolean = false;
+    datagridCanEditInCell: boolean = false;
+    datagridCanExportData: boolean = false;
+    datagridEmptyMessage: string = 'No Activities created so far';
+    datagridVisibleFields: string[];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -65,10 +62,8 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     ngOnInit() {
         this.globalVariableService.getWidgetCheckpoints().then (ca => {
-            this.datagridInput.datagridData = ca;
-
             // Set the data for the grid
-            // this.datagridData = ca;
+            this.datagridData = ca;
 
             // Set the column object
             this.datagridInput.datagridColumns = this.globalVariableService.createDatagridColumns(

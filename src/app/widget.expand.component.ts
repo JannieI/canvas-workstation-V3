@@ -50,7 +50,7 @@ export class WidgetExpandComponent implements OnInit {
         datagridCanExportData: false,
         datagridEmptyMessage: 'No records to export',
         datagridVisibleFields: []
-        
+         
     };
     records: number = 6;
 
