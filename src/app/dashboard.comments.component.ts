@@ -50,7 +50,9 @@ export class DashboardCommentsComponent implements OnInit {
         datagridShowTotalsCol: false,
         datagridCanEditInCell: false,
         datagridCanExportData: false,
-        datagridEmptyMessage: 'No Comments created so far'
+        datagridEmptyMessage: 'No Comments created so far',
+        datagridVisibleFields: []
+        
     };
 	constructor(
         private globalFunctionService: GlobalFunctionService,

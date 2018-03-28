@@ -47,7 +47,8 @@ export class CollaborateMessagesComponent implements OnInit {
         datagridShowTotalsCol: false,
         datagridCanEditInCell: false,
         datagridCanExportData: false,
-        datagridEmptyMessage: 'No Messages to show'
+        datagridEmptyMessage: 'No Messages to show',
+        datagridVisibleFields: []
     };
 
 

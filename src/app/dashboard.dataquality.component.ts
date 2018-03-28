@@ -49,7 +49,9 @@ export class DashboardDataQualityComponent implements OnInit {
         datagridShowTotalsCol: false,
         datagridCanEditInCell: false,
         datagridCanExportData: false,
-        datagridEmptyMessage: 'No records created so far'
+        datagridEmptyMessage: 'No records created so far',
+        datagridVisibleFields: []
+        
     };
 
 	constructor(

@@ -48,7 +48,9 @@ export class CollaborateAlertsComponent implements OnInit {
         datagridShowTotalsCol: false,
         datagridCanEditInCell: false,
         datagridCanExportData: false,
-        datagridEmptyMessage: 'No Alerts created so far'
+        datagridEmptyMessage: 'No Alerts created so far',
+        datagridVisibleFields: []
+        
     };
 
 

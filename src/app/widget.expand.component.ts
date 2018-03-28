@@ -48,7 +48,9 @@ export class WidgetExpandComponent implements OnInit {
         datagridShowTotalsCol: false,
         datagridCanEditInCell: false,
         datagridCanExportData: false,
-        datagridEmptyMessage: 'No records to export'
+        datagridEmptyMessage: 'No records to export',
+        datagridVisibleFields: []
+        
     };
     records: number = 6;
 

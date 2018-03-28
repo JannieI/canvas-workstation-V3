@@ -4326,7 +4326,7 @@ export class GlobalVariableService {
 
     createDatagridColumns(
         dataRow: any,
-        visibleFields: string[]
+        visibleFields: string[] = []
         ): DatagridColumn[] {
         // It will return an array of datagridColumns to use in the ca-datagrid
         // for a given array of data and a set of columns to show, 
@@ -4335,10 +4335,7 @@ export class GlobalVariableService {
         // Start, assuming nothing to return
         let datagridColumns: DatagridColumn[] = [];
         let columns: string[] = [];
-        if (visibleFields == null  ||  visibleFields == undefined) {
-            visibleFields = [];
-        };
-        
+
         // Get cols from the data
         // if (dataRow != null) {
             // columns = Object.keys(dataRow[0]);
