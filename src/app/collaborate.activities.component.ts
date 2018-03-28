@@ -30,29 +30,26 @@ export class CollaborateActivitiesComponent implements OnInit {
     @Output() formCollaborateActivitiesClosed: EventEmitter<string> = new EventEmitter();
 
     canvasActivities: CanvasActivity[];
-    datagridColumns: DatagridColumn[] = [];
-    datagridInput: DatagridInput =
-    {
-        datagridColumns: this.datagridColumns,
-        datagridData: null,
-        datagridPagination: false,
-        datagridPaginationSize: 10,
-        datagridShowHeader: false,
-        datagridShowRowActionMenu: false,
-        datagridShowData: true,
-        datagridShowFooter: true,
-        datagridRowHeight: 12,
-        datagriduserCanChangeProperties: false,
-        datagridShowTotalsRow: false,
-        datagridShowTotalsCol: false,
-        datagridCanEditInCell: false,
-        datagridCanExportData: false,
-        datagridEmptyMessage: 'No Alerts created so far',
-        datagridVisibleFields: ["activityType","activityStatus","activityText"]
-    };
+    datagridColumns: DatagridColumn[];
+    datagridInput: DatagridInput = null;
+    datagridData: any;
+    datagridPagination: boolean = false;
+    datagridPaginationSize: number = 10;
+    datagridShowHeader: boolean = false;
+    datagridShowRowActionMenu: boolean = false;
+    datagridShowData: boolean = true;
+    datagridShowFooter: boolean = true;
+    datagridRowHeight: number = 12;
+    datagriduserCanChangeProperties: boolean = false;
+    datagridShowTotalsRow: boolean = false;
+    datagridShowTotalsCol: boolean = false;
+    datagridCanEditInCell: boolean = false;
+    datagridCanExportData: boolean = false;
+    datagridEmptyMessage: string = 'No Activities created so far';
+    datagridVisibleFields: string[] = [];
 
 
-	constructor(
+    constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
@@ -62,41 +59,14 @@ export class CollaborateActivitiesComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.getCanvasActivities().then (ca => {
-            this.datagridInput.datagridData = ca;
-            if (ca.length > 0) {
-                const columns = Object.keys(ca[0]);
-                for (var i = 0; i < columns.length; i++) {
-                    this.datagridColumns.push(
-                    {
-                        id: i,
-                        displayName: columns[i],
-                        fieldName: columns[i],
-                        databaseDBTableName: '',
-                        databaseDBFieldName: '',
-                        tooltip: '',
-                        datatype: 'string',
-                        prefix: '',
-                        divideBy: 0,
-                        displayLength: 12,
-                        maxLength: 0,
-                        sortOrder: '',
-                        filter: '',
-                        backgroundColor: '',
-                        color: '',
-                        conditionalFormatColor: '',
-                        nrDataQualityIssues: 0,
-                        maxValue: 0,
-                        minValue: 0,
-                        average: 0,
-                        linkedDashboardID: 0,
-                        linkedDashboardTabID: 0,
-                        isFrozen: false,
-                        datagridColumnHidden: 
-                            this.datagridInput.datagridVisibleFields.indexOf(columns[i])
-                            < 0 ? {hidden: true} :  {hidden: false}
-                    });
-                };
-            };
+
+            // Set the data for the grid
+            this.datagridData = ca;
+
+            // Set the column object
+            this.datagridColumns = this.globalVariableService.createDatagridColumns(
+                ca[0], this.datagridVisibleFields);
+            
         });
 
     }

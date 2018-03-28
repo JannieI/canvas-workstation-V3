@@ -49,7 +49,7 @@ export class DashboardDataQualityComponent implements OnInit {
         datagridShowTotalsCol: false,
         datagridCanEditInCell: false,
         datagridCanExportData: false,
-        datagridEmptyMessage: 'No Alerts created so far'
+        datagridEmptyMessage: 'No records created so far'
     };
 
 	constructor(

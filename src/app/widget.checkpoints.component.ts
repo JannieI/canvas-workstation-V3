@@ -53,7 +53,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         datagridShowTotalsCol: false,
         datagridCanEditInCell: false,
         datagridCanExportData: false,
-        datagridEmptyMessage: 'No Alerts created so far'
+        datagridEmptyMessage: 'No Checkpoints created so far'
     };
 
     constructor(

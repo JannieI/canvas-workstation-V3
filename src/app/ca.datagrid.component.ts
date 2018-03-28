@@ -32,6 +32,7 @@ import { DatagridColumn }             from './models';
 })
 export class CaDatagridComponent implements OnInit {
 
+    // @Input() DatagridInput: DatagridInput;
     @Input() datagridColumns: DatagridColumn[];             // Cols, with info on each
     @Input() datagridData: any;                             // Data Array
     @Input() datagridPagination: boolean;                   // True if pagination is on
@@ -46,7 +47,7 @@ export class CaDatagridComponent implements OnInit {
     @Input() datagridShowTotalsCol: boolean;                // True to show additional col of totals on right
     @Input() datagridCanEditInCell: boolean;                // True is user can edit inside cells
     @Input() datagridCanExportData: boolean;                // True if the data may be exported
-    @Input() datagridEmptyMessage: string;                  // Message to display if the grid is empty
+    @Input() datagridEmptyMessage?: string;                  // Message to display if the grid is empty
 
     currentPage: number = 1;
     today = Date.now();
@@ -68,14 +69,14 @@ export class CaDatagridComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        console.log('xx dg datagridColumns', this.datagridShowFooter)
     }
 
     ngAfterViewInit() {
-        //
+        // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
     }
+
     clickHeader(index: number) {
         // Clicked a Header
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHeader', '@Start');
@@ -97,3 +98,4 @@ export class CaDatagridComponent implements OnInit {
         // TODO - code this somehow
     }
 }
+

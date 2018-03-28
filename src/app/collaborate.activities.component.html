@@ -13,67 +13,30 @@
                     </div>
     
                     <ca-datagrid
-                        [datagridColumns]="datagridInput.datagridColumns"
-                        [datagridData]="datagridInput.datagridData"
-                        [datagridPagination]="datagridInput.datagridPagination"
-                        [datagridPaginationSize]="datagridInput.datagridPaginationSize"
-                        [datagridShowHeader]="datagridInput.datagridShowHeader"
-                        [datagridShowRowActionMenu]="datagridInput.datagridShowRowActionMenu"
-                        [datagridShowData]="datagridInput.datagridShowData"
-                        [datagridShowFooter]="datagridInput.datagridShowFooter"
-                        [datagridRowHeight]="datagridInput.datagridRowHeight"
-                        [datagriduserCanChangeProperties]="datagridInput.uatagriderCanChangeProperties"
-                        [datagridShowTotalsRow]="datagridInput.datagridShowTotalsRow"
-                        [datagridShowTotalsCol]="datagridInput.datagridShowTotalsCol"
-                        [datagridCanEditInCell]="datagridInput.datagridCanEditInCell"
-                        [datagridCanExportData]="datagridInput.datagridCanExportData"
-                        [datagridEmptyMessage]="datagridInput.datagridEmptyMessage"
+                        [datagridColumns]="datagridColumns"
+                        [datagridData]="datagridData"
+                        [datagridPagination]="datagridPagination"
+                        [datagridPaginationSize]="datagridPaginationSize"
+                        [datagridShowHeader]="datagridShowHeader"
+                        [datagridShowRowActionMenu]="datagridShowRowActionMenu"
+                        [datagridShowData]="datagridShowData"
+                        [datagridShowFooter]="datagridShowFooter"
+                        [datagridRowHeight]="datagridRowHeight"
+                        [datagriduserCanChangeProperties]="uatagriderCanChangeProperties"
+                        [datagridShowTotalsRow]="datagridShowTotalsRow"
+                        [datagridShowTotalsCol]="datagridShowTotalsCol"
+                        [datagridCanEditInCell]="datagridCanEditInCell"
+                        [datagridCanExportData]="datagridCanExportData"
                         >
                     </ca-datagrid>
     
                 </div>
         
-                <!-- <div>
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
+             
 
-                    Activities
-                    <div class="propertyLine">
-                        Filter on:
-                        <input type="text" id="formFields_7" placeholder="Daterange">
-                        <input type="text" id="formFields_7" placeholder="Text">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            (click)="clickClose('Close')"
-                            >
-                            Filter
-                        </button>
-                    </div>
 
-                    <clr-datagrid>
-                        <clr-dg-column>ID</clr-dg-column>
-                        <clr-dg-column>createdBy</clr-dg-column>
-                        <clr-dg-column>createdOn</clr-dg-column>
-                        <clr-dg-column>activityType</clr-dg-column>
-                        <clr-dg-column>activityStatus</clr-dg-column>
-                        <clr-dg-column>Recipient</clr-dg-column>
-                        <clr-dg-column>activityComments?</clr-dg-column>
-
-                        <clr-dg-row *ngFor="let row of canvasActivities">
-                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.createdBy}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.activityType}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.activityStatus}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.recipient}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.activityComments}}</clr-dg-cell>
-                        </clr-dg-row>
-
-                    </clr-datagrid>
-
-                </div> -->
             </div>
         </div>
     </div>
+
+    

@@ -4325,8 +4325,8 @@ export class GlobalVariableService {
     }
 
     createDatagridColumns(
-        datagridInput: DatagridInput, 
-        data: any,
+        dataRow: any,
+        visibleFields: string[]
         ): DatagridColumn[] {
         // It will return an array of datagridColumns to use in the ca-datagrid
         // for a given array of data and a set of columns to show, 
@@ -4337,17 +4337,18 @@ export class GlobalVariableService {
         let columns: string[] = [];
 
         // Get cols from the data
-        if (data.length > 0) {
-            const columns = Object.keys(data[0]);
-        };
-
+        // if (dataRow != null) {
+            // columns = Object.keys(dataRow[0]);
+        // };
+        columns = Object.keys(dataRow)
         // Make All visible if nothing was given
-        if (datagridInput.datagridVisibleFields.length == 0) {
-            datagridInput.datagridVisibleFields = columns;
+        if (visibleFields.length == 0) {
+            visibleFields = columns;
         };
 
         // Loop on the cols, and create an object for each in the datagridColumns array
         for (var i = 0; i < columns.length; i++) {
+
             datagridColumns.push(
             {
                 id: i,
@@ -4374,11 +4375,11 @@ export class GlobalVariableService {
                 linkedDashboardTabID: 0,
                 isFrozen: false,
                 datagridColumnHidden: 
-                    datagridInput.datagridVisibleFields.indexOf(columns[i])
+                    visibleFields.indexOf(columns[i])
                     < 0 ? {hidden: true} :  {hidden: false}
             });
         };
-        
+        console.log('xx GV datagridColumns', datagridColumns)
         return datagridColumns;
 
     }
