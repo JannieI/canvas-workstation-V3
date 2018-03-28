@@ -30,26 +30,23 @@ export class CollaborateMessagesComponent implements OnInit {
     @Output() formCollaborateMessagesClosed: EventEmitter<string> = new EventEmitter();
 
     canvasMessages: CanvasMessage[];
-    datagridColumns: DatagridColumn[] = [];
-    datagridInput: DatagridInput = 
-    {
-        datagridColumns: this.datagridColumns,
-        datagridData: null,
-        datagridPagination: false,
-        datagridPaginationSize: 10,
-        datagridShowHeader: false,
-        datagridShowRowActionMenu: false,
-        datagridShowData: true,
-        datagridShowFooter: true,
-        datagridRowHeight: 12,
-        datagriduserCanChangeProperties: false,
-        datagridShowTotalsRow: false,
-        datagridShowTotalsCol: false,
-        datagridCanEditInCell: false,
-        datagridCanExportData: false,
-        datagridEmptyMessage: 'No Messages to show',
-        datagridVisibleFields: []
-    };
+    datagridColumns: DatagridColumn[];
+    datagridInput: DatagridInput = null;
+    datagridData: any;
+    datagridPagination: boolean = false;
+    datagridPaginationSize: number = 10;
+    datagridShowHeader: boolean = false;
+    datagridShowRowActionMenu: boolean = false;
+    datagridShowData: boolean = true;
+    datagridShowFooter: boolean = false;
+    datagridRowHeight: number = 12;
+    datagriduserCanChangeProperties: boolean = false;
+    datagridShowTotalsRow: boolean = false;
+    datagridShowTotalsCol: boolean = false;
+    datagridCanEditInCell: boolean = false;
+    datagridCanExportData: boolean = false;
+    datagridEmptyMessage: string = 'No Messages created so far';
+    datagridVisibleFields: string[];
 
 
 	constructor(
@@ -60,41 +57,15 @@ export class CollaborateMessagesComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        
+         
         this.globalVariableService.getCanvasMessages().then (ca => {
-            this.datagridInput.datagridData = ca;
-            if (ca.length > 0) {
-                const columns = Object.keys(ca[0]);
-                console.log('xx cols', columns)
-                for (var i = 0; i < columns.length; i++) {
-                    this.datagridColumns.push(
-                    {
-                        id: i,
-                        displayName: columns[i],
-                        fieldName: columns[i],
-                        databaseDBTableName: '',
-                        databaseDBFieldName: '',
-                        tooltip: '',
-                        datatype: 'string',
-                        prefix: '',
-                        divideBy: 0,
-                        displayLength: 12,
-                        maxLength: 0,
-                        sortOrder: '',
-                        filter: '',
-                        backgroundColor: '',
-                        color: '',
-                        conditionalFormatColor: '',
-                        nrDataQualityIssues: 0,
-                        maxValue: 0,
-                        minValue: 0,
-                        average: 0,
-                        linkedDashboardID: 0,
-                        linkedDashboardTabID: 0,
-                        isFrozen: false,
-                    });
-                };
-            };
+            // Set the data for the grid
+            this.datagridData = ca;
+
+            // Set the column object
+            this.datagridColumns = this.globalVariableService.createDatagridColumns(
+                ca[0], this.datagridVisibleFields);
+
         });        
     }
 
