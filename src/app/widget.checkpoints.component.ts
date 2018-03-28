@@ -51,7 +51,7 @@ export class WidgetCheckpointsComponent implements OnInit {
     datagridShowTotalsCol: boolean = false;
     datagridCanEditInCell: boolean = false;
     datagridCanExportData: boolean = false;
-    datagridEmptyMessage: string = 'No Activities created so far';
+    datagridEmptyMessage: string = 'No Checkpoints created so far';
     datagridVisibleFields: string[];
 
     constructor(
@@ -66,8 +66,8 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.datagridData = ca;
 
             // Set the column object
-            this.datagridInput.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], this.datagridInput.datagridVisibleFields);
+            this.datagridColumns = this.globalVariableService.createDatagridColumns(
+                ca[0], this.datagridVisibleFields);
         })
     }
 

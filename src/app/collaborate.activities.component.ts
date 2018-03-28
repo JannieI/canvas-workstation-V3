@@ -29,7 +29,6 @@ export class CollaborateActivitiesComponent implements OnInit {
 
     @Output() formCollaborateActivitiesClosed: EventEmitter<string> = new EventEmitter();
 
-    canvasActivities: CanvasActivity[];
     datagridColumns: DatagridColumn[];
     datagridInput: DatagridInput = null;
     datagridData: any;

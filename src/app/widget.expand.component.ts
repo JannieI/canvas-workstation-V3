@@ -31,27 +31,23 @@ export class WidgetExpandComponent implements OnInit {
     currentDatasetLength: number;
     datasources: Datasource[] = [];
     dataFieldNames: string[] = [];
-    datagridColumns: DatagridColumn[] = [];
-    datagridInput: DatagridInput =
-    {
-        datagridColumns: this.datagridColumns,
-        datagridData: null,
-        datagridPagination: false,
-        datagridPaginationSize: 7,
-        datagridShowHeader: false,
-        datagridShowRowActionMenu: false,
-        datagridShowData: true,
-        datagridShowFooter: true,
-        datagridRowHeight: 12,
-        datagriduserCanChangeProperties: false,
-        datagridShowTotalsRow: false,
-        datagridShowTotalsCol: false,
-        datagridCanEditInCell: false,
-        datagridCanExportData: false,
-        datagridEmptyMessage: 'No records to export',
-        datagridVisibleFields: []
-         
-    };
+    datagridColumns: DatagridColumn[];
+    datagridInput: DatagridInput = null;
+    datagridData: any;
+    datagridPagination: boolean = false;
+    datagridPaginationSize: number = 10;
+    datagridShowHeader: boolean = false;
+    datagridShowRowActionMenu: boolean = false;
+    datagridShowData: boolean = true;
+    datagridShowFooter: boolean = false;
+    datagridRowHeight: number = 12;
+    datagriduserCanChangeProperties: boolean = false;
+    datagridShowTotalsRow: boolean = false;
+    datagridShowTotalsCol: boolean = false;
+    datagridCanEditInCell: boolean = false;
+    datagridCanExportData: boolean = false;
+    datagridEmptyMessage: string = 'No Activities created so far';
+    datagridVisibleFields: string[];
     records: number = 6;
 
     constructor(
@@ -63,61 +59,17 @@ export class WidgetExpandComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // this.globalVariableService.filePath = './assets/data.dataset' +
-        //     this.selectDatasetID.toString() + '.json';
-        // // "../assets/vega-datasets/cars.json";
-
-        // this.globalVariableService.get('').then(i =>
-        //     {
-
-        //         // Get fields
-        //         this.globalVariableService.currentDatasources.forEach(ds => {
-        //             if (ds.id == this.selectDatasetID) {
-        //                 // TODO - remove this, currently datalib reads array as string a,b,c
-        //                 let x: string = ds.dataFields.toString();
-        //                 this.dataFieldNames = x.split(',');
-        //             }
-        //         });
-        //         this.dataset = i;
-        //         this.currentDatasetLength = i.length;
-        //     }
-        // );
-        // console.log('xx23', this.selectWidgetIndex, this.selectDatasetID, this.globalVariableService.filePath)
         this.globalVariableService.getCurrentDataset(
             this.selectDatasourceID, this.selectDatasetID).then (ca => {
-            this.datagridInput.datagridData = ca.data;
-            if (ca.data.length > 0) {
-                const columns = Object.keys(ca.data[0]);
-                for (var i = 0; i < columns.length; i++) {
-                    this.datagridColumns.push(
-                    {
-                        id: i,
-                        displayName: columns[i],
-                        fieldName: columns[i],
-                        databaseDBTableName: '',
-                        databaseDBFieldName: '',
-                        tooltip: '',
-                        datatype: 'string',
-                        prefix: '',
-                        divideBy: 0,
-                        displayLength: 12,
-                        maxLength: 0,
-                        sortOrder: '',
-                        filter: '',
-                        backgroundColor: '',
-                        color: '',
-                        conditionalFormatColor: '',
-                        nrDataQualityIssues: 0,
-                        maxValue: 0,
-                        minValue: 0,
-                        average: 0,
-                        linkedDashboardID: 0,
-                        linkedDashboardTabID: 0,
-                        isFrozen: false,
-                    });
-                };
-            };
+
+            // Set the data for the grid
+            this.datagridData = ca;
+
+            // Set the column object
+            this.datagridColumns = this.globalVariableService.createDatagridColumns(
+                ca[0], this.datagridVisibleFields);
         });
+        console.log('xx this.datagridData ', this.datagridData , this.datagridColumns)
     }
 
   	clickClose(action: string) {
