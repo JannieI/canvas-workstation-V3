@@ -4335,7 +4335,10 @@ export class GlobalVariableService {
         // Start, assuming nothing to return
         let datagridColumns: DatagridColumn[] = [];
         let columns: string[] = [];
-
+        if (visibleFields == null  ||  visibleFields == undefined) {
+            visibleFields = [];
+        };
+        
         // Get cols from the data
         // if (dataRow != null) {
             // columns = Object.keys(dataRow[0]);

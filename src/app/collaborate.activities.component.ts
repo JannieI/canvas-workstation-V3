@@ -38,7 +38,7 @@ export class CollaborateActivitiesComponent implements OnInit {
     datagridShowHeader: boolean = false;
     datagridShowRowActionMenu: boolean = false;
     datagridShowData: boolean = true;
-    datagridShowFooter: boolean = true;
+    datagridShowFooter: boolean = false;
     datagridRowHeight: number = 12;
     datagriduserCanChangeProperties: boolean = false;
     datagridShowTotalsRow: boolean = false;
@@ -46,7 +46,7 @@ export class CollaborateActivitiesComponent implements OnInit {
     datagridCanEditInCell: boolean = false;
     datagridCanExportData: boolean = false;
     datagridEmptyMessage: string = 'No Activities created so far';
-    datagridVisibleFields: string[] = [];
+    datagridVisibleFields: string[];
 
 
     constructor(
@@ -66,7 +66,7 @@ export class CollaborateActivitiesComponent implements OnInit {
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], this.datagridVisibleFields);
-            
+
         });
 
     }

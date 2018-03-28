@@ -53,7 +53,8 @@ export class WidgetCheckpointsComponent implements OnInit {
         datagridShowTotalsCol: false,
         datagridCanEditInCell: false,
         datagridCanExportData: false,
-        datagridEmptyMessage: 'No Checkpoints created so far'
+        datagridEmptyMessage: 'No Checkpoints created so far',
+        datagridVisibleFields: []
     };
 
     constructor(
@@ -65,37 +66,13 @@ export class WidgetCheckpointsComponent implements OnInit {
     ngOnInit() {
         this.globalVariableService.getWidgetCheckpoints().then (ca => {
             this.datagridInput.datagridData = ca;
-            if (ca.length > 0) {
-                const columns = Object.keys(ca[0]);
-                for (var i = 0; i < columns.length; i++) {
-                    this.datagridColumns.push(
-                    {
-                        id: i,
-                        displayName: columns[i],
-                        fieldName: columns[i],
-                        databaseDBTableName: '',
-                        databaseDBFieldName: '',
-                        tooltip: '',
-                        datatype: 'string',
-                        prefix: '',
-                        divideBy: 0,
-                        displayLength: 12,
-                        maxLength: 0,
-                        sortOrder: '',
-                        filter: '',
-                        backgroundColor: '',
-                        color: '',
-                        conditionalFormatColor: '',
-                        nrDataQualityIssues: 0,
-                        maxValue: 0,
-                        minValue: 0,
-                        average: 0,
-                        linkedDashboardID: 0,
-                        linkedDashboardTabID: 0,
-                        isFrozen: false,
-                    });
-                };
-            };
+
+            // Set the data for the grid
+            // this.datagridData = ca;
+
+            // Set the column object
+            this.datagridInput.datagridColumns = this.globalVariableService.createDatagridColumns(
+                ca[0], this.datagridInput.datagridVisibleFields);
         })
     }
 
