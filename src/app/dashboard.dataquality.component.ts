@@ -32,27 +32,23 @@ export class DashboardDataQualityComponent implements OnInit {
     
     canvasComments: CanvasComment[] = [];
     headerText: string;
-    datagridColumns: DatagridColumn[] = [];
-    datagridInput: DatagridInput =
-    {
-        datagridColumns: this.datagridColumns,
-        datagridData: null,
-        datagridPagination: false,
-        datagridPaginationSize: 5,
-        datagridShowHeader: false,
-        datagridShowRowActionMenu: false,
-        datagridShowData: true,
-        datagridShowFooter: true,
-        datagridRowHeight: 12,
-        datagriduserCanChangeProperties: false,
-        datagridShowTotalsRow: false,
-        datagridShowTotalsCol: false,
-        datagridCanEditInCell: false,
-        datagridCanExportData: false,
-        datagridEmptyMessage: 'No records created so far',
-        datagridVisibleFields: []
-        
-    };
+    datagridColumns: DatagridColumn[];
+    datagridInput: DatagridInput = null;
+    datagridData: any;
+    datagridPagination: boolean = false;
+    datagridPaginationSize: number = 10;
+    datagridShowHeader: boolean = false;
+    datagridShowRowActionMenu: boolean = false;
+    datagridShowData: boolean = true;
+    datagridShowFooter: boolean = false;
+    datagridRowHeight: number = 12;
+    datagriduserCanChangeProperties: boolean = false;
+    datagridShowTotalsRow: boolean = false;
+    datagridShowTotalsCol: boolean = false;
+    datagridCanEditInCell: boolean = false;
+    datagridCanExportData: boolean = false;
+    datagridEmptyMessage: string = 'No Issues created so far';
+    datagridVisibleFields: string[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -74,51 +70,17 @@ export class DashboardDataQualityComponent implements OnInit {
             this.headerText = 'selected Widget';
             dsArray = [this.selectedDatasourceID];
         };
-console.log('xx ds', dsArray)
-        // this.globalVariableService.getCanvasComments().then(cC => {
-        //      cC.forEach(i => {
-        //          if (i.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) {
-        //              this.canvasComments.push(i)
-        //          };
-        //     });
-        //     console.log('xx comm', cC, this.canvasComments)
-        // });
 
         this.globalVariableService.getDataQualityIssues().then (ca => {
+            // Set the data for the grid
             this.datagridInput.datagridData = ca.filter(c =>
                 dsArray.indexOf(c['datasourceID']) >= 0
             );
-            if (ca.length > 0) {
-                const columns = Object.keys(ca[0]);
-                for (var i = 0; i < columns.length; i++) {
-                    this.datagridColumns.push(
-                    {
-                        id: i,
-                        displayName: columns[i],
-                        fieldName: columns[i],
-                        databaseDBTableName: '',
-                        databaseDBFieldName: '',
-                        tooltip: '',
-                        datatype: 'string',
-                        prefix: '',
-                        divideBy: 0,
-                        displayLength: 12,
-                        maxLength: 0,
-                        sortOrder: '',
-                        filter: '',
-                        backgroundColor: '',
-                        color: '',
-                        conditionalFormatColor: '',
-                        nrDataQualityIssues: 0,
-                        maxValue: 0,
-                        minValue: 0,
-                        average: 0,
-                        linkedDashboardID: 0,
-                        linkedDashboardTabID: 0,
-                        isFrozen: false,
-                    });
-                };
-            };
+    
+            // Set the column object
+            this.datagridColumns = this.globalVariableService.createDatagridColumns(
+                ca[0], this.datagridVisibleFields);
+
         });
     }
 

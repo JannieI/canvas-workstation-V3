@@ -62,37 +62,23 @@
                         </div>
 
                         <ca-datagrid
-                            [datagridColumns]="datagridInput.datagridColumns"
-                            [datagridData]="datagridInput.datagridData"
-                            [datagridPagination]="datagridInput.datagridPagination"
-                            [datagridPaginationSize]="datagridInput.datagridPaginationSize"
-                            [datagridShowHeader]="datagridInput.datagridShowHeader"
-                            [datagridShowRowActionMenu]="datagridInput.datagridShowRowActionMenu"
-                            [datagridShowData]="datagridInput.datagridShowData"
-                            [datagridShowFooter]="datagridInput.datagridShowFooter"
-                            [datagridRowHeight]="datagridInput.datagridRowHeight"
-                            [datagriduserCanChangeProperties]="datagridInput.datagriduserCanChangeProperties"
-                            [datagridShowTotalsRow]="datagridInput.datagridShowTotalsRow"
-                            [datagridShowTotalsCol]="datagridInput.datagridShowTotalsCol"
-                            [datagridCanEditInCell]="datagridInput.datagridCanEditInCell"
-                            [datagridCanExportData]="datagridInput.datagridCanExportData"
-                            [datagridEmptyMessage]="datagridInput.datagridEmptyMessage"
+                            [datagridColumns]="datagridColumns"
+                            [datagridData]="datagridData"
+                            [datagridPagination]="datagridPagination"
+                            [datagridPaginationSize]="datagridPaginationSize"
+                            [datagridShowHeader]="datagridShowHeader"
+                            [datagridShowRowActionMenu]="datagridShowRowActionMenu"
+                            [datagridShowData]="datagridShowData"
+                            [datagridShowFooter]="datagridShowFooter"
+                            [datagridRowHeight]="datagridRowHeight"
+                            [datagriduserCanChangeProperties]="uatagriderCanChangeProperties"
+                            [datagridShowTotalsRow]="datagridShowTotalsRow"
+                            [datagridShowTotalsCol]="datagridShowTotalsCol"
+                            [datagridCanEditInCell]="datagridCanEditInCell"
+                            [datagridCanExportData]="datagridCanExportData"
                             >
                         </ca-datagrid>
-                        <!-- <clr-datagrid>
-                            <clr-dg-column>ID</clr-dg-column>
-                            <clr-dg-column>Comment</clr-dg-column>
-                            <clr-dg-column>Creator</clr-dg-column>
-                            <clr-dg-column>CreatedOn</clr-dg-column>
 
-                            <clr-dg-row *ngFor="let row of canvasComments">
-                                <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.comment}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.creator}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
-                            </clr-dg-row>
-
-                        </clr-datagrid> -->
                     </div>
                 </div>
             </div>
