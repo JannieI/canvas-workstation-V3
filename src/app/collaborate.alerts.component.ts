@@ -48,6 +48,7 @@ export class CollaborateAlertsComponent implements OnInit {
     datagridCanExportData: boolean = false;
     datagridEmptyMessage: string = 'No Alerts created so far';
     datagridVisibleFields: string[];
+    datagridShowFields: string[];
 
 
 	constructor(
@@ -65,7 +66,7 @@ export class CollaborateAlertsComponent implements OnInit {
 
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], this.datagridVisibleFields);
+                ca[0], this.datagridShowFields, this.datagridVisibleFields);
         });
     }
 

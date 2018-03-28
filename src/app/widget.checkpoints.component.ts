@@ -53,13 +53,14 @@ export class WidgetCheckpointsComponent implements OnInit {
     datagridCanExportData: boolean = false;
     datagridEmptyMessage: string = 'No Checkpoints created so far';
     datagridVisibleFields: string[];
+    datagridShowFields: string[];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         private renderer: Renderer,
     ) {}
-
+ 
     ngOnInit() {
         this.globalVariableService.getWidgetCheckpoints().then (ca => {
             // Set the data for the grid
@@ -67,7 +68,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], this.datagridVisibleFields);
+                ca[0], this.datagridShowFields, this.datagridVisibleFields);
         })
     }
 

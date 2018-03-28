@@ -48,6 +48,8 @@ export class WidgetExpandComponent implements OnInit {
     datagridCanExportData: boolean = false;
     datagridEmptyMessage: string = 'No Activities created so far';
     datagridVisibleFields: string[];
+    datagridShowFields: string[];
+    
     records: number = 6;
 
     constructor(
@@ -67,7 +69,7 @@ export class WidgetExpandComponent implements OnInit {
 
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], this.datagridVisibleFields);
+                ca[0], this.datagridShowFields, this.datagridVisibleFields);
         });
         console.log('xx this.datagridData ', this.datagridData , this.datagridColumns)
     }

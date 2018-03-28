@@ -4326,6 +4326,7 @@ export class GlobalVariableService {
 
     createDatagridColumns(
         dataRow: any,
+        showFields: string[] = [],
         visibleFields: string[] = []
         ): DatagridColumn[] {
         // It will return an array of datagridColumns to use in the ca-datagrid

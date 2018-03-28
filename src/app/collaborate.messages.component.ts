@@ -47,6 +47,7 @@ export class CollaborateMessagesComponent implements OnInit {
     datagridCanExportData: boolean = false;
     datagridEmptyMessage: string = 'No Messages created so far';
     datagridVisibleFields: string[];
+    datagridShowFields: string[];
 
 
 	constructor(
@@ -64,7 +65,7 @@ export class CollaborateMessagesComponent implements OnInit {
 
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], this.datagridVisibleFields);
+                ca[0], this.datagridShowFields, this.datagridVisibleFields);
 
         });        
     }

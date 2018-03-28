@@ -49,6 +49,7 @@ export class DashboardDataQualityComponent implements OnInit {
     datagridCanExportData: boolean = false;
     datagridEmptyMessage: string = 'No Issues created so far';
     datagridVisibleFields: string[];
+    datagridShowFields: string[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -79,7 +80,7 @@ export class DashboardDataQualityComponent implements OnInit {
     
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], this.datagridVisibleFields);
+                ca[0], this.datagridShowFields, this.datagridVisibleFields);
 
         });
     }
