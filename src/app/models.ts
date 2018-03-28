@@ -44,7 +44,7 @@ export class DatagridInput {
     datagridCanEditInCell: boolean;               // True is user can edit inside cells
     datagridCanExportData: boolean;               // True if the data may be exported
     datagridEmptyMessage: string;                 // Message to display if the grid is empty
-    datagridVisibleFields?: string[];
+    datagridVisibleFields: string[];
 }
 
 // Setup / Settings / General
