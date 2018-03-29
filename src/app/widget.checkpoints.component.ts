@@ -55,7 +55,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         this.globalVariableService.getWidgetCheckpoints().then (ca => {
             // Set the data for the grid
-            this.currentWidgetCheckpoints = ca;
+            this.currentWidgetCheckpoints = ca.slice();
 
             if (this.currentWidgetCheckpoints != undefined) {
                 if (this.currentWidgetCheckpoints.length > 0) {
@@ -71,7 +71,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], ["id", "name"]);
 
-                console.log('xx chk', this.currentWidgetCheckpoints)
+                console.log('xx chk', this.currentWidgetCheckpoints, this.datagridColumns)
         })
     }
  

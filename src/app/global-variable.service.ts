@@ -3314,7 +3314,6 @@ export class GlobalVariableService {
 
     }
 
-
     addWidgetCheckpoints(data: WidgetCheckpoint): Promise<any> {
         // Description: Adds a new WidgetCheckpoints
         // Returns: Added Data or error message
@@ -3336,6 +3335,34 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('xx addWidgetCheckpoints FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    deleteWidgetCheckpoints(id: number): Promise<string> {
+        // Description: Deletes a WidgetCheckpoints
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteWidgetCheckpoints ...');
+
+        let url: string = 'widgetCheckpoints';
+        this.filePath = './assets/data.widgetCheckpoints.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    console.log('xx deleteWidgetCheckpoints DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('xx deleteWidgetCheckpoints FAILED', err);;
                     resolve(err.Message);
                 }
             )
