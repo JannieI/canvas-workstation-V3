@@ -47,7 +47,7 @@ import { DashboardSubscribeComponent }         from './dashboard.subscribe.compo
 import { DashboardDataQualityComponent }       from './dashboard.dataquality.component';
 
 import { WidgetEditorComponent }      from './widget.editor.component';
-import { WidgetCheckpointsComponent }       from './widget.checkpoints.component';
+import { WidgetCheckpointsComponent } from './widget.checkpoints.component';
 import { WidgetLinksComponent }       from './widget.links.component';
 import { WidgetExpandComponent }      from './widget.expand.component';
 import { WidgetExportComponent }      from './widget.export.component';

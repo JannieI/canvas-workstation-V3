@@ -30,6 +30,7 @@ import { Dataset }                    from './models'
 import { Datasource }                 from './models'
 import { Field }                      from './models'
 import { Widget }                     from './models'
+import { WidgetCheckpoint }           from './models';
 
 import { WidgetSingleComponent }      from './widget.single.component';
 
@@ -248,7 +249,10 @@ export class AppComponent implements OnInit {
     currentDashboardTabIndex: number = 0;
     currentTabBackgroundColor: string = '';
     currentTabColor: string = '';
+    currentWidgetCheckpointIndex: number;
+    currentWidgetCheckpoints: WidgetCheckpoint[] = [];
     currentWidgets: Widget[] = [];
+    currentWidgetsOriginals: Widget[] = [];
     currentWidgetDashboardTabIDs: number[] = [];  // Of current W
     draggableWidgets: number[] = [];
     editMode: boolean;
@@ -3487,6 +3491,9 @@ export class AppComponent implements OnInit {
             this.editMode = true;
         };
 
+        // Hide Checkpoint
+        this.checkpoint = false;
+
         // Reset vars
         this.globalVariableService.presentationMode.next(false);
         this.showMainMenu = true;
@@ -3917,8 +3924,49 @@ export class AppComponent implements OnInit {
         this.showTitleForm = true;
     }
 
-    clickNavCheckpoint() {
-        console.log('xx Yes!')
+    clickNavCheckpoint(id: number, direction: string) {
+        // Navigate Left or Right to a checkpoint
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNavCheckpoint', '@Start');
+
+        // Load the Checkpoints if not done so before
+        if (this.currentWidgetCheckpoints.length == 0) {
+            this.globalVariableService.getWidgetCheckpoints().then (ca => {
+                
+                // Set the data
+                this.currentWidgetCheckpoints = ca.slice();
+
+                this.checkpointNavigate(id, direction)
+            });
+        } else {
+            this.checkpointNavigate(id, direction)
+        };
+
+    }
+
+    checkpointNavigate(id: number, direction: string) {
+        // Actual Checkpoint Navigation
+        this.globalFunctionService.printToConsole(this.constructor.name,'checkpointNavigate', '@Start');
+
+        // Get Checkpoints for current W
+        let tempCheckpoints: WidgetCheckpoint[] = this.currentWidgetCheckpoints
+            .filter(wc => wc.id == id).slice();
+
+        if (tempCheckpoints.length == 0) {
+            this.globalVariableService.getWidgetCheckpoints().then (ca => {
+                this.currentWidgetCheckpointIndex = this.currentWidgetCheckpointIndex + 1;
+                // Set the data for the grid
+                // this.currentWidgetCheckpoints = ca.slice();
+                this.globalVariableService.changedWidget.next(
+                    ca[this.currentWidgetCheckpointIndex].widgetSpec
+                );
+                currentWidgetsOriginals
+                // Show checkpoint
+                this.checkpoint = true;
+                                
+                console.log('xx Yes!', ca, this.currentWidgetCheckpointIndex)
+            });
+        };
+
     }
 
     deleteWidget(widgetType, widgetID: number = null) {

@@ -93,6 +93,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         let newCheckpoint: WidgetCheckpoint = {
             id: null,
+            active: false,
             dashboardID: this.selectedWidget.dashboardID,
             widgetID: this.selectedWidget.id,
             name: this.checkpointName,

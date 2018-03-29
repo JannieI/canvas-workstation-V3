@@ -380,6 +380,7 @@ export class FieldMetadata{
 
 export class WidgetCheckpoint {
     id: number;                         // Unique ID
+    active: boolean;                    // Set at RunTime: true if currently shown
     dashboardID: number;                // Linked to this D
     widgetID: number;                   // Linked to this W
     name: string;                       // Name of Checkpoint
