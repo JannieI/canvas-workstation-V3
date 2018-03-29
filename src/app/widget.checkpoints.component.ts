@@ -39,9 +39,9 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
+    checkpointName: string;
     currentWidgetCheckpoints: WidgetCheckpoint[];
     datagridColumns: DatagridColumn[];
-    currentWidgetCheckpoint: WidgetCheckpoint[];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -55,12 +55,12 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         this.globalVariableService.getWidgetCheckpoints().then (ca => {
             // Set the data for the grid
-            this.currentWidgetCheckpoint = ca;
+            this.currentWidgetCheckpoints = ca;
 
-            if (this.currentWidgetCheckpoint != undefined) {
-                if (this.currentWidgetCheckpoint.length > 0) {
+            if (this.currentWidgetCheckpoints != undefined) {
+                if (this.currentWidgetCheckpoints.length > 0) {
                     let definition = this.globalVariableService.createVegaLiteSpec(
-                        this.currentWidgetCheckpoint[0].widgetSpec);
+                        this.currentWidgetCheckpoints[0].widgetSpec);
     
                     // Render
                     this.renderGraph(definition)
@@ -71,7 +71,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], ["id", "name"]);
 
-                console.log('xx chk', this.currentWidgetCheckpoint)
+                console.log('xx chk', this.currentWidgetCheckpoints)
         })
     }
  
@@ -80,7 +80,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         let definition = this.globalVariableService.createVegaLiteSpec(
-            this.currentWidgetCheckpoint[index].widgetSpec
+            this.currentWidgetCheckpoints[index].widgetSpec
         );
 
         // Render
@@ -92,15 +92,28 @@ export class WidgetCheckpointsComponent implements OnInit {
         // Delete selected Checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteCheckpoint', '@Start');
 
+        let newCheckpoint: WidgetCheckpoint = {
+            id: null,
+            dashboardID: this.selectedWidget.dashboardID,
+            widgetID: this.selectedWidget.id,
+            name: this.checkpointName,
+            widgetSpec: JSON.parse(JSON.stringify(this.selectedWidget)),
+            creator: this.globalVariableService.userID,
+            createdOn: '217/01/01'
+        };
         
-        addWidgetCheckpoints
+        // Add locally, globally and to DB
+        this.currentWidgetCheckpoints.push(newCheckpoint);
+        this.globalVariableService.widgetCheckpoints.push(newCheckpoint);
+        this.globalVariableService.addWidgetCheckpoints(newCheckpoint);
     }
+    
     clickDeleteCheckpoint(index: number, id: number) {
         // Delete selected Checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteCheckpoint', '@Start');
 
         // Remove locally
-        this.currentWidgetCheckpoint.splice(index, 1)
+        this.currentWidgetCheckpoints.splice(index, 1)
         
     }
     renderGraph(definition: any) {
