@@ -71,7 +71,6 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], ["id", "name"]);
 
-                console.log('xx chk', this.currentWidgetCheckpoints, this.datagridColumns)
         })
     }
  
@@ -126,7 +125,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         this.globalVariableService.deleteWidgetCheckpoints(id);
         
     }
-    
+
     renderGraph(definition: any) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'renderGraph', '@Start');
