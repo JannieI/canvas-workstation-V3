@@ -34,7 +34,7 @@ import { load } from 'datalib';
 export class WidgetCheckpointsComponent implements OnInit {
 
     @Input() selectedWidget: Widget;
-    
+
     @Output() formWidgetCheckpointsClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
@@ -48,7 +48,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
         private renderer: Renderer,
     ) {}
- 
+
     ngOnInit() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -61,7 +61,7 @@ export class WidgetCheckpointsComponent implements OnInit {
                 if (this.currentWidgetCheckpoints.length > 0) {
                     let definition = this.globalVariableService.createVegaLiteSpec(
                         this.currentWidgetCheckpoints[0].widgetSpec);
-    
+
                     // Render
                     this.renderGraph(definition)
                 };
@@ -73,7 +73,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         })
     }
- 
+
     clickRow(index: number) {
         // User clicked a row, now refresh the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
@@ -100,7 +100,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             creator: this.globalVariableService.userID,
             createdOn: '217/01/01'
         };
-        
+
         // Add locally, globally and to DB (with new ID)
         this.globalVariableService.addWidgetCheckpoints(newCheckpoint).then(res => {
             newCheckpoint.id = res.id;
@@ -108,7 +108,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.globalVariableService.widgetCheckpoints.push(newCheckpoint);
         });
     }
-    
+
     clickDeleteCheckpoint(index: number, id: number) {
         // Delete selected Checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteCheckpoint', '@Start');
@@ -123,7 +123,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         };
         this.globalVariableService.widgetCheckpoints.splice(x, 1);
         this.globalVariableService.deleteWidgetCheckpoints(id);
-        
+
     }
 
     renderGraph(definition: any) {
@@ -141,7 +141,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             .finalize();
             this.renderer.setElementStyle(this.dragWidget.nativeElement,
                 'left', "200px");
-                
+
     }
 
   	clickClose(action: string) {

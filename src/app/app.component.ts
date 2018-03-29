@@ -355,6 +355,8 @@ export class AppComponent implements OnInit {
     widgetGroup: number[] = [];
     zoomFactor: string = 'scale(1)';
 
+    openWidgetCheckpoint: boolean = false;
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,

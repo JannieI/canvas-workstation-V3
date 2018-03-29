@@ -1365,7 +1365,7 @@
                     >
                 </clr-icon>
                 <clr-dropdown-menu class="titleMenu"
-                    clrPosition="bottom-left" *clrIfOpen
+                    clrPosition="bottom-right" *clrIfOpen
                     >
                     <button class="dropdown-item" *ngIf="row.hyperlinkDashboardID != null" 
                         type="button" 
@@ -1384,11 +1384,10 @@
                         >
                         Edit Title
                     </button>
+
                 </clr-dropdown-menu>
             </clr-dropdown>
         </div>
-
-
 
         <b>{{ row.titleText }}</b>
     </div>
