@@ -1671,11 +1671,19 @@
     </div>
 
 
-    <div class="widgetContainerCheckpoint" *ngIf="presentationMode  &&  checkpoint"
+
+
+    <div class="widgetContainerCheckpointLeft" *ngIf="presentationMode  &&  checkpoint"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (click)="clickNavCheckpoint()"
         >
+        <b> < </b> 
+    </div>
+    <div class="widgetContainerCheckpointRight" *ngIf="presentationMode  &&  checkpoint"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (click)="clickNavCheckpoint()"
         >
+        <b> > </b> 
     </div>
 
 
