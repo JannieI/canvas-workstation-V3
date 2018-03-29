@@ -54,6 +54,16 @@ export class WidgetCheckpointsComponent implements OnInit {
             // Set the data for the grid
             this.currentWidgetCheckpoint = ca;
 
+            if (this.currentWidgetCheckpoint != undefined) {
+                if (this.currentWidgetCheckpoint.length > 0) {
+                    let definition = this.globalVariableService.createVegaLiteSpec(
+                        this.currentWidgetCheckpoint[0].widgetSpec);
+    
+                    // Render
+                    this.renderGraph(definition)
+                };
+            };
+            
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], ["id", "name"]);

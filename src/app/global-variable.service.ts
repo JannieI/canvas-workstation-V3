@@ -4406,44 +4406,6 @@ export class GlobalVariableService {
             };
         });
 
-
-
-        // for (var i = 0; i < columns.length; i++) {
-
-        //     // Include it field has to be shown
-        //     if (showFields.indexOf(columns[i]) >= 0) {
-        //         datagridColumns.push(
-        //         {
-        //             id: i,
-        //             displayName: columns[i],
-        //             fieldName: columns[i],
-        //             databaseDBTableName: '',
-        //             databaseDBFieldName: '',
-        //             tooltip: '',
-        //             datatype: 'string',
-        //             prefix: '',
-        //             divideBy: 0,
-        //             displayLength: 12,
-        //             maxLength: 0,
-        //             sortOrder: '',
-        //             filter: '',
-        //             backgroundColor: '',
-        //             color: '',
-        //             conditionalFormatColor: '',
-        //             nrDataQualityIssues: 0,
-        //             maxValue: 0,
-        //             minValue: 0,
-        //             average: 0,
-        //             linkedDashboardID: 0,
-        //             linkedDashboardTabID: 0,
-        //             isFrozen: false,
-        //             datagridColumnHidden: 
-        //                 visibleFields.indexOf(columns[i])
-        //                 < 0 ? {hidden: true} :  {hidden: false}
-        //         });
-        //     };
-        // };
-        console.log('xx GV datagridColumns', showFields, datagridColumns)
         return datagridColumns;
 
     }
