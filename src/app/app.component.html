@@ -1403,6 +1403,25 @@
         </widget-single>
     </div>
 
+
+
+
+    <!-- Graph Checkpoint -->
+    <div class="widget" *ngIf="row.widgetType=='Graph'  &&  checkpoint">
+        <widget-single
+            #widgetDOM
+            [widget]="row"
+            [showDataQuality]="showDataQuality"
+            [showComments]="showComments"
+            >
+        </widget-single>
+    </div>
+
+
+
+
+
+
     <!-- Slicer Object -->
     <div class="widget" *ngIf="row.widgetType=='Slicer'">
         <slicer-single
@@ -1650,6 +1669,15 @@
         draggable="true"
         >
     </div>
+
+
+    <div class="widgetContainerRightHandle" *ngIf="presentationMode"
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (click)="clickNavCheckpoint()"
+        >
+    </div>
+
+
 
 </div>
 

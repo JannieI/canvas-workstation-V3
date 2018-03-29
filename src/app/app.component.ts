@@ -355,7 +355,7 @@ export class AppComponent implements OnInit {
     widgetGroup: number[] = [];
     zoomFactor: string = 'scale(1)';
 
-    openWidgetCheckpoint: boolean = false;
+    checkpoint: boolean = false;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -2517,6 +2517,8 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        this.globalVariableService.editMode.next(false);
+
         this.globalVariableService.presentationMode.next(!this.presentationMode);
         this.showMainMenu = false;
 
@@ -3900,6 +3902,10 @@ export class AppComponent implements OnInit {
         });
 
         this.showTitleForm = true;
+    }
+
+    clickNavCheckpoint() {
+        console.log('xx Yes!')
     }
 
     deleteWidget(widgetType, widgetID: number = null) {
