@@ -102,20 +102,31 @@ export class WidgetCheckpointsComponent implements OnInit {
             createdOn: '217/01/01'
         };
         
-        // Add locally, globally and to DB
-        this.currentWidgetCheckpoints.push(newCheckpoint);
-        this.globalVariableService.widgetCheckpoints.push(newCheckpoint);
-        this.globalVariableService.addWidgetCheckpoints(newCheckpoint);
+        // Add locally, globally and to DB (with new ID)
+        this.globalVariableService.addWidgetCheckpoints(newCheckpoint).then(res => {
+            newCheckpoint.id = res.id;
+            this.currentWidgetCheckpoints.push(newCheckpoint);
+            this.globalVariableService.widgetCheckpoints.push(newCheckpoint);
+        });
     }
     
     clickDeleteCheckpoint(index: number, id: number) {
         // Delete selected Checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteCheckpoint', '@Start');
 
-        // Remove locally
+        // Remove locally, globally and from DB
         this.currentWidgetCheckpoints.splice(index, 1)
+        let x: number = 0;
+        for (x = 0; x < this.globalVariableService.widgetCheckpoints.length; x++){
+            if (this.globalVariableService.widgetCheckpoints[x].id == id){
+                break;
+            };
+        };
+        this.globalVariableService.widgetCheckpoints.splice(x, 1);
+        this.globalVariableService.deleteWidgetCheckpoints(id);
         
     }
+    
     renderGraph(definition: any) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'renderGraph', '@Start');
