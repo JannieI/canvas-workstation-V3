@@ -4172,8 +4172,15 @@ export class GlobalVariableService {
         }
     }
 
-    createVegaLiteSpec(widget: Widget): dl.spec.TopLevelExtendedSpec {
+    createVegaLiteSpec(
+        widget: Widget, 
+        height: number = 0, 
+        width: number = 0): dl.spec.TopLevelExtendedSpec {
         // Creates a Vega-Lite spec for a given Widget from a standard template
+        // - widget is the W for which the graph is created, and contains all the 
+        //   required detail
+        // - height, width are optional dimensions.  If provided, it will overrule
+        //   those values in spec
         console.log('Global-Variables refreshCurrentDashboard ...');
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
@@ -4198,8 +4205,16 @@ export class GlobalVariableService {
         vlSpecsNew['encoding']['y']['timeUnit'] = widget.graphYtimeUnit;
         vlSpecsNew['encoding']['y']['aggregate'] = widget.graphYaggregate;
 
-        vlSpecsNew['height'] = widget.graphHeight;
-        vlSpecsNew['width'] = widget.graphWidth;
+        if (height != 0) {
+            vlSpecsNew['height'] = height;
+        } else {
+            vlSpecsNew['height'] = widget.graphHeight;
+        };
+        if (width != 0) {
+            vlSpecsNew['width'] = width;
+        } else {
+            vlSpecsNew['width'] = widget.graphWidth;
+        };
 
         vlSpecsNew['title']['text'] = widget.graphTitle;
 
