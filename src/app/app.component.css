@@ -323,3 +323,21 @@
     width: 300px;
     z-index: 100;
 }
+
+
+
+
+
+
+
+
+
+.widgetContainerCheckpoint {
+    color: blue;
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 6;
+    grid-row-end: 7;
+    margin: 0;
+    padding: 0;
+}

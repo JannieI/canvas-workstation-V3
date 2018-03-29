@@ -2518,11 +2518,14 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Switch on Checkpoints
+        this.checkpoint = true;
+
         // Remember editMode setting, and switch to ViewOnly during presentation
         this. editModePrePresentation = this.editMode;
         this.globalVariableService.editMode.next(false);
 
-        this.globalVariableService.presentationMode.next(false);
+        this.globalVariableService.presentationMode.next(true);
         this.showMainMenu = false;
 
         this.menuOptionClickPostAction();
@@ -3475,7 +3478,7 @@ export class AppComponent implements OnInit {
     }
 
     clickClosePresentation() {
-        //
+        // Close Presentation Mode, and return to prior state
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClosePresentation', '@Start');
 
         // Go back to EditMode if user was there where Presentation started

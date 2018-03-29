@@ -1671,9 +1671,10 @@
     </div>
 
 
-    <div class="widgetContainerRightHandle" *ngIf="presentationMode"
+    <div class="widgetContainerCheckpoint" *ngIf="presentationMode  &&  checkpoint"
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (click)="clickNavCheckpoint()"
+        >
         >
     </div>
 
