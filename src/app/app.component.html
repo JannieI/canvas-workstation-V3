@@ -1990,6 +1990,7 @@
 <!-- Modal: widget checkpoints -->
 <widget-checkpoints
     *ngIf="showModalWidgetCheckpoints"
+    [selectedWidget]="selectedWidget"
     (formWidgetCheckpointsClosed)="handleCloseWidgetCheckpoints($event)">Load Widget Checkpoints ...
 </widget-checkpoints>
 

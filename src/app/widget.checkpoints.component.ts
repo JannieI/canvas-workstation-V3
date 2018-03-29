@@ -9,9 +9,10 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { WidgetCheckpoint }           from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
+import { Widget }                     from './models';
+import { WidgetCheckpoint }           from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -32,6 +33,8 @@ import { load } from 'datalib';
 })
 export class WidgetCheckpointsComponent implements OnInit {
 
+    @Input() selectedWidget: Widget;
+    
     @Output() formWidgetCheckpointsClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
@@ -85,6 +88,13 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     }
 
+    clickAddCheckpoint() {
+        // Delete selected Checkpoint
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteCheckpoint', '@Start');
+
+        
+        addWidgetCheckpoints
+    }
     clickDeleteCheckpoint(index: number, id: number) {
         // Delete selected Checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteCheckpoint', '@Start');

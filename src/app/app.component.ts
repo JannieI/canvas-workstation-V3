@@ -1757,6 +1757,11 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Graph') {
+                this.selectedWidget = w;
+            };
+        });
         this.showModalWidgetCheckpoints = true;
     }
 
