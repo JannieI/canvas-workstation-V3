@@ -72,22 +72,28 @@
                             </clr-dg-placeholder>
                         
                             <!-- Headers -->
-                            <clr-dg-column *ngFor="let col of datagridColumns; let i = index"
+                            <clr-dg-column>
+                                Delete
+                            </clr-dg-column>
+                            <clr-dg-column *ngFor="let col of datagridColumns; let c = index"
                                 [clrDgField]="col.fieldName"
                                 >
                                 {{ col.displayName }}
                             </clr-dg-column>
                         
                             <!-- Each Row -->
-                            <clr-dg-row *clrDgItems="let row of datagridData; 
+                            <clr-dg-row *clrDgItems="let row of currentWidgetCheckpoint; 
                                 let i = index"
-                                (click)="clickRow()">
-                        
+                                (click)="clickRow(i)">
+                                <clr-dg-cell>
+                                    <clr-icon
+                                        (click)="clickDeleteCheckpoint(i, row.id)"
+                                        shape="trash">
+                                    </clr-icon>
+                                </clr-dg-cell>
                                 <!-- Each Cell -->
-                                <clr-dg-cell *ngFor="let col of datagridColumns; let i = index">
-                                    
+                                <clr-dg-cell *ngFor="let col of datagridColumns; let c = index">
                                     {{ row[col.fieldName] }}
-                                    
                                 </clr-dg-cell>
                             </clr-dg-row>
                         

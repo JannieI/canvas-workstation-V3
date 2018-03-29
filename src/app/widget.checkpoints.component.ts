@@ -9,7 +9,7 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { Datasource }                 from './models';
+import { WidgetCheckpoint }           from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 
@@ -36,8 +36,9 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
+    currentWidgetCheckpoints: WidgetCheckpoint[];
     datagridColumns: DatagridColumn[];
-    datagridData: any;
+    currentWidgetCheckpoint: WidgetCheckpoint[];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -51,13 +52,13 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         this.globalVariableService.getWidgetCheckpoints().then (ca => {
             // Set the data for the grid
-            this.datagridData = ca;
+            this.currentWidgetCheckpoint = ca;
 
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], ["id", "name"]);
 
-                console.log('xx chk', this.datagridData)
+                console.log('xx chk', this.currentWidgetCheckpoint)
         })
     }
  
@@ -65,24 +66,39 @@ export class WidgetCheckpointsComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
-        let definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);
+        if (this.currentWidgetCheckpoint != undefined) {
+            if (this.currentWidgetCheckpoint.length > 0) {
+                let definition = this.globalVariableService.createVegaLiteSpec(
+                    this.currentWidgetCheckpoint[0].widgetSpec);
 
-        // Render
-        this.renderGraph(definition)
+                // Render
+                this.renderGraph(definition)
+            };
+        };
 
     }
 
-    clickRow() {
-        //
+    clickRow(index: number) {
+        // User clicked a row, now refresh the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        let definition = this.createVegaLiteSpec(undefined,'line',undefined,undefined,undefined);
+        let definition = this.globalVariableService.createVegaLiteSpec(
+            this.currentWidgetCheckpoint[index].widgetSpec
+        );
 
         // Render
         this.renderGraph(definition)
 
     }
 
+    clickDeleteCheckpoint(index: number, id: number) {
+        // Delete selected Checkpoint
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteCheckpoint', '@Start');
+
+        // Remove locally
+        this.currentWidgetCheckpoint.splice(index, 1)
+        
+    }
     renderGraph(definition: any) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'renderGraph', '@Start');
@@ -98,38 +114,39 @@ export class WidgetCheckpointsComponent implements OnInit {
             .finalize();
             this.renderer.setElementStyle(this.dragWidget.nativeElement,
                 'left', "200px");
+                
     }
 
   	clickClose(action: string) {
 	  	this.formWidgetCheckpointsClosed.emit(action);
         }
 
-    createVegaLiteSpec(
-        description: string = 'First bar chart.',
-        mark: string = 'bar',
-        xfield: string = 'Month',
-        yfield: string = 'Trades',
-        title: string = 'Average Trading'): dl.spec.TopLevelExtendedSpec {
+    // createVegaLiteSpec(
+    //     description: string = 'First bar chart.',
+    //     mark: string = 'bar',
+    //     xfield: string = 'Month',
+    //     yfield: string = 'Trades',
+    //     title: string = 'Average Trading'): dl.spec.TopLevelExtendedSpec {
 
-        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.globalVariableService.vlTemplate;
+    //     let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.globalVariableService.vlTemplate;
 
-        vlSpecsNew['data']['values'] = [
-            {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
-            {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
-            {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
-            {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
-            {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
-            {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
-        ];
-        vlSpecsNew['description'] = description;
-        vlSpecsNew['mark']['type'] = mark;
-        vlSpecsNew['encoding']['x']['field'] = xfield;
-        vlSpecsNew['encoding']['y']['field'] = yfield;
-        vlSpecsNew['title']['text'] = title;
-        console.log('createVegaLiteSpec', vlSpecsNew)
+    //     vlSpecsNew['data']['values'] = [
+    //         {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
+    //         {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
+    //         {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
+    //         {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
+    //         {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
+    //         {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
+    //     ];
+    //     vlSpecsNew['description'] = description;
+    //     vlSpecsNew['mark']['type'] = mark;
+    //     vlSpecsNew['encoding']['x']['field'] = xfield;
+    //     vlSpecsNew['encoding']['y']['field'] = yfield;
+    //     vlSpecsNew['title']['text'] = title;
+    //     console.log('createVegaLiteSpec', vlSpecsNew)
 
-        return vlSpecsNew;
+    //     return vlSpecsNew;
 
-    }
+    // }
 
 }
