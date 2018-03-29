@@ -37,23 +37,7 @@ export class WidgetCheckpointsComponent implements OnInit {
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
     datagridColumns: DatagridColumn[];
-    datagridInput: DatagridInput = null;
     datagridData: any;
-    datagridPagination: boolean = false;
-    datagridPaginationSize: number = 10;
-    datagridShowHeader: boolean = false;
-    datagridShowRowActionMenu: boolean = false;
-    datagridShowData: boolean = true;
-    datagridShowFooter: boolean = false;
-    datagridRowHeight: number = 12;
-    datagriduserCanChangeProperties: boolean = false;
-    datagridShowTotalsRow: boolean = false;
-    datagridShowTotalsCol: boolean = false;
-    datagridCanEditInCell: boolean = false;
-    datagridCanExportData: boolean = false;
-    datagridEmptyMessage: string = 'No Checkpoints created so far';
-    datagridVisibleFields: string[];
-    datagridShowFields: string[];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -64,14 +48,16 @@ export class WidgetCheckpointsComponent implements OnInit {
     ngOnInit() {
         this.globalVariableService.getWidgetCheckpoints().then (ca => {
             // Set the data for the grid
-            this.datagridData = ca;
+            this.datagridData = [];
 
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], this.datagridShowFields, this.datagridVisibleFields);
+                ca[0], ["id", "name"]);
+
+                console.log('xx chk', this.datagridData)
         })
     }
-
+ 
     ngAfterViewInit() {
 
         let definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);

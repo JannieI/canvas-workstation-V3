@@ -4347,40 +4347,88 @@ export class GlobalVariableService {
             visibleFields = columns;
         };
 
+        // Select All fields if nothing was given
+        if (showFields.length == 0) {
+            showFields = columns;
+        };        
         // Loop on the cols, and create an object for each in the datagridColumns array
-        for (var i = 0; i < columns.length; i++) {
 
-            datagridColumns.push(
-            {
-                id: i,
-                displayName: columns[i],
-                fieldName: columns[i],
-                databaseDBTableName: '',
-                databaseDBFieldName: '',
-                tooltip: '',
-                datatype: 'string',
-                prefix: '',
-                divideBy: 0,
-                displayLength: 12,
-                maxLength: 0,
-                sortOrder: '',
-                filter: '',
-                backgroundColor: '',
-                color: '',
-                conditionalFormatColor: '',
-                nrDataQualityIssues: 0,
-                maxValue: 0,
-                minValue: 0,
-                average: 0,
-                linkedDashboardID: 0,
-                linkedDashboardTabID: 0,
-                isFrozen: false,
-                datagridColumnHidden: 
-                    visibleFields.indexOf(columns[i])
-                    < 0 ? {hidden: true} :  {hidden: false}
-            });
-        };
-        console.log('xx GV datagridColumns', datagridColumns)
+        showFields.forEach( sf => {
+            for (var i = 0; i < columns.length; i++) {
+
+                // Include it field has to be shown
+                if (sf == columns[i]) {
+                    datagridColumns.push(
+                    {
+                        id: i,
+                        displayName: columns[i],
+                        fieldName: columns[i],
+                        databaseDBTableName: '',
+                        databaseDBFieldName: '',
+                        tooltip: '',
+                        datatype: 'string',
+                        prefix: '',
+                        divideBy: 0,
+                        displayLength: 12,
+                        maxLength: 0,
+                        sortOrder: '',
+                        filter: '',
+                        backgroundColor: '',
+                        color: '',
+                        conditionalFormatColor: '',
+                        nrDataQualityIssues: 0,
+                        maxValue: 0,
+                        minValue: 0,
+                        average: 0,
+                        linkedDashboardID: 0,
+                        linkedDashboardTabID: 0,
+                        isFrozen: false,
+                        datagridColumnHidden: 
+                            visibleFields.indexOf(columns[i])
+                            < 0 ? {hidden: true} :  {hidden: false}
+                    });
+                };
+            };
+        });
+
+
+
+        // for (var i = 0; i < columns.length; i++) {
+
+        //     // Include it field has to be shown
+        //     if (showFields.indexOf(columns[i]) >= 0) {
+        //         datagridColumns.push(
+        //         {
+        //             id: i,
+        //             displayName: columns[i],
+        //             fieldName: columns[i],
+        //             databaseDBTableName: '',
+        //             databaseDBFieldName: '',
+        //             tooltip: '',
+        //             datatype: 'string',
+        //             prefix: '',
+        //             divideBy: 0,
+        //             displayLength: 12,
+        //             maxLength: 0,
+        //             sortOrder: '',
+        //             filter: '',
+        //             backgroundColor: '',
+        //             color: '',
+        //             conditionalFormatColor: '',
+        //             nrDataQualityIssues: 0,
+        //             maxValue: 0,
+        //             minValue: 0,
+        //             average: 0,
+        //             linkedDashboardID: 0,
+        //             linkedDashboardTabID: 0,
+        //             isFrozen: false,
+        //             datagridColumnHidden: 
+        //                 visibleFields.indexOf(columns[i])
+        //                 < 0 ? {hidden: true} :  {hidden: false}
+        //         });
+        //     };
+        // };
+        console.log('xx GV datagridColumns', showFields, datagridColumns)
         return datagridColumns;
 
     }

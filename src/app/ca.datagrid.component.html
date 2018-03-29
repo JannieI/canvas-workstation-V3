@@ -35,7 +35,7 @@
             <!-- Each Cell -->
             <clr-dg-cell *ngFor="let col of datagridColumns">
                 
-                <span *ngIf="col.fieldName!='id'">
+                <span>
                     {{ row[col.fieldName] }}
                 </span>
     

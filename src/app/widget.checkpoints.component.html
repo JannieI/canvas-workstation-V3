@@ -20,7 +20,7 @@
                             detail.
                     </i>
                 </div>
-    
+
                 <div class="gridCheckpointTitle">
                     <b>Name:</b>
                 </div>
@@ -44,7 +44,7 @@
                     </button>
                 </div>
 
-                <div class="gridCheckpointTable">
+                <!-- <div class="gridCheckpointTable">
                     <ca-datagrid
                         [datagridColumns]="datagridColumns"
                         [datagridData]="datagridData"
@@ -60,10 +60,48 @@
                         [datagridShowTotalsCol]="datagridShowTotalsCol"
                         [datagridCanEditInCell]="datagridCanEditInCell"
                         [datagridCanExportData]="datagridCanExportData"
-                        [datagridShowFields]="datagridShowFields"
                         >
-                    </ca-datagrid>  
-                </div>
+                    </ca-datagrid> -->
+
+                    <div class="gridCheckpointTable">
+                        <clr-datagrid class="datagrid-compact">
+                        
+                            <!-- Empty Message -->
+                            <clr-dg-placeholder>
+                                No Checkpoints created as yet 
+                            </clr-dg-placeholder>
+                        
+                            <!-- Headers -->
+                            <clr-dg-column *ngFor="let col of datagridColumns; let i = index"
+                                [clrDgField]="col.fieldName"
+                                >
+                                {{ col.displayName }}
+                            </clr-dg-column>
+                        
+                            <!-- Each Row -->
+                            <clr-dg-row *clrDgItems="let row of datagridData; let i = index">
+                        
+                                <!-- Each Cell -->
+                                <clr-dg-cell *ngFor="let col of datagridColumns; let i = index">
+                                    
+                                    {{ row[col.fieldName] }}
+                                    
+                                </clr-dg-cell>
+                            </clr-dg-row>
+                        
+                            <!-- Footer -->
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} records
+                                <clr-dg-pagination 
+                                    #pagination 
+                                    [clrDgPageSize]="5"
+                                    >
+                                </clr-dg-pagination>
+                            </clr-dg-footer>
+                        </clr-datagrid>
+
+                    </div>
 
                 <div class="graphArea" #dragWidget>
 
