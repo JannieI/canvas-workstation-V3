@@ -196,7 +196,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        
+
         // Move with Arrow
         if (event.key == 'ArrowRight'  ||  event.key == 'ArrowDown'  ||
             event.key == 'ArrowLeft'   ||  event.key == 'ArrowUp') {
@@ -415,7 +415,7 @@ export class AppComponent implements OnInit {
                 return 0;
             })
         );
-        
+
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.presentationMode.subscribe(
@@ -438,7 +438,7 @@ export class AppComponent implements OnInit {
         );
 
         this.globalVariableService.recentDashboards.subscribe(
-            i => this.recentDashboards = i.filter(j => j.stateAtRunTime != 'Deleted') 
+            i => this.recentDashboards = i.filter(j => j.stateAtRunTime != 'Deleted')
         );
 
         // This refreshes one W
@@ -1954,7 +1954,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.clipboardWidget.dashboardTabID = this.globalVariableService.
-            currentDashboardInfo.value.currentDashboardTabID; 
+            currentDashboardInfo.value.currentDashboardTabID;
 
         this.duplicateWidget(this.clipboardWidget);
 
@@ -2013,7 +2013,7 @@ export class AppComponent implements OnInit {
             if (w.isSelected  &&  w.widgetType == 'Graph') {
                 this.selectedWidget = w;
             };
-        });        
+        });
         this.showModalWidgetDelete = true;
     }
 
@@ -3474,9 +3474,9 @@ export class AppComponent implements OnInit {
 
         // Open it
 		this.globalVariableService.refreshCurrentDashboard(
-            'openDashboard-showRecentDashboard', 
-            this.recentDashboards[index].dashboardID, 
-            this.recentDashboards[index].dashboardTabID, 
+            'openDashboard-showRecentDashboard',
+            this.recentDashboards[index].dashboardID,
+            this.recentDashboards[index].dashboardTabID,
             ''
         );
     }
@@ -3663,7 +3663,7 @@ export class AppComponent implements OnInit {
                     w.containerTop = this.globalVariableService.alignToGripPoint(
                         w.containerTop);
                 };
-                
+
                 actID = this.globalVariableService.actionUpsert(
                     actID,
                     this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
@@ -3907,7 +3907,7 @@ export class AppComponent implements OnInit {
             'app-contextMenuJumpToLinked', dashboardID, dashboardTabID, ''
         );
     }
-   
+
     contextmenuWidgetTitle(ev: MouseEvent, index: number, id: number) {
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetTitle', '@Start');
@@ -3924,49 +3924,81 @@ export class AppComponent implements OnInit {
         this.showTitleForm = true;
     }
 
-    clickNavCheckpoint(id: number, direction: string) {
+    clickNavCheckpoint(dashboardID: number, id: number, direction: string) {
         // Navigate Left or Right to a checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNavCheckpoint', '@Start');
 
         // Load the Checkpoints if not done so before
         if (this.currentWidgetCheckpoints.length == 0) {
             this.globalVariableService.getWidgetCheckpoints().then (ca => {
-                
+
                 // Set the data
                 this.currentWidgetCheckpoints = ca.slice();
 
-                this.checkpointNavigate(id, direction)
+                // Return if no checkpoints (which is unlikely), else navigate
+                if (this.currentWidgetCheckpoints.length == 0) {
+                    return;
+                };
+
+                this.checkpointNavigate(dashboardID, id, direction)
             });
         } else {
-            this.checkpointNavigate(id, direction)
+            this.checkpointNavigate(dashboardID, id, direction)
         };
 
     }
 
-    checkpointNavigate(id: number, direction: string) {
+    checkpointNavigate(dashboardID: number, id: number, direction: string) {
         // Actual Checkpoint Navigation
         this.globalFunctionService.printToConsole(this.constructor.name,'checkpointNavigate', '@Start');
 
-        // Get Checkpoints for current W
-        let tempCheckpoints: WidgetCheckpoint[] = this.currentWidgetCheckpoints
-            .filter(wc => wc.id == id).slice();
+        let currentActiveCheckpointID: number = -1;
+        let newActiveCheckpointID: number = -1;
 
-        if (tempCheckpoints.length == 0) {
-            this.globalVariableService.getWidgetCheckpoints().then (ca => {
-                this.currentWidgetCheckpointIndex = this.currentWidgetCheckpointIndex + 1;
-                // Set the data for the grid
-                // this.currentWidgetCheckpoints = ca.slice();
-                this.globalVariableService.changedWidget.next(
-                    ca[this.currentWidgetCheckpointIndex].widgetSpec
-                );
-                currentWidgetsOriginals
-                // Show checkpoint
-                this.checkpoint = true;
-                                
-                console.log('xx Yes!', ca, this.currentWidgetCheckpointIndex)
-            });
+        // Get Active Checkpoint for current W, deactive and remember index
+        for (var x = 0; x < this.currentWidgetCheckpoints.length; x++){
+            if (this.currentWidgetCheckpoints[x].active
+                &&
+                this.currentWidgetCheckpoints[x].dashboardID == dashboardID
+                &&
+                this.currentWidgetCheckpoints[x].widgetID == id) {
+                this.currentWidgetCheckpoints[x].active = false;
+                currentActiveCheckpointID = x;
+            };
         };
 
+        // Active one found, so find (until end of array) next one
+        if (currentActiveCheckpointID != -1) {
+            for (var x = (currentActiveCheckpointID+1) ; x < this.currentWidgetCheckpoints.length; x++){
+                if (this.currentWidgetCheckpoints[x].dashboardID == dashboardID
+                    &&
+                    this.currentWidgetCheckpoints[x].widgetID == id) {
+                    this.currentWidgetCheckpoints[x].active = true;
+                    newActiveCheckpointID = x;
+                    break;
+                };
+            };
+        };
+
+        // Either no active one found, or the last active was the last one.
+        // So, find the first (active or not) one
+        if (newActiveCheckpointID == -1) {
+            for (var x = 0; x < this.currentWidgetCheckpoints.length; x++){
+                if (this.currentWidgetCheckpoints[x].dashboardID == dashboardID
+                    &&
+                    this.currentWidgetCheckpoints[x].widgetID == id) {
+                    this.currentWidgetCheckpoints[x].active = true;
+                    newActiveCheckpointID = x;
+                    break;
+                };
+            };
+        };
+
+        // Refresh this one
+        if (newActiveCheckpointID > -1) {
+            this.globalVariableService.changedWidget.next(
+                this.currentWidgetCheckpoints[newActiveCheckpointID].widgetSpec)
+        };
     }
 
     deleteWidget(widgetType, widgetID: number = null) {
@@ -3982,7 +4014,7 @@ export class AppComponent implements OnInit {
             // Get given ID, else all selected
             if (  (widgetID == null  ||  this.currentWidgets[i].id == widgetID)
                    &&
-                   (widgetID != null  ||  this.currentWidgets[i].isSelected)  
+                   (widgetID != null  ||  this.currentWidgets[i].isSelected)
                    &&
                    this.currentWidgets[i].widgetType == widgetType
                 ) {
@@ -4100,7 +4132,7 @@ export class AppComponent implements OnInit {
 
     }
 
-    paletteFunctionCall(methodName: string, methodParam) { 
+    paletteFunctionCall(methodName: string, methodParam) {
         // Call function in Var from Customised portion of Palette
         this.globalFunctionService.printToConsole(this.constructor.name,'paletteFunctionCall', '@Start');
 
