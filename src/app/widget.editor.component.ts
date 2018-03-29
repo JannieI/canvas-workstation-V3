@@ -23,85 +23,87 @@ import { View }                       from 'vega';
 import * as dl from 'datalib';
 
 // Constants
-const vlTemplate: dl.spec.TopLevelExtendedSpec =
-{
-    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+// const vlTemplate: dl.spec.TopLevelExtendedSpec =
+    // {
+    //     "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
 
-    // Properties for top-level specification (e.g., standalone single view specifications)
-    "background": "",
-    "padding": "",
-    "height": "100",
-    "width": "100",
+    //     // Properties for top-level specification (e.g., standalone single view specifications)
+    //     "background": "",
+    //     "padding": "",
+    //     "height": "100",
+    //     "width": "100",
 
-    // "autosize": "pad",       NB - add these only if needed, blank causes no graph display
-    // "autosize": {"type": "pad", "resize": true},  //"pad",
-    // "config": "",            NB - add these only if needed, blank causes no graph display
+    //     // "autosize": "pad",       NB - add these only if needed, blank causes no graph display
+    //     // "autosize": {"type": "pad", "resize": true},  //"pad",
+    //     // "config": "",            NB - add these only if needed, blank causes no graph display
 
-    // Properties for any specifications
-    "title":
-        {
-            "text": "",
-            "anchor": "",
-            "offset": "",
-            "orient": "",
-            "style": ""
-        },
-    "name": "",
-    "transform": "",
+    //     // Properties for any specifications
+    //     "title":
+    //         {
+    //             "text": "",
+    //             "anchor": "",
+    //             "offset": "",
+    //             "orient": "",
+    //             "style": ""
+    //         },
+    //     "name": "",
+    //     "transform": "",
 
-    "description": "",
-    "data": null,
-    "mark":
-        {
-            "type": "",  //bar circle square tick line area point rule text
-            "style": "",
-            "clip": "",
-            "color": "#4682b4"
-        },
-    "encoding":
-        {
-            "x":
-                {
-                    "aggregate": "",
-                    "field": "",
-                    "type": "ordinal",
-                    "bin": "",
-                    "timeUnit": "",
-                    "axis":
-                    {
-                        "title": ""
-                    },
-                    "scale": "",
-                    "legend": "",
-                    "format": "",
-                    "stack": "",
-                    "sort": "",
-                    "condition": ""
-                },
-            "y":
-                {
-                    "aggregate": "",
-                    "field": "",
-                    "type": "quantitative",
-                    "bin": "",
-                    "timeUnit": "",
-                    "axis":
-                        {
-                            "title": ""
-                        },
-                    "scale": "",
-                    "legend": "",
-                    "format": "",
-                    "stack": "",
-                    "sort": "",
-                    "condition": ""
-                },
-            "color": {
-                "field": "",
-                "type": ""
-            }
-        }
-};
+    //     "description": "",
+    //     "data": null,
+    //     "mark":
+    //         {
+    //             "type": "",  //bar circle square tick line area point rule text
+    //             "style": "",
+    //             "clip": "",
+    //             "color": "#4682b4"
+    //         },
+    //     "encoding":
+    //         {
+    //             "x":
+    //                 {
+    //                     "aggregate": "",
+    //                     "field": "",
+    //                     "type": "ordinal",
+    //                     "bin": "",
+    //                     "timeUnit": "",
+    //                     "axis":
+    //                     {
+    //                         "title": ""
+    //                     },
+    //                     "scale": "",
+    //                     "legend": "",
+    //                     "format": "",
+    //                     "stack": "",
+    //                     "sort": "",
+    //                     "condition": ""
+    //                 },
+    //             "y":
+    //                 {
+    //                     "aggregate": "",
+    //                     "field": "",
+    //                     "type": "quantitative",
+    //                     "bin": "",
+    //                     "timeUnit": "",
+    //                     "axis":
+    //                         {
+    //                             "title": ""
+    //                         },
+    //                     "scale": "",
+    //                     "legend": "",
+    //                     "format": "",
+    //                     "stack": "",
+    //                     "sort": "",
+    //                     "condition": ""
+    //                 },
+    //             "color": {
+    //                 "field": "",
+    //                 "type": ""
+    //             }
+    //         }
+    // };
+const graphHeight: number = 260;
+const graphWidth: number = 420;
 
 
 @Component({
@@ -246,7 +248,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
         // Render if Editing an existing one
-        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
+        let definition = this.globalVariableService.createVegaLiteSpec(
+            this.localWidget, graphHeight, graphWidth
+        );
         if (!this.newWidget) {
             this.renderGraph(definition);
         }
@@ -416,7 +420,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
         console.log('Field dropped: ', this.colField )
 
-        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
+        let definition = this.globalVariableService.createVegaLiteSpec(
+            this.localWidget, graphHeight, graphWidth
+        );
         this.showColFieldAdvanced = true;
         this.renderGraph(definition);
 
@@ -449,7 +455,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         //     this.localWidget.graphYtype = 'ordinal';
         // };
 
-        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
+        let definition = this.globalVariableService.createVegaLiteSpec(
+            this.localWidget, graphHeight, graphWidth
+        );
         this.showRowFieldAdvanced = true;
         this.renderGraph(definition);
     }
@@ -477,7 +485,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         console.log('dropColor field name: ', this.graphColorField )
 
-        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
+        let definition = this.globalVariableService.createVegaLiteSpec(
+            this.localWidget, graphHeight, graphWidth
+        );
         this.renderGraph(definition);
     }
 
@@ -494,7 +504,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.localWidget.graphXtimeUnit = null;
         this.localWidget.graphXtype = null;
 
-        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
+        let definition = this.globalVariableService.createVegaLiteSpec(
+            this.localWidget, graphHeight, graphWidth
+        );
         this.renderGraph(definition);
     }
 
@@ -511,7 +523,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.localWidget.graphYtimeUnit = null;
         this.localWidget.graphYtype = null;
 
-        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
+        let definition = this.globalVariableService.createVegaLiteSpec(
+            this.localWidget, graphHeight, graphWidth
+        );
         this.renderGraph(definition);
     }
 
@@ -525,7 +539,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.localWidget.graphColorField = null;
         this.localWidget.graphColorType = null;
 
-        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
+        let definition = this.globalVariableService.createVegaLiteSpec(
+            this.localWidget, graphHeight, graphWidth
+        );
         this.renderGraph(definition);
     }
 
@@ -610,7 +626,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         this.showRowFieldAdvancedArea = false;
 
-        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
+        let definition = this.globalVariableService.createVegaLiteSpec(
+            this.localWidget, graphHeight, graphWidth
+        );
         this.renderGraph(definition);
     }
 
@@ -682,7 +700,9 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showType = false;
 
         this.localWidget.graphMark = graph;
-        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
+        let definition = this.globalVariableService.createVegaLiteSpec(
+            this.localWidget, graphHeight, graphWidth
+        );
         this.renderGraph(definition);
 
     }
