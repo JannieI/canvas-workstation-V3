@@ -252,6 +252,7 @@ export class AppComponent implements OnInit {
     currentWidgetDashboardTabIDs: number[] = [];  // Of current W
     draggableWidgets: number[] = [];
     editMode: boolean;
+    editModePrePresentation: boolean;
     hasDatasources: boolean = false;
     editMenuText: string;
     fields: Field[];
@@ -2517,9 +2518,11 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Remember editMode setting, and switch to ViewOnly during presentation
+        this. editModePrePresentation = this.editMode;
         this.globalVariableService.editMode.next(false);
 
-        this.globalVariableService.presentationMode.next(!this.presentationMode);
+        this.globalVariableService.presentationMode.next(false);
         this.showMainMenu = false;
 
         this.menuOptionClickPostAction();
@@ -3475,8 +3478,15 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClosePresentation', '@Start');
 
-        this.showMainMenu = true;
+        // Go back to EditMode if user was there where Presentation started
+        if (this.editModePrePresentation) {
+            this.globalVariableService.editMode.next(true);
+            this.editMode = true;
+        };
+
+        // Reset vars
         this.globalVariableService.presentationMode.next(false);
+        this.showMainMenu = true;
     }
 
     trackWidget(index, row) {
