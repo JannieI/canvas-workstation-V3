@@ -31,6 +31,8 @@ import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DashboardTemplate }          from './models';
 import { DashboardTheme }             from './models';
+import { DatagridInput }              from './models';
+import { DatagridColumn }             from './models';
 import { Datasource }                 from './models';
 import { DataQualityIssue}            from './models';
 import { DatasourcePermission}        from './models';
@@ -44,8 +46,7 @@ import { Transformation }             from './models';
 import { UserPreferences }            from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
-import { DatagridInput }              from './models';
-import { DatagridColumn }             from './models';
+
 
 // External
 import * as dl                        from 'datalib';
@@ -3311,6 +3312,34 @@ export class GlobalVariableService {
             }
         });
 
+    }
+
+
+    addWidgetCheckpoints(data: WidgetCheckpoint): Promise<any> {
+        // Description: Adds a new WidgetCheckpoints
+        // Returns: Added Data or error message
+        console.log('Global-Variables addWidgetCheckpoints ...');
+
+        let url: string = 'widgetCheckpoints';
+        this.filePath = './assets/data.widgetCheckpoints.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    console.log('xx addWidgetCheckpoints ADDED', data)
+                    resolve(data);
+                },
+                err => {
+                    console.log('xx addWidgetCheckpoints FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
     getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
