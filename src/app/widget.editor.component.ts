@@ -246,7 +246,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
         // Render if Editing an existing one
-        let definition = this.createVegaLiteSpec();
+        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
         if (!this.newWidget) {
             this.renderGraph(definition);
         }
@@ -416,7 +416,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
         console.log('Field dropped: ', this.colField )
 
-        let definition = this.createVegaLiteSpec();
+        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
         this.showColFieldAdvanced = true;
         this.renderGraph(definition);
 
@@ -449,7 +449,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         //     this.localWidget.graphYtype = 'ordinal';
         // };
 
-        let definition = this.createVegaLiteSpec();
+        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
         this.showRowFieldAdvanced = true;
         this.renderGraph(definition);
     }
@@ -477,7 +477,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         console.log('dropColor field name: ', this.graphColorField )
 
-        let definition = this.createVegaLiteSpec();
+        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
         this.renderGraph(definition);
     }
 
@@ -494,7 +494,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.localWidget.graphXtimeUnit = null;
         this.localWidget.graphXtype = null;
 
-        let definition = this.createVegaLiteSpec();
+        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
         this.renderGraph(definition);
     }
 
@@ -511,7 +511,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.localWidget.graphYtimeUnit = null;
         this.localWidget.graphYtype = null;
 
-        let definition = this.createVegaLiteSpec();
+        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
         this.renderGraph(definition);
     }
 
@@ -525,7 +525,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.localWidget.graphColorField = null;
         this.localWidget.graphColorType = null;
 
-        let definition = this.createVegaLiteSpec();
+        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
         this.renderGraph(definition);
     }
 
@@ -610,7 +610,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         this.showRowFieldAdvancedArea = false;
 
-        let definition = this.createVegaLiteSpec();
+        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
         this.renderGraph(definition);
     }
 
@@ -628,45 +628,45 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showRowFieldAdvancedArea = true;
     }
 
-    createVegaLiteSpec(): dl.spec.TopLevelExtendedSpec {
-        // Creates and returns the Vega-Lite and Vega specs from the W Sepc
-        this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
+    // createVegaLiteSpec(): dl.spec.TopLevelExtendedSpec {
+    //     // Creates and returns the Vega-Lite and Vega specs from the W Sepc
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
 
-        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
+    //     let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
 
-        if (this.localWidget.graphUrl != "") {
-            vlSpecsNew['data'] = {"url": this.localWidget.graphUrl};
-        } else {
-            vlSpecsNew['data'] = {"values": this.localWidget.graphData};
-        }
-        vlSpecsNew['description'] = this.localWidget.graphDescription;
-        vlSpecsNew['mark']['type'] = this.localWidget.graphMark;
-        vlSpecsNew['mark']['color'] = this.localWidget.graphMarkColor;
+    //     if (this.localWidget.graphUrl != "") {
+    //         vlSpecsNew['data'] = {"url": this.localWidget.graphUrl};
+    //     } else {
+    //         vlSpecsNew['data'] = {"values": this.localWidget.graphData};
+    //     }
+    //     vlSpecsNew['description'] = this.localWidget.graphDescription;
+    //     vlSpecsNew['mark']['type'] = this.localWidget.graphMark;
+    //     vlSpecsNew['mark']['color'] = this.localWidget.graphMarkColor;
 
-        vlSpecsNew['encoding']['x']['field'] = this.localWidget.graphXfield;
-        vlSpecsNew['encoding']['x']['type'] = this.localWidget.graphXtype;
-        vlSpecsNew['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
-        vlSpecsNew['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
-        vlSpecsNew['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
+    //     vlSpecsNew['encoding']['x']['field'] = this.localWidget.graphXfield;
+    //     vlSpecsNew['encoding']['x']['type'] = this.localWidget.graphXtype;
+    //     vlSpecsNew['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
+    //     vlSpecsNew['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
+    //     vlSpecsNew['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
 
-        vlSpecsNew['encoding']['y']['field'] = this.localWidget.graphYfield;
-        vlSpecsNew['encoding']['y']['type'] = this.localWidget.graphYtype;
-        vlSpecsNew['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
-        vlSpecsNew['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
-        vlSpecsNew['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
+    //     vlSpecsNew['encoding']['y']['field'] = this.localWidget.graphYfield;
+    //     vlSpecsNew['encoding']['y']['type'] = this.localWidget.graphYtype;
+    //     vlSpecsNew['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
+    //     vlSpecsNew['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
+    //     vlSpecsNew['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
 
-        // Change HxW to show the graph in the given area on this form, which may be different
-        // to the size of the W on the D
-        vlSpecsNew['height'] = 260;
-        vlSpecsNew['width'] = 420;
+    //     // Change HxW to show the graph in the given area on this form, which may be different
+    //     // to the size of the W on the D
+    //     vlSpecsNew['height'] = 260;
+    //     vlSpecsNew['width'] = 420;
 
-        vlSpecsNew['title']['text'] = this.localWidget.graphTitle;
+    //     vlSpecsNew['title']['text'] = this.localWidget.graphTitle;
 
-        vlSpecsNew['encoding']['color']['field'] = this.localWidget.graphColorField;
-        vlSpecsNew['encoding']['color']['type'] = this.localWidget.graphColorType;
+    //     vlSpecsNew['encoding']['color']['field'] = this.localWidget.graphColorField;
+    //     vlSpecsNew['encoding']['color']['type'] = this.localWidget.graphColorType;
 
-        return vlSpecsNew;
-    }
+    //     return vlSpecsNew;
+    // }
 
     clickDatasource(index: number, name: string) {
         // Show dropdown of DS
@@ -682,7 +682,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         this.showType = false;
 
         this.localWidget.graphMark = graph;
-        let definition = this.createVegaLiteSpec();
+        let definition = this.globalVariableService.createVegaLiteSpec(this.localWidget);
         this.renderGraph(definition);
 
     }

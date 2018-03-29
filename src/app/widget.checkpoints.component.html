@@ -79,7 +79,9 @@
                             </clr-dg-column>
                         
                             <!-- Each Row -->
-                            <clr-dg-row *clrDgItems="let row of datagridData; let i = index">
+                            <clr-dg-row *clrDgItems="let row of datagridData; 
+                                let i = index"
+                                (click)="clickRow()">
                         
                                 <!-- Each Cell -->
                                 <clr-dg-cell *ngFor="let col of datagridColumns; let i = index">

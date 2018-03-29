@@ -46,9 +46,12 @@ export class WidgetCheckpointsComponent implements OnInit {
     ) {}
  
     ngOnInit() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.globalVariableService.getWidgetCheckpoints().then (ca => {
             // Set the data for the grid
-            this.datagridData = [];
+            this.datagridData = ca;
 
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
@@ -59,6 +62,8 @@ export class WidgetCheckpointsComponent implements OnInit {
     }
  
     ngAfterViewInit() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
         let definition = this.createVegaLiteSpec(undefined,'bar',undefined,undefined,undefined);
 
@@ -67,7 +72,10 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     }
 
-    clickSelectStep() {
+    clickRow() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
         let definition = this.createVegaLiteSpec(undefined,'line',undefined,undefined,undefined);
 
         // Render
@@ -76,6 +84,9 @@ export class WidgetCheckpointsComponent implements OnInit {
     }
 
     renderGraph(definition: any) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'renderGraph', '@Start');
+
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
         view.renderer('svg')
