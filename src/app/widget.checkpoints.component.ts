@@ -63,7 +63,7 @@ export class WidgetCheckpointsComponent implements OnInit {
                     this.renderGraph(definition)
                 };
             };
-            
+
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], ["id", "name"]);
@@ -72,22 +72,6 @@ export class WidgetCheckpointsComponent implements OnInit {
         })
     }
  
-    ngAfterViewInit() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
-
-        if (this.currentWidgetCheckpoint != undefined) {
-            if (this.currentWidgetCheckpoint.length > 0) {
-                let definition = this.globalVariableService.createVegaLiteSpec(
-                    this.currentWidgetCheckpoint[0].widgetSpec);
-
-                // Render
-                this.renderGraph(definition)
-            };
-        };
-
-    }
-
     clickRow(index: number) {
         // User clicked a row, now refresh the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
