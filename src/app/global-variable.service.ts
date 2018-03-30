@@ -156,7 +156,8 @@ const widgetTemplate: Widget =
         "nrComments": 0,
         "showCheckpoints": false,
         "checkpointIDs": [],
-        "currentCheckpoint": 0;
+        "currentCheckpoint": 0,
+        "lastCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -3605,6 +3606,7 @@ export class GlobalVariableService {
                 {key: 'showCheckpoints', 			type: 'bool'},
                 {key: 'checkpointIDs', 			    type: 'array'},
                 {key: 'currentCheckpoint', 			type: 'int'},
+                {key: 'lastCheckpoint', 			type: 'int'},
                 {key: 'hyperlinkDashboardID', 		type: 'int'},
                 {key: 'hyperlinkDashboardTabID', 	type: 'int'},
                 {key: 'datasourceID', 				type: 'int'},
@@ -3972,9 +3974,8 @@ export class GlobalVariableService {
                 w.showCheckpoints = changedWidget.showCheckpoints;
                 w.checkpointIDs = changedWidget.checkpointIDs;
                 w.currentCheckpoint = changedWidget.currentCheckpoint;
+                w.lastCheckpoint = changedWidget.lastCheckpoint;
                 w.hyperlinkDashboardID = changedWidget.hyperlinkDashboardID;
-                w.currentCheckpoint = changedWidget.currentCheckpoint;
-                w.checkpointIDs = changedWidget.checkpointIDs;
                 w.hyperlinkDashboardTabID = changedWidget.hyperlinkDashboardTabID;
                 w.datasourceID = changedWidget.datasourceID;
                 w.datasetID = changedWidget.datasetID;
@@ -4105,6 +4106,9 @@ export class GlobalVariableService {
                 w.nrDataQualityIssues = changedWidget.nrDataQualityIssues;
                 w.nrComments = changedWidget.nrComments;
                 w.showCheckpoints = changedWidget.showCheckpoints;
+                w.checkpointIDs = changedWidget.checkpointIDs;
+                w.currentCheckpoint = changedWidget.currentCheckpoint;
+                w.lastCheckpoint = changedWidget.lastCheckpoint;
                 w.hyperlinkDashboardID = changedWidget.hyperlinkDashboardID;
                 w.hyperlinkDashboardTabID = changedWidget.hyperlinkDashboardTabID;
                 w.datasourceID = changedWidget.datasourceID;
