@@ -2883,9 +2883,9 @@ export class GlobalVariableService {
                         // TODO - fix hardcoding, issue with datalib jsonTree
                         this.widgets.forEach(w => {
 
-                            // Get Checkpoint info
+                            // Get Checkpoint info for ALL W, not only current one
                             // TODO - fix when using DB
-                            let tempChk: WidgetCheckpoint[] = this.currentWidgetCheckpoints
+                            let tempChk: WidgetCheckpoint[] = this.widgetCheckpoints
                                 .filter(wc => 
                                     wc.dashboardID == w.dashboardID
                                     &&
@@ -3373,8 +3373,8 @@ export class GlobalVariableService {
             return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
                 let returnData: WidgetCheckpoint[];
                 returnData = this.widgetCheckpoints.filter(
-                        i => i.dashboardID == dashboardID
-                    )
+                    i => i.dashboardID == dashboardID
+                );
                 this.currentWidgetCheckpoints = returnData;
                 console.log('Global-Variables getCurrentWidgetCheckpoints 2', dashboardID, returnData)
                 resolve(this.currentWidgetCheckpoints);
