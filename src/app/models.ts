@@ -156,14 +156,6 @@ export class PaletteButtonBar {
     isSelected: boolean;                    // Toggled at Runtime
 }
 
-export class ButtonBarAvailable {
-    id: number;
-    buttonText: string;
-    description: string;
-    sortOrder: number;
-    isDefault: boolean;
-}
-
 export class CSScolor {
     name: string;
 }

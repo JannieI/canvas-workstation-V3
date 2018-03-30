@@ -17,7 +17,6 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { DashboardTag }               from './models';
-import { ButtonBarAvailable}          from './models'
 import { Dashboard }                  from './models';
 import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
@@ -38,7 +37,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
     paletteButtons: PaletteButtonBar[];
     paletteButtonsOriginal: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
-    widgetButtonsAvailable: ButtonBarAvailable[];
 
 
     constructor(

@@ -8,7 +8,6 @@ import { HttpHeaders }                from "@angular/common/http";
 
 // Our Models
 import { CanvasAction }               from './models';
-import { ButtonBarAvailable }         from './models';
 import { Dataset }                    from './models';
 import { CanvasActivity }             from './models';
 import { CanvasAlert }                from './models';
