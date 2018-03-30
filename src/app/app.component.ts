@@ -3987,6 +3987,26 @@ export class AppComponent implements OnInit {
             
                     })
                 });
+
+                // If only one Chkpnt, then we dont show the <> arrows, so one cannot navigiate.
+                // Just show the only Checkpoint here
+                if (this.currentWidgets[index].checkpointIDs.length == 1) {
+                    console.log('xx this.currentWidgets[index].checkpointIDs', 
+                    this.currentWidgets[index].checkpointIDs, this.currentWidgetCheckpoints)
+                    // Get the W Spec
+                    let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc => 
+                        wc.id == this.currentWidgets[index].checkpointIDs[0]
+                    );
+                    if (newW != undefined) {
+                        if (newW.length > 0) {
+                            let newWspec: Widget = newW[0].widgetSpec;
+                            console.log('xx newW', newW)
+
+                            // Change it on the UI
+                            this.globalVariableService.changedWidget.next(newWspec);
+                        };
+                    };
+                };
                 console.log('xx wc', this.currentWidgetCheckpoints)
             });
         } else {
@@ -3995,8 +4015,30 @@ export class AppComponent implements OnInit {
                 if (w.dashboardID == dashboardID  &&  w.id == id) {
                     w.showCheckpoints = !w.showCheckpoints;
                 };
-            })
+            });
+
+            // If only one Chkpnt, then we dont show the <> arrows, so one cannot navigiate.
+            // Just show the only Checkpoint here
+            if (this.currentWidgets[index].checkpointIDs.length == 1) {
+                console.log('xx this.currentWidgets[index].checkpointIDs', 
+                this.currentWidgets[index].checkpointIDs, this.currentWidgetCheckpoints)
+                // Get the W Spec
+                let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc => 
+                    wc.id == this.currentWidgets[index].checkpointIDs[0]
+                );
+                if (newW != undefined) {
+                    if (newW.length > 0) {
+                        let newWspec: Widget = newW[0].widgetSpec;
+                        console.log('xx newW', newW)
+
+                        // Change it on the UI
+                        this.globalVariableService.changedWidget.next(newWspec);
+                    };
+                };
+            };
+            console.log('xx wc', this.currentWidgetCheckpoints)
         };
+
     }
 
     clickNavCheckpoint(
