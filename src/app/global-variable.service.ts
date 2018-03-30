@@ -653,6 +653,7 @@ export class GlobalVariableService {
     canvasComments: CanvasComment[] = [];
     canvasMessages: CanvasMessage[] = [];
     widgetCheckpoints: WidgetCheckpoint[] = [];
+    currentWidgetCheckpoints: WidgetCheckpoint[] = [];
     filePath: string;
     widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
 
@@ -862,6 +863,9 @@ export class GlobalVariableService {
                     };
 
                     // Load Permissions for D
+                    this.getCurrentDashboardPermissions(dashboardID).then( l => {
+
+                    // Load Checkpoints for D
                     this.getCurrentDashboardPermissions(dashboardID).then( l => {
 
                     // Load Datasets
@@ -3315,6 +3319,40 @@ export class GlobalVariableService {
                 resolve(this.widgetCheckpoints);
             }
         });
+
+    }
+
+    getCurrentWidgetCheckpoints(dashboardID: number): Promise<WidgetCheckpoint[]> {
+        // Description: Gets all Checkpoints for current D
+        // Returns: this.currentWidgetCheckpoints array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getCurrentWidgetCheckpoints ...');
+
+        // Refresh from source at start, or if dirty
+        if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
+            return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
+                this.getWidgetCheckpoints()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+                        this.currentWidgetCheckpoints = data;
+                        console.log('Global-Variables getCurrentWidgetCheckpoints 1', dashboardID, data)
+                        resolve(this.currentWidgetCheckpoints);
+
+                })
+             })
+        } else {
+            return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
+                let returnData: WidgetCheckpoint[];
+                returnData = this.currentWidgetCheckpoints.filter(
+                        i => i.dashboardID == dashboardID
+                    )
+                this.currentWidgetCheckpoints = returnData;
+                console.log('Global-Variables getCurrentWidgetCheckpoints 2', dashboardID, returnData)
+                resolve(this.currentWidgetCheckpoints);
+            });
+        };
 
     }
 
