@@ -3937,21 +3937,8 @@ export class AppComponent implements OnInit {
         // 2. load D: insert Chkpnt info for each W
         // 3. view Chkpnts: this is where we are now.  We need this for the *ngIfs ...
 
-        if (!showCheckpoints) {
-            // Remember the original W once
-            let isFound: boolean = false;
-            this.currentWidgetsOriginals.forEach(wo => {
-                if (wo.dashboardID == dashboardID
-                    && wo.id == id) {
-                        isFound = true;
-                    }
-            });
-            if (!isFound) {
-                this.currentWidgetsOriginals.push(this.currentWidgets[index]);
-            }
-        } else {
-            // Restore the original
-            // this.currentWidgets[index].showCheckpoints = false;
+        // Restore the Original (when moving out of showCheckpoint mode)
+        if (showCheckpoints) {
             this.currentWidgetsOriginals.forEach(wo => {
                 if (wo.dashboardID == dashboardID  &&  wo.id == id) {
                     wo.showCheckpoints = false;
@@ -3961,7 +3948,17 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        console.log('xx this.currentWidgetsOriginals', this.currentWidgetsOriginals)
+        // Remember the original W once
+        let isFound: boolean = false;
+        this.currentWidgetsOriginals.forEach(wo => {
+            if (wo.dashboardID == dashboardID
+                && wo.id == id) {
+                    isFound = true;
+            };
+        });
+        if (!isFound) {
+            this.currentWidgetsOriginals.push(this.currentWidgets[index]);
+        };
 
         // Get the W Checkpoints once
         if (this.currentWidgetCheckpoints.length == 0) {
@@ -3971,6 +3968,7 @@ export class AppComponent implements OnInit {
                 this.currentWidgetCheckpoints = ca.slice();
 
                 this.currentWidgets.forEach( w=> {
+                    // Toggle showCheckpoints 
                     if (w.dashboardID == dashboardID  &&  w.id == id) {
                         w.showCheckpoints = !w.showCheckpoints;
                     };
@@ -3991,6 +3989,7 @@ export class AppComponent implements OnInit {
                 console.log('xx wc', this.currentWidgetCheckpoints)
             });
         } else {
+            // Toggle showCheckpoints 
             this.currentWidgets.forEach( w=> {
                 if (w.dashboardID == dashboardID  &&  w.id == id) {
                     w.showCheckpoints = !w.showCheckpoints;
