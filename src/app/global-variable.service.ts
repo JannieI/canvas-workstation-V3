@@ -390,21 +390,21 @@ const widgetTemplate: Widget =
 //     }
 // ]
 
-const widgetButtonsSelected: ButtonBarSelected[] =
-[
-    {
-        id: 1,
-        buttonText: 'Edit',
-        description: 'Open the edit form to edit the Widget, for example the graph type.',
-        sortOrder: 1,
-    },
-    {
-        id: 2,
-        buttonText: 'Refresh',
-        description: 'Refresh the data linked to the current Widget.',
-        sortOrder: 2,
-    }
-]
+// const widgetButtonsSelected: ButtonBarSelected[] =
+// [
+//     {
+//         id: 1,
+//         buttonText: 'Edit',
+//         description: 'Open the edit form to edit the Widget, for example the graph type.',
+//         sortOrder: 1,
+//     },
+//     {
+//         id: 2,
+//         buttonText: 'Refresh',
+//         description: 'Refresh the data linked to the current Widget.',
+//         sortOrder: 2,
+//     }
+// ]
 
 
 // Data
