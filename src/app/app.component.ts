@@ -4006,62 +4006,6 @@ export class AppComponent implements OnInit {
 
     }
 
-
-
-
-    checkpointNavigateRight(dashboardID: number, id: number, direction: string) {
-        // Actual Checkpoint Navigation
-        this.globalFunctionService.printToConsole(this.constructor.name,'checkpointNavigate', '@Start');
-
-        let currentActiveCheckpointID: number = -1;
-        let newActiveCheckpointID: number = -1;
-
-        // Get Active Checkpoint for current W, deactive and remember index
-        for (var x = 0; x < this.currentWidgetCheckpoints.length; x++){
-            if (this.currentWidgetCheckpoints[x].active
-                &&
-                this.currentWidgetCheckpoints[x].dashboardID == dashboardID
-                &&
-                this.currentWidgetCheckpoints[x].widgetID == id) {
-                this.currentWidgetCheckpoints[x].active = false;
-                currentActiveCheckpointID = x;
-            };
-        };
-
-        // Active one found, so find (until end of array) next one
-        if (currentActiveCheckpointID != -1) {
-            for (var x = (currentActiveCheckpointID+1) ; x < this.currentWidgetCheckpoints.length; x++){
-                if (this.currentWidgetCheckpoints[x].dashboardID == dashboardID
-                    &&
-                    this.currentWidgetCheckpoints[x].widgetID == id) {
-                    this.currentWidgetCheckpoints[x].active = true;
-                    newActiveCheckpointID = x;
-                    break;
-                };
-            };
-        };
-
-        // Either no active one found, or the last active was the last one.
-        // So, find the first (active or not) one
-        if (newActiveCheckpointID == -1) {
-            for (var x = 0; x < this.currentWidgetCheckpoints.length; x++){
-                if (this.currentWidgetCheckpoints[x].dashboardID == dashboardID
-                    &&
-                    this.currentWidgetCheckpoints[x].widgetID == id) {
-                    this.currentWidgetCheckpoints[x].active = true;
-                    newActiveCheckpointID = x;
-                    break;
-                };
-            };
-        };
-
-        // Refresh this one
-        if (newActiveCheckpointID > -1) {
-            this.globalVariableService.changedWidget.next(
-                this.currentWidgetCheckpoints[newActiveCheckpointID].widgetSpec)
-        };
-    }
-
     deleteWidget(widgetType, widgetID: number = null) {
         // Delete the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
