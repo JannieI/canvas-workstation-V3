@@ -866,7 +866,7 @@ export class GlobalVariableService {
                     this.getCurrentDashboardPermissions(dashboardID).then( l => {
 
                     // Load Checkpoints for D
-                    this.getCurrentDashboardPermissions(dashboardID).then( l => {
+                    this.getCurrentWidgetCheckpoints(dashboardID).then( l => {
 
                     // Load Datasets
                     this.getDataset().then(m => {
@@ -893,6 +893,7 @@ export class GlobalVariableService {
                             })
                         })
                     })
+                })
                 })
                 })
             });
