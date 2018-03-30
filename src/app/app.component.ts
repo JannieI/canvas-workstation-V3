@@ -3924,6 +3924,18 @@ export class AppComponent implements OnInit {
         this.showTitleForm = true;
     }
 
+    clickToggleShowCheckpoint(id: number) {
+        // Toggle to show Checkpoints or not
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleShowCheckpoint', '@Start');
+
+        this.currentWidgets.forEach(w => {
+            if (w.id == id) {
+                w.showCheckpoints = !w.showCheckpoints;
+            }
+        })
+        
+    }
+    
     clickNavCheckpoint(dashboardID: number, id: number, direction: string) {
         // Navigate Left or Right to a checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNavCheckpoint', '@Start');

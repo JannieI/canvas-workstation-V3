@@ -342,6 +342,31 @@
     padding: 0;
 }
 
+.widgetContainerCheckpointCenter {
+    font-size: 0.7rem;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 10;
+    grid-row-end: 11;
+    margin: -6px 0 0 0;
+    padding: 0;
+}
+
+.widgetContainerCheckpointShowCheckpoint {
+    height: 12px;
+    width: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+.widgetContainerCheckpointShowWidget {
+    height: 12px;
+    width: 12px;
+    background-color: blue;
+    border-radius: 50%;
+    display: inline-block;
+}
+
 .widgetContainerCheckpointRight {
     color: blue;
     font-size: 0.7rem;

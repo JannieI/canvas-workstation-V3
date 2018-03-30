@@ -1407,7 +1407,7 @@
 
 
     <!-- Graph Checkpoint -->
-    <div class="widget" *ngIf="row.widgetType=='Graph'  &&  checkpoint">
+    <div class="widget" *ngIf="row.widgetType=='Graph'  &&  row.showCheckpoints">
         <widget-single
             #widgetDOM
             [widget]="row"
@@ -1671,15 +1671,40 @@
     </div>
 
 
+    
 
-
-    <div class="widgetContainerCheckpointLeft" *ngIf="presentationMode  &&  checkpoint"
+    <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.lastCheckpoint == 0)"
+        class="widgetContainerCheckpointLeft" 
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (click)="clickNavCheckpoint(row.dashboardID, row.id, 'Left')"
         >
         <b> < </b> 
     </div>
-    <div class="widgetContainerCheckpointRight" *ngIf="presentationMode  &&  checkpoint"
+
+    <div *ngIf="presentationMode  &&  !row.showCheckpoints  &&  (row.lastCheckpoint == 0)"
+        class="widgetContainerCheckpointCenter" 
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (click)="clickToggleShowCheckpoint(row.id)"
+        >
+        <span class="widgetContainerCheckpointShowCheckpoint"
+            (click)="clickToggleShowCheckpoint(row.id)"
+            >
+        </span>
+        <!-- <b> Show Checkpoints </b>  -->
+    </div>
+    <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.lastCheckpoint == 0)"
+        class="widgetContainerCheckpointCenter" 
+        [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+        (click)="clickToggleShowCheckpoint(row.id)"
+        >
+        <span class="widgetContainerCheckpointShowWidget"
+            (click)="clickToggleShowCheckpoint(row.id)"
+            >
+        </span>
+    </div>
+
+    <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.lastCheckpoint == 0)"
+        class="widgetContainerCheckpointRight" 
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (click)="clickNavCheckpoint(row.dashboardID, row.id, 'Right')"
         >
