@@ -359,7 +359,6 @@ export class AppComponent implements OnInit {
     widgetGroup: number[] = [];
     zoomFactor: string = 'scale(1)';
 
-    checkpoint: boolean = false;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -2521,9 +2520,6 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        // Switch on Checkpoints
-        this.checkpoint = true;
-
         // Remember editMode setting, and switch to ViewOnly during presentation
         this. editModePrePresentation = this.editMode;
         this.globalVariableService.editMode.next(false);
@@ -3490,8 +3486,11 @@ export class AppComponent implements OnInit {
             this.editMode = true;
         };
 
-        // Hide Checkpoint
-        this.checkpoint = false;
+        // Reset all the Originals Checkpoint
+        this.currentWidgetsOriginals.forEach(wo => {
+                wo.showCheckpoints = false;
+                this.globalVariableService.changedWidget.next(wo);
+        });
 
         // Reset vars
         this.globalVariableService.presentationMode.next(false);
