@@ -2880,12 +2880,38 @@ export class GlobalVariableService {
                 this.get(url)
                     .then(data => {
                         this.widgets = data.filter(d => (!d.isTrashed) );
-
                         // TODO - fix hardcoding, issue with datalib jsonTree
                         this.widgets.forEach(w => {
 
-                            if (w.widgetType == 'Shape') {
+                            // Get Checkpoint info
+                            // TODO - fix when using DB
+                            let tempChk: WidgetCheckpoint[] = this.currentWidgetCheckpoints
+                                .filter(wc => 
+                                    wc.dashboardID == w.dashboardID
+                                    &&
+                                    wc.widgetID == w.id
+                            );
+                            if (tempChk.length > 0) {
+                                w.showCheckpoints = false;
+                                w.checkpointIDs = [];
+                                w.currentCheckpoint = 0;
+                                w.lastCheckpoint = 0;
+                                
+                                for (var x = 0; x < tempChk.length; x++) {
+                                    w.checkpointIDs.push(tempChk[x].id);
+                                    w.lastCheckpoint = tempChk[x].id;
+                                };
 
+                            } else {
+                                w.showCheckpoints = false;
+                                w.checkpointIDs = [];
+                                w.currentCheckpoint = 0;
+                                w.lastCheckpoint = 0;
+                            };
+                            
+                            // Get bullets
+                            // TODO - fix when using DB
+                            if (w.widgetType == 'Shape') {
                                 let b: string = w.shapeBullets.toString();
                                 w.shapeBullets = b.split(',');
                             };
