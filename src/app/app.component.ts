@@ -4000,44 +4000,13 @@ export class AppComponent implements OnInit {
         let newWspec: Widget = this.currentWidgetCheckpoints.filter(wc => 
             wc.id == checkpointIDs[currentCheckpoint]
         )[0].widgetSpec;
-console.log('xx newWspec', newWspec, currentCheckpoint, checkpointIDs)
-        // Change it
+
+        // Change it on the UI
         this.globalVariableService.changedWidget.next(newWspec);
 
     }
 
-    // clickNavCheckpoint(dashboardID: number, id: number, direction: string) {
-    //     // Navigate Left or Right to a checkpoint
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickNavCheckpoint', '@Start');
 
-    //     // Load the Checkpoints if not done so before
-    //     if (this.currentWidgetCheckpoints.length == 0) {
-    //         this.globalVariableService.getWidgetCheckpoints().then (ca => {
-
-    //             // Set the data
-    //             this.currentWidgetCheckpoints = ca.slice();
-
-    //             // Return if no checkpoints (which is unlikely), else navigate
-    //             if (this.currentWidgetCheckpoints.length == 0) {
-    //                 return;
-    //             };
-
-    //             if (direction == 'Right') {
-    //                 this.checkpointNavigateRight(dashboardID, id, direction);
-    //             } else {
-    //                 this.checkpointNavigateLeft(dashboardID, id, direction);
-    //             };
-    //         });
-    //     } else {
-    //         if (direction == 'Right') {
-    //             this.checkpointNavigateRight(dashboardID, id, direction);
-
-    //         } else {
-    //             this.checkpointNavigateLeft(dashboardID, id, direction);
-    //         };
-    //     };
-
-    // }
 
     checkpointNavigateLeft(dashboardID: number, id: number, direction: string) {
         // Actual Checkpoint Navigation
