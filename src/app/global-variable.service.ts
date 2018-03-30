@@ -155,6 +155,7 @@ const widgetTemplate: Widget =
         "nrDataQualityIssues": 0,
         "nrComments": 0,
         "showCheckpoints": false,
+        "checkpointIDs": [],
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -3601,6 +3602,7 @@ export class GlobalVariableService {
                 {key: 'nrDataQualityIssues', 		type: 'int'},
                 {key: 'nrComments', 				type: 'int'},
                 {key: 'showCheckpoints', 			type: 'bool'},
+                {key: 'checkpointIDs', 			    type: 'array'},
                 {key: 'hyperlinkDashboardID', 		type: 'int'},
                 {key: 'hyperlinkDashboardTabID', 	type: 'int'},
                 {key: 'datasourceID', 				type: 'int'},
@@ -3966,7 +3968,9 @@ export class GlobalVariableService {
                 w.nrDataQualityIssues = changedWidget.nrDataQualityIssues;
                 w.nrComments = changedWidget.nrComments;
                 w.showCheckpoints = changedWidget.showCheckpoints;
+                w.checkpointIDs = changedWidget.checkpointIDs;
                 w.hyperlinkDashboardID = changedWidget.hyperlinkDashboardID;
+                w.checkpointIDs = changedWidget.checkpointIDs;
                 w.hyperlinkDashboardTabID = changedWidget.hyperlinkDashboardTabID;
                 w.datasourceID = changedWidget.datasourceID;
                 w.datasetID = changedWidget.datasetID;

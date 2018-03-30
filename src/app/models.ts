@@ -536,12 +536,13 @@ export class Widget {
     visualGrammar: string;              // Gramar for graphs, default = Vega
     version: number;
 
-    // Props @Runtime
+    // Properties load @Runtime
     isLiked: boolean;                   // @RunTime: True if Widget is liked by me
     isSelected: boolean;
     nrDataQualityIssues: number;
     nrComments: number;
     showCheckpoints: boolean;           // True is use is showing Checkpoints in Presentation Mode
+    checkpointIDs: number[];            // Array of FKs to widgetCheckpoints
 
     // Links @Runtime
     hyperlinkDashboardID: number;           // Optional Widget ID to jump to
