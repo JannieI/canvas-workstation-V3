@@ -2526,6 +2526,7 @@ export class AppComponent implements OnInit {
 
         this.globalVariableService.presentationMode.next(true);
         this.showMainMenu = false;
+        console.log('xx str P', this.presentationMode, this.currentWidgets, this.currentWidgetCheckpoints)
 
         this.menuOptionClickPostAction();
     }
@@ -3973,7 +3974,7 @@ export class AppComponent implements OnInit {
                         w.showCheckpoints = !w.showCheckpoints;
                     };
 
-                    // Get the Checkpoints for this W
+                    // Set the Checkpoints for this W
                     this.currentWidgetCheckpoints.forEach( wc => {
                         if (wc.widgetID == w.id
                             &&

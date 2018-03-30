@@ -3372,7 +3372,7 @@ export class GlobalVariableService {
         } else {
             return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
                 let returnData: WidgetCheckpoint[];
-                returnData = this.currentWidgetCheckpoints.filter(
+                returnData = this.widgetCheckpoints.filter(
                         i => i.dashboardID == dashboardID
                     )
                 this.currentWidgetCheckpoints = returnData;
