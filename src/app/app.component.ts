@@ -3832,7 +3832,7 @@ export class AppComponent implements OnInit {
         timeout: number,
         defaultMessage: string,): void {
         // Shows a message in the right area, ie StatusBar
-        this.globalFunctionService.printToConsole(this.constructor.name,'showStatusBarMessage', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'showMessage', '@Start');
 
         // Pop message in right area
         this.globalVariableService.showStatusBarMessage(
@@ -3846,7 +3846,8 @@ export class AppComponent implements OnInit {
         );
 
         // In addition, make sure the user is not stuck
-        if (message == this.globalVariableService.canvasSettings.notInEditModeMsg) {
+        if (message == this.globalVariableService.canvasSettings.notInEditModeMsg
+            &&  !this.presentationMode) {
             this.stuckCount = this.stuckCount + 1;
         } else {
             // this.stuckCount = 0;
