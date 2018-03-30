@@ -10,7 +10,6 @@ import { HttpHeaders }                from "@angular/common/http";
 import { CanvasAction }               from './models';
 import { ButtonBarAvailable }         from './models';
 import { Dataset }                    from './models';
-import { ButtonBarSelected }          from './models';
 import { CanvasActivity }             from './models';
 import { CanvasAlert }                from './models';
 import { CanvasComment }              from './models';
@@ -655,7 +654,6 @@ export class GlobalVariableService {
     widgetCheckpoints: WidgetCheckpoint[] = [];
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
     filePath: string;
-    widgetButtonsAvailable: ButtonBarAvailable[] = widgetButtonsAvailable;
 
     dashboards: Dashboard[] = [];
     dashboardTabs: DashboardTab[] = [];
@@ -740,7 +738,6 @@ export class GlobalVariableService {
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);
-    widgetButtonsSelected: ButtonBarSelected[] = widgetButtonsSelected;
     widgetGroup = new BehaviorSubject<number[]>([]);
     userID: string = 'JannieI';  // TODO - unHardCode
     

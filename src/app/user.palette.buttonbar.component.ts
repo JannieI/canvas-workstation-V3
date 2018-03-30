@@ -18,7 +18,6 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { DashboardTag }               from './models';
 import { ButtonBarAvailable}          from './models'
-import { ButtonBarSelected }          from './models';
 import { Dashboard }                  from './models';
 import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
@@ -40,8 +39,9 @@ export class UserPaletteButtonBarComponent implements OnInit {
     paletteButtonsOriginal: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
     widgetButtonsAvailable: ButtonBarAvailable[];
-    widgetButtonsSelected: ButtonBarSelected[];
-	constructor(
+
+
+    constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
@@ -52,8 +52,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         this.dashboards = this.globalVariableService.dashboards;
         this.dashboardTags = this.globalVariableService.dashboardTags;
-        this.widgetButtonsAvailable = this. globalVariableService.widgetButtonsAvailable;
-        this.widgetButtonsSelected = this. globalVariableService.widgetButtonsSelected;
 
         // Set Selectec and Total Available Arrays
         this.globalVariableService.getPaletteButtonBar().then( pb => {

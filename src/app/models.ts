@@ -164,13 +164,6 @@ export class ButtonBarAvailable {
     isDefault: boolean;
 }
 
-export class ButtonBarSelected {
-    id: number;
-    buttonText: string;
-    description: string;
-    sortOrder: number;
-}
-
 export class CSScolor {
     name: string;
 }
