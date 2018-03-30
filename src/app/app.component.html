@@ -1691,14 +1691,22 @@
 
     <div *ngIf="presentationMode  &&  !row.showCheckpoints  &&  (row.lastCheckpoint > 0)"
         class="widgetContainerCheckpointCenter" 
-        (click)="clickToggleShowCheckpoint(row.dashboardID, row.id, row.showCheckpoints)"
+        (click)="clickToggleShowCheckpoint(
+            i, 
+            row.dashboardID, 
+            row.id, 
+            row.showCheckpoints)"
         >
         <span class="widgetContainerCheckpointShowCheckpoint">
         </span>
     </div>
     <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.lastCheckpoint > 0)"
         class="widgetContainerCheckpointCenter" 
-        (click)="clickToggleShowCheckpoint(row.dashboardID, row.id, row.showCheckpoints)"
+        (click)="clickToggleShowCheckpoint(
+            i,
+            row.dashboardID, 
+            row.id, 
+            row.showCheckpoints)"
         >
         <span class="widgetContainerCheckpointShowWidget">
         </span>

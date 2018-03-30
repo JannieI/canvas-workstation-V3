@@ -3923,7 +3923,11 @@ export class AppComponent implements OnInit {
         this.showTitleForm = true;
     }
 
-    clickToggleShowCheckpoint(dashboardID: number, id: number, showCheckpoints) {
+    clickToggleShowCheckpoint(
+        index: number, 
+        dashboardID: number, 
+        id: number, 
+        showCheckpoints) {
         // Toggle to show Checkpoints or not
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleShowCheckpoint', '@Start');
 
@@ -3935,15 +3939,32 @@ export class AppComponent implements OnInit {
 
         // Remember the original W once
         if (!showCheckpoints) {
-            // currentWidgetsOriginals
-        }
+            let isFound: boolean = false;
+            this.currentWidgetsOriginals.forEach(wo => {
+                if (wo.dashboardID == dashboardID
+                    && wo.id == id) {
+                        isFound = true;
+                    }
+            });
+            if (!isFound) {
+                this.currentWidgetsOriginals.push(this.currentWidgets[index]);
+            }
+        };
+        console.log('xx this.currentWidgetsOriginals', this.currentWidgetsOriginals)
+
+        // Get the W Checkpoints once
         if (this.currentWidgetCheckpoints.length == 0) {
             this.globalVariableService.getCurrentWidgetCheckpoints(dashboardID).then (ca => {
 
                 // Set the data
                 this.currentWidgetCheckpoints = ca.slice();
 
-                this.currentWidgets.forEach( w=>
+                this.currentWidgets.forEach( w=> {
+                    if (w.dashboardID == dashboardID  &&  w.id == id) {
+                        w.showCheckpoints = !w.showCheckpoints;
+                    };
+
+                    // Get the Checkpoints for this W
                     this.currentWidgetCheckpoints.forEach( wc => {
                         if (wc.widgetID == w.id
                             &&
@@ -3953,17 +3974,14 @@ export class AppComponent implements OnInit {
                             wc.widgetSpec.currentCheckpoint = w.currentCheckpoint;
                             wc.widgetSpec.lastCheckpoint = w.lastCheckpoint;
                         };
-                        if (w.id == id) {
-                            w.showCheckpoints = !w.showCheckpoints;
-                        };
             
                     })
-                );
+                });
                 console.log('xx wc', this.currentWidgetCheckpoints)
             });
         } else {
             this.currentWidgets.forEach( w=> {
-                if (w.id == id) {
+                if (w.dashboardID == dashboardID  &&  w.id == id) {
                     w.showCheckpoints = !w.showCheckpoints;
                 };
             })
