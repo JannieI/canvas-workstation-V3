@@ -2895,11 +2895,10 @@ export class GlobalVariableService {
                                 w.showCheckpoints = false;
                                 w.checkpointIDs = [];
                                 w.currentCheckpoint = 0;
-                                w.lastCheckpoint = 0;
+                                w.lastCheckpoint = tempChk.length - 1;
                                 
                                 for (var x = 0; x < tempChk.length; x++) {
                                     w.checkpointIDs.push(tempChk[x].id);
-                                    w.lastCheckpoint = tempChk[x].id;
                                 };
 
                             } else {

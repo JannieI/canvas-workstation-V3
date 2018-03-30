@@ -546,6 +546,7 @@ export class Widget {
     currentCheckpoint: number;          // Index of current Checkpoint in checkpointIDs
     lastCheckpoint: number;             // Index of last Checkpoint in checkpointIDs
     // NB: lastCheckpoint = 0 is used to test that there are no Checkpoints for a W
+    // NG: it is not the ID, but the INDEX
 
     // Links @Runtime
     hyperlinkDashboardID: number;           // Optional Widget ID to jump to

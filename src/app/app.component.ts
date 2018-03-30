@@ -3924,7 +3924,7 @@ export class AppComponent implements OnInit {
         this.showTitleForm = true;
     }
 
-    clickToggleShowCheckpoint(id: number) {
+    clickToggleShowCheckpoint(dashboardID: number, id: number) {
         // Toggle to show Checkpoints or not
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleShowCheckpoint', '@Start');
 
@@ -3934,7 +3934,7 @@ export class AppComponent implements OnInit {
         // 2. load D: insert Chkpnt info for each W
         // 3. view Chkpnts: this is where we are now.  We need this for the *ngIfs ...
         if (this.currentWidgetCheckpoints.length == 0) {
-            this.globalVariableService.getWidgetCheckpoints().then (ca => {
+            this.globalVariableService.getCurrentWidgetCheckpoints(dashboardID).then (ca => {
 
                 // Set the data
                 this.currentWidgetCheckpoints = ca.slice();
@@ -3944,7 +3944,7 @@ export class AppComponent implements OnInit {
                         if (wc.widgetID == w.id
                             &&
                             wc.dashboardID == w.dashboardID) {
-                            wc.widgetSpec.showCheckpoints = w.showCheckpoints;
+                            wc.widgetSpec.showCheckpoints = true;
                             wc.widgetSpec.checkpointIDs = w.checkpointIDs;
                             wc.widgetSpec.currentCheckpoint = w.currentCheckpoint;
                             wc.widgetSpec.lastCheckpoint = w.lastCheckpoint;
@@ -3955,47 +3955,89 @@ export class AppComponent implements OnInit {
             
                     })
                 );
+                console.log('xx wc', this.currentWidgetCheckpoints)
             });
         } else {
-            this.currentWidgets.forEach( w=>
+            this.currentWidgets.forEach( w=> {
                 if (w.id == id) {
                     w.showCheckpoints = !w.showCheckpoints;
                 };
-            )
+            })
         };
     }
 
-    clickNavCheckpoint(dashboardID: number, id: number, direction: string) {
+    clickNavCheckpoint(
+        index: number,
+        dashboardID: number, 
+        id: number, 
+        direction: string,
+        showCheckpoints: boolean,
+        checkpointIDs: number[], 
+        currentCheckpoint: number, 
+        lastCheckpoint: number) {
         // Navigate Left or Right to a checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNavCheckpoint', '@Start');
-
-        // Load the Checkpoints if not done so before
-        if (this.currentWidgetCheckpoints.length == 0) {
-            this.globalVariableService.getWidgetCheckpoints().then (ca => {
-
-                // Set the data
-                this.currentWidgetCheckpoints = ca.slice();
-
-                // Return if no checkpoints (which is unlikely), else navigate
-                if (this.currentWidgetCheckpoints.length == 0) {
-                    return;
-                };
-
-                if (direction == 'Right') {
-                    this.checkpointNavigateRight(dashboardID, id, direction);
-                } else {
-                    this.checkpointNavigateLeft(dashboardID, id, direction);
-                };
-            });
-        } else {
-            if (direction == 'Right') {
-                this.checkpointNavigateRight(dashboardID, id, direction);
-            } else {
-                this.checkpointNavigateLeft(dashboardID, id, direction);
+        
+        // Increment or Decrement
+        if (direction == 'Right') {
+            if (currentCheckpoint < lastCheckpoint) {
+                currentCheckpoint = currentCheckpoint + 1;
             };
+        } else {    
+            if (currentCheckpoint > 0) {
+                currentCheckpoint = currentCheckpoint - 1;
+            };
+
         };
 
+        // As we loop on the Chkpnts, all have to be in sync
+        // TODO - there must be a better way
+        this.currentWidgetCheckpoints.forEach(wc => 
+            wc.widgetSpec.currentCheckpoint = currentCheckpoint
+        );
+
+        // Get the W Spec
+        let newWspec: Widget = this.currentWidgetCheckpoints.filter(wc => 
+            wc.id == checkpointIDs[currentCheckpoint]
+        )[0].widgetSpec;
+console.log('xx newWspec', newWspec, currentCheckpoint, checkpointIDs)
+        // Change it
+        this.globalVariableService.changedWidget.next(newWspec);
+
     }
+
+    // clickNavCheckpoint(dashboardID: number, id: number, direction: string) {
+    //     // Navigate Left or Right to a checkpoint
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickNavCheckpoint', '@Start');
+
+    //     // Load the Checkpoints if not done so before
+    //     if (this.currentWidgetCheckpoints.length == 0) {
+    //         this.globalVariableService.getWidgetCheckpoints().then (ca => {
+
+    //             // Set the data
+    //             this.currentWidgetCheckpoints = ca.slice();
+
+    //             // Return if no checkpoints (which is unlikely), else navigate
+    //             if (this.currentWidgetCheckpoints.length == 0) {
+    //                 return;
+    //             };
+
+    //             if (direction == 'Right') {
+    //                 this.checkpointNavigateRight(dashboardID, id, direction);
+    //             } else {
+    //                 this.checkpointNavigateLeft(dashboardID, id, direction);
+    //             };
+    //         });
+    //     } else {
+    //         if (direction == 'Right') {
+    //             this.checkpointNavigateRight(dashboardID, id, direction);
+
+    //         } else {
+    //             this.checkpointNavigateLeft(dashboardID, id, direction);
+    //         };
+    //     };
+
+    // }
 
     checkpointNavigateLeft(dashboardID: number, id: number, direction: string) {
         // Actual Checkpoint Navigation
