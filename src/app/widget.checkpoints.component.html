@@ -46,12 +46,12 @@
 
                     <div class="gridCheckpointTable">
                         <clr-datagrid class="datagrid-compact">
-                        
+
                             <!-- Empty Message -->
                             <clr-dg-placeholder>
-                                No Checkpoints created as yet 
+                                No Checkpoints created as yet
                             </clr-dg-placeholder>
-                        
+
                             <!-- Headers -->
                             <clr-dg-column>
                                 Delete
@@ -61,9 +61,9 @@
                                 >
                                 {{ col.displayName }}
                             </clr-dg-column>
-                        
+
                             <!-- Each Row -->
-                            <clr-dg-row *clrDgItems="let row of currentWidgetCheckpoints; 
+                            <clr-dg-row *clrDgItems="let row of currentWidgetCheckpoints;
                                 let i = index"
                                 (click)="clickRow(i)">
                                 <clr-dg-cell>
@@ -77,13 +77,13 @@
                                     {{ row[col.fieldName] }}
                                 </clr-dg-cell>
                             </clr-dg-row>
-                        
+
                             <!-- Footer -->
                             <clr-dg-footer>
                                 {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                 of {{pagination.totalItems}} records
-                                <clr-dg-pagination 
-                                    #pagination 
+                                <clr-dg-pagination
+                                    #pagination
                                     [clrDgPageSize]="5"
                                     >
                                 </clr-dg-pagination>

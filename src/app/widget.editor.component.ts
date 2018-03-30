@@ -11,6 +11,7 @@ import { ViewChild }                  from '@angular/core';
 // Our models
 import { Datasource }                 from './models';
 import { Widget }                     from './models';
+import { WidgetCheckpoint }           from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -321,7 +322,7 @@ const graphWidth: number = 420;
             } else {
                 this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
             };
-
+            
             // TODO - improve this when using a DB!
             let newID: number = 1;
             let ws: number[]=[];
@@ -332,6 +333,35 @@ const graphWidth: number = 420;
                 newID = Math.max(...ws) + 1;
             };
             this.localWidget.id = newID;
+ 
+            // Get Checkpoint info for ALL W, not only current one - AFTER ID collected
+            // TODO - fix when using DB
+            // TODO - this code is NOT DRY ~ getWidget() code in global var
+            let tempChk: WidgetCheckpoint[] = this.globalVariableService.widgetCheckpoints
+                .filter(wc => 
+                    wc.dashboardID == this.localWidget.dashboardID
+                    &&
+                    wc.widgetID == this.localWidget.id
+            );
+
+            if (tempChk.length > 0) {
+                this.localWidget.showCheckpoints = false;
+                this.localWidget.checkpointIDs = [];
+                this.localWidget.currentCheckpoint = 0;
+                this.localWidget.lastCheckpoint = tempChk.length - 1;
+                
+                for (var x = 0; x < tempChk.length; x++) {
+                    this.localWidget.checkpointIDs.push(tempChk[x].id);
+                };
+
+            } else {
+                this.localWidget.showCheckpoints = false;
+                this.localWidget.checkpointIDs = [];
+                this.localWidget.currentCheckpoint = 0;
+                this.localWidget.lastCheckpoint = -1;
+            };
+
+            // Update local and global vars
             this.localWidget.dashboardTabIDs.push(this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
             this.globalVariableService.widgets.push(this.localWidget);
             this.globalVariableService.currentWidgets.push(this.localWidget);

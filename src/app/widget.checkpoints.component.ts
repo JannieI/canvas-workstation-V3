@@ -56,7 +56,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         console.log('xx this.selectedWidget', this.selectedWidget)
         this.globalVariableService.getWidgetCheckpoints().then (ca => {
             // Set the data for the grid
-            this.currentWidgetCheckpoints = ca.filter(wc => 
+            this.currentWidgetCheckpoints = ca.filter(wc =>
                 wc.dashboardID == this.selectedWidget.dashboardID
                 &&
                 wc.widgetID == this.selectedWidget.id
