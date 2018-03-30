@@ -3937,8 +3937,8 @@ export class AppComponent implements OnInit {
         // 2. load D: insert Chkpnt info for each W
         // 3. view Chkpnts: this is where we are now.  We need this for the *ngIfs ...
 
-        // Remember the original W once
         if (!showCheckpoints) {
+            // Remember the original W once
             let isFound: boolean = false;
             this.currentWidgetsOriginals.forEach(wo => {
                 if (wo.dashboardID == dashboardID
@@ -3949,7 +3949,18 @@ export class AppComponent implements OnInit {
             if (!isFound) {
                 this.currentWidgetsOriginals.push(this.currentWidgets[index]);
             }
+        } else {
+            // Restore the original
+            // this.currentWidgets[index].showCheckpoints = false;
+            this.currentWidgetsOriginals.forEach(wo => {
+                if (wo.dashboardID == dashboardID  &&  wo.id == id) {
+                    wo.showCheckpoints = false;
+                    this.globalVariableService.changedWidget.next(wo);
+                };
+            });
+            return;
         };
+
         console.log('xx this.currentWidgetsOriginals', this.currentWidgetsOriginals)
 
         // Get the W Checkpoints once
