@@ -543,6 +543,7 @@ export class Widget {
     nrComments: number;
     showCheckpoints: boolean;           // True is use is showing Checkpoints in Presentation Mode
     checkpointIDs: number[];            // Array of FKs to widgetCheckpoints
+    currentCheckpoint: number;          // Index of current Checkpoint in checkpointIDs
 
     // Links @Runtime
     hyperlinkDashboardID: number;           // Optional Widget ID to jump to

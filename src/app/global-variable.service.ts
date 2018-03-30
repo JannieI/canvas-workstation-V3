@@ -156,6 +156,7 @@ const widgetTemplate: Widget =
         "nrComments": 0,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0;
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -3603,6 +3604,7 @@ export class GlobalVariableService {
                 {key: 'nrComments', 				type: 'int'},
                 {key: 'showCheckpoints', 			type: 'bool'},
                 {key: 'checkpointIDs', 			    type: 'array'},
+                {key: 'currentCheckpoint', 			type: 'int'},
                 {key: 'hyperlinkDashboardID', 		type: 'int'},
                 {key: 'hyperlinkDashboardTabID', 	type: 'int'},
                 {key: 'datasourceID', 				type: 'int'},
@@ -3969,7 +3971,9 @@ export class GlobalVariableService {
                 w.nrComments = changedWidget.nrComments;
                 w.showCheckpoints = changedWidget.showCheckpoints;
                 w.checkpointIDs = changedWidget.checkpointIDs;
+                w.currentCheckpoint = changedWidget.currentCheckpoint;
                 w.hyperlinkDashboardID = changedWidget.hyperlinkDashboardID;
+                w.currentCheckpoint = changedWidget.currentCheckpoint;
                 w.checkpointIDs = changedWidget.checkpointIDs;
                 w.hyperlinkDashboardTabID = changedWidget.hyperlinkDashboardTabID;
                 w.datasourceID = changedWidget.datasourceID;

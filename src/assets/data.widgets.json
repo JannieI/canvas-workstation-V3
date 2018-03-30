@@ -18,6 +18,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": 6,
         "hyperlinkDashboardTabID": 9,
 
@@ -155,6 +156,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -292,6 +294,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": 6,
         "hyperlinkDashboardTabID": 9,
 
@@ -428,6 +431,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -564,6 +568,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -700,6 +705,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -836,6 +842,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -973,6 +980,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -1110,6 +1118,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -1247,6 +1256,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -1384,6 +1394,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -1521,6 +1532,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -1663,6 +1675,7 @@
         "nrComments": 16,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -1800,6 +1813,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -1937,6 +1951,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -2074,6 +2089,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -2211,6 +2227,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -2348,6 +2365,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -2484,6 +2502,7 @@
       "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
       "hyperlinkDashboardID": 1,
       "hyperlinkDashboardTabID": 1,
       "datasourceID": null,
@@ -2619,6 +2638,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -2756,6 +2776,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -2893,6 +2914,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -3030,6 +3052,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -3167,6 +3190,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -3304,6 +3328,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -3441,6 +3466,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -3577,6 +3603,7 @@
         "nrComments": 4,
         "showCheckpoints": false,
         "checkpointIDs": [],
+        "currentCheckpoint": 0,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
         "datasourceID": 4,
