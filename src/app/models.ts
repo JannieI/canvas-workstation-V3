@@ -545,8 +545,9 @@ export class Widget {
     checkpointIDs: number[];            // Array of FKs to widgetCheckpoints
     currentCheckpoint: number;          // Index of current Checkpoint in checkpointIDs
     lastCheckpoint: number;             // Index of last Checkpoint in checkpointIDs
-    // NB: lastCheckpoint = 0 is used to test that there are no Checkpoints for a W
-    // NG: it is not the ID, but the INDEX
+    // NB: lastCheckpoint >= 0 is used to test that there are no Checkpoints for a W
+    // NB: it is not the ID, but the INDEX
+    // NB: So, it must be set to -1 to be meaningful.
 
     // Links @Runtime
     hyperlinkDashboardID: number;           // Optional Widget ID to jump to

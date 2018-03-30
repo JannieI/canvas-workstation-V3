@@ -157,7 +157,7 @@ const widgetTemplate: Widget =
         "showCheckpoints": false,
         "checkpointIDs": [],
         "currentCheckpoint": 0,
-        "lastCheckpoint": 0,
+        "lastCheckpoint": -1,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
 
@@ -2891,6 +2891,8 @@ export class GlobalVariableService {
                                     &&
                                     wc.widgetID == w.id
                             );
+console.log('xx tempC', tempChk, 'w', w.dashboardID
+,w.id)
                             if (tempChk.length > 0) {
                                 w.showCheckpoints = false;
                                 w.checkpointIDs = [];
@@ -2905,7 +2907,7 @@ export class GlobalVariableService {
                                 w.showCheckpoints = false;
                                 w.checkpointIDs = [];
                                 w.currentCheckpoint = 0;
-                                w.lastCheckpoint = 0;
+                                w.lastCheckpoint = -1;
                             };
                             
                             // Get bullets
