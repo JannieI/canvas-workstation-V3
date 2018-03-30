@@ -1673,7 +1673,7 @@
 
     
 
-    <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.lastCheckpoint == 0)"
+    <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.currentCheckpoint > 0)"
         class="widgetContainerCheckpointLeft" 
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (click)="clickNavCheckpoint(row.dashboardID, row.id, 'Left')"
@@ -1681,7 +1681,7 @@
         <b> < </b> 
     </div>
 
-    <div *ngIf="presentationMode  &&  !row.showCheckpoints  &&  (row.lastCheckpoint == 0)"
+    <div *ngIf="presentationMode  &&  !row.showCheckpoints  &&  (row.lastCheckpoint > 0)"
         class="widgetContainerCheckpointCenter" 
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (click)="clickToggleShowCheckpoint(row.id)"
@@ -1692,7 +1692,7 @@
         </span>
         <!-- <b> Show Checkpoints </b>  -->
     </div>
-    <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.lastCheckpoint == 0)"
+    <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.lastCheckpoint > 0)"
         class="widgetContainerCheckpointCenter" 
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (click)="clickToggleShowCheckpoint(row.id)"
@@ -1703,7 +1703,7 @@
         </span>
     </div>
 
-    <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.lastCheckpoint == 0)"
+    <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.currentCheckpoint < row.lastCheckpoint)"
         class="widgetContainerCheckpointRight" 
         [style.background-color]="row.isSelected? '#929699' : 'transparent'"
         (click)="clickNavCheckpoint(row.dashboardID, row.id, 'Right')"
