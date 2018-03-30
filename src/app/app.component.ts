@@ -3928,14 +3928,43 @@ export class AppComponent implements OnInit {
         // Toggle to show Checkpoints or not
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleShowCheckpoint', '@Start');
 
-        this.currentWidgets.forEach(w => {
-            if (w.id == id) {
-                w.showCheckpoints = !w.showCheckpoints;
-            }
-        })
-        
+        // Load the Checkpoints and insert checkpoint info for each W.  
+        // TODO - this is a bit of a hack, maybe it can be improved:
+        // 1. create Chkpnt with only Did and Wid
+        // 2. load D: insert Chkpnt info for each W
+        // 3. view Chkpnts: this is where we are now.  We need this for the *ngIfs ...
+        if (this.currentWidgetCheckpoints.length == 0) {
+            this.globalVariableService.getWidgetCheckpoints().then (ca => {
+
+                // Set the data
+                this.currentWidgetCheckpoints = ca.slice();
+
+                this.currentWidgets.forEach( w=>
+                    this.currentWidgetCheckpoints.forEach( wc => {
+                        if (wc.widgetID == w.id
+                            &&
+                            wc.dashboardID == w.dashboardID) {
+                            wc.widgetSpec.showCheckpoints = w.showCheckpoints;
+                            wc.widgetSpec.checkpointIDs = w.checkpointIDs;
+                            wc.widgetSpec.currentCheckpoint = w.currentCheckpoint;
+                            wc.widgetSpec.lastCheckpoint = w.lastCheckpoint;
+                        };
+                        if (w.id == id) {
+                            w.showCheckpoints = !w.showCheckpoints;
+                        };
+            
+                    })
+                );
+            });
+        } else {
+            this.currentWidgets.forEach( w=>
+                if (w.id == id) {
+                    w.showCheckpoints = !w.showCheckpoints;
+                };
+            )
+        };
     }
-    
+
     clickNavCheckpoint(dashboardID: number, id: number, direction: string) {
         // Navigate Left or Right to a checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNavCheckpoint', '@Start');
