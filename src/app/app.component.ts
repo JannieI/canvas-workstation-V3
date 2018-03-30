@@ -24,11 +24,12 @@ import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService } 	  from './global-function.service';
 
 // Our Models
-import { CanvasAction, PaletteButtonBar }               from './models'
+import { CanvasAction }               from './models'
 import { DashboardRecent }            from './models'
 import { Dataset }                    from './models'
 import { Datasource }                 from './models'
 import { Field }                      from './models'
+import { PaletteButtonBar }           from './models'
 import { Widget }                     from './models'
 import { WidgetCheckpoint }           from './models';
 
@@ -124,28 +125,28 @@ export enum KEY_CODE {
     DOWN_ARROW = 40
 }
 
-const paletteButtons = [
-    {
-        id: 1,
-        shape: "pencil",
-        size: "20",
-        class: "buttonBarIcon",
-        accesskey: "w",
-        functionName: "clickMenuEditUndo",
-        params: "",
-        tooltipContent: "Undo a previous action"
-    },
-    {
-        id: 2,
-        shape: "times",
-        size: "20",
-        class: "buttonBarIcon",
-        accesskey: "w",
-        functionName: "clickMenuEditSelectAllNone",
-        params: "Auto",
-        tooltipContent: "Selected/Unselect Widgets"
-    },
-]
+// const paletteButtons = [
+//     {
+//         id: 1,
+//         shape: "pencil",
+//         size: "20",
+//         class: "buttonBarIcon",
+//         accesskey: "w",
+//         functionName: "clickMenuEditUndo",
+//         params: "",
+//         tooltipContent: "Undo a previous action"
+//     },
+//     {
+//         id: 2,
+//         shape: "times",
+//         size: "20",
+//         class: "buttonBarIcon",
+//         accesskey: "w",
+//         functionName: "clickMenuEditSelectAllNone",
+//         params: "Auto",
+//         tooltipContent: "Selected/Unselect Widgets"
+//     },
+// ]
 
 
 @Component({
