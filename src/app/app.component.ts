@@ -3984,6 +3984,17 @@ export class AppComponent implements OnInit {
                             wc.widgetSpec.checkpointIDs = w.checkpointIDs;
                             wc.widgetSpec.currentCheckpoint = w.currentCheckpoint;
                             wc.widgetSpec.lastCheckpoint = w.lastCheckpoint;
+                            wc.widgetSpec.containerBackgroundcolor = w.containerBackgroundcolor
+                            wc.widgetSpec.containerBorder = w.containerBorder
+                            wc.widgetSpec.containerBorderRadius = w.containerBorderRadius
+                            wc.widgetSpec.containerBoxshadow = w.containerBoxshadow
+                            wc.widgetSpec.containerFontsize = w.containerFontsize
+                            wc.widgetSpec.containerHeight = w.containerHeight
+                            wc.widgetSpec.containerLeft = w.containerLeft
+                            wc.widgetSpec.containerHasTitle = w.containerHasTitle
+                            wc.widgetSpec.containerTop = w.containerTop
+                            wc.widgetSpec.containerWidth = w.containerWidth
+                            wc.widgetSpec.containerZindex = w.containerZindex
                         };
             
                     })

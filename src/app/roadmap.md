@@ -231,6 +231,7 @@ Tabs:
 Widgets:
 - Decide to get a W from another D - only show those where the user has access to the DS
 - Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
+- consider case-INsensitive testing in filterSlicer, or make it a user-defined setting
 - Give the user a vote - via like?  Create a sense of belonging and community
 - Consider multi-W actions, ie to move ALL selected objects - remember complexity since Sl and W sits in different components ...  Also, the current code is specific to ONE
 Performance:
