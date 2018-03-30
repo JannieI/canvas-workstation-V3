@@ -541,6 +541,7 @@ export class Widget {
     isSelected: boolean;
     nrDataQualityIssues: number;
     nrComments: number;
+    showCheckpoints: boolean;           // True is use is showing Checkpoints in Presentation Mode
 
     // Links @Runtime
     hyperlinkDashboardID: number;           // Optional Widget ID to jump to

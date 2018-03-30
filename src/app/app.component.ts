@@ -3977,7 +3977,7 @@ export class AppComponent implements OnInit {
         console.log('xx currentActiveCheckpointID',currentActiveCheckpointID)
         // Active one found, so find (till Before active one) previous one
         if (currentActiveCheckpointID != -1) {
-            for (var x = this.currentWidgetCheckpoints.length - 1; x > currentActiveCheckpointID; x--){
+            for (var x = this.currentWidgetCheckpoints.length - 1; x > currentActiveCheckpointID; x--) {
                 if (this.currentWidgetCheckpoints[x].dashboardID == dashboardID
                     &&
                     this.currentWidgetCheckpoints[x].widgetID == id) {
