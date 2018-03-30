@@ -4491,10 +4491,8 @@ export class GlobalVariableService {
         let columns: string[] = [];
 
         // Get cols from the data
-        // if (dataRow != null) {
-            // columns = Object.keys(dataRow[0]);
-        // };
         columns = Object.keys(dataRow)
+
         // Make All visible if nothing was given
         if (visibleFields.length == 0) {
             visibleFields = columns;
