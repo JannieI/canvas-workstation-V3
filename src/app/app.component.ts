@@ -4008,60 +4008,6 @@ export class AppComponent implements OnInit {
 
 
 
-    checkpointNavigateLeft(dashboardID: number, id: number, direction: string) {
-        // Actual Checkpoint Navigation
-        this.globalFunctionService.printToConsole(this.constructor.name,'checkpointNavigateLeft', '@Start');
-
-        let currentActiveCheckpointID: number = -1;
-        let newActiveCheckpointID: number = -1;
-
-        // Get Active Checkpoint for current W, deactive and remember index
-        for (var x = 0; x < this.currentWidgetCheckpoints.length; x++){
-            if (this.currentWidgetCheckpoints[x].active
-                &&
-                this.currentWidgetCheckpoints[x].dashboardID == dashboardID
-                &&
-                this.currentWidgetCheckpoints[x].widgetID == id) {
-                this.currentWidgetCheckpoints[x].active = false;
-                currentActiveCheckpointID = x;
-            };
-        };
-        console.log('xx currentActiveCheckpointID',currentActiveCheckpointID)
-        // Active one found, so find (till Before active one) previous one
-        if (currentActiveCheckpointID != -1) {
-            for (var x = this.currentWidgetCheckpoints.length - 1; x > currentActiveCheckpointID; x--) {
-                if (this.currentWidgetCheckpoints[x].dashboardID == dashboardID
-                    &&
-                    this.currentWidgetCheckpoints[x].widgetID == id) {
-                    this.currentWidgetCheckpoints[x].active = true;
-                    newActiveCheckpointID = x;
-                    break;
-                };
-            };
-        };
-        console.log('xx newActiveCheckpointID',newActiveCheckpointID)
-
-        // Either no active one found, or the last active was the last one.
-        // So, find the first (active or not) one from the END
-        if (newActiveCheckpointID == -1) {
-            for (var x = this.currentWidgetCheckpoints.length - 1; x >= 0; x--){
-                console.log('xx x', x)
-                if (this.currentWidgetCheckpoints[x].dashboardID == dashboardID
-                    &&
-                    this.currentWidgetCheckpoints[x].widgetID == id) {
-                    this.currentWidgetCheckpoints[x].active = true;
-                    newActiveCheckpointID = x;
-                    break;
-                };
-            };
-        };
-
-        // Refresh this one
-        if (newActiveCheckpointID > -1) {
-            this.globalVariableService.changedWidget.next(
-                this.currentWidgetCheckpoints[newActiveCheckpointID].widgetSpec)
-        };
-    }
 
     checkpointNavigateRight(dashboardID: number, id: number, direction: string) {
         // Actual Checkpoint Navigation
