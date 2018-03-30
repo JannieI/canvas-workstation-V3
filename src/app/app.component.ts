@@ -249,7 +249,6 @@ export class AppComponent implements OnInit {
     currentDashboardTabIndex: number = 0;
     currentTabBackgroundColor: string = '';
     currentTabColor: string = '';
-    currentWidgetCheckpointIndex: number;
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
     currentWidgets: Widget[] = [];
     currentWidgetsOriginals: Widget[] = [];
@@ -3924,7 +3923,7 @@ export class AppComponent implements OnInit {
         this.showTitleForm = true;
     }
 
-    clickToggleShowCheckpoint(dashboardID: number, id: number) {
+    clickToggleShowCheckpoint(dashboardID: number, id: number, showCheckpoints) {
         // Toggle to show Checkpoints or not
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleShowCheckpoint', '@Start');
 
@@ -3933,6 +3932,11 @@ export class AppComponent implements OnInit {
         // 1. create Chkpnt with only Did and Wid
         // 2. load D: insert Chkpnt info for each W
         // 3. view Chkpnts: this is where we are now.  We need this for the *ngIfs ...
+
+        // Remember the original W once
+        if (!showCheckpoints) {
+            // currentWidgetsOriginals
+        }
         if (this.currentWidgetCheckpoints.length == 0) {
             this.globalVariableService.getCurrentWidgetCheckpoints(dashboardID).then (ca => {
 
