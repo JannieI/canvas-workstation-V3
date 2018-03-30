@@ -45,7 +45,7 @@ export class DashboardDiscardComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        this.globalVariableService.isFirstTimeDashboardDiscard.unsubscribe();
+        // this.globalVariableService.isFirstTimeDashboardDiscard.unsubscribe();
     }
     
     clickClose(action: string) {

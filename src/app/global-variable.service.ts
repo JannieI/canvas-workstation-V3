@@ -2891,8 +2891,7 @@ export class GlobalVariableService {
                                     &&
                                     wc.widgetID == w.id
                             );
-console.log('xx tempC', tempChk, 'w', w.dashboardID
-,w.id)
+
                             if (tempChk.length > 0) {
                                 w.showCheckpoints = false;
                                 w.checkpointIDs = [];
@@ -3400,7 +3399,13 @@ console.log('xx tempC', tempChk, 'w', w.dashboardID
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    console.log('xx addWidgetCheckpoints ADDED', data)
+                    
+                    // Update Global vars to make sure they remain in sync
+                    this.widgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
+                    this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
+                    
+                    console.log('xx addWidgetCheckpoints ADDED', data, this.currentWidgetCheckpoints, this.widgetCheckpoints)
+
                     resolve(data);
                 },
                 err => {

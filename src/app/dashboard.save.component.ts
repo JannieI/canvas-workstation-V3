@@ -52,7 +52,7 @@ export class DashboardSaveComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        this.globalVariableService.isFirstTimeDashboardSave.unsubscribe();
+        // this.globalVariableService.isFirstTimeDashboardSave.unsubscribe();
     }
 
     clickClose(action: string) {

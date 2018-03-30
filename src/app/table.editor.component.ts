@@ -120,7 +120,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        this.globalVariableService.presentationMode.unsubscribe();
+        // this.globalVariableService.presentationMode.unsubscribe();
     }
     
     ngAfterViewInit() {

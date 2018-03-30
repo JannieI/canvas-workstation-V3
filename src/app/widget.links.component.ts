@@ -62,7 +62,7 @@ export class WidgetLinksComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        this.globalVariableService.isFirstTimeWidgetLinked.unsubscribe();
+        // this.globalVariableService.isFirstTimeWidgetLinked.unsubscribe();
     }
   
     clickClose(action: string) {
