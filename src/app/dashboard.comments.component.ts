@@ -19,6 +19,7 @@ import { GlobalVariableService}       from './global-variable.service';
 import { CanvasComment }              from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
+import { DashboardNewComponent } from './dashboard.new.component';
 
 @Component({
     selector: 'dashboard-comments',
@@ -33,31 +34,12 @@ export class DashboardCommentsComponent implements OnInit {
     canvasComments: CanvasComment[] = [];
     headerText: string;
     showTypeDashboard: boolean = false;
-    // datagridInput: DatagridInput =
-    // {
-    //     datagridColumns: this.datagridColumns,
-    //     datagridData: null,
-    //     datagridPagination: false,
-    //     datagridPaginationSize: 10,
-    //     datagridShowHeader: false,
-    //     datagridShowRowActionMenu: false,
-    //     datagridShowData: true,
-    //     datagridShowFooter: true,
-    //     datagridRowHeight: 12,
-    //     datagriduserCanChangeProperties: false,
-    //     datagridShowTotalsRow: false,
-    //     datagridShowTotalsCol: false,
-    //     datagridCanEditInCell: false,
-    //     datagridCanExportData: false,
-    //     datagridEmptyMessage: 'No Comments created so far',
-    //     datagridVisibleFields: []
-
-    // };
     datagridColumns: DatagridColumn[];
-    datagridData: any;
     datagridPagination: boolean = false;
     datagridPaginationSize: number = 10;
-    nrRecords: number;
+    indexLastRecord: number;
+    commentText: string;
+    editLast: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -77,13 +59,13 @@ export class DashboardCommentsComponent implements OnInit {
 
         // Set the data for the grid
         this.globalVariableService.getCanvasComments().then (ca => {
-            this.datagridData = ca.filter( c =>
+            this.canvasComments = ca.filter( c =>
                   (c.dashboardID == this.globalVariableService.currentDashboardInfo
                         .value.currentDashboardID
                    &&
                   (c.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) )
             );
-            this.nrRecords = this.datagridData.length;
+            this.indexLastRecord = this.canvasComments.length - 1;
         });
     }
 
@@ -97,9 +79,52 @@ export class DashboardCommentsComponent implements OnInit {
     }
 
     clickEditComment(index: number, id: number) {
-        // Last row can be Edited
+        // Last row can be Edited, so start process
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEditComment', '@Start');
 
+        this.editLast = true;
         
+    }
+
+    clickCancel() {
+        // Cancel Editing, go back
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
+
+        this.commentText = '';
+        this.editLast = false;
+        
+    }
+
+    clickSave() {
+        // Save changes to the last Comment
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Replace text and leave editing
+        this.canvasComments[this.canvasComments.length - 1].comment = this.commentText;
+        this.commentText = '';
+        this.editLast = false;
+
+        
+    }
+    clickAdd() {
+        // Add a new Comment
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Add
+        let dt = new Date();
+        
+        let newComment: CanvasComment =
+            {id: 4,
+            dashboardID: 4,
+            widgetID: 4,
+            comment: 'New stuffies',
+            creator: this.globalVariableService.userID,
+            createdOn: dt.toString()
+        };
+    
+        this.canvasComments.push(newComment);
+        this.commentText = '';
+        this.indexLastRecord = this.canvasComments.length - 1;
+    
     }
 }
