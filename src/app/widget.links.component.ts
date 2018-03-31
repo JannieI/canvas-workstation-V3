@@ -36,8 +36,10 @@ export class WidgetLinksComponent implements OnInit {
     linkedDashboard: string;
     linkedTab: string;
     selectedDashboardTabs: DashboardTab[] = [];
+    selectedDashboardID: number = 0;
     selectedDashboardIndex: number = 0;
     selectedDashboardName: string;
+    selectedTabID: number = 0;
     selectedTabIndex: number = 0;
     selectedTabName: string;
     showAdvancedFilters: boolean = false;
@@ -56,23 +58,15 @@ export class WidgetLinksComponent implements OnInit {
         this.dashboardTabs = this.globalVariableService.dashboardTabs;
 
         // Show linking
-        if (this.selectedWidget.hyperlinkDashboardID != null) {
-            let tempD: Dashboard[] = this.dashboards.filter(d =>
-                d.id == this.selectedWidget.hyperlinkDashboardID
-            );
-            if (tempD.length > 0) {
-                this.linkedDashboard = tempD[0].name;
+        if (this.selectedWidget.hyperlinkDashboardID != null
+            && 
+            this.selectedWidget.hyperlinkDashboardTabID != null) {
 
-                if (this.selectedWidget.hyperlinkDashboardTabID != null) {
-                    let tempT: DashboardTab[] = this.dashboardTabs.filter(t =>
-                        t.id == this.selectedWidget.hyperlinkDashboardTabID
-                    );
-                    if (tempT.length > 0) {
-                        this.linkedTab = tempT[0].name;
-                        this.dashboardIsLinked = true;
-                    };
-                };
-            };
+            this.showLink(
+                this.selectedWidget.hyperlinkDashboardID, 
+                this.selectedWidget.hyperlinkDashboardTabID
+            );
+
                 
         } else {
             this.dashboardIsLinked = false;
@@ -117,6 +111,18 @@ export class WidgetLinksComponent implements OnInit {
         // Link the selected D and T
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLink', '@Start');
 
+        this.selectedWidget.hyperlinkDashboardID = this.selectedDashboardID;
+        this.selectedWidget.hyperlinkDashboardTabID = this.selectedTabID;
+        if (this.selectedWidget.hyperlinkDashboardID != null
+            && 
+            this.selectedWidget.hyperlinkDashboardTabID != null) {
+
+            this.showLink(
+                this.selectedWidget.hyperlinkDashboardID, 
+                this.selectedWidget.hyperlinkDashboardTabID
+            );
+        };
+        this.dashboardIsLinked = true;
 
     }
 
@@ -131,6 +137,7 @@ export class WidgetLinksComponent implements OnInit {
         // Set D properties
         this.selectedDashboardName = selectedDashboardName;
         this.selectedDashboardIndex = index;
+        this.selectedDashboardID = id;
         
         // Filter its Tabs
         this.selectedDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == id);
@@ -151,8 +158,31 @@ export class WidgetLinksComponent implements OnInit {
 
         // Set T properties
         this.selectedTabName = selectedTabName;
+        this.selectedTabID = id;
         this.selectedTabIndex = index;
 
+    }
+
+    showLink(linkedDashboardID: number, selectedTabID: number) {
+        // Show the D and T that is currently linked
+        this.globalFunctionService.printToConsole(this.constructor.name,'showLink', '@Start');
+
+        let tempD: Dashboard[] = this.dashboards.filter(d =>
+            d.id == linkedDashboardID
+        );
+        if (tempD.length > 0) {
+            this.linkedDashboard = tempD[0].name;
+
+            if (this.selectedWidget.hyperlinkDashboardTabID != null) {
+                let tempT: DashboardTab[] = this.dashboardTabs.filter(t =>
+                    t.id == selectedTabID
+                );
+                if (tempT.length > 0) {
+                    this.linkedTab = tempT[0].name;
+                    this.dashboardIsLinked = true;
+                };
+            };
+        };
     }
 
 }
