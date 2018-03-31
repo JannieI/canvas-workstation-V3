@@ -48,13 +48,13 @@
         grid-column-end: 41;
         grid-row-start: 1;
         grid-row-end: 2;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
     .gridTitleDashboards {
-        grid-column-start: 6;
-        grid-column-end: 7;
+        grid-column-start: 5;
+        grid-column-end: 8;
         grid-row-start: 3;
         grid-row-end: 4;
         margin: 2px 2px 2px 20px;
@@ -69,11 +69,11 @@
         text-align: left;
     }
     .gridTitleProperties {
-        grid-column-start: 30;
+        grid-column-start: 32;
         grid-column-end: 39;
         grid-row-start: 3;
         grid-row-end: 4;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 2px;
         text-align: left;
     }
 

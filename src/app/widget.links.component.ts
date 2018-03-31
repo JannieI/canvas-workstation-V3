@@ -28,14 +28,15 @@ export class WidgetLinksComponent implements OnInit {
 
     @Output() formWidgetLinksClosed: EventEmitter<string> = new EventEmitter();
 
+    dashboardIsLinked: boolean = false;
     dashboards: Dashboard[];
     dashboardTabs: DashboardTab[];
-    dashboardNrWidgets: string;
-    dashboardNrRecords: string;
-    dashboardCreator: string;
-    dashboardNrTimesOpened: string;
     isFirstTimeWidgetLinked: boolean;
+    linkedDashboard: string;
+    linkedTab: string;
     selectedDashboardTabs: DashboardTab[] = [];
+    selectedDashboard: string;
+    selectedTab: string;
     showAdvancedFilters: boolean = false;
     showTypeDashboard: boolean = false;
 
@@ -74,38 +75,46 @@ export class WidgetLinksComponent implements OnInit {
 		this.formWidgetLinksClosed.emit(action);
     }
 
-    clickGotIt() {
-        // Until var for help boxie
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
+    clickUnlink() {
+        // Unlink the linked D and T
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickUnlink', '@Start');
 
         this.globalVariableService.isFirstTimeWidgetLinked.next(false);
 
     }
 
-    clickSelectRow(id: number,
-        nrWidgets: string,
-        nrRecords: string,
-        creator: string,
-        nrTimesOpened: string
+    clickLink() {
+        // Link the selected D and T
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickLink', '@Start');
+
+        this.globalVariableService.isFirstTimeWidgetLinked.next(false);
+
+    }
+
+    clickSelectDashboard(id: number,
+        selectedDashboard: string
         ) {
         // Select a row in D grid
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRow', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectDashboard', '@Start');
 
         // Set D properties
-        this.dashboardNrWidgets = nrWidgets;
-        this.dashboardNrRecords = nrRecords;
-        this.dashboardCreator = creator;
-        this.dashboardNrTimesOpened = nrTimesOpened;
+        this.selectedDashboard = selectedDashboard;
 
         // Filter its Tabs
         this.selectedDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == id);
     }
 
-    clickShowAdvancedFilters() {
-        // Show Advanced Filters - TODO: add to html, or delete here
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
+    clickSelectTab(id: number,
+        selectedTab: string
+        ) {
+        // Select a row in D grid
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectDashboard', '@Start');
 
-        this.showAdvancedFilters = !this.showAdvancedFilters;
+        // Set T properties
+        this.selectedTab = selectedTab;
+
+        // Filter its Tabs
+        this.selectedDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == id);
     }
 
 }

@@ -32,15 +32,15 @@ export class DashboardCommentsComponent implements OnInit {
     @Input() selectedWidgetID: number;
 
     canvasComments: CanvasComment[] = [];
-    headerText: string;
-    showTypeDashboard: boolean = false;
+    commentText: string;
     datagridColumns: DatagridColumn[];
     datagridPaginationSize: number = 6;
-    indexLastRecord: number;
-    commentText: string;
     editLast: boolean = false;
-    showError: boolean = false;
     errorMessage: string = '';
+    headerText: string;
+    indexLastRecord: number;
+    showError: boolean = false;
+    showTypeDashboard: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

@@ -23,7 +23,7 @@
                     <b>Tabs</b>
                 </div>
                 <div class="gridTitleProperties">
-                    <b>Destination Properties</b>
+                    <b>Linking</b>
                 </div>
                         
                 <div class="dashboardList">
@@ -32,12 +32,9 @@
                         <clr-dg-column>Description</clr-dg-column>
 
                         <clr-dg-row *ngFor="let row of dashboards"
-                            (click)="clickSelectRow(
+                            (click)="clickSelectDashboard(
                                 row.id,
-                                row.nrWidgets,
-                                row.nrRecords,
-                                row.creator,
-                                row.nrTimesOpened)"
+                                row.name"
                             >
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
                             <clr-dg-cell>{{row.description}}</clr-dg-cell>
@@ -50,7 +47,10 @@
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Description</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of selectedDashboardTabs">
+                        <clr-dg-row *ngFor="let row of selectedDashboardTabs"
+                            (click)="clickSelectTab(row.id,
+                                row.name"
+                            >
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
                             <clr-dg-cell>{{row.description}}</clr-dg-cell>
                         </clr-dg-row>
@@ -59,55 +59,41 @@
 
                 <div class="dashboardProperties">
 
-                    <div class="dashboardPropertyHeading">
-                        <b>Dashboard Properties</b>
-                    </div>
-
-                    <label class="dashboardLabel" for="dashboardNrWidgets">Nr of Widgets:</label>
-                    <span class="dashboardLine" id="dashboardNrWidgets">
-                        {{ dashboardNrWidgets }}
-                    </span>
-
-                    <br>
-                    <label class="dashboardLabel" for="dashboardNrRecords">Nr of Records:</label>
-                    <span class="dashboardLine">
-                        {{ dashboardNrRecords }}
-                    </span>
-
-                    <br>
-                    <label class="dashboardLabel" for="dashboardCreator">Creator:</label>
-                    <span class="dashboardLine">
-                        {{ dashboardCreator }}
-                    </span>
-
-                    <br>
-                    <label class="dashboardLabel" for="dashboardNrTimesOpened">Nr Times Opened:</label>
-                    <span class="dashboardLine">
-                        {{ dashboardNrTimesOpened }}
-                    </span>
-
-                    <br>
-                    <br>
-                    <div class="dashboardPropertyHeading">
-                            <b>Linking</b>
-                        </div>
-                    <div class="propertyLine">
-                        Linked Dashboard:
-                        <input type="text" id="formFields_7" placeholder="Dashboard Name">
+                    <div class="dashboardIsLinked">
+                        This widget is linked to:
                         <br>
-                        Linked Tab:
-                        <input type="text" id="formFields_7" placeholder="Dashboard Name">
+                        <b>Dashboard:</b> {{ linkedDashboard}}
+                        <br>
+                        <b>Tab:</b> {{ linkedTab}}
                         <br>
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            (click)="clickClose('Close')"
+                            (click)="clickUnlink()"
+                            >
+                            UnLink
+                        </button>
+
+                    </div>
+
+                    <br>
+                    <br>
+                    <div class="!dashboardIsLinked">
+                        Current selection:
+                        <br>
+                        <b>Dashboard:</b> {{ selectedDashboard}}
+                        <br>
+                        <b>Tab:</b> {{ selectedTab}}
+                        <br>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickLink('Close')"
                             >
                             Link
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
