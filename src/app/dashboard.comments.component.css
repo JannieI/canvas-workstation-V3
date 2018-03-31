@@ -11,6 +11,10 @@
     top: 0;
 }
 
+.errorMessage {
+    color: red;
+}
+
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);

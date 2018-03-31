@@ -40,6 +40,8 @@ export class DashboardCommentsComponent implements OnInit {
     indexLastRecord: number;
     commentText: string;
     editLast: boolean = false;
+    showError: boolean = false;
+    errorMessage: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -82,6 +84,15 @@ export class DashboardCommentsComponent implements OnInit {
         // Last row can be Edited, so start process
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEditComment', '@Start');
 
+        // Validation
+        if (this.canvasComments[this.canvasComments.length - 1]['creator'] != 
+            this.globalVariableService.userID) {
+            this.showError = true;
+            this.errorMessage = '';
+            this.errorMessage = 'Can only edit own comments';
+            return;
+        };
+
         this.commentText = this.canvasComments[this.canvasComments.length - 1].comment;
         this.editLast = true;
         
@@ -91,6 +102,8 @@ export class DashboardCommentsComponent implements OnInit {
         // Cancel Editing, go back
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
+        this.showError = false;
+        this.errorMessage = '';
         this.commentText = '';
         this.editLast = false;
         
@@ -100,16 +113,32 @@ export class DashboardCommentsComponent implements OnInit {
         // Save changes to the last Comment
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Validation
+        if (this.commentText == '') {
+            this.showError = true;
+            this.errorMessage = 'Comment cannot be blank';
+            return;
+        };
+    
         // Replace text and leave editing
         this.canvasComments[this.canvasComments.length - 1].comment = this.commentText;
         this.commentText = '';
         this.editLast = false;
-
+        this.showError = false;
+        this.errorMessage = '';
         
     }
+
     clickAdd() {
         // Add a new Comment
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Validation
+        if (this.commentText == '') {
+            this.showError = true;
+            this.errorMessage = 'Comment cannot be blank';
+            return;
+        };
 
         // Add
         let dt = new Date();
@@ -126,6 +155,8 @@ export class DashboardCommentsComponent implements OnInit {
         // Globally and locally
         this.globalVariableService.addCanvasComments(newComment).then( data => {
                 this.canvasComments.push(data)
+                this.showError = false;
+                this.errorMessage = '';
                 this.commentText = '';
                 this.indexLastRecord = this.canvasComments.length - 1;
         });
