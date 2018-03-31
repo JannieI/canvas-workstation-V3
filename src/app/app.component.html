@@ -1869,6 +1869,7 @@
 <!-- Modal: Dashboard Description -->
 <dashboard-description
     class="formPopupDashboard"
+    [selectedDashboard]="selectedDashboard"
     *ngIf="showModalDashboardDescription"
     (formDashboardDescriptionClosed)="handleCloseDashboardDescription($event)">Load Dashboard Description ...
 </dashboard-description>

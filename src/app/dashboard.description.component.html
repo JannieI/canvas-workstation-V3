@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
             <button type="button" class="closeButton" (click)="clickClose()">
@@ -62,7 +62,7 @@
                     <input [(ngModel)]="dashboardDefaultTab" type="text"
                         id="formFields_7"
                         placeholder="Enter Default Tab nr to open"
-                        size="20"
+                        size="30"
                         >
                 </div>
     
@@ -79,7 +79,7 @@
                     <input [(ngModel)]="dashboardRefreshTimer" type="text"
                         id="formFields_7"
                         placeholder="Enter Refresh Timer (period in seconds)"
-                        size="25"
+                        size="30"
                         >
                 </div>
 
@@ -118,7 +118,7 @@
                 </div>
     
                 <div class="gridBackgroundColor">
-                    <b>Background Color:</b>
+                    <b>Bg Color:</b>
                     <input [(ngModel)]="dashboardBackgroundColor" type="text"
                         id="formFields_7"
                         placeholder="Enter BackgroundColor"
@@ -126,7 +126,7 @@
                         >
                 </div>
                 <div class="gridBackgroundImage">
-                    <b>Background Image:</b>
+                    <b>Bg Image:</b>
                     <input [(ngModel)]="dashboardBackgroundImage" type="text"
                         id="formFields_7"
                         placeholder="Enter BackgroundImage"
@@ -141,29 +141,29 @@
                 </div>
 
                 <div class="gridState">
-                    <b>:</b>
+                    <b>State:</b>
                     {{ dashboardState }}
                 </div>
                 <div class="gridVersion">
-                    <b>:</b>
+                    <b>Version:</b>
                     {{ dashboardVersion }}
                 </div>
     
                 <div class="gridCreator">
-                    <b>:</b>
+                    <b>Creator:</b>
                     {{ dashboardCreator }}
                 </div>
                 <div class="gridCreated">
-                    <b>:</b>
+                    <b>Created:</b>
                     {{ dashboardCreated }}
                 </div>
 
                 <div class="gridEditor">
-                    <b>:</b>
+                    <b>Editor:</b>
                     {{ dashboardEditor }}
                 </div>
                 <div class="gridEdited">
-                    <b>:</b>
+                    <b>Edited:</b>
                     {{ dashboardEdited }}
                 </div>
     

@@ -25,6 +25,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 
 // Our Models
 import { CanvasAction }               from './models'
+import { Dashboard }                  from './models'
 import { DashboardRecent }            from './models'
 import { Dataset }                    from './models'
 import { Datasource }                 from './models'
@@ -278,11 +279,12 @@ export class AppComponent implements OnInit {
     presentationMode: boolean;
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
-    selectWidgetIndex: number;
+    selectedDashboard: Dashboard;
     selectDatasetID: number;
     selectDatasourceID: number;
     selectedWidget: Widget;
     selectedWidgetID: number;
+    selectWidgetIndex: number;
     selectedDatasourceID: number;       // DS of selecte W, -1 for D
     showGrid: boolean;
     showComments: boolean;
@@ -1508,6 +1510,14 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Set D 
+        this.globalVariableService.currentDashboards.forEach(d => {
+            if (d.id == this.globalVariableService.currentDashboardInfo
+                .value.currentDashboardID) {
+                this.selectedDashboard = d;
+            };
+        });
+        
         this.showModalDashboardDescription = true;
     }
 

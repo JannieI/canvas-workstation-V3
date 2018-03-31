@@ -15,7 +15,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(19, 1rem);
+    grid-template-rows: repeat(19, 1.2rem);
     margin-top: 2px;
 }
 
@@ -156,8 +156,8 @@
     }
 
     .gridStaticTitle {
-        grid-column-start: 8;
-        grid-column-end: 14;
+        grid-column-start: 1;
+        grid-column-end: 8;
         grid-row-start: 11;
         grid-row-end: 12;
         margin-left: 20px;
