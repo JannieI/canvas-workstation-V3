@@ -36,7 +36,7 @@ export class DashboardCommentsComponent implements OnInit {
     showTypeDashboard: boolean = false;
     datagridColumns: DatagridColumn[];
     datagridPagination: boolean = false;
-    datagridPaginationSize: number = 10;
+    datagridPaginationSize: number = 6;
     indexLastRecord: number;
     commentText: string;
     editLast: boolean = false;
@@ -82,6 +82,7 @@ export class DashboardCommentsComponent implements OnInit {
         // Last row can be Edited, so start process
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEditComment', '@Start');
 
+        this.commentText = this.canvasComments[this.canvasComments.length - 1].comment;
         this.editLast = true;
         
     }
@@ -117,7 +118,7 @@ export class DashboardCommentsComponent implements OnInit {
             {id: 4,
             dashboardID: 4,
             widgetID: 4,
-            comment: 'New stuffies',
+            comment: this.commentText,
             creator: this.globalVariableService.userID,
             createdOn: dt.toString()
         };
