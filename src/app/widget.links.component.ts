@@ -106,6 +106,10 @@ export class WidgetLinksComponent implements OnInit {
         // Unlink the linked D and T
         this.globalFunctionService.printToConsole(this.constructor.name,'clickUnlink', '@Start');
 
+        // Reset and hide area
+        this.selectedWidget.hyperlinkDashboardID = null;
+        this.selectedWidget.hyperlinkDashboardTabID = null;
+        this.dashboardIsLinked = false;
 
     }
 

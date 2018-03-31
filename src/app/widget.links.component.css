@@ -111,12 +111,12 @@
         grid-column-end: 40;
         grid-row-start: 4;
         grid-row-end: 21;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 2px;
     }
 
         .propertyLineHeader {
             margin: 2px 2px 2px 20px;
         }
         .propertyLine {
-            margin: 2px 2px 2px 20px;
+            margin: 2px 2px 2px 40px;
         }
