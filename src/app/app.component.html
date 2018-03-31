@@ -2073,6 +2073,7 @@
 <!-- Modal: widget links -->
 <widget-links
     *ngIf="showModalWidgetLinks"
+    [selectedWidget]="selectedWidget"
     (formWidgetLinksClosed)="handleCloseWidgetLinks($event)">Load Widget Links ...
 </widget-links>
 

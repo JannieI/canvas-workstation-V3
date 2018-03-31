@@ -18,6 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Dashboard }                  from './models';
 import { DashboardTab }               from './models';
+import { Widget }                     from './models';
 
 @Component({
     selector: 'widget-links',
@@ -26,12 +27,12 @@ import { DashboardTab }               from './models';
 })
 export class WidgetLinksComponent implements OnInit {
 
+    @Input() selectedWidget: Widget;
     @Output() formWidgetLinksClosed: EventEmitter<string> = new EventEmitter();
 
     dashboardIsLinked: boolean = false;
     dashboards: Dashboard[];
     dashboardTabs: DashboardTab[];
-    isFirstTimeWidgetLinked: boolean;
     linkedDashboard: string;
     linkedTab: string;
     selectedDashboardTabs: DashboardTab[] = [];
@@ -54,9 +55,34 @@ export class WidgetLinksComponent implements OnInit {
         this.dashboards = this.globalVariableService.dashboards;
         this.dashboardTabs = this.globalVariableService.dashboardTabs;
 
-        this.globalVariableService.isFirstTimeWidgetLinked.subscribe(
-            i => this.isFirstTimeWidgetLinked = i
-        )
+        // Show linking
+        if (this.selectedWidget.hyperlinkDashboardID != null) {
+            let tempD: Dashboard[] = this.dashboards.filter(d =>
+                d.id == this.selectedWidget.hyperlinkDashboardID
+            );
+            if (tempD.length > 0) {
+                this.linkedDashboard = tempD[0].name;
+
+                if (this.selectedWidget.hyperlinkDashboardTabID != null) {
+                    let tempT: DashboardTab[] = this.dashboardTabs.filter(t =>
+                        t.id == this.selectedWidget.hyperlinkDashboardTabID
+                    );
+                    if (tempT.length > 0) {
+                        this.linkedTab = tempT[0].name;
+                        this.dashboardIsLinked = true;
+                    };
+                };
+            };
+                
+        } else {
+            this.dashboardIsLinked = false;
+        };
+
+        // Select the topmost D
+        if (this.dashboards.length > 0) {
+            this.clickSelectDashboard(0, this.dashboards[0].id, this.dashboards[0].name)
+        };
+
     }
 
     ngOnDestroy() {
@@ -65,7 +91,6 @@ export class WidgetLinksComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        // this.globalVariableService.isFirstTimeWidgetLinked.unsubscribe();
     }
 
     clickClose(action: string) {
@@ -81,7 +106,6 @@ export class WidgetLinksComponent implements OnInit {
         // Unlink the linked D and T
         this.globalFunctionService.printToConsole(this.constructor.name,'clickUnlink', '@Start');
 
-        this.globalVariableService.isFirstTimeWidgetLinked.next(false);
 
     }
 
@@ -89,7 +113,6 @@ export class WidgetLinksComponent implements OnInit {
         // Link the selected D and T
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLink', '@Start');
 
-        this.globalVariableService.isFirstTimeWidgetLinked.next(false);
 
     }
 
@@ -107,6 +130,11 @@ export class WidgetLinksComponent implements OnInit {
         
         // Filter its Tabs
         this.selectedDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == id);
+        
+        // Select topmost Tab
+        if (this.dashboardTabs.length > 0) {
+            this.clickSelectTab(0, this.selectedDashboardTabs[0].id, this.selectedDashboardTabs[0].name)
+        };
     }
 
     clickSelectTab(
@@ -114,15 +142,13 @@ export class WidgetLinksComponent implements OnInit {
         id: number,
         selectedTabName: string
         ) {
-        // Select a row in D grid
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectDashboard', '@Start');
+        // Select a row in T grid
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTab', '@Start');
 
         // Set T properties
         this.selectedTabName = selectedTabName;
         this.selectedTabIndex = index;
 
-        // Filter its Tabs
-        this.selectedDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == id);
     }
 
 }
