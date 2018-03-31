@@ -11,6 +11,239 @@
     top: 0;
 }
 
-.propertyLine {
-    margin: 5px;
+
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(19, 1rem);
+    margin-top: 2px;
+}
+
+    .gridTitle {
+        font-size: 0.75rem;
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+    .gridSubTitle {
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridName {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridDescription {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridQArequired {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridIsSample {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridCode {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridDefaultTab {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridRefreshMode {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridRefreshTimer {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridExportFileType {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridExportUrl {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridPassword {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridTemplateID {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridBackgroundColor {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridBackgroundImage {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridStaticTitle {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridState {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridVersion {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridCreator {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 13;
+        grid-row-end: 14;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridCreated {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 13;
+        grid-row-end: 14;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridEditor {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 14;
+        grid-row-end: 15;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridEdited {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 14;
+        grid-row-end: 15;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridRefresher {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 15;
+        grid-row-end: 16;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridRefreshed {
+        grid-column-start: 8;
+        grid-column-end: 14;
+        grid-row-start: 15;
+        grid-row-end: 16;
+        margin-left: 20px;
+        text-align: left;
+    }
+ 
+.gridButtonCancel {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 18;
+    grid-row-end: 19;
+    text-align: left;
+}
+
+.gridButtonSave {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 18;
+    grid-row-end: 19;
+    text-align: left;
 }
