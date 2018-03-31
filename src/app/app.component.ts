@@ -3941,6 +3941,8 @@ export class AppComponent implements OnInit {
 
         // Restore the Original (when moving out of showCheckpoint mode)
         if (showCheckpoints) {
+            console.log('xx this.currentWidgetsOriginals', this.currentWidgetsOriginals)
+
             this.currentWidgetsOriginals.forEach(wo => {
                 if (wo.dashboardID == dashboardID  &&  wo.id == id) {
                     wo.showCheckpoints = false;
@@ -3960,6 +3962,7 @@ export class AppComponent implements OnInit {
         });
         if (!isFound) {
             this.currentWidgetsOriginals.push(this.currentWidgets[index]);
+            console.log('xx this.currentWidgetsOriginals', this.currentWidgetsOriginals)
         };
 
         // Get the W Checkpoints once
@@ -4000,9 +4003,9 @@ export class AppComponent implements OnInit {
                     })
                 });
 
+                // Show the first Checkpoint
                 // If only one Chkpnt, then we dont show the <> arrows, so one cannot navigiate.
-                // Just show the only Checkpoint here
-                if (this.currentWidgets[index].checkpointIDs.length == 1) {
+                if (this.currentWidgets[index].checkpointIDs.length > 0) {
 
                     // Get the W Spec
                     let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc => 
@@ -4026,9 +4029,9 @@ export class AppComponent implements OnInit {
                 };
             });
 
+            // Show the first Checkpoint
             // If only one Chkpnt, then we dont show the <> arrows, so one cannot navigiate.
-            // Just show the only Checkpoint here
-            if (this.currentWidgets[index].checkpointIDs.length == 1) {
+            if (this.currentWidgets[index].checkpointIDs.length > 0) {
 
                 // Get the W Spec
                 let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc => 
@@ -4078,13 +4081,18 @@ export class AppComponent implements OnInit {
         );
 
         // Get the W Spec
-        let newWspec: Widget = this.currentWidgetCheckpoints.filter(wc => 
+        let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc => 
             wc.id == checkpointIDs[currentCheckpoint]
-        )[0].widgetSpec;
-
-        // Change it on the UI
-        this.globalVariableService.changedWidget.next(newWspec);
-
+        );
+        let newWspec: Widget = newW[0].widgetSpec;
+        if (newW != undefined) {
+            if (newW.length > 0) {
+                // Change it on the UI
+                this.globalVariableService.changedWidget.next(newWspec);
+            };
+        };
+        console.log('xx end 1', currentCheckpoint,checkpointIDs)
+        console.log('xx end2', this.currentWidgetCheckpoints, newW, newWspec)
     }
 
     deleteWidget(widgetType, widgetID: number = null) {

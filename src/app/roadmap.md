@@ -191,8 +191,8 @@ This document describes items for later versions of Canvas.
     6. Startup D: should this be settable as a pref, or should we always display the Landing page?
     7 .Show Grid - currently a .png -> how to make this dynamic ?
     8 .Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
-       at any point in the past.  It must be clearly marked for the user.  Must also be able to
-       search the list, and see a list of undo actions.
+       at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo 
+       actions when a snapshot is taken, or not.  Think clearly about it.
     9 .Import: check security, particularly for the Datasource.  Also, is the access rights
        stored with the text file (security risk)?  Also, can / should it over-write an
        existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
