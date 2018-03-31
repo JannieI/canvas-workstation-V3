@@ -35,7 +35,6 @@ export class DashboardCommentsComponent implements OnInit {
     headerText: string;
     showTypeDashboard: boolean = false;
     datagridColumns: DatagridColumn[];
-    datagridPagination: boolean = false;
     datagridPaginationSize: number = 6;
     indexLastRecord: number;
     commentText: string;
@@ -85,7 +84,7 @@ export class DashboardCommentsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEditComment', '@Start');
 
         // Validation
-        if (this.canvasComments[this.canvasComments.length - 1]['creator'] != 
+        if (this.canvasComments[this.canvasComments.length - 1]['creator'] !=
             this.globalVariableService.userID) {
             this.showError = true;
             this.errorMessage = '';
@@ -95,7 +94,7 @@ export class DashboardCommentsComponent implements OnInit {
 
         this.commentText = this.canvasComments[this.canvasComments.length - 1].comment;
         this.editLast = true;
-        
+
     }
 
     clickCancel() {
@@ -106,7 +105,7 @@ export class DashboardCommentsComponent implements OnInit {
         this.errorMessage = '';
         this.commentText = '';
         this.editLast = false;
-        
+
     }
 
     clickSave() {
@@ -119,14 +118,14 @@ export class DashboardCommentsComponent implements OnInit {
             this.errorMessage = 'Comment cannot be blank';
             return;
         };
-    
+
         // Replace text and leave editing
         this.canvasComments[this.canvasComments.length - 1].comment = this.commentText;
         this.commentText = '';
         this.editLast = false;
         this.showError = false;
         this.errorMessage = '';
-        
+
     }
 
     clickAdd() {
@@ -142,7 +141,7 @@ export class DashboardCommentsComponent implements OnInit {
 
         // Add
         let dt = new Date();
-        
+
         let newComment: CanvasComment =
             {id: null,
             dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
@@ -151,7 +150,7 @@ export class DashboardCommentsComponent implements OnInit {
             creator: this.globalVariableService.userID,
             createdOn: dt.toString()
         };
-        
+
         // Globally and locally
         this.globalVariableService.addCanvasComments(newComment).then( data => {
                 this.canvasComments.push(data)
@@ -160,6 +159,6 @@ export class DashboardCommentsComponent implements OnInit {
                 this.commentText = '';
                 this.indexLastRecord = this.canvasComments.length - 1;
         });
-        
+
     }
 }

@@ -50,21 +50,21 @@ export class WidgetLinksComponent implements OnInit {
 
         this.dashboards = this.globalVariableService.dashboards;
         this.dashboardTabs = this.globalVariableService.dashboardTabs;
-        
+
         this.globalVariableService.isFirstTimeWidgetLinked.subscribe(
             i => this.isFirstTimeWidgetLinked = i
         )
     }
 
     ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
+        // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
         // this.globalVariableService.isFirstTimeWidgetLinked.unsubscribe();
     }
-  
+
     clickClose(action: string) {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -82,7 +82,7 @@ export class WidgetLinksComponent implements OnInit {
 
     }
 
-    clickSelectRow(id: number, 
+    clickSelectRow(id: number,
         nrWidgets: string,
         nrRecords: string,
         creator: string,
