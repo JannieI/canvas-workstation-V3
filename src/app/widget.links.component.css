@@ -114,16 +114,9 @@
         margin: 2px 2px 2px 20px;
     }
 
-        .dashboardLabel {
-            font-size: 0.55rem;
+        .propertyLineHeader {
             margin: 2px 2px 2px 20px;
         }
-
-        .dashboardLine {
-            font-size: 0.55rem;
-            margin: 2px 2px 2px 20px;
-        }
-
         .propertyLine {
             margin: 2px 2px 2px 20px;
         }

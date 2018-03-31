@@ -32,9 +32,7 @@
                         <clr-dg-column>Description</clr-dg-column>
 
                         <clr-dg-row *ngFor="let row of dashboards"
-                            (click)="clickSelectDashboard(
-                                row.id,
-                                row.name"
+                            (click)="clickSelectDashboard(row.id,row.name)"
                             >
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
                             <clr-dg-cell>{{row.description}}</clr-dg-cell>
@@ -48,8 +46,7 @@
                         <clr-dg-column>Description</clr-dg-column>
 
                         <clr-dg-row *ngFor="let row of selectedDashboardTabs"
-                            (click)="clickSelectTab(row.id,
-                                row.name"
+                            (click)="clickSelectTab(row.id,row.name)"
                             >
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
                             <clr-dg-cell>{{row.description}}</clr-dg-cell>
@@ -59,39 +56,55 @@
 
                 <div class="dashboardProperties">
 
-                    <div class="dashboardIsLinked">
-                        This widget is linked to:
-                        <br>
-                        <b>Dashboard:</b> {{ linkedDashboard}}
-                        <br>
-                        <b>Tab:</b> {{ linkedTab}}
-                        <br>
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            (click)="clickUnlink()"
-                            >
-                            UnLink
-                        </button>
+                    <div *ngIf="dashboardIsLinked">
 
+                        <div class="propertyLineHeader">
+                            <b>This widget is linked to:</b>
+                        </div>
+                        
+                        <div class="propertyLine">
+                            Dashboard: {{ linkedDashboard}}
+                        </div>
+
+                        <div class="propertyLine">
+                            Tab: {{ linkedTab}}
+                        </div>
+                        
+                        <div class="propertyLine">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickUnlink()"
+                                >
+                                UnLink
+                            </button>
+                        </div>
                     </div>
 
                     <br>
-                    <br>
                     <div class="!dashboardIsLinked">
-                        Current selection:
-                        <br>
-                        <b>Dashboard:</b> {{ selectedDashboard}}
-                        <br>
-                        <b>Tab:</b> {{ selectedTab}}
-                        <br>
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            (click)="clickLink('Close')"
-                            >
-                            Link
-                        </button>
+
+                        <div class="propertyLineHeader">
+                            <b>Current selection:</b>
+                        </div>
+
+                        <div class="propertyLine">
+                            Dashboard: {{ selectedDashboard}}
+                        </div>
+
+                        <div class="propertyLine">
+                            Tab: {{ selectedTab}}
+                        </div>
+
+                        <div class="propertyLine">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickLink('Close')"
+                                >
+                                Link
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
