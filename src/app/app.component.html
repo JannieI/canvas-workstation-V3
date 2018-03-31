@@ -135,41 +135,6 @@
                             </clr-dropdown-menu>
                         </clr-dropdown>
 
-                        <button type="button"
-                            clrDropdownItem
-                            title="Rename an existing Dashboard"
-                            (click)="clickDashboardRename()"
-                            >
-                            Rename
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            title="Save or Export the current Dashboard"
-                            (click)="clickDashboardSave()"
-                            >
-                            Save
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            title="Discard changes to the current Dashboard"
-                            (click)="clickDashboardDiscard()"
-                            >
-                            Discard
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            title="Share access to a Dashboard"
-                            (click)="clickDashboardShare()"
-                            >
-                            Share
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            title="Manage Snapshots of the current Dashboard"
-                            (click)="clickDashboardSnapshots()"
-                            >
-                            Snapshots
-                        </button>
                         <clr-dropdown>
                             <button
                                 type="button"
@@ -179,7 +144,7 @@
                                 >
                                 Details
                             </button>
-                            <clr-dropdown-menu clrPosition="right-bottom" *clrIfOpen>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
                                 <button type="button"
                                     clrDropdownItem
                                     title="Edit Dashboard Description details"
@@ -257,6 +222,42 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
+    
+                        <button type="button"
+                            clrDropdownItem
+                            title="Rename an existing Dashboard"
+                            (click)="clickDashboardRename()"
+                            >
+                            Rename
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            title="Save or Export the current Dashboard"
+                            (click)="clickDashboardSave()"
+                            >
+                            Save
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            title="Discard changes to the current Dashboard"
+                            (click)="clickDashboardDiscard()"
+                            >
+                            Discard
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            title="Share access to a Dashboard"
+                            (click)="clickDashboardShare()"
+                            >
+                            Share
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            title="Manage Snapshots of the current Dashboard"
+                            (click)="clickDashboardSnapshots()"
+                            >
+                            Snapshots
+                        </button>
 
                         <button type="button"
                             clrDropdownItem
