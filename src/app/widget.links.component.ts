@@ -28,7 +28,7 @@ import { Widget }                     from './models';
 export class WidgetLinksComponent implements OnInit {
 
     @Input() selectedWidget: Widget;
-    @Output() formWidgetLinksClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formWidgetLinksClosed: EventEmitter<Widget> = new EventEmitter();
 
     dashboardIsLinked: boolean = false;
     dashboards: Dashboard[];
@@ -93,7 +93,7 @@ export class WidgetLinksComponent implements OnInit {
 
         console.log('clickClose')
 
-		this.formWidgetLinksClosed.emit(action);
+		this.formWidgetLinksClosed.emit(this.selectedWidget);
     }
 
     clickUnlink() {
@@ -111,6 +111,7 @@ export class WidgetLinksComponent implements OnInit {
         // Link the selected D and T
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLink', '@Start');
 
+        // Update local and linked info
         this.selectedWidget.hyperlinkDashboardID = this.selectedDashboardID;
         this.selectedWidget.hyperlinkDashboardTabID = this.selectedTabID;
         if (this.selectedWidget.hyperlinkDashboardID != null
@@ -122,6 +123,8 @@ export class WidgetLinksComponent implements OnInit {
                 this.selectedWidget.hyperlinkDashboardTabID
             );
         };
+
+        // Show the linked info
         this.dashboardIsLinked = true;
 
     }

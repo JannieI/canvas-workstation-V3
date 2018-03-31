@@ -920,6 +920,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetLinks', '@Start');
 
+        
         this.menuOptionClickPostAction();
 
         this.showModalWidgetLinks = false;
