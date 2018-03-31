@@ -68,7 +68,7 @@ export class DashboardDataQualityComponent implements OnInit {
                 dsArray.push(ds.id)
             );
         } else {
-            this.headerText = 'selected Widget';
+            this.headerText = 'the selected Widget';
             dsArray = [this.selectedDatasourceID];
         };
 

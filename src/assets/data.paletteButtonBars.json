@@ -132,7 +132,7 @@
       "isDefault": true,
       "functionName": "clickMenuEditSelectAllNone",
       "params": "Auto",
-      "tooltipContent": "Select all the Widgets on this Tab",
+      "tooltipContent": "Un/Select all the Widgets on this Tab",
       "isSelected": false
     },
     {
@@ -166,7 +166,7 @@
       "isDefault": false,
       "functionName": "clickMenuEditSelectAllNone",
       "params": "Auto",
-      "tooltipContent": "UnSelect all the Widgets on this Tab",
+      "tooltipContent": "Un/Select all the Widgets on this Tab",
       "isSelected": false
     },
     {
