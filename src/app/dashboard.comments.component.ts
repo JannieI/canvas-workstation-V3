@@ -54,24 +54,10 @@ export class DashboardCommentsComponent implements OnInit {
 
     // };
     datagridColumns: DatagridColumn[];
-    datagridInput: DatagridInput = null;
     datagridData: any;
     datagridPagination: boolean = false;
     datagridPaginationSize: number = 10;
-    datagridShowHeader: boolean = false;
-    datagridShowRowActionMenu: boolean = false;
-    datagridShowData: boolean = true;
-    datagridShowFooter: boolean = false;
-    datagridRowHeight: number = 12;
-    datagriduserCanChangeProperties: boolean = false;
-    datagridShowTotalsRow: boolean = false;
-    datagridShowTotalsCol: boolean = false;
-    datagridCanEditInCell: boolean = false;
-    datagridCanExportData: boolean = false;
-    datagridEmptyMessage: string = 'No Comments created so far';
-    datagridVisibleFields: string[];
-    datagridShowFields: string[] = ["comment","creator","createdOn"];
-
+    nrRecords: number;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -79,77 +65,41 @@ export class DashboardCommentsComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Set header
         if (this.selectedWidgetID == -1) {
             this.headerText = 'this Dashboard';
         } else {
             this.headerText = 'the selected Widget';
         };
 
-        // this.globalVariableService.getCanvasComments().then(cC => {
-        //      cC.forEach(i => {
-        //          if (i.dashboardID == this.globalVariableService.currentDashboardInfo
-        //                 .value.currentDashboardID
-        //              &&
-        //              (i.widgetID == this.selectedWidgetID  ||
-        //                 this.selectedWidgetID == -1) ) {
-        //              this.canvasComments.push(i)
-        //          };
-        //     });
-        //     console.log('xx comm', this.globalVariableService.currentDashboardInfo
-        //     .value.currentDashboardID, this.selectedWidgetID, this.canvasComments)
-        // });
+        // Set the data for the grid
         this.globalVariableService.getCanvasComments().then (ca => {
-            // Set the data for the grid
             this.datagridData = ca.filter( c =>
                   (c.dashboardID == this.globalVariableService.currentDashboardInfo
                         .value.currentDashboardID
                    &&
                   (c.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) )
             );
-
-            // Set the column object
-            this.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], this.datagridShowFields, this.datagridVisibleFields);
-
-            // if (ca.length > 0) {
-            //     const columns = Object.keys(ca[0]);
-            //     for (var i = 0; i < columns.length; i++) {
-
-            //         this.datagridColumns.push(
-            //         {
-            //             id: i,
-            //             displayName: columns[i],
-            //             fieldName: columns[i],
-            //             databaseDBTableName: '',
-            //             databaseDBFieldName: '',
-            //             tooltip: '',
-            //             datatype: 'string',
-            //             prefix: '',
-            //             divideBy: 0,
-            //             displayLength: 12,
-            //             maxLength: 0,
-            //             sortOrder: '',
-            //             filter: '',
-            //             backgroundColor: '',
-            //             color: '',
-            //             conditionalFormatColor: '',
-            //             nrDataQualityIssues: 0,
-            //             maxValue: 0,
-            //             minValue: 0,
-            //             average: 0,
-            //             linkedDashboardID: 0,
-            //             linkedDashboardTabID: 0,
-            //             isFrozen: false,
-            //         });
-            //     };
-            // };
-            console.log('xx comm',  this.selectedWidgetID)
+            this.nrRecords = this.datagridData.length;
         });
     }
 
     clickClose(action: string) {
+        // Close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         console.log('clickClose')
 
 		this.formDashboardCommentsClosed.emit(action);
+    }
+
+    clickEditComment(index: number, id: number) {
+        // Last row can be Edited
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickEditComment', '@Start');
+
+        
     }
 }
