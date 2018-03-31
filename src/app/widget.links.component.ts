@@ -35,8 +35,10 @@ export class WidgetLinksComponent implements OnInit {
     linkedDashboard: string;
     linkedTab: string;
     selectedDashboardTabs: DashboardTab[] = [];
-    selectedDashboard: string;
-    selectedTab: string;
+    selectedDashboardIndex: number = 0;
+    selectedDashboardName: string;
+    selectedTabIndex: number = 0;
+    selectedTabName: string;
     showAdvancedFilters: boolean = false;
     showTypeDashboard: boolean = false;
 
@@ -91,27 +93,33 @@ export class WidgetLinksComponent implements OnInit {
 
     }
 
-    clickSelectDashboard(id: number,
-        selectedDashboard: string
+    clickSelectDashboard(
+        index: number,
+        id: number,
+        selectedDashboardName: string
         ) {
         // Select a row in D grid
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectDashboard', '@Start');
 
         // Set D properties
-        this.selectedDashboard = selectedDashboard;
-
+        this.selectedDashboardName = selectedDashboardName;
+        this.selectedDashboardIndex = index;
+        
         // Filter its Tabs
         this.selectedDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == id);
     }
 
-    clickSelectTab(id: number,
-        selectedTab: string
+    clickSelectTab(
+        index: number,
+        id: number,
+        selectedTabName: string
         ) {
         // Select a row in D grid
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectDashboard', '@Start');
 
         // Set T properties
-        this.selectedTab = selectedTab;
+        this.selectedTabName = selectedTabName;
+        this.selectedTabIndex = index;
 
         // Filter its Tabs
         this.selectedDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == id);

@@ -31,8 +31,9 @@
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Description</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of dashboards"
-                            (click)="clickSelectDashboard(row.id,row.name)"
+                        <clr-dg-row *ngFor="let row of dashboards; let i = index"
+                            [style.background-color]="selectedDashboardIndex==i? 'rgb(196, 196, 206)' : 'transparent'"
+                            (click)="clickSelectDashboard(i, row.id, row.name)"
                             >
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
                             <clr-dg-cell>{{row.description}}</clr-dg-cell>
@@ -45,8 +46,9 @@
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Description</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of selectedDashboardTabs"
-                            (click)="clickSelectTab(row.id,row.name)"
+                        <clr-dg-row *ngFor="let row of selectedDashboardTabs; let i = index"
+                            [style.background-color]="selectedTabIndex==i? 'rgb(196, 196, 206)' : 'transparent'"
+                            (click)="clickSelectTab(i, row.id, row.name)"
                             >
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
                             <clr-dg-cell>{{row.description}}</clr-dg-cell>
@@ -89,11 +91,11 @@
                         </div>
 
                         <div class="propertyLine">
-                            Dashboard: {{ selectedDashboard}}
+                            Dashboard: {{ selectedDashboardName }}
                         </div>
 
                         <div class="propertyLine">
-                            Tab: {{ selectedTab}}
+                            Tab: {{ selectedTabName }}
                         </div>
 
                         <div class="propertyLine">
