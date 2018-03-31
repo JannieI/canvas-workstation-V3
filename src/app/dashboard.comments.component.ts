@@ -115,17 +115,20 @@ export class DashboardCommentsComponent implements OnInit {
         let dt = new Date();
         
         let newComment: CanvasComment =
-            {id: 4,
-            dashboardID: 4,
-            widgetID: 4,
+            {id: null,
+            dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            widgetID: this.selectedWidgetID,
             comment: this.commentText,
             creator: this.globalVariableService.userID,
             createdOn: dt.toString()
         };
-    
-        this.canvasComments.push(newComment);
-        this.commentText = '';
-        this.indexLastRecord = this.canvasComments.length - 1;
-    
+        
+        // Globally and locally
+        this.globalVariableService.addCanvasComments(newComment).then( data => {
+                this.canvasComments.push(data)
+                this.commentText = '';
+                this.indexLastRecord = this.canvasComments.length - 1;
+        });
+        
     }
 }

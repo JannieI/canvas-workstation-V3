@@ -3282,7 +3282,7 @@ export class GlobalVariableService {
 
     }
 
-    addCanvasComments(data: WidgetCheckpoint): Promise<any> {
+    addCanvasComments(data: CanvasComment): Promise<any> {
         // Description: Adds a new canvasComments
         // Returns: Added Data or error message
         console.log('Global-Variables addCanvasComments ...');
