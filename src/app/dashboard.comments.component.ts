@@ -51,7 +51,7 @@ export class DashboardCommentsComponent implements OnInit {
     //     datagridCanExportData: false,
     //     datagridEmptyMessage: 'No Comments created so far',
     //     datagridVisibleFields: []
-        
+
     // };
     datagridColumns: DatagridColumn[];
     datagridInput: DatagridInput = null;
@@ -68,9 +68,9 @@ export class DashboardCommentsComponent implements OnInit {
     datagridShowTotalsCol: boolean = false;
     datagridCanEditInCell: boolean = false;
     datagridCanExportData: boolean = false;
-    datagridEmptyMessage: string = 'No Activities created so far';
+    datagridEmptyMessage: string = 'No Comments created so far';
     datagridVisibleFields: string[];
-    datagridShowFields: string[];
+    datagridShowFields: string[] = ["comment","creator","createdOn"];
 
 
 	constructor(
@@ -82,7 +82,7 @@ export class DashboardCommentsComponent implements OnInit {
         if (this.selectedWidgetID == -1) {
             this.headerText = 'this Dashboard';
         } else {
-            this.headerText = 'selected Widget';
+            this.headerText = 'the selected Widget';
         };
 
         // this.globalVariableService.getCanvasComments().then(cC => {
@@ -90,14 +90,14 @@ export class DashboardCommentsComponent implements OnInit {
         //          if (i.dashboardID == this.globalVariableService.currentDashboardInfo
         //                 .value.currentDashboardID
         //              &&
-        //              (i.widgetID == this.selectedWidgetID  ||  
+        //              (i.widgetID == this.selectedWidgetID  ||
         //                 this.selectedWidgetID == -1) ) {
         //              this.canvasComments.push(i)
         //          };
         //     });
         //     console.log('xx comm', this.globalVariableService.currentDashboardInfo
         //     .value.currentDashboardID, this.selectedWidgetID, this.canvasComments)
-        // }); 
+        // });
         this.globalVariableService.getCanvasComments().then (ca => {
             // Set the data for the grid
             this.datagridData = ca.filter( c =>
@@ -105,16 +105,16 @@ export class DashboardCommentsComponent implements OnInit {
                         .value.currentDashboardID
                    &&
                   (c.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) )
-            ); 
+            );
 
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], this.datagridShowFields, this.datagridVisibleFields);
-             
+
             // if (ca.length > 0) {
             //     const columns = Object.keys(ca[0]);
             //     for (var i = 0; i < columns.length; i++) {
-                    
+
             //         this.datagridColumns.push(
             //         {
             //             id: i,
