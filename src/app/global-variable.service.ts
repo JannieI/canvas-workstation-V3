@@ -3282,6 +3282,38 @@ export class GlobalVariableService {
 
     }
 
+    addCanvasComments(data: WidgetCheckpoint): Promise<any> {
+        // Description: Adds a new canvasComments
+        // Returns: Added Data or error message
+        console.log('Global-Variables addCanvasComments ...');
+
+        let url: string = 'CanvasComments';
+        this.filePath = './assets/data.CanvasComments.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    
+                    // Update Global vars to make sure they remain in sync
+                    this.canvasComments.push(JSON.parse(JSON.stringify(data)));
+                    
+                    console.log('xx addCanvasComments ADDED', data, this.canvasComments, this.canvasComments)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('xx addCanvasComments FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getCanvasMessages(): Promise<CanvasMessage[]> {
         // Description: Gets all Canvas Messages
         // Returns: this.canvasMessages array, unless:
