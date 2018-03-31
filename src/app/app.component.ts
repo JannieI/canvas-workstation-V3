@@ -2525,9 +2525,13 @@ export class AppComponent implements OnInit {
         this. editModePrePresentation = this.editMode;
         this.globalVariableService.editMode.next(false);
 
+        // Settings, ie Mode
         this.globalVariableService.presentationMode.next(true);
         this.showMainMenu = false;
-        console.log('xx str P', this.presentationMode, this.currentWidgets, this.currentWidgetCheckpoints)
+
+        // Clean out previously used vars for Checkpoints
+        this.currentWidgetsOriginals = [];
+        this.currentWidgetCheckpoints = [];
 
         this.menuOptionClickPostAction();
     }
@@ -3941,7 +3945,7 @@ export class AppComponent implements OnInit {
 
         // Restore the Original (when moving out of showCheckpoint mode)
         if (showCheckpoints) {
-            console.log('xx this.currentWidgetsOriginals', this.currentWidgetsOriginals)
+            console.log('xx this.currentWidgetsOriginals', this.currentWidgetsOriginals.length, this.currentWidgetsOriginals[0].graphMark)
 
             this.currentWidgetsOriginals.forEach(wo => {
                 if (wo.dashboardID == dashboardID  &&  wo.id == id) {
@@ -3962,7 +3966,7 @@ export class AppComponent implements OnInit {
         });
         if (!isFound) {
             this.currentWidgetsOriginals.push(this.currentWidgets[index]);
-            console.log('xx this.currentWidgetsOriginals', this.currentWidgetsOriginals)
+            console.log('xx this.currentWidgetsOriginals', this.currentWidgetsOriginals.length, this.currentWidgetsOriginals[0].graphMark)
         };
 
         // Get the W Checkpoints once
