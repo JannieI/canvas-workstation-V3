@@ -2516,7 +2516,7 @@ export class AppComponent implements OnInit {
     // ***********************  CLICK VIEW MENU OPTIONS ************************ //
 
     clickMenuViewPresentation() {
-        //
+        // Show the dashboard in Presentation Mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPresentation', '@Start');
 
         this.menuOptionClickPreAction();
@@ -3936,6 +3936,23 @@ export class AppComponent implements OnInit {
         showCheckpoints) {
         // Toggle to show Checkpoints or not
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleShowCheckpoint', '@Start');
+
+        // How it works:
+        // At Runtime, each W.checkpointIDs[] is set to the IDs of all its previously stored
+        // Checkpoints.  It also stores currentCheckpoint = 0, which is the index
+        // in checkpointIDs while browsing, and lastCheckpoint which is the 
+        // index in checkpointIDs of the last one.  This is a hack to simplify 
+        // moving between checkpoint (0 -> lastCheckpoint in checkpointIDs). 
+        // It is important to note these are indices, not ids.  There is a fourth field, 
+        // showCheckpoints, which is set to True when while browsing Checkpoints.
+        // When checkpointIDs.length > 0, there is a gray dot to indicate that the W have
+        // Checkpoints.  When the gray dot is clicked, it now turns blue
+        // in color to indicate we are browsing Checkpoints.  The original graph is replaced
+        // with the graph of the first Checkpoint. The < > navigation arrows also
+        // become visible.  The < > navigation arrows are used to browse, all graphs 
+        // showing in the same space.  When the blue dot is clicked, it turns gray,
+        // the original graph is displayed, showCheckpoints is set to false and the < > 
+        // arrows disappears.  If a W does not any Checkpoints, there is no gray dot.
 
         // Load the Checkpoints and insert checkpoint info for each W.  
         // TODO - this is a bit of a hack, maybe it can be improved:

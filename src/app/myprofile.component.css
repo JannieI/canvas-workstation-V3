@@ -11,7 +11,6 @@
     top: 0;
 }
 
-
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
@@ -88,7 +87,7 @@
             margin-left: 20px;
             text-align: left;
         }
-        
+
         .gridOfflineCopySchema {
             grid-column-start: 1;
             grid-column-end: 7;
@@ -97,7 +96,7 @@
             margin-left: 20px;
             text-align: left;
         }
-                
+
     .gridDashboardRightsTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
@@ -124,7 +123,7 @@
             margin-left: 20px;
             text-align: left;
         }
-    
+
     .gridButtonCancel {
         grid-column-start: 1;
         grid-column-end: 3;

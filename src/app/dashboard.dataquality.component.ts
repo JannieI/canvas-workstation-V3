@@ -29,7 +29,7 @@ export class DashboardDataQualityComponent implements OnInit {
 
     @Output() formDashboardDataQualityClosed: EventEmitter<string> = new EventEmitter();
     @Input() selectedDatasourceID: number;
-    
+
     canvasComments: CanvasComment[] = [];
     headerText: string;
     datagridColumns: DatagridColumn[];
@@ -77,7 +77,7 @@ export class DashboardDataQualityComponent implements OnInit {
             this.datagridData = ca.filter(c =>
                 dsArray.indexOf(c['datasourceID']) >= 0
             );
-    
+
             // Set the column object
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], this.datagridShowFields, this.datagridVisibleFields);
