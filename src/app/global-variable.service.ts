@@ -3287,7 +3287,7 @@ export class GlobalVariableService {
         // Returns: Added Data or error message
         console.log('Global-Variables addCanvasComments ...');
 
-        let url: string = 'CanvasComments';
+        let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -3308,6 +3308,34 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('xx addCanvasComments FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    deleteCanvasComments(id: number): Promise<string> {
+        // Description: Deletes a canvasComments
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteCanvasComments ...');
+
+        let url: string = 'canvasComments';
+        this.filePath = './assets/data.CanvasComments.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    console.log('xx deleteCanvasComments DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('xx deleteCanvasComments FAILED', err);;
                     resolve(err.Message);
                 }
             )
