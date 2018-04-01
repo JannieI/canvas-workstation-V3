@@ -20,14 +20,21 @@
                     </i>
                 </div>
 
-                <div class="gridCurrent">
-                    Current Dashboard access:
-                    <select id="selects_3"
-                        >
-                        <option>Private</option>
-                        <option>Public</option>
-                        <option>Access List</option>
-                    </select>
+                <div class="gridCurrentTitle">
+                    Dashboard Access Type:
+                </div>
+                <div class="gridCurrentSelect">
+                    <div class="select">
+                        <select id="selects_3"
+                            (change)="clickSelectStep($event)"
+                            >
+                            <option>Private</option>
+                            <option>Public</option>
+                            <option>Access List</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="gridCurrentButton">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -37,11 +44,31 @@
                     </button>
                 </div>
 
-                <div class="gridNew">
-                    <input type="text" id="formFields_7" placeholder="User ID">
-                    <input type="text" id="formFields_7" placeholder="Group ID">
-                    <input type="text" id="formFields_7" placeholder="CanView">
-                    <input type="text" id="formFields_7" placeholder="CanEdit">
+                <div class="gridNewTitle">
+                    <b>Add a new user:</b>
+                    <input type="text" placeholder="User ID">
+                </div>
+                <div class="gridNewUserID">
+                    <b>UserID:</b>
+                    <input type="text" placeholder="User ID">
+                </div>
+                <div class="gridNewGroupID">
+                    <b>GroupID:</b>
+                    <input type="text" placeholder="Group ID">
+                </div>
+                <div class="gridNewCanView">
+                    <b>CanView:</b>
+                    <input type="text" placeholder="CanView">
+                </div>
+                <div class="gridNewCanEdit">
+                    <b>CanEdit:</b>
+                    <input type="text" placeholder="CanEdit">
+                </div>
+                <div class="gridNewCanDelete">
+                    <b>CanDelete:</b>
+                        <input type="text" placeholder="CanEdit">
+                </div>
+                <div class="gridNewButton">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -53,16 +80,20 @@
     
                 <div class="gridTable">
                     <clr-datagrid>
-                        <clr-dg-column>User ID</clr-dg-column>
-                        <clr-dg-column>Group ID</clr-dg-column>
-                        <clr-dg-column>CanView</clr-dg-column>
-                        <clr-dg-column>CanEdit</clr-dg-column>
+                        <clr-dg-column [clrDgField]="userID">User ID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="groupID">Group ID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canView">View</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canEdit">Edit</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canDelete">Delete</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of dashboardPermissions">
+                        <clr-dg-row *clrDgItems="let row of dashboardPermissions; 
+                            let i = index"
+                            >
                             <clr-dg-cell>{{row.userID}}</clr-dg-cell>
                             <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
                             <clr-dg-cell>{{row.canView}}</clr-dg-cell>
                             <clr-dg-cell>{{row.canEdit}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.canDelete}}</clr-dg-cell>
                         </clr-dg-row>
 
                     </clr-datagrid>

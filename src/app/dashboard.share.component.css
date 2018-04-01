@@ -10,7 +10,7 @@
     position: relative;
     top: 0;
 }
- 
+
 .propertyLine {
     margin: 5px;
 }
@@ -18,7 +18,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(15, 1fr);
-    grid-template-rows: repeat(19, 1rem);
+    grid-template-rows: repeat(21, 1rem);
 }
 
     .gridTitle {
@@ -38,29 +38,93 @@
         text-align: left;
     }
 
-    .gridCurrent {
+    .gridCurrentTitle {
         grid-column-start: 1;
-        grid-column-end: 41;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 2px 2px 2px 2px;
+        grid-column-end: 4;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 20px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCurrentSelect {
+        grid-column-start: 4;
+        grid-column-end: 8;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 20px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCurrentButton {
+        grid-column-start: 8;
+        grid-column-end: 9;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 20px 2px 2px 20px;
         text-align: left;
     }
 
-    .gridNew {
+    .gridNewTitle {
         grid-column-start: 1;
-        grid-column-end: 41;
+        grid-column-end: 7;
         grid-row-start: 7;
         grid-row-end: 8;
-        margin: 2px 2px 2px 2px;
+        margin: 2px 2px 2px 20px;
+        text-align: left;
+    }
+    .gridNewUserID {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 2px 2px 2px 40px;
+        text-align: left;
+    }
+    .gridNewGroupID {
+        grid-column-start: 8;
+        grid-column-end: 19;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 2px 2px 2px 20px;
+        text-align: left;
+    }
+    .gridNewCanView {
+        grid-column-start: 1;
+        grid-column-end: 8;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 40px;
+        text-align: left;
+    }
+    .gridNewCanEdit {
+        grid-column-start: 8;
+        grid-column-end: 19;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 20px;
+        text-align: left;
+    }
+    .gridNewCanDelete {
+        grid-column-start: 1;
+        grid-column-end: 8;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        margin: 2px 2px 2px 40px;
+        text-align: left;
+    }
+    .gridNewButton {
+        grid-column-start: 8;
+        grid-column-end: 19;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        margin: 2px 2px 2px 20px;
         text-align: left;
     }
 
     .gridTable {
         grid-column-start: 1;
-        grid-column-end: 41;
-        grid-row-start: 8;
-        grid-row-end: 19;
+        grid-column-end: 19;
+        grid-row-start: 11;
+        grid-row-end: 21;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
