@@ -43,7 +43,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Set Selectec and Total Available Arrays
+        // Set Selected and Total Available Arrays
         this.globalVariableService.getPaletteButtonBar().then( pb => {
 
             // Total list of available buttons - slice is NB for ByVal
@@ -150,13 +150,13 @@ export class UserPaletteButtonBarComponent implements OnInit {
             };
             return 0;
         });
-console.log('xx added', this.paletteButtons.length)
+
     }
 
     clickDelete() {
         // Add all selected on Selected list to Available list, and unselect original
         // Then sort the altered list
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         // Get selected in Selected, and add to Selected
         let availID: number[] = [];

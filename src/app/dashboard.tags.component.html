@@ -19,6 +19,7 @@
                 <div class="gridAdd">
                     New tag:
                     <input type="text" 
+                        [(ngModel)]="newTag"
                         placeholder="Enter new tag name here">
                     <button type="btn btn-secondary" 
                         (click)="clickAddNew()">
@@ -28,59 +29,32 @@
 
 
                 <div class="gridAvailableTitle">
-                    Available
+                    Tags used before
                 </div>
                 <div class="gridAvailable">
                     <nav>
                         <ul class="nav-list">
-                            <div *ngFor="let row of paletteButtons; let i = index"
+                            <div *ngFor="let row of availableDashboardTags; let i = index"
                                 [style.background-color]="row.isSelected? 'rgb(212, 212, 208)' : 'transparent'"
                                 (click)="clickAvailable(row.id, i)"
 
                                 >
-                                <span class="nav-link tooltip tooltip-md tooltip-right">
-                                    <clr-icon
-                                        [attr.shape]="row.shape"
-                                        [attr.size]="row.size"
-                                        class="buttonBarIcon"
-                                        [style.background-color]="row.backgroundColor"
-                                        (click)="paletteFunctionCall(row.functionName, row.params)"
-                                        >
-                                    </clr-icon>
-                                    {{ row.mainmenuItem }} - {{ row.menuText }}
-                                    <span class="tooltip-content">
-                                        {{ row.tooltipContent }}
-                                    </span>
-                                </span>
+                                {{ row.tag }}
                             </div>
                         </ul>
                     </nav>
                 </div>
 
-                <div class="gridSelectedTitle" *ngIf="paletteButtonsSelected">
-                    Selected: {{ paletteButtonsSelected.length }}
+                <div class="gridSelectedTitle">
+                    Selected Tags
                 </div>
                 <div class="gridSelected">
                     <nav>
                         <ul class="nav-list">
                             <div *ngFor="let row of paletteButtonsSelected; let i = index"
                                 [style.background-color]="row.isSelected? 'rgb(212, 212, 208)' : 'transparent'"
-                                (click)="clickSelected(row.id, i)"
                                 >
-                                <span class="nav-link tooltip tooltip-md tooltip-right">
-                                    <clr-icon
-                                        [attr.shape]="row.shape"
-                                        [attr.size]="row.size"
-                                        class="buttonBarIcon"
-                                        [style.background-color]="row.backgroundColor"
-                                        (click)="paletteFunctionCall(row.functionName, row.params)"
-                                        >
-                                    </clr-icon>
-                                    {{ row.mainmenuItem }} - {{ row.menuText }}
-                                    <span class="tooltip-content">
-                                        {{ row.tooltipContent }}
-                                    </span>
-                                </span>
+                                {{ row.tag }}
                             </div>
                         </ul>
                     </nav>
@@ -94,33 +68,6 @@
                         <clr-icon shape="arrow right" size="20"></clr-icon>
                     </button>
                 </div>
-                <div class="gridArrowDelete">
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-sm"
-                        (click)="clickDelete()"
-                        >
-                        <clr-icon shape="arrow left" size="20"></clr-icon>
-                    </button>
-                </div>
-                <div class="gridMoveUp">
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-sm"
-                        (click)="clickMoveUp()"
-                        >
-                        <clr-icon shape="arrow up" size="20"></clr-icon>
-                    </button>
-                </div>
-                <div class="gridMoveDown">
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-sm"
-                        (click)="clickMoveDown()"
-                        >
-                        <clr-icon shape="arrow down" size="20"></clr-icon>
-                    </button>
-                </div>
 
                 <div class="gridButtonCancel">
                         <button
@@ -129,15 +76,6 @@
                         (click)="clickClose('Close')"
                         >
                         Cancel
-                    </button>
-                </div>
-                <div class="gridButtonReset">
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        (click)="clickReset()"
-                        >
-                        Reset
                     </button>
                 </div>
                 <div class="gridButtonSave">
