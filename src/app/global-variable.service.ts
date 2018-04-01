@@ -1126,16 +1126,16 @@ export class GlobalVariableService {
 
                         if (this.currentDashboards.length > 0) {
                             if (this.currentDashboards[0].templateDashboardID != 0) {
-                                let templeteDashboard: Dashboard[] = null;
+                                let templateDashboard: Dashboard[] = null;
 
-                                templeteDashboard = this.dashboards.filter(
+                                templateDashboard = this.dashboards.filter(
                                     i => i.id == this.currentDashboards[0].templateDashboardID
                                 );
 
-                                if (templeteDashboard == null) {
+                                if (templateDashboard == null) {
                                     alert('Dashboard template id does not exist in Dashboards Array')
                                 } else {
-                                    this.currentDashboards.push(templeteDashboard[0]);
+                                    this.currentDashboards.push(templateDashboard[0]);
                                     this.templateInUse.next(true);
                                 }
                             } else {
@@ -1159,16 +1159,16 @@ export class GlobalVariableService {
                 );
 
                 if (this.currentDashboards[0].templateDashboardID != 0) {
-                    let templeteDashboard: Dashboard[] = null;
+                    let templateDashboard: Dashboard[] = null;
 
-                    templeteDashboard = this.dashboards.filter(
+                    templateDashboard = this.dashboards.filter(
                         i => i.id == this.currentDashboards[0].templateDashboardID
                     );
 
-                    if (templeteDashboard == null) {
+                    if (templateDashboard == null) {
                         alert('Dashboard template id does not exist in Dashboards Array')
                     } else {
-                        this.currentDashboards.push(templeteDashboard[0]);
+                        this.currentDashboards.push(templateDashboard[0]);
                         this.templateInUse.next(true);
                     }
                 } else {

@@ -2,44 +2,50 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <div>
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
 
-                Dashboard Template
-                <div class="propertyLine">
-                    A Template is an optional Dashboard that is displayed behind your
-					Dashboard.  It is readonly wherever it has been added as a Template,
-                     and cannot be edited here.  The original Template can be edited at
-                    any stage, similar to any other Dashboard.  When the template is
-					changed, these will reflect in all the Dashboards where it is used
-					as a template.  Current
-                    <input type="text" id="formFields_7" placeholder="Templete name">
-					<input type="text" id="formFields_7" placeholder="Visible: Yes/No">
+            <div class="gridOverall">
+                <div class="gridTitle">
+                    Dashboard Template
                 </div>
-
-                <div class="propertyLine">
-                    Available templates:
+                <div class="gridSubTitle">
+                    <i>
+                        Will be done at a later stage. A Template is an optional Dashboard that is displayed behind your
+                        Dashboard.  It is readonly wherever it has been added as a Template,
+                            and cannot be edited here.  The original Template can be edited at
+                        any stage, similar to any other Dashboard.  When the template is
+                        changed, these will reflect in all the Dashboards where it is used
+                        as a template.  Current
+                        <input type="text" id="formFields_7" placeholder="Template name">
+                        <input type="text" id="formFields_7" placeholder="Visible: Yes/No">
+                    </i>
                 </div>
+                <div class="gridRest">
 
-                <clr-datagrid>
-                    <clr-dg-column>Select</clr-dg-column>
-                    <clr-dg-column>ID</clr-dg-column>
-                    <clr-dg-column>Name</clr-dg-column>
-                    <clr-dg-column>Description</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let row of dashboardTemplates">
-                        <clr-dg-cell>
-                            <clr-icon shape="check" class="selectIcon1" size="12"></clr-icon>
-                        </clr-dg-cell>
-                        <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.description}}</clr-dg-cell>
-                    </clr-dg-row>
+                    <div class="propertyLine">
+                        Available templates:
+                    </div>
 
-                </clr-datagrid>
+                    <clr-datagrid>
+                        <clr-dg-column>Select</clr-dg-column>
+                        <clr-dg-column>ID</clr-dg-column>
+                        <clr-dg-column>Name</clr-dg-column>
+                        <clr-dg-column>Description</clr-dg-column>
 
+                        <clr-dg-row *ngFor="let row of dashboardTemplates">
+                            <clr-dg-cell>
+                                <clr-icon shape="check" class="selectIcon1" size="12"></clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                        </clr-dg-row>
+
+                    </clr-datagrid>
+                </div>
             </div>
         </div>
     </div>
