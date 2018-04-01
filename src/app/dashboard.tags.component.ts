@@ -51,9 +51,11 @@ export class DashboardTagsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.getDashboardTags().then(dt => {
-            this.availableDashboardTags = dt;
-            this.globalVariableService.getCurrentDashboardTags(this.selectedDashboard.id)
-                .then(cdt => this.selectedDashboardTags = cdt)
+                this.availableDashboardTags = dt;
+                this.selectedDashboardTags = dt.filter(f =>
+                    f.dashboardID == this.selectedDashboard.id
+                )
+                console.log('xx dt', this.selectedDashboard.id, dt)
         });
 
     }
@@ -64,7 +66,6 @@ export class DashboardTagsComponent implements OnInit {
 
         this.selectedTagIndex = index;
     }
-
 
     clickAdd() {
         // Add all selected on Available list to Selected list, and unselect original
@@ -92,9 +93,18 @@ export class DashboardTagsComponent implements OnInit {
             }
         );
 
-console.log('xx added', this.selectedDashboardTags.length)
+        console.log('xx added', this.selectedDashboardTags.length)
     }
 
+    clickDelete(id: number, index: number){
+        // Close the form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+
+        // Remove from seleted list
+        this.selectedDashboardTags.splice(index, 1);
+        
+    }
+    
     clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
