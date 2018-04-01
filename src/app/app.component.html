@@ -222,7 +222,7 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-    
+
                         <button type="button"
                             clrDropdownItem
                             title="Rename an existing Dashboard"
@@ -1336,7 +1336,7 @@
         [style.position]="row.titlePosition"
         [style.text-align]="row.titleTextAlign"
         [style.width.%]="row.titleWidth"
-        (contextmenu)="contextMenuOpen()" 
+        (contextmenu)="contextMenuOpen()"
         >
         <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
             class="selectedSlicer"
@@ -1359,8 +1359,8 @@
 
         <div *ngIf="!presentationMode  &&  editMode">
             <clr-dropdown class="titleMenu">
-                <clr-icon 
-                    clrDropdownTrigger 
+                <clr-icon
+                    clrDropdownTrigger
                     shape="caret down"
                     size="24"
                     >
@@ -1368,18 +1368,18 @@
                 <clr-dropdown-menu class="titleMenu"
                     clrPosition="bottom-right" *clrIfOpen
                     >
-                    <button class="dropdown-item" *ngIf="row.hyperlinkDashboardID != null" 
-                        type="button" 
+                    <button class="dropdown-item" *ngIf="row.hyperlinkDashboardID != null"
+                        type="button"
                         clrDropdownItem
                         (click)="contextMenuJumpToLinked(
-                            row.hyperlinkDashboardID, 
+                            row.hyperlinkDashboardID,
                             row.hyperlinkDashboardTabID
                             )"
                         >
                         Jump to link
                     </button>
-                    <button class="dropdown-item" 
-                        type="button" 
+                    <button class="dropdown-item"
+                        type="button"
                         clrDropdownItem
                         (click)="contextmenuWidgetTitle($event, i, row.id)"
                         >
@@ -1672,38 +1672,38 @@
     </div>
 
     <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.currentCheckpoint > 0)"
-        class="widgetContainerCheckpointLeft" 
+        class="widgetContainerCheckpointLeft"
         (click)="clickNavCheckpoint(
             i,
-            row.dashboardID, 
-            row.id, 
-            'Left', 
+            row.dashboardID,
+            row.id,
+            'Left',
             row.showCheckpoints,
             row.checkpointIDs,
             row.currentCheckpoint,
             row.lastCheckpoint
             )"
         >
-        <b> < </b> 
+        <b> < </b>
     </div>
 
     <div *ngIf="presentationMode  &&  !row.showCheckpoints  &&  (row.lastCheckpoint >= 0)"
-        class="widgetContainerCheckpointCenter" 
+        class="widgetContainerCheckpointCenter"
         (click)="clickToggleShowCheckpoint(
-            i, 
-            row.dashboardID, 
-            row.id, 
+            i,
+            row.dashboardID,
+            row.id,
             row.showCheckpoints)"
         >
         <span class="widgetContainerCheckpointShowCheckpoint">
         </span>
     </div>
     <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.lastCheckpoint >= 0)"
-        class="widgetContainerCheckpointCenter" 
+        class="widgetContainerCheckpointCenter"
         (click)="clickToggleShowCheckpoint(
             i,
-            row.dashboardID, 
-            row.id, 
+            row.dashboardID,
+            row.id,
             row.showCheckpoints)"
         >
         <span class="widgetContainerCheckpointShowWidget">
@@ -1711,19 +1711,19 @@
     </div>
 
     <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.currentCheckpoint < row.lastCheckpoint)"
-        class="widgetContainerCheckpointRight" 
+        class="widgetContainerCheckpointRight"
         (click)="clickNavCheckpoint(
             i,
-            row.dashboardID, 
-            row.id, 
-            'Right', 
+            row.dashboardID,
+            row.id,
+            'Right',
             row.showCheckpoints,
             row.checkpointIDs,
             row.currentCheckpoint,
             row.lastCheckpoint
             )"
         >
-        <b> > </b> 
+        <b> > </b>
     </div>
 
 

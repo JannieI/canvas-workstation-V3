@@ -16,8 +16,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { DashboardTag }               from './models';
-import { Dashboard }                  from './models';
 import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 
@@ -31,9 +29,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
     @Output() formUserWidgetButtonBarClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
-    dashboardTags: DashboardTag[];
     paletteButtons: PaletteButtonBar[];
     paletteButtonsOriginal: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
@@ -47,9 +42,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        this.dashboards = this.globalVariableService.dashboards;
-        this.dashboardTags = this.globalVariableService.dashboardTags;
 
         // Set Selectec and Total Available Arrays
         this.globalVariableService.getPaletteButtonBar().then( pb => {
@@ -101,7 +93,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
         let maxIDs: number[] = [];
         let maxID: number = 0;
         this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs =>
-            maxIDs.push (pbs.id) 
+            maxIDs.push (pbs.id)
         );
         maxID = Math.max(...maxIDs);
 
@@ -182,7 +174,7 @@ console.log('xx added', this.paletteButtons.length)
             ps.isSelected = false
             ps.sortOrderSelected = null
         });
-        
+
         // Delete the selected one, reverse order
         for (var i = this.paletteButtonsSelected.length - 1; i >= 0; i--) {
             if(availID.indexOf(this.paletteButtonsSelected[i].id) >= 0) {
@@ -224,7 +216,7 @@ console.log('xx added', this.paletteButtons.length)
         // Swop sort order with predecessor. Note: sorting happend on sortOrderSelected, which is
         // only calced at Runtime, and null in DB
         for (var i = 1; i < this.paletteButtonsSelected.length; i++) {
-            
+
             if (this.paletteButtonsSelected[i].isSelected) {
 
                 // Count how many selected in this batch
@@ -239,16 +231,16 @@ console.log('xx added', this.paletteButtons.length)
 
                 // Decrease those in this batch
                 for (var k = i; k < (i + nrSel); k++) {
-                    
-                    this.paletteButtonsSelected[k].sortOrderSelected = 
+
+                    this.paletteButtonsSelected[k].sortOrderSelected =
                         this.paletteButtonsSelected[k].sortOrderSelected - 1;
-                        
+
                 };
 
                 // Increment original unselected
-                this.paletteButtonsSelected[i-1].sortOrderSelected = 
+                this.paletteButtonsSelected[i-1].sortOrderSelected =
                     this.paletteButtonsSelected[i-1].sortOrderSelected + nrSel;
-                    
+
                 // Set Pointer
                 i = i + nrSel;
 
@@ -282,7 +274,7 @@ console.log('xx added', this.paletteButtons.length)
         // Swop sort order with predecessor. Note: sorting happend on sortOrderSelected, which is
         // only calced at Runtime, and null in DB
         for (var i = 0; i < this.paletteButtonsSelected.length - 1; i++) {
-            
+
             if (this.paletteButtonsSelected[i].isSelected) {
 
                 // Count how many selected in this batch
@@ -297,16 +289,16 @@ console.log('xx added', this.paletteButtons.length)
 
                 // Increase those in this batch
                 for (var k = i; k < (i + nrSel); k++) {
-                    
-                    this.paletteButtonsSelected[k].sortOrderSelected = 
+
+                    this.paletteButtonsSelected[k].sortOrderSelected =
                         this.paletteButtonsSelected[k].sortOrderSelected + 1;
-                        
+
                 };
 
                 // Decrement unselected below
-                this.paletteButtonsSelected[i + nrSel].sortOrderSelected = 
+                this.paletteButtonsSelected[i + nrSel].sortOrderSelected =
                     this.paletteButtonsSelected[i + nrSel].sortOrderSelected - nrSel;
-                    
+
                 // Set Pointer
                 i = i + nrSel;
 
@@ -349,7 +341,7 @@ console.log('xx added', this.paletteButtons.length)
         };
 
         // Move all the defaults across
-        this.clickAdd();        
+        this.clickAdd();
     }
 
     clickSave(action: string) {
@@ -358,23 +350,23 @@ console.log('xx added', this.paletteButtons.length)
 
 console.log('xx sav1', this.globalVariableService.currentPaletteButtonsSelected.value)
         // Delete the inital selected ones for this user from the DB only
-        this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs => 
+        this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs =>
             this.globalVariableService.deletePaletteButtonsSelected(pbs.id)
         )
 
         // Unselect all
         this.paletteButtonsSelected.forEach(pbs => pbs.isSelected = false)
-        
+
         // Add the new ones to the DB
         // TODO - note that IDs in paletteButtonsSelected sent to app is DIFF to DB ...
-        this.paletteButtonsSelected.forEach(pbs => 
+        this.paletteButtonsSelected.forEach(pbs =>
                 this.globalVariableService.addPaletteButtonsSelected(pbs)
         );
 
         // Refresh global var, informing subscribers
 
         // WORKS !!!
-        // this.paletteButtonsSelected.forEach( ps => 
+        // this.paletteButtonsSelected.forEach( ps =>
         //     this.globalVariableService.savePaletteButtonsSelected(ps)
         // );
 

@@ -17,13 +17,13 @@
                     <div class="gridAvailable">
                         <nav>
                             <ul class="nav-list">
-                                <div *ngFor="let row of paletteButtons; let i = index" 
+                                <div *ngFor="let row of paletteButtons; let i = index"
                                     [style.background-color]="row.isSelected? 'rgb(212, 212, 208)' : 'transparent'"
                                     (click)="clickAvailable(row.id, i)"
 
                                     >
                                     <span class="nav-link tooltip tooltip-md tooltip-right">
-                                        <clr-icon 
+                                        <clr-icon
                                             [attr.shape]="row.shape"
                                             [attr.size]="row.size"
                                             class="buttonBarIcon"
@@ -47,12 +47,12 @@
                     <div class="gridSelected">
                         <nav>
                             <ul class="nav-list">
-                                <div *ngFor="let row of paletteButtonsSelected; let i = index" 
+                                <div *ngFor="let row of paletteButtonsSelected; let i = index"
                                     [style.background-color]="row.isSelected? 'rgb(212, 212, 208)' : 'transparent'"
                                     (click)="clickSelected(row.id, i)"
                                     >
                                     <span class="nav-link tooltip tooltip-md tooltip-right">
-                                        <clr-icon 
+                                        <clr-icon
                                             [attr.shape]="row.shape"
                                             [attr.size]="row.size"
                                             class="buttonBarIcon"
@@ -123,7 +123,7 @@
                             >
                             Reset
                         </button>
-                    </div>                    
+                    </div>
                     <div class="gridButtonSave">
                         <button
                             type="button"
@@ -132,7 +132,7 @@
                             >
                             Save
                         </button>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>

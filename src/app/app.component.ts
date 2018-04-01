@@ -675,7 +675,7 @@ export class AppComponent implements OnInit {
             this.currentTabBackgroundColor = this.selectedDashboard.backgroundColor;
             this.currentTabColor = this.selectedDashboard.backgroundImage;
         };
-            
+
         this.showModalDashboardDescription = false;
     }
 
@@ -939,7 +939,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetLinks', '@Start');
 
-        
+
         this.menuOptionClickPostAction();
 
         this.showModalWidgetLinks = false;
@@ -1527,14 +1527,14 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        // Set D 
+        // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
             if (d.id == this.globalVariableService.currentDashboardInfo
                 .value.currentDashboardID) {
                 this.selectedDashboard = d;
             };
         });
-        
+
         this.showModalDashboardDescription = true;
     }
 
@@ -1544,14 +1544,14 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        // Toggle global D 
+        // Toggle global D
         this.globalVariableService.currentDashboards.forEach(d => {
             if (d.id == this.globalVariableService.currentDashboardInfo
                 .value.currentDashboardID) {
                 // d.is;
             };
         });
-        
+
         this.showModalDashboardDescription = true;
     }
 
@@ -1869,13 +1869,13 @@ export class AppComponent implements OnInit {
         };
 
         this.menuOptionClickPreAction();
-        
+
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Graph') {
                 this.selectedWidget = w;
             };
         });
-        
+
         this.showModalWidgetLinks = true;
     }
 
@@ -3532,7 +3532,7 @@ export class AppComponent implements OnInit {
             ''
         );
         this.dashboardOpenActions();
-        
+
     }
 
     clickClosePresentation() {
@@ -3983,9 +3983,9 @@ export class AppComponent implements OnInit {
     }
 
     clickToggleShowCheckpoint(
-        index: number, 
-        dashboardID: number, 
-        id: number, 
+        index: number,
+        dashboardID: number,
+        id: number,
         showCheckpoints) {
         // Toggle to show Checkpoints or not
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleShowCheckpoint', '@Start');
@@ -3993,21 +3993,21 @@ export class AppComponent implements OnInit {
         // How it works:
         // At Runtime, each W.checkpointIDs[] is set to the IDs of all its previously stored
         // Checkpoints.  It also stores currentCheckpoint = 0, which is the index
-        // in checkpointIDs while browsing, and lastCheckpoint which is the 
-        // index in checkpointIDs of the last one.  This is a hack to simplify 
-        // moving between checkpoint (0 -> lastCheckpoint in checkpointIDs). 
-        // It is important to note these are indices, not ids.  There is a fourth field, 
+        // in checkpointIDs while browsing, and lastCheckpoint which is the
+        // index in checkpointIDs of the last one.  This is a hack to simplify
+        // moving between checkpoint (0 -> lastCheckpoint in checkpointIDs).
+        // It is important to note these are indices, not ids.  There is a fourth field,
         // showCheckpoints, which is set to True when while browsing Checkpoints.
         // When checkpointIDs.length > 0, there is a gray dot to indicate that the W have
         // Checkpoints.  When the gray dot is clicked, it now turns blue
         // in color to indicate we are browsing Checkpoints.  The original graph is replaced
         // with the graph of the first Checkpoint. The < > navigation arrows also
-        // become visible.  The < > navigation arrows are used to browse, all graphs 
+        // become visible.  The < > navigation arrows are used to browse, all graphs
         // showing in the same space.  When the blue dot is clicked, it turns gray,
-        // the original graph is displayed, showCheckpoints is set to false and the < > 
+        // the original graph is displayed, showCheckpoints is set to false and the < >
         // arrows disappears.  If a W does not any Checkpoints, there is no gray dot.
 
-        // Load the Checkpoints and insert checkpoint info for each W.  
+        // Load the Checkpoints and insert checkpoint info for each W.
         // TODO - this is a bit of a hack, maybe it can be improved:
         // 1. create Chkpnt with only Did and Wid
         // 2. load D: insert Chkpnt info for each W
@@ -4047,7 +4047,7 @@ export class AppComponent implements OnInit {
                 this.currentWidgetCheckpoints = ca.slice();
 
                 this.currentWidgets.forEach( w=> {
-                    // Toggle showCheckpoints 
+                    // Toggle showCheckpoints
                     if (w.dashboardID == dashboardID  &&  w.id == id) {
                         w.showCheckpoints = !w.showCheckpoints;
                     };
@@ -4073,7 +4073,7 @@ export class AppComponent implements OnInit {
                             wc.widgetSpec.containerWidth = w.containerWidth
                             wc.widgetSpec.containerZindex = w.containerZindex
                         };
-            
+
                     })
                 });
 
@@ -4082,7 +4082,7 @@ export class AppComponent implements OnInit {
                 if (this.currentWidgets[index].checkpointIDs.length > 0) {
 
                     // Get the W Spec
-                    let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc => 
+                    let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc =>
                         wc.id == this.currentWidgets[index].checkpointIDs[0]
                     );
                     if (newW != undefined) {
@@ -4096,7 +4096,7 @@ export class AppComponent implements OnInit {
                 };
             });
         } else {
-            // Toggle showCheckpoints 
+            // Toggle showCheckpoints
             this.currentWidgets.forEach( w=> {
                 if (w.dashboardID == dashboardID  &&  w.id == id) {
                     w.showCheckpoints = !w.showCheckpoints;
@@ -4108,7 +4108,7 @@ export class AppComponent implements OnInit {
             if (this.currentWidgets[index].checkpointIDs.length > 0) {
 
                 // Get the W Spec
-                let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc => 
+                let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc =>
                     wc.id == this.currentWidgets[index].checkpointIDs[0]
                 );
                 if (newW != undefined) {
@@ -4126,22 +4126,22 @@ export class AppComponent implements OnInit {
 
     clickNavCheckpoint(
         index: number,
-        dashboardID: number, 
-        id: number, 
+        dashboardID: number,
+        id: number,
         direction: string,
         showCheckpoints: boolean,
-        checkpointIDs: number[], 
-        currentCheckpoint: number, 
+        checkpointIDs: number[],
+        currentCheckpoint: number,
         lastCheckpoint: number) {
         // Navigate Left or Right to a checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNavCheckpoint', '@Start');
-        
+
         // Increment or Decrement
         if (direction == 'Right') {
             if (currentCheckpoint < lastCheckpoint) {
                 currentCheckpoint = currentCheckpoint + 1;
             };
-        } else {    
+        } else {
             if (currentCheckpoint > 0) {
                 currentCheckpoint = currentCheckpoint - 1;
             };
@@ -4150,12 +4150,12 @@ export class AppComponent implements OnInit {
 
         // As we loop on the Chkpnts, all have to be in sync
         // TODO - there must be a better way
-        this.currentWidgetCheckpoints.forEach(wc => 
+        this.currentWidgetCheckpoints.forEach(wc =>
             wc.widgetSpec.currentCheckpoint = currentCheckpoint
         );
 
         // Get the W Spec
-        let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc => 
+        let newW: WidgetCheckpoint[] = this.currentWidgetCheckpoints.filter(wc =>
             wc.id == checkpointIDs[currentCheckpoint]
         );
         let newWspec: Widget = newW[0].widgetSpec;

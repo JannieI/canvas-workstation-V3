@@ -59,15 +59,15 @@ export class WidgetLinksComponent implements OnInit {
 
         // Show linking
         if (this.selectedWidget.hyperlinkDashboardID != null
-            && 
+            &&
             this.selectedWidget.hyperlinkDashboardTabID != null) {
 
             this.showLink(
-                this.selectedWidget.hyperlinkDashboardID, 
+                this.selectedWidget.hyperlinkDashboardID,
                 this.selectedWidget.hyperlinkDashboardTabID
             );
 
-                
+
         } else {
             this.dashboardIsLinked = false;
         };
@@ -115,11 +115,11 @@ export class WidgetLinksComponent implements OnInit {
         this.selectedWidget.hyperlinkDashboardID = this.selectedDashboardID;
         this.selectedWidget.hyperlinkDashboardTabID = this.selectedTabID;
         if (this.selectedWidget.hyperlinkDashboardID != null
-            && 
+            &&
             this.selectedWidget.hyperlinkDashboardTabID != null) {
 
             this.showLink(
-                this.selectedWidget.hyperlinkDashboardID, 
+                this.selectedWidget.hyperlinkDashboardID,
                 this.selectedWidget.hyperlinkDashboardTabID
             );
         };
@@ -141,10 +141,10 @@ export class WidgetLinksComponent implements OnInit {
         this.selectedDashboardName = selectedDashboardName;
         this.selectedDashboardIndex = index;
         this.selectedDashboardID = id;
-        
+
         // Filter its Tabs
         this.selectedDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == id);
-        
+
         // Select topmost Tab
         if (this.dashboardTabs.length > 0) {
             this.clickSelectTab(0, this.selectedDashboardTabs[0].id, this.selectedDashboardTabs[0].name)
