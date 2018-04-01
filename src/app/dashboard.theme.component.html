@@ -2,39 +2,52 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <div>
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
 
-                Dashboard Theme
-                <div class="propertyLine">
-                    Themes are optional, and changes some aspects of the look and feel.
-                    Your current theme is
-                    <input type="text" id="formFields_7" placeholder="Theme name">
+            <div class="gridOverall">
+                <div class="gridTitle">
+                    Dashboard Theme
                 </div>
-
-                <div class="propertyLine">
-                    Available themes:
+                <div class="gridSubTitle">
+                    <i>
+                        Will be added at later stage.  Themes are optional, and changes some aspects of the look and feel.
+                        Your current theme is:
+                        <input type="text" 
+                            placeholder="Theme name"
+                            >
+                    </i>
                 </div>
+                <div class="gridRest">
 
-                <clr-datagrid>
-                    <clr-dg-column>Select</clr-dg-column>
-                    <clr-dg-column>ID</clr-dg-column>
-                    <clr-dg-column>Name</clr-dg-column>
-                    <clr-dg-column>Description</clr-dg-column>
+                    <div class="propertyLine">
+                        Themes are optional, and changes some aspects of the look and feel.
+                        Your current theme is
+                    </div>
 
-                    <clr-dg-row *ngFor="let row of dashboardThemes">
-                        <clr-dg-cell>
-                            <clr-icon shape="check" class="selectIcon1" size="12"></clr-icon>
-                        </clr-dg-cell>
-                        <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.description}}</clr-dg-cell>
-                    </clr-dg-row>
+                    <div class="propertyLine">
+                        Available themes:
+                    </div>
 
-                </clr-datagrid>
+                    <clr-datagrid>
+                        <clr-dg-column>Select</clr-dg-column>
+                        <clr-dg-column>ID</clr-dg-column>
+                        <clr-dg-column>Name</clr-dg-column>
+                        <clr-dg-column>Description</clr-dg-column>
 
+                        <clr-dg-row *ngFor="let row of dashboardThemes">
+                            <clr-dg-cell>
+                                <clr-icon shape="check" class="selectIcon1" size="12"></clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                        </clr-dg-row>
+
+                    </clr-datagrid>
+
+                </div>
             </div>
         </div>
     </div>

@@ -15,7 +15,6 @@
     margin: 5px 5px 5px 15px;
 }
 
-
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(15, 1fr);
