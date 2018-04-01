@@ -1528,6 +1528,23 @@ export class AppComponent implements OnInit {
         this.showModalDashboardDescription = true;
     }
 
+    clickMenuDashboardDetailFavourite() {
+        // Toggle Fav for the current D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailFavourite', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        // Toggle global D 
+        this.globalVariableService.currentDashboards.forEach(d => {
+            if (d.id == this.globalVariableService.currentDashboardInfo
+                .value.currentDashboardID) {
+                // d.is;
+            };
+        });
+        
+        this.showModalDashboardDescription = true;
+    }
+
     clickMenuDashboardDetailTags() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTags', '@Start');

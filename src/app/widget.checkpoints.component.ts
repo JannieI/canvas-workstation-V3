@@ -103,7 +103,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             widgetID: this.selectedWidget.id,
             name: this.checkpointName,
             widgetSpec: JSON.parse(JSON.stringify(this.selectedWidget)),
-            creator: this.globalVariableService.userID,
+            creator: this.globalVariableService.currentUser.userID,
             createdOn: '217/01/01'
         };
 

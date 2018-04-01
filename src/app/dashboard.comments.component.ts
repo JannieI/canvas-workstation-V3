@@ -85,7 +85,7 @@ export class DashboardCommentsComponent implements OnInit {
 
         // Validation
         if (this.canvasComments[this.canvasComments.length - 1]['creator'] !=
-            this.globalVariableService.userID) {
+            this.globalVariableService.currentUser.userID) {
             this.showError = true;
             this.errorMessage = '';
             this.errorMessage = 'Can only edit own comments';
@@ -147,7 +147,7 @@ export class DashboardCommentsComponent implements OnInit {
             dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
             widgetID: this.selectedWidgetID,
             comment: this.commentText,
-            creator: this.globalVariableService.userID,
+            creator: this.globalVariableService.currentUser.userID,
             createdOn: dt.toString()
         };
 

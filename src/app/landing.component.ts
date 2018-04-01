@@ -39,6 +39,7 @@ export class LandingComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
 		private router: Router
 	) {
+		
 		// Load Startup info:
 
 		// Create DB models and connect
@@ -49,7 +50,6 @@ export class LandingComponent implements OnInit {
 				console.log('Connection to localDB in Landing page FAILED');
 			}
 		});
-
 
 		// All Datasources
 		this.globalVariableService.getDatasources();
@@ -81,7 +81,7 @@ export class LandingComponent implements OnInit {
 											pPreAdd.push(
 												{
 													id: null,
-													userID: this.globalVariableService.userID,
+													userID: this.globalVariableService.currentUser.userID,
 													paletteButtonBarID: p.id,
 													mainmenuItem: p.mainmenuItem,
 													menuText: p.menuText,
@@ -117,7 +117,7 @@ export class LandingComponent implements OnInit {
 								});
 							} else {
 								pBsel = pBsel.filter(
-									s => s.userID == this.globalVariableService.userID
+									s => s.userID == this.globalVariableService.currentUser.userID
 								);
 
 								console.log('xx exists', pBsel)
@@ -204,7 +204,7 @@ export class LandingComponent implements OnInit {
 		this.globalVariableService.deleteDashboardRecent(index).then(
 			i => {
 				// this.recentDashboards = this.globalVariableService.getDashboardsRecentlyUsed(
-			// 	this.globalVariableService.userID
+			// 	this.globalVariableService.currentUser.userID
 			// );
 		})
 	}

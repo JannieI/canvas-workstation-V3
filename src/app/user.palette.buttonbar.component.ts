@@ -113,7 +113,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 this.paletteButtonsSelected.push(
                     {
                         id: maxID,
-                        userID: this.globalVariableService.userID,
+                        userID: this.globalVariableService.currentUser.userID,
                         paletteButtonBarID: this.paletteButtons[i].id,
                         mainmenuItem: this.paletteButtons[i].mainmenuItem,
                         menuText: this.paletteButtons[i].menuText,

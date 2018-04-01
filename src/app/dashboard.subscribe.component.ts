@@ -49,7 +49,7 @@ export class DashboardSubscribeComponent implements OnInit {
         // Get subscriptions for current User
         this.globalVariableService.getDashboardSubscription().then(data => {
             this.dashboardSubscriptions = data.filter(ds => 
-                ds.userID == this.globalVariableService.userID
+                ds.userID == this.globalVariableService.currentUser.userID
             );
 
             // Refresh Codes
@@ -179,7 +179,7 @@ export class DashboardSubscribeComponent implements OnInit {
             let localData: DashboardSubscription = {
                 id: null,
                 dashboardID: this.dashboards[dID].id,
-                userID: this.globalVariableService.userID,
+                userID: this.globalVariableService.currentUser.userID,
                 view: false,
                 editmode: false,
                 save: false,

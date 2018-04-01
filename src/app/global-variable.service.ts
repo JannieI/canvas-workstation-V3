@@ -738,7 +738,7 @@ export class GlobalVariableService {
     sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
-    userID: string = 'JannieI';  // TODO - unHardCode
+    // userID: string = 'JannieI';  // TODO - unHardCode
     
 
     // StatusBar
@@ -1068,7 +1068,7 @@ export class GlobalVariableService {
             };
 
             // Refresh temp array
-            this.getDashboardsRecentList(this.userID).then(
+            this.getDashboardsRecentList(this.currentUser.userID).then(
                 i => resolve(true)
             )
         });
