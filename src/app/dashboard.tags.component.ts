@@ -25,7 +25,6 @@ import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 
 
-
 @Component({
     selector: 'dashboard-tags',
     templateUrl: './dashboard.tags.component.html',
@@ -35,42 +34,14 @@ export class DashboardTagsComponent implements OnInit {
 
     @Output() formDashboardTagsClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
     currentDashboardTags: DashboardTag[];
 
-	constructor(
-        private globalFunctionService: GlobalFunctionService,
-        private globalVariableService: GlobalVariableService,
-	) {}
-
-    ngOnInit() {
-        this.globalVariableService.getCurrentDashboardTags(
-            this.globalVariableService.currentDashboardID).then
-              (i => this.currentDashboardTags = i);
-    }
-
-    clickClose(action: string) {
-        console.log('clickClose')
-
-		this.formDashboardTagsClosed.emit(action);
-    }
-
-}
-
-/*
- * Visualise page, to view / present Dashboards previously created
- */
-
-
-    showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
-    dashboardTags: DashboardTag[];
     paletteButtons: PaletteButtonBar[];
     paletteButtonsOriginal: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
 
 
-    constructor(
+	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
@@ -79,8 +50,14 @@ export class DashboardTagsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards;
-        this.dashboardTags = this.globalVariableService.dashboardTags;
+        this.globalVariableService.getCurrentDashboardTags(
+            this.globalVariableService.currentDashboardID).then
+              (i => this.currentDashboardTags = i);
+
+
+
+
+              
 
         // Set Selectec and Total Available Arrays
         this.globalVariableService.getPaletteButtonBar().then( pb => {
@@ -360,7 +337,7 @@ console.log('xx added', this.paletteButtons.length)
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formUserWidgetButtonBarClosed.emit(action);
+		this.formDashboardTagsClosed.emit(action);
     }
 
     clickReset() {
@@ -412,8 +389,13 @@ console.log('xx sav1', this.globalVariableService.currentPaletteButtonsSelected.
         // Inform subscribers
         this.globalVariableService.currentPaletteButtonsSelected.next(this.paletteButtonsSelected);
 
-		this.formUserWidgetButtonBarClosed.emit(action);
+		this.formDashboardTagsClosed.emit(action);
     }
 
+    clickAddNew() {
+        // Add text for a new tag
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAddNew', '@Start');
+
+    }
 }
 
