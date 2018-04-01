@@ -571,14 +571,7 @@ export class AppComponent implements OnInit {
             this.showModalData = true;
         };
 
-        // Set Fav
-        this.showFavouriteDashboard = false;
-        for (let i = 0; i < this.globalVariableService.currentDashboards.length; i++) {
-            if (this.globalVariableService.currentUser.favouriteDashboards.indexOf(
-                this.globalVariableService.currentDashboards[i].id) >= 0) {
-                    this.showFavouriteDashboard = true;
-            };
-        };
+        this.dashboardOpenActions();
 
         console.log('xx this.globalVariableService.currentDashboards',
         this.globalVariableService.currentUser.favouriteDashboards, this.globalVariableService.currentDashboards, this.showFavouriteDashboard)
@@ -599,6 +592,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardOpen', '@Start');
 
         this.menuOptionClickPostAction();
+        this.dashboardOpenActions();
 
         this.showModalDashboardOpen = false;
     }
@@ -4347,6 +4341,18 @@ export class AppComponent implements OnInit {
         };
     }
 
+    dashboardOpenActions() {
+        // Actions to perform when a D is opened, Before anything else
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardOpenActions', '@Start');
+
+        // Toggle global D 
+        this.globalVariableService.currentDashboards.forEach(d => {
+            if (d.id == this.globalVariableService.currentDashboardInfo
+                .value.currentDashboardID) {
+                // d.is;
+            };
+        });
+    }
 }
 
 // Naming conventions
