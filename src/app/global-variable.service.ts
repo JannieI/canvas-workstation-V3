@@ -1842,6 +1842,33 @@ export class GlobalVariableService {
         });
     }
 
+    deleteDashboardTag(id: number): Promise<string> {
+        // Description: Deletes a DashboardTag
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteDashboardTag ...');
+
+        let url: string = 'dashboardTag';
+        this.filePath = './assets/data.dashboardTag.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    console.log('xx deleteDashboardTag DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('xx deleteDashboardTag FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
     getDashboardPermissions(): Promise<DashboardPermission[]> {
         // Description: Gets all P
         // Returns: this.dashboardPermissions array, unless:
