@@ -2,13 +2,15 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <div>
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
 
-                Share Dashboard
-                <div class="propertyLine">
+            <div class="gridOverall">
+                <div class="gridTitle">
+                    <b>Share Dashboard</b>
+                </div>
+                <div class="gridSubTitle">
                     <i>
                         Indicate who can access this Dashboard, and how.  The options are Private
                         (only accesable to myself), Public (all users can view and edit it) or
@@ -17,31 +19,25 @@
                         View / Edit cell in the grid below.
                     </i>
                 </div>
-                <form>
-                    <section>
-                        <div class="form-group">
-                            <label for="selects_4">Dashboard access is:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    >
-                                    <option>Private</option>
-                                    <option>Public</option>
-                                    <option>Access List</option>
-                                </select>
-                            </div>
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickClose('Close')"
-                                >
-                                Save
-                            </button>
-                        </div>
-                    </section>
-                </form>
 
+                <div class="gridCurrent">
+                    Current Dashboard access:
+                    <select id="selects_3"
+                        >
+                        <option>Private</option>
+                        <option>Public</option>
+                        <option>Access List</option>
+                    </select>
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose('Close')"
+                        >
+                        Save
+                    </button>
+                </div>
 
-                <div class="propertyLine">
+                <div class="gridNew">
                     <input type="text" id="formFields_7" placeholder="User ID">
                     <input type="text" id="formFields_7" placeholder="Group ID">
                     <input type="text" id="formFields_7" placeholder="CanView">
@@ -54,22 +50,23 @@
                         Add
                     </button>
                 </div>
- 
-                <clr-datagrid>
-                    <clr-dg-column>User ID</clr-dg-column>
-                    <clr-dg-column>Group ID</clr-dg-column>
-                    <clr-dg-column>CanView</clr-dg-column>
-                    <clr-dg-column>CanEdit</clr-dg-column>
+    
+                <div class="gridTable">
+                    <clr-datagrid>
+                        <clr-dg-column>User ID</clr-dg-column>
+                        <clr-dg-column>Group ID</clr-dg-column>
+                        <clr-dg-column>CanView</clr-dg-column>
+                        <clr-dg-column>CanEdit</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let row of dashboardPermissions">
-                        <clr-dg-cell>{{row.userID}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.canView}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.canEdit}}</clr-dg-cell>
-                    </clr-dg-row>
+                        <clr-dg-row *ngFor="let row of dashboardPermissions">
+                            <clr-dg-cell>{{row.userID}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.canView}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.canEdit}}</clr-dg-cell>
+                        </clr-dg-row>
 
-                </clr-datagrid>
-
+                    </clr-datagrid>
+                </div>
             </div>
         </div>
     </div>
