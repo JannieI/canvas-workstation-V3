@@ -60,18 +60,14 @@ export class DashboardTagsComponent implements OnInit {
             // Get a unique list of tags
             let availableTagText = new Set(dt.map(t => t.tag));
             let availableTagTextArray = Array.from(availableTagText);
-            console.log('xx availableTagTextArray 0', availableTagTextArray)
-
-            let index: number = 0;
+            
             for (let i = 0; i < dt.length; i++) {
+
                 if (availableTagTextArray.indexOf(dt[i].tag) >= 0) {
                     this.availableDashboardTags.push(dt[i]);
-                    index = index + 1;
-                    availableTagTextArray = availableTagTextArray.slice(index);
-                    console.log('xx availableTagTextArray 1', availableTagTextArray)
+                    availableTagTextArray = availableTagTextArray.slice(1);
                 };
             };
-            console.log('xx availableTagTextArray 2', availableTagTextArray, this.availableDashboardTags)
 
             // Sort the available tags
             this.availableDashboardTags.sort( (obj1,obj2) => {
@@ -84,8 +80,6 @@ export class DashboardTagsComponent implements OnInit {
                 return 0;
             });
 
-
-            console.log('xx dt', this.selectedDashboard.id, dt)
         });
 
     }
@@ -173,7 +167,6 @@ export class DashboardTagsComponent implements OnInit {
             }
         );
 
-        console.log('xx added', this.selectedDashboardTags.length)
     }
 
     clickDelete(id: number, index: number){
@@ -196,13 +189,16 @@ export class DashboardTagsComponent implements OnInit {
         // Save data, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-console.log('xx sav1', this.selectedDashboardTags)
         // Delete all Tags for this D
-        this.globalVariableService.dashboardTags.forEach(dt => {
-            if (dt.dashboardID == this.selectedDashboard.id) {
-                this.globalVariableService.deleteDashboardTag(dt.id)
+        for (let i = this.globalVariableService.dashboardTags.length - 1; i >= 0; i--) {
+            if (this.globalVariableService.dashboardTags[i].dashboardID == 
+                this.selectedDashboard.id) {
+                    this.globalVariableService.deleteDashboardTag(
+                        this.globalVariableService.dashboardTags[i].id
+                    );
+                    this.globalVariableService.dashboardTags.splice(i, 1)
             };
-        });
+        };
 
         // Add the new ones to the DB
         // TODO - note that IDs in paletteButtonsSelected sent to app is DIFF to DB ...

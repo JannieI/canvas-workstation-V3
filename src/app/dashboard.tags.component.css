@@ -117,7 +117,7 @@
 
         .gridAdd {
             grid-column-start: 1;
-            grid-column-end: 7;
+            grid-column-end: 18;
             grid-row-start: 4;
             grid-row-end: 5;
         }
