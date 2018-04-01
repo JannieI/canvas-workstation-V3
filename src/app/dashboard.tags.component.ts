@@ -39,7 +39,7 @@ export class DashboardTagsComponent implements OnInit {
     newTag: string;
     paletteButtons: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
-    selectedTagIndex: number;
+    selectedTagIndex: number = -1;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -67,14 +67,25 @@ export class DashboardTagsComponent implements OnInit {
         this.selectedTagIndex = index;
     }
 
-    clickAdd() {
-        // Add all selected on Available list to Selected list, and unselect original
-        // Then sort the altered list
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
-        // Get selected in Available, and add to Selected
-        let availID: number[] = [];
-
+    clickAddNew() {
+        // Add text for a new tag
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAddNew', '@Start');
+        
+        // Nothing to do
+        if (this.newTag == '') {
+            return;
+        };
+        let isFound: boolean = false;
+        this.selectedDashboardTags.forEach(dt => {
+            if (dt.tag == this.newTag) {
+                isFound = true;
+            }
+        });
+        if (isFound) {
+            return;
+        };
+        
         // TODO - do this better with a DB
         let maxIDs: number[] = [];
         let maxID: number = 0;
@@ -92,6 +103,45 @@ export class DashboardTagsComponent implements OnInit {
 
             }
         );
+    }
+
+    clickAdd() {
+        // Add tag that is selected on the Avaliable Tag list
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Nothing to do
+        if (this.selectedTagIndex < 0) {
+            return;
+        };
+        let isFound: boolean = false;
+        this.selectedDashboardTags.forEach(dt => {
+            if (dt.tag == this.availableDashboardTags[this.selectedTagIndex].tag) {
+                isFound = true;
+            }
+        });
+        if (isFound) {
+            return;
+        };
+
+        // Get selected in Available, and add to Selected
+
+        // TODO - do this better with a DB
+        let maxIDs: number[] = [];
+        let maxID: number = 0;
+        this.globalVariableService.currentDashboardTags.forEach(pbs =>
+            maxIDs.push (pbs.id)
+        );
+        maxID = Math.max(...maxIDs);
+
+        maxID = maxID + 1;
+        this.selectedDashboardTags.push(
+            {
+                id: maxID,
+                dashboardID: this.selectedDashboard.id,
+                tag: this.availableDashboardTags[this.selectedTagIndex].tag
+
+            }
+        );
 
         console.log('xx added', this.selectedDashboardTags.length)
     }
@@ -104,7 +154,7 @@ export class DashboardTagsComponent implements OnInit {
         this.selectedDashboardTags.splice(index, 1);
         
     }
-    
+
     clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -148,10 +198,5 @@ console.log('xx sav1', this.selectedDashboardTags)
 		this.formDashboardTagsClosed.emit(action);
     }
 
-    clickAddNew() {
-        // Add text for a new tag
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAddNew', '@Start');
-
-    }
 }
 
