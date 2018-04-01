@@ -45,28 +45,26 @@
                 </div>
 
                 <div class="gridNewTitle">
-                    <b>Add a new user:</b>
-                    <input type="text" placeholder="User ID">
+                    <b>For an Access List, you can add a new user or group to the table below. 
+                       Then toggle the required access by double clicking on it in the table.</b>
                 </div>
                 <div class="gridNewUserID">
                     <b>UserID:</b>
                     <input type="text" placeholder="User ID">
                 </div>
-                <div class="gridNewGroupID">
-                    <b>GroupID:</b>
-                    <input type="text" placeholder="Group ID">
-                </div>
-                <div class="gridNewCanView">
-                    <b>CanView:</b>
-                    <input type="text" placeholder="CanView">
-                </div>
-                <div class="gridNewCanEdit">
-                    <b>CanEdit:</b>
-                    <input type="text" placeholder="CanEdit">
-                </div>
-                <div class="gridNewCanDelete">
-                    <b>CanDelete:</b>
-                        <input type="text" placeholder="CanEdit">
+                <div class="gridNewGroupName">
+                    <b>Group:</b>
+                </div>  
+                <div class="gridNewGroupSelect">
+                    <div class="select">
+                        <select id="selects_3"
+                            (change)="clickSelectStep($event)"
+                            >
+                            <option>Private</option>
+                            <option>Public</option>
+                            <option>Access List</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="gridNewButton">
                     <button
@@ -80,8 +78,9 @@
     
                 <div class="gridTable">
                     <clr-datagrid>
-                        <clr-dg-column [clrDgField]="userID">User ID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="groupID">Group ID</clr-dg-column>
+                        <clr-dg-column>Remove</clr-dg-column>
+                        <clr-dg-column [clrDgField]="userID">User ID (single)</clr-dg-column>
+                        <clr-dg-column [clrDgField]="groupID">Group Name (applies to all its members)</clr-dg-column>
                         <clr-dg-column [clrDgField]="canView">View</clr-dg-column>
                         <clr-dg-column [clrDgField]="canEdit">Edit</clr-dg-column>
                         <clr-dg-column [clrDgField]="canDelete">Delete</clr-dg-column>
@@ -89,6 +88,13 @@
                         <clr-dg-row *clrDgItems="let row of dashboardPermissions; 
                             let i = index"
                             >
+                            <clr-dg-cell>
+                                <clr-icon shape="trash" 
+                                    size="12" 
+                                    (click)="clickDelete(row.id, i)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
                             <clr-dg-cell>{{row.userID}}</clr-dg-cell>
                             <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
                             <clr-dg-cell>{{row.canView}}</clr-dg-cell>

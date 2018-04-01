@@ -53,8 +53,11 @@
                         <ul class="nav-list">
                             <div *ngFor="let row of selectedDashboardTags; let i = index"
                                 >
-                                <clr-icon shape="trash" size="12" (click)="clickDelete(row.id, i)">
-                                    </clr-icon>
+                                <clr-icon shape="trash" 
+                                    size="12" 
+                                    (click)="clickDelete(row.id, i)"
+                                    >
+                                </clr-icon>
                                 {{ row.tag }}
                             </div>
                         </ul>
@@ -77,7 +80,7 @@
                         (click)="clickClose('Close')"
                         >
                         Cancel
-                    </button>
+                    </button> 
                 </div>
                 <div class="gridButtonSave">
                     <button
