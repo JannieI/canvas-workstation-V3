@@ -32,8 +32,8 @@ export class DashboardCommentsComponent implements OnInit {
     @Input() selectedWidgetID: number;
 
     canvasComments: CanvasComment[] = [];
+    datagridColumns: string[] =["id"]
     commentText: string;
-    datagridColumns: DatagridColumn[];
     datagridPaginationSize: number = 6;
     editLast: boolean = false;
     errorMessage: string = '';

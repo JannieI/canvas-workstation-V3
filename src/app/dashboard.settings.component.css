@@ -19,7 +19,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(15, 1fr);
-    grid-template-rows: repeat(19, 1rem);
+    grid-template-rows: repeat(16, 1rem);
 }
 
     .gridTitle {

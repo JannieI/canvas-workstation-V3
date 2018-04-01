@@ -46,15 +46,19 @@
                     </div>
 
                     <div class="gridTable">
-
                         <clr-datagrid>
+
+                            <clr-dg-placeholder>
+                                No Comments created as yet
+                            </clr-dg-placeholder>
+                            
                             <clr-dg-column>Edit</clr-dg-column>
                             <clr-dg-column [clrDgField]="id">ID</clr-dg-column>
                             <clr-dg-column [clrDgField]="comment">Comment</clr-dg-column>
                             <clr-dg-column [clrDgField]="creator">Creator</clr-dg-column>
                             <clr-dg-column [clrDgField]="createdOn">CreatedOn</clr-dg-column>
 
-                            <clr-dg-row *ngFor="let row of canvasComments; let i = index">
+                            <clr-dg-row *clrDgItems="let row of canvasComments; let i = index">
                                 <clr-dg-cell>
                                     <clr-icon *ngIf="i==indexLastRecord"
                                         (click)="clickEditComment(i, row.id)"
@@ -77,7 +81,7 @@
                                 </clr-dg-pagination>
                             </clr-dg-footer>
 
-                        </clr-datagrid>
+                        </clr-datagrid> 
                     </div>
                 </div>
             </div>
