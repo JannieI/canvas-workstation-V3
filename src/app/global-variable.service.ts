@@ -1847,8 +1847,8 @@ export class GlobalVariableService {
         // Returns: 'Deleted' or error message
         console.log('Global-Variables deleteDashboardTag ...');
 
-        let url: string = 'dashboardTag';
-        this.filePath = './assets/data.dashboardTag.json';
+        let url: string = 'dashboardTags';
+        this.filePath = './assets/data.dashboardTags.json';
 
         return new Promise<any>((resolve, reject) => {
 

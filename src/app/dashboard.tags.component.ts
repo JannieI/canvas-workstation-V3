@@ -34,8 +34,8 @@ export class DashboardTagsComponent implements OnInit {
     @Input() selectedDashboard: Dashboard
     @Output() formDashboardTagsClosed: EventEmitter<string> = new EventEmitter();
 
-    availableDashboardTags: DashboardTag[];
-    selectedDashboardTags: DashboardTag[];
+    availableDashboardTags: DashboardTag[] = [];
+    selectedDashboardTags: DashboardTag[] = [];
     newTag: string = '';
     paletteButtons: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
@@ -51,11 +51,41 @@ export class DashboardTagsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.getDashboardTags().then(dt => {
-                this.availableDashboardTags = dt;
-                this.selectedDashboardTags = dt.filter(f =>
-                    f.dashboardID == this.selectedDashboard.id
-                )
-                console.log('xx dt', this.selectedDashboard.id, dt)
+
+            // Get selected, before any manipulation done to dt
+            this.selectedDashboardTags = dt.filter(f =>
+                f.dashboardID == this.selectedDashboard.id
+            )
+
+            // Get a unique list of tags
+            let availableTagText = new Set(dt.map(t => t.tag));
+            let availableTagTextArray = Array.from(availableTagText);
+            console.log('xx availableTagTextArray 0', availableTagTextArray)
+
+            let index: number = 0;
+            for (let i = 0; i < dt.length; i++) {
+                if (availableTagTextArray.indexOf(dt[i].tag) >= 0) {
+                    this.availableDashboardTags.push(dt[i]);
+                    index = index + 1;
+                    availableTagTextArray = availableTagTextArray.slice(index);
+                    console.log('xx availableTagTextArray 1', availableTagTextArray)
+                };
+            };
+            console.log('xx availableTagTextArray 2', availableTagTextArray, this.availableDashboardTags)
+
+            // Sort the available tags
+            this.availableDashboardTags.sort( (obj1,obj2) => {
+                if (obj1.tag > obj2.tag) {
+                    return 1;
+                };
+                if (obj1.tag < obj2.tag) {
+                    return -1;
+                };
+                return 0;
+            });
+
+
+            console.log('xx dt', this.selectedDashboard.id, dt)
         });
 
     }
@@ -167,22 +197,18 @@ export class DashboardTagsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
 console.log('xx sav1', this.selectedDashboardTags)
-        // Delete the inital selected ones for this user from the DB only
-        this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs =>
-            this.globalVariableService.deletePaletteButtonsSelected(pbs.id)
-        )
-
-        // Unselect all
-        this.paletteButtonsSelected.forEach(pbs => pbs.isSelected = false)
+        // Delete all Tags for this D
+        this.globalVariableService.dashboardTags.forEach(dt => {
+            if (dt.dashboardID == this.selectedDashboard.id) {
+                this.globalVariableService.deleteDashboardTag(dt.id)
+            };
+        });
 
         // Add the new ones to the DB
         // TODO - note that IDs in paletteButtonsSelected sent to app is DIFF to DB ...
-        this.paletteButtonsSelected.forEach(pbs =>
-                this.globalVariableService.addPaletteButtonsSelected(pbs)
+        this.selectedDashboardTags.forEach(dt =>
+                this.globalVariableService.addDashboardTags(dt)
         );
-
-        // Inform subscribers
-        this.globalVariableService.currentPaletteButtonsSelected.next(this.paletteButtonsSelected);
 
         // Tell user
         this.globalVariableService.showStatusBarMessage(
