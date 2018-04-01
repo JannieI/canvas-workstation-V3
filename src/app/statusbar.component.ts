@@ -93,7 +93,7 @@ export class StatusbarComponent {
             };
         });
 
-        // Close any open popus when a new D is opened
+        // Close any open popups when a new D is opened
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => {
                 this.showDashboardDescription = false;

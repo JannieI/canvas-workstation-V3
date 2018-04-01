@@ -379,7 +379,7 @@ const graphWidth: number = 420;
                         this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
                     };
             };
-
+ 
             // Update global W
             this.globalVariableService.widgetReplace(this.localWidget);
         };

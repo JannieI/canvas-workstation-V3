@@ -653,12 +653,19 @@ export class AppComponent implements OnInit {
         this.showModalDashboardDetails = false;
     }
 
-    handleCloseDashboardDescription() {
+    handleCloseDashboardDescription(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDescription', '@Start');
 
         this.menuOptionClickPostAction();
 
+        // Refresh any changes to the current D
+        if (action == 'Saved') {
+            this.currentDashboardName = this.selectedDashboard.name;
+            this.currentTabBackgroundColor = this.selectedDashboard.backgroundColor;
+            this.currentTabColor = this.selectedDashboard.backgroundImage;
+        };
+            
         this.showModalDashboardDescription = false;
     }
 
@@ -1505,7 +1512,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardDetailDescription() {
-        //
+        // Show the modal form to edit Descriptive detail for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDescription', '@Start');
 
         this.menuOptionClickPreAction();
