@@ -479,12 +479,13 @@ export class DashboardSchedule {
 }
 
 export class DashboardPermission {
-    id: number;
-    dashboardID: number;
-    userID: string;                     // 1 of usr/grp filled in, one blank
-    groupID: string;
-    canView: boolean;
-    canEdit: boolean;
+    id: number;                         // Unique ID
+    dashboardID: number;                // FK to D
+    userID: string;                     // UserID - NB: 1 of usr/grp filled in, one blank
+    groupID: string;                    // Group ID
+    canView: boolean;                   // True if can View this D
+    canEdit: boolean;                   // True if can Edit this D
+    canDelete: boolean;                 // True if can Delete this D
 }
 
 export class DashboardSubscription {
