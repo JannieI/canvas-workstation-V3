@@ -1810,6 +1810,38 @@ export class GlobalVariableService {
         };
     }
 
+    addDashboardTags(data: DashboardTag): Promise<any> {
+        // Description: Adds a new DashboardTag
+        // Returns: Added Data or error message
+        console.log('Global-Variables addDashboardTags ...');
+
+        let url: string = 'dashboardTags';
+        this.filePath = './assets/data.dashboardTags.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    
+                    // Update Global vars to make sure they remain in sync
+                    this.dashboardTags.push(JSON.parse(JSON.stringify(data)));
+                    
+                    console.log('xx addDashboardTags ADDED', data, this.dashboardTags)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('xx addDashboardTags FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getDashboardPermissions(): Promise<DashboardPermission[]> {
         // Description: Gets all P
         // Returns: this.dashboardPermissions array, unless:
@@ -3283,7 +3315,7 @@ export class GlobalVariableService {
     }
 
     addCanvasComments(data: CanvasComment): Promise<any> {
-        // Description: Adds a new canvasComments
+        // Description: Adds a new canvasComment
         // Returns: Added Data or error message
         console.log('Global-Variables addCanvasComments ...');
 
@@ -3439,7 +3471,7 @@ export class GlobalVariableService {
     }
 
     addWidgetCheckpoints(data: WidgetCheckpoint): Promise<any> {
-        // Description: Adds a new WidgetCheckpoints
+        // Description: Adds a new WidgetCheckpoint
         // Returns: Added Data or error message
         console.log('Global-Variables addWidgetCheckpoints ...');
 

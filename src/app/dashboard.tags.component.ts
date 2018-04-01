@@ -36,7 +36,7 @@ export class DashboardTagsComponent implements OnInit {
 
     availableDashboardTags: DashboardTag[];
     selectedDashboardTags: DashboardTag[];
-    newTag: string;
+    newTag: string = '';
     paletteButtons: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
     selectedTagIndex: number = -1;
@@ -73,7 +73,7 @@ export class DashboardTagsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddNew', '@Start');
         
         // Nothing to do
-        if (this.newTag == '') {
+        if (this.newTag == ''  ||  this.newTag == null  ||  this.newTag == undefined) {
             return;
         };
         let isFound: boolean = false;
