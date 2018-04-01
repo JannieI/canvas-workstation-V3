@@ -235,6 +235,7 @@ export class CanvasUser {
     profilePicture: string;
     queryRuntimeWarning: number;            // Minutes: Warn user if a report is known to run longer
     snapToGrid: boolean;                    // True: snap Widgets to the grid points on Dashboard
+    favouriteDashboards: number[];          // IDs of D that are fav of this user
 }
 
 // Data

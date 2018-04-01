@@ -332,7 +332,7 @@ export class AppComponent implements OnInit {
     showModalShapeDelete: boolean = false;
     showModalTableDelete: boolean = false;
     showModalSlicerDelete: boolean = false;
-    showFav: boolean = false;
+    showFavouriteDashboard: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalCollaborateAlerts: boolean = false;
     showModalCollaborateActivityAdd: boolean = false;
@@ -396,7 +396,8 @@ export class AppComponent implements OnInit {
             environment: '',
             profilePicture: '',
             queryRuntimeWarning: 3,
-            snapToGrid: false
+            snapToGrid: false,
+            favouriteDashboards: [1]
         }
         console.log('Welcome ', this.globalVariableService.currentUser.userID)
     }
@@ -569,6 +570,18 @@ export class AppComponent implements OnInit {
             console.log('handleCloseModalLanding 2')
             this.showModalData = true;
         };
+
+        // Set Fav
+        this.showFavouriteDashboard = false;
+        for (let i = 0; i < this.globalVariableService.currentDashboards.length; i++) {
+            if (this.globalVariableService.currentUser.favouriteDashboards.indexOf(
+                this.globalVariableService.currentDashboards[i].id) >= 0) {
+                    this.showFavouriteDashboard = true;
+            };
+        };
+
+        console.log('xx this.globalVariableService.currentDashboards',
+        this.globalVariableService.currentUser.favouriteDashboards, this.globalVariableService.currentDashboards, this.showFavouriteDashboard)
     }
 
     handleCloseDashboardNew(action: string) {
