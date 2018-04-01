@@ -41,7 +41,7 @@ export class DashboardShareComponent implements OnInit {
         this.dashboards = this.globalVariableService.dashboards;
         this.dashboardPermissions = this.globalVariableService.dashboardPermissions;
     }
-
+ 
     clickClose(action: string) {
         console.log('clickClose')
 
