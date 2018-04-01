@@ -32,6 +32,7 @@ import { PaletteButtonsSelected }     from './models';
 })
 export class DashboardTagsComponent implements OnInit {
 
+    @Input() selectedDashboard: Dashboard
     @Output() formDashboardTagsClosed: EventEmitter<string> = new EventEmitter();
 
     currentDashboardTags: DashboardTag[];

@@ -1561,6 +1561,14 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // Set D
+        this.globalVariableService.currentDashboards.forEach(d => {
+            if (d.id == this.globalVariableService.currentDashboardInfo
+                .value.currentDashboardID) {
+                this.selectedDashboard = d;
+            };
+        });
+        
         this.showModalDashboardTags = true;
     }
 
