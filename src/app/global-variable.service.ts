@@ -1776,7 +1776,7 @@ export class GlobalVariableService {
     }
 
     getCurrentDashboardTags(dashboardID: number): Promise<DashboardTag[]> {
-        // Description: Gets all Sch for current D
+        // Description: Gets all Tags for current D
         // Params:
         //   dashboardID
         // Returns: this.currentDashboardTags array, unless:

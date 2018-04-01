@@ -414,7 +414,6 @@ export class Dashboard {
     nrRecords: number;
     nrTimesOpened: number;
     tabs: number[];
-    tags: string[];
     permissions: string[];
 }
 
