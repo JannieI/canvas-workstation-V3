@@ -2069,6 +2069,39 @@ export class GlobalVariableService {
 
     }
 
+    addDashboardSnapshots(data: DashboardSnapshot): Promise<any> {
+        // Description: Adds a new DashboardSnapshot
+        // Returns: Added Data or error message
+        console.log('Global-Variables addDashboardSnapshots ...');
+
+        let url: string = 'dashboardSnapshots';
+        this.filePath = './assets/data.dashboardSnapshots.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    
+                    // Update Global vars to make sure they remain in sync
+                    this.dashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
+
+                    console.log('xx addDashboardSnapshots ADDED', data, 
+                        this.currentDashboardSnapshots, this.dashboardSnapshots)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('xx addDashboardSnapshots FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
     getCurrentDashboardSnapshots(dashboardID: number): Promise<DashboardSnapshot[]> {
         // Description: Gets all Sn for current D
         // Params:
