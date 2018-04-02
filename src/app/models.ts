@@ -238,6 +238,11 @@ export class CanvasUser {
     favouriteDashboards: number[];          // IDs of D that are fav of this user
 }
 
+export class CanvasGroup {
+    groupID: number;                        // Unique Group ID
+    name: string;                           // Group name    
+}
+
 // Data
 export class Dataset {
     id: number;
