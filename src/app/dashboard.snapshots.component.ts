@@ -115,14 +115,49 @@ export class DashboardSnapshotsComponent implements OnInit {
             value.currentDashboardID;
         let snap: DashboardSnapshot = this.currentDashboardSnapshots[index];
 
-        this.globalVariableService.currentDashboards = this.currentDashboardSnapshots[index].dashboards;
-        this.globalVariableService.currentDashboardTabs = this.currentDashboardSnapshots[index].dashboardTabs;
-        this.globalVariableService.currentDashboardPermissions = this.currentDashboardSnapshots[index].dashboardPermissions;
-        this.globalVariableService.canvasComments = this.currentDashboardSnapshots[index].canvasComments;
-        this.globalVariableService.currentWidgets = this.currentDashboardSnapshots[index].widgets;
-        this.globalVariableService.currentDatasets = this.currentDashboardSnapshots[index].datasets;
-        this.globalVariableService.currentDatasources = this.currentDashboardSnapshots[index].datasources;
-        
+        // Remove global Ds
+        this.globalVariableService.dashboards = this.globalVariableService.dashboards.filter(d => {
+            d.id != dashboardID
+        }); 
+                
+        // Add D from snapshot to global
+        snap.dashboards.forEach(s => {
+            this.globalVariableService.dashboards.push(s);
+        });
+     
+        // Remove global Ts
+        this.globalVariableService.dashboardTabs = this.globalVariableService.dashboardTabs.
+            filter(t => {
+            t.dashboardID != dashboardID
+        }); 
+                
+        // Add T from snapshot to global
+        snap.dashboardTabs.forEach(s => {
+            this.globalVariableService.dashboardTabs.push(s);
+        });
+
+        // Remove global Ps
+        this.globalVariableService.dashboardPermissions = this.globalVariableService.dashboardPermissions.
+            filter(p => {
+            p.dashboardID != dashboardID
+        }); 
+                
+        // Add P from snapshot to global
+        snap.dashboardPermissions.forEach(s => {
+            this.globalVariableService.dashboardPermissions.push(s);
+        });
+
+        // Remove global Cs
+        this.globalVariableService.canvasComments = this.globalVariableService.canvasComments.
+            filter(c => {
+            c.dashboardID != dashboardID
+        }); 
+                
+        // Add C from snapshot to global
+        snap.canvasComments.forEach(s => {
+            this.globalVariableService.canvasComments.push(s);
+        });
+
         // Remove global Ws
         this.globalVariableService.widgets = this.globalVariableService.widgets.filter(w => {
             w.dashboardID != dashboardID
@@ -132,12 +167,46 @@ export class DashboardSnapshotsComponent implements OnInit {
         snap.widgets.forEach(s => {
             this.globalVariableService.widgets.push(s);
         });
+
+        // Remove global dSets
+        let ids: number[] = [];
+        snap.datasets.forEach(s => {
+            ids.push(s.id);
+        });
+        this.globalVariableService.datasets = this.globalVariableService.datasets.
+            filter(dS => {
+            ids.indexOf(dS.id) <0
+            }
+        ); 
+                
+        // Add dSets from snapshot to global
+        snap.datasets.forEach(s => {
+            this.globalVariableService.datasets.push(s);
+        });
+
+        // Remove global DS
+        ids = [];
+        snap.datasources.forEach(s => {
+            ids.push(s.id);
+        });
+        this.globalVariableService.datasources = this.globalVariableService.datasources.
+            filter(ds => {
+                ids.indexOf(ds.id) <0
+            }
+        ); 
+                
+        // Add DS from snapshot to global
+        snap.datasources.forEach(s => {
+            this.globalVariableService.datasources.push(s);
+        });
         
         // Refresh and Close form
 		this.globalVariableService.refreshCurrentDashboard(
             'openDashboard-clickOpenEdit', dashboardID, -1, ''
         );
-        // this.formDashboardSnapshotsClosed.emit('Rollback');
+
+        // Close the form
+        this.formDashboardSnapshotsClosed.emit('Rollback');
 
     }
 
