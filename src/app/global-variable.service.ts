@@ -1934,6 +1934,75 @@ export class GlobalVariableService {
         };
     }
 
+    addDashboardPermissions(data: DashboardPermission): Promise<any> {
+        // Description: Adds a new DashboardPermission
+        // Returns: Added Data or error message
+        console.log('Global-Variables addDashboardPermissions ...');
+
+        let url: string = 'dashboardPermissions';
+        this.filePath = './assets/data.dashboardPermissions.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    
+                    // Update Global vars to make sure they remain in sync
+                    this.dashboardPermissions.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDashboardPermissions.push(JSON.parse(JSON.stringify(data)));
+
+                    console.log('xx addDashboardPermissions ADDED', data, 
+                        this.currentDashboardPermissions, this.dashboardPermissions)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('xx addDashboardPermissions FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    deleteDashboardPermissions(id: number): Promise<string> {
+        // Description: Deletes a DashboardPermissions
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteDashboardPermissions ...');
+
+        let url: string = 'dashboardPermissions';
+        this.filePath = './assets/data.dashboardPermissions.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+        
+                    this.dashboardPermissions = this.dashboardPermissions.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDashboardPermissions = this.currentDashboardPermissions.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    console.log('xx deleteDashboardPermissions DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('xx deleteDashboardPermissions FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getDashboardSnapshots(): Promise<DashboardSnapshot[]> {
         // Description: Gets all Sn
         // Returns: this.dashboardSnapshots array, unless:
@@ -2360,73 +2429,20 @@ export class GlobalVariableService {
         });
     }
 
-    addDatasourcePermissions(data: DatasourcePermission): Promise<any> {
-        // Description: Adds a new DatasourcePermission
-        // Returns: Added Data or error message
-        console.log('Global-Variables addDatasourcePermissions ...');
-
-        let url: string = 'datasourcePermissions';
-        this.filePath = './assets/data.datasourcePermissions.json';
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.post('http://localhost:3000/' + url, data, {headers})
-            .subscribe(
-                data => {
-                    
-                    // Update Global vars to make sure they remain in sync
-                    this.datasourcePermissions.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDatasourcePermissions.push(JSON.parse(JSON.stringify(data)));
-                    
-                    console.log('xx addDatasourcePermissions ADDED', data, 
-                        this.currentDatasourcePermissions, this.datasourcePermissions)
-
-                    resolve(data);
-                },
-                err => {
-                    console.log('xx addDatasourcePermissions FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
-        });
-    }
-
-    deleteDatasourcePermissions(id: number): Promise<string> {
-        // Description: Deletes a DatasourcePermissions
-        // Returns: 'Deleted' or error message
+    deleteDatasourcePermissions(id: number) {
+        // Remove a record from the global and current DatasourcePermissions
         console.log('Global-Variables deleteDatasourcePermissions ...');
 
-        let url: string = 'datasourcePermissions';
-        this.filePath = './assets/data.datasourcePermissions.json';
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
-            .subscribe(
-                data => {
+        console.log('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
         
-                    this.datasourcePermissions = this.datasourcePermissions.filter(
-                        dsp => dsp.id != id
-                    );
-                    this.currentDatasourcePermissions = this.currentDatasourcePermissions.filter(
-                        dsp => dsp.id != id
-                    );
-                    
-                    console.log('xx deleteDatasourcePermissions DELETED id: ', id)
-                    resolve('Deleted');
-                },
-                err => {
-                    console.log('xx deleteDatasourcePermissions FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
-        });
+        this.datasourcePermissions = this.datasourcePermissions.filter(
+            dsp => dsp.id != id
+        );
+        this.currentDatasourcePermissions = this.currentDatasourcePermissions.filter(
+            dsp => dsp.id != id
+        );
+
+        console.log('xx GV Perms', this.datasourcePermissions, this.currentDatasourcePermissions)
     }
 
     getCurrentDatasourcePermissions(datasourceID: number): Promise<DatasourcePermission[]> {

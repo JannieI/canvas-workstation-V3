@@ -111,9 +111,9 @@ export class DashboardShareComponent implements OnInit {
             return;
         };
 
-        // Update locally
+        // Create New
         let newdP: DashboardPermission = {
-            id: 22,
+            id: null,
             dashboardID: this.selectedDashboard.id,
             userID: this.userID==''? null : this.userID,
             groupID: this.groupID==null? null : this.groupID,
@@ -123,14 +123,10 @@ export class DashboardShareComponent implements OnInit {
             canDelete: false
         };
 
-        this.dashboardPermissions.push(newdP);
-        // Update global, DB
-        // this.globalVariableService.currentDashboards.forEach(d => {
-        //     if (d.id == this.globalVariableService.currentDashboardInfo
-        //         .value.currentDashboardID) {
-        //         d.accessType = this.accessType;
-        //     };
-        // });
+        // Update locally
+        this.globalVariableService.addDashboardPermissions(newdP).then(res => {
+            this.dashboardPermissions.push(newdP);
+        });
         console.log('xx this.dashboardPermissions', this.dashboardPermissions)
     }
 
