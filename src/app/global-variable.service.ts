@@ -2053,7 +2053,7 @@ export class GlobalVariableService {
             if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
-                this.getLocal('DashboardSnapshot')
+                this.get(url)
                     .then(data => {
                         this.dashboardSnapshots = data;
                         this.isDirtyDashboardSnapshots = false;
@@ -2067,6 +2067,75 @@ export class GlobalVariableService {
             }
         });
 
+    }
+        
+    getCurrentDashboardSnapshots(dashboardID: number): Promise<DashboardSnapshot[]> {
+        // Description: Gets all Sn for current D
+        // Params:
+        //   dashboardID
+        // Returns: this.getDashboardSnapshots array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getCurrentDashboardSnapshots ...');
+
+        // Refresh from source at start, or if dirty
+        if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
+            return new Promise<DashboardSnapshot[]>((resolve, reject) => {
+                this.getDashboardSnapshots()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+                        this.currentDashboardSnapshots = data;
+                        console.log('Global-Variables getCurrentDashboardSnapshots 1',
+                            dashboardID, data)
+                        resolve(this.currentDashboardSnapshots);
+                })
+             })
+        } else {
+            return new Promise<DashboardSnapshot[]>((resolve, reject) => {
+                let returnData: DashboardSnapshot[];
+                returnData = this.dashboardSnapshots.filter(
+                    i => i.dashboardID == dashboardID
+                );
+                this.currentDashboardSnapshots = returnData;
+                console.log('Global-Variables getCurrentDashboardSnapshots 2', dashboardID)
+                resolve(this.currentDashboardSnapshots);
+            });
+        };
+    }
+
+    addDashboardSnapshots(data: DashboardSnapshot): Promise<any> {
+        // Description: Adds a new DashboardSnapshot
+        // Returns: Added Data or error message
+        console.log('Global-Variables addDashboardSnapshots ...');
+
+        let url: string = 'dashboardSnapshots';
+        this.filePath = './assets/data.dashboardSnapshots.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    
+                    // Update Global vars to make sure they remain in sync
+                    this.dashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
+
+                    console.log('xx addDashboardSnapshots ADDED', data, 
+                        this.currentDashboardSnapshots, this.dashboardSnapshots)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('xx addDashboardSnapshots FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
     deleteDashboardSnapshots(id: number): Promise<string> {
@@ -2102,74 +2171,6 @@ export class GlobalVariableService {
                 }
             )
         });
-    }
-    
-    addDashboardSnapshots(data: DashboardSnapshot): Promise<any> {
-        // Description: Adds a new DashboardSnapshot
-        // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardSnapshots ...');
-
-        let url: string = 'dashboardSnapshots';
-        this.filePath = './assets/data.dashboardSnapshots.json';
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.post('http://localhost:3000/' + url, data, {headers})
-            .subscribe(
-                data => {
-                    
-                    // Update Global vars to make sure they remain in sync
-                    this.dashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
-
-                    console.log('xx addDashboardSnapshots ADDED', data, 
-                        this.currentDashboardSnapshots, this.dashboardSnapshots)
-
-                    resolve(data);
-                },
-                err => {
-                    console.log('xx addDashboardSnapshots FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
-        });
-    }
-    getCurrentDashboardSnapshots(dashboardID: number): Promise<DashboardSnapshot[]> {
-        // Description: Gets all Sn for current D
-        // Params:
-        //   dashboardID
-        // Returns: this.getDashboardSnapshots array, unless:
-        //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDashboardSnapshots ...');
-
-        // Refresh from source at start, or if dirty
-        if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
-            return new Promise<DashboardSnapshot[]>((resolve, reject) => {
-                this.getDashboardSnapshots()
-                    .then(data => {
-                        data = data.filter(
-                            i => i.dashboardID == dashboardID
-                        );
-                        this.currentDashboardSnapshots = data;
-                        console.log('Global-Variables getCurrentDashboardSnapshots 1',
-                            dashboardID, data)
-                        resolve(this.currentDashboardSnapshots);
-                })
-             })
-        } else {
-            return new Promise<DashboardSnapshot[]>((resolve, reject) => {
-                let returnData: DashboardSnapshot[];
-                returnData = this.dashboardSnapshots.filter(
-                    i => i.dashboardID == dashboardID
-                );
-                this.currentDashboardSnapshots = returnData;
-                console.log('Global-Variables getCurrentDashboardSnapshots 2', dashboardID)
-                resolve(this.currentDashboardSnapshots);
-            });
-        };
     }
 
     getDashboardThemes(): Promise<DashboardTheme[]> {
