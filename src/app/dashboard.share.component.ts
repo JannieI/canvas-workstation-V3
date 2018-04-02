@@ -33,6 +33,8 @@ export class DashboardShareComponent implements OnInit {
     accessType: string;
     showTypeDashboard: boolean = false;
     dashboardPermissions: DashboardPermission[];
+    userID: string = '';
+    groupName: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -62,9 +64,40 @@ export class DashboardShareComponent implements OnInit {
         this.globalVariableService.currentDashboards.forEach(d => {
             if (d.id == this.globalVariableService.currentDashboardInfo
                 .value.currentDashboardID) {
-                d.accessType = this.selectedDashboard.accessType;
+                d.accessType = this.accessType;
             };
         });
+        console.log('xx this.globalVariableService.currentDashboards', this.globalVariableService.currentDashboardInfo
+        .value.currentDashboardID, this.globalVariableService.currentDashboards)
+		this.formDashboardShareClosed.emit('Saved');
+    }
+
+    clickAdd() {
+        // Add UserID and GroupName to the grid, and clear
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Update locally
+        let newdP: DashboardPermission = {
+            id: 22,
+            dashboardID: this.selectedDashboard.id,
+            userID: this.userID,
+            groupID: 1,
+            groupName: this.groupName,
+            canView: false,
+            canEdit: false,
+            canDelete: false
+        };
+
+        this.dashboardPermissions.push(newdP);
+        // Update global, DB
+        // this.globalVariableService.currentDashboards.forEach(d => {
+        //     if (d.id == this.globalVariableService.currentDashboardInfo
+        //         .value.currentDashboardID) {
+        //         d.accessType = this.accessType;
+        //     };
+        // });
+        console.log('xx this.globalVariableService.currentDashboards', this.globalVariableService.currentDashboardInfo
+        .value.currentDashboardID, this.globalVariableService.currentDashboards)
 		this.formDashboardShareClosed.emit('Saved');
     }
 

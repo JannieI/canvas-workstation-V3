@@ -52,12 +52,12 @@
                 </div>
                 <div class="gridNewUserID" *ngIf="accessList">
                     <b>UserID:</b>
-                    <input type="text" placeholder="User ID">
+                    <input type="text" [(ngModel)]="userID" placeholder="User ID">
                 </div>
                 <div class="gridNewGroupName" *ngIf="accessList">
                     <b>Group:</b>
                 </div>
-                <div class="gridNewGroupSelect" *ngIf="accessList">
+                <div class="gridNewGroupSelect" [(ngModel)]="groupName" *ngIf="accessList">
                     <div class="select">
                         <select id="selects_3"
                             (change)="clickSelectStep($event)"
@@ -72,7 +72,7 @@
                     <button
                         type="button"
                         class="btn btn-secondary"
-                        (click)="clickClose('Close')"
+                        (click)="clickAdd()"
                         >
                         Add
                     </button>

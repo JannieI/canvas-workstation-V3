@@ -485,7 +485,7 @@ export class DashboardPermission {
     id: number;                         // Unique ID
     dashboardID: number;                // FK to D
     userID: string;                     // UserID - NB: 1 of usr/grp filled in, one blank
-    groupID: string;                    // Group ID
+    groupID: number;                    // Group ID
     groupName: string;                  // Filled in @RunTime
     canView: boolean;                   // True if can View this D
     canEdit: boolean;                   // True if can Edit this D
