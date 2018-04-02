@@ -1,3 +1,5 @@
+import { DashboardCommentsComponent } from "./dashboard.comments.component";
+
 // ALL models (schema) are kept here
 
 // CA Datagrid
@@ -464,10 +466,17 @@ export class DashboardTheme {
 }
 
 export class DashboardSnapshot {
-    id: number;
-    dashboardID: number;
-    name: string;
-    comment: string;
+    id: number;                                     // Unique ID
+    dashboardID: number;                            // D for which the Snapshot is stored
+    name: string;                                   // Name of Snapshot
+    comment: string;                                // Optional Comment
+    dashboards: Dashboard[];                        // Array of D used (can include a Template)
+    dashboardTabs: DashboardTab[];                  // Ts of D
+    dashboardPermissions: DashboardPermission[];    // P of D
+    canvasComments: CanvasComment[];                // C of D
+    widgets: Widget[];                              // W of D
+    datasets: Dataset[];                            // dSets of D
+    datasources: Datasource[];                      // DS of D
 }
 
 export class DashboardSchedule {
