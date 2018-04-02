@@ -34,6 +34,15 @@ export class DashboardShareComponent implements OnInit {
     userID: string = '';
     groupName: string = '';
     errorMessage: string = '';
+    groupID: number;
+    groups: {id: number; name: string}[] = [
+        {id: 0, name: ''},
+        {id: 1, name: 'HR'},
+        {id: 2, name: 'Marketing'},
+        {id: 3, name: 'Sales'},
+        {id: 4, name: 'Engineering'},
+        {id: 5, name: 'Postal'}
+    ]
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -92,9 +101,9 @@ export class DashboardShareComponent implements OnInit {
         let newdP: DashboardPermission = {
             id: 22,
             dashboardID: this.selectedDashboard.id,
-            userID: this.userID,
-            groupID: 1,
-            groupName: this.groupName,
+            userID: this.userID==''? null : this.userID,
+            groupID: this.groupID==null? null : this.groupID,
+            groupName: this.groupName==null? null : this.groupName,
             canView: false,
             canEdit: false,
             canDelete: false
@@ -115,15 +124,24 @@ export class DashboardShareComponent implements OnInit {
         // Delete clicked permission
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
-        this.dashboardPermissions = this.dashboardPermissions.splice(index, 1);
+        this.dashboardPermissions.splice(index, 1);
     }
 
-    // clickSelectAccess(ev) {
-    //     // User changed the security access for the D
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectAccess', '@Start');
+    clickSelectGroup(ev) {
+        // User changed the security access for the D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectGroup', '@Start');
 
-    //     // Set accessList
-    //     // this.accessType = ev.srcElement.value.toString();
-    //     console.log(ev.srcElement.value, this.accessType)
-    // }
+        // Reset
+        this.groupID = null;
+        this.groupName = null;
+
+        // Set group info
+        this.groupName = ev.srcElement.value.toString();
+        this.groups.forEach(g => {
+            if (g.name == this.groupName) {
+                this.groupID = g.id;
+            };
+        });
+        console.log(ev.srcElement.value, this.accessType, this.groupID)
+    }
 }
