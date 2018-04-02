@@ -89,6 +89,8 @@
                         <clr-dg-column [clrDgField]="canView" class="checkCell">View</clr-dg-column>
                         <clr-dg-column [clrDgField]="canEdit">Edit</clr-dg-column>
                         <clr-dg-column [clrDgField]="canDelete">Delete</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canDelete">Grantor</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canDelete">Granted On</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of dashboardPermissions;
                             let i = index"
@@ -138,6 +140,8 @@
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
+                            <clr-dg-cell>{{row.grantor}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.grantedOn}}</clr-dg-cell>
                         </clr-dg-row>
 
                         <clr-dg-footer>

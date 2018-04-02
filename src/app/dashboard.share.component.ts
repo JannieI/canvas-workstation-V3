@@ -108,6 +108,7 @@ export class DashboardShareComponent implements OnInit {
         };
 
         // Create New
+        var today = new Date();
         let newdP: DashboardPermission = {
             id: null,
             dashboardID: this.selectedDashboard.id,
@@ -116,7 +117,9 @@ export class DashboardShareComponent implements OnInit {
             groupName: this.groupName==null? null : this.groupName,
             canView: false,
             canEdit: false,
-            canDelete: false
+            canDelete: false,
+            grantor: this.globalVariableService.currentUser.userID,
+            grantedOn: today.toString()
         };
 
         // Update locally
