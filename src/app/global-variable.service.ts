@@ -2394,6 +2394,41 @@ export class GlobalVariableService {
         });
     }
 
+    deleteDatasourcePermissions(id: number): Promise<string> {
+        // Description: Deletes a DatasourcePermissions
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteDatasourcePermissions ...');
+
+        let url: string = 'datasourcePermissions';
+        this.filePath = './assets/data.datasourcePermissions.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+        
+                    this.datasourcePermissions = this.datasourcePermissions.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDatasourcePermissions = this.currentDatasourcePermissions.filter(
+                        dsp => dsp.id != id
+                    );
+                    
+                    console.log('xx deleteDatasourcePermissions DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('xx deleteDatasourcePermissions FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getCurrentDatasourcePermissions(datasourceID: number): Promise<DatasourcePermission[]> {
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePermissions.value array, unless:
@@ -4521,22 +4556,6 @@ export class GlobalVariableService {
         // };
 
         return vlSpecsNew;
-    }
-
-    deleteDatasourcePermissions(id: number) {
-        // Remove a record from the global and current DatasourcePermissions
-        console.log('Global-Variables deleteDatasourcePermissions ...');
-
-        console.log('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
-        
-        this.datasourcePermissions = this.datasourcePermissions.filter(
-            dsp => dsp.id != id
-        );
-        this.currentDatasourcePermissions = this.currentDatasourcePermissions.filter(
-            dsp => dsp.id != id
-        );
-
-        console.log('xx GV Perms', this.datasourcePermissions, this.currentDatasourcePermissions)
     }
 
     actionUpsert(
