@@ -61,6 +61,15 @@ export class DashboardSnapshotsComponent implements OnInit {
 
 		this.formDashboardSnapshotsClosed.emit(action);
     }
+    
+    clickDelete(index: number, id: number) {
+        // Delete the selected Snapshot
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+
+        this.globalVariableService.deleteDashboardSnapshots(id).then(res => {
+            this.currentDashboardSnapshots.splice(index, 1)
+        });
+    }
 
     clickSave() {
         // Save the snapshot
@@ -110,7 +119,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
     }
 
-    clickRefreshDashboard(index: number) {
+    clickRestore(index: number) {
         // Refresh the D to the selected Snapshot, after saving the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshDashboard', '@Start');
  

@@ -59,17 +59,26 @@
                             >
                             <clr-dg-cell class="checkCell">
                                 <clr-icon
-                                    shape="refresh"
+                                    shape="trash"
                                     class="selectIcon1"
                                     size="12"
-                                    (dblclick)="clickRefreshDashboard(i)"
+                                    (click)="clickDelete(i, row.id)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell>{{row.id}}</clr-dg-cell>
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
                             <clr-dg-cell>{{row.comment}}</clr-dg-cell>
-                        </clr-dg-row>
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon
+                                    shape="refresh"
+                                    class="selectIcon1"
+                                    size="12"
+                                    (dblclick)="clickRestore(i)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            </clr-dg-row>
 
                         <clr-dg-footer>
                             {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
