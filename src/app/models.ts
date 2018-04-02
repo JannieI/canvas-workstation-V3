@@ -385,6 +385,9 @@ export class Dashboard {
     name: string;
     description: string;
 
+    // Access Type
+    accessType: string;             // How to access D: Private, Public, Access List
+
     // Overall properties
     password: string;
     refreshMode: string;

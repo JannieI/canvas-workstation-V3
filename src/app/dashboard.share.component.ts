@@ -26,11 +26,11 @@ import { DashboardPermission }        from './models';
 })
 export class DashboardShareComponent implements OnInit {
 
+    @Input() selectedDashboard: Dashboard;
     @Output() formDashboardShareClosed: EventEmitter<string> = new EventEmitter();
 
     accessList: boolean = false;
     showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
     dashboardPermissions: DashboardPermission[];
 
 	constructor(
@@ -42,7 +42,6 @@ export class DashboardShareComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards;
         this.dashboardPermissions = this.globalVariableService.dashboardPermissions;
     }
  

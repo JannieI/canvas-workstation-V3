@@ -1887,6 +1887,7 @@
 <dashboard-share
     class="formPopupDashboard"
     *ngIf="showModalDashboardShare"
+    [selectedDashboard]="selectedDashboard"
     (formDashboardShareClosed)="handleCloseDashboardShare($event)">Load Share Dashboard ...
 </dashboard-share>
 

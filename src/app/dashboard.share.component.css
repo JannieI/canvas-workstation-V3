@@ -81,7 +81,7 @@
     }
     .gridNewUserID {
         grid-column-start: 1;
-        grid-column-end: 5;
+        grid-column-end: 6;
         grid-row-start: 8;
         grid-row-end: 9;
         margin: 6px 2px 2px 60px;

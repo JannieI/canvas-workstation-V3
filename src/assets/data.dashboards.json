@@ -6,8 +6,8 @@
         "code": "Econ Overview",
         "name": "Economic Overview",
         "description": "Sample Economic indicator summary",
-
         "password": "",
+        "accessType": "Public",
         "refreshMode": "",
         "refreshTimer": 0,
         "defaultTabID": 0,
@@ -43,6 +43,7 @@
         "description": "Sample Costing Summary",
 
         "password": "",
+        "accessType": "Public",
         "refreshMode": "",
         "refreshTimer": 0,
         "defaultTabID": 0,
@@ -78,6 +79,7 @@
         "description": "Sample Home Budget",
 
         "password": "",
+        "accessType": "Public",
         "refreshMode": "",
         "refreshTimer": 0,
         "defaultTabID": 0,
@@ -113,6 +115,7 @@
         "description": "Sample Bitcoin sales",
 
         "password": "",
+        "accessType": "Public",
         "refreshMode": "",
         "refreshTimer": 0,
         "defaultTabID": 0,
@@ -148,6 +151,7 @@
         "description": "Cycling routes",
 
         "password": "",
+        "accessType": "Public",
         "refreshMode": "",
         "refreshTimer": 0,
         "defaultTabID": 0,
@@ -183,6 +187,7 @@
         "description": "European Indices",
 
         "password": "",
+        "accessType": "Public",
         "refreshMode": "",
         "refreshTimer": 0,
         "defaultTabID": 0,
@@ -218,6 +223,7 @@
         "description": "Regional Sales",
 
         "password": "",
+        "accessType": "Public",
         "refreshMode": "",
         "refreshTimer": 0,
         "defaultTabID": 0,
@@ -253,6 +259,7 @@
         "description": "Students per subject",
 
         "password": "",
+        "accessType": "Public",
         "refreshMode": "",
         "refreshTimer": 0,
         "defaultTabID": 0,
