@@ -16,7 +16,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
+import { Dashboard, DashboardTab, DashboardPermission, CanvasComment, Widget, Dataset, Datasource }                  from './models';
 import { DashboardSnapshot }                 from './models';
 
 @Component({
@@ -28,10 +28,11 @@ export class DashboardSnapshotsComponent implements OnInit {
 
     @Output() formDashboardSnapshotsClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
     currentDashboardSnapshots: DashboardSnapshot[];
-    selectedRow : Number;
     setClickedRow : Function;  // use (click)="setClickedRow(i)" in html to call this
+    selectedRow : Number;
+    snapshotComment: string = '';
+    snapshotName: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -48,7 +49,9 @@ export class DashboardSnapshotsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.refreshGrid();
+        this.globalVariableService.getCurrentDashboardSnapshots(
+            this.globalVariableService.currentDashboardID).then
+              (i => this.currentDashboardSnapshots = i);
 
     }
 
@@ -59,17 +62,38 @@ export class DashboardSnapshotsComponent implements OnInit {
 		this.formDashboardSnapshotsClosed.emit(action);
     }
 
-    clickSave(snapshotNameInput: string, snapshotCommentInput: string) {
+    clickSave() {
         // Save the snapshot
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.globalVariableService.saveLocal('DashboardSnapshot', {
+
+        let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.
+            currentDashboardID;
+        let currentD: Dashboard[] = this.globalVariableService.currentDashboards.slice();
+        let currentT: DashboardTab[] = this.globalVariableService.currentDashboardTabs.slice();
+        let currentP: DashboardPermission[] = this.globalVariableService.currentDashboardPermissions.slice();
+        let currentC: CanvasComment[] = this.globalVariableService.canvasComments.slice();
+        let currentW: Widget[] = this.globalVariableService.currentWidgets.slice();
+        let currentDset: Dataset[] = this.globalVariableService.currentDatasets.slice();
+        let currentDS: Datasource[] = this.globalVariableService.currentDatasources.slice();
+        let newSn: DashboardSnapshot = {
             id: null,
-            dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            name: snapshotNameInput,
-            comment: snapshotCommentInput
-            }).then(i => {
-            console.log('saved', i)
+            dashboardID: dashboardID,
+            name: this.snapshotName,
+            comment: this.snapshotComment,
+            dashboards: currentD,
+            dashboardTabs: currentT,
+            dashboardPermissions: currentP,
+            canvasComments: currentC,
+            widgets: currentW,
+            datasets: currentDset,
+            datasources: currentDS                
+        };
+
+        // Save and Close the form
+        this.globalVariableService.addDashboardSnapshots(newSn).then(res => {
+            this.currentDashboardSnapshots.push(res);
+            console.log('xx save', res, this.currentDashboardSnapshots)
         });
 
         this.refreshGrid();
@@ -78,7 +102,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
     refreshGrid() {
         // Refresh the snapshot Grid with the latest info
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'refreshGrid', '@Start');
 
         this.globalVariableService.getCurrentDashboardSnapshots(
             this.globalVariableService.currentDashboardID).then
@@ -90,21 +114,35 @@ export class DashboardSnapshotsComponent implements OnInit {
         // Refresh the D to the selected Snapshot, after saving the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshDashboard', '@Start');
  
-        this.globalVariableService.saveLocal('DashboardSnapshot', {
+        let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.
+            currentDashboardID;
+        let currentD: Dashboard[] = this.globalVariableService.currentDashboards.slice();
+        let currentT: DashboardTab[] = this.globalVariableService.currentDashboardTabs.slice();
+        let currentP: DashboardPermission[] = this.globalVariableService.currentDashboardPermissions.slice();
+        let currentC: CanvasComment[] = this.globalVariableService.canvasComments.slice();
+        let currentW: Widget[] = this.globalVariableService.currentWidgets.slice();
+        let currentDset: Dataset[] = this.globalVariableService.currentDatasets.slice();
+        let currentDS: Datasource[] = this.globalVariableService.currentDatasources.slice();
+        let newSn: DashboardSnapshot = {
             id: null,
-            dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            name: 'Backup before RollBack',
-            comment: 'Saved before rollback was performed'
-            }).then(i => {
-            console.log('saved', i)
-            // TODO - fix hardcoding
-            this.globalVariableService.refreshCurrentDashboard(
-                'snapshot-clickRefreshDashboard', 1, 2, ''
-            );
+            dashboardID: dashboardID,
+            name: this.snapshotName,
+            comment: this.snapshotComment,
+            dashboards: currentD,
+            dashboardTabs: currentT,
+            dashboardPermissions: currentP,
+            canvasComments: currentC,
+            widgets: currentW,
+            datasets: currentDset,
+            datasources: currentDS                
+        };
 
-            // Close the form
+        // Save and Close the form
+        this.globalVariableService.addDashboardSnapshots(newSn).then(res => {
+            console.log('xx res', res)
             this.formDashboardSnapshotsClosed.emit('Rollback');
-        })
+        });
+
     }
 
 }

@@ -23,17 +23,17 @@
 
                 <div class="gridSaveName">
                     <b>Name:</b>
-                    <input type="text" #SnapshotNameInput placeholder="Snapshot name">
+                    <input type="text" [(ngModel)]="snapshotName" placeholder="Snapshot name">
                 </div>
                 <div class="gridSaveComment">
                     <b>Comment:</b>
-                    <input type="text" #SnapshotCommentInput placeholder="Comment">
+                    <input type="text" [(ngModel)]="snapshotComment" placeholder="Comment">
                 </div>
                 <div class="gridSaveButton">
                     <button
                         type="button"
                         class="btn btn-secondary"
-                        (click)="clickSave(SnapshotNameInput. value, SnapshotCommentInput.value)"
+                        (click)="clickSave()"
                         >
                         Save
                     </button>

@@ -1507,7 +1507,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSnapshots', '@Start');
 
         this.menuOptionClickPreAction();
-
         this.showModalDashboardSnapshots = true;
     }
 
