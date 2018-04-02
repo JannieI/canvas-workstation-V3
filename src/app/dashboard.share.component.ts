@@ -158,4 +158,11 @@ export class DashboardShareComponent implements OnInit {
 
         this.dashboardPermissions[index].canEdit = !this.dashboardPermissions[index].canEdit;
     }
+
+    clickToggleDelete(id: number, index: number, $event) {
+        // User dblclicked Delete - so toggle it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleDelete', '@Start');
+
+        this.dashboardPermissions[index].canDelete = !this.dashboardPermissions[index].canDelete;
+    }
 }

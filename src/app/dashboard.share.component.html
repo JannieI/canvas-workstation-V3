@@ -129,12 +129,12 @@
                             <clr-dg-cell class="checkCell">
                                     <clr-icon shape="check" *ngIf="row.canDelete"
                                     size="16"
-                                    (click)="clickToggleDelete(row.id, i, $event)"
+                                    (dblclick)="clickToggleDelete(row.id, i, $event)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canDelete"
                                     size="16"
-                                    (click)="clickToggleDelete(row.id, i, $event)"
+                                    (dblclick)="clickToggleDelete(row.id, i, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
