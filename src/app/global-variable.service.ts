@@ -8,10 +8,10 @@ import { HttpHeaders }                from "@angular/common/http";
 
 // Our Models
 import { CanvasAction }               from './models';
-import { Dataset }                    from './models';
 import { CanvasActivity }             from './models';
 import { CanvasAlert }                from './models';
 import { CanvasComment }              from './models';
+import { CanvasGroup }                from './models';
 import { CanvasMessage }              from './models';
 import { CanvasSettings }             from './models';
 import { CanvasUser}                  from './models';
@@ -31,6 +31,7 @@ import { DashboardTemplate }          from './models';
 import { DashboardTheme }             from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
+import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 import { DataQualityIssue}            from './models';
 import { DatasourcePermission}        from './models';
@@ -675,9 +676,11 @@ export class GlobalVariableService {
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
     datasets: any = [];                                 // List of dSets, NO data
     finalFields: any = finalFields;
+    canvasGroups: CanvasGroup[] = [];
 
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
+    currentCanvasGroups: CanvasGroup[] = [];
     currentDatasources: Datasource[] = [];
     currentTransformations: Transformation[] = [];
     currentDataQualityIssues: DataQualityIssue[] = [];
@@ -798,6 +801,7 @@ export class GlobalVariableService {
     isDirtyUserPaletteButtonBar: boolean = true;
     isDirtyPaletteButtonsSelected: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
+    isDirtyCanvasGroups: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
@@ -1869,6 +1873,7 @@ export class GlobalVariableService {
             )
         });
     }
+
     getDashboardPermissions(): Promise<DashboardPermission[]> {
         // Description: Gets all P
         // Returns: this.dashboardPermissions array, unless:
@@ -2001,6 +2006,36 @@ export class GlobalVariableService {
                 }
             )
         });
+    }
+    
+    getCanvasGroups(): Promise<CanvasGroup[]> {
+        // Description: Gets all G
+        // Returns: this.canvasGroups array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getCanvasGroups ...');
+
+        let url: string = 'canvasGroups';
+        this.filePath = './assets/data.canvasGroups.json';
+
+        return new Promise<CanvasGroup[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.canvasGroups.length == 0)  ||  (this.isDirtyCanvasGroups) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.canvasGroups = data;
+                        this.isDirtyCanvasGroups = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('Global-Variables getCanvasGroups 1')
+                        resolve(this.canvasGroups);
+                    });
+            } else {
+                console.log('Global-Variables getCanvasGroups 2')
+                resolve(this.canvasGroups);
+            }
+        });
+
     }
 
     getDashboardSnapshots(): Promise<DashboardSnapshot[]> {
@@ -2429,22 +2464,6 @@ export class GlobalVariableService {
         });
     }
 
-    deleteDatasourcePermissions(id: number) {
-        // Remove a record from the global and current DatasourcePermissions
-        console.log('Global-Variables deleteDatasourcePermissions ...');
-
-        console.log('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
-        
-        this.datasourcePermissions = this.datasourcePermissions.filter(
-            dsp => dsp.id != id
-        );
-        this.currentDatasourcePermissions = this.currentDatasourcePermissions.filter(
-            dsp => dsp.id != id
-        );
-
-        console.log('xx GV Perms', this.datasourcePermissions, this.currentDatasourcePermissions)
-    }
-
     getCurrentDatasourcePermissions(datasourceID: number): Promise<DatasourcePermission[]> {
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePermissions.value array, unless:
@@ -2478,6 +2497,22 @@ export class GlobalVariableService {
             });
         };
 
+    }
+
+    deleteDatasourcePermissions(id: number) {
+        // Remove a record from the global and current DatasourcePermissions
+        console.log('Global-Variables deleteDatasourcePermissions ...');
+
+        console.log('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
+        
+        this.datasourcePermissions = this.datasourcePermissions.filter(
+            dsp => dsp.id != id
+        );
+        this.currentDatasourcePermissions = this.currentDatasourcePermissions.filter(
+            dsp => dsp.id != id
+        );
+
+        console.log('xx GV Perms', this.datasourcePermissions, this.currentDatasourcePermissions)
     }
 
     getDatasourcePivots(): Promise<DatasourcePivot[]> {
