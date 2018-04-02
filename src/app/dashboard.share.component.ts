@@ -144,4 +144,12 @@ export class DashboardShareComponent implements OnInit {
         });
         console.log(ev.srcElement.value, this.accessType, this.groupID)
     }
+
+    clickToggleView(id: number, index: number, $event) {
+        // User dblclicked View - so toggle it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
+
+        this.dashboardPermissions[index].canView = !this.dashboardPermissions[index].canView;
+        
+    }
 }
