@@ -89,7 +89,7 @@ export class DashboardSnapshotsComponent implements OnInit {
     clickRefreshDashboard(index: number) {
         // Refresh the D to the selected Snapshot, after saving the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshDashboard', '@Start');
-
+ 
         this.globalVariableService.saveLocal('DashboardSnapshot', {
             id: null,
             dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,

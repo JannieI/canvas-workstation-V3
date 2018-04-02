@@ -94,10 +94,10 @@ export class DashboardShareComponent implements OnInit {
         this.errorMessage = '';
         let isFound: boolean = false;
         this.dashboardPermissions.forEach(dp => {
-            if ( 
+            if (
                  (this.userID != ''  &&  dp.userID == this.userID)
                  ||
-                 (this.groupName != ''  &&  dp.groupName == this.groupName) 
+                 (this.groupName != ''  &&  dp.groupName == this.groupName)
                 ) {
                      isFound = true;
             };

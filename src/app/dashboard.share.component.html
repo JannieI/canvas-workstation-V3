@@ -14,7 +14,7 @@
                     <i>
                         Indicate who can access this Dashboard, and how.  The options are Private
                         (only accesable to myself), Public (all users can view and edit it) or
-                        Access List (list of users and groups shown below, each with 
+                        Access List (list of users and groups shown below, each with
                         View/Edit/Delete permissions.  To change existing permissions, double click the
                         View/Edit/Delete cell in the grid below.
                     </i>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="gridNewGroupSelect" *ngIf="accessType == 'Access List'  &&  groups">
                     <div class="select">
-                        <select 
+                        <select
                             (change)="clickSelectGroup($event)"
                             >
                             <option *ngFor="let row of groups; let i = index">
@@ -79,7 +79,7 @@
                         Add
                     </button>
                 </div>
-    
+
                 <div class="gridTable" *ngIf="accessType == 'Access List'">
                     <clr-datagrid>
                         <clr-dg-column
@@ -143,8 +143,8 @@
                         <clr-dg-footer>
                             {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                             of {{pagination.totalItems}} records
-                            <clr-dg-pagination 
-                                #pagination 
+                            <clr-dg-pagination
+                                #pagination
                                 [clrDgPageSize]="4"
                                 >
                             </clr-dg-pagination>

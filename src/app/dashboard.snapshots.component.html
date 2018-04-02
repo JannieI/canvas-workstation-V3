@@ -2,20 +2,35 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <div>
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
 
-                Dashboard Snapshots
-                <div class="propertyLine">
-                    Snapshots are saved by the user, and are bookmarks to which one can
-                    roll back.  Snapshots are optional.
+            <div class="gridOverall">
+                <div class="gridTitle">
+                    <b>Dashboard Snapshots</b>
                 </div>
-                <div class="propertyLine">
+                <div class="gridSubTitle">
+                    <i>
+                        Snapshots are saved by the user for the current Dashboard, and are 
+                        bookmarks to which one can roll back at any stage.  The use of 
+                        Snapshots is optional.
+                    </i>
+                </div>
+
+                <div class="gridSaveTitle">
                     Save a Snapshot of the current Dashboard:
+                </div>
+
+                <div class="gridSaveName">
+                    <b>Name:</b>
                     <input type="text" #SnapshotNameInput placeholder="Snapshot name">
+                </div>
+                <div class="gridSaveComment">
+                    <b>Comment:</b>
                     <input type="text" #SnapshotCommentInput placeholder="Comment">
+                </div>
+                <div class="gridSaveButton">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -25,44 +40,46 @@
                     </button>
                 </div>
 
-                <div class="propertyLine">
-                    Snapshots saved for this Dashboard.  Click <b>Roll Back</b> to restore:
+                <div class="gridPreviousTitle">
+                    <b>Snapshots already saved for this Dashboard.  Click <i>Roll Back</i> 
+                    to restore:</b>
                 </div>
+    
+                <div class="gridPrevious">
+                    <clr-datagrid>
+                        <clr-dg-column>Roll Back</clr-dg-column>
+                        <clr-dg-column>ID</clr-dg-column>
+                        <clr-dg-column>Name</clr-dg-column>
+                        <clr-dg-column>Comment</clr-dg-column>
 
-                <clr-datagrid>
-                    <clr-dg-column>Roll Back</clr-dg-column>
-                    <clr-dg-column>ID</clr-dg-column>
-                    <clr-dg-column>Name</clr-dg-column>
-                    <clr-dg-column>Comment</clr-dg-column>
+                        <clr-dg-row *clrDgItems="let row of currentDashboardSnapshots;
+                            let i = index"
+                            (click)="setClickedRow(i)"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            >
+                            <clr-dg-cell>
+                                <clr-icon
+                                    shape="refresh"
+                                    class="selectIcon1"
+                                    size="12"
+                                    (dblclick)="clickRefreshDashboard(i)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.comment}}</clr-dg-cell>
+                        </clr-dg-row>
 
-                    <clr-dg-row *clrDgItems="let row of currentDashboardSnapshots;
-                        let i = index"
-                        (click)="setClickedRow(i)"
-                        [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                        [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                        >
-                        <clr-dg-cell>
-                            <clr-icon
-                                shape="refresh"
-                                class="selectIcon1"
-                                size="12"
-                                (dblclick)="clickRefreshDashboard(i)"
-                                >
-                            </clr-icon>
-                        </clr-dg-cell>
-                        <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.comment}}</clr-dg-cell>
-                    </clr-dg-row>
+                        <clr-dg-footer>
+                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                            of {{pagination.totalItems}} rows
+                            <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
+                        </clr-dg-footer>
 
-                    <clr-dg-footer>
-                        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                        of {{pagination.totalItems}} rows
-                        <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
-                    </clr-dg-footer>
-
-                </clr-datagrid>
-
+                    </clr-datagrid>
+                </div>
             </div>
         </div>
     </div>
