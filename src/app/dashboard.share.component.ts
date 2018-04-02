@@ -150,6 +150,12 @@ export class DashboardShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
 
         this.dashboardPermissions[index].canView = !this.dashboardPermissions[index].canView;
-        
+    }
+
+    clickToggleEdit(id: number, index: number, $event) {
+        // User dblclicked Edit - so toggle it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleEdit', '@Start');
+
+        this.dashboardPermissions[index].canEdit = !this.dashboardPermissions[index].canEdit;
     }
 }
