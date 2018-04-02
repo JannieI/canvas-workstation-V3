@@ -2069,6 +2069,41 @@ export class GlobalVariableService {
 
     }
 
+    deleteDashboardSnapshots(id: number): Promise<string> {
+        // Description: Deletes a DashboardSnapshots
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteDashboardSnapshots ...');
+
+        let url: string = 'dashboardSnapshots';
+        this.filePath = './assets/data.dashboardSnapshots.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+        
+                    this.dashboardSnapshots = this.dashboardSnapshots.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDashboardSnapshots = this.currentDashboardSnapshots.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    console.log('xx deleteDashboardSnapshots DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('xx deleteDashboardSnapshots FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+    
     addDashboardSnapshots(data: DashboardSnapshot): Promise<any> {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
