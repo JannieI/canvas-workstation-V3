@@ -75,6 +75,17 @@ export class DashboardShareComponent implements OnInit {
             };
         });
 
+        // Update global permissions
+        this.globalVariableService.dashboardPermissions.forEach(gdP => {
+            this.dashboardPermissions.forEach(dP => {
+                if (dP.id == gdP.id) {
+                    gdP.canView = dP.canView;
+                    gdP.canEdit = dP.canEdit;
+                    gdP.canDelete = dP.canDelete;
+                };
+            });
+        });
+        
         this.formDashboardShareClosed.emit('Saved');
     }
 
