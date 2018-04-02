@@ -111,34 +111,33 @@ export class DashboardSnapshotsComponent implements OnInit {
         // Refresh the D to the selected Snapshot, after saving the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshDashboard', '@Start');
  
-        let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.
-            currentDashboardID;
-        let currentD: Dashboard[] = this.globalVariableService.currentDashboards.slice();
-        let currentT: DashboardTab[] = this.globalVariableService.currentDashboardTabs.slice();
-        let currentP: DashboardPermission[] = this.globalVariableService.currentDashboardPermissions.slice();
-        let currentC: CanvasComment[] = this.globalVariableService.canvasComments.slice();
-        let currentW: Widget[] = this.globalVariableService.currentWidgets.slice();
-        let currentDset: Dataset[] = this.globalVariableService.currentDatasets.slice();
-        let currentDS: Datasource[] = this.globalVariableService.currentDatasources.slice();
-        let newSn: DashboardSnapshot = {
-            id: null,
-            dashboardID: dashboardID,
-            name: this.snapshotName,
-            comment: this.snapshotComment,
-            dashboards: currentD,
-            dashboardTabs: currentT,
-            dashboardPermissions: currentP,
-            canvasComments: currentC,
-            widgets: currentW,
-            datasets: currentDset,
-            datasources: currentDS                
-        };
+        let dashboardID: number = this.globalVariableService.currentDashboardInfo.
+            value.currentDashboardID;
+        let snap: DashboardSnapshot = this.currentDashboardSnapshots[index];
 
-        // Save and Close the form
-        this.globalVariableService.addDashboardSnapshots(newSn).then(res => {
-            console.log('xx res', res)
-            this.formDashboardSnapshotsClosed.emit('Rollback');
+        this.globalVariableService.currentDashboards = this.currentDashboardSnapshots[index].dashboards;
+        this.globalVariableService.currentDashboardTabs = this.currentDashboardSnapshots[index].dashboardTabs;
+        this.globalVariableService.currentDashboardPermissions = this.currentDashboardSnapshots[index].dashboardPermissions;
+        this.globalVariableService.canvasComments = this.currentDashboardSnapshots[index].canvasComments;
+        this.globalVariableService.currentWidgets = this.currentDashboardSnapshots[index].widgets;
+        this.globalVariableService.currentDatasets = this.currentDashboardSnapshots[index].datasets;
+        this.globalVariableService.currentDatasources = this.currentDashboardSnapshots[index].datasources;
+        
+        // Remove global Ws
+        this.globalVariableService.widgets = this.globalVariableService.widgets.filter(w => {
+            w.dashboardID != dashboardID
+        }); 
+                
+        // Add W from snapshot to global
+        snap.widgets.forEach(s => {
+            this.globalVariableService.widgets.push(s);
         });
+        
+        // Refresh and Close form
+		this.globalVariableService.refreshCurrentDashboard(
+            'openDashboard-clickOpenEdit', dashboardID, -1, ''
+        );
+        // this.formDashboardSnapshotsClosed.emit('Rollback');
 
     }
 
