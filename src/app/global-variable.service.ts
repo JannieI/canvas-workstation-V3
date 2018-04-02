@@ -4194,6 +4194,10 @@ export class GlobalVariableService {
         // parameters.
         console.log('Global-Variables refreshCurrentDashboard ...');
 
+
+        // TODO - add Permissions, either here or automatically in DB !!!
+
+        
         // Assume we have all currentD info
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
             (this.currentDashboardInfo == null) ) {

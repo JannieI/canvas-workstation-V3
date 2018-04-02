@@ -239,7 +239,7 @@ export class CanvasUser {
 }
 
 export class CanvasGroup {
-    groupID: number;                        // Unique Group ID
+    id: number;                             // Unique Group ID
     name: string;                           // Group name    
 }
 

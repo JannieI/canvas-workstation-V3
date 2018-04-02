@@ -18,6 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Dashboard }                  from './models';
 import { DashboardPermission }        from './models';
+import { CanvasGroup }                from './models';
 
 @Component({
     selector: 'dashboard-share',
@@ -31,18 +32,12 @@ export class DashboardShareComponent implements OnInit {
 
     accessType: string = '';
     dashboardPermissions: DashboardPermission[];
-    userID: string = '';
-    groupName: string = '';
     errorMessage: string = '';
     groupID: number;
-    groups: {id: number; name: string}[] = [
-        {id: 0, name: ''},
-        {id: 1, name: 'HR'},
-        {id: 2, name: 'Marketing'},
-        {id: 3, name: 'Sales'},
-        {id: 4, name: 'Engineering'},
-        {id: 5, name: 'Postal'}
-    ]
+    groupName: string = '';
+    groups: CanvasGroup[];
+    userID: string = '';
+
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -53,8 +48,11 @@ export class DashboardShareComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.accessType = this.selectedDashboard.accessType;
-        this.dashboardPermissions = this.globalVariableService.dashboardPermissions;
+        this.globalVariableService.getCanvasGroups().then( res => {
+            this.accessType = this.selectedDashboard.accessType;
+            this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
+            this.groups = res;
+        });
 
     }
 
@@ -76,15 +74,13 @@ export class DashboardShareComponent implements OnInit {
                 d.accessType = this.accessType;
             };
         });
-        console.log('xx this.globalVariableService.currentDashboards', this.globalVariableService.currentDashboardInfo
-        .value.currentDashboardID, this.globalVariableService.currentDashboards)
-		this.formDashboardShareClosed.emit('Saved');
+
+        this.formDashboardShareClosed.emit('Saved');
     }
 
     clickAdd() {
         // Add UserID and GroupName to the grid, and clear
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
-        console.log('xx ', this.userID, this.groupName)
 
         // Validation
         if (this.userID == ''  &&  this.groupName == '') {
@@ -125,9 +121,8 @@ export class DashboardShareComponent implements OnInit {
 
         // Update locally
         this.globalVariableService.addDashboardPermissions(newdP).then(res => {
-            this.dashboardPermissions.push(newdP);
+            this.dashboardPermissions.push(res);
         });
-        console.log('xx this.dashboardPermissions', this.dashboardPermissions)
     }
 
     clickDelete(index: number, id: number)  {
