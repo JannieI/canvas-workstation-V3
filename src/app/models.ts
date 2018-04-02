@@ -331,13 +331,13 @@ export class Datasource {
 }
 
 export class DatasourcePermission {
-    id: number;
-    datasourceID: number;
+    id: number;                         // Unique ID
+    datasourceID: number;               // FK to DS
     name?: string;                      // Optional DS name - filled in @Runtime
     userID: string;                     // 1 of usr/grp filled in, one blank
-    groupID: number;
-    canView: boolean;
-    canEdit: boolean;
+    groupID: number;                    // Granted to Group ID
+    canView: boolean;                    // 
+    canEdit: boolean;                    // 
 }
 
 export class Transformation {
@@ -504,6 +504,8 @@ export class DashboardPermission {
     canView: boolean;                   // True if can View this D
     canEdit: boolean;                   // True if can Edit this D
     canDelete: boolean;                 // True if can Delete this D
+    grantor: string;                    // UserId who granted permission
+    grantedOn: string;                  // Date and time created or last updated
 }
 
 export class DashboardSubscription {

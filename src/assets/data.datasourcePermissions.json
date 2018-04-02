@@ -5,7 +5,9 @@
         "userID": "KilmarE",
         "groupID": -1,
         "canView": true,
-        "canEdit": false
+        "canEdit": false,
+        "grantor": "JannieI",
+        "grantedOn": "2017/01/01"
     },
     {
         "id": 2,
@@ -13,7 +15,9 @@
         "userID": "UweH",
         "groupID": -1,
         "canView": false,
-        "canEdit": true
+        "canEdit": true,
+        "grantor": "JannieI",
+        "grantedOn": "2017/01/01"
     },
     {
         "id": 3,
@@ -21,6 +25,8 @@
         "userID": "IgnusO",
         "groupID": -1,
         "canView": true,
-        "canEdit": true
+        "canEdit": true,
+        "grantor": "JannieI",
+        "grantedOn": "2017/01/01"
     }
 ]
