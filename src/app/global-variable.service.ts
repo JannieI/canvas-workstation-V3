@@ -2360,6 +2360,40 @@ export class GlobalVariableService {
         });
     }
 
+    addDatasourcePermissions(data: DatasourcePermission): Promise<any> {
+        // Description: Adds a new DatasourcePermission
+        // Returns: Added Data or error message
+        console.log('Global-Variables addDatasourcePermissions ...');
+
+        let url: string = 'datasourcePermissions';
+        this.filePath = './assets/data.datasourcePermissions.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    
+                    // Update Global vars to make sure they remain in sync
+                    this.datasourcePermissions.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDatasourcePermissions.push(JSON.parse(JSON.stringify(data)));
+                    
+                    console.log('xx addDatasourcePermissions ADDED', data, 
+                        this.currentDatasourcePermissions, this.datasourcePermissions)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('xx addDatasourcePermissions FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getCurrentDatasourcePermissions(datasourceID: number): Promise<DatasourcePermission[]> {
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePermissions.value array, unless:
