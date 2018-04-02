@@ -18,7 +18,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(15, 1fr);
-    grid-template-rows: repeat(19, 1rem);
+    grid-auto-rows: 1rem;
 }
 
     .gridTitle {
@@ -62,13 +62,21 @@
         margin: 20px 2px 2px 20px;
         text-align: left;
     }
+    .gridCurrentBR {
+        grid-column-start: 8;
+        grid-column-end: 10;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 20px 2px 2px 20px;
+        text-align: left;
+    }
 
     .gridNewTitle {
         grid-column-start: 1;
         grid-column-end: 19;
         grid-row-start: 7;
         grid-row-end: 8;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 40px;
         text-align: left;
     }
     .gridNewUserID {
@@ -76,7 +84,7 @@
         grid-column-end: 5;
         grid-row-start: 8;
         grid-row-end: 9;
-        margin: 6px 2px 2px 40px;
+        margin: 6px 2px 2px 60px;
         text-align: left;
     }
     .gridNewGroupName {
@@ -109,6 +117,6 @@
         grid-column-end: 19;
         grid-row-start: 10;
         grid-row-end: 19;
-        margin: 2px 2px 2px 2px;
+        margin: 2px 2px 2px 40px;
         text-align: left;
     }

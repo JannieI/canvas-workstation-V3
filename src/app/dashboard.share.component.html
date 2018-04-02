@@ -43,19 +43,21 @@
                         Save
                     </button>
                 </div>
-
-                <div class="gridNewTitle">
+                <div class="gridCurrentBR" *ngIf="!accessList">
+                </div>
+                
+                <div class="gridNewTitle" *ngIf="accessList">
                     <b>For an Access List, you can add a new user or group to the table below.
                        Then toggle the required access by double clicking on it in the table.</b>
                 </div>
-                <div class="gridNewUserID">
+                <div class="gridNewUserID" *ngIf="accessList">
                     <b>UserID:</b>
                     <input type="text" placeholder="User ID">
                 </div>
-                <div class="gridNewGroupName">
+                <div class="gridNewGroupName" *ngIf="accessList">
                     <b>Group:</b>
                 </div>
-                <div class="gridNewGroupSelect">
+                <div class="gridNewGroupSelect" *ngIf="accessList">
                     <div class="select">
                         <select id="selects_3"
                             (change)="clickSelectStep($event)"
@@ -66,7 +68,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="gridNewButton">
+                <div class="gridNewButton" *ngIf="accessList">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -76,7 +78,7 @@
                     </button>
                 </div>
 
-                <div class="gridTable">
+                <div class="gridTable" *ngIf="accessList">
                     <clr-datagrid>
                         <clr-dg-column
                         [style.text-align]="center">Remove</clr-dg-column>
@@ -113,24 +115,24 @@
                             <clr-dg-cell class="checkCell">
                                     <clr-icon shape="check" *ngIf="row.canEdit"
                                     size="16"
-                                    (click)="clickToggleView(row.id, i, $event)"
+                                    (click)="clickToggleEdit(row.id, i, $event)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canEdit"
                                     size="16"
-                                    (click)="clickToggleView(row.id, i, $event)"
+                                    (click)="clickToggleEdit(row.id, i, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell class="checkCell">
                                     <clr-icon shape="check" *ngIf="row.canDelete"
                                     size="16"
-                                    (click)="clickToggleView(row.id, i, $event)"
+                                    (click)="clickToggleDelete(row.id, i, $event)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canDelete"
                                     size="16"
-                                    (click)="clickToggleView(row.id, i, $event)"
+                                    (click)="clickToggleDelete(row.id, i, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
