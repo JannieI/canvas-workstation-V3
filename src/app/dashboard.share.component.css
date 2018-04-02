@@ -11,8 +11,8 @@
     top: 0;
 }
 
-.propertyLine {
-    margin: 5px;
+.checkCell {
+    text-align: center !important;
 }
 
 .gridOverall {

@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="gridNewTitle">
-                    <b>For an Access List, you can add a new user or group to the table below. 
+                    <b>For an Access List, you can add a new user or group to the table below.
                        Then toggle the required access by double clicking on it in the table.</b>
                 </div>
                 <div class="gridNewUserID">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="gridNewGroupName">
                     <b>Group:</b>
-                </div>  
+                </div>
                 <div class="gridNewGroupSelect">
                     <div class="select">
                         <select id="selects_3"
@@ -75,31 +75,65 @@
                         Add
                     </button>
                 </div>
-    
+
                 <div class="gridTable">
                     <clr-datagrid>
-                        <clr-dg-column>Remove</clr-dg-column>
+                        <clr-dg-column
+                        [style.text-align]="center">Remove</clr-dg-column>
                         <clr-dg-column [clrDgField]="userID">User ID (single)</clr-dg-column>
                         <clr-dg-column [clrDgField]="groupID">Group Name (applies to all its members)</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canView">View</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canView" class="checkCell">View</clr-dg-column>
                         <clr-dg-column [clrDgField]="canEdit">Edit</clr-dg-column>
                         <clr-dg-column [clrDgField]="canDelete">Delete</clr-dg-column>
 
-                        <clr-dg-row *clrDgItems="let row of dashboardPermissions; 
+                        <clr-dg-row *clrDgItems="let row of dashboardPermissions;
                             let i = index"
                             >
                             <clr-dg-cell>
-                                <clr-icon shape="trash" 
-                                    size="12" 
+                                <clr-icon shape="trash"
+                                    size="16"
                                     (click)="clickDelete(row.id, i)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell>{{row.userID}}</clr-dg-cell>
                             <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.canView}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.canEdit}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.canDelete}}</clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canView"
+                                    size="16"
+                                    (click)="clickToggleView(row.id, i, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canView"
+                                    size="16"
+                                    (click)="clickToggleView(row.id, i, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                    <clr-icon shape="check" *ngIf="row.canEdit"
+                                    size="16"
+                                    (click)="clickToggleView(row.id, i, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canEdit"
+                                    size="16"
+                                    (click)="clickToggleView(row.id, i, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                    <clr-icon shape="check" *ngIf="row.canDelete"
+                                    size="16"
+                                    (click)="clickToggleView(row.id, i, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canDelete"
+                                    size="16"
+                                    (click)="clickToggleView(row.id, i, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
                         </clr-dg-row>
 
                     </clr-datagrid>
