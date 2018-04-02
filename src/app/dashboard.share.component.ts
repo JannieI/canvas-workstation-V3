@@ -57,14 +57,14 @@ export class DashboardShareComponent implements OnInit {
         this.dashboardPermissions = this.globalVariableService.dashboardPermissions;
 
     }
- 
+
     clickClose(action: string) {
         // Close form, no changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardShareClosed.emit(action);
     }
- 
+
     clickSave() {
         // Save the change, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
@@ -85,7 +85,7 @@ export class DashboardShareComponent implements OnInit {
         // Add UserID and GroupName to the grid, and clear
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
         console.log('xx ', this.userID, this.groupName)
-        
+
         // Validation
         if (this.userID == ''  &&  this.groupName == '') {
             this.errorMessage = 'Please fill in either a UserID or a Group Name'
@@ -96,6 +96,20 @@ export class DashboardShareComponent implements OnInit {
             return;
         };
         this.errorMessage = '';
+        let isFound: boolean = false;
+        this.dashboardPermissions.forEach(dp => {
+            if ( 
+                 (this.userID != ''  &&  dp.userID == this.userID)
+                 ||
+                 (this.groupName != ''  &&  dp.groupName == this.groupName) 
+                ) {
+                     isFound = true;
+            };
+        });
+        if (isFound) {
+            this.errorMessage = 'UserID/Group Name already exists'
+            return;
+        };
 
         // Update locally
         let newdP: DashboardPermission = {
