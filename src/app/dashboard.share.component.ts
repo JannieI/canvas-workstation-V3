@@ -28,6 +28,7 @@ export class DashboardShareComponent implements OnInit {
 
     @Output() formDashboardShareClosed: EventEmitter<string> = new EventEmitter();
 
+    accessList: boolean = false;
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
     dashboardPermissions: DashboardPermission[];
@@ -38,13 +39,32 @@ export class DashboardShareComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
         this.dashboardPermissions = this.globalVariableService.dashboardPermissions;
     }
  
     clickClose(action: string) {
+        // Close form, no changes
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         console.log('clickClose')
 
 		this.formDashboardShareClosed.emit(action);
+    }
+
+    clickSelectAccess(ev) {
+        // User changed the security access for the D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectAccess', '@Start');
+
+        console.log(ev.srcElement.value)
+        // Set accessList
+        if (ev.srcElement.value == 'Access List') {
+            this.accessList = true;
+        } else {
+            this.accessList = false;
+        }
     }
 }

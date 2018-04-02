@@ -26,7 +26,7 @@
                 <div class="gridCurrentSelect">
                     <div class="select">
                         <select id="selects_3"
-                            (change)="clickSelectStep($event)"
+                            (change)="clickSelectAccess($event)"
                             >
                             <option>Private</option>
                             <option>Public</option>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="gridCurrentBR" *ngIf="!accessList">
                 </div>
-                
+
                 <div class="gridNewTitle" *ngIf="accessList">
                     <b>For an Access List, you can add a new user or group to the table below.
                        Then toggle the required access by double clicking on it in the table.</b>

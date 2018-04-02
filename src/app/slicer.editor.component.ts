@@ -313,7 +313,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
     clickSortFieldOrder(sortFieldOrder: string) {
         // Sort the fields by Asc/Desc
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortFieldOrder', '@Start');
 
         this.slicerSortFieldOrder = sortFieldOrder;
         this.showSortFieldOrder = false;
@@ -322,7 +322,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
     clickSlicerType(slicerType: string) {
         // Determine type of Slicer
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSlicerType', '@Start');
 
         this.slicerType = slicerType;
         this.showSlicerType = false;
@@ -331,7 +331,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
     clickShowNumber(numberToShow: string) {
         // Clicked the number of records to show
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSortField', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowNumber', '@Start');
 
         this.slicerNumberToShow = numberToShow;
         this.showNumber = false;
