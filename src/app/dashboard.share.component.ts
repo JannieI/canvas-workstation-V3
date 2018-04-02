@@ -101,6 +101,13 @@ export class DashboardShareComponent implements OnInit {
 		this.formDashboardShareClosed.emit('Saved');
     }
 
+    clickDelete(index: number, id: number)  {
+        // Delete clicked permission
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+
+        this.dashboardPermissions = this.dashboardPermissions.splice(index, 1);
+    }
+
     clickSelectAccess(ev) {
         // User changed the security access for the D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectAccess', '@Start');
