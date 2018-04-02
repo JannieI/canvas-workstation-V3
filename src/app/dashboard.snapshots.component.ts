@@ -61,7 +61,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
 		this.formDashboardSnapshotsClosed.emit(action);
     }
-    
+
     clickDelete(index: number, id: number) {
         // Delete the selected Snapshot
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
@@ -104,18 +104,6 @@ export class DashboardSnapshotsComponent implements OnInit {
             this.currentDashboardSnapshots.push(res);
             console.log('xx save', res, this.currentDashboardSnapshots)
         });
-
-        this.refreshGrid();
-
-    }
-
-    refreshGrid() {
-        // Refresh the snapshot Grid with the latest info
-        this.globalFunctionService.printToConsole(this.constructor.name,'refreshGrid', '@Start');
-
-        this.globalVariableService.getCurrentDashboardSnapshots(
-            this.globalVariableService.currentDashboardID).then
-              (i => this.currentDashboardSnapshots = i);
 
     }
 
