@@ -2345,6 +2345,18 @@ export class AppComponent implements OnInit {
         // Edits the selected Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableEdit', '@Start');
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         if (!this.checkForOnlyOneWidget()) {
             return
         };
