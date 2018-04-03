@@ -2243,7 +2243,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetExpand() {
-        //
+        // Expands the underlying data for the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExpand', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
@@ -2266,7 +2266,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetExport() {
-        //
+        // Export the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExport', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
@@ -2279,8 +2279,20 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetDelete() {
-        //
+        // Delete the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDelete', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         if (!this.checkForOnlyOneWidget()) {
             return
