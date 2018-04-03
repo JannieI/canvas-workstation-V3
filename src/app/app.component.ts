@@ -1647,7 +1647,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardDetailTags() {
-        //
+        // Manage Tags for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTags', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1664,7 +1664,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardDetailSettings() {
-        //
+        // Manage settings for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailSettings', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1673,7 +1673,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardDetailComments() {
-        //
+        // Manage Comments for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailComments', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1692,8 +1692,20 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardDetailTheme() {
-        //
+        // Manage the Theme for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTheme', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 
