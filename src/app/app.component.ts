@@ -2625,6 +2625,18 @@ export class AppComponent implements OnInit {
         // Open the list of tabs to which the selected W belongs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTablist', '@Start');
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         if (!this.checkForOnlyOneWidget()) {
             return;
         };
