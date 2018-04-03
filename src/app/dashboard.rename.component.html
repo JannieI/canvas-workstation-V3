@@ -104,7 +104,7 @@
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            (click)="clickClose('Close')"
+                            (click)="clickSearch()"
                             >
                             Search
                         </button>
@@ -122,7 +122,7 @@
                             type="button" 
                             class="btn btn-secondary"
                             size="35"
-                            (click)="clickClose('Close')"
+                            (click)="clickRename()"
                             >
                             Rename
                         </button>
@@ -139,7 +139,8 @@
                             <clr-dg-column>Creator</clr-dg-column>
                             <clr-dg-column>#Opened</clr-dg-column>
 
-                            <clr-dg-row *clrDgItems="let row of dashboards">
+                            <clr-dg-row *clrDgItems="let row of filteredDashboards;
+                                let i = index">
                                 <clr-dg-cell>
                                     <clr-icon shape="pencil" class="selectIcon1" size="12"></clr-icon>
                                 </clr-dg-cell>

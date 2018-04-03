@@ -2859,7 +2859,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuShapeDelete() {
-        //
+        // Delete a Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDelete', '@Start');
 
         // Has to be in editMode
