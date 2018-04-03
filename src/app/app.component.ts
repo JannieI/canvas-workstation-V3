@@ -1563,8 +1563,20 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardSnapshots() {
-        //
+        // Make a Snapshot of a D and all related info, which can be restored at later stage
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSnapshots', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
         this.showModalDashboardSnapshots = true;
