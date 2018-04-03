@@ -1866,7 +1866,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDataRefreshAll() {
-        //
+        // Refresh all DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataRefreshAll', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1875,7 +1875,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDataShare() {
-        //
+        // Manage sharing access to DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataShare', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1924,6 +1924,18 @@ export class AppComponent implements OnInit {
     clickMenuWidgetEdit() {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         // Can only edit one W at a time, so ignore if multiple selected
         if (!this.checkForOnlyOneWidget()) {
