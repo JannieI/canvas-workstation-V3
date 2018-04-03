@@ -140,8 +140,17 @@ export class DashboardRenameComponent implements OnInit {
             });
         };
         if (this.filterSharedByMe) {
-            this.filteredDashboards = this.filteredDashboards.filter(d => {
+           
+            // List of D ids from P, where I was grantor
+            let pIDs: number[] = [];
+            this.globalVariableService.dashboardPermissions.forEach(p => {
+                if (p.grantor == this.globalVariableService.currentUser.userID) {
+                    pIDs.push(p.dashboardID);
+                };
+            });
 
+            this.filteredDashboards = this.globalVariableService.dashboards.filter(d => {
+                pIDs.indexOf(d.id) >= 0
             });
         };
         if (this.filterSharedToMe) {
