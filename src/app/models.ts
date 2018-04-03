@@ -477,6 +477,7 @@ export class DashboardSnapshot {
     widgets: Widget[];                              // W of D
     datasets: Dataset[];                            // dSets of D
     datasources: Datasource[];                      // DS of D
+    widgetCheckpoints: WidgetCheckpoint[];          // Checkpoints of W
 }
 
 export class DashboardSchedule {

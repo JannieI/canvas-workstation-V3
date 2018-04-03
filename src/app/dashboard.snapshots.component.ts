@@ -16,7 +16,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard, DashboardTab, DashboardPermission, CanvasComment, Widget, Dataset, Datasource }                  from './models';
+import { Dashboard, DashboardTab, DashboardPermission, CanvasComment, Widget, Dataset, Datasource, WidgetCheckpoint }                  from './models';
 import { DashboardSnapshot }                 from './models';
 
 @Component({
@@ -75,7 +75,8 @@ export class DashboardSnapshotsComponent implements OnInit {
         // Save the snapshot
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-
+        // Get the currentXXX info from global - these contain all the info relevant to 
+        // the current D
         let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.
             currentDashboardID;
         let currentD: Dashboard[] = this.globalVariableService.currentDashboards.slice();
@@ -85,6 +86,8 @@ export class DashboardSnapshotsComponent implements OnInit {
         let currentW: Widget[] = this.globalVariableService.currentWidgets.slice();
         let currentDset: Dataset[] = this.globalVariableService.currentDatasets.slice();
         let currentDS: Datasource[] = this.globalVariableService.currentDatasources.slice();
+        let currentChk: WidgetCheckpoint[] = this.globalVariableService.currentWidgetCheckpoints.slice();
+
         let newSn: DashboardSnapshot = {
             id: null,
             dashboardID: dashboardID,
@@ -96,7 +99,8 @@ export class DashboardSnapshotsComponent implements OnInit {
             canvasComments: currentC,
             widgets: currentW,
             datasets: currentDset,
-            datasources: currentDS                
+            datasources: currentDS,
+            widgetCheckpoints: currentChk
         };
 
         // Save and Close the form
@@ -110,27 +114,29 @@ export class DashboardSnapshotsComponent implements OnInit {
     clickRestore(index: number) {
         // Refresh the D to the selected Snapshot, after saving the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshDashboard', '@Start');
- 
+
         let dashboardID: number = this.globalVariableService.currentDashboardInfo.
             value.currentDashboardID;
         let snap: DashboardSnapshot = this.currentDashboardSnapshots[index];
 
-        // Remove global Ds
+        // Remove global D, including Templates
+        let dsIDs: number [] = [];
+        snap.dashboards.forEach(s => {
+            dsIDs.push(s.id);
+        });
         this.globalVariableService.dashboards = this.globalVariableService.dashboards.filter(d => {
-            d.id != dashboardID
-        }); 
-                
+            dsIDs.indexOf(d.id) < 0
+        });
         // Add D from snapshot to global
         snap.dashboards.forEach(s => {
             this.globalVariableService.dashboards.push(s);
         });
-     
+
         // Remove global Ts
         this.globalVariableService.dashboardTabs = this.globalVariableService.dashboardTabs.
             filter(t => {
             t.dashboardID != dashboardID
-        }); 
-                
+        });
         // Add T from snapshot to global
         snap.dashboardTabs.forEach(s => {
             this.globalVariableService.dashboardTabs.push(s);
@@ -140,8 +146,7 @@ export class DashboardSnapshotsComponent implements OnInit {
         this.globalVariableService.dashboardPermissions = this.globalVariableService.dashboardPermissions.
             filter(p => {
             p.dashboardID != dashboardID
-        }); 
-                
+        });
         // Add P from snapshot to global
         snap.dashboardPermissions.forEach(s => {
             this.globalVariableService.dashboardPermissions.push(s);
@@ -151,8 +156,7 @@ export class DashboardSnapshotsComponent implements OnInit {
         this.globalVariableService.canvasComments = this.globalVariableService.canvasComments.
             filter(c => {
             c.dashboardID != dashboardID
-        }); 
-                
+        });
         // Add C from snapshot to global
         snap.canvasComments.forEach(s => {
             this.globalVariableService.canvasComments.push(s);
@@ -161,8 +165,7 @@ export class DashboardSnapshotsComponent implements OnInit {
         // Remove global Ws
         this.globalVariableService.widgets = this.globalVariableService.widgets.filter(w => {
             w.dashboardID != dashboardID
-        }); 
-                
+        });
         // Add W from snapshot to global
         snap.widgets.forEach(s => {
             this.globalVariableService.widgets.push(s);
@@ -177,8 +180,7 @@ export class DashboardSnapshotsComponent implements OnInit {
             filter(dS => {
             ids.indexOf(dS.id) <0
             }
-        ); 
-                
+        );
         // Add dSets from snapshot to global
         snap.datasets.forEach(s => {
             this.globalVariableService.datasets.push(s);
@@ -193,17 +195,26 @@ export class DashboardSnapshotsComponent implements OnInit {
             filter(ds => {
                 ids.indexOf(ds.id) <0
             }
-        ); 
-                
+        );
         // Add DS from snapshot to global
         snap.datasources.forEach(s => {
             this.globalVariableService.datasources.push(s);
         });
-        
+
         // Refresh and Close form
 		this.globalVariableService.refreshCurrentDashboard(
             'openDashboard-clickOpenEdit', dashboardID, -1, ''
         );
+
+        // Remove global Checkpointss
+        this.globalVariableService.widgetCheckpoints = this.globalVariableService
+            .widgetCheckpoints.filter(w => {
+            w.dashboardID != dashboardID
+        });
+        // Add Checkpoints from snapshot to global
+        snap.widgetCheckpoints.forEach(s => {
+            this.globalVariableService.widgetCheckpoints.push(s);
+        });
 
         // Close the form
         this.formDashboardSnapshotsClosed.emit('Rollback');
