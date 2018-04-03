@@ -2446,7 +2446,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuTableComments() {
-        //
+        // Manage Comments for selected Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableComments', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
@@ -2512,7 +2512,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuTableExport() {
-        //
+        // Export the selected Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExport', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
@@ -2528,8 +2528,20 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuTableDelete() {
-        // Delete Table
+        // Delete selected Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDelete', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) {
