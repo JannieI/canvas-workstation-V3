@@ -1583,7 +1583,7 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardImport() {
-        //
+        // Import a D from a text file
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardImport', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1592,7 +1592,7 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardRename() {
-        //
+        // Bulk rename D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardRename', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1603,6 +1603,18 @@ export class AppComponent implements OnInit {
     clickMenuDashboardDetailDescription() {
         // Show the modal form to edit Descriptive detail for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDescription', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 
