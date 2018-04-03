@@ -155,7 +155,7 @@ export class DashboardRenameComponent implements OnInit {
         };
         if (this.filterSharedToMe) {
 
-            // List of D ids from P, where I was grantor
+            // List of D ids from P, granted to me
             let pIDs: number[] = [];
             this.globalVariableService.dashboardPermissions.forEach(p => {
                 if (p.userID == this.globalVariableService.currentUser.userID) {
@@ -165,11 +165,25 @@ export class DashboardRenameComponent implements OnInit {
 
             this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
                 pIDs.indexOf(d.id) >= 0
-            );        };
+            );        
+        };
         if (this.filterSharedToGroup != ''  &&  this.filterSharedToGroup != undefined) {
-            this.filteredDashboards = this.filteredDashboards.filter(d => {
 
+            // List of D ids from P, granted to group
+            let pIDs: number[] = [];
+            this.globalVariableService.dashboardPermissions.forEach(p => {
+                console.log('xx', p.groupName)
+                if (p.groupName != null) {
+                    if (p.groupName.toLowerCase().indexOf(
+                        this.filterSharedToGroup.toLowerCase()) >= 0) {
+                        pIDs.push(p.dashboardID);
+                    };
+                };
             });
+console.log('xx', pIDs)
+            this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+                pIDs.indexOf(d.id) >= 0
+            );        
         };
         if (this.filterSharedToUser != ''  &&  this.filterSharedToUser !=  undefined) {
             this.filteredDashboards = this.filteredDashboards.filter(d => {
