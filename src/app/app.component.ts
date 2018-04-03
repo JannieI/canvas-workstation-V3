@@ -1966,6 +1966,18 @@ export class AppComponent implements OnInit {
         // Show popup to edit Widget Container properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainer', '@Start');
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         if (!this.checkForOnlyOneWidget(widgetType)) {
             return
         };
