@@ -68,58 +68,86 @@ export class DashboardRenameComponent implements OnInit {
         // Start afresh
         this.filteredDashboards = this.globalVariableService.dashboards.slice();
 
-        // if (this.filterCreatedBy != '') {
-        //     this.filteredDashboards = this.filteredDashboards.filter(d => {
+        if (this.filterCreatedBy != ''  &&  this.filterCreatedBy != undefined) {
+            this.filteredDashboards = this.filteredDashboards.filter(d => 
+                d.creator == this.filterCreatedBy
+            );
+        };
+        if (this.filterDatasource != ''  &&  this.filterDatasource != undefined) {
 
-        //     });
-        // }
-        // if (this.filterDatasource != '') {
-        //     this.filteredDashboards = this.filteredDashboards.filter(d => {
-
-        //     });
-        // }
-        // if (this.filterFavourite) {
-        //     this.filteredDashboards = this.filteredDashboards.filter(d => {
-
-        //     });
-        // }
-        // if (this.filterField != '') {
-        //     this.filteredDashboards = this.filteredDashboards.filter(d => {
-
-        //     });
-        // }
-        if (this.filterName != '') {
-            this.filteredDashboards = this.filteredDashboards.filter(d => {
-                (d.name.indexOf(this.filterName) >= 0)
-                ||
-                (d.description.toLowerCase().indexOf(this.filterName.toLowerCase()) >= 0)
+            // List of DS ids that contains the search string
+            let dsIDs: number[] = [];
+            this.globalVariableService.datasources.forEach(ds => {
+                if (ds.name.toLowerCase().indexOf(
+                    this.filterDatasource.toLowerCase()) >= 0) {
+                    dsIDs.push(ds.id);
+                };
             });
-        }
-        // if (this.filterSharedByMe) {
-        //     this.filteredDashboards = this.filteredDashboards.filter(d => {
+console.log('xx dsIDs', dsIDs)
+            // List of W that contains about DS ids -> [Dids]
+            let dIDs: number[] = [];
+            this.globalVariableService.widgets.forEach(w => {
+                if (dsIDs.indexOf(w.datasourceID) >=0 ) {
+                    dIDs.push(w.dashboardID);
+                };
+            });
+            console.log('xx dIDs', dIDs)
 
-        //     });
-        // }
-        // if (this.filterSharedToMe) {
-        //     this.filteredDashboards = this.filteredDashboards.filter(d => {
+            // Filter
+            this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+                dsIDs.indexOf(d.id) >= 0
+            );
+console.log('xx filt', this.filteredDashboards)
+            
+        };
 
-        //     });
-        // }
-        // if (this.filterSharedToGroup != '') {
-        //     this.filteredDashboards = this.filteredDashboards.filter(d => {
+        if (this.filterFavourite  &&  this.filterFavourite != undefined) {
+            this.filteredDashboards = this.filteredDashboards.filter(d => 
+                this.globalVariableService.currentUser.favouriteDashboards
+                    .indexOf(d.id) >= 0
+            );
+        };
+        if (this.filterField != ''  &&  this.filterField != undefined) {
+            this.filteredDashboards = this.filteredDashboards.filter(d => {
 
-        //     });
-        // }
-        // if (this.filterSharedToUser != '') {
-        //     this.filteredDashboards = this.filteredDashboards.filter(d => {
+            });
+        };
+        if (this.filterName != ''  &&  this.filterName!= undefined) {
+            this.filteredDashboards = this.filteredDashboards.filter(d => {
+                if (
+                    (d.name.toLowerCase().indexOf(this.filterName.toLowerCase()) >= 0)
+                    ||
+                    (d.description.toLowerCase().indexOf(this.filterName.toLowerCase()) >= 0)
+                ) { 
+                    return d;
+                }
+            });
+        };
+        if (this.filterSharedByMe) {
+            this.filteredDashboards = this.filteredDashboards.filter(d => {
 
-        //     });
-        // }
-        // if (this.filterTag != '') {
-        //     this.filteredDashboards = this.filteredDashboards.filter(d => {
+            });
+        };
+        if (this.filterSharedToMe) {
+            this.filteredDashboards = this.filteredDashboards.filter(d => {
 
-        //     });
-        // }
+            });
+        };
+        if (this.filterSharedToGroup != ''  &&  this.filterSharedToGroup != undefined) {
+            this.filteredDashboards = this.filteredDashboards.filter(d => {
+
+            });
+        };
+        if (this.filterSharedToUser != ''  &&  this.filterSharedToUser !=  undefined) {
+            this.filteredDashboards = this.filteredDashboards.filter(d => {
+
+            });
+        };
+        if (this.filterTag != '' &&  this.filterTag != undefined) {
+            this.filteredDashboards = this.filteredDashboards.filter(d => {
+
+            });
+        };
     }
 
     clickRename() {
