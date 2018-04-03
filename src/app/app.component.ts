@@ -2698,7 +2698,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuSlicerExpand() {
-        //
+        // Expands underlying data for the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExpand', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
@@ -2721,7 +2721,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuSlicerExport() {
-        //
+        // Exports the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExport', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
@@ -2737,8 +2737,20 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuSlicerDelete() {
-        //
+        // Delete the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDelete', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) {
