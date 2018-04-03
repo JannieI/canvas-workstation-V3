@@ -1994,7 +1994,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetCheckpoints() {
-        //
+        // Manage Checkpoints for the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCheckpoints', '@Start');
 
         // Has to be in editMode
@@ -2024,7 +2024,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetComments() {
-        //
+        // Manage comments for the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetComments', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
@@ -2068,7 +2068,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetLinks() {
-        //
+        // Add links to the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
 
         if (!this.checkForOnlyOneWidget('Graph')) {
@@ -2087,7 +2087,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuWidgetRefresh() {
-        //
+        // Refresh the DS for the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetRefresh', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
@@ -2104,6 +2104,18 @@ export class AppComponent implements OnInit {
     clickMenuWidgetDuplicate() {
         // Duplicate selected Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         if (!this.checkForOnlyOneWidget()) {
             return
