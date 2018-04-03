@@ -1155,6 +1155,49 @@ export class AppComponent implements OnInit {
 
     // ***********************  CLICK EDIT MENU OPTIONS ************************ //
 
+    clickMenuEditMode() {
+        // Toggle Edit Mode
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditMode', '@Start');
+
+        // Can only edit if we have DS
+        if (!this.hasDatasources) {
+            this.showMessage(
+                'First Add Datasources from Data menu',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        // Warning to make sure does not get stuck
+        if (!this.showPalette) {
+            this.showMessage(
+                'Make palette visible on View menu',
+                'StatusBar',
+                'Info',
+                3000,
+                ''
+            );
+        };
+
+        this.menuOptionClickPreAction();
+
+        // Switch off all selections if going to View Mode
+        if (this.editMode) {
+            this.clickMenuEditSelectAllNone('None');
+        }
+
+        // Exceed 4 ...
+        this.stuckCount = 5;
+
+        // Toggle mode
+        this.globalVariableService.editMode.next(!this.editMode);
+
+        this.menuOptionClickPostAction();
+    }
+
     clickMenuEditUndo() {
         // Undo a previous action
         // These are the rules:  DO = action, Undo = cancel DO, Redo = cancel Undo
@@ -1179,7 +1222,7 @@ export class AppComponent implements OnInit {
             );
             return;
         };
-        
+
         // Get action for current D and T
         let ourActions: CanvasAction[] = [];
         ourActions = this.globalVariableService.actions.filter(act =>
@@ -1428,7 +1471,7 @@ export class AppComponent implements OnInit {
     // ***********************  CLICK DASHBOARD MENU OPTIONS ************************ //
 
     clickDashboardNew() {
-        //
+        // Create a new D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardNew', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1438,7 +1481,7 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardOpen() {
-        //
+        // Open or Import an existing D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardOpen', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1447,14 +1490,14 @@ export class AppComponent implements OnInit {
         this.showModalDashboardOpen = true;
     }
 
-    clickMenuEditMode() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditMode', '@Start');
+    clickDashboardDiscard() {
+        // Discard changes made since the previous Save
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDiscard', '@Start');
 
-        // Can only edit if we have DS
-        if (!this.hasDatasources) {
+        // Has to be in editMode
+        if (!this.editMode) {
             this.showMessage(
-                'First Add Datasources from Data menu',
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
@@ -1463,45 +1506,26 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        // Warning to make sure does not get stuck
-        if (!this.showPalette) {
-            this.showMessage(
-                'Make palette visible on View menu',
-                'StatusBar',
-                'Info',
-                3000,
-                ''
-            );
-        };
-
-        this.menuOptionClickPreAction();
-
-        // Switch off all selections if going to View Mode
-        if (this.editMode) {
-            this.clickMenuEditSelectAllNone('None');
-        }
-
-        // Exceed 4 ...
-        this.stuckCount = 5;
-
-        // Toggle mode
-        this.globalVariableService.editMode.next(!this.editMode);
-
-        this.menuOptionClickPostAction();
-    }
-
-    clickDashboardDiscard() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDiscard', '@Start');
-
         this.menuOptionClickPreAction();
 
         this.showModalDashboardDiscard = true;
     }
 
     clickDashboardShare() {
-        //
+        // Share a D - set the Access Type (ie Private) and Access List
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 
