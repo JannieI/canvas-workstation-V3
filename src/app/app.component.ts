@@ -2590,6 +2590,18 @@ export class AppComponent implements OnInit {
         // Edits the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         if (!this.checkForOnlyOneWidget()) {
             return
         };
