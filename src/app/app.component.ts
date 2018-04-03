@@ -1773,7 +1773,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardTreeview() {
-        //
+        // Show the current D as a Treeview
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardTreeview', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1782,7 +1782,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardSubscribe() {
-        //
+        // Manage Subscription to the current D, ie get notified when it changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardSubscribe', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1798,6 +1798,18 @@ export class AppComponent implements OnInit {
     clickMenuDataFromFile(id: number) {
         // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 
