@@ -2773,8 +2773,18 @@ export class AppComponent implements OnInit {
     // ***********************  CLICK SHAPE MENU OPTIONS ************************ //
 
     clickMenuShapeNew() {
-        //
+        // Add a new Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeNew', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.newWidget = true;
+        this.showModalShapeEdit = true;
+    }
+
+    clickMenuShapeEdit() {
+        // Edit selected Shape
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEdit', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -2787,16 +2797,6 @@ export class AppComponent implements OnInit {
             );
             return;
         };
-
-        this.menuOptionClickPreAction();
-
-        this.newWidget = true;
-        this.showModalShapeEdit = true;
-    }
-
-    clickMenuShapeEdit() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEdit', '@Start');
 
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) {
