@@ -413,7 +413,7 @@
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
-                <!-- Widget menu -->
+                <!-- Graph menu -->
                 <clr-dropdown class="menuText">
                     <button
                         type="button"
@@ -422,7 +422,7 @@
                         [disabled] = "!hasDatasources"
                         title="Managing selected Widget"
                         >
-                        Widget
+                        Graph
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
                         <button type="button"
@@ -430,14 +430,14 @@
                             (click)="clickMenuWidgetNew()"
                             title="Add a new Widget"
                             >
-                            Add Widget
+                            Add Graph
                         </button>
                         <button type="button"
                             clrDropdownItem
                             (click)="clickMenuWidgetEdit()"
                             title="Edit selected Widget"
                             >
-                            Edit Widget
+                            Edit Graph
                         </button>
                         <div class="dropdown-divider"></div>
 
@@ -541,7 +541,7 @@
                             (click)="clickMenuWidgetDelete()"
                             title="Delete selected Widget"
                             >
-                            Delete Widget
+                            Delete Graph
                         </button>
                     </clr-dropdown-menu>
                 </clr-dropdown>
