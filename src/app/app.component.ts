@@ -1168,6 +1168,18 @@ export class AppComponent implements OnInit {
         // - does not store oldW, newW as these are obtained from DO
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditUndo', '@Start');
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+        
         // Get action for current D and T
         let ourActions: CanvasAction[] = [];
         ourActions = this.globalVariableService.actions.filter(act =>
@@ -1299,7 +1311,7 @@ export class AppComponent implements OnInit {
             );
             return;
         };
-        
+
         // Get action for current D and T
         let ourActions: CanvasAction[] = [];
         ourActions = this.globalVariableService.actions.filter(act =>
