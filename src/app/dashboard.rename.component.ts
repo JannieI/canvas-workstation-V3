@@ -83,21 +83,19 @@ export class DashboardRenameComponent implements OnInit {
                     dsIDs.push(ds.id);
                 };
             });
-console.log('xx dsIDs', dsIDs)
-            // List of W that contains about DS ids -> [Dids]
+
+            // List of W that contains above DS ids -> [Dids]
             let dIDs: number[] = [];
             this.globalVariableService.widgets.forEach(w => {
                 if (dsIDs.indexOf(w.datasourceID) >=0 ) {
                     dIDs.push(w.dashboardID);
                 };
             });
-            console.log('xx dIDs', dIDs)
 
-            // Filter
+            // Filter D that are in above list of dIDs
             this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
-                dsIDs.indexOf(d.id) >= 0
+                dIDs.indexOf(d.id) >= 0
             );
-console.log('xx filt', this.filteredDashboards)
             
         };
 
