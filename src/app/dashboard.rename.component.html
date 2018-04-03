@@ -16,17 +16,17 @@
                     </div>
 
                     <div class="gridName">
-                        <b>Name:</b>
+                        <b>Name/Description:</b>
                         <input type="text" [(ngModel)]="filterName"
                             size="25"
-                            placeholder="Name contains this text"
+                            placeholder="Name/Description contains this text"
                             >
                     </div>
-                    <div class="gridDescription">
-                        <b>Description:</b>
-                        <input type="text" [(ngModel)]="filterDescription"
-                            size="25"
-                            placeholder="Description contains this text"
+                    <div class="gridFavourite">
+                        <b>My favourite:</b>
+                        <input [(ngModel)]="filterFavourite"
+                            type="checkbox"
+                            title="Is one of my Favourites"
                             >
                     </div>
 
@@ -99,13 +99,6 @@
                             placeholder="Is tagged with this Tag"
                             >
                     </div>
-                    <div class="gridFavourite">
-                        <b>My favourite:</b>
-                        <input [(ngModel)]="filterFavourite"
-                            type="checkbox"
-                            title="Is one of my Favourites"
-                            >
-                    </div>
 
                     <div class="gridSearchButton">
                         <button
@@ -125,10 +118,13 @@
                             >
                     </div>
                     <div class="gridRenameButton">
-                        <button type="button" 
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary"
+                            size="35"
                             (click)="clickClose('Close')"
                             >
-                            Save
+                            Rename
                         </button>
                     </div>
 

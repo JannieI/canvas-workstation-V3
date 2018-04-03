@@ -18,8 +18,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(19, 0.8fr);
-    margin-top: 2px;
+    grid-template-rows: repeat(17, 1.1rem);
 }
 
     .gridTitle {
@@ -31,162 +30,137 @@
         text-align: left;
     }
     .gridSubTitle {
-        grid-column-start: 2;
+        grid-column-start: 4;
         grid-column-end: 21;
-        grid-row-start: 2;
-        grid-row-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
         text-align: left;
     }
 
     .gridName {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
-    .gridDescription {
+    .gridFavourite {
         grid-column-start: 8;
         grid-column-end: 14;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
 
     .gridSharedByMe {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 4;
-        grid-row-end: 5;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
     .gridSharedToMe {
         grid-column-start: 8;
         grid-column-end: 14;
-        grid-row-start: 4;
-        grid-row-end: 5;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
 
     .gridSharedToUser {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
     .gridSharedToGroup {
         grid-column-start: 8;
         grid-column-end: 14;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
 
     .gridCreatedBy {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 6;
-        grid-row-end: 7;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
     .gridStatus {
         grid-column-start: 8;
         grid-column-end: 14;
-        grid-row-start: 6;
-        grid-row-end: 7;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
 
     .gridDatasource {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
     .gridField {
         grid-column-start: 8;
         grid-column-end: 14;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
 
     .gridTag {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridFavourite {
-        grid-column-start: 8;
-        grid-column-end: 14;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
 
     .gridSearchButton {
-        grid-column-start: 3;
-        grid-column-end: 4;
-        grid-row-start: 9;
-        grid-row-end: 10;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-column-start: 8;
+        grid-column-end: 10;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
     .gridNewName {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 10;
-        grid-row-end: 11;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 10px;
         text-align: left;
     }
 
     .gridRenameButton {
-        grid-column-start: 8;
-        grid-column-end: 9;
-        grid-row-start: 10;
-        grid-row-end: 11;
-        margin-left: 10px;
-        margin-top: 2px 2px 2px 2px;
+        grid-column-start: 6;
+        grid-column-end: 10;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: -10px 2px 2px 10px;
         text-align: left;
     }
 
     .gridTable {
         grid-column-start: 1;
         grid-column-end: 15;
-        grid-row-start: 11;
-        grid-row-end: 19;
-        margin-left: 10px;
+        grid-row-start: 10;
+        grid-row-end: 12;
         margin-top: 2px 2px 2px 2px;
-        text-align: left;
     }
