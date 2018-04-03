@@ -1541,8 +1541,20 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardSave() {
-        //
+        // Save changes, and make them available to others
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSave', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 
