@@ -1288,6 +1288,18 @@ export class AppComponent implements OnInit {
         // See Undo function for more detail.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditRedo', '@Start');
 
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+        
         // Get action for current D and T
         let ourActions: CanvasAction[] = [];
         ourActions = this.globalVariableService.actions.filter(act =>
