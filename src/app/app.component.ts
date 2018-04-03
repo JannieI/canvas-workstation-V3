@@ -1734,7 +1734,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardDetailSchedule() {
-        //
+        // Manage Schedules for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailSchedule', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1743,7 +1743,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardPrint() {
-        //
+        // Print the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardPrint', '@Start');
 
         this.menuOptionClickPreAction();
@@ -1752,8 +1752,20 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardDelete() {
-        //
+        // Delete the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDelete', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 
