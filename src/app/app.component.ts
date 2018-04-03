@@ -1713,8 +1713,20 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDashboardDetailTemplate() {
-        //
+        // Manage Template for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTemplate', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 
