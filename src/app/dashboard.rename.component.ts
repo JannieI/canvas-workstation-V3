@@ -63,7 +63,6 @@ export class DashboardRenameComponent implements OnInit {
     clickSearch() {
         // Search Ds according to the filter criteria filled in
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
-
         
         // Start afresh
         this.filteredDashboards = this.globalVariableService.dashboards.slice();
@@ -106,9 +105,28 @@ export class DashboardRenameComponent implements OnInit {
             );
         };
         if (this.filterField != ''  &&  this.filterField != undefined) {
-            this.filteredDashboards = this.filteredDashboards.filter(d => {
-
+            
+            // List of DS ids that contains the field
+            let dsIDs: number[] = [];
+            this.globalVariableService.datasources.forEach(ds => {
+                if (ds.dataFields.map(x => x.toLowerCase()).indexOf(
+                    this.filterField.toLowerCase()) >= 0) {
+                    dsIDs.push(ds.id);
+                };
             });
+
+            // List of W that contains above DS ids -> [Dids]
+            let dIDs: number[] = [];
+            this.globalVariableService.widgets.forEach(w => {
+                if (dsIDs.indexOf(w.datasourceID) >=0 ) {
+                    dIDs.push(w.dashboardID);
+                };
+            });
+
+            // Filter D that are in above list of dIDs
+            this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+                dIDs.indexOf(d.id) >= 0
+            );                
         };
         if (this.filterName != ''  &&  this.filterName!= undefined) {
             this.filteredDashboards = this.filteredDashboards.filter(d => {
