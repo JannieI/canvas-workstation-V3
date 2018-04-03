@@ -2842,7 +2842,7 @@ export class AppComponent implements OnInit {
 
     }
     clickMenuShapeLinks() {
-        //
+        // Manage links for the selected Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeLinks', '@Start');
 
         // Make sure we have only one, then delete it
@@ -2861,6 +2861,18 @@ export class AppComponent implements OnInit {
     clickMenuShapeDelete() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDelete', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) {
