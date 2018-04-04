@@ -733,7 +733,6 @@ export class GlobalVariableService {
     datasourceToEditID = new BehaviorSubject<number>(null);
     dsIDs: number[] = [];           // Dataset IDs
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
-    currentDashboardTabID:number = 0; //  = new BehaviorSubject<number>(1);
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
@@ -880,8 +879,6 @@ export class GlobalVariableService {
                                 // Get info for W
                                 this.getWidgetsInfo().then(n => {
 
-                                    this.currentDashboardTabID = dashboardTabID
-
                                     if (this.currentDatasources.length > 0) {
                                         this.hasDatasources.next(true);
                                     } else {
@@ -991,9 +988,6 @@ export class GlobalVariableService {
 
         // Load Current DatasourcePivots
         this.getCurrentDatasourcePivots(1);
-
-        // Reset Global Vars
-        this.currentDashboardTabID = dashboardTabID;
 
     }
 
