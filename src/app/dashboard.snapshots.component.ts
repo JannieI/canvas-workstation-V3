@@ -51,7 +51,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
         this.globalVariableService.getCurrentDashboardSnapshots(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
-              (i => this.currentDashboardSnapshots = i);
+              (i => this.currentDashboardSnapshots = i.slice());
 
     }
 

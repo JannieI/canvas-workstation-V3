@@ -41,7 +41,7 @@ export class DashboardScheduleComponent implements OnInit {
     ngOnInit() {
         this.dashboards = this.globalVariableService.dashboards;
         this.globalVariableService.getCurrentDashboardSchedules(
-            this.globalVariableService.currentDashboardID).then
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
               (i => this.currentDashboardSchedules = i);
     }
 
