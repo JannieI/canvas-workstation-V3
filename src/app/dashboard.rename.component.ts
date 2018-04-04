@@ -31,12 +31,13 @@ export class DashboardRenameComponent implements OnInit {
     filterFavourite: boolean;
     filterField: string;
     filterName: string;
-    filterNewName: string;
+    newName: string;
     filterSharedByMe: boolean;
     filterSharedToMe: boolean;
     filterSharedToGroup: string;
     filterSharedToUser: string;
     filterTag: string;
+    renameMode: boolean = false;
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -217,14 +218,27 @@ export class DashboardRenameComponent implements OnInit {
         };
     }
 
+    clickRow(index: number, id: number, name: string) {
+        // Click the Rename icon
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+        this.newName = name;
+        this.renameMode = true;
+    }
+
+
+    clickCancel() {
+        // Cancel the renaming process
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
+
+        this.renameMode = false;
+    }
+
     clickRename() {
-        // Search Ds according to the filter criteria filled in
+        // Rename the selected D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
 
-        // Validation
-        if (this.filterNewName == '') {
-            return;
-        };
+        this.renameMode = false;
     }
 
 }

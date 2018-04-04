@@ -66,15 +66,19 @@
                             placeholder="Created by a specific User"
                             >
                     </div>
-                    <div class="gridStatus">
+                    <div class="gridStatusTitle">
                         <b>Status:</b>
-                        <select id="selects_3"
-                            (change)="clickSelectStatus($event)"
-                            >
-                            <option>Draft</option>
-                            <option>Pending</option>
-                            <option>Complete</option>
-                        </select>
+                    </div>
+                    <div class="gridStatus">
+                        <div class="select">
+                            <select 
+                                (change)="clickSelectStatus($event)"
+                                >
+                                <option>Draft</option>
+                                <option>Pending</option>
+                                <option>Complete</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="gridDatasource">
@@ -103,24 +107,34 @@
                     <div class="gridSearchButton">
                         <button
                             type="button"
-                            class="btn btn-secondary"
+                            class="btn btn-secondary btn-sm"
                             (click)="clickSearch()"
                             >
                             Search
                         </button>
                     </div>
 
-                    <div class="gridNewName">
+                    <div class="gridNewName" *ngIf="renameMode">
                         <b>New Name:</b>
-                        <input type="text" [(ngModel)]="filterNewName"
+                        <input type="text" [(ngModel)]="newName"
                             size="25"
                             placeholder="New Name for selected Dashboard"
                             >
                     </div>
-                    <div class="gridRenameButton">
+                    <div class="gridCancelButton" *ngIf="renameMode">
                         <button 
                             type="button" 
                             class="btn btn-secondary"
+                            size="35"
+                            (click)="clickCancel()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="gridRenameButton" *ngIf="renameMode">
+                        <button 
+                            type="button" 
+                            class="btn btn-primary"
                             size="35"
                             (click)="clickRename()"
                             >
@@ -142,7 +156,11 @@
                             <clr-dg-row *clrDgItems="let row of filteredDashboards;
                                 let i = index">
                                 <clr-dg-cell>
-                                    <clr-icon shape="pencil" class="selectIcon1" size="12"></clr-icon>
+                                    <clr-icon shape="pencil" 
+                                        class="selectIcon1" 
+                                        (click)="clickRow(i, row.id, row.name)"
+                                        size="12">
+                                    </clr-icon>
                                 </clr-dg-cell>
                                 <clr-dg-cell>{{row.state}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.name}}</clr-dg-cell>
