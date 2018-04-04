@@ -258,9 +258,21 @@ export class DashboardRenameComponent implements OnInit {
         };
     }
 
-    clickRow(index: number, id: number, name: string) {
-        // Click the Rename icon
+    clickRow(index: number) {
+        // Click a row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        
+        // Switch off previous info, else confusing
+        if (this.selectedDashboardIndex != index) {
+            this.renameMode = false;
+            this.errorMessage = '';
+        };
+
+    }
+
+    clickRowRename(index: number, id: number, name: string) {
+        // Click the Rename icon
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRowRename', '@Start');
 
         // Get the index
         for (var i = 0; i < this.filteredDashboards.length; i++) {
@@ -273,37 +285,12 @@ export class DashboardRenameComponent implements OnInit {
         this.errorMessage = '';
         let hasAccess: boolean = false;
 
-        
-        if (this.filteredDashboards[this.selectedDashboardIndex].accessType.toLowerCase() == 'public') {
-            hasAccess = true;
-        };
-        if (this.filteredDashboards[this.selectedDashboardIndex].accessType.toLowerCase() == 'private'  
-            && 
-            this.filteredDashboards[this.selectedDashboardIndex].creator.toLowerCase() == 
-            this.globalVariableService.currentUser.userID.toLowerCase()) {
-                hasAccess = true;
-        };
-        if (this.filteredDashboards[this.selectedDashboardIndex].accessType.toLowerCase() == 'accesslist') {  
-            this.globalVariableService.dashboardPermissions.forEach(dp => {
-                if (dp.dashboardID == this.filteredDashboards[this.selectedDashboardIndex].id) {
-                    if (dp.userID == this.globalVariableService.currentUser.userID) {
-                        hasAccess = true;
-                    };
-                    if (dp.groupName != null) {
-                    if (this.globalVariableService.currentUser.groups.
-                        map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
-                            hasAccess = true;
-                    };
-                };
-                };
-            });
-        };
-
         // No Access
-        if (!hasAccess) {
-            this.errorMessage = 'No Access';
-            this.renameMode = false;
-            return;
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.filteredDashboards[this.selectedDashboardIndex])) {
+                this.errorMessage = 'No Access';
+                this.renameMode = false;
+                return;
         };
         
         // Set vars for later use

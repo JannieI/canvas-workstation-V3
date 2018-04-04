@@ -172,11 +172,13 @@
                             <clr-dg-column>#Opened</clr-dg-column>
 
                             <clr-dg-row *clrDgItems="let row of filteredDashboards;
-                                let i = index">
+                                let i = index"
+                                (click)="clickRow(i)"
+                                >
                                 <clr-dg-cell>
                                     <clr-icon shape="pencil" 
                                         class="selectIcon1" 
-                                        (click)="clickRow(i, row.id, row.name)"
+                                        (click)="clickRowRename(i, row.id, row.name)"
                                         size="12">
                                     </clr-icon>
                                 </clr-dg-cell>
