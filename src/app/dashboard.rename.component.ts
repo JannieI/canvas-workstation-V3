@@ -41,6 +41,7 @@ export class DashboardRenameComponent implements OnInit {
     selectedDashboardIndex = 1;
     selectedDashboardID = -1;
     selectedDashboardName = '';
+    filteredState: string;
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -64,23 +65,32 @@ export class DashboardRenameComponent implements OnInit {
 		this.formDashboardRenameClosed.emit(action);
     }
 
+    clickSelectState(ev) {
+        // User selected from State dropdown
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectState', '@Start');
+        
+        console.log('xx ev', ev.srcElement.value, this.filteredState)
+        
+    }
+
     clickClear() {
         // Search Ds according to the filter criteria filled in
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
         
         // Clear all the fields
-        this.filterCreatedBy == '';
-        this.filterDatasource == '';
-        this.filterFavourite == false;
-        this.filterField == '';
-        this.filterName == '';
-        this.filterSharedByMe == false;
-        this.filterSharedToMe == false;
-        this.filterSharedToGroup == '';
-        this.filterSharedToUser == '';
-        this.filterTag == '';
+        this.filterCreatedBy = '';
+        this.filteredState = '';
+        this.filterDatasource = '';
+        this.filterFavourite = false;
+        this.filterField = '';
+        this.filterName = '';
+        this.filterSharedByMe = false;
+        this.filterSharedToMe = false;
+        this.filterSharedToGroup = '';
+        this.filterSharedToUser = '';
+        this.filterTag = '';
     }
-    
+
     clickSearch() {
         // Search Ds according to the filter criteria filled in
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
@@ -90,7 +100,7 @@ export class DashboardRenameComponent implements OnInit {
 
         if (this.filterCreatedBy != ''  &&  this.filterCreatedBy != undefined) {
             this.filteredDashboards = this.filteredDashboards.filter(d => 
-                d.creator == this.filterCreatedBy
+                d.creator.toLowerCase() == this.filterCreatedBy.toLowerCase()
             );
         };
         if (this.filterDatasource != ''  &&  this.filterDatasource != undefined) {
@@ -221,6 +231,13 @@ export class DashboardRenameComponent implements OnInit {
                  pIDs.indexOf(d.id) >= 0
              );   
         };
+        if (this.filteredState != ''  &&  this.filteredState != undefined) {
+
+            this.filteredDashboards = this.filteredDashboards.filter(d => 
+                d.state.toLowerCase() == this.filteredState.toLowerCase()
+            );
+        }
+
         if (this.filterTag != '' &&  this.filterTag != undefined) {
             
             // List of Ds ids that contains the Tag

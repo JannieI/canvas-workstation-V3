@@ -66,14 +66,16 @@
                             placeholder="Created by a specific User"
                             >
                     </div>
-                    <div class="gridStatusTitle">
-                        <b>Status:</b>
+                    <div class="gridStateTitle">
+                        <b>State:</b>
                     </div>
-                    <div class="gridStatus">
+                    <div class="gridState">
                         <div class="select">
                             <select 
-                                (change)="clickSelectStatus($event)"
+                                (change)="clickSelectState($event)"
+                                [(ngModel)]="filteredState"
                                 >
+                                <option></option>
                                 <option>Draft</option>
                                 <option>Pending</option>
                                 <option>Complete</option>
