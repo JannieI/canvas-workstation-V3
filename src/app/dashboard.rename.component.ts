@@ -38,6 +38,9 @@ export class DashboardRenameComponent implements OnInit {
     filterSharedToUser: string;
     filterTag: string;
     renameMode: boolean = false;
+    selectedDashboardIndex = 1;
+    selectedDashboardID = -1;
+    selectedDashboardName = '';
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -222,6 +225,9 @@ export class DashboardRenameComponent implements OnInit {
         // Click the Rename icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
+        this.selectedDashboardIndex = index;
+        this.selectedDashboardID = id;
+        this.selectedDashboardName = name;
         this.newName = name;
         this.renameMode = true;
     }
@@ -231,6 +237,9 @@ export class DashboardRenameComponent implements OnInit {
         // Cancel the renaming process
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
+        this.selectedDashboardIndex = -1;
+        this.selectedDashboardID = -1;
+        this.selectedDashboardName = '';
         this.renameMode = false;
     }
 
@@ -238,7 +247,25 @@ export class DashboardRenameComponent implements OnInit {
         // Rename the selected D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
 
-        this.renameMode = false;
+        // Replace, and exit renameMode
+        if (this.selectedDashboardIndex != -1  ||  this.selectedDashboardID != -1) {
+            this.filteredDashboards[this.selectedDashboardIndex].name = this.newName;
+            this.globalVariableService.dashboards.forEach(d => {
+                if (d.id == this.selectedDashboardID) { 
+                    d.name = this.newName;
+                }
+            });
+            this.globalVariableService.currentDashboards.forEach(d => {
+                if (d.id == this.selectedDashboardID) { 
+                    d.name = this.newName;
+                }
+            });
+
+            this.selectedDashboardIndex = -1;
+            this.selectedDashboardID = -1;
+            this.selectedDashboardName = '';
+            this.renameMode = false;
+        };
     }
 
 }
