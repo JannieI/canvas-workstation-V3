@@ -190,11 +190,23 @@ export class AppComponent implements OnInit {
             return;
         };
         if (event.code == 'PageDown'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
-            this.statusbarDOM.clickShowNextTab();
+            // this.statusbarDOM.clickShowNextTab();
+            this.globalVariableService.refreshCurrentDashboard(
+                'statusbar-clickShowNextTab',
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                0,
+                'Next'
+            );
             return;
         };
         if (event.code == 'PageUp'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
-            this.statusbarDOM.clickShowPreviousTab();
+            // this.statusbarDOM.clickShowPreviousTab();
+            this.globalVariableService.refreshCurrentDashboard(
+                'statusbar-clickShowNextTab',
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                0,
+                'Next'
+            );
             return;
         };
 
