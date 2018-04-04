@@ -17,6 +17,8 @@ import { Dashboard }                  from './models'
 import { DashboardTab }               from './models'
 import { Datasource }                 from './models'
 
+import { Subscription }               from 'rxjs/Subscription';
+
 
 @Component({
     selector: 'status-bar',
@@ -39,6 +41,7 @@ export class StatusbarComponent {
     dashboardDescription: string;
     dashboardTabDescription: string;
     editMode: boolean = false;
+    editModeSubscription: Subscription;
     loggedIntoServerText: string;
     menuActionResize: boolean;
     showDashboardDescription: boolean = false;
@@ -60,7 +63,7 @@ export class StatusbarComponent {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.editMode.subscribe(
+        this.editModeSubscription = this.globalVariableService.editMode.subscribe(
             i => {
                     this.editMode = i;
                  }
@@ -138,7 +141,8 @@ export class StatusbarComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
         // Throws an error on second Slicer selection who wants to pass a message ...
-        // this.globalVariableService.editMode.unsubscribe();
+        this.editModeSubscription.unsubscribe();
+        console.log('xx unsubsribed')
         // this.globalVariableService.widgetGroup.unsubscribe();
         // this.globalVariableService.loggedIntoServer.unsubscribe();
         // this.globalVariableService.templateInUse.unsubscribe();

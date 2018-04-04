@@ -180,15 +180,23 @@ export class DashboardRenameComponent implements OnInit {
                     };
                 };
             });
-console.log('xx', pIDs)
+
             this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
                 pIDs.indexOf(d.id) >= 0
             );        
         };
         if (this.filterSharedToUser != ''  &&  this.filterSharedToUser !=  undefined) {
-            this.filteredDashboards = this.filteredDashboards.filter(d => {
-
-            });
+             // List of D ids from P, granted to me
+             let pIDs: number[] = [];
+             this.globalVariableService.dashboardPermissions.forEach(p => {
+                 if (p.userID == this.filterSharedToUser) {
+                     pIDs.push(p.dashboardID);
+                 };
+             });
+ 
+             this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+                 pIDs.indexOf(d.id) >= 0
+             );   
         };
         if (this.filterTag != '' &&  this.filterTag != undefined) {
             this.filteredDashboards = this.filteredDashboards.filter(d => {
