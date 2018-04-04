@@ -4843,4 +4843,45 @@ export class GlobalVariableService {
         return datagridColumns;
 
     }
+
+    dashboardPermissionCheck(dashboard: Dashboard): boolean {
+        // Checks if the current user has access to the given D.
+        console.log('Global-Variables dashboardPermissionCheck ...');
+
+        // Format user
+        let userID = this.currentUser.userID;
+
+        // Assume no access
+        let hasAccess: boolean = false;
+
+        // Everyone has access to Public Ds
+        if (dashboard.accessType.toLowerCase() == 'public') {
+            hasAccess = true;
+        };
+
+        // The owner has access to Private ones
+        if (dashboard.accessType.toLowerCase() == 'private'  
+            && 
+            dashboard.creator.toLowerCase() == userID.toLowerCase()) {
+                hasAccess = true;
+        };
+        if (dashboard.accessType.toLowerCase() == 'accesslist') {  
+            this.dashboardPermissions.forEach(dp => {
+                if (dp.dashboardID == dashboard.id) {
+                    if (dp.userID.toLowerCase() == userID.toLowerCase()) {
+                        hasAccess = true;
+                    };
+                    if (dp.groupName != null) {
+                        if (this.currentUser.groups.
+                            map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
+                                hasAccess = true;
+                        };
+                    };
+                };
+            });
+        };
+
+        // Return
+        return hasAccess;
+    }
 }
