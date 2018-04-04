@@ -29,7 +29,7 @@
                             >
                             <option>Private</option>
                             <option>Public</option>
-                            <option>Access List</option>
+                            <option>AccessList</option>
                         </select>
                     </div>
                 </div>
@@ -45,21 +45,21 @@
                 <div class="gridNewError" *ngIf="errorMessage != ''">
                     {{ errorMessage }}
                 </div>
-                <div class="gridCurrentBR" *ngIf="accessType != 'Access List'">
+                <div class="gridCurrentBR" *ngIf="accessType != 'AccessList'">
                 </div>
 
-                <div class="gridNewTitle" *ngIf="accessType == 'Access List'">
+                <div class="gridNewTitle" *ngIf="accessType == 'AccessList'">
                     <b>For an Access List, you can add a new user or group to the table below.
                        Then toggle the required access by double clicking on it in the table.</b>
                 </div>
-                <div class="gridNewUserID" *ngIf="accessType == 'Access List'">
+                <div class="gridNewUserID" *ngIf="accessType == 'AccessList'">
                     <b>UserID:</b>
                     <input type="text" [(ngModel)]="userID" placeholder="User ID">
                 </div>
-                <div class="gridNewGroupName" *ngIf="accessType == 'Access List'">
+                <div class="gridNewGroupName" *ngIf="accessType == 'AccessList'">
                     <b>Group:</b>
                 </div>
-                <div class="gridNewGroupSelect" *ngIf="accessType == 'Access List'  &&  groups">
+                <div class="gridNewGroupSelect" *ngIf="accessType == 'AccessList'  &&  groups">
                     <div class="select">
                         <select
                             (change)="clickSelectGroup($event)"
@@ -70,7 +70,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="gridNewButton" *ngIf="accessType == 'Access List'">
+                <div class="gridNewButton" *ngIf="accessType == 'AccessList'">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -80,7 +80,7 @@
                     </button>
                 </div>
 
-                <div class="gridTable" *ngIf="accessType == 'Access List'">
+                <div class="gridTable" *ngIf="accessType == 'AccessList'">
                     <clr-datagrid>
                         <clr-dg-column
                         [style.text-align]="center">Remove</clr-dg-column>

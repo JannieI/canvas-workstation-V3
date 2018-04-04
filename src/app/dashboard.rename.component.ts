@@ -25,23 +25,24 @@ export class DashboardRenameComponent implements OnInit {
 
     @Output() formDashboardRenameClosed: EventEmitter<string> = new EventEmitter();
 
+    errorMessage: string = '';
     filterCreatedBy: string;
     filterDatasource: string;
     filteredDashboards: Dashboard[] = [];       // Filtered Ds, shown on form
     filterFavourite: boolean;
     filterField: string;
     filterName: string;
-    newName: string;
     filterSharedByMe: boolean;
     filterSharedToMe: boolean;
     filterSharedToGroup: string;
     filterSharedToUser: string;
+    filteredState: string;
     filterTag: string;
+    newName: string;
     renameMode: boolean = false;
     selectedDashboardIndex = 1;
     selectedDashboardID = -1;
     selectedDashboardName = '';
-    filteredState: string;
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -69,13 +70,15 @@ export class DashboardRenameComponent implements OnInit {
         // User selected from State dropdown
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectState', '@Start');
         
-        console.log('xx ev', ev.srcElement.value, this.filteredState)
+        this.errorMessage = '';
         
     }
 
     clickClear() {
         // Search Ds according to the filter criteria filled in
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
+        
+        this.errorMessage = '';
         
         // Clear all the fields
         this.filterCreatedBy = '';
@@ -96,6 +99,7 @@ export class DashboardRenameComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
         
         // Start afresh
+        this.errorMessage = '';
         this.filteredDashboards = this.globalVariableService.dashboards.slice();
 
         if (this.filterCreatedBy != ''  &&  this.filterCreatedBy != undefined) {
@@ -205,7 +209,6 @@ export class DashboardRenameComponent implements OnInit {
             // List of D ids from P, granted to group
             let pIDs: number[] = [];
             this.globalVariableService.dashboardPermissions.forEach(p => {
-                console.log('xx', p.groupName)
                 if (p.groupName != null) {
                     if (p.groupName.toLowerCase().indexOf(
                         this.filterSharedToGroup.toLowerCase()) >= 0) {
@@ -259,6 +262,51 @@ export class DashboardRenameComponent implements OnInit {
         // Click the Rename icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
+        // Get the index
+        for (var i = 0; i < this.filteredDashboards.length; i++) {
+            if (this.filteredDashboards[i].id == id) {
+                this.selectedDashboardIndex = i;
+            };
+        };
+
+        // Respect access
+        this.errorMessage = '';
+        let hasAccess: boolean = false;
+
+        
+        if (this.filteredDashboards[this.selectedDashboardIndex].accessType.toLowerCase() == 'public') {
+            hasAccess = true;
+        };
+        if (this.filteredDashboards[this.selectedDashboardIndex].accessType.toLowerCase() == 'private'  
+            && 
+            this.filteredDashboards[this.selectedDashboardIndex].creator.toLowerCase() == 
+            this.globalVariableService.currentUser.userID.toLowerCase()) {
+                hasAccess = true;
+        };
+        if (this.filteredDashboards[this.selectedDashboardIndex].accessType.toLowerCase() == 'accesslist') {  
+            this.globalVariableService.dashboardPermissions.forEach(dp => {
+                if (dp.dashboardID == this.filteredDashboards[this.selectedDashboardIndex].id) {
+                    if (dp.userID == this.globalVariableService.currentUser.userID) {
+                        hasAccess = true;
+                    };
+                    if (dp.groupName != null) {
+                    if (this.globalVariableService.currentUser.groups.
+                        map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
+                            hasAccess = true;
+                    };
+                };
+                };
+            });
+        };
+
+        // No Access
+        if (!hasAccess) {
+            this.errorMessage = 'No Access';
+            this.renameMode = false;
+            return;
+        };
+        
+        // Set vars for later use
         this.selectedDashboardIndex = index;
         this.selectedDashboardID = id;
         this.selectedDashboardName = name;
@@ -266,11 +314,11 @@ export class DashboardRenameComponent implements OnInit {
         this.renameMode = true;
     }
 
-
     clickCancel() {
         // Cancel the renaming process
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
+        this.errorMessage = '';
         this.selectedDashboardIndex = -1;
         this.selectedDashboardID = -1;
         this.selectedDashboardName = '';
@@ -280,6 +328,8 @@ export class DashboardRenameComponent implements OnInit {
     clickRename() {
         // Rename the selected D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRename', '@Start');
+
+        this.errorMessage = '';
 
         // Replace, and exit renameMode
         if (this.selectedDashboardIndex != -1  ||  this.selectedDashboardID != -1) {

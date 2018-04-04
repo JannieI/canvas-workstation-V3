@@ -393,7 +393,7 @@ export class Dashboard {
     description: string;
 
     // Access Type
-    accessType: string;             // How to access D: Private, Public, Access List
+    accessType: string;             // How to access D: Private, Public, AccessList
 
     // Overall properties
     password: string;

@@ -383,7 +383,7 @@ export class AppComponent implements OnInit {
             email: '',
             workNumber: '',
             cellNumber: '',
-            groups: ['everyone', 'admin'],
+            groups: ['everyone', 'admin', 'marketing'],
             isSuperuser: false,
             isStaff: false,
             isActive: false,
