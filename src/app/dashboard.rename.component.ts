@@ -64,6 +64,23 @@ export class DashboardRenameComponent implements OnInit {
 		this.formDashboardRenameClosed.emit(action);
     }
 
+    clickClear() {
+        // Search Ds according to the filter criteria filled in
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
+        
+        // Clear all the fields
+        this.filterCreatedBy == '';
+        this.filterDatasource == '';
+        this.filterFavourite == false;
+        this.filterField == '';
+        this.filterName == '';
+        this.filterSharedByMe == false;
+        this.filterSharedToMe == false;
+        this.filterSharedToGroup == '';
+        this.filterSharedToUser == '';
+        this.filterTag == '';
+    }
+    
     clickSearch() {
         // Search Ds according to the filter criteria filled in
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
@@ -245,7 +262,7 @@ export class DashboardRenameComponent implements OnInit {
 
     clickRename() {
         // Rename the selected D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRename', '@Start');
 
         // Replace, and exit renameMode
         if (this.selectedDashboardIndex != -1  ||  this.selectedDashboardID != -1) {
