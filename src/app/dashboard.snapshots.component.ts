@@ -50,7 +50,7 @@ export class DashboardSnapshotsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.getCurrentDashboardSnapshots(
-            this.globalVariableService.currentDashboardID).then
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
               (i => this.currentDashboardSnapshots = i);
 
     }
@@ -81,12 +81,14 @@ export class DashboardSnapshotsComponent implements OnInit {
             currentDashboardID;
         let currentD: Dashboard[] = this.globalVariableService.currentDashboards.slice();
         let currentT: DashboardTab[] = this.globalVariableService.currentDashboardTabs.slice();
-        let currentP: DashboardPermission[] = this.globalVariableService.currentDashboardPermissions.slice();
+        let currentP: DashboardPermission[] = this.globalVariableService.
+            currentDashboardPermissions.slice();
         let currentC: CanvasComment[] = this.globalVariableService.canvasComments.slice();
         let currentW: Widget[] = this.globalVariableService.currentWidgets.slice();
         let currentDset: Dataset[] = this.globalVariableService.currentDatasets.slice();
         let currentDS: Datasource[] = this.globalVariableService.currentDatasources.slice();
-        let currentChk: WidgetCheckpoint[] = this.globalVariableService.currentWidgetCheckpoints.slice();
+        let currentChk: WidgetCheckpoint[] = this.globalVariableService.
+            currentWidgetCheckpoints.slice();
 
         let newSn: DashboardSnapshot = {
             id: null,
@@ -124,8 +126,8 @@ export class DashboardSnapshotsComponent implements OnInit {
         snap.dashboards.forEach(s => {
             dsIDs.push(s.id);
         });
-        this.globalVariableService.dashboards = this.globalVariableService.dashboards.filter(d => {
-            dsIDs.indexOf(d.id) < 0
+        this.globalVariableService.dashboards = this.globalVariableService.dashboards.
+            filter(d => {dsIDs.indexOf(d.id) < 0
         });
         // Add D from snapshot to global
         snap.dashboards.forEach(s => {
@@ -134,8 +136,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
         // Remove global Ts
         this.globalVariableService.dashboardTabs = this.globalVariableService.dashboardTabs.
-            filter(t => {
-            t.dashboardID != dashboardID
+            filter(t => {t.dashboardID != dashboardID
         });
         // Add T from snapshot to global
         snap.dashboardTabs.forEach(s => {
@@ -143,9 +144,8 @@ export class DashboardSnapshotsComponent implements OnInit {
         });
 
         // Remove global Ps
-        this.globalVariableService.dashboardPermissions = this.globalVariableService.dashboardPermissions.
-            filter(p => {
-            p.dashboardID != dashboardID
+        this.globalVariableService.dashboardPermissions = this.globalVariableService.
+            dashboardPermissions.filter(p => {p.dashboardID != dashboardID
         });
         // Add P from snapshot to global
         snap.dashboardPermissions.forEach(s => {
@@ -153,9 +153,8 @@ export class DashboardSnapshotsComponent implements OnInit {
         });
 
         // Remove global Cs
-        this.globalVariableService.canvasComments = this.globalVariableService.canvasComments.
-            filter(c => {
-            c.dashboardID != dashboardID
+        this.globalVariableService.canvasComments = this.globalVariableService.
+            canvasComments.filter(c => {c.dashboardID != dashboardID
         });
         // Add C from snapshot to global
         snap.canvasComments.forEach(s => {
@@ -163,8 +162,8 @@ export class DashboardSnapshotsComponent implements OnInit {
         });
 
         // Remove global Ws
-        this.globalVariableService.widgets = this.globalVariableService.widgets.filter(w => {
-            w.dashboardID != dashboardID
+        this.globalVariableService.widgets = this.globalVariableService.widgets.
+            filter(w => {w.dashboardID != dashboardID
         });
         // Add W from snapshot to global
         snap.widgets.forEach(s => {
@@ -177,10 +176,8 @@ export class DashboardSnapshotsComponent implements OnInit {
             ids.push(s.id);
         });
         this.globalVariableService.datasets = this.globalVariableService.datasets.
-            filter(dS => {
-            ids.indexOf(dS.id) <0
-            }
-        );
+            filter(dS => {ids.indexOf(dS.id) <0
+        });
         // Add dSets from snapshot to global
         snap.datasets.forEach(s => {
             this.globalVariableService.datasets.push(s);
@@ -192,10 +189,8 @@ export class DashboardSnapshotsComponent implements OnInit {
             ids.push(s.id);
         });
         this.globalVariableService.datasources = this.globalVariableService.datasources.
-            filter(ds => {
-                ids.indexOf(ds.id) <0
-            }
-        );
+            filter(ds => {ids.indexOf(ds.id) <0
+        });
         // Add DS from snapshot to global
         snap.datasources.forEach(s => {
             this.globalVariableService.datasources.push(s);
@@ -208,8 +203,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
         // Remove global Checkpointss
         this.globalVariableService.widgetCheckpoints = this.globalVariableService
-            .widgetCheckpoints.filter(w => {
-            w.dashboardID != dashboardID
+            .widgetCheckpoints.filter(w => {w.dashboardID != dashboardID
         });
         // Add Checkpoints from snapshot to global
         snap.widgetCheckpoints.forEach(s => {
