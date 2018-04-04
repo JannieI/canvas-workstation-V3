@@ -292,6 +292,7 @@ export class DashboardRenameComponent implements OnInit {
             this.globalVariableService.currentDashboards.forEach(d => {
                 if (d.id == this.selectedDashboardID) { 
                     d.name = this.newName;
+                    this.globalVariableService.currentDashboardName.next(this.newName);
                 }
             });
 

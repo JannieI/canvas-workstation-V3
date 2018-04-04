@@ -96,6 +96,14 @@ export class StatusbarComponent {
             };
         });
 
+        // Change name if changed via rename
+        this.globalVariableService.currentDashboardName.subscribe(
+            i => {
+                if (i != '') {
+                    this.currentDashboardName = i;
+                }
+            }
+        )
         // Close any open popups when a new D is opened
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => {

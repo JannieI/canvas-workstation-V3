@@ -698,6 +698,8 @@ export class GlobalVariableService {
     currentDashboardSubscription: DashboardSubscription[] = [];
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
 
+    // TODO - this is trigger a rename of the Dname on statusbar - must be better way
+    currentDashboardName = new BehaviorSubject<string>('');
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
     // widgetsToRefresh = new BehaviorSubject<number[]>([]);            // Array of Wids to refresh
 
