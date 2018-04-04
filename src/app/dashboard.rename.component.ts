@@ -144,7 +144,8 @@ export class DashboardRenameComponent implements OnInit {
             // List of D ids from P, where I was grantor
             let pIDs: number[] = [];
             this.globalVariableService.dashboardPermissions.forEach(p => {
-                if (p.grantor == this.globalVariableService.currentUser.userID) {
+                if (p.grantor.toLowerCase() == this.globalVariableService.
+                    currentUser.userID.toLowerCase()) {
                     pIDs.push(p.dashboardID);
                 };
             });
@@ -158,7 +159,8 @@ export class DashboardRenameComponent implements OnInit {
             // List of D ids from P, granted to me
             let pIDs: number[] = [];
             this.globalVariableService.dashboardPermissions.forEach(p => {
-                if (p.userID == this.globalVariableService.currentUser.userID) {
+                if (p.userID.toLowerCase() == this.globalVariableService.
+                    currentUser.userID.toLowerCase()) {
                     pIDs.push(p.dashboardID);
                 };
             });
@@ -186,10 +188,10 @@ export class DashboardRenameComponent implements OnInit {
             );        
         };
         if (this.filterSharedToUser != ''  &&  this.filterSharedToUser !=  undefined) {
-             // List of D ids from P, granted to me
+             // List of D ids from P, granted to UserID
              let pIDs: number[] = [];
              this.globalVariableService.dashboardPermissions.forEach(p => {
-                 if (p.userID == this.filterSharedToUser) {
+                 if (p.userID.toLowerCase() == this.filterSharedToUser.toLowerCase()) {
                      pIDs.push(p.dashboardID);
                  };
              });
@@ -199,9 +201,19 @@ export class DashboardRenameComponent implements OnInit {
              );   
         };
         if (this.filterTag != '' &&  this.filterTag != undefined) {
-            this.filteredDashboards = this.filteredDashboards.filter(d => {
-
+            
+            // List of Ds ids that contains the Tag
+            let tIDs: number[] = [];
+            this.globalVariableService.dashboardTags.forEach(t => {
+                if (t.tag.toLowerCase().indexOf(this.filterTag) >= 0) {
+                    tIDs.push(t.id);
+                };
             });
+
+            // Filter D that are in above list of tIDs
+            this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+                tIDs.indexOf(d.id) >= 0
+            );  
         };
     }
 
