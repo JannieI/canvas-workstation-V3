@@ -28,7 +28,7 @@ export class MyProfileComponent implements OnInit {
     @Output() formDashboardMyProfileClosed: EventEmitter<string> = new EventEmitter();
 
     currentData: any[] = [];
-    dataFieldNames: string[] = [];
+    dataFieldNames: number[] = [];
     favDashboards: Dashboard[] = [];
     showFavs: boolean = false;
 
@@ -42,7 +42,7 @@ export class MyProfileComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.favDashboards = this.globalVariableService.dashboards.filter(d => 
-            this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) >= 0
+            this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) != 0
         );
 console.log('xx this.favDashboards', this.favDashboards, this.globalVariableService.currentUser.favouriteDashboards)
 
@@ -60,12 +60,12 @@ console.log('xx this.favDashboards', this.favDashboards, this.globalVariableServ
 
             // Create the col headers
             for (var i = 0; i < nrCols; i++) {
-                this.dataFieldNames.push( 'Col ' + (i+1).toString());
+                this.dataFieldNames.push((i));
             };
             console.log('xx dataFieldNames', this.dataFieldNames)
 
             // Create the data
-            let c: number = -1;
+            let c: number = 0;
             let row0: any[] = [];
             let row1: any[] = [];
 
@@ -84,48 +84,39 @@ console.log('xx this.favDashboards', this.favDashboards, this.globalVariableServ
                 };
 
             })
-            console.log('xx rows', this.currentData.length, row1, row0)
-            if (row1.length > 0) {
-                this.currentData.push(...row1);
-            };
+            console.log('xx rows', this.currentData.length, row0, row1)
             if (row0.length > 0) {
-                this.currentData.push(...row0);
+                this.currentData.push(row0);
+            };
+            if (row1.length > 0) {
+                this.currentData.push(row1);
             };
             // this.currentData.push( row0, row1)
             console.log('xx cData', this.currentData.length, this.currentData)
         };
-        // Get the groups that the current user belongs to
-        // let groups: string[] = [];
-        // this.globalVariableService.getCanvasGroups().then(res => {
-        //     res.forEach(cgr => {
-        //         if (this.globalVariableService.currentUser.groups.map(x => x.toLowerCase())
-        //             .indexOf(cgr.name.toLowerCase()) >= 0) {
-        //                 groups.push(cgr.name);
-        //         };
-        //     });
-        // });
     }
+
+    clickDelete(ev, row, col) {
+        // Close form, no changes
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+
+        console.log('xx', ev, row, 'c', col)
+}
 
     clickClose(action: string) {
         // Close form, no changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.dataFieldNames.push("c")
-        if (true) return;
-
-
-
-
-        // this.globalVariableService.showStatusBarMessage(
-        //     {
-        //         message: 'No changes',
-        //         uiArea: 'StatusBar',
-        //         classfication: 'Info',
-        //         timeout: 3000,
-        //         defaultMessage: ''
-        //     }
-        // );
-		// this.formDashboardMyProfileClosed.emit(action);
+        this.globalVariableService.showStatusBarMessage(
+            {
+                message: 'No changes',
+                uiArea: 'StatusBar',
+                classfication: 'Info',
+                timeout: 3000,
+                defaultMessage: ''
+            }
+        );
+		this.formDashboardMyProfileClosed.emit(action);
     }
 
     clickSave(action: string) {
