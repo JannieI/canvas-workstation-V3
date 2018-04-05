@@ -252,8 +252,7 @@ export class AppComponent implements OnInit {
     }
 
 
-    showWidgetContextMenu: boolean = false;
-
+    clickedSlicerItem: boolean = false;
     clipboardWidget: Widget;
     companyName: string = '';
     currentDashboardName: string = '';
@@ -361,6 +360,7 @@ export class AppComponent implements OnInit {
     showPalette: boolean = true;
     showPopupMessage: boolean = false;
     showTitleForm: boolean = false;
+    showWidgetContextMenu: boolean = false;
     snapToGrid: boolean = true;
     startX: number;
     startY: number;
@@ -4094,10 +4094,23 @@ export class AppComponent implements OnInit {
 
     }
 
+    clickWidgetSlicer(ev: MouseEvent, index: number, id: number) {
+        // Click Slicer inside W
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetSlicerev', '@Start');
+
+        this.clickedSlicerItem = true;
+    }
+
     clickWidget(ev: MouseEvent, index: number, id: number) {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
 
+        // Sl item was clicked, so nothing further to do on the W container
+        if (this.clickedSlicerItem) {
+            this.clickedSlicerItem = false;
+            return;
+        }
+        
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(

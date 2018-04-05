@@ -1404,9 +1404,6 @@
         </widget-single>
     </div>
 
-
-
-
     <!-- Graph Checkpoint -->
     <div class="widget" *ngIf="row.widgetType=='Graph'  &&  row.showCheckpoints">
         <widget-single
@@ -1418,13 +1415,10 @@
         </widget-single>
     </div>
 
-
-
-
-
-
     <!-- Slicer Object -->
-    <div class="widget" *ngIf="row.widgetType=='Slicer'">
+    <div class="widget" *ngIf="row.widgetType=='Slicer'"
+    (click)="clickWidgetSlicer($event, i, row.id)"
+    >
         <slicer-single
             [slicer]="row"
             >
