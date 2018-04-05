@@ -1357,7 +1357,7 @@
             {{ row.nrComments }}
         </span>
 
-        <div *ngIf="!presentationMode  &&  editMode">
+        <div *ngIf="(!presentationMode  &&  editMode)  || (presentationMode)">
             <clr-dropdown class="titleMenu">
                 <clr-icon
                     clrDropdownTrigger
