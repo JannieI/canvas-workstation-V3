@@ -37,6 +37,16 @@ export class MyProfileComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Get the groups that the current user belongs to
+        // let groups: string[] = [];
+        // this.globalVariableService.getCanvasGroups().then(res => {
+        //     res.forEach(cgr => {
+        //         if (this.globalVariableService.currentUser.groups.map(x => x.toLowerCase())
+        //             .indexOf(cgr.name.toLowerCase()) >= 0) {
+        //                 groups.push(cgr.name);
+        //         };
+        //     });
+        // });
     } 
 
     clickClose(action: string) {

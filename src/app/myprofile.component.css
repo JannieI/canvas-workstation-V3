@@ -14,7 +14,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(15, 1rem);
+    grid-template-rows: repeat(17, 1rem);
     margin-top: 2px;
 }
 
@@ -139,3 +139,12 @@
         grid-row-end: 15;
         text-align: left;
     }
+
+    .gridTable {
+        grid-column-start: 1;
+        grid-column-end: 14;
+        grid-row-start: 15;
+        grid-row-end: 18;
+        text-align: left;
+    }
+

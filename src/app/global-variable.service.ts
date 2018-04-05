@@ -1154,7 +1154,7 @@ export class GlobalVariableService {
                 this.currentDashboards = this.dashboards.filter(
                     i => i.id == dashboardID
                 );
-
+console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboards)
                 if (this.currentDashboards[0].templateDashboardID != 0) {
                     let templateDashboard: Dashboard[] = null;
 
@@ -1827,12 +1827,12 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.dashboardTags.push(JSON.parse(JSON.stringify(data)));
                     
-                    console.log('xx addDashboardTags ADDED', data, this.dashboardTags)
+                    console.log('addDashboardTags ADDED', data, this.dashboardTags)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('xx addDashboardTags FAILED', err);;
+                    console.log('Error addDashboardTags FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -1856,11 +1856,11 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
 
-                    console.log('xx deleteDashboardTag DELETED id: ', id)
+                    console.log('deleteDashboardTag DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('xx deleteDashboardTag FAILED', err);;
+                    console.log('Error deleteDashboardTag FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -1953,13 +1953,13 @@ export class GlobalVariableService {
                     this.dashboardPermissions.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardPermissions.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('xx addDashboardPermissions ADDED', data, 
+                    console.log('addDashboardPermissions ADDED', data, 
                         this.currentDashboardPermissions, this.dashboardPermissions)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('xx addDashboardPermissions FAILED', err);;
+                    console.log('Error addDashboardPermissions FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -1990,11 +1990,11 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('xx deleteDashboardPermissions DELETED id: ', id)
+                    console.log('deleteDashboardPermissions DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('xx deleteDashboardPermissions FAILED', err);;
+                    console.log('Error deleteDashboardPermissions FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -2118,13 +2118,13 @@ export class GlobalVariableService {
                     this.dashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('xx addDashboardSnapshots ADDED', data, 
+                    console.log('addDashboardSnapshots ADDED', data, 
                         this.currentDashboardSnapshots, this.dashboardSnapshots)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('xx addDashboardSnapshots FAILED', err);;
+                    console.log('Error addDashboardSnapshots FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -2155,11 +2155,11 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('xx deleteDashboardSnapshots DELETED id: ', id)
+                    console.log('deleteDashboardSnapshots DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('xx deleteDashboardSnapshots FAILED', err);;
+                    console.log('Error deleteDashboardSnapshots FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -2708,11 +2708,11 @@ export class GlobalVariableService {
             this.http.put('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    console.log('xx saveSystemSettings SAVED')
+                    console.log('saveSystemSettings SAVED')
                     resolve('Saved');
                 },
                 err => {
-                    console.log('xx saveSystemSettings FAILED');;
+                    console.log('Error saveSystemSettings FAILED');;
                     resolve(err.Message.toString());
                 }
             )
@@ -2778,11 +2778,11 @@ export class GlobalVariableService {
             this.http.put('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    console.log('xx saveUserPreferences SAVED')
+                    console.log('saveUserPreferences SAVED')
                     resolve('Saved');
                 },
                 err => {
-                    console.log('xx saveUserPreferences FAILED');;
+                    console.log('Error saveUserPreferences FAILED');;
                     resolve(err.Message.toString());
                 }
             )
@@ -2836,11 +2836,11 @@ export class GlobalVariableService {
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 data => {
-                    console.log('xx saveDashboardSubscription SAVED', data)
+                    console.log('saveDashboardSubscription SAVED', data)
                     resolve('Saved');
                 },
                 err => {
-                    console.log('xx saveDashboardSubscription FAILED', err);;
+                    console.log('Error saveDashboardSubscription FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -2863,11 +2863,11 @@ export class GlobalVariableService {
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    console.log('xx addDashboardSubscription ADDED', data)
+                    console.log('addDashboardSubscription ADDED', data)
                     resolve(data);
                 },
                 err => {
-                    console.log('xx addDashboardSubscription FAILED', err);;
+                    console.log('Error addDashboardSubscription FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -2900,11 +2900,11 @@ export class GlobalVariableService {
                     if (dID >=0) {
                         this.currentDashboardSubscription.splice(dID, 1);
                     };
-                    console.log('xx deleteDashboardSubscription DELETED', this.currentDashboardSubscription)
+                    console.log('deleteDashboardSubscription DELETED', this.currentDashboardSubscription)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('xx deleteDashboardSubscription FAILED', err);;
+                    console.log('Error deleteDashboardSubscription FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -2958,11 +2958,11 @@ export class GlobalVariableService {
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 data => {
-                    console.log('xx savePaletteButtonBar SAVED', data)
+                    console.log('savePaletteButtonBar SAVED', data)
                     resolve('Saved');
                 },
                 err => {
-                    console.log('xx savePaletteButtonBar FAILED', err);;
+                    console.log('Error savePaletteButtonBar FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -3020,11 +3020,11 @@ export class GlobalVariableService {
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 data => {
-                    console.log('xx savePaletteButtonsSelected SAVED', data)
+                    console.log('savePaletteButtonsSelected SAVED', data)
                     resolve('Saved');
                 },
                 err => {
-                    console.log('xx savePaletteButtonsSelected FAILED', err);;
+                    console.log('Error savePaletteButtonsSelected FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -3061,11 +3061,11 @@ export class GlobalVariableService {
                     // if (dID >=0) {
                     //     this.currentPaletteButtonsSelected.value.splice(dID, 1);
                     // };
-                    console.log('xx deletePaletteButtonsSelected DELETED id: ', id)
+                    console.log('deletePaletteButtonsSelected DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('xx deletePaletteButtonsSelected FAILED', err);;
+                    console.log('Error deletePaletteButtonsSelected FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -3088,11 +3088,11 @@ export class GlobalVariableService {
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    console.log('xx addPaletteButtonsSelected ADDED', data)
+                    console.log('addPaletteButtonsSelected ADDED', data)
                     resolve(data);
                 },
                 err => {
-                    console.log('xx addPaletteButtonsSelected FAILED', err);;
+                    console.log('Error addPaletteButtonsSelected FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -3543,12 +3543,12 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasComments.push(JSON.parse(JSON.stringify(data)));
                     
-                    console.log('xx addCanvasComments ADDED', data, this.canvasComments, this.canvasComments)
+                    console.log('addCanvasComments ADDED', data, this.canvasComments, this.canvasComments)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('xx addCanvasComments FAILED', err);;
+                    console.log('Error addCanvasComments FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -3572,11 +3572,11 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
 
-                    console.log('xx deleteCanvasComments DELETED id: ', id)
+                    console.log('deleteCanvasComments DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('xx deleteCanvasComments FAILED', err);;
+                    console.log('Error deleteCanvasComments FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -3700,12 +3700,12 @@ export class GlobalVariableService {
                     this.widgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
                     this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
                     
-                    console.log('xx addWidgetCheckpoints ADDED', data, this.currentWidgetCheckpoints, this.widgetCheckpoints)
+                    console.log('addWidgetCheckpoints ADDED', data, this.currentWidgetCheckpoints, this.widgetCheckpoints)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('xx addWidgetCheckpoints FAILED', err);;
+                    console.log('Error addWidgetCheckpoints FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -3729,11 +3729,11 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
 
-                    console.log('xx deleteWidgetCheckpoints DELETED id: ', id)
+                    console.log('deleteWidgetCheckpoints DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('xx deleteWidgetCheckpoints FAILED', err);;
+                    console.log('Error deleteWidgetCheckpoints FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -4732,7 +4732,7 @@ export class GlobalVariableService {
             
         };
 
-        console.log('xx actionUpsert', this.actions)
+        console.log('actionUpsert', this.actions)
 
         // Return
         return actID;
