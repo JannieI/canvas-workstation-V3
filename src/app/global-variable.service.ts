@@ -1092,7 +1092,7 @@ export class GlobalVariableService {
                         this.dashboards = data;
                         this.isDirtyDashboards = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboards 1', data)
+                        console.log('Global-Variables getDashboards 1', this.dashboards)
                         resolve(this.dashboards);
                     });
             } else {
@@ -1200,7 +1200,7 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
                         this.dashboardTabs = data;
                         this.isDirtyDashboardTabs = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardTabs 1', data)
+                        console.log('Global-Variables getDashboardTabs 1', this.dashboardTabs)
                         resolve(this.dashboardTabs);
                     });
             } else {
@@ -2053,7 +2053,7 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
                         this.dashboardSnapshots = data;
                         this.isDirtyDashboardSnapshots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardSnapshots 1', data)
+                        console.log('Global-Variables getDashboardSnapshots 1', this.dashboardSnapshots)
                         resolve(this.dashboardSnapshots);
                     });
             } else {
@@ -2187,7 +2187,7 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
                         this.dashboardThemes = data;
                         this.isDirtyDashboardThemes = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardThemes 1', data)
+                        console.log('Global-Variables getDashboardThemes 1', this.dashboardThemes)
                         resolve(this.dashboardThemes);
                     });
             } else {
@@ -3757,13 +3757,13 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
     }
 
     getUsers(): Promise<CanvasUser[]> {
-        // Description: Gets all D
+        // Description: Gets all Canvas Users
         // Returns: this.users array, unless:
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getUsers ...');
 
-        let url: string = 'Users';
-        this.filePath = './assets/data.Users.json';
+        let url: string = 'users';
+        this.filePath = './assets/data.users.json';
 
         return new Promise<CanvasUser[]>((resolve, reject) => {
 
@@ -3775,11 +3775,11 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
                         this.users = data;
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getUsers 1', data)
+                        console.log('Global-Variables getUsers 1', this.users)
                         resolve(this.users);
                     });
             } else {
-                console.log('Global-Variables getUsers 2')
+                console.log('Global-Variables getUsers 2', this.users)
                 resolve(this.users);
             }
         });

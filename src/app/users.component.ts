@@ -40,7 +40,10 @@ export class UsersComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.users = [ this.globalVariableService.currentUser];
+        this.globalVariableService.getUsers().then(u => {
+            this.users = u;
+            console.log('xx users', this.users)
+        });
         this.groups = ['Marketing']
 
     }
