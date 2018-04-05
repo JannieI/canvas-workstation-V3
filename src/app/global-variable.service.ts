@@ -656,6 +656,7 @@ export class GlobalVariableService {
     filePath: string;
 
     dashboards: Dashboard[] = [];
+    users: CanvasUser[] = [];
     dashboardTabs: DashboardTab[] = [];
     dashboardsRecent: number[];
     dashboardSchedules: DashboardSchedule[] = [];
@@ -802,6 +803,7 @@ export class GlobalVariableService {
     isDirtyPaletteButtonsSelected: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
     isDirtyCanvasGroups: boolean = true;
+    isDirtyUsers: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
@@ -3752,6 +3754,36 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
                     resolve(tree);
             }
         );
+    }
+
+    getUsers(): Promise<CanvasUser[]> {
+        // Description: Gets all D
+        // Returns: this.users array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getUsers ...');
+
+        let url: string = 'Users';
+        this.filePath = './assets/data.Users.json';
+
+        return new Promise<CanvasUser[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.users.length == 0)  ||  (this.isDirtyUsers) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.users = data;
+                        this.isDirtyUsers = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('Global-Variables getUsers 1', data)
+                        resolve(this.users);
+                    });
+            } else {
+                console.log('Global-Variables getUsers 2')
+                resolve(this.users);
+            }
+        });
+
     }
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
