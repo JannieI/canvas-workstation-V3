@@ -355,6 +355,7 @@ export class AppComponent implements OnInit {
     showModalUserMyProfile: boolean = false;
     showModalUserPreferences: boolean = false;
     showModalUserPaletteButtonBar: boolean = false;
+    showModalUsers: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
     showPalette: boolean = true;
@@ -1141,6 +1142,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalUserPaletteButtonBar = false;
+    }
+
+    handleCloseUsers(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUsers', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalUsers = false;
     }
 
     handleCloseUserSystemSettings(action: string) {
@@ -3729,6 +3739,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalUserPaletteButtonBar = true;
+    }
+
+    clickMenuUsers() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUsers', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalUsers = true;
     }
 
     clickMenuUserSystemSettings() {

@@ -34,17 +34,16 @@
                                     [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                                     [style.color]="(i == selectedRow)? 'white' : 'gray'"
                                     >
-                                    <clr-dg-row>
-                                        <clr-dg-cell>{{row.userID}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.firstName}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.lastName}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.email}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.workNumber}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.cellNumber}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.isSuperuser}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.isStaff}}</clr-dg-cell>
-                                        <clr-dg-cell>{{row.isActive}}</clr-dg-cell>
-                                    </clr-dg-row>
+                                    <clr-dg-cell>{{row.userID}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.firstName}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.lastName}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.email}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.workNumber}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.cellNumber}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.isSuperuser}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.isStaff}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.isActive}}</clr-dg-cell>
+                                </clr-dg-row>
         
                                 <clr-dg-footer>
                                     {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
