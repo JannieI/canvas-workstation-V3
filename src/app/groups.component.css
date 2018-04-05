@@ -38,21 +38,20 @@
         border: 1px dotted gray;
         border-radius: 5px;
         grid-column-start: 1;
-        grid-column-end: 3;
+        grid-column-end: 5;
         grid-row-start: 4;
         grid-row-end: 19;
-        margin-left: 30px;
         overflow: auto;
     }
 
     .gridUsers {
         border: 1px dotted gray;
         border-radius: 5px;
-        grid-column-start: 4;
+        grid-column-start: 5;
         grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 19;
-        max-height: 15rem;
+        margin-left: 30px;
         overflow: auto;
     }
 

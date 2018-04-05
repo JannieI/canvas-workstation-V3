@@ -29,9 +29,9 @@ export class GroupsComponent implements OnInit {
 
     @Output() formDashboardGroupsClosed: EventEmitter<string> = new EventEmitter();
 
-    groups: CanvasGroup[];
+    canvasGroups: CanvasGroup[];
     selectedRow: number = 0;
-    users: CanvasUser[];
+    canvasUsers: CanvasUser[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -43,13 +43,16 @@ export class GroupsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.selectedRow = 0;
-        this.groups = this.globalVariableService.canvasGroups.slice();
-        if (this.groups.length > 0) {
-            this.users = this.globalVariableService.canvasUsers.filter(u => 
-                u.groups.map(x => x.toLowerCase()).indexOf(this.groups[0].name) > 0
+        this.canvasGroups = this.globalVariableService.canvasGroups.filter(g =>
+            g.name != ''
+        );
+
+        if (this.canvasGroups.length > 0) {
+            this.canvasUsers = this.globalVariableService.canvasUsers.filter(u => 
+                u.groups.map(x => x.toLowerCase()).indexOf(this.canvasGroups[0].name.toLowerCase()) >= 0
             )
         } else {
-            this.users = [];
+            this.canvasUsers = [];
         };
 
     }
@@ -64,12 +67,12 @@ export class GroupsComponent implements OnInit {
     clickRow(index: number, groupID: number) {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'setClickedRow', '@Start');
-console.log('xx groupID', groupID)
+
         this.selectedRow = index;
-        this.groups.forEach(g => {
+        this.canvasGroups.forEach(g => {
             if (g.id == groupID) {
-                this.users = this.globalVariableService.canvasUsers.filter(u => 
-                    u.groups.map(x => x.toLowerCase()).indexOf(g.name) > 0
+                this.canvasUsers = this.globalVariableService.canvasUsers.filter(u => 
+                    u.groups.map(x => x.toLowerCase()).indexOf(g.name.toLowerCase()) > 0
                 )
             };
         })

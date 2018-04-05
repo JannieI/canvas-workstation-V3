@@ -12,7 +12,7 @@
                 </div>
                 <div class="gridSubTitle">
                     <i>
-                        List of Canvas Users.  These are edited by an Administrator.
+                        List of Canvas Groups.  These are managed by an Administrator.
                     </i>
                 </div>
 
@@ -20,9 +20,11 @@
                     <clr-datagrid>
                         <clr-dg-column [clrDgField]="name">Groups</clr-dg-column>
 
-                        <clr-dg-row *clrDgItems="let row of groups;
+                        <clr-dg-row *clrDgItems="let row of canvasGroups;
                             let i = index"
-                            (click)="clickRow(i, row.groupID)"
+                            (click)="clickRow(i, row.id)"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
                             >
                             <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                         </clr-dg-row>
@@ -52,10 +54,8 @@
                             <clr-dg-column [clrDgField]="isStaff">IsStaff</clr-dg-column>
                             <clr-dg-column [clrDgField]="isActive">IsActive</clr-dg-column>
 
-                            <clr-dg-row *clrDgItems="let row of users;
+                            <clr-dg-row *clrDgItems="let row of canvasUsers;
                                 let i = index"
-                                [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
                                 >
                                 <clr-dg-cell>{{row.userID}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.firstName}}</clr-dg-cell>
