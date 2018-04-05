@@ -420,6 +420,11 @@ export class AppComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
+        // Get Users and Groups, async
+        this.globalVariableService.getCanvasGroups();
+        this.globalVariableService.getUsers();
+
+
         this.globalVariableService.currentPaletteButtonsSelected.subscribe(
             i => this.paletteButtons = i.sort( (obj1,obj2) => {
                 if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
@@ -1154,7 +1159,7 @@ export class AppComponent implements OnInit {
         this.showModalUsers = false;
     }
 
-    handleCloseGroup(action: string) {
+    handleCloseGroups(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseGroup', '@Start');
 

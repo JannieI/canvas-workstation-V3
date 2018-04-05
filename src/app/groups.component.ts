@@ -17,6 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { CanvasUser }                 from './models';
+import { CanvasGroup }                from './models';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class GroupsComponent implements OnInit {
 
     @Output() formDashboardGroupsClosed: EventEmitter<string> = new EventEmitter();
 
-    groups: string[];
+    groups: CanvasGroup[];
     selectedRow: number = 0;
     users: CanvasUser[];
 
@@ -41,14 +42,15 @@ export class GroupsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getUsers().then(u => {
-            this.users = u;
-            this.selectedRow = 0;
-            if (u.length > 0) {
-                this.groups = u[0].groups;
-            };
-                console.log('xx users', this.users)
-        });
+        this.selectedRow = 0;
+        this.groups = this.globalVariableService.canvasGroups.slice();
+        if (this.groups.length > 0) {
+            this.users = this.globalVariableService.canvasUsers.filter(u => 
+                u.groups.map(x => x.toLowerCase()).indexOf(this.groups[0].name) > 0
+            )
+        } else {
+            this.users = [];
+        };
 
     }
 
@@ -59,16 +61,19 @@ export class GroupsComponent implements OnInit {
 		this.formDashboardGroupsClosed.emit(action);
     }
 
-    clickRow(index: number, userID: string) {
+    clickRow(index: number, groupID: number) {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'setClickedRow', '@Start');
-console.log('xx userID', userID)
+console.log('xx groupID', groupID)
         this.selectedRow = index;
-        this.users.forEach(u => {
-            if (u.userID == userID) {
-                this.groups = u.groups;
+        this.groups.forEach(g => {
+            if (g.id == groupID) {
+                this.users = this.globalVariableService.canvasUsers.filter(u => 
+                    u.groups.map(x => x.toLowerCase()).indexOf(g.name) > 0
+                )
             };
         })
+     
     }
 
 }

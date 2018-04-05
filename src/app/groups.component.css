@@ -34,52 +34,26 @@
         text-align: left;
     }
 
-    /* for later.. */
-    .gridUsersTitle {
-        font-size: 0.65rem;
+    .gridGroups {
+        border: 1px dotted gray;
+        border-radius: 5px;
         grid-column-start: 1;
-        grid-column-end: 7;
+        grid-column-end: 3;
         grid-row-start: 4;
-        grid-row-end: 5;
+        grid-row-end: 19;
+        margin-left: 30px;
+        overflow: auto;
     }
 
     .gridUsers {
         border: 1px dotted gray;
         border-radius: 5px;
-        grid-column-start: 1;
-        grid-column-end: 13;
+        grid-column-start: 4;
+        grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 19;
         max-height: 15rem;
         overflow: auto;
     }
 
-    /* for later.. */
-    .gridGroupsTitle {
-        font-size: 0.65rem;
-        grid-column-start: 10;
-        grid-column-end: 16;
-        grid-row-start: 6;
-        grid-row-end: 7;
-    }
-
-    .gridGroups {
-        border: 1px dotted gray;
-        border-radius: 5px;
-        grid-column-start: 13;
-        grid-column-end: 16;
-        grid-row-start: 4;
-        grid-row-end: 19;
-        margin-left: 30px;
-        overflow: auto;
-    }
-    
-    /* for later.. */
-    .gridButtonCancel {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 18;
-        grid-row-end: 19;
-        text-align: left;
-    }
 

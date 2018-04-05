@@ -16,6 +16,26 @@
                     </i>
                 </div>
 
+                <div class="gridGroups">
+                    <clr-datagrid>
+                        <clr-dg-column [clrDgField]="name">Groups</clr-dg-column>
+
+                        <clr-dg-row *clrDgItems="let row of groups;
+                            let i = index"
+                            (click)="clickRow(i, row.groupID)"
+                            >
+                            <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                        </clr-dg-row>
+
+                        <clr-dg-footer>
+                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                            of {{pagination.totalItems}} rows
+                            <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
+                        </clr-dg-footer>
+
+                    </clr-datagrid>
+                </div>
+
                 <!-- <div class="gridUsersTitle">
                     <b>Current Users:</b>
                 </div> -->
@@ -34,7 +54,6 @@
 
                             <clr-dg-row *clrDgItems="let row of users;
                                 let i = index"
-                                (click)="clickRow(i, row.userID)"
                                 [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRow)? 'white' : 'gray'"
                                 >
@@ -62,24 +81,6 @@
                 <!-- <div class="gridGroupsTitle">
                     <i>Groups that the user belongs to:</i>
                 </div> -->
-                <div class="gridGroups">
-                    <clr-datagrid>
-                        <clr-dg-column [clrDgField]="name">Groups</clr-dg-column>
-
-                        <clr-dg-row *clrDgItems="let row of groups;
-                            let i = index"
-                            >
-                            <clr-dg-cell>{{ row }}</clr-dg-cell>
-                        </clr-dg-row>
-
-                        <clr-dg-footer>
-                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                            of {{pagination.totalItems}} rows
-                            <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
-                        </clr-dg-footer>
-
-                    </clr-datagrid>
-                </div>
 
             </div>
         </div>

@@ -656,7 +656,8 @@ export class GlobalVariableService {
     filePath: string;
 
     dashboards: Dashboard[] = [];
-    users: CanvasUser[] = [];
+    canvasUsers: CanvasUser[] = [];
+    canvasGroups: CanvasGroup[] = [];
     dashboardTabs: DashboardTab[] = [];
     dashboardsRecent: number[];
     dashboardSchedules: DashboardSchedule[] = [];
@@ -677,7 +678,6 @@ export class GlobalVariableService {
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
     datasets: any = [];                                 // List of dSets, NO data
     finalFields: any = finalFields;
-    canvasGroups: CanvasGroup[] = [];
 
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
@@ -3768,19 +3768,19 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
         return new Promise<CanvasUser[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.users.length == 0)  ||  (this.isDirtyUsers) ) {
+            if ( (this.canvasUsers.length == 0)  ||  (this.isDirtyUsers) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.users = data;
+                        this.canvasUsers = data;
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getUsers 1', this.users)
-                        resolve(this.users);
+                        console.log('Global-Variables getUsers 1', this.canvasUsers)
+                        resolve(this.canvasUsers);
                     });
             } else {
-                console.log('Global-Variables getUsers 2', this.users)
-                resolve(this.users);
+                console.log('Global-Variables getUsers 2', this.canvasUsers)
+                resolve(this.canvasUsers);
             }
         });
 
