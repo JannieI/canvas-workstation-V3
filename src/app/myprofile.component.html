@@ -86,6 +86,29 @@
                         >
                 </div>
 
+                <div class="gridTableTitle" *ngIf="showFavs">
+                    <b>Favourites:</b>
+                </div>
+                <div class="gridTable" *ngIf="showFavs">
+                    <clr-datagrid>
+                        <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+                        <clr-dg-row *ngFor="let row of currentData">
+        
+                            <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+                                <clr-icon
+                                    shape="trash"
+                                    class="selectIcon1"
+                                    size="12"
+                                    (click)="clickDelete(i, row.id)"
+                                    >
+                                </clr-icon>
+
+                                {{ row[col] }}
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+                </div>
+
                 <div class="gridButtonCancel">
                         <button
                         type="button"
@@ -105,31 +128,6 @@
                         Save
                     </button>
                 </div>
-            
-<!-- 
-                <div class="gridTable">
-                    <clr-datagrid>
-                        <clr-dg-column>Group</clr-dg-column>
-
-                        <clr-dg-row *clrDgItems="let row of groups;
-                            let i = index"
-                            >
-                            <clr-dg-cell>{{row}}</clr-dg-cell>
-                        </clr-dg-row>
-
-                        <clr-dg-footer>
-                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                            of {{pagination.totalItems}} records
-                            <clr-dg-pagination
-                                #pagination
-                                [clrDgPageSize]="3"
-                                >
-                            </clr-dg-pagination>
-                        </clr-dg-footer>
-
-                    </clr-datagrid>
-                </div> -->
-
             </div>
         </div>
     </div>
