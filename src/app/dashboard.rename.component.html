@@ -173,12 +173,12 @@
 
                             <clr-dg-row *clrDgItems="let row of filteredDashboards;
                                 let i = index"
-                                (click)="clickRow(i)"
+                                (click)="clickRow(row.id)"
                                 >
                                 <clr-dg-cell>
                                     <clr-icon shape="pencil" 
                                         class="selectIcon1" 
-                                        (click)="clickRowRename(i, row.id, row.name)"
+                                        (click)="clickRowRename(row.id, row.name)"
                                         size="12">
                                     </clr-icon>
                                 </clr-dg-cell>

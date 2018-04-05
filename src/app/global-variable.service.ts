@@ -4899,8 +4899,10 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
         if (dashboard.accessType.toLowerCase() == 'accesslist') {  
             this.dashboardPermissions.forEach(dp => {
                 if (dp.dashboardID == dashboard.id) {
-                    if (dp.userID.toLowerCase() == userID.toLowerCase()) {
-                        hasAccess = true;
+                    if (dp.userID != null) {
+                        if (dp.userID.toLowerCase() == userID.toLowerCase()) {
+                            hasAccess = true;
+                        };
                     };
                     if (dp.groupName != null) {
                         if (this.currentUser.groups.

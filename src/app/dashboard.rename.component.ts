@@ -258,19 +258,19 @@ export class DashboardRenameComponent implements OnInit {
         };
     }
 
-    clickRow(index: number) {
+    clickRow(id: number) {
         // Click a row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-        
+        console.log('xx 0',this.selectedDashboardID ,id)
         // Switch off previous info, else confusing
-        if (this.selectedDashboardIndex != index) {
+        if (this.selectedDashboardID != id) {
             this.renameMode = false;
             this.errorMessage = '';
         };
 
     }
 
-    clickRowRename(index: number, id: number, name: string) {
+    clickRowRename(id: number, name: string) {
         // Click the Rename icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRowRename', '@Start');
 
@@ -280,11 +280,11 @@ export class DashboardRenameComponent implements OnInit {
                 this.selectedDashboardIndex = i;
             };
         };
-
+console.log('xx 1', this.selectedDashboardIndex, this.filteredDashboards)
         // Respect access
         this.errorMessage = '';
         let hasAccess: boolean = false;
-
+ 
         // No Access
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.filteredDashboards[this.selectedDashboardIndex].id)) {
@@ -292,9 +292,9 @@ export class DashboardRenameComponent implements OnInit {
                 this.renameMode = false;
                 return;
         };
+console.log('xx 2', this.selectedDashboardIndex, this.filteredDashboards)
         
         // Set vars for later use
-        this.selectedDashboardIndex = index;
         this.selectedDashboardID = id;
         this.selectedDashboardName = name;
         this.newName = name;
