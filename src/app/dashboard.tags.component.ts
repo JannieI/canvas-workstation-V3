@@ -68,7 +68,7 @@ export class DashboardTagsComponent implements OnInit {
                     availableTagTextArray = availableTagTextArray.slice(1);
                 };
             };
-
+ 
             // Sort the available tags
             this.availableDashboardTags.sort( (obj1,obj2) => {
                 if (obj1.tag > obj2.tag) {

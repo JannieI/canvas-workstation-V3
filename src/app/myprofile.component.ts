@@ -42,7 +42,7 @@ export class MyProfileComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.favDashboards = this.globalVariableService.dashboards.filter(d => 
-            this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) != 0
+            this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) >= 0
         );
 console.log('xx this.favDashboards', this.favDashboards, this.globalVariableService.currentUser.favouriteDashboards)
 
