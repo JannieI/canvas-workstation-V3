@@ -1221,6 +1221,7 @@
                     <a clrDropdownItem (click)="clickMenuDashboardSubscribe()">Subscribe</a>
                     <a clrDropdownItem (click)="clickMenuUserPaletteButtonBar()">Palette ButtonBar</a>
                     <a clrDropdownItem (click)="clickMenuUsers()">Users</a>
+                    <a clrDropdownItem (click)="clickMenuGroups()">Groups</a>
                     <a clrDropdownItem (click)="clickMenuUserSystemSettings()">System Settings</a>
                     <a clrDropdownItem (click)="clickMenuUserOffline()">Work Offline</a>
                     <a clrDropdownItem (click)="clickMenuUserLogout()">Log out</a>
@@ -2218,7 +2219,7 @@
 <!-- Modal: Groups -->
 <groups
     *ngIf="showModalGroups"
-    (formDashboardGroupsClosed)="handleCloseUsers($event)">
+    (formDashboardGroupsClosed)="handleCloseGroups($event)">
     Load Groups ...
 </groups>
 
