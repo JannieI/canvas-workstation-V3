@@ -16,21 +16,25 @@
                         </i>
                     </div>
     
-                    <div class="gridUsersTitle">
+                    <!-- <div class="gridUsersTitle">
                         <b>Current Users:</b>
-                    </div>
+                    </div> -->
                     <div class="gridUsers">
                         <div class="gridPrevious">
                             <clr-datagrid>
-                                <clr-dg-column>Delete</clr-dg-column>
-                                <clr-dg-column [clrDgField]="id">ID</clr-dg-column>
-                                <clr-dg-column [clrDgField]="name">Name</clr-dg-column>
-                                <clr-dg-column [clrDgField]="comment">Comment</clr-dg-column>
-                                <clr-dg-column>Roll Back</clr-dg-column>
-        
+                                <clr-dg-column [clrDgField]="userID">UserID</clr-dg-column>
+                                <clr-dg-column [clrDgField]="firstName">FirstName</clr-dg-column>
+                                <clr-dg-column [clrDgField]="lastName">LastName</clr-dg-column>
+                                <clr-dg-column [clrDgField]="email">Email</clr-dg-column>
+                                <clr-dg-column [clrDgField]="workNumber">WorkNumber</clr-dg-column>
+                                <clr-dg-column [clrDgField]="cellNumber">CellNumber</clr-dg-column>
+                                <clr-dg-column [clrDgField]="isSuperuser">IsSuperuser</clr-dg-column>
+                                <clr-dg-column [clrDgField]="isStaff">IsStaff</clr-dg-column>
+                                <clr-dg-column [clrDgField]="isActive">IsActive</clr-dg-column>
+    
                                 <clr-dg-row *clrDgItems="let row of users;
                                     let i = index"
-                                    (click)="setClickedRow(i)"
+                                    (click)="clickRow(row.UserID)"
                                     [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                                     [style.color]="(i == selectedRow)? 'white' : 'gray'"
                                     >
@@ -55,19 +59,17 @@
                         </div>
                     </div>
      
-                    <div class="gridGroupsTitle">
+                    <!-- <div class="gridGroupsTitle">
                         <i>Groups that the user belongs to:</i>
-                    </div>
+                    </div> -->
                     <div class="gridGroups">
                         <clr-datagrid>
-                            <clr-dg-column [clrDgField]="id">ID</clr-dg-column>
-                            <clr-dg-column [clrDgField]="name">Name</clr-dg-column>
+                            <clr-dg-column [clrDgField]="name">Groups</clr-dg-column>
     
                             <clr-dg-row *clrDgItems="let row of groups;
                                 let i = index"
                                 >
-                                <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                                <clr-dg-cell>{{ row }}</clr-dg-cell>
                             </clr-dg-row>
     
                             <clr-dg-footer>

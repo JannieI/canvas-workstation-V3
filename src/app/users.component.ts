@@ -52,5 +52,12 @@ export class UsersComponent implements OnInit {
 		this.formDashboardUsersClosed.emit(action);
     }
 
+    clickRow(userID: string) {
+        // Show groups
+        this.globalFunctionService.printToConsole(this.constructor.name,'setClickedRow', '@Start');
+
+        this.groups =['HR'];
+    }
+
 }
 
