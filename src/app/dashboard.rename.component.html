@@ -13,7 +13,7 @@
                     </div>
                     <div class="gridSubTitle">
                         <i>Enter filters, and then click Search
-                            to show the corresponding Dashboards in the grid below.  Click the 
+                            to show the corresponding Dashboards in the grid below.  Click the
                             Rename icon to rename.</i>
                     </div>
 
@@ -60,7 +60,7 @@
                             placeholder="Shared to a specific Group"
                             >
                     </div>
-                        
+
                     <div class="gridCreatedBy">
                         <b>Created by:</b>
                         <input type="text" [(ngModel)]="filterCreatedBy"
@@ -73,7 +73,7 @@
                     </div>
                     <div class="gridState">
                         <div class="select">
-                            <select 
+                            <select
                                 (change)="clickSelectState($event)"
                                 [(ngModel)]="filteredState"
                                 >
@@ -127,7 +127,7 @@
                             Search
                         </button>
                     </div>
-                    
+
                     <div class="gridErrorMessage">
                         {{ errorMessage }}
                     </div>
@@ -140,8 +140,8 @@
                             >
                     </div>
                     <div class="gridCancelButton" *ngIf="renameMode">
-                        <button 
-                            type="button" 
+                        <button
+                            type="button"
                             class="btn btn-secondary"
                             size="35"
                             (click)="clickCancel()"
@@ -150,8 +150,8 @@
                         </button>
                     </div>
                     <div class="gridRenameButton" *ngIf="renameMode">
-                        <button 
-                            type="button" 
+                        <button
+                            type="button"
                             class="btn btn-primary"
                             size="35"
                             (click)="clickRename()"
@@ -176,8 +176,8 @@
                                 (click)="clickRow(row.id)"
                                 >
                                 <clr-dg-cell>
-                                    <clr-icon shape="pencil" 
-                                        class="selectIcon1" 
+                                    <clr-icon shape="pencil"
+                                        class="selectIcon1"
                                         (click)="clickRowRename(row.id, row.name)"
                                         size="12">
                                     </clr-icon>
@@ -200,7 +200,7 @@
                                     >
                                 </clr-dg-pagination>
                             </clr-dg-footer>
-    
+
                         </clr-datagrid>
                     </div>
                 </div>

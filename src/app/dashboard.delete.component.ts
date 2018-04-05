@@ -27,8 +27,9 @@ export class DashboardDeleteComponent implements OnInit {
 
     @Output() formDashboardDeleteClosed: EventEmitter<string> = new EventEmitter();
 
-    errorMessage: string = '';
     dashboards: Dashboard[];
+    errorMessage: string = '';
+    selectedRow: number = 0;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -36,17 +37,22 @@ export class DashboardDeleteComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardDeleteClosed.emit(action);
     }
 
     clickDelete(index: number, id: number) {
-        console.log('clickDelete', index)
+        // Delete selected D and all related records, if user has access
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         // Determine access
         if (!this.globalVariableService.dashboardPermissionCheck(id)) {
@@ -59,5 +65,11 @@ export class DashboardDeleteComponent implements OnInit {
 
 
         // this.globalVariableService.deleteWidget(index);
+    }
+
+    clickRow(index: number) {
+        // Show groups
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        this.selectedRow = index;
     }
 }

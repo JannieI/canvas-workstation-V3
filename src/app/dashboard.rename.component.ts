@@ -56,7 +56,7 @@ export class DashboardRenameComponent implements OnInit {
 
         this.filteredDashboards = this.globalVariableService.dashboards.slice();
     }
- 
+
     clickClose(action: string) {
         // Close form, no futher changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -69,17 +69,17 @@ export class DashboardRenameComponent implements OnInit {
     clickSelectState(ev) {
         // User selected from State dropdown
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectState', '@Start');
-        
+
         this.errorMessage = '';
-        
+
     }
 
     clickClear() {
         // Search Ds according to the filter criteria filled in
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
-        
+
         this.errorMessage = '';
-        
+
         // Clear all the fields
         this.filterCreatedBy = '';
         this.filteredState = '';
@@ -97,13 +97,13 @@ export class DashboardRenameComponent implements OnInit {
     clickSearch() {
         // Search Ds according to the filter criteria filled in
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
-        
+
         // Start afresh
         this.errorMessage = '';
         this.filteredDashboards = this.globalVariableService.dashboards.slice();
 
         if (this.filterCreatedBy != ''  &&  this.filterCreatedBy != undefined) {
-            this.filteredDashboards = this.filteredDashboards.filter(d => 
+            this.filteredDashboards = this.filteredDashboards.filter(d =>
                 d.creator.toLowerCase() == this.filterCreatedBy.toLowerCase()
             );
         };
@@ -127,20 +127,20 @@ export class DashboardRenameComponent implements OnInit {
             });
 
             // Filter D that are in above list of dIDs
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
                 dIDs.indexOf(d.id) >= 0
             );
-            
+
         };
 
         if (this.filterFavourite  &&  this.filterFavourite != undefined) {
-            this.filteredDashboards = this.filteredDashboards.filter(d => 
+            this.filteredDashboards = this.filteredDashboards.filter(d =>
                 this.globalVariableService.currentUser.favouriteDashboards
                     .indexOf(d.id) >= 0
             );
         };
         if (this.filterField != ''  &&  this.filterField != undefined) {
-            
+
             // List of DS ids that contains the field
             let dsIDs: number[] = [];
             this.globalVariableService.datasources.forEach(ds => {
@@ -159,9 +159,9 @@ export class DashboardRenameComponent implements OnInit {
             });
 
             // Filter D that are in above list of dIDs
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
                 dIDs.indexOf(d.id) >= 0
-            );                
+            );
         };
         if (this.filterName != ''  &&  this.filterName!= undefined) {
             this.filteredDashboards = this.filteredDashboards.filter(d => {
@@ -169,13 +169,13 @@ export class DashboardRenameComponent implements OnInit {
                     (d.name.toLowerCase().indexOf(this.filterName.toLowerCase()) >= 0)
                     ||
                     (d.description.toLowerCase().indexOf(this.filterName.toLowerCase()) >= 0)
-                ) { 
+                ) {
                     return d;
                 }
             });
         };
         if (this.filterSharedByMe) {
-           
+
             // List of D ids from P, where I was grantor
             let pIDs: number[] = [];
             this.globalVariableService.dashboardPermissions.forEach(p => {
@@ -185,7 +185,7 @@ export class DashboardRenameComponent implements OnInit {
                 };
             });
 
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
                 pIDs.indexOf(d.id) >= 0
             );
         };
@@ -200,9 +200,9 @@ export class DashboardRenameComponent implements OnInit {
                 };
             });
 
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
                 pIDs.indexOf(d.id) >= 0
-            );        
+            );
         };
         if (this.filterSharedToGroup != ''  &&  this.filterSharedToGroup != undefined) {
 
@@ -217,9 +217,9 @@ export class DashboardRenameComponent implements OnInit {
                 };
             });
 
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
                 pIDs.indexOf(d.id) >= 0
-            );        
+            );
         };
         if (this.filterSharedToUser != ''  &&  this.filterSharedToUser !=  undefined) {
              // List of D ids from P, granted to UserID
@@ -229,20 +229,20 @@ export class DashboardRenameComponent implements OnInit {
                      pIDs.push(p.dashboardID);
                  };
              });
- 
-             this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+
+             this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
                  pIDs.indexOf(d.id) >= 0
-             );   
+             );
         };
         if (this.filteredState != ''  &&  this.filteredState != undefined) {
 
-            this.filteredDashboards = this.filteredDashboards.filter(d => 
+            this.filteredDashboards = this.filteredDashboards.filter(d =>
                 d.state.toLowerCase() == this.filteredState.toLowerCase()
             );
         }
 
         if (this.filterTag != '' &&  this.filterTag != undefined) {
-            
+
             // List of Ds ids that contains the Tag
             let tIDs: number[] = [];
             this.globalVariableService.dashboardTags.forEach(t => {
@@ -252,9 +252,9 @@ export class DashboardRenameComponent implements OnInit {
             });
 
             // Filter D that are in above list of tIDs
-            this.filteredDashboards = this.globalVariableService.dashboards.filter(d => 
+            this.filteredDashboards = this.globalVariableService.dashboards.filter(d =>
                 tIDs.indexOf(d.id) >= 0
-            );  
+            );
         };
     }
 
@@ -280,7 +280,7 @@ export class DashboardRenameComponent implements OnInit {
                 this.selectedDashboardIndex = i;
             };
         };
-        
+
         // Set vars for later use
         this.selectedDashboardID = id;
         this.selectedDashboardName = name;
@@ -289,7 +289,7 @@ export class DashboardRenameComponent implements OnInit {
         // Respect access
         this.errorMessage = '';
         let hasAccess: boolean = false;
- 
+
         // No Access
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.filteredDashboards[this.selectedDashboardIndex].id)) {
@@ -322,12 +322,12 @@ export class DashboardRenameComponent implements OnInit {
         if (this.selectedDashboardIndex != -1  ||  this.selectedDashboardID != -1) {
             this.filteredDashboards[this.selectedDashboardIndex].name = this.newName;
             this.globalVariableService.dashboards.forEach(d => {
-                if (d.id == this.selectedDashboardID) { 
+                if (d.id == this.selectedDashboardID) {
                     d.name = this.newName;
                 }
             });
             this.globalVariableService.currentDashboards.forEach(d => {
-                if (d.id == this.selectedDashboardID) { 
+                if (d.id == this.selectedDashboardID) {
                     d.name = this.newName;
                     this.globalVariableService.currentDashboardName.next(this.newName);
                 }

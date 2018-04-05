@@ -40,7 +40,7 @@ export class UsersComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
+ 
         this.globalVariableService.getUsers().then(u => {
             this.users = u;
             this.selectedRow = 0;
