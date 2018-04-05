@@ -261,7 +261,7 @@ export class DashboardRenameComponent implements OnInit {
     clickRow(id: number) {
         // Click a row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-        console.log('xx 0',this.selectedDashboardID ,id)
+
         // Switch off previous info, else confusing
         if (this.selectedDashboardID != id) {
             this.renameMode = false;
@@ -280,7 +280,12 @@ export class DashboardRenameComponent implements OnInit {
                 this.selectedDashboardIndex = i;
             };
         };
-console.log('xx 1', this.selectedDashboardIndex, this.filteredDashboards)
+        
+        // Set vars for later use
+        this.selectedDashboardID = id;
+        this.selectedDashboardName = name;
+        this.newName = name;
+
         // Respect access
         this.errorMessage = '';
         let hasAccess: boolean = false;
@@ -292,12 +297,7 @@ console.log('xx 1', this.selectedDashboardIndex, this.filteredDashboards)
                 this.renameMode = false;
                 return;
         };
-console.log('xx 2', this.selectedDashboardIndex, this.filteredDashboards)
-        
-        // Set vars for later use
-        this.selectedDashboardID = id;
-        this.selectedDashboardName = name;
-        this.newName = name;
+
         this.renameMode = true;
     }
 
