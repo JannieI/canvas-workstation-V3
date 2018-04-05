@@ -28,8 +28,9 @@ export class UsersComponent implements OnInit {
 
     @Output() formDashboardUsersClosed: EventEmitter<string> = new EventEmitter();
 
-    users: CanvasUser[];
     groups: string[];
+    selectedRow: number = 0;
+    users: CanvasUser[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -42,9 +43,12 @@ export class UsersComponent implements OnInit {
 
         this.globalVariableService.getUsers().then(u => {
             this.users = u;
-            console.log('xx users', this.users)
+            this.selectedRow = 0;
+            if (u.length > 0) {
+                this.groups = u[0].groups;
+            };
+                console.log('xx users', this.users)
         });
-        this.groups = ['Marketing']
 
     }
 
@@ -55,11 +59,16 @@ export class UsersComponent implements OnInit {
 		this.formDashboardUsersClosed.emit(action);
     }
 
-    clickRow(userID: string) {
+    clickRow(index: number, userID: string) {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'setClickedRow', '@Start');
-
-        this.groups =['HR'];
+console.log('xx userID', userID)
+        this.selectedRow = index;
+        this.users.forEach(u => {
+            if (u.userID == userID) {
+                this.groups = u.groups;
+            };
+        })
     }
 
 }

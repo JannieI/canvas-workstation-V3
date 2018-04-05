@@ -108,7 +108,10 @@ export class DashboardShareComponent implements OnInit {
             if (
                  (this.userID != ''  &&  dp.userID == this.userID)
                  ||
-                 (this.groupName != ''  &&  dp.groupName == this.groupName)
+                 (this.groupName != ''  
+                  &&  
+                  dp.groupName.toLowerCase() == this.groupName.toLowerCase()
+                )
                 ) {
                      isFound = true;
             };
@@ -161,7 +164,7 @@ export class DashboardShareComponent implements OnInit {
         // Set group info
         this.groupName = ev.srcElement.value.toString();
         this.groups.forEach(g => {
-            if (g.name == this.groupName) {
+            if (g.name.toLowerCase() == this.groupName.toLowerCase()) {
                 this.groupID = g.id;
             };
         });
