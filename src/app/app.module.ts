@@ -86,6 +86,7 @@ import { LoginComponent}              from './login.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
 import { UsersComponent }             from './users.component';
+import { GroupsComponent }            from './groups.component';
 import { SystemSettingsComponent }    from './systemsettings.component';
 import { UserOfflineComponent}        from './user.offline.component';
 import { LogoutComponent}             from './logout.component';
@@ -176,6 +177,7 @@ import { StatusbarComponent }         from './statusbar.component';
         PreferencesComponent,
         UserPaletteButtonBarComponent,
         UsersComponent,
+        GroupsComponent,
         SystemSettingsComponent,
         UserOfflineComponent,
         LoginComponent,

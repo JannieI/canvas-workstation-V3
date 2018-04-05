@@ -356,6 +356,7 @@ export class AppComponent implements OnInit {
     showModalUserPreferences: boolean = false;
     showModalUserPaletteButtonBar: boolean = false;
     showModalUsers: boolean = false;
+    showModalGroups: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showModalUserOffline: boolean = false;
     showPalette: boolean = true;
@@ -1153,6 +1154,15 @@ export class AppComponent implements OnInit {
         this.showModalUsers = false;
     }
 
+    handleCloseGroup(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseGroup', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalGroups = false;
+    }
+    
     handleCloseUserSystemSettings(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserSystemSettings', '@Start');
@@ -3750,6 +3760,15 @@ export class AppComponent implements OnInit {
         this.showModalUsers = true;
     }
 
+    clickMenuGroups() {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGroups', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalGroups = true;
+    }
+    
     clickMenuUserSystemSettings() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserSystemSettings', '@Start');

@@ -2210,9 +2210,17 @@
 <!-- Modal: Users -->
 <users
     *ngIf="showModalUsers"
-    (formUserWidgetButtonBarClosed)="handleCloseUserPaletteButtonBar($event)">
+    (formDashboardUsersClosed)="handleCloseUsers($event)">
     Load Users ...
 </users>
+
+
+<!-- Modal: Groups -->
+<groups
+    *ngIf="showModalGroups"
+    (formDashboardGroupsClosed)="handleCloseUsers($event)">
+    Load Groups ...
+</groups>
 
 
 <!-- Modal: System Settings -->
