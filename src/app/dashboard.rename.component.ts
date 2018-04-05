@@ -287,7 +287,7 @@ export class DashboardRenameComponent implements OnInit {
 
         // No Access
         if (!this.globalVariableService.dashboardPermissionCheck(
-            this.filteredDashboards[this.selectedDashboardIndex])) {
+            this.filteredDashboards[this.selectedDashboardIndex].id)) {
                 this.errorMessage = 'No Access';
                 this.renameMode = false;
                 return;

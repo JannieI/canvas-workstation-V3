@@ -1828,6 +1828,7 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
                     
                     // Update Global vars to make sure they remain in sync
                     this.dashboardTags.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDashboardTags.push(JSON.parse(JSON.stringify(data)));
                     
                     console.log('addDashboardTags ADDED', data, this.dashboardTags)
 
@@ -2865,6 +2866,7 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
+                    this.currentDashboardSubscription.push(JSON.parse(JSON.stringify(data)));
                     console.log('addDashboardSubscription ADDED', data)
                     resolve(data);
                 },
@@ -4867,16 +4869,22 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
 
     }
 
-    dashboardPermissionCheck(dashboard: Dashboard): boolean {
+    dashboardPermissionCheck(id: number): boolean {
         // Checks if the current user has access to the given D.
         console.log('Global-Variables dashboardPermissionCheck ...');
-
-        // Format user
-        let userID = this.currentUser.userID;
 
         // Assume no access
         let hasAccess: boolean = false;
 
+        // Format user
+        let userID = this.currentUser.userID;
+
+        let dashboard: Dashboard;
+        this.dashboards.forEach(d => {
+            if (d.id == id) {
+                dashboard = d;
+            };
+        });
         // Everyone has access to Public Ds
         if (dashboard.accessType.toLowerCase() == 'public') {
             hasAccess = true;

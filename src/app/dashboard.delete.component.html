@@ -6,7 +6,6 @@
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
-
                 Delete an existing Dashboard
                 <div class="propertyLine">
                     You can only delete Dashboards to which you have access.  Admin users
@@ -14,8 +13,8 @@
                     moved to Trash (retaining its permissions).  There is an option on the
                     Open Dashboard form to retrieve a Dashboards previously moved to Trash
                     - provided that one had access to it at the time it was trashed.
-
                 </div>
+                {{ errorMessage}}
                 <clr-datagrid>
                     <clr-dg-column>Delete</clr-dg-column>
                     <clr-dg-column>State</clr-dg-column>
@@ -28,8 +27,8 @@
 
                     <clr-dg-row *ngFor="let row of dashboards; let i = index">
                         <clr-dg-cell>
-                            <clr-icon shape="times" class="selectIcon1" size="12"
-                                (click)="clickDelete(i)"></clr-icon>
+                            <clr-icon shape="trash" class="selectIcon1" size="12"
+                                (click)="clickDelete(i, row.id)"></clr-icon>
                         </clr-dg-cell>
                         <clr-dg-cell>{{row.state}}</clr-dg-cell>
                         <clr-dg-cell>{{row.name}}</clr-dg-cell>

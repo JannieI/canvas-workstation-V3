@@ -27,7 +27,7 @@ export class DashboardDeleteComponent implements OnInit {
 
     @Output() formDashboardDeleteClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
+    errorMessage: string = '';
     dashboards: Dashboard[];
 
 	constructor(
@@ -45,8 +45,19 @@ export class DashboardDeleteComponent implements OnInit {
 		this.formDashboardDeleteClosed.emit(action);
     }
 
-    clickDelete(index: number) {
+    clickDelete(index: number, id: number) {
         console.log('clickDelete', index)
+
+        // Determine access
+        if (!this.globalVariableService.dashboardPermissionCheck(id)) {
+            this.errorMessage = 'No access';
+            return;
+        };
+
+
+
+
+
         // this.globalVariableService.deleteWidget(index);
     }
 }
