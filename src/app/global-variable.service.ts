@@ -1156,7 +1156,7 @@ export class GlobalVariableService {
                 this.currentDashboards = this.dashboards.filter(
                     i => i.id == dashboardID
                 );
-console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboards)
+
                 if (this.currentDashboards[0].templateDashboardID != 0) {
                     let templateDashboard: Dashboard[] = null;
 
@@ -4882,9 +4882,15 @@ console.log('xx this.currentDashboards', this.currentDashboards,  this.dashboard
         let dashboard: Dashboard;
         this.dashboards.forEach(d => {
             if (d.id == id) {
-                dashboard = d;
+                dashboard = Object.assign({}, d);
             };
         });
+
+        // Make sure we have a D
+        if (dashboard == undefined) {
+            return;
+        };
+
         // Everyone has access to Public Ds
         if (dashboard.accessType.toLowerCase() == 'public') {
             hasAccess = true;

@@ -55,47 +55,47 @@ export class DashboardDeleteComponent implements OnInit {
         // Set the D and nr of times the current D is used in other entities.
         let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.dashboard = this.globalVariableService.dashboards.filter(
-            d => d.id = dashboardID
+            d => d.id == dashboardID
         )[0];
-
+this.dashboard.name = 'xXx'
         this.dashboardTabs = this.globalVariableService.dashboardTabs.filter(
-            d => d.dashboardID = dashboardID
+            t => t.dashboardID == dashboardID
         ).length;
         this.dashboardWidgets = this.globalVariableService.widgets.filter(
-            d => d.dashboardID = dashboardID
+            w => w.dashboardID == dashboardID
         ).length;
         this.dashboardMessages = this.globalVariableService.canvasMessages.filter(
-            d => d.dashboardID = dashboardID
+            m => m.dashboardID == dashboardID
         ).length;
         this.dashboardComments = this.globalVariableService.canvasComments.filter(
-            d => d.dashboardID = dashboardID
+            c => c.dashboardID == dashboardID
         ).length;
         this.dashboardSnapshots = this.globalVariableService.dashboardSnapshots.filter(
-            d => d.dashboardID = dashboardID
+            s => s.dashboardID == dashboardID
         ).length;
         this.dashboardPermissions = this.globalVariableService.dashboardPermissions.filter(
-            d => d.dashboardID = dashboardID
+            p => p.dashboardID == dashboardID
         ).length;
         this.dashboardCheckpoints = this.globalVariableService.widgetCheckpoints.filter(
-            d => d.dashboardID = dashboardID
+            chk => chk.dashboardID == dashboardID
         ).length;
         this.dashboardTags = this.globalVariableService.dashboardTags.filter(
-            d => d.dashboardID = dashboardID
+            tg => tg.dashboardID == dashboardID
         ).length;
         this.dashboardSchedules = this.globalVariableService.dashboardSchedules.filter(
-            d => d.dashboardID = dashboardID
+            sch => sch.dashboardID == dashboardID
         ).length;
         this.dashboardSubscriptions = this.globalVariableService.currentDashboardSubscription
-            .filter(d => d.dashboardID = dashboardID
+            .filter(sub => sub.dashboardID == dashboardID
         ).length;
         this.dashboardHyperLinks = this.globalVariableService.widgets.filter(
-            w => w.hyperlinkDashboardID = dashboardID
+            w => w.hyperlinkDashboardID == dashboardID
         ).length;
         this.dashboardTemplates = this.globalVariableService.dashboards.filter(
-            d => d.templateDashboardID = dashboardID
+            d => d.templateDashboardID == dashboardID
         ).length;
         this.startupDashboard = this.globalVariableService.canvasUsers.filter(
-            u => u.startupDashboardID = dashboardID
+            u => u.startupDashboardID == dashboardID
         ).length;
         
     }
