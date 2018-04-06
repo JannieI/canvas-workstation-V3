@@ -15,98 +15,86 @@
                     <i>
                         This Dashboard is linked to the entities below, ALL of which will be 
                         deleted when this Dashboard is deleted.  A deleted Dashboard can be 
-                        restored via the <i>Open Dashboard</i> menu option :
+                        restored via the <i>Open Dashboard</i> menu option:
                     </i>
                 </div>
 
-                <div class="gridTabs">
+                <div class="gridTabs"
+                    title="Nr of Tabs on this Dashboard"
+                    >
                     <b>Tabs:</b>
-                    <input [(ngModel)]="dashboardTabs"
-                        {{  }}
-                        title="Nr of Tabs on this Dashboard"
-                        >
+                    {{ dashboardTabs }}
                 </div>
-                <div class="gridWidgets">
+                <div class="gridWidgets"
+                    title="Nr of Widgets on this Dashboard"
+                    >
                     <b>Widgets:</b>
-                    <input [(ngModel)]="dashboardWidgets"
-                        {{  }}
-                        title="Nr of Widgets on this Dashboard"
-                        >
+                    {{ dashboardWidgets }}
                 </div>
 
-                <div class="gridMessages">
+                <div class="gridMessages"
+                    title="Nr of Messages for this Dashboard"
+                    >
                     <b>Messages:</b>
-                    <input [(ngModel)]="dashboardMessages"
-                        {{  }}
-                        title="Nr of Messages for this Dashboard"
-                        >
+                    {{ dashboardMessages }}
                 </div>
-                <div class="gridComments">
+                <div class="gridComments"
+                    title="Nr of Comments for this Dashboard"
+                    >
                     <b>Comments:</b>
-                    <input [(ngModel)]="dashboardComments"
-                        {{  }}
-                        title="Nr of Comments for this Dashboard"
-                        >
+                    {{ dashboardComments }}
                 </div>
 
-                <div class="gridSnapshots">
+                <div class="gridSnapshots"
+                    title="Nr of Snapshots for this Dashboard"
+                    >
                     <b>Snapshots:</b>
-                    <input [(ngModel)]="dashboardSnapshots"
-                        {{  }}
-                        title="Nr of Snapshots for this Dashboard"
-                        >
+                    {{ dashboardSnapshots }}
                 </div>
-                <div class="gridPermissions">
+                <div class="gridPermissions"
+                    title="Nr of Permissions (users and groups) for this Dashboard"
+                    >
                     <b>Permissions:</b>
-                    <input [(ngModel)]="dashboardPermissions"
-                        {{  }}
-                        title="Nr of Permissions (users and groups) for this Dashboard"
-                        >
+                    {{ dashboardPermissions }}
                 </div>
 
-                <div class="gridCheckpoints">
+                <div class="gridCheckpoints"
+                    title="Nr of Checkpoints for this Dashboard"
+                    >
                     <b>Checkpoints:</b>
-                    <input [(ngModel)]="dashboardCheckpoints"
-                        {{  }}
-                        title="Nr of Checkpoints for this Dashboard"
-                        >
+                    {{ dashboardCheckpoints }}
                 </div>
-                <div class="gridTags">
+                <div class="gridTags"
+                    title="Nr of Tags for this Dashboard"
+                    >
                     <b>Tags:</b>
-                    <input [(ngModel)]="dashboardTags"
-                        {{  }}
-                        title="Nr of Tags for this Dashboard"
-                        >
+                    {{ dashboardTags }}
                 </div>
 
-                <div class="gridSchedules">
+                <div class="gridSchedules"
+                    title="Nr of Schedules for this Dashboard"
+                    >
                     <b>Schedules:</b>
-                    <input [(ngModel)]="dashboardSchedules"
-                        {{  }}
-                        title="Nr of Schedules for this Dashboard"
-                        >
+                    {{ dashboardSchedules }}
                 </div>
-                <div class="gridSubscriptions">
+                <div class="gridSubscriptions"
+                    title="Nr of Subscriptions for this Dashboard"
+                    >
                     <b>Subscriptions:</b>
-                    <input [(ngModel)]="dashboardSubscriptions"
-                        {{  }}
-                        title="Nr of Subscriptions for this Dashboard"
-                        >
+                    {{ dashboardSubscriptions }}
                 </div>
 
-                <div class="gridHyperLinks">
+                <div class="gridHyperLinks"
+                    title="Nr of HyperLinks TO this Dashboard"
+                    >
                     <b>HyperLinks:</b>
-                    <input [(ngModel)]="dashboardHyperLinks"
-                        {{  }}
-                        title="Nr of HyperLinks TO this Dashboard"
-                        >
+                    {{ dashboardHyperLinks }}
                 </div>
-                <div class="gridTemplates">
+                <div class="gridTemplates"
+                    title="Nr of Templates TO this Dashboard"
+                    >
                     <b>Templates:</b>
-                    <input [(ngModel)]="dashboardTemplates"
-                        {{  }}
-                        title="Nr of Templates TO this Dashboard"
-                        >
+                    {{ dashboardTemplates }}
                 </div>
 
 
@@ -124,9 +112,9 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        (click)="clickSave()"
+                        (click)="clickDelete()"
                         >
-                        Save
+                        Delete
                     </button>
                 </div>
 

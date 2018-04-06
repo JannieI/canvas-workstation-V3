@@ -27,9 +27,20 @@ export class DashboardDeleteComponent implements OnInit {
 
     @Output() formDashboardDeleteClosed: EventEmitter<string> = new EventEmitter();
 
-    dashboards: Dashboard[];
+    dashboard: Dashboard;
     errorMessage: string = '';
-    selectedRow: number = 0;
+    dashboardTabs: string = '';
+    dashboardWidgets: string = '';
+    dashboardMessages: string = '';
+    dashboardComments: string = '';
+    dashboardSnapshots: string = '';
+    dashboardPermissions: string = '';
+    dashboardCheckpoints: string = '';
+    dashboardTags: string = '';
+    dashboardSchedules: string = '';
+    dashboardSubscriptions: string = '';
+    dashboardHyperLinks: string = '';
+    dashboardTemplates: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -40,7 +51,6 @@ export class DashboardDeleteComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards;
     }
 
     clickClose(action: string) {
@@ -50,12 +60,14 @@ export class DashboardDeleteComponent implements OnInit {
 		this.formDashboardDeleteClosed.emit(action);
     }
 
-    clickDelete(index: number, id: number) {
+    clickDelete() {
         // Delete selected D and all related records, if user has access
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         // Determine access
-        if (!this.globalVariableService.dashboardPermissionCheck(id)) {
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        )) {
             this.errorMessage = 'No access';
             return;
         };
@@ -67,9 +79,4 @@ export class DashboardDeleteComponent implements OnInit {
         // this.globalVariableService.deleteWidget(index);
     }
 
-    clickRow(index: number) {
-        // Show groups
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-        this.selectedRow = index;
-    }
 }
