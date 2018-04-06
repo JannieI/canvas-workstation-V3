@@ -36,7 +36,7 @@ export class MyProfileComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
-
+ 
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');

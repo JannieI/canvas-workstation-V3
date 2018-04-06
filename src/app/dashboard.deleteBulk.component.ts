@@ -20,8 +20,8 @@ import { Dashboard }                  from './models';
 
 @Component({
     selector: 'dashboard-bulk-delete',
-    templateUrl: './dashboardBulk.delete.component.html',
-    styleUrls: ['./dashboardBulk.delete.component.css']
+    templateUrl: './dashboard.deleteBulk.component.html',
+    styleUrls: ['./dashboard.deleteBulk.component.css']
 })
 export class DashboardDeleteBulkComponent implements OnInit {
 

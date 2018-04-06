@@ -321,6 +321,7 @@ export class AppComponent implements OnInit {
     showModalDashboardTemplate: boolean = false;
     showModalDashboardSchedule: boolean = false;
     showModalDashboardDelete: boolean = false;
+    showModalDashboardDeleteBulk: boolean = false;
     showModalDashboardTreeview: boolean = false;
     showModalDashboardSubscribe: boolean = false;
     showMainMenu: boolean = true;
@@ -750,6 +751,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDashboardDelete = false;
+    }
+
+    handleCloseDashboardDeleteBulk(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDeleteBulk', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDashboardDeleteBulk = false;
     }
 
     handleCloseDashboardTreeview(action: string){
@@ -1821,6 +1831,27 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDashboardDelete = true;
+    }
+    
+    clickMenuDashboardDeleteBulk() {
+        // Delete the current D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDeleteBulk', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDashboardDeleteBulk = true;
     }
 
     clickMenuDashboardTreeview() {

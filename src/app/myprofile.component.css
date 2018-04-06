@@ -10,7 +10,7 @@
     position: relative;
     top: 0;
 }
-
+ 
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
@@ -142,7 +142,7 @@
             text-align: left;
             z-index: 0;
         }
-        
+         
     .gridButtonCancel {
         grid-column-start: 1;
         grid-column-end: 3;
