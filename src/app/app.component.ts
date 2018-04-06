@@ -405,7 +405,7 @@ export class AppComponent implements OnInit {
             dateJoined: '2017/01/01',
             lastLogin: '2017/01/01',
             colorScheme: '',
-            startupDashboardID: 0,
+            startupDashboardID: 6,
             startupDashboardTabID: 0,
             gridSize: 3,
             environment: '',
@@ -1689,8 +1689,6 @@ export class AppComponent implements OnInit {
                 // d.is;
             };
         });
-
-        this.showModalDashboardDescription = true;
     }
 
     clickMenuDashboardDetailTags() {
