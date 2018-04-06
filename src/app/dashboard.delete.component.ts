@@ -41,7 +41,8 @@ export class DashboardDeleteComponent implements OnInit {
     dashboardSubscriptions: number = 0;
     dashboardHyperLinks: number = 0;
     dashboardTemplates: number = 0;
-    startupDashboard: number = 0;
+    startupDashboards: number = 0;
+    favouriteDashboards: number = 0;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -94,8 +95,11 @@ this.dashboard.name = 'xXx'
         this.dashboardTemplates = this.globalVariableService.dashboards.filter(
             d => d.templateDashboardID == dashboardID
         ).length;
-        this.startupDashboard = this.globalVariableService.canvasUsers.filter(
+        this.startupDashboards = this.globalVariableService.canvasUsers.filter(
             u => u.startupDashboardID == dashboardID
+        ).length;
+        this.favouriteDashboards = this.globalVariableService.canvasUsers.filter(
+            u => u.favouriteDashboards.indexOf(dashboardID) >= 0
         ).length;
         
     }
