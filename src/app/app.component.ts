@@ -1682,6 +1682,38 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.
+            currentDashboardID;
+        let userID: string = this.globalVariableService.currentUser.userID;
+
+        // Add for current User
+        if (!this.showFavouriteDashboard) {
+            this.globalVariableService.canvasUsers.forEach( u => {
+                if (u.userID == userID) {
+                    if (u.favouriteDashboards.indexOf(dashboardID) < 0) {
+                        u.favouriteDashboards.push(dashboardID);
+                    };
+                    console.log('xx user', u.favouriteDashboards)
+                };
+
+            });
+        } else {
+            this.globalVariableService.canvasUsers.forEach( u => {
+                if (u.userID == userID) {
+                    if (u.favouriteDashboards.indexOf(dashboardID) >= 0) {
+                        u.favouriteDashboards = u.favouriteDashboards.filter(f =>
+                            f != dashboardID
+                        );
+                    };
+                    console.log('xx user', u.favouriteDashboards)
+                };
+
+            });
+        };
+
+        // Toggle local D
+        this.showFavouriteDashboard = !this.showFavouriteDashboard;
+
         // Toggle global D
         this.globalVariableService.currentDashboards.forEach(d => {
             if (d.id == this.globalVariableService.currentDashboardInfo
