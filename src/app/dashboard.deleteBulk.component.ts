@@ -1,7 +1,7 @@
 /*
  * Visualise page, to view / present Dashboards previously created
  */
-
+ 
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';

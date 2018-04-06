@@ -1808,7 +1808,6 @@ export class AppComponent implements OnInit {
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID
             )) {
-                if (!this.editMode) {
                     this.showMessage(
                         'No access to this Dashboard',
                         'StatusBar',
@@ -1817,7 +1816,6 @@ export class AppComponent implements OnInit {
                         ''
                     );
                     return;
-                };     
         };
 
         this.menuOptionClickPreAction();

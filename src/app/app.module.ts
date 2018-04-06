@@ -36,6 +36,7 @@ import { DashboardThemeComponent }    from './dashboard.theme.component';
 import { DashboardTemplateComponent } from './dashboard.template.component';
 import { DashboardScheduleComponent } from './dashboard.schedule.component';
 import { DashboardDeleteComponent }   from './dashboard.delete.component';
+import { DashboardDeleteBulkComponent }     from './dashboard.deleteBulk.component';
 import { DashboardCommentsComponent } from './dashboard.comments.component';
 import { DashboardPrintComponent }    from './dashboard.print.component';
 import { DashboardTabComponent }      from './dashboard.tab.component';
@@ -130,6 +131,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardTemplateComponent,
         DashboardScheduleComponent,
         DashboardDeleteComponent,
+        DashboardDeleteBulkComponent,
         DashboardCommentsComponent,
         DashboardPrintComponent,
         DashboardTabComponent,
