@@ -3298,6 +3298,95 @@ export class GlobalVariableService {
 
     }
 
+    deleteWidget(dashboardID: number) {
+        // Deletes D with all related Entities
+        console.log('Global-Variables getCurrentWidgets ...');
+
+        this.dashboards.filter(d =>
+            d.id != dashboardID
+        );
+        this.currentDashboards.filter(d =>
+            d.id != dashboardID
+        );
+        this.dashboards.forEach(d => {
+            if (d.templateDashboardID == dashboardID) {
+            d.templateDashboardID == 0;
+            };
+        });
+        this.currentDashboards.forEach(d => {
+            if (d.templateDashboardID == dashboardID) {
+            d.templateDashboardID == 0;
+            };
+        });
+        this.dashboardTabs.filter(t =>
+            t.dashboardID != dashboardID
+        );
+        this.currentDashboardTabs.filter(t =>
+            t.dashboardID != dashboardID
+        );
+        this.widgets.filter(w =>
+            w.dashboardID != dashboardID
+        );
+        this.currentWidgets.filter(w =>
+            w.dashboardID != dashboardID
+        );
+        this.widgets.forEach(w => {
+            if (w.hyperlinkDashboardID == dashboardID) {
+                w.hyperlinkDashboardID = 0;
+            };
+        });
+        this.currentWidgets.forEach(w => {
+            if (w.hyperlinkDashboardID == dashboardID) {
+                w.hyperlinkDashboardID = 0;
+            };
+        });
+        this.dashboardSnapshots.filter(snp =>
+            snp.dashboardID != dashboardID 
+        );
+        this.currentDashboardSnapshots.filter(snp =>
+            snp.dashboardID != dashboardID 
+        );
+        this.canvasMessages.filter(mes => 
+            mes.dashboardID != dashboardID 
+        );
+        this.canvasComments.filter(com => 
+            com.dashboardID != dashboardID 
+        );
+        this.dashboardSchedules.filter(sch => 
+            sch.dashboardID != dashboardID 
+        );
+        this.currentDashboardSchedules.filter(sch => 
+            sch.dashboardID != dashboardID 
+        );
+        this.currentDashboardSubscription.filter(sub => 
+            sub.dashboardID != dashboardID 
+        );
+        this.dashboardTags.filter(tag => 
+            tag.dashboardID != dashboardID 
+        );
+        this.currentDashboardTags.filter(tag =>
+            tag.dashboardID != dashboardID
+        );
+        this.dashboardPermissions.filter(dp =>
+            dp.dashboardID != dashboardID
+        );
+        this.currentDashboardPermissions.filter(dp =>
+            dp.dashboardID != dashboardID
+        );
+        this.widgetCheckpoints.filter(chk =>
+            chk.dashboardID != dashboardID
+        );
+        this.currentWidgetCheckpoints.filter(chk =>
+            chk.dashboardID != dashboardID
+        );
+        this.canvasUsers.forEach(u => {
+            if (u.startupDashboardID == dashboardID) {
+                u.startupDashboardID = 0;
+            };
+            u.favouriteDashboards.filter(f => f != dashboardID) 
+        });
+
+    }
     getWidgetsInfo(): Promise<boolean> {
         // Description: Gets data and other info for [W]
         // Returns: this.datasets, currentDataset array

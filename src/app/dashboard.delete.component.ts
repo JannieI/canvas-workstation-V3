@@ -108,13 +108,12 @@ export class DashboardDeleteComponent implements OnInit {
                                 this.favouriteDashboards = this.globalVariableService.canvasUsers.filter(
                                     u => u.favouriteDashboards.indexOf(dashboardID) >= 0
                                 ).length;
-                            })
-                        })
-                    })
-                })
-            })
-        })
-
+                            });
+                        });
+                    });
+                });
+            });
+        });
         
     }
 
@@ -137,11 +136,10 @@ export class DashboardDeleteComponent implements OnInit {
             return;
         };
 
-
-
-
-
-        // this.globalVariableService.deleteWidget(index);
+        // Delete D, as all related Entities
+        this.globalVariableService.deleteWidget(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        );
     }
 
 }
