@@ -423,7 +423,7 @@ export class AppComponent implements OnInit {
 
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();
-        this.globalVariableService.getUsers();
+        this.globalVariableService.getCanvasUsers();
 
 
         this.globalVariableService.currentPaletteButtonsSelected.subscribe(

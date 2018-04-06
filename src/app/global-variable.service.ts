@@ -3758,11 +3758,11 @@ export class GlobalVariableService {
         );
     }
 
-    getUsers(): Promise<CanvasUser[]> {
+    getCanvasUsers(): Promise<CanvasUser[]> {
         // Description: Gets all Canvas Users
         // Returns: this.users array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getUsers ...');
+        console.log('Global-Variables getCanvasUsers ...');
 
         let url: string = 'users';
         this.filePath = './assets/data.users.json';

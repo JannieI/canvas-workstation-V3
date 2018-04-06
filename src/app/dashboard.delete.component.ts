@@ -58,49 +58,60 @@ export class DashboardDeleteComponent implements OnInit {
         this.dashboard = this.globalVariableService.dashboards.filter(
             d => d.id == dashboardID
         )[0];
-this.dashboard.name = 'xXx'
-        this.dashboardTabs = this.globalVariableService.dashboardTabs.filter(
-            t => t.dashboardID == dashboardID
-        ).length;
-        this.dashboardWidgets = this.globalVariableService.widgets.filter(
-            w => w.dashboardID == dashboardID
-        ).length;
-        this.dashboardMessages = this.globalVariableService.canvasMessages.filter(
-            m => m.dashboardID == dashboardID
-        ).length;
-        this.dashboardComments = this.globalVariableService.canvasComments.filter(
-            c => c.dashboardID == dashboardID
-        ).length;
-        this.dashboardSnapshots = this.globalVariableService.dashboardSnapshots.filter(
-            s => s.dashboardID == dashboardID
-        ).length;
-        this.dashboardPermissions = this.globalVariableService.dashboardPermissions.filter(
-            p => p.dashboardID == dashboardID
-        ).length;
-        this.dashboardCheckpoints = this.globalVariableService.widgetCheckpoints.filter(
-            chk => chk.dashboardID == dashboardID
-        ).length;
-        this.dashboardTags = this.globalVariableService.dashboardTags.filter(
-            tg => tg.dashboardID == dashboardID
-        ).length;
-        this.dashboardSchedules = this.globalVariableService.dashboardSchedules.filter(
-            sch => sch.dashboardID == dashboardID
-        ).length;
-        this.dashboardSubscriptions = this.globalVariableService.currentDashboardSubscription
-            .filter(sub => sub.dashboardID == dashboardID
-        ).length;
-        this.dashboardHyperLinks = this.globalVariableService.widgets.filter(
-            w => w.hyperlinkDashboardID == dashboardID
-        ).length;
-        this.dashboardTemplates = this.globalVariableService.dashboards.filter(
-            d => d.templateDashboardID == dashboardID
-        ).length;
-        this.startupDashboards = this.globalVariableService.canvasUsers.filter(
-            u => u.startupDashboardID == dashboardID
-        ).length;
-        this.favouriteDashboards = this.globalVariableService.canvasUsers.filter(
-            u => u.favouriteDashboards.indexOf(dashboardID) >= 0
-        ).length;
+
+        this.globalVariableService.getDashboardSnapshots().then(snp => {
+            this.globalVariableService.getCanvasMessages().then(mes => {
+                this.globalVariableService.getCanvasComments().then(com => {
+                    this.globalVariableService.getDashboardSchedules().then(sch => {
+                        this.globalVariableService.getDashboardSubscription().then(sub => {
+                            this.dashboardSnapshots = snp.filter(
+                                s => s.dashboardID == dashboardID
+                            ).length;
+                            this.dashboardMessages = mes.filter(
+                                m => m.dashboardID == dashboardID
+                            ).length;
+                            this.dashboardComments = com.filter(
+                                c => c.dashboardID == dashboardID
+                            ).length;
+                            this.dashboardSchedules = sch.filter(
+                                s => s.dashboardID == dashboardID
+                            ).length;
+                            this.dashboardSubscriptions = sub.filter(
+                                s => s.dashboardID == dashboardID
+                            ).length;
+                            this.dashboardTabs = this.globalVariableService.dashboardTabs.
+                                filter(t => t.dashboardID == dashboardID
+                            ).length;
+                            this.dashboardWidgets = this.globalVariableService.widgets.
+                                filter(w => w.dashboardID == dashboardID
+                            ).length;
+                            this.dashboardPermissions = this.globalVariableService.dashboardPermissions.filter(
+                                p => p.dashboardID == dashboardID
+                            ).length;
+                            this.dashboardCheckpoints = this.globalVariableService.widgetCheckpoints.filter(
+                                chk => chk.dashboardID == dashboardID
+                            ).length;
+                            this.dashboardTags = this.globalVariableService.dashboardTags.filter(
+                                tg => tg.dashboardID == dashboardID
+                            ).length;
+                            this.dashboardHyperLinks = this.globalVariableService.widgets.filter(
+                                w => w.hyperlinkDashboardID == dashboardID
+                            ).length;
+                            this.dashboardTemplates = this.globalVariableService.dashboards.filter(
+                                d => d.templateDashboardID == dashboardID
+                            ).length;
+                            this.startupDashboards = this.globalVariableService.canvasUsers.filter(
+                                u => u.startupDashboardID == dashboardID
+                            ).length;
+                            this.favouriteDashboards = this.globalVariableService.canvasUsers.filter(
+                                u => u.favouriteDashboards.indexOf(dashboardID) >= 0
+                            ).length;
+                        })
+                    })
+                })
+            })
+        })
+
         
     }
 

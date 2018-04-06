@@ -41,7 +41,7 @@ export class UsersComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
  
-        this.globalVariableService.getUsers().then(u => {
+        this.globalVariableService.getCanvasUsers().then(u => {
             this.users = u;
             this.selectedRow = 0;
             if (u.length > 0) {
