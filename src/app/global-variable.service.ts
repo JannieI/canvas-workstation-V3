@@ -3764,8 +3764,8 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getCanvasUsers ...');
 
-        let url: string = 'users';
-        this.filePath = './assets/data.users.json';
+        let url: string = 'canvasUsers';
+        this.filePath = './assets/data.canvasUsers.json';
 
         return new Promise<CanvasUser[]>((resolve, reject) => {
 
@@ -3777,11 +3777,11 @@ export class GlobalVariableService {
                         this.canvasUsers = data;
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getUsers 1', this.canvasUsers)
+                        console.log('Global-Variables getCanvasUsers 1', this.canvasUsers)
                         resolve(this.canvasUsers);
                     });
             } else {
-                console.log('Global-Variables getUsers 2', this.canvasUsers)
+                console.log('Global-Variables getCanvasUsers 2', this.canvasUsers)
                 resolve(this.canvasUsers);
             }
         });
