@@ -1804,6 +1804,22 @@ export class AppComponent implements OnInit {
             return;
         };
 
+        // Must have access
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+            )) {
+                if (!this.editMode) {
+                    this.showMessage(
+                        'No access to this Dashboard',
+                        'StatusBar',
+                        'Warning',
+                        3000,
+                        ''
+                    );
+                    return;
+                };     
+        };
+
         this.menuOptionClickPreAction();
 
         this.showModalDashboardDelete = true;
