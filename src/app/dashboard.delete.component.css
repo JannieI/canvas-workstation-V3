@@ -137,19 +137,28 @@
         text-align: left;
     }
          
+    .gridStartup {
+        grid-column-start: 8;
+        grid-column-end: 11;
+        grid-row-start: 17;
+        grid-row-end: 18;
+        margin-left: 20px;
+        text-align: left;
+    }
+         
     .gridButtonCancel {
         grid-column-start: 1;
         grid-column-end: 3;
-        grid-row-start: 18;
-        grid-row-end: 19;
+        grid-row-start: 19;
+        grid-row-end: 20;
         text-align: left;
     }
 
     .gridButtonSave {
         grid-column-start: 3;
         grid-column-end: 5;
-        grid-row-start: 18;
-        grid-row-end: 19;
+        grid-row-start: 19;
+        grid-row-end: 20;
         text-align: left;
     }
 

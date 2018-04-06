@@ -29,18 +29,19 @@ export class DashboardDeleteComponent implements OnInit {
 
     dashboard: Dashboard;
     errorMessage: string = '';
-    dashboardTabs: string = '';
-    dashboardWidgets: string = '';
-    dashboardMessages: string = '';
-    dashboardComments: string = '';
-    dashboardSnapshots: string = '';
-    dashboardPermissions: string = '';
-    dashboardCheckpoints: string = '';
-    dashboardTags: string = '';
-    dashboardSchedules: string = '';
-    dashboardSubscriptions: string = '';
-    dashboardHyperLinks: string = '';
-    dashboardTemplates: string = '';
+    dashboardTabs: number = 0;
+    dashboardWidgets: number = 0;
+    dashboardMessages: number = 0;
+    dashboardComments: number = 0;
+    dashboardSnapshots: number = 0;
+    dashboardPermissions: number = 0;
+    dashboardCheckpoints: number = 0;
+    dashboardTags: number = 0;
+    dashboardSchedules: number = 0;
+    dashboardSubscriptions: number = 0;
+    dashboardHyperLinks: number = 0;
+    dashboardTemplates: number = 0;
+    startupDashboard: number = 0;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -51,6 +52,52 @@ export class DashboardDeleteComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Set the D and nr of times the current D is used in other entities.
+        let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+        this.dashboard = this.globalVariableService.dashboards.filter(
+            d => d.id = dashboardID
+        )[0];
+
+        this.dashboardTabs = this.globalVariableService.dashboardTabs.filter(
+            d => d.dashboardID = dashboardID
+        ).length;
+        this.dashboardWidgets = this.globalVariableService.widgets.filter(
+            d => d.dashboardID = dashboardID
+        ).length;
+        this.dashboardMessages = this.globalVariableService.canvasMessages.filter(
+            d => d.dashboardID = dashboardID
+        ).length;
+        this.dashboardComments = this.globalVariableService.canvasComments.filter(
+            d => d.dashboardID = dashboardID
+        ).length;
+        this.dashboardSnapshots = this.globalVariableService.dashboardSnapshots.filter(
+            d => d.dashboardID = dashboardID
+        ).length;
+        this.dashboardPermissions = this.globalVariableService.dashboardPermissions.filter(
+            d => d.dashboardID = dashboardID
+        ).length;
+        this.dashboardCheckpoints = this.globalVariableService.widgetCheckpoints.filter(
+            d => d.dashboardID = dashboardID
+        ).length;
+        this.dashboardTags = this.globalVariableService.dashboardTags.filter(
+            d => d.dashboardID = dashboardID
+        ).length;
+        this.dashboardSchedules = this.globalVariableService.dashboardSchedules.filter(
+            d => d.dashboardID = dashboardID
+        ).length;
+        this.dashboardSubscriptions = this.globalVariableService.currentDashboardSubscription
+            .filter(d => d.dashboardID = dashboardID
+        ).length;
+        this.dashboardHyperLinks = this.globalVariableService.widgets.filter(
+            w => w.hyperlinkDashboardID = dashboardID
+        ).length;
+        this.dashboardTemplates = this.globalVariableService.dashboards.filter(
+            d => d.templateDashboardID = dashboardID
+        ).length;
+        this.startupDashboard = this.globalVariableService.canvasUsers.filter(
+            u => u.startupDashboardID = dashboardID
+        ).length;
+        
     }
 
     clickClose(action: string) {
