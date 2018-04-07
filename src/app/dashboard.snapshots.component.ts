@@ -30,7 +30,7 @@ export class DashboardSnapshotsComponent implements OnInit {
 
     currentDashboardSnapshots: DashboardSnapshot[];
     setClickedRow : Function;  // use (click)="setClickedRow(i)" in html to call this
-    selectedRow : Number;
+    selectedRow : Number = 0;
     snapshotComment: string = '';
     snapshotName: string = '';
 

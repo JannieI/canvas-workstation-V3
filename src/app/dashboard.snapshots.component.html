@@ -54,7 +54,7 @@
 
                         <clr-dg-row *clrDgItems="let row of currentDashboardSnapshots;
                             let i = index"
-                            (click)="setClickedRow(i)"
+                            (click)="setClickedRow(i)" 
                             [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
                             >

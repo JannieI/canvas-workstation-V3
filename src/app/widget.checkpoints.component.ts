@@ -42,7 +42,9 @@ export class WidgetCheckpointsComponent implements OnInit {
     checkpointName: string;
     currentWidgetCheckpoints: WidgetCheckpoint[];
     datagridColumns: DatagridColumn[];
+    selectedRow: number = 0;
 
+    
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -78,11 +80,13 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         })
     }
-
+ 
     clickRow(index: number) {
         // User clicked a row, now refresh the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
+        this.selectedRow = index;
+        
         let definition = this.globalVariableService.createVegaLiteSpec(
             this.currentWidgetCheckpoints[index].widgetSpec
         );
