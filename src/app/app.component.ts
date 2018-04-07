@@ -748,6 +748,16 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDelete', '@Start');
 
+        if (action == 'Saved') {
+            this.currentDashboardName = '';
+            this.currentDashboardTabIndex = 0;
+            this.currentDatasources = [];
+            this.currentTabName = '';
+            this.currentWidgetCheckpoints = [];
+            this.currentWidgetDashboardTabIDs = [];
+            this.currentWidgets = [];
+            this.editMode = false;
+        }
         this.menuOptionClickPostAction();
 
         this.showModalDashboardDelete = false;
@@ -1217,6 +1227,17 @@ export class AppComponent implements OnInit {
             );
             return;
         };
+
+        if (this.currentDashboardTabIndex == 0) {
+            this.showMessage(
+                'First add/open a Dashboard',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        }
 
         // Warning to make sure does not get stuck
         if (!this.showPalette) {

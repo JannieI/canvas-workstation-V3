@@ -140,6 +140,9 @@ export class DashboardDeleteComponent implements OnInit {
         this.globalVariableService.deleteWidget(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         );
+
+		this.formDashboardDeleteClosed.emit('Saved');
+        
     }
 
 }
