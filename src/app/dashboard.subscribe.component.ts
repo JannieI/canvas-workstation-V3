@@ -87,7 +87,6 @@ export class DashboardSubscribeComponent implements OnInit {
         // Toggle the View value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickView', '@Start');
 
-        // this.dashboardSubscriptions[index].view = !this.dashboardSubscriptions[index].view;
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
             if (this.dashboardSubscriptions[i].id == id) { 
@@ -107,7 +106,6 @@ export class DashboardSubscribeComponent implements OnInit {
         // Toggle the EditMode value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickEditMode', '@Start');
 
-        // this.dashboardSubscriptions[index].editmode = !this.dashboardSubscriptions[index].editmode;
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
             if (this.dashboardSubscriptions[i].id == id) { 
@@ -128,7 +126,6 @@ export class DashboardSubscribeComponent implements OnInit {
         // Toggle the Save value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickSave', '@Start');
 
-        // this.dashboardSubscriptions[index].save = !this.dashboardSubscriptions[index].save;
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
             if (this.dashboardSubscriptions[i].id == id) { 
@@ -143,14 +140,12 @@ export class DashboardSubscribeComponent implements OnInit {
                 this.dashboardSubscriptions[index])
                 ;
         };
-        // this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
     dblClickDelete(id: number) {
         // Toggle the Delete value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'v', '@Start');
 
-        // this.dashboardSubscriptions[index].delete = !this.dashboardSubscriptions[index].delete;
         let index: number = -1;
         for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
             if (this.dashboardSubscriptions[i].id == id) { 
@@ -165,7 +160,6 @@ export class DashboardSubscribeComponent implements OnInit {
                 this.dashboardSubscriptions[index])
                 ;
         };
-        // this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
     dblClickNotify(id: number) {
@@ -259,7 +253,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 // Add globally
                 this.globalVariableService.currentDashboardSubscription.push(data);
 
-                // Reduce selection list
+                // Reduce selectable list
                 let selID: number = -1;
                 for (var i = 0; i < this.dashboardCodes.length; i++) {
                     if (this.dashboardCodes[i] == this.selectDashboard) {
@@ -277,20 +271,23 @@ export class DashboardSubscribeComponent implements OnInit {
         };
     }
 
-    checkSubscriptionDelete(index: number, id: number): boolean {
-        // Deletes a Subscription if all options = false
-        // If ALL false, then deletes and returns TRUE.
-        this.globalFunctionService.printToConsole(this.constructor.name,'checkSubscriptionDelete', '@Start');
+    clickUnSubscribe(id: number){
+        // Deletes a Subscription
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickUnSubscribe', '@Start');
 
-        // Nothing further to do if anyone is true
-        if (this.dashboardSubscriptions[index].view  ||  
-            this.dashboardSubscriptions[index].editmode  ||
-            this.dashboardSubscriptions[index].save  ||
-            this.dashboardSubscriptions[index].delete) {
-            return false;
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
+            if (this.dashboardSubscriptions[i].id == id) { 
+                index = i;
+            };
         };
 
-        // Add to Selection List
+        // Nothing to do
+        if (index == -1) {
+            return;
+        };
+
+        // Add to selectable List
         this.dashboardCodes.push(this.dashboardSubscriptions[index].dashboardCode);
 
         // Delete locally
@@ -300,7 +297,6 @@ export class DashboardSubscribeComponent implements OnInit {
         // TODO - Proper error handling
         this.globalVariableService.deleteDashboardSubscription(id);
         console.log('xx del', this.dashboardSubscriptions, this.globalVariableService.currentDashboardSubscription)
-        return true;
     }
  
     clickRow(index: number) {

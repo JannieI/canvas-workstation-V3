@@ -44,79 +44,88 @@
                         </button>
                     </div>  
 
-                    <clr-datagrid class="gridTable">
-                        <clr-dg-column>Dashboard</clr-dg-column>
-                        <clr-dg-column>View</clr-dg-column>
-                        <clr-dg-column>EditMode</clr-dg-column>
-                        <clr-dg-column>Save</clr-dg-column>
-                        <clr-dg-column>Delete</clr-dg-column>
-                        <clr-dg-column>Notify</clr-dg-column>
+                    <div class="gridTable">
+                        <clr-datagrid>
+                            <clr-dg-column>UnSubscribe</clr-dg-column>
+                            <clr-dg-column>Dashboard</clr-dg-column>
+                            <clr-dg-column>View</clr-dg-column>
+                            <clr-dg-column>EditMode</clr-dg-column>
+                            <clr-dg-column>Save</clr-dg-column>
+                            <clr-dg-column>Delete</clr-dg-column>
+                            <clr-dg-column>Notify</clr-dg-column>
 
-                        <clr-dg-row *clrDgItems="let row of dashboardSubscriptions; let i = index"
-                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                            (click)="clickRow(i)" 
-                            >
-
-                            <clr-dg-cell>
-                                {{ row.dashboardCode }}
-                            </clr-dg-cell>
-                            
-                            <clr-dg-cell
-                                (dblclick)="dblClickView(row.id)"
+                            <clr-dg-row *clrDgItems="let row of dashboardSubscriptions; let i = index"
+                                [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                (click)="clickRow(i)" 
                                 >
-                                <clr-icon *ngIf="row.view" 
-                                    shape="check" 
-                                    size="12"
+                                <clr-dg-cell>
+                                    <clr-icon 
+                                        shape="trash" 
+                                        size="12"
+                                        (click)="clickUnSubscribe(row.id)"
+                                        >
+                                    </clr-icon>
+                                </clr-dg-cell>
+                                <clr-dg-cell>
+                                    {{ row.dashboardCode }}
+                                </clr-dg-cell>
+                                
+                                <clr-dg-cell
+                                    (dblclick)="dblClickView(row.id)"
                                     >
-                                </clr-icon>
-                            </clr-dg-cell>
+                                    <clr-icon *ngIf="row.view" 
+                                        shape="check" 
+                                        size="12"
+                                        >
+                                    </clr-icon>
+                                </clr-dg-cell>
 
-                            <clr-dg-cell
-                                (dblclick)="dblClickEditMode(row.id)"
-                                >
-                                <clr-icon *ngIf="row.editmode" 
-                                    shape="check" 
-                                    size="12"
+                                <clr-dg-cell
+                                    (dblclick)="dblClickEditMode(row.id)"
                                     >
-                                </clr-icon>
-                            </clr-dg-cell>
+                                    <clr-icon *ngIf="row.editmode" 
+                                        shape="check" 
+                                        size="12"
+                                        >
+                                    </clr-icon>
+                                </clr-dg-cell>
 
-                            <clr-dg-cell
-                                (dblclick)="dblClickSave(row.id)"
-                                >
-                                <clr-icon *ngIf="row.save" 
-                                    shape="check" 
-                                    size="12"
+                                <clr-dg-cell
+                                    (dblclick)="dblClickSave(row.id)"
                                     >
-                                </clr-icon>
-                            </clr-dg-cell>
+                                    <clr-icon *ngIf="row.save" 
+                                        shape="check" 
+                                        size="12"
+                                        >
+                                    </clr-icon>
+                                </clr-dg-cell>
 
-                            <clr-dg-cell
-                                (dblclick)="dblClickDelete(row.id)"
-                                >
-                                <clr-icon *ngIf="row.delete" 
-                                    shape="check" 
-                                    size="12"
+                                <clr-dg-cell
+                                    (dblclick)="dblClickDelete(row.id)"
                                     >
-                                </clr-icon>
-                            </clr-dg-cell>
+                                    <clr-icon *ngIf="row.delete" 
+                                        shape="check" 
+                                        size="12"
+                                        >
+                                    </clr-icon>
+                                </clr-dg-cell>
 
-                            <clr-dg-cell
-                                (dblclick)="dblClickNotify(row.id)"
-                                >
-                                {{ row.notify }}
-                            </clr-dg-cell>
-                        </clr-dg-row>
+                                <clr-dg-cell
+                                    (dblclick)="dblClickNotify(row.id)"
+                                    >
+                                    {{ row.notify }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
 
-                        <clr-dg-footer>
-                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                            of {{pagination.totalItems}} rows
-                            <clr-dg-pagination #pagination [clrDgPageSize]="4"></clr-dg-pagination>
-                        </clr-dg-footer>
-    
-                    </clr-datagrid>
-
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
+                            </clr-dg-footer>
+        
+                        </clr-datagrid>
+                    </div>
                 </div>
             </div>
         </div>
