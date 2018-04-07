@@ -168,28 +168,39 @@ export class DashboardSubscribeComponent implements OnInit {
         // this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
-    dblClickNotify(index: number, id: number) {
+    dblClickNotify(id: number) {
         // Toggle the Notify value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickNotify', '@Start');
 
-        if (this.dashboardSubscriptions[index].notify == ''  ||  
-            this.dashboardSubscriptions[index].notify == null) {
-                this.dashboardSubscriptions[index].notify = 'Message';
-            } else {
-            if (this.dashboardSubscriptions[index].notify == 'Email') {
-                this.dashboardSubscriptions[index].notify = 'Message';
-            } else {
-                if (this.dashboardSubscriptions[index].notify == 'Message') {
-                    this.dashboardSubscriptions[index].notify = 'Both'
-                } else {
-                    if (this.dashboardSubscriptions[index].notify == 'Both') {
-                        this.dashboardSubscriptions[index].notify = 'Email'
-                    };
-                };
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
+            if (this.dashboardSubscriptions[i].id == id) { 
+                this.dashboardSubscriptions[i].delete = 
+                    !this.dashboardSubscriptions[i].delete;
+                index = i;
             };
         };
 
-        this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
+        if (index != -1) {
+            if (this.dashboardSubscriptions[index].notify == ''  ||  
+                this.dashboardSubscriptions[index].notify == null) {
+                    this.dashboardSubscriptions[index].notify = 'Message';
+                } else {
+                if (this.dashboardSubscriptions[index].notify == 'Email') {
+                    this.dashboardSubscriptions[index].notify = 'Message';
+                } else {
+                    if (this.dashboardSubscriptions[index].notify == 'Message') {
+                        this.dashboardSubscriptions[index].notify = 'Both'
+                    } else {
+                        if (this.dashboardSubscriptions[index].notify == 'Both') {
+                            this.dashboardSubscriptions[index].notify = 'Email'
+                        };
+                    };
+                };
+            };
+
+            this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
+        };
     }
 
     clickClose(action: string) {
