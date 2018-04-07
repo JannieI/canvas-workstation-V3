@@ -58,7 +58,12 @@
                             <clr-dg-column [clrDgField]="creator">Creator</clr-dg-column>
                             <clr-dg-column [clrDgField]="createdOn">CreatedOn</clr-dg-column>
 
-                            <clr-dg-row *clrDgItems="let row of canvasComments; let i = index">
+                            <clr-dg-row *clrDgItems="let row of canvasComments; 
+                                let i = index"
+                                [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                (click)="clickRow(i)"
+                                >
                                 <clr-dg-cell>
                                     <clr-icon *ngIf="i==indexLastRecord"
                                         (click)="clickEditComment(i, row.id)"
@@ -70,7 +75,7 @@
                                 <clr-dg-cell>{{row.creator}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
                             </clr-dg-row>
-
+ 
                             <clr-dg-footer>
                                 {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                 of {{pagination.totalItems}} records

@@ -55,12 +55,12 @@
                         <ul class="nav-list">
                             <div *ngFor="let row of selectedDashboardTags; let i = index"
                                 >
-                                <clr-icon shape="trash" 
-                                    size="12" 
-                                    (click)="clickDelete(row.id, i)"
-                                    >
-                                </clr-icon>
                                 <span class="tagText">
+                                    <clr-icon shape="trash" 
+                                        size="12" 
+                                        (click)="clickDelete(row.id, i)"
+                                        >
+                                    </clr-icon>
                                     {{ row.tag }}
                                 </span>
                             </div>

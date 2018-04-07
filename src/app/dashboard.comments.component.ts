@@ -39,6 +39,7 @@ export class DashboardCommentsComponent implements OnInit {
     errorMessage: string = '';
     headerText: string;
     indexLastRecord: number;
+    selectedRow: number = 0;
     showError: boolean = false;
     showTypeDashboard: boolean = false;
 
@@ -160,5 +161,11 @@ export class DashboardCommentsComponent implements OnInit {
                 this.indexLastRecord = this.canvasComments.length - 1;
         });
 
+    }
+ 
+    clickRow(index: number) {
+        // Show groups
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        this.selectedRow = index;
     }
 }
