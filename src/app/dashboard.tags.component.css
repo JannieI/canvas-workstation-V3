@@ -11,6 +11,10 @@
     top: 0;
 }
 
+.tagText {
+    margin-left: 10px;
+}
+
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(15, 1fr);

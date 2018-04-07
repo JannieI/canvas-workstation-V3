@@ -39,7 +39,9 @@
                                 (click)="clickAvailable(row.id, i)"
                                 [style.background-color]="selectedTagIndex==i? 'rgb(196, 196, 206)' : 'transparent'"
                                 >
-                                {{ row.tag }}
+                                <span class="tagText">
+                                    {{ row.tag }}
+                                </span>
                             </div>
                         </ul>
                     </nav>
@@ -58,7 +60,9 @@
                                     (click)="clickDelete(row.id, i)"
                                     >
                                 </clr-icon>
-                                {{ row.tag }}
+                                <span class="tagText">
+                                    {{ row.tag }}
+                                </span>
                             </div>
                         </ul>
                     </nav>
