@@ -61,7 +61,7 @@
                             </clr-dg-cell>
                             
                             <clr-dg-cell
-                                (dblclick)="dblClickView(i, row.id)"
+                                (dblclick)="dblClickView(row.id)"
                                 >
                                 <clr-icon *ngIf="row.view" 
                                     shape="check" 
@@ -91,7 +91,7 @@
                             </clr-dg-cell>
 
                             <clr-dg-cell
-                                (dblclick)="dblClickDelete(i, row.id)"
+                                (dblclick)="dblClickDelete(row.id)"
                                 >
                                 <clr-icon *ngIf="row.delete" 
                                     shape="check" 

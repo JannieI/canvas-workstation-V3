@@ -83,11 +83,25 @@ export class DashboardSubscribeComponent implements OnInit {
         
     }
 
-    dblClickView(index: number, id: number) {
+    dblClickView(id: number) {
         // Toggle the View value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickView', '@Start');
 
-        this.dashboardSubscriptions[index].view = !this.dashboardSubscriptions[index].view;
+        // this.dashboardSubscriptions[index].view = !this.dashboardSubscriptions[index].view;
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
+            if (this.dashboardSubscriptions[i].id == id) { 
+                this.dashboardSubscriptions[i].view = 
+                    !this.dashboardSubscriptions[i].view;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDashboardSubscription(
+                this.dashboardSubscriptions[index])
+                ;
+        };
 
         if (!this.checkSubscriptionDelete(index, id)) {
             this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
@@ -138,11 +152,25 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
-    dblClickDelete(index: number, id: number) {
+    dblClickDelete(id: number) {
         // Toggle the Delete value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'v', '@Start');
 
-        this.dashboardSubscriptions[index].delete = !this.dashboardSubscriptions[index].delete;
+        // this.dashboardSubscriptions[index].delete = !this.dashboardSubscriptions[index].delete;
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
+            if (this.dashboardSubscriptions[i].id == id) { 
+                this.dashboardSubscriptions[i].delete = 
+                    !this.dashboardSubscriptions[i].delete;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDashboardSubscription(
+                this.dashboardSubscriptions[index])
+                ;
+        };
         this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
