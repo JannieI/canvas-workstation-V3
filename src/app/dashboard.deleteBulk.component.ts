@@ -60,10 +60,6 @@ export class DashboardDeleteBulkComponent implements OnInit {
             return;
         };
 
-
-
-
-
         // this.globalVariableService.deleteWidget(index);
     }
  

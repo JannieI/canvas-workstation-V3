@@ -23,8 +23,14 @@
         </clr-dg-column>
      
         <!-- Each Row -->
-        <clr-dg-row *clrDgItems="let row of datagridData" [clrDgItem]="row" [(clrDgSelected)]="row.selected">
-    
+        <!-- <clr-dg-row *clrDgItems="let row of datagridData" [clrDgItem]="row" [(clrDgSelected)]="row.selected"> -->
+        <clr-dg-row *clrDgItems="let row of datagridData; let i = index" 
+            [clrDgItem]="row" 
+            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+            (click)="clickRow(i)"
+            >
+
             <!-- Action Popup Menu on Row -->
             <div *ngIf="datagridShowRowActionMenu">
             <clr-dg-action-overflow>

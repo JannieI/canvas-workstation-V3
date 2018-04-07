@@ -55,9 +55,10 @@ export class CaDatagridComponent implements OnInit {
     datagridColumnHidden = {hidden: false};
 
     // TODO - the 3 properties below belongs to clrDgLastPage, but dont work
-    lastPage: any;
     firstItem: any;
     lastItem:any;
+    lastPage: any;
+    selectedRow: number = 0;
 
 
 	constructor(
@@ -96,6 +97,12 @@ export class CaDatagridComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickColumnDelete', '@Start');
 
         // TODO - code this somehow
+    }
+ 
+    clickRow(index: number) {
+        // Show groups
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        this.selectedRow = index;
     }
 }
 
