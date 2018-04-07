@@ -116,11 +116,25 @@ export class DashboardSubscribeComponent implements OnInit {
         };
     }
 
-    dblClickSave(index: number, id: number) {
+    dblClickSave(id: number) {
         // Toggle the Save value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickSave', '@Start');
 
-        this.dashboardSubscriptions[index].save = !this.dashboardSubscriptions[index].save;
+        // this.dashboardSubscriptions[index].save = !this.dashboardSubscriptions[index].save;
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
+            if (this.dashboardSubscriptions[i].id == id) { 
+                this.dashboardSubscriptions[i].save = 
+                    !this.dashboardSubscriptions[i].save;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDashboardSubscription(
+                this.dashboardSubscriptions[index])
+                ;
+        };
         this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
