@@ -20,11 +20,6 @@ import { Dashboard }                  from './models';
 import { DashboardSubscription }      from './models';
 import { forEach } from '@angular/router/src/utils/collection';
 
-interface Selection {
-    id: number;
-    dashboardCode: string;
-}
-
 
 @Component({
     selector: 'dashboard-subscribe',
@@ -36,9 +31,9 @@ export class DashboardSubscribeComponent implements OnInit {
     @Output() formDashboardSubscribeClosed: EventEmitter<string> = new EventEmitter();
 
     dashboards: Dashboard[];
-    availableDashboards: Selection[] = [];
+    availableDashboards: string[] = [];
     dashboardSubscriptions: DashboardSubscription[] = [];
-    selectedDashboard: Selection = null;
+    selectedDashboard: string = '';
     selectedRow: number = 0;
 
 
@@ -77,20 +72,13 @@ export class DashboardSubscribeComponent implements OnInit {
 
             this.dashboards.forEach(d => {
                 if (dsIDs.indexOf(d.id) < 0) {
-                    this.availableDashboards.push({
-                        id: d.id,
-                        dashboardCode: d.code
-                    });
+                    this.availableDashboards.push('(' + d.id.toString() + ') ' + d.code);
                 };
             });     
 
             // Get First one
             if (this.availableDashboards.length > 0) {
-                this.selectedDashboard = 
-                    {
-                        id: this.availableDashboards[0].id,
-                        dashboardCode: this.availableDashboards[0].dashboardCode
-                    };
+                this.selectedDashboard = this.availableDashboards[0];
             };
         });
         
@@ -217,16 +205,17 @@ export class DashboardSubscribeComponent implements OnInit {
 		this.formDashboardSubscribeClosed.emit(action);
     }
 
-    clickSelect(id, dashboardCode) {
+    clickSelect(ev) {
         // Changed selection of Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelect', '@Start');
-
-        this.selectedDashboard = 
-        {
-            id: id,
-            dashboardCode: dashboardCode
+        
+        if (ev == undefined) {
+            return;
         };
-}
+
+        this.selectedDashboard = ev.target.value;
+
+    }
 
     clickAdd() {
         // Add record to Subscriptions, and reduce available options
@@ -237,25 +226,32 @@ export class DashboardSubscribeComponent implements OnInit {
             return;
         };
 
-        let dID: number = -1;
+        let space: number = -1;
+        space = this.selectedDashboard.indexOf(') ');
+
+        if (space < 1) {
+            return;
+        };
+        let sID: number = +this.selectedDashboard.substring(1, space );
+        let dIndex: number = -1;
         for (var i = 0; i < this.dashboards.length; i++) {
-            if (this.dashboards[i].id == this.selectedDashboard.id) {
-                dID = i;
+            if (this.dashboards[i].id == sID) {
+                dIndex = i;
                 break;
             };
         };
 
         // Add globally, then locally
-        if (dID >= 0) {
+        if (dIndex >= 0) {
             let localData: DashboardSubscription = {
                 id: null,
-                dashboardID: this.dashboards[dID].id,
+                dashboardID: this.dashboards[dIndex].id,
                 userID: this.globalVariableService.currentUser.userID,
                 view: false,
                 editmode: false,
                 save: false,
                 delete: false,
-                dashboardCode: this.dashboards[dID].code,
+                dashboardCode: this.dashboards[dIndex].code,
                 notify: 'Message',
             };
 
@@ -271,10 +267,10 @@ export class DashboardSubscribeComponent implements OnInit {
                 // Reduce available list
                 let selID: number = -1;
                 for (var i = 0; i < this.availableDashboards.length; i++) {
-                    if (this.availableDashboards[i].id == this.selectedDashboard.id) {
+                    if (this.availableDashboards[i] == this.selectedDashboard) {
                         selID = i;
                         break;
-                    }
+                    };
                 };
                 if (selID >=0) {
                     this.availableDashboards.splice(selID, 1);
@@ -282,13 +278,8 @@ export class DashboardSubscribeComponent implements OnInit {
 
                 // Get First one
                 if (this.availableDashboards.length > 0) {
-                    this.selectedDashboard = 
-                        {
-                            id: this.availableDashboards[0].id,
-                            dashboardCode: this.availableDashboards[0].dashboardCode
-                        };
+                    this.selectedDashboard = this.availableDashboards[0];
                 };
-
             });
         } else {
             console.log('ERROR - dID = -1 which means its not in the list!  Ai toggie')
@@ -312,11 +303,8 @@ export class DashboardSubscribeComponent implements OnInit {
         };
 
         // Add to available List
-        this.availableDashboards.push(
-            {
-                id: this.dashboardSubscriptions[index].id,
-                dashboardCode: this.dashboardSubscriptions[index].dashboardCode
-            }
+        this.availableDashboards.push('(' + this.dashboardSubscriptions[index].id + ') ' + 
+            this.dashboardSubscriptions[index].dashboardCode
         );
 
         // Delete locally
@@ -325,6 +313,12 @@ export class DashboardSubscribeComponent implements OnInit {
         // Delete globally and in DB
         // TODO - Proper error handling
         this.globalVariableService.deleteDashboardSubscription(id);
+
+        // Get First one
+        if (this.availableDashboards.length > 0) {
+            this.selectedDashboard = this.availableDashboards[0];
+        };
+        
         console.log('xx del', this.dashboardSubscriptions, this.globalVariableService.currentDashboardSubscription)
     }
  
