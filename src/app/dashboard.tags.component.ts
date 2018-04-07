@@ -203,7 +203,7 @@ export class DashboardTagsComponent implements OnInit {
         // Add the new ones to the DB
         // TODO - note that IDs in paletteButtonsSelected sent to app is DIFF to DB ...
         this.selectedDashboardTags.forEach(dt =>
-                this.globalVariableService.addDashboardTags(dt)
+                this.globalVariableService.addDashboardTag(dt)
         );
 
         // Tell user

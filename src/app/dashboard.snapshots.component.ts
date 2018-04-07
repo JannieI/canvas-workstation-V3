@@ -66,7 +66,7 @@ export class DashboardSnapshotsComponent implements OnInit {
         // Delete the selected Snapshot
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
-        this.globalVariableService.deleteDashboardSnapshots(id).then(res => {
+        this.globalVariableService.deleteDashboardSnapshot(id).then(res => {
             this.currentDashboardSnapshots.splice(index, 1)
         });
     }
@@ -106,7 +106,7 @@ export class DashboardSnapshotsComponent implements OnInit {
         };
 
         // Save and Close the form
-        this.globalVariableService.addDashboardSnapshots(newSn).then(res => {
+        this.globalVariableService.addDashboardSnapshot(newSn).then(res => {
             this.currentDashboardSnapshots.push(res);
         });
 

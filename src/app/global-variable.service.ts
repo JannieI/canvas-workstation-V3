@@ -876,7 +876,7 @@ export class GlobalVariableService {
                         this.getCurrentWidgets(dashboardID, dashboardTabID).then(n => {
 
                             // Load current DS
-                            this.getCurrentDatasource(dashboardID).then(k => {
+                            this.getCurrentDatasources(dashboardID).then(k => {
 
                                 // Get info for W
                                 this.getWidgetsInfo().then(n => {
@@ -968,7 +968,7 @@ export class GlobalVariableService {
         this.getDashboardTemplates();
 
         // Load Current Datasources
-        this.getCurrentDatasource(dashboardID)
+        this.getCurrentDatasources(dashboardID)
 
         // Load DatTransformationsasources
         this.getTransformations();
@@ -1809,10 +1809,10 @@ export class GlobalVariableService {
         };
     }
 
-    addDashboardTags(data: DashboardTag): Promise<any> {
+    addDashboardTag(data: DashboardTag): Promise<any> {
         // Description: Adds a new DashboardTag
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardTags ...');
+        console.log('Global-Variables addDashboardTag ...');
 
         let url: string = 'dashboardTags';
         this.filePath = './assets/data.dashboardTags.json';
@@ -1830,12 +1830,12 @@ export class GlobalVariableService {
                     this.dashboardTags.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardTags.push(JSON.parse(JSON.stringify(data)));
                     
-                    console.log('addDashboardTags ADDED', data, this.dashboardTags)
+                    console.log('addDashboardTag ADDED', data, this.dashboardTags)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addDashboardTags FAILED', err);;
+                    console.log('Error addDashboardTag FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -1935,10 +1935,10 @@ export class GlobalVariableService {
         };
     }
 
-    addDashboardPermissions(data: DashboardPermission): Promise<any> {
+    addDashboardPermission(data: DashboardPermission): Promise<any> {
         // Description: Adds a new DashboardPermission
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardPermissions ...');
+        console.log('Global-Variables addDashboardPermission ...');
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -1956,23 +1956,23 @@ export class GlobalVariableService {
                     this.dashboardPermissions.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardPermissions.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addDashboardPermissions ADDED', data, 
+                    console.log('addDashboardPermission ADDED', data, 
                         this.currentDashboardPermissions, this.dashboardPermissions)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addDashboardPermissions FAILED', err);;
+                    console.log('Error addDashboardPermission FAILED', err);;
                     resolve(err.Message);
                 }
             )
         });
     }
 
-    deleteDashboardPermissions(id: number): Promise<string> {
+    deleteDashboardPermission(id: number): Promise<string> {
         // Description: Deletes a DashboardPermissions
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardPermissions ...');
+        console.log('Global-Variables deleteDashboardPermission ...');
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -1993,11 +1993,11 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDashboardPermissions DELETED id: ', id)
+                    console.log('deleteDashboardPermission DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardPermissions FAILED', err);;
+                    console.log('Error deleteDashboardPermission FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -2100,10 +2100,10 @@ export class GlobalVariableService {
         };
     }
 
-    addDashboardSnapshots(data: DashboardSnapshot): Promise<any> {
+    addDashboardSnapshot(data: DashboardSnapshot): Promise<any> {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardSnapshots ...');
+        console.log('Global-Variables addDashboardSnapshot ...');
 
         let url: string = 'dashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
@@ -2121,23 +2121,23 @@ export class GlobalVariableService {
                     this.dashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addDashboardSnapshots ADDED', data, 
+                    console.log('addDashboardSnapshot ADDED', data, 
                         this.currentDashboardSnapshots, this.dashboardSnapshots)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addDashboardSnapshots FAILED', err);;
+                    console.log('Error addDashboardSnapshot FAILED', err);;
                     resolve(err.Message);
                 }
             )
         });
     }
 
-    deleteDashboardSnapshots(id: number): Promise<string> {
+    deleteDashboardSnapshot(id: number): Promise<string> {
         // Description: Deletes a DashboardSnapshots
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardSnapshots ...');
+        console.log('Global-Variables deleteDashboardSnapshot ...');
 
         let url: string = 'dashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
@@ -2158,11 +2158,11 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDashboardSnapshots DELETED id: ', id)
+                    console.log('deleteDashboardSnapshot DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardSnapshots FAILED', err);;
+                    console.log('Error deleteDashboardSnapshot FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -2302,7 +2302,7 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentDatasource(dashboardID: number): Promise<Datasource[]> {
+    getCurrentDatasources(dashboardID: number): Promise<Datasource[]> {
         // Description: Gets DS for current D
         // Params: dashboardID = current D
         // Returns: this.datasources array, unless:
@@ -2564,9 +2564,9 @@ export class GlobalVariableService {
 
     }
 
-    deleteDatasourcePermissions(id: number) {
+    deleteDatasourcePermission(id: number) {
         // Remove a record from the global and current DatasourcePermissions
-        console.log('Global-Variables deleteDatasourcePermissions ...');
+        console.log('Global-Variables deleteDatasourcePermission ...');
 
         console.log('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
         
@@ -3616,10 +3616,10 @@ export class GlobalVariableService {
 
     }
 
-    addCanvasComments(data: CanvasComment): Promise<any> {
+    addCanvasComment(data: CanvasComment): Promise<any> {
         // Description: Adds a new canvasComment
         // Returns: Added Data or error message
-        console.log('Global-Variables addCanvasComments ...');
+        console.log('Global-Variables addCanvasComment ...');
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -3636,22 +3636,22 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasComments.push(JSON.parse(JSON.stringify(data)));
                     
-                    console.log('addCanvasComments ADDED', data, this.canvasComments, this.canvasComments)
+                    console.log('addCanvasComment ADDED', data, this.canvasComments, this.canvasComments)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addCanvasComments FAILED', err);;
+                    console.log('Error addCanvasComment FAILED', err);;
                     resolve(err.Message);
                 }
             )
         });
     }
 
-    deleteCanvasComments(id: number): Promise<string> {
+    deleteCanvasComment(id: number): Promise<string> {
         // Description: Deletes a canvasComments
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteCanvasComments ...');
+        console.log('Global-Variables deleteCanvasComment ...');
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -3665,11 +3665,11 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
 
-                    console.log('deleteCanvasComments DELETED id: ', id)
+                    console.log('deleteCanvasComment DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteCanvasComments FAILED', err);;
+                    console.log('Error deleteCanvasComment FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -3772,10 +3772,10 @@ export class GlobalVariableService {
 
     }
 
-    addWidgetCheckpoints(data: WidgetCheckpoint): Promise<any> {
+    addWidgetCheckpoint(data: WidgetCheckpoint): Promise<any> {
         // Description: Adds a new WidgetCheckpoint
         // Returns: Added Data or error message
-        console.log('Global-Variables addWidgetCheckpoints ...');
+        console.log('Global-Variables addWidgetCheckpoint ...');
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -3793,22 +3793,22 @@ export class GlobalVariableService {
                     this.widgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
                     this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
                     
-                    console.log('addWidgetCheckpoints ADDED', data, this.currentWidgetCheckpoints, this.widgetCheckpoints)
+                    console.log('addWidgetCheckpoint ADDED', data, this.currentWidgetCheckpoints, this.widgetCheckpoints)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addWidgetCheckpoints FAILED', err);;
+                    console.log('Error addWidgetCheckpoint FAILED', err);;
                     resolve(err.Message);
                 }
             )
         });
     }
 
-    deleteWidgetCheckpoints(id: number): Promise<string> {
+    deleteWidgetCheckpoint(id: number): Promise<string> {
         // Description: Deletes a WidgetCheckpoints
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteWidgetCheckpoints ...');
+        console.log('Global-Variables deleteWidgetCheckpoint ...');
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -3822,11 +3822,11 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
 
-                    console.log('deleteWidgetCheckpoints DELETED id: ', id)
+                    console.log('deleteWidgetCheckpoint DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteWidgetCheckpoints FAILED', err);;
+                    console.log('Error deleteWidgetCheckpoint FAILED', err);;
                     resolve(err.Message);
                 }
             )

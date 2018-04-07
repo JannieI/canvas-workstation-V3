@@ -137,7 +137,7 @@ export class DashboardShareComponent implements OnInit {
         };
 
         // Update locally
-        this.globalVariableService.addDashboardPermissions(newdP).then(res => {
+        this.globalVariableService.addDashboardPermission(newdP).then(res => {
             this.dashboardPermissions.push(res);
         });
     }
@@ -147,7 +147,7 @@ export class DashboardShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         // Delete locally, globally and DB
-        this.globalVariableService.deleteDashboardPermissions(id).then(res => {
+        this.globalVariableService.deleteDashboardPermission(id).then(res => {
             this.dashboardPermissions.splice(index, 1);
         });
 
