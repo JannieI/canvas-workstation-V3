@@ -28,9 +28,9 @@ export class DashboardScheduleComponent implements OnInit {
 
     @Output() formDashboardScheduleClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
     currentDashboardSchedules: DashboardSchedule[];
+    dashboards: Dashboard[];
+    selectedRow: number = 0;
 
 
 	constructor(
@@ -50,4 +50,10 @@ export class DashboardScheduleComponent implements OnInit {
 
 		this.formDashboardScheduleClosed.emit(action);
     }
+ 
+    clickRow(index: number) {
+        // Show groups
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        this.selectedRow = index;
+    }    
 }

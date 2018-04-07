@@ -47,7 +47,12 @@
                         <clr-dg-column>EndsAfter</clr-dg-column>
                         <clr-dg-column>EndsOn</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of currentDashboardSchedules">
+                        <clr-dg-row *ngFor="let row of currentDashboardSchedules
+                            let i = index"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            (click)="clickRow(i)" 
+                            >
                             <clr-dg-cell>
                                 <clr-icon shape="times" class="selectIcon1" size="12"></clr-icon>
                             </clr-dg-cell>
