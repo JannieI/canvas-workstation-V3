@@ -2,28 +2,37 @@
         <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
 
-                <div>
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+                
+                <div class="gridOverall">
 
-                    Dashboard Subscriptions
-                    <div class="propertyLine">
-                        You will be notified via a CanvasMessage or via email if the specified
-                        event takes place on a Dashboard.  The subscription events are toggle
-                        switched - double click in the required cell to toggle the values. 
-                        Changes are saved automaticaly.
+                    <div class="gridTitle">
+                        <b>Dashboard Subscriptions</b>
+                    </div>
+                    <div class="gridSubTitle">
+                        <i>
+                            You will be notified via a CanvasMessage or via email if the 
+                            specified event takes place on a Dashboard.  The subscription 
+                            events are toggle switched - double click in the required cell 
+                            to toggle the values. Changes are saved automaticaly.
+                        </i>
                     </div>
 
-                    <div class="select">
-                        <select (change)="clickSelect($event)">
+                    <div class="gridAddTitle">
+                        <b>Add new Dashboard:</b>
+                    </div>
+
+                        <div class="gridAddDashboard">
+                            <select (change)="clickSelect($event)">
                             <option *ngFor="let row of dashboardCodes; let i = index">
                                 {{ row }}
                             </option>
                         </select>
                     </div>
 
-                    <div class="gridButtonSave">
+                    <div class="gridAddButtonSave">
                         <button
                             type="button"
                             class="btn btn-primary"
@@ -33,7 +42,7 @@
                         </button>
                     </div>  
 
-                    <clr-datagrid class="subDataGrid">
+                    <clr-datagrid class="gridTable">
                         <clr-dg-column>Dashboard</clr-dg-column>
                         <clr-dg-column>View</clr-dg-column>
                         <clr-dg-column>EditMode</clr-dg-column>
@@ -41,7 +50,7 @@
                         <clr-dg-column>Delete</clr-dg-column>
                         <clr-dg-column>Notify</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of dashboardSubscriptions; let i = index"
+                        <clr-dg-row *clrDgItems="let row of dashboardSubscriptions; let i = index"
                             [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
                             (click)="clickRow(i)" 
@@ -62,7 +71,7 @@
                             </clr-dg-cell>
 
                             <clr-dg-cell
-                                (dblclick)="dblClickEditMode(i, row.id)"
+                                (dblclick)="dblClickEditMode(row.id)"
                                 >
                                 <clr-icon *ngIf="row.editmode" 
                                     shape="check" 
@@ -98,6 +107,12 @@
                             </clr-dg-cell>
                         </clr-dg-row>
 
+                        <clr-dg-footer>
+                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                            of {{pagination.totalItems}} rows
+                            <clr-dg-pagination #pagination [clrDgPageSize]="4"></clr-dg-pagination>
+                        </clr-dg-footer>
+    
                     </clr-datagrid>
 
                 </div>

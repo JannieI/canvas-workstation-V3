@@ -18,6 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Dashboard }                  from './models';
 import { DashboardSubscription }      from './models';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
     selector: 'dashboard-subscribe',
@@ -94,12 +95,25 @@ export class DashboardSubscribeComponent implements OnInit {
 
     }
 
-    dblClickEditMode(index: number, id: number) {
+    dblClickEditMode(id: number) {
         // Toggle the EditMode value for the given row
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickEditMode', '@Start');
 
-        this.dashboardSubscriptions[index].editmode = !this.dashboardSubscriptions[index].editmode;
-        this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
+        // this.dashboardSubscriptions[index].editmode = !this.dashboardSubscriptions[index].editmode;
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
+            if (this.dashboardSubscriptions[i].id == id) { 
+                this.dashboardSubscriptions[i].editmode = 
+                    !this.dashboardSubscriptions[i].editmode;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDashboardSubscription(
+                this.dashboardSubscriptions[index])
+                ;
+        };
     }
 
     dblClickSave(index: number, id: number) {
