@@ -36,6 +36,7 @@ export class DashboardShareComponent implements OnInit {
     groupID: number;
     groupName: string = '';
     groups: CanvasGroup[];
+    selectedRow: number = 0;
     userID: string = '';
 
 
@@ -190,5 +191,11 @@ export class DashboardShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleDelete', '@Start');
 
         this.dashboardPermissions[index].canDelete = !this.dashboardPermissions[index].canDelete;
+    }
+ 
+    clickRow(index: number) {
+        // Show groups
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        this.selectedRow = index;
     }
 }
