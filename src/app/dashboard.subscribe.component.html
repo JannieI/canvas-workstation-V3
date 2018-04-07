@@ -24,12 +24,14 @@
                         <b>Add new Dashboard:</b>
                     </div>
 
-                        <div class="gridAddDashboard">
-                            <select (change)="clickSelect($event)">
-                            <option *ngFor="let row of dashboardCodes; let i = index">
-                                {{ row }}
-                            </option>
-                        </select>
+                    <div class="gridAddDashboard">
+                        <div class="select">
+                            <select (change)="clickSelect($event, i)">
+                                <option *ngFor="let row of dashboardCodes; let i = index">
+                                    {{ row }}
+                                </option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="gridAddButtonSave">

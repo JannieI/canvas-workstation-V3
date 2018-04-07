@@ -210,11 +210,11 @@ export class DashboardSubscribeComponent implements OnInit {
 		this.formDashboardSubscribeClosed.emit(action);
     }
 
-    clickSelect(ev) {
+    clickSelect(ev, index:number) {
         // Changed selection of Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelect', '@Start');
 
-        console.log('xx ev', ev, ev.target.value)
+        console.log('xx ev', ev, ev.target.value, index)
         this.selectDashboard = ev.target.value;
     }
 

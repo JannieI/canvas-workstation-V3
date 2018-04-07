@@ -63,8 +63,8 @@
     .gridTable {
         grid-column-start: 1;
         grid-column-end: 15;
-        grid-row-start: 5;
-        grid-row-end: 17;
+        grid-row-start: 6;
+        grid-row-end: 18;
         margin: 0px 2px 2px 2px;
         text-align: left;
     }
