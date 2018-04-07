@@ -32,7 +32,8 @@
                         <clr-dg-column>Description</clr-dg-column>
 
                         <clr-dg-row *ngFor="let row of dashboards; let i = index"
-                            [style.background-color]="selectedDashboardIndex==i? 'rgb(196, 196, 206)' : 'transparent'"
+                            [style.background-color]="selectedDashboardIndex==i? '#123456' : 'transparent'"
+                            [style.color]="selectedDashboardIndex==i? 'white' : 'gray'"
                             (click)="clickSelectDashboard(i, row.id, row.name)"
                             >
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
@@ -47,7 +48,7 @@
                         <clr-dg-column>Description</clr-dg-column>
 
                         <clr-dg-row *ngFor="let row of selectedDashboardTabs; let i = index"
-                            [style.background-color]="selectedTabIndex==i? 'rgb(196, 196, 206)' : 'transparent'"
+                            [style.background-color]="selectedTabIndex==i? '#123456' : 'transparent'"
                             (click)="clickSelectTab(i, row.id, row.name)"
                             >
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
