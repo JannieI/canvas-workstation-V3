@@ -98,12 +98,6 @@ export class DashboardSubscribeComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDashboardSubscription(
-                this.dashboardSubscriptions[index])
-                ;
-        };
-
-        if (!this.checkSubscriptionDelete(index, id)) {
             this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
         };
 
@@ -149,7 +143,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 this.dashboardSubscriptions[index])
                 ;
         };
-        this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
+        // this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
     dblClickDelete(id: number) {
@@ -171,7 +165,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 this.dashboardSubscriptions[index])
                 ;
         };
-        this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
+        // this.globalVariableService.saveDashboardSubscription(this.dashboardSubscriptions[index]);
     }
 
     dblClickNotify(index: number, id: number) {
