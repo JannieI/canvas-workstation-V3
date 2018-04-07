@@ -269,6 +269,7 @@ export class AppComponent implements OnInit {
     draggableWidgets: number[] = [];
     editMode: boolean;
     editModePrePresentation: boolean;
+    hasDashboard: boolean = false;
     hasDatasources: boolean = false;
     editMenuText: string;
     fields: Field[];
@@ -495,6 +496,7 @@ export class AppComponent implements OnInit {
             i => {
                 if (i) {
                     this.companyName = this.globalVariableService.canvasSettings.companyName;
+                    this.hasDashboard = true;
 
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
@@ -748,7 +750,7 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDelete', '@Start');
 
-        if (action == 'Saved') {
+        if (action == 'Deleted') {
             this.currentDashboardName = '';
             this.currentDashboardTabIndex = 0;
             this.currentDatasources = [];
@@ -756,6 +758,7 @@ export class AppComponent implements OnInit {
             this.currentWidgetCheckpoints = [];
             this.currentWidgetDashboardTabIDs = [];
             this.currentWidgets = [];
+            this.hasDashboard = false;
             this.editMode = false;
         }
         this.menuOptionClickPostAction();
@@ -1228,7 +1231,7 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (this.currentDashboardTabIndex == 0) {
+        if (!this.hasDashboard) {
             this.showMessage(
                 'First add/open a Dashboard',
                 'StatusBar',

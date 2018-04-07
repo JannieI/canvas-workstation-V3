@@ -141,7 +141,7 @@ export class DashboardDeleteComponent implements OnInit {
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         );
 
-		this.formDashboardDeleteClosed.emit('Saved');
+		this.formDashboardDeleteClosed.emit('Deleted');
         
     }
 
