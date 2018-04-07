@@ -43,6 +43,8 @@ export class DashboardRenameComponent implements OnInit {
     selectedDashboardIndex = 1;
     selectedDashboardID = -1;
     selectedDashboardName = '';
+    selectedRow: number = 0;
+
 
     constructor(
         // private globalFunctionService: GlobalFunctionService,
@@ -258,9 +260,11 @@ export class DashboardRenameComponent implements OnInit {
         };
     }
 
-    clickRow(id: number) {
+    clickRow(index: number, id: number) {
         // Click a row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+        this.selectedRow = index;
 
         // Switch off previous info, else confusing
         if (this.selectedDashboardID != id) {
@@ -273,7 +277,7 @@ export class DashboardRenameComponent implements OnInit {
     clickRowRename(id: number, name: string) {
         // Click the Rename icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRowRename', '@Start');
-
+        
         // Get the index
         for (var i = 0; i < this.filteredDashboards.length; i++) {
             if (this.filteredDashboards[i].id == id) {
