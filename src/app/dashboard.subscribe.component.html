@@ -26,9 +26,11 @@
 
                     <div class="gridAddDashboard">
                         <div class="select">
-                            <select (change)="clickSelect($event, i)">
-                                <option *ngFor="let row of dashboardCodes; let i = index">
-                                    {{ row }}
+                            <select (change)="clickSelect(row.id, row.dashboardCode)">
+                                <option *ngFor="let row of availableDashboards; 
+                                    let i = index"
+                                    >
+                                    {{ row.dashboardCode }}
                                 </option>
                             </select>
                         </div>

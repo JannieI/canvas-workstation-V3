@@ -20,6 +20,12 @@ import { Dashboard }                  from './models';
 import { DashboardSubscription }      from './models';
 import { forEach } from '@angular/router/src/utils/collection';
 
+interface Selection {
+    id: number;
+    dashboardCode: string;
+}
+
+
 @Component({
     selector: 'dashboard-subscribe',
     templateUrl: './dashboard.subscribe.component.html',
@@ -30,9 +36,9 @@ export class DashboardSubscribeComponent implements OnInit {
     @Output() formDashboardSubscribeClosed: EventEmitter<string> = new EventEmitter();
 
     dashboards: Dashboard[];
-    dashboardCodes: string[] = [];
+    availableDashboards: Selection[] = [];
     dashboardSubscriptions: DashboardSubscription[] = [];
-    selectDashboard: string = '';
+    selectedDashboard: Selection = null;
     selectedRow: number = 0;
 
 
@@ -71,13 +77,16 @@ export class DashboardSubscribeComponent implements OnInit {
 
             this.dashboards.forEach(d => {
                 if (dsIDs.indexOf(d.id) < 0) {
-                    this.dashboardCodes.push(d.code);
+                    this.availableDashboards.push({
+                        id: d.id,
+                        dashboardCode: d.code
+                    });
                 };
             });     
 
             // Get First one
-            if (this.dashboardCodes.length > 0) {
-                this.selectDashboard = this.dashboardCodes[0];
+            if (this.availableDashboards.length > 0) {
+                this.selectedDashboard = this.availableDashboards[0];
             };
         });
         
@@ -209,7 +218,7 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelect', '@Start');
 
         console.log('xx ev', ev, ev.target.value, index)
-        this.selectDashboard = ev.target.value;
+        this.selectedDashboard = ev.target.value;
     }
 
     clickAdd() {
@@ -217,14 +226,13 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Nothing selected
-        if (this.selectDashboard == '') {
+        if (this.selectedDashboard == null) {
             return;
         };
 
-        // TODO - this assumes D-Code is unique ...
         let dID: number = -1;
         for (var i = 0; i < this.dashboards.length; i++) {
-            if (this.dashboards[i].code == this.selectDashboard) {
+            if (this.dashboards[i].id == this.selectedDashboard.id) {
                 dID = i;
                 break;
             };
@@ -255,14 +263,14 @@ export class DashboardSubscribeComponent implements OnInit {
 
                 // Reduce selectable list
                 let selID: number = -1;
-                for (var i = 0; i < this.dashboardCodes.length; i++) {
-                    if (this.dashboardCodes[i] == this.selectDashboard) {
+                for (var i = 0; i < this.availableDashboards.length; i++) {
+                    if (this.availableDashboards[i] == this.selectedDashboard) {
                         selID = i;
                         break;
                     }
                 };
                 if (selID >=0) {
-                    this.dashboardCodes.splice(selID, 1);
+                    this.availableDashboards.splice(selID, 1);
                 };
 
             });
@@ -288,7 +296,12 @@ export class DashboardSubscribeComponent implements OnInit {
         };
 
         // Add to selectable List
-        this.dashboardCodes.push(this.dashboardSubscriptions[index].dashboardCode);
+        this.availableDashboards.push(
+            {
+                id: this.dashboardSubscriptions[index].id,
+                dashboardCode: this.dashboardSubscriptions[index].dashboardCode
+            }
+        );
 
         // Delete locally
         this.dashboardSubscriptions.splice(index, 1);
