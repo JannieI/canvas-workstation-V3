@@ -65,7 +65,7 @@
                         <input type="text" id="formFields_7" placeholder="Last wk/mnth">
                         <input type="text" id="formFields_7" placeholder="isTrashed = True">
                     </div>
-
+ 
                     <div class="propertyLine">
                         <span>
                             Created by:
@@ -108,7 +108,9 @@
                     <clr-dg-column>Creator</clr-dg-column>
                     <clr-dg-column>#Opened</clr-dg-column>
 
-                    <clr-dg-row *clrDgItems="let row of dashboards">
+                    <clr-dg-row *clrDgItems="let row of dashboards"
+                        (click)="clickRow(i)"
+                        >
                         <clr-dg-cell (click)="clickOpenView(row.id)">
                             <clr-icon shape="eye" class="selectIcon1" size="12"></clr-icon>
                         </clr-dg-cell>

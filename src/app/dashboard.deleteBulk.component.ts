@@ -66,7 +66,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
 
         // this.globalVariableService.deleteWidget(index);
     }
-
+ 
     clickRow(index: number) {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');

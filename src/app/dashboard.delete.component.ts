@@ -28,7 +28,6 @@ export class DashboardDeleteComponent implements OnInit {
     @Output() formDashboardDeleteClosed: EventEmitter<string> = new EventEmitter();
 
     dashboard: Dashboard;
-    errorMessage: string = '';
     dashboardTabs: number = 0;
     dashboardWidgets: number = 0;
     dashboardMessages: number = 0;
@@ -41,8 +40,9 @@ export class DashboardDeleteComponent implements OnInit {
     dashboardSubscriptions: number = 0;
     dashboardHyperLinks: number = 0;
     dashboardTemplates: number = 0;
-    startupDashboards: number = 0;
+    errorMessage: string = '';
     favouriteDashboards: number = 0;
+    startupDashboards: number = 0;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

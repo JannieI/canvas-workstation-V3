@@ -31,6 +31,7 @@ export class DashboardOpenComponent implements OnInit {
     dashboards: Dashboard[];
     isFirstTimeDashboardOpen: boolean;
     records: number = 10;
+    selectedRow: number = 0;
     showAdvancedFilters: boolean = false;
     showTypeDashboard: boolean = false;
 
@@ -115,5 +116,11 @@ export class DashboardOpenComponent implements OnInit {
 			'openDashboard-clickOpenEdit', dashboardID, -1, ''
         );
         this.formDashboardOpenClosed.emit('View');
+    }
+
+    clickRow(index: number) {
+        // Show groups
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        this.selectedRow = index;
     }
 }
