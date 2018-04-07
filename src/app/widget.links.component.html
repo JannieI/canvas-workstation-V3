@@ -49,6 +49,7 @@
 
                         <clr-dg-row *ngFor="let row of selectedDashboardTabs; let i = index"
                             [style.background-color]="selectedTabIndex==i? '#123456' : 'transparent'"
+                            [style.color]="selectedTabIndex==i? 'white' : 'gray'"
                             (click)="clickSelectTab(i, row.id, row.name)"
                             >
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>

@@ -3,6 +3,13 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
+.closeButton {
+    background-color: transparent;
+    border: none;
+    left: 0;
+    position: relative;
+    top: 0;
+}
 
 .gridOverall {
     display: grid;
@@ -11,7 +18,7 @@
     margin-top: 2px;
 }
 
-    .closeButton {
+    /* .closeButton {
         background-color: transparent;
         border: none;
         grid-column-start: 1;
@@ -21,7 +28,7 @@
         left: 0;
         position: relative;
         top: 0;
-    }
+    } */
 
     .gridTop {
         border: none;

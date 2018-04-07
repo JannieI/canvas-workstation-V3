@@ -41,7 +41,11 @@
                         <clr-dg-column>Delete</clr-dg-column>
                         <clr-dg-column>Notify</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of dashboardSubscriptions; let i = index">
+                        <clr-dg-row *ngFor="let row of dashboardSubscriptions; let i = index"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            (click)="clickRow(i)" 
+                            >
 
                             <clr-dg-cell>
                                 {{ row.dashboardCode }}

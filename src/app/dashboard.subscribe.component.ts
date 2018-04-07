@@ -32,6 +32,7 @@ export class DashboardSubscribeComponent implements OnInit {
     dashboardCodes: string[] = [];
     dashboardSubscriptions: DashboardSubscription[] = [];
     selectDashboard: string = '';
+    selectedRow: number = 0;
 
 
 	constructor(
@@ -239,5 +240,11 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalVariableService.deleteDashboardSubscription(id);
         console.log('xx del', this.dashboardSubscriptions, this.globalVariableService.currentDashboardSubscription)
         return true;
+    }
+ 
+    clickRow(index: number) {
+        // Show groups
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        this.selectedRow = index;
     }
 }

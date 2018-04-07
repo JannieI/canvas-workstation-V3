@@ -3,6 +3,14 @@
     padding: 0;
 }
 
+.closeButton {
+    background-color: transparent;
+    border: none;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+
 .header-6 {
     margin: 0;
     padding: 0;
