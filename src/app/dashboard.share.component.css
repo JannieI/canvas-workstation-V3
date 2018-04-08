@@ -124,8 +124,8 @@
     .gridTable {
         grid-column-start: 1;
         grid-column-end: 19;
-        grid-row-start: 10;
-        grid-row-end: 21;
-        margin: 2px 2px 2px 40px;
+        grid-row-start: 9;
+        grid-row-end: 22;
+        margin: 6px 2px 2px 2px;
         text-align: left;
     }
