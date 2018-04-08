@@ -191,11 +191,23 @@ export class DashboardShareComponent implements OnInit {
         };
     }
  
-    clickToggleEdit(id: number, index: number, $event) {
+    clickToggleEdit(id: number, $event) {
         // User dblclicked Edit - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleEdit', '@Start');
 
-        this.dashboardPermissions[index].canEdit = !this.dashboardPermissions[index].canEdit;
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardPermissions.length; i++) {
+            if (this.dashboardPermissions[i].id == id) {
+                this.dashboardPermissions[i].canEdit = ! this.dashboardPermissions[i].canEdit;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDashboardPermission(
+                this.dashboardPermissions[index])
+                ;
+        };
     }
 
     clickToggleDelete(id: number, index: number, $event) {
