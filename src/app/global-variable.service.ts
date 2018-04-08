@@ -1969,6 +1969,33 @@ export class GlobalVariableService {
         });
     }
 
+    saveDashboardPermission(data: DashboardPermission): Promise<string> {
+        // Description: Saves DashboardPermission
+        // Returns: 'Saved' or error message
+        console.log('Global-Variables saveDashboardPermission ...');
+
+        let url: string = 'dashboardPermissions';
+        this.filePath = './assets/data.dashboardPermissions.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                data => {
+                    console.log('saveDashboardPermission SAVED', data)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDashboardPermission FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     deleteDashboardPermission(id: number): Promise<string> {
         // Description: Deletes a DashboardPermissions
         // Returns: 'Deleted' or error message

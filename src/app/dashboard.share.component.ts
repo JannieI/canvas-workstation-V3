@@ -172,16 +172,24 @@ export class DashboardShareComponent implements OnInit {
         console.log(ev.srcElement.value, this.accessType, this.groupID)
     }
 
-    clickToggleView(id: number, index: number, $event) {
+    clickToggleView(id: number, $event) {
         // User dblclicked View - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
 
         // TODO - update DB
-        this.dashboardPermissions.forEach(dp => {
-            if (dp.id == id) {
-                dp.canView = ! dp.canView;
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardPermissions.length; i++) {
+            if (this.dashboardPermissions[i].id == id) {
+                this.dashboardPermissions[i].canView = ! this.dashboardPermissions[i].canView;
+                index = i;
             };
-        })
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDashboardPermission(
+                this.dashboardPermissions[index])
+                ;
+        };
         // this.dashboardPermissions[index].canView = !this.dashboardPermissions[index].canView;
     }
  
