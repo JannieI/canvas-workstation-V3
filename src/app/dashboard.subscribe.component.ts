@@ -50,7 +50,7 @@ export class DashboardSubscribeComponent implements OnInit {
         this.dashboards = this.globalVariableService.dashboards.slice();
 
         // Get subscriptions for current User
-        this.globalVariableService.getDashboardSubscription().then(data => {
+        this.globalVariableService.getDashboardSubscriptions().then(data => {
             this.dashboardSubscriptions = data.filter(ds => 
                 ds.userID == this.globalVariableService.currentUser.userID
             );

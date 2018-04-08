@@ -2820,7 +2820,7 @@ export class GlobalVariableService {
         });
     }
 
-    getDashboardSubscription(): Promise<DashboardSubscription[]> {
+    getDashboardSubscriptions(): Promise<DashboardSubscription[]> {
         // Description: Gets dashboardSubscriptions 
         // Returns: this.dashboardSubscriptions object, unless:
         //   If not cached or if dirty, get from File
@@ -2851,7 +2851,7 @@ export class GlobalVariableService {
 
     }
 
-    getDashboardSubscription(): Promise<DashboardSubscription[]> {
+    getCurrentDashboardSubscriptions(dashboardID: number): Promise<DashboardSubscription[]> {
         // Description: Gets currentDashboardSubscription 
         // Returns: this.currentDashboardSubscription object, unless:
         //   If not cached or if dirty, get from File
@@ -2865,8 +2865,12 @@ export class GlobalVariableService {
             // Refresh from source at start, or if dirty
             if (this.isDirtyDashboardSubscription) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.getDashboardSubscriptions()
                     .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+
                         this.currentDashboardSubscriptions = data;
 
                         this.isDirtyDashboardSubscription = false;
