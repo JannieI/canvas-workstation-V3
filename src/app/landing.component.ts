@@ -215,7 +215,7 @@ export class LandingComponent implements OnInit {
 
 		this.formLandingClosed.emit(action);
 	}
-
+ 
 	clickOpenExisting() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenExisting', '@Start');

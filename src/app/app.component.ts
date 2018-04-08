@@ -586,18 +586,21 @@ export class AppComponent implements OnInit {
         this.showModalLanding = false;
         // this.document.body.style.backgroundImage ='../images/BarChart.png';
 
-        if (this.globalVariableService.openDashboardFormOnStartup) {
-            console.log('handleCloseModalLanding 1')
-            this.showModalDashboardOpen = true;
+        if (action == 'New') {
+            this.showModalDashboardNew = true;
+        } else {
+            if (this.globalVariableService.openDashboardFormOnStartup) {
+                console.log('handleCloseModalLanding 1')
+                this.showModalDashboardOpen = true;
+            };
+
+            if (this.globalVariableService.openNewDashboardFormOnStartup) {
+                console.log('handleCloseModalLanding 2')
+                this.showModalData = true;
+            };
+
+            this.dashboardOpenActions();
         };
-
-        if (this.globalVariableService.openNewDashboardFormOnStartup) {
-            console.log('handleCloseModalLanding 2')
-            this.showModalData = true;
-        };
-
-        this.dashboardOpenActions();
-
         console.log('xx this.globalVariableService.currentDashboards',
         this.globalVariableService.currentUser.favouriteDashboards, this.globalVariableService.currentDashboards, this.showFavouriteDashboard)
     }

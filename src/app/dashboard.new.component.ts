@@ -28,10 +28,13 @@ export class DashboardNewComponent implements OnInit {
     @Output() formDashboardNewClosed: EventEmitter<string> = new EventEmitter();
 
     dashboards: Dashboard[];
+    dashboardCode: string = '';
     dashboardName: string = '';
+    dashboardDescription: string = '';
     importFolder: string;
 
-	constructor(
+
+    constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
@@ -53,14 +56,14 @@ export class DashboardNewComponent implements OnInit {
     clickCreate() {
         // Create a new Dashboard, and close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCreate', '@Start');
-
+    
         let newDashboard: Dashboard = {
             id: null,
             version: 0,
             state: '',
-            code: this.dashboardName,
+            code: this.dashboardCode,
             name: this.dashboardName,
-            description: this.dashboardName,
+            description: this.dashboardDescription,
             accessType: 'Private',
             password: '',
             refreshMode: '',
