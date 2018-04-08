@@ -36,12 +36,25 @@ export class DashboardNewComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards;
     }
 
-    clickClose(action: string) {
-        console.log('clickClose')
+    clickClose() {
+        // Close form, no action
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formDashboardNewClosed.emit(action);
+		this.formDashboardNewClosed.emit('Cancel');
+    }
+
+    clickCreate() {
+        // Create a new Dashboard, and close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCreate', '@Start');
+
+        // Add new to DB, and open
+        this.formDashboardNewClosed.emit('Created');
+        
     }
 }
