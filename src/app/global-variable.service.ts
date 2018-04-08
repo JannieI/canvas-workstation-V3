@@ -664,6 +664,7 @@ export class GlobalVariableService {
     dashboardTags: DashboardTag[] = [];
     dashboardPermissions: DashboardPermission[] = [];
     dashboardSnapshots: DashboardSnapshot[] = [];
+    dashboardSubscriptions: DashboardSubscription[] = [];
     dashboardThemes: DashboardTheme[] = [];
     dashboardTemplates: DashboardTemplate[] = [];
     widgets: Widget[] = [];
@@ -696,7 +697,7 @@ export class GlobalVariableService {
     currentPaletteButtonBar: PaletteButtonBar[];
     currentDashboardPermissions: DashboardPermission[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
-    currentDashboardSubscription: DashboardSubscription[] = [];
+    currentDashboardSubscriptions: DashboardSubscription[] = [];
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
 
     // TODO - this is trigger a rename of the Dname on statusbar - must be better way
@@ -2820,6 +2821,37 @@ export class GlobalVariableService {
     }
 
     getDashboardSubscription(): Promise<DashboardSubscription[]> {
+        // Description: Gets dashboardSubscriptions 
+        // Returns: this.dashboardSubscriptions object, unless:
+        //   If not cached or if dirty, get from File
+        console.log('Global-Variables getDashboardSubscription ...');
+
+        let url: string = 'dashboardSubscriptions';
+        this.filePath = './assets/data.dashboardSubscriptions.json';
+
+        return new Promise<DashboardSubscription[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if (this.isDirtyDashboardSubscription) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dashboardSubscriptions = data;
+
+                        this.isDirtyDashboardSubscription = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('Global-Variables getDashboardSubscription 1', this.dashboardSubscriptions)
+                        resolve(this.dashboardSubscriptions);
+                    });
+            } else {
+                console.log('Global-Variables getDashboardSubscription 2', this.dashboardSubscriptions)
+                resolve(this.dashboardSubscriptions);
+            }
+        });
+
+    }
+
+    getDashboardSubscription(): Promise<DashboardSubscription[]> {
         // Description: Gets currentDashboardSubscription 
         // Returns: this.currentDashboardSubscription object, unless:
         //   If not cached or if dirty, get from File
@@ -2835,16 +2867,16 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.currentDashboardSubscription = data;
+                        this.currentDashboardSubscriptions = data;
 
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardSubscription 1', this.currentDashboardSubscription)
-                        resolve(this.currentDashboardSubscription);
+                        console.log('Global-Variables getDashboardSubscription 1', this.currentDashboardSubscriptions)
+                        resolve(this.currentDashboardSubscriptions);
                     });
             } else {
-                console.log('Global-Variables getDashboardSubscription 2', this.currentDashboardSubscription)
-                resolve(this.currentDashboardSubscription);
+                console.log('Global-Variables getDashboardSubscription 2', this.currentDashboardSubscriptions)
+                resolve(this.currentDashboardSubscriptions);
             }
         });
 
@@ -2893,7 +2925,7 @@ export class GlobalVariableService {
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    this.currentDashboardSubscription.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDashboardSubscriptions.push(JSON.parse(JSON.stringify(data)));
                     console.log('addDashboardSubscription ADDED', data)
                     resolve(data);
                 },
@@ -2922,16 +2954,16 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
                     let dID: number = -1;
-                    for (var i = 0; i < this.currentDashboardSubscription.length; i++) {
-                        if (this.currentDashboardSubscription[i].id == id) {
+                    for (var i = 0; i < this.currentDashboardSubscriptions.length; i++) {
+                        if (this.currentDashboardSubscriptions[i].id == id) {
                             dID = i;
                             break;
                         };
                     };
                     if (dID >=0) {
-                        this.currentDashboardSubscription.splice(dID, 1);
+                        this.currentDashboardSubscriptions.splice(dID, 1);
                     };
-                    console.log('deleteDashboardSubscription DELETED', this.currentDashboardSubscription)
+                    console.log('deleteDashboardSubscription DELETED', this.currentDashboardSubscriptions)
                     resolve('Deleted');
                 },
                 err => {
@@ -3385,7 +3417,7 @@ export class GlobalVariableService {
         this.currentDashboardSchedules.filter(sch => 
             sch.dashboardID != dashboardID 
         );
-        this.currentDashboardSubscription.filter(sub => 
+        this.currentDashboardSubscriptions.filter(sub => 
             sub.dashboardID != dashboardID 
         );
         this.dashboardTags.filter(tag => 

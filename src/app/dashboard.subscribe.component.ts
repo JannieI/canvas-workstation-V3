@@ -295,7 +295,7 @@ export class DashboardSubscribeComponent implements OnInit {
 
             // Update locally
             this.dashboardSubscriptions = this.globalVariableService.
-                currentDashboardSubscription.slice();
+                currentDashboardSubscriptions.slice();
 
             let index: number = -1;
             for(var i = 0; i < this.dashboards.length; i++) {
