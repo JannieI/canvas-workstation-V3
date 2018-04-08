@@ -2929,6 +2929,7 @@ export class GlobalVariableService {
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
+                    this.dashboardSubscriptions.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardSubscriptions.push(JSON.parse(JSON.stringify(data)));
                     console.log('addDashboardSubscription ADDED', data)
                     resolve(data);

@@ -1,0 +1,31 @@
+<div class="modal modalBox" *ngIf="showModalWidgetRefresh">
+        <div class="modal-dialog modal-sm" role="dialog" aria-hidden="true">
+            <div class="modal-content modalContent">
+    
+                <div class="overall">
+                    <div class="closeButton">
+                        <button type="button" class="closeButton" (click)="showModalWidgetRefresh=!showModalWidgetRefresh">
+                            X
+                        </button>
+                    </div>
+                    <i>
+                        Note: The Datasource associated with this Widget is large, and may take a while
+                        to Refresh.  While running, it will indicate 'Query Running' in the Statusbar
+                        at the bottom of the screen.  You may stop it by clicking the <b>Cancel</b>
+                        button on the Statusbar.  Once the query completes, the graph in the Widget will refresh
+                        automatically.  You may have multiple queries running at the same time.
+                        Do you want to continue?
+                    </i>
+                    <div>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="showModalWidgetRefresh=!showModalWidgetRefresh"
+                            >
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

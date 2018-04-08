@@ -2087,7 +2087,7 @@
 </widget-checkpoints>
 
 
-<!-- Modal: widget links -->
+<!-- Modal: Widget links -->
 <widget-links
     *ngIf="showModalWidgetLinks"
     [selectedWidget]="selectedWidget"
@@ -2095,8 +2095,17 @@
 </widget-links>
 
 
+<!-- Modal: Widget Refresh -->
+<widget-refresh
+    *ngIf="showModalWidgetRefresh"
+    [selectedWidget]="selectedWidget"
+    (formWidgetLinksClosed)="handleCloseWidgetLinks($event)">Load Widget Refresh ...
+</widget-refresh>
+
+
+
 <!-- Model: Widget Refresh -->
-<div class="modal modalBox" *ngIf="showModalWidgetRefresh">
+<!-- <div class="modal modalBox" *ngIf="showModalWidgetRefresh">
 	<div class="modal-dialog modal-sm" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
 
@@ -2126,7 +2135,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <!-- Modal: Slicers -->
