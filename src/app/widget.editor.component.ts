@@ -362,9 +362,12 @@ const graphWidth: number = 420;
             };
 
             // Update local and global vars
-            this.localWidget.dashboardTabIDs.push(this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
-            this.globalVariableService.widgets.push(this.localWidget);
-            this.globalVariableService.currentWidgets.push(this.localWidget);
+            this.localWidget.dashboardTabIDs.push(this.globalVariableService.
+                currentDashboardInfo.value.currentDashboardTabID);
+
+            this.globalVariableService.addWidget(this.localWidget);
+            // this.globalVariableService.widgets.push(this.localWidget);
+            // this.globalVariableService.currentWidgets.push(this.localWidget);
         } else {
             if (this.selectedWidget.graphColorField != ''
                 &&  this.selectedWidget.graphColorField != null) {
