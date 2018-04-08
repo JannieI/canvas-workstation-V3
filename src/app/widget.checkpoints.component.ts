@@ -129,19 +129,12 @@ export class WidgetCheckpointsComponent implements OnInit {
             };
         };
 
-        if (index < 0) {
-            return;
+        if (index >= 0) {
+            this.currentWidgetCheckpoints.splice(index, 1);
         };
         
         // Remove locally, globally and from DB
-        this.currentWidgetCheckpoints.splice(index, 1)
-        let x: number = 0;
-        for (x = 0; x < this.globalVariableService.widgetCheckpoints.length; x++){
-            if (this.globalVariableService.widgetCheckpoints[x].id == id){
-                break;
-            };
-        };
-        this.globalVariableService.widgetCheckpoints.splice(x, 1);
+        // this.globalVariableService.widgetCheckpoints.splice(x, 1);
         this.globalVariableService.deleteWidgetCheckpoint(id);
 
     }
