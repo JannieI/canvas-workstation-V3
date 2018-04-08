@@ -176,7 +176,6 @@ export class DashboardShareComponent implements OnInit {
         // User dblclicked View - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
 
-        // TODO - update DB
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
             if (this.dashboardPermissions[i].id == id) {
@@ -190,7 +189,6 @@ export class DashboardShareComponent implements OnInit {
                 this.dashboardPermissions[index])
                 ;
         };
-        // this.dashboardPermissions[index].canView = !this.dashboardPermissions[index].canView;
     }
  
     clickToggleEdit(id: number, index: number, $event) {
