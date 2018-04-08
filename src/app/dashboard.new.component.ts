@@ -76,42 +76,13 @@ export class DashboardNewComponent implements OnInit {
 
         // Create new D
         let newDashboard: Dashboard = this.globalVariableService.dashboardTemplate;
-            // {
-            //     id: null,
-            //     version: 0,
-            //     state: '',
-            //     code: this.dashboardCode,
-            //     name: this.dashboardName,
-            //     description: this.dashboardDescription,
-            //     accessType: 'Private',
-            //     password: '',
-            //     refreshMode: '',
-            //     refreshTimer: 0,
-            //     defaultTabID: 0,
-            //     defaultExportFileType: '',
-            //     url: '',
-            //     qaRequired: false,
-            //     isSample: false,
-            //     backgroundColor: '',
-            //     backgroundImage: '',
-            //     templateDashboardID: 0,
-            //     creator: '',
-            //     dateCreated: '',
-            //     editor: '',
-            //     dateEdited: '',
-            //     refresher: '',
-            //     dateRefreshed: '',
-            //     nrWidgets: 0,
-            //     nrShapes: 0,
-            //     nrRecords: 0,
-            //     nrTimesOpened: 0,
-            //     tabs: [],
-            //     permissions: []
-            // };
+        newDashboard.code = this.dashboardCode;
+        newDashboard.name = this.dashboardName;
+        newDashboard.description = this.dashboardDescription;
 
         // Add new to DB, and open
         this.globalVariableService.addDashboard(newDashboard).then(d => {
-            console.log('xx id', d.id, this.dashboardName)
+
             let newDashboardTab: DashboardTab = {
                 id: null,
                 dashboardID: d.id,
