@@ -16,7 +16,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
+import { Dashboard, DashboardTab }                  from './models';
 
 @Component({
     selector: 'dashboard-new',
@@ -27,8 +27,9 @@ export class DashboardNewComponent implements OnInit {
 
     @Output() formDashboardNewClosed: EventEmitter<string> = new EventEmitter();
 
-    showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
+    dashboardName: string = '';
+    importFolder: string;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -53,8 +54,58 @@ export class DashboardNewComponent implements OnInit {
         // Create a new Dashboard, and close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCreate', '@Start');
 
+        let newDashboard: Dashboard = {
+            id: null,
+            version: 0,
+            state: '',
+            code: this.dashboardName,
+            name: this.dashboardName,
+            description: this.dashboardName,
+            accessType: 'Private',
+            password: '',
+            refreshMode: '',
+            refreshTimer: 0,
+            defaultTabID: 0,
+            defaultExportFileType: '',
+            url: '',
+            qaRequired: false,
+            isSample: false,
+            backgroundColor: '',
+            backgroundImage: '',
+            templateDashboardID: 0,
+            creator: '',
+            dateCreated: '',
+            editor: '',
+            dateEdited: '',
+            refresher: '',
+            dateRefreshed: '',
+            nrWidgets: 0,
+            nrShapes: 0,
+            nrRecords: 0,
+            nrTimesOpened: 0,
+            tabs: [],
+            permissions: []
+        };
+
         // Add new to DB, and open
-        this.formDashboardNewClosed.emit('Created');
+        this.globalVariableService.addDashboard(newDashboard).then(d => {
+            console.log('xx id', d.id, this.dashboardName)
+            let newDashboardTab: DashboardTab = {
+                id: null,
+                dashboardID: d.id,
+                name: 'First',
+                description: '',
+                backgroundColor: '',
+                color: ''
+                        
+            }
+                
+            this.globalVariableService.refreshCurrentDashboard(
+                'addDashboard-clickCreate', d.id, -1, ''
+            );
+            
+            this.formDashboardNewClosed.emit('Created');
+        })
         
     }
 }

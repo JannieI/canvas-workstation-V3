@@ -1281,6 +1281,39 @@ export class GlobalVariableService {
 
     }
 
+    addDashboardTab(data: DashboardTab): Promise<any> {
+        // Description: Adds a new DashboardTab
+        // Returns: Added Data or error message
+        console.log('Global-Variables addDashboardTab ...');
+
+        let url: string = 'dashboardTabs';
+        this.filePath = './assets/data.dashboardTabs.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    
+                    // Update Global vars to make sure they remain in sync
+                    this.dashboardTabs.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDashboardTabs.push(JSON.parse(JSON.stringify(data)));
+                    
+                    console.log('addDashboardTab ADDED', data, this.dashboardTabs)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('Error addDashboardTab FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+    
     getDashboardSamples(): Promise<Dashboard[]> {
         // Description: Gets all Sample D
         // Returns: an array extracted from [D], unless:

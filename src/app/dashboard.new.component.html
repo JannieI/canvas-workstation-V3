@@ -10,11 +10,11 @@
                 New Dashboard
                 <div class="propertyLine">
                     Name:
-                    <input type="text" id="formFields_7" placeholder="New (unique) name">
+                    <input type="text" [(ngModel)]="dashboardName" placeholder="New (unique) name">
                 </div>
                 <div class="propertyLine">
                     Import:
-                    <input type="text" id="formFields_7" placeholder="Folder/File Name.json">
+                    <input type="text" [(ngModel)]="importFolder" placeholder="Folder/File Name.json">
                 </div>
                 <button
                     type="button"
