@@ -295,7 +295,9 @@ export class DashboardSubscribeComponent implements OnInit {
 
             // Update locally
             this.dashboardSubscriptions = this.globalVariableService.
-                currentDashboardSubscriptions.slice();
+                dashboardSubscriptions.filter(ds => 
+                    ds.userID == this.globalVariableService.currentUser.userID
+                );
 
             let index: number = -1;
             for(var i = 0; i < this.dashboards.length; i++) {

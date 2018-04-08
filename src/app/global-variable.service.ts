@@ -2967,11 +2967,12 @@ export class GlobalVariableService {
                     // if (dID >=0) {
                     //     this.currentDashboardSubscriptions.splice(dID, 1);
                     // };
-                    this.dashboardSubscriptions = this.currentDashboardSubscriptions.
+                    
+                    this.dashboardSubscriptions = this.dashboardSubscriptions.
                         filter(sub => sub.id != id);
                     this.currentDashboardSubscriptions = this.currentDashboardSubscriptions.
                         filter(sub => sub.id != id);
-                    console.log('deleteDashboardSubscription DELETED', this.dashboardSubscriptions, this.currentDashboardSubscriptions)
+                    console.log('deleteDashboardSubscription DELETED', id, data, this.dashboardSubscriptions, this.currentDashboardSubscriptions)
                     resolve('Deleted');
                 },
                 err => {
