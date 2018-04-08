@@ -3433,6 +3433,39 @@ export class GlobalVariableService {
 
     }
 
+    addWidget(data: Widget): Promise<any> {
+        // Description: Adds a new Widget
+        // Returns: Added Data or error message
+        console.log('Global-Variables addWidget ...');
+
+        let url: string = 'widgets';
+        this.filePath = './assets/data.widgets.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    
+                    // Update Global vars to make sure they remain in sync
+                    this.widgets.push(JSON.parse(JSON.stringify(data)));
+                    this.currentWidgets.push(JSON.parse(JSON.stringify(data)));
+                    
+                    console.log('addWidget ADDED', data, this.widgets)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('Error addWidget FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     deleteWidget(dashboardID: number) {
         // Deletes D with all related Entities
         console.log('Global-Variables getCurrentWidgets ...');
@@ -3522,6 +3555,7 @@ export class GlobalVariableService {
         });
 
     }
+
     getWidgetsInfo(): Promise<boolean> {
         // Description: Gets data and other info for [W]
         // Returns: this.datasets, currentDataset array
