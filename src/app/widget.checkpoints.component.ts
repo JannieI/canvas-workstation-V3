@@ -81,14 +81,21 @@ export class WidgetCheckpointsComponent implements OnInit {
         })
     }
 
-    clickRow(index: number) {
+    clickRow(index: number, id: number) {
         // User clicked a row, now refresh the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         this.selectedRow = index;
 
+        // Refresh graph
+        let idx: number = -1;
+        for (var i = 0; i < this.currentWidgetCheckpoints.length; i++) {
+            if (this.currentWidgetCheckpoints[i].id = id) { 
+                idx = i;
+            };
+        };
         let definition = this.globalVariableService.createVegaLiteSpec(
-            this.currentWidgetCheckpoints[index].widgetSpec
+            this.currentWidgetCheckpoints[idx].widgetSpec
         );
 
         // Render
