@@ -1,10 +1,10 @@
-<div class="modal modalBox" *ngIf="showModalWidgetRefresh">
+<div class="modal modalBox">
         <div class="modal-dialog modal-sm" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
     
                 <div class="overall">
                     <div class="closeButton">
-                        <button type="button" class="closeButton" (click)="showModalWidgetRefresh=!showModalWidgetRefresh">
+                        <button type="button" class="closeButton" (click)="clickClose()">
                             X
                         </button>
                     </div>
@@ -20,7 +20,14 @@
                         <button
                             type="button"
                             class="btn btn-secondary"
-                            (click)="showModalWidgetRefresh=!showModalWidgetRefresh"
+                            (click)="clickClose()"
+                            >
+                            Cancel
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickSave()"
                             >
                             Refresh
                         </button>

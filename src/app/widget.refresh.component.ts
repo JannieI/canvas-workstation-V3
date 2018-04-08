@@ -9,7 +9,7 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { Datasource }                 from './models';
+import { Widget }                     from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -24,8 +24,8 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetRefreshComponent implements OnInit {
 
-    @Input() currentDatasources: Datasource[];
-    @Output() formDataRefreshClosed: EventEmitter<string> = new EventEmitter();
+    @Input() selectedWidget: Widget[];
+    @Output() formWidgetRefreshClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
@@ -42,15 +42,18 @@ export class WidgetRefreshComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
     }
 
-  	clickClose(action: string) {
+  	clickClose() {
         // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-  	  	this.formDataRefreshClosed.emit(action);
+  	  	this.formWidgetRefreshClosed.emit('Cancel');
     }
 
-    clickDatasourceRow(id: number) {
-        // Select a DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasourceRow', '@Start');
+    clickSave(id: number) {
+        // Close form, and Refresh data
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // TODO - actually refresh data
+        this.formWidgetRefreshClosed.emit('Refresh');
         
     }
 

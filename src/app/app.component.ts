@@ -987,6 +987,16 @@ export class AppComponent implements OnInit {
         this.showModalWidgetLinks = false;
     }
 
+    handleCloseWidgetRefresh(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetRefresh', '@Start');
+
+
+        this.menuOptionClickPostAction();
+
+        this.showModalWidgetRefresh = false;
+    }
+
     handleCloseWidgetExpand(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetExpand', '@Start');
@@ -2231,6 +2241,11 @@ export class AppComponent implements OnInit {
         };
 
         this.menuOptionClickPreAction();
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Graph') {
+                this.selectedWidget = w;
+            };
+        });
 
         this.showModalWidgetRefresh = true;
         this.globalVariableService.statusBarRunning.next(this.globalVariableService.canvasSettings.noQueryRunningMessage);
