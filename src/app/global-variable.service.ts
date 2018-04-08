@@ -3466,6 +3466,33 @@ export class GlobalVariableService {
         });
     }
 
+    saveWidget(data: Widget): Promise<string> {
+        // Description: Saves Widget
+        // Returns: 'Saved' or error message
+        console.log('Global-Variables saveWidget ...');
+
+        let url: string = 'widgets';
+        this.filePath = './assets/data.widgets.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                data => {
+                    console.log('saveWidget SAVED', data)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveWidget FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     deleteWidget(dashboardID: number) {
         // Deletes D with all related Entities
         console.log('Global-Variables getCurrentWidgets ...');
