@@ -90,7 +90,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         // Refresh graph
         let idx: number = -1;
         for (var i = 0; i < this.currentWidgetCheckpoints.length; i++) {
-            if (this.currentWidgetCheckpoints[i].id = id) { 
+            if (this.currentWidgetCheckpoints[i].id == id) { 
                 idx = i;
             };
         };
@@ -105,7 +105,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     clickAddCheckpoint() {
         // Delete selected Checkpoint
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteCheckpoint', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAddCheckpoint', '@Start');
 
         let newCheckpoint: WidgetCheckpoint = {
             id: null,
@@ -131,17 +131,15 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         let index: number = -1;
         for (var i = 0; i < this.currentWidgetCheckpoints.length; i++) {
-            if (this.currentWidgetCheckpoints[i].id = id) { 
+            if (this.currentWidgetCheckpoints[i].id == id) { 
                 index = i;
             };
         };
 
+        // Remove locally, globally and from DB
         if (index >= 0) {
             this.currentWidgetCheckpoints.splice(index, 1);
         };
-        
-        // Remove locally, globally and from DB
-        // this.globalVariableService.widgetCheckpoints.splice(x, 1);
         this.globalVariableService.deleteWidgetCheckpoint(id);
 
     }
