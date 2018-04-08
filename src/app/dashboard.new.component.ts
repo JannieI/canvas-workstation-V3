@@ -31,6 +31,7 @@ export class DashboardNewComponent implements OnInit {
     dashboardCode: string = '';
     dashboardName: string = '';
     dashboardDescription: string = '';
+    errorMessage: string = '';
     importFolder: string;
 
 
@@ -57,6 +58,23 @@ export class DashboardNewComponent implements OnInit {
         // Create a new Dashboard, and close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCreate', '@Start');
     
+        if (this.dashboardCode == '') {
+            this.errorMessage = 'Code compulsory';
+            return;
+        };
+        if (this.dashboardName == '') {
+            this.errorMessage = 'Name compulsory';
+            return;
+        };
+        if (this.dashboardDescription == '') {
+            this.errorMessage = 'Description compulsory';
+            return;
+        };
+
+        // Reset
+        this.errorMessage = '';
+
+        // Create new D
         let newDashboard: Dashboard = {
             id: null,
             version: 0,

@@ -57,7 +57,11 @@
                         size="50"
                         >
                 </div>
-                
+
+                <div class="gridErrorMessage" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                </div>
+                    
                 <div class="gridAddImportTitle">
                     <b>Import:</b>
                 </div>
