@@ -384,7 +384,10 @@ const graphWidth: number = 420;
             };
  
             // Update global W
-            this.globalVariableService.widgetReplace(this.localWidget);
+            console.log('xx localW', this.localWidget)
+            // this.globalVariableService.widgetReplace(this.localWidget);
+            this.globalVariableService.saveWidget(this.localWidget);
+            
         };
 
         // Tell user

@@ -3481,8 +3481,12 @@ export class GlobalVariableService {
 
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
-                data => {
-                    console.log('saveWidget SAVED', data)
+                res => {
+                    // Update widgets and currentWidgets
+                    this.widgetReplace(data);           
+                                     
+                    console.log('xx AFTER save', data, this.currentWidgets)
+                    console.log('saveWidget SAVED', res)
                     resolve('Saved');
                 },
                 err => {
