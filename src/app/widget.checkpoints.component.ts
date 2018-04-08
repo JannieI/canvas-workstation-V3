@@ -44,7 +44,7 @@ export class WidgetCheckpointsComponent implements OnInit {
     datagridColumns: DatagridColumn[];
     selectedRow: number = 0;
 
-    
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -80,13 +80,13 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         })
     }
- 
+
     clickRow(index: number) {
         // User clicked a row, now refresh the graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         this.selectedRow = index;
-        
+
         let definition = this.globalVariableService.createVegaLiteSpec(
             this.currentWidgetCheckpoints[index].widgetSpec
         );
@@ -118,10 +118,21 @@ export class WidgetCheckpointsComponent implements OnInit {
         });
     }
 
-    clickDeleteCheckpoint(index: number, id: number) {
+    clickDeleteCheckpoint(id: number) {
         // Delete selected Checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteCheckpoint', '@Start');
 
+        let index: number = -1;
+        for (var i = 0; i < this.currentWidgetCheckpoints.length; i++) {
+            if (this.currentWidgetCheckpoints[i].id = id) { 
+                index = i;
+            };
+        };
+
+        if (index < 0) {
+            return;
+        };
+        
         // Remove locally, globally and from DB
         this.currentWidgetCheckpoints.splice(index, 1)
         let x: number = 0;

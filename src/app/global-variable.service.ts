@@ -3849,6 +3849,9 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
 
+                    this.widgetCheckpoints.filter(chk => chk.id != id)
+                    this.currentWidgetCheckpoints.filter(chk => chk.id != id)
+
                     console.log('deleteWidgetCheckpoint DELETED id: ', id)
                     resolve('Deleted');
                 },
