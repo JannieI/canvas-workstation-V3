@@ -305,6 +305,16 @@ const dashboardTemplate: Dashboard =
         permissions: []
     };
 
+const dashboardTabTemplate: DashboardTab =
+    {
+        id: null,
+        dashboardID: 0,
+        name: 'First',
+        description: '',
+        backgroundColor: '',
+        color: ''
+                
+    };
 // Setup / Settings / General
 
 // const widgetButtonsAvailable: ButtonBarAvailable[] =
@@ -663,6 +673,8 @@ export class GlobalVariableService {
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
     dashboardTemplate: Dashboard = dashboardTemplate;
+    dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
+    
 
     // System-wide related variables, set at Installation - for later use
     // systemConfigurationID: number = -1;
