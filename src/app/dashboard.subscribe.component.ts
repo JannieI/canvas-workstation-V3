@@ -47,7 +47,7 @@ export class DashboardSubscribeComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get all dashboards
-        this.dashboards = this.globalVariableService.dashboards;
+        this.dashboards = this.globalVariableService.dashboards.slice();
 
         // Get subscriptions for current User
         this.globalVariableService.getDashboardSubscription().then(data => {
@@ -55,7 +55,7 @@ export class DashboardSubscribeComponent implements OnInit {
                 ds.userID == this.globalVariableService.currentUser.userID
             );
 
-            // Refresh Codes
+            // Refresh D Codes
             this.dashboards.forEach(d => {
                 this.dashboardSubscriptions.forEach(ds => {
                     if (ds.dashboardID == d.id) {
@@ -228,11 +228,13 @@ export class DashboardSubscribeComponent implements OnInit {
 
         let space: number = -1;
         space = this.selectedDashboard.indexOf(') ');
-
         if (space < 1) {
             return;
         };
+        
         let sID: number = +this.selectedDashboard.substring(1, space );
+        let sCode: string = this.selectedDashboard.substring(space + 2);
+
         let dIndex: number = -1;
         for (var i = 0; i < this.dashboards.length; i++) {
             if (this.dashboards[i].id == sID) {
@@ -260,9 +262,6 @@ export class DashboardSubscribeComponent implements OnInit {
                 
                 // Add locally
                 this.dashboardSubscriptions.splice(0, 0, data);
-        
-                // Add globally
-                this.globalVariableService.currentDashboardSubscription.push(data);
 
                 // Reduce available list
                 let selID: number = -1;
@@ -290,36 +289,38 @@ export class DashboardSubscribeComponent implements OnInit {
         // Deletes a Subscription
         this.globalFunctionService.printToConsole(this.constructor.name,'clickUnSubscribe', '@Start');
 
-        let index: number = -1;
-        for(var i = 0; i < this.dashboardSubscriptions.length; i++) {
-            if (this.dashboardSubscriptions[i].id == id) { 
-                index = i;
-            };
-        };
-
-        // Nothing to do
-        if (index == -1) {
-            return;
-        };
-
-        // Add to available List
-        this.availableDashboards.push('(' + this.dashboardSubscriptions[index].id + ') ' + 
-            this.dashboardSubscriptions[index].dashboardCode
-        );
-
-        // Delete locally
-        this.dashboardSubscriptions.splice(index, 1);
-        
         // Delete globally and in DB
         // TODO - Proper error handling
-        this.globalVariableService.deleteDashboardSubscription(id);
+        this.globalVariableService.deleteDashboardSubscription(id).then( res => {
 
-        // Get First one
-        if (this.availableDashboards.length > 0) {
-            this.selectedDashboard = this.availableDashboards[0];
-        };
+            // Update locally
+            this.dashboardSubscriptions = this.globalVariableService.
+                currentDashboardSubscription.slice();
+
+            let index: number = -1;
+            for(var i = 0; i < this.dashboards.length; i++) {
+                if (this.dashboards[i].id == id) { 
+                    index = i;
+                };
+            };
+
+            // Nothing to do
+            if (index == -1) {
+                return;
+            };
+    
+            // Add to available List
+            this.availableDashboards.push('(' + this.dashboards[index].id + ') ' + 
+                this.dashboards[index].code
+            );
         
-        console.log('xx del', this.dashboardSubscriptions, this.globalVariableService.currentDashboardSubscription)
+            // Get First one
+            if (this.availableDashboards.length > 0) {
+                this.selectedDashboard = this.availableDashboards[0];
+            };
+
+        });
+        
     }
  
     clickRow(index: number) {
