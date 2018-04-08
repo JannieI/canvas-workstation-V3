@@ -751,15 +751,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDelete', '@Start');
 
         if (action == 'Deleted') {
-            this.currentDashboardName = '';
-            this.currentDashboardTabIndex = 0;
-            this.currentDatasources = [];
-            this.currentTabName = '';
-            this.currentWidgetCheckpoints = [];
-            this.currentWidgetDashboardTabIDs = [];
-            this.currentWidgets = [];
-            this.hasDashboard = false;
-            this.editMode = false;
+            this.clearDashboard();
         }
         this.menuOptionClickPostAction();
 
@@ -1556,7 +1548,8 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardNew', '@Start');
 
         this.menuOptionClickPreAction();
-
+        this.editMode = true;
+        this.hasDashboard = true;
         console.log('App clickDashboardNew')
         this.showModalDashboardNew = true;
     }
@@ -4867,6 +4860,21 @@ export class AppComponent implements OnInit {
                     this.showFavouriteDashboard = true;
             };
         };
+    }
+
+    clearDashboard() {
+        // Clears all the vars for the current D
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardOpenActions', '@Start');
+
+        this.currentDashboardName = '';
+        this.currentDashboardTabIndex = 0;
+        this.currentDatasources = [];
+        this.currentTabName = '';
+        this.currentWidgetCheckpoints = [];
+        this.currentWidgetDashboardTabIDs = [];
+        this.currentWidgets = [];
+        this.hasDashboard = false;
+        this.editMode = false;
     }
 }
 
