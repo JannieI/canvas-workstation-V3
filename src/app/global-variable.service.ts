@@ -2957,17 +2957,21 @@ export class GlobalVariableService {
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-                    let dID: number = -1;
-                    for (var i = 0; i < this.currentDashboardSubscriptions.length; i++) {
-                        if (this.currentDashboardSubscriptions[i].id == id) {
-                            dID = i;
-                            break;
-                        };
-                    };
-                    if (dID >=0) {
-                        this.currentDashboardSubscriptions.splice(dID, 1);
-                    };
-                    console.log('deleteDashboardSubscription DELETED', this.currentDashboardSubscriptions)
+                    // let dID: number = -1;
+                    // for (var i = 0; i < this.currentDashboardSubscriptions.length; i++) {
+                    //     if (this.currentDashboardSubscriptions[i].id == id) {
+                    //         dID = i;
+                    //         break;
+                    //     };
+                    // };
+                    // if (dID >=0) {
+                    //     this.currentDashboardSubscriptions.splice(dID, 1);
+                    // };
+                    this.dashboardSubscriptions = this.currentDashboardSubscriptions.
+                        filter(sub => sub.id != id);
+                    this.currentDashboardSubscriptions = this.currentDashboardSubscriptions.
+                        filter(sub => sub.id != id);
+                    console.log('deleteDashboardSubscription DELETED', this.dashboardSubscriptions, this.currentDashboardSubscriptions)
                     resolve('Deleted');
                 },
                 err => {
