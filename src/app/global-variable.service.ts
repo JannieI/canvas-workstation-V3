@@ -270,6 +270,40 @@ const widgetTemplate: Widget =
         "widgetUpdatedBy": ""
     }
 
+// Dashboard template
+const dashboardTemplate: Dashboard =
+    {
+        id: null,
+        version: 0,
+        state: '',
+        code: '',
+        name: '',
+        description: '',
+        accessType: 'Private',
+        password: '',
+        refreshMode: '',
+        refreshTimer: 0,
+        defaultTabID: 0,
+        defaultExportFileType: '',
+        url: '',
+        qaRequired: false,
+        isSample: false,
+        backgroundColor: '',
+        backgroundImage: '',
+        templateDashboardID: 0,
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        refresher: '',
+        dateRefreshed: '',
+        nrWidgets: 0,
+        nrShapes: 0,
+        nrRecords: 0,
+        nrTimesOpened: 0,
+        tabs: [],
+        permissions: []
+    };
 
 // Setup / Settings / General
 
@@ -628,6 +662,7 @@ export class GlobalVariableService {
 
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
+    dashboardTemplate: Dashboard = dashboardTemplate;
 
     // System-wide related variables, set at Installation - for later use
     // systemConfigurationID: number = -1;
