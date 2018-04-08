@@ -2,40 +2,88 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <div>
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
+            <button type="button" class="closeButton" (click)="clickClose()">
+                X
+            </button>
+                <div class="gridOverall">
 
-                New Dashboard
-                <div class="propertyLine">
-                    Name:
-                    <input type="text" [(ngModel)]="dashboardName" placeholder="New (unique) name">
+                <div class="gridTitle">
+                    <b>New Dashboard</b>
                 </div>
-                <div class="propertyLine">
-                    Import:
-                    <input type="text" [(ngModel)]="importFolder" placeholder="Folder/File Name.json">
-                </div>
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    (click)="clickCreate()"
-                    >
-                    Create
-                </button>
 
-                <div>
-                    <i>Note: The existing open Dashboard will be closed (all changes will be saved
-                    automatically) and a new Dashboard will be opened.  It has one Tab
-                    called Tab1 (shown in the Statusbar at the bottom of the screen).  A Tab can be renamed
-                    by clicking on its name.  More Tabs can be added using the
-                    <clr-icon shape="plus"></clr-icon> at
-                    the buttom of the screen.  You can add Dashboard properties (Description, Theme,
-                    Schedule, Favourite, etc) under the File -> Details menu option.  After creation,
-                    the new Dashboard is only visible and editable by yourself.  Other users or groups
-                    have to be granted Permissions, using the File -> Permissions menu option.
+                <div class="gridSubTitle">
+                    <i>
+                        Note: The existing open Dashboard will be closed (all changes will be saved
+                        automatically) and a new Dashboard will be opened.  It has one Tab
+                        called Tab1 (shown in the Statusbar at the bottom of the screen).  A Tab can be renamed
+                        by clicking on its name.  More Tabs can be added using the
+                        <clr-icon shape="plus"></clr-icon> at
+                        the buttom of the screen.  You can add Dashboard properties (Description, Theme,
+                        Schedule, Favourite, etc) under the File -> Details menu option.  After creation,
+                        the new Dashboard is only visible and editable by yourself.  Other users or groups
+                        have to be granted Permissions, using the File -> Permissions menu option.
                     </i>
                 </div>
+
+                <div class="gridAddCodeTitle">
+                    <b>New Code:</b>
+                </div>
+                <div class="gridAddCode">
+                    <input type="text" 
+                        [(ngModel)]="dashboardCode" 
+                        size="25"
+                        placeholder="New (unique) Code"
+                        >
+                </div>
+
+                <div class="gridAddNameTitle">
+                    <b>New Name:</b>
+                </div>
+                <div class="gridAddName">
+                    <input type="text" 
+                        [(ngModel)]="dashboardName" 
+                        size="40"
+                        placeholder="New (unique) name"
+                        >
+                </div>
+
+                <div class="gridAddDescriptionTitle">
+                    <b>New Description:</b>
+                </div>
+                <div class="gridAddDescription">
+                    <input type="text" 
+                        [(ngModel)]="dashboardDescription" 
+                        placeholder="Description"
+                        size="50"
+                        >
+                </div>
+                
+                <div class="gridAddImportTitle">
+                    <b>Import:</b>
+                </div>
+                <div class="gridAddImport">
+                    <input type="text" [(ngModel)]="importFolder" placeholder="Folder/File Name.json">
+                </div>
+
+                <div class="gridCancelButton">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose()"
+                        >
+                        Cancel
+                    </button>
+                </div>
+                <div class="gridSaveButton">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickCreate()"
+                        >
+                        Create
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
