@@ -99,12 +99,16 @@ export class DashboardNewComponent implements OnInit {
                 color: ''
                         
             }
+
+            // Add Tab to DB
+            this.globalVariableService.addDashboardTab(newDashboardTab).then(t => {
+
+                this.globalVariableService.refreshCurrentDashboard(
+                    'addDashboard-clickCreate', d.id, -1, ''
+                );
                 
-            this.globalVariableService.refreshCurrentDashboard(
-                'addDashboard-clickCreate', d.id, -1, ''
-            );
-            
-            this.formDashboardNewClosed.emit('Created');
+                this.formDashboardNewClosed.emit('Created');
+            })
         })
         
     }
