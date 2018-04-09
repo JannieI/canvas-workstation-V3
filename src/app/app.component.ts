@@ -598,7 +598,6 @@ export class AppComponent implements OnInit {
             this.showModalLanding = false;
         };
 
-        this.globalVariableService.currentUser.favouriteDashboards, this.globalVariableService.currentDashboards, this.showFavouriteDashboard)
     }
 
     handleCloseDashboardNew(action: string) {

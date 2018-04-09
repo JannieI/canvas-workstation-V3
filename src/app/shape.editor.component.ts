@@ -126,9 +126,9 @@ export class ShapeEditComponent implements OnInit {
         this.showValue = false;
 
         // Reset defaults, making sure localWidget exists
-        if (this.localWidget) {
-            this.localWidget.containerHasTitle = false;
-        };
+        // if (this.localWidget) {
+        //     this.localWidget.containerHasTitle = false;
+        // };
 
         if (shapeType == 'Circle') {
             this.showCircle = true;
