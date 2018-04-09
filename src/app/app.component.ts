@@ -594,11 +594,6 @@ export class AppComponent implements OnInit {
                 this.showModalDashboardOpen = true;
             };
 
-            if (this.globalVariableService.openNewDashboardFormOnStartup) {
-                console.log('handleCloseModalLanding 2')
-                this.showModalData = true;
-            };
-
             this.dashboardOpenActions();
         };
         console.log('xx this.globalVariableService.currentDashboards',

@@ -229,8 +229,6 @@ export class LandingComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenNewDashboard', '@Start');
 
-		this.globalVariableService.openNewDashboardFormOnStartup = true;
-
 		this.formLandingClosed.emit('New');
 	}
 
