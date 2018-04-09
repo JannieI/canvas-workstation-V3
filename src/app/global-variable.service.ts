@@ -1384,43 +1384,6 @@ export class GlobalVariableService {
 
     }
 
-    // getDashboardsRecent(userID: string): Promise<Dashboard[]> {
-    //     // Description: Gets all Recent D
-    //     // Returns: recent [D] array, unless:
-    //     //   If not cached or if dirty, get from File
-    //     console.log('Global-Variables getDashboardsRecent ...');
-
-    //     // Refresh from source at start, or if dirty
-    //     if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
-    //         return new Promise<Dashboard[]>((resolve, reject) => {
-    //             this.getDashboardsRecentList(userID)
-    //                 .then(data => {
-    //                     let returnData: Dashboard[] = [];
-    //                     for (var i = 0; i < this.dashboards.length; i++) {
-    //                         if (data.indexOf(this.dashboards[i].id) != -1) {
-    //                             returnData.push(this.dashboards[i]);
-    //                         }
-    //                     }
-    //                     console.log('Global-Variables getDashboardsRecent 1', userID, returnData)
-    //                     resolve(returnData);
-
-    //             })
-    //          })
-    //     } else {
-    //         return new Promise<Dashboard[]>((resolve, reject) => {
-    //             let returnData: Dashboard[] = [];
-    //             for (var i = 0; i < this.dashboards.length; i++) {
-    //                 if (this.dashboardsRecent.indexOf(this.dashboards[i].id) != -1) {
-    //                     returnData.push(this.dashboards[i]);
-    //                 }
-    //             }
-    //             console.log('Global-Variables getDashboardsRecent 2', userID, returnData)
-    //             resolve(returnData);
-    //         });
-    //     };
-
-    // }
-
     getDashboardsRecent(userID: string): Promise<DashboardRecent[]>  {
         // Description: Gets an array of recently used D (not the Ds itself)
         // Returns: return array from source, not cached
@@ -1927,6 +1890,13 @@ export class GlobalVariableService {
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
+                            
+                    this.dashboardTags = this.dashboardTags.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDashboardTags = this.currentDashboardTags.filter(
+                        dsp => dsp.id != id
+                    );
 
                     console.log('deleteDashboardTag DELETED id: ', id)
                     resolve('Deleted');
@@ -3026,16 +2996,6 @@ export class GlobalVariableService {
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-                    // let dID: number = -1;
-                    // for (var i = 0; i < this.currentDashboardSubscriptions.length; i++) {
-                    //     if (this.currentDashboardSubscriptions[i].id == id) {
-                    //         dID = i;
-                    //         break;
-                    //     };
-                    // };
-                    // if (dID >=0) {
-                    //     this.currentDashboardSubscriptions.splice(dID, 1);
-                    // };
                     
                     this.dashboardSubscriptions = this.dashboardSubscriptions.
                         filter(sub => sub.id != id);
