@@ -4385,6 +4385,9 @@ console.log('xx w', this.currentWidgets)
             this.globalVariableService.changedWidget.next(this.currentWidgets[index]);
         };
 
+        // Save to DB
+        this.globalVariableService.saveWidget(this.currentWidgets[index]);
+
         this.menuOptionClickPostAction();
     }
 
