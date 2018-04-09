@@ -131,31 +131,18 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.currentWidgetCheckpoints.splice(0, 0, newCheckpoint);
             this.nrCheckpoints = this.currentWidgetCheckpoints.length;
 
-        // // Update W
-        // if (this.currentWidgetCheckpoints.length > 0) {
-        //     this.selectedWidget.showCheckpoints = false;
-        //     if (this.selectedWidget.checkpointIDs.indexOf(id) < 0) {
-        //         this.selectedWidget.checkpointIDs.push(id);
-        //     };
-        //     this.selectedWidget.currentCheckpoint = 0;
-        //     this.selectedWidget.lastCheckpoint = -1;
-        // } else {
-        //     this.selectedWidget.showCheckpoints = false;
-        //     this.selectedWidget.checkpointIDs = [];
-        //     this.selectedWidget.currentCheckpoint = 0;
-        //     this.selectedWidget.lastCheckpoint = -1;
+            // Update W
+            this.selectedWidget.showCheckpoints = false;
+            if (this.selectedWidget.checkpointIDs.indexOf(res.id) < 0) {
+                this.selectedWidget.checkpointIDs.push(res.id);
+            };
+            this.selectedWidget.currentCheckpoint = 0;
+            this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
 
-
-
+            console.log('xx W', this.selectedWidget)
+            
             this.clickRow(0, res.id);
         });
-
-        // Update W
-        if (this.currentWidgetCheckpoints.length > 0) {
-            this.selectedWidget.showCheckpoints = true;
-        } else {
-            this.selectedWidget.showCheckpoints = false;
-        };
         
     }
 
