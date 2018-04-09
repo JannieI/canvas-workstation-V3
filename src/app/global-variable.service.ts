@@ -980,17 +980,19 @@ export class GlobalVariableService {
         // TODO - update DB
         this.dashboards.forEach(d => {
             if (d.templateDashboardID == dashboardID) {
-            d.templateDashboardID == 0;
+                d.templateDashboardID == 0;
+                this.saveDashboard(d);
             };
         });
         this.currentDashboards.forEach(d => {
             if (d.templateDashboardID == dashboardID) {
-            d.templateDashboardID == 0;
+                d.templateDashboardID == 0;
             };
         });
         this.widgets.forEach(w => {
             if (w.hyperlinkDashboardID == dashboardID) {
                 w.hyperlinkDashboardID = 0;
+                this.saveWidget(w);
             };
         });
         this.currentWidgets.forEach(w => {
@@ -998,9 +1000,17 @@ export class GlobalVariableService {
                 w.hyperlinkDashboardID = 0;
             };
         });
+        this.canvasUsers.forEach(u => {
+            if (u.startupDashboardID == dashboardID) {
+                u.startupDashboardID = 0;
+                this.saveu
+            };
+            u.favouriteDashboards.filter(f => f != dashboardID) 
+        });
 
         // Delete from DB
         this.deleteDashboard(dashboardID);
+
         this.dashboardTabs.forEach(t => {
             if (t.dashboardID != dashboardID) {
                 this.deleteDashboardTab(t.id);
@@ -1031,33 +1041,25 @@ export class GlobalVariableService {
                 this.deleteDashboardSchedule(sch.id);
             };
         });
-
-        this.currentDashboardSubscriptions = this.currentDashboardSubscriptions.filter(sub => 
-            sub.dashboardID != dashboardID 
-        );
-        this.dashboardTags = this.dashboardTags.filter(tag => 
-            tag.dashboardID != dashboardID 
-        );
-        this.currentDashboardTags = this.currentDashboardTags.filter(tag =>
-            tag.dashboardID != dashboardID
-        );
-        this.dashboardPermissions = this.dashboardPermissions.filter(dp =>
-            dp.dashboardID != dashboardID
-        );
-        this.currentDashboardPermissions = this.currentDashboardPermissions.filter(dp =>
-            dp.dashboardID != dashboardID
-        );
-        this.widgetCheckpoints = this.widgetCheckpoints.filter(chk =>
-            chk.dashboardID != dashboardID
-        );
-        this.currentWidgetCheckpoints = this.currentWidgetCheckpoints.filter(chk =>
-            chk.dashboardID != dashboardID
-        );
-        this.canvasUsers.forEach(u => {
-            if (u.startupDashboardID == dashboardID) {
-                u.startupDashboardID = 0;
+        this.currentDashboardSubscriptions.forEach(sub =>  {
+            if (sub.dashboardID != dashboardID) {
+                this.deleteDashboardSubscription(sub.id);
             };
-            u.favouriteDashboards.filter(f => f != dashboardID) 
+        });
+        this.dashboardTags.forEach(t => {
+            if (t.dashboardID != dashboardID) {
+                this.deleteDashboardTag(t.id);
+            };
+        });
+        this.dashboardPermissions.forEach(t => {
+            if (t.dashboardID != dashboardID) {
+                this.deleteDashboardPermission(t.id);
+            };
+        });
+        this.widgetCheckpoints.forEach(chk => {
+            if (chk.dashboardID != dashboardID) {
+                this.deleteWidgetCheckpoint(chk.id);
+            };
         });
 
     }
@@ -1091,6 +1093,40 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error deleteDashboard FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    saveDashboard(data: Dashboard): Promise<string> {
+        // Description: Saves Dashboard
+        // Returns: 'Saved' or error message
+        console.log('Global-Variables saveDashboard ...');
+
+        let url: string = 'dashboards';
+        this.filePath = './assets/data.dashboards.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                data => {
+
+                    // TODO - update local vars
+                    // this.dashboards.forEach(d => {
+                    //     if (d.id == data.id) {
+                    //         d = data;
+                    //     };
+                    // });
+                    console.log('saveDashboard SAVED', data)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDashboard FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -3974,7 +4010,7 @@ export class GlobalVariableService {
         });
 
     }
-
+    
     getCurrentWidgetCheckpoints(dashboardID: number): Promise<WidgetCheckpoint[]> {
         // Description: Gets all Checkpoints for current D
         // Returns: this.currentWidgetCheckpoints array, unless:
@@ -4115,6 +4151,36 @@ export class GlobalVariableService {
             }
         });
 
+    }
+
+
+    saveCanvasUser(data: CanvasUser): Promise<string> {
+        // Description: Saves CanvasUser
+        // Returns: 'Saved' or error message
+        console.log('Global-Variables saveCanvasUser ...');
+
+        let url: string = 'canvasUsers';
+        this.filePath = './assets/data.canvasUsers.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+                    // TODO - fix DB
+                                     
+                    console.log('saveCanvasUser SAVED', res)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveCanvasUser FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
