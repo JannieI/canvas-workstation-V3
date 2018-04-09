@@ -94,8 +94,9 @@
 
                     </div>
 
-                <div class="graphArea" #dragWidget>
-
+                <div class="graphArea" #dragWidget
+                    [hidden]="nrCheckpoints > 0? false : true" 
+                    >
                 </div>
 
             </div>

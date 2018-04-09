@@ -42,6 +42,7 @@ export class WidgetCheckpointsComponent implements OnInit {
     checkpointName: string;
     currentWidgetCheckpoints: WidgetCheckpoint[];
     datagridColumns: DatagridColumn[];
+    nrCheckpoints: number = 1;
     selectedRow: number = 0;
 
 
@@ -63,6 +64,8 @@ export class WidgetCheckpointsComponent implements OnInit {
                 &&
                 wc.widgetID == this.selectedWidget.id
             );
+
+            this.nrCheckpoints = this.currentWidgetCheckpoints.length;
 
             if (this.currentWidgetCheckpoints != undefined) {
                 if (this.currentWidgetCheckpoints.length > 0) {
@@ -86,6 +89,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         this.selectedRow = index;
+        this.nrCheckpoints = this.currentWidgetCheckpoints.length;
 
         // Refresh graph
         let idx: number = -1;
@@ -94,12 +98,14 @@ export class WidgetCheckpointsComponent implements OnInit {
                 idx = i;
             };
         };
-        let definition = this.globalVariableService.createVegaLiteSpec(
-            this.currentWidgetCheckpoints[idx].widgetSpec
-        );
 
         // Render
-        this.renderGraph(definition)
+        if (this.currentWidgetCheckpoints.length > 0) {
+            let definition = this.globalVariableService.createVegaLiteSpec(
+                this.currentWidgetCheckpoints[idx].widgetSpec
+            );
+            this.renderGraph(definition)
+        };
 
     }
 
@@ -123,8 +129,10 @@ export class WidgetCheckpointsComponent implements OnInit {
             console.log('xx res', res)
             newCheckpoint.id = res.id;
             this.currentWidgetCheckpoints.splice(0, 0, newCheckpoint);
+            this.nrCheckpoints = this.currentWidgetCheckpoints.length;
             this.clickRow(0, res.id);
         });
+        
     }
 
     clickDeleteCheckpoint(id: number) {
@@ -143,7 +151,8 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.currentWidgetCheckpoints.splice(index, 1);
         };
         this.globalVariableService.deleteWidgetCheckpoint(id);
-
+        
+        this.nrCheckpoints = this.currentWidgetCheckpoints.length;
     }
 
     renderGraph(definition: any) {

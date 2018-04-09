@@ -218,7 +218,7 @@ const widgetTemplate: Widget =
         "graphYfield": "",
         "graphYtype": "",
         "graphYaxisTitle": "",
-        "graphTitle": "graphTitle",
+        "graphTitle": "",
         "graphMark": "tick",
         "graphMarkColor": "#4682b4",
         "graphUrl": "",
