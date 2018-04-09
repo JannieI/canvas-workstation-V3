@@ -139,7 +139,7 @@ export class ShapeEditComponent implements OnInit {
         if (shapeType == 'Rectangle') {
             this.showRectangle = true;
         };
-        console.log('xx this.localWidget.shapeText',this.localWidget.shapeText)
+
         if (shapeType == 'Text') {
             this.showText = true;
             if (this.localWidget.shapeText == null) {
@@ -270,7 +270,6 @@ export class ShapeEditComponent implements OnInit {
                 defaultMessage: ''
             }
         );
-        console.log('xx this.localWidget', this.localWidget)
 
 	  	this.formShapeEditClosed.emit(this.localWidget);
     }

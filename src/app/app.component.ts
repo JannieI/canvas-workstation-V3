@@ -597,7 +597,7 @@ export class AppComponent implements OnInit {
             this.dashboardOpenActions();
             this.showModalLanding = false;
         };
-        console.log('xx this.globalVariableService.currentDashboards',
+
         this.globalVariableService.currentUser.favouriteDashboards, this.globalVariableService.currentDashboards, this.showFavouriteDashboard)
     }
 
@@ -1721,7 +1721,6 @@ export class AppComponent implements OnInit {
                     if (u.favouriteDashboards.indexOf(dashboardID) < 0) {
                         u.favouriteDashboards.push(dashboardID);
                     };
-                    console.log('xx user', u.favouriteDashboards)
                 };
 
             });
@@ -1733,7 +1732,6 @@ export class AppComponent implements OnInit {
                             f != dashboardID
                         );
                     };
-                    console.log('xx user', u.favouriteDashboards)
                 };
 
             });
@@ -3132,7 +3130,6 @@ export class AppComponent implements OnInit {
         }
 
         this.zoomFactor = 'scale(' + zoomPercentage.toString() + ')';
-        // console.log('xx this.zoomFactor', zoomPercentage, this.zoomFactor)
 
         this.menuOptionClickPostAction();
         return this.zoomFactor;
@@ -4518,7 +4515,6 @@ export class AppComponent implements OnInit {
 
         // Restore the Original (when moving out of showCheckpoint mode)
         if (showCheckpoints) {
-            console.log('xx this.currentWidgetsOriginals', this.currentWidgetsOriginals.length, this.currentWidgetsOriginals[0].graphMark)
 
             this.currentWidgetsOriginals.forEach(wo => {
                 if (wo.dashboardID == dashboardID  &&  wo.id == id) {
@@ -4668,8 +4664,6 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.changedWidget.next(newWspec);
             };
         };
-        console.log('xx end 1', currentCheckpoint,checkpointIDs)
-        console.log('xx end2', this.currentWidgetCheckpoints, newW, newWspec)
     }
 
     deleteWidget(widgetType, widgetID: number = null) {
@@ -4855,7 +4849,7 @@ export class AppComponent implements OnInit {
 
         // Reset stuckCount
         this.stuckCount = 0;
-        
+
         // Set Fav
         this.showFavouriteDashboard = false;
         for (let i = 0; i < this.globalVariableService.currentDashboards.length; i++) {

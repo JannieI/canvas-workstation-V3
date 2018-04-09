@@ -1387,7 +1387,7 @@ export class GlobalVariableService {
         });
 
         return new Promise<any>((resolve, reject) => {
-            console.log('xx getCurrentDataset', url, dsSourceLocation)
+
             // Get data from the correct place
             if (dsSourceLocation == 'localDB') {
 
@@ -1446,7 +1446,7 @@ export class GlobalVariableService {
             };
 
             if (dsSourceLocation == 'HTTP') {
-                console.log('xx getCurrentDataset', url )
+
                 this.get(url)
                     .then(dataFile => {
 
@@ -3352,7 +3352,6 @@ export class GlobalVariableService {
                     // Update widgets and currentWidgets
                     this.widgetReplace(data);           
                                      
-                    console.log('xx AFTER save', data, this.currentWidgets)
                     console.log('saveWidget SAVED', res)
                     resolve('Saved');
                 },
@@ -5048,7 +5047,7 @@ export class GlobalVariableService {
                 dashboard = Object.assign({}, d);
             };
         });
-console.log('xx perms', dashboard.id, dashboard.accessType, dashboard.creator)
+
         // Make sure we have a D
         if (dashboard == undefined) {
             return;
