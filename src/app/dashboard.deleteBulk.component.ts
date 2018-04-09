@@ -40,7 +40,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards;
+        this.dashboards = this.globalVariableService.dashboards.slice();
     }
 
     clickClose(action: string) {
@@ -62,8 +62,10 @@ export class DashboardDeleteBulkComponent implements OnInit {
 
         this.errorMessage = '';
 
-        // TODO - real delete later on
-        // this.globalVariableService.deleteWidget(index);
+        // Delete D, as all related Entities
+        this.dashboards = this.dashboards.filter(d => d.id != id);
+        this.globalVariableService.deleteWidget(id);
+
     }
  
     clickRow(index: number) {

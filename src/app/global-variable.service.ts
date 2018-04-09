@@ -3365,14 +3365,14 @@ export class GlobalVariableService {
 
     deleteWidget(dashboardID: number) {
         // Deletes D with all related Entities
-        console.log('Global-Variables getCurrentWidgets ...');
+        console.log('Global-Variables deleteWidget ...');
 
-        this.dashboards.filter(d =>
+        this.dashboards = this.dashboards.filter(d => 
             d.id != dashboardID
         );
-        this.currentDashboards.filter(d =>
+        this.currentDashboards = this.currentDashboards.filter(d =>
             d.id != dashboardID
-        );
+        ).slice();
         this.dashboards.forEach(d => {
             if (d.templateDashboardID == dashboardID) {
             d.templateDashboardID == 0;
@@ -3383,19 +3383,19 @@ export class GlobalVariableService {
             d.templateDashboardID == 0;
             };
         });
-        this.dashboardTabs.filter(t =>
+        this.dashboardTabs = this.dashboardTabs.filter(t =>
             t.dashboardID != dashboardID
         );
-        this.currentDashboardTabs.filter(t =>
+        this.currentDashboardTabs = this.currentDashboardTabs.filter(t =>
             t.dashboardID != dashboardID
         );
-        this.widgets.filter(w =>
+        this.widgets = this.widgets.filter(w =>
             w.dashboardID != dashboardID
         );
-        this.currentWidgets.filter(w =>
+        this.currentWidgets = this.currentWidgets.filter(w =>
             w.dashboardID != dashboardID
         );
-        this.widgets.forEach(w => {
+       this.widgets.forEach(w => {
             if (w.hyperlinkDashboardID == dashboardID) {
                 w.hyperlinkDashboardID = 0;
             };
@@ -3405,43 +3405,43 @@ export class GlobalVariableService {
                 w.hyperlinkDashboardID = 0;
             };
         });
-        this.dashboardSnapshots.filter(snp =>
+        this.dashboardSnapshots = this.dashboardSnapshots.filter(snp =>
             snp.dashboardID != dashboardID 
         );
-        this.currentDashboardSnapshots.filter(snp =>
+        this.currentDashboardSnapshots = this.currentDashboardSnapshots.filter(snp =>
             snp.dashboardID != dashboardID 
         );
-        this.canvasMessages.filter(mes => 
+        this.canvasMessages = this.canvasMessages.filter(mes => 
             mes.dashboardID != dashboardID 
         );
-        this.canvasComments.filter(com => 
+        this.canvasComments = this.canvasComments.filter(com => 
             com.dashboardID != dashboardID 
         );
-        this.dashboardSchedules.filter(sch => 
+        this.dashboardSchedules = this.dashboardSchedules.filter(sch => 
             sch.dashboardID != dashboardID 
         );
-        this.currentDashboardSchedules.filter(sch => 
+        this.currentDashboardSchedules = this.currentDashboardSchedules.filter(sch => 
             sch.dashboardID != dashboardID 
         );
-        this.currentDashboardSubscriptions.filter(sub => 
+        this.currentDashboardSubscriptions = this.currentDashboardSubscriptions.filter(sub => 
             sub.dashboardID != dashboardID 
         );
-        this.dashboardTags.filter(tag => 
+        this.dashboardTags = this.dashboardTags.filter(tag => 
             tag.dashboardID != dashboardID 
         );
-        this.currentDashboardTags.filter(tag =>
+        this.currentDashboardTags = this.currentDashboardTags.filter(tag =>
             tag.dashboardID != dashboardID
         );
-        this.dashboardPermissions.filter(dp =>
+        this.dashboardPermissions = this.dashboardPermissions.filter(dp =>
             dp.dashboardID != dashboardID
         );
-        this.currentDashboardPermissions.filter(dp =>
+        this.currentDashboardPermissions = this.currentDashboardPermissions.filter(dp =>
             dp.dashboardID != dashboardID
         );
-        this.widgetCheckpoints.filter(chk =>
+        this.widgetCheckpoints = this.widgetCheckpoints.filter(chk =>
             chk.dashboardID != dashboardID
         );
-        this.currentWidgetCheckpoints.filter(chk =>
+        this.currentWidgetCheckpoints = this.currentWidgetCheckpoints.filter(chk =>
             chk.dashboardID != dashboardID
         );
         this.canvasUsers.forEach(u => {
@@ -3450,7 +3450,9 @@ export class GlobalVariableService {
             };
             u.favouriteDashboards.filter(f => f != dashboardID) 
         });
+console.log('xx and GV del', this.dashboards,
 
+this.currentDashboards)
     }
 
     getWidgetsInfo(): Promise<boolean> {
