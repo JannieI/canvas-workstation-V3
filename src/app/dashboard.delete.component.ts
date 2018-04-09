@@ -137,7 +137,7 @@ export class DashboardDeleteComponent implements OnInit {
         };
 
         // Delete D, as all related Entities
-        this.globalVariableService.deleteWidget(
+        this.globalVariableService.deleteDashboardInfo(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         );
 

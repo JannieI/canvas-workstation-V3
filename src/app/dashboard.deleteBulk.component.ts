@@ -60,11 +60,22 @@ export class DashboardDeleteBulkComponent implements OnInit {
             return;
         };
 
+        // TODO - remove later on!!
+        if (id < 9) {
+            alert('Dont delete 1-8 while testing !')
+            return;
+        }
         this.errorMessage = '';
+
+        // Cant delete CurrentD here -> goto Delete option
+        if (id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID) {
+            this.errorMessage = 'Current Dashboard must be deleted with Dashboard -> Delete option';
+            return;
+        };
 
         // Delete D, as all related Entities
         this.dashboards = this.dashboards.filter(d => d.id != id);
-        this.globalVariableService.deleteWidget(id);
+        this.globalVariableService.deleteDashboardInfo(id);
 
     }
  
