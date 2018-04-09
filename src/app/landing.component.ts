@@ -59,13 +59,13 @@ export class LandingComponent implements OnInit {
 			// Sample Dashboards
 			this.globalVariableService.getDashboardSamples().then(sD => {
 				this.sampleDashboards = sD;
-
+				console.log('xx this.sampleDashboards', this.sampleDashboards)
 				// Recent D
 				this.globalVariableService.getDashboardsRecent(
 					this.globalVariableService.currentUser.userID
 					).then(recD => {
 					this.recentDashboards = recD;
-
+					console.log('xx this.recentDashboards', this.recentDashboards)
 					// Palette buttons for current user
 					this.globalVariableService.getPaletteButtonsSelected().then(
 						pBsel => {
@@ -147,8 +147,9 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
 		// Get setup info
-		this.globalVariableService.getBackgroundColors();
-		
+		this.globalVariableService.getBackgroundColors().then(res => 
+			console.log('xx getBackgroundColors', this.globalVariableService.backgroundcolors)
+		);
 	}
 
 	ngAfterViewInit() {

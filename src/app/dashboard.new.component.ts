@@ -79,6 +79,7 @@ export class DashboardNewComponent implements OnInit {
         newDashboard.code = this.dashboardCode;
         newDashboard.name = this.dashboardName;
         newDashboard.description = this.dashboardDescription;
+        newDashboard.creator = this.globalVariableService.currentUser.userID;
 
         // Add new to DB, and open
         this.globalVariableService.addDashboard(newDashboard).then(d => {

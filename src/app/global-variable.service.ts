@@ -1005,6 +1005,7 @@ export class GlobalVariableService {
                 u.startupDashboardID = 0;
             };
             u.favouriteDashboards.filter(f => f != dashboardID) 
+            // TODO - improve this to not update ALL users
             this.saveCanvasUser(u);
         });
 
@@ -1012,7 +1013,7 @@ export class GlobalVariableService {
         this.deleteDashboard(dashboardID);
 
         this.dashboardTabs.forEach(t => {
-            if (t.dashboardID != dashboardID) {
+            if (t.dashboardID == dashboardID) {
                 this.deleteDashboardTab(t.id);
             };
         });
@@ -1022,42 +1023,42 @@ export class GlobalVariableService {
             };
         });
         this.dashboardSnapshots.forEach(snp => {
-            if (snp.dashboardID != dashboardID) {
+            if (snp.dashboardID == dashboardID) {
                 this.deleteDashboardSnapshot(snp.id);
             };
         });
         this.canvasMessages.forEach(mes => {
-            if (mes.dashboardID != dashboardID) {
+            if (mes.dashboardID == dashboardID) {
                 this.deleteCanvasMessage(mes.id);
             };
         });
         this.canvasComments.forEach(com => {
-            if (com.dashboardID != dashboardID) {
+            if (com.dashboardID == dashboardID) {
                 this.deleteCanvasComment(com.id);
             };
         });
         this.dashboardSchedules.forEach(sch => {
-            if (sch.dashboardID != dashboardID) {
+            if (sch.dashboardID == dashboardID) {
                 this.deleteDashboardSchedule(sch.id);
             };
         });
         this.currentDashboardSubscriptions.forEach(sub =>  {
-            if (sub.dashboardID != dashboardID) {
+            if (sub.dashboardID == dashboardID) {
                 this.deleteDashboardSubscription(sub.id);
             };
         });
         this.dashboardTags.forEach(t => {
-            if (t.dashboardID != dashboardID) {
+            if (t.dashboardID == dashboardID) {
                 this.deleteDashboardTag(t.id);
             };
         });
         this.dashboardPermissions.forEach(t => {
-            if (t.dashboardID != dashboardID) {
+            if (t.dashboardID == dashboardID) {
                 this.deleteDashboardPermission(t.id);
             };
         });
         this.widgetCheckpoints.forEach(chk => {
-            if (chk.dashboardID != dashboardID) {
+            if (chk.dashboardID == dashboardID) {
                 this.deleteWidgetCheckpoint(chk.id);
             };
         });
