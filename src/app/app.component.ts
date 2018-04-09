@@ -4196,6 +4196,7 @@ console.log('xx w', this.currentWidgets)
                     null
                 );
 
+                // Move the container
                 w.containerLeft = w.containerLeft - this.startX + this.endX;
                 w.containerTop = w.containerTop - this.startY + this.endY;
 
@@ -4207,6 +4208,7 @@ console.log('xx w', this.currentWidgets)
                         w.containerTop);
                 };
 
+                // Add to action log
                 actID = this.globalVariableService.actionUpsert(
                     actID,
                     this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
@@ -4219,6 +4221,10 @@ console.log('xx w', this.currentWidgets)
                     null,
                     w
                 );
+
+                // Save to DB
+                this.globalVariableService.saveWidget(w);
+                
             }
         });
         this.globalVariableService.currentWidgets.forEach( w => {
