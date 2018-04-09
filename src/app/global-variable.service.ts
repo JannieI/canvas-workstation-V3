@@ -1040,15 +1040,6 @@ export class GlobalVariableService {
 
     }
 
-    datasourceDelete(index: number) {
-        //
-        console.log('Global-Variables datasourceDelete ...');
-
-        let arr: Datasource[] = this.datasources.splice(index,1);
-        console.log('Global-Variables datasourceDelete arr', arr)
-        this.datasources = this.datasources;
-    }
-
     dashboardDelete(index: number) {
         //
         console.log('Global-Variables dashboardDelete', index)
