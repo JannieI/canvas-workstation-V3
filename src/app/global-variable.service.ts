@@ -988,17 +988,7 @@ export class GlobalVariableService {
             d.templateDashboardID == 0;
             };
         });
-
-        // Delete from DB
-        this.deleteDashboard(dashboardID);
-        this.deleteDashboardTab(dashboardID);
-        this.widgets = this.widgets.filter(w =>
-            w.dashboardID != dashboardID
-        );
-        this.currentWidgets = this.currentWidgets.filter(w =>
-            w.dashboardID != dashboardID
-        );
-       this.widgets.forEach(w => {
+        this.widgets.forEach(w => {
             if (w.hyperlinkDashboardID == dashboardID) {
                 w.hyperlinkDashboardID = 0;
             };
@@ -1008,12 +998,20 @@ export class GlobalVariableService {
                 w.hyperlinkDashboardID = 0;
             };
         });
-        this.dashboardSnapshots = this.dashboardSnapshots.filter(snp =>
-            snp.dashboardID != dashboardID 
-        );
-        this.currentDashboardSnapshots = this.currentDashboardSnapshots.filter(snp =>
-            snp.dashboardID != dashboardID 
-        );
+
+        // Delete from DB
+        this.deleteDashboard(dashboardID);
+        this.deleteDashboardTab(dashboardID);
+        this.widgets.forEach(w => {
+            if (w.dashboardID == dashboardID) {
+                this.deleteWidget(w.id);
+            };
+        });
+        this.dashboardSnapshots.forEach(snp => {
+            if (snp.dashboardID != dashboardID) {
+                this.deleteDashboardSnapshot(snp.id);
+            };
+        });
         this.canvasMessages = this.canvasMessages.filter(mes => 
             mes.dashboardID != dashboardID 
         );
@@ -1319,10 +1317,10 @@ export class GlobalVariableService {
                 data => {
                             
                     this.dashboardTabs = this.dashboardTabs.filter(
-                        dsp => dsp.id != id
+                        t => t.id != id
                     );
                     this.currentDashboardTabs = this.currentDashboardTabs.filter(
-                        dsp => dsp.id != id
+                        t => t.id != id
                     );
 
                     console.log('deleteDashboardTab DELETED id: ', id)
@@ -3415,8 +3413,8 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
 
-                    this.widgets.filter(chk => chk.id != id)
-                    this.currentWidgets.filter(chk => chk.id != id)
+                    this.widgets.filter(w => w.id != id)
+                    this.currentWidgets.filter(w => w.id != id)
 
                     console.log('deleteWidget DELETED id: ', id)
                     resolve('Deleted');
@@ -3869,6 +3867,38 @@ export class GlobalVariableService {
             }
         });
 
+    }
+
+    deleteCanvasMessage(id: number): Promise<string> {
+        // Description: Deletes a canvasMessages
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteCanvasMessage ...');
+
+        let url: string = 'canvasMessages';
+        this.filePath = './assets/data.CanvasMessages.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+   
+                    this.canvasMessages = this.canvasMessages.filter(
+                        com => com.id != id
+                    );
+
+                    console.log('deleteCanvasMessage DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteCanvasMessage FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
     getWidgetCheckpoints(): Promise<WidgetCheckpoint[]> {
