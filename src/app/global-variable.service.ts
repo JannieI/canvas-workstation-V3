@@ -3493,8 +3493,12 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
 
-                    this.widgets.filter(w => w.id != id)
-                    this.currentWidgets.filter(w => w.id != id)
+                    this.widgets = this.widgets.filter(
+                        w => w.id != id
+                    );
+                    this.currentWidgets = this.currentWidgets.filter(
+                        w => w.id != id
+                    );
 
                     console.log('deleteWidget DELETED id: ', id)
                     resolve('Deleted');
@@ -4096,8 +4100,12 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
 
-                    this.widgetCheckpoints.filter(chk => chk.id != id)
-                    this.currentWidgetCheckpoints.filter(chk => chk.id != id)
+                    this.widgetCheckpoints = this.widgetCheckpoints.filter(
+                        chk => chk.id != id
+                    );
+                    this.currentWidgetCheckpoints = this.currentWidgetCheckpoints.filter(
+                        chk => chk.id != id
+                    );
 
                     console.log('deleteWidgetCheckpoint DELETED id: ', id)
                     resolve('Deleted');
