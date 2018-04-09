@@ -126,7 +126,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         // Add locally, globally and to DB (with new ID)
         this.globalVariableService.addWidgetCheckpoint(newCheckpoint).then(res => {
-            console.log('xx res', res)
+
             newCheckpoint.id = res.id;
             this.currentWidgetCheckpoints.splice(0, 0, newCheckpoint);
             this.nrCheckpoints = this.currentWidgetCheckpoints.length;
@@ -139,8 +139,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.selectedWidget.currentCheckpoint = 0;
             this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
 
-            console.log('xx W', this.selectedWidget)
-            
+            // Show the Graph
             this.clickRow(0, res.id);
         });
         
@@ -178,7 +177,11 @@ export class WidgetCheckpointsComponent implements OnInit {
         };
         this.selectedWidget.currentCheckpoint = 0;
         this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
-        console.log('xx W', this.selectedWidget)
+
+        // Show the Graph
+        if (this.currentWidgetCheckpoints.length > 0) {
+            this.clickRow(0, this.currentWidgetCheckpoints[0].id);
+        };
 
     }
 

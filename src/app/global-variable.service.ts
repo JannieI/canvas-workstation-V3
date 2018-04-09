@@ -4100,6 +4100,7 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
 
+                    // Update vars
                     this.widgetCheckpoints = this.widgetCheckpoints.filter(
                         chk => chk.id != id
                     );
