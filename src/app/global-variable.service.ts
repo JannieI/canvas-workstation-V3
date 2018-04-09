@@ -907,16 +907,16 @@ export class GlobalVariableService {
 
     }
 
-    dashboardDelete(index: number) {
-        //
-        console.log('Global-Variables dashboardDelete', index)
+    // dashboardDelete(index: number) {
+    //     //
+    //     console.log('Global-Variables dashboardDelete', index)
 
-        for (var i = 0; i < this.currentWidgets.length; i++) {
-            i => {
-                    if (i.id == index) { i.isTrashed = true}
-                }
-        }
-    }
+    //     for (var i = 0; i < this.currentWidgets.length; i++) {
+    //         i => {
+    //                 if (i.id == index) { i.isTrashed = true}
+    //             }
+    //     }
+    // }
 
     addDashboardRecent(dashboardID: number, dashboardTabID: number) {
         //
@@ -972,6 +972,43 @@ export class GlobalVariableService {
         });
 
     }
+
+
+    deleteDashboard(id: number): Promise<string> {
+        // Description: Deletes a Dashboard
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteDashboard ...');
+
+        let url: string = 'dashboards';
+        this.filePath = './assets/data.dashboards.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+                            
+                    this.dashboards = this.dashboards.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDashboards = this.currentDashboards.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    console.log('deleteDashboard DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteDashboard FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
 
     getCurrentDashboard(dashboardID: number): Promise<Dashboard[]> {
         // Description: Gets current D (and optional Template)
@@ -3367,6 +3404,7 @@ export class GlobalVariableService {
         // Deletes D with all related Entities
         console.log('Global-Variables deleteWidget ...');
 
+        this.dashboardDelete
         this.dashboards = this.dashboards.filter(d => 
             d.id != dashboardID
         );
