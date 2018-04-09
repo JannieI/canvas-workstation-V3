@@ -120,6 +120,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         // Add locally, globally and to DB (with new ID)
         this.globalVariableService.addWidgetCheckpoint(newCheckpoint).then(res => {
+            console.log('xx res', res)
             newCheckpoint.id = res.id;
             this.currentWidgetCheckpoints.push(newCheckpoint);
         });

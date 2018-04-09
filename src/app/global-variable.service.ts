@@ -5203,6 +5203,12 @@ export class GlobalVariableService {
         // It will return an array of datagridColumns to use in the ca-datagrid
         // for a given array of data and a set of columns to show, 
         console.log('Global-Variables createDatagridColumns ...');
+        console.log('xx 1', showFields, visibleFields, dataRow)
+
+        // No data provided
+        if (dataRow == null  ||  dataRow == undefined) {
+            return [];
+        };
 
         // Start, assuming nothing to return
         let datagridColumns: DatagridColumn[] = [];
@@ -5210,6 +5216,7 @@ export class GlobalVariableService {
 
         // Get cols from the data
         columns = Object.keys(dataRow)
+        console.log('xx 2', showFields,columns, visibleFields, datagridColumns)
 
         // Make All visible if nothing was given
         if (visibleFields.length == 0) {
@@ -5220,8 +5227,8 @@ export class GlobalVariableService {
         if (showFields.length == 0) {
             showFields = columns;
         };        
+console.log('xx ', showFields,columns, visibleFields, datagridColumns)
         // Loop on the cols, and create an object for each in the datagridColumns array
-
         showFields.forEach( sf => {
             for (var i = 0; i < columns.length; i++) {
 
