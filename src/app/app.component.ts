@@ -3052,7 +3052,7 @@ export class AppComponent implements OnInit {
         // Clean out previously used vars for Checkpoints
         this.currentWidgetsOriginals = [];
         this.currentWidgetCheckpoints = [];
-
+console.log('xx w', this.currentWidgets)
         this.menuOptionClickPostAction();
     }
 

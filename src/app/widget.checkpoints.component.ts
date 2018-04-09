@@ -130,8 +130,32 @@ export class WidgetCheckpointsComponent implements OnInit {
             newCheckpoint.id = res.id;
             this.currentWidgetCheckpoints.splice(0, 0, newCheckpoint);
             this.nrCheckpoints = this.currentWidgetCheckpoints.length;
+
+        // // Update W
+        // if (this.currentWidgetCheckpoints.length > 0) {
+        //     this.selectedWidget.showCheckpoints = false;
+        //     if (this.selectedWidget.checkpointIDs.indexOf(id) < 0) {
+        //         this.selectedWidget.checkpointIDs.push(id);
+        //     };
+        //     this.selectedWidget.currentCheckpoint = 0;
+        //     this.selectedWidget.lastCheckpoint = -1;
+        // } else {
+        //     this.selectedWidget.showCheckpoints = false;
+        //     this.selectedWidget.checkpointIDs = [];
+        //     this.selectedWidget.currentCheckpoint = 0;
+        //     this.selectedWidget.lastCheckpoint = -1;
+
+
+
             this.clickRow(0, res.id);
         });
+
+        // Update W
+        if (this.currentWidgetCheckpoints.length > 0) {
+            this.selectedWidget.showCheckpoints = true;
+        } else {
+            this.selectedWidget.showCheckpoints = false;
+        };
         
     }
 
@@ -153,6 +177,22 @@ export class WidgetCheckpointsComponent implements OnInit {
         this.globalVariableService.deleteWidgetCheckpoint(id);
         
         this.nrCheckpoints = this.currentWidgetCheckpoints.length;
+
+        // Update W
+        this.selectedWidget.showCheckpoints = false;
+        index = -1;
+        for (var i = 0; i < this.selectedWidget.checkpointIDs.length; i++) {
+            if (this.selectedWidget.checkpointIDs[i] == id) {
+                index = i;
+            };
+        };
+        if (index > -1) {
+            this.selectedWidget.checkpointIDs.splice(index, 1);
+        };
+        this.selectedWidget.currentCheckpoint = 0;
+        this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
+        console.log('xx W', this.selectedWidget)
+
     }
 
     renderGraph(definition: any) {
@@ -176,33 +216,5 @@ export class WidgetCheckpointsComponent implements OnInit {
   	clickClose(action: string) {
 	  	this.formWidgetCheckpointsClosed.emit(action);
         }
-
-    // createVegaLiteSpec(
-    //     description: string = 'First bar chart.',
-    //     mark: string = 'bar',
-    //     xfield: string = 'Month',
-    //     yfield: string = 'Trades',
-    //     title: string = 'Average Trading'): dl.spec.TopLevelExtendedSpec {
-
-    //     let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.globalVariableService.vlTemplate;
-
-    //     vlSpecsNew['data']['values'] = [
-    //         {"Month": "02","Trades": 28}, {"Month": "02","Trades": 55},
-    //         {"Month": "03","Trades": 43}, {"Month": "04","Trades": 91},
-    //         {"Month": "05","Trades": 81}, {"Month": "06","Trades": 53},
-    //         {"Month": "07","Trades": 19}, {"Month": "08","Trades": 87},
-    //         {"Month": "09","Trades": 52}, {"Month": "10","Trades": 42},
-    //         {"Month": "11","Trades": 62}, {"Month": "12","Trades": 82}
-    //     ];
-    //     vlSpecsNew['description'] = description;
-    //     vlSpecsNew['mark']['type'] = mark;
-    //     vlSpecsNew['encoding']['x']['field'] = xfield;
-    //     vlSpecsNew['encoding']['y']['field'] = yfield;
-    //     vlSpecsNew['title']['text'] = title;
-    //     console.log('createVegaLiteSpec', vlSpecsNew)
-
-    //     return vlSpecsNew;
-
-    // }
 
 }
