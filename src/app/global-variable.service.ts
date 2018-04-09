@@ -973,10 +973,9 @@ export class GlobalVariableService {
 
     }
 
-
     deleteDashboardInfo(dashboardID: number) {
         // Deletes D with all related Entities
-        console.log('Global-Variables deleteWidget ...');
+        console.log('Global-Variables deleteDashboardInfo ...');
 
         // TODO - update DB
         this.dashboards.forEach(d => {
@@ -992,13 +991,7 @@ export class GlobalVariableService {
 
         // Delete from DB
         this.deleteDashboard(dashboardID);
-
-        this.dashboardTabs = this.dashboardTabs.filter(t =>
-            t.dashboardID != dashboardID
-        );
-        this.currentDashboardTabs = this.currentDashboardTabs.filter(t =>
-            t.dashboardID != dashboardID
-        );
+        this.deleteDashboardTab(dashboardID);
         this.widgets = this.widgets.filter(w =>
             w.dashboardID != dashboardID
         );
@@ -1308,7 +1301,6 @@ export class GlobalVariableService {
         });
     }
     
-
     deleteDashboardTab(id: number): Promise<string> {
         // Description: Deletes a DashboardTab
         // Returns: 'Deleted' or error message
@@ -3404,6 +3396,37 @@ export class GlobalVariableService {
             }
         });
 
+    }
+
+    deleteWidget(id: number): Promise<string> {
+        // Description: Deletes a Widgets
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteWidget ...');
+
+        let url: string = 'widgets';
+        this.filePath = './assets/data.widgets.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    this.widgets.filter(chk => chk.id != id)
+                    this.currentWidgets.filter(chk => chk.id != id)
+
+                    console.log('deleteWidget DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteWidget FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
     getCurrentWidgets(dashboardID: number, dashboardTabID: number): Promise<Widget[]> {
