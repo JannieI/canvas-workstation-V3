@@ -84,16 +84,7 @@ export class DashboardNewComponent implements OnInit {
         this.globalVariableService.addDashboard(newDashboard).then(d => {
 
             let newDashboardTab: DashboardTab = this.globalVariableService.dashboardTabTemplate;
-            newDashboardTab.id = d.id;
-            // {
-            //     id: null,
-            //     dashboardID: d.id,
-            //     name: 'First',
-            //     description: '',
-            //     backgroundColor: '',
-            //     color: ''
-                        
-            // }
+            newDashboardTab.dashboardID = d.id;
 
             // Add Tab to DB
             this.globalVariableService.addDashboardTab(newDashboardTab).then(t => {
