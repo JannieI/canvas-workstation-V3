@@ -122,7 +122,8 @@ export class WidgetCheckpointsComponent implements OnInit {
         this.globalVariableService.addWidgetCheckpoint(newCheckpoint).then(res => {
             console.log('xx res', res)
             newCheckpoint.id = res.id;
-            this.currentWidgetCheckpoints.push(newCheckpoint);
+            this.currentWidgetCheckpoints.splice(0, 0, newCheckpoint);
+            this.clickRow(0, res.id);
         });
     }
 
