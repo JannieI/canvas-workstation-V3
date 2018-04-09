@@ -322,20 +322,17 @@
                     </div>
                     <div class="propertyLine">
                         Colour:
+                        <div class="select">
                         <select
                             [(ngModel)]="localWidget.shapeFill"
                             >
-                            <option *ngFor="let row of backgroundcolors">
+                            <option *ngFor="let row of backgroundcolors"
+                                [selected]="selected"
+                                >
                                 {{ row.name }}
                             </option>
-                            <!-- <option>Black</option>
-                            <option>Gray</option>
-                            <option>LightGray</option>
-                            <option>Green</option>
-                            <option>Blue</option>
-                            <option>Yellow</option> -->
                         </select>
-
+                        </div>
                     </div>
                 </div>
 

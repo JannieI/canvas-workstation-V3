@@ -4853,6 +4853,9 @@ export class AppComponent implements OnInit {
         // Actions to perform when a D is opened, Before anything else
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardOpenActions', '@Start');
 
+        // Reset stuckCount
+        this.stuckCount = 0;
+        
         // Set Fav
         this.showFavouriteDashboard = false;
         for (let i = 0; i < this.globalVariableService.currentDashboards.length; i++) {
