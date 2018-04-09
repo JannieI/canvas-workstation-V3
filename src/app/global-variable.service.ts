@@ -2777,6 +2777,8 @@ export class GlobalVariableService {
             this.http.put('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
+
+                    this.canvasSettings = JSON.parse(JSON.stringify(data));
                     console.log('saveSystemSettings SAVED')
                     resolve('Saved');
                 },
@@ -3826,6 +3828,10 @@ export class GlobalVariableService {
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
+   
+                    this.canvasComments = this.canvasComments.filter(
+                        com => com.id != id
+                    );
 
                     console.log('deleteCanvasComment DELETED id: ', id)
                     resolve('Deleted');
