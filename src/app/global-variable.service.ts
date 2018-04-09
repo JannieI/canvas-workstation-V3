@@ -1003,9 +1003,9 @@ export class GlobalVariableService {
         this.canvasUsers.forEach(u => {
             if (u.startupDashboardID == dashboardID) {
                 u.startupDashboardID = 0;
-                this.saveu
             };
             u.favouriteDashboards.filter(f => f != dashboardID) 
+            this.saveCanvasUser(u);
         });
 
         // Delete from DB
@@ -4152,7 +4152,6 @@ export class GlobalVariableService {
         });
 
     }
-
 
     saveCanvasUser(data: CanvasUser): Promise<string> {
         // Description: Saves CanvasUser
