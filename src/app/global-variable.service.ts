@@ -2235,6 +2235,16 @@ export class GlobalVariableService {
 
     }
 
+    datasourceAdd(newData: Datasource) {
+        // Add given DS to the list of all DS
+        console.log('Global-Variables datasourceAdd ...');
+
+        if (this.datasources.filter(i => i.id == newData.id).length == 0) {
+            this.datasources.push(newData);
+        }
+        console.log('Global-Variables datasourceAdd after push', this.datasources)
+    }
+
     getCurrentDatasources(dashboardID: number): Promise<Datasource[]> {
         // Description: Gets DS for current D
         // Params: dashboardID = current D
@@ -2303,6 +2313,31 @@ export class GlobalVariableService {
                 resolve(this.currentDatasources);
             }
         });
+    }
+
+    currentDatasourceAdd(newData: Datasource) {
+        // Add given DS to the current DS
+        console.log('Global-Variables currentDatasourceAdd ...');
+
+        if (this.currentDatasources.filter(i => i.id == newData.id).length == 0) {
+            this.currentDatasources.push(newData);
+        }
+
+        // Inform that we now at a DS
+        this.hasDatasources.next(true);
+
+        console.log('Global-Variables currentDatasourceAdd after push', this.currentDatasources)
+    }
+
+    currentDatasourceDelete(index: number) {
+        // Delete current DS
+        console.log('Global-Variables datasourceDelete', index, this.currentDatasources)
+
+        // let arr: Datasource[] = this.currentDatasources.splice(index,1);
+        // console.log('Global-Variables currentDatasourceDelete arr', arr)
+        // this.currentDatasources.next( this.currentDatasources)
+        this.currentDatasources.splice(index,1)
+        console.log('Global-Variables currentDatasourceDelete end', this.currentDatasources)
     }
 
     getTransformations(): Promise<Transformation[]> {

@@ -180,6 +180,8 @@ This document describes items for later versions of Canvas.
     - cell background and colour and font size
     - resize row and col
     - support 10m rows
+Add SORT to DB ... what about add afterwards?
+
 
 
 **Dashboard**
