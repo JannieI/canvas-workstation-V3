@@ -1040,20 +1040,6 @@ export class GlobalVariableService {
 
     }
 
-    currentDatasourceAdd(newData: Datasource) {
-        // Add given DS to the current DS
-        console.log('Global-Variables currentDatasourceAdd ...');
-
-        if (this.currentDatasources.filter(i => i.id == newData.id).length == 0) {
-            this.currentDatasources.push(newData);
-        }
-
-        // Inform that we now at a DS
-        this.hasDatasources.next(true);
-
-        console.log('Global-Variables currentDatasourceAdd after push', this.currentDatasources)
-    }
-
     datasourceAdd(newData: Datasource) {
         // Add given DS to the list of all DS
         console.log('Global-Variables datasourceAdd ...');
