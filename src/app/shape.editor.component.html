@@ -37,7 +37,7 @@
                         <label for="checkTitle">Has Title</label>
                     </div>
                 </div>
-    
+
 
                 <div class="gridButtonCancel">
                     <button
@@ -89,7 +89,7 @@
                 <div class="gridShape" *ngIf="showRectangle">
                     <svg width="300" height="300">
                         <rect
-                            [style.x]="50" 
+                            [style.x]="50"
                             [style.y]="100"
                             [style.height.px]="100"
                             [style.width.px]="200"
@@ -97,8 +97,8 @@
                             [style.stroke-width.px]="localWidget.shapeStrokeWidth"
                             [style.fill]="localWidget.shapeFill"
                             [style.opacity]="localWidget.shapeOpacity"
-                            [style.rx]="localWidget.shapeCorner" 
-                            [style.ry]="localWidget.shapeCorner" 
+                            [style.rx]="localWidget.shapeCorner"
+                            [style.ry]="localWidget.shapeCorner"
                             />
                     </svg>
                 </div>
@@ -155,16 +155,16 @@
                         <li *ngFor="let row of localWidget.shapeBullets; let i = index"
                             (click)="clickBulletEdit(i, row)"
                             >
-                            <clr-icon shape="times" 
+                            <clr-icon shape="times"
                                 (click)="clickBulletDelete(i, row)">
                             </clr-icon>
-                            <!-- <clr-icon shape="plus" 
+                            <!-- <clr-icon shape="plus"
                                 (click)="clickBulletAdd(i, row)">
                             </clr-icon> -->
                             {{ row }}
                         </li>
                     </ul>
-                    <ol *ngIf="localWidget.shapeBulletsOrdered" 
+                    <ol *ngIf="localWidget.shapeBulletsOrdered"
                         [style.margin-left.px]="30"
                         [style.margin-top.px]="30"
                         [style.font-family]="localWidget.shapeFontFamily"
@@ -173,20 +173,20 @@
                         <li *ngFor="let row of localWidget.shapeBullets; let i = index"
                             (click)="clickBulletEdit(i, row)"
                             >
-                            <clr-icon shape="times" 
+                            <clr-icon shape="times"
                                 (click)="clickBulletDelete(i, row)">
                             </clr-icon>
-                            <!-- <clr-icon shape="plus" 
+                            <!-- <clr-icon shape="plus"
                                 (click)="clickBulletAdd(i, row)">
                             </clr-icon> -->
                             {{ row }}
                         </li>
-                    </ol>                    
+                    </ol>
                 </div>
 
                 <div class="gridShape" *ngIf="showValue">
                     <div [style.height.px]="100"
-                    
+
                         [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
                         [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
                         [style.font-family]="localWidget.shapeFontFamily"
@@ -195,28 +195,28 @@
                         [style.margin-top.px]="120"
                         [style.color]="localWidget.shapeStroke"
                         >
-                        {{ localWidget.shapeText }} 
+                        {{ localWidget.shapeText }}
                     </div >
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showCircle">
                     <div class="propertyLine">
                         Line Colour:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="Color or circle, ie Black"
                             [(ngModel)]="localWidget.shapeStroke"
                             >
                     </div>
                     <div class="propertyLine">
                         Line thickness:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="3"
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
                     <div class="propertyLine">
                         Fill colour:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="Red"
                             [(ngModel)]="localWidget.shapeFill"
                             >
@@ -227,21 +227,21 @@
                 <div class="gridShapeProperties" *ngIf="showEllipse">
                     <div class="propertyLine">
                         Line Colour:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="Black"
                             [(ngModel)]="localWidget.shapeStroke"
                             >
                     </div>
                     <div class="propertyLine">
                         Line thickness:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="3"
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
                     <div class="propertyLine">
                         Fill colour:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="Red"
                             [(ngModel)]="localWidget.shapeFill"
                             >
@@ -251,35 +251,35 @@
                 <div class="gridShapeProperties" *ngIf="showRectangle">
                     <div class="propertyLine">
                         Line Colour:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="Black"
                             [(ngModel)]="localWidget.shapeStroke"
                             >
                     </div>
                     <div class="propertyLine">
                         Line thickness:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="3"
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
                     <div class="propertyLine">
                         Fill colour:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="Red"
                             [(ngModel)]="localWidget.shapeFill"
                             >
                     </div>
                     <div class="propertyLine">
                         Fill Opacity:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="0=opaque, 1=solid"
                             [(ngModel)]="localWidget.shapeOpacity"
                             >
                     </div>
                     <div class="propertyLine">
                         Corners:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="Corner Size in px"
                             [(ngModel)]="localWidget.shapeCorner"
                             >
@@ -289,21 +289,21 @@
                 <div class="gridShapeProperties" *ngIf="showText">
                     <div class="propertyLine">
                         Text input:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="The brown fox ..."
                             [(ngModel)]="localWidget.shapeText"
                             >
                     </div>
                     <div class="propertyLine">
                         Font Size:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="50 (px)"
                             [(ngModel)]="localWidget.shapeFontSize"
                             >
                     </div>
                     <div class="propertyLine">
                         Font Family:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="Arial, serif"
                             [(ngModel)]="localWidget.shapeFontFamily"
                             >
@@ -325,13 +325,15 @@
                         <select
                             [(ngModel)]="localWidget.shapeFill"
                             >
-                            <option>DarkRed</option>
-                            <option>Black</option>
+                            <option *ngFor="let row of backgroundcolors">
+                                {{ row.name }}
+                            </option>
+                            <!-- <option>Black</option>
                             <option>Gray</option>
                             <option>LightGray</option>
                             <option>Green</option>
                             <option>Blue</option>
-                            <option>Yellow</option>
+                            <option>Yellow</option> -->
                         </select>
 
                     </div>
@@ -355,31 +357,31 @@
 
                 <div class="gridShapeProperties" *ngIf="showBullets">
                     <div class="propertyLine">
-                        
+
                         <div class="propertyLine">
                             Font Size:
-                            <input type="text" 
+                            <input type="text"
                                 placeholder="50 (px)"
                                 [(ngModel)]="localWidget.shapeFontSize"
                                 >
                         </div>
                         <div class="propertyLine">
                             Font Family:
-                            <input type="text" 
+                            <input type="text"
                                 placeholder="Arial, serif"
                                 [(ngModel)]="localWidget.shapeFontFamily"
                                 >
                         </div>
                         <div class="propertyLine">
                             Item Marker:
-                            <input type="text" 
+                            <input type="text"
                                 placeholder="disc, circle, square, none"
                                 [(ngModel)]="localWidget.shapeBulletStyleType"
                                 >
                         </div>
                         <div class="propertyLine">
                             Ordered?:
-                            <input type="text" 
+                            <input type="text"
                                 placeholder="true, false"
                                 [(ngModel)]="localWidget.shapeBulletsOrdered"
                                 >
@@ -387,8 +389,8 @@
 
                         <input [(ngModel)]="bulletValue">
                         <button type="button" class="closeButton">
-                            <span  *ngIf="editBulletItem" (click)="clickUpdate()">Update</span> 
-                            <span  *ngIf="!editBulletItem" (click)="clickAdd()">Add</span> 
+                            <span  *ngIf="editBulletItem" (click)="clickUpdate()">Update</span>
+                            <span  *ngIf="!editBulletItem" (click)="clickAdd()">Add</span>
                         </button>
 
                     </div>
@@ -406,7 +408,7 @@
                         </select>
 
                         <br>
-                        Take the 
+                        Take the
                         <select id="selects_3"
                             (change)="clickSelectShape($event)"
                             >
@@ -431,14 +433,14 @@
 
                     <div class="propertyLine">
                         Font Size:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="50 (px)"
                             [(ngModel)]="localWidget.shapeFontSize"
                             >
                     </div>
                     <div class="propertyLine">
                         Font Family:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="Arial, serif"
                             [(ngModel)]="localWidget.shapeFontFamily"
                             >

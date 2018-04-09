@@ -1,11 +1,747 @@
 [
     {
-        "name": "transparent"
+        "name": "AliceBlue",
+        "cssCode": "#F0F8FF",
+        "shortList": true
     },
     {
-        "name": "beige"
+        "name": "AntiqueWhite",
+        "cssCode": "#FAEBD7",
+        "shortList": true
     },
     {
-        "name": "white"
+        "name": "Aqua",
+        "cssCode": "#00FFFF",
+        "shortList": true
+    },
+    {
+        "name": "Aquamarine",
+        "cssCode": "#7FFFD4",
+        "shortList": true
+    },
+    {
+        "name": "Azure",
+        "cssCode": "#F0FFFF",
+        "shortList": true
+    },
+    {
+        "name": "Beige",
+        "cssCode": "#F5F5DC",
+        "shortList": true
+    },
+    {
+        "name": "Bisque",
+        "cssCode": "#FFE4C4",
+        "shortList": true
+    },
+    {
+        "name": "Black",
+        "cssCode": "#000000",
+        "shortList": true
+    },
+    {
+        "name": "BlanchedAlmond",
+        "cssCode": "#FFEBCD",
+        "shortList": true
+    },
+    {
+        "name": "Blue",
+        "cssCode": "#0000FF",
+        "shortList": true
+    },
+    {
+        "name": "BlueViolet",
+        "cssCode": "#8A2BE2",
+        "shortList": true
+    },
+    {
+        "name": "Brown",
+        "cssCode": "#A52A2A",
+        "shortList": true
+    },
+    {
+        "name": "BurlyWood",
+        "cssCode": "#DEB887",
+        "shortList": true
+    },
+    {
+        "name": "CadetBlue",
+        "cssCode": "#5F9EA0",
+        "shortList": true
+    },
+    {
+        "name": "Chartreuse",
+        "cssCode": "#7FFF00",
+        "shortList": true
+    },
+    {
+        "name": "Chocolate",
+        "cssCode": "#D2691E",
+        "shortList": true
+    },
+    {
+        "name": "Coral",
+        "cssCode": "#FF7F50",
+        "shortList": true
+    },
+    {
+        "name": "CornflowerBlue",
+        "cssCode": "#6495ED",
+        "shortList": true
+    },
+    {
+        "name": "Cornsilk",
+        "cssCode": "#FFF8DC",
+        "shortList": true
+    },
+    {
+        "name": "Crimson",
+        "cssCode": "#DC143C",
+        "shortList": true
+    },
+    {
+        "name": "Cyan",
+        "cssCode": "#00FFFF",
+        "shortList": true
+    },
+    {
+        "name": "DarkBlue",
+        "cssCode": "#00008B",
+        "shortList": true
+    },
+    {
+        "name": "DarkCyan",
+        "cssCode": "#008B8B",
+        "shortList": true
+    },
+    {
+        "name": "DarkGoldenRod",
+        "cssCode": "#B8860B",
+        "shortList": true
+    },
+    {
+        "name": "DarkGray",
+        "cssCode": "#A9A9A9",
+        "shortList": true
+    },
+    {
+        "name": "DarkGrey",
+        "cssCode": "#A9A9A9",
+        "shortList": true
+    },
+    {
+        "name": "DarkGreen",
+        "cssCode": "#006400",
+        "shortList": true
+    },
+    {
+        "name": "DarkKhaki",
+        "cssCode": "#BDB76B",
+        "shortList": true
+    },
+    {
+        "name": "DarkMagenta",
+        "cssCode": "#8B008B",
+        "shortList": true
+    },
+    {
+        "name": "DarkOliveGreen",
+        "cssCode": "#556B2F",
+        "shortList": true
+    },
+    {
+        "name": "DarkOrange",
+        "cssCode": "#FF8C00",
+        "shortList": true
+    },
+    {
+        "name": "DarkOrchid",
+        "cssCode": "#9932CC",
+        "shortList": true
+    },
+    {
+        "name": "DarkRed",
+        "cssCode": "#8B0000",
+        "shortList": true
+    },
+    {
+        "name": "DarkSalmon",
+        "cssCode": "#E9967A",
+        "shortList": true
+    },
+    {
+        "name": "DarkSeaGreen",
+        "cssCode": "#8FBC8F",
+        "shortList": true
+    },
+    {
+        "name": "DarkSlateBlue",
+        "cssCode": "#483D8B",
+        "shortList": true
+    },
+    {
+        "name": "DarkSlateGray",
+        "cssCode": "#2F4F4F",
+        "shortList": true
+    },
+    {
+        "name": "DarkSlateGrey",
+        "cssCode": "#2F4F4F",
+        "shortList": true
+    },
+    {
+        "name": "DarkTurquoise",
+        "cssCode": "#00CED1",
+        "shortList": true
+    },
+    {
+        "name": "DarkViolet",
+        "cssCode": "#9400D3",
+        "shortList": true
+    },
+    {
+        "name": "DeepPink",
+        "cssCode": "#FF1493",
+        "shortList": true
+    },
+    {
+        "name": "DeepSkyBlue",
+        "cssCode": "#00BFFF",
+        "shortList": true
+    },
+    {
+        "name": "DimGray",
+        "cssCode": "#696969",
+        "shortList": true
+    },
+    {
+        "name": "DimGrey",
+        "cssCode": "#696969",
+        "shortList": true
+    },
+    {
+        "name": "DodgerBlue",
+        "cssCode": "#1E90FF",
+        "shortList": true
+    },
+    {
+        "name": "FireBrick",
+        "cssCode": "#B22222",
+        "shortList": true
+    },
+    {
+        "name": "FloralWhite",
+        "cssCode": "#FFFAF0",
+        "shortList": true
+    },
+    {
+        "name": "ForestGreen",
+        "cssCode": "#228B22",
+        "shortList": true
+    },
+    {
+        "name": "Fuchsia",
+        "cssCode": "#FF00FF",
+        "shortList": true
+    },
+    {
+        "name": "Gainsboro",
+        "cssCode": "#DCDCDC",
+        "shortList": true
+    },
+    {
+        "name": "GhostWhite",
+        "cssCode": "#F8F8FF",
+        "shortList": true
+    },
+    {
+        "name": "Gold",
+        "cssCode": "#FFD700",
+        "shortList": true
+    },
+    {
+        "name": "GoldenRod",
+        "cssCode": "#DAA520",
+        "shortList": true
+    },
+    {
+        "name": "Gray",
+        "cssCode": "#808080",
+        "shortList": true
+    },
+    {
+        "name": "Grey",
+        "cssCode": "#808080",
+        "shortList": true
+    },
+    {
+        "name": "Green",
+        "cssCode": "#008000",
+        "shortList": true
+    },
+    {
+        "name": "GreenYellow",
+        "cssCode": "#ADFF2F",
+        "shortList": true
+    },
+    {
+        "name": "HoneyDew",
+        "cssCode": "#F0FFF0",
+        "shortList": true
+    },
+    {
+        "name": "HotPink",
+        "cssCode": "#FF69B4",
+        "shortList": true
+    },
+    {
+        "name": "IndianRed",
+        "cssCode": "#CD5C5C",
+        "shortList": true
+    },
+    {
+        "name": "Indigo",
+        "cssCode": "#4B0082",
+        "shortList": true
+    },
+    {
+        "name": "Ivory",
+        "cssCode": "#FFFFF0",
+        "shortList": true
+    },
+    {
+        "name": "Khaki",
+        "cssCode": "#F0E68C",
+        "shortList": true
+    },
+    {
+        "name": "Lavender",
+        "cssCode": "#E6E6FA",
+        "shortList": true
+    },
+    {
+        "name": "LavenderBlush",
+        "cssCode": "#FFF0F5",
+        "shortList": true
+    },
+    {
+        "name": "LawnGreen",
+        "cssCode": "#7CFC00",
+        "shortList": true
+    },
+    {
+        "name": "LemonChiffon",
+        "cssCode": "#FFFACD",
+        "shortList": true
+    },
+    {
+        "name": "LightBlue",
+        "cssCode": "#ADD8E6",
+        "shortList": true
+    },
+    {
+        "name": "LightCoral",
+        "cssCode": "#F08080",
+        "shortList": true
+    },
+    {
+        "name": "LightCyan",
+        "cssCode": "#E0FFFF",
+        "shortList": true
+    },
+    {
+        "name": "LightGoldenRodYellow",
+        "cssCode": "#FAFAD2",
+        "shortList": true
+    },
+    {
+        "name": "LightGray",
+        "cssCode": "#D3D3D3",
+        "shortList": true
+    },
+    {
+        "name": "LightGrey",
+        "cssCode": "#D3D3D3",
+        "shortList": true
+    },
+    {
+        "name": "LightGreen",
+        "cssCode": "#90EE90",
+        "shortList": true
+    },
+    {
+        "name": "LightPink",
+        "cssCode": "#FFB6C1",
+        "shortList": true
+    },
+    {
+        "name": "LightSalmon",
+        "cssCode": "#FFA07A",
+        "shortList": true
+    },
+    {
+        "name": "LightSeaGreen",
+        "cssCode": "#20B2AA",
+        "shortList": true
+    },
+    {
+        "name": "LightSkyBlue",
+        "cssCode": "#87CEFA",
+        "shortList": true
+    },
+    {
+        "name": "LightSlateGray",
+        "cssCode": "#778899",
+        "shortList": true
+    },
+    {
+        "name": "LightSlateGrey",
+        "cssCode": "#778899",
+        "shortList": true
+    },
+    {
+        "name": "LightSteelBlue",
+        "cssCode": "#B0C4DE",
+        "shortList": true
+    },
+    {
+        "name": "LightYellow",
+        "cssCode": "#FFFFE0",
+        "shortList": true
+    },
+    {
+        "name": "Lime",
+        "cssCode": "#00FF00",
+        "shortList": true
+    },
+    {
+        "name": "LimeGreen",
+        "cssCode": "#32CD32",
+        "shortList": true
+    },
+    {
+        "name": "Linen",
+        "cssCode": "#FAF0E6",
+        "shortList": true
+    },
+    {
+        "name": "Magenta",
+        "cssCode": "#FF00FF",
+        "shortList": true
+    },
+    {
+        "name": "Maroon",
+        "cssCode": "#800000",
+        "shortList": true
+    },
+    {
+        "name": "MediumAquaMarine",
+        "cssCode": "#66CDAA",
+        "shortList": true
+    },
+    {
+        "name": "MediumBlue",
+        "cssCode": "#0000CD",
+        "shortList": true
+    },
+    {
+        "name": "MediumOrchid",
+        "cssCode": "#BA55D3",
+        "shortList": true
+    },
+    {
+        "name": "MediumPurple",
+        "cssCode": "#9370DB",
+        "shortList": true
+    },
+    {
+        "name": "MediumSeaGreen",
+        "cssCode": "#3CB371",
+        "shortList": true
+    },
+    {
+        "name": "MediumSlateBlue",
+        "cssCode": "#7B68EE",
+        "shortList": true
+    },
+    {
+        "name": "MediumSpringGreen",
+        "cssCode": "#00FA9A",
+        "shortList": true
+    },
+    {
+        "name": "MediumTurquoise",
+        "cssCode": "#48D1CC",
+        "shortList": true
+    },
+    {
+        "name": "MediumVioletRed",
+        "cssCode": "#C71585",
+        "shortList": true
+    },
+    {
+        "name": "MidnightBlue",
+        "cssCode": "#191970",
+        "shortList": true
+    },
+    {
+        "name": "MintCream",
+        "cssCode": "#F5FFFA",
+        "shortList": true
+    },
+    {
+        "name": "MistyRose",
+        "cssCode": "#FFE4E1",
+        "shortList": true
+    },
+    {
+        "name": "Moccasin",
+        "cssCode": "#FFE4B5",
+        "shortList": true
+    },
+    {
+        "name": "NavajoWhite",
+        "cssCode": "#FFDEAD",
+        "shortList": true
+    },
+    {
+        "name": "Navy",
+        "cssCode": "#000080",
+        "shortList": true
+    },
+    {
+        "name": "OldLace",
+        "cssCode": "#FDF5E6",
+        "shortList": true
+    },
+    {
+        "name": "Olive",
+        "cssCode": "#808000",
+        "shortList": true
+    },
+    {
+        "name": "OliveDrab",
+        "cssCode": "#6B8E23",
+        "shortList": true
+    },
+    {
+        "name": "Orange",
+        "cssCode": "#FFA500",
+        "shortList": true
+    },
+    {
+        "name": "OrangeRed",
+        "cssCode": "#FF4500",
+        "shortList": true
+    },
+    {
+        "name": "Orchid",
+        "cssCode": "#DA70D6",
+        "shortList": true
+    },
+    {
+        "name": "PaleGoldenRod",
+        "cssCode": "#EEE8AA",
+        "shortList": true
+    },
+    {
+        "name": "PaleGreen",
+        "cssCode": "#98FB98",
+        "shortList": true
+    },
+    {
+        "name": "PaleTurquoise",
+        "cssCode": "#AFEEEE",
+        "shortList": true
+    },
+    {
+        "name": "PaleVioletRed",
+        "cssCode": "#DB7093",
+        "shortList": true
+    },
+    {
+        "name": "PapayaWhip",
+        "cssCode": "#FFEFD5",
+        "shortList": true
+    },
+    {
+        "name": "PeachPuff",
+        "cssCode": "#FFDAB9",
+        "shortList": true
+    },
+    {
+        "name": "Peru",
+        "cssCode": "#CD853F",
+        "shortList": true
+    },
+    {
+        "name": "Pink",
+        "cssCode": "#FFC0CB",
+        "shortList": true
+    },
+    {
+        "name": "Plum",
+        "cssCode": "#DDA0DD",
+        "shortList": true
+    },
+    {
+        "name": "PowderBlue",
+        "cssCode": "#B0E0E6",
+        "shortList": true
+    },
+    {
+        "name": "Purple",
+        "cssCode": "#800080",
+        "shortList": true
+    },
+    {
+        "name": "RebeccaPurple",
+        "cssCode": "#663399",
+        "shortList": true
+    },
+    {
+        "name": "Red",
+        "cssCode": "#FF0000",
+        "shortList": true
+    },
+    {
+        "name": "RosyBrown",
+        "cssCode": "#BC8F8F",
+        "shortList": true
+    },
+    {
+        "name": "RoyalBlue",
+        "cssCode": "#4169E1",
+        "shortList": true
+    },
+    {
+        "name": "SaddleBrown",
+        "cssCode": "#8B4513",
+        "shortList": true
+    },
+    {
+        "name": "Salmon",
+        "cssCode": "#FA8072",
+        "shortList": true
+    },
+    {
+        "name": "SandyBrown",
+        "cssCode": "#F4A460",
+        "shortList": true
+    },
+    {
+        "name": "SeaGreen",
+        "cssCode": "#2E8B57",
+        "shortList": true
+    },
+    {
+        "name": "SeaShell",
+        "cssCode": "#FFF5EE",
+        "shortList": true
+    },
+    {
+        "name": "Sienna",
+        "cssCode": "#A0522D",
+        "shortList": true
+    },
+    {
+        "name": "Silver",
+        "cssCode": "#C0C0C0",
+        "shortList": true
+    },
+    {
+        "name": "SkyBlue",
+        "cssCode": "#87CEEB",
+        "shortList": true
+    },
+    {
+        "name": "SlateBlue",
+        "cssCode": "#6A5ACD",
+        "shortList": true
+    },
+    {
+        "name": "SlateGray",
+        "cssCode": "#708090",
+        "shortList": true
+    },
+    {
+        "name": "SlateGrey",
+        "cssCode": "#708090",
+        "shortList": true
+    },
+    {
+        "name": "Snow",
+        "cssCode": "#FFFAFA",
+        "shortList": true
+    },
+    {
+        "name": "SpringGreen",
+        "cssCode": "#00FF7F",
+        "shortList": true
+    },
+    {
+        "name": "SteelBlue",
+        "cssCode": "#4682B4",
+        "shortList": true
+    },
+    {
+        "name": "Tan",
+        "cssCode": "#D2B48C",
+        "shortList": true
+    },
+    {
+        "name": "Teal",
+        "cssCode": "#008080",
+        "shortList": true
+    },
+    {
+        "name": "Thistle",
+        "cssCode": "#D8BFD8",
+        "shortList": true
+    },
+    {
+        "name": "Tomato",
+        "cssCode": "#FF6347",
+        "shortList": true
+    },
+    {
+        "name": "transparent",
+        "cssCode": "transparent",
+        "shortList": true
+    },
+    {
+        "name": "Turquoise",
+        "cssCode": "#40E0D0",
+        "shortList": true
+    },
+    {
+        "name": "Violet",
+        "cssCode": "#EE82EE",
+        "shortList": true
+    },
+    {
+        "name": "Wheat",
+        "cssCode": "#F5DEB3",
+        "shortList": true
+    },
+    {
+        "name": "White",
+        "cssCode": "#FFFFFF",
+        "shortList": true
+    },
+    {
+        "name": "WhiteSmoke",
+        "cssCode": "#F5F5F5",
+        "shortList": true
+    },
+    {
+        "name": "Yellow",
+        "cssCode": "#FFFF00",
+        "shortList": true
+    },
+    {
+        "name": "YellowGreen",
+        "cssCode": "#9ACD32",
+        "shortList": true
     }
 ]

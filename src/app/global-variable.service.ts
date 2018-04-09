@@ -693,7 +693,7 @@ export class GlobalVariableService {
     // frontendColorScheme: string = '';
 
     // Permanent data - later to come from http
-    backgroundcolors: CSScolor[];
+    backgroundcolors: CSScolor[] = [];
     canvasActivities: CanvasActivity[] = [];
     canvasAlerts: CanvasAlert[] = [];
     canvasComments: CanvasComment[] = [];

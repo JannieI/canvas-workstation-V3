@@ -10,6 +10,7 @@ import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our Models
+import { CSScolor }                   from './models';
 import { Widget }                     from './models';
 
 // Our Functions
@@ -27,6 +28,7 @@ export class ShapeEditComponent implements OnInit {
     @Input() newWidget: boolean;
     @Input() selectedWidget: Widget;
 
+    backgroundcolors: CSScolor[];
     bulletIndex: number = 0;
     bulletValue: string = '';
     editBulletItem: boolean = false;
@@ -51,9 +53,12 @@ export class ShapeEditComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Get setup info
+        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+
+        // Create new W
          if (this.newWidget) {
 
-            // Create new W
             // this.localWidget = Object.assign({}, this.globalVariableService.widgetTemplate);
             this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
             this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.
@@ -61,7 +66,7 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.
                 value.currentDashboardTabID;
 
-            // Standard settings    
+            // Standard settings
             this.localWidget.widgetType = 'Shape';
             this.localWidget.containerBackgroundcolor = 'transparent';
             this.localWidget.containerBorder = 'none';
@@ -78,7 +83,7 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeIsBold = true;
             this.localWidget.shapeStroke = 'black';
             this.localWidget.shapeStrokeWidth = '1';
-            
+
         } else {
 
             // Deep copy
@@ -124,7 +129,7 @@ export class ShapeEditComponent implements OnInit {
         if (this.localWidget) {
             this.localWidget.containerHasTitle = false;
         };
-        
+
         if (shapeType == 'Circle') {
             this.showCircle = true;
         };
@@ -195,7 +200,7 @@ export class ShapeEditComponent implements OnInit {
         this.bulletIndex = index;
         this.bulletValue = this.localWidget.shapeBullets[index];
         this.editBulletItem = true;
-        
+
     }
     clickUpdate() {
         // Add item to bullet list
@@ -203,7 +208,7 @@ export class ShapeEditComponent implements OnInit {
 
         this.localWidget.shapeBullets[this.bulletIndex] = this.bulletValue;
         this.editBulletItem = false;
-        
+
     }
     clickAdd() {
         // Add item to bullet list
@@ -253,7 +258,7 @@ export class ShapeEditComponent implements OnInit {
             // TODO - make this the field name
             this.localWidget.titleText = 'Value';
         };
-            
+
         // Tell user
         this.globalVariableService.showStatusBarMessage(
             {

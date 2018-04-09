@@ -595,6 +595,7 @@ export class AppComponent implements OnInit {
             };
 
             this.dashboardOpenActions();
+            this.showModalLanding = false;
         };
         console.log('xx this.globalVariableService.currentDashboards',
         this.globalVariableService.currentUser.favouriteDashboards, this.globalVariableService.currentDashboards, this.showFavouriteDashboard)
@@ -606,6 +607,8 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
+        // When creating a D, one can also Edit it
+        this.globalVariableService.editMode.next(true);
         this.showModalDashboardNew = false;
 
     }

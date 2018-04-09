@@ -159,7 +159,9 @@ export class PaletteButtonBar {
 }
 
 export class CSScolor {
-    name: string;
+    name: string;                           // Name, ie brown
+    cssCode: string;                        // CSS code, as name, hex, rgb.  ie transparent, rgb(111,52,78)
+    shortList: boolean;                     // True if part of shorter list
 }
 
 
