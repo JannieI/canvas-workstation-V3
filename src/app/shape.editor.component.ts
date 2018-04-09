@@ -139,9 +139,10 @@ export class ShapeEditComponent implements OnInit {
         if (shapeType == 'Rectangle') {
             this.showRectangle = true;
         };
+        console.log('xx this.localWidget.shapeText',this.localWidget.shapeText)
         if (shapeType == 'Text') {
             this.showText = true;
-            if (this.localWidget.shapeText == ''  ||  this.localWidget.shapeText == null) {
+            if (this.localWidget.shapeText == null) {
                 this.localWidget.shapeText = 'The brown fox is tired';
             };
         };
