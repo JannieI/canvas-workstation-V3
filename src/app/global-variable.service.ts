@@ -5223,7 +5223,7 @@ export class GlobalVariableService {
                 dashboard = Object.assign({}, d);
             };
         });
-
+console.log('xx perms', dashboard.id, dashboard.accessType, dashboard.creator)
         // Make sure we have a D
         if (dashboard == undefined) {
             return;

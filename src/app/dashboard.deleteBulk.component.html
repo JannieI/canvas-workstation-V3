@@ -6,15 +6,22 @@
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
-                Delete an existing Dashboard
+                <b>
+                    Delete Dashboards
+                </b>
+
                 <div class="propertyLine">
                     You can only delete Dashboards to which you have access.  Admin users
                     have access to all Dashboards.  It is not physically delete, and only
                     moved to Trash (retaining its permissions).  There is an option on the
                     Open Dashboard form to retrieve a Dashboards previously moved to Trash
                     - provided that one had access to it at the time it was trashed.
+                    <b>No records are deleted at the moment</b>
                 </div>
-                {{ errorMessage}}
+                <div class="errorMessage">
+                    {{ errorMessage}}
+                </div>
+
                 <clr-datagrid>
                     <clr-dg-column>Delete</clr-dg-column>
                     <clr-dg-column>State</clr-dg-column>
@@ -42,6 +49,12 @@
                         <clr-dg-cell>{{row.creator}}</clr-dg-cell>
                         <clr-dg-cell>{{row.nrTimesOpened}}</clr-dg-cell>
                     </clr-dg-row>
+
+                    <clr-dg-footer>
+                        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                        of {{pagination.totalItems}} rows
+                        <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+                    </clr-dg-footer>
 
                 </clr-datagrid>
 

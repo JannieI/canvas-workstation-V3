@@ -60,6 +60,9 @@ export class DashboardDeleteBulkComponent implements OnInit {
             return;
         };
 
+        this.errorMessage = '';
+
+        // TODO - real delete later on
         // this.globalVariableService.deleteWidget(index);
     }
  
