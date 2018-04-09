@@ -286,8 +286,6 @@ const graphWidth: number = 420;
                 currentDashboardInfo.value.currentDashboardTabID);
 
             this.globalVariableService.addWidget(this.localWidget);
-            // this.globalVariableService.widgets.push(this.localWidget);
-            // this.globalVariableService.currentWidgets.push(this.localWidget);
         } else {
             if (this.selectedWidget.graphColorField != ''
                 &&  this.selectedWidget.graphColorField != null) {
@@ -304,8 +302,6 @@ const graphWidth: number = 420;
             };
  
             // Update global W
-            console.log('xx localW', this.localWidget)
-            // this.globalVariableService.widgetReplace(this.localWidget);
             this.globalVariableService.saveWidget(this.localWidget);
             
         };
@@ -365,16 +361,13 @@ const graphWidth: number = 420;
         // Get the id of the target and add the moved element to the target's DOM
 
         var data = ev.dataTransfer.getData("text");
-        // ev.target.appendChild(document.getElementById(data));
         this.colField = this.draggedField;
         this.localWidget.graphXfield = this.draggedField;
         this.localWidget.graphXaxisTitle = this.draggedField;
 
-        // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(this.draggedField);
         this.graphTypeFieldX = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
-        console.log('Field dropped: ', this.colField )
 
         let definition = this.globalVariableService.createVegaLiteSpec(
             this.localWidget, graphHeight, graphWidth
@@ -396,7 +389,6 @@ const graphWidth: number = 420;
         this.showRowDeleteIcon = true;
 
         var data = ev.dataTransfer.getData("text");
-        // ev.target.appendChild(document.getElementById(data));
         this.rowField = this.draggedField;
         this.localWidget.graphYfield = this.draggedField;
         this.localWidget.graphYaxisTitle = this.draggedField;
@@ -438,8 +430,6 @@ const graphWidth: number = 420;
         let fieldType:string = this.getFieldType(this.draggedField);
         this.graphTypeFieldColor = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType);
-
-        console.log('dropColor field name: ', this.graphColorField )
 
         let definition = this.globalVariableService.createVegaLiteSpec(
             this.localWidget, graphHeight, graphWidth
@@ -542,9 +532,9 @@ const graphWidth: number = 420;
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterColors', '@Start');
 
         ev.preventDefault();
-      this.dragoverCol = false;
-      this.dragoverRow = false;
-      this.dragoverColor = true;
+        this.dragoverCol = false;
+        this.dragoverRow = false;
+        this.dragoverColor = true;
     }
 
     dragleaveColors(ev, actionName: string) {
@@ -602,46 +592,6 @@ const graphWidth: number = 420;
         this.showRowFieldAdvancedArea = true;
     }
 
-    // createVegaLiteSpec(): dl.spec.TopLevelExtendedSpec {
-    //     // Creates and returns the Vega-Lite and Vega specs from the W Sepc
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'createVegaLiteSpec', '@Start');
-
-    //     let vlSpecsNew: dl.spec.TopLevelExtendedSpec = vlTemplate;
-
-    //     if (this.localWidget.graphUrl != "") {
-    //         vlSpecsNew['data'] = {"url": this.localWidget.graphUrl};
-    //     } else {
-    //         vlSpecsNew['data'] = {"values": this.localWidget.graphData};
-    //     }
-    //     vlSpecsNew['description'] = this.localWidget.graphDescription;
-    //     vlSpecsNew['mark']['type'] = this.localWidget.graphMark;
-    //     vlSpecsNew['mark']['color'] = this.localWidget.graphMarkColor;
-
-    //     vlSpecsNew['encoding']['x']['field'] = this.localWidget.graphXfield;
-    //     vlSpecsNew['encoding']['x']['type'] = this.localWidget.graphXtype;
-    //     vlSpecsNew['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
-    //     vlSpecsNew['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
-    //     vlSpecsNew['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
-
-    //     vlSpecsNew['encoding']['y']['field'] = this.localWidget.graphYfield;
-    //     vlSpecsNew['encoding']['y']['type'] = this.localWidget.graphYtype;
-    //     vlSpecsNew['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
-    //     vlSpecsNew['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
-    //     vlSpecsNew['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
-
-    //     // Change HxW to show the graph in the given area on this form, which may be different
-    //     // to the size of the W on the D
-    //     vlSpecsNew['height'] = 260;
-    //     vlSpecsNew['width'] = 420;
-
-    //     vlSpecsNew['title']['text'] = this.localWidget.graphTitle;
-
-    //     vlSpecsNew['encoding']['color']['field'] = this.localWidget.graphColorField;
-    //     vlSpecsNew['encoding']['color']['type'] = this.localWidget.graphColorType;
-
-    //     return vlSpecsNew;
-    // }
-
     clickDatasource(index: number, name: string) {
         // Show dropdown of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
@@ -697,7 +647,6 @@ const graphWidth: number = 420;
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data.slice(0,5);
-
 
         // Fill in data info
         if (this.newWidget) {
