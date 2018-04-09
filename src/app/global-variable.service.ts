@@ -1001,7 +1001,11 @@ export class GlobalVariableService {
 
         // Delete from DB
         this.deleteDashboard(dashboardID);
-        this.deleteDashboardTab(dashboardID);
+        this.dashboardTabs.forEach(t => {
+            if (t.dashboardID != dashboardID) {
+                this.deleteDashboardTab(t.id);
+            };
+        });
         this.widgets.forEach(w => {
             if (w.dashboardID == dashboardID) {
                 this.deleteWidget(w.id);
@@ -1012,18 +1016,22 @@ export class GlobalVariableService {
                 this.deleteDashboardSnapshot(snp.id);
             };
         });
-        this.canvasMessages = this.canvasMessages.filter(mes => 
-            mes.dashboardID != dashboardID 
-        );
-        this.canvasComments = this.canvasComments.filter(com => 
-            com.dashboardID != dashboardID 
-        );
-        this.dashboardSchedules = this.dashboardSchedules.filter(sch => 
-            sch.dashboardID != dashboardID 
-        );
-        this.currentDashboardSchedules = this.currentDashboardSchedules.filter(sch => 
-            sch.dashboardID != dashboardID 
-        );
+        this.canvasMessages.forEach(mes => {
+            if (mes.dashboardID != dashboardID) {
+                this.deleteCanvasMessage(mes.id);
+            };
+        });
+        this.canvasComments.forEach(com => {
+            if (com.dashboardID != dashboardID) {
+                this.deleteCanvasComment(com.id);
+            };
+        });
+        this.dashboardSchedules.forEach(sch => {
+            if (sch.dashboardID != dashboardID) {
+                this.deleteDashboardSchedule(sch.id);
+            };
+        });
+
         this.currentDashboardSubscriptions = this.currentDashboardSubscriptions.filter(sub => 
             sub.dashboardID != dashboardID 
         );
@@ -1756,6 +1764,41 @@ export class GlobalVariableService {
             }
         });
 
+    }
+
+    deleteDashboardSchedule(id: number): Promise<string> {
+        // Description: Deletes a DashboardSchedules
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteDashboardSchedule ...');
+
+        let url: string = 'dashboardSchedules';
+        this.filePath = './assets/data.dashboardSchedules.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+        
+                    this.dashboardSchedules = this.dashboardSchedules.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDashboardSchedules = this.currentDashboardSchedules.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    console.log('deleteDashboardSchedule DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteDashboardSchedule FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
     getCurrentDashboardSchedules(dashboardID: number): Promise<DashboardSchedule[]> {
