@@ -2849,6 +2849,7 @@ export class GlobalVariableService {
             this.http.put('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
+                    this.userPreferences = JSON.parse(JSON.stringify(data));
                     console.log('saveUserPreferences SAVED')
                     resolve('Saved');
                 },
