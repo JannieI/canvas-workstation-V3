@@ -978,12 +978,7 @@ export class GlobalVariableService {
         // Deletes D with all related Entities
         console.log('Global-Variables deleteWidget ...');
 
-        this.dashboards = this.dashboards.filter(d => 
-            d.id != dashboardID
-        );
-        this.currentDashboards = this.currentDashboards.filter(d =>
-            d.id != dashboardID
-        ).slice();
+        // TODO - update DB
         this.dashboards.forEach(d => {
             if (d.templateDashboardID == dashboardID) {
             d.templateDashboardID == 0;
@@ -994,6 +989,10 @@ export class GlobalVariableService {
             d.templateDashboardID == 0;
             };
         });
+
+        // Delete from DB
+        this.deleteDashboard(dashboardID);
+
         this.dashboardTabs = this.dashboardTabs.filter(t =>
             t.dashboardID != dashboardID
         );
@@ -1062,9 +1061,6 @@ export class GlobalVariableService {
             u.favouriteDashboards.filter(f => f != dashboardID) 
         });
 
-        this.deleteDashboard(dashboardID);
-        
-        console.log('xx and GV del', this.dashboards,this.currentDashboards)
     }
 
     deleteDashboard(id: number): Promise<string> {
@@ -1101,7 +1097,6 @@ export class GlobalVariableService {
             )
         });
     }
-
 
     getCurrentDashboard(dashboardID: number): Promise<Dashboard[]> {
         // Description: Gets current D (and optional Template)
@@ -1313,6 +1308,42 @@ export class GlobalVariableService {
         });
     }
     
+
+    deleteDashboardTab(id: number): Promise<string> {
+        // Description: Deletes a DashboardTab
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteDashboardTab ...');
+
+        let url: string = 'dashboardTabs';
+        this.filePath = './assets/data.dashboardTabs.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+                            
+                    this.dashboardTabs = this.dashboardTabs.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDashboardTabs = this.currentDashboardTabs.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    console.log('deleteDashboardTab DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteDashboardTab FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getDashboardSamples(): Promise<Dashboard[]> {
         // Description: Gets all Sample D
         // Returns: an array extracted from [D], unless:
