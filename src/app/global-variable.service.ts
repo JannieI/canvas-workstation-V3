@@ -1065,7 +1065,7 @@ export class GlobalVariableService {
 
     }
 
-    clearDashboardInfo(dashboardID: number) {
+    clearDashboardInfo() {
         // Clears all related Entities of a D
         console.log('Global-Variables clearDashboardInfo ...');
 
@@ -1246,6 +1246,9 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
                     
+                    // Clear all related info
+                    this.clearDashboardInfo();
+
                     // Update Global vars to make sure they remain in sync
                     this.dashboards.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboards.push(JSON.parse(JSON.stringify(data)));
@@ -4711,10 +4714,15 @@ export class GlobalVariableService {
         // parameters.
         console.log('Global-Variables refreshCurrentDashboard ...');
 
-console.log('xx this refresh GV', this.currentDashboardTabs)
         // TODO - add Permissions, either here or automatically in DB !!!
-
         
+        // Make sure the currT are indeed for the requested D
+        let currentDashboardTabs: DashboardTab[];
+        currentDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == dashboardID);
+        
+        console.log('xx this refresh GV Did-tabToShow-Tid-currT-this.currT',  dashboardID, tabToShow,
+        dashboardTabID, currentDashboardTabs, this.currentDashboardTabs, this.dashboardTabs)
+
         // Assume we have all currentD info
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
             (this.currentDashboardInfo == null) ) {
@@ -4726,7 +4734,7 @@ console.log('xx this refresh GV', this.currentDashboardTabs)
         let y: number = 0;
 
         if (tabToShow != '') {
-            if (this.currentDashboardTabs.length == 0) {
+            if (currentDashboardTabs.length == 0) {
                 console.log('this.currentDashboardTabs empty');
                 return;
             }
@@ -4736,37 +4744,33 @@ console.log('xx this refresh GV', this.currentDashboardTabs)
             if (tabToShow == 'Previous') {
                 x = this.currentDashboardInfo.value.currentDashboardTabIndex - 1;
                 if (x < 0) {
-                    x = this.currentDashboardTabs.length - 1;
+                    x = currentDashboardTabs.length - 1;
                 }
             }
             if (tabToShow == 'Next') {
                 x = this.currentDashboardInfo.value.currentDashboardTabIndex + 1;
-                if (x >= this.currentDashboardTabs.length) {
+                if (x >= currentDashboardTabs.length) {
                     x = 0;
                 }
             }
             if (tabToShow == 'Last') {
-                x = this.currentDashboardTabs.length - 1;
+                x = currentDashboardTabs.length - 1;
 
             }
-            y = this.currentDashboardTabs[x].id;
+            y = currentDashboardTabs[x].id;
         } else {
             y = dashboardTabID;
-            if (this.currentDashboardTabs.length == 0) {
+            if (this.currentDashboards.length == 0) {
                 x = 0;
             } else {
-                for (var i = 0; i < this.currentDashboardTabs.length; i++) {
-                    if (this.currentDashboardTabs[i].id == dashboardTabID) {
+                for (var i = 0; i < currentDashboardTabs.length; i++) {
+                    if (currentDashboardTabs[i].id == dashboardTabID) {
                         x = i;
                     };
                 };
-                if (dashboardTabID == -1) {
-                    x = 0;
-                    y = this.currentDashboardTabs[x].id;
-                };
             };
         };
-
+console.log('xx this xy', x, y)
         this.currentDashboardInfo.next({
             currentDashboardID: dashboardID,
             currentDashboardTabID: y,

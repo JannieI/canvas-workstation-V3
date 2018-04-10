@@ -158,7 +158,6 @@ export class DataPopupComponent implements OnInit {
         // Load from global variables
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.datasources = this.globalVariableService.datasources;
-        console.log('xx this.currentDatasources', this.currentDatasources)
     }
 
     clickField() {

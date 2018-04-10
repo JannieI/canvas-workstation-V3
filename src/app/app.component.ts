@@ -500,11 +500,30 @@ export class AppComponent implements OnInit {
 
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                        this.globalVariableService.currentDashboardInfo.value.
-                            currentDashboardTabID).then(j =>
-                            {
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID)
+                            .then(j => {
                                 console.log('xx this.globalVariableService.currentDashboardInfo.value', this.globalVariableService.currentDashboardInfo.value)
                                 this.refreshGraphs = false;
+
+                                // Cater for -1, ie First T
+                                if (this.globalVariableService.currentDashboardInfo.value
+                                    .currentDashboardTabIndex == -1) {
+                                        this.globalVariableService.currentDashboardInfo
+                                            .value.currentDashboardTabIndex = 0
+console.log('xx index', this.globalVariableService.currentDashboardInfo
+.value.currentDashboardTabIndex)                                            
+                                };
+                                if (this.globalVariableService.currentDashboardInfo.value
+                                    .currentDashboardTabID == -1) {
+                                        this.globalVariableService.currentDashboardInfo
+                                            .value.currentDashboardTabID = this.globalVariableService.
+                                            currentDashboardTabs[this.globalVariableService.currentDashboardInfo
+                                                .value.currentDashboardTabIndex].id
+console.log('xx id', this.globalVariableService.currentDashboardInfo
+.value.currentDashboardTabID)                                            
+                                };
+
+
                                 this.currentDashboardTabIndex = this.globalVariableService.currentDashboardInfo.value.
                                     currentDashboardTabIndex;
                                 this.currentDashboardName = this.globalVariableService.
@@ -523,7 +542,7 @@ export class AppComponent implements OnInit {
                                 };
                                 this.currentDatasources = this.globalVariableService.
                                     currentDatasources;
-
+console.log('xx this.currentDashboardTabIndex', this.currentDashboardTabIndex)
                                 // Loop on All/Indicated Ws
                                 this.currentWidgets = [];
                                 for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {

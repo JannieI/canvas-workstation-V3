@@ -52,7 +52,7 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
+        // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
@@ -101,7 +101,7 @@ export class DashboardOpenComponent implements OnInit {
 		this.globalVariableService.refreshCurrentDashboard(
 			'openDashboard-clickOpenRecentDashboard', dashboardID, -1, ''
         );
-        
+
         this.formDashboardOpenClosed.emit('View');
     }
 
