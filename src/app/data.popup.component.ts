@@ -439,9 +439,8 @@ export class DataPopupComponent implements OnInit {
 
         // Add to all DS, for later use
         // this.globalVariableService.datasourceAdd(newData);
-        this.globalVariableService.addDatasource(newData).then(res => {
-            console.log('xx gv.DS', this.globalVariableService.datasources, this.globalVariableService.currentDatasources);
-        })
+        this.globalVariableService.addDatasource(newData);
+
         // Get new dSetID
         // TODO - do better with DB
         let newdSetID: number = 1;

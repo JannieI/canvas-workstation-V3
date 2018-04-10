@@ -1577,7 +1577,7 @@ export class GlobalVariableService {
         // Returns: dataset
         console.log('Global-Variables getCurrentDataset ...');
 
-        let url: string = 'dataset1';
+        let url: string = 'dataset';
         this.filePath = './assets/data.datasets.json';
 
         // Get list of dSet-ids to make array work easier
@@ -1696,6 +1696,39 @@ export class GlobalVariableService {
         });
     }
 
+    addDataset(data: Dataset): Promise<any> {
+        // Description: Adds a new Dataset
+        // Returns: Added Data or error message
+        console.log('Global-Variables addDataset ...');
+
+        let url: string = data.url;
+        this.filePath = data.folderName + data.fileName;
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    
+                    // Update Global vars to make sure they remain in sync
+                    this.datasets.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDatasets.push(JSON.parse(JSON.stringify(data)));
+                    
+                    console.log('addDataset ADDED', data, this.datasets)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('Error addDataset FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+    
     filterSlicer(dataSet: Dataset): Dataset {
         // Filter a given Dataset on .dataRaw by applying all applicable Sl, and put result
         // into .data
