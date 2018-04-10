@@ -1065,6 +1065,23 @@ export class GlobalVariableService {
 
     }
 
+    clearDashboardInfo(dashboardID: number) {
+        // Clears all related Entities of a D
+        console.log('Global-Variables clearDashboardInfo ...');
+
+        // TODO - find a better way to keep all related items in sync, and list updated
+        this.currentDashboards = [];
+        this.currentDashboardTabs = [];
+        this.currentWidgets = [];
+        this.currentDashboardSnapshots = [];
+        this.currentDashboardSchedules = [];
+        this.currentDashboardSubscriptions = [];
+        this.currentDashboardTags = [];
+        this.currentDashboardPermissions = [];
+        this.currentWidgetCheckpoints = [];
+
+    }
+
     deleteDashboard(id: number): Promise<string> {
         // Description: Deletes a Dashboard
         // Returns: 'Deleted' or error message
