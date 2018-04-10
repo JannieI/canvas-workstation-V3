@@ -455,24 +455,32 @@ export class DataPopupComponent implements OnInit {
             id: newdSetID,
             datasourceID: newDSID,
             sourceLocation: 'localDB',
-            url: '',
+            url: 'dataset' + newdSetID.toString(),
             folderName: '',
             fileName: '',
             data: this.currentData,
             dataRaw: this.currentData
         };
 
-        // Add to CurrentDatasets
-        if (dsCurrIDs.indexOf(newdSetID) < 0) {
-            this.globalVariableService.currentDatasets.push(newdSet);
-        };
+       
 
         // Add to All datasets
         if (dSetIDs.indexOf(newdSetID) < 0) {
-            this.globalVariableService.datasets.push(newdSet);
+            // this.globalVariableService.datasets.push(newdSet);
+            this.globalVariableService.addDataset(newdSet);
             this.globalVariableService.saveLocal('Dataset', newdSet);
+        } else {
+             // Add to CurrentDatasets
+            if (dsCurrIDs.indexOf(newdSetID) < 0) {
+                this.globalVariableService.currentDatasets.push(newdSet);
+            };
         };
-console.log('xx added dSet', this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
+
+
+        
+
+
+console.log('xx added dSet', newdSet, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
         // Reset data related to this DS
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.currentTransformations = [];
@@ -492,7 +500,7 @@ console.log('xx added dSet', this.globalVariableService.datasets, this.globalVar
 
         // UnShow Add button
         this.showAddButton = false;
-        console.log('done', this.currentDatasources, this.globalVariableService.datasources)
+        console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
     }
 
     clickDatasourceRow(id: number, dsName: string) {

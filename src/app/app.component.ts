@@ -4400,13 +4400,28 @@ console.log('xx w', this.currentWidgets)
                 this.currentWidgets[index].graphWidth;
         };
 
-        // Refresh graphs
-        if (this.currentWidgets[index].widgetType == 'Graph') {
-            this.globalVariableService.changedWidget.next(this.currentWidgets[index]);
-        };
+        // Add to Action log
+        this.globalVariableService.actionUpsert(
+            null,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+            'Widget',
+            'Resize',
+            'App clickResizeWidgetUp',
+            null,
+            null,
+            null,
+            this.currentWidgets[index]
+        );
 
         // Save to DB
         this.globalVariableService.saveWidget(this.currentWidgets[index]);
+
+        // Refresh graphs
+        if (this.currentWidgets[index].widgetType == 'Graph') {
+
+            this.globalVariableService.changedWidget.next(this.currentWidgets[index]);
+        };
 
         this.menuOptionClickPostAction();
     }

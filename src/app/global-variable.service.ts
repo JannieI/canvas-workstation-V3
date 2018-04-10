@@ -1709,17 +1709,17 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + url, data.dataRaw, {headers})
             .subscribe(
-                data => {
+                res => {
                     
                     // Update Global vars to make sure they remain in sync
                     this.datasets.push(JSON.parse(JSON.stringify(data)));
                     this.currentDatasets.push(JSON.parse(JSON.stringify(data)));
                     
-                    console.log('addDataset ADDED', data, this.datasets)
+                    console.log('addDataset ADDED', res, this.datasets)
 
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addDataset FAILED', err);;
