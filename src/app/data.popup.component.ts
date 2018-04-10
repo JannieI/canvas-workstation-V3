@@ -432,14 +432,16 @@ export class DataPopupComponent implements OnInit {
         this.existingDSName = '';
 
         // Add to current DS
-        this.globalVariableService.currentDatasourceAdd(newData);
+        // this.globalVariableService.currentDatasourceAdd(newData);
 
         // Show current Tab
         this.currentDS = true;
 
         // Add to all DS, for later use
-        this.globalVariableService.datasourceAdd(newData);
-
+        // this.globalVariableService.datasourceAdd(newData);
+        this.globalVariableService.addDatasource(newData).then(res => {
+            console.log('xx gv.DS', this.globalVariableService.datasources, this.globalVariableService.currentDatasources);
+        })
         // Get new dSetID
         // TODO - do better with DB
         let newdSetID: number = 1;
@@ -471,7 +473,7 @@ export class DataPopupComponent implements OnInit {
             this.globalVariableService.datasets.push(newdSet);
             this.globalVariableService.saveLocal('Dataset', newdSet);
         };
-
+console.log('xx added dSet', this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
         // Reset data related to this DS
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.currentTransformations = [];

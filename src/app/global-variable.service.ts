@@ -2580,6 +2580,54 @@ export class GlobalVariableService {
         console.log('Global-Variables currentDatasourceAdd after push', this.currentDatasources)
     }
 
+
+
+    addDatasource(data: Datasource): Promise<any> {
+        // Description: Adds a new Datasource, if it does not exist
+        // Returns: Added Data or error message
+        console.log('Global-Variables addDatasource ...');
+
+        let url: string = 'datasources';
+        this.filePath = './assets/data.datasources.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                res => {
+                    
+                    // Update Global vars to make sure they remain in sync
+                    let newDS: Datasource = JSON.parse(JSON.stringify(res))
+                    if (this.datasources.filter(i => i.id == newDS.id).length == 0) {
+                        this.datasources.push(newDS);
+                    };
+                    if (this.currentDatasources.filter(i => i.id == newDS.id).length == 0) {
+                        this.currentDatasources.push(newDS);
+                    };
+
+                    // Inform that we now at a DS
+                    this.hasDatasources.next(true);
+                    
+                    console.log('addDatasource ADDED', res, 
+                        this.currentDatasources, this.datasources)
+
+                    resolve(res);
+                },
+                err => {
+                    console.log('Error addDatasource FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+
+
+
+
     currentDatasourceDelete(index: number) {
         // Delete current DS
         console.log('Global-Variables datasourceDelete', index, this.currentDatasources)
