@@ -2486,16 +2486,6 @@ export class GlobalVariableService {
 
     }
 
-    datasourceAdd(newData: Datasource) {
-        // Add given DS to the list of all DS
-        console.log('Global-Variables datasourceAdd ...');
-
-        if (this.datasources.filter(i => i.id == newData.id).length == 0) {
-            this.datasources.push(newData);
-        }
-        console.log('Global-Variables datasourceAdd after push', this.datasources)
-    }
-//
     getCurrentDatasources(dashboardID: number): Promise<Datasource[]> {
         // Description: Gets DS for current D
         // Params: dashboardID = current D
