@@ -2495,7 +2495,7 @@ export class GlobalVariableService {
         }
         console.log('Global-Variables datasourceAdd after push', this.datasources)
     }
-
+//
     getCurrentDatasources(dashboardID: number): Promise<Datasource[]> {
         // Description: Gets DS for current D
         // Params: dashboardID = current D
@@ -2565,22 +2565,6 @@ export class GlobalVariableService {
             }
         });
     }
-
-    currentDatasourceAdd(newData: Datasource) {
-        // Add given DS to the current DS
-        console.log('Global-Variables currentDatasourceAdd ...');
-
-        if (this.currentDatasources.filter(i => i.id == newData.id).length == 0) {
-            this.currentDatasources.push(newData);
-        }
-
-        // Inform that we now at a DS
-        this.hasDatasources.next(true);
-
-        console.log('Global-Variables currentDatasourceAdd after push', this.currentDatasources)
-    }
-
-//
 
     addDatasource(data: Datasource): Promise<any> {
         // Description: Adds a new Datasource, if it does not exist
