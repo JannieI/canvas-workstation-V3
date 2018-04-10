@@ -73,7 +73,7 @@ export class DashboardNewComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
-
+ 
         // Create new D
         let newDashboard: Dashboard = this.globalVariableService.dashboardTemplate;
         newDashboard.code = this.dashboardCode;
@@ -89,7 +89,7 @@ export class DashboardNewComponent implements OnInit {
 
             // Add Tab to DB
             this.globalVariableService.addDashboardTab(newDashboardTab).then(t => {
-
+console.log('xx this t', t)
                 this.globalVariableService.refreshCurrentDashboard(
                     'addDashboard-clickCreate', d.id, -1, ''
                 );

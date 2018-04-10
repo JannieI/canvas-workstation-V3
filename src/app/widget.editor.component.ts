@@ -284,8 +284,10 @@ const graphWidth: number = 420;
             // Update local and global vars
             this.localWidget.dashboardTabIDs.push(this.globalVariableService.
                 currentDashboardInfo.value.currentDashboardTabID);
+                console.log('xx pre', this.localWidget, this.globalVariableService.widgets, this.globalVariableService.currentWidgets)
 
-            this.globalVariableService.addWidget(this.localWidget);
+            this.globalVariableService.addWidget(this.localWidget).then(res =>
+            console.log('xx lW', this.localWidget, this.globalVariableService.widgets, this.globalVariableService.currentWidgets))
         } else {
             if (this.selectedWidget.graphColorField != ''
                 &&  this.selectedWidget.graphColorField != null) {

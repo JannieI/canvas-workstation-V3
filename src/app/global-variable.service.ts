@@ -4694,7 +4694,7 @@ export class GlobalVariableService {
         // parameters.
         console.log('Global-Variables refreshCurrentDashboard ...');
 
-
+console.log('xx this refresh GV', this.currentDashboardTabs)
         // TODO - add Permissions, either here or automatically in DB !!!
 
         
@@ -4735,15 +4735,19 @@ export class GlobalVariableService {
             y = this.currentDashboardTabs[x].id;
         } else {
             y = dashboardTabID;
-            if (this.currentDashboards.length == 0) {
+            if (this.currentDashboardTabs.length == 0) {
                 x = 0;
             } else {
                 for (var i = 0; i < this.currentDashboardTabs.length; i++) {
                     if (this.currentDashboardTabs[i].id == dashboardTabID) {
                         x = i;
-                    }
-                }
-            }
+                    };
+                };
+                if (dashboardTabID == -1) {
+                    x = 0;
+                    y = this.currentDashboardTabs[x].id;
+                };
+            };
         };
 
         this.currentDashboardInfo.next({

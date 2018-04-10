@@ -503,6 +503,7 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.currentDashboardInfo.value.
                             currentDashboardTabID).then(j =>
                             {
+                                console.log('xx this.globalVariableService.currentDashboardInfo.value', this.globalVariableService.currentDashboardInfo.value)
                                 this.refreshGraphs = false;
                                 this.currentDashboardTabIndex = this.globalVariableService.currentDashboardInfo.value.
                                     currentDashboardTabIndex;
@@ -876,14 +877,14 @@ export class AppComponent implements OnInit {
             'App handleCloseWidgetEditor',
             null,
             null,
-            this.newWidget? null :this.selectedWidget,
+            this.newWidget? null : this.selectedWidget,
             changedWidget
         );
 
         this.globalVariableService.changedWidget.next(changedWidget);
 
         this.menuOptionClickPostAction();
-
+        console.log('xx app W', this.selectedWidget, this.currentWidgets)
         this.showModalWidgetEditor = false;
     }
 
