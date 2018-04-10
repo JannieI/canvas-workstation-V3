@@ -4338,6 +4338,9 @@ console.log('xx w', this.currentWidgets)
 
         this.menuOptionClickPreAction();
 
+        // Deep copy existing W
+        let oldWidget: Widget = Object.assign({}, this.currentWidgets[index]);
+
         // Top moved: adjust the height & top
         if (resizeTop) {
             this.currentWidgets[index].containerTop =
@@ -4410,7 +4413,7 @@ console.log('xx w', this.currentWidgets)
             'App clickResizeWidgetUp',
             null,
             null,
-            null,
+            oldWidget,
             this.currentWidgets[index]
         );
 
