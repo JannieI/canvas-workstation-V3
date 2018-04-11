@@ -454,7 +454,7 @@ export class DataPopupComponent implements OnInit {
         let newdSet: Dataset = {
             id: newdSetID,
             datasourceID: newDSID,
-            sourceLocation: '',
+            sourceLocation: 'HTTP',
             url: 'dataset' + newdSetID.toString(),
             folderName: '',
             fileName: '',
@@ -462,12 +462,11 @@ export class DataPopupComponent implements OnInit {
             dataRaw: this.currentData
         };
 
-       
-
         // Add to All datasets
         if (dSetIDs.indexOf(newdSetID) < 0) {
             // this.globalVariableService.datasets.push(newdSet);
             this.globalVariableService.addDataset(newdSet);
+            this.globalVariableService.addData('dataset' + newdSetID.toString(), this.currentData);
             this.globalVariableService.saveLocal('Dataset', newdSet);
         } else {
              // Add to CurrentDatasets

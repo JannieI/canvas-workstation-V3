@@ -1764,6 +1764,37 @@ export class GlobalVariableService {
         });
     }
     
+    addData(datasetID: string, data: any): Promise<any> {
+        // Description: Adds DATA used in a new Dataset
+        // Returns: Added Data or error message
+        console.log('Global-Variables addData  ...');
+
+        // let url: string = data.url;
+        // this.filePath = data.folderName + data.fileName;
+        let url: string = datasetID;
+        this.filePath = './assets/' + datasetID + '.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + datasetID, data, {headers})
+            .subscribe(
+                res => {
+                                       
+                    console.log('addData ADDED', res, this.datasets, this.currentDatasets)
+
+                    resolve(res);
+                },
+                err => {
+                    console.log('Error addData FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     filterSlicer(dataSet: Dataset): Dataset {
         // Filter a given Dataset on .dataRaw by applying all applicable Sl, and put result
         // into .data
