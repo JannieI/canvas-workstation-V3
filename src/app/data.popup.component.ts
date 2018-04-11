@@ -454,7 +454,7 @@ export class DataPopupComponent implements OnInit {
         let newdSet: Dataset = {
             id: newdSetID,
             datasourceID: newDSID,
-            sourceLocation: 'localDB',
+            sourceLocation: '',
             url: 'dataset' + newdSetID.toString(),
             folderName: '',
             fileName: '',

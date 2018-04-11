@@ -1586,23 +1586,56 @@ export class GlobalVariableService {
         let folderName: string = '';
         let fileName: string = '';
         this.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
-        this.datasets.forEach(ds => {
-            if (ds.id == datasetID) {
-                dsSourceLocation = ds.sourceLocation;
-                url = ds.url;
-                if (ds.folderName == ''  ||  ds.folderName == null) {
-                    ds.folderName = '../assets/';
+        let datasetIndex: number = null;
+
+        // this.datasets.forEach(ds => {
+        //     if (ds.id == datasetID) {
+        //         dsSourceLocation = ds.sourceLocation;
+        //         url = ds.url;
+        //         if (ds.folderName == ''  ||  ds.folderName == null) {
+        //             ds.folderName = '../assets/';
+        //         };
+        //         if (ds.fileName == ''  ||  ds.fileName == null) {
+        //             ds.fileName = 'data.dataset' + ds.id.toString() + '.json';
+        //         };
+        //         folderName = ds.folderName;
+        //         fileName = ds.fileName;
+        //         this.filePath = ds.folderName + ds.fileName;
+        //     }
+        // });
+        for (var i = 0; i < this.datasets.length; i++) {
+            if (this.datasets[i].id == datasetID) {
+                datasetIndex = i;
+                dsSourceLocation = this.datasets[i].sourceLocation;
+                url = this.datasets[i].url;
+                if (this.datasets[i].folderName == ''  ||  this.datasets[i].folderName == null) {
+                    this.datasets[i].folderName = '../assets/';
                 };
-                if (ds.fileName == ''  ||  ds.fileName == null) {
-                    ds.fileName = 'data.dataset' + ds.id.toString() + '.json';
+                if (this.datasets[i].fileName == ''  ||  this.datasets[i].fileName == null) {
+                    this.datasets[i].fileName = 'data.dataset' + this.datasets[i].id.toString() + '.json';
                 };
-                folderName = ds.folderName;
-                fileName = ds.fileName;
-                this.filePath = ds.folderName + ds.fileName;
+                folderName = this.datasets[i].folderName;
+                fileName = this.datasets[i].fileName;
+                this.filePath = this.datasets[i].folderName + this.datasets[i].fileName;
             }
-        });
+        };
 
         return new Promise<any>((resolve, reject) => {
+
+            // Data already in dataset
+            if (dsSourceLocation == '') {
+
+                if (datasetIndex != null) {
+                    // Add to Currentatasets (contains all data) - once
+                    if (dsCurrIDs.indexOf(datasetID) < 0) {
+                        this.currentDatasets.push(this.datasets[datasetIndex]);
+                        console.log('xx getCurrentDataset added to this.currentDatasets ', 
+                        this.currentDatasets)
+                    };
+                } else {
+                    console.log('Error in getCurrentDataset - datasetIndex == null')
+                };
+            };
 
             // Get data from the correct place
             if (dsSourceLocation == 'localDB') {
@@ -1701,15 +1734,17 @@ export class GlobalVariableService {
         // Returns: Added Data or error message
         console.log('Global-Variables addDataset ...');
 
-        let url: string = data.url;
-        this.filePath = data.folderName + data.fileName;
+        // let url: string = data.url;
+        // this.filePath = data.folderName + data.fileName;
+        let url: string = 'datasets';
+        this.filePath = './assets/data.datasets.json';
 
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data.dataRaw, {headers})
+            this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 res => {
                     
@@ -1717,7 +1752,7 @@ export class GlobalVariableService {
                     this.datasets.push(JSON.parse(JSON.stringify(data)));
                     this.currentDatasets.push(JSON.parse(JSON.stringify(data)));
                     
-                    console.log('addDataset ADDED', res, this.datasets)
+                    console.log('addDataset ADDED', res, this.datasets, this.currentDatasets)
 
                     resolve(res);
                 },
