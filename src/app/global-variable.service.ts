@@ -1629,8 +1629,6 @@ export class GlobalVariableService {
                     // Add to Currentatasets (contains all data) - once
                     if (dsCurrIDs.indexOf(datasetID) < 0) {
                         this.currentDatasets.push(this.datasets[datasetIndex]);
-                        console.log('xx getCurrentDataset added to this.currentDatasets ', 
-                        this.currentDatasets)
                     };
                 } else {
                     console.log('Error in getCurrentDataset - datasetIndex == null')
@@ -1764,22 +1762,51 @@ export class GlobalVariableService {
         });
     }
     
-    addData(datasetID: string, data: any): Promise<any> {
+    getData(id: number): Promise<Dataset[]> {
+        // Description: Gets Datasets, WITHOUT data
+        // Returns: this.dataset
+        console.log('Global-Variables getData ...');
+
+        let url: string = 'data/' + id.toString();
+        this.filePath = './assets/data.datasets.json';
+
+        return new Promise<Dataset[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.datasets = data;
+                        this.isDirtyDatasets = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('Global-Variables getDataset 1', this.datasets)
+                        resolve(this.datasets);
+                    });
+            } else {
+                console.log('Global-Variables getDataset 2', this.datasets)
+                resolve(this.datasets);
+            }
+        });
+
+    }
+
+    addData(data: any): Promise<any> {
         // Description: Adds DATA used in a new Dataset
         // Returns: Added Data or error message
         console.log('Global-Variables addData  ...');
 
         // let url: string = data.url;
         // this.filePath = data.folderName + data.fileName;
-        let url: string = datasetID;
-        this.filePath = './assets/' + datasetID + '.json';
+        let url: string = 'data';
+        this.filePath = './assets/data.dataset' + data.id + '.json';
 
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + datasetID, data, {headers})
+            this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 res => {
                                        
@@ -1846,6 +1873,7 @@ export class GlobalVariableService {
 
                     // Replace the filtered data, used by the graph
                 dataSet.data = tempData;
+                
             };
 
             // Type = Bins
@@ -1853,6 +1881,7 @@ export class GlobalVariableService {
 
                 // Build array of selection values
                 let rangeValues: {fromValue: number; toValue:number}[] = [];
+
                 w.slicerBins.forEach(bn => {
                     if (bn.isSelected) { 
                         rangeValues.push(
@@ -1876,6 +1905,7 @@ export class GlobalVariableService {
 
                 // Replace the filtered data, used by the graph
                 dataSet.data = filterBinData;
+
             };
         });
 
@@ -4761,7 +4791,6 @@ export class GlobalVariableService {
         //         //     return nSQL().query('select').exec(); // select all rows from the current active table
         //         // })
         //         // .then(function(result) {
-        //         //     console.log('xx2 W', result) // <= arrayid:1, name:"bill", age: 20}]
         //         // })
 
         //         // Example 2
@@ -4809,10 +4838,8 @@ export class GlobalVariableService {
         //             // 		// 	name:"bill", age: 20
         //             // 		// }).exec()
         //             // 			.then(second => {
-        //             // 				console.log('xx21', conn, first, second) //  <- "1 Row(s) upserted"
         //             // 				return nSQL().getView('list_all_users');
         //             // 			}).then(result => {
-        //             // 				console.log('xx22', result) //  <- single object array containing the row we inserted.
         //             // 			})
         //             // 		)
         //             // )
@@ -4841,9 +4868,6 @@ export class GlobalVariableService {
         let currentDashboardTabs: DashboardTab[];
         currentDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == dashboardID);
         
-        console.log('xx this refresh GV Did-tabToShow-Tid-currT-this.currT',  dashboardID, tabToShow,
-        dashboardTabID, currentDashboardTabs, this.currentDashboardTabs, this.dashboardTabs)
-
         // Assume we have all currentD info
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
             (this.currentDashboardInfo == null) ) {
@@ -4891,7 +4915,7 @@ export class GlobalVariableService {
                 };
             };
         };
-console.log('xx this xy', x, y)
+
         this.currentDashboardInfo.next({
             currentDashboardID: dashboardID,
             currentDashboardTabID: y,
@@ -5176,7 +5200,6 @@ console.log('xx this xy', x, y)
                 w.widgetUpdatedBy = changedWidget.widgetUpdatedBy;
             };
         });
-        // console.log('xx this.currentWidgets', this.currentWidgets)
     }
 
     sleep(milliseconds: number) {
@@ -5358,7 +5381,6 @@ console.log('xx this xy', x, y)
         // It will return an array of datagridColumns to use in the ca-datagrid
         // for a given array of data and a set of columns to show, 
         console.log('Global-Variables createDatagridColumns ...');
-        console.log('xx 1', showFields, visibleFields, dataRow)
 
         // No data provided
         if (dataRow == null  ||  dataRow == undefined) {
@@ -5371,7 +5393,6 @@ console.log('xx this xy', x, y)
 
         // Get cols from the data
         columns = Object.keys(dataRow)
-        console.log('xx 2', showFields,columns, visibleFields, datagridColumns)
 
         // Make All visible if nothing was given
         if (visibleFields.length == 0) {
@@ -5382,7 +5403,7 @@ console.log('xx this xy', x, y)
         if (showFields.length == 0) {
             showFields = columns;
         };        
-console.log('xx ', showFields,columns, visibleFields, datagridColumns)
+
         // Loop on the cols, and create an object for each in the datagridColumns array
         showFields.forEach( sf => {
             for (var i = 0; i < columns.length; i++) {

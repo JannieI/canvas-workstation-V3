@@ -455,18 +455,28 @@ export class DataPopupComponent implements OnInit {
             id: newdSetID,
             datasourceID: newDSID,
             sourceLocation: 'HTTP',
-            url: 'dataset' + newdSetID.toString(),
+            url: 'data',
             folderName: '',
             fileName: '',
             data: this.currentData,
             dataRaw: this.currentData
         };
 
+        let dataToAdd: any = {
+            id: newdSetID,
+            data: this.currentData
+        };
+
         // Add to All datasets
         if (dSetIDs.indexOf(newdSetID) < 0) {
             // this.globalVariableService.datasets.push(newdSet);
             this.globalVariableService.addDataset(newdSet);
-            this.globalVariableService.addData('dataset' + newdSetID.toString(), this.currentData);
+            this.globalVariableService.addData(dataToAdd).then(res => {
+                this.globalVariableService.getData(res.id).then(dat => {
+                    console.log('xx ----------')
+                    console.log('xx added data', dat)
+                                    });
+            });
             this.globalVariableService.saveLocal('Dataset', newdSet);
         } else {
              // Add to CurrentDatasets
@@ -478,8 +488,10 @@ export class DataPopupComponent implements OnInit {
 
         
 
+        console.log('xx ----------')
+console.log('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets, 
+this.globalVariableService.currentDatasets)
 
-console.log('xx added dSet', newdSet, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
         // Reset data related to this DS
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.currentTransformations = [];
