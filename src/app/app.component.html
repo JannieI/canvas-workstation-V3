@@ -1787,7 +1787,13 @@
 
 
 <!-- Palette -->
-<div class="palette" *ngIf="editMode  &&  !presentationMode  &&  showPalette">
+<div class="palette" *ngIf="editMode  &&  !presentationMode  &&  showPalette"
+    [style.left.px]="paletteLeft"
+    [style.top.px]="paletteTop"
+    (dragstart)="clickPaletteDragStart($event)"
+    (dragend)="clickPaletteDragEnd($event)"
+    draggable="true"
+    >
 
     <span *ngFor="let row of paletteButtons; let i = index"
         role="tooltip"

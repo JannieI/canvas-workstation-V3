@@ -288,6 +288,8 @@ export class AppComponent implements OnInit {
     newWidgetContainerTop: number = 0;
     paletteButtons: PaletteButtonBar[] = [];
     paletteDrag: boolean;
+    paletteLeft: number = 20;                    // Palette position in rem
+    paletteTop: number = 70;                     // Palette position in rem
     presentationMode: boolean;
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
@@ -4023,6 +4025,27 @@ console.log('xx w', this.currentWidgets)
 
 
     // ***********************  OTHER ************************ //
+
+    clickPaletteDragStart(ev: MouseEvent) {
+        // Register start of Palette drag event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickPaletteDragStart', '@Start');
+
+        this.startX = ev.x;
+        this.startY = ev.y;
+    }
+
+    clickPaletteDragEnd(ev: MouseEvent) {
+        // Move the Palette at the end of the drag event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickPaletteDragEnd', '@Start');
+          
+        // Get final coordinates of cursor after move
+        this.endX = ev.x;
+        this.endY = ev.y; 
+        
+        // Move the Palette
+            this.paletteLeft = this.paletteLeft - this.startX + this.endX;
+            this.paletteTop = this.paletteTop - this.startY + this.endY;
+        }
 
     showRecentDashboard(index: number) {
         // Open a Recently used D
