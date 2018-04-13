@@ -179,7 +179,7 @@ export class DataPopupComponent implements OnInit {
         // TODO alert('Later: File component to browse ...')
     }
 
-    clickCurrentDSDelete(index: number) {
+    clickCurrentDSDelete(id: number) {
         // Delete the selected current DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDSDelete', '@Start');
 
@@ -191,7 +191,8 @@ export class DataPopupComponent implements OnInit {
 
         // Validation
         let linkedWidgets: number = this.globalVariableService.currentWidgets.filter(w =>
-            w.datasourceID == this.currentDatasources[index].id
+            w.datasourceID == id
+            // w.datasourceID == this.currentDatasources[index].id
         ).length;
         if (linkedWidgets > 0) {
             this.errorMessage = 'No delete - linked Widgets'
@@ -199,7 +200,7 @@ export class DataPopupComponent implements OnInit {
         }
 
         this.showDataPreview = false;
-        this.globalVariableService.currentDatasourceDelete(index);
+        this.globalVariableService.currentDatasourceDelete(id);
     }
 
     clickDSPreview() {
@@ -486,10 +487,10 @@ export class DataPopupComponent implements OnInit {
         };
 
 
-        
+
 
         console.log('xx ----------')
-console.log('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets, 
+console.log('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
 this.globalVariableService.currentDatasets)
 
         // Reset data related to this DS
@@ -608,7 +609,7 @@ this.globalVariableService.currentDatasets)
     }
 
     ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
+        // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');

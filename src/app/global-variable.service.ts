@@ -3113,8 +3113,8 @@ export class GlobalVariableService {
             if (this.isDirtyUserPreferences) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.userPreferences = data;
+                    .then(res => {
+                        this.userPreferences = res;
 
                         // Load global Vars
                         // this.userPreferences.preferenceAutoSync = data.preferenceAutoSync;

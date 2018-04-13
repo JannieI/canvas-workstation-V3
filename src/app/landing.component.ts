@@ -150,6 +150,7 @@ export class LandingComponent implements OnInit {
 		this.globalVariableService.getBackgroundColors().then(res => 
 			console.log('xx getBackgroundColors', this.globalVariableService.backgroundcolors)
 		);
+		this.globalVariableService.getUserPreferences();
 	}
 
 	ngAfterViewInit() {
