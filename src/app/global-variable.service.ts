@@ -524,6 +524,7 @@ export class GlobalVariableService {
     }
 
     userPreferences: UserPreferences = {
+        preferencePaletteHorisontal: false,
         preferenceAutoSync: true,
         preferenceShowOpenStartupMessage: true,
         preferenceShowOpenDataCombinationMessage: true,

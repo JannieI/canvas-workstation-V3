@@ -65,6 +65,7 @@ export class CollaborateSendMessageComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // let data: UserPreferences = {
+        //     preferencePaletteHorisontal: this.preferencePaletteHorisontal,
         //     preferenceAutoSync: this.preferenceAutoSync,
         //     preferenceShowOpenStartupMessage: this.preferenceShowOpenStartupMessage,
         //     preferenceShowOpenDataCombinationMessage: this.preferenceShowOpenDataCombinationMessage,
