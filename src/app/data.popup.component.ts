@@ -200,6 +200,19 @@ export class DataPopupComponent implements OnInit {
         }
 
         this.showDataPreview = false;
+
+        // Delete local
+        let index: number = -1;
+        for (var i = 0; i < this.currentDatasources.length; i++) {
+            if (this.currentDatasources[i].id == id) {
+                index = i;
+            };
+        };
+        if (index != -1) {
+            this.currentDatasources.splice(index,1)
+        };
+        
+        // Delete global
         this.globalVariableService.currentDatasourceDelete(id);
     }
 

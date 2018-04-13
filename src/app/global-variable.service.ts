@@ -2731,18 +2731,20 @@ export class GlobalVariableService {
         });
     }
 
-
-
-
-
-    currentDatasourceDelete(index: number) {
+    currentDatasourceDelete(id: number) {
         // Delete current DS
-        console.log('Global-Variables datasourceDelete', index, this.currentDatasources)
+        console.log('Global-Variables datasourceDelete', id, this.currentDatasources)
 
-        // let arr: Datasource[] = this.currentDatasources.splice(index,1);
-        // console.log('Global-Variables currentDatasourceDelete arr', arr)
-        // this.currentDatasources.next( this.currentDatasources)
-        this.currentDatasources.splice(index,1)
+        let index: number = -1;
+        for (var i = 0; i < this.currentDatasources.length; i++) {
+            if (this.currentDatasources[i].id == id) {
+                index = i;
+            };
+        };
+        if (index != -1) {
+            this.currentDatasources.splice(index,1)
+        };
+
         console.log('Global-Variables currentDatasourceDelete end', this.currentDatasources)
     }
 
