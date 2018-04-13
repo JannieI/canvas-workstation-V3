@@ -29,6 +29,7 @@ export class PreferencesComponent implements OnInit {
     @Output() formDashboardPreferencesClosed: EventEmitter<string> = new EventEmitter();
 
     preferenceAutoSync: boolean;
+    preferencePaletteHorisontal: boolean;
     preferenceShowOpenStartupMessage: boolean;
     preferenceShowOpenDataCombinationMessage: boolean;
     preferenceShowViewStartupMessage: boolean;
@@ -50,6 +51,7 @@ export class PreferencesComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.preferenceAutoSync = this.globalVariableService.userPreferences.preferenceAutoSync;
+        this.preferencePaletteHorisontal = this.globalVariableService.userPreferences.preferencePaletteHorisontal;
         this.preferenceShowOpenStartupMessage = this.globalVariableService.userPreferences.preferenceShowOpenStartupMessage;
         this.preferenceShowOpenDataCombinationMessage = this.globalVariableService.userPreferences.preferenceShowOpenDataCombinationMessage;
         this.preferenceShowViewStartupMessage = this.globalVariableService.userPreferences.preferenceShowViewStartupMessage;
@@ -82,6 +84,7 @@ export class PreferencesComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         let data: UserPreferences = {
+            preferencePaletteHorisontal: this.preferencePaletteHorisontal,
             preferenceAutoSync: this.preferenceAutoSync,
             preferenceShowOpenStartupMessage: this.preferenceShowOpenStartupMessage,
             preferenceShowOpenDataCombinationMessage: this.preferenceShowOpenDataCombinationMessage,

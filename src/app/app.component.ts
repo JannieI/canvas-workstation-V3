@@ -288,8 +288,8 @@ export class AppComponent implements OnInit {
     newWidgetContainerTop: number = 0;
     paletteButtons: PaletteButtonBar[] = [];
     paletteDrag: boolean;
-    paletteLeft: number = 20;                   // Palette position in px
-    paletteTop: number = 70;                    // Palette position in px
+    paletteLeft: number = 10;                   // Palette position in px
+    paletteTop: number = 80;                    // Palette position in px
     paletteHeight = 275;                         // Palette dimensions in px
     paletteWidth = 39;                         // Palette dimensions in px
     presentationMode: boolean;
@@ -446,8 +446,8 @@ export class AppComponent implements OnInit {
             this. paletteWidth = i.length * 23;
 
             // Vertical
-            this. paletteWidth = 35;
-            this. paletteHeight = i.length * 23;
+            this. paletteWidth = 32;
+            this. paletteHeight = i.length * 25;
 
             console.log('xx p ', this.paletteHeight, this.paletteWidth)
         });
