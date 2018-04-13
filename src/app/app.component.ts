@@ -424,12 +424,11 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         // Initial
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();
         this.globalVariableService.getCanvasUsers();
-
 
         this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
             this.paletteButtons = i.sort( (obj1,obj2) => {
@@ -441,15 +440,18 @@ export class AppComponent implements OnInit {
                 };
                 return 0;
             });
-            // Horisontal
-            this. paletteHeight = 35;
-            this. paletteWidth = i.length * 23;
 
-            // Vertical
-            this. paletteWidth = 32;
-            this. paletteHeight = i.length * 25;
+            if (this.globalVariableService.userPreferences.preferencePaletteHorisontal){
+                // Horisontal
+                this. paletteHeight = 35;
+                this. paletteWidth = i.length * 23;
+            } else {
+                // Vertical
+                this. paletteHeight = i.length * 25;
+                this. paletteWidth = 32;
+            };
 
-            console.log('xx p ', this.paletteHeight, this.paletteWidth)
+            console.log('xx p ', this.globalVariableService.userPreferences.preferencePaletteHorisontal,this.paletteHeight, this.paletteWidth)
         });
 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
