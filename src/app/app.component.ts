@@ -4028,7 +4028,8 @@ console.log('xx w', this.currentWidgets)
         // Open a Recently used D
         this.globalFunctionService.printToConsole(this.constructor.name,'showRecentDashboard', '@Start');
 
-        this.globalVariableService.editMode.next(false);
+        // Set the EditMode as it was previously
+        this.globalVariableService.editMode.next(this.recentDashboards[index].editMode);
 
         // Open it
 		this.globalVariableService.refreshCurrentDashboard(
