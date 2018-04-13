@@ -65,11 +65,10 @@
     background-color: #293841;
     border: 1px solid gray;
     float: left;
-    margin-left: 0.5rem;
+    margin-left: 0rem;
     padding: 4px;
     position: absolute;
     top: 3rem;
-    width: 1.35rem;
     z-index: 60;
 }
 

@@ -288,8 +288,10 @@ export class AppComponent implements OnInit {
     newWidgetContainerTop: number = 0;
     paletteButtons: PaletteButtonBar[] = [];
     paletteDrag: boolean;
-    paletteLeft: number = 20;                    // Palette position in rem
-    paletteTop: number = 70;                     // Palette position in rem
+    paletteLeft: number = 20;                   // Palette position in px
+    paletteTop: number = 70;                    // Palette position in px
+    paletteHeight = 275;                         // Palette dimensions in px
+    paletteWidth = 39;                         // Palette dimensions in px
     presentationMode: boolean;
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
@@ -429,8 +431,8 @@ export class AppComponent implements OnInit {
         this.globalVariableService.getCanvasUsers();
 
 
-        this.globalVariableService.currentPaletteButtonsSelected.subscribe(
-            i => this.paletteButtons = i.sort( (obj1,obj2) => {
+        this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
+            this.paletteButtons = i.sort( (obj1,obj2) => {
                 if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
                     return 1;
                 };
@@ -438,8 +440,17 @@ export class AppComponent implements OnInit {
                     return -1;
                 };
                 return 0;
-            })
-        );
+            });
+            // Horisontal
+            this. paletteHeight = 35;
+            this. paletteWidth = i.length * 23;
+
+            // Vertical
+            this. paletteWidth = 35;
+            this. paletteHeight = i.length * 23;
+
+            console.log('xx p ', this.paletteHeight, this.paletteWidth)
+        });
 
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
