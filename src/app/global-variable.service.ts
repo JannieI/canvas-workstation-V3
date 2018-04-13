@@ -1743,7 +1743,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3005/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 res => {
                     
@@ -1807,7 +1807,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3004/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 res => {
                                        
@@ -2430,7 +2430,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3002/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
                     
@@ -2464,7 +2464,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3002/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
         
@@ -3664,7 +3664,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
 
@@ -3754,7 +3754,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
                     
@@ -3787,7 +3787,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
                     // Update widgets and currentWidgets
@@ -4238,7 +4238,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3003/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
                     
@@ -4271,7 +4271,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3003/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
 
@@ -4441,15 +4441,15 @@ export class GlobalVariableService {
                 // Cater for different Servers
                 let finalUrl: string = '';
                 if (url == 'widgets') {
-                    finalUrl = 'http://localhost:3001/' + url;
+                    finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'dashboardSnapshots') {
-                    finalUrl = 'http://localhost:3002/' + url;
+                    finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'widgetCheckpoints') {
-                    finalUrl = 'http://localhost:3003/' + url;
+                    finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'data') {
-                    finalUrl = 'http://localhost:3004/' + url;
+                    finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'datasets') {
-                    finalUrl = 'http://localhost:3005/' + url;
+                    finalUrl = 'http://localhost:3000/' + url;
                 } else {
                     finalUrl = 'http://localhost:3000/' + url;
                 };
