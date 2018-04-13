@@ -1832,8 +1832,9 @@ export class GlobalVariableService {
         // Get all Sl for the given dSet
         // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
         // two dSets with different values ...
-        let relatedSlicers: Widget[] = this.currentWidgets.filter( w =>
-            w.datasourceID == dataSet.datasourceID  &&  w.datasetID == dataSet.id  
+        let relatedSlicers: Widget[] = this.currentWidgets.filter(w =>
+            w.datasourceID == dataSet.datasourceID  
+            &&  w.datasetID == dataSet.id  
             &&  w.widgetType == 'Slicer'
         );
 
@@ -1912,10 +1913,12 @@ export class GlobalVariableService {
         // Filter data in [W] related to this dSet
         // TODO - cater later for cases for we use graphUrl
         this.currentWidgets.forEach(w => {
-            if (w.datasourceID == dataSet.datasourceID  &&   w.datasetID == dataSet.id  && w.widgetType != 'Slicer') {
-                w.graphUrl = "";
-                w.graphData = dataSet.data;
-            }
+            if (w.datasourceID == dataSet.datasourceID  
+                &&   w.datasetID == dataSet.id  
+                && w.widgetType != 'Slicer') {
+                    w.graphUrl = "";
+                    w.graphData = dataSet.data;
+            };
         });
 
         console.log('xx filt Sl', this.currentWidgets, dataSet)

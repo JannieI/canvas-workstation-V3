@@ -511,7 +511,7 @@ export class AppComponent implements OnInit {
                                         this.globalVariableService.currentDashboardInfo
                                             .value.currentDashboardTabIndex = 0
 console.log('xx index', this.globalVariableService.currentDashboardInfo
-.value.currentDashboardTabIndex)                                            
+.value.currentDashboardTabIndex)
                                 };
                                 if (this.globalVariableService.currentDashboardInfo.value
                                     .currentDashboardTabID == -1) {
@@ -520,7 +520,7 @@ console.log('xx index', this.globalVariableService.currentDashboardInfo
                                             currentDashboardTabs[this.globalVariableService.currentDashboardInfo
                                                 .value.currentDashboardTabIndex].id
 console.log('xx id', this.globalVariableService.currentDashboardInfo
-.value.currentDashboardTabID)                                            
+.value.currentDashboardTabID)
                                 };
 
 
@@ -1212,7 +1212,7 @@ console.log('xx this.currentDashboardTabIndex', this.currentDashboardTabIndex)
 
         this.showModalGroups = false;
     }
-    
+
     handleCloseUserSystemSettings(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserSystemSettings', '@Start');
@@ -1630,7 +1630,7 @@ console.log('xx this.currentDashboardTabIndex', this.currentDashboardTabIndex)
                 this.selectedDashboard = d;
             };
         });
-        
+
         this.showModalDashboardShare = true;
     }
 
@@ -1907,7 +1907,7 @@ console.log('xx this.currentDashboardTabIndex', this.currentDashboardTabIndex)
 
         this.showModalDashboardDelete = true;
     }
-    
+
     clickMenuDashboardDeleteBulk() {
         // Delete the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDeleteBulk', '@Start');
@@ -3897,7 +3897,7 @@ console.log('xx w', this.currentWidgets)
 
         this.showModalGroups = true;
     }
-    
+
     clickMenuUserSystemSettings() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserSystemSettings', '@Start');
@@ -4244,7 +4244,7 @@ console.log('xx w', this.currentWidgets)
 
                 // Save to DB
                 this.globalVariableService.saveWidget(w);
-                
+
             }
         });
         this.globalVariableService.currentWidgets.forEach( w => {
@@ -4283,7 +4283,7 @@ console.log('xx w', this.currentWidgets)
             this.clickedSlicerItem = false;
             return;
         }
-        
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
@@ -4340,67 +4340,91 @@ console.log('xx w', this.currentWidgets)
 
         // Deep copy existing W
         let oldWidget: Widget = Object.assign({}, this.currentWidgets[index]);
+        let gvIndex: number = -1;
+        gvIndex = this.globalVariableService.currentWidgets.findIndex(w =>
+            w.id == this.currentWidgets[index].id
+        );
+        console.log('xx gvIndex', index, gvIndex)
 
         // Top moved: adjust the height & top
         if (resizeTop) {
             this.currentWidgets[index].containerTop =
                 this.currentWidgets[index].containerTop - this.startY + ev.y;
-            this.globalVariableService.currentWidgets[index].containerTop =
-                this.currentWidgets[index].containerTop;
-
+            if (gvIndex != -1) {
+                this.globalVariableService.currentWidgets[gvIndex].containerTop =
+                    this.currentWidgets[index].containerTop;
+            };
             this.currentWidgets[index].containerHeight =
                 this.currentWidgets[index].containerHeight - ev.y + this.startY;
-            this.globalVariableService.currentWidgets[index].containerHeight =
-                this.currentWidgets[index].containerHeight;
+            if (gvIndex != -1) {
+                this.globalVariableService.currentWidgets[gvIndex].containerHeight =
+                    this.currentWidgets[index].containerHeight;
+            };
 
             this.currentWidgets[index].graphHeight =
                 this.currentWidgets[index].graphHeight - ev.y + this.startY;
-            this.globalVariableService.currentWidgets[index].graphHeight =
-                this.currentWidgets[index].graphHeight;
+            if (gvIndex != -1) {
+                this.globalVariableService.currentWidgets[gvIndex].graphHeight =
+                    this.currentWidgets[index].graphHeight;
+            };
         };
 
         // Right moved: adjust the width
         if (resizeRight) {
             this.currentWidgets[index].containerWidth =
                 this.currentWidgets[index].containerWidth - this.startX + ev.x;
-            this.globalVariableService.currentWidgets[index].containerWidth =
-                this.currentWidgets[index].containerWidth;
+            if (gvIndex != -1) {
+                this.globalVariableService.currentWidgets[gvIndex].containerWidth =
+                    this.currentWidgets[index].containerWidth;
+            };
 
             this.currentWidgets[index].graphWidth =
                 this.currentWidgets[index].graphWidth - this.startX + ev.x;
-            this.globalVariableService.currentWidgets[index].graphWidth =
-                this.currentWidgets[index].graphWidth;
+            if (gvIndex != -1) {
+                this.globalVariableService.currentWidgets[gvIndex].graphWidth =
+                    this.currentWidgets[index].graphWidth;
+            };
         };
 
         // Bottom moved: adjust the height
         if (resizeBottom) {
             this.currentWidgets[index].containerHeight =
                 this.currentWidgets[index].containerHeight - this.startY + ev.y;
-            this.globalVariableService.currentWidgets[index].containerHeight =
-                this.currentWidgets[index].containerHeight;
+            if (gvIndex != -1) {
+                this.globalVariableService.currentWidgets[gvIndex].containerHeight =
+                    this.currentWidgets[index].containerHeight;
+            };
 
             this.currentWidgets[index].graphHeight =
                 this.currentWidgets[index].graphHeight - this.startY + ev.y;
-            this.globalVariableService.currentWidgets[index].graphHeight =
-                this.currentWidgets[index].graphHeight;
+            if (gvIndex != -1) {
+                this.globalVariableService.currentWidgets[gvIndex].graphHeight =
+                    this.currentWidgets[index].graphHeight;
+            };
         };
 
         // Left moved: adjust the width & left
         if (resizeLeft) {
             this.currentWidgets[index].containerLeft =
                 this.currentWidgets[index].containerLeft - this.startX + ev.x;
-            this.globalVariableService.currentWidgets[index].containerLeft =
-                this.currentWidgets[index].containerLeft;
+            if (gvIndex != -1) {
+                this.globalVariableService.currentWidgets[gvIndex].containerLeft =
+                    this.currentWidgets[index].containerLeft;
+            };
 
             this.currentWidgets[index].containerWidth =
                 this.currentWidgets[index].containerWidth - ev.x + this.startX;
-            this.globalVariableService.currentWidgets[index].containerWidth =
-                this.currentWidgets[index].containerWidth;
+            if (gvIndex != -1) {
+                this.globalVariableService.currentWidgets[gvIndex].containerWidth =
+                    this.currentWidgets[index].containerWidth;
+            };
 
             this.currentWidgets[index].graphWidth =
                 this.currentWidgets[index].graphWidth - ev.x + this.startX;
-            this.globalVariableService.currentWidgets[index].graphWidth =
-                this.currentWidgets[index].graphWidth;
+            if (gvIndex != -1) {
+                this.globalVariableService.currentWidgets[gvIndex].graphWidth =
+                    this.currentWidgets[index].graphWidth;
+            };
         };
 
         // Add to Action log

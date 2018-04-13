@@ -90,7 +90,7 @@ export class SlicerSingleComponent {
             this.globalVariableService.currentWidgets.forEach(w => {
                 if (w.id == id) {
                     w.slicerAddRestValue = ev.target.checked;
-                };                    
+                };
             });
         };
 
@@ -117,18 +117,22 @@ export class SlicerSingleComponent {
 
         // Filter the data in the dSets to which the Sl points.
         // In addition, apply all Sl that relates to each one
+        console.log('xx t pre W', this.globalVariableService.currentWidgets)
         this.globalVariableService.currentDatasets.forEach(cd => {
             if (cd.id == datasetID) {
 
                 this.globalVariableService.filterSlicer(cd);
             };
         });
+        console.log('xx t post W', this.globalVariableService.currentWidgets)
 
         // Refresh Ws that are related to Sl
         this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.datasourceID == datasourceID  &&  w.datasetID == datasetID  && w.widgetType != 'Slicer') {
-                // console.log('xx Sl sng', w.id, w.widgetType, w.containerWidth)
-                this.globalVariableService.changedWidget.next(w);
+            if (w.datasourceID == datasourceID
+                &&  w.datasetID == datasetID
+                && w.widgetType != 'Slicer') {
+
+                    this.globalVariableService.changedWidget.next(w);
             };
         });
     }
