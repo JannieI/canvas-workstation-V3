@@ -192,12 +192,15 @@ export class DataPopupComponent implements OnInit {
         // Validation
         let linkedWidgets: number = this.globalVariableService.currentWidgets.filter(w =>
             w.datasourceID == id
+            &&
+            w.dashboardID == this.globalVariableService.currentDashboardInfo
+                .value.currentDashboardID
             // w.datasourceID == this.currentDatasources[index].id
         ).length;
         if (linkedWidgets > 0) {
-            this.errorMessage = 'No delete - linked Widgets'
+            this.errorMessage = 'No deletion possilbe (linked Widgets)';
             return;
-        }
+        };
 
         this.showDataPreview = false;
 
@@ -211,7 +214,7 @@ export class DataPopupComponent implements OnInit {
         if (index != -1) {
             this.currentDatasources.splice(index,1)
         };
-        
+
         // Delete global
         this.globalVariableService.currentDatasourceDelete(id);
     }
