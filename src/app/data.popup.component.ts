@@ -216,7 +216,7 @@ export class DataPopupComponent implements OnInit {
         };
 
         // Delete global
-        this.globalVariableService.currentDatasourceDelete(id);
+        this.globalVariableService.deleteCurrentDatasource(id);
     }
 
     clickDSPreview() {

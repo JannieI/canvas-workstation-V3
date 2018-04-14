@@ -633,7 +633,7 @@ export class GlobalVariableService {
     showGrid = new BehaviorSubject<boolean>(false);
     showPalette = new BehaviorSubject<boolean>(true);
     preferencePaletteHorisontal = new BehaviorSubject<boolean>(true);
-    
+
     // First time user
     isFirstTimeDashboard = new BehaviorSubject<boolean>(false);
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
@@ -2738,9 +2738,10 @@ export class GlobalVariableService {
         });
     }
 
-    currentDatasourceDelete(id: number) {
+    deleteCurrentDatasource(id: number) {
         // Delete current DS
-        console.log('Global-Variables datasourceDelete', id, this.currentDatasources)
+        console.log('Global-Variables deleteCurrentDatasource', id, this.currentDatasources)
+        let index2: number = -1;
 
         let index: number = -1;
         for (var i = 0; i < this.currentDatasources.length; i++) {
@@ -2752,7 +2753,7 @@ export class GlobalVariableService {
             this.currentDatasources.splice(index,1)
         };
 
-        console.log('Global-Variables currentDatasourceDelete end', this.currentDatasources)
+        console.log('Global-Variables deleteCurrentDatasource end', this.currentDatasources)
     }
 
     getTransformations(): Promise<Transformation[]> {
