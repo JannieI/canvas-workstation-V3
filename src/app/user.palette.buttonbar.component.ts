@@ -353,9 +353,14 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
 console.log('xx sav1', this.globalVariableService.currentPaletteButtonsSelected.value)
+
+        let originalIDs: number [] = [];
+        let currentIDs: number [] = [];
         // Delete the inital selected ones for this user from the DB only
-        this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs =>
+        this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs => {
+            if ()
             this.globalVariableService.deletePaletteButtonsSelected(pbs.id)
+        }
         )
 
         // Unselect all

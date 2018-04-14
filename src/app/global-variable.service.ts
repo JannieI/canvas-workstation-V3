@@ -3465,16 +3465,16 @@ export class GlobalVariableService {
                     // This is a different case: currentPaletteButtonsSelected is an 
                     // Observable, and will be refreshed with a .next by the calling
                     // routine
-                    // let dID: number = -1;
-                    // for (var i = 0; i < this.currentPaletteButtonsSelected.value.length; i++) {
-                    //     if (this.currentPaletteButtonsSelected[i].id == id) {
-                    //         dID = i;
-                    //         break;
-                    //     };
-                    // };
-                    // if (dID >=0) {
-                    //     this.currentPaletteButtonsSelected.value.splice(dID, 1);
-                    // };
+                    let dID: number = -1;
+                    for (var i = 0; i < this.currentPaletteButtonsSelected.value.length; i++) {
+                        if (this.currentPaletteButtonsSelected[i].id == id) {
+                            dID = i;
+                            break;
+                        };
+                    };
+                    if (dID >=0) {
+                        this.currentPaletteButtonsSelected.value.splice(dID, 1);
+                    };
                     console.log('deletePaletteButtonsSelected DELETED id: ', id)
                     resolve('Deleted');
                 },
