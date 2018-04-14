@@ -441,6 +441,7 @@ export class AppComponent implements OnInit {
                 return 0;
             });
 console.log('xx i', i.length)
+            // Calc the 
             if (this.globalVariableService.userPreferences.preferencePaletteHorisontal){
                 // Horisontal
                 this. paletteHeight = 35;
@@ -4980,6 +4981,23 @@ console.log('xx w', this.currentWidgets)
         this.currentWidgets = [];
         this.hasDashboard = false;
         this.editMode = false;
+    }
+
+    setPaletteHeightAndWidth() {
+        // Sets the Height and Width of the Palette according to the user pref
+        this.globalFunctionService.printToConsole(this.constructor.name,'setPalette', '@Start');
+
+        if (this.globalVariableService.userPreferences.preferencePaletteHorisontal){
+            // Horisontal
+            this. paletteHeight = 35;
+            this. paletteWidth = this.globalVariableService.currentPaletteButtonsSelected
+                .value.length * 23;
+        } else {
+            // Vertical
+            this. paletteHeight = this.globalVariableService.currentPaletteButtonsSelected
+                .value.length * 25;
+            this. paletteWidth = 32;
+            };
     }
 }
 
