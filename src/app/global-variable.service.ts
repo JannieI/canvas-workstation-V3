@@ -3408,9 +3408,9 @@ export class GlobalVariableService {
 
                         this.isDirtyPaletteButtonsSelected = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
                         console.log('Global-Variables getPaletteButtonsSelected 1', 
                             this.currentPaletteButtonsSelected.value);
-
                         resolve(this.currentPaletteButtonsSelected.value);
                     });
             } else {
@@ -3482,7 +3482,6 @@ export class GlobalVariableService {
                         this.currentPaletteButtonsSelected.value.splice(dID, 1);
                     };
 
-
                     // Inform subscribers
                     this.currentPaletteButtonsSelected.next(
                         this.currentPaletteButtonsSelected.value
@@ -3517,12 +3516,17 @@ export class GlobalVariableService {
                 .subscribe(
                     res => {
 
-                      // Update Global vars to make sure they remain in sync
-                      this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res)));
+                        // Update Global vars to make sure they remain in sync
+                        this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res)));
                       
-                      console.log('addWidget ADDED', data, this.widgets)
-  
-                      resolve(data);
+                        // Inform subscribers
+                        this.currentPaletteButtonsSelected.next(
+                            this.currentPaletteButtonsSelected.value
+                        );
+
+                        console.log('addWidget ADDED', data, this.widgets)
+    
+                        resolve(data);
                     },
                     err => {
                         console.log('Error addDashboardSubscription FAILED', err);;

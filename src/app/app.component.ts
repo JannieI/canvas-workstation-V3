@@ -440,7 +440,7 @@ export class AppComponent implements OnInit {
                 };
                 return 0;
             });
-
+console.log('xx i', i.length)
             if (this.globalVariableService.userPreferences.preferencePaletteHorisontal){
                 // Horisontal
                 this. paletteHeight = 35;

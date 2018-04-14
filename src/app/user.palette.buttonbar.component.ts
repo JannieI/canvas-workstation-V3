@@ -55,14 +55,11 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 .currentPaletteButtonsSelected.value.slice();
 
             // Loop on selected ones in Available, and remove them
-            // let delIDs: number[] = [];
             for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
                 this.paletteButtonsSelected.forEach(pbs => {
                     if (this.paletteButtons[i].id == pbs.paletteButtonBarID) {
-                        console.log('xx i', i, this.paletteButtons[i].menuText)
+
                         this.paletteButtons.splice(i, 1)
-                        // delIDs.forEach( p => this.paletteButtons.splice(p, 1))
-                        // delIDs.push(i);
                     };
                 });
             };
@@ -169,7 +166,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
             if (this.paletteButtonsSelected[i].isSelected) {
                 availID.push(this.paletteButtonsSelected[i].id);
                 this.paletteButtons.push(this.paletteButtonsSelected[i]);
-                console.log('xx pushed', i, availID, this.paletteButtons.length, this.paletteButtonsSelected.length)
             };
         };
 
@@ -331,7 +327,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
     clickReset() {
         // Reset Selected to the Default list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickReset', '@Start');
-        console.log('xx reset str', this.paletteButtons.length)
 
         // Refill Available, Empty Selected
         this.paletteButtons = this.paletteButtonsOriginal;
@@ -352,8 +347,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Save data, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-console.log('xx save strt', this.globalVariableService.currentPaletteButtonsSelected.value)
-
         // Load set of original and current IDs
         let originalIDs: number [] = [];
         let currentIDs: number [] = [];
@@ -363,7 +356,6 @@ console.log('xx save strt', this.globalVariableService.currentPaletteButtonsSele
         this.paletteButtonsSelected.forEach(spb => {
             currentIDs.push(spb.id);
         });
-console.log('xx save ori curr', originalIDs, currentIDs)
 
         // Delete the original no longer in current
         originalIDs.forEach(opb => {
@@ -387,8 +379,6 @@ console.log('xx save ori curr', originalIDs, currentIDs)
             };
         });
         
-        console.log('xx save end', this.globalVariableService.currentPaletteButtonsSelected.value)
-
 		this.formUserWidgetButtonBarClosed.emit(action);
     }
 
