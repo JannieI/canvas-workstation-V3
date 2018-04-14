@@ -386,9 +386,6 @@ console.log('xx save ori curr', originalIDs, currentIDs)
                 );
             };
         });
-
-        // Inform subscribers
-        this.globalVariableService.currentPaletteButtonsSelected.next(this.paletteButtonsSelected);
         
         console.log('xx save end', this.globalVariableService.currentPaletteButtonsSelected.value)
 

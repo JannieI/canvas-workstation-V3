@@ -3448,7 +3448,7 @@ export class GlobalVariableService {
     deletePaletteButtonsSelected(id: number): Promise<string> {
         // Description: Deletes a PaletteButtonsSelected
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deletePaletteButtonsSelected ...', id);
+        console.log('Global-Variables deletePaletteButtonsSelected ...', id, this.currentPaletteButtonsSelected.value);
 
         let url: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
@@ -3460,14 +3460,16 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
+                    console.log('Global-Variables deletePaletteButtonsSelected 2 ...', id, this.currentPaletteButtonsSelected.value);
 
                     // This is a different case: currentPaletteButtonsSelected is an 
                     // Observable, and will be refreshed with a .next by the calling
                     // routine
                     let dID: number = -1;
                     for (var i = 0; i < this.currentPaletteButtonsSelected.value.length; i++) {
-                        if (this.currentPaletteButtonsSelected[i].id == id) {
+                        console.log('xx i ', i, this.currentPaletteButtonsSelected.value.length)
+                        if (this.currentPaletteButtonsSelected.value[i].id == id) {
                             dID = i;
                             break;
                         };
@@ -3475,7 +3477,14 @@ export class GlobalVariableService {
                     if (dID >=0) {
                         this.currentPaletteButtonsSelected.value.splice(dID, 1);
                     };
-                    console.log('deletePaletteButtonsSelected DELETED id: ', id)
+
+
+                    // Inform subscribers
+                    this.currentPaletteButtonsSelected.next(
+                        this.currentPaletteButtonsSelected.value
+                    );
+
+        console.log('deletePaletteButtonsSelected DELETED id: ', id)
                     resolve('Deleted');
                 },
                 err => {
