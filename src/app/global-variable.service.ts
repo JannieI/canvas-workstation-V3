@@ -921,14 +921,14 @@ export class GlobalVariableService {
 
     addDashboardRecent(dashboardID: number, dashboardTabID: number) {
         //
-        console.log('Global-Variables addDashboardRecent ...');
+        console.log('Global-Variables addDashboardRecent ...', dashboardID, dashboardTabID);
 
         // TODO - put to DB
     }
 
     deleteDashboardRecent(index: number): Promise<boolean> {
         //
-        console.log('Global-Variables deleteDashboardRecent ...');
+        console.log('Global-Variables deleteDashboardRecent ...', index);
 
         // Update data
         return new Promise<boolean>((resolve, reject) => {
@@ -976,7 +976,7 @@ export class GlobalVariableService {
 
     deleteDashboardInfo(dashboardID: number) {
         // Deletes D with all related Entities
-        console.log('Global-Variables deleteDashboardInfo ...');
+        console.log('Global-Variables deleteDashboardInfo ...', dashboardID);
 
         // TODO - update DB
         this.dashboards.forEach(d => {
@@ -1086,7 +1086,7 @@ export class GlobalVariableService {
     deleteDashboard(id: number): Promise<string> {
         // Description: Deletes a Dashboard
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboard ...');
+        console.log('Global-Variables deleteDashboard ...', id);
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1233,7 +1233,7 @@ export class GlobalVariableService {
     addDashboard(data: Dashboard): Promise<any> {
         // Description: Adds a new Dashboard
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboard ...');
+        console.log('Global-Variables addDashboard ...', data.id);
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1335,7 +1335,7 @@ export class GlobalVariableService {
     addDashboardTab(data: DashboardTab): Promise<any> {
         // Description: Adds a new DashboardTab
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardTab ...');
+        console.log('Global-Variables addDashboardTab ...', data.id);
 
         let url: string = 'dashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
@@ -1368,7 +1368,7 @@ export class GlobalVariableService {
     deleteDashboardTab(id: number): Promise<string> {
         // Description: Deletes a DashboardTab
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardTab ...');
+        console.log('Global-Variables deleteDashboardTab ...', id);
 
         let url: string = 'dashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
@@ -1731,7 +1731,7 @@ export class GlobalVariableService {
     addDataset(data: Dataset): Promise<any> {
         // Description: Adds a new Dataset
         // Returns: Added Data or error message
-        console.log('Global-Variables addDataset ...');
+        console.log('Global-Variables addDataset ...', data.id);
 
         // let url: string = data.url;
         // this.filePath = data.folderName + data.fileName;
@@ -1795,7 +1795,7 @@ export class GlobalVariableService {
     addData(data: any): Promise<any> {
         // Description: Adds DATA used in a new Dataset
         // Returns: Added Data or error message
-        console.log('Global-Variables addData  ...');
+        console.log('Global-Variables addData  ...', data.id);
 
         // let url: string = data.url;
         // this.filePath = data.folderName + data.fileName;
@@ -1959,7 +1959,7 @@ export class GlobalVariableService {
     deleteDashboardSchedule(id: number): Promise<string> {
         // Description: Deletes a DashboardSchedules
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardSchedule ...');
+        console.log('Global-Variables deleteDashboardSchedule ...', id);
 
         let url: string = 'dashboardSchedules';
         this.filePath = './assets/data.dashboardSchedules.json';
@@ -2095,7 +2095,7 @@ export class GlobalVariableService {
     addDashboardTag(data: DashboardTag): Promise<any> {
         // Description: Adds a new DashboardTag
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardTag ...');
+        console.log('Global-Variables addDashboardTag ...', data.id);
 
         let url: string = 'dashboardTags';
         this.filePath = './assets/data.dashboardTags.json';
@@ -2128,7 +2128,7 @@ export class GlobalVariableService {
     deleteDashboardTag(id: number): Promise<string> {
         // Description: Deletes a DashboardTag
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardTag ...');
+        console.log('Global-Variables deleteDashboardTag ...', id);
 
         let url: string = 'dashboardTags';
         this.filePath = './assets/data.dashboardTags.json';
@@ -2228,7 +2228,7 @@ export class GlobalVariableService {
     addDashboardPermission(data: DashboardPermission): Promise<any> {
         // Description: Adds a new DashboardPermission
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardPermission ...');
+        console.log('Global-Variables addDashboardPermission ...', data.id);
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -2289,7 +2289,7 @@ export class GlobalVariableService {
     deleteDashboardPermission(id: number): Promise<string> {
         // Description: Deletes a DashboardPermissions
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardPermission ...');
+        console.log('Global-Variables deleteDashboardPermission ...', id);
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -2420,7 +2420,7 @@ export class GlobalVariableService {
     addDashboardSnapshot(data: DashboardSnapshot): Promise<any> {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardSnapshot ...');
+        console.log('Global-Variables addDashboardSnapshot ...', data.id);
 
         let url: string = 'dashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
@@ -2454,7 +2454,7 @@ export class GlobalVariableService {
     deleteDashboardSnapshot(id: number): Promise<string> {
         // Description: Deletes a DashboardSnapshots
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardSnapshot ...');
+        console.log('Global-Variables deleteDashboardSnapshot ...', id);
 
         let url: string = 'dashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
@@ -2692,7 +2692,7 @@ export class GlobalVariableService {
     addDatasource(data: Datasource): Promise<any> {
         // Description: Adds a new Datasource, if it does not exist
         // Returns: Added Data or error message
-        console.log('Global-Variables addDatasource ...');
+        console.log('Global-Variables addDatasource ...', data.id);
 
         let url: string = 'datasources';
         this.filePath = './assets/data.datasources.json';
@@ -2942,7 +2942,7 @@ export class GlobalVariableService {
 
     deleteDatasourcePermission(id: number) {
         // Remove a record from the global and current DatasourcePermissions
-        console.log('Global-Variables deleteDatasourcePermission ...');
+        console.log('Global-Variables deleteDatasourcePermission ...', id);
 
         console.log('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
         
@@ -3267,7 +3267,7 @@ export class GlobalVariableService {
     addDashboardSubscription(data: DashboardSubscription): Promise<any> {
         // Description: Adds a new DashboardSubscription
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardSubscription ...');
+        console.log('Global-Variables addDashboardSubscription ...', data.id);
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -3296,7 +3296,7 @@ export class GlobalVariableService {
     deleteDashboardSubscription(id: number): Promise<string> {
         // Description: Deletes a DashboardSubscription
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardSubscription ...');
+        console.log('Global-Variables deleteDashboardSubscription ...', id);
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -3448,7 +3448,7 @@ export class GlobalVariableService {
     deletePaletteButtonsSelected(id: number): Promise<string> {
         // Description: Deletes a PaletteButtonsSelected
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deletePaletteButtonsSelected ...');
+        console.log('Global-Variables deletePaletteButtonsSelected ...', id);
 
         let url: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
@@ -3489,7 +3489,7 @@ export class GlobalVariableService {
     addPaletteButtonsSelected(data: PaletteButtonsSelected): Promise<any> {
         // Description: Adds a new PaletteButtonsSelected
         // Returns: Added Data or error message
-        console.log('Global-Variables addPaletteButtonsSelected ...');
+        console.log('Global-Variables addPaletteButtonsSelected ...', data.id);
 
         let url: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
@@ -3501,9 +3501,11 @@ export class GlobalVariableService {
 
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
-                    console.log('addPaletteButtonsSelected ADDED', data)
-                    resolve(data);
+                res => {
+
+                    this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res)));
+                    console.log('addPaletteButtonsSelected ADDED', res)
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addPaletteButtonsSelected FAILED', err);;
@@ -3656,7 +3658,7 @@ export class GlobalVariableService {
     deleteWidget(id: number): Promise<string> {
         // Description: Deletes a Widgets
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteWidget ...');
+        console.log('Global-Variables deleteWidget ...', id);
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -3746,7 +3748,7 @@ export class GlobalVariableService {
     addWidget(data: Widget): Promise<any> {
         // Description: Adds a new Widget
         // Returns: Added Data or error message
-        console.log('Global-Variables addWidget ...');
+        console.log('Global-Variables addWidget ...', data.id);
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -4038,7 +4040,7 @@ export class GlobalVariableService {
     addCanvasComment(data: CanvasComment): Promise<any> {
         // Description: Adds a new canvasComment
         // Returns: Added Data or error message
-        console.log('Global-Variables addCanvasComment ...');
+        console.log('Global-Variables addCanvasComment ...', data.id);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -4070,7 +4072,7 @@ export class GlobalVariableService {
     deleteCanvasComment(id: number): Promise<string> {
         // Description: Deletes a canvasComments
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteCanvasComment ...');
+        console.log('Global-Variables deleteCanvasComment ...', id);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -4133,7 +4135,7 @@ export class GlobalVariableService {
     deleteCanvasMessage(id: number): Promise<string> {
         // Description: Deletes a canvasMessages
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteCanvasMessage ...');
+        console.log('Global-Variables deleteCanvasMessage ...', id);
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/data.CanvasMessages.json';
@@ -4230,7 +4232,7 @@ export class GlobalVariableService {
     addWidgetCheckpoint(data: WidgetCheckpoint): Promise<any> {
         // Description: Adds a new WidgetCheckpoint
         // Returns: Added Data or error message
-        console.log('Global-Variables addWidgetCheckpoint ...');
+        console.log('Global-Variables addWidgetCheckpoint ...', data.id);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -4263,7 +4265,7 @@ export class GlobalVariableService {
     deleteWidgetCheckpoint(id: number): Promise<string> {
         // Description: Deletes a WidgetCheckpoints
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteWidgetCheckpoint ...');
+        console.log('Global-Variables deleteWidgetCheckpoint ...', id);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';

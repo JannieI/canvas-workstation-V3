@@ -352,35 +352,45 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Save data, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-console.log('xx sav1', this.globalVariableService.currentPaletteButtonsSelected.value)
+console.log('xx save strt', this.globalVariableService.currentPaletteButtonsSelected.value)
 
+        // Load set of original and current IDs
         let originalIDs: number [] = [];
         let currentIDs: number [] = [];
-        // Delete the inital selected ones for this user from the DB only
-        this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs => {
-            if ()
-            this.globalVariableService.deletePaletteButtonsSelected(pbs.id)
-        }
-        )
+        this.globalVariableService.currentPaletteButtonsSelected.value.forEach(spb => {
+            originalIDs.push(spb.id);
+        });
+        this.paletteButtonsSelected.forEach(spb => {
+            currentIDs.push(spb.id);
+        });
+console.log('xx save ori curr', originalIDs, currentIDs)
+
+        // Delete the original no longer in current
+        originalIDs.forEach(opb => {
+            if (currentIDs.indexOf(opb) < 0) {
+                this.globalVariableService.deletePaletteButtonsSelected(opb);
+            };
+        });
 
         // Unselect all
         this.paletteButtonsSelected.forEach(pbs => pbs.isSelected = false)
 
-        // Add the new ones to the DB
-        // TODO - note that IDs in paletteButtonsSelected sent to app is DIFF to DB ...
-        this.paletteButtonsSelected.forEach(pbs =>
-                this.globalVariableService.addPaletteButtonsSelected(pbs)
-        );
-
-        // Refresh global var, informing subscribers
-
-        // WORKS !!!
-        // this.paletteButtonsSelected.forEach( ps =>
-        //     this.globalVariableService.savePaletteButtonsSelected(ps)
-        // );
+        // Add current and not in origina
+        currentIDs.forEach(opb => {
+            if (originalIDs.indexOf(opb) < 0) {
+                let currentIndex: number = this.paletteButtonsSelected.findIndex(
+                    b => b.id == opb
+                );
+                this.globalVariableService.addPaletteButtonsSelected(
+                    this.paletteButtonsSelected[currentIndex]
+                );
+            };
+        });
 
         // Inform subscribers
         this.globalVariableService.currentPaletteButtonsSelected.next(this.paletteButtonsSelected);
+        
+        console.log('xx save end', this.globalVariableService.currentPaletteButtonsSelected.value)
 
 		this.formUserWidgetButtonBarClosed.emit(action);
     }
