@@ -2741,7 +2741,6 @@ export class GlobalVariableService {
     deleteCurrentDatasource(id: number) {
         // Delete current DS
         console.log('Global-Variables deleteCurrentDatasource', id, this.currentDatasources)
-        let index2: number = -1;
 
         let index: number = -1;
         for (var i = 0; i < this.currentDatasources.length; i++) {
@@ -2754,6 +2753,7 @@ export class GlobalVariableService {
         };
 
         console.log('Global-Variables deleteCurrentDatasource end', this.currentDatasources)
+
     }
 
     getTransformations(): Promise<Transformation[]> {
@@ -3679,41 +3679,6 @@ export class GlobalVariableService {
 
     }
 
-    deleteWidget(id: number): Promise<string> {
-        // Description: Deletes a Widgets
-        // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteWidget ...', id);
-
-        let url: string = 'widgets';
-        this.filePath = './assets/data.widgets.json';
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
-            .subscribe(
-                data => {
-
-                    this.widgets = this.widgets.filter(
-                        w => w.id != id
-                    );
-                    this.currentWidgets = this.currentWidgets.filter(
-                        w => w.id != id
-                    );
-
-                    console.log('deleteWidget DELETED id: ', id)
-                    resolve('Deleted');
-                },
-                err => {
-                    console.log('Error deleteWidget FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
-        });
-    }
-
     getCurrentWidgets(dashboardID: number, dashboardTabID: number): Promise<Widget[]> {
         // Description: Gets all W for current D
         // Params:
@@ -3796,6 +3761,41 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error addWidget FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    deleteWidget(id: number): Promise<string> {
+        // Description: Deletes a Widgets
+        // Returns: 'Deleted' or error message
+        console.log('Global-Variables deleteWidget ...', id);
+
+        let url: string = 'widgets';
+        this.filePath = './assets/data.widgets.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    this.widgets = this.widgets.filter(
+                        w => w.id != id
+                    );
+                    this.currentWidgets = this.currentWidgets.filter(
+                        w => w.id != id
+                    );
+
+                    console.log('deleteWidget DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteWidget FAILED', err);;
                     resolve(err.Message);
                 }
             )

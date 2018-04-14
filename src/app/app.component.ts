@@ -4780,6 +4780,8 @@ console.log('xx w', this.currentWidgets)
 
         // Delete the local one
         let delIDs: number[] = [];
+        let deleteWidget: Widget;
+
         for (var i = 0; i < this.currentWidgets.length; i++) {
 
             // Get given ID, else all selected
@@ -4790,13 +4792,17 @@ console.log('xx w', this.currentWidgets)
                    this.currentWidgets[i].widgetType == widgetType
                 ) {
 
+                deleteWidget = Object.assign({}, this.currentWidgets[i]);
                 datasetID = this.currentWidgets[i].datasetID;
                 delIDs.push(this.currentWidgets[i].id);
                 this.currentWidgets.splice(i,1);
             };
         };
 
-        // Delete the global ones
+        // Delete from the DB and global ones - only marked as isTrashed in DB
+        deleteWidget.isTrashed = true;
+        this.globalVariableService.saveWidget(deleteWidget);
+
         for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
             if (delIDs.indexOf(this.globalVariableService.widgets[i].id) >= 0) {
                 this.globalVariableService.widgets.splice(i,1)
