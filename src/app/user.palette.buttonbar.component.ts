@@ -46,22 +46,26 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Set Selected and Total Available Arrays
         this.globalVariableService.getPaletteButtonBar().then( pb => {
 
-            // Total list of available buttons - slice is NB for ByVal
+            // Total list of available buttons afresh from DB - slice is NB for ByVal
             this.paletteButtons = pb.slice();
             this.paletteButtonsOriginal = pb.slice();
+
+            // Set selected, already obtained at startup
             this.paletteButtonsSelected = this.globalVariableService
                 .currentPaletteButtonsSelected.value.slice();
 
             // Loop on selected ones in Available, and remove them
-            let delIDs: number[] = [];
+            // let delIDs: number[] = [];
             for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
                 this.paletteButtonsSelected.forEach(pbs => {
                     if (this.paletteButtons[i].id == pbs.paletteButtonBarID) {
-                        delIDs.push(i);
+                        console.log('xx i', i, this.paletteButtons[i].menuText)
+                        this.paletteButtons.splice(i, 1)
+                        // delIDs.forEach( p => this.paletteButtons.splice(p, 1))
+                        // delIDs.push(i);
                     };
                 });
             };
-            delIDs.forEach( p => this.paletteButtons.splice(p, 1))
 
         });
 
