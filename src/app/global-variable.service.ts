@@ -47,11 +47,6 @@ import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 
 
-
-
-import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
-import 'rxjs/add/operator/map';
-
 // External
 import * as dl                        from 'datalib';
 import { Observable }                 from 'rxjs/Observable';
@@ -164,7 +159,6 @@ const widgetTemplate: Widget =
         "lastCheckpoint": -1,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
-
         "datasourceID": null,
         "data": null,
         "dataFields": null,
@@ -179,17 +173,17 @@ const widgetTemplate: Widget =
         "size": "",
         "containerBackgroundcolor": "transparent",
         "containerBorder": "1px solid gray",
-        "containerBorderRadius": "",
+        "containerBorderRadius": "6px",
         "containerBoxshadow": "none",
         "containerFontsize": 12,
         "containerHeight": 320,
         "containerLeft": 10,
-        "containerHasTitle": true,
+        "containerHasTitle": false,
         "containerTop": 80,
         "containerWidth": 410,
         "containerZindex": 50,
         "titleText": "Title of new Widget",
-        "titleBackgroundColor": "#192b35",
+        "titleBackgroundColor": "lightgray",
         "titleBorder": "",
         "titleColor": "black",
         "titleFontsize": 1,
@@ -199,7 +193,7 @@ const widgetTemplate: Widget =
         "titleMargin": "0",
         "titlePadding": "0 0 0 5px",
         "titlePosition": "",
-        "titleTextAlign": "left",
+        "titleTextAlign": "center",
         "titleTop": 1,
         "titleWidth": 100,
         "graphType": "",
@@ -277,7 +271,7 @@ const widgetTemplate: Widget =
 
 // Dashboard template
 const dashboardTemplate: Dashboard =
-    {
+    
         id: null,
         version: 0,
         state: '',
