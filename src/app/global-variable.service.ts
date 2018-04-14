@@ -271,7 +271,7 @@ const widgetTemplate: Widget =
 
 // Dashboard template
 const dashboardTemplate: Dashboard =
-    
+    {
         id: null,
         version: 0,
         state: '',
@@ -1831,6 +1831,11 @@ export class GlobalVariableService {
         // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
         console.log('Global-Variables filterSlicer ...');
 
+        this.currentWidgets.forEach(w => {
+            console.log('xx strt graphData', w.graphUrl, w.graphData);
+        });
+
+
         // Get all Sl for the given dSet
         // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
         // two dSets with different values ...
@@ -1839,9 +1844,10 @@ export class GlobalVariableService {
             &&  w.datasetID == dataSet.id  
             &&  w.widgetType == 'Slicer'
         );
-
+        console.log('xx 1', dataSet)
         // Reset the filtered data
         dataSet.data = dataSet.dataRaw;
+        console.log('xx 2', dataSet)
 
         // Loop on related Sl and filter data
         relatedSlicers.forEach(w => {
@@ -2646,13 +2652,17 @@ export class GlobalVariableService {
 
                             for (var i = 0; i < dashboardWidgets.length; i++) {
                                 if (datasourceIDs.indexOf(dashboardWidgets[i].datasourceID) < 0) {
-                                    datasourceIDs.push(dashboardWidgets[i].datasourceID)
+                                    if (ds[i] != null) {
+                                        datasourceIDs.push(dashboardWidgets[i].datasourceID)
+                                    };
                                 }
                             };
                             let returnData: Datasource[] = [];
                             for (var i = 0; i < ds.length; i++) {
                                 if (datasourceIDs.indexOf(ds[i].id) >= 0) {
-                                    returnData.push(ds[i]);
+                                    if (ds[i] != null) {
+                                        returnData.push(ds[i]);
+                                    };
                                 };
                             };
 
