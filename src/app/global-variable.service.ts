@@ -2645,22 +2645,25 @@ export class GlobalVariableService {
                 this.getDatasources()
                     .then(ds =>
                         {
-                            let ids: number[] = [];
+                            let datasourceIDs: number[] = [];
                             let dashboardWidgets: Widget[] = this.widgets.filter(
                                 w => w.dashboardID == dashboardID
                             );
 
                             for (var i = 0; i < dashboardWidgets.length; i++) {
-                                if (ids.indexOf(dashboardWidgets[i].datasourceID) < 0) {
-                                    ids.push(dashboardWidgets[i].datasourceID)
+                                if (datasourceIDs.indexOf(dashboardWidgets[i].datasourceID) < 0) {
+                                    datasourceIDs.push(dashboardWidgets[i].datasourceID)
                                 }
                             };
                             let returnData: Datasource[] = [];
                             for (var i = 0; i < ds.length; i++) {
-                                if (ids.indexOf(ds[i].id) >= 0) {
+                                if (datasourceIDs.indexOf(ds[i].id) >= 0) {
                                     returnData.push(ds[i]);
                                 };
                             };
+
+                console.log('xx data', dashboardWidgets, datasourceIDs)
+                            
                             this.isDirtyDatasources = false;
                             this.currentDatasources = returnData;
                             this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -2670,22 +2673,23 @@ export class GlobalVariableService {
                         }
                     )
             } else {
-                let ids: number[] = [];
+                let datasourceIDs: number[] = [];
                 let dashboardWidgets: Widget[] = this.widgets.filter(
                     w => w.dashboardID == dashboardID
                 );
 
                 for (var i = 0; i < dashboardWidgets.length; i++) {
-                    if (ids.indexOf(dashboardWidgets[i].datasourceID) < 0) {
-                        ids.push(dashboardWidgets[i].datasourceID)
+                    if (datasourceIDs.indexOf(dashboardWidgets[i].datasourceID) < 0) {
+                        datasourceIDs.push(dashboardWidgets[i].datasourceID)
                     };
                 };
                 let returnData: Datasource[] = [];
                 for (var i = 0; i < this.datasources.length; i++) {
-                    if (ids.indexOf(this.datasources[i].id) >= 0) {
+                    if (datasourceIDs.indexOf(this.datasources[i].id) >= 0) {
                         returnData.push(this.datasources[i]);
                     };
                 };
+                console.log('xx data', dashboardWidgets, datasourceIDs)
                 this.isDirtyDatasources = false;
                 this.currentDatasources = returnData;
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
