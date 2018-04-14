@@ -632,6 +632,8 @@ export class GlobalVariableService {
     presentationMode = new BehaviorSubject<boolean>(false);
     showGrid = new BehaviorSubject<boolean>(false);
     showPalette = new BehaviorSubject<boolean>(true);
+    preferencePaletteHorisontal = new BehaviorSubject<boolean>(true);
+    
     // First time user
     isFirstTimeDashboard = new BehaviorSubject<boolean>(false);
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);

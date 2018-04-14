@@ -440,22 +440,20 @@ export class AppComponent implements OnInit {
                 };
                 return 0;
             });
-console.log('xx i', i.length)
-            // Calc the 
-            if (this.globalVariableService.userPreferences.preferencePaletteHorisontal){
-                // Horisontal
-                this. paletteHeight = 35;
-                this. paletteWidth = i.length * 23;
-            } else {
-                // Vertical
-                this. paletteHeight = i.length * 25;
-                this. paletteWidth = 32;
-            };
+
+            // Synch BehSubj that hold orientation
+            this.globalVariableService.preferencePaletteHorisontal.next( 
+                this.globalVariableService.userPreferences.preferencePaletteHorisontal
+            );
 
             console.log('xx p ', this.globalVariableService.userPreferences.preferencePaletteHorisontal,this.paletteHeight, this.paletteWidth)
         });
 
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
+
+            // Calc the W and H - store and this.paletteHeight and this.paletteWidth
+            this.setPaletteHeightAndWidth()
+        );
 
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
