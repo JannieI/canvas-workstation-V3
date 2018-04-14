@@ -47,6 +47,11 @@ import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 
 
+
+
+import { Http, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import 'rxjs/add/operator/map';
+
 // External
 import * as dl                        from 'datalib';
 import { Observable }                 from 'rxjs/Observable';
@@ -3345,11 +3350,11 @@ export class GlobalVariableService {
 
                         this.isDirtyPaletteButtonBar = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getgetPaletteButtonBar 1', this.currentPaletteButtonBar)
+                        console.log('Global-Variables getPaletteButtonBar 1', this.currentPaletteButtonBar)
                         resolve(this.currentPaletteButtonBar);
                     });
             } else {
-                console.log('Global-Variables getgetPaletteButtonBar 2', this.currentPaletteButtonBar)
+                console.log('Global-Variables getPaletteButtonBar 2', this.currentPaletteButtonBar)
                 resolve(this.currentPaletteButtonBar);
             }
         });
@@ -3403,13 +3408,13 @@ export class GlobalVariableService {
 
                         this.isDirtyPaletteButtonsSelected = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getgetPaletteButtonsSelected 1', 
+                        console.log('Global-Variables getPaletteButtonsSelected 1', 
                             this.currentPaletteButtonsSelected.value);
 
                         resolve(this.currentPaletteButtonsSelected.value);
                     });
             } else {
-                console.log('Global-Variables getgetPaletteButtonsSelected 2', 
+                console.log('Global-Variables getPaletteButtonsSelected 2', 
                     this.currentPaletteButtonsSelected.value);
 
                 resolve(this.currentPaletteButtonsSelected.value);
@@ -3448,7 +3453,7 @@ export class GlobalVariableService {
     deletePaletteButtonsSelected(id: number): Promise<string> {
         // Description: Deletes a PaletteButtonsSelected
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deletePaletteButtonsSelected ...', id, this.currentPaletteButtonsSelected.value);
+        console.log('Global-Variables deletePaletteButtonsSelected ...', id);
 
         let url: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
@@ -3461,7 +3466,6 @@ export class GlobalVariableService {
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 res => {
-                    console.log('Global-Variables deletePaletteButtonsSelected 2 ...', id, this.currentPaletteButtonsSelected.value);
 
                     // This is a different case: currentPaletteButtonsSelected is an 
                     // Observable, and will be refreshed with a .next by the calling
@@ -3503,24 +3507,28 @@ export class GlobalVariableService {
         let url: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
 
+
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
             this.http.post('http://localhost:3000/' + url, data, {headers})
-            .subscribe(
-                res => {
+                .subscribe(
+                    res => {
 
-                    this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res)));
-                    console.log('addPaletteButtonsSelected ADDED', res)
-                    resolve(res);
-                },
-                err => {
-                    console.log('Error addPaletteButtonsSelected FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
+                      // Update Global vars to make sure they remain in sync
+                      this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res)));
+                      
+                      console.log('addWidget ADDED', data, this.widgets)
+  
+                      resolve(data);
+                    },
+                    err => {
+                        console.log('Error addDashboardSubscription FAILED', err);;
+                        resolve(err.Message);
+                    }
+                )
         });
     }
 

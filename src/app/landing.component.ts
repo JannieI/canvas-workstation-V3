@@ -59,27 +59,26 @@ export class LandingComponent implements OnInit {
 			// Sample Dashboards
 			this.globalVariableService.getDashboardSamples().then(sD => {
 				this.sampleDashboards = sD;
-				console.log('xx this.sampleDashboards', this.sampleDashboards)
+
 				// Recent D
 				this.globalVariableService.getDashboardsRecent(
 					this.globalVariableService.currentUser.userID
 					).then(recD => {
 					this.recentDashboards = recD;
-					console.log('xx this.recentDashboards', this.recentDashboards)
+
 					// Palette buttons for current user
-					this.globalVariableService.getPaletteButtonsSelected().then(
-						pBsel => {
+					this.globalVariableService.getPaletteButtonsSelected().then(pBsel => 
+						{
 
 							// User has no Buttons selected, which will be the case for new users
 							if (pBsel.length == 0) {
 								// Load the default ones
 								this.globalVariableService.getPaletteButtonBar().then(pb => {
-									let pPreAdd: PaletteButtonsSelected[] = [];
+									let promiseArray = [];
 
 									pb.forEach(p => {
 										if (p.isDefault) {
-											pPreAdd.push(
-												{
+											let newButton: PaletteButtonsSelected = {
 													id: null,
 													userID: this.globalVariableService.currentUser.userID,
 													paletteButtonBarID: p.id,
@@ -97,30 +96,29 @@ export class LandingComponent implements OnInit {
 													params: p.params,
 													tooltipContent: p.tooltipContent,
 													isSelected: p.isSelected
-												}
+											};
+											promiseArray.push(
+												this.globalVariableService.addPaletteButtonsSelected(newButton)
 											);
 										};
 									});
 
-									// Add to DB, and Globally
-									let pPostAdd: PaletteButtonsSelected[] = [];
-									pPreAdd.forEach(d => {
-										this.globalVariableService.addPaletteButtonsSelected(d).then(
-											res => pPostAdd.push(res)
-										)
+									this.globalVariableService.allWithAsync(...promiseArray)
+										.then(resolvedData => {
+					
+										// Inform subscribers
+										this.globalVariableService.currentPaletteButtonsSelected.next(
+											this.globalVariableService.currentPaletteButtonsSelected.value
+										);
 									});
-									console.log('xx empty', this.globalVariableService.currentPaletteButtonsSelected.value)
 
-									// Inform subscribers
-									this.globalVariableService.currentPaletteButtonsSelected.next(pPostAdd);
+									// // Inform subscribers
 									this.globalVariableService.recentDashboards.next(recD);
 								});
 							} else {
 								pBsel = pBsel.filter(
 									s => s.userID == this.globalVariableService.currentUser.userID
 								);
-
-								console.log('xx exists', pBsel)
 
 								// Inform subscribers
 								this.globalVariableService.currentPaletteButtonsSelected
@@ -147,9 +145,7 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
 		// Get setup info
-		this.globalVariableService.getBackgroundColors().then(res => 
-			console.log('xx getBackgroundColors', this.globalVariableService.backgroundcolors)
-		);
+		this.globalVariableService.getBackgroundColors();
 		this.globalVariableService.getUserPreferences();
 	}
 
