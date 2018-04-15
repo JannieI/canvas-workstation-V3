@@ -504,11 +504,11 @@ export class DataPopupComponent implements OnInit {
 
 
         console.log('xx ----------')
-console.log('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
-this.globalVariableService.currentDatasets)
+        console.log('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
+         this.globalVariableService.currentDatasets)
 
         // Reset data related to this DS
-console.log('xx currDS, gv.currDS', this.currentDatasources , this.globalVariableService.currentDatasources)
+        console.log('xx currDS, gv.currDS', this.currentDatasources , this.globalVariableService.currentDatasources)
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.currentTransformations = [];
         this.transformationsFormat = [];
@@ -530,9 +530,9 @@ console.log('xx currDS, gv.currDS', this.currentDatasources , this.globalVariabl
         console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
     }
 
-    clickDatasourceRow(id: number, dsName: string) {
+    clickNonCurrentDatasource(id: number, dsName: string) {
         // Click on an existing DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasourceRow', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNonCurrentDatasource', '@Start');
 
         // Reset
         this.errorMessage = '';

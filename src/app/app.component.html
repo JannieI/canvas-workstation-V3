@@ -320,6 +320,13 @@
                                     </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
+                        <button type="button"
+                            clrDropdownItem
+                            title="Add an existing Datasource to this Dashboard"
+                            (click)="clickMenuDataAddExisting()"
+                            >
+                            From File
+                        </button>
                         <div class="dropdown-divider"></div>
                         <button type="button"
                             clrDropdownItem
@@ -2009,6 +2016,13 @@
     *ngIf="showModalDashboardPrint"
     (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Dashboard Print ...
 </dashboard-print>
+
+
+<!-- Modal: Data Add Existing -->
+<data-add-existing
+    *ngIf="showModalDataAddExisting"
+    (formDataAddExistingClosed)="handleCloseDataAddExisting($event)">Load Data Add Existing ...
+</data-add-existing>
 
 
 <!-- Modal: data  -->

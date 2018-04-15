@@ -338,6 +338,7 @@ export class AppComponent implements OnInit {
     showModalWidgetExport: boolean = false;
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
+    showModalDataAddExisting: boolean = false;
     showModalData: boolean = false;
     showModalDataSlicers: boolean = false;
     showModalWidgetTablist: boolean = false;
@@ -944,6 +945,15 @@ console.log('xx this.currentDashboardTabIndex', this.currentDashboardTabIndex)
         this.menuOptionClickPostAction();
 
         this.showModalWidgetTablist = false;
+    }
+    
+    handleCloseDataAddExisting(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataAddExisting = false;
     }
 
     handleCloseData(action: string) {
@@ -1965,6 +1975,15 @@ console.log('xx this.currentDashboardTabIndex', this.currentDashboardTabIndex)
 
 
     // ***********************  CLICK DATA MENU OPTIONS ************************ //
+
+    clickMenuDataAddExisting() {
+        // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataAddExisting = true;
+    }
 
     clickMenuDataFromFile(id: number) {
         // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
