@@ -71,6 +71,7 @@ import { ShapeEditComponent }         from './shape.editor.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataPopupComponent }         from './data.popup.component';
+import { DataAddExistingComponent }   from './data.add.existing.component';
 import { DataCombinationComponent }   from './data.combination.component';
 import { DataRefreshComponent }       from './data.refresh.component';
 import { DatasourceShareComponent }   from './data.share.component';
@@ -145,6 +146,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardDataQualityComponent,
 
         DataPopupComponent,
+        DataAddExistingComponent,
         DataCombinationComponent,
         DataRefreshComponent,
         DatasourceShareComponent,
