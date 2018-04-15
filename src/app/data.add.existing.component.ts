@@ -566,7 +566,7 @@ export class DataAddExistingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource', '@Start');
 
 
-        this.errorMessage = 'Much ado about ' + name;
+        this.errorMessage = this.errorMessage + 'Much ado about ' + name;
     }
 
     clickRemoveDS(id: number) {
@@ -580,7 +580,7 @@ export class DataAddExistingComponent implements OnInit {
         // Checked / UnChecked DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSCheckbox', '@Start');
 
-        this.errorMessage = ev.target.checked;
+        this.errorMessage = this.errorMessage + ev.target.checked;
         
     }
 
