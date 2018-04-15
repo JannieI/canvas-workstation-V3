@@ -13,6 +13,26 @@
     top: 0;
 }
 
+.datagrid-cell {
+    font-size: 0.45rem !important;
+    height: 0.8rem !important;
+    margin: 2px !important;
+    overflow: hidden;
+    padding: 0 0 0 6px !important;
+    text-align: left;
+    text-overflow: ellipsis;
+}
+
+.dsCheckbox {
+    margin: 4px 0 0 0 !important;    
+}
+
+.dsName {
+    display: inline-block;
+    margin: -3px 0 0 0 !important;    
+    padding: 0 0 5px 0 !important;    
+}
+
 .gridHeading {
     padding: 5px;
 }
@@ -217,7 +237,6 @@
         grid-column-end: 5;
         grid-row-start: 1;
         grid-row-end: 25;
-        overflow-y: hidden;
         width: 100%;
     }
 
@@ -763,7 +782,7 @@
 
 .fieldsDataGrid {
     margin-top: 0 !important;
-    height: 20rem;
+    height: 19rem;
     width: 100%;
 }
 

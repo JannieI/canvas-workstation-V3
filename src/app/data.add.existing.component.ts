@@ -32,14 +32,14 @@ import { load } from 'datalib';
 
 
 @Component({
-    selector: 'data',
-    templateUrl: './data.popup.component.html',
-    styleUrls:  ['./data.popup.component.css']
+    selector: 'data-add-existing',
+    templateUrl: './data.add.existing.component.html',
+    styleUrls:  ['./data.add.existing.component.css']
 })
 export class DataAddExistingComponent implements OnInit {
 
     @Input() datasources: Datasource[];
-    @Output() formDataPopupClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataAddExistingClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('typeDropdown') typeDropdown: ElementRef;
     @ViewChild('typeTransformationDropdown') typeTransformationDropdown: ElementRef;
@@ -55,7 +55,6 @@ export class DataAddExistingComponent implements OnInit {
     currentData: any = [];
     currentDatasetName: string = '';            // Array with current data block
     curentDatasetID: number;
-    currentDS: boolean = true;
     currentTransformations: Transformation[];
     dataArray: any;
     dataFieldLengths: number[] = [];
@@ -448,9 +447,6 @@ export class DataAddExistingComponent implements OnInit {
         }
         this.existingDSName = '';
 
-        // Show current Tab
-        this.currentDS = true;
-
         // Add to all DS (DB, global), for later use
         this.globalVariableService.addDatasource(newData).then(res =>
             this.currentDatasources = this.globalVariableService.currentDatasources.slice()
@@ -530,6 +526,14 @@ export class DataAddExistingComponent implements OnInit {
         console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
     }
 
+
+
+
+
+
+
+
+
     clickNonCurrentDatasource(id: number, dsName: string) {
         // Click on an existing DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNonCurrentDatasource', '@Start');
@@ -556,6 +560,34 @@ export class DataAddExistingComponent implements OnInit {
 
         console.log('DataPopup clickDatasourceRow dsName', dsName, this.filterDataset)
     }
+
+    clickSelectedDatasource(id: number, name: string) {
+        // Clicked a DS -> Show related info and preview its data
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource', '@Start');
+
+
+        this.errorMessage = 'Much ado about ' + name;
+    }
+
+    clickRemoveDS(id: number) {
+        // Remove selected DS from current D, if not used
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRemoveDS', '@Start');
+
+        this.errorMessage = 'Much ado about ' + name;
+    }
+
+    clickDSCheckbox(id: number, i: number, ev: any){
+        // Checked / UnChecked DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSCheckbox', '@Start');
+
+        this.errorMessage = ev.target.checked;
+        
+    }
+
+
+
+
+
 
     clickCurrentDatasource(id: number, index: number) {
         // Clicked and existing DS -> Load related data for the selected DS
@@ -667,7 +699,7 @@ export class DataAddExistingComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataPopupClosed.emit(action);
+        this.formDataAddExistingClosed.emit(action);
 
     }
 
@@ -1036,13 +1068,6 @@ export class DataAddExistingComponent implements OnInit {
         let result: any;
         result = this.globalFunctionService.convertArrayToPivot(this.currentData);
         console.log('DataPopup clickTest',result);
-    }
-
-    clickDS() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDS', '@Start');
-
-        this.currentDS = !this.currentDS;
     }
 
 }

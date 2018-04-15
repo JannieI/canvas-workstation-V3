@@ -33,28 +33,6 @@
                                 >>
                             </button>
                         </div>
-
-                        <!-- <div class="titleFilter titleBox" *ngIf="showTopSteps">
-                            <button
-                                type="button"
-                                class="btn btn-link titleButton"
-                                (click)="clickShowFilter()"
-                                [style.background-color]="showFilter ? 'rgb(211, 211, 247)' : 'transparent'"
-                                >
-                                Filter
-                            </button>
-                        </div> -->
-
-                        <!-- <div class="titleChevron2" *ngIf="showTopSteps">
-                            <button
-                                type="button"
-                                class="btn btn-link titleButton"
-                                (click)="clickShowTransform()"
-                                >
-                                >>
-                            </button>
-                        </div> -->
-
                         <div class="titleTransform titleBox" *ngIf="showTopSteps">
                             <button
                                 type="button"
@@ -107,51 +85,34 @@
                     </div>
 
                     <div class="gridIdentifyData" *ngIf="showIdentifyFile">
-                        <div class="gridIdentifyCurrentDS"
-                            [style.background-color]="currentDS? 'lightgray' : 'white'"
-                            (click)="clickDS()"
-                            >
-                            Current
-                            <clr-icon shape="check" *ngIf="currentDS"></clr-icon>
-                        </div>
-                        <div class="gridIdentifyAllDS"
-                            [style.background-color]="!currentDS? 'lightgray' : 'white'"
-                            (click)="clickDS()"
-                            >
-                            Show All
-                            <clr-icon shape="check" *ngIf="!currentDS"></clr-icon>
-                        </div>
-                        <div class="gridIdentifyDataExisting" *ngIf="currentDS">
-                            <clr-datagrid class="fieldsDataGrid datagrid-compact">
+                        <div class="gridIdentifyDataExisting">
+                            <clr-datagrid class="fieldsDataGrid">
                                 <clr-dg-placeholder>
                                     No records ...
                                 </clr-dg-placeholder>
 
                                 <clr-dg-row
-                                    *ngFor="let row of currentDatasources; let i = index"
-                                    (click)="clickCurrentDatasource(row.id, i)"
-                                    >
-                                    <clr-dg-cell>
-                                        <clr-icon shape="times" (click)="clickCurrentDSDelete(row.id)"></clr-icon>
-                                        {{row.name}}
-                                    </clr-dg-cell>
-                                </clr-dg-row>
-                            </clr-datagrid>
-                        </div>
-                        <div class="gridIdentifyDataExisting" *ngIf="!currentDS">
-                            <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-row
                                     *ngFor="let row of datasources"
-                                    (click)="clickNonCurrentDatasource(row.id, row.name)"
+                                    (click)="clickSelectedDatasource(row.id, row.name)"
                                     >
                                     <clr-dg-cell>
-                                        {{row.name}}
+                                        <input type="checkbox" class="dsCheckbox"
+                                            [checked]="row.isSelected"
+                                            (click)="clickDSCheckbox(row.id, i, $event)"
+                                            >
+                                        <div class="dsName">
+                                            {{ row.fieldValue }}                                        {{row.name}}
+                                        </div>
+
                                     </clr-dg-cell>
                                 </clr-dg-row>
                             </clr-datagrid>
                         </div>
 
                         <div class="gridIdentifyDataIDfile" *ngIf="dataGetFromSwitch==='File'">
+                            <div *ngIf="errorMessage!=''">
+                                {{ errorMessage }}
+                            </div>
                             <span>Folder:</span>
                             <input type="text" [(ngModel)]="folderName"
                                 placeholder="./assets/vega-datasets/"
@@ -255,125 +216,8 @@
                             {{ errorMessage }}
                         </div>
                     </div>
-<!--
-                    <div class="gridFilter" *ngIf="showFilter">
-                        <div class="gridFilterFields">
-                            Existing Fields
-
-                            <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
-                                <clr-dg-row *ngFor="let row of dataFieldNames">
-                                    <clr-dg-cell
-                                        id="fld"
-                                        draggable="true"
-                                        (dragstart)="dragstart_handler($event)"
-                                        (dragend)="dragend_handler($event)"
-                                        >
-                                        {{ row }}
-                                    </clr-dg-cell>
-                                </clr-dg-row>
-                            </clr-datagrid>
-
-                        </div>
-                        <div class="gridFilterDropAreaFields">
-                            <b>Field filters:</b>
-                            <div class="gridFilterFieldValues">
-                                <label for="selects_2">Field:</label>
-                                <div class="select">
-                                    <select id="selects_2">
-                                        <option *ngFor="let row of dataFieldNames">
-                                            {{ row }}
-                                        </option>
-                                    </select>
-                                </div>
-                                <label for="selects_1">Operator:</label>
-                                <div class="select">
-                                    <select id="selects_1"
-                                        >
-                                        <option>
-                                            Equal
-                                        </option>
-                                        <option>
-                                            Less than
-                                        </option>
-                                        <option>
-                                            Greater than
-                                        </option>
-                                        <option>
-                                            Not Equal
-                                        </option>
-                                        <option>
-                                            Equal or Less than
-                                        </option>
-                                        <option>
-                                            Equal or Greater than
-                                        </option>
-                                    </select>
-                                </div>
-                                Filter value:
-                                <input type="text" id="formFields_7"
-                                    placeholder="Filter value"
-                                    >
-                                When: Pre/Post
-                                <button
-                                    type="button"
-                                    class="btn btn-sedondary"
-                                    (click)="clickFileSaveTransformation()"
-                                    >
-                                    Add
-                                </button>
-                            </div>
-                        </div>
-                        <div class="gridFilterResultFields">
-                            <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-column>Delete</clr-dg-column>
-                                <clr-dg-column>Field Name</clr-dg-column>
-                                <clr-dg-column>Operator</clr-dg-column>
-                                <clr-dg-column>Filter Value</clr-dg-column>
-
-                                <clr-dg-row *ngFor="let row of datasourceFilters">
-                                    <clr-dg-cell><clr-icon shape="times"></clr-icon></clr-dg-cell>
-                                    <clr-dg-cell>{{row.fieldName}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.operator}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.filterValue}}</clr-dg-cell>
-                                </clr-dg-row>
-                            </clr-datagrid>
-                        </div>
-                        <div class="gridFilterDropAreaTable">
-                            <b>Table filters:</b>
-                            <div class="gridFilterTable">
-                                Start row (0 = top, -1 = bottom):
-                                <input type="text" id="formFields_7"
-                                    placeholder="0"
-                                    >
-                                Limit to Nr Rows (0 = all):
-                                <input type="text" id="formFields_7"
-                                    placeholder="0"
-                                    >
-                                <button
-                                    type="button"
-                                    class="btn btn-sedondary"
-                                    (click)="clickFileSaveTransformation()"
-                                    >
-                                    Save
-                                </button>
-                            </div>
-                        </div>
-                    </div> -->
 
                     <div class="gridTransform" *ngIf="showTransform">
-                        <!-- <div class="gridTransformTransformations">
-
-                            <span class="gridHeading">Added Transformations</span>
-                            <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-column [clrDgField]="'filterTransformation'">Name</clr-dg-column>
-
-                                <clr-dg-row *ngFor="let row of currentTransformations">
-                                    <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                </clr-dg-row>
-                            </clr-datagrid>
-
-                        </div> -->
                         <div class="gridTransformNew">
                             <div class="transformationSet">
                                 Select an optional Transformation Set (list of single transformations
