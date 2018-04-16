@@ -709,36 +709,12 @@ export class DataAddExistingComponent implements OnInit {
         // this.globalVariableService.dataGetFromSwitch.unsubscribe();
     }
 
-    clickFileAddTransformationDetail() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileAddTransformationDetail', '@Start');
-
-        this.transformationDescription = 'Format date, ie YYYY/MM/DD'
-        this.showTransformDetail = true;
-    }
-
-
-    clickFileSaveTransformation() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileSaveTransformation', '@Start');
-
-        // TODO - add code to Save the name for next time ...
-    }
-
     clickClose(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formDataAddExistingClosed.emit(action);
 
-    }
-
-
-    changedInput(newValue: any) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'changedInput', '@Start');
-
-        console.log('DataPopup changedInput: Old-New', this.changeVar, newValue)
     }
 
     clickViewOptions(area: string) {
