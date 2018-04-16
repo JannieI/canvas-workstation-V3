@@ -220,64 +220,6 @@ export class DataAddExistingComponent implements OnInit {
         this.globalVariableService.deleteCurrentDatasource(id);
     }
 
-    clickDSPreview() {
-        // Load the new DS in the ID section, and show in Preview area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview',           '@Start');
-
-        // Reset
-        this.errorMessage = '';
-        this.showDataPreview = false;
-
-        // // Get the folder and file, setting some defaults
-        // if (this.folderName == ''  ||  this.folderName == undefined) {
-        //     this.folderName = './assets/vega-datasets/';
-        // }
-        // if (this.fileName ==''  ||  this.fileName == undefined) {
-        //     this.fileName = 'stocks.csv';
-        // };
-
-        // Load synchronously
-        // var csv_data = dl.load({url: folderName + this.fileName});
-        console.log('DataPopup clickDSPreview LOAD data start:', this.folderName, this.fileName)
-        // let fileFolder: string = './assets/vega-datasets/';
-        let filePath: string = this.folderName + this.fileName;
-
-        let fileSuffix = this.fileName.substr(this.fileName.lastIndexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
-
-        if (fileSuffix == 'json') {
-            dl.json({url: filePath}, {}, (err, currentData) => {
-                if (err) {
-                    this.errorMessage = err.status + ':' + err.statusText;
-                    this.showDataPreview = false;
-
-                    console.log('DataPopup clickDSPreview error on load', err)
-                } else {
-                    // Callback
-                    this.showDataPreview = true;
-                    this.fileLoadedCallback(fileSuffix, currentData);
-                }
-            });
-        };
-        if (fileSuffix == 'csv') {
-            dl.csv({url: filePath}, {}, (err, currentData) => {
-                if (err) {
-                    this.errorMessage = err.status + ':' + err.statusText;
-                    console.log('DataPopup clickDSPreview error on load', err)
-                } else {
-                    // Callback
-                    this.showDataPreview = true;
-                    this.fileLoadedCallback(fileSuffix, currentData);
-                }
-            });
-        };
-
-        // Message when file type unknown
-        if (fileSuffix != 'json'  &&  fileSuffix != 'csv') {
-            this.errorMessage = 'Unknown file type';
-            this.showDataPreview = false;
-        };
-    }
-
     fileLoadedCallback(fileSuffix: string, currentData: any) {
         // Handles callback from async datalib load
         this.globalFunctionService.printToConsole(this.constructor.name,'fileLoadedCallback', '@Start');
@@ -528,11 +470,116 @@ export class DataAddExistingComponent implements OnInit {
         console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
     }
 
-    clickDSDescription('gridViewDescription')"
+    clickDSDescription(area: string) {
+        // Show description area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSDescription', '@Start');
+
+        this.clickViewOptions('gridViewDescription');
+    }
+
+    clickDSPreview(area: string) {
+        // Show preview area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
+
+        this.clickViewOptions('gridViewPreview');
+
+        
+        // Reset
+        this.errorMessage = '';
+        this.showDataPreview = false;
+
+        // // Get the folder and file, setting some defaults
+        // if (this.folderName == ''  ||  this.folderName == undefined) {
+        //     this.folderName = './assets/vega-datasets/';
+        // }
+        // if (this.fileName ==''  ||  this.fileName == undefined) {
+        //     this.fileName = 'stocks.csv';
+        // };
+
+        // Load synchronously
+        // var csv_data = dl.load({url: folderName + this.fileName});
+        console.log('DataPopup clickDSPreview LOAD data start:', this.folderName, this.fileName)
+        // let fileFolder: string = './assets/vega-datasets/';
+        let filePath: string = this.folderName + this.fileName;
+
+        let fileSuffix = this.fileName.substr(this.fileName.lastIndexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
+
+        if (fileSuffix == 'json') {
+            dl.json({url: filePath}, {}, (err, currentData) => {
+                if (err) {
+                    this.errorMessage = err.status + ':' + err.statusText;
+                    this.showDataPreview = false;
+
+                    console.log('DataPopup clickDSPreview error on load', err)
+                } else {
+                    // Callback
+                    this.showDataPreview = true;
+                    this.fileLoadedCallback(fileSuffix, currentData);
+                }
+            });
+        };
+        if (fileSuffix == 'csv') {
+            dl.csv({url: filePath}, {}, (err, currentData) => {
+                if (err) {
+                    this.errorMessage = err.status + ':' + err.statusText;
+                    console.log('DataPopup clickDSPreview error on load', err)
+                } else {
+                    // Callback
+                    this.showDataPreview = true;
+                    this.fileLoadedCallback(fileSuffix, currentData);
+                }
+            });
+        };
+
+        // Message when file type unknown
+        if (fileSuffix != 'json'  &&  fileSuffix != 'csv') {
+            this.errorMessage = 'Unknown file type';
+            this.showDataPreview = false;
+        };
+
+    }
+
+    clickViewProperties(area: string) {
+        // Show properties area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
+
+        this.clickViewOptions('');
+        
+    }
 
 
+    clickViewProperties(area: string) {
+        // Show  area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
+
+        this.clickViewOptions('');
+        
+    }
 
 
+    clickViewProperties(area: string) {
+        // Show  area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
+
+        this.clickViewOptions('');
+        
+    }
+
+    clickViewProperties(area: string) {
+        // Show  area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
+
+        this.clickViewOptions('');
+        
+    }
+
+    clickViewProperties(area: string) {
+        // Show  area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
+
+        this.clickViewOptions('');
+        
+    }
 
 
 
