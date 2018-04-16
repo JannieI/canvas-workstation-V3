@@ -402,3 +402,134 @@
             margin: 10px 10px 10px 10px;
         }
 
+    .gridFieldProfile {
+        display: grid;
+        grid-template-columns: repeat(20, 1fr);
+        grid-template-rows: repeat(12, 0.8rem);
+        grid-column-start: 5;
+        grid-column-end: 20;
+        grid-row-start: 5;
+        grid-row-end: 20;
+        margin-left: 20px;
+    }
+
+        .gridFieldProfileSelectTitle {
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            margin: 10px 10px 10px 0;
+        }
+
+        .gridFieldProfileSelect {
+            grid-column-start: 4;
+            grid-column-end: 10;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            margin: 10px 10px 10px 0;
+        }
+
+        .gridFieldProfileDBfield {
+            grid-column-start: 1;
+            grid-column-end: 10;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            margin: 10px 10px 10px 0;
+        }
+        .gridFieldProfileUnique {
+            grid-column-start: 10;
+            grid-column-end: 20;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            margin: 10px 10px 10px 0;
+        }
+
+        .gridFieldProfileCount {
+            grid-column-start: 1;
+            grid-column-end: 10;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin: 10px 10px 10px 0;
+        }
+        .gridFieldProfileValid {
+            grid-column-start: 10;
+            grid-column-end: 20;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin: 10px 10px 10px 0;
+        }
+
+        .gridFieldProfileMissing {
+            grid-column-start: 1;
+            grid-column-end: 10;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin: 10px 10px 10px 0;
+        }
+        .gridFieldProfileDistinct {
+            grid-column-start: 10;
+            grid-column-end: 20;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin: 10px 10px 10px 0;
+        }
+
+        .gridFieldProfileMin {
+            grid-column-start: 1;
+            grid-column-end: 10;
+            grid-row-start: 9;
+            grid-row-end: 10;
+            margin: 10px 10px 10px 0;
+        }
+        .gridFieldProfileMax {
+            grid-column-start: 10;
+            grid-column-end: 20;
+            grid-row-start: 9;
+            grid-row-end: 10;
+            margin: 10px 10px 10px 0;
+        }
+
+        .gridFieldProfileMean {
+            grid-column-start: 1;
+            grid-column-end: 10;
+            grid-row-start: 11;
+            grid-row-end: 12;
+            margin: 10px 10px 10px 0;
+        }
+        .gridFieldProfileStdev {
+            grid-column-start: 10;
+            grid-column-end: 20;
+            grid-row-start: 11;
+            grid-row-end: 12;
+            margin: 10px 10px 10px 0;
+        }
+
+        .gridFieldProfileMedian {
+            grid-column-start: 1;
+            grid-column-end: 10;
+            grid-row-start: 13;
+            grid-row-end: 14;
+            margin: 10px 10px 10px 0;
+        }
+        .gridFieldProfileQ1 {
+            grid-column-start: 10;
+            grid-column-end: 20;
+            grid-row-start: 13;
+            grid-row-end: 14;
+            margin: 10px 10px 10px 0;
+        }
+
+        .gridFieldProfileQ3 {
+            grid-column-start: 1;
+            grid-column-end: 10;
+            grid-row-start: 15;
+            grid-row-end: 16;
+            margin: 10px 10px 10px 0;
+        }
+        .gridFieldProfileModeSkew {
+            grid-column-start: 10;
+            grid-column-end: 20;
+            grid-row-start: 15;
+            grid-row-end: 16;
+            margin: 10px 10px 10px 0;
+        }

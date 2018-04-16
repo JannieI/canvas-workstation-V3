@@ -242,76 +242,75 @@
     
                     </div>
    
-                    <div *ngIf="clickedViewFieldProfile" class="gridInfoSummaryFieldProfile">
+                    <div *ngIf="clickedViewFieldProfile" class="gridFieldProfile">
 
-                        <b>
-                            <h4>Field Profile</h4>
-                        </b>
-                        <i>This area gives a summary or profile of a seleted field.
-                            Your dataset has <b>241</b> records, and <b>24</b> fields,
-                            of the following types: Text fields: <b>8</b>,
+                        <i>Your dataset has <b>241</b> records, and <b>24</b> fields,
+                            Text fields: <b>8</b>,
                             Date fields: <b>4</b>,
                             Number fields: <b>9</b>,
                             Boolean fields: <b>2</b>,
                             ? fields: <b>1</b>.
                         </i>
-                        <br><br>
-                        <div class="propertyLine">
-                            Select a Field:
-                            <b>
-                                <div class="select">
-                                    <select id="selects_3">
-                                        <option *ngFor="let row of dataFieldNames">
-                                            {{ row }}
-                                        </option>
-                                    </select>
-                                </div>
-                            </b>
+                        <div class="gridFieldProfileSelectTitle">
+                            <b>Select field:</b>
                         </div>
-                        <br>
-                        <div class="gridViewSummaryGraphsFields">
-                            <div class="propertyLine">
-                                "field": (field name)
+                        <div class="gridFieldProfileSelect">
+                            <div class="select">
+                                <select>    
+                                    <option *ngFor="let row of dataFieldNames">
+                                        {{ row }}
+                                    </option>
+                                </select>
                             </div>
-                            <div class="propertyLine">
-                                "unique": (# value:count pairs)
-                            </div>
-                            <div class="propertyLine">
-                                "count": 1000,
-                            </div>
-                            <div class="propertyLine">
-                                "valid": 1000,
-                            </div>
-                            <div class="propertyLine">
-                                "missing": 0,
-                            </div>
-                            <div class="propertyLine">
-                                "distinct": 1000,
-                            </div>
-                            <div class="propertyLine">
-                                "min": -2.7983914656538427,
-                            </div>
-                            <div class="propertyLine">
-                                "max": 2.9931226872439436,
-                            </div>
-                            <div class="propertyLine">
-                                "mean": 0.024987537472992594,
-                            </div>
-                            <div class="propertyLine">
-                                "stdev": 0.965105294571081,
-                            </div>
-                            <div class="propertyLine">
-                                "median": 0.012544328964464974,
-                            </div>
-                            <div class="propertyLine">
-                                "q1": -0.6686040453830552, // 25th percentile
-                            </div>
-                            <div class="propertyLine">
-                                "q3": 0.7090708668163043   // 75th percentile
-                            </div>
-                            <div class="propertyLine">
-                                "modeskew": 0.012893109776231,
-                            </div>
+                        </div>
+                       
+                        <div class="gridFieldProfileDBfield">
+                            <b>"DB field":</b> (field name)
+                        </div>
+                        <div class="gridFieldProfileUnique">
+                            <b>"Unique":</b> (# value:count pairs)
+                        </div>
+
+                        <div class="gridFieldProfileCount">
+                            <b>"Count":</b> 1000,
+                        </div>
+                        <div class="gridFieldProfileValid">
+                            <b>"Valid":</b> 1000,
+                        </div>
+                       
+                        <div class="gridFieldProfileMissing">
+                            <b>"Missing":</b> 0,
+                        </div>
+                        <div class="gridFieldProfileDistinct">
+                            <b>"Distinct":</b> 1000,
+                        </div>
+                       
+                        <div class="gridFieldProfileMin">
+                            <b>"Min":</b> -2.7983914656538427,
+                        </div>
+                        <div class="gridFieldProfileMax">
+                            <b>"Max":</b> 2.9931226872439436,
+                        </div>
+                       
+                        <div class="gridFieldProfileMean">
+                            <b>"Mean":</b> 0.024987537472992594,
+                        </div>
+                        <div class="gridFieldProfileStdev">
+                            <b>"Stdev":</b> 0.965105294571081,
+                        </div>
+                       
+                        <div class="gridFieldProfileMedian">
+                            <b>"Median":</b> 0.012544328964464974,
+                        </div>
+                        <div class="gridFieldProfileQ1">
+                            <b>"Q1":</b> -0.6686040453830552, // 25th percentile
+                        </div>
+                       
+                        <div class="gridFieldProfileQ3">
+                            <b>"Q3":</b> 0.7090708668163043   // 75th percentile
+                        </div>
+                        <div class="gridFieldProfileModeSkew">
+                            <b>"Modeskew":</b> 0.012893109776231,
                         </div>
                     </div>
     
