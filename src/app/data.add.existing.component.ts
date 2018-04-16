@@ -41,15 +41,18 @@ export class DataAddExistingComponent implements OnInit {
     @Input() datasources: Datasource[];
     @Output() formDataAddExistingClosed: EventEmitter<string> = new EventEmitter();
 
-    @ViewChild('typeDropdown') typeDropdown: ElementRef;
-    @ViewChild('typeTransformationDropdown') typeTransformationDropdown: ElementRef;
-    @ViewChild('transformations') transformations: ElementRef;
-
     // datasources: Datasource[];
     addNewTransformation: boolean = false;
     aggField: string = 'Drag a field here ...';
     changeVar: number = 2;
     clickedDeleteDS: boolean = false;
+    clickedViewDescription
+    clickedViewPreview: boolean = true;
+    clickedViewOverview: boolean = true;
+    clickedViewFields: boolean = false;
+    clickedViewFieldProperties: boolean = false;
+    clickedViewFieldProfile: boolean = false;
+    clickedViewDataQuality: boolean = false;
     colField: string = 'Drag a field here ...';
     currentDatasources: Datasource[] = [];
     currentData: any = [];
@@ -75,13 +78,6 @@ export class DataAddExistingComponent implements OnInit {
     fileName: string = '';
     folderName: string = '';
     finalFields: any = [];
-    gridViewDescription
-    gridViewPreview: boolean = true;
-    gridViewOverview: boolean = true;
-    gridViewFields: boolean = false;
-    gridViewFieldProperties: boolean = false;
-    gridViewFieldProfile: boolean = false;
-    gridViewDataQuality: boolean = false;
     nrWidgetsInUse: number = 9123;
     rowField: string = 'Drag a field here ...';
     pageSize: number = 4;
@@ -540,15 +536,6 @@ export class DataAddExistingComponent implements OnInit {
     }
 
     clickViewProperties(area: string) {
-        // Show properties area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
-
-        this.clickViewOptions('');
-        
-    }
-
-
-    clickViewProperties(area: string) {
         // Show  area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
 
@@ -556,28 +543,37 @@ export class DataAddExistingComponent implements OnInit {
         
     }
 
+    clickViewProfile(area: string) {
+        // Show profile area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProfile', '@Start');
 
-    clickViewProperties(area: string) {
-        // Show  area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
-
-        this.clickViewOptions('');
+        this.clickViewOptions('clickViewProfile');
         
     }
 
-    clickViewProperties(area: string) {
-        // Show  area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
 
-        this.clickViewOptions('');
+    clickViewOverview(area: string) {
+        // Show overview area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewOverview', '@Start');
+
+        this.clickViewOptions('clickViewOverview');
         
     }
 
-    clickViewProperties(area: string) {
-        // Show  area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
 
-        this.clickViewOptions('');
+    clickViewFields(area: string) {
+        // Show fields area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewFields', '@Start');
+
+        this.clickViewOptions('clickViewFields');
+        
+    }
+
+    clickViewDataQuality(area: string) {
+        // Show data quality area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewDataQuality', '@Start');
+
+        this.clickViewOptions('clickViewDataQuality');
         
     }
 
@@ -827,34 +823,34 @@ export class DataAddExistingComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewOptions', '@Start');
 
-        this.gridViewDescription = false;
-        this.gridViewPreview = false;
-        this.gridViewOverview = false;
-        this.gridViewFields = false;
-        this.gridViewFieldProperties = false;
-        this.gridViewFieldProfile = false;
-        this.gridViewDataQuality = false;
+        this.clickedViewDescription = false;
+        this.clickedViewPreview = false;
+        this.clickedViewOverview = false;
+        this.clickedViewFields = false;
+        this.clickedViewFieldProperties = false;
+        this.clickedViewFieldProfile = false;
+        this.clickedViewDataQuality = false;
         if (area == 'gridViewDescription') {
-            this.gridViewDescription = true;
+            this.clickedViewDescription = true;
         };
         if (area == 'gridViewPreview') {
-            this.gridViewPreview = true;
+            this.clickedViewPreview = true;
         };
         if (area == 'gridViewOverview') {
-            this.gridViewOverview = true;
+            this.clickedViewOverview = true;
         };
         
         if (area == 'gridViewFields') {
-            this.gridViewFields = true;
+            this.clickedViewFields = true;
         };
         if (area == 'gridViewFieldProperties') {
-            this.gridViewFieldProperties = true;
+            this.clickedViewFieldProperties = true;
         };
         if (area == 'gridViewFieldProfile') {
-            this.gridViewFieldProfile = true;
+            this.clickedViewFieldProfile = true;
         };
         if (area == 'gridViewDataQuality') {
-            this.gridViewDataQuality = true;
+            this.clickedViewDataQuality = true;
         };
 
     }
