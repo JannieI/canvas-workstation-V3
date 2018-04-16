@@ -717,21 +717,6 @@ export class DataAddExistingComponent implements OnInit {
         this.showTransformDetail = true;
     }
 
-    clickFileAddTransformation() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileAddTransformation', '@Start');
-
-        let newTransformation: Transformation = {
-            id: 2,
-            datasourceID: 12,
-            category: 'Format',
-            name: 'Format Date',
-            description: 'bla-bla-bla',
-            fieldName: 'Trader',
-            parameters: "param1=a"
-        };
-        this.currentTransformations.push(newTransformation);
-    }
 
     clickFileSaveTransformation() {
         //
