@@ -30,6 +30,10 @@ import { DataQualityIssue }           from './models';
 import * as dl from 'datalib';
 import { load } from 'datalib';
 
+interface localDatasources extends Datasource 
+    {
+        isSelected?: boolean;
+    }
 
 @Component({
     selector: 'data-add-existing',
@@ -51,7 +55,7 @@ export class DataAddExistingComponent implements OnInit {
     clickedViewFieldProperties: boolean = false;
     clickedViewFieldProfile: boolean = false;
     clickedViewDataQuality: boolean = false;
-    currentDatasources: Datasource[] = [];
+    currentDatasources: localDatasources[] = [];
     currentData: any = [];
     currentDatasetName: string = '';            // Array with current data block
     curentDatasetID: number;
@@ -101,8 +105,21 @@ export class DataAddExistingComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        let currentDSids: number[] = [];
+        this.globalVariableService.currentDatasources.forEach(cds => {
+            currentDSids.push(cds.id);
+        })
+
         // Load from global variables
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
+        this.currentDatasources.forEach(ds => {
+            if (currentDSids.indexOf(ds.id) >= 0) {
+                ds.isSelected = true;
+            } else {
+                ds.isSelected = false;
+            };
+        });
+        console.log('xx this.currentDatasources', this.currentDatasources)
         this.datasources = this.globalVariableService.datasources;
 
         // Reset
@@ -350,7 +367,7 @@ export class DataAddExistingComponent implements OnInit {
             this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
             this.globalVariableService.dataGetFromSwitch.subscribe(
                 i => {
-                        this.dataGetFromSwitch = i;
+                    this.dataGetFromSwitch = i;
                 }
             )
 
