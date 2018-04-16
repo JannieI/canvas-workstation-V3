@@ -85,6 +85,12 @@ export class DataAddExistingComponent implements OnInit {
     showFilter: boolean = false;
     showSelectField: boolean = false;
 
+    users = [{id: 1,
+        name: 'Astrid',
+        creation: '2017/01/01',
+        color: 'brown'
+    }];
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,

@@ -144,11 +144,10 @@
                     </div>
     
                     <div *ngIf="clickedViewPreview" class="gridPreview">
-                        xXx
-                        <clr-datagrid>
+                        <clr-datagrid class="gridPreviewData">
 
                             <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-                            <clr-dg-row *ngFor="let row of currentData">
+                            <clr-dg-row *clrDgItems="let row of currentData">
 
                                 <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
                                         {{ row[col] }}
@@ -158,98 +157,89 @@
                             <clr-dg-footer>
                                 {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                 of {{pagination.totalItems}} rows
-                                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+                                <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
                             </clr-dg-footer>
 
                         </clr-datagrid>
-                        yYy
                     </div>
-                    <div *ngIf="clickedViewFieldProperties" class="gridInfoSummaryFieldProperties">
-                        <b>
-                            <h4>Field Properties</h4>
-                        </b>
-                        <i>Changes made on this page are applied to the data at time of
-                            extraction.  Click <b>Refresh Data</b> for changes made now to
-                            take effect, which will reload your data.  If a field is already
-                            used in a Widget, new changes may impact on Widget. This field
-                            is currently used in <b>2</b> Widgets.
-                        </i>
-                        <br>
-                        <div class="propertyLine">
-                            Select field:
-                            <b>
-                                <div class="select">
-                                    <select id="selects_3">
-                                        <option *ngFor="let row of dataFieldNames">
-                                            {{ row }}
-                                        </option>
-                                    </select>
-                                </div>
-                            </b>
+
+                    <div *ngIf="clickedViewFieldProperties" class="gridFieldProperties">
+                        <div class="gridFieldPropSelectTitle">
+                            <b>Select field:</b>
                         </div>
-                        <div></div>
-                        <div class="propertyLine">
-                            Description: bla-bla-bla
-                        </div>
-                        <div class="propertyLine">
-                            Local Name: <input type="text" id="formFields_7" placeholder="Enter Name">
-                        </div>
-                        <div class="propertyLine">
-                            Type: <b>Number</b>  Change to:
+                        <div class="gridFieldPropSelect">
                             <div class="select">
-                                <select id="selects_3">
-                                    <option>Boolean (true/false)</option>
-                                    <option>Date (2014/07/31)</option>
-                                    <option>DateTime (2014/07/31 12:41:04)</option>
-                                    <option>String ('May West')</option>
+                                <select>    
+                                    <option *ngFor="let row of dataFieldNames">
+                                        {{ row }}
+                                    </option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="propertyLine">
-                            Format: <b>None</b>  Change to:
-                            <div class="select">
-                                <select id="selects_3">
-                                    <option>Month</option>
-                                    <option>Monetary</option>
-                                    <option>YYYY/MM/DD</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="propertyLine">
-                            Filter: <b>None</b>  Change to: <input type="text" id="formFields_7" placeholder="Filter text">
-                        </div>
-                        <div class="propertyLine">
-                            Calculation: <b>None</b>  Change to: <input type="text" id="formFields_7" placeholder="Enter Formula">
-                        </div>
-                        <div class="propertyLine">
-                            Order: <b>None</b>  Change to: <input type="text" id="formFields_7" placeholder="Order (1 Asc)">
-                        </div>
-                        <div class="propertyLine">
-                            Hide: <b>False</b>  Change to:
-                            <div class="select">
-                                <select id="selects_3">
-                                    <option>True</option>
-                                    <option>False</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="propertyLine">
-                            Key Field: <b>False</b>  Change to:
-                            <div class="select">
-                                <select id="selects_3">
-                                    <option>True</option>
-                                    <option>False</option>
-                                </select>
-                            </div>
-                            <button
-                                type="button"
-                                class="btn btn-secondary buttonRefresh"
-                                (click)="clickRefreshData()"
-                                >
-                                Refresh Data
-                            </button>
                         </div>
 
+                        <div class="gridFieldPropDescTitle">
+                            <b>Description:</b>
+                        </div>
+                        <div class="gridFieldPropDesc">
+                            This is used for ... and contains all types of ... 
+                        </div>
+
+                        <div class="gridFieldPropLocalNameTitle">
+                            <b>Local Name:</b>
+                        </div>
+                        <div class="gridFieldPropLocalName">
+                            Full Date
+                        </div>
+
+                        <div class="gridFieldPropTypeTitle">
+                            <b>Type:</b> 
+                        </div>
+                        <div class="gridFieldPropType">
+                            Number
+                        </div>
+
+                        <div class="gridFieldPropFormatTitle">
+                            <b>Format:</b>
+                        </div>
+                        <div class="gridFieldPropFormat">
+                            YYYY/MM/DD
+                        </div>
+
+                        <div class="gridFieldPropFilterTitle">
+                            <b>Filter:</b>
+                        </div>
+                        <div class="gridFieldPropFilter">
+                            >= 0
+                        </div>
+
+                        <div class="gridFieldPropCalcTitle">
+                            <b>Calculation:</b>
+                        </div>
+                        <div class="gridFieldPropCalc">
+                            None
+                        </div>
+
+                        <div class="gridFieldPropOrderTitle">
+                            <b>Order:</b>
+                        </div>
+                        <div class="gridFieldPropOrder">
+                            None
+                        </div>
+
+                        <div class="gridFieldPropHideTitle">
+                            <b>Hide:</b>
+                        </div>
+                        <div class="gridFieldPropHide">
+                            False
+                        </div>
+
+                        <div class="gridFieldPropKeyTitle">
+                            <b>Key Field:</b>
+                        </div>
+                        <div class="gridFieldPropKey">
+                            Key Field:
+                        </div>
+    
                     </div>
    
                     <div *ngIf="clickedViewFieldProfile" class="gridInfoSummaryFieldProfile">
