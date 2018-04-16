@@ -186,8 +186,6 @@ export class DataAddExistingComponent implements OnInit {
         let maxDsetIndex: number = selectedDataset.length - 1;
         if (selectedDataset.length > 0) {
 
-            this.dataFieldNames = this.selectedDatasource.dataFields;
-
             if (selectedDataset[maxDsetIndex].dataRaw != null) {
                 this.currentData = selectedDataset[maxDsetIndex].dataRaw;
             } else {
@@ -278,6 +276,7 @@ export class DataAddExistingComponent implements OnInit {
         dsIndex = this.datasources.findIndex(ds => ds.id == id);
         if (dsIndex != -1) {
             this.selectedDatasource = this.datasources[dsIndex];
+            this.dataFieldNames = this.selectedDatasource.dataFields;
             this.selectedRowID = this.datasources[dsIndex].id;
             this.selectedRowName = this.datasources[dsIndex].name;
             this.selectedRowDescription = this.datasources[dsIndex].description;

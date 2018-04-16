@@ -299,7 +299,7 @@
         }
 
         .gridFieldPropType {
-            grid-column-start: 14;
+            grid-column-start: 13;
             grid-column-end: 20;
             grid-row-start: 6;
             grid-row-end: 7;
@@ -331,7 +331,7 @@
         }
 
         .gridFieldPropFilter {
-            grid-column-start: 14;
+            grid-column-start: 13;
             grid-column-end: 20;
             grid-row-start: 8;
             grid-row-end: 9;
@@ -363,7 +363,7 @@
         }
 
         .gridFieldPropOrder {
-            grid-column-start: 14;
+            grid-column-start: 13;
             grid-column-end: 20;
             grid-row-start: 10;
             grid-row-end: 11;
@@ -395,7 +395,7 @@
         }
 
         .gridFieldPropKey {
-            grid-column-start: 14;
+            grid-column-start: 13;
             grid-column-end: 20;
             grid-row-start: 12;
             grid-row-end: 13;
