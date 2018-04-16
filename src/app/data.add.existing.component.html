@@ -45,9 +45,6 @@
                         {{ errorMessage }}
                     </div>
 
-                    <div class="gridDescription">
-                        {{ dsDescription }}
-                    </div>
 
                     <div class="gridInfoFile" *ngIf="typeDS==='File'">
 
@@ -61,17 +58,16 @@
 
                         <div class="fileNameTitle">
                             Filename:
-                        <div>
+                        </div>
                         <div class="fileName">
                             {{ fileName }}
-                        <div>
+                        </div>
 
                         <div class="fileExcelTitle">
                             Excel Worksheet:
                         </div>
-                        <div>
 
-                        </div class="fileExcel">
+                        <div class="fileExcel">
                             {{ excelWorksheet }}
                         </div>
 
@@ -83,18 +79,56 @@
                         </div>
 
                     </div>
+
                     <div class="gridInfoSummaryButtons">
-                        <div class="btn-group btn-link">
-                            <button class="btn" (click)="clickDSPreview()">Preview</button>
-                            <button class="btn" (click)="clickViewOptions('gridViewFieldProperties')">Field Properties</button>
-                            <button class="btn" (click)="clickViewOptions('gridViewFieldProfile')">Field Profile</button>
-                            <button class="btn" (click)="clickViewOptions('gridViewOverview')">Overview</button>
-                            <button class="btn" (click)="clickViewOptions('gridViewFields')">Fields</button>
-                            <button class="btn" (click)="clickViewOptions('gridViewDataQuality')">Data Quality</button>
+                        <div class="btn-group btn-link btn-sm">
+                            <button class="btn" 
+                                (click)="clickDSDescription('gridViewDescription')"
+                                >
+                                Description
+                            </button>
+                            <button class="btn" 
+                                (click)="clickDSPreview('gridViewPreview')"
+                                >
+                                Preview
+                            </button>
+                            <button class="btn" 
+                                (click)="clickViewOptions('gridViewFieldProperties')">Field
+                                 
+                                Properties
+                            </button>
+                            <button class="btn" 
+                                (click)="clickViewOptions('gridViewFieldProfile')">Field
+                                 
+                                Profile
+                            </button>
+                            <button class="btn" 
+                                (click)="clickViewOptions('gridViewOverview')"
+                                >
+                                Overview
+                            </button>
+                            <button class="btn" 
+                                (click)="clickViewOptions('gridViewFields')"
+                                >
+                                Fields
+                            </button>
+                            <button class="btn" 
+                                (click)="clickViewOptions('gridViewDataQuality')">Data
+                                 
+                                Quality
+                            </button>
                         </div>                        
                     </div>
-
-                    <div *ngIf="gridPreview" class="gridInfoSummaryPreview">
+                    <div *ngIf="gridViewDescription" class="gridInfoSummaryDescription">
+                        <div class="gridDescription">
+                            {{ dsDescription }}
+                        </div>
+                        <div class="gridDescription">
+                            {{ nrWidgetsInUse }}
+                        </div>
+                    </div>
+    
+                    <div *ngIf="gridViewPreview" class="gridInfoSummaryPreview">
                         <div *ngIf="showDataPreview">
                             <clr-datagrid class="gridIdentifyDataPreviewGrid">
 
@@ -167,7 +201,7 @@
                         <i>List of fields after the filters, transformations and
                             optional pivot has been applied.
                         </i>
-                        <br> <br>
+                        <br> 
                         <div>
 
                             <clr-datagrid>
@@ -198,7 +232,7 @@
                             used in a Widget, new changes may impact on Widget. This field
                             is currently used in <b>2</b> Widgets.
                         </i>
-                        <br><br>
+                        <br>
                         <div class="propertyLine">
                             Select field:
                             <b>
@@ -389,8 +423,6 @@
                         </div>
                     </div>
                     
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

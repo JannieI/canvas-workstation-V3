@@ -75,12 +75,14 @@ export class DataAddExistingComponent implements OnInit {
     fileName: string = '';
     folderName: string = '';
     finalFields: any = [];
+    gridViewDescription
+    gridViewPreview: boolean = true;
     gridViewOverview: boolean = true;
     gridViewFields: boolean = false;
     gridViewFieldProperties: boolean = false;
-    gridViewExplain: boolean = false;
     gridViewFieldProfile: boolean = false;
     gridViewDataQuality: boolean = false;
+    nrWidgetsInUse: number = 9123;
     rowField: string = 'Drag a field here ...';
     pageSize: number = 4;
     pivotCols: string[];
@@ -526,7 +528,7 @@ export class DataAddExistingComponent implements OnInit {
         console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
     }
 
-
+    clickDSDescription('gridViewDescription')"
 
 
 
@@ -703,235 +705,6 @@ export class DataAddExistingComponent implements OnInit {
 
     }
 
-    clickRefreshPivot() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshPivot', '@Start');
-
-        this.resultMessage = ''
-    }
-
-    clickRefreshSummary() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshSummary', '@Start');
-
-        alert('clickRefreshSummary')
-    }
-
-    clickTransitionFormat() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransitionFormat', '@Start');
-
-        this.showTransitionFormat = true;
-    }
-
-    dragstart_handler(ev) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragstart_handler', '@Start');
-
-        console.log("DataPopup dragstart_handler", ev, ev.srcElement.innerText);
-        // Add the target element's id to the data transfer object
-        ev.dataTransfer.setData("text/plain", ev.target.id);
-        this.draggedField = ev.srcElement.innerText;
-        console.log('DataPopup dragstart_handler for ', this.draggedField)
-    }
-
-    dragstart_handlerCol(ev) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragstart_handlerCol', '@Start');
-
-        console.log("DataPopup dragstart_handlerCol", ev, ev.srcElement.innerText);
-        // Add the target element's id to the data transfer object
-        ev.dataTransfer.setData("text/plain", ev.target.id);
-        this.draggedField = ev.srcElement.innerText;
-        this.colField = '';
-        console.log('DataPopup dragstart_handlerCol for ', this.draggedField)
-    }
-
-    dragstart_handlerRow(ev) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragstart_handlerRow', '@Start');
-
-        console.log("DataPopup dragstart_handlerRow", ev, ev.srcElement.innerText);
-        // Add the target element's id to the data transfer object
-        ev.dataTransfer.setData("text/plain", ev.target.id);
-        this.draggedField = ev.srcElement.innerText;
-        this.rowField = '';
-        console.log('DataPopup dragstart_handlerRow for ', this.draggedField)
-    }
-
-    dragstart_handlerAgg(ev) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragstart_handlerAgg', '@Start');
-
-        console.log("DataPopup dragstart_handlerAgg", ev, ev.srcElement.innerText);
-        // Add the target element's id to the data transfer object
-        ev.dataTransfer.setData("text/plain", ev.target.id);
-        this.draggedField = ev.srcElement.innerText;
-        this.aggField = '';
-        console.log('DataPopup dragstart_handlerAgg for ', this.draggedField)
-    }
-
-    dragend_handler(ev) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragend_handler', '@Start');
-
-        console.log('DataPopup dragend_handler', ev.dataTransfer.dropEffect)
-    }
-
-    dragover_handler(ev, actionName: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnIdragover_handlernit', '@Start');
-
-        console.log('DataPopup dragover_handler', ev, ev.srcElement.innerText)
-        ev.preventDefault();
-        this.transitionFieldName = 'Added the field to transition: '
-        this.transitionAction = actionName;
-    }
-
-    dragover_handlerColEnter(ev, actionName: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerColEnter', '@Start');
-
-        ev.preventDefault();
-        this.dragoverCol = true;
-        this.dragoverRow = false;
-        this.dragoverAgg = false;
-    }
-
-    dragover_handlerColLeave(ev, actionName: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerColLeave', '@Start');
-
-        ev.preventDefault();
-        this.dragoverCol = false;
-    }
-
-    dragover_handlerRowEnter(ev, actionName: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerRowEnter', '@Start');
-
-        ev.preventDefault();
-        this.dragoverCol = false;
-        this.dragoverRow = true;
-        this.dragoverAgg = false;
-    }
-
-    dragover_handlerRowLeave(ev, actionName: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerRowLeave', '@Start');
-
-        ev.preventDefault();
-        this.dragoverRow = false;
-    }
-
-    dragover_handlerAggEnter(ev, actionName: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerAggEnter', '@Start');
-
-        ev.preventDefault();
-        this.dragoverCol = false;
-        this.dragoverRow = false;
-        this.dragoverAgg = true;
-    }
-
-    dragover_handlerAggLeave(ev, actionName: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_handlerAggLeave', '@Start');
-
-        ev.preventDefault();
-        this.dragoverAgg = false;
-    }
-
-    drop_handlerRow(ev) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'drop_handlerRow', '@Start');
-
-        ev.preventDefault();
-        ev.dataTransfer.dropEffect = "move"
-        // Get the id of the target and add the moved element to the target's DOM
-
-        var data = ev.dataTransfer.getData("text");
-        // ev.target.appendChild(document.getElementById(data));
-        this.rowField = this.draggedField;
-        console.log('DataPopup drop_handlerRow dropped !!', ev.srcElement.innerText)
-
-        // Pivot Rows
-        this.pivotRows = [];
-        let pC = dl.groupby('symbol')
-            .summarize( [
-                {name: 'symbol', ops: ['values']}
-                ] )
-            .execute(this.currentData);
-        for (var i = 0; i < pC.length; i++) {
-            this.pivotRows.push(pC[i].symbol)
-        }
-        this.resultMessage = '';
-        console.log('DataPopup drop_handlerRow this.pivotRows', this.pivotRows)
-
-    }
-
-    drop_handlerCol(ev) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'drop_handlerCol', '@Start');
-
-        ev.preventDefault();
-        ev.dataTransfer.dropEffect = "move"
-        // Get the id of the target and add the moved element to the target's DOM
-
-        var data = ev.dataTransfer.getData("text");
-        // ev.target.appendChild(document.getElementById(data));
-        this.colField = this.draggedField;
-        console.log('DataPopup drop_handlerCol dropped !!', ev.srcElement.innerText)
-
-        // Pivot Cols
-        this.pivotCols = ['Date'];
-        let pC = dl.groupby('symbol')
-            .summarize( [
-                {name: 'symbol', ops: ['values']}
-                ] )
-            .execute(this.currentData);
-        for (var i = 0; i < pC.length; i++) {
-            this.pivotCols.push(pC[i].symbol)
-        }
-        this.resultMessage = '';
-        this.dragoverCol = false;
-        console.log('DataPopup drop_handlerCol this.pivotCols', this.pivotCols)
-    }
-
-    drop_handlerAgg(ev) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'drop_handlerAgg', '@Start');
-
-        ev.preventDefault();
-        ev.dataTransfer.dropEffect = "move"
-        // Get the id of the target and add the moved element to the target's DOM
-
-        var data = ev.dataTransfer.getData("text");
-        // ev.target.appendChild(document.getElementById(data));
-        this.aggField = this.draggedField;
-        console.log('DataPopup drop_handlerAgg dropped !!', ev.srcElement.innerText)
-    }
-
-    drop_pivot(ev) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'drop_pivot', '@Start');
-
-        ev.preventDefault();
-
-        var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-        console.log('DataPopup drop_pivot dropped !!')
-    }
-
-    dragover_pivot(ev) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragover_pivot', '@Start');
-
-        console.log('DataPopup dragover_pivot')
-        ev.preventDefault();
-        // Set the dropEffect to move
-        ev.dataTransfer.dropEffect = "move"
-    }
 
     clickShowIdentifyFile() {
         //
@@ -1007,68 +780,38 @@ export class DataAddExistingComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewOptions', '@Start');
 
-        console.log('DataPopup clickViewOptions area', area)
-
+        this.gridViewDescription = false;
+        this.gridViewPreview = false;
+        this.gridViewOverview = false;
+        this.gridViewFields = false;
+        this.gridViewFieldProperties = false;
+        this.gridViewFieldProfile = false;
+        this.gridViewDataQuality = false;
+        if (area == 'gridViewDescription') {
+            this.gridViewDescription = true;
+        };
+        if (area == 'gridViewPreview') {
+            this.gridViewPreview = true;
+        };
         if (area == 'gridViewOverview') {
             this.gridViewOverview = true;
-            this.gridViewFields = false;
-            this.gridViewFieldProperties = false;
-            this.gridViewExplain = false;
-            this.gridViewFieldProfile = false;
-            this.gridViewDataQuality = false;
-        }
+        };
+        
         if (area == 'gridViewFields') {
-            this.gridViewOverview = false;
             this.gridViewFields = true;
-            this.gridViewFieldProperties = false;
-            this.gridViewExplain = false;
-            this.gridViewFieldProfile = false;
-            this.gridViewDataQuality = false;
-        }
+        };
         if (area == 'gridViewFieldProperties') {
-            this.gridViewOverview = false;
-            this.gridViewFields = false;
             this.gridViewFieldProperties = true;
-            this.gridViewExplain = false;
-            this.gridViewFieldProfile = false;
-            this.gridViewDataQuality = false;
-        }
-        if (area == 'gridViewExplain') {
-            this.gridViewOverview = false;
-            this.gridViewFields = false;
-            this.gridViewFieldProperties = false;
-            this.gridViewExplain = true;
-            this.gridViewFieldProfile = false;
-            this.gridViewDataQuality = false;
-        }
+        };
         if (area == 'gridViewFieldProfile') {
-            this.gridViewOverview = false;
-            this.gridViewFields = false;
-            this.gridViewFieldProperties = false;
-            this.gridViewExplain = false;
             this.gridViewFieldProfile = true;
-            this.gridViewDataQuality = false;
-        }
+        };
         if (area == 'gridViewDataQuality') {
-            this.gridViewOverview = false;
-            this.gridViewFields = false;
-            this.gridViewFieldProperties = false;
-            this.gridViewExplain = false;
-            this.gridViewFieldProfile = false;
             this.gridViewDataQuality = true;
-        }
+        };
 
     }
 
-    clickTest() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickTest', '@Start');
-
-        console.log('DataPopup clickTest currentData', this.currentData[0])
-        let result: any;
-        result = this.globalFunctionService.convertArrayToPivot(this.currentData);
-        console.log('DataPopup clickTest',result);
-    }
 
 }
 
