@@ -42,7 +42,6 @@ interface localDatasources extends Datasource
 })
 export class DataAddExistingComponent implements OnInit {
 
-    @Input() datasources: Datasource[];
     @Output() formDataAddExistingClosed: EventEmitter<string> = new EventEmitter();
 
     // datasources: Datasource[];
@@ -56,10 +55,12 @@ export class DataAddExistingComponent implements OnInit {
     clickedViewDataQuality: boolean = false;
     currentDatasources: localDatasources[] = [];
     currentData: any = [];
+    currentDSids: number[] = [];                    // List of DS-IDs in use
     dataFieldLengths: number[] = [];
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
     dataQualityIssues: DataQualityIssue[];
+    datasources: localDatasources[];
     errorMessage: string = "";
     fileName: string = '';
     folderName: string = '';
@@ -82,15 +83,14 @@ export class DataAddExistingComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        let currentDSids: number[] = [];
         this.globalVariableService.currentDatasources.forEach(cds => {
-            currentDSids.push(cds.id);
-        })
+            this.currentDSids.push(cds.id);
+        });
 
         // Load from global variables
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.currentDatasources.forEach(ds => {
-            if (currentDSids.indexOf(ds.id) >= 0) {
+            if (this.currentDSids.indexOf(ds.id) >= 0) {
                 ds.isSelected = true;
             } else {
                 ds.isSelected = false;
@@ -271,11 +271,12 @@ export class DataAddExistingComponent implements OnInit {
         this.errorMessage = '';
     }
 
-    clickDSCheckbox(id: number, i: number, ev: any){
+    clickDSCheckbox(index: number, id: number, isSelected: boolean, ev: any){
         // Checked / UnChecked DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSCheckbox', '@Start');
 
-        this.errorMessage = this.errorMessage + ev.target.checked;
+        // Get the data
+        console.log('xx', ev.target.checked)
         
     }
 
