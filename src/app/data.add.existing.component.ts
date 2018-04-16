@@ -294,71 +294,12 @@ export class DataAddExistingComponent implements OnInit {
         this.errorMessage = '';
     }
 
-
     clickDSCheckbox(id: number, i: number, ev: any){
         // Checked / UnChecked DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSCheckbox', '@Start');
 
         this.errorMessage = this.errorMessage + ev.target.checked;
         
-    }
-
-
-
-
-
-
-    clickCurrentDatasource(id: number, index: number) {
-        // Clicked and existing DS -> Load related data for the selected DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDatasource', '@Start');
-
-        // If this was a delete, no further actions
-        if (this.clickedDeleteDS) {
-            this.clickedDeleteDS = false;
-            return;
-        };
-
-        // Reset
-        this.errorMessage = '';
-        this.globalVariableService.refreshCurrentDatasourceInfo(id).then(i => {
-
-            // this.currentDatasources = this.globalVariableService.currentDatasources;
-            this.currentDatasources.forEach(ds => {
-                if (ds.id == id) {
-                    this.dataFieldNames = ds.dataFields;
-                    this.dataFieldTypes = ds.dataFieldTypes;
-                    this.dataFieldLengths = ds.dataFieldLengths;
-                };
-            });
-
-            // TODO - using index below assumes currentDS and currentDSET has same lengths - wise ?
-            let tempData: any[] = this.globalVariableService.currentDatasets.filter(d =>
-               d.datasourceID == id);
-            this.currentData = tempData[0].data;
-
-            this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
-            this.fields = this.globalVariableService.fields;
-            this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
-            this.globalVariableService.dataGetFromSwitch.subscribe(
-                i => {
-                    this.dataGetFromSwitch = i;
-                }
-            )
-
-            // General var with name - used in *ngIf, etc
-            this.curentDatasetID = index;
-            this.currentDatasetName = this.currentDatasources[index].name;
-
-            // Reset data related to this DS
-            this.finalFields = this.globalVariableService.finalFields;
-            this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
-
-            // Show the preview
-            this.folderName = tempData[0].folderName;
-            this.fileName = tempData[0].fileName;
-
-        });
-
     }
 
     ngOnDestroy() {
