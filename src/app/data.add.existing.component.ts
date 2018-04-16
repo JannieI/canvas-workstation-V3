@@ -314,12 +314,6 @@ export class DataAddExistingComponent implements OnInit {
         this.errorMessage = '';
     }
 
-    clickRemoveDS(id: number) {
-        // Remove selected DS from current D, if not used
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRemoveDS', '@Start');
-
-        this.errorMessage = 'Much ado about ' + name;
-    }
 
     clickDSCheckbox(id: number, i: number, ev: any){
         // Checked / UnChecked DS
