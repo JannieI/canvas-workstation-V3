@@ -46,9 +46,9 @@ export class DataAddExistingComponent implements OnInit {
     aggField: string = 'Drag a field here ...';
     changeVar: number = 2;
     clickedDeleteDS: boolean = false;
-    clickedViewDescription
-    clickedViewPreview: boolean = true;
-    clickedViewOverview: boolean = true;
+    clickedViewDescription: boolean = false;
+    clickedViewPreview: boolean = false;
+    clickedViewOverview: boolean = false;
     clickedViewFields: boolean = false;
     clickedViewFieldProperties: boolean = false;
     clickedViewFieldProfile: boolean = false;
@@ -124,13 +124,12 @@ export class DataAddExistingComponent implements OnInit {
     selectedFieldProperties: boolean = false;
     selectedFieldTransform: boolean = false;
     selectedFile: boolean = true;
-    selectedOverallTransform: boolean = false;
+    selectedRow: number = 0;
     selectedSummary: boolean = false;
     showAddButton: boolean = false;
     showDataPreview: boolean = false;
     showIdentifyFile: boolean = true;
     showFilter: boolean = false;
-    showPivot: boolean = false;
     showSelectField: boolean = false;
     showTopSteps: boolean = false;
     showTransformDetail: boolean = false;
@@ -155,6 +154,9 @@ export class DataAddExistingComponent implements OnInit {
         // Load from global variables
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.datasources = this.globalVariableService.datasources;
+
+        // Load first by default
+        this.clickDSDescription('gridViewDescription');
     }
 
     clickField() {
@@ -470,15 +472,14 @@ export class DataAddExistingComponent implements OnInit {
         // Show description area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSDescription', '@Start');
 
-        this.clickViewOptions('gridViewDescription');
+        this.clickViewOptions(area);
     }
 
     clickDSPreview(area: string) {
         // Show preview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
 
-        this.clickViewOptions('gridViewPreview');
-
+        this.clickViewOptions(area);
         
         // Reset
         this.errorMessage = '';
@@ -539,7 +540,7 @@ export class DataAddExistingComponent implements OnInit {
         // Show  area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
 
-        this.clickViewOptions('');
+        this.clickViewOptions(area);
         
     }
 
@@ -547,25 +548,23 @@ export class DataAddExistingComponent implements OnInit {
         // Show profile area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProfile', '@Start');
 
-        this.clickViewOptions('clickViewProfile');
+        this.clickViewOptions(area);
         
     }
-
 
     clickViewOverview(area: string) {
         // Show overview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewOverview', '@Start');
 
-        this.clickViewOptions('clickViewOverview');
+        this.clickViewOptions(area);
         
     }
-
 
     clickViewFields(area: string) {
         // Show fields area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewFields', '@Start');
 
-        this.clickViewOptions('clickViewFields');
+        this.clickViewOptions(area);
         
     }
 
@@ -573,7 +572,7 @@ export class DataAddExistingComponent implements OnInit {
         // Show data quality area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewDataQuality', '@Start');
 
-        this.clickViewOptions('clickViewDataQuality');
+        this.clickViewOptions(area);
         
     }
 
@@ -606,10 +605,11 @@ export class DataAddExistingComponent implements OnInit {
         console.log('DataPopup clickDatasourceRow dsName', dsName, this.filterDataset)
     }
 
-    clickSelectedDatasource(id: number, name: string) {
+    clickSelectedDatasource(index: number, id: number, name: string) {
         // Clicked a DS -> Show related info and preview its data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource', '@Start');
 
+        this.selectedRow = index;
 
         this.errorMessage = this.errorMessage + 'Much ado about ' + name;
     }
@@ -749,69 +749,6 @@ export class DataAddExistingComponent implements OnInit {
     }
 
 
-    clickShowIdentifyFile() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowIdentifyFile', '@Start');
-
-        this.showIdentifyFile = true;
-
-        this.showFilter = false;
-        this.showTransform = false;
-        this.showPivot = false;
-        this.showView = false;
-    }
-
-    clickShowFilter() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFilter', '@Start');
-
-        this.showIdentifyFile = false;
-        this.showFilter = true;
-        this.showTransform = false;
-        this.showPivot = false;
-        this.showView = false;
-    }
-
-    clickShowTransform() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowTransform', '@Start');
-
-        this.showIdentifyFile = false;
-        this.showFilter = false;
-        this.showTransform = true;
-        this.showPivot = false;
-        this.showView = false;
-    }
-
-    clickShowPivot() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowPivot', '@Start');
-
-        this.showIdentifyFile = false;
-        this.showFilter = false;
-        this.showTransform = false;
-        this.showPivot = true;
-        this.showView = false;
-    }
-
-    clickShowView() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowView', '@Start');
-
-        this.showIdentifyFile = false;
-        this.showFilter = false;
-        this.showTransform = false;
-        this.showPivot = false;
-        this.showView = true;
-    }
-
-    clickShowIdentity() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowIdentity', '@Start');
-
-        this.showIdentifyFile = true;
-    }
-
     changedInput(newValue: any) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'changedInput', '@Start');
@@ -836,18 +773,18 @@ export class DataAddExistingComponent implements OnInit {
         if (area == 'gridViewPreview') {
             this.clickedViewPreview = true;
         };
+        if (area == 'gridViewFieldProperties') {
+            this.clickedViewFieldProperties = true;
+        };
+        if (area == 'gridViewFieldProfile') {
+            this.clickedViewFieldProfile = true;
+        };
         if (area == 'gridViewOverview') {
             this.clickedViewOverview = true;
         };
         
         if (area == 'gridViewFields') {
             this.clickedViewFields = true;
-        };
-        if (area == 'gridViewFieldProperties') {
-            this.clickedViewFieldProperties = true;
-        };
-        if (area == 'gridViewFieldProfile') {
-            this.clickedViewFieldProfile = true;
         };
         if (area == 'gridViewDataQuality') {
             this.clickedViewDataQuality = true;

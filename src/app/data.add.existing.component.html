@@ -18,14 +18,16 @@
                     </div>
             
                     <div class="gridDatasources">
-                        <clr-datagrid class="fieldsDataGrid">
+                        <clr-datagrid class="fieldsDataGrid"> 
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
 
                             <clr-dg-row
-                                *ngFor="let row of datasources"
-                                (click)="clickSelectedDatasource(row.id, row.name)"
+                                *ngFor="let row of datasources; let i = index"
+                                [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                (click)="clickSelectedDatasource(i, row.id, row.name)"
                                 >
                                 <clr-dg-cell>
                                     <input type="checkbox" class="dsCheckbox"
@@ -45,42 +47,7 @@
                         {{ errorMessage }}
                     </div>
 
-
-                    <div class="gridInfoFile" *ngIf="typeDS==='File'">
-
-                        <div class="fileFolderNameTitle">
-                            Folder:
-                        </div>
-                        <div class="fileFolderName">
-                            Folder:
-                            {{ folderName }}
-                        </div>
-
-                        <div class="fileNameTitle">
-                            Filename:
-                        </div>
-                        <div class="fileName">
-                            {{ fileName }}
-                        </div>
-
-                        <div class="fileExcelTitle">
-                            Excel Worksheet:
-                        </div>
-
-                        <div class="fileExcel">
-                            {{ excelWorksheet }}
-                        </div>
-
-                        <div  class="fileStartLineTitle">
-                            Start at:
-                        </div>
-                        <div  class="fileStartLine">
-                            {{ startLineNr }}
-                        </div>
-
-                    </div>
-
-                    <div class="gridInfoSummaryButtons">
+                    <div class="gridButtons">
                         <div class="btn-group btn-link btn-sm">
                             <button class="btn" 
                                 (click)="clickDSDescription('gridViewDescription')"
@@ -119,110 +86,77 @@
                             </button>
                         </div>                        
                     </div>
-                    <div *ngIf="gridViewDescription" class="gridInfoSummaryDescription">
-                        <div class="gridDescription">
+
+                    <div *ngIf="clickedViewDescription" class="gridPanel">
+                        <div class="gridPanelDescription">
                             {{ dsDescription }}
                         </div>
-                        <div class="gridDescription">
+                        <div class="gridPanelDescriptionTitle">
+                            <b>Description:</b>
+                        </div>
+                        <div class="gridPanelNrWidgetsTitle">
+                            Nr Widgets:
+                        </div>
+                        <div class="gridPanelNrWidgets">
                             {{ nrWidgetsInUse }}
                         </div>
+    
+                        <div class="gridInfoFile" *ngIf="typeDS==='File'">
+
+                            <div class="fileFolderNameTitle">
+                                Folder:
+                            </div>
+                            <div class="fileFolderName">
+                                Folder:
+                                {{ folderName }}
+                            </div>
+    
+                            <div class="fileNameTitle">
+                                Filename:
+                            </div>
+                            <div class="fileName">
+                                {{ fileName }}
+                            </div>
+    
+                            <div class="fileExcelTitle">
+                                Excel Worksheet:
+                            </div>
+    
+                            <div class="fileExcel">
+                                {{ excelWorksheet }}
+                            </div>
+    
+                            <div  class="fileStartLineTitle">
+                                Start at:
+                            </div>
+                            <div  class="fileStartLine">
+                                {{ startLineNr }}
+                            </div>
+    
+                        </div>
+        
                     </div>
     
-                    <div *ngIf="gridViewPreview" class="gridInfoSummaryPreview">
-                        <div *ngIf="showDataPreview">
-                            <clr-datagrid class="gridIdentifyDataPreviewGrid">
+                    <div *ngIf="clickedViewPreview" class="gridPanel">
+                        <clr-datagrid>
 
-                                <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-                                <clr-dg-row *ngFor="let row of currentData">
+                            <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+                            <clr-dg-row *ngFor="let row of currentData">
 
-                                    <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                                            {{ row[col] }}
-                                    </clr-dg-cell>
-                                </clr-dg-row>
+                                <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+                                        {{ row[col] }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
 
-                                <clr-dg-footer>
-                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                    of {{pagination.totalItems}} rows
-                                    <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
-                                </clr-dg-footer>
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+                            </clr-dg-footer>
 
-                            </clr-datagrid>
-                        </div>
+                        </clr-datagrid>
                     </div>
-
-                    <div *ngIf="gridViewOverview" class="gridInfoSummaryOverview">
-                        <div>
-                            <b>
-                                <h4 class="gridViewFieldHeading" >Overview</h4>
-                            </b>
-                            <i>This area shows an overview of the data in 6 graphs.  It
-                                includes frequency distributions of key fields, and a
-                                Light data exploration, ie outliers about xth percentile.
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    (click)="clickRefreshData()"
-                                    >
-                                    Refresh
-                                </button>
-                            </i>
-                        </div>
-                        <div class="gridViewRightOverviewGraph">
-                            <img class="gridViewRightOverviewGraph"
-                                [style.height.px]="120"
-                                [style.width.px]="120"
-                                src="../images/ChartCandleStick.png"
-                                (click)="clickViewOptions('gridViewOverview')"
-                            >
-
-                        </div>
-                        <div class="gridViewRightOverviewGraph">
-                                <img class="gridViewRightOverviewGraph"
-                                [style.height.px]="120"
-                                [style.width.px]="120"
-                                src="../images/ChartBoxPlot.png"
-                                (click)="clickViewOptions('gridViewOverview')"
-                            >
-                        </div>
-                        <div class="gridViewRightOverviewGraph">
-                            <img class="gridViewRightOverviewGraph"
-                                [style.height.px]="120"
-                                [style.width.px]="120"
-                                src="../images/ChartRangedDot.png"
-                                (click)="clickViewOptions('gridViewOverview')"
-                            >
-                        </div>
-                    </div>
-
-                    <div *ngIf="gridViewFields" class="gridInfoSummaryFields">
-                        <b>
-                            <h4>Fields</h4>
-                        </b>
-                        <i>List of fields after the filters, transformations and
-                            optional pivot has been applied.
-                        </i>
-                        <br> 
-                        <div>
-
-                            <clr-datagrid>
-                                <clr-dg-column>FieldName</clr-dg-column>
-                                <clr-dg-column>DataType</clr-dg-column>
-                                <clr-dg-column>LocalName</clr-dg-column>
-                                <clr-dg-column>Filtered</clr-dg-column>
-                                <clr-dg-column>Transformed</clr-dg-column>
-                                <clr-dg-row *ngFor="let row of finalFields">
-                                    <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.dataType }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.localName }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.filtered }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.transformed }}</clr-dg-cell>
-                                </clr-dg-row>
-                            </clr-datagrid>
-
-                        </div>
-                    </div>
-
-                    <div *ngIf="gridViewFieldProperties" class="gridInfoSummaryFieldProperties">
+                    <div *ngIf="clickedViewFieldProperties" class="gridInfoSummaryFieldProperties">
                         <b>
                             <h4>Field Properties</h4>
                         </b>
@@ -309,8 +243,8 @@
                         </div>
 
                     </div>
-
-                    <div *ngIf="gridViewProfile" class="gridInfoSummaryFieldProfile">
+   
+                    <div *ngIf="clickedViewFieldProfile" class="gridInfoSummaryFieldProfile">
 
                         <b>
                             <h4>Field Profile</h4>
@@ -382,8 +316,80 @@
                             </div>
                         </div>
                     </div>
+    
+                    <div *ngIf="clickedViewOverview" class="gridInfoSummaryOverview">
+                        <div>
+                            <b>
+                                <h4 class="gridViewFieldHeading" >Overview</h4>
+                            </b>
+                            <i>This area shows an overview of the data in 6 graphs.  It
+                                includes frequency distributions of key fields, and a
+                                Light data exploration, ie outliers about xth percentile.
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    (click)="clickRefreshData()"
+                                    >
+                                    Refresh
+                                </button>
+                            </i>
+                        </div>
+                        <div class="gridViewRightOverviewGraph">
+                            <img class="gridViewRightOverviewGraph"
+                                [style.height.px]="120"
+                                [style.width.px]="120"
+                                src="../images/ChartCandleStick.png"
+                                (click)="clickViewOptions('gridViewOverview')"
+                            >
 
-                    <div *ngIf="gridViewDataQuality" class="gridInfoSummaryDataQuality">
+                        </div>
+                        <div class="gridViewRightOverviewGraph">
+                                <img class="gridViewRightOverviewGraph"
+                                [style.height.px]="120"
+                                [style.width.px]="120"
+                                src="../images/ChartBoxPlot.png"
+                                (click)="clickViewOptions('gridViewOverview')"
+                            >
+                        </div>
+                        <div class="gridViewRightOverviewGraph">
+                            <img class="gridViewRightOverviewGraph"
+                                [style.height.px]="120"
+                                [style.width.px]="120"
+                                src="../images/ChartRangedDot.png"
+                                (click)="clickViewOptions('gridViewOverview')"
+                            >
+                        </div>
+                    </div>
+
+                    <div *ngIf="clickedViewFields" class="gridInfoSummaryFields">
+                        <b>
+                            <h4>Fields</h4>
+                        </b>
+                        <i>List of fields after the filters, transformations and
+                            optional pivot has been applied.
+                        </i>
+                        <br> 
+                        <div>
+
+                            <clr-datagrid>
+                                <clr-dg-column>FieldName</clr-dg-column>
+                                <clr-dg-column>DataType</clr-dg-column>
+                                <clr-dg-column>LocalName</clr-dg-column>
+                                <clr-dg-column>Filtered</clr-dg-column>
+                                <clr-dg-column>Transformed</clr-dg-column>
+                                <clr-dg-row *ngFor="let row of finalFields">
+                                    <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.dataType }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.localName }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filtered }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.transformed }}</clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+
+                        </div>
+                    </div>
+
+                    <div *ngIf="clickedViewDataQuality" class="gridInfoSummaryDataQuality">
                         <b>
                             <h4>Data Quality Issues</h4>
                         </b>
