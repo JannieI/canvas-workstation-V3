@@ -264,26 +264,6 @@ export class DataAddExistingComponent implements OnInit {
         
     }
 
-
-
-    clickNonCurrentDatasource(id: number, dsName: string) {
-        // Click on an existing DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickNonCurrentDatasource', '@Start');
-
-        // Reset
-        this.errorMessage = '';
-
-        let tempData: any[] = this.globalVariableService.datasets.filter(d =>
-            d.datasourceID == id);
-        this.folderName = tempData[0].folderName;
-        this.fileName = tempData[0].fileName;
-
-        this.currentDatasetName = '';
-        this.existingDSName = dsName;
-
-        console.log('DataPopup clickDatasourceRow dsName', dsName)
-    }
-
     clickSelectedDatasource(index: number, id: number) {
         // Clicked a DS -> Show related info and preview its data
         // index = Index / position on CURRENT page, when using pagination
