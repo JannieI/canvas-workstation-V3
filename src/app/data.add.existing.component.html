@@ -346,15 +346,8 @@
 
                     </div>
 
-                    <div *ngIf="clickedViewFields" class="gridInfoSummaryFields">
-                        <b>
-                            <h4>Fields</h4>
-                        </b>
-                        <i>List of fields after the filters, transformations and
-                            optional pivot has been applied.
-                        </i>
-                        <br> 
-                        <div>
+                    <div *ngIf="clickedViewFields" class="gridFields">
+                        <div class="gridFieldsTable">
 
                             <clr-datagrid>
                                 <clr-dg-column>FieldName</clr-dg-column>
@@ -362,7 +355,7 @@
                                 <clr-dg-column>LocalName</clr-dg-column>
                                 <clr-dg-column>Filtered</clr-dg-column>
                                 <clr-dg-column>Transformed</clr-dg-column>
-                                <clr-dg-row *ngFor="let row of finalFields">
+                                <clr-dg-row *clrDgItems="let row of finalFields">
                                     <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.dataType }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.localName }}</clr-dg-cell>
@@ -371,6 +364,12 @@
                                 </clr-dg-row>
                             </clr-datagrid>
 
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
+                            </clr-dg-footer>
+    
                         </div>
                     </div>
 
