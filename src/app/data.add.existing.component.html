@@ -27,12 +27,7 @@
                                 *ngFor="let row of datasources; let i = index"
                                 [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                                (click)="clickSelectedDatasource(
-                                    i, 
-                                    row.id, 
-                                    row.name, 
-                                    row.description
-                                    )"
+                                (click)="clickSelectedDatasource(i, row.id)"
                                 >
                                 <clr-dg-cell>
                                     <input type="checkbox" class="dsCheckbox"
@@ -97,13 +92,19 @@
                             <b>Description:</b>
                         </div>
                         <div class="gridPanelDescription">
-                            {{ selectedDescription }}
+                            {{ selectedRowDescription }}
+                        </div>
+                        <div class="gridPanelNameTitle">
+                            <b>Names:</b>
+                        </div>
+                        <div class="gridPanelName">
+                            {{ selectedRowName }}
                         </div>
                         <div class="gridPanelNrWidgetsTitle">
-                            Nr Widgets:
+                            <b>Nr Widgets:</b>
                         </div>
                         <div class="gridPanelNrWidgets">
-                            {{ nrWidgetsInUse }}
+                            {{ selectedRowNrWidgetsInUse }}
                         </div>
     
                         <div class="gridInfoFile" *ngIf="typeDS==='File'">
