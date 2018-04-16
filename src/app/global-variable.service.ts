@@ -1764,7 +1764,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         });
     }
     
-    getData(id: number): Promise<Dataset[]> {
+    getData(id: number): Promise<any[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
         console.log('Global-Variables getData ...', id);
@@ -1784,7 +1784,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                         // this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getData', res)
-                        resolve(res);
+                        resolve(res.data);
                     });
             // } else {
             //     console.log('Global-Variables getData 2', this.datasets)

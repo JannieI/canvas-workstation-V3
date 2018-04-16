@@ -72,6 +72,7 @@ export class DataAddExistingComponent implements OnInit {
     fields: Field[];
     fieldsMetadata: FieldMetadata[];
     selectedData: string = 'Trades for 2016';
+    selectedDatasource: Datasource;
     selectedExistingDS: boolean = false;
     selectedFieldProperties: boolean = false;
     selectedFieldTransform: boolean = false;
@@ -174,15 +175,22 @@ export class DataAddExistingComponent implements OnInit {
         let selectedDataset: Dataset[] = this.globalVariableService.datasets.filter(dS => 
             dS.datasourceID == this.selectedRowID
         );
+
+        // TODO - do better with DB
+        let maxDsetIndex: number = selectedDataset.length - 1;
         if (selectedDataset.length > 0) {
-            if (selectedDataset[0].dataRaw != null) {
-                this.currentData = selectedDataset[0].dataRaw;
+
+            this.dataFieldNames = this.selectedDatasource.dataFields;
+
+            if (selectedDataset[maxDsetIndex].dataRaw != null) {
+                this.currentData = selectedDataset[maxDsetIndex].dataRaw;
             } else {
-                this.globalVariableService.getData(selectedDataset[0].id).then(dt => {
-                    this.currentData;
+                this.globalVariableService.getData(selectedDataset[maxDsetIndex].id).then(dt => {
+                    this.currentData = dt;
                 });
             };
         };
+        console.log('xx selectedDataset', this.selectedRowID, maxDsetIndex, this.currentData)
 
 
     }
@@ -263,6 +271,7 @@ export class DataAddExistingComponent implements OnInit {
         let dsIndex: number = -1;
         dsIndex = this.datasources.findIndex(ds => ds.id == id);
         if (dsIndex != -1) {
+            this.selectedDatasource = this.datasources[dsIndex];
             this.selectedRowID = this.datasources[dsIndex].id;
             this.selectedRowName = this.datasources[dsIndex].name;
             this.selectedRowDescription = this.datasources[dsIndex].description;
@@ -277,7 +286,6 @@ export class DataAddExistingComponent implements OnInit {
             // Show first tab
             this.clickDSDescription('gridViewDescription');
         };
-
         this.errorMessage = '';
     }
 
