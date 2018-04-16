@@ -46,7 +46,6 @@ export class DataAddExistingComponent implements OnInit {
     @Output() formDataAddExistingClosed: EventEmitter<string> = new EventEmitter();
 
     // datasources: Datasource[];
-    changeVar: number = 2;
     clickedDeleteDS: boolean = false;
     clickedViewDescription: boolean = false;
     clickedViewPreview: boolean = false;
@@ -57,43 +56,21 @@ export class DataAddExistingComponent implements OnInit {
     clickedViewDataQuality: boolean = false;
     currentDatasources: localDatasources[] = [];
     currentData: any = [];
-    currentDatasetName: string = '';            // Array with current data block
-    curentDatasetID: number;
     dataFieldLengths: number[] = [];
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
-    dataGetFromSwitch: string = 'File';
-    dataUniqueInColumn: string[] = [];
     dataQualityIssues: DataQualityIssue[];
     errorMessage: string = "";
-    existingDSName: string = '';
     fileName: string = '';
     folderName: string = '';
     finalFields: any = [];
-    nrWidgetsInUse: number = 9123;
-    pageSize: number = 4;
-    resultMessage: string = 'Results will be shown here: drag and drop fields, then click Refresh'
-    fields: Field[];
-    fieldsMetadata: FieldMetadata[];
-    selectedData: string = 'Trades for 2016';
     selectedDatasource: Datasource;
-    selectedExistingDS: boolean = false;
-    selectedFieldProperties: boolean = false;
-    selectedFieldTransform: boolean = false;
-    selectedFile: boolean = true;
     selectedRowID: number = 0;
     selectedRowIndex: number = 0;
     selectedRowName: string = '';
     selectedRowDescription: string = '';
     selectedRowNrWidgetsInUse: number = 0;
-    showFilter: boolean = false;
-    showSelectField: boolean = false;
 
-    users = [{id: 1,
-        name: 'Astrid',
-        creation: '2017/01/01',
-        color: 'brown'
-    }];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -308,7 +285,6 @@ export class DataAddExistingComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        // this.globalVariableService.dataGetFromSwitch.unsubscribe();
     }
 
     clickClose(action: string) {
