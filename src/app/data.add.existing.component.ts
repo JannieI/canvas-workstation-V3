@@ -55,7 +55,6 @@ export class DataAddExistingComponent implements OnInit {
     currentData: any = [];
     currentDatasetName: string = '';            // Array with current data block
     curentDatasetID: number;
-    dataArray: any;
     dataFieldLengths: number[] = [];
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
@@ -112,14 +111,6 @@ export class DataAddExistingComponent implements OnInit {
 
         // Show first tab
         this.clickDSDescription('gridViewDescription');
-    }
-
-
-    clickFileBrowse() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
-
-        // TODO alert('Later: File component to browse ...')
     }
 
     clickCurrentDSDelete(id: number) {
@@ -179,6 +170,19 @@ export class DataAddExistingComponent implements OnInit {
         // Reset
         this.errorMessage = '';
 
+        // Get the data, either lives in the dataset, or in a url
+        let selectedDataset: Dataset[] = this.globalVariableService.datasets.filter(dS => 
+            dS.datasourceID == this.selectedRowID
+        );
+        if (selectedDataset.length > 0) {
+            if (selectedDataset[0].dataRaw != null) {
+                this.currentData = selectedDataset[0].dataRaw;
+            } else {
+                this.globalVariableService.getData(selectedDataset[0].id).then(dt => {
+                    this.currentData;
+                });
+            };
+        };
 
 
     }
@@ -268,6 +272,10 @@ export class DataAddExistingComponent implements OnInit {
                 &&
                 w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
             ).length;
+
+
+            // Show first tab
+            this.clickDSDescription('gridViewDescription');
         };
 
         this.errorMessage = '';

@@ -1767,7 +1767,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
     getData(id: number): Promise<Dataset[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
-        console.log('Global-Variables getData ...');
+        console.log('Global-Variables getData ...', id);
 
         let url: string = 'data/' + id.toString();
         this.filePath = './assets/data.datasets.json';
@@ -1775,20 +1775,21 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         return new Promise<Dataset[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
+            // if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.datasets = data;
-                        this.isDirtyDatasets = false;
+                    .then(res => {
+                        // TODO - load here, or in calling routing
+                        // this.datasets[xxx from id].rawData & .data = data;
+                        // this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getData 1', this.datasets)
-                        resolve(this.datasets);
+                        console.log('Global-Variables getData', res)
+                        resolve(res);
                     });
-            } else {
-                console.log('Global-Variables getData 2', this.datasets)
-                resolve(this.datasets);
-            }
+            // } else {
+            //     console.log('Global-Variables getData 2', this.datasets)
+            //     resolve(this.datasets);
+            // }
         });
 
     }
