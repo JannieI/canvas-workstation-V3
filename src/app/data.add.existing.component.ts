@@ -79,6 +79,7 @@ export class DataAddExistingComponent implements OnInit {
     selectedFile: boolean = true;
     selectedRowID: number = 0;
     selectedRowIndex: number = 0;
+    selectedRowName: string = '';
     showFilter: boolean = false;
     showSelectField: boolean = false;
 
@@ -96,8 +97,11 @@ export class DataAddExistingComponent implements OnInit {
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.datasources = this.globalVariableService.datasources;
 
-        // Load first by default
-        this.clickDSDescription('gridViewDescription');
+        // Select first row if exists
+        if (this.datasources.length > 0) {
+            this.clickSelectedDatasource(0, this.datasources[0].id, this.datasources[0].name);
+        };
+
     }
 
 
@@ -386,7 +390,7 @@ export class DataAddExistingComponent implements OnInit {
         this.currentDatasetName = '';
         this.existingDSName = dsName;
 
-        console.log('DataPopup clickDatasourceRow dsName', dsName, this.filterDataset)
+        console.log('DataPopup clickDatasourceRow dsName', dsName)
     }
 
     clickSelectedDatasource(index: number, id: number, name: string) {
@@ -395,6 +399,7 @@ export class DataAddExistingComponent implements OnInit {
 
         this.selectedRowID = id;
         this.selectedRowIndex = index;
+        this.selectedRowName = name;
 
         this.errorMessage = '';
     }
@@ -447,8 +452,6 @@ export class DataAddExistingComponent implements OnInit {
                d.datasourceID == id);
             this.currentData = tempData[0].data;
 
-            this.transformationsFormat = this.globalVariableService.transformationsFormat;
-            this.currentTransformations = this.globalVariableService.currentTransformations;
             this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
             this.fields = this.globalVariableService.fields;
             this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
@@ -463,11 +466,6 @@ export class DataAddExistingComponent implements OnInit {
             this.currentDatasetName = this.currentDatasources[index].name;
 
             // Reset data related to this DS
-            this.transformationsFormat = this.globalVariableService.transformationsFormat;
-            this.pivotAgg = [];
-            this.pivotCols = [];
-            this.pivotRows = [];
-            this.pivotResults = []
             this.finalFields = this.globalVariableService.finalFields;
             this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
 
