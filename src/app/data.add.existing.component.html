@@ -26,7 +26,7 @@
                             <clr-dg-row
                                 *ngFor="let row of datasources; let i = index"
                                 [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDatasource(i, row.id, row.name)"
                                 >
                                 <clr-dg-cell>

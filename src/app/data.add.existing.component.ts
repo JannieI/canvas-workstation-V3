@@ -42,8 +42,6 @@ export class DataAddExistingComponent implements OnInit {
     @Output() formDataAddExistingClosed: EventEmitter<string> = new EventEmitter();
 
     // datasources: Datasource[];
-    addNewTransformation: boolean = false;
-    aggField: string = 'Drag a field here ...';
     changeVar: number = 2;
     clickedDeleteDS: boolean = false;
     clickedViewDescription: boolean = false;
@@ -53,12 +51,10 @@ export class DataAddExistingComponent implements OnInit {
     clickedViewFieldProperties: boolean = false;
     clickedViewFieldProfile: boolean = false;
     clickedViewDataQuality: boolean = false;
-    colField: string = 'Drag a field here ...';
     currentDatasources: Datasource[] = [];
     currentData: any = [];
     currentDatasetName: string = '';            // Array with current data block
     curentDatasetID: number;
-    currentTransformations: Transformation[];
     dataArray: any;
     dataFieldLengths: number[] = [];
     dataFieldNames: string[];
@@ -66,80 +62,25 @@ export class DataAddExistingComponent implements OnInit {
     dataGetFromSwitch: string = 'File';
     dataUniqueInColumn: string[] = [];
     dataQualityIssues: DataQualityIssue[];
-    dragoverAgg: boolean = false;
-    dragoverCol: boolean = false;
-    draggedField: string = '';
-    dragoverRow: boolean = false;
     errorMessage: string = "";
     existingDSName: string = '';
-    filterDataset: string = '';
-    filterTransformation: string = '';
-    filterPivotFields: string = '';
     fileName: string = '';
     folderName: string = '';
     finalFields: any = [];
     nrWidgetsInUse: number = 9123;
-    rowField: string = 'Drag a field here ...';
     pageSize: number = 4;
-    pivotCols: string[];
-    pivotRows: string[];
-    pivotAgg: string[];
     resultMessage: string = 'Results will be shown here: drag and drop fields, then click Refresh'
-    pivotResults: any[] =
-        [
-            {
-                Date: '2017/01/01',
-                AAPL: 11,
-                AMZN: 26,
-                GOOG: 30,
-                IBM: 47,
-                MSFT: 50
-            },
-            {
-                Date: '2017/01/01',
-                AAPL: 12,
-                AMZN: 25,
-                GOOG: 34,
-                IBM: 49,
-                MSFT: 51
-            },
-            {
-                Date: '2017/01/01',
-                AAPL: 13,
-                AMZN: 24,
-                GOOG: 37,
-                IBM: 48,
-                MSFT: 50
-            }
-        ]
-
     fields: Field[];
     fieldsMetadata: FieldMetadata[];
-    selectAddTransformation: boolean = false;
     selectedData: string = 'Trades for 2016';
-    selectedDatasource: boolean = true;
-    selectorDetailColumnEnd: string = '12';
     selectedExistingDS: boolean = false;
-    selectedExistingTransform: boolean = false;
     selectedFieldProperties: boolean = false;
     selectedFieldTransform: boolean = false;
     selectedFile: boolean = true;
-    selectedRow: number = 0;
-    selectedSummary: boolean = false;
-    showAddButton: boolean = false;
-    showDataPreview: boolean = false;
-    showIdentifyFile: boolean = true;
+    selectedRowID: number = 0;
+    selectedRowIndex: number = 0;
     showFilter: boolean = false;
     showSelectField: boolean = false;
-    showTopSteps: boolean = false;
-    showTransformDetail: boolean = false;
-    showTransform: boolean = false;
-    showView: boolean = false;
-    transformationsFormat: Transformation[];
-    transformationDescription: string = '';
-    showTransitionFormat: boolean = false;
-    transitionFieldName: string;
-    transitionAction: string;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -159,17 +100,6 @@ export class DataAddExistingComponent implements OnInit {
         this.clickDSDescription('gridViewDescription');
     }
 
-    clickField() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickField', '@Start');
-        if (this.showSelectField) {
-            this.showSelectField = false;
-            this.selectorDetailColumnEnd = '12';
-        } else {
-            this.showSelectField = true;
-            this.selectorDetailColumnEnd = '9';
-        }
-    }
 
     clickFileBrowse() {
         //
@@ -201,7 +131,6 @@ export class DataAddExistingComponent implements OnInit {
             return;
         };
 
-        this.showDataPreview = false;
 
         // Delete local
         let index: number = -1;
@@ -328,12 +257,6 @@ export class DataAddExistingComponent implements OnInit {
         // No DS currently selected
         this.currentDatasetName = '';
 
-        // Show the Preview button
-        this.showDataPreview = true;
-
-        // Show Add button
-        this.showAddButton = true;
-
     }
 
     clickDSAdd(action: string) {
@@ -457,14 +380,7 @@ export class DataAddExistingComponent implements OnInit {
         this.finalFields = [];
         this.dataQualityIssues = [];
 
-        // Show the preview
-        this.showDataPreview = true;
 
-        // Show the top steps
-        this.showTopSteps = true;
-
-        // UnShow Add button
-        this.showAddButton = false;
         console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
     }
 
@@ -472,6 +388,7 @@ export class DataAddExistingComponent implements OnInit {
         // Show description area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSDescription', '@Start');
 
+        // Make area visible
         this.clickViewOptions(area);
     }
 
@@ -479,11 +396,11 @@ export class DataAddExistingComponent implements OnInit {
         // Show preview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
 
+        // Make area visible
         this.clickViewOptions(area);
         
         // Reset
         this.errorMessage = '';
-        this.showDataPreview = false;
 
         // // Get the folder and file, setting some defaults
         // if (this.folderName == ''  ||  this.folderName == undefined) {
@@ -505,12 +422,10 @@ export class DataAddExistingComponent implements OnInit {
             dl.json({url: filePath}, {}, (err, currentData) => {
                 if (err) {
                     this.errorMessage = err.status + ':' + err.statusText;
-                    this.showDataPreview = false;
 
                     console.log('DataPopup clickDSPreview error on load', err)
                 } else {
                     // Callback
-                    this.showDataPreview = true;
                     this.fileLoadedCallback(fileSuffix, currentData);
                 }
             });
@@ -522,7 +437,6 @@ export class DataAddExistingComponent implements OnInit {
                     console.log('DataPopup clickDSPreview error on load', err)
                 } else {
                     // Callback
-                    this.showDataPreview = true;
                     this.fileLoadedCallback(fileSuffix, currentData);
                 }
             });
@@ -531,7 +445,6 @@ export class DataAddExistingComponent implements OnInit {
         // Message when file type unknown
         if (fileSuffix != 'json'  &&  fileSuffix != 'csv') {
             this.errorMessage = 'Unknown file type';
-            this.showDataPreview = false;
         };
 
     }
@@ -540,6 +453,7 @@ export class DataAddExistingComponent implements OnInit {
         // Show  area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
 
+        // Make area visible
         this.clickViewOptions(area);
         
     }
@@ -548,6 +462,7 @@ export class DataAddExistingComponent implements OnInit {
         // Show profile area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProfile', '@Start');
 
+        // Make area visible
         this.clickViewOptions(area);
         
     }
@@ -556,6 +471,7 @@ export class DataAddExistingComponent implements OnInit {
         // Show overview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewOverview', '@Start');
 
+        // Make area visible
         this.clickViewOptions(area);
         
     }
@@ -564,14 +480,16 @@ export class DataAddExistingComponent implements OnInit {
         // Show fields area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewFields', '@Start');
 
+        // Make area visible
         this.clickViewOptions(area);
         
     }
 
     clickViewDataQuality(area: string) {
-        // Show data quality area
+        // Show data quality areclickViewOptionsa
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewDataQuality', '@Start');
 
+        // Make area visible
         this.clickViewOptions(area);
         
     }
@@ -593,15 +511,6 @@ export class DataAddExistingComponent implements OnInit {
         this.currentDatasetName = '';
         this.existingDSName = dsName;
 
-        // Show the preview
-        this.showDataPreview = false;
-
-        // Show the top steps
-        this.showTopSteps = false;
-
-        // UnShow Add button
-        this.showAddButton = false;
-
         console.log('DataPopup clickDatasourceRow dsName', dsName, this.filterDataset)
     }
 
@@ -609,9 +518,10 @@ export class DataAddExistingComponent implements OnInit {
         // Clicked a DS -> Show related info and preview its data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource', '@Start');
 
-        this.selectedRow = index;
+        this.selectedRowID = id;
+        this.selectedRowIndex = index;
 
-        this.errorMessage = this.errorMessage + 'Much ado about ' + name;
+        this.errorMessage = '';
     }
 
     clickRemoveDS(id: number) {
@@ -689,13 +599,7 @@ export class DataAddExistingComponent implements OnInit {
             // Show the preview
             this.folderName = tempData[0].folderName;
             this.fileName = tempData[0].fileName;
-            this.showDataPreview = true;
 
-            // Show the top steps
-            this.showTopSteps = true;
-
-            // UnShow Add button
-            this.showAddButton = false;
         });
 
     }
