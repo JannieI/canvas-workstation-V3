@@ -605,7 +605,9 @@ export class DataPopupComponent implements OnInit {
             this.pivotAgg = [];
             this.pivotCols = [];
             this.pivotRows = [];
-            this.pivotResults = []
+            this.pivotResults = [];
+
+            // TODO - fix!!
             this.finalFields = this.globalVariableService.finalFields;
             this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
 

@@ -116,6 +116,9 @@ export class DataAddExistingComponent implements OnInit {
             this.clickSelectedDatasource(0, this.datasources[0].id);
         };
 
+        // TODO - fix!!
+        this.finalFields = this.globalVariableService.finalFields;
+
         // Show first tab
         this.clickDSDescription('gridViewDescription');
     }
