@@ -242,163 +242,163 @@
         margin-left: 20px;
     }
 
-        gridFieldPropSelectTitle {
+        .gridFieldPropSelectTitle {
             grid-column-start: 1;
             grid-column-end: 4;
             grid-row-start: 1;
             grid-row-end: 2;
-            margin: 0;
+            margin: 10px 10px 10px 0;
         }
 
-        gridFieldPropSelect {
+        .gridFieldPropSelect {
             grid-column-start: 4;
             grid-column-end: 10;
             grid-row-start: 1;
             grid-row-end: 2;
-            margin: 0;
+            margin: 10px 10px 10px 0;
         }
 
-        gridFieldPropDescTitle {
-            grid-column-start: 10;
-            grid-column-end: 14;
-            grid-row-start: 1;
-            grid-row-end: 2;
-            margin: 0;
-        }
-
-        gridFieldPropDesc {
-            grid-column-start: 14;
-            grid-column-end: 20;
-            grid-row-start: 1;
-            grid-row-end: 2;
-            margin: 0;
-        }
-
-        gridFieldPropLocalNameTitle {
-            grid-column-start: 1;
-            grid-column-end: 4;
-            grid-row-start: 2;
-            grid-row-end: 3;
-            margin: 0;
-        }
-
-        gridFieldPropLocalName {
-            grid-column-start: 4;
-            grid-column-end: 10;
-            grid-row-start: 2;
-            grid-row-end: 3;
-            margin: 0;
-        }
-
-        gridFieldPropTypeTitle {
-            grid-column-start: 10;
-            grid-column-end: 14;
-            grid-row-start: 2;
-            grid-row-end: 3;
-            margin: 0;
-        }
-
-        gridFieldPropType {
-            grid-column-start: 14;
-            grid-column-end: 20;
-            grid-row-start: 2;
-            grid-row-end: 3;
-            margin: 0;
-        }
-
-        gridFieldPropFormatTitle {
+        .gridFieldPropDescTitle {
             grid-column-start: 1;
             grid-column-end: 4;
             grid-row-start: 3;
             grid-row-end: 4;
-            margin: 0;
+            margin: 10px 10px 10px 10px;
         }
 
-        gridFieldPropFormat {
+        .gridFieldPropDesc {
             grid-column-start: 4;
-            grid-column-end: 10;
-            grid-row-start: 3;
-            grid-row-end: 4;
-            margin: 0;
-        }
-
-        gridFieldPropFilterTitle {
-            grid-column-start: 10;
-            grid-column-end: 14;
-            grid-row-start: 3;
-            grid-row-end: 4;
-            margin: 0;
-        }
-
-        gridFieldPropFilter {
-            grid-column-start: 14;
             grid-column-end: 20;
             grid-row-start: 3;
-            grid-row-end: 4;
-            margin: 0;
+            grid-row-end: 6;
+            margin: 10px 10px 10px 10px;
         }
 
-        gridFieldPropCalcTitle {
+        .gridFieldPropLocalNameTitle {
             grid-column-start: 1;
             grid-column-end: 4;
-            grid-row-start: 4;
-            grid-row-end: 5;
-            margin: 0;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            margin: 10px 10px 10px 10px;
         }
 
-        gridFieldPropCalc {
+        .gridFieldPropLocalName {
             grid-column-start: 4;
             grid-column-end: 10;
-            grid-row-start: 4;
-            grid-row-end: 5;
-            margin: 0;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            margin: 10px 10px 10px 10px;
         }
 
-        gridFieldPropOrderTitle {
+        .gridFieldPropTypeTitle {
             grid-column-start: 10;
             grid-column-end: 14;
-            grid-row-start: 4;
-            grid-row-end: 5;
-            margin: 0;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            margin: 10px 10px 10px 10px;
         }
 
-        gridFieldPropOrder {
+        .gridFieldPropType {
             grid-column-start: 14;
             grid-column-end: 20;
-            grid-row-start: 4;
-            grid-row-end: 5;
-            margin: 0;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            margin: 10px 10px 10px 10px;
         }
 
-        gridFieldPropHideTitle {
+        .gridFieldPropFormatTitle {
             grid-column-start: 1;
             grid-column-end: 4;
-            grid-row-start: 5;
-            grid-row-end: 6;
-            margin: 0;
+            grid-row-start: 8;
+            grid-row-end: 9;
+            margin: 10px 10px 10px 10px;
         }
 
-        gridFieldPropHide {
+        .gridFieldPropFormat {
             grid-column-start: 4;
             grid-column-end: 10;
-            grid-row-start: 5;
-            grid-row-end: 6;
-            margin: 0;
+            grid-row-start: 8;
+            grid-row-end: 9;
+            margin: 10px 10px 10px 10px;
         }
 
-        gridFieldPropKeyTitle {
+        .gridFieldPropFilterTitle {
             grid-column-start: 10;
             grid-column-end: 14;
-            grid-row-start: 5;
-            grid-row-end: 6;
-            margin: 0;
+            grid-row-start: 8;
+            grid-row-end: 9;
+            margin: 10px 10px 10px 10px;
         }
 
-        gridFieldPropKey {
+        .gridFieldPropFilter {
             grid-column-start: 14;
             grid-column-end: 20;
-            grid-row-start: 5;
-            grid-row-end: 6;
-            margin: 0;
+            grid-row-start: 8;
+            grid-row-end: 9;
+            margin: 10px 10px 10px 10px;
+        }
+
+        .gridFieldPropCalcTitle {
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            margin: 10px 10px 10px 10px;
+        }
+
+        .gridFieldPropCalc {
+            grid-column-start: 4;
+            grid-column-end: 10;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            margin: 10px 10px 10px 10px;
+        }
+
+        .gridFieldPropOrderTitle {
+            grid-column-start: 10;
+            grid-column-end: 14;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            margin: 10px 10px 10px 10px;
+        }
+
+        .gridFieldPropOrder {
+            grid-column-start: 14;
+            grid-column-end: 20;
+            grid-row-start: 10;
+            grid-row-end: 11;
+            margin: 10px 10px 10px 10px;
+        }
+
+        .gridFieldPropHideTitle {
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 12;
+            grid-row-end: 13;
+            margin: 10px 10px 10px 10px;
+        }
+
+        .gridFieldPropHide {
+            grid-column-start: 4;
+            grid-column-end: 10;
+            grid-row-start: 12;
+            grid-row-end: 13;
+            margin: 10px 10px 10px 10px;
+        }
+
+        .gridFieldPropKeyTitle {
+            grid-column-start: 10;
+            grid-column-end: 14;
+            grid-row-start: 12;
+            grid-row-end: 13;
+            margin: 10px 10px 10px 10px;
+        }
+
+        .gridFieldPropKey {
+            grid-column-start: 14;
+            grid-column-end: 20;
+            grid-row-start: 12;
+            grid-row-end: 13;
+            margin: 10px 10px 10px 10px;
         }
 
