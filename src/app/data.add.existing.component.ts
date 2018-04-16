@@ -80,6 +80,7 @@ export class DataAddExistingComponent implements OnInit {
     selectedRowID: number = 0;
     selectedRowIndex: number = 0;
     selectedRowName: string = '';
+    selectedDescription: string = '';
     showFilter: boolean = false;
     showSelectField: boolean = false;
 
@@ -97,11 +98,18 @@ export class DataAddExistingComponent implements OnInit {
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.datasources = this.globalVariableService.datasources;
 
+        // Reset
+        this.selectedRowID = -1;
+        this.selectedRowIndex = -1;
+        this.selectedRowName = '';
+
         // Select first row if exists
         if (this.datasources.length > 0) {
             this.clickSelectedDatasource(0, this.datasources[0].id, this.datasources[0].name);
         };
 
+        // Show first tab
+        this.clickDSDescription('gridViewDescription');
     }
 
 
@@ -267,6 +275,10 @@ export class DataAddExistingComponent implements OnInit {
         // Show description area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSDescription', '@Start');
 
+        // Load data
+        if (this.selectedRowID != -1) {
+            this.selectedDescription = this.currentDatasources[]
+        }
         // Make area visible
         this.clickViewOptions(area);
     }
