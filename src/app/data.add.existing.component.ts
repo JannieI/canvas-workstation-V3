@@ -187,11 +187,11 @@ export class DataAddExistingComponent implements OnInit {
             } else {
                 this.globalVariableService.getData(selectedDataset[maxDsetIndex].id).then(dt => {
                     this.currentData = dt;
+                    console.log('xx selectedDataset', this.clickedViewPreview, this.selectedRowID, maxDsetIndex, 
+                    this.selectedDatasource, this.dataFieldNames, this.currentData)
                 });
             };
         };
-        console.log('xx selectedDataset', this.selectedRowID, maxDsetIndex, this.currentData)
-
 
     }
 

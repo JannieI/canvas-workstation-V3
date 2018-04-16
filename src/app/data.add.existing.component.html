@@ -18,7 +18,7 @@
                     </div>
             
                     <div class="gridDatasources">
-                        <clr-datagrid class="fieldsDataGrid"> 
+                        <clr-datagrid> 
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
@@ -87,27 +87,27 @@
                         </div>                        
                     </div>
 
-                    <div *ngIf="clickedViewDescription" class="gridPanel">
-                        <div class="gridPanelDescriptionTitle">
+                    <div *ngIf="clickedViewDescription" class="gridDesc">
+                        <div class="gridDescDescriptionTitle">
                             <b>Description:</b>
                         </div>
-                        <div class="gridPanelDescription">
+                        <div class="gridDescDescription">
                             {{ selectedRowDescription }}
                         </div>
-                        <div class="gridPanelNameTitle">
+                        <div class="gridDescNameTitle">
                             <b>Names:</b>
                         </div>
-                        <div class="gridPanelName">
+                        <div class="gridDescName">
                             {{ selectedRowName }}
                         </div>
-                        <div class="gridPanelNrWidgetsTitle">
+                        <div class="gridDescNrWidgetsTitle">
                             <b>Nr Widgets:</b>
                         </div>
-                        <div class="gridPanelNrWidgets">
+                        <div class="gridDescNrWidgets">
                             {{ selectedRowNrWidgetsInUse }}
                         </div>
     
-                        <div class="gridInfoFile" *ngIf="typeDS==='File'">
+                        <div class="gridDescFileInfo" *ngIf="typeDS==='File'">
 
                             <div class="fileFolderNameTitle">
                                 Folder:
@@ -143,7 +143,7 @@
         
                     </div>
     
-                    <div *ngIf="clickedViewPreview" class="gridPanel">
+                    <div *ngIf="clickedViewPreview" class="gridPreview">
                         xXx
                         <clr-datagrid>
 
@@ -162,6 +162,7 @@
                             </clr-dg-footer>
 
                         </clr-datagrid>
+                        yYy
                     </div>
                     <div *ngIf="clickedViewFieldProperties" class="gridInfoSummaryFieldProperties">
                         <b>
