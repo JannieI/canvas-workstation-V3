@@ -27,7 +27,12 @@
                                 *ngFor="let row of datasources; let i = index"
                                 [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                                (click)="clickSelectedDatasource(i, row.id, row.name)"
+                                (click)="clickSelectedDatasource(
+                                    i, 
+                                    row.id, 
+                                    row.name, 
+                                    row.description
+                                    )"
                                 >
                                 <clr-dg-cell>
                                     <input type="checkbox" class="dsCheckbox"

@@ -80,7 +80,7 @@ export class DataAddExistingComponent implements OnInit {
     selectedRowID: number = 0;
     selectedRowIndex: number = 0;
     selectedRowName: string = '';
-    selectedDescription: string = '';
+    selectedRowDescription: string = '';
     showFilter: boolean = false;
     showSelectField: boolean = false;
 
@@ -105,7 +105,12 @@ export class DataAddExistingComponent implements OnInit {
 
         // Select first row if exists
         if (this.datasources.length > 0) {
-            this.clickSelectedDatasource(0, this.datasources[0].id, this.datasources[0].name);
+            this.clickSelectedDatasource(
+                0, 
+                this.datasources[0].id, 
+                this.datasources[0].name, 
+                this.datasources[0].description
+            );
         };
 
         // Show first tab
@@ -275,10 +280,6 @@ export class DataAddExistingComponent implements OnInit {
         // Show description area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSDescription', '@Start');
 
-        // Load data
-        if (this.selectedRowID != -1) {
-            this.selectedDescription = this.currentDatasources[]
-        }
         // Make area visible
         this.clickViewOptions(area);
     }
@@ -405,13 +406,14 @@ export class DataAddExistingComponent implements OnInit {
         console.log('DataPopup clickDatasourceRow dsName', dsName)
     }
 
-    clickSelectedDatasource(index: number, id: number, name: string) {
+    clickSelectedDatasource(index: number, id: number, name: string, description: string) {
         // Clicked a DS -> Show related info and preview its data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource', '@Start');
 
         this.selectedRowID = id;
         this.selectedRowIndex = index;
         this.selectedRowName = name;
+        this.selectedRowDescription = description;
 
         this.errorMessage = '';
     }
