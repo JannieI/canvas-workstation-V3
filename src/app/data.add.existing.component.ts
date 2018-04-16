@@ -107,9 +107,6 @@ export class DataAddExistingComponent implements OnInit {
 
         // Select first row if exists
         if (this.datasources.length > 0) {
-            this.selectedRowNrWidgetsInUse = this.globalVariableService.widgets.filter(w =>
-                w.datasourceID == this.datasources[0].id    
-            ).length;
             this.clickSelectedDatasource(0, this.datasources[0].id);
         };
 
@@ -265,7 +262,13 @@ export class DataAddExistingComponent implements OnInit {
             this.selectedRowID = this.datasources[dsIndex].id;
             this.selectedRowName = this.datasources[dsIndex].name;
             this.selectedRowDescription = this.datasources[dsIndex].description;
-        }
+
+            this.selectedRowNrWidgetsInUse = this.globalVariableService.widgets.filter(w =>
+                w.datasourceID == this.datasources[index].id    
+                &&
+                w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+            ).length;
+        };
 
         this.errorMessage = '';
     }
