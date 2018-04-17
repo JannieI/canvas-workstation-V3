@@ -44,7 +44,7 @@ export class DashboardNewComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards;
+        this.dashboards = this.globalVariableService.dashboards.slice();
     }
 
     clickClose() {
