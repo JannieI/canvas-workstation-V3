@@ -44,7 +44,7 @@ export class DashboardOpenComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards;
+        this.dashboards = this.globalVariableService.dashboards.slice();
         this.globalVariableService.isFirstTimeDashboard.subscribe(
             i => this.isFirstTimeDashboardOpen = i
         );
