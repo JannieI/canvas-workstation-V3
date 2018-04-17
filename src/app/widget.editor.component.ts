@@ -645,7 +645,7 @@ const graphWidth: number = 420;
             // Make proper error handling
             alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
         };
-
+console.log('xx this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data.slice(0,5);

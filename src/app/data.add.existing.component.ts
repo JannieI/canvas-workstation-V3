@@ -275,9 +275,65 @@ export class DataAddExistingComponent implements OnInit {
         // Checked / UnChecked DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSCheckbox', '@Start');
 
-        // Get the data
-        console.log('xx', ev.target.checked)
-        
+        // Get the data, if so requested
+        if (ev.target.checked) {
+            let localDatasource: Datasource;
+            let localDataset: Dataset;
+            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
+                .findIndex(dS => dS.id == id
+            );
+            let globalDSIndex: number = this.globalVariableService.datasources.findIndex(ds =>
+                ds.id == id
+            );
+
+            // DS exists in gv datasources, but not in currentDatasources
+            if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
+                localDatasource = this.globalVariableService.datasources[globalDSIndex];
+
+                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+                    .findIndex(dS => dS.id == id
+                );
+                let globalDsetIndex: number = this.globalVariableService.datasets.findIndex(dS =>
+                    dS.datasourceID == id
+                );
+
+                // Dset exists in gv datasets, but not in currentDatasets
+                if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
+                    localDataset = this.globalVariableService.datasets[globalDsetIndex];
+                    
+                    // Get data for Dset
+                    this.globalVariableService.getData(localDataset.id).then(res => {
+
+                        // Add data to dataset
+                        localDataset.dataRaw = res;
+                        localDataset.data = res;
+
+                        // Add DS and Dset to gv
+                        this.globalVariableService.currentDatasources.push(localDatasource);
+                        console.log('xx DS added ...', localDatasource, this.globalVariableService.currentDatasources)
+                        this.globalVariableService.currentDatasets.push(localDataset);
+                        console.log('xx Dset added ...', localDataset, this.globalVariableService.currentDatasets)
+                    });
+                };
+            };
+        } else {
+            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources.findIndex(dS =>
+                dS.id == id
+            );
+            if (globalCurrentDSIndex >= 0) {
+                this.globalVariableService.currentDatasets.splice(globalCurrentDSIndex, 1);
+                console.log('xx DS deleted ...', id, this.globalVariableService.currentDatasources)
+            };
+            let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets.findIndex(dS =>
+                dS.datasourceID == id
+            );
+            if (globalCurrentDsetIndex >= 0) {
+                this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
+                console.log('xx Dset deleted ...', id, this.globalVariableService.currentDatasets)
+            };
+        };
+
+        // TODO - what about other arrays, ie permisions, pivots, transformations, etc ??
     }
 
     ngOnDestroy() {

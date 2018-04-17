@@ -1706,8 +1706,8 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                             sourceLocation: 'HTTP',
                             folderName: folderName,
                             fileName: fileName,
-                            data: dataFile,
-                            dataRaw: dataFile
+                            data: dataFile.data,
+                            dataRaw: dataFile.data
                         };
 
                         // // Add to datasets (contains all data) - once
