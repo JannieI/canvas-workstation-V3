@@ -44,7 +44,7 @@ export class DataCombinationComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards;
+        this.dashboards = this.globalVariableService.dashboards.slice();
         this.globalVariableService.isFirstTimeDataCombination.subscribe(
             i => this.isFirstTimeDataCombination = i
         )
