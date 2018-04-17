@@ -3553,6 +3553,9 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         // Description: Gets all W
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
+        // NOTE: this gets ALL W from DB (irrespective of isTrashed), so it includes soft deletes 
+        // and must be treated as such arrays
+
         console.log('Global-Variables getWidgets ...', this.widgets.length);
 
         let url: string = 'widgets';
@@ -3565,7 +3568,8 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.widgets = data.filter(d => (!d.isTrashed) );
+                        // TODO - delete this once good
+                        // this.widgets = data.filter(d => (!d.isTrashed) );
                         // TODO - fix hardcoding, issue with datalib jsonTree
                         this.widgets.forEach(w => {
 
@@ -3682,6 +3686,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                         resolve(this.widgets);
                     });
             } else {
+                // NOTE: includes soft deletes, isTrashed = true
                 console.log('Global-Variables getWidgets 2', this.widgets)
                 resolve(this.widgets);
             }
@@ -3697,6 +3702,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         // Returns: arrays of current W, Sl, Sh, Tbl; unless:
         //   If not cached or if dirty, get from File
         // Usage: getWidgets(1, -1)  =>  Returns W for DashboardID = 1
+        // NOTE: only get isTrashed = false, as those guys are soft deleted
         console.log('Global-Variables getCurrentWidgets ...');
 
         // Refresh from source at start, or if dirty
@@ -3780,6 +3786,9 @@ console.log('xx getCurrentDataset url', url, this.datasets)
     deleteWidget(id: number): Promise<string> {
         // Description: Deletes a Widgets
         // Returns: 'Deleted' or error message
+        // NOTE: this permananently deletes a W, from arrays and DB.  This must NOT be used for
+        // a simplete W delete, in which case it stays in DB (with isTrashed = true), and is 
+        // only removed from the arrays
         console.log('Global-Variables deleteWidget ...', id);
 
         let url: string = 'widgets';
