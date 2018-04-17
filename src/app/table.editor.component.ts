@@ -71,7 +71,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
         if (this.newWidget) {
             // Get DS
-            this.currentDatasources = this.globalVariableService.currentDatasources;
+            this.currentDatasources = this.globalVariableService.currentDatasources.slice();
 
             // Create new W
             // this.localWidget = this.globalVariableService.widgetTemplate;
