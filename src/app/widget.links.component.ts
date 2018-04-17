@@ -54,8 +54,8 @@ export class WidgetLinksComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards;
-        this.dashboardTabs = this.globalVariableService.dashboardTabs;
+        this.dashboards = this.globalVariableService.dashboards.slice();
+        this.dashboardTabs = this.globalVariableService.dashboardTabs.slice();
 
         // Show linking
         if (this.selectedWidget.hyperlinkDashboardID != null
