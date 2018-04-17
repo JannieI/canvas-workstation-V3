@@ -556,7 +556,7 @@ console.log('xx id', this.globalVariableService.currentDashboardInfo
                                     this.currentTabColor = 'white';
                                 };
                                 this.currentDatasources = this.globalVariableService.
-                                    currentDatasources;
+                                    currentDatasources.slice();
 console.log('xx this.currentDashboardTabIndex', this.currentDashboardTabIndex)
                                 // Loop on All/Indicated Ws
                                 this.currentWidgets = [];
@@ -918,7 +918,7 @@ console.log('xx this.currentDashboardTabIndex', this.currentDashboardTabIndex)
         this.globalVariableService.changedWidget.next(changedWidget);
 
         this.menuOptionClickPostAction();
-        console.log('xx app W', this.selectedWidget, this.currentWidgets)
+        console.log('xx app W', this.selectedWidget, changedWidget, this.currentWidgets)
         this.showModalWidgetEditor = false;
     }
 

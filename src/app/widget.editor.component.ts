@@ -245,15 +245,16 @@ const graphWidth: number = 420;
             
             // TODO - improve this when using a DB!
             let newID: number = 1;
-            let ws: number[]=[];
+            let wsIDs: number[]=[];
             for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-                ws.push(this.globalVariableService.widgets[i].id)
+                wsIDs.push(this.globalVariableService.widgets[i].id)
             };
-            if (ws.length > 0) {
-                newID = Math.max(...ws) + 1;
+            if (wsIDs.length > 0) {
+                newID = Math.max(...wsIDs) + 1;
             };
             this.localWidget.id = newID;
  
+            console.log('xx wIDs', wsIDs, newID)
             // Get Checkpoint info for ALL W, not only current one - AFTER ID collected
             // TODO - fix when using DB
             // TODO - this code is NOT DRY ~ getWidget() code in global var
@@ -284,10 +285,27 @@ const graphWidth: number = 420;
             // Update local and global vars
             this.localWidget.dashboardTabIDs.push(this.globalVariableService.
                 currentDashboardInfo.value.currentDashboardTabID);
-                console.log('xx pre', this.localWidget, this.globalVariableService.widgets, this.globalVariableService.currentWidgets)
 
-            this.globalVariableService.addWidget(this.localWidget).then(res =>
-            console.log('xx lW', this.localWidget, this.globalVariableService.widgets, this.globalVariableService.currentWidgets))
+            console.log('xx pre localW', this.localWidget, this.globalVariableService.widgets, this.globalVariableService.currentWidgets)
+
+            this.globalVariableService.addWidget(this.localWidget).then(res => {
+                console.log('xx post localW', this.localWidget, this.globalVariableService.widgets, this.globalVariableService.currentWidgets)
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Widget Added',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
+                this.formWidgetEditorClosed.emit(this.localWidget);
+
+            });
+
         } else {
             if (this.selectedWidget.graphColorField != ''
                 &&  this.selectedWidget.graphColorField != null) {
@@ -304,22 +322,24 @@ const graphWidth: number = 420;
             };
  
             // Update global W
-            this.globalVariableService.saveWidget(this.localWidget);
+            this.globalVariableService.saveWidget(this.localWidget).then(res => {
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Widget Saved',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
+                this.formWidgetEditorClosed.emit(this.localWidget);
+                
+            })
             
         };
-
-        // Tell user
-        this.globalVariableService.showStatusBarMessage(
-            {
-                message: 'Widget Saved',
-                uiArea: 'StatusBar',
-                classfication: 'Info',
-                timeout: 3000,
-                defaultMessage: ''
-            }
-        );
-
-        this.formWidgetEditorClosed.emit(this.localWidget);
     }
 
     dragstartField(ev) {
