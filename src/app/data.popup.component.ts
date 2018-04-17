@@ -157,7 +157,7 @@ export class DataPopupComponent implements OnInit {
 
         // Load from global variables
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
-        this.datasources = this.globalVariableService.datasources;
+        this.datasources = this.globalVariableService.datasources.slice();
     }
 
     clickField() {
@@ -585,11 +585,11 @@ export class DataPopupComponent implements OnInit {
                d.datasourceID == id);
             this.currentData = tempData[0].data;
 
-            this.transformationsFormat = this.globalVariableService.transformationsFormat;
-            this.currentTransformations = this.globalVariableService.currentTransformations;
-            this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
-            this.fields = this.globalVariableService.fields;
-            this.fieldsMetadata = this.globalVariableService.fieldsMetadata;
+            this.transformationsFormat = this.globalVariableService.transformationsFormat.slice();
+            this.currentTransformations = this.globalVariableService.currentTransformations.slice();
+            this.dataQualityIssues = this.globalVariableService.dataQualityIssues.slice();
+            this.fields = this.globalVariableService.fields.slice();
+            this.fieldsMetadata = this.globalVariableService.fieldsMetadata.slice();
             this.globalVariableService.dataGetFromSwitch.subscribe(
                 i => {
                         this.dataGetFromSwitch = i;
@@ -601,15 +601,15 @@ export class DataPopupComponent implements OnInit {
             this.currentDatasetName = this.currentDatasources[index].name;
 
             // Reset data related to this DS
-            this.transformationsFormat = this.globalVariableService.transformationsFormat;
+            this.transformationsFormat = this.globalVariableService.transformationsFormat.slice();
             this.pivotAgg = [];
             this.pivotCols = [];
             this.pivotRows = [];
             this.pivotResults = [];
 
             // TODO - fix!!
-            this.finalFields = this.globalVariableService.finalFields;
-            this.dataQualityIssues = this.globalVariableService.dataQualityIssues;
+            this.finalFields = this.globalVariableService.finalFields.slice();
+            this.dataQualityIssues = this.globalVariableService.dataQualityIssues.slice();
 
             // Show the preview
             this.folderName = tempData[0].folderName;
