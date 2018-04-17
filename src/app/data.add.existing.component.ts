@@ -53,7 +53,6 @@ export class DataAddExistingComponent implements OnInit {
     clickedViewFieldProperties: boolean = false;
     clickedViewFieldProfile: boolean = false;
     clickedViewDataQuality: boolean = false;
-    currentDatasources: localDatasources[] = [];
     currentData: any = [];
     currentDSids: number[] = [];                    // List of DS-IDs in use
     dataFieldLengths: number[] = [];
@@ -88,16 +87,15 @@ export class DataAddExistingComponent implements OnInit {
         });
 
         // Load from global variables
-        this.currentDatasources = this.globalVariableService.currentDatasources.slice();
-        this.currentDatasources.forEach(ds => {
+        this.datasources = this.globalVariableService.datasources;
+        this.datasources.forEach(ds => {
             if (this.currentDSids.indexOf(ds.id) >= 0) {
                 ds.isSelected = true;
             } else {
                 ds.isSelected = false;
             };
         });
-        console.log('xx this.currentDatasources', this.currentDatasources)
-        this.datasources = this.globalVariableService.datasources;
+        console.log('xx this.datasources', this.datasources)
 
         // Reset
         this.selectedRowID = -1;
@@ -133,7 +131,6 @@ export class DataAddExistingComponent implements OnInit {
             &&
             w.dashboardID == this.globalVariableService.currentDashboardInfo
                 .value.currentDashboardID
-            // w.datasourceID == this.currentDatasources[index].id
         ).length;
         if (linkedWidgets > 0) {
             this.errorMessage = 'No deletion possilbe (linked Widgets)';
@@ -317,15 +314,15 @@ export class DataAddExistingComponent implements OnInit {
                 };
             };
         } else {
-            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources.findIndex(dS =>
-                dS.id == id
+            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
+                .findIndex(dS => dS.id == id
             );
             if (globalCurrentDSIndex >= 0) {
-                this.globalVariableService.currentDatasets.splice(globalCurrentDSIndex, 1);
+                this.globalVariableService.currentDatasources.splice(globalCurrentDSIndex, 1);
                 console.log('xx DS deleted ...', id, this.globalVariableService.currentDatasources)
             };
-            let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets.findIndex(dS =>
-                dS.datasourceID == id
+            let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+                .findIndex(dS => dS.datasourceID == id
             );
             if (globalCurrentDsetIndex >= 0) {
                 this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
