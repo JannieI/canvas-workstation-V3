@@ -266,6 +266,11 @@ export class DataAddExistingComponent implements OnInit {
                     dS.datasourceID == id
                 );
 
+                // Add DS and Dset to gv
+                this.globalVariableService.currentDatasources.push(localDatasource);
+
+                this.globalVariableService.hasDatasources.next(true);
+
                 // Dset exists in gv datasets, but not in currentDatasets
                 if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
                     localDataset = this.globalVariableService.datasets[globalDsetIndex];
@@ -277,11 +282,8 @@ export class DataAddExistingComponent implements OnInit {
                         localDataset.dataRaw = res;
                         localDataset.data = res;
 
-                        // Add DS and Dset to gv
-                        this.globalVariableService.currentDatasources.push(localDatasource);
-                        console.log('xx DS added ...', localDatasource, this.globalVariableService.currentDatasources)
                         this.globalVariableService.currentDatasets.push(localDataset);
-                        console.log('xx Dset added ...', localDataset, this.globalVariableService.currentDatasets)
+
                     });
                 };
             };
