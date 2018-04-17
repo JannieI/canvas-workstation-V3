@@ -619,13 +619,19 @@ const graphWidth: number = 420;
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
-        this.currentDatasources = this.globalVariableService.currentDatasources
-            .filter(ds => ds.id == datasourceID)
+        let dsIndex: number = this.globalVariableService.currentDatasources
+            .findIndex(ds => ds.id == datasourceID);
 
         // Load local arrays for ngFor
-        this.dataFieldNames = this.currentDatasources[0].dataFields;
-        this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
-        this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
+        if (dsIndex >= 0) {
+            this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
+            this.dataFieldLengths = this.currentDatasources[dsIndex].dataFieldLengths;
+            this.dataFieldTypes = this.currentDatasources[dsIndex].dataFieldTypes;
+        } else {
+            this.dataFieldNames = [];
+            this.dataFieldLengths = [];
+            this.dataFieldTypes = [];
+        };
 
         // Switch on the preview after the first row was clicked
         this.hasClicked = true;
