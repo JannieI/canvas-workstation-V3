@@ -39,7 +39,7 @@ export class DashboardThemeComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards;
+        this.dashboards = this.globalVariableService.dashboards.slice();
         this.dashboardThemes = this.globalVariableService.dashboardThemes;
     }
 
