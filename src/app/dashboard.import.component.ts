@@ -36,7 +36,7 @@ export class DashboardImportComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards;
+        this.dashboards = this.globalVariableService.dashboards.slice();
     }
 
     clickClose(action: string) {
