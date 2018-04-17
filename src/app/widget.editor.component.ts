@@ -90,7 +90,7 @@ const graphWidth: number = 420;
 
         if (this.newWidget) {
             // Get DS
-            this.currentDatasources = this.globalVariableService.currentDatasources;
+            this.currentDatasources = this.globalVariableService.currentDatasources.slice();
 
             // Create new W
             // this.localWidget = this.globalVariableService.widgetTemplate;
