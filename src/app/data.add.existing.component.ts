@@ -83,22 +83,28 @@ export class DataAddExistingComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        let widgetIDs: number[] = [];
+        this.globalVariableService.currentWidgets.forEach(w => {
+            widgetIDs.push(w.datasourceID);
+        });
         this.globalVariableService.currentDatasources.forEach(cds => {
             this.currentDSids.push(cds.id);
         });
 
         // Load from global variables
-        this.datasources = this.globalVariableService.datasources;
+        this.datasources = this.globalVariableService.datasources.slice();
         this.datasources.forEach(ds => {
-            if (this.currentDSids.indexOf(ds.id) >= 0) {
+            if (widgetIDs.indexOf(ds.id) >= 0) {
                 ds.hasWidget = true;
-                ds.isSelected = false;
             } else {
                 ds.hasWidget = false;
+            };
+            if (this.currentDSids.indexOf(ds.id) >= 0) {
+                ds.isSelected = true;
+            } else {
                 ds.isSelected = false;
             };
         });
-        console.log('xx this.datasources', this.datasources)
 
         // Reset
         this.selectedRowID = -1;
