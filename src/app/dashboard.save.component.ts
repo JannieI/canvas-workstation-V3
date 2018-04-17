@@ -40,7 +40,7 @@ export class DashboardSaveComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards;
+        this.dashboards = this.globalVariableService.dashboards.slice();
         this.globalVariableService.isFirstTimeDashboardSave.subscribe(
             i => this.isFirstTimeDashboardSave = i
         )
