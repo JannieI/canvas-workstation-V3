@@ -172,7 +172,7 @@ export class StatusbarComponent {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickListTabs', '@Start');
 
-        this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs;
+        this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs.slice();
         this.showTabList = true;
         this.showDashboardDescription = false;
         this.showDashboardTabDescription = false;
