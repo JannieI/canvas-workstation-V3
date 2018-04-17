@@ -2647,8 +2647,11 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                     .then(ds =>
                         {
                             let datasourceIDs: number[] = [];
-                            let dashboardWidgets: Widget[] = this.widgets.filter(
-                                w => w.dashboardID == dashboardID
+                            // TODO - isTrashed added
+                            let dashboardWidgets: Widget[] = this.widgets.filter(w => 
+                                w.dashboardID == dashboardID
+                                &&
+                                !w.isTrashed
                             );
 
                             for (var i = 0; i < dashboardWidgets.length; i++) {
@@ -2678,8 +2681,11 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                     )
             } else {
                 let datasourceIDs: number[] = [];
-                let dashboardWidgets: Widget[] = this.widgets.filter(
-                    w => w.dashboardID == dashboardID
+                // TODO - isTrashed added
+                let dashboardWidgets: Widget[] = this.widgets.filter(w => 
+                    w.dashboardID == dashboardID
+                    &&
+                    !w.isTrashed
                 );
 
                 for (var i = 0; i < dashboardWidgets.length; i++) {
