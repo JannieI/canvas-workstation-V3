@@ -115,44 +115,6 @@ export class DataAddExistingComponent implements OnInit {
         this.clickDSDescription('gridViewDescription');
     }
 
-    clickCurrentDSDelete(id: number) {
-        // Delete the selected current DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDSDelete', '@Start');
-
-        // Reset
-        this.errorMessage = '';
-
-        // Prevent other actions
-        this.clickedDeleteDS = true;
-
-        // Validation
-        let linkedWidgets: number = this.globalVariableService.currentWidgets.filter(w =>
-            w.datasourceID == id
-            &&
-            w.dashboardID == this.globalVariableService.currentDashboardInfo
-                .value.currentDashboardID
-        ).length;
-        if (linkedWidgets > 0) {
-            this.errorMessage = 'No deletion possilbe (linked Widgets)';
-            return;
-        };
-
-
-        // Delete local
-        let index: number = -1;
-        for (var i = 0; i < this.currentDatasources.length; i++) {
-            if (this.currentDatasources[i].id == id) {
-                index = i;
-            };
-        };
-        if (index != -1) {
-            this.currentDatasources.splice(index,1)
-        };
-
-        // Delete global
-        this.globalVariableService.deleteCurrentDatasource(id);
-    }
-
     clickDSDescription(area: string) {
         // Show description area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSDescription', '@Start');
