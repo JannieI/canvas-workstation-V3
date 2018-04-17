@@ -32,7 +32,7 @@
                                 <clr-dg-cell>
                                     <input type="checkbox" class="dsCheckbox"
                                         [checked]="row.isSelected"
-                                        [disabled]="row.isSelected"
+                                        [disabled]="row.hasWidget"
                                         (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
                                         >
                                     <div class="dsName">

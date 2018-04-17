@@ -33,6 +33,7 @@ import { load } from 'datalib';
 interface localDatasources extends Datasource 
     {
         isSelected?: boolean;
+        hasWidget?: boolean;
     }
 
 @Component({
@@ -90,8 +91,10 @@ export class DataAddExistingComponent implements OnInit {
         this.datasources = this.globalVariableService.datasources;
         this.datasources.forEach(ds => {
             if (this.currentDSids.indexOf(ds.id) >= 0) {
-                ds.isSelected = true;
+                ds.hasWidget = true;
+                ds.isSelected = false;
             } else {
+                ds.hasWidget = false;
                 ds.isSelected = false;
             };
         });
