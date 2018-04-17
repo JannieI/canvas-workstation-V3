@@ -44,7 +44,7 @@ export class WidgetTitleComponent implements OnInit {
         this.localWidget = Object.assign({}, this.selectedWidget);
         console.log('xx localW', this.localWidget)
     }
-
+ 
   	clickClose() {
         // Close the form, no action
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -56,16 +56,18 @@ export class WidgetTitleComponent implements OnInit {
         // Save and close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Tell user
-        this.globalVariableService.showStatusBarMessage(
-            {
-                message: 'Slicer Saved',
-                uiArea: 'StatusBar',
-                classfication: 'Info',
-                timeout: 3000,
-                defaultMessage: ''
-            }
-        );
+        this.globalVariableService.saveWidget(this.localWidget).then(res => {
+            // Tell user
+            this.globalVariableService.showStatusBarMessage(
+                {
+                    message: 'Slicer Saved',
+                    uiArea: 'StatusBar',
+                    classfication: 'Info',
+                    timeout: 3000,
+                    defaultMessage: ''
+                }
+            );
+        });
 
         this.formWidgetTitleClosed.emit(this.localWidget);
     }

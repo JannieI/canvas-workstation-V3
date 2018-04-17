@@ -3574,8 +3574,11 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
+
                         // TODO - delete this once good
                         // this.widgets = data.filter(d => (!d.isTrashed) );
+                        this.widgets = data;
+
                         // TODO - fix hardcoding, issue with datalib jsonTree
                         this.widgets.forEach(w => {
 

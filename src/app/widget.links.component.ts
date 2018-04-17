@@ -105,6 +105,9 @@ export class WidgetLinksComponent implements OnInit {
         this.selectedWidget.hyperlinkDashboardTabID = null;
         this.dashboardIsLinked = false;
 
+        // Save to DB
+        this.globalVariableService.saveWidget(this.selectedWidget);
+
     }
 
     clickLink() {
@@ -123,6 +126,9 @@ export class WidgetLinksComponent implements OnInit {
                 this.selectedWidget.hyperlinkDashboardTabID
             );
         };
+
+        // Save to DB
+        this.globalVariableService.saveWidget(this.selectedWidget);
 
         // Show the linked info
         this.dashboardIsLinked = true;
