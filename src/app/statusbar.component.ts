@@ -312,11 +312,13 @@ export class StatusbarComponent {
         nrWperT = this.globalVariableService.widgets.filter(w => {
             if (w.dashboardID == this.globalVariableService.currentDashboardInfo.value.
                 currentDashboardID
-            &&
-            w.dashboardTabIDs.indexOf(this.globalVariableService.currentDashboardInfo.
-                value.currentDashboardTabID) >= 0) {
+                &&
+                !w.isTrashed
+                &&
+                w.dashboardTabIDs.indexOf(this.globalVariableService.currentDashboardInfo.
+                    value.currentDashboardTabID) >= 0) {
                     return w;
-                }
+                };
         }).length;
         if (nrWperT > 0) {
             this.globalVariableService.showStatusBarMessage(
