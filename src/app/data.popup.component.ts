@@ -450,7 +450,7 @@ export class DataPopupComponent implements OnInit {
 
         // Show current Tab
         this.currentDS = true;
-
+ 
         // Add to all DS (DB, global), for later use
         this.globalVariableService.addDatasource(newData).then(res =>
             this.currentDatasources = this.globalVariableService.currentDatasources.slice()
