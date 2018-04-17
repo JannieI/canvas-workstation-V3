@@ -39,7 +39,7 @@ export class DashboardTemplateComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards;
+        this.dashboards = this.globalVariableService.dashboards.slice();
         this.dashboardTemplates = this.globalVariableService.dashboardTemplates;
     }
 
