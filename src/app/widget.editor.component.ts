@@ -233,7 +233,7 @@ const graphWidth: number = 420;
 
         // Update new/edit
         this.localWidget.containerHasTitle = this.containerHasTitle;
-
+console.log('xx save', this.newWidget)
         if (this.newWidget) {
 
             // Set Graph Height and Width
@@ -254,18 +254,18 @@ const graphWidth: number = 420;
             };
             
             // TODO - improve this when using a DB!
-            let newID: number = 1;
-            let wsIDs: number[]=[];
-            for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-                wsIDs.push(this.globalVariableService.widgets[i].id)
-            };
-            if (wsIDs.length > 0) {
-                newID = Math.max(...wsIDs) + 1;
-            };
-            this.localWidget.id = newID;
+            // let newID: number = 1;
+            // let wsIDs: number[]=[];
+            // for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
+            //     wsIDs.push(this.globalVariableService.widgets[i].id)
+            // };
+            // if (wsIDs.length > 0) {
+            //     newID = Math.max(...wsIDs) + 1;
+            // };
+            // this.localWidget.id = newID;
+            //  console.log('xx wIDs', wsIDs, newID)
  
-            console.log('xx wIDs', wsIDs, newID)
-            // Get Checkpoint info for ALL W, not only current one - AFTER ID collected
+             // Get Checkpoint info for ALL W, not only current one - AFTER ID collected
             // TODO - fix when using DB
             // TODO - this code is NOT DRY ~ getWidget() code in global var
             let tempChk: WidgetCheckpoint[] = this.globalVariableService.widgetCheckpoints
@@ -297,7 +297,8 @@ const graphWidth: number = 420;
                 currentDashboardInfo.value.currentDashboardTabID);
 
             this.globalVariableService.addWidget(this.localWidget).then(res => {
-
+                this.localWidget.id = res.id;
+console.log('xx w id', res.id)
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
                     {
