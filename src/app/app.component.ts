@@ -525,8 +525,6 @@ export class AppComponent implements OnInit {
                                     .currentDashboardTabIndex == -1) {
                                         this.globalVariableService.currentDashboardInfo
                                             .value.currentDashboardTabIndex = 0
-console.log('xx index', this.globalVariableService.currentDashboardInfo
-.value.currentDashboardTabIndex)
                                 };
                                 if (this.globalVariableService.currentDashboardInfo.value
                                     .currentDashboardTabID == -1) {
@@ -534,10 +532,7 @@ console.log('xx index', this.globalVariableService.currentDashboardInfo
                                             .value.currentDashboardTabID = this.globalVariableService.
                                             currentDashboardTabs[this.globalVariableService.currentDashboardInfo
                                                 .value.currentDashboardTabIndex].id
-console.log('xx id', this.globalVariableService.currentDashboardInfo
-.value.currentDashboardTabID)
                                 };
-
 
                                 this.currentDashboardTabIndex = this.globalVariableService.currentDashboardInfo.value.
                                     currentDashboardTabIndex;
@@ -557,12 +552,15 @@ console.log('xx id', this.globalVariableService.currentDashboardInfo
                                 };
                                 this.currentDatasources = this.globalVariableService.
                                     currentDatasources.slice();
-console.log('xx this.currentDashboardTabIndex', this.currentDashboardTabIndex)
+
                                 // Loop on All/Indicated Ws
                                 this.currentWidgets = [];
                                 for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
                                     let w: Widget = Object.assign({},
                                         this.globalVariableService.currentWidgets[i]);
+                                    if (!this.editMode) {
+                                        w.isSelected = false;
+                                    };
                                     this.currentWidgets.push(w)
                                 }
                                 console.log('xx app end', this.currentWidgets);
