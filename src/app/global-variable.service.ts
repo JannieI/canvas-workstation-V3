@@ -1081,6 +1081,8 @@ export class GlobalVariableService {
         this.currentDashboardTags = [];
         this.currentDashboardPermissions = [];
         this.currentWidgetCheckpoints = [];
+        this.currentDashboards = [];
+        this.currentDatasets = [];
 
     }
 

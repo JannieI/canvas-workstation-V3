@@ -156,8 +156,6 @@ export class DataAddExistingComponent implements OnInit {
             } else {
                 this.globalVariableService.getData(selectedDataset[maxDsetIndex].id).then(dt => {
                     this.currentData = dt;
-                    console.log('xx selectedDataset', this.clickedViewPreview, this.selectedRowID, maxDsetIndex, 
-                    this.selectedDatasource, this.dataFieldNames, this.currentData)
                 });
             };
         };
@@ -293,14 +291,12 @@ export class DataAddExistingComponent implements OnInit {
             );
             if (globalCurrentDSIndex >= 0) {
                 this.globalVariableService.currentDatasources.splice(globalCurrentDSIndex, 1);
-                console.log('xx DS deleted ...', id, this.globalVariableService.currentDatasources)
             };
             let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
                 .findIndex(dS => dS.datasourceID == id
             );
             if (globalCurrentDsetIndex >= 0) {
                 this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-                console.log('xx Dset deleted ...', id, this.globalVariableService.currentDatasets)
             };
         };
 
