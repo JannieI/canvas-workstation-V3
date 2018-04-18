@@ -139,6 +139,10 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.selectedWidget.currentCheckpoint = 0;
             this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
 
+            console.log('xx selW', this.selectedWidget.checkpointIDs, this.selectedWidget.currentCheckpoint, this.selectedWidget.lastCheckpoint)
+            // Save to DB
+            this.globalVariableService.saveWidget(this.selectedWidget);
+    
             // Show the Graph
             this.clickRow(0, res.id);
         });
@@ -160,29 +164,32 @@ export class WidgetCheckpointsComponent implements OnInit {
         if (index >= 0) {
             this.currentWidgetCheckpoints.splice(index, 1);
         };
-        this.globalVariableService.deleteWidgetCheckpoint(id);
+        this.globalVariableService.deleteWidgetCheckpoint(id).then(res => {
         
-        this.nrCheckpoints = this.currentWidgetCheckpoints.length;
+            this.nrCheckpoints = this.currentWidgetCheckpoints.length;
 
-        // Update W
-        this.selectedWidget.showCheckpoints = false;
-        index = -1;
-        for (var i = 0; i < this.selectedWidget.checkpointIDs.length; i++) {
-            if (this.selectedWidget.checkpointIDs[i] == id) {
-                index = i;
+            // Update W
+            this.selectedWidget.showCheckpoints = false;
+            index = -1;
+            for (var i = 0; i < this.selectedWidget.checkpointIDs.length; i++) {
+                if (this.selectedWidget.checkpointIDs[i] == id) {
+                    index = i;
+                };
             };
-        };
-        if (index > -1) {
-            this.selectedWidget.checkpointIDs.splice(index, 1);
-        };
-        this.selectedWidget.currentCheckpoint = 0;
-        this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
+            if (index > -1) {
+                this.selectedWidget.checkpointIDs.splice(index, 1);
+            };
+            this.selectedWidget.currentCheckpoint = 0;
+            this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
+    console.log('xx selW', this.selectedWidget.checkpointIDs, this.selectedWidget.currentCheckpoint, this.selectedWidget.lastCheckpoint)
+            // Save to DB
+            this.globalVariableService.saveWidget(this.selectedWidget);
 
-        // Show the Graph
-        if (this.currentWidgetCheckpoints.length > 0) {
-            this.clickRow(0, this.currentWidgetCheckpoints[0].id);
-        };
-
+            // Show the Graph
+            if (this.currentWidgetCheckpoints.length > 0) {
+                this.clickRow(0, this.currentWidgetCheckpoints[0].id);
+            };
+        });
     }
 
     renderGraph(definition: any) {

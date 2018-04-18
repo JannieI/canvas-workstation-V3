@@ -192,8 +192,7 @@ Add SORT to DB ... what about add afterwards?
     5. Also, easy way to jump to previous period:  loaded at start with data ??
     6. Startup D: should this be settable as a pref, or should we always display the Landing page?
     7 .Show Grid - currently a .png -> how to make this dynamic ?
-    8 .Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked
-       at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo 
+    8 .Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked like at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo 
        actions when a snapshot is taken, or not.  Think clearly about it.
     9 .Import: check security, particularly for the Datasource.  Also, is the access rights
        stored with the text file (security risk)?  Also, can / should it over-write an
@@ -203,7 +202,12 @@ Add SORT to DB ... what about add afterwards?
     12.Set editMode per Recent - must be same mode as last saved
     13.Set editMode @startup as user pref ?  How will this work if a D is opened read-only
     14.Consider quick access to EditMode - maybe dblClick 'ViewOnly' on StatusBar
-
+    15.Decision required on philosophy: do we restore / remove Comments, etc with 
+       each snapshot !?  If yes, then all in synch.  But, can get confusing if a
+       user added a Comment to the latest, then another user restores an earlier
+       snapshot and his Comments are GONE! Also, if now add comments to older
+       snapshot, and another user restores to a later snapshot, what happens to 
+       these comments??  Think carefully here.
 
 **Templates**
     1. Loading a template - make sure to respect security / rights + all is read-only
