@@ -1305,8 +1305,8 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardTabs array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDashboardTabs ...');
-
+        console.log('Global-Variables getCurrentDashboardTabs ...', dashboardID);
+console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Refresh from source at start, or if dirty
         if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
             return new Promise<DashboardTab[]>((resolve, reject) => {

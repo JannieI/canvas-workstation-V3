@@ -48,7 +48,6 @@ export class DashboardOpenComponent implements OnInit {
         this.globalVariableService.isFirstTimeDashboard.subscribe(
             i => this.isFirstTimeDashboardOpen = i
         );
-        console.log('test', this.test)
     }
 
     ngOnDestroy() {
