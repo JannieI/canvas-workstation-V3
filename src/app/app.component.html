@@ -1499,24 +1499,17 @@
     </div>
 
     <!-- Shape Text Object -->
-    <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Text'">
-        <svg [style.height.px]="row.containerHeight"
-            [style.width.px]="row.containerWidth-10"
-            [style.marginTop.px]="-25"
-            [style.marginLeft.px]="-9"
+    <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Text'"
+        
+        [style.height.px]="1"
+            [style.width.px]="1"
             [style.font-style]="row.shapeIsItalic? 'italic' : 'normal'"
             [style.font-weight]="row.shapeIsBold? 'bold' : 'normal'"
             [style.font-family]="row.shapeFontFamily"
             [style.font-size.px]="row.shapeFontSize"
             >
-            <text
-                x="0"
-                y="50"
-                [style.fill]="row.shapeFill"
-                >
-                {{ row.shapeText }}
-            </text>
-        </svg>
+            {{ row.shapeText }}          
+        
     </div>
 
     <!-- Shape Arrow Object -->
