@@ -5313,7 +5313,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
         //   required detail
         // - height, width are optional dimensions.  If provided, it will overrule
         //   those values in spec
-        console.log('Global-Variables refreshCurrentDashboard ...');
+        console.log('Global-Variables createVegaLiteSpec ...');
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
         if (widget.graphUrl != "") {
