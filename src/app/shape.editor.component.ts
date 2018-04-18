@@ -173,27 +173,6 @@ export class ShapeEditComponent implements OnInit {
         this.editBulletItem = false;
     }
 
-    clickBulletAdd(index: number, item: string) {
-        // Add item to bullet list
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletAdd', '@Start');
-
-        // // TODO - this is clumsy methinks - there must be a better way
-        // let tempArr: string[] = [];
-        // for (var i = 0; i < this.localWidget.shapeBullets.length; i++) {
-
-        //     if (this.localWidget.shapeBullets[i] == item) {
-
-        //         tempArr.push(this.localWidget.shapeBullets[i]);
-        //         tempArr.push('');
-        //     } else {
-        //         tempArr.push(this.localWidget.shapeBullets[i]);
-        //     };
-        // };
-        // this.localWidget.shapeBullets = tempArr;
-        this.bulletValue = '';
-        this.editBulletItem = false;
-    }
-
     clickBulletEdit(index: number, item: string) {
         // Edit item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEdit', '@Start');
@@ -203,6 +182,7 @@ export class ShapeEditComponent implements OnInit {
         this.editBulletItem = true;
 
     }
+    
     clickUpdate() {
         // Add item to bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
@@ -211,10 +191,19 @@ export class ShapeEditComponent implements OnInit {
         this.editBulletItem = false;
 
     }
+
     clickAdd() {
         // Add item to bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
+        // Remove dummy 'Text' string
+        if (this.localWidget.shapeBullets.length == 1) {
+            if (this.localWidget.shapeBullets[0] == 'Text ...') {
+                this.localWidget.shapeBullets = [];
+            };
+        };
+
+        // Add new
         this.localWidget.shapeBullets.push(this.bulletValue);
     }
 
