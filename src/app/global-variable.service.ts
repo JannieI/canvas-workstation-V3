@@ -3632,27 +3632,27 @@ console.log('xx getCurrentDataset url', url, this.datasets)
 
                             // TODO - fix when using DB
                             // Update slicerSelection
-                            if (w.slicerSelection != null) {
-                                let s: string = w.slicerSelection.toString();
-                                let sF: string[] = s.split(',');
-                                let sO: {isSelected: boolean; fieldValue: string}[] = [];
-                                let i: number = 0;
-                                let oSel: boolean;
-                                let oFld: string;
-                                w.slicerSelection = [];
-                                sF.forEach(s => {
-                                    i = i + 1;
-                                    if (i == 1) {
-                                        oSel = (s == 'true');
-                                    } else {
-                                        oFld = s;
-                                        i = 0;
-                                        let o: {isSelected: boolean; fieldValue: string} = 
-                                            {isSelected: oSel, fieldValue: oFld};
-                                        w.slicerSelection.push(o);
-                                    }
-                                })
-                            };
+                            // if (w.slicerSelection != null) {
+                            //     let s: string = w.slicerSelection.toString();
+                            //     let sF: string[] = s.split(',');
+                            //     let sO: {isSelected: boolean; fieldValue: string}[] = [];
+                            //     let i: number = 0;
+                            //     let oSel: boolean;
+                            //     let oFld: string;
+                            //     w.slicerSelection = [];
+                            //     sF.forEach(s => {
+                            //         i = i + 1;
+                            //         if (i == 1) {
+                            //             oSel = (s == 'true');
+                            //         } else {
+                            //             oFld = s;
+                            //             i = 0;
+                            //             let o: {isSelected: boolean; fieldValue: string} = 
+                            //                 {isSelected: oSel, fieldValue: oFld};
+                            //             w.slicerSelection.push(o);
+                            //         }
+                            //     })
+                            // };
 
                             // TODO - fix when using DB
                             // Update slicerBins
