@@ -1722,6 +1722,13 @@
         </span>
     </div>
 
+    <div *ngIf="row.hyperlinkDashboardID  && row.hyperlinkDashboardTabID"
+        class="widgetContainerJumpLink"
+        (click)="contextMenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
+        >
+        <b> >> </b>
+    </div>
+        
     <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.currentCheckpoint < row.lastCheckpoint)"
         class="widgetContainerCheckpointRight"
         (click)="clickNavCheckpoint(

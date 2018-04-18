@@ -331,13 +331,6 @@
     z-index: 100;
 }
 
-
-
-
-
-
-
-
 .widgetContainerCheckpointLeft {
     color: blue;
     font-size: 0.7rem;
@@ -354,6 +347,17 @@
     font-size: 0.7rem;
     grid-column-start: 4;
     grid-column-end: 5;
+    grid-row-start: 10;
+    grid-row-end: 11;
+    margin: -6px 0 0 0;
+    padding: 0;
+}
+
+.widgetContainerJumpLink {
+    background-color: transparent;
+    font-size: 0.7rem;
+    grid-column-start: 8;
+    grid-column-end: 9;
     grid-row-start: 10;
     grid-row-end: 11;
     margin: -6px 0 0 0;
