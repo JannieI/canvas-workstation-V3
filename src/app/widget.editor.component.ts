@@ -236,6 +236,8 @@ const graphWidth: number = 420;
 
         if (this.newWidget) {
 
+            // Set Graph Height and Width
+            this.localWidget.graphHeight = this.localWidget.containerHeight - 70;
             if (this.localWidget.graphColorField != ''
                 &&  this.localWidget.graphColorField != null) {
                 this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
@@ -303,7 +305,7 @@ const graphWidth: number = 420;
                 this.formWidgetEditorClosed.emit(this.localWidget);
 
             });
-
+ 
         } else {
             if (this.selectedWidget.graphColorField != ''
                 &&  this.selectedWidget.graphColorField != null) {
