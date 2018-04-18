@@ -237,7 +237,15 @@ const graphWidth: number = 420;
         if (this.newWidget) {
 
             // Set Graph Height and Width
-            this.localWidget.graphHeight = this.localWidget.containerHeight - 70;
+            if (this.localWidget.graphXaxisTitle != ''  
+                &&  
+                this.localWidget.graphXaxisTitle != null) {
+                    this.localWidget.graphHeight = this.localWidget.containerHeight 
+                    - 70;
+            } else {
+                this.localWidget.graphHeight = this.localWidget.containerHeight - 55;
+            };
+
             if (this.localWidget.graphColorField != ''
                 &&  this.localWidget.graphColorField != null) {
                 this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
