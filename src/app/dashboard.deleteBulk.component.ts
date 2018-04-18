@@ -5,6 +5,7 @@
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
+import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
@@ -27,6 +28,19 @@ export class DashboardDeleteBulkComponent implements OnInit {
 
     @Output() formDashboardDeleteClosed: EventEmitter<string> = new EventEmitter();
 
+    @HostListener('window:keyup', ['$event'])
+    keyEvent(event: KeyboardEvent) {
+        console.log(event);
+        event.preventDefault();
+
+        // Known ones
+        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            this.clickClose('Closed');
+            return;
+        };
+
+    }
+
     dashboards: Dashboard[];
     errorMessage: string = '';
     selectedRow: number = 0;
@@ -35,7 +49,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
-
+ 
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');

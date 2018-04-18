@@ -11,11 +11,11 @@ import { Inject }                     from "@angular/core";
 import { Input }                      from "@angular/core";
 import { OnInit }                     from '@angular/core';
 import { OnDestroy }                  from '@angular/core';
+import { QueryList }                  from '@angular/core';
 import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 import { ViewChildren }               from '@angular/core';
-import { QueryList }                  from '@angular/core';
 
 // Own Services
 import { GlobalVariableService }      from './global-variable.service';
