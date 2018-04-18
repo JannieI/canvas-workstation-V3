@@ -231,9 +231,9 @@ const graphWidth: number = 420;
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Update new/edit
         this.localWidget.containerHasTitle = this.containerHasTitle;
-console.log('xx save', this.newWidget)
+        
+        // Update new/edit
         if (this.newWidget) {
 
             // Set Graph Height and Width
@@ -298,7 +298,7 @@ console.log('xx save', this.newWidget)
 
             this.globalVariableService.addWidget(this.localWidget).then(res => {
                 this.localWidget.id = res.id;
-console.log('xx w id', res.id)
+
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
                     {
@@ -310,7 +310,7 @@ console.log('xx w id', res.id)
                     }
                 );
 
-                // Update global W and DB
+                // Return to main menu
                 this.formWidgetEditorClosed.emit(this.localWidget);
 
             });
@@ -346,7 +346,7 @@ console.log('xx w id', res.id)
 
                 this.formWidgetEditorClosed.emit(this.localWidget);
                 
-            })
+            });
             
         };
     }

@@ -140,6 +140,8 @@ import { GlobalVariableService }      from './global-variable.service';
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        this.localWidget.containerHasTitle = this.containerHasTitle;
+        
         // Set width, depending on ColorField change
         if (this.newWidget) {
             if (this.localWidget.graphColorField != ''
@@ -148,6 +150,44 @@ import { GlobalVariableService }      from './global-variable.service';
             } else {
                 this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
             };
+
+            // TODO - improve this when using a DB!
+            // let newID: number = 1;
+            // let ws: number[]=[];
+            // for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
+            //     ws.push(this.globalVariableService.widgets[i].id)
+            // };
+            // if (ws.length > 0) {
+            //     newID = Math.max(...ws) + 1;
+            // };
+            // this.localWidget.id = newID;
+
+            this.localWidget.dashboardTabIDs.push(this.globalVariableService.
+                currentDashboardInfo.value.currentDashboardTabID
+            );
+
+            // this.globalVariableService.widgets.push(this.localWidget);
+            // this.globalVariableService.currentWidgets.push(this.localWidget);
+         
+            this.globalVariableService.addWidget(this.localWidget).then(res => {
+                this.localWidget.id = res.id;
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Table Added',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
+                // Return to main menu
+                this.formWidgetEditorClosed.emit(this.localWidget);
+
+            });
+   
         } else {
             if (this.selectedWidget.graphColorField != ''
                 &&  this.selectedWidget.graphColorField != null) {
@@ -162,42 +202,42 @@ import { GlobalVariableService }      from './global-variable.service';
                         this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
                     };
             };
-        };
-        this.localWidget.containerHasTitle = this.containerHasTitle;
 
-        if (this.newWidget) {
-
-            // TODO - improve this when using a DB!
-            let newID: number = 1;
-            let ws: number[]=[];
-            for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-                ws.push(this.globalVariableService.widgets[i].id)
-            };
-            if (ws.length > 0) {
-                newID = Math.max(...ws) + 1;
-            };
-            this.localWidget.id = newID;
-            this.localWidget.dashboardTabIDs.push(this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
-            this.globalVariableService.widgets.push(this.localWidget);
-            this.globalVariableService.currentWidgets.push(this.localWidget);
-        } else {
             // Replace the W
-            this.globalVariableService.widgetReplace(this.localWidget);
+            // this.globalVariableService.widgetReplace(this.localWidget);
+ 
+            // Update global W and DB
+            this.globalVariableService.saveWidget(this.localWidget).then(res => {
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Graph Saved',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
+                this.formWidgetEditorClosed.emit(this.localWidget);
+                
+            });
+            
         };
+ 
+        // // Tell user
+        // this.globalVariableService.showStatusBarMessage(
+        //     {
+        //         message: 'Table Saved',
+        //         uiArea: 'StatusBar',
+        //         classfication: 'Info',
+        //         timeout: 3000,
+        //         defaultMessage: ''
+        //     }
+        // );
 
-
-        // Tell user
-        this.globalVariableService.showStatusBarMessage(
-            {
-                message: 'Table Saved',
-                uiArea: 'StatusBar',
-                classfication: 'Info',
-                timeout: 3000,
-                defaultMessage: ''
-            }
-        );
-
-        this.formWidgetEditorClosed.emit(this.localWidget);
+        // this.formWidgetEditorClosed.emit(this.localWidget);
     }
 
     dragstartField(ev) {
