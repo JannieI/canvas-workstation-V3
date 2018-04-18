@@ -208,29 +208,8 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSave() {
-        //
+        // Save the Shape, globally and to DB
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-
-        if (this.newWidget) {
-
-            // TODO - improve this when using a DB!
-            let newID: number = 1;
-            let ws: number[]=[];
-            for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-                ws.push(this.globalVariableService.widgets[i].id)
-            };
-            if (ws.length > 0) {
-                newID = Math.max(...ws) + 1;
-            };
-            this.localWidget.id = newID;
-            this.localWidget.dashboardTabIDs.push(this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
-            this.globalVariableService.widgets.push(this.localWidget);
-            this.globalVariableService.currentWidgets.push(this.localWidget);
-
-        } else {
-            // Replace the W
-            this.globalVariableService.widgetReplace(this.localWidget);
-        };
 
         // Special settings
         if (this.localWidget.widgetSubType == 'Circle') {
@@ -249,18 +228,60 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.titleText = 'Value';
         };
 
-        // Tell user
-        this.globalVariableService.showStatusBarMessage(
-            {
-                message: 'Shape Saved',
-                uiArea: 'StatusBar',
-                classfication: 'Info',
-                timeout: 3000,
-                defaultMessage: ''
-            }
-        );
+        if (this.newWidget) {
 
-	  	this.formShapeEditClosed.emit(this.localWidget);
+            // TODO - improve this when using a DB!
+            let newID: number = 1;
+            let ws: number[]=[];
+            for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
+                ws.push(this.globalVariableService.widgets[i].id)
+            };
+            if (ws.length > 0) {
+                newID = Math.max(...ws) + 1;
+            };
+            this.localWidget.id = newID;
+            this.localWidget.dashboardTabIDs.push(
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+            );
+
+            this.globalVariableService.addWidget(this.localWidget).then(res => {
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Shape Added',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
+                this.formShapeEditClosed.emit(this.localWidget);
+            });
+            
+        } else {
+            // Replace the W
+            this.globalVariableService.widgetReplace(this.localWidget);
+
+            // Update global W and DB
+            this.globalVariableService.saveWidget(this.localWidget).then(res => {
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Shape Saved',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
+                this.formShapeEditClosed.emit(this.localWidget);
+            });
+        };
+
     }
 
 }

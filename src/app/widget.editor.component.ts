@@ -286,15 +286,12 @@ const graphWidth: number = 420;
             this.localWidget.dashboardTabIDs.push(this.globalVariableService.
                 currentDashboardInfo.value.currentDashboardTabID);
 
-            console.log('xx pre localW', this.localWidget, this.globalVariableService.widgets, this.globalVariableService.currentWidgets)
-
             this.globalVariableService.addWidget(this.localWidget).then(res => {
-                console.log('xx post localW', this.localWidget, this.globalVariableService.widgets, this.globalVariableService.currentWidgets)
 
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
                     {
-                        message: 'Widget Added',
+                        message: 'Graph Added',
                         uiArea: 'StatusBar',
                         classfication: 'Info',
                         timeout: 3000,
@@ -302,6 +299,7 @@ const graphWidth: number = 420;
                     }
                 );
 
+                // Update global W and DB
                 this.formWidgetEditorClosed.emit(this.localWidget);
 
             });
@@ -321,13 +319,13 @@ const graphWidth: number = 420;
                     };
             };
  
-            // Update global W
+            // Update global W and DB
             this.globalVariableService.saveWidget(this.localWidget).then(res => {
 
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
                     {
-                        message: 'Widget Saved',
+                        message: 'Graph Saved',
                         uiArea: 'StatusBar',
                         classfication: 'Info',
                         timeout: 3000,
