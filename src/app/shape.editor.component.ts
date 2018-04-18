@@ -231,21 +231,24 @@ export class ShapeEditComponent implements OnInit {
         if (this.newWidget) {
 
             // TODO - improve this when using a DB!
-            let newID: number = 1;
-            let ws: number[]=[];
-            for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-                ws.push(this.globalVariableService.widgets[i].id)
-            };
-            if (ws.length > 0) {
-                newID = Math.max(...ws) + 1;
-            };
-            this.localWidget.id = newID;
+            // let newID: number = 1;
+            // let ws: number[]=[];
+            // for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
+            //     ws.push(this.globalVariableService.widgets[i].id)
+            // };
+            // if (ws.length > 0) {
+            //     newID = Math.max(...ws) + 1;
+            // };
+            // this.localWidget.id = newID;
+
             this.localWidget.dashboardTabIDs.push(
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
             );
 
             this.globalVariableService.addWidget(this.localWidget).then(res => {
 
+                this.localWidget.id = res.id;
+                
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
                     {

@@ -412,38 +412,79 @@ import { GlobalVariableService }      from './global-variable.service';
         if (this.newWidget) {
 
             // TODO - improve this when using a DB!
-            let newID: number = 1;
-            let ws: number[]=[];
-            for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-                ws.push(this.globalVariableService.widgets[i].id)
-            };
-            if (ws.length > 0) {
-                newID = Math.max(...ws) + 1;
-            };
-            this.localWidget.id = newID;
-            this.localWidget.dashboardTabIDs.push(this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
-            this.globalVariableService.widgets.push(this.localWidget);
-            this.globalVariableService.currentWidgets.push(this.localWidget);
+            // let newID: number = 1;
+            // let ws: number[]=[];
+            // for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
+            //     ws.push(this.globalVariableService.widgets[i].id)
+            // };
+            // if (ws.length > 0) {
+            //     newID = Math.max(...ws) + 1;
+            // };
+            // this.localWidget.id = newID;
+
+            this.localWidget.dashboardTabIDs.push(this.globalVariableService.
+                currentDashboardInfo.value.currentDashboardTabID
+            );
             this.localWidget.datasourceID = this.selectedDatasourceID;
             this.localWidget.datasetID = this.selectedDatasetID;
 
+            // this.globalVariableService.widgets.push(this.localWidget);
+            // this.globalVariableService.currentWidgets.push(this.localWidget);
+            this.globalVariableService.addWidget(this.localWidget).then(res => {
+                this.localWidget.id = res.id;
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Slicer Added',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
+                // Return to main menu
+                this.formDataSlicersClosed.emit(this.localWidget);
+
+            });
+
         } else {
             // Replace the W
-            this.globalVariableService.widgetReplace(this.localWidget);
+            // this.globalVariableService.widgetReplace(this.localWidget);
+ 
+            // Update global W and DB
+            this.globalVariableService.saveWidget(this.localWidget).then(res => {
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Slicer Saved',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
+                this.formDataSlicersClosed.emit(this.localWidget);
+                
+            });
+            
         };
 
-        // Tell user
-        this.globalVariableService.showStatusBarMessage(
-            {
-                message: 'Slicer Saved',
-                uiArea: 'StatusBar',
-                classfication: 'Info',
-                timeout: 3000,
-                defaultMessage: ''
-            }
-        );
+        // // Tell user
+        // this.globalVariableService.showStatusBarMessage(
+        //     {
+        //         message: 'Slicer Saved',
+        //         uiArea: 'StatusBar',
+        //         classfication: 'Info',
+        //         timeout: 3000,
+        //         defaultMessage: ''
+        //     }
+        // );
 
-	  	this.formDataSlicersClosed.emit(this.localWidget);
+	  	// this.formDataSlicersClosed.emit(this.localWidget);
     }
 
     clickSelectAll(ev: any){
