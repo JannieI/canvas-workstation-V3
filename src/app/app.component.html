@@ -1386,16 +1386,6 @@
                 <clr-dropdown-menu class="titleMenu"
                     clrPosition="bottom-right" *clrIfOpen
                     >
-                    <button class="dropdown-item" *ngIf="row.hyperlinkDashboardID != null"
-                        type="button"
-                        clrDropdownItem
-                        (click)="contextMenuJumpToLinked(
-                            row.hyperlinkDashboardID,
-                            row.hyperlinkDashboardTabID
-                            )"
-                        >
-                        Jump to link
-                    </button>
                     <button class="dropdown-item"
                         type="button"
                         clrDropdownItem
