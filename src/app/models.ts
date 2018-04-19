@@ -348,8 +348,10 @@ export class DatasourcePermission {
     name?: string;                      // Optional DS name - filled in @Runtime
     userID: string;                     // 1 of usr/grp filled in, one blank
     groupID: number;                    // Granted to Group ID
-    canView: boolean;                    // 
-    canEdit: boolean;                    // 
+    canView: boolean;                   // Can view a DS
+    canEdit: boolean;                   // Can Edit a DS, ie do a transformation
+    canAdd: boolean;                    // Can Add a new DS, ie DB table or a file
+    canDelete: boolean;                 // Can Delete a DS (Definition, not the Data)
 }
 
 export class Transformation {
