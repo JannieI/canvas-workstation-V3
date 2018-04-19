@@ -6,9 +6,6 @@
                 X
             </button>
  
-
-            <div class="gridAddCodeTitle">
-
             <div class="gridOverall">
 
                 <div class="gridTitle">
@@ -16,69 +13,85 @@
                 </div>
                 <div class="gridSubTitle">
                     <i>
-                        This is your Dashboard on which data can be visualised.  It 
-                        can have more than one tab (like a spreadsheet), as shown 
-                        at the bottom of the page.  Some actions:
+                        This is your Dashboard on which data can be visualised.  Multiple
+                        tabs are shown at the bottom.  Some actions:
                     </i>
                 </div>
 
                 <div class="gridBody">
-                    <div class="helpMessageDiv">
+                    <div>
                         1. Data (called datasources) must be linked to a Dashboard 
                         before visualizing it.  Data can come from files, databases or 
                         the web.  In a larger company, this will be done by the 
                         responsible team.  Once datasources have been added, you can 
-                        add them to your dashboard. 
+                        add them to your dashboard.  If no datasources has been 
+                        created before, add a new datasource: 
+                        <div class="gridSubText">
+                            - Click <i>Data</i> in the top menu
+                        </div>
+                        <div class="gridSubText">
+                            - Then select the type of source like <i>From File</i>).  
+                            Once done, you will return to this Dashboard.
+                        </div>
                     </div>
+
                     <div>
-                        If no datasources has been created before, add a new datasource: 
-                        - Click <i>Data</i> in the top menu
-                        - Then select the type of source like <i>From File</i>).  
-                        Once done, you will return to this Dashboard.
-                    </div>
                         2. Link a datasource to this dashboard:
-                        - Click <i>Data</i> in the top menu
-                        - Then click <i>Add Existing</i>).  Once done, return to this 
-                        dashboard.
-                </div>
-                <div class="helpMessageDiv">
-                        2. Add a Widget to visualise the added datasource.  A widget can
+
+                        <div class="gridSubText">
+                            - Click <i>Data</i> in the top menu
+                        </div>
+                        <div class="gridSubText">
+                            - Then click <i>Add Existing</i>).  Once done, return to this 
+                                    dashboard.
+                        </div>
+
+                        3. Add a Widget to visualise the added datasource.  A widget can
                         be a Graph, Table, Slicer (filter) or a Shape (text, circle, arrow,
                         etc).  Add a graph as follows: 
-                        - Cclick <i>Graph</i> in the top menu
-                        - Then click <i>Add Graph</i>
-                        - Select the datasource, and drag fields onto the rows and columns
-                        - Return to this dashboard once done.
-                    </div>
-                    <div class="helpMessageDiv">
-                        3. Format and arrange Widgets as necessary, using:
-                        - Arrange multiple widgets with the <i>Arrange</i> option in 
+
+                        <div class="gridSubText">
+                            - Click <i>Graph</i> in the top menu
+                        </div>
+                        <div class="gridSubText">
+                            - Then click <i>Add Graph</i>
+                        </div>
+
+                    <div>
+                        4. Format and arrange Widgets as necessary, using:
+                        <div class="gridSubText">
+                            - Arrange multiple widgets with the <i>Arrange</i> option in 
                             the top menu
-                        - Drag widgets by click, hold, drag and release
-                        - resize widgets with the drag handles on each corner and side.
+                        </div>
+                        <div class="gridSubText">
+                            - Drag and resize widgets using your mouse
+                        </div>
                     </div>
-                    <div class="helpMessageDiv">
-                        4. All changes to a dashboard is saved automatically.  These changes
+
+                    <div>
+                        5. All changes to a dashboard are saved automatically.  These changes
                         remain in draft format, and are not visible to other users.  To make
                         it visibile, Save your new Dashboard with a name using <i>Dashboard
                         -> Save</i> menu options.
                     </div>
-                    <div class="helpMessageDiv">
-                    5. Existing Dashboards can be opened with <i>Dashboard -> Open Existing</i>
+
+                    <div>
+                        6. Existing Dashboards can be opened with <i>Dashboard -> Open Existing</i>
                         menu options.
                     </div>
-                    <div class="helpMessageDiv">
-                        6. Collaboration (discussions with colleagues) happens via messages and tasks (click
+
+                    <div>
+                        7. Collaboration (discussions with colleagues) happens via messages and tasks (click
                             the <i>Share <clr-icon shape="share"></clr-icon> icon</i> in the top right menu).
                     </div>
-                    <div class="helpMessageDiv">
-                        7. Graphs and Table can be edited with the <i>Graph -> Edit</i> and
-                        <i>Table -> Edit</i> menu options respectively.
-                    </div>
-                    <br><br>
+
+                    <br>
                         <b>Got it</b>
                         <input type="checkbox" (click)="clickGotIt()">
-                </div>
+                        (You can always view this information on the <i>Help</i>
+                        menu option.)
+            </div>
             </div>
         </div>
     </div>
+</div>
