@@ -4995,17 +4995,6 @@ console.log('xx w', this.currentWidgets)
         // Duplicate the given Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'duplicateWidget', '@Start');
 
-        // Get new ID
-        // TODO - improve this when using a DB!
-        let newID: number = 1;
-        let wIDs: number[] = [];
-        this.globalVariableService.widgets.forEach(w => {
-            wIDs.push(w.id);
-        });
-        if (wIDs.length > 0) {
-            newID = Math.max(...wIDs) + 1;
-        };
-
         // Find latest copy #
         let copyPosition: number = 1;
         for (var i = 0; i < 21; i++) {
@@ -5018,7 +5007,7 @@ console.log('xx w', this.currentWidgets)
 
         // Make a deep copy
         let copiedWidget: Widget = Object.assign({}, originalWidget);
-        copiedWidget.id = newID;
+
         copiedWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         copiedWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
 
@@ -5031,23 +5020,27 @@ console.log('xx w', this.currentWidgets)
             copyPosition.toString() + ')';
 
         // Add to all and current W
-        this.globalVariableService.widgets.push(copiedWidget);
-        this.globalVariableService.currentWidgets.push(copiedWidget);
-        this.globalVariableService.changedWidget.next(copiedWidget);
+        // this.globalVariableService.widgets.push(copiedWidget);
+        // this.globalVariableService.currentWidgets.push(copiedWidget);
+        this.globalVariableService.addWidget(copiedWidget).then(res => {
+            copiedWidget.id = res.id;
 
-        // Add to Action log
-        this.globalVariableService.actionUpsert(
-            null,
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-            'Widget',
-            'Duplicate',
-            'App clickMenuWidgetDuplicate',
-            null,
-            null,
-            null,
-            copiedWidget
-        );
+            this.globalVariableService.changedWidget.next(copiedWidget);
+
+            // Add to Action log
+            this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Widget',
+                'Duplicate',
+                'App clickMenuWidgetDuplicate',
+                null,
+                null,
+                null,
+                copiedWidget
+            );
+        });
 
     }
 

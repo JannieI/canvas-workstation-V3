@@ -1393,7 +1393,7 @@
         </div>
 
         <b>{{ row.titleText }}</b>
-        <!-- <clr-icon shape="check" size="12" *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"></clr-icon> -->
+
         <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
             class="selectedSlicer"
             [style.color]="row.titleColor? row.titleColor : 'black'"
