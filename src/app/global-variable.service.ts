@@ -3119,9 +3119,9 @@ console.log('xx getCurrentDataset url', url, this.datasets)
 
             this.http.put('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
-                    this.canvasSettings = JSON.parse(JSON.stringify(data));
+                    this.canvasSettings = JSON.parse(JSON.stringify(res));
                     console.log('saveSystemSettings SAVED')
                     resolve('Saved');
                 },
@@ -3480,8 +3480,15 @@ console.log('xx getCurrentDataset url', url, this.datasets)
 
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
-                data => {
-                    console.log('savePaletteButtonsSelected SAVED', data)
+                res => {
+    
+                    // Replace local
+                    let localIndex: number = this.currentPaletteButtonsSelected.value.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.currentPaletteButtonsSelected.value[localIndex] = data;
+
+                    console.log('savePaletteButtonsSelected SAVED', res)
                     resolve('Saved');
                 },
                 err => {
