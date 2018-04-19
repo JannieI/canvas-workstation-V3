@@ -427,7 +427,7 @@ export class AppComponent implements OnInit {
             isDashboardSaver :false,
             isDashboardQA: false,
             isDashboardDelete: true,
-            isDashboardAccess: false
+            isDashboardAccess: true
     
         }
         console.log('Welcome ', this.globalVariableService.currentUser.userID)
@@ -1721,6 +1721,18 @@ export class AppComponent implements OnInit {
     clickDashboardSave() {
         // Save changes, and make them available to others
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSave', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardSaver) {
+            this.showMessage(
+                'You do not have Save Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         // Has to be in editMode
         if (!this.editMode) {
