@@ -239,6 +239,26 @@ export class DashboardShareComponent implements OnInit {
 
     }
  
+    clickToggleAddDS(id: number, $event) {
+        // User dblclicked AddDS - so toggle it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleAddDS', '@Start');
+
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardPermissions.length; i++) {
+            if (this.dashboardPermissions[i].id == id) {
+                this.dashboardPermissions[i].canAddDS = ! this.dashboardPermissions[i].canAddDS;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDashboardPermission(
+                this.dashboardPermissions[index])
+                ;
+        };
+
+    }
+ 
     clickRow(index: number) {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
