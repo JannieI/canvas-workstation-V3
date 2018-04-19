@@ -423,10 +423,10 @@ export class AppComponent implements OnInit {
             isFirstTimeUser: true,
             isAdministrator: false,
             isDashboardCreator: true,
-            isDashboardEditor: false,
+            isDashboardEditor: true,
             isDashboardSaver :false,
             isDashboardQA: false,
-            isDashboardDelete: false,
+            isDashboardDelete: true,
             isDashboardAccess: false
     
         }
@@ -1949,6 +1949,18 @@ export class AppComponent implements OnInit {
         // Delete the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDelete', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardDelete) {
+            this.showMessage(
+                'You do not have Delete Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
@@ -1983,6 +1995,18 @@ export class AppComponent implements OnInit {
     clickMenuDashboardDeleteBulk() {
         // Delete the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDeleteBulk', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardDelete) {
+            this.showMessage(
+                'You do not have Delete Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         // Has to be in editMode
         if (!this.editMode) {
