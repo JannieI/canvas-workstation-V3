@@ -133,6 +133,7 @@ export class DashboardShareComponent implements OnInit {
             canView: false,
             canEdit: false,
             canDelete: false,
+            canAddDS: false,
             grantor: this.globalVariableService.currentUser.userID,
             grantedOn: today.toString()
         };

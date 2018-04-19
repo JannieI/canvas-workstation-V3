@@ -5563,7 +5563,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
 
     dashboardPermissionCheck(id: number): boolean {
         // Checks if the current user has access to the given D.
-        console.log('Global-Variables dashboardPermissionCheck ...');
+        console.log('Global-Variables dashboardPermissionCheck ...', id);
 
         // Assume no access
         let hasAccess: boolean = false;

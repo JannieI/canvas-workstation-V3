@@ -519,6 +519,7 @@ export class DashboardPermission {
     canView: boolean;                   // True if can View this D
     canEdit: boolean;                   // True if can Edit this D
     canDelete: boolean;                 // True if can Delete this D
+    canAddDS: boolean;                  // True if can Add a DS to this D
     grantor: string;                    // UserId who granted permission
     grantedOn: string;                  // Date and time created or last updated
 }
