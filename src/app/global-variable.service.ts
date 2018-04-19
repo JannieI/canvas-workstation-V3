@@ -1136,15 +1136,15 @@ export class GlobalVariableService {
 
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
-                    // TODO - update local vars
-                    // this.dashboards.forEach(d => {
-                    //     if (d.id == data.id) {
-                    //         d = data;
-                    //     };
-                    // });
-                    console.log('saveDashboard SAVED', data)
+                    // Replace local
+                    let localIndex: number = this.dashboards.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.dashboards[localIndex] = data;
+
+                    console.log('saveDashboard SAVED', res, this.dashboards)
                     resolve('Saved');
                 },
                 err => {
