@@ -150,22 +150,25 @@ export class DashboardTagsComponent implements OnInit {
         // Get selected in Available, and add to Selected
 
         // TODO - do this better with a DB
-        let maxIDs: number[] = [];
-        let maxID: number = 0;
-        this.globalVariableService.currentDashboardTags.forEach(pbs =>
-            maxIDs.push (pbs.id)
-        );
-        maxID = Math.max(...maxIDs);
+        // let maxIDs: number[] = [];
+        // let maxID: number = 0;
+        // this.globalVariableService.currentDashboardTags.forEach(pbs =>
+        //     maxIDs.push (pbs.id)
+        // ); 
+        // maxID = Math.max(...maxIDs);
 
-        maxID = maxID + 1;
-        this.selectedDashboardTags.push(
+        // maxID = maxID + 1;
+        let newTag: DashboardTag =
             {
-                id: maxID,
+                id: null,
                 dashboardID: this.selectedDashboard.id,
                 tag: this.availableDashboardTags[this.selectedTagIndex].tag
 
-            }
-        );
+            };
+
+        this.globalVariableService.addDashboardTag(newTag).then(res => {
+            this.selectedDashboardTags.push(newTag);
+        });
 
     }
 
