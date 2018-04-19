@@ -1144,7 +1144,7 @@ export class GlobalVariableService {
                     );
                     this.dashboards[localIndex] = data;
 
-                    console.log('saveDashboard SAVED', res, this.dashboards)
+                    console.log('saveDashboard SAVED', res)
                     resolve('Saved');
                 },
                 err => {
@@ -2284,8 +2284,15 @@ console.log('xx getCurrentDataset url', url, this.datasets)
 
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
-                data => {
-                    console.log('saveDashboardPermission SAVED', data)
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.dashboardPermissions.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.dashboardPermissions[localIndex] = data;
+
+                    console.log('saveDashboardPermission SAVED', res)
                     resolve('Saved');
                 },
                 err => {
