@@ -274,6 +274,7 @@ export class AppComponent implements OnInit {
     editMenuText: string;
     fields: Field[];
     isBusyResizing: boolean = false;
+    isFirstTimeUser: boolean = false;
     modalFormOpen: boolean = false;
     moveStartX: number;
     moveStartY: number;
@@ -643,6 +644,11 @@ export class AppComponent implements OnInit {
         // When creating a D, one can also Edit it
         this.globalVariableService.editMode.next(true);
         this.showModalDashboardNew = false;
+
+        // Show help for first time users
+        if (this.globalVariableService.currentUser.isFirstTimeUser) {
+            this.isFirstTimeUser = true;
+        }
 
     }
 
@@ -1117,6 +1123,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalSlicerDelete = false;
+    }
+
+    handleCloseDashboardHelp(action: string) {
+        // Close help form for first time D users
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardHelp', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.isFirstTimeUser = false;
     }
 
     handleCloseCollaborateAlerts(action: string) {
