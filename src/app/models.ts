@@ -132,7 +132,7 @@ export class PaletteButtonsSelected {
     backgroundColor: string;
     accesskey: string;
     sortOrder: number;
-    sortOrderSelected: number;             // SortOrder once selected, null ind DB, calced @Runtime
+    sortOrderSelected: number;              // SortOrder once selected, null ind DB, calced @Runtime
     isDefault: boolean;
     functionName: string;
     params: string;
@@ -151,7 +151,7 @@ export class PaletteButtonBar {
     backgroundColor: string;
     accesskey: string;
     sortOrder: number;
-    sortOrderSelected: number;             // SortOrder once selected, null ind DB, calced @Runtime
+    sortOrderSelected: number;              // SortOrder once selected, null ind DB, calced @Runtime
     isDefault: boolean;
     functionName: string;
     params: string;
@@ -241,6 +241,7 @@ export class CanvasUser {
     queryRuntimeWarning: number;            // Minutes: Warn user if a report is known to run longer
     snapToGrid: boolean;                    // True: snap Widgets to the grid points on Dashboard
     favouriteDashboards: number[];          // IDs of D that are fav of this user
+    isFirstTimeUser: boolean;               // True if not created a D
 }
 
 export class CanvasGroup {

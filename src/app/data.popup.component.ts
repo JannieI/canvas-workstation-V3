@@ -476,7 +476,7 @@ export class DataPopupComponent implements OnInit {
             data: this.currentData,
             dataRaw: this.currentData
         };
-
+ 
         let dataToAdd: any = {
             id: newdSetID,
             data: this.currentData

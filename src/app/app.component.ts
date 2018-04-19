@@ -418,7 +418,8 @@ export class AppComponent implements OnInit {
             profilePicture: '',
             queryRuntimeWarning: 3,
             snapToGrid: false,
-            favouriteDashboards: [1]
+            favouriteDashboards: [1],
+            isFirstTimeUser: true
         }
         console.log('Welcome ', this.globalVariableService.currentUser.userID)
     }

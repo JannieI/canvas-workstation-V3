@@ -629,7 +629,6 @@ export class GlobalVariableService {
     preferencePaletteHorisontal = new BehaviorSubject<boolean>(true);
 
     // First time user
-    isFirstTimeDashboard = new BehaviorSubject<boolean>(false);
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardDiscard = new BehaviorSubject<boolean>(true);
