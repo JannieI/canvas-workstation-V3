@@ -192,8 +192,9 @@ Add SORT to DB ... what about add afterwards?
     5. Also, easy way to jump to previous period:  loaded at start with data ??
     6. Startup D: should this be settable as a pref, or should we always display the Landing page?
     7 .Show Grid - currently a .png -> how to make this dynamic ?
-    8 .Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked like at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo 
-       actions when a snapshot is taken, or not.  Think clearly about it.
+    8 .Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked like at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo actions when a snapshot is taken, or not.  Think clearly about it.
+      Important: NO undo on forms, ie Comments.  Must be done through Add/Edit/Delete
+      buttons and logic on form. 
     9 .Import: check security, particularly for the Datasource.  Also, is the access rights
        stored with the text file (security risk)?  Also, can / should it over-write an
        existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.

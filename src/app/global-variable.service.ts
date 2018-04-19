@@ -4414,8 +4414,13 @@ console.log('xx allS 1', this.currentDatasets.slice())
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
-                    // TODO - fix DB
-                                     
+                    
+                    // Replace local
+                    let localIndex: number = this.canvasUsers.findIndex(u =>
+                        u.id == data.id
+                    );
+                    this.canvasUsers[localIndex] = data;
+
                     console.log('saveCanvasUser SAVED', res)
                     resolve('Saved');
                 },
