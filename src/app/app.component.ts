@@ -5008,6 +5008,7 @@ console.log('xx w', this.currentWidgets)
         // Make a deep copy
         let copiedWidget: Widget = Object.assign({}, originalWidget);
 
+        copiedWidget.id = null;
         copiedWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         copiedWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
 
