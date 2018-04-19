@@ -45,18 +45,7 @@ export class DashboardOpenComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.dashboards = this.globalVariableService.dashboards.slice();
-        this.globalVariableService.isFirstTimeDashboard.subscribe(
-            i => this.isFirstTimeDashboardOpen = i
-        );
-    }
-
-    ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component.
-        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
-        // Called just before Angular destroys the directive/component.
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
-
-        // this.globalVariableService.isFirstTimeDashboard.unsubscribe();
+        this.isFirstTimeDashboardOpen = this.globalVariableService.userPreferences.preferenceShowOpenStartupMessage;
     }
 
     clickClose(action: string) {
@@ -74,7 +63,9 @@ export class DashboardOpenComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
 
-        this.globalVariableService.isFirstTimeDashboard.next(false);
+        this.globalVariableService.userPreferences.preferenceShowOpenStartupMessage
+            = false;
+        this.globalVariableService.saveUserPreferences(this.globalVariableService.userPreferences);
     }
 
     clickShowAdvancedFilters() {
