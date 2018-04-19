@@ -177,7 +177,9 @@ export class DashboardTagsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         // Remove from seleted list
-        this.selectedDashboardTags.splice(index, 1);
+        this.globalVariableService.deleteDashboardTag(id).then(res => {
+            this.selectedDashboardTags.splice(index, 1);
+        });
         
     }
 
