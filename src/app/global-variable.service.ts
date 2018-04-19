@@ -3411,8 +3411,15 @@ console.log('xx getCurrentDataset url', url, this.datasets)
 
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
-                data => {
-                    console.log('savePaletteButtonBar SAVED', data)
+                res => {
+    
+                    // Replace local
+                    let localIndex: number = this.currentPaletteButtonBar.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.currentPaletteButtonBar[localIndex] = data;
+
+                    console.log('savePaletteButtonBar SAVED', res)
                     resolve('Saved');
                 },
                 err => {
