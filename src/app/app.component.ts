@@ -420,7 +420,15 @@ export class AppComponent implements OnInit {
             queryRuntimeWarning: 3,
             snapToGrid: false,
             favouriteDashboards: [1],
-            isFirstTimeUser: true
+            isFirstTimeUser: true,
+            isAdministrator: false,
+            isDashboardCreator: false,
+            isDashboardEditor: false,
+            isDashboardSaver :false,
+            isDashboardQA: false,
+            isDashboardDelete: false,
+            isDashboardAccess: false
+    
         }
         console.log('Welcome ', this.globalVariableService.currentUser.userID)
     }

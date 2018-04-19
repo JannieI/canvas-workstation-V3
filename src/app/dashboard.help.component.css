@@ -51,7 +51,7 @@
         grid-column-end: 15;
         grid-row-start: 2;
         grid-row-end: 21;
-        margin: 2px 2px 2px 12px;
+        margin: 10px 2px 2px 12px;
         text-align: left;
     }
         .gridSubText {
