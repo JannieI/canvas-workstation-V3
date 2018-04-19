@@ -654,7 +654,9 @@ export class AppComponent implements OnInit {
         this.showModalDashboardNew = false;
 
         // Show help for first time users
-        if (this.globalVariableService.currentUser.isFirstTimeUser) {
+        if (action == 'Created'  
+            && 
+            this.globalVariableService.currentUser.isFirstTimeUser) {
             this.isFirstTimeUser = true;
         }
 
@@ -1287,6 +1289,18 @@ export class AppComponent implements OnInit {
         // Toggle Edit Mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditMode', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardEditor) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         // Can only edit if we have DS
         if (!this.hasDatasources) {
             this.showMessage(
@@ -1624,6 +1638,7 @@ export class AppComponent implements OnInit {
             );
             return;
         };
+
         this.menuOptionClickPreAction();
         this.editMode = true;
         this.hasDashboard = true;
