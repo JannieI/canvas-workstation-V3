@@ -1356,13 +1356,7 @@
         [style.width.%]="row.titleWidth"
         (contextmenu)="contextMenuOpen()"
         >
-        <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
-            class="selectedSlicer"
-            [style.color]="row.titleColor? row.titleColor : 'black'"
-            title="Related Widget has been selected"
-            >
-            <clr-icon shape="check" size="12"></clr-icon>
-        </span>
+
         <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality"
             class="badge badge-danger widgetBadge1"
             title="Data Quality issues">
@@ -1399,6 +1393,14 @@
         </div>
 
         <b>{{ row.titleText }}</b>
+        <!-- <clr-icon shape="check" size="12" *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"></clr-icon> -->
+        <span *ngIf="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)"
+            class="selectedSlicer"
+            [style.color]="row.titleColor? row.titleColor : 'black'"
+            title="Related Widget has been selected"
+            >
+            <clr-icon shape="check" size="12"></clr-icon>
+        </span>
     </div>
 
     <!-- Graph Object -->

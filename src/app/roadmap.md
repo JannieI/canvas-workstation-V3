@@ -20,8 +20,9 @@ This document describes items for later versions of Canvas.
     - Use style.css for standard items, ie class="helpMessage"
     - Standardize date format shown - as selected by the user, stored as settings
     - Consider highlight of selected row in Snapshots.  If good, apply to all Grids.  Better:   consider a GRID-COMPONENT ...
-    -Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that     browser has own set.  Try to make it dynamic, ie use can define it!
-    - Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of   main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not   needed
+    -Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that browser has own set.  Try to make it dynamic, ie use can define it!
+    - Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
+    - make Palette button sizes dynamic - small, medium, large, and make this a user setting.  Make sure container is also sized dynamically.
 
     Testing:
     --------
