@@ -422,7 +422,7 @@ export class AppComponent implements OnInit {
             favouriteDashboards: [1],
             isFirstTimeUser: true,
             isAdministrator: false,
-            isDashboardCreator: false,
+            isDashboardCreator: true,
             isDashboardEditor: false,
             isDashboardSaver :false,
             isDashboardQA: false,
@@ -1613,6 +1613,17 @@ export class AppComponent implements OnInit {
         // Create a new D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardNew', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardCreator) {
+            this.showMessage(
+                'You do not have Create Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
         this.menuOptionClickPreAction();
         this.editMode = true;
         this.hasDashboard = true;
