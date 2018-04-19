@@ -66,15 +66,15 @@ export class DashboardTabComponent {
 
         // Get new DSid
         // TODO - do better with DB
-        let newTid: number = 1;
-        let tIDs: number[] = [];
-        this.globalVariableService.dashboardTabs.forEach(t => tIDs.push(t.id));
-        newTid = Math.max(...tIDs) + 1;
+        // let newTid: number = 1;
+        // let tIDs: number[] = [];
+        // this.globalVariableService.dashboardTabs.forEach(t => tIDs.push(t.id));
+        // newTid = Math.max(...tIDs) + 1;
 
         // Add new one
         
         let newTab: DashboardTab = {
-            id: newTid,
+            id: null,
             dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
             name: this.name,
             description: this.description,
@@ -82,17 +82,20 @@ export class DashboardTabComponent {
             color: this.color
         }
 
-        this.globalVariableService.currentDashboardTabs.push(newTab);
-        this.globalVariableService.dashboardTabs.push(newTab);
+        this.globalVariableService.addDashboardTab(newTab).then(res => {
+            console.log('xx currT', this.globalVariableService.currentDashboardTabs)
+            // Browse to it
+            this.globalVariableService.refreshCurrentDashboard(
+                'tabNew-clickSave',
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                0,
+                'Last'
+            );
+            this.formDashboardTabClosed.emit();
+    
+        });
+        // this.globalVariableService.currentDashboardTabs.push(newTab);
+        // this.globalVariableService.dashboardTabs.push(newTab);
 
-        console.log('xx currT', this.globalVariableService.currentDashboardTabs)
-        // Browse to it
-        this.globalVariableService.refreshCurrentDashboard(
-            'tabNew-clickSave',
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            0,
-            'Last'
-        );
-        this.formDashboardTabClosed.emit();
     }
   }
