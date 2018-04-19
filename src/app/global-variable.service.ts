@@ -3285,9 +3285,16 @@ console.log('xx getCurrentDataset url', url, this.datasets)
 
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
-                data => {
-                    console.log('saveDashboardSubscription SAVED', data)
-                    resolve('Saved');
+                res => {
+    
+                    // Replace local
+                    let localIndex: number = this.dashboardSubscriptions.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.dashboardSubscriptions[localIndex] = data;
+
+                    console.log('saveDashboardSubscription SAVED', res)
+                        resolve('Saved');
                 },
                 err => {
                     console.log('Error saveDashboardSubscription FAILED', err);;
