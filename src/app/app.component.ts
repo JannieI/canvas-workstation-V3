@@ -1681,6 +1681,18 @@ export class AppComponent implements OnInit {
         // Share a D - set the Access Type (ie Private) and Access List
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardAccess) {
+            this.showMessage(
+                'You do not have Access Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
