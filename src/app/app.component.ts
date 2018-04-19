@@ -421,10 +421,10 @@ export class AppComponent implements OnInit {
             snapToGrid: false,
             favouriteDashboards: [1],
             isFirstTimeUser: true,
-            isAdministrator: false,
+            isAdministrator: true,
             isDashboardCreator: true,
             isDashboardEditor: true,
-            isDashboardSaver :false,
+            isDashboardSaver :true,
             isDashboardQA: false,
             isDashboardDelete: true,
             isDashboardAccess: true
@@ -1290,7 +1290,9 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditMode', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.isDashboardEditor) {
+        if (!this.globalVariableService.currentUser.isDashboardEditor
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
                 'You do not have Edit Permissions (role must be added)',
                 'StatusBar',
@@ -1628,7 +1630,9 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardNew', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.isDashboardCreator) {
+        if (!this.globalVariableService.currentUser.isDashboardCreator
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
                 'You do not have Create Permissions (role must be added)',
                 'StatusBar',
@@ -1660,6 +1664,21 @@ export class AppComponent implements OnInit {
         // Discard changes made since the previous Save
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDiscard', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardEditor
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
@@ -1682,7 +1701,9 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.isDashboardAccess) {
+        if (!this.globalVariableService.currentUser.isDashboardAccess
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
                 'You do not have Access Permissions (role must be added)',
                 'StatusBar',
@@ -1723,7 +1744,9 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSave', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.isDashboardSaver) {
+        if (!this.globalVariableService.currentUser.isDashboardSaver
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
                 'You do not have Save Permissions (role must be added)',
                 'StatusBar',
@@ -1974,7 +1997,9 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDelete', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.isDashboardDelete) {
+        if (!this.globalVariableService.currentUser.isDashboardDelete
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
                 'You do not have Delete Permissions (role must be added)',
                 'StatusBar',
@@ -2021,7 +2046,9 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDeleteBulk', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.isDashboardDelete) {
+        if (!this.globalVariableService.currentUser.isDashboardDelete
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
                 'You do not have Delete Permissions (role must be added)',
                 'StatusBar',
