@@ -635,6 +635,7 @@ export class GlobalVariableService {
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
+    dashboardsRecent: DashboardRecent[] = [];
     dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
@@ -1384,8 +1385,8 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Returns: return array from source, not cached
         // Note:  data is ALWAYS synced to 3 different places:
         // - DB
-        // - this.recentDashboards (GV)
-        // 
+        // - this.dashboardsRecent (array in Global Vars)
+        // - dashboardsRecentBehSubject (.next)
         console.log('Global-Variables getDashboardsRecent ...');
 
         let url: string = 'dashboardsRecent';
@@ -1395,10 +1396,10 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
             // Refresh from source at start
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-            this.get(url).then(data => {
-
+            this.get(url).then(res => {
+console.log('xx res', res);
                 // TODO - http must be sorted => include in Options ...
-                let temp: DashboardRecent[] = data.filter(
+                let temp: DashboardRecent[] = res.filter(
                     i => i.userID == userID
                 );
 
@@ -1413,7 +1414,11 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         };
                     };
                 };
-
+console.log('xx temp', temp);
+                
+                    // this.datasets.push(JSON.parse(JSON.stringify(res)));
+                this.dashboardsRecent = temp;
+                this.dashboardsRecentBehSubject.next(temp);
                 console.log('Global-Variables dashboardsRecent 1', temp)
                 this.isDirtyDashboardsRecent = false;
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -1422,11 +1427,38 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         });
     }
 
-    addDashboardRecent(dashboardID: number, dashboardTabID: number) {
-        //
-        console.log('Global-Variables addDashboardRecent ...', dashboardID, dashboardTabID);
+    addDashboardRecent(data: DashboardRecent): Promise<any> {
+        // Adds a D to the Recent list, and update:
+        // - this.dashboardsRecent
+        // - this.dashboardsRecentBehSubject.next()
+        console.log('Global-Variables addDashboardRecent ...');
 
-        // TODO - put to DB
+        let url: string = 'dashboardsRecent';
+        this.filePath = './assets/data.dashboardsRecent.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+                    
+                    // Update Global vars to make sure they remain in sync
+                    this.dashboardTabs.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDashboardTabs.push(JSON.parse(JSON.stringify(data)));
+                    
+                    console.log('addDashboardTab ADDED', data, this.dashboardTabs)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('Error addDashboardTab FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
     deleteDashboardRecent(index: number): Promise<boolean> {
