@@ -65,7 +65,7 @@ export class DashboardOpenComponent implements OnInit {
 
         this.globalVariableService.currentUser.preferenceShowOpenStartupMessage
             = false;
-        this.globalVariableService.saveUserPreferences(this.globalVariableService.userPreferences);
+        this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser);
     }
 
     clickShowAdvancedFilters() {

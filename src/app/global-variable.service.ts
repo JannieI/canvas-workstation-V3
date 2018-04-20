@@ -3151,17 +3151,6 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                         this.userPreferences = res;
 
                         // Load global Vars
-                        // this.userPreferences.preferenceAutoSync = data.preferenceAutoSync;
-                        // this.userPreferences.preferenceShowOpenStartupMessage = data.preferenceShowOpenStartupMessage;
-                        // this.userPreferences.preferenceShowOpenDataCombinationMessage = data.preferenceShowOpenDataCombinationMessage;
-                        // this.userPreferences.preferenceShowViewStartupMessage = data.preferenceShowViewStartupMessage;
-                        // this.userPreferences.preferenceShowDiscardStartupMessage = data.preferenceShowDiscardStartupMessage;
-                        // this.userPreferences.preferenceDefaultTemplate = data.preferenceDefaultTemplate;
-                        // this.userPreferences.preferenceDefaultDateformat = data.preferenceDefaultDateformat;
-                        // this.userPreferences.preferenceDefaultFolder = data.preferenceDefaultFolder;
-                        // this.userPreferences.preferenceDefaultPrinter = data.preferenceDefaultPrinter;
-                        // this.userPreferences.preferenceDefaultPageSize = data.preferenceDefaultPageSize;
-                        // this.userPreferences.preferenceDefaultPageLayout = data.preferenceDefaultPageLayout;
                         this.isDirtyUserPreferences = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getUserPreferences 1', this.userPreferences)
