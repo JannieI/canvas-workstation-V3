@@ -126,7 +126,7 @@ export class DashboardDeleteComponent implements OnInit {
 		this.formDashboardDeleteClosed.emit(action);
     }
 
-    clickDelete() {
+    clickDelete() { 
         // Delete selected D and all related records, if user has access
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 

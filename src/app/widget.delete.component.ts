@@ -28,6 +28,7 @@ import { View }                       from 'vega';
 })
 export class WidgetDeleteComponent implements OnInit {
 
+    @Input() selectedWidget: Widget;
     @ViewChild('widgetDOM')  widgetDOM: ElementRef;
     @Output() formWidgetDeleteClosed: EventEmitter<string> = new EventEmitter();
 
@@ -43,42 +44,34 @@ export class WidgetDeleteComponent implements OnInit {
         // Init routine
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Get the current W
-        this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.isSelected) {
+        let localWidget= Object.assign({}, this.selectedWidget);
 
-                // Make a deep copy
-                let localWidget= Object.assign({}, w);
+        // Rescale and limit amount of detail on the graph
+        localWidget.containerLeft = 100;
+        localWidget.containerTop = 100;
+        localWidget.containerHeight = 100;
+        localWidget.graphHeight = 80;
+        localWidget.containerWidth = 100;
+        localWidget.graphWidth = 80;
+        localWidget.containerBoxshadow = 'none';
+        localWidget.containerBorder = 'none';
+        localWidget.isSelected = false;
+        // TODO - a huge graph shows too big - change Vega param to fix this.
+        localWidget.graphTitle = '';
+        localWidget.graphXaxisTitle = '';
+        localWidget.graphYaxisTitle = '';
+        localWidget.containerBorder = '';
+        localWidget.containerBackgroundcolor = 'white';
 
-                // Rescale and limit amount of detail on the graph
-                // TODO - change if multiple can be deleted
-                localWidget.containerLeft = 100;
-                localWidget.containerTop = 100;
-                localWidget.containerHeight = 100;
-                localWidget.graphHeight = 80;
-                localWidget.containerWidth = 100;
-                localWidget.graphWidth = 80;
-                localWidget.containerBoxshadow = 'none';
-                localWidget.containerBorder = 'none';
-                localWidget.isSelected = false;
-                // TODO - a huge graph shows too big - change Vega param to fix this.
-                localWidget.graphTitle = '';
-                localWidget.graphXaxisTitle = '';
-                localWidget.graphYaxisTitle = '';
-                localWidget.containerBorder = '';
-                localWidget.containerBackgroundcolor = 'white';
-
-                let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
-                let specification = compile(definition).spec;
-                let view = new View(parse(specification));
-                view.renderer('svg')
-                    .initialize( this.widgetDOM.nativeElement)
-                    .hover()
-                    .run()
-                    .finalize();
-
-            };
-        });
+        let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
+        console.log('xx def', definition)
+        let specification = compile(definition).spec;
+        let view = new View(parse(specification));
+        view.renderer('svg')
+            .initialize( this.widgetDOM.nativeElement)
+            .hover()
+            .run()
+            .finalize();
 
         // Count the number of W selected
         this.globalVariableService.currentWidgets.forEach(w => {
