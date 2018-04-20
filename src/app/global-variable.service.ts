@@ -1380,46 +1380,12 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
     }
 
-    getDashboardsRecentList(userID: string): Promise<number[]> {
-        // Description: Gets a LIST of Recent D, T
-        // Returns: this.dashboardsRecent array, unless:
-        //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDashboardsRecentList ...');
-
-        let url: string = 'dashboardsRecent';
-        this.filePath = './assets/data.dashboardsRecent.json';
-
-        return new Promise<number[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
-                    .then(data => {
-                        this.dashboardsRecent = [];
-                        // TODO - http must be sorted => include in Options ...
-                        let temp: DashboardRecent[] = data.filter(
-                            i => i.userID == userID
-                        )
-                        temp.forEach( j => {
-                            this.dashboardsRecent.push(j.dashboardID)
-                        });
-                        console.log('Global-Variables dashboardsRecent 1', this.dashboardsRecent)
-                        this.isDirtyDashboardsRecent = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        resolve(this.dashboardsRecent);
-                    });
-            } else {
-                console.log('Global-Variables this.dashboardsRecent 2', this.dashboardsRecent)
-                resolve(this.dashboardsRecent);
-            }
-        });
-
-    }
-
     getDashboardsRecent(userID: string): Promise<DashboardRecent[]>  {
         // Description: Gets an array of recently used D (not the Ds itself)
         // Returns: return array from source, not cached
+        // Note:  data is ALWAYS synced to 3 different places:
+        // - DB
+        // - 
         console.log('Global-Variables getDashboardsRecent ...');
 
         let url: string = 'dashboardsRecent';
