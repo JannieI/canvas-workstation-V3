@@ -1397,7 +1397,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             // Refresh from source at start
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
             this.get(url).then(res => {
-console.log('xx res', res);
+
                 // TODO - http must be sorted => include in Options ...
                 let temp: DashboardRecent[] = res.filter(
                     i => i.userID == userID
@@ -1414,13 +1414,13 @@ console.log('xx res', res);
                         };
                     };
                 };
-console.log('xx temp', temp);
                 
                 this.dashboardsRecent = temp;
                 this.dashboardsRecentBehSubject.next(temp);
-                console.log('Global-Variables dashboardsRecent 1', temp)
-                this.isDirtyDashboardsRecent = false;
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
+                this.isDirtyDashboardsRecent = false;
+                console.log('Global-Variables dashboardsRecent 1', temp)
                 resolve(temp);
             });
         });
@@ -1443,6 +1443,7 @@ console.log('xx temp', temp);
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 res => {
+                    console.log('xx gv after post', res)
                     let temp: DashboardRecent = JSON.parse(JSON.stringify(res));
     
                     // Add State and Name, at Runtime
@@ -1457,8 +1458,8 @@ console.log('xx temp', temp);
                     // Update Global vars to make sure they remain in sync
                     this.dashboardsRecent.splice(0, 1, temp);
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
-                    console.log('dashboardsRecent ADDED', res, this.dashboardsRecent)
 
+                    console.log('dashboardsRecent ADDED', res, this.dashboardsRecent)
                     resolve(temp);
                 },
                 err => {

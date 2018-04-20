@@ -102,6 +102,7 @@ export class DashboardNewComponent implements OnInit {
                     stateAtRunTime: 'Draft',
                     nameAtRunTime: d.name
                 };
+                console.log('xx newRec', newRecent, newDashboard)
                 this.globalVariableService.addDashboardRecent(newRecent).then(dR => {
 
                     this.globalVariableService.refreshCurrentDashboard(

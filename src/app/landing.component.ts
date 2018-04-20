@@ -30,7 +30,7 @@ export class LandingComponent implements OnInit {
 	@Output() formLandingClosed: EventEmitter<string> = new EventEmitter();
 
 	// sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
-	recentDashboards: DashboardRecent[];
+	dashboardsRecent: DashboardRecent[];
 	sampleDashboards: Dashboard[];
 	showModel: boolean = true;
 
@@ -64,7 +64,7 @@ export class LandingComponent implements OnInit {
 				this.globalVariableService.getDashboardsRecent(
 					this.globalVariableService.currentUser.userID
 					).then(recD => {
-					this.recentDashboards = recD;
+					this.dashboardsRecent = recD;
 
 					// Palette buttons for current user
 					this.globalVariableService.getPaletteButtonsSelected().then(pBsel => 
@@ -175,7 +175,7 @@ export class LandingComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenRecentDashboard', '@Start');
 
 		// Cannot open deleted ones
-		if (this.recentDashboards[index].stateAtRunTime == 'Deleted') {
+		if (this.dashboardsRecent[index].stateAtRunTime == 'Deleted') {
 			this.globalVariableService.showStatusBarMessage(
 				{
 					message: 'Cannot open deleted Dashboard',
@@ -197,13 +197,20 @@ export class LandingComponent implements OnInit {
 		this.formLandingClosed.emit('OpenRecent');
 	}
  
-	clickDeleteRecent(index: number) {
+	clickDeleteRecent(id: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteRecent', '@Start');
 
 		// Delete from temp array, refresh
-		this.globalVariableService.deleteDashboardRecent(index).then(
+		this.globalVariableService.deleteDashboardRecent(id).then(
 			i => {
+				console.log('xx rec pre', this.dashboardsRecent)
+				let index: number = this.dashboardsRecent.findIndex(dR =>
+					dR.id == id
+				);
+				if (index >= 0) {
+					this.dashboardsRecent.splice(index, 1);
+				}
 		})
 	}
 
