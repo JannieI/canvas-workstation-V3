@@ -1469,22 +1469,41 @@ console.log('xx temp', temp);
         });
     }
 
-    deleteDashboardRecent(index: number): Promise<boolean> {
-        //
-        console.log('Global-Variables deleteDashboardRecent ...', index);
+    deleteDashboardRecent(id: number): Promise<string> {
+        // Description: Deletes a Recent Dashboard, and updates:
+        // - this.dashboardsRecent
+        // - this.dashboardsRecentBehSubject.next()
+        // Returns 'Deleted' or error message
+        console.log('Global-Variables deleteDashboardRecent ...', id);
 
-        // Update data
-        return new Promise<boolean>((resolve, reject) => {
-        //     let i: number = this.dashboardsRecent.indexOf(index);
-        //     if (i >= 0) {
-        //         this.dashboardsRecent.splice(i , 1);
-        //     };
+        let url: string = 'dashboardsRecent';
+        this.filePath = './assets/data.dashboardsRecent.json';
 
-        //     // Refresh temp array
-        //     this.getDashboardsRecentList(this.currentUser.userID).then(
-        //         i => resolve(true)
-        //     )
-        return true
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                res => {
+                   
+                    let index: number = this.dashboardsRecent.findIndex(dR =>
+                        dR.dashboardID == id
+                    );
+                    if (index >= 0) {
+                        this.dashboardsRecent.splice(index, 1);
+                    };
+                    this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
+
+                    console.log('deleteDashboardRecent DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteDashboardRecent FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
         });
     }
 
