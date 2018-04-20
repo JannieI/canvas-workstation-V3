@@ -712,7 +712,6 @@ export class GlobalVariableService {
     isDirtyCanvasComments: boolean = true;
     isDirtyCanvasMessages: boolean = true;
     isDirtyCanvasSettings: boolean = true;
-    isDirtyUserPreferences: boolean = true;
     isDirtyPaletteButtonBar: boolean = true;
     isDirtyUserPaletteButtonBar: boolean = true;
     isDirtyPaletteButtonsSelected: boolean = true;
