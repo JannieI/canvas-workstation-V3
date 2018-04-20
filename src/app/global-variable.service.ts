@@ -3132,38 +3132,6 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         });
     }
 
-    getUserPreferences(): Promise<UserPreferences> {
-        // Description: Gets userPreferences 
-        // Returns: this.userPreferences object, unless:
-        //   If not cached or if dirty, get from File
-        console.log('Global-Variables getUserPreferences ...');
-
-        let url: string = 'userPreferences';
-        this.filePath = './assets/data.userPreferences.json';
-
-        return new Promise<UserPreferences>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if (this.isDirtyUserPreferences) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
-                    .then(res => {
-                        this.userPreferences = res;
-
-                        // Load global Vars
-                        this.isDirtyUserPreferences = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getUserPreferences 1', this.userPreferences)
-                        resolve(this.userPreferences);
-                    });
-            } else {
-                console.log('Global-Variables getUserPreferences 2', this.userPreferences)
-                resolve(this.userPreferences);
-            }
-        });
-
-    }
-
     saveUserPreferences(data: UserPreferences): Promise<string> {
         // Description: Saves userPreferences
         // Returns: 'Saved' or error message
