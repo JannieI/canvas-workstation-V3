@@ -1455,7 +1455,7 @@ console.log('xx temp', temp);
                     };
                         
                     // Update Global vars to make sure they remain in sync
-                    this.dashboardsRecent.push(temp);
+                    this.dashboardsRecent.splice(0, 1, temp);
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
                     console.log('dashboardsRecent ADDED', res, this.dashboardsRecent)
 

@@ -16,7 +16,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard, DashboardTab }                  from './models';
+import { Dashboard, DashboardTab, DashboardRecent }                  from './models';
 
 @Component({
     selector: 'dashboard-new',
@@ -93,10 +93,24 @@ export class DashboardNewComponent implements OnInit {
                 this.globalVariableService.refreshCurrentDashboard(
                     'addDashboard-clickCreate', d.id, t.id, ''
                 );
+
+                // Update recent list
+                let today = new Date();
+                let newRecent: DashboardRecent = {
+                    userID: this.globalVariableService.currentUser.userID,
+                    dashboardID: d.id,
+                    dashboardTabID: t.id,
+                    editMode: false,
+                    accessed: today.toString(),
+                    stateAtRunTime: 'Draft',
+                    nameAtRunTime: d.name
+                };
+                this.globalVariableService.addDashboardRecent(newRecent);
+
                 console.log('xx end new', this.globalVariableService.dashboards, this.globalVariableService.currentDashboardTabs, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
                 this.formDashboardNewClosed.emit('Created');
             })
-        })
+        });
         
     }
 }
