@@ -275,6 +275,10 @@ export class AppComponent implements OnInit {
     fields: Field[];
     isBusyResizing: boolean = false;
     isFirstTimeUser: boolean = false;
+    minWidgetContainerHeight: number = 96;     // Smallest that W Container can get
+    minWidgetContainerWidth: number = 108;     // Smallest that W Container can get
+    minGraphHeight: number = 1;                // Smallest that Graph can get
+    minGraphWidth: number = 1;                 // Smallest that Graph can get
     modalFormOpen: boolean = false;
     moveStartX: number;
     moveStartY: number;
@@ -4543,7 +4547,7 @@ console.log('xx w', this.currentWidgets)
         gvIndex = this.globalVariableService.currentWidgets.findIndex(w =>
             w.id == this.currentWidgets[index].id
         );
-        console.log('xx gvIndex', index, gvIndex)
+        console.log('xx Y', this.startY, ev.y)
 
         // Top moved: adjust the height & top
         if (resizeTop) {
@@ -4554,51 +4558,57 @@ console.log('xx w', this.currentWidgets)
                     this.currentWidgets[index].containerTop;
             };
             this.currentWidgets[index].containerHeight =
-                this.currentWidgets[index].containerHeight - ev.y + this.startY;
+                Math.max(this.minWidgetContainerHeight, 
+                    this.currentWidgets[index].containerHeight - ev.y + this.startY);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].containerHeight =
-                    this.currentWidgets[index].containerHeight;
+                    Math.max(this.minWidgetContainerHeight, 
+                        this.currentWidgets[index].containerHeight);
             };
 
-            this.currentWidgets[index].graphHeight =
-                this.currentWidgets[index].graphHeight - ev.y + this.startY;
+            this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight, 
+                this.currentWidgets[index].graphHeight - ev.y + this.startY);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].graphHeight =
-                    this.currentWidgets[index].graphHeight;
+                Math.max(this.minGraphHeight, this.currentWidgets[index].graphHeight);
             };
         };
 
         // Right moved: adjust the width
         if (resizeRight) {
-            this.currentWidgets[index].containerWidth =
-                this.currentWidgets[index].containerWidth - this.startX + ev.x;
+            this.currentWidgets[index].containerWidth =  
+                Math.max(this.minWidgetContainerWidth, 
+                    this.currentWidgets[index].containerWidth - this.startX + ev.x);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].containerWidth =
-                    this.currentWidgets[index].containerWidth;
+                    Math.max(this.minWidgetContainerWidth, 
+                        this.currentWidgets[index].containerWidth);
             };
 
-            this.currentWidgets[index].graphWidth =
-                this.currentWidgets[index].graphWidth - this.startX + ev.x;
+            this.currentWidgets[index].graphWidth = Math.max(this.minGraphWidth, 
+                this.currentWidgets[index].graphWidth - this.startX + ev.x);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].graphWidth =
-                    this.currentWidgets[index].graphWidth;
+                Math.max(this.minGraphWidth, this.currentWidgets[index].graphWidth);
             };
         };
 
         // Bottom moved: adjust the height
         if (resizeBottom) {
             this.currentWidgets[index].containerHeight =
-                this.currentWidgets[index].containerHeight - this.startY + ev.y;
+                Math.max(this.minWidgetContainerHeight, 
+                    this.currentWidgets[index].containerHeight - this.startY + ev.y);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].containerHeight =
-                    this.currentWidgets[index].containerHeight;
+                    Math.max(this.minWidgetContainerHeight, 
+                        this.currentWidgets[index].containerHeight);
             };
 
-            this.currentWidgets[index].graphHeight =
-                this.currentWidgets[index].graphHeight - this.startY + ev.y;
+            this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight, 
+                this.currentWidgets[index].graphHeight - this.startY + ev.y);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].graphHeight =
-                    this.currentWidgets[index].graphHeight;
+                Math.max(this.minGraphHeight, this.currentWidgets[index].graphHeight);
             };
         };
 
@@ -4612,17 +4622,19 @@ console.log('xx w', this.currentWidgets)
             };
 
             this.currentWidgets[index].containerWidth =
-                this.currentWidgets[index].containerWidth - ev.x + this.startX;
+                Math.max(this.minWidgetContainerWidth, 
+                    this.currentWidgets[index].containerWidth - ev.x + this.startX);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].containerWidth =
-                    this.currentWidgets[index].containerWidth;
+                    Math.max(this.minWidgetContainerWidth, 
+                        this.currentWidgets[index].containerWidth);
             };
 
-            this.currentWidgets[index].graphWidth =
-                this.currentWidgets[index].graphWidth - ev.x + this.startX;
+            this.currentWidgets[index].graphWidth = Math.max(this.minGraphWidth ,
+                this.currentWidgets[index].graphWidth - ev.x + this.startX);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].graphWidth =
-                    this.currentWidgets[index].graphWidth;
+                Math.max(this.minGraphWidth, this.currentWidgets[index].graphWidth);
             };
         };
 
