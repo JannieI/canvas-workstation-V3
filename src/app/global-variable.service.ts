@@ -891,42 +891,6 @@ export class GlobalVariableService {
 
     }
 
-    // dashboardDelete(index: number) {
-    //     //
-    //     console.log('Global-Variables dashboardDelete', index)
-
-    //     for (var i = 0; i < this.currentWidgets.length; i++) {
-    //         i => {
-    //                 if (i.id == index) { i.isTrashed = true}
-    //             }
-    //     }
-    // }
-
-    addDashboardRecent(dashboardID: number, dashboardTabID: number) {
-        //
-        console.log('Global-Variables addDashboardRecent ...', dashboardID, dashboardTabID);
-
-        // TODO - put to DB
-    }
-
-    deleteDashboardRecent(index: number): Promise<boolean> {
-        //
-        console.log('Global-Variables deleteDashboardRecent ...', index);
-
-        // Update data
-        return new Promise<boolean>((resolve, reject) => {
-            let i: number = this.dashboardsRecent.indexOf(index);
-            if (i >= 0) {
-                this.dashboardsRecent.splice(i , 1);
-            };
-
-            // Refresh temp array
-            this.getDashboardsRecentList(this.currentUser.userID).then(
-                i => resolve(true)
-            )
-        });
-    }
-
     getDashboards(): Promise<Dashboard[]> {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
@@ -1492,41 +1456,29 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         });
     }
 
-    getDashboardsRecentlyUsed(userID: string): Promise<Dashboard[]> {
-        // Description: Gets all Recent Ds
-        // Returns: recent [D] array, unless:
-        //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDashboardsRecentlyUsed ...');
+    addDashboardRecent(dashboardID: number, dashboardTabID: number) {
+        //
+        console.log('Global-Variables addDashboardRecent ...', dashboardID, dashboardTabID);
 
-        // Refresh from source at start, or if dirty
-        if ( (this.isDirtyDashboards)  ||  (this.isDirtyDashboardsRecent) ) {
-            return new Promise<Dashboard[]>((resolve, reject) => {
-                this.getDashboardsRecentList(userID)
-                    .then(data => {
-                        let returnData: Dashboard[] = [];
-                        for (var i = 0; i < this.dashboards.length; i++) {
-                            if (data.indexOf(this.dashboards[i].id) != -1) {
-                                returnData.push(this.dashboards[i]);
-                            }
-                        }
-                        console.log('Global-Variables getDashboardsRecentlyUsed 1', userID, returnData)
-                        resolve(returnData);
+        // TODO - put to DB
+    }
 
-                })
-             })
-        } else {
-            return new Promise<Dashboard[]>((resolve, reject) => {
-                let returnData: Dashboard[] = [];
-                for (var i = 0; i < this.dashboards.length; i++) {
-                    if (this.dashboardsRecent.indexOf(this.dashboards[i].id) != -1) {
-                        returnData.push(this.dashboards[i]);
-                    }
-                }
-                console.log('Global-Variables getDashboardsRecentlyUsed 2', userID, returnData)
-                resolve(returnData);
-            });
-        };
+    deleteDashboardRecent(index: number): Promise<boolean> {
+        //
+        console.log('Global-Variables deleteDashboardRecent ...', index);
 
+        // Update data
+        return new Promise<boolean>((resolve, reject) => {
+            let i: number = this.dashboardsRecent.indexOf(index);
+            if (i >= 0) {
+                this.dashboardsRecent.splice(i , 1);
+            };
+
+            // Refresh temp array
+            this.getDashboardsRecentList(this.currentUser.userID).then(
+                i => resolve(true)
+            )
+        });
     }
 
     getDataset(): Promise<Dataset[]> {

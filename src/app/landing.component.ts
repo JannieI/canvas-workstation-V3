@@ -196,7 +196,7 @@ export class LandingComponent implements OnInit {
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit('OpenRecent');
 	}
-
+ 
 	clickDeleteRecent(index: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteRecent', '@Start');
@@ -204,9 +204,6 @@ export class LandingComponent implements OnInit {
 		// Delete from temp array, refresh
 		this.globalVariableService.deleteDashboardRecent(index).then(
 			i => {
-				// this.recentDashboards = this.globalVariableService.getDashboardsRecentlyUsed(
-			// 	this.globalVariableService.currentUser.userID
-			// );
 		})
 	}
 
