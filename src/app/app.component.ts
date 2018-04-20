@@ -395,54 +395,55 @@ export class AppComponent implements OnInit {
     ) {
 
         // TODO - change hard coding & do via login (Server), and Standalone
-        this.globalVariableService.currentUser = {
-            id: 1,
-            userID: 'JannieI',
-            password: '',
-            firstName: '',
-            lastName: '',
-            nickName: '',
-            email: '',
-            workNumber: '',
-            cellNumber: '',
-            groups: ['everyone', 'admin', 'marketing'],
-            isSuperuser: false,
-            isStaff: false,
-            isActive: false,
-            dateJoined: '2017/01/01',
-            lastLogin: '2017/01/01',
-            colorScheme: '',
-            startupDashboardID: 6,
-            startupDashboardTabID: 0,
-            gridSize: 3,
-            environment: '',
-            profilePicture: '',
-            queryRuntimeWarning: 3,
-            snapToGrid: false,
-            favouriteDashboards: [1],
-            isFirstTimeUser: true,
-            isAdministrator: true,
-            isDashboardCreator: true,
-            isDashboardEditor: true,
-            isDashboardSaver :true,
-            isDashboardQA: false,
-            isDashboardDelete: true,
-            isDashboardAccess: true,
-            preferencePaletteHorisontal: false,
-            preferenceAutoSync: true,
-            preferenceShowOpenStartupMessage: false,
-            preferenceShowOpenDataCombinationMessage: false,
-            preferenceShowViewStartupMessage: false,
-            preferenceShowDiscardStartupMessage: false,
-            preferenceDefaultTemplate: '',
-            preferenceDefaultDateformat: 'YYYY/MM/DD',
-            preferenceDefaultFolder: '',
-            preferenceDefaultPrinter: 'HP 650',
-            preferenceDefaultPageSize: 'A4',
-            preferenceDefaultPageLayout: 'Portrait'
+        // this.globalVariableService.currentUser = {
+        //     id: 1,
+        //     userID: 'JannieI',
+        //     password: '',
+        //     firstName: '',
+        //     lastName: '',
+        //     nickName: '',
+        //     email: '',
+        //     workNumber: '',
+        //     cellNumber: '',
+        //     groups: ['everyone', 'admin', 'marketing'],
+        //     isSuperuser: false,
+        //     isStaff: false,
+        //     isActive: false,
+        //     dateJoined: '2017/01/01',
+        //     lastLogin: '2017/01/01',
+        //     colorScheme: '',
+        //     startupDashboardID: 6,
+        //     startupDashboardTabID: 0,
+        //     gridSize: 3,
+        //     environment: '',
+        //     profilePicture: '',
+        //     queryRuntimeWarning: 3,
+        //     snapToGrid: false,
+        //     favouriteDashboards: [1],
+        //     isFirstTimeUser: true,
+        //     isAdministrator: true,
+        //     isDashboardCreator: true,
+        //     isDashboardEditor: true,
+        //     isDashboardSaver :true,
+        //     isDashboardQA: false,
+        //     isDashboardDelete: true,
+        //     isDashboardAccess: true,
+        //     preferencePaletteHorisontal: false,
+        //     preferenceAutoSync: true,
+        //     preferenceShowOpenStartupMessage: false,
+        //     preferenceShowOpenDataCombinationMessage: false,
+        //     preferenceShowViewStartupMessage: false,
+        //     preferenceShowDiscardStartupMessage: false,
+        //     preferenceDefaultTemplate: '',
+        //     preferenceDefaultDateformat: 'YYYY/MM/DD',
+        //     preferenceDefaultFolder: '',
+        //     preferenceDefaultPrinter: 'HP 650',
+        //     preferenceDefaultPageSize: 'A4',
+        //     preferenceDefaultPageLayout: 'Portrait'
             
-        }
-        console.log('Welcome ', this.globalVariableService.currentUser.userID)
+        // }
+        
+        // console.log('Welcome ', this.globalVariableService.currentUser.userID)
     }
 
     ngOnInit() {
@@ -451,33 +452,41 @@ export class AppComponent implements OnInit {
 
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();
-        this.globalVariableService.getCanvasUsers();
 
-        this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
-            this.paletteButtons = i.sort( (obj1,obj2) => {
-                if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
-                    return 1;
-                };
-                if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
-                    return -1;
-                };
-                return 0;
+        // TODO - fix hard coding, must be done via Login
+        this.globalVariableService.getCanvasUsers().then(res => {
+            this.globalVariableService.currentUser = this.globalVariableService.canvasUsers
+                .filter(u => u.userID == 'JannieI')[0];
+            console.log('Welcome ' + this.globalVariableService.currentUser.userID)
+
+
+            this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
+                this.paletteButtons = i.sort( (obj1,obj2) => {
+                    if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
+                        return 1;
+                    };
+                    if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
+                        return -1;
+                    };
+                    return 0;
+                });
+    
+                // Synch BehSubj that hold orientation
+                this.globalVariableService.preferencePaletteHorisontal.next( 
+                    this.globalVariableService.currentUser.preferencePaletteHorisontal
+                );
+    
+                console.log('xx p ', this.globalVariableService.currentUser.preferencePaletteHorisontal,this.paletteHeight, this.paletteWidth)
+
+                this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
+
+                    // Calc the W and H - store and this.paletteHeight and this.paletteWidth
+                    this.setPaletteHeightAndWidth()
+                );
+        
             });
-
-            // Synch BehSubj that hold orientation
-            this.globalVariableService.preferencePaletteHorisontal.next( 
-                this.globalVariableService.userPreferences.preferencePaletteHorisontal
-            );
-
-            console.log('xx p ', this.globalVariableService.userPreferences.preferencePaletteHorisontal,this.paletteHeight, this.paletteWidth)
         });
-
-        this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
-
-            // Calc the W and H - store and this.paletteHeight and this.paletteWidth
-            this.setPaletteHeightAndWidth()
-        );
-
+      
         this.globalVariableService.presentationMode.subscribe(
             pres => this.presentationMode = pres
         );
@@ -5139,7 +5148,7 @@ console.log('xx w', this.currentWidgets)
         // Sets the Height and Width of the Palette according to the user pref
         this.globalFunctionService.printToConsole(this.constructor.name,'setPaletteHeightAndWidth', '@Start');
 
-        if (this.globalVariableService.userPreferences.preferencePaletteHorisontal){
+        if (this.globalVariableService.currentUser.preferencePaletteHorisontal){
             // Horisontal
             this. paletteHeight = 35;
             this. paletteWidth = this.globalVariableService.currentPaletteButtonsSelected
