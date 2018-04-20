@@ -3132,34 +3132,6 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         });
     }
 
-    saveUserPreferences(data: UserPreferences): Promise<string> {
-        // Description: Saves userPreferences
-        // Returns: 'Saved' or error message
-        console.log('Global-Variables saveUserPreferences ...');
-
-        let url: string = 'userPreferences';
-        this.filePath = './assets/data.userPreferences.json';
-
-        return new Promise<string>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.put('http://localhost:3000/' + url, data, {headers})
-            .subscribe(
-                res => {
-                    this.userPreferences = JSON.parse(JSON.stringify(res));
-                    console.log('saveUserPreferences SAVED', res)
-                    resolve('Saved');
-                },
-                err => {
-                    console.log('Error saveUserPreferences FAILED');;
-                    resolve(err.Message.toString());
-                }
-            )
-        });
-    }
-
     getDashboardSubscriptions(): Promise<DashboardSubscription[]> {
         // Description: Gets dashboardSubscriptions 
         // Returns: this.dashboardSubscriptions object, unless:
