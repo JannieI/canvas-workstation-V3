@@ -557,7 +557,6 @@ export class GlobalVariableService {
     canvasUsers: CanvasUser[] = [];
     canvasGroups: CanvasGroup[] = [];
     dashboardTabs: DashboardTab[] = [];
-    dashboardsRecent: number[];
     dashboardSchedules: DashboardSchedule[] = [];
     dashboardTags: DashboardTag[] = [];
     dashboardPermissions: DashboardPermission[] = [];
@@ -1396,7 +1395,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             // Refresh from source at start
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
             this.get(url).then(data => {
-                this.dashboardsRecent = [];
+
                 // TODO - http must be sorted => include in Options ...
                 let temp: DashboardRecent[] = data.filter(
                     i => i.userID == userID
@@ -1435,15 +1434,16 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
         // Update data
         return new Promise<boolean>((resolve, reject) => {
-            let i: number = this.dashboardsRecent.indexOf(index);
-            if (i >= 0) {
-                this.dashboardsRecent.splice(i , 1);
-            };
+        //     let i: number = this.dashboardsRecent.indexOf(index);
+        //     if (i >= 0) {
+        //         this.dashboardsRecent.splice(i , 1);
+        //     };
 
-            // Refresh temp array
-            this.getDashboardsRecentList(this.currentUser.userID).then(
-                i => resolve(true)
-            )
+        //     // Refresh temp array
+        //     this.getDashboardsRecentList(this.currentUser.userID).then(
+        //         i => resolve(true)
+        //     )
+        return true
         });
     }
 
