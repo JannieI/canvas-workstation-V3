@@ -239,6 +239,7 @@ Tabs:
 Widgets:
 - Decide to get a W from another D - only show those where the user has access to the DS
 - Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
+- Treeview: consider (later more functionality): 1. drag and drop W onto different Tabs,  2. Delete icon to delete here (name ~ title may not be clear), 3. click and goto tab where W lives,  4. add Tabs, to show hierarchy better: Tab -< Ws - DS + Sl, Tab -< Sl -< Ws + DS
 - consider case-INsensitive testing in filterSlicer, or make it a user-defined setting
 - Give the user a vote - via like?  Create a sense of belonging and community
 - Consider multi-W actions, ie to move ALL selected objects - remember complexity since Sl and W sits in different components ...  Also, the current code is specific to ONE

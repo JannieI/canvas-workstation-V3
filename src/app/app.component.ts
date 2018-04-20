@@ -427,8 +427,20 @@ export class AppComponent implements OnInit {
             isDashboardSaver :true,
             isDashboardQA: false,
             isDashboardDelete: true,
-            isDashboardAccess: true
-    
+            isDashboardAccess: true,
+            preferencePaletteHorisontal: false,
+            preferenceAutoSync: true,
+            preferenceShowOpenStartupMessage: false,
+            preferenceShowOpenDataCombinationMessage: false,
+            preferenceShowViewStartupMessage: false,
+            preferenceShowDiscardStartupMessage: false,
+            preferenceDefaultTemplate: '',
+            preferenceDefaultDateformat: 'YYYY/MM/DD',
+            preferenceDefaultFolder: '',
+            preferenceDefaultPrinter: 'HP 650',
+            preferenceDefaultPageSize: 'A4',
+            preferenceDefaultPageLayout: 'Portrait'
+            
         }
         console.log('Welcome ', this.globalVariableService.currentUser.userID)
     }
@@ -5125,7 +5137,7 @@ console.log('xx w', this.currentWidgets)
 
     setPaletteHeightAndWidth() {
         // Sets the Height and Width of the Palette according to the user pref
-        this.globalFunctionService.printToConsole(this.constructor.name,'setPalette', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'setPaletteHeightAndWidth', '@Start');
 
         if (this.globalVariableService.userPreferences.preferencePaletteHorisontal){
             // Horisontal

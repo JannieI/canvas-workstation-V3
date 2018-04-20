@@ -250,6 +250,18 @@ export class CanvasUser {
     isDashboardQA: boolean;                 // Role can QA a Dashboard
     isDashboardDelete: boolean;             // Role can delete a Dashboard
     isDashboardAccess: boolean;             // Role can change access to a Dashboard
+    preferencePaletteHorisontal: boolean;                   // T/F - Palette Horisontal (else Vertial)
+    preferenceAutoSync: boolean;                            // T/F - can auto sync
+    preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg
+    preferenceShowOpenDataCombinationMessage: boolean;      // T/F - show msg on open combination form
+    preferenceShowViewStartupMessage: boolean;              // T/F - show msg on open view form
+    preferenceShowDiscardStartupMessage: boolean;           // T/F - show msg on discard form
+    preferenceDefaultTemplate: string;                      // Default Template
+    preferenceDefaultDateformat: string;                    // Default Date Format, ie YYYY/MM/DD
+    preferenceDefaultFolder: string;                        // Default Folder
+    preferenceDefaultPrinter: string;                       // Default Printer
+    preferenceDefaultPageSize: string;                      // Default Page Size
+    preferenceDefaultPageLayout: string;                    // Default Page Layout
 }
 
 export class CanvasGroup {
