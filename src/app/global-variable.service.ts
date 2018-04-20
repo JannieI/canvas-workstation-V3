@@ -635,7 +635,7 @@ export class GlobalVariableService {
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
-    recentDashboards = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
+    dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);
@@ -1384,7 +1384,8 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Returns: return array from source, not cached
         // Note:  data is ALWAYS synced to 3 different places:
         // - DB
-        // - 
+        // - this.recentDashboards (GV)
+        // 
         console.log('Global-Variables getDashboardsRecent ...');
 
         let url: string = 'dashboardsRecent';

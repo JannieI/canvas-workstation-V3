@@ -518,7 +518,7 @@ export class AppComponent implements OnInit {
                  }
         );
 
-        this.globalVariableService.recentDashboards.subscribe(
+        this.globalVariableService.dashboardsRecentBehSubject.subscribe(
             i => this.recentDashboards = i.filter(j => j.stateAtRunTime != 'Deleted')
         );
 
