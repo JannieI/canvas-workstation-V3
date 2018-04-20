@@ -1416,7 +1416,6 @@ console.log('xx res', res);
                 };
 console.log('xx temp', temp);
                 
-                    // this.datasets.push(JSON.parse(JSON.stringify(res)));
                 this.dashboardsRecent = temp;
                 this.dashboardsRecentBehSubject.next(temp);
                 console.log('Global-Variables dashboardsRecent 1', temp)
@@ -1443,18 +1442,27 @@ console.log('xx temp', temp);
 
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
-                    
+                res => {
+                    let temp: DashboardRecent = JSON.parse(JSON.stringify(res));
+    
+                    // Add State and Name, at Runtime
+                    for (var i = 0; i < this.dashboards.length; i++) {
+                        if (this.dashboards[i].id ==
+                            temp.dashboardID) {
+                                temp.stateAtRunTime = this.dashboards[i].state;
+                                temp.nameAtRunTime = this.dashboards[i].name;
+                        };
+                    };
+                        
                     // Update Global vars to make sure they remain in sync
-                    this.dashboardTabs.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDashboardTabs.push(JSON.parse(JSON.stringify(data)));
-                    
-                    console.log('addDashboardTab ADDED', data, this.dashboardTabs)
+                    this.dashboardsRecent.push(temp);
+                    this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
+                    console.log('dashboardsRecent ADDED', res, this.dashboardsRecent)
 
-                    resolve(data);
+                    resolve(temp);
                 },
                 err => {
-                    console.log('Error addDashboardTab FAILED', err);;
+                    console.log('Error dashboardsRecent FAILED', err);;
                     resolve(err.Message);
                 }
             )
