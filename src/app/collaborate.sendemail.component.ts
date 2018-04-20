@@ -17,7 +17,6 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
-import { UserPreferences }            from './models';
 
 @Component({
     selector: 'collaborate-sendemail',
@@ -64,37 +63,6 @@ export class CollaborateSendEmailComponent implements OnInit {
         // Save data and Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // let data: UserPreferences = {
-        //     preferencePaletteHorisontal: this.preferencePaletteHorisontal,
-        //     preferenceAutoSync: this.preferenceAutoSync,
-        //     preferenceShowOpenStartupMessage: this.preferenceShowOpenStartupMessage,
-        //     preferenceShowOpenDataCombinationMessage: this.preferenceShowOpenDataCombinationMessage,
-        //     preferenceShowViewStartupMessage: this.preferenceShowViewStartupMessage,
-        //     preferenceShowDiscardStartupMessage: this.preferenceShowDiscardStartupMessage,
-        //     preferenceDefaultTemplate: this.preferenceDefaultTemplate,
-        //     preferenceDefaultDateformat: this.preferenceDefaultDateformat,
-        //     preferenceDefaultFolder: this.preferenceDefaultFolder,
-        //     preferenceDefaultPrinter: this.preferenceDefaultPrinter,
-        //     preferenceDefaultPageSize: this.preferenceDefaultPageSize,
-        //     preferenceDefaultPageLayout: this.preferenceDefaultPageLayout,
-        // };
-
-        // // Save globally, and in DB
-        // this.globalVariableService.userPreferences = data;
-        // this.globalVariableService.saveUserPreferences(data).then(
-        //     res =>
-        //         {
-        //             this.globalVariableService.showStatusBarMessage(
-        //                 {
-        //                     message: 'Prefs saved',
-        //                     uiArea: 'StatusBar',
-        //                     classfication: 'Info',
-        //                     timeout: 3000,
-        //                     defaultMessage: ''
-        //                 }
-        //             );
-        //         }
-        // );
 		this.formDashboardSendEmailClosed.emit(action);
     }
 
