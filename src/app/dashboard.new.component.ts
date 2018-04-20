@@ -90,13 +90,10 @@ export class DashboardNewComponent implements OnInit {
             // Add Tab to DB
             this.globalVariableService.addDashboardTab(newDashboardTab).then(t => {
 
-                this.globalVariableService.refreshCurrentDashboard(
-                    'addDashboard-clickCreate', d.id, t.id, ''
-                );
-
                 // Update recent list
                 let today = new Date();
                 let newRecent: DashboardRecent = {
+                    id: null,
                     userID: this.globalVariableService.currentUser.userID,
                     dashboardID: d.id,
                     dashboardTabID: t.id,
@@ -105,10 +102,15 @@ export class DashboardNewComponent implements OnInit {
                     stateAtRunTime: 'Draft',
                     nameAtRunTime: d.name
                 };
-                this.globalVariableService.addDashboardRecent(newRecent);
+                this.globalVariableService.addDashboardRecent(newRecent).then(dR => {
 
-                console.log('xx end new', this.globalVariableService.dashboards, this.globalVariableService.currentDashboardTabs, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
-                this.formDashboardNewClosed.emit('Created');
+                    this.globalVariableService.refreshCurrentDashboard(
+                        'addDashboard-clickCreate', d.id, t.id, ''
+                    );
+
+                    console.log('xx end new', this.globalVariableService.dashboards, this.globalVariableService.currentDashboardTabs, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
+                    this.formDashboardNewClosed.emit('Created');
+                });
             })
         });
         

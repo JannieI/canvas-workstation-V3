@@ -273,7 +273,7 @@ const dashboardTemplate: Dashboard =
     {
         id: null,
         version: 0,
-        state: '',
+        state: 'Draft',
         code: '',
         name: '',
         description: '',

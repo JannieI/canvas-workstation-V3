@@ -449,6 +449,7 @@ export class DashboardTab {
 
 // List of Recently opened D
 export class DashboardRecent {
+    id: number;                         // Unique ID
     userID: string;                     // User who last saved the D
     dashboardID: number;                // Last D position
     dashboardTabID: number;             // Last T position
