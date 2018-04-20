@@ -45,7 +45,7 @@ export class DashboardOpenComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.dashboards = this.globalVariableService.dashboards.slice();
-        this.isFirstTimeDashboardOpen = this.globalVariableService.userPreferences.preferenceShowOpenStartupMessage;
+        this.isFirstTimeDashboardOpen = this.globalVariableService.currentUser.preferenceShowOpenStartupMessage;
     }
 
     clickClose(action: string) {
@@ -63,7 +63,7 @@ export class DashboardOpenComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
 
-        this.globalVariableService.userPreferences.preferenceShowOpenStartupMessage
+        this.globalVariableService.currentUser.preferenceShowOpenStartupMessage
             = false;
         this.globalVariableService.saveUserPreferences(this.globalVariableService.userPreferences);
     }
