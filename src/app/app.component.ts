@@ -185,6 +185,11 @@ export class AppComponent implements OnInit {
             this.clickMenuEditRedo();
             return;
         };
+        if (event.code == 'KeyC'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
+            this.clickMenuWidgetCopy();
+            return;
+        };
+
         if (event.code == 'Delete'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
             this.clickMenuPaletteDelete();
             return;
