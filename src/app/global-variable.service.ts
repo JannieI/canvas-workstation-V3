@@ -42,7 +42,6 @@ import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';
 import { Transformation }             from './models';
-import { UserPreferences }            from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 
@@ -520,21 +519,6 @@ export class GlobalVariableService {
         notInEditModeMsg: 'Not in Edit Mode (see Edit menu Option)',
         noQueryRunningMessage: 'No Query',
         queryRunningMessage: 'Query running...'
-    }
-
-    userPreferences: UserPreferences = {
-        preferencePaletteHorisontal: false,
-        preferenceAutoSync: true,
-        preferenceShowOpenStartupMessage: true,
-        preferenceShowOpenDataCombinationMessage: true,
-        preferenceShowViewStartupMessage: true,
-        preferenceShowDiscardStartupMessage: true,
-        preferenceDefaultTemplate: '',
-        preferenceDefaultDateformat: '',
-        preferenceDefaultFolder: '',
-        preferenceDefaultPrinter: '',
-        preferenceDefaultPageSize: '',
-        preferenceDefaultPageLayout: ''
     }
 
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;

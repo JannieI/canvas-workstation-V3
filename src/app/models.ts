@@ -52,21 +52,6 @@ export class DatagridInput {
 }
 
 // Setup / Settings / General
-export class UserPreferences {
-    preferencePaletteHorisontal: boolean;                   // T/F - Palette Horisontal (else Vertial)
-    preferenceAutoSync: boolean;                            // T/F - can auto sync
-    preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg
-    preferenceShowOpenDataCombinationMessage: boolean;      // T/F - show msg on open combination form
-    preferenceShowViewStartupMessage: boolean;              // T/F - show msg on open view form
-    preferenceShowDiscardStartupMessage: boolean;           // T/F - show msg on discard form
-    preferenceDefaultTemplate: string;                      // Default Template
-    preferenceDefaultDateformat: string;                    // Default Date Format, ie YYYY/MM/DD
-    preferenceDefaultFolder: string;                        // Default Folder
-    preferenceDefaultPrinter: string;                       // Default Printer
-    preferenceDefaultPageSize: string;                      // Default Page Size
-    preferenceDefaultPageLayout: string;                    // Default Page Layout
-}
-
 export class CanvasSettings {
     companyName: string;                    // Company Name
     companyLogo: string;                    // Optional file name for Company logo

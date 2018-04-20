@@ -146,7 +146,6 @@ export class LandingComponent implements OnInit {
 
 		// Get setup info
 		this.globalVariableService.getBackgroundColors();
-		// this.globalVariableService.getUserPreferences();
 		
 	}
 
