@@ -1448,6 +1448,22 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         });
     }
 
+    dashboardRecentExists(
+        dashboardID: number, 
+        dashboardTabID: number): boolean {
+        // Determines if D in the Recent list, returns T/F
+        console.log('Global-Variables dashboardRecentExists ...');
+
+        // Determine if already in Recent list
+        let found: boolean = false;
+        this.dashboardsRecent.forEach(dR => {
+            if (dR.dashboardID == dashboardID) {
+                found = true;
+            };
+        });
+            return found;
+    }
+
     addDashboardRecent(
         dashboardID: number, 
         dashboardTabID: number): Promise<any> {
