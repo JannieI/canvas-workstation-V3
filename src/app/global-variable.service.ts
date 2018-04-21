@@ -1449,7 +1449,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     }
 
     dashboardIndexInRecentList(dashboardID: number): number {
-        // Determines if D in the Recent list, returns T/F
+        // Returns index of first D in the Recent list. Else -1
         console.log('Global-Variables dashboardIndexInRecentList ...');
 
         // Determine index in Recent list
@@ -1460,7 +1460,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     }
 
     dashboardTabIndexInRecentList(dashboardID: number, dashboardTabID: number): number {
-        // Determines if D, T in the Recent list, returns T/F
+        // Returns index of first D, T in the Recent list.  Else -1
         console.log('Global-Variables dashboardTabIndexInRecentList ...');
 
         // Determine index in Recent list
@@ -1474,11 +1474,14 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
     amendDashboardRecent(
         dashboardID: number,
-        dashboardTabID: number) {
+        dashboardTabID: number): Promise<any>  {
         // Compares given IDs against the Recent list:
-        // - if not there, call ADD
-        // - if there but T change, call SAVE
-        // - else do nothing (it already in list)
+        // - if D not there, call ADD
+        // - if D there but T change, call SAVE
+        // - if D & T there, do nothing 
+
+                // TODO - fix this timing issue, as I have no idea why this is happening here
+                this.sleep(2000);
 
         let indexD: number = this.dashboardIndexInRecentList(dashboardID);
         let indexTab: number = this.dashboardTabIndexInRecentList(dashboardID, dashboardTabID);
@@ -1495,16 +1498,27 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 stateAtRunTime: 'Draft',
                 nameAtRunTime: ''
             };
-
-            this.addDashboardRecent(newRecent);
+            return new Promise<any>((resolve, reject) => {
+                this.addDashboardRecent(newRecent).then(dR =>
+                    resolve(dR)
+                )
+            });
         } else {
             if (indexTab == -1) {
 
                 let recentD: DashboardRecent = this.dashboardsRecent[indexTab];
                 recentD.dashboardTabID = dashboardTabID;
-                this.saveDashboardRecent(recentD);
-            }
-        }
+                return new Promise<any>((resolve, reject) => {
+                    this.saveDashboardRecent(recentD).then(res =>
+                        resolve(recentD)
+                    )
+                });
+            } else {
+                return new Promise<any>((resolve, reject) => {
+                    resolve(null);
+                });
+            };
+        };
 
     }
 
