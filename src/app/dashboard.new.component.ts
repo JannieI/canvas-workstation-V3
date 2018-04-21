@@ -96,7 +96,6 @@ export class DashboardNewComponent implements OnInit {
                         'addDashboard-clickCreate', d.id, t.id, ''
                     );
 
-                    console.log('xx end new', this.globalVariableService.dashboards, this.globalVariableService.currentDashboardTabs, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
                     this.formDashboardNewClosed.emit('Created');
                 });
             })

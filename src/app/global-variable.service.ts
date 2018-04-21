@@ -1540,7 +1540,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             this.http.post('http://localhost:3001/' + url, data, {headers})
             .subscribe(
                 res => {
-                    console.log('xx gv after post', res)
+
                     let temp: DashboardRecent = JSON.parse(JSON.stringify(res));
 
                     // Add State and Name, at Runtime
@@ -1554,7 +1554,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
                     // Update Global vars to make sure they remain in sync
                     this.dashboardsRecent = [temp].concat(this.dashboardsRecent);
-                    console.log('xx this.dashboardsRecent', this.dashboardsRecent)
+
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                     console.log('dashboardsRecent ADDED', res, this.dashboardsRecent)
@@ -1716,7 +1716,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 this.filePath = this.datasets[i].folderName + this.datasets[i].fileName;
             }
         };
-console.log('xx getCurrentDataset url', url, this.datasets)
+
         return new Promise<any>((resolve, reject) => {
 
             // Data already in dataset
@@ -1940,10 +1940,9 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             &&  w.datasetID == dataSet.id
             &&  w.widgetType == 'Slicer'
         );
-        console.log('xx 1', dataSet)
+
         // Reset the filtered data
         dataSet.data = dataSet.dataRaw;
-        console.log('xx 2', dataSet)
 
         // Loop on related Sl and filter data
         relatedSlicers.forEach(w => {
@@ -2758,7 +2757,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
 
                             for (var i = 0; i < dashboardWidgets.length; i++) {
                                 if (datasourceIDs.indexOf(dashboardWidgets[i].datasourceID) < 0) {
-                                    console.log('xx id', dashboardWidgets[i].datasourceID)
+
                                     if (dashboardWidgets[i].datasourceID != null) {
                                         datasourceIDs.push(dashboardWidgets[i].datasourceID)
                                     };

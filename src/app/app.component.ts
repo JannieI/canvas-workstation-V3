@@ -488,8 +488,6 @@ export class AppComponent implements OnInit {
                     this.globalVariableService.currentUser.preferencePaletteHorisontal
                 );
     
-                console.log('xx p ', this.globalVariableService.currentUser.preferencePaletteHorisontal,this.paletteHeight, this.paletteWidth)
-
                 this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
 
                     // Calc the W and H - store and this.paletteHeight and this.paletteWidth
@@ -519,7 +517,6 @@ export class AppComponent implements OnInit {
         );
 
         this.globalVariableService.dashboardsRecentBehSubject.subscribe(i => {
-            console.log('xx app dRec', i)
             this.recentDashboards = i
         });
 
@@ -3262,7 +3259,7 @@ export class AppComponent implements OnInit {
         // Clean out previously used vars for Checkpoints
         this.currentWidgetsOriginals = [];
         this.currentWidgetCheckpoints = [];
-console.log('xx w', this.currentWidgets)
+
         this.menuOptionClickPostAction();
     }
 
@@ -4556,7 +4553,6 @@ console.log('xx w', this.currentWidgets)
         gvIndex = this.globalVariableService.currentWidgets.findIndex(w =>
             w.id == this.currentWidgets[index].id
         );
-        console.log('xx Y', this.startY, ev.y)
 
         // Top moved: adjust the height & top
         if (resizeTop) {
@@ -4825,7 +4821,6 @@ console.log('xx w', this.currentWidgets)
         });
         if (!isFound) {
             this.currentWidgetsOriginals.push(this.currentWidgets[index]);
-            console.log('xx this.currentWidgetsOriginals', this.currentWidgetsOriginals.length, this.currentWidgetsOriginals[0].graphMark)
         };
 
         // Get the W Checkpoints once

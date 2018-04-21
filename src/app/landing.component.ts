@@ -204,7 +204,7 @@ export class LandingComponent implements OnInit {
 		// Delete from temp array, refresh
 		this.globalVariableService.deleteDashboardRecent(id).then(
 			i => {
-				console.log('xx rec pre', this.dashboardsRecent)
+
 				let index: number = this.dashboardsRecent.findIndex(dR =>
 					dR.id == id
 				);
