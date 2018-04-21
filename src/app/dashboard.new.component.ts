@@ -57,7 +57,7 @@ export class DashboardNewComponent implements OnInit {
     clickCreate() {
         // Create a new Dashboard, and close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCreate', '@Start');
-    
+
         if (this.dashboardCode == '') {
             this.errorMessage = 'Code compulsory';
             return;
@@ -73,7 +73,7 @@ export class DashboardNewComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
- 
+
         // Create new D
         let newDashboard: Dashboard = this.globalVariableService.dashboardTemplate;
         newDashboard.code = this.dashboardCode;
@@ -100,6 +100,6 @@ export class DashboardNewComponent implements OnInit {
                 });
             })
         });
-        
+
     }
 }

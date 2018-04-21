@@ -688,6 +688,7 @@ export class Widget {
     shapeFill: string;                  // Fill / inside (ie of circle, colour of text, etc)
     shapeFontFamily: string;            // Font, ie Aria, Sans Serif
     shapeFontSize: number;              // Size of font in px, ie 12
+    shapeImageUrl: string;              // URL of the Image
     shapeIsBold: boolean;               // True if text is bold
     shapeIsItalic: boolean;             // True if text is italic
     shapeOpacity: number;               // Opacity, between 0 and 1, ie of rectangle

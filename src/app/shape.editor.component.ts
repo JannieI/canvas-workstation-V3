@@ -32,6 +32,7 @@ export class ShapeEditComponent implements OnInit {
     bulletIndex: number = 0;
     bulletValue: string = '';
     editBulletItem: boolean = false;
+    srcImageUrl: string;                            // url for image
     localWidget: Widget;                            // W to modify, copied from selected
     showArrow: boolean = false;
     showBullets: boolean = false;
@@ -59,7 +60,6 @@ export class ShapeEditComponent implements OnInit {
         // Create new W
          if (this.newWidget) {
 
-            // this.localWidget = Object.assign({}, this.globalVariableService.widgetTemplate);
             this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
             this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.
                 value.currentDashboardID;
@@ -89,6 +89,8 @@ export class ShapeEditComponent implements OnInit {
             // Deep copy
             this.localWidget = Object.assign({}, this.selectedWidget);
 
+            // Local vars
+            this.srcImageUrl = this.localWidget.graphUrl
             // Refresh the form with the sub type
             this.selectShape(this.localWidget.widgetSubType);
         };
@@ -227,7 +229,7 @@ export class ShapeEditComponent implements OnInit {
             // TODO - make this the field name
             this.localWidget.titleText = 'Value';
         };
-
+ 
         if (this.newWidget) {
 
             // TODO - improve this when using a DB!

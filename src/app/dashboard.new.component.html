@@ -1,7 +1,7 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
- 
+
             <button type="button" class="closeButton" (click)="clickClose()">
                 X
             </button>
@@ -29,8 +29,8 @@
                     <b>New Code:</b>
                 </div>
                 <div class="gridAddCode">
-                    <input type="text" 
-                        [(ngModel)]="dashboardCode" 
+                    <input type="text"
+                        [(ngModel)]="dashboardCode"
                         size="25"
                         autofocus
                         placeholder="New (unique) Code"
@@ -41,8 +41,8 @@
                     <b>New Name:</b>
                 </div>
                 <div class="gridAddName">
-                    <input type="text" 
-                        [(ngModel)]="dashboardName" 
+                    <input type="text"
+                        [(ngModel)]="dashboardName"
                         size="40"
                         placeholder="New (unique) name"
                         >
@@ -52,8 +52,8 @@
                     <b>New Description:</b>
                 </div>
                 <div class="gridAddDescription">
-                    <input type="text" 
-                        [(ngModel)]="dashboardDescription" 
+                    <input type="text"
+                        [(ngModel)]="dashboardDescription"
                         placeholder="Description"
                         size="50"
                         >
@@ -62,7 +62,7 @@
                 <div class="gridErrorMessage" *ngIf="errorMessage">
                     {{ errorMessage }}
                 </div>
-                    
+
                 <div class="gridAddImportTitle">
                     <b>Import:</b>
                 </div>

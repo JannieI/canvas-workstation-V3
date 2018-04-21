@@ -39,7 +39,7 @@ export class LandingComponent implements OnInit {
         private globalVariableService: GlobalVariableService,
 		private router: Router
 	) {
-		
+
 		// Load Startup info:
 
 		// Create DB models and connect
@@ -67,7 +67,7 @@ export class LandingComponent implements OnInit {
 					this.dashboardsRecent = recD.slice(0, 5);
 
 					// Palette buttons for current user
-					this.globalVariableService.getPaletteButtonsSelected().then(pBsel => 
+					this.globalVariableService.getPaletteButtonsSelected().then(pBsel =>
 						{
 
 							// User has no Buttons selected, which will be the case for new users
@@ -105,7 +105,7 @@ export class LandingComponent implements OnInit {
 
 									this.globalVariableService.allWithAsync(...promiseArray)
 										.then(resolvedData => {
-					
+
 										// Inform subscribers
 										this.globalVariableService.currentPaletteButtonsSelected.next(
 											this.globalVariableService.currentPaletteButtonsSelected.value
@@ -146,7 +146,7 @@ export class LandingComponent implements OnInit {
 
 		// Get setup info
 		this.globalVariableService.getBackgroundColors();
-		
+
 	}
 
 	ngAfterViewInit() {
@@ -167,8 +167,8 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickOpenRecentDashboard(
-		dashboardID: number, 
-		dashboardTabID: number, 
+		dashboardID: number,
+		dashboardTabID: number,
 		editMode: boolean,
 		index: number) {
         //
@@ -197,7 +197,7 @@ export class LandingComponent implements OnInit {
 		// Close modal, and show the Dashboard
 		this.formLandingClosed.emit('OpenRecent');
 	}
- 
+
 	clickDeleteRecent(id: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteRecent', '@Start');
@@ -221,7 +221,7 @@ export class LandingComponent implements OnInit {
 
 		this.formLandingClosed.emit(action);
 	}
- 
+
 	clickOpenExisting() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenExisting', '@Start');
