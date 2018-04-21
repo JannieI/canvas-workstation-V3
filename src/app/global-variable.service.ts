@@ -5041,7 +5041,8 @@ console.log('xx allS 1', this.currentDatasets.slice())
             y = currentDashboardTabs[x].id;
         } else {
             y = dashboardTabID;
-            if (this.currentDashboards.length == 0) {
+            console.log('xx hier', dashboardTabID, this.currentDashboardTabs)
+            if (currentDashboardTabs.length == 0) {
                 x = 0;
             } else {
                 for (var i = 0; i < currentDashboardTabs.length; i++) {
