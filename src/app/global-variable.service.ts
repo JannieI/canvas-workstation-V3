@@ -764,7 +764,7 @@ export class GlobalVariableService {
                     // Set T-index
                     this.currentDashboardInfo.value.currentDashboardTabIndex =
                         this.currentDashboardTabs.findIndex(t => t.id == dashboardTabID);
-    console.log('xx setted index', this.currentDashboardInfo.value);
+
                     // Load Permissions for D
                     this.getCurrentDashboardPermissions(dashboardID).then( l => {
 
