@@ -780,15 +780,15 @@ export class GlobalVariableService {
                                 this.getWidgetsInfo().then(n => {
 
                                     // Add to recent
-                                    this.amendDashboardRecent(dashboardID, dashboardTabID).then(n => {
+                                    this.amendDashboardRecent(dashboardID, dashboardTabID); //.then(n => {
 
-                                        if (this.currentDatasources.length > 0) {
-                                            this.hasDatasources.next(true);
-                                        } else {
-                                            this.hasDatasources.next(false);
-                                        }
-                                        resolve(true)
-                                    })
+                                    if (this.currentDatasources.length > 0) {
+                                        this.hasDatasources.next(true);
+                                    } else {
+                                        this.hasDatasources.next(false);
+                                    }
+                                    resolve(true)
+                                    // })
                                 })
                             })
                         })
@@ -1459,7 +1459,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         return index;
     }
 
-    dashboardTabIndexInRecentList(dashboardID: number, dashboardTabID: number): boolean {
+    dashboardTabIndexInRecentList(dashboardID: number, dashboardTabID: number): number {
         // Determines if D, T in the Recent list, returns T/F
         console.log('Global-Variables dashboardTabIndexInRecentList ...');
 
@@ -1469,6 +1469,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             &&
             dR.dashboardTabID == dashboardTabID
         );
+        return index;
     }
 
     amendDashboardRecent(
@@ -1479,7 +1480,10 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // - if there but T change, call SAVE
         // - else do nothing (it already in list)
 
-        if (!this.dashboardsInRecentList(dashboardID, dashboardTabID)) {
+        let indexD: number = this.dashboardIndexInRecentList(dashboardID);
+        let indexTab: number = this.dashboardTabIndexInRecentList(dashboardID, dashboardTabID);
+
+        if (indexD == -1) {
             let today = new Date();
             let newRecent: DashboardRecent = {
                 id: null,
@@ -1494,9 +1498,11 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
             this.addDashboardRecent(newRecent);
         } else {
-            if (!this.dashboardTabInRecentList(dashboardID, dashboardTabID)) {
+            if (indexTab == -1) {
 
-                this.saveDashboardRecent(newRecent);
+                let recentD: DashboardRecent = this.dashboardsRecent[indexTab];
+                recentD.dashboardTabID = dashboardTabID;
+                this.saveDashboardRecent(recentD);
             }
         }
 
