@@ -520,7 +520,7 @@ export class AppComponent implements OnInit {
 
         this.globalVariableService.dashboardsRecentBehSubject.subscribe(i => {
             console.log('xx app dRec', i)
-            this.recentDashboards = i.filter(j => j.stateAtRunTime != 'Deleted')
+            this.recentDashboards = i
         });
 
         // This refreshes one W

@@ -1488,7 +1488,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
         if (indexD == -1) {
             let today = new Date();
-            console.log('xx this.formatDate(today)', this.formatDate(today))
+
             let newRecent: DashboardRecent = {
                 id: null,
                 userID: this.currentUser.userID,
@@ -1553,7 +1553,8 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     };
 
                     // Update Global vars to make sure they remain in sync
-                    this.dashboardsRecent.splice(0, 1, temp);
+                    this.dashboardsRecent = [temp].concat(this.dashboardsRecent);
+                    console.log('xx this.dashboardsRecent', this.dashboardsRecent)
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                     console.log('dashboardsRecent ADDED', res, this.dashboardsRecent)
