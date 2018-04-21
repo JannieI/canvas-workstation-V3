@@ -26,6 +26,17 @@ This document describes items for later versions of Canvas.
     - consider a color picker, see https://alligator.io/angular/using-custom-elements/ and attempt to install fooloomanzoo web component, v2 ...
     - if BULK DELETE in quick succesion, gets http error: ERR_CONNECTION_REFUSED.  Assume it is because json-server gets flooded, but this has to be tested with real server.
     - Google Sheets says 'All changes saved' after each change.  Should we do the same, ie after each resize or drag-n-drop?
+    - everything must be accessable IN 3 CLICKS
+    - every form must load in LESS THAN 3 SECS
+    - consider if we need SAVE AS functionality
+    - can send as Email Attachment (in pdf or pic)
+    - can copy whole D as image - can paste somewhere, or print and put on wall
+    - verify that we cater for casual to sophisticated user
+    - make sure we can have hybrid DS - cloud and local and server in one D
+    - go through system and make sure things are done consistently
+
+
+
 
     Testing:
     --------
@@ -281,3 +292,14 @@ Shapes:
 - How to incorporate fancy W types, ie half circle with needle / doughnut / etc ... 
 - cannot make smaller than W container, which has fixed outside areas (9, 16, etc).  Should we make these dynamic, so that it can be smaller?  It currently looks funny when a Shape only has one line of text, or >> right at bottom to Jump to linked D.
 Consider dataQuality on own menu item, or on W menu
+- look at ITTT - if this then that = rules engine that is dynamic
+- consider animation in presentation mode
+- consider to show pages and tabs as images - making it easy to select
+- consider adding data: ie load new data into a grid / table ala Excel, and save it in Canvas as DS ...
+- do analysis of forces - what will make users switch vs stay away.  Different for different departments: IT = security, deployment, operations,  Finance = ROI, actual investment, cost sensitive  Users = resources to grow,  Management = fit into strategy
+- consider if we need to make special adjustments for batch jobs of the user
+- add ROI examples
+- look at Xero accounting package stats - can or should we duplicate that?
+- look for real examples where we can disrupt
+- relook at 'what business are we in' to determine product offering vs target market
+- look at market: do segmentation, non-customers that can use Canvas, think of different market needs
