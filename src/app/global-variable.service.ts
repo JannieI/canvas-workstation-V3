@@ -1428,10 +1428,10 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 // Sort DESC
                 // TODO - in DB, ensure dateTime stamp is used, as IDs may not work
                 temp = temp.sort( (obj1,obj2) => {
-                    if (obj1.id > obj2.id) {
+                    if (obj1.accessed > obj2.accessed) {
                         return -1;
                     };
-                    if (obj1.id < obj2.id) {
+                    if (obj1.accessed < obj2.accessed) {
                         return 1;
                     };
                     return 0;
@@ -1481,20 +1481,21 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // - if D & T there, do nothing 
 
                 // TODO - fix this timing issue, as I have no idea why this is happening here
-                this.sleep(2000);
+                // this.sleep(2000);
 
         let indexD: number = this.dashboardIndexInRecentList(dashboardID);
         let indexTab: number = this.dashboardTabIndexInRecentList(dashboardID, dashboardTabID);
 
         if (indexD == -1) {
             let today = new Date();
+            console.log('xx this.formatDate(today)', this.formatDate(today))
             let newRecent: DashboardRecent = {
                 id: null,
                 userID: this.currentUser.userID,
                 dashboardID: dashboardID,
                 dashboardTabID: dashboardTabID,
                 editMode: false,
-                accessed: today.toString(),
+                accessed: this.formatDate(today),
                 stateAtRunTime: 'Draft',
                 nameAtRunTime: ''
             };
@@ -1506,7 +1507,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         } else {
             if (indexTab == -1) {
 
-                let recentD: DashboardRecent = this.dashboardsRecent[indexTab];
+                let recentD: DashboardRecent = this.dashboardsRecent[indexD];
                 recentD.dashboardTabID = dashboardTabID;
                 return new Promise<any>((resolve, reject) => {
                     this.saveDashboardRecent(recentD).then(res =>
@@ -1536,7 +1537,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3001/' + url, data, {headers})
             .subscribe(
                 res => {
                     console.log('xx gv after post', res)
@@ -1579,7 +1580,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -1615,7 +1616,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -4553,8 +4554,8 @@ console.log('xx allS 1', this.currentDatasets.slice())
 
                 // Cater for different Servers
                 let finalUrl: string = '';
-                if (url == 'widgets') {
-                    finalUrl = 'http://localhost:3000/' + url;
+                if (url == 'dashboardsRecent') {
+                    finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dashboardSnapshots') {
                     finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'widgetCheckpoints') {
@@ -5636,4 +5637,5 @@ console.log('xx allS 1', this.currentDatasets.slice())
         // Return
         return hasAccess;
     }
+
 }
