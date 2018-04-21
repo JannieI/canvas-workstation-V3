@@ -1537,6 +1537,40 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         });
     }
 
+    saveDashboardRecent(data: DashboardRecent): Promise<string> {
+        // Description: Saves DashboardRecent
+        // Returns: 'Saved' or error message
+        console.log('Global-Variables saveDashboardRecent ...');
+
+        let url: string = 'dashboardRecents';
+        this.filePath = './assets/data.dashboardRecents.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+                    
+                    // Replace local
+                    let localIndex: number = this.dashboardsRecent.findIndex(u =>
+                        u.id == data.id
+                    );
+                    this.dashboardsRecent[localIndex] = data;
+
+                    console.log('saveDashboardRecent SAVED', res)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDashboardRecent FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     deleteDashboardRecent(id: number): Promise<string> {
         // Description: Deletes a Recent Dashboard, and updates:
         // - this.dashboardsRecent
