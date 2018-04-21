@@ -32,7 +32,7 @@ export class ShapeEditComponent implements OnInit {
     bulletIndex: number = 0;
     bulletValue: string = '';
     editBulletItem: boolean = false;
-    srcImageUrl: string;                            // url for image
+    shapeImageUrl: string;                            // url for image
     localWidget: Widget;                            // W to modify, copied from selected
     showArrow: boolean = false;
     showBullets: boolean = false;
@@ -90,7 +90,8 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget = Object.assign({}, this.selectedWidget);
 
             // Local vars
-            this.srcImageUrl = this.localWidget.graphUrl
+            this.shapeImageUrl = this.localWidget.graphUrl;
+            
             // Refresh the form with the sub type
             this.selectShape(this.localWidget.widgetSubType);
         };

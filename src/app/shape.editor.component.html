@@ -141,7 +141,7 @@
                         [style.width.px]="100"
                         [style.margin-left.px]="100"
                         [style.margin-top.px]="100"
-                        src="../images/Tabs.png"
+                        [src]="shapeImageUrl"
                         >
                 </div>
 
@@ -343,7 +343,7 @@
                 <div class="gridShapeProperties" *ngIf="showImage">
                     <div class="propertyLine">
                         Image:
-                        <input type="text" [(ngModel)]="srcImageUrl" placeholder="Co. logo">
+                        <input type="text" [(ngModel)]="shapeImageUrl" placeholder="Co. logo">
                     </div>
                 </div>
 
