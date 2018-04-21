@@ -1010,6 +1010,11 @@ export class GlobalVariableService {
                 this.deleteWidgetCheckpoint(chk.id);
             };
         });
+        this.dashboardsRecent.forEach(dR => {
+            if (dR.dashboardID == dashboardID) {
+                this.deleteDashboardRecent(dR.id);
+            };
+        });
 
     }
 
