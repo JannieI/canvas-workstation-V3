@@ -5638,4 +5638,21 @@ console.log('xx allS 1', this.currentDatasets.slice())
         return hasAccess;
     }
 
+    formatDate(date) {
+         // Formats a given date into YYYY/MM/DD HH:MM:SS
+         console.log('Global-Variables formatDate ...', date);
+
+         let d = new Date(date);
+         let month = '' + (d.getMonth() + 1);
+         let day = '' + d.getDate();
+         let year = d.getFullYear();
+         let hour = d.getHours();
+         let minute = d.getMinutes();
+         let second = d.getSeconds();
+    
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+    
+        return [year, month, day].join('/') + ' ' + hour + ':' + minute + ':' + second;
+    }
 }
