@@ -311,7 +311,7 @@ const dashboardTabTemplate: DashboardTab =
         description: '',
         backgroundColor: '',
         color: ''
-                
+
     };
 
 
@@ -498,7 +498,7 @@ const transformationsFormat: Transformation[] =
 @Injectable()
 export class GlobalVariableService {
 
-    // Settings 
+    // Settings
     // TODO - get from DB, not Constants
 
     canvasSettings: CanvasSettings = {
@@ -525,7 +525,7 @@ export class GlobalVariableService {
     widgetTemplate: Widget = widgetTemplate;
     dashboardTemplate: Dashboard = dashboardTemplate;
     dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
-    
+
 
     // System-wide related variables, set at Installation - for later use
     // systemConfigurationID: number = -1;
@@ -642,7 +642,7 @@ export class GlobalVariableService {
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
     // userID: string = 'JannieI';  // TODO - unHardCode
-    
+
 
     // StatusBar
     statusBarRunning = new BehaviorSubject<string>(this.canvasSettings.noQueryRunningMessage);
@@ -780,7 +780,7 @@ export class GlobalVariableService {
                                 this.getWidgetsInfo().then(n => {
 
                                     // Add to recent
-                                    this.addDashboardRecent(dashboardID, dashboardTabID).then(n => {
+                                    this.amendDashboardRecent(dashboardID, dashboardTabID).then(n => {
 
                                         if (this.currentDatasources.length > 0) {
                                             this.hasDatasources.next(true);
@@ -956,7 +956,7 @@ export class GlobalVariableService {
             if (u.startupDashboardID == dashboardID) {
                 u.startupDashboardID = 0;
             };
-            u.favouriteDashboards.filter(f => f != dashboardID) 
+            u.favouriteDashboards.filter(f => f != dashboardID)
             // TODO - improve this to not update ALL users
             this.saveCanvasUser(u);
         });
@@ -1057,7 +1057,7 @@ export class GlobalVariableService {
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-                            
+
                     this.dashboards = this.dashboards.filter(
                         dsp => dsp.id != id
                     );
@@ -1204,14 +1204,14 @@ export class GlobalVariableService {
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    
+
                     // Clear all related info
                     this.clearDashboardInfo();
 
                     // Update Global vars to make sure they remain in sync
                     this.dashboards.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboards.push(JSON.parse(JSON.stringify(data)));
-                    
+
                     console.log('addDashboard ADDED', data, this.dashboards)
 
                     resolve(data);
@@ -1223,7 +1223,7 @@ export class GlobalVariableService {
             )
         });
     }
-    
+
     getDashboardTabs(): Promise<DashboardTab[]> {
         // Description: Gets all T
         // Returns: this.dashboardTabs array, unless:
@@ -1306,11 +1306,11 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    
+
                     // Update Global vars to make sure they remain in sync
                     this.dashboardTabs.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardTabs.push(JSON.parse(JSON.stringify(data)));
-                    
+
                     console.log('addDashboardTab ADDED', data, this.dashboardTabs)
 
                     resolve(data);
@@ -1322,7 +1322,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             )
         });
     }
-    
+
     deleteDashboardTab(id: number): Promise<string> {
         // Description: Deletes a DashboardTab
         // Returns: 'Deleted' or error message
@@ -1339,7 +1339,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-                            
+
                     this.dashboardTabs = this.dashboardTabs.filter(
                         t => t.id != id
                     );
@@ -1412,7 +1412,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     i => i.userID == userID
                 );
 
-                
+
                 // Add State and Name, at Runtime
                 for (var x = 0; x < temp.length; x++) {
                     temp[x].stateAtRunTime = 'Deleted';
@@ -1424,7 +1424,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             };
                         };
                     };
-                    
+
                 // Sort DESC
                 // TODO - in DB, ensure dateTime stamp is used, as IDs may not work
                 temp = temp.sort( (obj1,obj2) => {
@@ -1448,39 +1448,61 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         });
     }
 
-    dashboardInRecentList(dashboardID: number): boolean {
+    dashboardIndexInRecentList(dashboardID: number): number {
         // Determines if D in the Recent list, returns T/F
-        console.log('Global-Variables dashboardInRecentList ...');
+        console.log('Global-Variables dashboardIndexInRecentList ...');
 
-        // Determine if already in Recent list
-        let found: boolean = false;
-        this.dashboardsRecent.forEach(dR => {
-            if (dR.dashboardID == dashboardID) {
-                found = true;
-            };
-        });
-            return found;
+        // Determine index in Recent list
+        let index: number = this.dashboardsRecent.findIndex(dR => 
+            dR.dashboardID == dashboardID
+        );
+        return index;
     }
 
-    dashboardTabInRecentList(dashboardID: number, dashboardTabID: number): boolean {
+    dashboardTabIndexInRecentList(dashboardID: number, dashboardTabID: number): boolean {
         // Determines if D, T in the Recent list, returns T/F
-        console.log('Global-Variables dashboardTabInRecentList ...');
+        console.log('Global-Variables dashboardTabIndexInRecentList ...');
 
-        // Determine if already in Recent list
-        let found: boolean = false;
-        this.dashboardsRecent.forEach(dR => {
-            if (dR.dashboardID == dashboardID 
-                &&
-                dR.dashboardTabID == dashboardTabID) {
-                found = true;
-            };
-        });
-            return found;
+        // Determine index in Recent list
+        let index: number = this.dashboardsRecent.findIndex(dR => 
+            dR.dashboardID == dashboardID
+            &&
+            dR.dashboardTabID == dashboardTabID
+        );
     }
 
-    addDashboardRecent(
-        dashboardID: number, 
-        dashboardTabID: number): Promise<any> {
+    amendDashboardRecent(
+        dashboardID: number,
+        dashboardTabID: number) {
+        // Compares given IDs against the Recent list:
+        // - if not there, call ADD
+        // - if there but T change, call SAVE
+        // - else do nothing (it already in list)
+
+        if (!this.dashboardsInRecentList(dashboardID, dashboardTabID)) {
+            let today = new Date();
+            let newRecent: DashboardRecent = {
+                id: null,
+                userID: this.currentUser.userID,
+                dashboardID: dashboardID,
+                dashboardTabID: dashboardTabID,
+                editMode: false,
+                accessed: today.toString(),
+                stateAtRunTime: 'Draft',
+                nameAtRunTime: ''
+            };
+
+            this.addDashboardRecent(newRecent);
+        } else {
+            if (!this.dashboardTabInRecentList(dashboardID, dashboardTabID)) {
+
+                this.saveDashboardRecent(newRecent);
+            }
+        }
+
+    }
+
+    addDashboardRecent(data: DashboardRecent): Promise<any> {
         // Adds a D to the Recent list, and update:
         // - this.dashboardsRecent
         // - this.dashboardsRecentBehSubject.next()
@@ -1488,19 +1510,6 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
-
-        let today = new Date();
-        // let newRecent: DashboardRecent = {
-        let data = {
-            id: null,
-            userID: this.currentUser.userID,
-            dashboardID: dashboardID,
-            dashboardTabID: dashboardTabID,
-            editMode: false,
-            accessed: today.toString(),
-            stateAtRunTime: 'Draft',
-            nameAtRunTime: ''
-        };
 
         return new Promise<any>((resolve, reject) => {
 
@@ -1512,7 +1521,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 res => {
                     console.log('xx gv after post', res)
                     let temp: DashboardRecent = JSON.parse(JSON.stringify(res));
-    
+
                     // Add State and Name, at Runtime
                     for (var i = 0; i < this.dashboards.length; i++) {
                         if (this.dashboards[i].id ==
@@ -1521,7 +1530,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                                 temp.nameAtRunTime = this.dashboards[i].name;
                         };
                     };
-                        
+
                     // Update Global vars to make sure they remain in sync
                     this.dashboardsRecent.splice(0, 1, temp);
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
@@ -1542,8 +1551,8 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Returns: 'Saved' or error message
         console.log('Global-Variables saveDashboardRecent ...');
 
-        let url: string = 'dashboardRecents';
-        this.filePath = './assets/data.dashboardRecents.json';
+        let url: string = 'dashboardsRecent';
+        this.filePath = './assets/data.dashboardsRecent.json';
 
         return new Promise<string>((resolve, reject) => {
 
@@ -1553,7 +1562,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
-                    
+
                     // Replace local
                     let localIndex: number = this.dashboardsRecent.findIndex(u =>
                         u.id == data.id
@@ -1589,7 +1598,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 res => {
-                   
+
                     let index: number = this.dashboardsRecent.findIndex(dR =>
                         dR.dashboardID == id
                     );
@@ -1811,11 +1820,11 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 res => {
-                    
+
                     // Update Global vars to make sure they remain in sync
                     this.datasets.push(JSON.parse(JSON.stringify(data)));
                     this.currentDatasets.push(JSON.parse(JSON.stringify(data)));
-                    
+
                     console.log('addDataset ADDED', res, this.datasets, this.currentDatasets)
 
                     resolve(res);
@@ -1827,7 +1836,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             )
         });
     }
-    
+
     getData(id: number): Promise<any[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
@@ -1876,7 +1885,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 res => {
-                                       
+
                     console.log('addData ADDED', res, this.datasets, this.currentDatasets)
 
                     resolve(res);
@@ -1905,8 +1914,8 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
         // two dSets with different values ...
         let relatedSlicers: Widget[] = this.currentWidgets.filter(w =>
-            w.datasourceID == dataSet.datasourceID  
-            &&  w.datasetID == dataSet.id  
+            w.datasourceID == dataSet.datasourceID
+            &&  w.datasetID == dataSet.id
             &&  w.widgetType == 'Slicer'
         );
         console.log('xx 1', dataSet)
@@ -1926,7 +1935,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                 let allSelectedValues: string[] = [];
 
                 w.slicerSelection.forEach(f => {
-                    if (f.isSelected) { 
+                    if (f.isSelected) {
                         selectedValues.push(f.fieldValue);
                     };
                     allSelectedValues.push(f.fieldValue);
@@ -1938,7 +1947,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                         if (selectedValues.indexOf(d[w.slicerFieldName]) >= 0) {
                             tempData.push(d);
                         };
-                        if ( (w.slicerAddRest  &&  w.slicerAddRestValue)  
+                        if ( (w.slicerAddRest  &&  w.slicerAddRestValue)
                             &&
                             allSelectedValues.indexOf(d[w.slicerFieldName]) < 0) {
                                 tempData.push(d);
@@ -1947,7 +1956,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
 
                     // Replace the filtered data, used by the graph
                 dataSet.data = tempData;
-                
+
             };
 
             // Type = Bins
@@ -1957,7 +1966,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                 let rangeValues: {fromValue: number; toValue:number}[] = [];
 
                 w.slicerBins.forEach(bn => {
-                    if (bn.isSelected) { 
+                    if (bn.isSelected) {
                         rangeValues.push(
                             {fromValue: bn.fromValue, toValue: bn.toValue}
                         )
@@ -1969,8 +1978,8 @@ console.log('xx getCurrentDataset url', url, this.datasets)
 
                 rangeValues.forEach(rv => {
                     dataSet.data.forEach(d => {
-                        if (+d[w.slicerFieldName] >= rv.fromValue  
-                            &&  
+                        if (+d[w.slicerFieldName] >= rv.fromValue
+                            &&
                             +d[w.slicerFieldName] <= rv.toValue) {
                                 filterBinData.push(d);
                         };
@@ -1986,8 +1995,8 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         // Filter data in [W] related to this dSet
         // TODO - cater later for cases for we use graphUrl
         this.currentWidgets.forEach(w => {
-            if (w.datasourceID == dataSet.datasourceID  
-                &&   w.datasetID == dataSet.id  
+            if (w.datasourceID == dataSet.datasourceID
+                &&   w.datasetID == dataSet.id
                 && w.widgetType != 'Slicer') {
                     w.graphUrl = "";
                     w.graphData = dataSet.data;
@@ -2044,7 +2053,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-        
+
                     this.dashboardSchedules = this.dashboardSchedules.filter(
                         dsp => dsp.id != id
                     );
@@ -2180,11 +2189,11 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    
+
                     // Update Global vars to make sure they remain in sync
                     this.dashboardTags.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardTags.push(JSON.parse(JSON.stringify(data)));
-                    
+
                     console.log('addDashboardTag ADDED', data, this.dashboardTags)
 
                     resolve(data);
@@ -2213,7 +2222,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-                            
+
                     this.dashboardTags = this.dashboardTags.filter(
                         dsp => dsp.id != id
                     );
@@ -2313,12 +2322,12 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    
+
                     // Update Global vars to make sure they remain in sync
                     this.dashboardPermissions.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardPermissions.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addDashboardPermission ADDED', data, 
+                    console.log('addDashboardPermission ADDED', data,
                         this.currentDashboardPermissions, this.dashboardPermissions)
 
                     resolve(data);
@@ -2381,7 +2390,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-        
+
                     this.dashboardPermissions = this.dashboardPermissions.filter(
                         dsp => dsp.id != id
                     );
@@ -2399,7 +2408,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             )
         });
     }
-    
+
     getCanvasGroups(): Promise<CanvasGroup[]> {
         // Description: Gets all G
         // Returns: this.canvasGroups array, unless:
@@ -2460,7 +2469,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         });
 
     }
-        
+
     getCurrentDashboardSnapshots(dashboardID: number): Promise<DashboardSnapshot[]> {
         // Description: Gets all Sn for current D
         // Params:
@@ -2512,12 +2521,12 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    
+
                     // Update Global vars to make sure they remain in sync
                     this.dashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addDashboardSnapshot ADDED', data, 
+                    console.log('addDashboardSnapshot ADDED', data,
                         this.currentDashboardSnapshots, this.dashboardSnapshots)
 
                     resolve(data);
@@ -2546,7 +2555,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-        
+
                     this.dashboardSnapshots = this.dashboardSnapshots.filter(
                         dsp => dsp.id != id
                     );
@@ -2719,7 +2728,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                         {
                             let datasourceIDs: number[] = [];
                             // TODO - isTrashed added
-                            let dashboardWidgets: Widget[] = this.widgets.filter(w => 
+                            let dashboardWidgets: Widget[] = this.widgets.filter(w =>
                                 w.dashboardID == dashboardID
                                 &&
                                 !w.isTrashed
@@ -2741,7 +2750,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                                     };
                                 };
                             };
-                            
+
                             this.isDirtyDatasources = false;
                             this.currentDatasources = returnData;
                             this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -2753,7 +2762,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             } else {
                 let datasourceIDs: number[] = [];
                 // TODO - isTrashed added
-                let dashboardWidgets: Widget[] = this.widgets.filter(w => 
+                let dashboardWidgets: Widget[] = this.widgets.filter(w =>
                     w.dashboardID == dashboardID
                     &&
                     !w.isTrashed
@@ -2799,7 +2808,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 res => {
-                    
+
                     // Update Global vars to make sure they remain in sync
                     let newDS: Datasource = JSON.parse(JSON.stringify(res))
                     if (this.datasources.filter(i => i.id == newDS.id).length == 0) {
@@ -2811,8 +2820,8 @@ console.log('xx getCurrentDataset url', url, this.datasets)
 
                     // Inform that we now at a DS
                     this.hasDatasources.next(true);
-                    
-                    console.log('addDatasource ADDED', res, 
+
+                    console.log('addDatasource ADDED', res,
                         this.currentDatasources, this.datasources)
 
                     resolve(res);
@@ -3040,7 +3049,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         console.log('Global-Variables deleteDatasourcePermission ...', id);
 
         console.log('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
-        
+
         this.datasourcePermissions = this.datasourcePermissions.filter(
             dsp => dsp.id != id
         );
@@ -3152,7 +3161,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                         this.canvasSettings.notInEditModeMsg = data.notInEditModeMsg;
                         this.canvasSettings.noQueryRunningMessage = data.noQueryRunningMessage;
                         this.canvasSettings.queryRunningMessage = data.queryRunningMessage;
-                        
+
                         this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getSystemSettings 1', this.canvasSettings)
@@ -3196,7 +3205,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
     }
 
     getDashboardSubscriptions(): Promise<DashboardSubscription[]> {
-        // Description: Gets dashboardSubscriptions 
+        // Description: Gets dashboardSubscriptions
         // Returns: this.dashboardSubscriptions object, unless:
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDashboardSubscription ...');
@@ -3227,7 +3236,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
     }
 
     getCurrentDashboardSubscriptions(dashboardID: number): Promise<DashboardSubscription[]> {
-        // Description: Gets currentDashboardSubscription 
+        // Description: Gets currentDashboardSubscription
         // Returns: this.currentDashboardSubscription object, unless:
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getDashboardSubscription ...');
@@ -3277,7 +3286,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
-    
+
                     // Replace local
                     let localIndex: number = this.dashboardSubscriptions.findIndex(d =>
                         d.id == data.id
@@ -3340,7 +3349,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-                    
+
                     this.dashboardSubscriptions = this.dashboardSubscriptions.
                         filter(sub => sub.id != id);
                     this.currentDashboardSubscriptions = this.currentDashboardSubscriptions.
@@ -3357,7 +3366,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
     }
 
     getPaletteButtonBar(): Promise<PaletteButtonBar[]> {
-        // Description: Gets currentgetPaletteButtonBar 
+        // Description: Gets currentgetPaletteButtonBar
         // Returns: this.currentgetPaletteButtonBar object, unless:
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getPaletteButtonBar ...');
@@ -3403,7 +3412,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
-    
+
                     // Replace local
                     let localIndex: number = this.currentPaletteButtonBar.findIndex(d =>
                         d.id == data.id
@@ -3422,7 +3431,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
     }
 
     getPaletteButtonsSelected(): Promise<PaletteButtonsSelected[]> {
-        // Description: Gets currentgetPaletteButtonsSelected 
+        // Description: Gets currentgetPaletteButtonsSelected
         // Returns: this.currentgetPaletteButtonsSelected object, unless:
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getPaletteButtonsSelected ...');
@@ -3442,12 +3451,12 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                         this.isDirtyPaletteButtonsSelected = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                        console.log('Global-Variables getPaletteButtonsSelected 1', 
+                        console.log('Global-Variables getPaletteButtonsSelected 1',
                             this.currentPaletteButtonsSelected.value);
                         resolve(this.currentPaletteButtonsSelected.value);
                     });
             } else {
-                console.log('Global-Variables getPaletteButtonsSelected 2', 
+                console.log('Global-Variables getPaletteButtonsSelected 2',
                     this.currentPaletteButtonsSelected.value);
 
                 resolve(this.currentPaletteButtonsSelected.value);
@@ -3472,7 +3481,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
-    
+
                     // Replace local
                     let localIndex: number = this.currentPaletteButtonsSelected.value.findIndex(d =>
                         d.id == data.id
@@ -3507,7 +3516,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             .subscribe(
                 res => {
 
-                    // This is a different case: currentPaletteButtonsSelected is an 
+                    // This is a different case: currentPaletteButtonsSelected is an
                     // Observable, and will be refreshed with a .next by the calling
                     // routine
                     let dID: number = -1;
@@ -3558,14 +3567,14 @@ console.log('xx getCurrentDataset url', url, this.datasets)
 
                         // Update Global vars to make sure they remain in sync
                         this.currentPaletteButtonsSelected.value.push(JSON.parse(JSON.stringify(res)));
-                      
+
                         // Inform subscribers
                         this.currentPaletteButtonsSelected.next(
                             this.currentPaletteButtonsSelected.value
                         );
 
                         console.log('addWidget ADDED', data, this.widgets)
-    
+
                         resolve(data);
                     },
                     err => {
@@ -3580,7 +3589,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         // Description: Gets all W
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
-        // NOTE: this gets ALL W from DB (irrespective of isTrashed), so it includes soft deletes 
+        // NOTE: this gets ALL W from DB (irrespective of isTrashed), so it includes soft deletes
         // and must be treated as such arrays
 
         console.log('Global-Variables getWidgets ...', this.widgets.length);
@@ -3606,7 +3615,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                             // Get Checkpoint info for ALL W, not only current one
                             // TODO - fix when using DB
                             let tempChk: WidgetCheckpoint[] = this.widgetCheckpoints
-                                .filter(wc => 
+                                .filter(wc =>
                                     wc.dashboardID == w.dashboardID
                                     &&
                                     wc.widgetID == w.id
@@ -3617,7 +3626,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                                 w.checkpointIDs = [];
                                 w.currentCheckpoint = 0;
                                 w.lastCheckpoint = tempChk.length - 1;
-                                
+
                                 for (var x = 0; x < tempChk.length; x++) {
                                     w.checkpointIDs.push(tempChk[x].id);
                                 };
@@ -3628,7 +3637,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                                 w.currentCheckpoint = 0;
                                 w.lastCheckpoint = -1;
                             };
-                            
+
                             // Get bullets
                             // TODO - fix when using DB
                             if (w.widgetType == 'Shape') {
@@ -3666,7 +3675,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                             //         } else {
                             //             oFld = s;
                             //             i = 0;
-                            //             let o: {isSelected: boolean; fieldValue: string} = 
+                            //             let o: {isSelected: boolean; fieldValue: string} =
                             //                 {isSelected: oSel, fieldValue: oFld};
                             //             w.slicerSelection.push(o);
                             //         }
@@ -3701,9 +3710,9 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                                     if (i == 4) {
                                         oTo  = +s;
                                         i = 0;
-                                        let o: {isSelected: boolean; name: string; fromValue: number; toValue: number} = 
+                                        let o: {isSelected: boolean; name: string; fromValue: number; toValue: number} =
                                             {isSelected: oSel, name: oName, fromValue: oFrom, toValue: oTo};
-                                            
+
                                         w.slicerBins.push(o);
                                     }
                                 })
@@ -3745,10 +3754,10 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                         // TODO - use i.dashboardTabIDs.indexOf(dashboardTabID) >= 0 once datalib
                         // reads arrays correctly.  That should be the only change ...
                         data = data.filter(
-                            i => (i.dashboardID == dashboardID)  
+                            i => (i.dashboardID == dashboardID)
                                  &&
                                  (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
-                                 &&  
+                                 &&
                                  (!i.isTrashed)
                         );
                         this.currentWidgets = data;
@@ -3763,15 +3772,15 @@ console.log('xx getCurrentDataset url', url, this.datasets)
                 // Filter all Tabs belonging to this D
                 let data: Widget[];
                 data = this.widgets.filter(
-                    i => (i.dashboardID == dashboardID)  
+                    i => (i.dashboardID == dashboardID)
                     &&
                     (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
-                    &&  
+                    &&
                     (!i.isTrashed)
                 )
 
                 this.currentWidgets = data;
-                console.log('Global-Variables getCurrentWidgets 2', dashboardID, 
+                console.log('Global-Variables getCurrentWidgets 2', dashboardID,
                     dashboardTabID,  this.currentWidgets, this.widgets)
                 resolve(this.currentWidgets);
 
@@ -3796,11 +3805,11 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    
+
                     // Update Global vars to make sure they remain in sync
                     this.widgets.push(JSON.parse(JSON.stringify(data)));
                     this.currentWidgets.push(JSON.parse(JSON.stringify(data)));
-                    
+
                     console.log('addWidget ADDED', data, this.widgets)
 
                     resolve(data);
@@ -3817,7 +3826,7 @@ console.log('xx getCurrentDataset url', url, this.datasets)
         // Description: Deletes a Widgets
         // Returns: 'Deleted' or error message
         // NOTE: this permananently deletes a W, from arrays and DB.  This must NOT be used for
-        // a simplete W delete, in which case it stays in DB (with isTrashed = true), and is 
+        // a simplete W delete, in which case it stays in DB (with isTrashed = true), and is
         // only removed from the arrays
         console.log('Global-Variables deleteWidget ...', id);
 
@@ -3868,8 +3877,8 @@ console.log('xx getCurrentDataset url', url, this.datasets)
             .subscribe(
                 res => {
                     // Update widgets and currentWidgets
-                    this.widgetReplace(data);           
-                                     
+                    this.widgetReplace(data);
+
                     console.log('saveWidget SAVED', res)
                     resolve('Saved');
                 },
@@ -3944,7 +3953,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                     // Filter currentDatasets by Sl linked to DS
                     this.currentDatasets.forEach(cd => {
                         // TODO - improve
-                        // this.filterSlicer(cd);  
+                        // this.filterSlicer(cd);
                     })
                     console.log('xx allS 2', this.currentDatasets.slice())
 
@@ -4128,10 +4137,10 @@ console.log('xx allS 1', this.currentDatasets.slice())
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    
+
                     // Update Global vars to make sure they remain in sync
                     this.canvasComments.push(JSON.parse(JSON.stringify(data)));
-                    
+
                     console.log('addCanvasComment ADDED', data, this.canvasComments, this.canvasComments)
 
                     resolve(data);
@@ -4160,7 +4169,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-   
+
                     this.canvasComments = this.canvasComments.filter(
                         com => com.id != id
                     );
@@ -4223,7 +4232,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
-   
+
                     this.canvasMessages = this.canvasMessages.filter(
                         com => com.id != id
                     );
@@ -4269,7 +4278,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
         });
 
     }
-    
+
     getCurrentWidgetCheckpoints(dashboardID: number): Promise<WidgetCheckpoint[]> {
         // Description: Gets all Checkpoints for current D
         // Returns: this.currentWidgetCheckpoints array, unless:
@@ -4320,11 +4329,11 @@ console.log('xx allS 1', this.currentDatasets.slice())
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
-                    
+
                     // Update Global vars to make sure they remain in sync
                     this.widgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
                     this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
-                    
+
                     console.log('addWidgetCheckpoint ADDED', data, this.currentWidgetCheckpoints, this.widgetCheckpoints)
 
                     resolve(data);
@@ -4433,7 +4442,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
             this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
-                    
+
                     // Replace local
                     let localIndex: number = this.canvasUsers.findIndex(u =>
                         u.id == data.id
@@ -4474,34 +4483,34 @@ console.log('xx allS 1', this.currentDatasets.slice())
             //     "url": "new-value-for-url"
             // },
             // {headers})
-            // .subscribe(    
+            // .subscribe(
 
             // MULTIPLE
             // const parallel$ = Observable.forkJoin(
             //     this.http.get('/courses/-KgVwEBq5wbFnjj7O8Fp.json'),
             //     this.http.get('/courses/-KgVwECOnlc-LHb_B0cQ.json')
             // );
-        
+
             // parallel$.subscribe(
 
             // IN SEQUENCE
             // const sequence$ = this.http.get<Course>(
             //     '/courses/-KgVwEBq5wbFnjj7O8Fp.json')
             // .switchMap(course => {
-        
+
             //     course.description+= ' - TEST ';
-        
+
             //     return this.http.put(
-            //         '/courses/-KgVwEBq5wbFnjj7O8Fp.json', 
+            //         '/courses/-KgVwEBq5wbFnjj7O8Fp.json',
             //         course)
             // });
-            // sequence$.subscribe();            
+            // sequence$.subscribe();
 
             // PROGRESS
             // const req = new HttpRequest('GET', this.url, {
             //     reportProgress: true
             //   });
-          
+
             //   this.http.request(req).subscribe((event: HttpEvent<any>) => {
             //     switch (event.type) {
             //       case HttpEventType.Sent:
@@ -4537,10 +4546,10 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 } else {
                     finalUrl = 'http://localhost:3000/' + url;
                 };
-                
+
 
                 this.http.get(finalUrl).subscribe(
-                    res => 
+                    res =>
                     {
                         resolve(res);
                     },
@@ -4559,7 +4568,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
             );
 
         };
-        
+
         if (this.getSource == 'File') {
             return new Promise((resolve, reject) => {
                 // Get from source - files for now ...
@@ -4666,7 +4675,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                     }
                 },
             ])
-            
+
             // Widgets Table
             nSQL('widgets')
             .model([
@@ -4879,7 +4888,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
         })
     }
 
-    
+
     //         // Example 1
         //         // nSQL('widgets') //  "users" is our table name.
         //         // .model([ // Declare data model
@@ -4969,11 +4978,11 @@ console.log('xx allS 1', this.currentDatasets.slice())
         console.log('Global-Variables refreshCurrentDashboard ...');
 
         // TODO - add Permissions, either here or automatically in DB !!!
-        
+
         // Make sure the currT are indeed for the requested D
         let currentDashboardTabs: DashboardTab[];
         currentDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == dashboardID);
-        
+
         // Assume we have all currentD info
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
             (this.currentDashboardInfo == null) ) {
@@ -5329,11 +5338,11 @@ console.log('xx allS 1', this.currentDatasets.slice())
     }
 
     createVegaLiteSpec(
-        widget: Widget, 
-        height: number = 0, 
+        widget: Widget,
+        height: number = 0,
         width: number = 0): dl.spec.TopLevelExtendedSpec {
         // Creates a Vega-Lite spec for a given Widget from a standard template
-        // - widget is the W for which the graph is created, and contains all the 
+        // - widget is the W for which the graph is created, and contains all the
         //   required detail
         // - height, width are optional dimensions.  If provided, it will overrule
         //   those values in spec
@@ -5390,15 +5399,15 @@ console.log('xx allS 1', this.currentDatasets.slice())
 
     actionUpsert(
         id: number,
-        dashboardID: number, 
+        dashboardID: number,
         dashboardTabID: number,
         objectType: string,
-        action: string, 
+        action: string,
         description: string,
-        undoID: number, 
-        redoID: number, 
-        oldWidget: any, 
-        newWidget: any, 
+        undoID: number,
+        redoID: number,
+        oldWidget: any,
+        newWidget: any,
      ): number {
         let actID: number = 1;
 
@@ -5442,14 +5451,14 @@ console.log('xx allS 1', this.currentDatasets.slice())
                     actID = id;
                 };
             });
-            
+
         };
 
         console.log('actionUpsert', this.actions)
 
         // Return
         return actID;
-            
+
     }
 
     alignToGripPoint(inputValue: number) {
@@ -5485,7 +5494,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
         visibleFields: string[] = []
         ): DatagridColumn[] {
         // It will return an array of datagridColumns to use in the ca-datagrid
-        // for a given array of data and a set of columns to show, 
+        // for a given array of data and a set of columns to show,
         console.log('Global-Variables createDatagridColumns ...');
 
         // No data provided
@@ -5508,7 +5517,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
         // Select All fields if nothing was given
         if (showFields.length == 0) {
             showFields = columns;
-        };        
+        };
 
         // Loop on the cols, and create an object for each in the datagridColumns array
         showFields.forEach( sf => {
@@ -5541,7 +5550,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                         linkedDashboardID: 0,
                         linkedDashboardTabID: 0,
                         isFrozen: false,
-                        datagridColumnHidden: 
+                        datagridColumnHidden:
                             visibleFields.indexOf(columns[i])
                             < 0 ? {hidden: true} :  {hidden: false}
                     });
@@ -5581,12 +5590,12 @@ console.log('xx allS 1', this.currentDatasets.slice())
         };
 
         // The owner has access to Private ones
-        if (dashboard.accessType.toLowerCase() == 'private'  
-            && 
+        if (dashboard.accessType.toLowerCase() == 'private'
+            &&
             dashboard.creator.toLowerCase() == userID.toLowerCase()) {
                 hasAccess = true;
         };
-        if (dashboard.accessType.toLowerCase() == 'accesslist') {  
+        if (dashboard.accessType.toLowerCase() == 'accesslist') {
             this.dashboardPermissions.forEach(dp => {
                 if (dp.dashboardID == dashboard.id) {
                     if (dp.userID != null) {

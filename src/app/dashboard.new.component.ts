@@ -93,7 +93,7 @@ export class DashboardNewComponent implements OnInit {
                 // TODO - fix this timing issue, as I have no idea why this is happening here
                 this.globalVariableService.sleep(2000);
 
-                this.globalVariableService.addDashboardRecent(d.id, t.id).then(dR => {
+                this.globalVariableService.amendDashboardRecent(d.id, t.id)  //.then(dR => {
 
                     this.globalVariableService.refreshCurrentDashboard(
                         'addDashboard-clickCreate', d.id, t.id, ''
@@ -101,7 +101,7 @@ export class DashboardNewComponent implements OnInit {
 
                     console.log('xx end new', this.globalVariableService.dashboards, this.globalVariableService.currentDashboardTabs, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
                     this.formDashboardNewClosed.emit('Created');
-                });
+                // });
             })
         });
         
