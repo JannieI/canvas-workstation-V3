@@ -779,12 +779,16 @@ export class GlobalVariableService {
                                 // Get info for W
                                 this.getWidgetsInfo().then(n => {
 
-                                    if (this.currentDatasources.length > 0) {
-                                        this.hasDatasources.next(true);
-                                    } else {
-                                        this.hasDatasources.next(false);
-                                    }
-                                    resolve(true)
+                                    // Add to recent
+                                    this.addDashboardRecent(dashboardID, dashboardTabID).then(n => {
+
+                                        if (this.currentDatasources.length > 0) {
+                                            this.hasDatasources.next(true);
+                                        } else {
+                                            this.hasDatasources.next(false);
+                                        }
+                                        resolve(true)
+                                    })
                                 })
                             })
                         })
@@ -1445,8 +1449,8 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     }
 
     addDashboardRecent(
-        dashboardID: number = -1, 
-        dashboardTabID: number = -1): Promise<any> {
+        dashboardID: number, 
+        dashboardTabID: number): Promise<any> {
         // Adds a D to the Recent list, and update:
         // - this.dashboardsRecent
         // - this.dashboardsRecentBehSubject.next()
