@@ -1456,6 +1456,18 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // - this.dashboardsRecentBehSubject.next()
         console.log('Global-Variables addDashboardRecent ...');
 
+        // Determine if already in Recent list
+        let found: boolean = false;
+        this.dashboardsRecent.forEach(dR => {
+            if (dR.dashboardID == dashboardID) {
+                found = true;
+            };
+        });
+        if (found) {
+            console.log('Dashboard ID ', dashboardID, ' already in Recent list')
+            return new Promise<any>((resolve, reject) => resolve(null));
+        };
+
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
 
