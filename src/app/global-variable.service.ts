@@ -925,7 +925,7 @@ export class GlobalVariableService {
         // Deletes D with all related Entities
         console.log('Global-Variables deleteDashboardInfo ...', dashboardID);
 
-        // TODO - update DB
+        // TODO - update all from DB ?
         this.dashboards.forEach(d => {
             if (d.templateDashboardID == dashboardID) {
                 d.templateDashboardID == 0;
@@ -5213,7 +5213,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
     }
 
     sleep(milliseconds: number) {
-        //
+        // Sleep for a while
         console.log('Global-Variables sleep ...', milliseconds);
         var start: number = new Date().getTime();
         console.log('  start', start, new Date().getTime())
