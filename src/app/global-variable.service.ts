@@ -1408,6 +1408,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     i => i.userID == userID
                 );
 
+                
                 // Add State and Name, at Runtime
                 for (var x = 0; x < temp.length; x++) {
                     temp[x].stateAtRunTime = 'Deleted';
@@ -1416,10 +1417,22 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             temp[x].dashboardID) {
                                 temp[x].stateAtRunTime = this.dashboards[y].state;
                                 temp[x].nameAtRunTime = this.dashboards[y].name;
+                            };
                         };
                     };
-                };
-                
+                    
+                // Sort DESC
+                // TODO - in DB, ensure dateTime stamp is used, as IDs may not work
+                temp = temp.sort( (obj1,obj2) => {
+                    if (obj1.id > obj2.id) {
+                        return -1;
+                    };
+                    if (obj1.id < obj2.id) {
+                        return 1;
+                    };
+                    return 0;
+                });
+                console.log('xx temp SRTEd', temp)
                 this.dashboardsRecent = temp;
                 this.dashboardsRecentBehSubject.next(temp);
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
