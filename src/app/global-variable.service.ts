@@ -761,6 +761,10 @@ export class GlobalVariableService {
                         if (j.length > 0) {dashboardTabID = j[0].id}
                     };
 
+                    // Set T-index
+                    this.currentDashboardInfo.value.currentDashboardTabIndex =
+                        this.currentDashboardTabs.findIndex(t => t.id == dashboardTabID);
+    console.log('xx setted index', this.currentDashboardInfo.value);
                     // Load Permissions for D
                     this.getCurrentDashboardPermissions(dashboardID).then( l => {
 
@@ -5041,7 +5045,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
             y = currentDashboardTabs[x].id;
         } else {
             y = dashboardTabID;
-            console.log('xx hier', dashboardTabID, this.currentDashboardTabs)
+            console.log('xx hier', dashboardTabID, this.currentDashboardTabs,)
             if (currentDashboardTabs.length == 0) {
                 x = 0;
             } else {
