@@ -64,7 +64,7 @@ export class LandingComponent implements OnInit {
 				this.globalVariableService.getDashboardsRecent(
 					this.globalVariableService.currentUser.userID
 					).then(recD => {
-					this.dashboardsRecent = recD.slice();
+					this.dashboardsRecent = recD.slice(0, 5);
 
 					// Palette buttons for current user
 					this.globalVariableService.getPaletteButtonsSelected().then(pBsel => 

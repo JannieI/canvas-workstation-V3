@@ -58,25 +58,6 @@ export class DashboardNewComponent implements OnInit {
         // Create a new Dashboard, and close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCreate', '@Start');
     
-
-                // Update recent list
-                // let today = new Date();
-                // let newRecent: DashboardRecent = {
-                //     id: null,
-                //     userID: this.globalVariableService.currentUser.userID,
-                //     dashboardID: 99,
-                //     dashboardTabID: 99,
-                //     editMode: false,
-                //     accessed: today.toString(),
-                //     stateAtRunTime: 'Draft',
-                //     nameAtRunTime: 'd.name'
-                // };
-                // console.log('xx newRec', newRecent)
-                // this.globalVariableService.addDashboardRecent(newRecent).then(dR => {
-                //     return;
-                // })
-
-
         if (this.dashboardCode == '') {
             this.errorMessage = 'Code compulsory';
             return;
