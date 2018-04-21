@@ -1432,7 +1432,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     };
                     return 0;
                 });
-                console.log('xx temp SRTEd', temp)
+
                 this.dashboardsRecent = temp;
                 this.dashboardsRecentBehSubject.next(temp);
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -1444,7 +1444,9 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         });
     }
 
-    addDashboardRecent(data: DashboardRecent): Promise<any> {
+    addDashboardRecent(
+        dashboardID: number = -1, 
+        dashboardTabID: number = -1): Promise<any> {
         // Adds a D to the Recent list, and update:
         // - this.dashboardsRecent
         // - this.dashboardsRecentBehSubject.next()
@@ -1452,6 +1454,19 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
+
+        let today = new Date();
+        // let newRecent: DashboardRecent = {
+        let data = {
+            id: null,
+            userID: this.currentUser.userID,
+            dashboardID: dashboardID,
+            dashboardTabID: dashboardTabID,
+            editMode: false,
+            accessed: today.toString(),
+            stateAtRunTime: 'Draft',
+            nameAtRunTime: ''
+        };
 
         return new Promise<any>((resolve, reject) => {
 

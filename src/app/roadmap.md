@@ -25,6 +25,7 @@ This document describes items for later versions of Canvas.
     - make Palette button sizes dynamic - small, medium, large, and make this a user setting.  Make sure container is also sized dynamically.\
     - consider a color picker, see https://alligator.io/angular/using-custom-elements/ and attempt to install fooloomanzoo web component, v2 ...
     - if BULK DELETE in quick succesion, gets http error: ERR_CONNECTION_REFUSED.  Assume it is because json-server gets flooded, but this has to be tested with real server.
+    - Google Sheets says 'All changes saved' after each change.  Should we do the same, ie after each resize or drag-n-drop?
 
     Testing:
     --------

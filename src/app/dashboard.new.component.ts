@@ -90,23 +90,10 @@ export class DashboardNewComponent implements OnInit {
             // Add Tab to DB
             this.globalVariableService.addDashboardTab(newDashboardTab).then(t => {
 
-                // Update recent list
-                let today = new Date();
-                let newRecent: DashboardRecent = {
-                    id: null,
-                    userID: this.globalVariableService.currentUser.userID,
-                    dashboardID: d.id,
-                    dashboardTabID: t.id,
-                    editMode: false,
-                    accessed: today.toString(),
-                    stateAtRunTime: 'Draft',
-                    nameAtRunTime: d.name
-                };
-
                 // TODO - fix this timing issue, as I have no idea why this is happening here
                 this.globalVariableService.sleep(2000);
-                console.log('xx newRec', newRecent, newDashboard)
-                this.globalVariableService.addDashboardRecent(newRecent).then(dR => {
+
+                this.globalVariableService.addDashboardRecent(d.id, t.id).then(dR => {
 
                     this.globalVariableService.refreshCurrentDashboard(
                         'addDashboard-clickCreate', d.id, t.id, ''
