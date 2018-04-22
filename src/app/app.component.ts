@@ -126,29 +126,6 @@ export enum KEY_CODE {
     DOWN_ARROW = 40
 }
 
-// const paletteButtons = [
-//     {
-//         id: 1,
-//         shape: "pencil",
-//         size: "20",
-//         class: "buttonBarIcon",
-//         accesskey: "w",
-//         functionName: "clickMenuEditUndo",
-//         params: "",
-//         tooltipContent: "Undo a previous action"
-//     },
-//     {
-//         id: 2,
-//         shape: "times",
-//         size: "20",
-//         class: "buttonBarIcon",
-//         accesskey: "w",
-//         functionName: "clickMenuEditSelectAllNone",
-//         params: "Auto",
-//         tooltipContent: "Selected/Unselect Widgets"
-//     },
-// ]
-
 
 @Component({
     selector: 'my-app',
