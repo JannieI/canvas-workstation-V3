@@ -484,7 +484,6 @@ export class DashboardSnapshot {
     comment: string;                                // Optional Comment
     dashboards: Dashboard[];                        // Array of D used (can include a Template)
     dashboardTabs: DashboardTab[];                  // Ts of D
-    canvasComments: CanvasComment[];                // C of D
     widgets: Widget[];                              // W of D
     datasets: Dataset[];                            // dSets of D
     datasources: Datasource[];                      // DS of D
