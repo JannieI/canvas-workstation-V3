@@ -1381,6 +1381,11 @@ export class AppComponent implements OnInit {
         // Toggle mode
         this.globalVariableService.editMode.next(!this.editMode);
 
+        // Register in recent
+        this.globalVariableService.amendDashboardRecent(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID, 
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID); 
+
         this.menuOptionClickPostAction();
     }
 

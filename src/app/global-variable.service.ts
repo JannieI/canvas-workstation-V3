@@ -1491,6 +1491,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         let indexD: number = this.dashboardIndexInRecentList(dashboardID);
         let indexTab: number = this.dashboardTabIndexInRecentList(dashboardID, dashboardTabID);
 
+        // D not in Recent List, so Add
         if (indexD == -1) {
             let today = new Date();
 
@@ -1510,21 +1511,23 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 )
             });
         } else {
-            if (indexTab == -1) {
 
-                let recentD: DashboardRecent = this.dashboardsRecent[indexD];
+            // D + T in Recent List, so amend
+            let recentD: DashboardRecent = this.dashboardsRecent[indexD];
+
+            // Change Tab
+            if (indexTab == -1) {
                 recentD.dashboardTabID = dashboardTabID;
-                recentD.editMode = this.editMode.value;
-                return new Promise<any>((resolve, reject) => {
-                    this.saveDashboardRecent(recentD).then(res =>
-                        resolve(recentD)
-                    )
-                });
-            } else {
-                return new Promise<any>((resolve, reject) => {
-                    resolve(null);
-                });
             };
+
+            // Reset editMode
+            recentD.editMode = this.editMode.value;
+
+            return new Promise<any>((resolve, reject) => {
+                this.saveDashboardRecent(recentD).then(res =>
+                    resolve(recentD)
+                )
+            });
         };
 
     }
