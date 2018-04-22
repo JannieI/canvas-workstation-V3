@@ -1499,7 +1499,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 userID: this.currentUser.userID,
                 dashboardID: dashboardID,
                 dashboardTabID: dashboardTabID,
-                editMode: false,
+                editMode: this.editMode.value,
                 accessed: this.formatDate(today),
                 stateAtRunTime: 'Draft',
                 nameAtRunTime: ''
@@ -1514,6 +1514,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
                 let recentD: DashboardRecent = this.dashboardsRecent[indexD];
                 recentD.dashboardTabID = dashboardTabID;
+                recentD.editMode = this.editMode.value;
                 return new Promise<any>((resolve, reject) => {
                     this.saveDashboardRecent(recentD).then(res =>
                         resolve(recentD)
