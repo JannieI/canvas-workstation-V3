@@ -29,12 +29,13 @@ This document describes items for later versions of Canvas.
     - everything must be accessable IN 3 CLICKS
     - every form must load in LESS THAN 3 SECS
     - consider if we need SAVE AS functionality
-    - can send as Email Attachment (in pdf or pic)
+    - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF
+    - can send as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/
     - can copy whole D as image - can paste somewhere, or print and put on wall
     - verify that we cater for casual to sophisticated user
     - make sure we can have hybrid DS - cloud and local and server in one D
     - go through system and make sure things are done consistently
-
+    - make all drag-n-drop and similar to Microsoft interface.
 
 
 
@@ -169,7 +170,8 @@ This document describes items for later versions of Canvas.
     - Cross hair with showing values on axis - ie crypto trading websites!
     - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
     - Serias work to be done - learning Vega and adding ALL features !!!
-    - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new     templates, and a new UI. 
+    - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI. For a GAUGE, see https://gist.github.com/anilkpatro/0cf0503b581556a14aab
+    For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html
     - Give hints/advice on W as to type of graph, insights, etc.
 
 
@@ -302,4 +304,14 @@ Consider dataQuality on own menu item, or on W menu
 - look at Xero accounting package stats - can or should we duplicate that?
 - look for real examples where we can disrupt
 - relook at 'what business are we in' to determine product offering vs target market
-- look at market: do segmentation, non-customers that can use Canvas, think of different market needs
+- look at market: do segmentation, non-customers that can use Canvas, think of different market needs.  Also, look at different user profiles: info-worker, project manager, consultants, team members, board.  Review competition, and be clear about differentiators.
+- test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!
+- add speaker notes on different screen!
+- Sample 1: personal finance, budget, expenses, etc
+- Sample 2: elaborate to-do list
+- Sample 3: buying a house: loan projections, to-do list of steps, pictures of house, share with friends, time-line of progress, gannt chart in Vega!
+- consider RIGHT CLICK menu (Ihsane) - this is a lot of work, so first test if users wants it
+- consider triangle as a new shape - not sure it is needed
+- add video as shape
+- make it easier to add co logo, ie Add logo menu option.
+- expand palette / menus: add regularly used tasks, ie add a circle (with one click)
