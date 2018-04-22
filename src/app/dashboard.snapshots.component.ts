@@ -81,9 +81,9 @@ export class DashboardSnapshotsComponent implements OnInit {
             currentDashboardID;
         let currentD: Dashboard[] = this.globalVariableService.currentDashboards.slice();
         let currentT: DashboardTab[] = this.globalVariableService.currentDashboardTabs.slice();
-        let currentP: DashboardPermission[] = this.globalVariableService.
-            currentDashboardPermissions.slice();
-        let currentC: CanvasComment[] = this.globalVariableService.canvasComments.slice();
+        // let currentP: DashboardPermission[] = this.globalVariableService.
+        //     currentDashboardPermissions.slice();
+        // let currentC: CanvasComment[] = this.globalVariableService.canvasComments.slice();
         let currentW: Widget[] = this.globalVariableService.currentWidgets.slice();
         let currentDset: Dataset[] = this.globalVariableService.currentDatasets.slice();
         let currentDS: Datasource[] = this.globalVariableService.currentDatasources.slice();
