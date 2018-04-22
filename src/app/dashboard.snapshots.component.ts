@@ -97,8 +97,6 @@ export class DashboardSnapshotsComponent implements OnInit {
             comment: this.snapshotComment,
             dashboards: currentD,
             dashboardTabs: currentT,
-            dashboardPermissions: currentP,
-            canvasComments: currentC,
             widgets: currentW,
             datasets: currentDset,
             datasources: currentDS,
@@ -143,23 +141,23 @@ export class DashboardSnapshotsComponent implements OnInit {
             this.globalVariableService.dashboardTabs.push(s);
         });
 
-        // Remove global Ps
-        this.globalVariableService.dashboardPermissions = this.globalVariableService.
-            dashboardPermissions.filter(p => p.dashboardID != dashboardID
-        );
-        // Add P from snapshot to global
-        snap.dashboardPermissions.forEach(s => {
-            this.globalVariableService.dashboardPermissions.push(s);
-        });
+        // // Remove global Ps
+        // this.globalVariableService.dashboardPermissions = this.globalVariableService.
+        //     dashboardPermissions.filter(p => p.dashboardID != dashboardID
+        // );
+        // // Add P from snapshot to global
+        // snap.dashboardPermissions.forEach(s => {
+        //     this.globalVariableService.dashboardPermissions.push(s);
+        // });
 
-        // Remove global Cs
-        this.globalVariableService.canvasComments = this.globalVariableService.
-            canvasComments.filter(c => c.dashboardID != dashboardID
-        );
-        // Add C from snapshot to global
-        snap.canvasComments.forEach(s => {
-            this.globalVariableService.canvasComments.push(s);
-        });
+        // // Remove global Cs
+        // this.globalVariableService.canvasComments = this.globalVariableService.
+        //     canvasComments.filter(c => c.dashboardID != dashboardID
+        // );
+        // // Add C from snapshot to global
+        // snap.canvasComments.forEach(s => {
+        //     this.globalVariableService.canvasComments.push(s);
+        // });
 
         // Remove global Ws
         this.globalVariableService.widgets = this.globalVariableService.widgets.
