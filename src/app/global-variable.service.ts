@@ -1490,10 +1490,10 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
         let indexD: number = this.dashboardIndexInRecentList(dashboardID);
         let indexTab: number = this.dashboardTabIndexInRecentList(dashboardID, dashboardTabID);
+        let today = new Date();
 
         // D not in Recent List, so Add
         if (indexD == -1) {
-            let today = new Date();
 
             let newRecent: DashboardRecent = {
                 id: null,
@@ -1520,8 +1520,9 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 recentD.dashboardTabID = dashboardTabID;
             };
 
-            // Reset editMode
+            // Reset editMode, accessed
             recentD.editMode = this.editMode.value;
+            recentD.accessed = this.formatDate(today);
 
             return new Promise<any>((resolve, reject) => {
                 this.saveDashboardRecent(recentD).then(res =>
@@ -1599,6 +1600,13 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         u.id == data.id
                     );
                     this.dashboardsRecent[localIndex] = data;
+
+                    // Change order - last accessed one must be at top
+                    let temp: DashboardRecent[] = [ this.dashboardsRecent[localIndex] ].concat(
+                        this.dashboardsRecent.filter(dR => dR.id != data.id)
+                    );
+                    this.dashboardsRecent = temp;
+                    this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                     console.log('saveDashboardRecent SAVED', res)
                     resolve('Saved');
