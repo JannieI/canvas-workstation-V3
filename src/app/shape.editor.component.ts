@@ -31,9 +31,11 @@ export class ShapeEditComponent implements OnInit {
     backgroundcolors: CSScolor[];
     bulletIndex: number = 0;
     bulletValue: string = '';
+    colorPicker: boolean = false;
     editBulletItem: boolean = false;
     shapeImageUrl: string;                            // url for image
     localWidget: Widget;                            // W to modify, copied from selected
+    selectedColor: string = 'black';
     showArrow: boolean = false;
     showBullets: boolean = false;
     showCircle: boolean = false;
@@ -289,5 +291,19 @@ export class ShapeEditComponent implements OnInit {
         };
 
     }
+    clickColor(color: any, p1: number, p2: number) {
+        this.selectedColor = color;
+        console.log(color, p1, p2)
+    }
+    mouseOverColor(color: any) {
+        this.selectedColor = color;
+
+        console.log(color)
+    }
+    mouseOutMap() {
+        this.selectedColor = 'transparent';
+        console.log('OutMap')
+    }
+    
 
 }

@@ -15,6 +15,23 @@
     margin: 15px;
 }
 
+.colorpicker {
+    border: 1px solid gray;
+    border-radius: 4px;
+    height: 236px;
+    margin: auto;
+    width:236px;
+    z-index: 100;
+}
+
+.gridTest {
+    border: green;
+    background-color: pink;
+}
+
+
+
+
 .bulletLine {
     border: 1px solid gray;
     margin: 3px 0 3px 5px;
