@@ -3889,23 +3889,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         w => w.id != id
                     );
 
-                    // Mark Checkpoints to indicate parentW is dead
-                    this.currentWidgetCheckpoints.forEach(chk => {
-                        if (chk.id == id) {
-                            chk.parentWidgetIsDeleted = true;
-                            // TODO - do this better in a DB
-                            this.saveWidgetCheckpoint(chk);
-                        };
-                    });
-                    this.widgetCheckpoints.forEach(chk => {
-                        if (chk.id == id) {
-                            chk.parentWidgetIsDeleted = true;
-                            // TODO - do this better in a DB
-                            this.saveWidgetCheckpoint(chk);
-                        };
-                    });
-
-                    console.log('deleteWidget DELETED id: ', id)
+                    console.log('deleteWidget DELETED id: ', id, this.widgetCheckpoints, this.currentWidgetCheckpoints)
                     resolve('Deleted');
                 },
                 err => {
@@ -3934,6 +3918,22 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 res => {
                     // Update widgets and currentWidgets
                     this.widgetReplace(data);
+
+                    // Mark Checkpoints to indicate parentW is dead
+                    this.currentWidgetCheckpoints.forEach(chk => {
+                        if (chk.widgetID == id) {
+                            chk.parentWidgetIsDeleted = true;
+                            // TODO - do this better in a DB
+                            this.saveWidgetCheckpoint(chk);
+                        };
+                    });
+                    this.widgetCheckpoints.forEach(chk => {
+                        if (chk.widgetID == id) {
+                            chk.parentWidgetIsDeleted = true;
+                            // TODO - do this better in a DB
+                            this.saveWidgetCheckpoint(chk);
+                        };
+                    });
 
                     console.log('saveWidget SAVED', res)
                     resolve('Saved');
