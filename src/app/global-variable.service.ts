@@ -4304,7 +4304,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.widgetCheckpoints = data.filter(d => (!d.isTrashed) );
+                        this.widgetCheckpoints = data.filter(d => (!d.parentWidgetIsDeleted) );
 
                         this.isDirtyWidgetCheckpoints = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
