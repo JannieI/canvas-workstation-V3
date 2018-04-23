@@ -138,7 +138,7 @@
         padding-top: 6px;
     }
     .gridTextColourPicker {
-        border: transparent;
+        border: 1px solid gray;
         grid-column-start: 9;
         grid-column-end: 11;
         grid-row-start: 11;

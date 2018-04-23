@@ -11,7 +11,7 @@
                 <div class="colourpicker" *ngIf="colourPickerClosed">
                     <colour-picker
                         [callingRoutine]="callingRoutine"
-                        [selectedColor]="selectedColor"
+                        [selectedColor]="localWidget.shapeTextColour"
                         >
                     </colour-picker>
                     <!-- <img
@@ -247,20 +247,25 @@
                 </div>
 
                 <div class="gridShape" *ngIf="showText"
+                    [style.color]="localWidget.shapeTextColour"
                     [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
                     [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
                     [style.font-family]="localWidget.shapeFontFamily"
                     [style.font-size.px]="localWidget.shapeFontSize"
+                    style="padding:20px 0 0 40px;"
                     >
-                    <svg width="300" height="300">
+                    {{ localWidget.shapeText }}
+                    <!-- <svg width="300" height="300">
                         <text
                             x="20"
                             y="150"
                             [style.fill]="localWidget.shapeFill"
+                            [style.color]="row.shapeStroke"
                             >
+                            {{ localWidget.shapeTextColour }}
                             {{ localWidget.shapeText }}
                         </text>
-                    </svg>
+                    </svg> -->
                 </div>
 
                 <div class="gridShape" *ngIf="showArrow"
@@ -323,7 +328,7 @@
 
                 <div class="gridShape" *ngIf="showValue">
                     <div [style.height.px]="100"
-
+                        [style.color]="localWidget.shapeTextColour"
                         [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
                         [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
                         [style.font-family]="localWidget.shapeFontFamily"
@@ -475,7 +480,7 @@
                     </div>
                     <button
                         type="button"
-                        [style.backgroundColor]="selectedColor"
+                        [style.backgroundColor]="localWidget.shapeTextColour"
                         class="btn btn-icon btn-sm gridTextColourPicker"
                         (click)="clickSelectColor()"
                         >

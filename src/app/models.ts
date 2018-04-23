@@ -694,6 +694,7 @@ export class Widget {
     shapeStroke: string;                // Colour of line
     shapeStrokeWidth: string;           // Line thickness in px
     shapeText: string;                  // Text in textbox
+    shapeTextColour: string;            // Text colour
     shapeValue: string;                 // Value to display
 
     // Created, updated and refreshed

@@ -39,7 +39,6 @@ export class ShapeEditComponent implements OnInit {
     editBulletItem: boolean = false;
     shapeImageUrl: string;                            // url for image
     localWidget: Widget;                            // W to modify, copied from selected
-    selectedColor: string = 'black';
     showArrow: boolean = false;
     showBullets: boolean = false;
     showCircle: boolean = false;
@@ -63,9 +62,12 @@ export class ShapeEditComponent implements OnInit {
         // Manage colour picker
         this.globalVariableService.colourPickerClosed.subscribe(clp => {
             console.log('xx Sh Ed', clp)
-            if (clp.callingRoutine == 'ShapeEditorTextColor') {
-                this.selectedColor = clp.selectedColor;
-                this.colourPickerClosed = false;
+            if (clp != null) {
+
+                if (clp.callingRoutine == 'ShapeEditorTextColor') {
+                    this.colourPickerClosed = false;
+                    this.localWidget.shapeTextColour = clp.selectedColor;
+                };
             };
         });
 
@@ -305,32 +307,6 @@ export class ShapeEditComponent implements OnInit {
 
     }
 
-    // clickColor(color: any, p1: number, p2: number) {
-    //     // Add item to bullet list
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
-
-    //     this.selectedColor = color;
-    //     this.colourPickerClosed = !this.colourPickerClosed;
-    //     console.log(this.selectedColor, p1, p2)
-    // }
-
-    // mouseOverColor(color: any) {
-    //     // Add item to bullet list
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
-
-    //     this.selectedColor = color;
-
-    //     console.log(color)
-    // }
-
-    // mouseOutMap() {
-    //     // Add item to bullet list
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
-
-    //     this.selectedColor = 'transparent';
-    //     console.log('OutMap')
-    // }
-
     clickSelectColor() {
         // Open the Colour Picker for Text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clicclickSelectColorkEditDone', '@Start');
@@ -340,7 +316,7 @@ export class ShapeEditComponent implements OnInit {
     }    
 
     clickSelectTextColor(ev: any) {
-        this.selectedColor = ev.target.value;
+        this.localWidget.shapeTextColour = ev.target.value;
         console.log(ev.target.value)
     }
 }

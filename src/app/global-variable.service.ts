@@ -258,6 +258,7 @@ const widgetTemplate: Widget =
         "shapeStroke": "",
         "shapeStrokeWidth": "",
         "shapeText": "",
+        "shapeTextColour": "",
         "shapeValue": "",
         "refreshMode": "",
         "refreshFrequency": 1,
@@ -4824,6 +4825,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 {key: 'shapeStrokeWidth', 			type: 'string'},
                 {key: 'shapeFill', 					type: 'string'},
                 {key: 'shapeText', 					type: 'string'},
+                {key: 'shapeTextColour', 			type: 'string'},
                 {key: 'shapeValue', 				type: 'string'},
                 {key: 'shapeBullets', 				type: 'string'},
                 {key: 'shapeBulletStyleType', 		type: 'int'},
@@ -5200,6 +5202,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeFill = changedWidget.shapeFill;
                 w.shapeText = changedWidget.shapeText;
+                w.shapeTextColour = changedWidget.shapeTextColour;
                 w.shapeValue = changedWidget.shapeValue;
                 w.shapeBullets = changedWidget.shapeBullets;
                 w.shapeBulletStyleType = changedWidget.shapeBulletStyleType;
@@ -5334,6 +5337,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeFill = changedWidget.shapeFill;
                 w.shapeText = changedWidget.shapeText;
+                w.shapeTextColour = changedWidget.shapeTextColour;
                 w.shapeValue = changedWidget.shapeValue;
                 w.shapeBullets = changedWidget.shapeBullets;
                 w.shapeBulletStyleType = changedWidget.shapeBulletStyleType;
