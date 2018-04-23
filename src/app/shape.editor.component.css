@@ -71,6 +71,9 @@
     }
 
     .gridShapeProperties {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(14, 0.8rem);
         grid-column-start: 1;
         grid-column-end: 12;
         grid-row-start: 4;
@@ -79,6 +82,64 @@
         text-align: left;
     }
 
+    /* Text */
+    .gridTextString {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextFontSize {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextFontFamily {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextBold {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 7;
+        grid-row-end: 7;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextItalic {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextColour {
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 15;
+        grid-row-end: 11;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextColourPicker {
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        padding-left: 15px;
+    }
+
+    /* Ending */
     .hasTitle {
         grid-column-start: 1;
         grid-column-end: 5;

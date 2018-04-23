@@ -429,40 +429,40 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showText">
-                    <div class="propertyLine">
+                    <div class="gridTextString">
                         Text input:
                         <input type="text"
                             placeholder="The brown fox ..."
                             [(ngModel)]="localWidget.shapeText"
                             >
                     </div>
-                    <div class="propertyLine">
+                    <div class="gridTextFontSize">
                         Font Size:
                         <input type="text"
-                            placeholder="50 (px)"
+                            placeholder="50 (in px)"
                             [(ngModel)]="localWidget.shapeFontSize"
                             >
                     </div>
-                    <div class="propertyLine">
+                    <div class="gridTextFontFamily">
                         Font Family:
                         <input type="text"
                             placeholder="Arial, serif"
                             [(ngModel)]="localWidget.shapeFontFamily"
                             >
                     </div>
-                    <div class="propertyLine">
+                    <div class="gridTextBold">
                         Bold?:
                         <input type="checkbox"
                             [(ngModel)]="localWidget.shapeIsBold"
                             >
                     </div>
-                    <div class="propertyLine">
+                    <div class="gridTextItalic">
                         Italic?:
                         <input type="checkbox"
                             [(ngModel)]="localWidget.shapeIsItalic"
                             >
                     </div>
-                    <div class="propertyLine">
+                    <div class="gridTextColour">
                         Colour:
                         <div class="select">
                         <select
@@ -477,7 +477,7 @@
                         </div>
                         <button
                             type="button"
-                            class="btn btn-secondary btn-small"
+                            class="btn btn-secondary btn-sm gridTextColourPicker"
                             (click)="colorPicker=!colorPicker"
                             >
                             ~
