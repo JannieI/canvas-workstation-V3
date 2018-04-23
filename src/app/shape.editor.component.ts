@@ -293,7 +293,8 @@ export class ShapeEditComponent implements OnInit {
     }
     clickColor(color: any, p1: number, p2: number) {
         this.selectedColor = color;
-        console.log(color, p1, p2)
+        this.colorPicker = !this.colorPicker;
+        console.log(this.selectedColor, p1, p2)
     }
     mouseOverColor(color: any) {
         this.selectedColor = color;

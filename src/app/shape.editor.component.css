@@ -54,16 +54,18 @@
     }
 
     .colorpicker {
+        background-color: white;
         border: 1px solid gray;
         border-radius: 4px;
         display: inline-block;
-        grid-column-start: 5;
+        grid-column-start: 6;
         grid-column-end: 15;
         grid-row-start: 6;
         grid-row-end: 12;
-        height: 236px;
-        margin: auto;
-        width:236px;
+        height: 240px;
+        margin: 0px;
+        padding: 20px;
+        width: 280px;
         z-index: 100;
     }
     
