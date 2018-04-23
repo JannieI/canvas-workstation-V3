@@ -304,6 +304,8 @@ export class ShapeEditComponent implements OnInit {
         this.selectedColor = 'transparent';
         console.log('OutMap')
     }
-    
+    clickSelectColor() {
+        this.colorPicker = !this.colorPicker;
+    }    
 
 }

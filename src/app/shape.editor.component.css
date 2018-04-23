@@ -15,23 +15,6 @@
     margin: 15px;
 }
 
-.colorpicker {
-    border: 1px solid gray;
-    border-radius: 4px;
-    height: 236px;
-    margin: auto;
-    width:236px;
-    z-index: 100;
-}
-
-.gridTest {
-    border: green;
-    background-color: pink;
-}
-
-
-
-
 .bulletLine {
     border: 1px solid gray;
     margin: 3px 0 3px 5px;
@@ -70,6 +53,20 @@
         text-align: left;
     }
 
+    .colorpicker {
+        border: 1px solid gray;
+        border-radius: 4px;
+        display: inline-block;
+        grid-column-start: 5;
+        grid-column-end: 15;
+        grid-row-start: 6;
+        grid-row-end: 12;
+        height: 236px;
+        margin: auto;
+        width:236px;
+        z-index: 100;
+    }
+    
     .gridShapeProperties {
         display: grid;
         grid-template-columns: repeat(10, 1fr);
@@ -111,7 +108,7 @@
         grid-column-start: 1;
         grid-column-end: 11;
         grid-row-start: 7;
-        grid-row-end: 7;
+        grid-row-end: 8;
         padding-left: 15px;
         padding-top: 6px;
     }
@@ -123,17 +120,25 @@
         padding-left: 15px;
         padding-top: 6px;
     }
-    .gridTextColour {
+    .gridTextColourTitle {
         grid-column-start: 1;
-        grid-column-end: 6;
-        grid-row-start: 15;
-        grid-row-end: 11;
+        grid-column-end: 3;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextColour {
+        grid-column-start: 3;
+        grid-column-end: 7;
+        grid-row-start: 11;
+        grid-row-end: 12;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridTextColourPicker {
-        grid-column-start: 7;
-        grid-column-end: 9;
+        grid-column-start: 9;
+        grid-column-end: 11;
         grid-row-start: 11;
         grid-row-end: 12;
         padding-left: 15px;
@@ -158,7 +163,7 @@
 
     .gridButtonSave {
         grid-column-start: 5;
-        grid-column-end: 6;
+        grid-column-end: 7;
         grid-row-start: 20;
         grid-row-end: 21;
         margin-bottom: 15px;
