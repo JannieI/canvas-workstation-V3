@@ -3920,20 +3920,25 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     this.widgetReplace(data);
 
                     // Mark Checkpoints to indicate parentW is dead
-                    this.currentWidgetCheckpoints.forEach(chk => {
-                        if (chk.widgetID == id) {
-                            chk.parentWidgetIsDeleted = true;
-                            // TODO - do this better in a DB
-                            this.saveWidgetCheckpoint(chk);
+                    if (data.isTrashed) {
+
+                        // TODO - do this better in a DB
+                        if (this.currentWidgetCheckpoints.length > 0) {
+                            this.currentWidgetCheckpoints.forEach(chk => {
+                                if (chk.widgetID == data.id) {
+                                    chk.parentWidgetIsDeleted = true;
+                                };
+                            });
                         };
-                    });
-                    this.widgetCheckpoints.forEach(chk => {
-                        if (chk.widgetID == id) {
-                            chk.parentWidgetIsDeleted = true;
-                            // TODO - do this better in a DB
-                            this.saveWidgetCheckpoint(chk);
+                        if (this.widgetCheckpoints.length > 0) {
+                            this.widgetCheckpoints.forEach(chk => {
+                                if (chk.widgetID == data.id) {
+                                    chk.parentWidgetIsDeleted = true;
+                                    this.saveWidgetCheckpoint(chk);
+                                };
+                            });
                         };
-                    });
+                    };
 
                     console.log('saveWidget SAVED', res)
                     resolve('Saved');
@@ -4441,7 +4446,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
     saveWidgetCheckpoint(data: WidgetCheckpoint): Promise<string> {
         // Description: Saves Widget Checkpoint
         // Returns: 'Saved' or error message
-        console.log('Global-Variables saveWidgetCheckpoint ...');
+        console.log('Global-Variables saveWidgetCheckpoint ...', data);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -4451,11 +4456,16 @@ console.log('xx allS 1', this.currentDatasets.slice())
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url, data, {headers})
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
-                    this.canvasSettings = JSON.parse(JSON.stringify(res));
+                    // Replace local
+                    let localIndex: number = this.widgetCheckpoints.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.widgetCheckpoints[localIndex] = data;
+
                     console.log('saveWidgetCheckpoint SAVED')
                     resolve('Saved');
                 },
