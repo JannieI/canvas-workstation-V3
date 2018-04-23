@@ -3889,6 +3889,20 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         w => w.id != id
                     );
 
+                    // Mark Checkpoints to indicate parentW is dead
+                    this.currentWidgetCheckpoints.forEach(chk => {
+                        if (chk.id == id) {
+                            chk.parentWidgetIsDeleted = true;
+                            // TODO - do this better in a DB
+                            this.savew
+                        };
+                    });
+                    this.widgetCheckpoints.forEach(chk => {
+                        if (chk.id == id) {
+                            chk.parentWidgetIsDeleted = true;
+                        };
+                    });
+
                     console.log('deleteWidget DELETED id: ', id)
                     resolve('Deleted');
                 },
@@ -4417,6 +4431,35 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 err => {
                     console.log('Error deleteWidgetCheckpoint FAILED', err);;
                     resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    saveWidgetCheckpoint(data: CanvasSettings): Promise<string> {
+        // Description: Saves Widget Checkpoint
+        // Returns: 'Saved' or error message
+        console.log('Global-Variables saveWidgetCheckpoint ...');
+
+        let url: string = 'widgetCheckpoints';
+        this.filePath = './assets/data.widgetCheckpoints.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                res => {
+
+                    this.canvasSettings = JSON.parse(JSON.stringify(res));
+                    console.log('saveWidgetCheckpoint SAVED')
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveWidgetCheckpoint FAILED');;
+                    resolve(err.Message.toString());
                 }
             )
         });

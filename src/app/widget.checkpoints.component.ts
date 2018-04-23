@@ -115,6 +115,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         let newCheckpoint: WidgetCheckpoint = {
             id: null,
+            parentWidgetIsDeleted: false,
             active: false,
             dashboardID: this.selectedWidget.dashboardID,
             widgetID: this.selectedWidget.id,
