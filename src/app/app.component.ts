@@ -576,9 +576,7 @@ export class AppComponent implements OnInit {
                                 for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
                                     let w: Widget = Object.assign({},
                                         this.globalVariableService.currentWidgets[i]);
-                                    if (!this.editMode) {
-                                        w.isSelected = false;
-                                    };
+                                    w.isSelected = false;
                                     this.currentWidgets.push(w)
                                 }
                                 console.log('xx app end', this.currentWidgets);
