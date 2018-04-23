@@ -4039,7 +4039,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Background colors
         // Returns: this.backgroundcolors array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getBackgroundColors ...', this.backgroundcolors.length);
+        console.log('Global-Variables getBackgroundColors ...');
 
         let url: string = 'canvasBackgroundcolors';
         this.filePath = './assets/settings.backgroundcolors.json';
