@@ -3894,12 +3894,14 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         if (chk.id == id) {
                             chk.parentWidgetIsDeleted = true;
                             // TODO - do this better in a DB
-                            this.savew
+                            this.saveWidgetCheckpoint(chk);
                         };
                     });
                     this.widgetCheckpoints.forEach(chk => {
                         if (chk.id == id) {
                             chk.parentWidgetIsDeleted = true;
+                            // TODO - do this better in a DB
+                            this.saveWidgetCheckpoint(chk);
                         };
                     });
 
@@ -4436,7 +4438,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
         });
     }
 
-    saveWidgetCheckpoint(data: CanvasSettings): Promise<string> {
+    saveWidgetCheckpoint(data: WidgetCheckpoint): Promise<string> {
         // Description: Saves Widget Checkpoint
         // Returns: 'Saved' or error message
         console.log('Global-Variables saveWidgetCheckpoint ...');
