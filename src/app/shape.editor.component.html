@@ -178,7 +178,6 @@
                     </div>
                 </div>
 
-
                 <div class="gridButtonCancel">
                     <button
                         type="button"
@@ -460,6 +459,7 @@
                     <div class="select gridTextColour">
                         <select
                             [(ngModel)]="localWidget.shapeFill"
+                            (change)="clickSelectTextColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [selected]="selected"
@@ -471,7 +471,7 @@
                     <button
                         type="button"
                         [style.backgroundColor]="selectedColor"
-                        class="btn btn-icon gridTextColourPicker"
+                        class="btn btn-icon btn-sm gridTextColourPicker"
                         (click)="clickSelectColor()"
                         >
                     </button>

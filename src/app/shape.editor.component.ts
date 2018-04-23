@@ -309,4 +309,8 @@ export class ShapeEditComponent implements OnInit {
         this.colorPicker = !this.colorPicker;
     }    
 
+    clickSelectTextColor(ev: any) {
+        this.selectedColor = ev.target.value;
+        console.log(ev.target.value)
+    }
 }
