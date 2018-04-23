@@ -1504,15 +1504,26 @@
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Text'"
         
         [style.height.px]="1"
-            [style.width.px]="1"
-            [style.font-style]="row.shapeIsItalic? 'italic' : 'normal'"
-            [style.font-weight]="row.shapeIsBold? 'bold' : 'normal'"
-            [style.font-family]="row.shapeFontFamily"
-            [style.font-size.px]="row.shapeFontSize"
-            [style.color]="row.shapeTextColour"
-            >
-            {{ row.shapeText }}          
-        
+        [style.color]="row.shapeTextColour"
+        [style.font-style]="row.shapeIsItalic? 'italic' : 'normal'"
+        [style.font-weight]="row.shapeIsBold? 'bold' : 'normal'"
+        [style.font-family]="row.shapeFontFamily"
+        [style.font-size.px]="row.shapeFontSize"
+        [style.width.px]="row.containerWidth-10"
+        style="display:block; margin: 0; padding: 0; white-space: pre-wrap"
+        >
+        {{ row.shapeText }}          
+        <!-- <svg width="300" height="300">
+            <text
+                x="20"
+                y="150"
+                [style.fill]="row.shapeTextColour"
+                [style.color]="row.shapeTextColour"
+                >
+                {{ row.shapeText }}
+            </text>
+        </svg> -->
+    
     </div>
 
     <!-- Shape Arrow Object -->

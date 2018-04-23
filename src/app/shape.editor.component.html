@@ -252,17 +252,17 @@
                     [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
                     [style.font-family]="localWidget.shapeFontFamily"
                     [style.font-size.px]="localWidget.shapeFontSize"
-                    style="padding:20px 0 0 40px;"
+                    style="display: block; padding: 5px;"
+
                     >
                     {{ localWidget.shapeText }}
                     <!-- <svg width="300" height="300">
                         <text
                             x="20"
                             y="150"
-                            [style.fill]="localWidget.shapeFill"
-                            [style.color]="row.shapeStroke"
+                            [style.fill]="localWidget.shapeTextColour"
+                            [style.color]="localWidget.shapeTextColour"
                             >
-                            {{ localWidget.shapeTextColour }}
                             {{ localWidget.shapeText }}
                         </text>
                     </svg> -->
