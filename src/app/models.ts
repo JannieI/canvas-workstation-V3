@@ -384,6 +384,8 @@ export class FieldMetadata{
 
 export class WidgetCheckpoint {
     id: number;                         // Unique ID
+    parentWidgetIsDeleted: boolean;     // True if W it belongs to has been deleted.
+    // This is kept to perform an Undo when the W is restored.
     active: boolean;                    // Set at RunTime: true if currently shown
     dashboardID: number;                // Linked to this D
     widgetID: number;                   // Linked to this W
