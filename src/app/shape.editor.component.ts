@@ -34,7 +34,8 @@ export class ShapeEditComponent implements OnInit {
     backgroundcolors: CSScolor[];
     bulletIndex: number = 0;
     bulletValue: string = '';
-    colorPicker: boolean = false;
+    callingRoutine: string = '';
+    colourPickerClosed: boolean = false;
     editBulletItem: boolean = false;
     shapeImageUrl: string;                            // url for image
     localWidget: Widget;                            // W to modify, copied from selected
@@ -58,6 +59,15 @@ export class ShapeEditComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Manage colour picker
+        this.globalVariableService.colourPickerClosed.subscribe(clp => {
+            console.log('xx Sh Ed', clp)
+            if (clp.callingRoutine == 'ShapeEditorTextColor') {
+                this.selectedColor = clp.selectedColor;
+                this.colourPickerClosed = false;
+            };
+        });
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
@@ -294,22 +304,39 @@ export class ShapeEditComponent implements OnInit {
         };
 
     }
-    clickColor(color: any, p1: number, p2: number) {
-        this.selectedColor = color;
-        this.colorPicker = !this.colorPicker;
-        console.log(this.selectedColor, p1, p2)
-    }
-    mouseOverColor(color: any) {
-        this.selectedColor = color;
 
-        console.log(color)
-    }
-    mouseOutMap() {
-        this.selectedColor = 'transparent';
-        console.log('OutMap')
-    }
+    // clickColor(color: any, p1: number, p2: number) {
+    //     // Add item to bullet list
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
+
+    //     this.selectedColor = color;
+    //     this.colourPickerClosed = !this.colourPickerClosed;
+    //     console.log(this.selectedColor, p1, p2)
+    // }
+
+    // mouseOverColor(color: any) {
+    //     // Add item to bullet list
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
+
+    //     this.selectedColor = color;
+
+    //     console.log(color)
+    // }
+
+    // mouseOutMap() {
+    //     // Add item to bullet list
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
+
+    //     this.selectedColor = 'transparent';
+    //     console.log('OutMap')
+    // }
+
     clickSelectColor() {
-        this.colorPicker = !this.colorPicker;
+        // Open the Colour Picker for Text Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clicclickSelectColorkEditDone', '@Start');
+
+        this.callingRoutine = 'ShapeEditorTextColor';
+        this.colourPickerClosed = true;
     }    
 
     clickSelectTextColor(ev: any) {

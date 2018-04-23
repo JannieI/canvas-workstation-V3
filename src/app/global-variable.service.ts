@@ -629,15 +629,16 @@ export class GlobalVariableService {
 
     // Session
     actions: CanvasAction[] = [];
+    colourPickerClosed = new BehaviorSubject<{callingRoutine: string; selectedColor:string}>(null);
+    currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
     currentUser: CanvasUser;
+    dashboardsRecent: DashboardRecent[] = [];
+    dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     datasourceToEditID = new BehaviorSubject<number>(null);
     dsIDs: number[] = [];           // Dataset IDs
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
-    currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
-    dashboardsRecent: DashboardRecent[] = [];
-    dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);

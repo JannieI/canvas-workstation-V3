@@ -8,8 +8,12 @@
 
             <div class="gridOverall">
 
-                <div class="colorpicker" *ngIf="colorPicker">
-                    <colour-picker></colour-picker>
+                <div class="colourpicker" *ngIf="colourPickerClosed">
+                    <colour-picker
+                        [callingRoutine]="callingRoutine"
+                        [selectedColor]="selectedColor"
+                        >
+                    </colour-picker>
                     <!-- <img
                         width="236"
                         src="../images/colormap.png" 
