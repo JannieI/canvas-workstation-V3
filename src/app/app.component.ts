@@ -1436,7 +1436,32 @@ export class AppComponent implements OnInit {
                 if (filteredActions[0].oldWidget == null) {
                     this.deleteWidget('Graph',filteredActions[0].newWidget.id);
                 } else {
-                this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+
+                    // TODO - do this better in a DB
+                    if (this.currentWidgetCheckpoints.length > 0) {
+                        this.currentWidgetCheckpoints.forEach(chk => {
+                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                                chk.parentWidgetIsDeleted = false;
+                            };
+                        });
+                    };
+                    if (this.globalVariableService.currentWidgetCheckpoints.length > 0) {
+                        this.globalVariableService.currentWidgetCheckpoints.forEach(chk => {
+                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                                chk.parentWidgetIsDeleted = false;
+                            };
+                        });
+                    };
+                    if (this.globalVariableService.widgetCheckpoints.length > 0) {
+                        this.globalVariableService.widgetCheckpoints.forEach(chk => {
+                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                                chk.parentWidgetIsDeleted = false;
+                                this.globalVariableService.saveWidgetCheckpoint(chk);
+                            };
+                        });
+                    };
+
+                    this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
                 };
             };
 
@@ -1489,6 +1514,31 @@ export class AppComponent implements OnInit {
                 if (filteredActions[0].oldWidget == null) {
                     this.deleteWidget('Graph',filteredActions[0].newWidget.id);
                 } else {
+
+                    // TODO - do this better in a DB
+                    if (this.currentWidgetCheckpoints.length > 0) {
+                        this.currentWidgetCheckpoints.forEach(chk => {
+                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                                chk.parentWidgetIsDeleted = false;
+                            };
+                        });
+                    };
+                    if (this.globalVariableService.currentWidgetCheckpoints.length > 0) {
+                        this.globalVariableService.currentWidgetCheckpoints.forEach(chk => {
+                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                                chk.parentWidgetIsDeleted = false;
+                            };
+                        });
+                    };
+                    if (this.globalVariableService.widgetCheckpoints.length > 0) {
+                        this.globalVariableService.widgetCheckpoints.forEach(chk => {
+                            if (chk.widgetID == filteredActions[0].oldWidget.id) {
+                                chk.parentWidgetIsDeleted = false;
+                                this.globalVariableService.saveWidgetCheckpoint(chk);
+                            };
+                        });
+                    };
+
                     this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
                 };
 
