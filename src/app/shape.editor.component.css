@@ -236,14 +236,33 @@
         padding-left: 15px;
         padding-top: 6px;
     }
-    .gridRectangleFillColour {
+
+
+    .gridRectangleFillColourTitle {
         grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridRectangleFillColour {
+        grid-column-start: 3;
+        grid-column-end: 8;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridRectangleFillColourPicker {
+        grid-column-start: 9;
         grid-column-end: 11;
         grid-row-start: 5;
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
+ 
     .gridRectangleOpacity {
         grid-column-start: 1;
         grid-column-end: 11;

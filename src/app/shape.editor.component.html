@@ -240,9 +240,8 @@
                     </div>
 
                     <div class="gridCircleFillColourTitle">
-                        <b>Colour:</b>
+                        <b>Fill Colour:</b>
                     </div>
-                
                     <div class="select gridCircleFillColour">
                         <select
                             [(ngModel)]="localWidget.shapeFill"
@@ -322,18 +321,10 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showRectangle">
-                    <!-- <div class="gridRectangleLineColour">
-                        <b>Line Colour:</b>
-                        <input type="text"
-                            placeholder="Black"
-                            [(ngModel)]="localWidget.shapeStroke"
-                            [autofocus]="hasAutoFocusRectangle"
-                            >
-                    </div> -->
+
                     <div class="gridRectangleLineColourTitle">
                         <b>Colour:</b>
                     </div>
-                
                     <div class="select gridRectangleLineColour">
                         <select
                             [(ngModel)]="localWidget.shapeStroke"
@@ -360,13 +351,37 @@
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
-                    <div class="gridRectangleFillColour">
+                    <!-- <div class="gridRectangleFillColour">
                         <b>Fill colour:</b>
                         <input type="text"
                             placeholder="Red"
                             [(ngModel)]="localWidget.shapeFill"
                             >
+                    </div> -->
+
+                    <div class="gridRectangleFillColourTitle">
+                        <b>Fill Colour:</b>
                     </div>
+                    <div class="select gridRectangleFillColour">
+                        <select
+                            [(ngModel)]="localWidget.shapeFill"
+                            (change)="clickSelectRectangleFillColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [selected]="selected"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridRectangleFillColourPicker"
+                        (click)="clickSelectRectangleFillColorPicker()"
+                        >
+                        Picker
+                    </button>
+    
                     <div class="gridRectangleOpacity">
                         <b>Fill Opacity:</b>
                         <input type="text"

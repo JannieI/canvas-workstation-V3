@@ -85,6 +85,24 @@ export class ShapeEditComponent implements OnInit {
                     this.colourPickerClosed = false;
                     this.localWidget.shapeFill = clp.selectedColor;
                 };
+
+                if (clp.callingRoutine == 'ShapeEditorEllipseLineColor') {
+                    this.colourPickerClosed = false;
+                    this.localWidget.shapeStroke = clp.selectedColor;
+                };
+                if (clp.callingRoutine == 'ShapeEditorEllipseFillColor') {
+                    this.colourPickerClosed = false;
+                    this.localWidget.shapeFill = clp.selectedColor;
+                };
+
+                if (clp.callingRoutine == 'ShapeEditorRectangleLineColor') {
+                    this.colourPickerClosed = false;
+                    this.localWidget.shapeStroke = clp.selectedColor;
+                };
+                if (clp.callingRoutine == 'ShapeEditorRectangleFillColor') {
+                    this.colourPickerClosed = false;
+                    this.localWidget.shapeFill = clp.selectedColor;
+                };
                 
             };
         });
