@@ -57,7 +57,7 @@ This document describes items for later versions of Canvas.
     - Users, groups, permissions
     - Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
     - Global var with userLoggedIn
-    - What and how is cached locally - and how refreshed
+    - What and how is cached locally - and how refreshed?  Ie BackgroundColours should be stored locally and only updated if and when needed.
     - Finalise group membership / roles
     - Where system settings like Security Model ?
     - Add UserID to ALL data and code -> where needed ...
