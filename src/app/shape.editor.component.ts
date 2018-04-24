@@ -115,6 +115,10 @@ export class ShapeEditComponent implements OnInit {
                     this.localWidget.shapeTextColour = clp.selectedColor;
                 };
 
+                if (clp.callingRoutine == 'ShapeEditorArrowColor') {
+                    this.colourPickerClosed = false;
+                    this.localWidget.shapeStroke = clp.selectedColor;
+                };
             };
         });
 
@@ -583,6 +587,23 @@ export class ShapeEditComponent implements OnInit {
 
         this.localWidget.shapeTextColour = ev.target.value;
         console.log('xx clickSelectBulletsColor', ev.target.value)
+    }
+
+    clickSelectArrowColorPicker(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
+        this.callingRoutine = 'ShapeEditorArrowColor';
+        this.colourPickerClosed = true;
+    }
+
+    clickSelectArrowColor(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowColor', '@Start');
+
+        this.localWidget.shapeStroke = ev.target.value;
+        console.log('xx clickSelectArrowColor', ev.target.value)
     }
 
 }
