@@ -296,13 +296,6 @@
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
-                    <!-- <div class="gridEllipseFillColour">
-                        <b>Fill colour:</b>
-                        <input type="text"
-                            placeholder="Red"
-                            [(ngModel)]="localWidget.shapeFill"
-                            >
-                    </div> -->
                     <div class="gridEllipseFillColourTitle">
                         <b>Colour:</b>
                     </div>
@@ -329,14 +322,37 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showRectangle">
-                    <div class="gridRectangleLineColour">
+                    <!-- <div class="gridRectangleLineColour">
                         <b>Line Colour:</b>
                         <input type="text"
                             placeholder="Black"
                             [(ngModel)]="localWidget.shapeStroke"
                             [autofocus]="hasAutoFocusRectangle"
                             >
+                    </div> -->
+                    <div class="gridRectangleLineColourTitle">
+                        <b>Colour:</b>
                     </div>
+                
+                    <div class="select gridRectangleLineColour">
+                        <select
+                            [(ngModel)]="localWidget.shapeStroke"
+                            (change)="clickSelectRectangleLineColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [selected]="selected"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridRectangleLineColourPicker"
+                        (click)="clickSelectRectangleLineColorPicker()"
+                        >
+                        Picker
+                    </button>
                     <div class="gridRectangleThickness">
                         <b>Line thickness:</b>
                         <input type="text"
