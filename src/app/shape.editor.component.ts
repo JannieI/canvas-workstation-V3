@@ -405,5 +405,9 @@ export class ShapeEditComponent implements OnInit {
         console.log('xx clickSelectTextColor', ev.target.value)
     }
 
+    clickSelectColorCircle(ev: any) {
+        this.callingRoutine = 'ShapeEditorCircleLineColor';
+        this.colourPickerClosed = true;
+    }
 
 }
