@@ -134,6 +134,40 @@
         padding-top: 6px;
     }
     
+    /* Rectangle */
+    .gridRectangleLineColour {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridRectangleThickness {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridRectangleFillColour {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridRectangleOpacity {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    
     /* Text */
     .gridTextString {
         grid-column-start: 1;

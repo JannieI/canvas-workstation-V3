@@ -391,28 +391,28 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showRectangle">
-                    <div class="propertyLine">
+                    <div class="gridRectangleLineColour">
                         Line Colour:
                         <input type="text"
                             placeholder="Black"
                             [(ngModel)]="localWidget.shapeStroke"
                             >
                     </div>
-                    <div class="propertyLine">
+                    <div class="gridRectangleThickness">
                         Line thickness:
                         <input type="text"
                             placeholder="3"
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
-                    <div class="propertyLine">
+                    <div class="gridRectangleFillColour">
                         Fill colour:
                         <input type="text"
                             placeholder="Red"
                             [(ngModel)]="localWidget.shapeFill"
                             >
                     </div>
-                    <div class="propertyLine">
+                    <div class="gridRectangleOpacity">
                         Fill Opacity:
                         <input type="text"
                             placeholder="0=opaque, 1=solid"
