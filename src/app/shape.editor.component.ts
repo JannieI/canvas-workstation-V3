@@ -433,4 +433,15 @@ export class ShapeEditComponent implements OnInit {
         console.log('xx clickSelectCircleLineColor', ev.target.value)
     }
 
+    clickSelectCircleFillColorPicker(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectCircleFillColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
+        this.callingRoutine = 'ShapeEditorCircleFillColor';
+        this.colourPickerClosed = true;
+    }
+
+
+
 }
