@@ -507,37 +507,38 @@
                 <div class="gridShapeProperties" *ngIf="showBullets">
                     <div class="propertyLine">
 
-                        <div class="propertyLine">
+                        <div class="gridBulletsFontSize">
                             Font Size:
                             <input type="text"
                                 placeholder="50 (px)"
                                 [(ngModel)]="localWidget.shapeFontSize"
                                 >
                         </div>
-                        <div class="propertyLine">
+                        <div class="gridBulletsFontFamily">
                             Font Family:
                             <input type="text"
                                 placeholder="Arial, serif"
                                 [(ngModel)]="localWidget.shapeFontFamily"
                                 >
                         </div>
-                        <div class="propertyLine">
+                        <div class="gridBulletsItemMarker">
                             Item Marker:
                             <input type="text"
                                 placeholder="disc, circle, square, none"
                                 [(ngModel)]="localWidget.shapeBulletStyleType"
                                 >
                         </div>
-                        <div class="propertyLine">
+                        <div class="gridBulletsOrdered">
                             Ordered?:
                             <input type="text"
                                 placeholder="true, false"
                                 [(ngModel)]="localWidget.shapeBulletsOrdered"
                                 >
                         </div>
-
-                        <input [(ngModel)]="bulletValue">
-                        <button type="button" class="closeButton">
+                        <div class="gridBulletsInput">
+                            <input [(ngModel)]="bulletValue">
+                        </div>
+                        <button type="button" class="gridBulletsButton">
                             <span  *ngIf="editBulletItem" (click)="clickUpdate()">Update</span>
                             <span  *ngIf="!editBulletItem" (click)="clickAdd()">Add</span>
                         </button>
