@@ -426,10 +426,10 @@
                             [(ngModel)]="localWidget.shapeIsItalic"
                             >
                     </div>
+
                     <div class="gridTextColourTitle">
                         <b>Text Colour:</b>
                     </div>
-                
                     <div class="select gridTextColour">
                         <select
                             [(ngModel)]="localWidget.shapeFill"
@@ -507,6 +507,31 @@
                         <b>Item:</b>
                         <input [(ngModel)]="bulletValue">
                     </div>
+
+                    <div class="gridBulletsColourTitle">
+                        <b>Text Colour:</b>
+                    </div>
+                    <div class="select gridBulletsColour">
+                        <select
+                            [(ngModel)]="localWidget.shapeFill"
+                            (change)="clickSelectBulletsColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [selected]="selected"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridBulletsColourPicker"
+                        (click)="clickSelectBulletsColorPicker()"
+                        >
+                        Picker
+                    </button>
+    
+
                     <button type="button" class="btn btn-link gridBulletsButton">
                         <span *ngIf="editBulletItem" (click)="clickUpdate()">Update</span>
                         <span *ngIf="!editBulletItem" (click)="clickAdd()">Add</span>
@@ -575,23 +600,9 @@
                             [(ngModel)]="localWidget.shapeIsItalic"
                             >
                     </div>
-                    <!-- <div class="gridValueColour">
-                        <b>Text Colour:</b>
-                        <select
-                            [(ngModel)]="localWidget.shapeStroke"
-                            >
-                            <option>DarkRed</option>
-                            <option>Black</option>
-                            <option>Gray</option>
-                            <option>LightGray</option>
-                            <option>Green</option>
-                            <option>Blue</option>
-                            <option>Yellow</option>
-                        </select>
 
-                    </div> -->
                     <div class="gridValueLineColourTitle">
-                        <b>Line:</b>
+                        <b>Colour:</b>
                     </div>
                 
                     <div class="select gridValueLineColour">
