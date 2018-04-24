@@ -47,6 +47,7 @@ export class ShapeEditComponent implements OnInit {
     editBulletItem: boolean = false;
     shapeImageUrl: string;                            // url for image
     localWidget: Widget;                            // W to modify, copied from selected
+    selectedColour: string;
     showArrow: boolean = false;
     showBullets: boolean = false;
     showCircle: boolean = false;
@@ -70,12 +71,17 @@ export class ShapeEditComponent implements OnInit {
         // Manage colour picker
         this.globalVariableService.colourPickerClosed.subscribe(clp => {
             console.log('xx Sh Ed', clp)
-            if (clp != null) {
+            if (this.localWidget != undefined  &&  clp != null) {
 
                 if (clp.callingRoutine == 'ShapeEditorTextColor') {
                     this.colourPickerClosed = false;
                     this.localWidget.shapeTextColour = clp.selectedColor;
                 };
+                if (clp.callingRoutine == 'ShapeEditorCircleLineColor') {
+                    this.colourPickerClosed = false;
+                    this.localWidget.shapeStroke = clp.selectedColor;
+                };
+                
             };
         });
 
@@ -396,6 +402,7 @@ export class ShapeEditComponent implements OnInit {
         // Open the Colour Picker for Text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColorText', '@Start');
 
+        this.selectedColour = this.localWidget.shapeTextColour;
         this.callingRoutine = 'ShapeEditorTextColor';
         this.colourPickerClosed = true;
     }

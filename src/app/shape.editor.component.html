@@ -11,7 +11,7 @@
                 <div class="colourpicker" *ngIf="colourPickerClosed">
                     <colour-picker
                         [callingRoutine]="callingRoutine"
-                        [selectedColor]="localWidget.shapeTextColour"
+                        [selectedColor]="selectedColour"
                         >
                     </colour-picker>
                 </div>
@@ -222,7 +222,7 @@
                     <div class="select gridCircleLine">
                         <select
                             [(ngModel)]="localWidget.shapeFill"
-                            (change)="clickSelectTextColor($event)"
+                            (change)="clickSelectColorCircle($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [selected]="selected"
