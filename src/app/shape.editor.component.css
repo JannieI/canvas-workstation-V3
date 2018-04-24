@@ -310,6 +310,56 @@
         padding-top: 6px;
     }
 
+    /* Value */
+    .gridValueInDS {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridValueFontSize {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridValueFontFamily {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridValueBold {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridValueItalic {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridValueColour {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
     /* Ending */
     .hasTitle {
         grid-column-start: 1;

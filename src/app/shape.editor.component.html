@@ -534,7 +534,7 @@
                             >
                     </div>
                     <div class="gridBulletsInput">
-                        <b><b>Item:</b></b>
+                        <b>Item:</b>
                         <input [(ngModel)]="bulletValue">
                     </div>
                     <button type="button" class="btn btn-link gridBulletsButton">
@@ -544,7 +544,7 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showValue">
-                    <div class="propertyLine">
+                    <div class="gridValueInDS">
                         <b>In Datasource:</b>
                         <select id="selects_3"
                             (change)="clickSelectShape($event)"
@@ -568,7 +568,7 @@
                             <option>Min</option>
                         </select>
 
-                        of Field:
+                        <b>of Field:</b>
                         <select id="selects_3"
                             (change)="clickSelectShape($event)"
                             >
@@ -578,34 +578,34 @@
                         </select>
                     </div>
 
-                    <div class="propertyLine">
-                        Font Size:
+                    <div class="gridValueFontSize">
+                        <b>Font Size:</b>
                         <input type="text"
                             placeholder="50 (px)"
                             [(ngModel)]="localWidget.shapeFontSize"
                             >
                     </div>
-                    <div class="propertyLine">
-                        Font Family:
+                    <div class="gridValueFontFamily">
+                        <b>Font Family:</b>
                         <input type="text"
                             placeholder="Arial, serif"
                             [(ngModel)]="localWidget.shapeFontFamily"
                             >
                     </div>
-                    <div class="propertyLine">
-                        Bold?:
+                    <div class="gridValueBold">
+                        <b>Bold?:</b>
                         <input type="checkbox"
                             [(ngModel)]="localWidget.shapeIsBold"
                             >
                     </div>
-                    <div class="propertyLine">
-                        Italic?:
+                    <div class="gridValueItalic">
+                        <b>Italic?:</b>
                         <input type="checkbox"
                             [(ngModel)]="localWidget.shapeIsItalic"
                             >
                     </div>
-                    <div class="propertyLine">
-                        Colour:
+                    <div class="gridValueColour">
+                        <b>Colour:</b>
                         <select
                             [(ngModel)]="localWidget.shapeStroke"
                             >
