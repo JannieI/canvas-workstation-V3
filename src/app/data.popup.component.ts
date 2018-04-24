@@ -88,6 +88,7 @@ export class DataPopupComponent implements OnInit {
     pivotRows: string[];
     pivotAgg: string[];
     resultMessage: string = 'Results will be shown here: drag and drop fields, then click Refresh'
+    // TODO - remove hardcoding
     pivotResults: any[] =
         [
             {

@@ -342,21 +342,21 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showCircle">
-                    <div class="propertyLine">
+                    <div class="gridCircleLineColour">
                         Line Colour:
                         <input type="text"
                             placeholder="Color or circle, ie Black"
                             [(ngModel)]="localWidget.shapeStroke"
                             >
                     </div>
-                    <div class="propertyLine">
+                    <div class="gridCircleThickness">
                         Line thickness:
                         <input type="text"
                             placeholder="3"
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
-                    <div class="propertyLine">
+                    <div class="gridCircleFillColour">
                         Fill colour:
                         <input type="text"
                             placeholder="Red"
@@ -427,7 +427,7 @@
                             >
                     </div>
                 </div>
-
+ 
                 <div class="gridShapeProperties" *ngIf="showText">
                     <div class="gridTextString">
                         Text input:
