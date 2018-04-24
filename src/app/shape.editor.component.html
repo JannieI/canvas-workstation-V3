@@ -159,6 +159,7 @@
 
                 <div class="gridShape" *ngIf="showBullets">
                     <ul *ngIf="!localWidget.shapeBulletsOrdered"
+                        [style.color]="localWidget.shapeTextColour"
                         [style.list-style-type]="localWidget.shapeBulletStyleType"
                         [style.margin-left.px]="30"
                         [style.margin-top.px]="30"
@@ -530,7 +531,6 @@
                         >
                         Picker
                     </button>
-    
 
                     <button type="button" class="btn btn-link gridBulletsButton">
                         <span *ngIf="editBulletItem" (click)="clickUpdate()">Update</span>
