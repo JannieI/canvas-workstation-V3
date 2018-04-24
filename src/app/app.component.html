@@ -1536,11 +1536,22 @@
             >
             <defs>
                 <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
-                <path d="M0,0 L0,6 L9,3 z" fill="black" />
+                <path 
+                    d="M0,0 L0,6 L9,3 z" 
+                    [style.fill]="row.shapeStroke"
+                    />
                 </marker>
             </defs>
 
-            <line x1="1" y1="1" x2="55" y2="55" stroke="#000" stroke-width="5" marker-end="url(#arrow)" />
+            <line 
+                x1="1" 
+                y1="1" 
+                x2="55" 
+                y2="55" 
+                [style.fill]="row.shapeStroke"
+                stroke-width="5" 
+                marker-end="url(#arrow)" 
+                />
         </svg>
     </div>
 
