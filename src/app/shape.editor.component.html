@@ -343,21 +343,21 @@
 
                 <div class="gridShapeProperties" *ngIf="showCircle">
                     <div class="gridCircleLineColour">
-                        Line Colour:
+                        <b>Line Colour:</b>
                         <input type="text"
                             placeholder="Color or circle, ie Black"
                             [(ngModel)]="localWidget.shapeStroke"
                             >
                     </div>
                     <div class="gridCircleThickness">
-                        Line thickness:
+                        <b>Line thickness:</b>
                         <input type="text"
                             placeholder="3"
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
                     <div class="gridCircleFillColour">
-                        Fill colour:
+                        <b>Fill colour:</b>
                         <input type="text"
                             placeholder="Red"
                             [(ngModel)]="localWidget.shapeFill"
@@ -368,21 +368,21 @@
 
                 <div class="gridShapeProperties" *ngIf="showEllipse">
                     <div class="gridEllipseLineColour">
-                        Line Colour:
+                        <b>Line Colour:</b>
                         <input type="text"
                             placeholder="Black"
                             [(ngModel)]="localWidget.shapeStroke"
                             >
                     </div>
                     <div class="gridEllipseThickness">
-                        Line thickness:
+                        <b>Line thickness:</b>
                         <input type="text"
                             placeholder="3"
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
                     <div class="gridEllipseFillColour">
-                        Fill colour:
+                        <b>Fill colour:</b>
                         <input type="text"
                             placeholder="Red"
                             [(ngModel)]="localWidget.shapeFill"
@@ -392,35 +392,35 @@
 
                 <div class="gridShapeProperties" *ngIf="showRectangle">
                     <div class="gridRectangleLineColour">
-                        Line Colour:
+                        <b>Line Colour:</b>
                         <input type="text"
                             placeholder="Black"
                             [(ngModel)]="localWidget.shapeStroke"
                             >
                     </div>
                     <div class="gridRectangleThickness">
-                        Line thickness:
+                        <b>Line thickness:</b>
                         <input type="text"
                             placeholder="3"
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
                     <div class="gridRectangleFillColour">
-                        Fill colour:
+                        <b>Fill colour:</b>
                         <input type="text"
                             placeholder="Red"
                             [(ngModel)]="localWidget.shapeFill"
                             >
                     </div>
                     <div class="gridRectangleOpacity">
-                        Fill Opacity:
+                        <b>Fill Opacity:</b>
                         <input type="text"
                             placeholder="0=opaque, 1=solid"
                             [(ngModel)]="localWidget.shapeOpacity"
                             >
                     </div>
-                    <div class="propertyLine">
-                        Corners:
+                    <div class="gridRectangleCorners">
+                        <b>Corners:</b>
                         <input type="text"
                             placeholder="Corner Size in px"
                             [(ngModel)]="localWidget.shapeCorner"
@@ -430,40 +430,40 @@
  
                 <div class="gridShapeProperties" *ngIf="showText">
                     <div class="gridTextString">
-                        Text input:
+                        <b>Text input:</b>
                         <input type="text"
                             placeholder="The brown fox ..."
                             [(ngModel)]="localWidget.shapeText"
                             >
                     </div>
                     <div class="gridTextFontSize">
-                        Font Size:
+                        <b>Font Size:</b>
                         <input type="text"
                             placeholder="50 (in px)"
                             [(ngModel)]="localWidget.shapeFontSize"
                             >
                     </div>
                     <div class="gridTextFontFamily">
-                        Font Family:
+                        <b>Font Family:</b>
                         <input type="text"
                             placeholder="Arial, serif"
                             [(ngModel)]="localWidget.shapeFontFamily"
                             >
                     </div>
                     <div class="gridTextBold">
-                        Bold?:
+                        <b>Bold?:</b>
                         <input type="checkbox"
                             [(ngModel)]="localWidget.shapeIsBold"
                             >
                     </div>
                     <div class="gridTextItalic">
-                        Italic?:
+                        <b>Italic?:</b>
                         <input type="checkbox"
                             [(ngModel)]="localWidget.shapeIsItalic"
                             >
                     </div>
                     <div class="gridTextColourTitle">
-                        Colour:
+                        <b>Colour:</b>
                     </div>
                 
                     <div class="select gridTextColour">
@@ -490,7 +490,7 @@
 
                 <div class="gridShapeProperties" *ngIf="showArrow">
                     <div class="gridArrowArea">
-                        Direction:
+                        <b>Direction:</b>
                         <input type="text" [(ngModel)]="localWidget.shapeRotation"
                             placeholder="Degrees rotation"
                             >
@@ -499,56 +499,53 @@
 
                 <div class="gridShapeProperties" *ngIf="showImage">
                     <div class="gridImage">
-                        Image:
+                        <b>Image:</b>
                         <input type="text" [(ngModel)]="shapeImageUrl" placeholder="Co. logo">
                     </div>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showBullets">
-                    <div class="propertyLine">
-
-                        <div class="gridBulletsFontSize">
-                            Font Size:
-                            <input type="text"
-                                placeholder="50 (px)"
-                                [(ngModel)]="localWidget.shapeFontSize"
-                                >
-                        </div>
-                        <div class="gridBulletsFontFamily">
-                            Font Family:
-                            <input type="text"
-                                placeholder="Arial, serif"
-                                [(ngModel)]="localWidget.shapeFontFamily"
-                                >
-                        </div>
-                        <div class="gridBulletsItemMarker">
-                            Item Marker:
-                            <input type="text"
-                                placeholder="disc, circle, square, none"
-                                [(ngModel)]="localWidget.shapeBulletStyleType"
-                                >
-                        </div>
-                        <div class="gridBulletsOrdered">
-                            Ordered?:
-                            <input type="text"
-                                placeholder="true, false"
-                                [(ngModel)]="localWidget.shapeBulletsOrdered"
-                                >
-                        </div>
-                        <div class="gridBulletsInput">
-                            <input [(ngModel)]="bulletValue">
-                        </div>
-                        <button type="button" class="gridBulletsButton">
-                            <span  *ngIf="editBulletItem" (click)="clickUpdate()">Update</span>
-                            <span  *ngIf="!editBulletItem" (click)="clickAdd()">Add</span>
-                        </button>
-
+                    <div class="gridBulletsFontSize">
+                        <b>Font Size:</b>
+                        <input type="text"
+                            placeholder="50 (px)"
+                            [(ngModel)]="localWidget.shapeFontSize"
+                            >
                     </div>
+                    <div class="gridBulletsFontFamily">
+                        <b>Font Family:</b>
+                        <input type="text"
+                            placeholder="Arial, serif"
+                            [(ngModel)]="localWidget.shapeFontFamily"
+                            >
+                    </div>
+                    <div class="gridBulletsItemMarker">
+                        <b>Item Marker:</b>
+                        <input type="text"
+                            placeholder="disc, circle, square, none"
+                            [(ngModel)]="localWidget.shapeBulletStyleType"
+                            >
+                    </div>
+                    <div class="gridBulletsOrdered">
+                        <b>Ordered?:</b>
+                        <input type="text"
+                            placeholder="true, false"
+                            [(ngModel)]="localWidget.shapeBulletsOrdered"
+                            >
+                    </div>
+                    <div class="gridBulletsInput">
+                        <b><b>Item:</b></b>
+                        <input [(ngModel)]="bulletValue">
+                    </div>
+                    <button type="button" class="btn btn-link gridBulletsButton">
+                        <span *ngIf="editBulletItem" (click)="clickUpdate()">Update</span>
+                        <span *ngIf="!editBulletItem" (click)="clickAdd()">Add</span>
+                    </button>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showValue">
                     <div class="propertyLine">
-                        In Datasource:
+                        <b>In Datasource:</b>
                         <select id="selects_3"
                             (change)="clickSelectShape($event)"
                             >
