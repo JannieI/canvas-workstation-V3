@@ -121,7 +121,7 @@ export class DashboardShareComponent implements OnInit {
             this.errorMessage = 'UserID/Group Name already exists'
             return;
         };
-
+ 
         // Create New
         var today = new Date();
         let newdP: DashboardPermission = {
@@ -135,7 +135,7 @@ export class DashboardShareComponent implements OnInit {
             canDelete: false,
             canAddDS: false,
             grantor: this.globalVariableService.currentUser.userID,
-            grantedOn: today.toString()
+            grantedOn: this.globalVariableService.formatDate(today)
         };
 
         // Update locally
