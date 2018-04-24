@@ -238,13 +238,6 @@
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
-                    <!-- <div class="gridCircleFillColour">
-                        <b>Fill colour:</b>
-                        <input type="text"
-                            placeholder="Red"
-                            [(ngModel)]="localWidget.shapeFill"
-                            >
-                    </div> -->
                     <div class="gridCircleFillColourTitle">
                         <b>Colour:</b>
                     </div>
@@ -272,14 +265,37 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showEllipse">
-                    <div class="gridEllipseLineColour">
+                    <!-- <div class="gridEllipseLineColour">
                         <b>Line Colour:</b>
                         <input type="text"
                             placeholder="Black"
                             [(ngModel)]="localWidget.shapeStroke"
                             [autofocus]="hasAutoFocusEllipse"
                             >
+                    </div> -->
+                    <div class="gridEllipseLineColourTitle">
+                        <b>Colour:</b>
                     </div>
+                
+                    <div class="select gridEllipseLineColour">
+                        <select
+                            [(ngModel)]="localWidget.shapeStroke"
+                            (change)="clickSelectCircleLineColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [selected]="selected"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridEllipseLineColourPicker"
+                        (click)="clickSelectCircleLineColorPicker()"
+                        >
+                        Picker
+                    </button>
                     <div class="gridEllipseThickness">
                         <b>Line thickness:</b>
                         <input type="text"
