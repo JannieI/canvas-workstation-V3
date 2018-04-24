@@ -207,11 +207,11 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showCircle">
-                    <div class="gridCircleLineTitle">
+                    <div class="gridCircleLineColourTitle">
                         <b>Colour:</b>
                     </div>
                 
-                    <div class="select gridCircleLine">
+                    <div class="select gridCircleLineColour">
                         <select
                             [(ngModel)]="localWidget.shapeStroke"
                             (change)="clickSelectCircleLineColor($event)"
@@ -225,13 +225,11 @@
                     </div>
                     <button
                         type="button"
-                        class="btn btn-link btn-sm gridCircleLinePicker"
+                        class="btn btn-link btn-sm gridCircleLineColourPicker"
                         (click)="clickSelectCircleLineColorPicker()"
                         >
                         Picker
                     </button>
-                    
-                    
 
                     <div class="gridCircleThickness">
                         <b>Line thickness:</b>
@@ -240,14 +238,37 @@
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
-                    <div class="gridCircleFillColour">
+                    <!-- <div class="gridCircleFillColour">
                         <b>Fill colour:</b>
                         <input type="text"
                             placeholder="Red"
                             [(ngModel)]="localWidget.shapeFill"
                             >
+                    </div> -->
+                    <div class="gridCircleFillColourTitle">
+                        <b>Colour:</b>
                     </div>
-
+                
+                    <div class="select gridCircleFillColour">
+                        <select
+                            [(ngModel)]="localWidget.shapeFill"
+                            (change)="clickSelectCircleFillColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [selected]="selected"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridCircleFillColourPicker"
+                        (click)="clickSelectCircleFillColorPicker()"
+                        >
+                        Picker
+                    </button>
+    
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showEllipse">
