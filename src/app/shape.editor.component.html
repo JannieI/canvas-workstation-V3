@@ -208,7 +208,7 @@
 
                 <div class="gridShapeProperties" *ngIf="showCircle">
                     <div class="gridCircleLineColourTitle">
-                        <b>Colour:</b>
+                        <b>Line:</b>
                     </div>
                 
                     <div class="select gridCircleLineColour">
@@ -266,7 +266,7 @@
 
                 <div class="gridShapeProperties" *ngIf="showEllipse">
                     <div class="gridEllipseLineColourTitle">
-                        <b>Colour:</b>
+                        <b>Line:</b>
                     </div>
                 
                     <div class="select gridEllipseLineColour">
@@ -296,7 +296,7 @@
                             >
                     </div>
                     <div class="gridEllipseFillColourTitle">
-                        <b>Colour:</b>
+                        <b>Fill Colour:</b>
                     </div>
                 
                     <div class="select gridEllipseFillColour">
@@ -323,7 +323,7 @@
                 <div class="gridShapeProperties" *ngIf="showRectangle">
 
                     <div class="gridRectangleLineColourTitle">
-                        <b>Colour:</b>
+                        <b>Line:</b>
                     </div>
                     <div class="select gridRectangleLineColour">
                         <select
@@ -351,13 +351,6 @@
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
-                    <!-- <div class="gridRectangleFillColour">
-                        <b>Fill colour:</b>
-                        <input type="text"
-                            placeholder="Red"
-                            [(ngModel)]="localWidget.shapeFill"
-                            >
-                    </div> -->
 
                     <div class="gridRectangleFillColourTitle">
                         <b>Fill Colour:</b>
@@ -434,7 +427,7 @@
                             >
                     </div>
                     <div class="gridTextColourTitle">
-                        <b>Colour:</b>
+                        <b>Text Colour:</b>
                     </div>
                 
                     <div class="select gridTextColour">
@@ -582,8 +575,8 @@
                             [(ngModel)]="localWidget.shapeIsItalic"
                             >
                     </div>
-                    <div class="gridValueColour">
-                        <b>Colour:</b>
+                    <!-- <div class="gridValueColour">
+                        <b>Text Colour:</b>
                         <select
                             [(ngModel)]="localWidget.shapeStroke"
                             >
@@ -596,7 +589,30 @@
                             <option>Yellow</option>
                         </select>
 
+                    </div> -->
+                    <div class="gridValueLineColourTitle">
+                        <b>Line:</b>
                     </div>
+                
+                    <div class="select gridValueLineColour">
+                        <select
+                            [(ngModel)]="localWidget.shapeStroke"
+                            (change)="clickSelectValueLineColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [selected]="selected"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridValueLineColourPicker"
+                        (click)="clickSelectValueLineColorPicker()"
+                        >
+                        Picker
+                    </button>
                 </div>
             </div>
         </div>

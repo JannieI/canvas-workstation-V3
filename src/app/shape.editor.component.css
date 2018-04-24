@@ -237,7 +237,6 @@
         padding-top: 6px;
     }
 
-
     .gridRectangleFillColourTitle {
         grid-column-start: 1;
         grid-column-end: 3;
@@ -455,11 +454,28 @@
         padding-left: 15px;
         padding-top: 6px;
     }
-    .gridValueColour {
+
+    .gridValueLineColourTitle {
         grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridValueLineColour {
+        grid-column-start: 3;
+        grid-column-end: 8;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridValueLineColourPicker {
+        grid-column-start: 9;
         grid-column-end: 11;
-        grid-row-start: 12;
-        grid-row-end: 13;
+        grid-row-start: 1;
+        grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }

@@ -103,6 +103,11 @@ export class ShapeEditComponent implements OnInit {
                     this.colourPickerClosed = false;
                     this.localWidget.shapeFill = clp.selectedColor;
                 };
+
+                if (clp.callingRoutine == 'ShapeEditorValueLineColor') {
+                    this.colourPickerClosed = false;
+                    this.localWidget.shapeStroke = clp.selectedColor;
+                };
                 
             };
         });
@@ -506,6 +511,23 @@ export class ShapeEditComponent implements OnInit {
         console.log('xx clickSelectEllipseFillColor', ev.target.value)
     }
 
+    clickSelectRectangleLineColorPicker(ev: any) {
+        // Open the Colour Picker for Rectangle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleLineColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
+        this.callingRoutine = 'ShapeEditorRectangleLineColor';
+        this.colourPickerClosed = true;
+    }
+
+    clickSelectRectangleLineColor(ev: any) {
+        // Open the Colour Picker for Rectangle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleLineColor', '@Start');
+
+        this.localWidget.shapeStroke = ev.target.value;
+        console.log('xx clickSelectRectangleLineColor', ev.target.value)
+    }
+
     clickSelectRectangleFillColorPicker(ev: any) {
         // Open the Colour Picker for Rectangle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleFillColorPicker', '@Start');
@@ -521,6 +543,23 @@ export class ShapeEditComponent implements OnInit {
 
         this.localWidget.shapeFill = ev.target.value;
         console.log('xx clickSelectRectangleFillColor', ev.target.value)
+    }
+
+    clickSelectValueLineColorPicker(ev: any) {
+        // Open the Colour Picker for Value Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectValueLineColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
+        this.callingRoutine = 'ShapeEditorValueLineColor';
+        this.colourPickerClosed = true;
+    }
+
+    clickSelectValueLineColor(ev: any) {
+        // Open the Colour Picker for Value Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectValueLineColor', '@Start');
+
+        this.localWidget.shapeStroke = ev.target.value;
+        console.log('xx clickSelectValueLineColor', ev.target.value)
     }
 
 }
