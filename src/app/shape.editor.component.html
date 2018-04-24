@@ -207,21 +207,13 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showCircle">
-                    <!-- <div class="gridCircleLineColour">
-                        <b>Line Colour:</b>
-                        <input type="text"
-                            placeholder="Color or circle, ie Black"
-                            [(ngModel)]="localWidget.shapeStroke"
-                            [autofocus]="hasAutoFocusCircle"
-                            >
-                    </div> -->
                     <div class="gridCircleLineTitle">
                         <b>Colour:</b>
                     </div>
                 
                     <div class="select gridCircleLine">
                         <select
-                            [(ngModel)]="localWidget.shapeFill"
+                            [(ngModel)]="localWidget.shapeStroke"
                             (change)="clickSelectCircleLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
