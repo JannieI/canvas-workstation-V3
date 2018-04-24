@@ -138,7 +138,8 @@ export class ShapeEditComponent implements OnInit {
             this.hasAutoFocusArrow = false;
             this.hasAutoFocusImage = false;
             this.hasAutoFocusBullets = false;
-            this.hasAutoFocusValue = false;
+        this.selectedColour = this.localWidget.shapeTextColour;
+        this.hasAutoFocusValue = false;
 
             if (this.localWidget.widgetSubType == 'Circle') {
                 this.hasAutoFocusCircle = true;
@@ -398,9 +399,9 @@ export class ShapeEditComponent implements OnInit {
 
     }
 
-    clickSelectColorText() {
+    clickSelectTextColorPicker() {
         // Open the Colour Picker for Text Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColorText', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextColorPicker', '@Start');
 
         this.selectedColour = this.localWidget.shapeTextColour;
         this.callingRoutine = 'ShapeEditorTextColor';
@@ -408,13 +409,28 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectTextColor(ev: any) {
+        // Open the Colour Picker for Text Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextColor', '@Start');
+
         this.localWidget.shapeTextColour = ev.target.value;
         console.log('xx clickSelectTextColor', ev.target.value)
     }
 
-    clickSelectColorCircle(ev: any) {
+    clickSelectCircleLineColorPicker(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectCircleLineColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
         this.callingRoutine = 'ShapeEditorCircleLineColor';
         this.colourPickerClosed = true;
+    }
+
+    clickSelectCircleLineColor(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectCircleLineColor', '@Start');
+
+        this.localWidget.shapeStroke = ev.target.value;
+        console.log('xx clickSelectCircleLineColor', ev.target.value)
     }
 
 }

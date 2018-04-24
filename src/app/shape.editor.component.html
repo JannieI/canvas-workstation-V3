@@ -222,7 +222,7 @@
                     <div class="select gridCircleLine">
                         <select
                             [(ngModel)]="localWidget.shapeFill"
-                            (change)="clickSelectColorCircle($event)"
+                            (change)="clickSelectCircleLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [selected]="selected"
@@ -234,7 +234,7 @@
                     <button
                         type="button"
                         class="btn btn-link btn-sm gridCircleLinePicker"
-                        (click)="clickSelectColorCircle()"
+                        (click)="clickSelectCircleLineColorPicker()"
                         >
                         Picker
                     </button>
@@ -376,7 +376,7 @@
                     <button
                         type="button"
                         class="btn btn-link btn-sm gridTextColourPicker"
-                        (click)="clickSelectColorText()"
+                        (click)="clickSelectTextColorPicker()"
                         >
                         Picker
                     </button>
