@@ -122,6 +122,9 @@ export class ShapeEditComponent implements OnInit {
             this.selectShape(this.localWidget.widgetSubType);
 
             // Set AutoFocus
+            // TODO - this only works for the first Shape opened - and I dont want to use
+            // ngAfterViewInit or event emitters.  See this for possible solution:
+            //    https://stackoverflow.com/questions/41873893/angular2-autofocus-input-element
             this.hasAutoFocusCircle = false;
             this.hasAutoFocusEllipse = false;
             this.hasAutoFocusRectangle = false;
@@ -130,7 +133,7 @@ export class ShapeEditComponent implements OnInit {
             this.hasAutoFocusImage = false;
             this.hasAutoFocusBullets = false;
             this.hasAutoFocusValue = false;
-console.log('xx this.localWidget.widgetSubType', this.localWidget.widgetSubType)
+
             if (this.localWidget.widgetSubType == 'Circle') {
                 this.hasAutoFocusCircle = true;
             };
@@ -389,9 +392,9 @@ console.log('xx this.localWidget.widgetSubType', this.localWidget.widgetSubType)
 
     }
 
-    clickSelectColor() {
+    clickSelectColorText() {
         // Open the Colour Picker for Text Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clicclickSelectColorkEditDone', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColorText', '@Start');
 
         this.callingRoutine = 'ShapeEditorTextColor';
         this.colourPickerClosed = true;
@@ -399,6 +402,8 @@ console.log('xx this.localWidget.widgetSubType', this.localWidget.widgetSubType)
 
     clickSelectTextColor(ev: any) {
         this.localWidget.shapeTextColour = ev.target.value;
-        console.log(ev.target.value)
+        console.log('xx clickSelectTextColor', ev.target.value)
     }
+
+
 }
