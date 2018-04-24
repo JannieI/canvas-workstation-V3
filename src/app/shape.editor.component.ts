@@ -36,6 +36,14 @@ export class ShapeEditComponent implements OnInit {
     bulletValue: string = '';
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
+    hasAutoFocusCircle: boolean = false;
+    hasAutoFocusEllipse: boolean = false;
+    hasAutoFocusRectangle: boolean = false;
+    hasAutoFocusText: boolean = false;
+    hasAutoFocusArrow: boolean = false;
+    hasAutoFocusImage: boolean = false;
+    hasAutoFocusBullets: boolean = false;
+    hasAutoFocusValue: boolean = false;
     editBulletItem: boolean = false;
     shapeImageUrl: string;                            // url for image
     localWidget: Widget;                            // W to modify, copied from selected
@@ -100,6 +108,7 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeIsBold = true;
             this.localWidget.shapeStroke = 'black';
             this.localWidget.shapeStrokeWidth = '1';
+            this.localWidget.shapeText = 'The brown fox is tired';
 
         } else {
 
@@ -108,9 +117,45 @@ export class ShapeEditComponent implements OnInit {
 
             // Local vars
             this.shapeImageUrl = this.localWidget.graphUrl;
-            
+
             // Refresh the form with the sub type
             this.selectShape(this.localWidget.widgetSubType);
+
+            // Set AutoFocus
+            this.hasAutoFocusCircle = false;
+            this.hasAutoFocusEllipse = false;
+            this.hasAutoFocusRectangle = false;
+            this.hasAutoFocusText = false;
+            this.hasAutoFocusArrow = false;
+            this.hasAutoFocusImage = false;
+            this.hasAutoFocusBullets = false;
+            this.hasAutoFocusValue = false;
+console.log('xx this.localWidget.widgetSubType', this.localWidget.widgetSubType)
+            if (this.localWidget.widgetSubType == 'Circle') {
+                this.hasAutoFocusCircle = true;
+            };
+            if (this.localWidget.widgetSubType == 'Ellipse') {
+                this.hasAutoFocusEllipse = true;
+            };
+            if (this.localWidget.widgetSubType == 'Rectangle') {
+                this.hasAutoFocusRectangle = true;
+            };
+            if (this.localWidget.widgetSubType == 'Text') {
+                this.hasAutoFocusText = true;
+            };
+            if (this.localWidget.widgetSubType == 'Arrow') {
+                this.hasAutoFocusArrow = true;
+            };
+            if (this.localWidget.widgetSubType == 'Image') {
+                this.hasAutoFocusImage = true;
+            };
+            if (this.localWidget.widgetSubType == 'Bullets') {
+                this.hasAutoFocusBullets = true;
+            };
+            if (this.localWidget.widgetSubType == 'Value') {
+                this.hasAutoFocusValue = true;
+            };
+                        
         };
 
     }
@@ -126,8 +171,45 @@ export class ShapeEditComponent implements OnInit {
         // The user selected a shape subtype
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectShape', '@Start');
 
+        let selectedShape: string = ev.srcElement.value;
+
+        // Set AutoFocus
+        this.hasAutoFocusCircle = false;
+        this.hasAutoFocusEllipse = false;
+        this.hasAutoFocusRectangle = false;
+        this.hasAutoFocusText = false;
+        this.hasAutoFocusArrow = false;
+        this.hasAutoFocusImage = false;
+        this.hasAutoFocusBullets = false;
+        this.hasAutoFocusValue = false;
+
+        if (selectedShape == 'Circle') {
+            this.hasAutoFocusCircle = true;
+        };
+        if (selectedShape == 'Ellipse') {
+            this.hasAutoFocusEllipse = true;
+        };
+        if (selectedShape == 'Rectangle') {
+            this.hasAutoFocusRectangle = true;
+        };
+        if (selectedShape == 'Text') {
+            this.hasAutoFocusText = true;
+        };
+        if (selectedShape == 'Arrow') {
+            this.hasAutoFocusArrow = true;
+        };
+        if (selectedShape == 'Image') {
+            this.hasAutoFocusImage = true;
+        };
+        if (selectedShape == 'Bullets') {
+            this.hasAutoFocusBullets = true;
+        };
+        if (selectedShape == 'Value') {
+            this.hasAutoFocusValue = true;
+        };
+
         // Enact selected shape
-        this.selectShape(ev.srcElement.value);
+        this.selectShape(selectedShape);
 
     }
 
@@ -202,7 +284,7 @@ export class ShapeEditComponent implements OnInit {
         this.editBulletItem = true;
 
     }
-    
+
     clickUpdate() {
         // Add item to bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
@@ -247,7 +329,7 @@ export class ShapeEditComponent implements OnInit {
             // TODO - make this the field name
             this.localWidget.titleText = 'Value';
         };
- 
+
         if (this.newWidget) {
 
             // TODO - improve this when using a DB!
@@ -268,7 +350,7 @@ export class ShapeEditComponent implements OnInit {
             this.globalVariableService.addWidget(this.localWidget).then(res => {
 
                 this.localWidget.id = res.id;
-                
+
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
                     {
@@ -282,7 +364,7 @@ export class ShapeEditComponent implements OnInit {
 
                 this.formShapeEditClosed.emit(this.localWidget);
             });
-            
+
         } else {
             // Replace the W
             this.globalVariableService.widgetReplace(this.localWidget);
@@ -313,7 +395,7 @@ export class ShapeEditComponent implements OnInit {
 
         this.callingRoutine = 'ShapeEditorTextColor';
         this.colourPickerClosed = true;
-    }    
+    }
 
     clickSelectTextColor(ev: any) {
         this.localWidget.shapeTextColour = ev.target.value;

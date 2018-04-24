@@ -212,6 +212,7 @@
                         <input type="text"
                             placeholder="Color or circle, ie Black"
                             [(ngModel)]="localWidget.shapeStroke"
+                            [autofocus]="hasAutoFocusCircle"
                             >
                     </div>
                     <div class="gridCircleThickness">
@@ -237,6 +238,7 @@
                         <input type="text"
                             placeholder="Black"
                             [(ngModel)]="localWidget.shapeStroke"
+                            [autofocus]="hasAutoFocusEllipse"
                             >
                     </div>
                     <div class="gridEllipseThickness">
@@ -261,6 +263,7 @@
                         <input type="text"
                             placeholder="Black"
                             [(ngModel)]="localWidget.shapeStroke"
+                            [autofocus]="hasAutoFocusRectangle"
                             >
                     </div>
                     <div class="gridRectangleThickness">
@@ -299,6 +302,7 @@
                         <input type="text"
                             placeholder="The brown fox ..."
                             [(ngModel)]="localWidget.shapeText"
+                            [autofocus]="hasAutoFocusText"
                             >
                     </div>
                     <div class="gridTextFontSize">
@@ -358,6 +362,7 @@
                         <b>Direction:</b>
                         <input type="text" [(ngModel)]="localWidget.shapeRotation"
                             placeholder="Degrees rotation"
+                            [autofocus]="hasAutoFocusArrow"
                             >
                     </div>
                 </div>
@@ -365,7 +370,11 @@
                 <div class="gridShapeProperties" *ngIf="showImage">
                     <div class="gridImage">
                         <b>Image:</b>
-                        <input type="text" [(ngModel)]="shapeImageUrl" placeholder="Co. logo">
+                        <input type="text" 
+                            [(ngModel)]="shapeImageUrl" 
+                            placeholder="Co. logo"
+                            [autofocus]="hasAutoFocusImage"
+                            >
                     </div>
                 </div>
 
@@ -375,6 +384,7 @@
                         <input type="text"
                             placeholder="50 (px)"
                             [(ngModel)]="localWidget.shapeFontSize"
+                            [autofocus]="hasAutoFocusBullets"
                             >
                     </div>
                     <div class="gridBulletsFontFamily">
@@ -448,6 +458,7 @@
                         <input type="text"
                             placeholder="50 (px)"
                             [(ngModel)]="localWidget.shapeFontSize"
+                            [autofocus]="hasAutoFocusValue"
                             >
                     </div>
                     <div class="gridValueFontFamily">
