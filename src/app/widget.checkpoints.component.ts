@@ -113,6 +113,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         // Delete selected Checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddCheckpoint', '@Start');
 
+        var today = new Date();
         let newCheckpoint: WidgetCheckpoint = {
             id: null,
             parentWidgetIsDeleted: false,
@@ -122,7 +123,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             name: this.checkpointName,
             widgetSpec: JSON.parse(JSON.stringify(this.selectedWidget)),
             creator: this.globalVariableService.currentUser.userID,
-            createdOn: '2017/01/01'
+            createdOn: this.globalVariableService.formatDate(today)
         };
 
         // Add locally, globally and to DB (with new ID)
