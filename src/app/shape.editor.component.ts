@@ -81,6 +81,10 @@ export class ShapeEditComponent implements OnInit {
                     this.colourPickerClosed = false;
                     this.localWidget.shapeStroke = clp.selectedColor;
                 };
+                if (clp.callingRoutine == 'ShapeEditorCircleFillColor') {
+                    this.colourPickerClosed = false;
+                    this.localWidget.shapeFill = clp.selectedColor;
+                };
                 
             };
         });
@@ -446,7 +450,7 @@ export class ShapeEditComponent implements OnInit {
         // Open the Colour Picker for Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectCircleFillColor', '@Start');
 
-        this.localWidget.shapeStroke = ev.target.value;
+        this.localWidget.shapeFill = ev.target.value;
         console.log('xx clickSelectCircleFillColor', ev.target.value)
     }
 
