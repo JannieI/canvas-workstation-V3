@@ -238,6 +238,7 @@
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
+
                     <div class="gridCircleFillColourTitle">
                         <b>Colour:</b>
                     </div>
@@ -265,14 +266,6 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showEllipse">
-                    <!-- <div class="gridEllipseLineColour">
-                        <b>Line Colour:</b>
-                        <input type="text"
-                            placeholder="Black"
-                            [(ngModel)]="localWidget.shapeStroke"
-                            [autofocus]="hasAutoFocusEllipse"
-                            >
-                    </div> -->
                     <div class="gridEllipseLineColourTitle">
                         <b>Colour:</b>
                     </div>
@@ -303,13 +296,36 @@
                             [(ngModel)]="localWidget.shapeStrokeWidth"
                             >
                     </div>
-                    <div class="gridEllipseFillColour">
+                    <!-- <div class="gridEllipseFillColour">
                         <b>Fill colour:</b>
                         <input type="text"
                             placeholder="Red"
                             [(ngModel)]="localWidget.shapeFill"
                             >
+                    </div> -->
+                    <div class="gridEllipseFillColourTitle">
+                        <b>Colour:</b>
                     </div>
+                
+                    <div class="select gridEllipseFillColour">
+                        <select
+                            [(ngModel)]="localWidget.shapeFill"
+                            (change)="clickSelectCircleFillColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [selected]="selected"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridEllipseFillColourPicker"
+                        (click)="clickSelectCircleFillColorPicker()"
+                        >
+                        Picker
+                    </button>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showRectangle">
