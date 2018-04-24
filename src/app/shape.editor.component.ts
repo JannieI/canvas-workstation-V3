@@ -455,16 +455,16 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectEllipseLineColorPicker(ev: any) {
-        // Open the Colour Picker for Circle Line Colour
+        // Open the Colour Picker for Ellipse Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectEllipseLineColorPicker', '@Start');
 
         this.selectedColour = this.localWidget.shapeStroke;
-        this.callingRoutine = 'ShapeEditorCircleLineColor';
+        this.callingRoutine = 'ShapeEditorEllipseLineColor';
         this.colourPickerClosed = true;
     }
 
     clickSelectEllipseLineColor(ev: any) {
-        // Open the Colour Picker for Circle Line Colour
+        // Open the Colour Picker for Ellipse Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectEllipseLineColor', '@Start');
 
         this.localWidget.shapeStroke = ev.target.value;
@@ -472,20 +472,37 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectEllipseFillColorPicker(ev: any) {
-        // Open the Colour Picker for Circle Line Colour
+        // Open the Colour Picker for Ellipse Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectEllipseFillColorPicker', '@Start');
 
         this.selectedColour = this.localWidget.shapeStroke;
-        this.callingRoutine = 'ShapeEditorCircleFillColor';
+        this.callingRoutine = 'ShapeEditorEllipseFillColor';
         this.colourPickerClosed = true;
     }
 
     clickSelectEllipseFillColor(ev: any) {
-        // Open the Colour Picker for Circle Line Colour
+        // Open the Colour Picker for Ellipse Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectEllipseFillColor', '@Start');
 
         this.localWidget.shapeFill = ev.target.value;
         console.log('xx clickSelectEllipseFillColor', ev.target.value)
+    }
+
+    clickSelectRectangleFillColorPicker(ev: any) {
+        // Open the Colour Picker for Rectangle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleFillColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
+        this.callingRoutine = 'ShapeEditorRectangleFillColor';
+        this.colourPickerClosed = true;
+    }
+
+    clickSelectRectangleFillColor(ev: any) {
+        // Open the Colour Picker for Rectangle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleFillColor', '@Start');
+
+        this.localWidget.shapeFill = ev.target.value;
+        console.log('xx clickSelectRectangleFillColor', ev.target.value)
     }
 
 }
