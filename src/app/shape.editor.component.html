@@ -280,7 +280,7 @@
                     <div class="select gridEllipseLineColour">
                         <select
                             [(ngModel)]="localWidget.shapeStroke"
-                            (change)="clickSelectCircleLineColor($event)"
+                            (change)="clickSelectEllipseLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [selected]="selected"
@@ -292,7 +292,7 @@
                     <button
                         type="button"
                         class="btn btn-link btn-sm gridEllipseLineColourPicker"
-                        (click)="clickSelectCircleLineColorPicker()"
+                        (click)="clickSelectEllipseLineColorPicker()"
                         >
                         Picker
                     </button>
