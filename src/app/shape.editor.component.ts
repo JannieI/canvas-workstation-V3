@@ -471,4 +471,21 @@ export class ShapeEditComponent implements OnInit {
         console.log('xx clickSelectEllipseLineColor', ev.target.value)
     }
 
+    clickSelectEllipseFillColorPicker(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectEllipseFillColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
+        this.callingRoutine = 'ShapeEditorCircleFillColor';
+        this.colourPickerClosed = true;
+    }
+
+    clickSelectEllipseFillColor(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectEllipseFillColor', '@Start');
+
+        this.localWidget.shapeFill = ev.target.value;
+        console.log('xx clickSelectEllipseFillColor', ev.target.value)
+    }
+
 }
