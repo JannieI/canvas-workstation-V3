@@ -1356,7 +1356,6 @@
         [style.width.%]="row.titleWidth"
         (contextmenu)="contextMenuOpen()"
         >
-
         <span *ngIf="row.nrDataQualityIssues  &&  showDataQuality"
             class="badge badge-danger widgetBadge1"
             title="Data Quality issues">
@@ -1401,6 +1400,22 @@
             >
             <clr-icon shape="check" size="12"></clr-icon>
         </span>
+
+
+
+
+
+        <span style="display: inline-block" *ngIf="(row.nrDataQualityIssues > 0)  ||  (row.nrComments > 0)">
+                <clr-signpost>
+                    <clr-signpost-content *clrIfOpen>
+                        <h3 style="margin-top: 0">Inline signpost</h3>
+                        <p>Position: <code class="clr-code">right-middle</code></p>
+                    </clr-signpost-content>
+                </clr-signpost>
+            </span>
+    
+    
+    
     </div>
 
     <!-- Graph Object -->
@@ -1427,8 +1442,8 @@
 
     <!-- Slicer Object -->
     <div class="widget" *ngIf="row.widgetType=='Slicer'"
-    (click)="clickWidgetSlicer($event, i, row.id)"
-    >
+        (click)="clickWidgetSlicer($event, i, row.id)"
+        >
         <slicer-single
             [slicer]="row"
             >
@@ -1692,6 +1707,22 @@
         draggable="true"
         >
     </div>
+
+
+
+
+    <div style="display: inline-block" *ngIf="(row.nrDataQualityIssues >= 0)  &&  (row.nrComments >= 0)">
+        <clr-signpost>
+            <clr-signpost-content *clrIfOpen>
+                <h3 style="margin-top: 0">Inline signpost</h3>
+                <p>Position: <code class="clr-code">right-middle</code></p>
+            </clr-signpost-content>
+        </clr-signpost>
+    </div>
+
+
+    
+
 
     <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.currentCheckpoint > 0)"
         class="widgetContainerCheckpointLeft"
