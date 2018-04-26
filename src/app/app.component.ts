@@ -2973,6 +2973,14 @@ export class AppComponent implements OnInit {
         this.showModalDataSlicers = true;
     }
 
+    clickMenuSlicerDuplicate() {
+        // Duplicate selected Graph
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphDuplicate', '@Start');
+
+
+        this.clickMenuWidgetDuplicate('Slicer')
+    }
+
     clickMenuWidgetTablist() {
         // Open the list of tabs to which the selected W belongs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetTablist', '@Start');
