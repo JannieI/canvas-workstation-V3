@@ -2489,52 +2489,8 @@ export class AppComponent implements OnInit {
         this.globalVariableService.statusBarRunning.next(this.globalVariableService.canvasSettings.noQueryRunningMessage);
         this.globalVariableService.statusBarCancelRefresh.next('Cancel');
     }
+    clickMenuWidgetDuplicate
 
-    clickMenuWidgetDuplicate() {
-        // Duplicate selected Widget
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
-
-        // Has to be in editMode
-        if (!this.editMode) {
-            this.showMessage(
-                this.globalVariableService.canvasSettings.notInEditModeMsg,
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
-        if (!this.checkForOnlyOneWidget()) {
-            return
-        };
-        if (!this.checkForOnlyOneWidget('Graph')) {
-            return
-        };
-
-        this.menuOptionClickPreAction();
-
-        // Checked above that only one is selected, so the loop is okay
-        this.currentWidgets.forEach(w => {
-
-            if (w.isSelected) {
-
-                // Make a (new) duplicate
-                this.duplicateWidget(w);
-
-                this.showMessage(
-                    'Widget copied',
-                    'StatusBar',
-                    'Info',
-                    3000,
-                    ''
-                );
-            };
-        });
-
-        this.menuOptionClickPostAction();
-    }
 
     clickMenuWidgetCopy() {
         // Copy selected Widget to our 'clipboard'
@@ -2626,7 +2582,7 @@ export class AppComponent implements OnInit {
         this.clipboardWidget.dashboardTabID = this.globalVariableService.
             currentDashboardInfo.value.currentDashboardTabID;
 
-        this.duplicateWidget(this.clipboardWidget);
+        this.duplicateSingleWidget(this.clipboardWidget);
 
         this.menuOptionClickPostAction();
     }
@@ -5118,9 +5074,55 @@ export class AppComponent implements OnInit {
         // this.stuckCount = 0;
     }
 
-    duplicateWidget(originalWidget: Widget) {
+    clickMenuWidgetDuplicate() {
+        // Duplicate selected Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        if (!this.checkForOnlyOneWidget()) {
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Graph')) {
+            return
+        };
+
+        this.menuOptionClickPreAction();
+
+        // Checked above that only one is selected, so the loop is okay
+        this.currentWidgets.forEach(w => {
+
+            if (w.isSelected) {
+
+                // Make a (new) duplicate
+                this.duplicateSingleWidget(w);
+
+                this.showMessage(
+                    'Widget copied',
+                    'StatusBar',
+                    'Info',
+                    3000,
+                    ''
+                );
+            };
+        });
+
+        this.menuOptionClickPostAction();
+    }
+
+    duplicateSingleWidget(originalWidget: Widget) {
         // Duplicate the given Widget
-        this.globalFunctionService.printToConsole(this.constructor.name,'duplicateWidget', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'duplicateSingleWidget', '@Start');
 
         // Find latest copy #
         let copyPosition: number = 1;
