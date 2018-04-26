@@ -3537,6 +3537,9 @@ export class AppComponent implements OnInit {
                     this.currentWidgets[i].containerLeft = x -
                         this.currentWidgets[i].containerWidth;
                 };
+
+                // Save to DB
+                this.globalVariableService.saveWidget(this.currentWidgets[i]);
             };
         };
 
