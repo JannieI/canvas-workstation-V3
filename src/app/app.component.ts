@@ -3483,6 +3483,9 @@ export class AppComponent implements OnInit {
                 } else {
                     this.currentWidgets[i].containerLeft = x;
                 };
+
+                // Save to DB
+                this.globalVariableService.saveWidget(this.currentWidgets[i]);
             };
         };
 
