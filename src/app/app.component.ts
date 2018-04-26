@@ -2490,6 +2490,15 @@ export class AppComponent implements OnInit {
         this.globalVariableService.statusBarCancelRefresh.next('Cancel');
     }
 
+    clickMenuGraphDuplicate() {
+        // Duplicate selected Graph
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphDuplicate', '@Start');
+
+
+        this.clickMenuWidgetDuplicate('Graph')
+    }
+
+
     clickMenuWidgetCopy() {
         // Copy selected Widget to our 'clipboard'
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCopy', '@Start');
