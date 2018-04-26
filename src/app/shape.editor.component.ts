@@ -45,7 +45,6 @@ export class ShapeEditComponent implements OnInit {
     hasAutoFocusBullets: boolean = false;
     hasAutoFocusValue: boolean = false;
     editBulletItem: boolean = false;
-    shapeImageUrl: string;                            // url for image
     localWidget: Widget;                            // W to modify, copied from selected
     selectedColour: string;
     showArrow: boolean = false;
@@ -157,9 +156,6 @@ export class ShapeEditComponent implements OnInit {
 
             // Deep copy
             this.localWidget = Object.assign({}, this.selectedWidget);
-
-            // Local vars
-            this.shapeImageUrl = this.localWidget.graphUrl;
 
             // Refresh the form with the sub type
             this.selectShape(this.localWidget.widgetSubType);

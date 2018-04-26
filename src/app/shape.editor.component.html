@@ -174,7 +174,7 @@
                         [style.width.px]="100"
                         [style.margin-left.px]="100"
                         [style.margin-top.px]="100"
-                        [src]="shapeImageUrl"
+                        [src]="localWidget.shapeImageUrl"
                         >
                 </div>
 
@@ -523,7 +523,7 @@
                     <div class="gridImage">
                         <b>Image:</b>
                         <input type="text" 
-                            [(ngModel)]="shapeImageUrl" 
+                            [(ngModel)]="localWidget.shapeImageUrl" 
                             placeholder="Co. logo"
                             [autofocus]="hasAutoFocusImage"
                             >
