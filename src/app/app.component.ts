@@ -3456,6 +3456,9 @@ export class AppComponent implements OnInit {
                 console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
             };
 
+            // Save to DB
+            this.globalVariableService.saveWidget(this.currentWidgets[i]);
+
             // Refresh the Dashboard
             this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
         };
