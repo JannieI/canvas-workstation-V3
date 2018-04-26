@@ -3877,7 +3877,10 @@ export class AppComponent implements OnInit {
                     containerTop = selectedOnes[i].newTop;
             } else {
                 selectedOnes[i].newTop = selectedOnes[i].newTop;
-            }
+            };
+
+            // Save to DB
+            this.globalVariableService.saveWidget(this.currentWidgets[i]);
         };
 
         this.menuOptionClickPostAction();
