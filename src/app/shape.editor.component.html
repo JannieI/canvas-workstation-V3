@@ -237,6 +237,7 @@
                             (change)="clickSelectCircleLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
                                 [selected]="selected"
                                 >
                                 {{ row.name }}
@@ -268,7 +269,9 @@
                             (change)="clickSelectCircleFillColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
                                 [selected]="selected"
+                                class="showColour"
                                 >
                                 {{ row.name }}
                             </option>
@@ -295,6 +298,7 @@
                             (change)="clickSelectEllipseLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
                                 [selected]="selected"
                                 >
                                 {{ row.name }}
@@ -325,6 +329,7 @@
                             (change)="clickSelectEllipseFillColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
                                 [selected]="selected"
                                 >
                                 {{ row.name }}
@@ -351,6 +356,7 @@
                             (change)="clickSelectRectangleLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
                                 [selected]="selected"
                                 >
                                 {{ row.name }}
@@ -381,6 +387,7 @@
                             (change)="clickSelectRectangleFillColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
                                 [selected]="selected"
                                 >
                                 {{ row.name }}
@@ -456,6 +463,7 @@
                             (change)="clickSelectTextColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
                                 [selected]="selected"
                                 >
                                 {{ row.name }}
@@ -490,6 +498,7 @@
                             (change)="clickSelectArrowColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
                                 [selected]="selected"
                                 >
                                 {{ row.name }}
@@ -561,6 +570,7 @@
                             (change)="clickSelectBulletsColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
                                 [selected]="selected"
                                 >
                                 {{ row.name }}
@@ -654,6 +664,7 @@
                             (change)="clickSelectValueLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
                                 [selected]="selected"
                                 >
                                 {{ row.name }}

@@ -11,8 +11,14 @@
     top: 0;
 }
 
-.propertyLine {
-    margin: 15px;
+.showColour { 
+    /* background-color: firebrick; */
+    border: 1px solid black;
+    display: inline-block;
+    height: 6px;
+    margin: 2px;
+    padding: 0;
+    width: 6px;
 }
 
 .bulletLine {
