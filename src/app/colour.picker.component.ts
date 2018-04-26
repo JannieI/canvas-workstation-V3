@@ -34,6 +34,14 @@ export class ColourPickerComponent implements OnInit {
         // User clicked close
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
+        this.globalVariableService.colourPickerClosed.next(
+            {
+                callingRoutine: '',
+                selectedColor: '',
+                cancelled: true
+            }
+        );
+
     }
 
     clickColor(color: any, p1: number, p2: number) {
@@ -46,9 +54,10 @@ export class ColourPickerComponent implements OnInit {
         this.globalVariableService.colourPickerClosed.next(
             {
                 callingRoutine: this.callingRoutine,
-                selectedColor: color
+                selectedColor: color,
+                cancelled: false
             }
-        )
+        );
     }
 
     mouseOverColor(color: any) {

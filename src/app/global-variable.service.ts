@@ -631,7 +631,13 @@ export class GlobalVariableService {
 
     // Session
     actions: CanvasAction[] = [];
-    colourPickerClosed = new BehaviorSubject<{callingRoutine: string; selectedColor:string}>(null);
+    colourPickerClosed = new BehaviorSubject<
+        {
+            callingRoutine: string; 
+            selectedColor:string;
+            cancelled: boolean
+        }
+    >(null);
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
     currentUser: CanvasUser;
     dashboardsRecent: DashboardRecent[] = [];

@@ -72,51 +72,57 @@ export class ShapeEditComponent implements OnInit {
             console.log('xx Sh Ed', clp)
             if (this.localWidget != undefined  &&  clp != null) {
 
-                if (clp.callingRoutine == 'ShapeEditorTextColor') {
+                if (clp.cancelled) {
                     this.colourPickerClosed = false;
-                    this.localWidget.shapeTextColour = clp.selectedColor;
-                };
+                    console.log('xx false')
+                } else {
 
-                if (clp.callingRoutine == 'ShapeEditorCircleLineColor') {
-                    this.colourPickerClosed = false;
-                    this.localWidget.shapeStroke = clp.selectedColor;
-                };
-                if (clp.callingRoutine == 'ShapeEditorCircleFillColor') {
-                    this.colourPickerClosed = false;
-                    this.localWidget.shapeFill = clp.selectedColor;
-                };
+                    if (clp.callingRoutine == 'ShapeEditorTextColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeTextColour = clp.selectedColor;
+                    };
 
-                if (clp.callingRoutine == 'ShapeEditorEllipseLineColor') {
-                    this.colourPickerClosed = false;
-                    this.localWidget.shapeStroke = clp.selectedColor;
-                };
-                if (clp.callingRoutine == 'ShapeEditorEllipseFillColor') {
-                    this.colourPickerClosed = false;
-                    this.localWidget.shapeFill = clp.selectedColor;
-                };
+                    if (clp.callingRoutine == 'ShapeEditorCircleLineColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeStroke = clp.selectedColor;
+                    };
+                    if (clp.callingRoutine == 'ShapeEditorCircleFillColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeFill = clp.selectedColor;
+                    };
 
-                if (clp.callingRoutine == 'ShapeEditorRectangleLineColor') {
-                    this.colourPickerClosed = false;
-                    this.localWidget.shapeStroke = clp.selectedColor;
-                };
-                if (clp.callingRoutine == 'ShapeEditorRectangleFillColor') {
-                    this.colourPickerClosed = false;
-                    this.localWidget.shapeFill = clp.selectedColor;
-                };
+                    if (clp.callingRoutine == 'ShapeEditorEllipseLineColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeStroke = clp.selectedColor;
+                    };
+                    if (clp.callingRoutine == 'ShapeEditorEllipseFillColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeFill = clp.selectedColor;
+                    };
 
-                if (clp.callingRoutine == 'ShapeEditorValueLineColor') {
-                    this.colourPickerClosed = false;
-                    this.localWidget.shapeStroke = clp.selectedColor;
-                };
+                    if (clp.callingRoutine == 'ShapeEditorRectangleLineColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeStroke = clp.selectedColor;
+                    };
+                    if (clp.callingRoutine == 'ShapeEditorRectangleFillColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeFill = clp.selectedColor;
+                    };
 
-                if (clp.callingRoutine == 'ShapeEditorBulletsColor') {
-                    this.colourPickerClosed = false;
-                    this.localWidget.shapeTextColour = clp.selectedColor;
-                };
+                    if (clp.callingRoutine == 'ShapeEditorValueLineColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeStroke = clp.selectedColor;
+                    };
 
-                if (clp.callingRoutine == 'ShapeEditorArrowColor') {
-                    this.colourPickerClosed = false;
-                    this.localWidget.shapeStroke = clp.selectedColor;
+                    if (clp.callingRoutine == 'ShapeEditorBulletsColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeTextColour = clp.selectedColor;
+                    };
+
+                    if (clp.callingRoutine == 'ShapeEditorArrowColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeStroke = clp.selectedColor;
+                    };
                 };
             };
         });
