@@ -4266,16 +4266,16 @@ export class AppComponent implements OnInit {
 
         // Decide which way
         if (this.checkForOnlyOneWidget('Graph', true)) {
-            this.clickMenuWidgetDuplicate();
+            this.clickMenuWidgetDuplicate('Graph');
         } else {
             if (this.checkForOnlyOneWidget('Slicer', true)) {
-                this.clickMenuSlicerDuplicate();
+                this.clickMenuSlicerDuplicate('Slicer');
             } else {
                 if (this.checkForOnlyOneWidget('Table', true)) {
-                    this.clickMenuTableDuplicate();
+                    this.clickMenuTableDuplicate('Table');
                 } else {
                     if (this.checkForOnlyOneWidget('Shape', true)) {
-                        this.clickMenuShapeDuplicate();
+                        this.clickMenuShapeDuplicate('Shape');
                     } else {
                         // Lost
                         this.showMessage(
