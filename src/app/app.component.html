@@ -760,6 +760,15 @@
                             >
                             Container
                         </button>
+
+                        <button type="button"
+                            clrDropdownItem
+                            (click)="clickMenuWidgetDuplicate()"
+                            title="Duplicate selected Widget"
+                            >
+                            Duplicate
+                        </button>
+
                         <button type="button"
                             clrDropdownItem
                             (click)="clickMenuWidgetTablist()"
@@ -1549,9 +1558,18 @@
             [style.transform]="'rotate(' + row.shapeRotation + 'deg)'"
             >
             <defs>
-                <marker id="arrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                <marker 
+                    id="arrow" 
+                    markerWidth="10" 
+                    markerHeight="10" 
+                    refX="0" 
+                    refY="3" 
+                    orient="auto" 
+                    markerUnits="strokeWidth"
+                    >
                 <path 
                     d="M0,0 L0,6 L9,3 z" 
+                    [style.stroke]="row.shapeStroke"
                     [style.fill]="row.shapeStroke"
                     />
                 </marker>
@@ -1563,7 +1581,7 @@
                 x2="55" 
                 y2="55" 
                 [style.stroke]="row.shapeStroke"
-                stroke-width="5" 
+                stroke-width="3" 
                 marker-end="url(#arrow)" 
                 />
         </svg>
@@ -1712,7 +1730,7 @@
 
 
 
-    <div style="display: inline-block" *ngIf="(row.nrDataQualityIssues >= 0)  &&  (row.nrComments >= 0)">
+    <div style="display: inline-block" *ngIf="(row.nrDataQualityIssues > 0)  &&  (row.nrComments > 0)">
         <clr-signpost>
             <clr-signpost-content *clrIfOpen>
                 <h3 style="margin-top: 0">Inline signpost</h3>
