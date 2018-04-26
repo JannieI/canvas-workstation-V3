@@ -186,7 +186,7 @@
                         [style.font-size.px]="localWidget.shapeFontSize"
                         >
                         <li *ngFor="let row of localWidget.shapeBullets; let i = index"
-                            [style.margin-top.px]="row.shapeBulletMarginTop"
+                            [style.margin-top.px]="localWidget.shapeBulletMarginTop"
                             (click)="clickBulletEdit(i, row)"
                             >
                             <clr-icon shape="times"
@@ -202,7 +202,7 @@
                         [style.font-size.px]="localWidget.shapeFontSize"
                         >
                         <li *ngFor="let row of localWidget.shapeBullets; let i = index"
-                            [style.margin-top.px]="row.shapeBulletMarginTop"
+                            [style.margin-top.px]="localWidget.shapeBulletMarginTop"
                             (click)="clickBulletEdit(i, row)"
                             >
                             <clr-icon shape="times"
@@ -551,17 +551,6 @@
                             [(ngModel)]="localWidget.shapeBulletStyleType"
                             >
                     </div>
-                    <div class="gridBulletsOrdered">
-                        <b>Ordered?:</b>
-                        <input type="text"
-                            placeholder="true, false"
-                            [(ngModel)]="localWidget.shapeBulletsOrdered"
-                            >
-                    </div>
-                    <div class="gridBulletsInput">
-                        <b>Item:</b>
-                        <input [(ngModel)]="bulletValue">
-                    </div>
                     <button
                         type="button"
                         class="btn btn-link btn-sm gridBulletsIncrease"
@@ -576,6 +565,17 @@
                         >
                         Decrease
                     </button>
+                    <div class="gridBulletsOrdered">
+                        <b>Ordered?:</b>
+                        <input type="text"
+                            placeholder="true, false"
+                            [(ngModel)]="localWidget.shapeBulletsOrdered"
+                            >
+                    </div>
+                    <div class="gridBulletsInput">
+                        <b>Item:</b>
+                        <input [(ngModel)]="bulletValue">
+                    </div>
 
                     <div class="gridBulletsColourTitle">
                         <b>Text:</b>

@@ -600,7 +600,10 @@ export class ShapeEditComponent implements OnInit {
         // Decrease the space between bullet points
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsDecrease', '@Start');
 
-        this.localWidget.shapeBulletMarginTop = this.localWidget.shapeBulletMarginTop - 3;
+        if (this.localWidget.shapeBulletMarginTop >= 3) {
+            this.localWidget.shapeBulletMarginTop = 
+                this.localWidget.shapeBulletMarginTop - 3;
+        };
     }
 
     clickSelectArrowColorPicker(ev: any) {
