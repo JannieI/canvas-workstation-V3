@@ -3798,7 +3798,10 @@ export class AppComponent implements OnInit {
                     containerLeft = selectedOnes[i].newLeft;
             } else {
                 selectedOnes[i].newLeft = selectedOnes[i].newLeft;
-            }
+            };
+
+            // Save to DB
+            this.globalVariableService.saveWidget(this.currentWidgets[i]);
         };
 
         this.menuOptionClickPostAction();
@@ -3849,6 +3852,7 @@ export class AppComponent implements OnInit {
             };
             return 0;
         });
+
         // Count number with spaces: x  =  nr selected -1  =  [Wi].length - 1
         let x: number = selectedOnes.length - 1;
 
