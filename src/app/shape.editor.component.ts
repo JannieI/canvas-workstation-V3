@@ -210,6 +210,13 @@ export class ShapeEditComponent implements OnInit {
 		this.formShapeEditClosed.emit(null);
     }
 
+    clickTextStringClear() {
+        // Clear the Text string
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTextStringClear', '@Start');
+
+        this.localWidget.shapeText = '';
+    }
+
     clickSelectShape(ev) {
         // The user selected a shape subtype
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectShape', '@Start');

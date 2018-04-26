@@ -159,7 +159,7 @@ export class StatusbarComponent {
     }
 
     clickDashboardDescription() {
-        //
+        // Show the popup for the Tab Description
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDescription', '@Start');
 
         this.dashboardDescription = this.globalVariableService.currentDashboards[0].description;
@@ -169,7 +169,7 @@ export class StatusbarComponent {
     }
 
     clickListTabs() {
-        //
+        // Show the list of Tabs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickListTabs', '@Start');
 
         this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs.slice();
