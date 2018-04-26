@@ -3617,6 +3617,9 @@ export class AppComponent implements OnInit {
                     this.currentWidgets[i].containerTop = x -
                         (this.currentWidgets[i].containerHeight);
                 };
+
+                // Save to DB
+                this.globalVariableService.saveWidget(this.currentWidgets[i]);
             };
         };
 
