@@ -246,7 +246,7 @@ const widgetTemplate: Widget =
         "shapeBullets": [],
         "shapeBulletStyleType": "",
         "shapeBulletsOrdered": false,
-        "shapeBulletMarginTop": 3,
+        "shapeBulletMarginBottom": 3,
         "shapeCorner": 15,
         "shapeFill": "",
         "shapeFontSize": 24,
@@ -4886,7 +4886,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 {key: 'shapeBullets', 				type: 'string'},
                 {key: 'shapeBulletStyleType', 		type: 'int'},
                 {key: 'shapeBulletsOrdered', 		type: 'bool'},
-                {key: 'shapeBulletMarginTop', 		type: 'int'},
+                {key: 'shapeBulletMarginBottom', 		type: 'int'},
                 {key: 'shapeOpacity', 				type: 'int'},
                 {key: 'shapeRotation', 				type: 'int'},
                 {key: 'shapeCorner', 				type: 'int'},
@@ -5264,7 +5264,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.shapeBullets = changedWidget.shapeBullets;
                 w.shapeBulletStyleType = changedWidget.shapeBulletStyleType;
                 w.shapeBulletsOrdered = changedWidget.shapeBulletsOrdered;
-                w.shapeBulletMarginTop = changedWidget.shapeBulletMarginTop;
+                w.shapeBulletMarginBottom = changedWidget.shapeBulletMarginBottom;
                 w.shapeOpacity = changedWidget.shapeOpacity;
                 w.shapeRotation = changedWidget.shapeRotation;
                 w.shapeCorner = changedWidget.shapeCorner;
@@ -5400,7 +5400,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.shapeBullets = changedWidget.shapeBullets;
                 w.shapeBulletStyleType = changedWidget.shapeBulletStyleType;
                 w.shapeBulletsOrdered = changedWidget.shapeBulletsOrdered;
-                w.shapeBulletMarginTop = changedWidget.shapeBulletMarginTop;
+                w.shapeBulletMarginBottom = changedWidget.shapeBulletMarginBottom;
                 w.shapeOpacity = changedWidget.shapeOpacity;
                 w.shapeRotation = changedWidget.shapeRotation;
                 w.shapeCorner = changedWidget.shapeCorner;

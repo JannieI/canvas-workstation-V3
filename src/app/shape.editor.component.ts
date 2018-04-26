@@ -593,16 +593,16 @@ export class ShapeEditComponent implements OnInit {
         // Increase the space between bullet points
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsIncrease', '@Start');
 
-        this.localWidget.shapeBulletMarginTop = this.localWidget.shapeBulletMarginTop + 3;
+        this.localWidget.shapeBulletMarginBottom = this.localWidget.shapeBulletMarginBottom + 3;
     }
     
     clickSelectBulletsDecrease() {
         // Decrease the space between bullet points
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsDecrease', '@Start');
 
-        if (this.localWidget.shapeBulletMarginTop >= 3) {
-            this.localWidget.shapeBulletMarginTop = 
-                this.localWidget.shapeBulletMarginTop - 3;
+        if (this.localWidget.shapeBulletMarginBottom >= 3) {
+            this.localWidget.shapeBulletMarginBottom = 
+                this.localWidget.shapeBulletMarginBottom - 3;
         };
     }
 
