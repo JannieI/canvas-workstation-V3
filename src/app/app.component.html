@@ -518,7 +518,7 @@
 
                         <button type="button"
                             clrDropdownItem
-                            (click)="clickMenuWidgetDuplicate()"
+                            (click)="clickMenuPaletteDuplicate('Graph')"
                             title="Duplicate selected Widget"
                             >
                             Duplicate
@@ -590,7 +590,7 @@
                         </button>
                         <button type="button"
                             clrDropdownItem
-                            (click)="clickMenuTableDuplicate()"
+                            (click)="clickMenuPaletteDuplicate('Table')"
                             title="Duplicate selected Table"
                             >
                             Duplicate Table
@@ -683,6 +683,14 @@
                         </button>
                         <button type="button"
                             clrDropdownItem
+                            (click)="clickMenuPaletteDuplicate('Slicer')"
+                            title="Duplicate selected Widget"
+                            >
+                            Duplicate
+                        </button>
+
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetTablist()"
                             title="Manage Tabs to which selected Slicer belongs"
                             >
@@ -763,7 +771,7 @@
 
                         <button type="button"
                             clrDropdownItem
-                            (click)="clickMenuGraphDuplicate()"
+                            (click)="clickMenuPaletteDuplicate('Shape')"
                             title="Duplicate selected Widget"
                             >
                             Duplicate

@@ -2729,74 +2729,6 @@ export class AppComponent implements OnInit {
         this.showModalTableEditor = true;
     }
 
-
-    clickMenuTableDuplicate() {
-        // Duplicate selected Table
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDuplicate', '@Start');
-
-        // Has to be in editMode
-        if (!this.editMode) {
-            this.showMessage(
-                this.globalVariableService.canvasSettings.notInEditModeMsg,
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
-        if (!this.checkForOnlyOneWidget('Table')) {
-            return
-        };
-
-        this.menuOptionClickPreAction();
-
-        // Get new ID
-        // TODO - improve this when using a DB!
-        let newID: number = 1;
-        let wIDs: number[] = [];
-        this.globalVariableService.widgets.forEach(w => {
-            wIDs.push(w.id);
-        });
-        if (wIDs.length > 0) {
-            newID = Math.max(...wIDs) + 1;
-        };
-
-        // Find latest copy #
-        let copyPosition: number = 1;
-        for (var i = 0; i < 21; i++) {
-            this.currentWidgets.forEach(w => {
-                if ( w.titleText.includes(' (copy ' + i.toString() + ')') ) {
-                    copyPosition = i + 1;
-                };
-            });
-        };
-
-        this.currentWidgets.forEach(w => {
-
-            if (w.isSelected) {
-
-                // Make a deep copy
-                let copiedWidget: Widget = Object.assign({}, w);
-                copiedWidget.id = newID;
-                copiedWidget.isSelected = false;
-                copiedWidget.containerLeft = 120;
-                copiedWidget.containerTop = 120;
-                copiedWidget.titleText = copiedWidget.titleText + ' (copy ' +
-                    copyPosition.toString() + ')';
-
-                // Add to all and current W
-                this.globalVariableService.widgets.push(copiedWidget);
-                this.globalVariableService.currentWidgets.push(copiedWidget);
-                this.globalVariableService.changedWidget.next(copiedWidget);
-
-            };
-        });
-
-        this.menuOptionClickPostAction();
-    }
-
     clickMenuTableComments() {
         // Manage Comments for selected Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableComments', '@Start');
@@ -2971,14 +2903,6 @@ export class AppComponent implements OnInit {
         });
 
         this.showModalDataSlicers = true;
-    }
-
-    clickMenuSlicerDuplicate() {
-        // Duplicate selected Graph
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphDuplicate', '@Start');
-
-
-        this.clickMenuWidgetDuplicate('Slicer')
     }
 
     clickMenuWidgetTablist() {
@@ -4277,13 +4201,13 @@ export class AppComponent implements OnInit {
             this.clickMenuWidgetDuplicate('Graph');
         } else {
             if (this.checkForOnlyOneWidget('Slicer', true)) {
-                this.clickMenuSlicerDuplicate('Slicer');
+                this.clickMenuWidgetDuplicate('Slicer');
             } else {
                 if (this.checkForOnlyOneWidget('Table', true)) {
-                    this.clickMenuTableDuplicate('Table');
+                    this.clickMenuWidgetDuplicate('Table');
                 } else {
                     if (this.checkForOnlyOneWidget('Shape', true)) {
-                        this.clickMenuShapeDuplicate('Shape');
+                        this.clickMenuWidgetDuplicate('Shape');
                     } else {
                         // Lost
                         this.showMessage(
