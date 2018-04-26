@@ -18,7 +18,7 @@ export class ColourPickerComponent implements OnInit {
     @Input() callingRoutine: string;
     @Input() selectedColor: string;
 
-    colourPickerClosed: boolean = true;
+
     constructor(
       private globalFunctionService: GlobalFunctionService,
       private globalVariableService: GlobalVariableService,
@@ -30,13 +30,17 @@ export class ColourPickerComponent implements OnInit {
 
     }
 
+    clickClose() {
+        // User clicked close
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+    }
+
     clickColor(color: any, p1: number, p2: number) {
-        // User clicks a colour
+        // User clicked a colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickColor', '@Start');
 
         this.selectedColor = color;
-        // this.colourPickerClosed = !this.colourPickerClosed;
-        console.log('xx colourPicker', this.callingRoutine, this.selectedColor, p1, p2)
 
         // Return, and let calling routine know
         this.globalVariableService.colourPickerClosed.next(

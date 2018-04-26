@@ -1,9 +1,12 @@
-<div class="colourpicker" *ngIf="colourPickerClosed">
+<div class="colourpicker">
+    <button type="button" class="closeButton" (click)="clickClose()">
+        X
+    </button>
     <img
         width="236"
-        src="../images/colormap.png" 
+        src="../images/colormap.png"
 
-        usemap="#colormap" 
+        usemap="#colormap"
         alt="colormap">
         <map id="colormap" name="colormap" (mouseleave)="mouseOutMap()">
             <area style="cursor:pointer" shape="poly" coords="63,0,72,4,72,15,63,19,54,15,54,4" (click)="clickColor('#003366',-200,54)" (mouseenter)="mouseOverColor('#003366')" alt="#003366">
