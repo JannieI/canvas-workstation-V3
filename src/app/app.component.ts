@@ -2489,8 +2489,6 @@ export class AppComponent implements OnInit {
         this.globalVariableService.statusBarRunning.next(this.globalVariableService.canvasSettings.noQueryRunningMessage);
         this.globalVariableService.statusBarCancelRefresh.next('Cancel');
     }
-    clickMenuWidgetDuplicate
-
 
     clickMenuWidgetCopy() {
         // Copy selected Widget to our 'clipboard'
@@ -4253,6 +4251,40 @@ export class AppComponent implements OnInit {
         };
     }
 
+    clickMenuPaletteDuplicate() {
+        // Clicked the Duplicate option on palette - decide what to do
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteDuplicate', '@Start');
+
+        // Decide which way
+        if (this.checkForOnlyOneWidget('Graph', true)) {
+            this.clickMenuWidgetDuplicate();
+        } else {
+            if (this.checkForOnlyOneWidget('Slicer', true)) {
+                this.clickMenuSlicerDuplicate();
+            } else {
+                if (this.checkForOnlyOneWidget('Table', true)) {
+                    this.clickMenuTableDuplicate();
+                } else {
+                    if (this.checkForOnlyOneWidget('Shape', true)) {
+                        this.clickMenuShapeDuplicate();
+                    } else {
+                        // Lost
+                        this.showMessage(
+                            'Select a graph, slicer, table or shape',
+                            'StatusBar',
+                            'Warning',
+                            3000,
+                            ''
+                        );
+                    };
+                };
+            };
+        };
+    }
+
+
+
+
 
 
     // ***********************  OTHER ************************ //
@@ -5074,7 +5106,7 @@ export class AppComponent implements OnInit {
         // this.stuckCount = 0;
     }
 
-    clickMenuWidgetDuplicate() {
+    clickMenuWidgetDuplicate(widgetType: string) {
         // Duplicate selected Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDuplicate', '@Start');
 
@@ -5093,7 +5125,7 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Graph')) {
+        if (!this.checkForOnlyOneWidget(widgetType)) {
             return
         };
 
