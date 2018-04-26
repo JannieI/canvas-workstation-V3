@@ -1556,7 +1556,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
     }
 
-     clickMenuEditRedo() {
+    clickMenuEditRedo() {
         // Redo a previous action
         // These are the rules:  DO = action, Undo = cancel DO, Redo = cancel Undo
         // Redo:
@@ -1626,6 +1626,10 @@ export class AppComponent implements OnInit {
                                 if (ourActions[i].oldWidget == null) {
                                     this.deleteWidget('Graph',ourActions[i].newWidget.id);
                                 } else {
+                               
+                                    // Save to DB
+                                    this.globalVariableService.saveWidget(ourActions[i].oldWidget);
+     
                                     this.globalVariableService.changedWidget.next(
                                         ourActions[i].oldWidget);
                                 };
