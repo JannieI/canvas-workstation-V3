@@ -3510,6 +3510,9 @@ export class AppComponent implements OnInit {
                     this.currentWidgets[i].containerLeft = x -
                         (this.currentWidgets[i].containerWidth / 2);
                 };
+
+                // Save to DB
+                this.globalVariableService.saveWidget(this.currentWidgets[i]);
             };
         };
 
