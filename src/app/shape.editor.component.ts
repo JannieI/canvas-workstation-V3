@@ -171,8 +171,8 @@ export class ShapeEditComponent implements OnInit {
             this.hasAutoFocusArrow = false;
             this.hasAutoFocusImage = false;
             this.hasAutoFocusBullets = false;
-        this.selectedColour = this.localWidget.shapeTextColour;
-        this.hasAutoFocusValue = false;
+            this.selectedColour = this.localWidget.shapeTextColour;
+            this.hasAutoFocusValue = false;
 
             if (this.localWidget.widgetSubType == 'Circle') {
                 this.hasAutoFocusCircle = true;
