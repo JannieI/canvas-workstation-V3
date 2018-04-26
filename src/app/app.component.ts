@@ -3656,7 +3656,7 @@ export class AppComponent implements OnInit {
         // Center horisontally across page
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterHorisontally', '@Start');
 
-        if (!this.checkForMultipleWidgets()) {
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
 
@@ -3681,7 +3681,7 @@ export class AppComponent implements OnInit {
         // Center vertically across page
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterVertically', '@Start');
 
-        if (!this.checkForMultipleWidgets()) {
+        if (!this.checkForOnlyOneWidget()) {
             return
         };
 
