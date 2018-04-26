@@ -1461,6 +1461,9 @@ export class AppComponent implements OnInit {
                         });
                     };
 
+                    // Save to DB
+                    this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
+
                     this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
                 };
             };
@@ -1538,6 +1541,9 @@ export class AppComponent implements OnInit {
                             };
                         });
                     };
+
+                    // Save to DB
+                    this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
 
                     this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
                 };
