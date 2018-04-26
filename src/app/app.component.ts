@@ -3562,6 +3562,9 @@ export class AppComponent implements OnInit {
                 } else {
                     this.currentWidgets[i].containerTop = x;
                 };
+
+                // Save to DB
+                this.globalVariableService.saveWidget(this.currentWidgets[i]);
             };
         };
 
