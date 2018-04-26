@@ -460,6 +460,23 @@
         padding-left: 15px;
         padding-top: 6px;
     }
+    .gridBulletsIncrease {
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBulletsDecrease {
+        grid-column-start: 9;
+        grid-column-end: 11;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
     .gridBulletsButton {
         grid-column-start: 7;
         grid-column-end: 9;

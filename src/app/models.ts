@@ -684,6 +684,7 @@ export class Widget {
     shapeBullets: string[];             // Array of bullet points
     shapeBulletStyleType: string;       // List marker: disc, circle, square, none
     shapeBulletsOrdered: boolean;       // True if the list is ordered
+    shapeBulletMarginTop
     shapeCorner: number;                // Corner size in px, ie 15
     shapeFill: string;                  // Fill / inside (ie of circle, colour of text, etc)
     shapeFontFamily: string;            // Font, ie Aria, Sans Serif

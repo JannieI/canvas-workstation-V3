@@ -560,6 +560,20 @@
                         <b>Item:</b>
                         <input [(ngModel)]="bulletValue">
                     </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridBulletsIncrease"
+                        (click)="clickSelectBulletsIncrease()"
+                        >
+                        Increase
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridBulletsDecrease"
+                        (click)="clickSelectBulletsDecrease()"
+                        >
+                        Decrease
+                    </button>
 
                     <div class="gridBulletsColourTitle">
                         <b>Text:</b>
@@ -609,7 +623,8 @@
                             >
                             <option>Sum</option>
                             <option>Average</option>
-                            <option>Count</option>
+                            <option>Count.px]="6"
+                                .px]="6"</option>
                             <option>First</option>
                             <option>Last</option>
                             <option>Max</option>

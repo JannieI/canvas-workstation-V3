@@ -589,6 +589,13 @@ export class ShapeEditComponent implements OnInit {
         console.log('xx clickSelectBulletsColor', ev.target.value)
     }
 
+    clickSelectBulletsIncrease() {
+        // Increase the space between bullet points
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsIncrease', '@Start');
+
+        this.localWidget.shapeBulletMarginTop = this.localWidget.shapeBulletMarginTop + 3;
+    }
+
     clickSelectArrowColorPicker(ev: any) {
         // Open the Colour Picker for Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowColorPicker', '@Start');
