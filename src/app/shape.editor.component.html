@@ -186,6 +186,7 @@
                         [style.font-size.px]="localWidget.shapeFontSize"
                         >
                         <li *ngFor="let row of localWidget.shapeBullets; let i = index"
+                            [style.margin-top.px]="row.shapeBulletMarginTop"
                             (click)="clickBulletEdit(i, row)"
                             >
                             <clr-icon shape="times"
@@ -201,6 +202,7 @@
                         [style.font-size.px]="localWidget.shapeFontSize"
                         >
                         <li *ngFor="let row of localWidget.shapeBullets; let i = index"
+                            [style.margin-top.px]="row.shapeBulletMarginTop"
                             (click)="clickBulletEdit(i, row)"
                             >
                             <clr-icon shape="times"
