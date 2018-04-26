@@ -3433,10 +3433,13 @@ export class AppComponent implements OnInit {
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMinZindex;
                 console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
+                  
+                // Save to DB
+                this.globalVariableService.saveWidget(this.currentWidgets[i]);
+  
+                // Refresh the Dashboard
+                this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
             };
-
-            // Refresh the Dashboard
-            this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
         };
 
         this.menuOptionClickPostAction();
@@ -3454,13 +3457,13 @@ export class AppComponent implements OnInit {
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMaxZindex;
                 console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
+    
+                // Save to DB
+                this.globalVariableService.saveWidget(this.currentWidgets[i]);
+                
+                // Refresh the Dashboard
+                this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
             };
-
-            // Save to DB
-            this.globalVariableService.saveWidget(this.currentWidgets[i]);
-
-            // Refresh the Dashboard
-            this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
         };
 
         this.menuOptionClickPostAction();
@@ -3612,7 +3615,6 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
     }
-
 
     clickMenuArrangeAlignBottom() {
         // Align the Bottoms of the selected widgets
