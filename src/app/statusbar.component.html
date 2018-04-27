@@ -63,7 +63,7 @@
         >
         <clr-icon shape="plus"
             size="12"
-            (click)="clickAddTab()">
+            (click)="clickTabAdd()">
         </clr-icon>
     </span>
 
@@ -170,6 +170,13 @@
 <!-- Dashboard Tab Description -->
 <div class="dashboardTabDescription" *ngIf="showDashboardTabDescription">
     <div> {{ dashboardTabDescription }} </div>
+    <button
+        type="button"
+        class="btn btn-link"
+        (click)="clickTabEdit()"
+        >
+        Edit
+    </button>
     <button
         type="button"
         class="btn btn-link"

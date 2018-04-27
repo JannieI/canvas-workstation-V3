@@ -270,9 +270,9 @@ export class StatusbarComponent {
         );
     }
 
-    clickAddTab() {
+    clickTabAdd() {
         // Add a new Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAddTab', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTabAdd', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -292,9 +292,9 @@ export class StatusbarComponent {
         this.showNewTab = true;
     }
  
-    clickEditTab() {
+    clickTabEdit() {
         // Edit a Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickEditTab', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTabEdit', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
@@ -316,7 +316,7 @@ export class StatusbarComponent {
 
     clickTabDelete() {
         // Delete a Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTabDelete', '@Start');
 
         // Has to be in editMode
         if (!this.editMode) {
