@@ -603,6 +603,9 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsIncrease', '@Start');
 
         this.localWidget.shapeBulletMarginBottom = this.localWidget.shapeBulletMarginBottom + 3;
+
+        let a: number = 90;
+        console.log('xx coordinates (x2,y2)=(x1+l⋅cos(a),y1+l⋅sin(a))' )
     }
     
     clickSelectBulletsDecrease() {

@@ -1461,11 +1461,11 @@ export class AppComponent implements OnInit {
                         });
                     };
 
-                    // Save to DB
-                    this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
-
                     this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
                 };
+
+                // Save to DB
+                this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
             };
 
             console.log('undo prev DO, id ',filteredActions[0].id, this.globalVariableService.actions )
@@ -1542,13 +1542,13 @@ export class AppComponent implements OnInit {
                         });
                     };
 
-                    // Save to DB
-                    this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
-
                     this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
                 };
 
             };
+
+            // Save to DB
+            this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
 
             console.log('undo prev id ', filteredActions[0].id, this.globalVariableService.actions)
         };
