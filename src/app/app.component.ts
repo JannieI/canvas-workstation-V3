@@ -872,6 +872,21 @@ export class AppComponent implements OnInit {
 
         // Delete if so requested
         if (action == 'Delete') {
+            
+            // Add to Action log
+            this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Widget',
+                'Delete',
+                'App handleCloseWidgetDelete',
+                null,
+                null,
+                this.selectedWidget,
+                null
+            );
+
             this.deleteWidget('Shape');
         };
 
@@ -3181,6 +3196,13 @@ console.log('xx filteredActions', filteredActions)
         };
 
         this.menuOptionClickPreAction();
+
+        // Set selectedWidget, for action log afterwards
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Shape') {
+                this.selectedWidget = w;
+            };
+        });
 
         this.showModalShapeDelete = true;
     }
