@@ -112,13 +112,15 @@ export class DashboardTabComponent {
             });
         } else {
             let tab: DashboardTab = {
-                id: null,
-                dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                id: this.globalVariableService.currentDashboardInfo.value
+                    .currentDashboardTabID,
+                dashboardID: this.globalVariableService.currentDashboardInfo.value
+                    .currentDashboardID,
                 name: this.name,
                 description: this.description,
                 backgroundColor: this.backgroundColor,
                 color: this.color
-            }
+            };
 
             this.globalVariableService.saveDashboardTab(tab).then(res => {
                 this.formDashboardTabClosed.emit(tab)
