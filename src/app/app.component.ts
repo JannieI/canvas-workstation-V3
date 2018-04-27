@@ -1135,6 +1135,20 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseTableEditor', '@Start');
 
+        // Add to Action log
+        this.globalVariableService.actionUpsert(
+            null,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+            'Widget',
+            this.newWidget? 'Add' : 'Edit',
+            'App handleCloseWidgetEditor',
+            null,
+            null,
+            this.newWidget? null : this.selectedWidget,
+            changedTable
+        );
+
         this.globalVariableService.changedWidget.next(changedTable);
 
         this.menuOptionClickPostAction();
@@ -1148,6 +1162,21 @@ export class AppComponent implements OnInit {
 
         // Delete if so requested
         if (action == 'Delete') {
+            
+            // Add to Action log
+            this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Widget',
+                'Delete',
+                'App handleCloseWidgetDelete',
+                null,
+                null,
+                this.selectedWidget,
+                null
+            );
+
             this.deleteWidget('Table');
         };
 
@@ -2880,6 +2909,13 @@ console.log('xx filteredActions', filteredActions)
         };
 
         this.menuOptionClickPreAction();
+
+        // Set selectedWidget, for action log afterwards
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Table') {
+                this.selectedWidget = w;
+            };
+        });
 
         this.showModalTableDelete = true;
 
