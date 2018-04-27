@@ -1145,7 +1145,7 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDelete = false;
     }
 
-    handleCloseTableEditor(changedTable: Widget) {    //widgetsToRefresh: number) {
+    handleCloseTableEditor(changedWidget: Widget) {    //widgetsToRefresh: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseTableEditor', '@Start');
 
@@ -1160,10 +1160,10 @@ export class AppComponent implements OnInit {
             null,
             null,
             this.newWidget? null : this.selectedWidget,
-            changedTable
+            changedWidget
         );
 
-        this.globalVariableService.changedWidget.next(changedTable);
+        this.globalVariableService.changedWidget.next(changedWidget);
 
         this.menuOptionClickPostAction();
 
