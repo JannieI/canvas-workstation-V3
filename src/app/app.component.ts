@@ -330,7 +330,7 @@ export class AppComponent implements OnInit {
     showModalDashboardPrint: boolean = false;
     showModalDataAddExisting: boolean = false;
     showModalData: boolean = false;
-    showModalDataSlicers: boolean = false;
+    showModalSlicerEditor: boolean = false;
     showModalWidgetTablist: boolean = false;
     showModalTableEditor: boolean = false;
     showModalDataCombination: boolean = false;
@@ -944,7 +944,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataSlicers = false;
+        this.showModalSlicerEditor = false;
     }
 
     handleCloseWidgetTitle(changedWidget: Widget) {
@@ -2960,7 +2960,7 @@ console.log('xx filteredActions', filteredActions)
 
         this.newWidget = true;
 
-        this.showModalDataSlicers = true;
+        this.showModalSlicerEditor = true;
 
     }
 
@@ -2996,7 +2996,7 @@ console.log('xx filteredActions', filteredActions)
             };
         });
 
-        this.showModalDataSlicers = true;
+        this.showModalSlicerEditor = true;
     }
 
     clickMenuWidgetTablist() {
