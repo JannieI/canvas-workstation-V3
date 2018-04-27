@@ -96,6 +96,14 @@ This document describes items for later versions of Canvas.
     - links (to web and other D, T)
     - Should be able to Duplicate Shape?  Can we consilidate Duplicate code for all types?
     - Do we need both shapeText and shapeValue?  Maybe delete shapeValue ...
+    - write text vertically !
+    - have UPPERCASE / Sentence Case options
+    - add nice arrow - like consultants with big, hollow body, the fancy one
+    - add triangle, or make arrow more sophisticated = no line (! triangle), no arrowhead
+    - make rotation of arrow with mouse - drag it around!
+    - add Brackets! |---| simple ones that has two handles and a line
+    - size with svg markerWidth and -Height
+
 
     Different versions of Vega:
     ---------------------------
@@ -315,3 +323,5 @@ Consider dataQuality on own menu item, or on W menu
 - add video as shape
 - make it easier to add co logo, ie Add logo menu option.
 - expand palette / menus: add regularly used tasks, ie add a circle (with one click)
+- curved lines, bazier curves
+- hand-drawn lines / pics with mouse!
