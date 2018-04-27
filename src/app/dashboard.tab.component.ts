@@ -6,10 +6,11 @@ import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our models
-import { Datasource, DashboardTab }                 from './models';
+import { DashboardTab }               from './models';
+import { Datasource }                 from './models';
 
 // Our Services
-import { GlobalFunctionService } 		  from './global-function.service';
+import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 
@@ -21,7 +22,7 @@ import { GlobalVariableService }      from './global-variable.service';
 export class DashboardTabComponent {
 
     @Input() newTab: boolean;
-    @Output() formDashboardTabClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardTabClosed: EventEmitter<DashboardTab> = new EventEmitter();
 
     dashboardID: number;                  // FK to DashboardID to which widget belongs
     name: string = '';                    // Name of new T
@@ -104,7 +105,9 @@ export class DashboardTabComponent {
                     0,
                     'Last'
                 );
-                this.formDashboardTabClosed.emit();
+
+                newTab.id = res.id;
+                this.formDashboardTabClosed.emit(newTab);
         
             });
         } else {
@@ -118,7 +121,7 @@ export class DashboardTabComponent {
             }
 
             this.globalVariableService.saveDashboardTab(tab).then(res => {
-                this.formDashboardTabClosed.emit()
+                this.formDashboardTabClosed.emit(tab)
             });
         }
     }

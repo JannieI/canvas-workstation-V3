@@ -380,10 +380,16 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
     }
 
-    handleCloseDashboardTab(action: string) {
+    handleCloseDashboardTab(changedTab: DashboardTab) {
         // Handle Close Tab form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');
 
+        if (!this.newTab) {
+            this.currentTabName = changedTab.name;
+            this.dashboardTabDescription = changedTab.description;
+            this.currentTabBackgroundColor = changedTab.backgroundColor;
+            this.currentTabColor = changedTab.color;
+        };
         this.showNewTab = false;
     }
 }

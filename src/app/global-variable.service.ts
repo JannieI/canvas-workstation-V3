@@ -600,7 +600,7 @@ export class GlobalVariableService {
     currentDashboardSubscriptions: DashboardSubscription[] = [];
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
 
-    // TODO - this is trigger a rename of the Dname on statusbar - must be better way
+    // TODO - this is trigger a rename of the D on statusbar - must be better way
     currentDashboardName = new BehaviorSubject<string>('');
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
     // widgetsToRefresh = new BehaviorSubject<number[]>([]);            // Array of Wids to refresh
@@ -1336,7 +1336,6 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             )
         });
     }
-
 
     saveDashboardTab(data: DashboardTab): Promise<string> {
         // Description: Saves DashboardTab
