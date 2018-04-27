@@ -63,10 +63,10 @@
     }
 
     .gridButtonCancel {
-        grid-column-start: 6;
-        grid-column-end: 8;
-        grid-row-start: 10;
-        grid-row-end: 13;
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 14;
+        grid-row-end: 15;
         text-align: left;
     }
     .gridButtonSave {

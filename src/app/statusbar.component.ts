@@ -292,6 +292,28 @@ export class StatusbarComponent {
         this.showNewTab = true;
     }
  
+    clickEditTab() {
+        // Edit a Tab
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickEditTab', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.globalVariableService.showStatusBarMessage(
+                {
+                    message: this.globalVariableService.canvasSettings.notInEditModeMsg,
+                    uiArea: 'StatusBar',
+                    classfication: 'Warning',
+                    timeout: 3000,
+                    defaultMessage: ''
+                }
+            );
+            return;
+        };
+
+        this.newTab = false;
+        this.showNewTab = true;
+    }
+
     clickTabDelete() {
         // Delete a Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');
