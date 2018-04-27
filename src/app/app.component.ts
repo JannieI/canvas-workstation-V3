@@ -845,6 +845,20 @@ export class AppComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeEdit', '@Start');
 
+        // Add to Action log
+        this.globalVariableService.actionUpsert(
+            null,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+            'Widget',
+            this.newWidget? 'Add' : 'Edit',
+            'App handleCloseWidgetEditor',
+            null,
+            null,
+            this.newWidget? null : this.selectedWidget,
+            changedWidget
+        );
+
         this.globalVariableService.changedWidget.next(changedWidget);
 
         this.menuOptionClickPostAction();
@@ -1434,7 +1448,7 @@ console.log('xx filteredActions', filteredActions)
             );
             if (filteredActions[0].objectType == 'Widget') {
                 if (filteredActions[0].oldWidget == null) {
-                    this.deleteWidget('Graph',filteredActions[0].newWidget.id);
+                    this.deleteWidget(null, filteredActions[0].newWidget.id);
                 } else {
 
                     // TODO - do this better in a DB
@@ -1461,12 +1475,10 @@ console.log('xx filteredActions', filteredActions)
                         });
                     };
 
-                    this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
-                };
-
-                // Save to DB
-                if (filteredActions[0].oldWidget != null) {
+                    // Save to DB
                     this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
+
+                    this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
                 };
             };
 
@@ -1517,7 +1529,7 @@ console.log('xx filteredActions', filteredActions)
             // Diff Object Types
             if (filteredActions[0].objectType == 'Widget') {
                 if (filteredActions[0].oldWidget == null) {
-                    this.deleteWidget('Graph',filteredActions[0].newWidget.id);
+                    this.deleteWidget(null, filteredActions[0].newWidget.id);
                 } else {
 
                     // TODO - do this better in a DB
@@ -1544,14 +1556,12 @@ console.log('xx filteredActions', filteredActions)
                         });
                     };
 
+                    // Save to DB
+                    this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
+
                     this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
                 };
 
-            };
-
-            // Save to DB
-            if (filteredActions[0].oldWidget != null) {
-                this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
             };
 
             console.log('undo prev id ', filteredActions[0].id, this.globalVariableService.actions)
