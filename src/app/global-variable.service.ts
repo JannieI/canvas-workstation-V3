@@ -1337,6 +1337,41 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         });
     }
 
+
+    saveDashboardTab(data: DashboardTab): Promise<string> {
+        // Description: Saves DashboardTab
+        // Returns: 'Saved' or error message
+        console.log('Global-Variables saveDashboardTab ...');
+
+        let url: string = 'dashboardTabs';
+        this.filePath = './assets/data.dashboardTabs.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.dashboardTabs.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.dashboardTabs[localIndex] = data;
+
+                    console.log('saveDashboardTab SAVED', res)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDashboardTab FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     deleteDashboardTab(id: number): Promise<string> {
         // Description: Deletes a DashboardTab
         // Returns: 'Deleted' or error message
