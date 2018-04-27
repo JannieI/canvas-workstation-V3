@@ -38,10 +38,10 @@
                         </select>
                     </span>
                 </div>
- 
+
                 <div class="hasTitle">
                     <div class="checkbox">
-                        <input type="checkbox" id="checkTitle" 
+                        <input type="checkbox" id="checkTitle"
                             [(ngModel)]="localWidget.containerHasTitle"
                             >
                         <label for="checkTitle">Has Title</label>
@@ -139,32 +139,32 @@
                         [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
                         >
                         <defs>
-                            <marker 
-                                id="arrow" 
-                                markerWidth="4" 
-                                markerHeight="3" 
-                                refX="0" 
-                                refY="3" 
-                                orient="auto" 
+                            <marker
+                                id="arrow"
+                                markerWidth="4"
+                                markerHeight="3"
+                                refX="0"
+                                refY="3"
+                                orient="auto"
                                 markerUnits="strokeWidth"
-                                viewBox="0 0 10 10" 
+                                viewBox="0 0 10 10"
                                 >
-                            <path 
-                                d="M 0 0 L 0 6 L 9 3 z" 
+                            <path
+                                d="M 0 0 L 0 6 L 9 3 z"
                                 [style.fill]="localWidget.shapeStroke"
                                 [style.stroke]="localWidget.shapeStroke"
                                 />
                             </marker>
                         </defs>
 
-                        <line 
-                            x1="100" 
-                            y1="100" 
-                            x2="155" 
-                            y2="155" 
+                        <line
+                            x1="100"
+                            y1="100"
+                            x2="155"
+                            y2="155"
                             [style.stroke]="localWidget.shapeStroke"
-                            stroke-width="3" 
-                            marker-end="url(#arrow)" 
+                            stroke-width="3"
+                            marker-end="url(#arrow)"
                             />
                     </svg>
                 </div>
@@ -288,14 +288,14 @@
                         >
                         Picker
                     </button>
-    
+
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showEllipse">
                     <div class="gridEllipseLineColourTitle">
                         <b>Line:</b>
                     </div>
-                
+
                     <div class="select gridEllipseLineColour">
                         <select
                             [(ngModel)]="localWidget.shapeStroke"
@@ -326,7 +326,7 @@
                     <div class="gridEllipseFillColourTitle">
                         <b>Fill Colour:</b>
                     </div>
-                
+
                     <div class="select gridEllipseFillColour">
                         <select
                             [(ngModel)]="localWidget.shapeFill"
@@ -405,7 +405,7 @@
                         >
                         Picker
                     </button>
-    
+
                     <div class="gridRectangleOpacity">
                         <b>Fill Opacity:</b>
                         <input type="text"
@@ -421,7 +421,7 @@
                             >
                     </div>
                 </div>
- 
+
                 <div class="gridShapeProperties" *ngIf="showText">
                     <div class="gridTextString">
                         <b>Text input:</b>
@@ -530,8 +530,8 @@
                 <div class="gridShapeProperties" *ngIf="showImage">
                     <div class="gridImage">
                         <b>Image:</b>
-                        <input type="text" 
-                            [(ngModel)]="localWidget.shapeImageUrl" 
+                        <input type="text"
+                            [(ngModel)]="localWidget.shapeImageUrl"
                             placeholder="Co. logo"
                             [autofocus]="hasAutoFocusImage"
                             >
@@ -684,7 +684,7 @@
                     <div class="gridValueLineColourTitle">
                         <b>Colour:</b>
                     </div>
-                
+
                     <div class="select gridValueLineColour">
                         <select
                             [(ngModel)]="localWidget.shapeStroke"

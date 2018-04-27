@@ -192,5 +192,6 @@
 <dashboard-tab
     class="formPopupDashboard"
     *ngIf="showNewTab"
+    [newTab]="newTab"
     (formDashboardTabClosed)="handleCloseDashboardTab($event)">Load Dashboard Tab ...
 </dashboard-tab>

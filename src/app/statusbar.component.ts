@@ -44,6 +44,7 @@ export class StatusbarComponent {
     editModeSubscription: Subscription;
     loggedIntoServerText: string;
     menuActionResize: boolean;
+    newTab: boolean = true;                     // True if Add, False if Edit existing
     showDashboardDescription: boolean = false;
     showDashboardTabDescription: boolean = false;
     showNewTab: boolean = false;
@@ -60,7 +61,7 @@ export class StatusbarComponent {
     ) {}
 
     ngOnInit() {
-        //
+        // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.editModeSubscription = this.globalVariableService.editMode.subscribe(
@@ -286,9 +287,11 @@ export class StatusbarComponent {
             );
             return;
         };
+
+        this.newTab = true;
         this.showNewTab = true;
     }
-
+ 
     clickTabDelete() {
         // Delete a Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');

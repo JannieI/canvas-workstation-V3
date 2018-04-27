@@ -2,6 +2,7 @@
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { Input }                      from '@angular/core';
+import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our models
@@ -11,7 +12,6 @@ import { Datasource, DashboardTab }                 from './models';
 import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
-// Functions
 
 @Component({
     selector: 'dashboard-tab',
@@ -20,6 +20,7 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class DashboardTabComponent {
 
+    @Input() newTab: boolean;
     @Output() formDashboardTabClosed: EventEmitter<string> = new EventEmitter();
 
     dashboardID: number;                  // FK to DashboardID to which widget belongs
@@ -35,6 +36,25 @@ export class DashboardTabComponent {
         private globalVariableService: GlobalVariableService,
     ) {}
 
+    ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        if (!this.newTab) {
+            let tabIndex: number = this.globalVariableService.currentDashboardTabs
+                .findIndex(t => t.id == this.globalVariableService.currentDashboardInfo
+                    .value.currentDashboardTabID);
+            if (tabIndex >= 0) {
+                this.name = this.globalVariableService.currentDashboardTabs[tabIndex].name;
+                this.description = this.globalVariableService.currentDashboardTabs[tabIndex]
+                    .description;
+                this.backgroundColor = this.globalVariableService.currentDashboardTabs[tabIndex]
+                    .backgroundColor;
+                this.color = this.globalVariableService.currentDashboardTabs[tabIndex].color;
+            };
+        }
+    }
+    
   	clickClose() {
         // Close form, no save
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');

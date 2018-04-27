@@ -204,7 +204,7 @@ export class ShapeEditComponent implements OnInit {
             if (this.localWidget.widgetSubType == 'Value') {
                 this.hasAutoFocusValue = true;
             };
-                        
+
         };
 
     }
@@ -607,13 +607,13 @@ export class ShapeEditComponent implements OnInit {
         let a: number = 90;
         console.log('xx coordinates (x2,y2)=(x1+l⋅cos(a),y1+l⋅sin(a))' )
     }
-    
+
     clickSelectBulletsDecrease() {
         // Decrease the space between bullet points
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsDecrease', '@Start');
 
         if (this.localWidget.shapeBulletMarginBottom >= 3) {
-            this.localWidget.shapeBulletMarginBottom = 
+            this.localWidget.shapeBulletMarginBottom =
                 this.localWidget.shapeBulletMarginBottom - 3;
         };
     }

@@ -232,15 +232,15 @@ const graphWidth: number = 420;
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         this.localWidget.containerHasTitle = this.containerHasTitle;
-        
+
         // Update new/edit
         if (this.newWidget) {
 
             // Set Graph Height and Width
-            if (this.localWidget.graphXaxisTitle != ''  
-                &&  
+            if (this.localWidget.graphXaxisTitle != ''
+                &&
                 this.localWidget.graphXaxisTitle != null) {
-                    this.localWidget.graphHeight = this.localWidget.containerHeight 
+                    this.localWidget.graphHeight = this.localWidget.containerHeight
                     - 70;
             } else {
                 this.localWidget.graphHeight = this.localWidget.containerHeight - 55;
@@ -252,7 +252,7 @@ const graphWidth: number = 420;
             } else {
                 this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
             };
-            
+
             // TODO - improve this when using a DB!
             // let newID: number = 1;
             // let wsIDs: number[]=[];
@@ -264,12 +264,12 @@ const graphWidth: number = 420;
             // };
             // this.localWidget.id = newID;
             //  console.log('xx wIDs', wsIDs, newID)
- 
+
              // Get Checkpoint info for ALL W, not only current one - AFTER ID collected
             // TODO - fix when using DB
             // TODO - this code is NOT DRY ~ getWidget() code in global var
             let tempChk: WidgetCheckpoint[] = this.globalVariableService.widgetCheckpoints
-                .filter(wc => 
+                .filter(wc =>
                     wc.dashboardID == this.localWidget.dashboardID
                     &&
                     wc.widgetID == this.localWidget.id
@@ -280,7 +280,7 @@ const graphWidth: number = 420;
                 this.localWidget.checkpointIDs = [];
                 this.localWidget.currentCheckpoint = 0;
                 this.localWidget.lastCheckpoint = tempChk.length - 1;
-                
+
                 for (var x = 0; x < tempChk.length; x++) {
                     this.localWidget.checkpointIDs.push(tempChk[x].id);
                 };
@@ -314,7 +314,7 @@ const graphWidth: number = 420;
                 this.formWidgetEditorClosed.emit(this.localWidget);
 
             });
- 
+
         } else {
             if (this.selectedWidget.graphColorField != ''
                 &&  this.selectedWidget.graphColorField != null) {
@@ -329,7 +329,7 @@ const graphWidth: number = 420;
                         this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
                     };
             };
- 
+
             // Update global W and DB
             this.globalVariableService.saveWidget(this.localWidget).then(res => {
 
@@ -345,9 +345,9 @@ const graphWidth: number = 420;
                 );
 
                 this.formWidgetEditorClosed.emit(this.localWidget);
-                
+
             });
-            
+
         };
     }
 
