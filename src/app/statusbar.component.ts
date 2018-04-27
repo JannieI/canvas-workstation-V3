@@ -207,7 +207,6 @@ export class StatusbarComponent {
         );
     }
 
-
     clickShowPreviousTab() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowPreviousTab', '@Start');
@@ -384,13 +383,16 @@ export class StatusbarComponent {
         // Handle Close Tab form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');
 
-        if (!this.newTab) {
+        if (!this.newTab  &&  changedTab != null) {
             this.currentTabName = changedTab.name;
             this.dashboardTabDescription = changedTab.description;
             this.currentTabBackgroundColor = changedTab.backgroundColor;
             this.currentTabColor = changedTab.color;
         };
+
+        // Close forms
         this.showNewTab = false;
+        this.showDashboardTabDescription = false;
     }
 }
 

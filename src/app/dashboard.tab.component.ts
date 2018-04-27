@@ -60,7 +60,7 @@ export class DashboardTabComponent {
         // Close form, no save
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-	  	  this.formDashboardTabClosed.emit();
+	  	  this.formDashboardTabClosed.emit(null);
     }
 
   	clickSave() {
