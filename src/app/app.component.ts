@@ -1417,7 +1417,7 @@ export class AppComponent implements OnInit {
         // Get last action
         let filteredActions: CanvasAction[] = [];
         filteredActions = ourActions.filter(act => act.id == maxActID);
-
+console.log('xx filteredActions', filteredActions)
         if (filteredActions[0].undoID == null) {
             // Previous was not an UNDO, so just reverse it
             this.globalVariableService.actionUpsert(
@@ -1465,7 +1465,9 @@ export class AppComponent implements OnInit {
                 };
 
                 // Save to DB
-                this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
+                if (filteredActions[0].oldWidget != null) {
+                    this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
+                };
             };
 
             console.log('undo prev DO, id ',filteredActions[0].id, this.globalVariableService.actions )
@@ -1511,7 +1513,7 @@ export class AppComponent implements OnInit {
                 filteredActions[0].newWidget,
                 filteredActions[0].oldWidget
             );
-
+console.log('xx filteredActions', filteredActions)
             // Diff Object Types
             if (filteredActions[0].objectType == 'Widget') {
                 if (filteredActions[0].oldWidget == null) {
@@ -1548,7 +1550,9 @@ export class AppComponent implements OnInit {
             };
 
             // Save to DB
-            this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
+            if (filteredActions[0].oldWidget != null) {
+                this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
+            };
 
             console.log('undo prev id ', filteredActions[0].id, this.globalVariableService.actions)
         };
@@ -4972,6 +4976,7 @@ export class AppComponent implements OnInit {
 
     deleteWidget(widgetType, widgetID: number = null) {
         // Delete the selected W
+        // - Optional widgetType, widgetID to Delete
         this.globalFunctionService.printToConsole(this.constructor.name,'deleteWidget', '@Start');
 
         let datasetID: number = -1;
@@ -4982,12 +4987,12 @@ export class AppComponent implements OnInit {
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
 
-            // Get given ID, else all selected
-            if (  (widgetID == null  ||  this.currentWidgets[i].id == widgetID)
-                   &&
-                   (widgetID != null  ||  this.currentWidgets[i].isSelected)
-                   &&
-                   this.currentWidgets[i].widgetType == widgetType
+            // Get given ID, else all selected of the given widgetType
+            if (  (widgetID != null  &&  this.currentWidgets[i].id == widgetID)
+                   ||
+                   (widgetType != null  
+                    &&  this.currentWidgets[i].isSelected
+                    &&  this.currentWidgets[i].widgetType == widgetType)
                 ) {
 
                 deleteWidget = Object.assign({}, this.currentWidgets[i]);
