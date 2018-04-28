@@ -59,6 +59,7 @@ export class ShapeEditComponent implements OnInit {
 
     shapeSvgHeight: number = 30;
     size: number = 3;
+    topMargin: number = 115;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -640,9 +641,12 @@ export class ShapeEditComponent implements OnInit {
         // Open the Colour Picker for Arrow Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowSize', '@Start');
 
-        (this.localWidget.shapeSize = ev.target.value;
-        this.localWidget.shapeSvgHeight = ((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
-        this.localWidget.shapeSvgWidth = ((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
+        this.localWidget.shapeSize = ev.target.value;
+        this.localWidget.shapeSvgHeight = 30; //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
+        this.localWidget.shapeSvgWidth = 30;  //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
+        this.topMargin = 140 - (this.localWidget.shapeSize * 10);
+        console.log('xx this.localWidget.shapeSvgHeight', this.topMargin, 
+            this.localWidget.shapeSvgHeight, this.localWidget.shapeSize)
     }
     
     clickSelectArrowFillColorPicker(ev: any) {

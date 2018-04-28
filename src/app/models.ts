@@ -694,6 +694,7 @@ export class Widget {
     shapeIsItalic: boolean;             // True if text is italic
     shapeOpacity: number;               // Opacity, between 0 and 1, ie of rectangle
     shapeRotation: number;              // Nr of degrees to rotate a Shape
+    shapeSize: number;                  // Size of shape, used in scale(). For now: 0-9
     shapeStroke: string;                // Colour of line
     shapeStrokeWidth: string;           // Line thickness in px
     shapeSvgHeight: number;             // Height of SVG element

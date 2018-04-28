@@ -256,6 +256,7 @@ const widgetTemplate: Widget =
         "shapeIsItalic": false,
         "shapeOpacity": 1,
         "shapeRotation": 0,
+        "shapeSize": 1,
         "shapeStroke": "",
         "shapeStrokeWidth": "",
         "shapeSvgHeight": 30,
@@ -4933,6 +4934,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 {key: 'shapeBulletMarginBottom', 		type: 'int'},
                 {key: 'shapeOpacity', 				type: 'int'},
                 {key: 'shapeRotation', 				type: 'int'},
+                {key: 'shapeSize', 				    type: 'int'},
                 {key: 'shapeCorner', 				type: 'int'},
                 {key: 'shapeFontSize', 				type: 'int'},
                 {key: 'shapeFontFamily', 			type: 'string'},
@@ -5313,6 +5315,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.shapeBulletMarginBottom = changedWidget.shapeBulletMarginBottom;
                 w.shapeOpacity = changedWidget.shapeOpacity;
                 w.shapeRotation = changedWidget.shapeRotation;
+                w.shapeSize = changedWidget.shapeSize;
                 w.shapeCorner = changedWidget.shapeCorner;
                 w.shapeFontSize = changedWidget.shapeFontSize;
                 w.shapeFontFamily = changedWidget.shapeFontFamily;
@@ -5451,6 +5454,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.shapeBulletMarginBottom = changedWidget.shapeBulletMarginBottom;
                 w.shapeOpacity = changedWidget.shapeOpacity;
                 w.shapeRotation = changedWidget.shapeRotation;
+                w.shapeSize = changedWidget.shapeSize;
                 w.shapeCorner = changedWidget.shapeCorner;
                 w.shapeFontSize = changedWidget.shapeFontSize;
                 w.shapeFontFamily = changedWidget.shapeFontFamily;

@@ -135,12 +135,13 @@
 
                 <div class="gridShape" *ngIf="showArrow"
                     >
-                    <svg 
+                    <svg class="gridShapeArrow"
                         [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
-                        [style.transform]="'scale(' + size + ',' + size + ')'"
+                        [style.transform]="'scale(' + localWidget.shapeSize + ',' 
+                            + localWidget.shapeSize + ')'"
                         [style.height]="localWidget.shapeSvgHeight" 
                         [style.width]="localWidget.shapeSvgWidth"
-                        style="display: block; position: relative; left: 25%; top:25%"
+                        style="display: block;"
                         >
                         <polygon 
                             points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"  
@@ -567,7 +568,7 @@
                     </div>
                     <div class="select gridArrowSize">
                         <select
-                            [(ngModel)]="localWidget.shapeStroke"
+                            [(ngModel)]="localWidget.shapeSize"
                             (change)="clickSelectArrowSize($event)"
                             >
                             <option>1</option> 
