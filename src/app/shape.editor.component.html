@@ -517,7 +517,7 @@
                     <div class="gridArrowColourTitle">
                         <b>Fill:</b>
                     </div>
-                    <div class="select gridArrowColour">
+                    <div class="select gridArrowFillColour">
                         <select
                             [(ngModel)]="localWidget.shapeFill"
                             (change)="clickSelectArrowFill($event)"
@@ -532,7 +532,7 @@
                     </div>
                     <button
                         type="button"
-                        class="btn btn-link btn-sm gridArrowColourPicker"
+                        class="btn btn-link btn-sm gridArrowFillColourPicker"
                         (click)="clickSelectArrowFillColorPicker()"
                         >
                         Picker
@@ -540,10 +540,10 @@
                     <div class="gridArrowColourTitle">
                         <b>Line:</b>
                     </div>
-                    <div class="select gridArrowColour">
+                    <div class="select gridArrowLineColour">
                         <select
                             [(ngModel)]="localWidget.shapeStroke"
-                            (change)="clickSelectArrowColor($event)"
+                            (change)="clickSelectArrowLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.name"
@@ -556,8 +556,8 @@
 
                     <button
                         type="button"
-                        class="btn btn-link btn-sm gridArrowColourPicker"
-                        (click)="clickSelectArrowColorPicker()"
+                        class="btn btn-link btn-sm gridArrowLineColourPicker"
+                        (click)="clickSelectArrowLineColorPicker()"
                         >
                         Picker
                     </button>

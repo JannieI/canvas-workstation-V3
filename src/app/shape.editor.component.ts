@@ -119,7 +119,7 @@ export class ShapeEditComponent implements OnInit {
                         this.localWidget.shapeTextColour = clp.selectedColor;
                     };
 
-                    if (clp.callingRoutine == 'ShapeEditorArrowColor') {
+                    if (clp.callingRoutine == 'ShapeEditorArrowLineColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
                     };
@@ -623,30 +623,30 @@ export class ShapeEditComponent implements OnInit {
         };
     }
 
-    clickSelectArrowColorPicker(ev: any) {
+    clickSelectArrowLineColorPicker(ev: any) {
         // Open the Colour Picker for Circle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowColorPicker', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowLineColorPicker', '@Start');
 
         this.selectedColour = this.localWidget.shapeStroke;
-        this.callingRoutine = 'ShapeEditorArrowColor';
+        this.callingRoutine = 'ShapeEditorArrowLineColor';
         this.colourPickerClosed = true;
     }
     
     clickSelectArrowFillColorPicker(ev: any) {
         // Open the Colour Picker for Circle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowColorPicker', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowFillColorPicker', '@Start');
 
         this.selectedColour = this.localWidget.shapeStroke;
         this.callingRoutine = 'ShapeEditorArrowFillColor';
         this.colourPickerClosed = true;
     }
 
-    clickSelectArrowColor(ev: any) {
+    clickSelectArrowLineColor(ev: any) {
         // Open the Colour Picker for Arrow Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowColor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowLineColor', '@Start');
 
         this.localWidget.shapeStroke = ev.target.value;
-        console.log('xx clickSelectArrowColor', ev.target.value)
+        console.log('xx clickSelectArrowLineColor', ev.target.value)
     }
 
     clickSelectArrowFill(ev: any) {
