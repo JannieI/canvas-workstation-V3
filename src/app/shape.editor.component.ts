@@ -640,7 +640,9 @@ export class ShapeEditComponent implements OnInit {
         // Open the Colour Picker for Arrow Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowSize', '@Start');
 
-        this.size = ev.target.value;
+        (this.localWidget.shapeSize = ev.target.value;
+        this.localWidget.shapeSvgHeight = ((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
+        this.localWidget.shapeSvgWidth = ((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
     }
     
     clickSelectArrowFillColorPicker(ev: any) {
