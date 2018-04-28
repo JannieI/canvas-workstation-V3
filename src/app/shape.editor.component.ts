@@ -339,7 +339,7 @@ export class ShapeEditComponent implements OnInit {
         if (shapeType == 'Arrow') {
             this.showArrow = true;
         };
-        if (shapeType == 'Arrow Thin') {
+        if (shapeType == 'ArrowThin') {
             this.showArrowThin = true;
         };
         if (shapeType == 'Image') {
