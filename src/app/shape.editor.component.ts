@@ -58,7 +58,7 @@ export class ShapeEditComponent implements OnInit {
     showValue: boolean = false;
 
     shapeSvgHeight: number = 30;
-
+    size: number = 3;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -634,6 +634,13 @@ export class ShapeEditComponent implements OnInit {
         this.selectedColour = this.localWidget.shapeStroke;
         this.callingRoutine = 'ShapeEditorArrowLineColor';
         this.colourPickerClosed = true;
+    }
+    
+    clickSelectArrowSize(ev: any) {
+        // Open the Colour Picker for Arrow Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowSize', '@Start');
+
+        this.size = ev.target.value;
     }
     
     clickSelectArrowFillColorPicker(ev: any) {
