@@ -136,31 +136,16 @@
                 <div class="gridShape" *ngIf="showArrow"
                     >
                     <svg 
-                        height="40" 
-                        width="40"
-                        style="display: block; margin: auto;"
+                        height="30" 
+                        width="30"
+                        style="display: block; position: relative; left: 25%; top:25%"
                         >
                         <polygon 
-                            points="
-                                0, 10
-                                10, 0
-                                10, 5
-                                20, 5
-                                20, 15
-                                10, 15
-                                10, 20
-                                0, 10
-                            "  
-                            transform="
-                                scale(1 1) 
-                                rotate(120 11 11) 
-                                translate(1 1)
-                            "
-                            style="
-                                fill:orange;
-                                stroke:black;
-                                stroke-width:1
-                            " 
+                            points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"  
+                            transform="scale(1 1) rotate(120 11 11) translate(1 1)"
+                            [style.fill]="localWidget.shapeStroke"
+                            [style.stroke]="localWidget.shapeStroke"
+                            stroke-width:1
                         /> 
                     </svg>                   
                     <!-- <svg width="300" height="300"
@@ -530,6 +515,29 @@
                     </div>
 
                     <div class="gridArrowColourTitle">
+                        <b>Fill:</b>
+                    </div>
+                    <div class="select gridArrowColour">
+                        <select
+                            [(ngModel)]="localWidget.shapeFill"
+                            (change)="clickSelectArrowFill($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
+                                [selected]="selected"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridArrowColourPicker"
+                        (click)="clickSelectArrowColorPicker()"
+                        >
+                        Picker
+                    </button>
+                    <div class="gridArrowColourTitle">
                         <b>Line:</b>
                     </div>
                     <div class="select gridArrowColour">
@@ -545,6 +553,7 @@
                             </option>
                         </select>
                     </div>
+
                     <button
                         type="button"
                         class="btn btn-link btn-sm gridArrowColourPicker"
