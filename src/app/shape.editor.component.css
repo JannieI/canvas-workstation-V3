@@ -61,9 +61,11 @@
     }
     .gridShapeArrow {
         margin: 0;
+        left: 50%;
+        padding-left: 5px;
+        padding-top: 5px;
         position: relative;
         top: 50%;
-        left: 50%;
         transform: translate(-50%, -50%);
     }
 
@@ -438,6 +440,47 @@
         padding-left: 15px;
         padding-top: 6px;
     }
+
+
+
+
+    /* ArrowThin */
+    .gridArrowThinArea {
+        grid-column-start: 1;
+        grid-column-end: 11;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridArrowThinColourTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridArrowThinColour {
+        grid-column-start: 3;
+        grid-column-end: 8;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridArrowThinColourPicker {
+        grid-column-start: 9;
+        grid-column-end: 11;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
+
+
+
 
     /* Image */
     .gridImage {

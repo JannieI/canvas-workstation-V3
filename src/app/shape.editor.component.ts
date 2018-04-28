@@ -41,6 +41,7 @@ export class ShapeEditComponent implements OnInit {
     hasAutoFocusRectangle: boolean = false;
     hasAutoFocusText: boolean = false;
     hasAutoFocusArrow: boolean = false;
+    hasAutoFocusArrowThin: boolean = false;
     hasAutoFocusImage: boolean = false;
     hasAutoFocusBullets: boolean = false;
     hasAutoFocusValue: boolean = false;
@@ -48,6 +49,7 @@ export class ShapeEditComponent implements OnInit {
     localWidget: Widget;                            // W to modify, copied from selected
     selectedColour: string;
     showArrow: boolean = false;
+    showArrowThin: boolean = false;
     showBullets: boolean = false;
     showCircle: boolean = false;
     showEllipse: boolean = false;
@@ -59,7 +61,6 @@ export class ShapeEditComponent implements OnInit {
 
     shapeSvgHeight: number = 30;
     size: number = 3;
-    topMargin: number = 115;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -131,6 +132,18 @@ export class ShapeEditComponent implements OnInit {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeFill = clp.selectedColor;
                     };
+
+
+
+                    if (clp.callingRoutine == 'ShapeEditorArrowThinColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeStroke = clp.selectedColor;
+                    };
+    
+
+
+
+
                 };
             };
         });
@@ -185,6 +198,7 @@ export class ShapeEditComponent implements OnInit {
             this.hasAutoFocusRectangle = false;
             this.hasAutoFocusText = false;
             this.hasAutoFocusArrow = false;
+            this.hasAutoFocusArrowThin = false;
             this.hasAutoFocusImage = false;
             this.hasAutoFocusBullets = false;
             this.selectedColour = this.localWidget.shapeTextColour;
@@ -204,6 +218,9 @@ export class ShapeEditComponent implements OnInit {
             };
             if (this.localWidget.widgetSubType == 'Arrow') {
                 this.hasAutoFocusArrow = true;
+            };
+            if (this.localWidget.widgetSubType == 'ArrowThin') {
+                this.hasAutoFocusArrowThin = true;
             };
             if (this.localWidget.widgetSubType == 'Image') {
                 this.hasAutoFocusImage = true;
@@ -245,6 +262,7 @@ export class ShapeEditComponent implements OnInit {
         this.hasAutoFocusRectangle = false;
         this.hasAutoFocusText = false;
         this.hasAutoFocusArrow = false;
+        this.hasAutoFocusArrowThin = false;
         this.hasAutoFocusImage = false;
         this.hasAutoFocusBullets = false;
         this.hasAutoFocusValue = false;
@@ -263,6 +281,9 @@ export class ShapeEditComponent implements OnInit {
         };
         if (selectedShape == 'Arrow') {
             this.hasAutoFocusArrow = true;
+        };
+        if (selectedShape == 'ArrowThin') {
+            this.hasAutoFocusArrowThin = true;
         };
         if (selectedShape == 'Image') {
             this.hasAutoFocusImage = true;
@@ -289,6 +310,7 @@ export class ShapeEditComponent implements OnInit {
         this.showRectangle = false;
         this.showText = false;
         this.showArrow = false;
+        this.showArrowThin = false;
         this.showImage = false;
         this.showBullets = false;
         this.showValue = false;
@@ -317,6 +339,9 @@ export class ShapeEditComponent implements OnInit {
         if (shapeType == 'Arrow') {
             this.showArrow = true;
         };
+        if (shapeType == 'Arrow Thin') {
+            this.showArrowThin = true;
+        };
         if (shapeType == 'Image') {
             this.showImage = true;
         };
@@ -329,7 +354,7 @@ export class ShapeEditComponent implements OnInit {
             // TODO - get this value from the DB ...
             this.localWidget.shapeText = 'R234m';
         };
-
+console.log('xx shapeType', shapeType, this.showArrowThin)
     }
 
     clickBulletDelete(index: number, item: string) {
@@ -642,10 +667,9 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowSize', '@Start');
 
         this.localWidget.shapeSize = ev.target.value;
-        this.localWidget.shapeSvgHeight = 30; //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
-        this.localWidget.shapeSvgWidth = 30;  //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
-        this.topMargin = 140 - (this.localWidget.shapeSize * 10);
-        console.log('xx this.localWidget.shapeSvgHeight', this.topMargin, 
+        this.localWidget.shapeSvgHeight = 32; //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
+        this.localWidget.shapeSvgWidth = 32;  //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
+        console.log('xx this.localWidget.shapeSvgHeight',
             this.localWidget.shapeSvgHeight, this.localWidget.shapeSize)
     }
     
@@ -672,6 +696,23 @@ export class ShapeEditComponent implements OnInit {
 
         this.localWidget.shapeFill = ev.target.value;
         console.log('xx clickSelectArrowFill', ev.target.value)
+    }
+
+    clickSelectArrowThinColorPicker(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowThinColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
+        this.callingRoutine = 'ShapeEditorArrowThinColor';
+        this.colourPickerClosed = true;
+    }
+
+    clickSelectArrowThinColor(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowThinColor', '@Start');
+
+        this.localWidget.shapeStroke = ev.target.value;
+        console.log('xx clickSelectArrowThinColor', ev.target.value)
     }
 
 }

@@ -32,6 +32,7 @@
                             <option>Rectangle</option>
                             <option>Text</option>
                             <option>Arrow</option>
+                            <option>Arrow Thin</option>
                             <option>Image</option>
                             <option>Bullets</option>
                             <option>Value</option>
@@ -137,52 +138,62 @@
                     >
                     <svg class="gridShapeArrow"
                         [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
-                        [style.transform]="'scale(' + localWidget.shapeSize + ',' 
+                        [style.transform]="'scale(' + localWidget.shapeSize + ','
                             + localWidget.shapeSize + ')'"
-                        [style.height]="localWidget.shapeSvgHeight" 
+                        [style.height]="localWidget.shapeSvgHeight"
                         [style.width]="localWidget.shapeSvgWidth"
                         style="display: block;"
                         >
-                        <polygon 
-                            points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"  
+                        <polygon
+                            points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
                             [style.fill]="localWidget.shapeFill"
                             [style.stroke]="localWidget.shapeStroke"
                             stroke-width:1
-                        /> 
-                    </svg>                   
-                    <!-- <svg width="300" height="300"
+                        />
+                    </svg>
+                </div>
+
+
+
+                <div class="gridShape" *ngIf="showArrowThin"
+                    >
+                    <svg width="300" height="300"
                         [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
                         >
                         <defs>
-                            <marker
-                                id="arrow"
-                                markerWidth="4"
-                                markerHeight="3"
-                                refX="0"
-                                refY="3"
-                                orient="auto"
+                            <marker 
+                                id="arrowThin" 
+                                markerWidth="10" 
+                                markerHeight="10" 
+                                refX="0" 
+                                refY="3" 
+                                orient="auto" 
                                 markerUnits="strokeWidth"
-                                viewBox="0 0 10 10"
                                 >
-                            <path
-                                d="M 0 0 L 0 6 L 9 3 z"
+                            <path 
+                                d="M0,0 L0,6 L9,3 z" 
                                 [style.fill]="localWidget.shapeStroke"
-                                [style.stroke]="localWidget.shapeStroke"
                                 />
                             </marker>
                         </defs>
 
-                        <line
-                            x1="100"
-                            y1="100"
-                            x2="155"
-                            y2="155"
+                        <line 
+                            x1="100" 
+                            y1="100" 
+                            x2="155" 
+                            y2="155" 
                             [style.stroke]="localWidget.shapeStroke"
-                            stroke-width="3"
-                            marker-end="url(#arrow)"
+                            stroke-width="5" 
+                            marker-end="url(#arrowThin)" 
                             />
-                    </svg> -->
+                    </svg>
                 </div>
+
+
+
+
+
+
 
                 <div class="gridShape" *ngIf="showImage">
                     <img [style.height.px]="100"
@@ -571,19 +582,62 @@
                             [(ngModel)]="localWidget.shapeSize"
                             (change)="clickSelectArrowSize($event)"
                             >
-                            <option>1</option> 
-                            <option>2</option> 
-                            <option>3</option> 
-                            <option>4</option> 
-                            <option>5</option> 
-                            <option>6</option> 
-                            <option>7</option> 
-                            <option>8</option> 
-                            <option>9</option> 
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
                         </select>
                     </div>
-    
+
                 </div>
+
+
+
+
+
+                <div class="gridShapeProperties" *ngIf="showArrowThin">
+                    <div class="gridArrowThinArea">
+                        <b>Direction:</b>
+                        <input type="text" [(ngModel)]="localWidget.shapeRotation"
+                            placeholder="Degrees rotation"
+                            [autofocus]="hasAutoFocusArrowThin"
+                            >
+                    </div>
+
+                    <div class="gridArrowThinColourTitle">
+                        <b>Line:</b>
+                    </div>
+                    <div class="select gridArrowThinColour">
+                        <select
+                            [(ngModel)]="localWidget.shapeStroke"
+                            (change)="clickSelectArrowThinColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [selected]="selected"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridArrowThinColourPicker"
+                        (click)="clickSelectArrowThinColorPicker()"
+                        >
+                        Picker
+                    </button>
+
+                </div>
+    
+
+
+
+
 
                 <div class="gridShapeProperties" *ngIf="showImage">
                     <div class="gridImage">
