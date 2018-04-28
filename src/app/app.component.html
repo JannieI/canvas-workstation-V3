@@ -1561,7 +1561,24 @@
 
     <!-- Shape Arrow Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
+
+
         <svg [style.height.px]="row.containerHeight"
+            [style.width.px]="row.containerWidth"
+            [style.marginTop.px]="-25"
+            [style.marginLeft.px]="-9"
+            [style.transform]="'rotate(' + row.shapeRotation + 'deg)'"
+            style="display: block; position: relative; left: 25%; top:25%"
+            >
+            <polygon 
+                points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"  
+                transform="scale(1 1) rotate(120 11 11) translate(1 1)"
+                [style.fill]="row.shapeFill"
+                [style.stroke]="row.shapeStroke"
+                stroke-width:1
+            /> 
+        </svg>          
+        <!-- <svg [style.height.px]="row.containerHeight"
             [style.width.px]="row.containerWidth"
             [style.marginTop.px]="-25"
             [style.marginLeft.px]="-9"
@@ -1594,7 +1611,7 @@
                 stroke-width="3" 
                 marker-end="url(#arrow)" 
                 />
-        </svg>
+        </svg> -->
     </div>
 
     <!-- Shape Image Object -->

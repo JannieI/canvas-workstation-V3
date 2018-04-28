@@ -624,7 +624,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectArrowLineColorPicker(ev: any) {
-        // Open the Colour Picker for Circle Line Colour
+        // Open the Colour Picker for Arrow Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowLineColorPicker', '@Start');
 
         this.selectedColour = this.localWidget.shapeStroke;
@@ -633,10 +633,10 @@ export class ShapeEditComponent implements OnInit {
     }
     
     clickSelectArrowFillColorPicker(ev: any) {
-        // Open the Colour Picker for Circle Line Colour
+        // Open the Colour Picker for Arrow Fill Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowFillColorPicker', '@Start');
 
-        this.selectedColour = this.localWidget.shapeStroke;
+        this.selectedColour = this.localWidget.shapeFill;
         this.callingRoutine = 'ShapeEditorArrowFillColor';
         this.colourPickerClosed = true;
     }
@@ -653,7 +653,7 @@ export class ShapeEditComponent implements OnInit {
         // Open the Colour Picker for Arrow Fille Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowFill', '@Start');
 
-        this.localWidget.shapeStroke = ev.target.value;
+        this.localWidget.shapeFill = ev.target.value;
         console.log('xx clickSelectArrowFill', ev.target.value)
     }
 
