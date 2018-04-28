@@ -57,6 +57,8 @@ export class ShapeEditComponent implements OnInit {
     showTypeDashboard: boolean = false;
     showValue: boolean = false;
 
+    shapeSvgHeight: number = 30;
+
 
     constructor(
         private globalFunctionService: GlobalFunctionService,

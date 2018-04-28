@@ -415,6 +415,22 @@
         padding-left: 15px;
         padding-top: 6px;
     }
+    .gridArrowSizeTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridArrowSize {
+        grid-column-start: 3;
+        grid-column-end: 8;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
 
     /* Image */
     .gridImage {
