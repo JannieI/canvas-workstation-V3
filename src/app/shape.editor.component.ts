@@ -123,6 +123,11 @@ export class ShapeEditComponent implements OnInit {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
                     };
+
+                    if (clp.callingRoutine == 'ShapeEditorArrowFillColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeFill = clp.selectedColor;
+                    };
                 };
             };
         });
@@ -624,6 +629,15 @@ export class ShapeEditComponent implements OnInit {
 
         this.selectedColour = this.localWidget.shapeStroke;
         this.callingRoutine = 'ShapeEditorArrowColor';
+        this.colourPickerClosed = true;
+    }
+    
+    clickSelectArrowFillColorPicker(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
+        this.callingRoutine = 'ShapeEditorArrowFillColor';
         this.colourPickerClosed = true;
     }
 
