@@ -258,6 +258,8 @@ const widgetTemplate: Widget =
         "shapeRotation": 0,
         "shapeStroke": "",
         "shapeStrokeWidth": "",
+        "shapeSvgHeight": 30,
+        "shapeSvgWidth": 30,
         "shapeText": "",
         "shapeTextColour": "",
         "shapeValue": "",
@@ -4919,6 +4921,8 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 {key: 'slicerBins', 			    type: 'array'},
                 {key: 'shapeStroke', 				type: 'string'},
                 {key: 'shapeStrokeWidth', 			type: 'string'},
+                {key: 'shapeSvgHeight', 			type: 'int'},
+                {key: 'shapeSvgWidth', 			    type: 'int'},
                 {key: 'shapeFill', 					type: 'string'},
                 {key: 'shapeText', 					type: 'string'},
                 {key: 'shapeTextColour', 			type: 'string'},
@@ -5297,6 +5301,8 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.slicerAddRestValue = changedWidget.slicerAddRestValue;
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
+                w.shapeSvgHeight = changedWidget.shapeSvgHeight;
+                w.shapeSvgWidth = changedWidget.shapeSvgWidth;
                 w.shapeFill = changedWidget.shapeFill;
                 w.shapeText = changedWidget.shapeText;
                 w.shapeTextColour = changedWidget.shapeTextColour;
@@ -5433,6 +5439,8 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.slicerAddRestValue = changedWidget.slicerAddRestValue;
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
+                w.shapeSvgHeight = changedWidget.shapeSvgHeight;
+                w.shapeSvgWidth = changedWidget.shapeSvgWidth;
                 w.shapeFill = changedWidget.shapeFill;
                 w.shapeText = changedWidget.shapeText;
                 w.shapeTextColour = changedWidget.shapeTextColour;

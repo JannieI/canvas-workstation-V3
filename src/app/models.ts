@@ -696,6 +696,8 @@ export class Widget {
     shapeRotation: number;              // Nr of degrees to rotate a Shape
     shapeStroke: string;                // Colour of line
     shapeStrokeWidth: string;           // Line thickness in px
+    shapeSvgHeight: number;             // Height of SVG element
+    shapeSvgWidth: number;              // Width of SVG element
     shapeText: string;                  // Text in textbox
     shapeTextColour: string;            // Text colour
     shapeValue: string;                 // Value to display

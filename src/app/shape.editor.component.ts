@@ -161,6 +161,8 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeIsBold = true;
             this.localWidget.shapeStroke = 'black';
             this.localWidget.shapeStrokeWidth = '1';
+            this.localWidget.shapeSvgHeight = 30;
+            this.localWidget.shapeSvgWidth = 30;
             this.localWidget.shapeText = 'The brown fox is tired';
 
         } else {

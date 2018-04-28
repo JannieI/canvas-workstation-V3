@@ -1562,9 +1562,8 @@
     <!-- Shape Arrow Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
 
-
-        <svg [style.height.px]="30"
-            [style.width.px]="30"
+        <svg [style.height.px]="row.shapeSvgHeight"
+            [style.width.px]="row.shapeSvgWidth"
             [style.marginTop.px]="-15"
             [style.marginLeft.px]="-5"
 
