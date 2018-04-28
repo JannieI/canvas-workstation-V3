@@ -1563,12 +1563,13 @@
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
 
 
-        <svg [style.height.px]="row.containerHeight"
-            [style.width.px]="row.containerWidth"
-            [style.marginTop.px]="-25"
-            [style.marginLeft.px]="-9"
+        <svg [style.height.px]="30"
+            [style.width.px]="30"
+            [style.marginTop.px]="-15"
+            [style.marginLeft.px]="-5"
+
             [style.transform]="'rotate(' + row.shapeRotation + 'deg)'"
-            style="display: block; position: relative; left: 25%; top:25%"
+            style="display: block; position: relative; left: 0; top: 0"
             >
             <polygon 
                 points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"  
