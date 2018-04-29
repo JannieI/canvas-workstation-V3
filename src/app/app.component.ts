@@ -5412,6 +5412,64 @@ console.log('xx resize', ev.y, ev.x, window.innerWidth, window.innerHeight, wind
 
         this.menuOptionClickPostAction();
     }
+
+    clickPalettePasteDimensions() {
+        // Paste Dimensions of selected Widget (L, T, width, height)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickPalettePasteDimensions', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        // Nothing to do - not copied before
+        if ((this.widgetDimenstions.left = 0) 
+            ||  (this.widgetDimenstions.top = 0) 
+            ||  (this.widgetDimenstions.width = 0) 
+            ||  (this.widgetDimenstions.height = 0) ) {
+                this.showMessage(
+                    'No Dimensions copied previously',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+        };
+
+        this.menuOptionClickPreAction();
+
+        // Apply to all selected Ws
+        this.currentWidgets.forEach(w => {
+
+            if (w.isSelected) {
+
+                // Recall the Dimensions
+                w.containerLeft = this.widgetDimenstions.left;
+                w.containerTop = this.widgetDimenstions.top;
+                w.containerWidth = this.widgetDimenstions.width;
+                w.containerHeight = this.widgetDimenstions.height;
+        
+                this.showMessage(
+                    'Widget Dimensions pasted',
+                    'StatusBar',
+                    'Info',
+                    3000,
+                    ''
+                );
+            };
+        });
+
+        this.menuOptionClickPostAction();
+    }
+    
 }
 
 // Naming conventions
