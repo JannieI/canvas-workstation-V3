@@ -371,6 +371,17 @@ export class AppComponent implements OnInit {
     stuckCount: number = 0;
     titleFormLeft: number = 50;
     titleFormTop: number = 50;
+    widgetDimenstions: {
+        left: number;
+        top: number;
+        width: number;
+        height: number;
+        } = {
+            left: 0,
+            top: 0,
+            width: 0,
+            height: 0,
+        };
     widgetGroup: number[] = [];
     zoomFactor: string = 'scale(1)';
 
@@ -5352,6 +5363,54 @@ console.log('xx resize', ev.y, ev.x, window.innerWidth, window.innerHeight, wind
                 .value.length * 25;
             this. paletteWidth = 32;
             };
+    }
+
+    clickPaletteCopyDimensions() {
+        // Copy Dimensions of selected Widget (L, T, width, height)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickPaletteCopyDimensions', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        if (!this.checkForOnlyOneWidget()) {
+            return
+        };
+
+        this.menuOptionClickPreAction();
+
+        // Checked above that only one is selected, so the loop is okay
+        this.currentWidgets.forEach(w => {
+
+            if (w.isSelected) {
+
+                // Remember the Dimensions
+                this.widgetDimenstions =  {
+                    left: w.containerLeft,
+                    top: w.containerTop,
+                    width: w.containerWidth,
+                    height: w.containerHeight,
+                }
+        
+                this.showMessage(
+                    'Widget Dimensions copied',
+                    'StatusBar',
+                    'Info',
+                    3000,
+                    ''
+                );
+            };
+        });
+
+        this.menuOptionClickPostAction();
     }
 }
 
