@@ -137,7 +137,6 @@
                 <div class="gridShape" *ngIf="showArrow"
                     >
                     <svg class="gridShapeArrow"
-                        [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
                         [style.transform]="'scale(' + localWidget.shapeSize + ','
                             + localWidget.shapeSize + ')'"
                         [style.height]="localWidget.shapeSvgHeight"
@@ -148,19 +147,20 @@
                             points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
                             [style.fill]="localWidget.shapeFill"
                             [style.stroke]="localWidget.shapeStroke"
-                            stroke-width:1
-                        />
+                                stroke-width:1
+                            [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
+                            />
                     </svg>
                 </div>
-
-
 
                 <div class="gridShape" *ngIf="showArrowThin"
                     >
                     <svg width="300" height="300"
                         [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
                         >
-                        <defs>
+                        <defs
+                            [style.stroke]="localWidget.shapeStroke"                                >
+                            >
                             <marker 
                                 id="arrowThin" 
                                 markerWidth="10" 
@@ -169,10 +169,11 @@
                                 refY="3" 
                                 orient="auto" 
                                 markerUnits="strokeWidth"
-                                >
+                                [style.stroke]="localWidget.shapeStroke"                                >
                             <path 
                                 d="M0,0 L0,6 L9,3 z" 
                                 [style.fill]="localWidget.shapeStroke"
+                                [style.stroke]="localWidget.shapeStroke"
                                 />
                             </marker>
                         </defs>
@@ -180,20 +181,14 @@
                         <line 
                             x1="100" 
                             y1="100" 
-                            x2="155" 
+                            x2="100" 
                             y2="155" 
                             [style.stroke]="localWidget.shapeStroke"
-                            stroke-width="5" 
+                            stroke-width="3" 
                             marker-end="url(#arrowThin)" 
                             />
                     </svg>
                 </div>
-
-
-
-
-
-
 
                 <div class="gridShape" *ngIf="showImage">
                     <img [style.height.px]="100"
@@ -596,10 +591,6 @@
 
                 </div>
 
-
-
-
-
                 <div class="gridShapeProperties" *ngIf="showArrowThin">
                     <div class="gridArrowThinArea">
                         <b>Direction:</b>
@@ -618,6 +609,7 @@
                             (change)="clickSelectArrowThinColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
                                 [selected]="selected"
                                 >
                                 {{ row.name }}
@@ -633,11 +625,6 @@
                     </button>
 
                 </div>
-    
-
-
-
-
 
                 <div class="gridShapeProperties" *ngIf="showImage">
                     <div class="gridImage">

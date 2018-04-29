@@ -441,9 +441,6 @@
         padding-top: 6px;
     }
 
-
-
-
     /* ArrowThin */
     .gridArrowThinArea {
         grid-column-start: 1;
@@ -477,10 +474,6 @@
         padding-left: 15px;
         padding-top: 6px;
     }
-
-
-
-
 
     /* Image */
     .gridImage {

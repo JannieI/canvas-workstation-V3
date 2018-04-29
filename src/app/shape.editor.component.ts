@@ -133,16 +133,10 @@ export class ShapeEditComponent implements OnInit {
                         this.localWidget.shapeFill = clp.selectedColor;
                     };
 
-
-
                     if (clp.callingRoutine == 'ShapeEditorArrowThinColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
                     };
-    
-
-
-
 
                 };
             };
@@ -172,13 +166,13 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeBulletStyleType ='square';
             this.localWidget.shapeBulletsOrdered = false;
             this.localWidget.shapeCorner = 15;
-            this.localWidget.shapeFill = 'lightgray';
+            this.localWidget.shapeFill = 'gray';
             this.localWidget.shapeFontFamily = 'Arial, sans serif';
             this.localWidget.shapeIsBold = true;
-            this.localWidget.shapeStroke = 'black';
+            this.localWidget.shapeStroke = 'gray';
             this.localWidget.shapeStrokeWidth = '1';
-            this.localWidget.shapeSvgHeight = 30;
-            this.localWidget.shapeSvgWidth = 30;
+            this.localWidget.shapeSvgHeight = 32;
+            this.localWidget.shapeSvgWidth = 32;
             this.localWidget.shapeText = 'The brown fox is tired';
 
         } else {
@@ -354,7 +348,6 @@ export class ShapeEditComponent implements OnInit {
             // TODO - get this value from the DB ...
             this.localWidget.shapeText = 'R234m';
         };
-console.log('xx shapeType', shapeType, this.showArrowThin)
     }
 
     clickBulletDelete(index: number, item: string) {
@@ -422,17 +415,6 @@ console.log('xx shapeType', shapeType, this.showArrowThin)
         };
 
         if (this.newWidget) {
-
-            // TODO - improve this when using a DB!
-            // let newID: number = 1;
-            // let ws: number[]=[];
-            // for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-            //     ws.push(this.globalVariableService.widgets[i].id)
-            // };
-            // if (ws.length > 0) {
-            //     newID = Math.max(...ws) + 1;
-            // };
-            // this.localWidget.id = newID;
 
             this.localWidget.dashboardTabIDs.push(
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
@@ -669,7 +651,7 @@ console.log('xx shapeType', shapeType, this.showArrowThin)
         this.localWidget.shapeSize = ev.target.value;
         this.localWidget.shapeSvgHeight = 32; //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
         this.localWidget.shapeSvgWidth = 32;  //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
-        console.log('xx this.localWidget.shapeSvgHeight',
+        console.log('xx this.localWidget.shapeSvgHeight', this.localWidget.shapeRotation,
             this.localWidget.shapeSvgHeight, this.localWidget.shapeSize)
     }
     

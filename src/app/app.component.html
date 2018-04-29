@@ -1561,8 +1561,23 @@
 
     <!-- Shape Arrow Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
+        <svg class="gridShapeArrow"
+            [style.transform]="'rotate(' + row.shapeRotation + 'deg)'"
+            [style.transform]="'scale(' + row.shapeSize + ','
+                + row.shapeSize + ')'"
+            [style.height]="row.shapeSvgHeight"
+            [style.width]="row.shapeSvgWidth"
+            style="display: block;"
+            >
+            <polygon
+                points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                [style.fill]="row.shapeFill"
+                [style.stroke]="row.shapeStroke"
+                stroke-width:1
+            />
+        </svg>
 
-        <svg [style.height.px]="row.shapeSvgHeight"
+        <!-- <svg [style.height.px]="row.shapeSvgHeight"
             [style.width.px]="row.shapeSvgWidth"
             [style.marginTop.px]="-15"
             [style.marginLeft.px]="-5"
@@ -1577,7 +1592,7 @@
                 [style.stroke]="row.shapeStroke"
                 stroke-width:1
             /> 
-        </svg>          
+        </svg>           -->
         <!-- <svg [style.height.px]="row.containerHeight"
             [style.width.px]="row.containerWidth"
             [style.marginTop.px]="-25"
