@@ -325,3 +325,5 @@ Consider dataQuality on own menu item, or on W menu
 - expand palette / menus: add regularly used tasks, ie add a circle (with one click)
 - curved lines, bazier curves
 - hand-drawn lines / pics with mouse!
+- ArrowThin is not inside the W container => difficult to drag and drop, hangs over others, difficult to place, looks funny.  Also, the Arrow header is not always the same colour as the line.  Make more sophisticated to set tail (line) length -> so line length = 0 makes it s simple arrow head,or Triangle.  Also dimentions for head size - height and width.  Can these be done with a mouse ?
+- Arrow: make dynamic!  For both size and rotation, taking into account that it has to land inside the W container at all times, and preferably left top corner for easy placements.  Also, consider shrinking W container, ie with *ngIf on title and other grid areas ...
