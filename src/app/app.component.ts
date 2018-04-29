@@ -4549,10 +4549,14 @@ console.log('xx filteredActions', filteredActions)
                     w,
                     null
                 );
-
+console.log('xx str end', this.startX, this.endX)
                 // Move the container
-                w.containerLeft = w.containerLeft - this.startX + this.endX;
-                w.containerTop = w.containerTop - this.startY + this.endY;
+                w.containerLeft = Math.min(
+                    (window.innerHeight - 10), w.containerLeft - this.startX + this.endX
+                );
+                w.containerTop =  Math.min(
+                    (window.innerWidth - 10), w.containerTop - this.startY + this.endY
+                );
 
                 // Cater for snapping to Grid
                 if (this.snapToGrid) {
@@ -4561,7 +4565,8 @@ console.log('xx filteredActions', filteredActions)
                     w.containerTop = this.globalVariableService.alignToGripPoint(
                         w.containerTop);
                 };
-
+                console.log('xx L, T, window H, W', w.containerLeft, w.containerTop, window.innerHeight, window.innerWidth)
+                console.log('xx snap, grSiz', this.snapToGrid, this.globalVariableService.canvasSettings.gridSize)
                 // Add to action log
                 actID = this.globalVariableService.actionUpsert(
                     actID,
