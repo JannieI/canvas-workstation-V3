@@ -825,25 +825,27 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showArrow">
-                    <div class="gridArrowArea">
+                    <div class="gridArrowDirectionTitle">
                         <b>Direction:</b>
                         <!-- <input type="text" [(ngModel)]="localWidget.shapeRotation"
                             placeholder="Degrees rotation"
                             [autofocus]="hasAutoFocusArrow"
                             > -->
-                        <select
-                            [(ngModel)]="localWidget.shapeRotation"
-                            >
-                            <!-- TODO - DYNAMIC -->
-                            <option>0</option>
-                            <option>45</option>
-                            <option>90</option>
-                            <option>135</option>
-                            <option>180</option>
-                            <option>225</option>
-                            <option>270</option>
-                            <option>315</option>
-                        </select>
+                        <div class="select gridArrowDirection">
+                            <select
+                                [(ngModel)]="localWidget.shapeRotation"
+                                >
+                                <!-- TODO - DYNAMIC -->
+                                <option>0</option>
+                                <option>45</option>
+                                <option>90</option>
+                                <option>135</option>
+                                <option>180</option>
+                                <option>225</option>
+                                <option>270</option>
+                                <option>315</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="gridArrowFillColourTitle">
