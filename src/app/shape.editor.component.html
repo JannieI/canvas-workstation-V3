@@ -402,7 +402,7 @@
                             [style.fill]="localWidget.shapeFill"
                             [style.stroke]="localWidget.shapeStroke"
                             viewBox="0 0 20 20"
-                            transform="rotate(270 23 26) scale(2 2)"
+                            transform="rotate(270 29 24) scale(2 2)"
                             stroke-width:1
                             />
                     </svg>
@@ -419,13 +419,13 @@
                             [style.fill]="localWidget.shapeFill"
                             [style.stroke]="localWidget.shapeStroke"
                             viewBox="0 0 20 20"
-                            transform="rotate(315 21 26) scale(2 2)"
+                            transform="rotate(315 26 26) scale(2 2)"
                             stroke-width:1
                             />
                     </svg>
                     <svg class="gridShapeArrow" *ngIf="localWidget.shapeSize==3  
                             &&  
-                            localWidget.shapeRotation==315"
+                            localWidget.shapeRotation==45"
                         height="100"
                         width="100"
                         viewBox="5 5 95 95"
@@ -436,7 +436,7 @@
                             [style.fill]="localWidget.shapeFill"
                             [style.stroke]="localWidget.shapeStroke"
                             viewBox="0 0 20 20"
-                            transform="rotate(315 18 45) scale(3 3)"
+                            transform="rotate(315 29 55) scale(3 3)"
                             stroke-width:1
                             />
                     </svg>
@@ -827,10 +827,23 @@
                 <div class="gridShapeProperties" *ngIf="showArrow">
                     <div class="gridArrowArea">
                         <b>Direction:</b>
-                        <input type="text" [(ngModel)]="localWidget.shapeRotation"
+                        <!-- <input type="text" [(ngModel)]="localWidget.shapeRotation"
                             placeholder="Degrees rotation"
                             [autofocus]="hasAutoFocusArrow"
+                            > -->
+                        <select
+                            [(ngModel)]="localWidget.shapeRotation"
                             >
+                            <!-- TODO - DYNAMIC -->
+                            <option>0</option>
+                            <option>45</option>
+                            <option>90</option>
+                            <option>135</option>
+                            <option>180</option>
+                            <option>225</option>
+                            <option>270</option>
+                            <option>315</option>
+                        </select>
                     </div>
 
                     <div class="gridArrowFillColourTitle">
@@ -891,7 +904,6 @@
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
-                            <option>4</option>
                             <!-- Later - when DYNAMIC -->
                             <!-- <option>5</option>
                             <option>6</option>
