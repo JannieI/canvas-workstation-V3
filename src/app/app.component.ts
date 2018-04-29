@@ -372,13 +372,9 @@ export class AppComponent implements OnInit {
     titleFormLeft: number = 50;
     titleFormTop: number = 50;
     widgetDimenstions: {
-        left: number;
-        top: number;
         width: number;
         height: number;
         } = {
-            left: 0,
-            top: 0,
             width: 0,
             height: 0,
         };
@@ -5394,8 +5390,6 @@ console.log('xx resize', ev.y, ev.x, window.innerWidth, window.innerHeight, wind
 
                 // Remember the Dimensions
                 this.widgetDimenstions =  {
-                    left: w.containerLeft,
-                    top: w.containerTop,
                     width: w.containerWidth,
                     height: w.containerHeight,
                 }
@@ -5430,9 +5424,7 @@ console.log('xx resize', ev.y, ev.x, window.innerWidth, window.innerHeight, wind
         };
 
         // Nothing to do - not copied before
-        if ((this.widgetDimenstions.left = 0) 
-            ||  (this.widgetDimenstions.top = 0) 
-            ||  (this.widgetDimenstions.width = 0) 
+        if ((this.widgetDimenstions.width = 0) 
             ||  (this.widgetDimenstions.height = 0) ) {
                 this.showMessage(
                     'No Dimensions copied previously',
@@ -5452,8 +5444,6 @@ console.log('xx resize', ev.y, ev.x, window.innerWidth, window.innerHeight, wind
             if (w.isSelected) {
 
                 // Recall the Dimensions
-                w.containerLeft = this.widgetDimenstions.left;
-                w.containerTop = this.widgetDimenstions.top;
                 w.containerWidth = this.widgetDimenstions.width;
                 w.containerHeight = this.widgetDimenstions.height;
         
