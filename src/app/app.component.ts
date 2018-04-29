@@ -202,6 +202,7 @@ export class AppComponent implements OnInit {
             // Set start coordinates
             this.startX = 0;
             this.startY = 0;
+            
             // Set end coordinates
             if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
                 this.endX = this.globalVariableService.canvasSettings.gridSize;
@@ -2605,9 +2606,6 @@ console.log('xx filteredActions', filteredActions)
         if (!this.checkForOnlyOneWidget()) {
             return
         };
-        if (!this.checkForOnlyOneWidget('Graph')) {
-            return
-        };
 
         this.menuOptionClickPreAction();
 
@@ -4671,7 +4669,7 @@ console.log('xx filteredActions', filteredActions)
         //     Note: 1. both the current and globalVar vars are changed
         //           2. Top and Left involves changing two aspects, ie Left and Width
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetUp', '@Start');
-
+console.log('xx resize', ev.y, ev.x, window.innerWidth, window.innerHeight, window.screenY)
         this.menuOptionClickPreAction();
 
         // Deep copy existing W

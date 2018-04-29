@@ -3246,6 +3246,13 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.canvasSettings.noQueryRunningMessage = data.noQueryRunningMessage;
                         this.canvasSettings.queryRunningMessage = data.queryRunningMessage;
 
+                        // Sanitize
+                        if (this.canvasSettings.gridSize > 100  
+                            || this.canvasSettings.gridSize == null  
+                            || this.canvasSettings.gridSize == undefined) {
+                            this.canvasSettings.gridSize = 100;
+                        };
+
                         this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('Global-Variables getSystemSettings 1', this.canvasSettings)
