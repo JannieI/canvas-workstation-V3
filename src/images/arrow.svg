@@ -1,0 +1,12 @@
+<svg
+    height="100"
+    width="100"
+    viewBox="1 1 99 99"
+    >
+    <polygon
+        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+        fill="orange"
+        stroke="black"
+        stroke-width:1
+        />
+</svg>

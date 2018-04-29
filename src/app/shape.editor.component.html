@@ -133,24 +133,108 @@
                         </text>
                     </svg> -->
                 </div>
+                <!-- points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10" -->
+                <!-- points="30, 40 40, 30 40, 35 50, 35 50, 45 40, 45 40, 50 30, 40" -->
+
+                <!-- [style.height]="localWidget.shapeSvgHeight" -->
+                <!-- [style.width]="localWidget.shapeSvgWidth" -->
+
+                <!-- [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'" -->
+                <!-- [style.transform]="'scale(' + localWidget.shapeSize + ' ' + localWidget.shapeSize + ')'" -->
+                <!-- viewBox="0 0 30 30" -->
+    
+
+                <!-- [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'" -->
+
 
                 <div class="gridShape" *ngIf="showArrow"
                     >
-                    <svg class="gridShapeArrow"
-                        [style.transform]="'scale(' + localWidget.shapeSize + ','
-                            + localWidget.shapeSize + ')'"
-                        [style.height]="localWidget.shapeSvgHeight"
-                        [style.width]="localWidget.shapeSvgWidth"
+                    <!-- TODO - Makey this DYNAMIC !!!  -->
+                    <svg class="gridShapeArrow" *ngIf="localWidget.shapeSize==1  
+                            &&  
+                            localWidget.shapeRotation==0"
+                        height="100"
+                        width="100"
+                        viewBox="5 5 95 95"
                         style="display: block;"
                         >
                         <polygon
-                            points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
-                            [style.fill]="localWidget.shapeFill"
-                            [style.stroke]="localWidget.shapeStroke"
-                                stroke-width:1
-                            [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
-                            />
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="localWidget.shapeFill"
+                        [style.stroke]="localWidget.shapeStroke"
+                        viewBox="0 0 20 20"
+                        stroke-width:1
+                        />
                     </svg>
+                    <svg class="gridShapeArrow" *ngIf="localWidget.shapeSize==1  
+                            &&  
+                            localWidget.shapeRotation==45"
+                        height="100"
+                        width="100"
+                        viewBox="5 5 95 95"
+                        style="display: block;"
+                        >
+                        <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="localWidget.shapeFill"
+                        [style.stroke]="localWidget.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(45 11 11) scale(1 1)"
+                        stroke-width:1
+                        />
+                    </svg>
+
+                    <svg class="gridShapeArrow" *ngIf="localWidget.shapeSize==2  
+                            &&  
+                            localWidget.shapeRotation==0"
+                        height="100"
+                        width="100"
+                        viewBox="5 5 95 95"
+                        style="display: block;"
+                        >
+                        <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="localWidget.shapeFill"
+                        [style.stroke]="localWidget.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="scale(2 2)"
+                        stroke-width:1
+                        />
+                    </svg>
+
+                    <svg class="gridShapeArrow" *ngIf="localWidget.shapeSize==2  
+                            &&  
+                            localWidget.shapeRotation==45"
+                        height="100"
+                        width="100"
+                        viewBox="5 5 95 95"
+                        style="display: block;"
+                        >
+                        <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="localWidget.shapeFill"
+                        [style.stroke]="localWidget.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(45 16 21) scale(2 2)"
+                        stroke-width:1
+                        />
+                    </svg>
+
+                    <!-- <svg class="gridShapeArrow"
+                        height="100"
+                        width="100"
+                        viewBox="5 5 95 95"
+                        style="display: block;"
+                        >
+                        <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="localWidget.shapeFill"
+                        [style.stroke]="localWidget.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(45 16 21) scale(2 2)"
+                        stroke-width:1
+                        />
+                    </svg> -->
                 </div>
 
                 <div class="gridShape" *ngIf="showArrowThin"
@@ -581,11 +665,12 @@
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
-                            <option>5</option>
+                            <!-- Later - when DYNAMIC -->
+                            <!-- <option>5</option>
                             <option>6</option>
                             <option>7</option>
                             <option>8</option>
-                            <option>9</option>
+                            <option>9</option> -->
                         </select>
                     </div>
 

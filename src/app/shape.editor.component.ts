@@ -60,7 +60,7 @@ export class ShapeEditComponent implements OnInit {
     showValue: boolean = false;
 
     shapeSvgHeight: number = 30;
-    size: number = 3;
+    size: number = 2;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -171,8 +171,8 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeIsBold = true;
             this.localWidget.shapeStroke = 'gray';
             this.localWidget.shapeStrokeWidth = '1';
-            this.localWidget.shapeSvgHeight = 32;
-            this.localWidget.shapeSvgWidth = 32;
+            this.localWidget.shapeSvgHeight = 60;
+            this.localWidget.shapeSvgWidth = 60;
             this.localWidget.shapeText = 'The brown fox is tired';
 
         } else {
@@ -649,8 +649,8 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowSize', '@Start');
 
         this.localWidget.shapeSize = ev.target.value;
-        this.localWidget.shapeSvgHeight = 32; //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
-        this.localWidget.shapeSvgWidth = 32;  //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
+        this.localWidget.shapeSvgHeight = 60; //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
+        this.localWidget.shapeSvgWidth = 60;  //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
         console.log('xx this.localWidget.shapeSvgHeight', this.localWidget.shapeRotation,
             this.localWidget.shapeSvgHeight, this.localWidget.shapeSize)
     }

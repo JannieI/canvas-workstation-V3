@@ -1561,21 +1561,77 @@
 
     <!-- Shape Arrow Object -->
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
-        <svg class="gridShapeArrow"
-            [style.transform]="'rotate(' + row.shapeRotation + 'deg)'"
-            [style.transform]="'scale(' + row.shapeSize + ','
-                + row.shapeSize + ')'"
-            [style.height]="row.shapeSvgHeight"
-            [style.width]="row.shapeSvgWidth"
+        <!-- TODO - Makey this DYNAMIC !!!  -->
+        <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+                &&  
+                row.shapeRotation==0"
+            height="100"
+            width="100"
+            viewBox="5 5 95 95"
             style="display: block;"
             >
             <polygon
-                points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
-                [style.fill]="row.shapeFill"
-                [style.stroke]="row.shapeStroke"
-                stroke-width:1
+            points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+            [style.fill]="row.shapeFill"
+            [style.stroke]="row.shapeStroke"
+            viewBox="0 0 20 20"
+            stroke-width:1
             />
         </svg>
+        <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+                &&  
+                row.shapeRotation==45"
+            height="100"
+            width="100"
+            viewBox="5 5 95 95"
+            style="display: block;"
+            >
+            <polygon
+            points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+            [style.fill]="row.shapeFill"
+            [style.stroke]="row.shapeStroke"
+            viewBox="0 0 20 20"
+            transform="rotate(45 11 11) scale(1 1)"
+            stroke-width:1
+            />
+        </svg>
+
+        <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+                &&  
+                row.shapeRotation==0"
+            height="100"
+            width="100"
+            viewBox="5 5 95 95"
+            style="display: block;"
+            >
+            <polygon
+            points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+            [style.fill]="row.shapeFill"
+            [style.stroke]="row.shapeStroke"
+            viewBox="0 0 20 20"
+            transform="scale(2 2)"
+            stroke-width:1
+            />
+        </svg>
+
+        <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+                &&  
+                row.shapeRotation==45"
+            height="100"
+            width="100"
+            viewBox="5 5 95 95"
+            style="display: block;"
+            >
+            <polygon
+            points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+            [style.fill]="row.shapeFill"
+            [style.stroke]="row.shapeStroke"
+            viewBox="0 0 20 20"
+            transform="rotate(45 16 21) scale(2 2)"
+            stroke-width:1
+            />
+        </svg>
+
 
         <!-- <svg [style.height.px]="row.shapeSvgHeight"
             [style.width.px]="row.shapeSvgWidth"
