@@ -370,15 +370,15 @@
     /* Arrow */
     .gridArrowDirectionTitle {
         grid-column-start: 1;
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 1;
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowDirection {
-        grid-column-start: 4;
-        grid-column-end: 11;
+        grid-column-start: 3;
+        grid-column-end: 8;
         grid-row-start: 1;
         grid-row-end: 2;
         padding-left: 15px;
