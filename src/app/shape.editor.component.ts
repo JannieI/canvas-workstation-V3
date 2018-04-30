@@ -37,7 +37,7 @@ export class ShapeEditComponent implements OnInit {
     bulletValue: string = '';
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
-    dashboardTabs: DashboardTab[];
+    dashboardTabList: string[];
     hasAutoFocusCircle: boolean = false;
     hasAutoFocusEllipse: boolean = false;
     hasAutoFocusRectangle: boolean = false;
@@ -143,16 +143,13 @@ export class ShapeEditComponent implements OnInit {
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
-        this.dashboardTabs = [
-            {
-                id: 0,
-                dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                name: 'None',
-                description: 'None',
-                backgroundColor: '',
-                color: ''
-            }].concat(this.globalVariableService.currentDashboardTabs.slice());
-
+        this.dashboardTabList = ['None'];
+        for (var i = 0; i < this.globalVariableService.currentDashboardTabs.length; i++) {
+            this.dashboardTabList.push(
+                this.globalVariableService.currentDashboardTabs[i].name 
+                    + ' (' + i.toString() + ')');
+        };
+console.log('xx this.dashboardTabList', this.dashboardTabList)
         // Create new W
          if (this.newWidget) {
 
@@ -448,7 +445,13 @@ export class ShapeEditComponent implements OnInit {
         // Add the TabID to the Bullets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsTab', '@Start');
 
-        console.log('xx ', ev.target)
+        // this.selectedTab = ev.target.value;
+        let selectedTab: string = ev.target.value;
+        let openBracket: number = selectedTab.indexOf('(');
+        let closeBracket: number = selectedTab.indexOf(')');
+        console.log('xx ', ev.target.value, openBracket, closeBracket
+        , selectedTab.substring(0, openBracket),  
+        selectedTab.substring(openBracket + 1, closeBracket) );
     }
 
     clickSave() {

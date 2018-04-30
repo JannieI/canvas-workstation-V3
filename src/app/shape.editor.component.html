@@ -1110,11 +1110,11 @@
                     </div>
                     <div class="select gridBulletsTab">
                         <select
-                            [(ngModel)]="localWidget.shapeStroke"
+                            [(ngModel)]="selectedTab"
                             (change)="clickSelectBulletsTab($event)"
                             >
-                            <option *ngFor="let row of dashboardTabs">
-                                {{ row.name }}
+                            <option *ngFor="let row of dashboardTabList">
+                                {{ row }}
                             </option>
                         </select>
                     </div>
