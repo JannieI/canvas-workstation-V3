@@ -118,6 +118,7 @@
                     [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
                     [style.font-family]="localWidget.shapeFontFamily"
                     [style.font-size.px]="localWidget.shapeFontSize"
+                    [style.text-align]="left"
                     style="display: block; padding: 5px;"
 
                     >
@@ -602,6 +603,7 @@
                         [style.margin-top.px]="30"
                         [style.font-family]="localWidget.shapeFontFamily"
                         [style.font-size.px]="localWidget.shapeFontSize"
+                        [style.text-align]="left"
                         >
                         <li *ngFor="let row of localWidget.shapeBullet; let i = index"
                             [style.margin-bottom.px]="localWidget.shapeBulletMarginBottom"
@@ -618,6 +620,7 @@
                         [style.margin-top.px]="30"
                         [style.font-family]="localWidget.shapeFontFamily"
                         [style.font-size.px]="localWidget.shapeFontSize"
+                        [style.text-align]="left"
                         >
                         <li *ngFor="let row of localWidget.shapeBullets; let i = index"
                             [style.margin-bottom.px]="localWidget.shapeBulletMarginBottom"
@@ -1106,7 +1109,7 @@
                     </button>
 
                     <button type="button" class="btn btn-link gridBulletsButton">
-                        <span *ngIf="editBulletItem" (click)="clickUpdate()">Update</span>
+                        <span *ngIf="editBulletItem" (click)="clickBulletUpdate()">Update</span>
                         <span *ngIf="!editBulletItem" (click)="clickBulletAdd()">Add</span>
                     </button>
                 </div>

@@ -366,9 +366,9 @@ export class ShapeEditComponent implements OnInit {
 
     }
 
-    clickUpdate() {
+    clickBulletUpdate() {
         // Add item to bullet list
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickEditDone', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletUpdate', '@Start');
 
         this.localWidget.shapeBullets[this.bulletIndex] = this.bulletValue;
         this.editBulletItem = false;
