@@ -50,6 +50,7 @@ export class ShapeEditComponent implements OnInit {
     editBulletItem: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     selectedColour: string;
+    selectedTabIndex: number;
     showArrow: boolean = false;
     showArrowThin: boolean = false;
     showBullets: boolean = false;
@@ -149,7 +150,7 @@ export class ShapeEditComponent implements OnInit {
                 this.globalVariableService.currentDashboardTabs[i].name 
                     + ' (' + i.toString() + ')');
         };
-console.log('xx this.dashboardTabList', this.dashboardTabList)
+
         // Create new W
          if (this.newWidget) {
 
@@ -445,13 +446,11 @@ console.log('xx this.dashboardTabList', this.dashboardTabList)
         // Add the TabID to the Bullets
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsTab', '@Start');
 
-        // this.selectedTab = ev.target.value;
+        // Get T info
         let selectedTab: string = ev.target.value;
         let openBracket: number = selectedTab.indexOf('(');
         let closeBracket: number = selectedTab.indexOf(')');
-        console.log('xx ', ev.target.value, openBracket, closeBracket
-        , selectedTab.substring(0, openBracket),  
-        selectedTab.substring(openBracket + 1, closeBracket) );
+        this.selectedTabIndex = +selectedTab.substring(openBracket + 1, closeBracket);
     }
 
     clickSave() {
