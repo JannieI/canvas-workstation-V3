@@ -3234,10 +3234,10 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.canvasSettings.offlineData = data.offlineData;
                         this.canvasSettings.offlineSchema = data.offlineSchema;
                         this.canvasSettings.offlineLogin = data.offlineLogin;
-                        this.canvasSettings.maxTableLength = data.maxTableLength;
-                        this.canvasSettings.widgetsMinZindex = data.widgetsMinZindex;
-                        this.canvasSettings.widgetsMaxZindex = data.widgetsMaxZindex;
-                        this.canvasSettings.gridSize = data.gridSize;
+                        this.canvasSettings.maxTableLength = +data.maxTableLength;
+                        this.canvasSettings.widgetsMinZindex = +data.widgetsMinZindex;
+                        this.canvasSettings.widgetsMaxZindex = +data.widgetsMaxZindex;
+                        this.canvasSettings.gridSize = +data.gridSize;
                         this.canvasSettings.snapToGrid = data.snapToGrid;
                         this.canvasSettings.printDefault = data.printDefault;
                         this.canvasSettings.printSize = data.printSize;

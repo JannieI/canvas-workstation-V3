@@ -4556,14 +4556,16 @@ console.log('xx filteredActions', filteredActions)
                     w,
                     null
                 );
-console.log('xx str end', this.startX, this.endX)
+
                 // Move the container
-                w.containerLeft = Math.min(
-                    (window.innerWidth - 10), w.containerLeft - this.startX + this.endX
-                );
-                w.containerTop =  Math.min(
-                    (window.innerHeight - 10), w.containerTop - this.startY + this.endY
-                );
+                w.containerLeft = w.containerLeft - this.startX + this.endX;
+                w.containerTop =  w.containerTop - this.startY + this.endY;
+                
+                // Sanitize
+                w.containerLeft = Math.min((window.innerWidth - 5), w.containerLeft);
+                w.containerTop =  Math.min((window.innerHeight - 5), w.containerTop);
+                w.containerLeft = Math.max(-50, w.containerLeft);
+                w.containerTop =  Math.max(-50, w.containerTop);
 
                 // Cater for snapping to Grid
                 if (this.snapToGrid) {
@@ -4572,8 +4574,7 @@ console.log('xx str end', this.startX, this.endX)
                     w.containerTop = this.globalVariableService.alignToGripPoint(
                         w.containerTop);
                 };
-                console.log('xx L, T, window H, W', w.containerLeft, w.containerTop, window.innerHeight, window.innerWidth)
-                console.log('xx snap, grSiz', this.snapToGrid, this.globalVariableService.canvasSettings.gridSize)
+
                 // Add to action log
                 actID = this.globalVariableService.actionUpsert(
                     actID,
@@ -4681,7 +4682,7 @@ console.log('xx str end', this.startX, this.endX)
         //     Note: 1. both the current and globalVar vars are changed
         //           2. Top and Left involves changing two aspects, ie Left and Width
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetUp', '@Start');
-console.log('xx resize', ev.y, ev.x, window.innerWidth, window.innerHeight, window.screenY)
+
         this.menuOptionClickPreAction();
 
         // Deep copy existing W
