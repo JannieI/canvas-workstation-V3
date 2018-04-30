@@ -4606,12 +4606,12 @@ console.log('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'moveWidgets', '@Start');
 
         // Reset current and globalVar values
-        this.currentWidgets.forEach( w => {
+        this.currentWidgets.forEach(w => {
 
             if (this.draggableWidgets.indexOf(w.id) >= 0) {
 
                 // Check if Locked
-                if (this.selectedWidget.isLocked) {
+                if (w.isLocked) {
                     this.showMessage(
                         'Locked Widgets cannot be moved (unlock on Graph menu)',
                         'StatusBar',

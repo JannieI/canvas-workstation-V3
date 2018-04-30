@@ -431,11 +431,12 @@ export class Dashboard {
     refresher: string;
     dateRefreshed: string;
 
-    // 2nd normal form
+    // 2nd normal form - calculated at DB level
     nrWidgets: number;
     nrShapes: number;
     nrRecords: number;
     nrTimesOpened: number;
+    nrTimesChanged: number;
     tabs: number[];
     permissions: string[];
 }
