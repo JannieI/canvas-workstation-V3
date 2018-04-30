@@ -244,6 +244,7 @@ const widgetTemplate: Widget =
         "slicerAddRest": false,
         "slicerAddRestValue": false,
         "shapeBullets": [],
+        "shapeBullet": [],
         "shapeBulletStyleType": "",
         "shapeBulletsOrdered": false,
         "shapeBulletMarginBottom": 3,
@@ -305,6 +306,7 @@ const dashboardTemplate: Dashboard =
         nrShapes: 0,
         nrRecords: 0,
         nrTimesOpened: 0,
+        nrTimesChanged: 0,
         tabs: [],
         permissions: []
     };

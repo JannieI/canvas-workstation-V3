@@ -686,6 +686,13 @@ export class Widget {
 
     // Shape
     shapeBullets: string[];             // Array of bullet points
+    shapeBullet: 
+        { 
+            text: string; 
+            linkedTabID: number; 
+            color: string; 
+            jumpedColor: string 
+        }[];                            // Bullets, with info
     shapeBulletStyleType: string;       // List marker: disc, circle, square, none
     shapeBulletsOrdered: boolean;       // True if the list is ordered
     shapeBulletMarginBottom: number;       // Margin-Top in px
