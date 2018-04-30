@@ -3407,7 +3407,6 @@ console.log('xx filteredActions', filteredActions)
                     this.globalVariableService.canvasSettings.widgetsMinZindex,
                     this.currentWidgets[i].containerZindex - 1
                 );
-                console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
                                               
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
@@ -3432,7 +3431,6 @@ console.log('xx filteredActions', filteredActions)
                     this.globalVariableService.canvasSettings.widgetsMaxZindex,
                     this.currentWidgets[i].containerZindex + 1
                 );
-                console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
                                 
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
@@ -3456,7 +3454,6 @@ console.log('xx filteredActions', filteredActions)
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMinZindex;
-                console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
                   
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
@@ -3480,7 +3477,6 @@ console.log('xx filteredActions', filteredActions)
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMaxZindex;
-                console.log('xx f', i, this.currentWidgets[i].id, this.currentWidgets[i].containerZindex)
     
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
