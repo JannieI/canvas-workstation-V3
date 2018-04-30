@@ -32,7 +32,7 @@ interface localDashboardPermission extends DashboardPermission {
 export class MyPermissionsComponent implements OnInit {
 
     @Input() selectedDashboard: Dashboard;
-    @Output() formDashboardShareClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardMyPermissionsClosed: EventEmitter<string> = new EventEmitter();
 
     dashboardPermissions: localDashboardPermission[];
     groupID: number;
@@ -55,8 +55,10 @@ export class MyPermissionsComponent implements OnInit {
             this.groups = res;
 
             let filteredDashboard: Dashboard[] = [];
-
             this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
+
+            // Get supplimentary info
+            // TODO - do this better with DB
             this.dashboardPermissions.forEach(dP => {
                 filteredDashboard = this.globalVariableService.dashboards.filter(d => 
                     d.id == dP.dashboardID
@@ -70,11 +72,15 @@ export class MyPermissionsComponent implements OnInit {
                         dP.groupName = grp.name;
                     };
                 });
-            })
+            });
+
+            // Filter for current user
             this.dashboardPermissions = this.dashboardPermissions.filter(dP => 
                 (dP.userID == this.globalVariableService.currentUser.userID)
                 ||
-                (this.globalVariableService.currentUser.groups.indexOf(dP.groupName) > 0)
+                (this.globalVariableService.currentUser.groups
+                    .map(x => x.toLowerCase())
+                    .indexOf(dP.groupName.toLocaleLowerCase()) > 0)
             );
         });
 
@@ -84,7 +90,7 @@ export class MyPermissionsComponent implements OnInit {
         // Close form, no changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formDashboardShareClosed.emit(action);
+		this.formDashboardMyPermissionsClosed.emit(action);
     }
 
     clickRow(index: number) {
