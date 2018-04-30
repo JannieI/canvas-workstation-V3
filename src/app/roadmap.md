@@ -54,7 +54,7 @@ This document describes items for later versions of Canvas.
 
     Admin module and Users
     ----------------------
-    - Users, groups, permissions
+    - Users, groups, permissions: add DS permissions, Private Dashboards?, Public Dashboards?, etc to form 'My Permissions'
     - Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
     - Global var with userLoggedIn
     - What and how is cached locally - and how refreshed?  Ie BackgroundColours should be stored locally and only updated if and when needed.
