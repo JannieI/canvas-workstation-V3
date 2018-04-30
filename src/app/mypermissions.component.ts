@@ -20,6 +20,10 @@ import { Dashboard }                  from './models';
 import { DashboardPermission }        from './models';
 import { CanvasGroup }                from './models';
 
+interface localDashboardPermission extends DashboardPermission {
+    dashboardName?: string;
+}
+
 @Component({
     selector: 'mypermissions',
     templateUrl: './mypermissions.component.html',
@@ -30,7 +34,7 @@ export class MyPermissionsComponent implements OnInit {
     @Input() selectedDashboard: Dashboard;
     @Output() formDashboardShareClosed: EventEmitter<string> = new EventEmitter();
 
-    dashboardPermissions: DashboardPermission[];
+    dashboardPermissions: localDashboardPermission[];
     groupID: number;
     groupName: string = '';
     groups: CanvasGroup[];
@@ -47,9 +51,31 @@ export class MyPermissionsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasGroups().then( res => {
-            this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
+        this.globalVariableService.getCanvasGroups().then(res => {
             this.groups = res;
+
+            let filteredDashboard: Dashboard[] = [];
+
+            this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
+            this.dashboardPermissions.forEach(dP => {
+                filteredDashboard = this.globalVariableService.dashboards.filter(d => 
+                    d.id == dP.dashboardID
+                );
+                if (filteredDashboard.length > 0) {
+                    dP.dashboardName = filteredDashboard[0].name;
+                };
+
+                this.groups.forEach(grp => {
+                    if (grp.id == dP.groupID) {
+                        dP.groupName = grp.name;
+                    };
+                });
+            })
+            this.dashboardPermissions = this.dashboardPermissions.filter(dP => 
+                (dP.userID == this.globalVariableService.currentUser.userID)
+                ||
+                (this.globalVariableService.currentUser.groups.indexOf(dP.groupName) > 0)
+            );
         });
 
     }

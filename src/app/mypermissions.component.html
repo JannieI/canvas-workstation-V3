@@ -19,10 +19,8 @@
 
                 <div class="gridTable">
                     <clr-datagrid>
-                        <clr-dg-column
-                        [style.text-align]="center">Remove</clr-dg-column>
-                        <clr-dg-column [clrDgField]="userID">User ID (single)</clr-dg-column>
-                        <clr-dg-column [clrDgField]="name">Group Name (applies to all its members)</clr-dg-column>
+                        <clr-dg-column [clrDgField]="userID">Dasbhoard</clr-dg-column>
+                        <clr-dg-column [clrDgField]="name">Via Group Name</clr-dg-column>
                         <clr-dg-column [clrDgField]="canView" class="checkCell">View</clr-dg-column>
                         <clr-dg-column [clrDgField]="canEdit">Edit</clr-dg-column>
                         <clr-dg-column [clrDgField]="canDelete">Delete</clr-dg-column>
@@ -36,14 +34,7 @@
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
                             (click)="clickRow(i)"
                             >
-                            <clr-dg-cell>
-                                <clr-icon shape="trash"
-                                    size="16"
-                                    (click)="clickDelete(row.id)"
-                                    >
-                                </clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>{{row.userID}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.dashboardName}}</clr-dg-cell>
                             <clr-dg-cell>{{row.groupName}}</clr-dg-cell>
                             <clr-dg-cell class="checkCell">
                                 <clr-icon shape="check" *ngIf="row.canView"
@@ -104,7 +95,7 @@
                             of {{pagination.totalItems}} records
                             <clr-dg-pagination
                                 #pagination
-                                [clrDgPageSize]="4"
+                                [clrDgPageSize]="9"
                                 >
                             </clr-dg-pagination>
                         </clr-dg-footer>
