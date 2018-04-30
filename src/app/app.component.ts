@@ -2603,6 +2603,34 @@ console.log('xx filteredActions', filteredActions)
         this.clickMenuWidgetDuplicate('Graph')
     }
 
+    clickMenuWidgetLockUnlock() {
+        // Toggle Lock / Unlock for selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLockUnlock', '@Start');
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        if (!this.checkForOnlyOneWidget()) {
+            return;
+        };
+
+        this.menuOptionClickPreAction();
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                w.isLocked = !w.isLocked;
+                this.globalVariableService.saveWidget(w);
+            };
+        });
+    }
     
     clickMenuWidgetCopy() {
         // Copy selected Widget to our 'clipboard'
