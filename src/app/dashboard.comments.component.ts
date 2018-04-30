@@ -151,7 +151,7 @@ export class DashboardCommentsComponent implements OnInit {
             creator: this.globalVariableService.currentUser.userID,
             createdOn: dt.toString()
         };
-
+ 
         // Globally and locally
         this.globalVariableService.addCanvasComment(newComment).then( data => {
                 this.canvasComments.push(data)

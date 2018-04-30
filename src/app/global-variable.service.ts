@@ -3703,6 +3703,8 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         // TODO - fix hardcoding, issue with datalib jsonTree
                         this.widgets.forEach(w => {
 
+                            // TODO - with DB, get summarised fields like NrComments, NrDataQual, etc
+
                             // Get Checkpoint info for ALL W, not only current one
                             // TODO - fix when using DB
                             let tempChk: WidgetCheckpoint[] = this.widgetCheckpoints
@@ -4245,17 +4247,27 @@ console.log('xx allS 1', this.currentDatasets.slice())
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
-
+ 
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
+                res => {
+
+                    // Update NrComments field if a W is linked
+                    if (data.widgetID != null) {
+                        this.widgets.forEach(w => {
+                            if (w.id == data.widgetID) {
+                                w.nrComments = w.nrComments + 1;
+                                console.log('xx nrC', w.id, w.nrComments)
+                            };
+                        });
+                    };
 
                     // Update Global vars to make sure they remain in sync
-                    this.canvasComments.push(JSON.parse(JSON.stringify(data)));
+                    this.canvasComments.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasComment ADDED', data, this.canvasComments, this.canvasComments)
+                    console.log('addCanvasComment ADDED', res, this.canvasComments, this.canvasComments)
 
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addCanvasComment FAILED', err);;
