@@ -603,14 +603,14 @@
                         [style.font-family]="localWidget.shapeFontFamily"
                         [style.font-size.px]="localWidget.shapeFontSize"
                         >
-                        <li *ngFor="let row of localWidget.shapeBullets; let i = index"
+                        <li *ngFor="let row of localWidget.shapeBullet; let i = index"
                             [style.margin-bottom.px]="localWidget.shapeBulletMarginBottom"
                             (click)="clickBulletEdit(i, row)"
                             >
                             <clr-icon shape="times"
                                 (click)="clickBulletDelete(i, row)">
                             </clr-icon>
-                            {{ row }}
+                            {{ row.text }}
                         </li>
                     </ul>
                     <ol *ngIf="localWidget.shapeBulletsOrdered"

@@ -2029,12 +2029,16 @@
         <ul  *ngIf="!row.shapeBulletsOrdered"
             [style.list-style-type]="row.shapeBulletStyleType"
             >
-            <li *ngFor="let bullet of row.shapeBullets"
+            <li *ngFor="let bullet of row.shapeBullet"
                 [style.color]="row.shapeTextColour"
                 [style.font-family]="row.shapeFontFamily"
                 [style.font-size.px]="row.shapeFontSize"
                 [style.margin-bottom.px]="row.shapeBulletMarginBottom"
-                > {{ bullet }}
+                > 
+                {{ bullet.text }}
+                <clr-icon shape="arrow right"
+                    (click)="clickBulletDelete(i, row)">
+                </clr-icon>
             </li>
         </ul>
         <ol  *ngIf="row.shapeBulletsOrdered"

@@ -388,6 +388,26 @@ export class ShapeEditComponent implements OnInit {
 
         // Add new
         this.localWidget.shapeBullets.push(this.bulletValue);
+
+
+
+
+        // Remove dummy 'Text' string
+        if (this.localWidget.shapeBullet.length == 1) {
+            if (this.localWidget.shapeBullet[0].text == 'Text ...') {
+                this.localWidget.shapeBullet = [];
+            };
+        };
+
+        // Add new
+        this.localWidget.shapeBullet.push(
+        { 
+            text: this.bulletValue, 
+            linkedTabID: null, 
+            color: '', 
+            jumpedColor: '' 
+        });
+
     }
 
     clickSave() {
@@ -609,7 +629,6 @@ export class ShapeEditComponent implements OnInit {
 
         this.localWidget.shapeBulletMarginBottom = this.localWidget.shapeBulletMarginBottom + 3;
 
-        let a: number = 90;
     }
 
     clickSelectBulletsDecrease() {
