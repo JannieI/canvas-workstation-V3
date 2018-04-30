@@ -1113,9 +1113,7 @@
                             [(ngModel)]="localWidget.shapeStroke"
                             (change)="clickSelectBulletsTab($event)"
                             >
-                            <option *ngFor="let row of backgroundcolors"
-                                [style.background-color]="row.name"
-                                >
+                            <option *ngFor="let row of dashboardTabs">
                                 {{ row.name }}
                             </option>
                         </select>

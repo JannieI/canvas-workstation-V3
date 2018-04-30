@@ -14,6 +14,7 @@ import { ColourPickerComponent }      from './colour.picker.component';
 
 // Our Models
 import { CSScolor }                   from './models';
+import { DashboardTab }               from './models';
 import { Widget }                     from './models';
 
 // Our Functions
@@ -36,6 +37,7 @@ export class ShapeEditComponent implements OnInit {
     bulletValue: string = '';
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
+    dashboardTabs: DashboardTab[];
     hasAutoFocusCircle: boolean = false;
     hasAutoFocusEllipse: boolean = false;
     hasAutoFocusRectangle: boolean = false;
@@ -141,6 +143,15 @@ export class ShapeEditComponent implements OnInit {
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+        this.dashboardTabs = [
+            {
+                id: 0,
+                dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                name: 'None',
+                description: 'None',
+                backgroundColor: '',
+                color: ''
+            }].concat(this.globalVariableService.currentDashboardTabs.slice());
 
         // Create new W
          if (this.newWidget) {
@@ -431,6 +442,13 @@ export class ShapeEditComponent implements OnInit {
             jumpedColor: '' 
         });
 
+    }
+
+    clickSelectBulletsTab(ev: any) {
+        // Add the TabID to the Bullets
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsTab', '@Start');
+
+        console.log('xx ', ev.target)
     }
 
     clickSave() {
