@@ -575,17 +575,25 @@
     }
 
     .gridBulletsInput {
-        grid-column-start: 2;
-        grid-column-end: 6;
+        grid-column-start: 1;
+        grid-column-end: 5;
         grid-row-start: 11;
         grid-row-end: 12;
         padding-left: 15px;
         padding-top: 6px;
     }
+    .gridBulletsTab {
+        grid-column-start: 5;
+        grid-column-end: 9;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
 
     .gridBulletsButton {
-        grid-column-start: 7;
-        grid-column-end: 9;
+        grid-column-start: 9;
+        grid-column-end: 12;
         grid-row-start: 12;
         grid-row-end: 13;
         padding-left: 15px;

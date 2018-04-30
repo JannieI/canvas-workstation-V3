@@ -1080,10 +1080,6 @@
                             [(ngModel)]="localWidget.shapeBulletsOrdered"
                             >
                     </div>
-                    <div class="gridBulletsInput">
-                        <b>Item:</b>
-                        <input [(ngModel)]="bulletValue">
-                    </div>
 
                     <div class="gridBulletsColourTitle">
                         <b>Text:</b>
@@ -1107,6 +1103,23 @@
                         >
                         Picker
                     </button>
+
+                    <div class="gridBulletsInput">
+                        <b>Item:</b>
+                        <input [(ngModel)]="bulletValue">
+                    </div>
+                    <div class="select gridBulletsTab">
+                        <select
+                            [(ngModel)]="localWidget.shapeStroke"
+                            (change)="clickSelectBulletsTab($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
 
                     <button type="button" class="btn btn-link gridBulletsButton">
                         <span *ngIf="editBulletItem" (click)="clickBulletUpdate()">Update</span>
