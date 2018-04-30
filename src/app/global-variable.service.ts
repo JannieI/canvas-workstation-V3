@@ -4277,7 +4277,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
         });
     }
 
-    deleteCanvasComment(id: number): Promise<string> {
+    deleteCanvasComment(id: number, widgetID: number = null): Promise<string> {
         // Description: Deletes a canvasComments
         // Returns: 'Deleted' or error message
         console.log('Global-Variables deleteCanvasComment ...', id);
@@ -4292,7 +4292,17 @@ console.log('xx allS 1', this.currentDatasets.slice())
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
+
+                    // Update NrComments field if a W is linked
+                    if (widgetID != null) {
+                        this.widgets.forEach(w => {
+                            if (w.id == widgetID) {
+                                w.nrComments = w.nrComments - 1;
+                                console.log('xx nrC', w.id, w.nrComments)
+                            };
+                        });
+                    };
 
                     this.canvasComments = this.canvasComments.filter(
                         com => com.id != id
