@@ -389,6 +389,13 @@ export class ShapeEditComponent implements OnInit {
         this.localWidget.shapeBullets[this.bulletIndex] = this.bulletValue;
         this.editBulletItem = false;
 
+
+
+
+        this.localWidget.shapeBullet[this.bulletIndex].text = this.bulletValue;
+        this.editBulletItem = false;
+
+
     }
 
     clickBulletAdd() {
