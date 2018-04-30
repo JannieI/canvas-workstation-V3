@@ -549,6 +549,9 @@ export class Widget {
     dashboardTabID: number;             // FKs to Tabs where the widget lives
     dashboardTabIDs: number[];          // FKs to Tabs where the widget lives
 
+    // Locking
+    isLocked: boolean;                  // True if this W is temporary locked
+
     // Identification and Description
     id: number;
     name: string;
@@ -556,7 +559,7 @@ export class Widget {
     visualGrammar: string;              // Gramar for graphs, default = Vega
     version: number;
 
-    // Properties load @Runtime
+    // Properties loaded @Runtime
     isLiked: boolean;                   // @RunTime: True if Widget is liked by me
     isSelected: boolean;
     nrDataQualityIssues: number;

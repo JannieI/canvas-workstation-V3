@@ -2603,7 +2603,7 @@ console.log('xx filteredActions', filteredActions)
         this.clickMenuWidgetDuplicate('Graph')
     }
 
-
+    
     clickMenuWidgetCopy() {
         // Copy selected Widget to our 'clipboard'
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCopy', '@Start');

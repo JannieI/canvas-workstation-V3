@@ -138,7 +138,7 @@ const widgetTemplate: Widget =
     {
         "widgetType": "",
         "widgetSubType": "",
-
+        "isLocked": false,
         "isTrashed": false,
         "dashboardID": null,
         "dashboardTabID": null,
@@ -4853,6 +4853,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 {key: 'dashboardID', 				type: 'int'},
                 {key: 'dashboardTabID', 			type: 'int'},
                 {key: 'dashboardTabIDs', 			type: 'array'},
+                {key: 'isLocked', 			        type: 'bool'},
                 {key: 'id', 						type: 'int',		props:['pk','ai']},
                 {key: 'name', 						type: 'string'},
                 {key: 'description', 				type: 'string'},
@@ -5230,6 +5231,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.dashboardID = changedWidget.dashboardID;
                 w.dashboardTabID = changedWidget.dashboardTabID;
                 w.dashboardTabIDs = changedWidget.dashboardTabIDs;
+                w.isLocked = changedWidget.isLocked;
                 w.id = changedWidget.id;
                 w.name = changedWidget.name;
                 w.description = changedWidget.description;
@@ -5369,6 +5371,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.dashboardID = changedWidget.dashboardID;
                 w.dashboardTabID = changedWidget.dashboardTabID;
                 w.dashboardTabIDs = changedWidget.dashboardTabIDs;
+                w.isLocked = changedWidget.isLocked;
                 w.id = changedWidget.id;
                 w.name = changedWidget.name;
                 w.description = changedWidget.description;
