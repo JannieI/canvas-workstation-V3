@@ -4610,57 +4610,68 @@ console.log('xx filteredActions', filteredActions)
 
             if (this.draggableWidgets.indexOf(w.id) >= 0) {
 
-                // Action
-                // TODO - cater for errors + make more generic
-                let actID: number = this.globalVariableService.actionUpsert(
-                    null,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    'Widget',
-                    'Move',
-                    'App moveWidgets',
-                    null,
-                    null,
-                    w,
-                    null
-                );
+                // Check if Locked
+                if (this.selectedWidget.isLocked) {
+                    this.showMessage(
+                        'Locked Widgets cannot be moved (unlock on Graph menu)',
+                        'StatusBar',
+                        'Warning',
+                        3000,
+                        ''
+                    );
+                } else {
 
-                // Move the container
-                w.containerLeft = w.containerLeft - this.startX + this.endX;
-                w.containerTop =  w.containerTop - this.startY + this.endY;
-                
-                // Sanitize
-                w.containerLeft = Math.min((window.innerWidth - 5), w.containerLeft);
-                w.containerTop =  Math.min((window.innerHeight - 5), w.containerTop);
-                w.containerLeft = Math.max(-50, w.containerLeft);
-                w.containerTop =  Math.max(-50, w.containerTop);
+                    // Action
+                    // TODO - cater for errors + make more generic
+                    let actID: number = this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        'Widget',
+                        'Move',
+                        'App moveWidgets',
+                        null,
+                        null,
+                        w,
+                        null
+                    );
 
-                // Cater for snapping to Grid
-                if (this.snapToGrid) {
-                    w.containerLeft = this.globalVariableService.alignToGripPoint(
-                        w.containerLeft);
-                    w.containerTop = this.globalVariableService.alignToGripPoint(
-                        w.containerTop);
+                    // Move the container
+                    w.containerLeft = w.containerLeft - this.startX + this.endX;
+                    w.containerTop =  w.containerTop - this.startY + this.endY;
+                    
+                    // Sanitize
+                    w.containerLeft = Math.min((window.innerWidth - 5), w.containerLeft);
+                    w.containerTop =  Math.min((window.innerHeight - 5), w.containerTop);
+                    w.containerLeft = Math.max(-50, w.containerLeft);
+                    w.containerTop =  Math.max(-50, w.containerTop);
+
+                    // Cater for snapping to Grid
+                    if (this.snapToGrid) {
+                        w.containerLeft = this.globalVariableService.alignToGripPoint(
+                            w.containerLeft);
+                        w.containerTop = this.globalVariableService.alignToGripPoint(
+                            w.containerTop);
+                    };
+
+                    // Add to action log
+                    actID = this.globalVariableService.actionUpsert(
+                        actID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        w
+                    );
+
+                    // Save to DB
+                    this.globalVariableService.saveWidget(w);
                 };
-
-                // Add to action log
-                actID = this.globalVariableService.actionUpsert(
-                    actID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    w
-                );
-
-                // Save to DB
-                this.globalVariableService.saveWidget(w);
-
-            }
+            };
         });
         this.globalVariableService.currentWidgets.forEach( w => {
 
