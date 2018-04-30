@@ -2446,14 +2446,27 @@ console.log('xx filteredActions', filteredActions)
             return
         };
 
-        this.menuOptionClickPreAction();
-
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
             if (w.isSelected  &&  w.widgetType == 'Graph') {
                 this.selectedWidget = w;
             };
         });
+
+        // Check if Locked
+        if (this.selectedWidget.isLocked) {
+            this.showMessage(
+                'Widget is locked (unlock using Graph menu option)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        this.menuOptionClickPreAction();
+        
         this.newWidget = false;
         this.newWidgetContainerLeft = 0;
         this.newWidgetContainerTop = 0;
