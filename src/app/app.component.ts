@@ -195,10 +195,22 @@ export class AppComponent implements OnInit {
             return;
         };
 
-
         // Move with Arrow
         if (event.key == 'ArrowRight'  ||  event.key == 'ArrowDown'  ||
             event.key == 'ArrowLeft'   ||  event.key == 'ArrowUp') {
+
+            // Has to be in editMode
+            if (!this.editMode) {
+                this.showMessage(
+                    this.globalVariableService.canvasSettings.notInEditModeMsg,
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+            };
+                
             // Set start coordinates
             this.startX = 0;
             this.startY = 0;
@@ -4725,6 +4737,18 @@ console.log('xx filteredActions', filteredActions)
         //     Note: 1. both the current and globalVar vars are changed
         //           2. Top and Left involves changing two aspects, ie Left and Width
         this.globalFunctionService.printToConsole(this.constructor.name,'clickResizeWidgetUp', '@Start');
+
+        // Check if locked
+        if (this.currentWidgets[index].isLocked) {
+            this.showMessage(
+                'Widget is locked (unlock using Graph menu option)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 
