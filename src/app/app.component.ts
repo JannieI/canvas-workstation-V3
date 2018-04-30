@@ -4559,10 +4559,10 @@ console.log('xx filteredActions', filteredActions)
 console.log('xx str end', this.startX, this.endX)
                 // Move the container
                 w.containerLeft = Math.min(
-                    (window.innerHeight - 10), w.containerLeft - this.startX + this.endX
+                    (window.innerWidth - 10), w.containerLeft - this.startX + this.endX
                 );
                 w.containerTop =  Math.min(
-                    (window.innerWidth - 10), w.containerTop - this.startY + this.endY
+                    (window.innerHeight - 10), w.containerTop - this.startY + this.endY
                 );
 
                 // Cater for snapping to Grid
