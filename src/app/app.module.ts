@@ -90,6 +90,7 @@ import { UserPaletteButtonBarComponent}     from './user.palette.buttonbar.compo
 import { LoginComponent}              from './login.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
+import { MyPermissionsComponent }       from './mypermissions.component';
 import { UsersComponent }             from './users.component';
 import { GroupsComponent }            from './groups.component';
 import { SystemSettingsComponent }    from './systemsettings.component';
@@ -184,6 +185,7 @@ import { StatusbarComponent }         from './statusbar.component';
 
         MyProfileComponent,
         PreferencesComponent,
+        MyPermissionsComponent,
         UserPaletteButtonBarComponent,
         UsersComponent,
         GroupsComponent,

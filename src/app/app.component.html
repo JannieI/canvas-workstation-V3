@@ -2763,6 +2763,14 @@
 </preferences>
 
 
+<!-- Modal: My Permissions -->
+<mypermissions
+    class="formPopupDashboard"
+    *ngIf="showModalUserMyPermissions"
+    (formDashboardMyPermissionsClosed)="handleCloseUserMyPermissions($event)">Load My Permissions ...
+</mypermissions>
+
+
 <!-- Modal: Alerts -->
 <collaborate-alerts
     class="formPopupDashboard"

@@ -57,7 +57,7 @@ export class DatasourceShareComponent implements OnInit {
         this.datasourcePermissions.splice(index,1);
         this.globalVariableService.deleteDatasourcePermission(id);
     }
-    
+
     clickClose(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');

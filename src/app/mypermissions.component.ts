@@ -21,11 +21,11 @@ import { DashboardPermission }        from './models';
 import { CanvasGroup }                from './models';
 
 @Component({
-    selector: 'dashboard-share',
-    templateUrl: './dashboard.share.component.html',
-    styleUrls: ['./dashboard.share.component.css']
+    selector: 'mypermissions',
+    templateUrl: './mypermissions.component.html',
+    styleUrls: ['./mypermissions.component.css']
 })
-export class DashboardShareComponent implements OnInit {
+export class MyPermissionsComponent implements OnInit {
 
     @Input() selectedDashboard: Dashboard;
     @Output() formDashboardShareClosed: EventEmitter<string> = new EventEmitter();
