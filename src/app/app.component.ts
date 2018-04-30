@@ -352,6 +352,7 @@ export class AppComponent implements OnInit {
     showModalLanding: boolean;
     showModalUserMyProfile: boolean = false;
     showModalUserPreferences: boolean = false;
+    showModalUserMyPermissions: boolean = false;
     showModalUserPaletteButtonBar: boolean = false;
     showModalUsers: boolean = false;
     showModalGroups: boolean = false;
@@ -1326,6 +1327,15 @@ export class AppComponent implements OnInit {
         this.showModalUserPreferences = false;
     }
 
+    handleCloseUserMyPermissions(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserMyPermissions', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalUserMyPermissions = false;
+    }
+    
     handleCloseUserdMyProfile(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserdMyProfile', '@Start');
@@ -4151,6 +4161,15 @@ console.log('xx filteredActions', filteredActions)
 
         this.showModalUserPreferences = true;
     }
+
+    clickMenuUserMyPermissions() {
+        // Show My Permissions form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserMyPermissions', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalUserMyPermissions = true;
+    }   
 
     clickMenuUserPaletteButtonBar() {
         //
