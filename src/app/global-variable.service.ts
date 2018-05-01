@@ -5786,13 +5786,17 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 if (dp.dashboardID == dashboard.id) {
                     if (dp.userID != null) {
                         if (dp.userID.toLowerCase() == userID.toLowerCase()) {
-                            hasAccess = true;
+                            if (dp.canView  ||  dp.canEdit) {
+                                hasAccess = true;
+                            };
                         };
                     };
                     if (dp.groupName != null) {
                         if (this.currentUser.groups.
                             map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
-                                hasAccess = true;
+                                if (dp.canView  ||  dp.canEdit) {
+                                    hasAccess = true;
+                                };
                         };
                     };
                 };
