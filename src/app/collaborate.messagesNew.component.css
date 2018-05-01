@@ -14,3 +14,7 @@
 .propertyLine {
     margin: 5px;
 }
+
+.messageBlock {
+    border: 1px solid gray;
+}

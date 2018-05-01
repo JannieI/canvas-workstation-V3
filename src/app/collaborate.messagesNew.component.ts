@@ -24,7 +24,7 @@ import { DatagridInput }              from './models';
     templateUrl: './collaborate.messagesNew.component.html',
     styleUrls: ['./collaborate.messagesNew.component.css']
 })
-export class CollaborateMessagesComponent implements OnInit {
+export class CollaborateMessagesComponentNew implements OnInit {
 
     @Output() formCollaborateMessagesClosed: EventEmitter<string> = new EventEmitter();
 
@@ -45,7 +45,7 @@ export class CollaborateMessagesComponent implements OnInit {
             {
                 id: 1,
                 threadID: 1,
-                sentBy: 'JannieI',
+                sender: 'JannieI',
                 sentOn: '2017/01/01',
                 recipients: [
                     {
