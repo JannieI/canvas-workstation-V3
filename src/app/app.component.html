@@ -2036,19 +2036,23 @@
                 [style.margin-bottom.px]="row.shapeBulletMarginBottom"
                 > 
                 {{ bullet.text }}
-                <clr-icon shape="arrow right"
+                <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
                     (click)="clickBulletDelete(i, row)">
                 </clr-icon>
             </li>
         </ul>
         <ol  *ngIf="row.shapeBulletsOrdered"
             >
-            <li *ngFor="let bullet of row.shapeBullets"
+            <li *ngFor="let bullet of row.shapeBullet"
                 [style.color]="row.shapeTextColour"
                 [style.font-family]="row.shapeFontFamily"
                 [style.font-size.px]="row.shapeFontSize"
-                [style.margin-top.px]="16"
-                > {{ bullet }}
+                [style.margin-bottom.px]="row.shapeBulletMarginBottom"
+                > 
+                {{ bullet.text }}
+                <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
+                    (click)="clickBulletDelete(i, row)">
+                </clr-icon>
             </li>
         </ol>
     </div>
