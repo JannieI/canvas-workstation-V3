@@ -411,25 +411,32 @@ export class ShapeEditComponent implements OnInit {
         // Update item in the bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletUpdate', '@Start');
 
-        this.localWidget.shapeBullets[this.bulletIndex] = this.bulletText;
-        this.editBulletItem = false;
-
-
-
-
-        this.localWidget.shapeBullet[this.bulletIndex].text = this.bulletText;
-
-        // Get T info
+        // Get Input
         let selectedTabstring: string = ev.target.value;
-        let openBracket: number = selectedTabstring.indexOf('(');
-        let closeBracket: number = selectedTabstring.indexOf(')');
-        this.selectedTabIndex = +selectedTabstring.substring(openBracket + 1, closeBracket);
-        
-        let selectedTabIndex: number = this.globalVariableService.currentDashboardTabs
-            .findIndex(t => t.id == this.selectedTabIndex);
-        
-        this.editBulletItem = false;
 
+        // None selected
+        if (selectedTabstring == 'None') {
+            this.localWidget.shapeBullet[this.bulletIndex].linkedTabID = null;
+        } else {
+            // Get sequence nr = inde + 1
+            let openBracket: number = selectedTabstring.indexOf('(');
+            let closeBracket: number = selectedTabstring.indexOf(')');
+            let tabSequenceNr = +this.bulletSelectedTab.substring(openBracket + 1, closeBracket);
+        
+            // Store ID associated with that sequence nr
+            if (tabSequenceNr < 0) {
+                this.localWidget.shapeBullet[this.bulletIndex].linkedTabID = null;
+            } else {
+                this.localWidget.shapeBullet[this.bulletIndex].linkedTabID = 
+                    this.globalVariableService.currentDashboardTabs[tabSequenceNr - 1].id;
+            };
+
+            // Store bullet text
+            this.localWidget.shapeBullet[this.bulletIndex].text = this.bulletText;
+
+            // Out of editting
+            this.editBulletItem = false;
+        };
 
     }
 
