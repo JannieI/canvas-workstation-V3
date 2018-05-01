@@ -243,7 +243,6 @@ const widgetTemplate: Widget =
         "slicerBins": null,
         "slicerAddRest": false,
         "slicerAddRestValue": false,
-        "shapeBullets": [],
         "shapeBullet": [],
         "shapeBulletStyleType": "",
         "shapeBulletsOrdered": false,
@@ -3734,11 +3733,11 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             };
 
                             // Get bullets
-                            // TODO - fix when using DB
-                            if (w.widgetType == 'Shape') {
-                                let b: string = w.shapeBullets.toString();
-                                w.shapeBullets = b.split(',');
-                            };
+                            // // TODO - fix when using DB
+                            // if (w.widgetType == 'Shape') {
+                            //     let b: string = w.shapeBullets.toString();
+                            //     w.shapeBullets = b.split(',');
+                            // };
 
                             // TODO - this does NOT work in datalib: if the first dashboardTabIDs
                             // = "a,b,c", then all works.  Else, it gives a big number 1046785...
@@ -5342,7 +5341,6 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.shapeText = changedWidget.shapeText;
                 w.shapeTextColour = changedWidget.shapeTextColour;
                 w.shapeValue = changedWidget.shapeValue;
-                w.shapeBullets = changedWidget.shapeBullets;
                 w.shapeBulletStyleType = changedWidget.shapeBulletStyleType;
                 w.shapeBulletsOrdered = changedWidget.shapeBulletsOrdered;
                 w.shapeBulletMarginBottom = changedWidget.shapeBulletMarginBottom;
@@ -5482,7 +5480,6 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.shapeText = changedWidget.shapeText;
                 w.shapeTextColour = changedWidget.shapeTextColour;
                 w.shapeValue = changedWidget.shapeValue;
-                w.shapeBullets = changedWidget.shapeBullets;
                 w.shapeBulletStyleType = changedWidget.shapeBulletStyleType;
                 w.shapeBulletsOrdered = changedWidget.shapeBulletsOrdered;
                 w.shapeBulletMarginBottom = changedWidget.shapeBulletMarginBottom;

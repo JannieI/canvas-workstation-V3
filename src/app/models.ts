@@ -685,7 +685,6 @@ export class Widget {
     slicerType: string;                 // Type of Slicer, ie List, Bin
 
     // Shape
-    shapeBullets: string[];             // Array of bullet points
     shapeBullet: 
         { 
             text: string; 
