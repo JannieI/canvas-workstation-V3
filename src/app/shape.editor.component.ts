@@ -172,7 +172,6 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.containerHasTitle = false;
             this.localWidget.containerHeight = 220;
             this.localWidget.containerWidth = 200;
-            this.localWidget.shapeBullets = ["Text ..."];
             this.localWidget.shapeBullet = [];
             this.localWidget.shapeBulletStyleType ='square';
             this.localWidget.shapeBulletsOrdered = false;
@@ -365,12 +364,6 @@ export class ShapeEditComponent implements OnInit {
         // Remove item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletDelete', '@Start');
 
-        this.localWidget.shapeBullets.splice(index,1);
-        this.bulletText = '';
-        this.editBulletItem = false;
-
-
-
         this.localWidget.shapeBullet.splice(index,1);
         this.bulletText = '';
         this.editBulletItem = false;
@@ -381,7 +374,7 @@ export class ShapeEditComponent implements OnInit {
     clickBulletEdit(index: number, item: string) {
         // Edit item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEdit', '@Start');
-console.log('xx this.localWidget.shapeBullet[index]', this.localWidget.shapeBullet[index])
+
         // Remember inddex in [w.Bullets]
         this.bulletIndex = index;
 
@@ -495,8 +488,7 @@ console.log('xx this.localWidget.shapeBullet[index]', this.localWidget.shapeBull
         
         let selectedTabIndex: number = this.globalVariableService.currentDashboardTabs
             .findIndex(t => t.id == this.selectedTabIndex);
-        console.log('xx selectedTab', selectedTabIndex, 
-        this.globalVariableService.currentDashboardTabs[selectedTabIndex])
+
     }
 
     clickSave() {
