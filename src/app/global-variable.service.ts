@@ -1464,7 +1464,6 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     i => i.userID == userID
                 );
 
-
                 // Add State and Name, at Runtime
                 for (var x = 0; x < temp.length; x++) {
                     temp[x].stateAtRunTime = 'Deleted';
@@ -5207,6 +5206,10 @@ console.log('xx allS 1', this.currentDatasets.slice())
             };
         };
 
+        // Register in Recent
+        this.amendDashboardRecent(dashboardID, y);
+
+        // Inform subscribers of the change
         this.currentDashboardInfo.next({
             currentDashboardID: dashboardID,
             currentDashboardTabID: y,

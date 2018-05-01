@@ -16,7 +16,9 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard, DashboardTab, DashboardRecent }                  from './models';
+import { Dashboard }                  from './models';
+import { DashboardTab }               from './models';
+import { DashboardRecent }            from './models';
 
 @Component({
     selector: 'dashboard-new',

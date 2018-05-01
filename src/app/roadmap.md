@@ -237,6 +237,7 @@ Add SORT to DB ... what about add afterwards?
     16.Consider popup status messages, like VSCode to be more visible - maybe not needed.
     17.Considering opening message per D (might even be per user as well), that will display each time D is opened.  How is it entered, who enters / deletes / edits it, and how is it displayed - modal (another one!), popup and for how long, and how is it closed, and how does it look to fit in?
     18.D usage stats - make something out of it, using nrTimesOpened, nrTimesChanged.  Do we need to extend this to T, W as well?
+    19.Add speaker notes, that can open in separate Browser Tab.
 
 **Templates**
     1. Loading a template - make sure to respect security / rights + all is read-only

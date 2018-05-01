@@ -2632,8 +2632,6 @@ console.log('xx filteredActions', filteredActions)
         // Toggle Lock / Unlock for selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLockUnlock', '@Start');
 
-console.log('xx perms',       this.globalVariableService.dashboardPermissionList(this.globalVariableService.currentDashboardInfo.value.currentDashboardID) )
-
         // Check permissions
         let permissions: string[] = this.globalVariableService.dashboardPermissionList(this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
         if ( (permissions.indexOf('canedit') < 0)  
