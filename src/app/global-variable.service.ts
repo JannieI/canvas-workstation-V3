@@ -5807,6 +5807,83 @@ console.log('xx allS 1', this.currentDatasets.slice())
         return hasAccess;
     }
 
+    dashboardPermissionList(id: number): string[] {
+        // Returns Array of Permissions for the current user to the given D.
+        console.log('Global-Variables dashboardPermissionCheck ...', id);
+
+        // Assume no access
+        let accessList: string[] = [];
+
+        // Format user
+        let userID = this.currentUser.userID;
+
+        let dashboard: Dashboard;
+        this.dashboards.forEach(d => {
+            if (d.id == id) {
+                dashboard = Object.assign({}, d);
+            };
+        });
+
+        // Make sure we have a D
+        if (dashboard == undefined) {
+            return accessList;
+        };
+
+        // Everyone has access to Public Ds
+        if (dashboard.accessType.toLowerCase() == 'public') {
+            accessList = ['canView' ,'canEdit' ,'canDelete' ,'canAddDS'];
+        };
+
+        // The owner has access to Private ones
+        if (dashboard.accessType.toLowerCase() == 'private'
+            &&
+            dashboard.creator.toLowerCase() == userID.toLowerCase()) {
+                accessList = ['canView' ,'canEdit' ,'canDelete' ,'canAddDS'];
+            };
+        if (dashboard.accessType.toLowerCase() == 'accesslist') {
+            this.dashboardPermissions.forEach(dp => {
+                if (dp.dashboardID == dashboard.id) {
+                    if (dp.userID != null) {
+                        if (dp.userID.toLowerCase() == userID.toLowerCase()) {
+                            if (dp.canView) {
+                                accessList.push('canView');
+                            };
+                            if (dp.canEdit) {
+                                accessList.push('canEdit');
+                            };
+                            if (dp.canDelete) {
+                                accessList.push('canDelete');
+                            };
+                            if (dp.canAddDS) {
+                                accessList.push('canAddDS');
+                            };
+                        };
+                    };
+                    if (dp.groupName != null) {
+                        if (this.currentUser.groups.
+                            map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
+                                if (dp.canView) {
+                                    accessList.push('canView');
+                                };
+                                if (dp.canEdit) {
+                                    accessList.push('canEdit');
+                                };
+                                if (dp.canDelete) {
+                                    accessList.push('canDelete');
+                                };
+                                if (dp.canAddDS) {
+                                    accessList.push('canAddDS');
+                                };
+                            };
+                    };
+                };
+            });
+        };
+
+        // Return
+        return accessList;
+    }
+
     formatDate(date) {
          // Formats a given date into YYYY/MM/DD HH:MM:SS
          console.log('Global-Variables formatDate ...', date);
