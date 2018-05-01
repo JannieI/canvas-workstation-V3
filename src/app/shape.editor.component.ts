@@ -50,6 +50,7 @@ export class ShapeEditComponent implements OnInit {
     editBulletItem: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     selectedColour: string;
+    selectedTab: string;
     selectedTabIndex: number;
     showArrow: boolean = false;
     showArrowThin: boolean = false;
@@ -387,6 +388,18 @@ export class ShapeEditComponent implements OnInit {
 
         this.bulletIndex = index;
         this.bulletValue = this.localWidget.shapeBullet[index].text;
+        
+        let tID: number = this.localWidget.shapeBullet[index].linkedTabID;
+        let gvIndex: number = this.globalVariableService.currentDashboardTabs.findIndex(t =>
+            t.id == tID);
+        if (gvIndex == -1) {
+            this.selectedTab = '';
+        } else {
+
+            this.selectedTab = this.globalVariableService.currentDashboardTabs[gvIndex].name 
+            + ' (' + index.toString() + ')';
+        };
+            
         this.editBulletItem = true;
 
     }
@@ -447,10 +460,15 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsTab', '@Start');
 
         // Get T info
-        let selectedTab: string = ev.target.value;
-        let openBracket: number = selectedTab.indexOf('(');
-        let closeBracket: number = selectedTab.indexOf(')');
-        this.selectedTabIndex = +selectedTab.substring(openBracket + 1, closeBracket);
+        let selectedTabstring: string = ev.target.value;
+        let openBracket: number = selectedTabstring.indexOf('(');
+        let closeBracket: number = selectedTabstring.indexOf(')');
+        this.selectedTabIndex = +selectedTabstring.substring(openBracket + 1, closeBracket);
+        
+        let selectedTabIndex: number = this.globalVariableService.currentDashboardTabs
+            .findIndex(t => t.id == this.selectedTabIndex);
+        console.log('xx selectedTab', selectedTabIndex, 
+        this.globalVariableService.currentDashboardTabs[selectedTabIndex])
     }
 
     clickSave() {
