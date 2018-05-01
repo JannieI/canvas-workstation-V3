@@ -181,6 +181,8 @@ This document describes items for later versions of Canvas.
     - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI. For a GAUGE, see https://gist.github.com/anilkpatro/0cf0503b581556a14aab
     For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html
     - Give hints/advice on W as to type of graph, insights, etc.
+    - filter in W, not only via Slicer, using Vega
+    - where to store pictures for presentations - on a server??
 
 
 **Table (Bradley SmartTable)** 
@@ -205,8 +207,9 @@ This document describes items for later versions of Canvas.
     - cell background and colour and font size
     - resize row and col
     - support 10m rows
-Add SORT to DB ... what about add afterwards?
-
+- Add SORT to DB ... what about add afterwards?
+- Consider Table Checkpoint - not sure if it is that useful, as one can filter, etc on table, or redesign ... And the purpose of a table is to look at data for a while methinks
+- Consider filter on click cell -> not sure how to make this easy in UI, could be quite easy to just call slicerFilter in the background.
 
 
 **Dashboard**
@@ -238,6 +241,7 @@ Add SORT to DB ... what about add afterwards?
     17.Considering opening message per D (might even be per user as well), that will display each time D is opened.  How is it entered, who enters / deletes / edits it, and how is it displayed - modal (another one!), popup and for how long, and how is it closed, and how does it look to fit in?
     18.D usage stats - make something out of it, using nrTimesOpened, nrTimesChanged.  Do we need to extend this to T, W as well?
     19.Add speaker notes, that can open in separate Browser Tab.
+
 
 **Templates**
     1. Loading a template - make sure to respect security / rights + all is read-only

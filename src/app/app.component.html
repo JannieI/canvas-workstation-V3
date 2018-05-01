@@ -2803,6 +2803,13 @@
     (formCollaborateMessagesClosed)="handleCloseCollaborateMessages($event)">Load Messages ...
 </collaborate-messages>
 
+<!-- Modal: Messages -->
+<collaborate-messagesNew
+    class="formPopupDashboard"
+    *ngIf="showModalCollaborateMessagesNew"
+    (formCollaborateMessagesClosed)="handleCloseCollaborateMessages($event)">Load Messages ...
+</collaborate-messagesNew>
+
 
 <!-- Modal: Activities -->
 <collaborate-activities

@@ -58,7 +58,7 @@ export class CollaborateMessagesComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-         
+
         this.globalVariableService.getCanvasMessages().then (ca => {
             // Set the data for the grid
             this.datagridData = ca;
@@ -67,7 +67,7 @@ export class CollaborateMessagesComponent implements OnInit {
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], this.datagridShowFields, this.datagridVisibleFields);
 
-        });        
+        });
     }
 
     clickClose(action: string) {

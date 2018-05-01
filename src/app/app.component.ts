@@ -360,6 +360,7 @@ export class AppComponent implements OnInit {
     showModalCollaborateSendMessage: boolean = false;
     showModalCollaborateSendEmail: boolean = false;
     showModalCollaborateMessages: boolean = false;
+    showModalCollaborateMessagesNew: boolean = false;
     showModalCollaborateActivities: boolean = false;
     showModalLanding: boolean;
     showModalUserMyProfile: boolean = false;
@@ -1274,6 +1275,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalCollaborateMessages = false;
+        // this.showModalCollaborateMessagesNew = false;
     }
 
     handleCloseCollaborateActivities(action: string) {
@@ -4201,6 +4203,7 @@ console.log('xx filteredActions', filteredActions)
         this.menuOptionClickPreAction();
 
         this.showModalCollaborateMessages = true;
+        // this.showModalCollaborateMessagesNew = true;
 
         this.menuOptionClickPostAction();
     }

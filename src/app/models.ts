@@ -176,6 +176,28 @@ export class CanvasMessage {
     dashboardTabID: number;     // Optional Tab linked to this message
 }
 
+export class CanvasMessageNew {
+    id: number;                 // Unique ID
+    threadID: number;           // Optional thread - to keep converstations together (later use)
+    sentBy: string;             // UserID who sent message, could also be System (for Alerts)
+    sentOn: string;             // DateTime message was sent
+    recipients: [               // Original list of Users, groups are split into users @time
+        {
+            userID: string;
+            readOn: string;     // dateTime read, null if not read
+        }
+    ];
+    toGroups: string[];         // Original list of Groups
+    subject: string;            // Message Subject
+    body: string;               // Message body
+    dashboardID: number;        // Optional Dashboard linked to this message
+    dashboardTabID: number;     // Optional Tab linked to this message
+    url: string;                // Optional url to link to
+
+    // At runtime
+    iHaveReadThis: boolean;     // 2nd normal form to make easier, if current user read it
+}
+
 export class CanvasMessageSingle {
     id: number;                 // Unique ID
     messageID: number;          // FK to CanvasMessage

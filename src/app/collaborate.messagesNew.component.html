@@ -1,0 +1,23 @@
+<div class="modal modalBox">
+        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+            <div class="modal-content modalContent">
+
+                <div>
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+                    <div>
+                        <b>Message</b>
+                        <i>A list of Messages between users.</i>
+                    </div>
+    
+                    <div *ngFor="let row of messagesNew; let i = index">
+
+                    </div>
+
+    
+                </div>
+
+            </div>
+        </div>
+    </div>
