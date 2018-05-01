@@ -2649,12 +2649,15 @@ console.log('xx filteredActions', filteredActions)
         };
 
         this.menuOptionClickPreAction();
+
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 w.isLocked = !w.isLocked;
                 this.globalVariableService.saveWidget(w);
             };
         });
+
+        this.menuOptionClickPostAction;
     }
     
     clickMenuWidgetCopy() {
