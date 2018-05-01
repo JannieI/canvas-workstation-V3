@@ -381,7 +381,7 @@ export class ShapeEditComponent implements OnInit {
     clickBulletEdit(index: number, item: string) {
         // Edit item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEdit', '@Start');
-
+console.log('xx this.localWidget.shapeBullet[index]', this.localWidget.shapeBullet[index])
         // Remember inddex in [w.Bullets]
         this.bulletIndex = index;
 
@@ -389,22 +389,25 @@ export class ShapeEditComponent implements OnInit {
         this.bulletText = this.localWidget.shapeBullet[index].text;
         
         // Take the id of the selected bullet, and get its position in [gvTabs]
-        let tID: number = this.localWidget.shapeBullet[index].linkedTabID;
-        let gvIndex: number = this.globalVariableService.currentDashboardTabs.findIndex(t =>
-            t.id == tID);
-
-        // If this ID exists, show it with the correct sequence number (index + 1)
-        if (gvIndex == -1) {
-            this.bulletSelectedTab == 'None'
+        if (this.localWidget.shapeBullet[index].linkedTabID == null) {
+            this.bulletSelectedTab = 'None';
         } else {
+            let tID: number = this.localWidget.shapeBullet[index].linkedTabID;
+            let gvIndex: number = this.globalVariableService.currentDashboardTabs.findIndex(t =>
+                t.id == tID);
 
-            this.bulletSelectedTab = this.globalVariableService.currentDashboardTabs
-                [gvIndex].name + ' (' + (gvIndex + 1).toString() + ')';
+            // If this ID exists, show it with the correct sequence number (index + 1)
+            if (gvIndex == -1) {
+                this.bulletSelectedTab = 'None';
+            } else {
+
+                this.bulletSelectedTab = this.globalVariableService.currentDashboardTabs
+                    [gvIndex].name + ' (' + (gvIndex + 1).toString() + ')';
+            };
         };
-            
+
         // Set editting
         this.editBulletItem = true;
-
     }
 
     clickBulletUpdate() {
@@ -430,10 +433,12 @@ export class ShapeEditComponent implements OnInit {
 
             // Store bullet text
             this.localWidget.shapeBullet[this.bulletIndex].text = this.bulletText;
-
-            // Out of editting
-            this.editBulletItem = false;
         };
+
+        // Out of editting
+        this.bulletSelectedTab = 'None';
+        this.bulletText = '';
+        this.editBulletItem = false;
 
     }
 
