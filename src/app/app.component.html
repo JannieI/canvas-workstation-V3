@@ -2037,7 +2037,7 @@
                 > 
                 {{ bullet.text }}
                 <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
-                    (click)="clickBulletDelete(i, row)">
+                    (click)="clickBulletJump(bullet.linkedTabID)">
                 </clr-icon>
             </li>
         </ul>

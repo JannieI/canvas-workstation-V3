@@ -177,7 +177,7 @@ export class AppComponent implements OnInit {
         if (event.code == 'PageDown'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
             // this.statusbarDOM.clickShowNextTab();
             this.globalVariableService.refreshCurrentDashboard(
-                'statusbar-clickShowNextTab',
+                'app-keyEvent',
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 0,
                 'Next'
@@ -187,7 +187,7 @@ export class AppComponent implements OnInit {
         if (event.code == 'PageUp'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
             // this.statusbarDOM.clickShowPreviousTab();
             this.globalVariableService.refreshCurrentDashboard(
-                'statusbar-clickShowNextTab',
+                'app-keyEvent',
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 0,
                 'Next'
@@ -4730,6 +4730,21 @@ console.log('xx filteredActions', filteredActions)
             };
         });
 
+    }
+
+    clickBulletJump(linkedTabID: number) {
+        // Jump to the linked Tab
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletJump', '@Start');
+
+        this.menuOptionClickPreAction();
+console.log('xx linkedTabID', linkedTabID)
+        this.globalVariableService.refreshCurrentDashboard(
+            'app-clickBulletJump',
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            linkedTabID,
+            ''
+        );
+        this.menuOptionClickPostAction();
     }
 
     clickResizeWidgetDown(ev: MouseEvent, index: number) {
