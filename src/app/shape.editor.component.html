@@ -1106,11 +1106,11 @@
 
                     <div class="gridBulletsInput">
                         <b>Item:</b>
-                        <input [(ngModel)]="bulletValue">
+                        <input [(ngModel)]="bulletText">
                     </div>
                     <div class="select gridBulletsTab">
                         <select
-                            [(ngModel)]="selectedTab"
+                            [(ngModel)]="bulletSelectedTab"
                             (change)="clickSelectBulletsTab($event)"
                             >
                             <option *ngFor="let row of dashboardTabList">
@@ -1120,7 +1120,7 @@
                     </div>
 
                     <button type="button" class="btn btn-link gridBulletsButton">
-                        <span *ngIf="editBulletItem" (click)="clickBulletUpdate()">Update</span>
+                        <span *ngIf="editBulletItem" (click)="clickBulletUpdate($event)">Update</span>
                         <span *ngIf="!editBulletItem" (click)="clickBulletAdd()">Add</span>
                     </button>
                 </div>
