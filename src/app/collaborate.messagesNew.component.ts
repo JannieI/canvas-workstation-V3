@@ -59,7 +59,8 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardID: 1,
                 dashboardTabID: 1,
                 url: '',
-                iHaveReadThis: false
+                iHaveReadThis: false,
+                dashboardName: 'Economic Review'
             }
         );
         this.canvasMessagesNew[0].recipients.push( 
@@ -68,7 +69,28 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 readOn: '2017/01/01'
             }
         );
-
+        this.canvasMessagesNew.push(
+            {
+                id: 1,
+                threadID: 1,
+                sender: 'JannieI',
+                sentOn: '2017/01/01',
+                recipients: [
+                    {
+                        userID: 'SamH',
+                        readOn: null
+                    }
+                ],
+                toGroups: [],
+                subject: 'Review of upcoming budget',
+                body: 'Please review and add missing logistics figures',
+                dashboardID: 1,
+                dashboardTabID: 1,
+                url: '',
+                iHaveReadThis: true,
+                dashboardName: 'Economic Review'
+            }
+        );
     }
 
     clickClose(action: string) {

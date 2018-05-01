@@ -16,5 +16,26 @@
 }
 
 .messageBlock {
-    border: 1px solid gray;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    margin: 1px 3px 12px 3px;
+}
+
+.sender {
+    color: darkgray;
+}
+
+.actions {
+    color: black;
+    float: right;
+}
+
+.dashboardLink {
+    color: blue;
+    float: right;
+}
+
+.ellipsis {
+    color: black;
+    float: right;
 }

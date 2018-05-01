@@ -196,6 +196,7 @@ export class CanvasMessageNew {
 
     // At runtime
     iHaveReadThis: boolean;     // 2nd normal form to make easier, if current user read it
+    dashboardName: string;      // Optional, name of linked D
 }
 
 export class CanvasMessageSingle {

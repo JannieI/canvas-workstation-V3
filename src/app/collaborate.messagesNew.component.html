@@ -11,35 +11,42 @@
                         <i>A list of Messages between users.</i>
                     </div>
     
-                    <div *ngFor="let row of messagesNew; let i = index" class="messageBlock">
+                    <div *ngFor="let row of canvasMessagesNew; let i = index" class="messageBlock">
                         <div>
-                            <clr-icon
-                                shape="check"
-                                size="12"
-                                *ngIf="showFavouriteDashboard">
-                            </clr-icon>
-                            {{ row.sender }}
-                            {{ row.subject }}
-                            <clr-icon
-                                shape="cog"
-                                size="12"
-                                *ngIf="showFavouriteDashboard">
-                            </clr-icon>
+                            <span class="checkbox">
+                                <input type="checkbox" id="checkrads_2" checked>
+                                <label for="checkrads_2"></label>
+                            </span>
+                            <span class="sender">
+                                {{ row.sender }}
+                                {{ row.subject }}
+                            </span>
+                                <span class="actions">
+                                    <clr-icon
+                                        shape="cog"
+                                        size="12"
+                                        >
+                                    </clr-icon>
+                                </span>
                         </div>
                         <div>
                             {{ row.body }}
-                            <clr-icon
-                                shape="cog"
-                                size="12"
-                                *ngIf="showFavouriteDashboard">
-                            </clr-icon>
                             {{ row.sendOn }}
-                            {{ row.dashboardID }}
-                            <clr-icon
-                                shape="arrow right"
-                                size="12"
-                                *ngIf="showFavouriteDashboard">
-                            </clr-icon>
+                            <span class="dashboardLink">
+                                {{ row.dashboardName }}
+                                <clr-icon
+                                    shape="arrow right"
+                                    size="12"
+                                    >
+                                </clr-icon>
+                            </span>
+                            <span class="ellipsis">
+                                <clr-icon
+                                    shape="ellipsis-horizontal"
+                                    size="12"
+                                    >
+                                </clr-icon>
+                            </span>
                         </div>
                     </div>
 

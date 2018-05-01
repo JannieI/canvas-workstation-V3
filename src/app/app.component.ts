@@ -1274,8 +1274,8 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        this.showModalCollaborateMessages = false;
-        // this.showModalCollaborateMessagesNew = false;
+        // this.showModalCollaborateMessages = false;
+        this.showModalCollaborateMessagesNew = false;
     }
 
     handleCloseCollaborateActivities(action: string) {
@@ -4202,8 +4202,8 @@ console.log('xx filteredActions', filteredActions)
 
         this.menuOptionClickPreAction();
 
-        this.showModalCollaborateMessages = true;
-        // this.showModalCollaborateMessagesNew = true;
+        // this.showModalCollaborateMessages = true;
+        this.showModalCollaborateMessagesNew = true;
 
         this.menuOptionClickPostAction();
     }
