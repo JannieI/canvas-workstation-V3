@@ -408,7 +408,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickBulletUpdate(ev: any) {
-        // Add item to bullet list
+        // Update item in the bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletUpdate', '@Start');
 
         this.localWidget.shapeBullets[this.bulletIndex] = this.bulletText;
@@ -437,15 +437,15 @@ export class ShapeEditComponent implements OnInit {
         // Add item to bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletAdd', '@Start');
 
-        // Remove dummy 'Text' string
-        if (this.localWidget.shapeBullets.length == 1) {
-            if (this.localWidget.shapeBullets[0] == 'Text ...') {
-                this.localWidget.shapeBullets = [];
-            };
-        };
+        // // Remove dummy 'Text' string
+        // if (this.localWidget.shapeBullets.length == 1) {
+        //     if (this.localWidget.shapeBullets[0] == 'Text ...') {
+        //         this.localWidget.shapeBullets = [];
+        //     };
+        // };
 
-        // Add new
-        this.localWidget.shapeBullets.push(this.bulletText);
+        // // Add new
+        // this.localWidget.shapeBullets.push(this.bulletText);
 
 
 
@@ -458,14 +458,26 @@ export class ShapeEditComponent implements OnInit {
         };
 
         // Add new
-        this.localWidget.shapeBullet.push(
-        { 
-            text: this.bulletText, 
-            linkedTabID: null, 
-            color: '', 
-            jumpedColor: '' 
-        });
 
+        // Get sequence nr
+        let openBracket: number = this.bulletSelectedTab.indexOf('(');
+        let closeBracket: number = this.bulletSelectedTab.indexOf(')');
+        let tabSequenceNr = +this.bulletSelectedTab.substring(openBracket + 1, closeBracket);
+        
+        // Add to Bullets Array
+        if (tabSequenceNr < 0) {
+            this.selectedTabIndex = null;
+        } else {
+            this.localWidget.shapeBullet.push(
+                { 
+                    text: this.bulletText, 
+                    linkedTabID: this.globalVariableService.currentDashboardTabs
+                        [tabSequenceNr - 1].id, 
+                    color: '', 
+                    jumpedColor: '' 
+                }
+            );
+        };
     }
 
     clickSelectBulletsTab(ev: any) {
