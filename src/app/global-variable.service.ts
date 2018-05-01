@@ -5831,14 +5831,14 @@ console.log('xx allS 1', this.currentDatasets.slice())
 
         // Everyone has access to Public Ds
         if (dashboard.accessType.toLowerCase() == 'public') {
-            accessList = ['canView' ,'canEdit' ,'canDelete' ,'canAddDS'];
+            accessList = ['canview' ,'canedit' ,'candelete' ,'canaddds'];
         };
 
         // The owner has access to Private ones
         if (dashboard.accessType.toLowerCase() == 'private'
             &&
             dashboard.creator.toLowerCase() == userID.toLowerCase()) {
-                accessList = ['canView' ,'canEdit' ,'canDelete' ,'canAddDS'];
+                accessList = ['canview' ,'canedit' ,'candelete' ,'canaddds'];
             };
         if (dashboard.accessType.toLowerCase() == 'accesslist') {
             this.dashboardPermissions.forEach(dp => {
@@ -5846,16 +5846,16 @@ console.log('xx allS 1', this.currentDatasets.slice())
                     if (dp.userID != null) {
                         if (dp.userID.toLowerCase() == userID.toLowerCase()) {
                             if (dp.canView) {
-                                accessList.push('canView');
+                                accessList.push('canview');
                             };
                             if (dp.canEdit) {
-                                accessList.push('canEdit');
+                                accessList.push('canedit');
                             };
                             if (dp.canDelete) {
-                                accessList.push('canDelete');
+                                accessList.push('candelete');
                             };
                             if (dp.canAddDS) {
-                                accessList.push('canAddDS');
+                                accessList.push('canaddds');
                             };
                         };
                     };

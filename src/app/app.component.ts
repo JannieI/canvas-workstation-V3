@@ -2632,6 +2632,23 @@ console.log('xx filteredActions', filteredActions)
         // Toggle Lock / Unlock for selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLockUnlock', '@Start');
 
+console.log('xx perms',       this.globalVariableService.dashboardPermissionList(this.globalVariableService.currentDashboardInfo.value.currentDashboardID) )
+
+        // Check permissions
+        let permissions: string[] = this.globalVariableService.dashboardPermissionList(this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
+        if ( (permissions.indexOf('canedit') < 0)  
+              &&  
+              (permissions.indexOf('candelete)') < 0) ) {
+            this.showMessage(
+                'Insufficient permissions',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+        
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
