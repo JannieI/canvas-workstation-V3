@@ -329,20 +329,37 @@
     }
     .gridTextBold {
         grid-column-start: 1;
-        grid-column-end: 11;
+        grid-column-end: 5;
         grid-row-start: 7;
         grid-row-end: 8;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridTextItalic {
-        grid-column-start: 1;
+        grid-column-start: 5;
         grid-column-end: 11;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextAlignTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
         grid-row-start: 9;
         grid-row-end: 10;
         padding-left: 15px;
         padding-top: 6px;
     }
+    .gridTextAlign {
+        grid-column-start: 3;
+        grid-column-end: 7;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
     .gridTextColourTitle {
         grid-column-start: 1;
         grid-column-end: 3;

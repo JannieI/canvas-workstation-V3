@@ -878,7 +878,20 @@
                             [(ngModel)]="localWidget.shapeIsItalic"
                             >
                     </div>
-
+                    <div class="gridTextAlignTitle">
+                        <b>Align:</b>
+                    </div>
+                    <div class="select gridTextAlign">
+                        <select
+                            [(ngModel)]="localWidget.shapeStroke"
+                            (change)="clickSelectCircleLineColor($event)"
+                            >
+                            <option>Left</option>
+                            <option>Center</option>
+                            <option>Right</option>
+                        </select>
+                    </div>
+    
                     <div class="gridTextColourTitle">
                         <b>Text:</b>
                     </div>
