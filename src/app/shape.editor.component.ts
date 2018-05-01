@@ -395,7 +395,7 @@ export class ShapeEditComponent implements OnInit {
 
         // If this ID exists, show it with the correct sequence number (index + 1)
         if (gvIndex == -1) {
-            this.bulletSelectedTab = '';
+            this.bulletSelectedTab == 'None'
         } else {
 
             this.bulletSelectedTab = this.globalVariableService.currentDashboardTabs
@@ -407,20 +407,17 @@ export class ShapeEditComponent implements OnInit {
 
     }
 
-    clickBulletUpdate(ev: any) {
+    clickBulletUpdate() {
         // Update item in the bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletUpdate', '@Start');
 
-        // Get Input
-        let selectedTabstring: string = ev.target.value;
-
         // None selected
-        if (selectedTabstring == 'None') {
+        if (this.bulletSelectedTab == 'None') {
             this.localWidget.shapeBullet[this.bulletIndex].linkedTabID = null;
         } else {
-            // Get sequence nr = inde + 1
-            let openBracket: number = selectedTabstring.indexOf('(');
-            let closeBracket: number = selectedTabstring.indexOf(')');
+            // Get sequence nr = index + 1
+            let openBracket: number = this.bulletSelectedTab.indexOf('(');
+            let closeBracket: number = this.bulletSelectedTab.indexOf(')');
             let tabSequenceNr = +this.bulletSelectedTab.substring(openBracket + 1, closeBracket);
         
             // Store ID associated with that sequence nr
@@ -444,19 +441,6 @@ export class ShapeEditComponent implements OnInit {
         // Add item to bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletAdd', '@Start');
 
-        // // Remove dummy 'Text' string
-        // if (this.localWidget.shapeBullets.length == 1) {
-        //     if (this.localWidget.shapeBullets[0] == 'Text ...') {
-        //         this.localWidget.shapeBullets = [];
-        //     };
-        // };
-
-        // // Add new
-        // this.localWidget.shapeBullets.push(this.bulletText);
-
-
-
-
         // Remove dummy 'Text' string
         if (this.localWidget.shapeBullet.length == 1) {
             if (this.localWidget.shapeBullet[0].text == 'Text ...') {
@@ -464,27 +448,34 @@ export class ShapeEditComponent implements OnInit {
             };
         };
 
-        // Add new
-
-        // Get sequence nr
-        let openBracket: number = this.bulletSelectedTab.indexOf('(');
-        let closeBracket: number = this.bulletSelectedTab.indexOf(')');
-        let tabSequenceNr = +this.bulletSelectedTab.substring(openBracket + 1, closeBracket);
-        
-        // Add to Bullets Array
-        if (tabSequenceNr < 0) {
-            this.selectedTabIndex = null;
+        // None selected
+        let selectedTabID: number;
+        if (this.bulletSelectedTab == 'None') {
+            selectedTabID = null;
         } else {
-            this.localWidget.shapeBullet.push(
-                { 
-                    text: this.bulletText, 
-                    linkedTabID: this.globalVariableService.currentDashboardTabs
-                        [tabSequenceNr - 1].id, 
-                    color: '', 
-                    jumpedColor: '' 
-                }
-            );
+            // Get sequence nr
+            let openBracket: number = this.bulletSelectedTab.indexOf('(');
+            let closeBracket: number = this.bulletSelectedTab.indexOf(')');
+            let tabSequenceNr = +this.bulletSelectedTab.substring(openBracket + 1, closeBracket);
+            
+            // Add to Bullets Array
+            if (tabSequenceNr < 0) {
+                selectedTabID = null;
+            } else {
+                selectedTabID = this.globalVariableService.currentDashboardTabs
+                    [tabSequenceNr - 1].id;
+            };
         };
+
+        // Add to Bullets
+        this.localWidget.shapeBullet.push(
+            { 
+                text: this.bulletText, 
+                linkedTabID: selectedTabID, 
+                color: '', 
+                jumpedColor: '' 
+            }
+        );
     }
 
     clickSelectBulletsTab(ev: any) {
