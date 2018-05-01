@@ -3012,6 +3012,18 @@ console.log('xx filteredActions', filteredActions)
             };
         });
 
+        // Check if Locked
+        if (this.selectedWidget.isLocked) {
+            this.showMessage(
+                'Widget is locked (unlock using Graph menu option)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         this.showModalTableDelete = true;
 
     }
