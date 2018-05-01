@@ -184,6 +184,7 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeSvgHeight = 60;
             this.localWidget.shapeSvgWidth = 60;
             this.localWidget.shapeText = 'The brown fox is tired';
+            this.localWidget.shapeTextAlign = 'Left';
 
         } else {
 

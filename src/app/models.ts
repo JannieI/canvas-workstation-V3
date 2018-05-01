@@ -710,6 +710,7 @@ export class Widget {
     shapeSvgHeight: number;             // Height of SVG element
     shapeSvgWidth: number;              // Width of SVG element
     shapeText: string;                  // Text in textbox
+    shapeTextAlign: string;             // Align text Left, Center, Right
     shapeTextColour: string;            // Text colour
     shapeValue: string;                 // Value to display
 
