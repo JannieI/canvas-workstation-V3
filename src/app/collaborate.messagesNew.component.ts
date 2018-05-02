@@ -29,7 +29,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
     @Output() formCollaborateMessagesClosed: EventEmitter<string> = new EventEmitter();
 
     canvasMessagesNew: CanvasMessageNew[] = [];
-
+    filterOn: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -82,7 +82,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                     }
                 ],
                 toGroups: [],
-                subject: '',
+                subject: 'New model',
                 body: 'I have added the transport costs to the new model, but it skews the figures as we now have once-off tonage included for March.  I suggest we leave it out, and just add an annotation.  Let me know by close today so that I can make any adjustmensts prior to our 9 oclock tomorrow...',
                 dashboardID: 1,
                 dashboardTabID: 1,
@@ -157,6 +157,51 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardName: 'Economic Review'
             }
         );
+        this.canvasMessagesNew.push(
+            {
+                id: 1,
+                threadID: 1,
+                sender: 'BiancaC',
+                sentOn: '2017/01/01',
+                recipients: [
+                    {
+                        userID: 'SamH',
+                        readOn: null
+                    }
+                ],
+                toGroups: [],
+                subject: 'New model',
+                body: 'Agreed, lets leave it out',
+                dashboardID: 1,
+                dashboardTabID: 1,
+                url: '',
+                iHaveReadThis: true,
+                dashboardName: 'Economic Review'
+            }
+        );
+        this.canvasMessagesNew.push(
+            {
+                id: 1,
+                threadID: 1,
+                sender: 'BiancaC',
+                sentOn: '2017/01/01',
+                recipients: [
+                    {
+                        userID: 'SamH',
+                        readOn: null
+                    }
+                ],
+                toGroups: [],
+                subject: 'New model',
+                body: 'Viv, I spotted another issue: the alignment of the top graphs on the last tab is off.  Also, please resize the logo proportionally.  And print a copy for Dough; he will arrive just before the meeting',
+                dashboardID: 1,
+                dashboardTabID: 1,
+                url: '',
+                iHaveReadThis: true,
+                dashboardName: 'Economic Review'
+            }
+        );
+        
     }
 
     clickClose(action: string) {

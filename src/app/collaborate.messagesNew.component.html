@@ -10,48 +10,52 @@
                         <b>Message</b>
                         <i>A list of Messages between users.</i>
                     </div>
-    
-                    <div *ngFor="let row of canvasMessagesNew; let i = index" class="messageBlock">
-                        <div>
-                            <clr-icon
-                                shape="check"
-                                size="12"
-                                [style.margin-left.px]="i%2=0? 0px : 10px"
-                                >
-                            </clr-icon>
-                            <span class="sender">
-                                <b>{{ row.sender }}</b>
-                                {{ row.subject }}
-                            </span>
-                                <span class="actions">
+
+                    <div class="messageBlock"
+                        [style.height.rem]="filterOn? 10 : 20"
+                        >
+                        <div *ngFor="let row of canvasMessagesNew; let i = index" class="message">
+                            <div
+                            [style.margin-left.px]="i%2==0 ? '0' : '30'"
+                            >
+                                <clr-icon
+                                    shape="check"
+                                    size="12"
+                                    >
+                                </clr-icon>
+                                <span class="sender">
+                                    <b>{{ row.sender }}</b>
+                                    {{ row.subject }}
+                                </span>
+                                    <span class="actions">
+                                        <clr-icon
+                                            shape="cog"
+                                            size="12"
+                                            >
+                                        </clr-icon>
+                                    </span>
+                            </div>
+                            <div>
+                                {{ row.body }}
+                                {{ row.sendOn }}
+                                <span class="dashboardLink">
+                                    <i>{{ row.dashboardName }}</i>
                                     <clr-icon
-                                        shape="cog"
+                                        shape="arrow right"
                                         size="12"
                                         >
                                     </clr-icon>
                                 </span>
-                        </div>
-                        <div>
-                            {{ row.body }}
-                            {{ row.sendOn }}
-                            <span class="dashboardLink">
-                                <i>{{ row.dashboardName }}</i>
-                                <clr-icon
-                                    shape="arrow right"
-                                    size="12"
-                                    >
-                                </clr-icon>
-                            </span>
-                            <span class="ellipsis">
-                                <clr-icon
-                                    shape="ellipsis-horizontal"
-                                    size="12"
-                                    >
-                                </clr-icon>
-                            </span>
+                                <span class="ellipsis">
+                                    <clr-icon
+                                        shape="ellipsis-horizontal"
+                                        size="12"
+                                        >
+                                    </clr-icon>
+                                </span>
+                            </div>
                         </div>
                     </div>
-
     
                 </div>
 

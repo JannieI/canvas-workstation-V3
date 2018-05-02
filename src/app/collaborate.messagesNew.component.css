@@ -16,6 +16,14 @@
 }
 
 .messageBlock {
+    border: 1px solid gray;
+    border-radius: 6px;
+    margin: 2px;
+    padding: 0;
+    overflow-y: scroll;
+}
+
+.message {
     border: 1px solid lightgray;
     border-radius: 6px;
     margin: 1px 3px 12px 3px;
