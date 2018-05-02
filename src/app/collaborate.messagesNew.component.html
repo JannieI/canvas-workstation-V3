@@ -4,11 +4,63 @@
 
                 <div>
                     <button type="button" class="closeButton" (click)="clickClose()">
-                        X
+                        X 
+                        <b>Messages</b>
                     </button>
                     <div>
-                        <b>Message</b>
-                        <i>A list of Messages between users.</i>
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickFilter()"
+                            title="Filter messages"
+                            >
+                            Filter
+                        </button>
+                        <b>Sender:</b>
+                        <input [(ngModel)]="sender"
+                            type="text"
+                            title="Filter on this sender"
+                            size="25"
+                            autofocus
+                            >
+                        <b>Subject:</b>
+                        <input [(ngModel)]="subject"
+                            type="text"
+                            title="Show messages that contains this text in the subject"
+                            size="25"
+                            >
+                        <b>Body:</b>
+                        <input [(ngModel)]="body"
+                            type="text"
+                            title="Show messages that contains this text in the body"
+                            size="25"
+                            >
+                        <b>Recipient:</b>
+                        <input [(ngModel)]="recipient"
+                            type="text"
+                            title="Show messages addressed to this userID"
+                            size="25"
+                            >
+                        <b>Sent after:</b>
+                        <input [(ngModel)]="sentAfter"
+                            type="text"
+                            title="Show messages sent after this date"
+                            size="25"
+                            >
+                        <b>Sent before:</b>
+                        <input [(ngModel)]="sendBefore"
+                            type="text"
+                            title="Show messages sent before this date"
+                            size="25"
+                            >
+                        <div class="gridLink">
+                            <input [(ngModel)]="messageHasBeenRead"
+                                type="checkbox"
+                                title="Filter on messages that were read before"
+                                >
+                        </div>
+                        
+                        
                     </div>
 
                     <div class="messageBlock"
@@ -34,13 +86,6 @@
                                     {{ row.subject }}
                                     <i>{{ row.sentOn }}</i>
                                 </span>
-                                    <span class="actions">
-                                        <clr-icon
-                                            shape="cog"
-                                            size="12"
-                                            >
-                                        </clr-icon>
-                                    </span>
                             </div>
                             <div>
                                 {{ row.body }}
@@ -61,7 +106,7 @@
                                             <button
                                                 type="button"
                                                 clrDropdownItem
-                                                (click)="clickMenuReply()"
+                                                (click)="clickReply()"
                                                 title="Enable EditMode to make changes"
                                                 >
                                                 Reply
@@ -69,21 +114,21 @@
                                             <button type="button"
                                                 clrDropdownItem
                                                 title="Undo previous action"
-                                                (click)="clickMenuForward()"
+                                                (click)="clickForward()"
                                                 >
                                                 Forward
                                             </button>
                                             <button type="button"
                                                 clrDropdownItem
                                                 title="Undo previous action"
-                                                (click)="clickMenuCopyText()"
+                                                (click)="clickCopyText()"
                                                 >
                                                 Copy Text
                                             </button>
                                             <button type="button"
                                                 clrDropdownItem
                                                 title="Undo previous action"
-                                                (click)="clickMenuRecall()"
+                                                (click)="clickRecall()"
                                                 >
                                                 Recall
                                             </button>

@@ -32,18 +32,13 @@
 }
     .replyMessage{
         border-left: 3px blue solid;
-        font-size: 0.6rem;
-        padding-left: 50px;
-        margin-left: 50px;
+        font-size: 0.5rem;
+        padding-left: 15px;
+        margin: 2px 2px 4px 30px;
     }
 
     .sender {
         color: rgb(61, 61, 61);
-    }
-
-    .actions {
-        color: black;
-        float: right;
     }
 
     .dashboardLink {
