@@ -28,14 +28,15 @@ export class CollaborateMessagesComponentNew implements OnInit {
 
     @Output() formCollaborateMessagesClosed: EventEmitter<string> = new EventEmitter();
 
-    canvasMessagesNew: CanvasMessageNew[] = [];
-    sender: string = '';
-    subject: string = '';
     body: string = '';
-    recipient: string = '';
-    sentAfter: string = '';
-    sendBefore: string = '';
+    canvasMessagesNew: CanvasMessageNew[] = [];
     messageHasBeenRead: boolean = false;
+    newMessage: boolean = false;
+    recipient: string = '';
+    sendBefore: string = '';
+    sender: string = '';
+    sentAfter: string = '';
+    subject: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -237,6 +238,13 @@ export class CollaborateMessagesComponentNew implements OnInit {
 
     }
 
+    clickReply() {
+        // Toggle filter on / off
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
+
+        this.newMessage = !this.newMessage;
+    }
+    
     clickClose(action: string) {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');

@@ -22,7 +22,6 @@
 .messageBlock {
     border: 1px solid gray;
     border-radius: 6px;
-    height: 15rem;
     margin: 2px;
     padding: 5px;
     overflow-y: scroll;

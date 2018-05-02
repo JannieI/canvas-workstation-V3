@@ -68,6 +68,7 @@
                     </div>
 
                     <div class="messageBlock"
+                    [style.height.rem]="newMessage? 7 : 15"
                         >
                         <div *ngFor="let row of canvasMessagesNew; let i = index" 
                             class="message"
