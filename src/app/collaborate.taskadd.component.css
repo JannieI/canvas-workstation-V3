@@ -44,14 +44,14 @@
         text-align: left;
     }
 
-        .gridActivityType {
-            grid-column-start: 6;
-            grid-column-end: 18;
-            grid-row-start: 3;
-            grid-row-end: 4;
-            margin-left: 20px;
-            text-align: left;
-        }
+    .gridActivityType {
+        grid-column-start: 6;
+        grid-column-end: 18;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-left: 20px;
+        text-align: left;
+    }
 
     .gridAssignedToUserTitle {
         font-size: 0.65rem;
@@ -62,14 +62,14 @@
         text-align: left;
     }
 
-        .gridAssignedToUser {
-            grid-column-start: 6;
-            grid-column-end: 18;
-            grid-row-start: 5;
-            grid-row-end: 6;
-            margin-left: 20px;
-            text-align: left;
-        }
+    .gridAssignedToUser {
+        grid-column-start: 6;
+        grid-column-end: 18;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin-left: 20px;
+        text-align: left;
+    }
         
     .gridStatusTitle {
         font-size: 0.65rem;
@@ -80,14 +80,14 @@
         text-align: left;
     }
 
-        .gridStatus {
-            grid-column-start: 6;
-            grid-column-end: 17;
-            grid-row-start: 7;
-            grid-row-end: 8;
-            margin-left: 20px;
-            text-align: left;
-        }
+    .gridStatus {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-left: 20px;
+        text-align: left;
+    }
  
     .gridDescriptionTitle {
         font-size: 0.65rem;
@@ -98,21 +98,122 @@
         text-align: left;
     }
 
-        .gridDescription {
-            grid-column-start: 6;
-            grid-column-end: 17;
-            grid-row-start: 9;
-            grid-row-end: 10;
-            margin-left: 20px;
-            text-align: left;
-        }
-        body
-        taskComments
-        startDate
-        deadlineDate
-        endDate
-        durationDays
-        precedingTaskID
+    .gridDescription {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridTaskCommentsTitle {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridTaskComments {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridStartDateTitle {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridStartDate {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridDeadlineDateTitle {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridDeadlineDate {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridEndDateTitle {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridEndDate {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridDuarationDaysTitle {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridDuarationDays {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridPrecedingIDTitle {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridPrecedingID {
+        grid-column-start: 6;
+        grid-column-end: 17;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin-left: 20px;
+        text-align: left;
+    }
         
     .gridButtonCancel {
         grid-column-start: 1;
@@ -129,4 +230,3 @@
         grid-row-end: 13;
         text-align: left;
     }
-
