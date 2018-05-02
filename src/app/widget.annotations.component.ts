@@ -26,7 +26,7 @@ import { DashboardNewComponent } from './dashboard.new.component';
     templateUrl: './dashboard.comments.component.html',
     styleUrls: ['./dashboard.comments.component.css']
 })
-export class DashboardCommentsComponent implements OnInit {
+export class WidgetAnnotationsComponent implements OnInit {
 
     @Output() formDashboardCommentsClosed: EventEmitter<string> = new EventEmitter();
     @Input() selectedWidgetID: number;

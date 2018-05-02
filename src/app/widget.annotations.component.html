@@ -1,0 +1,96 @@
+<div class="modal modalBox">
+        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+            <div class="modal-content modalContent">
+                <div modalContent>
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+    
+                    <div class="gridOverall">
+    
+                        <div class="gridTitle">
+                            <b>Annotations:</b>
+                        </div>
+                        <div class="gridSubTitle">
+                            <i>Amend the annotation for the selected Widget.  Annotations are optional.</i>
+                        </div>
+    
+                        <div class="newMessageHeader">
+                            <b>New comment:</b>
+                        </div>
+    
+                        <div class="newMessageText">
+                            <input type="text" [(ngModel)]="commentText"
+                                size="45"
+                                placeholder="Enter comment"
+                                >
+                            <button class="btn btn-secondary textLine" *ngIf="editLast"
+                                type="button"
+                                (click)="clickCancel()"
+                                >
+                                Cancel
+                            </button>
+                            <button class="btn btn-secondary textLine" *ngIf="editLast"
+                                type="button"
+                                (click)="clickSave()"
+                                >
+                                Save
+                            </button>
+                            <button class="btn btn-secondary textLine" *ngIf="!editLast"
+                                type="button"
+                                (click)="clickAdd()"
+                                >
+                                Add
+                            </button>
+                            <span *ngIf="showError" class="errorMessage">{{ errorMessage }} </span>
+                        </div>
+    
+                        <div class="gridTable">
+                            <clr-datagrid>
+    
+                                <clr-dg-placeholder>
+                                    No Comments created as yet
+                                </clr-dg-placeholder>
+    
+                                <clr-dg-column>Edit</clr-dg-column>
+                                <clr-dg-column [clrDgField]="id">ID</clr-dg-column>
+                                <clr-dg-column [clrDgField]="comment">Comment</clr-dg-column>
+                                <clr-dg-column [clrDgField]="creator">Creator</clr-dg-column>
+                                <clr-dg-column [clrDgField]="createdOn">CreatedOn</clr-dg-column>
+    
+                                <clr-dg-row *clrDgItems="let row of canvasComments; 
+                                    let i = index"
+                                    [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                    (click)="clickRow(i)"
+                                    >
+                                    <clr-dg-cell>
+                                        <clr-icon *ngIf="i==indexLastRecord"
+                                            (click)="clickEditComment(i, row.id)"
+                                            shape="pencil">
+                                        </clr-icon>
+                                    </clr-dg-cell>
+                                    <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.comment}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.creator}}</clr-dg-cell>
+                                    <clr-dg-cell>{{row.createdOn}}</clr-dg-cell>
+                                </clr-dg-row>
+     
+                                <clr-dg-footer>
+                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                    of {{pagination.totalItems}} records
+                                    <clr-dg-pagination
+                                        #pagination
+                                        [clrDgPageSize]="datagridPaginationSize"
+                                        >
+                                    </clr-dg-pagination>
+                                </clr-dg-footer>
+    
+                            </clr-datagrid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
