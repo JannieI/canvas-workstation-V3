@@ -2478,7 +2478,7 @@ console.log('xx filteredActions', filteredActions)
         // Check if Locked
         if (this.selectedWidget.isLocked) {
             this.showMessage(
-                'Widget is locked (unlock using Graph menu option)',
+                'Widget is locked (unlock using menu option)',
                 'StatusBar',
                 'Warning',
                 3000,
@@ -2883,7 +2883,7 @@ console.log('xx filteredActions', filteredActions)
         // Check if Locked
         if (this.selectedWidget.isLocked) {
             this.showMessage(
-                'Widget is locked (unlock using Graph menu option)',
+                'Widget is locked (unlock using menu option)',
                 'StatusBar',
                 'Warning',
                 3000,
@@ -3080,7 +3080,7 @@ console.log('xx filteredActions', filteredActions)
         // Check if Locked
         if (this.selectedWidget.isLocked) {
             this.showMessage(
-                'Widget is locked (unlock using Graph menu option)',
+                'Widget is locked (unlock using menu option)',
                 'StatusBar',
                 'Warning',
                 3000,
@@ -3308,7 +3308,7 @@ console.log('xx filteredActions', filteredActions)
         // Check if Locked
         if (this.selectedWidget.isLocked) {
             this.showMessage(
-                'Widget is locked (unlock using Graph menu option)',
+                'Widget is locked (unlock using menu option)',
                 'StatusBar',
                 'Warning',
                 3000,
@@ -3373,7 +3373,7 @@ console.log('xx filteredActions', filteredActions)
         // Check if Locked
         if (this.selectedWidget.isLocked) {
             this.showMessage(
-                'Widget is locked (unlock using Graph menu option)',
+                'Widget is locked (unlock using menu option)',
                 'StatusBar',
                 'Warning',
                 3000,
@@ -3462,7 +3462,7 @@ console.log('xx filteredActions', filteredActions)
         // Check if Locked
         if (this.selectedWidget.isLocked) {
             this.showMessage(
-                'Widget is locked (unlock using Graph menu option)',
+                'Widget is locked (unlock using menu option)',
                 'StatusBar',
                 'Warning',
                 3000,
@@ -4908,7 +4908,7 @@ console.log('xx linkedTabID', linkedTabID)
         // Check if locked
         if (this.currentWidgets[index].isLocked) {
             this.showMessage(
-                'Widget is locked (unlock using Graph menu option)',
+                'Widget is locked (unlock using menu option)',
                 'StatusBar',
                 'Warning',
                 3000,
