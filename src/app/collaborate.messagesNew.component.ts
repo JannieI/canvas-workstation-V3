@@ -252,6 +252,25 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.newMessage = !this.newMessage;
     }
 
+    clickCopyText() {
+        // Copy Text to clipboard
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCopyText', '@Start');
+        let e: ClipboardEvent;
+        e.clipboardData.setData('text/plain', 'Hallo World!');
+        console.log('xx e', e)
+        //       e.preventDefault();
+        //       document.removeEventListener('copy');
+        //     });
+        //     document.execCommand('copy');
+        //   };
+    }
+
+    clickRecall() {
+        // Recall a message, if not read by anyone
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRecall', '@Start');
+
+    }
+
     clickNewMessageClose() {
         // Cancel creating a new message, back to message
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNewMessageClose', '@Start');
