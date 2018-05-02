@@ -146,6 +146,7 @@ const widgetTemplate: Widget =
         "id": null,
         "name": "New Widget",
         "description": "New Widget from Template",
+        "annotation": '',
         "visualGrammar": "Vega-Lite",
         "version": 1,
         "isSelected": false,
@@ -4859,6 +4860,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 {key: 'name', 						type: 'string'},
                 {key: 'description', 				type: 'string'},
                 {key: 'visualGrammar', 				type: 'string'},
+                {key: 'annotation', 				type: 'string'},
                 {key: 'version', 					type: 'int'},
                 {key: 'isLiked', 					type: 'bool'},
                 {key: 'isSelected', 				type: 'bool'},
@@ -5242,6 +5244,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.name = changedWidget.name;
                 w.description = changedWidget.description;
                 w.visualGrammar = changedWidget.visualGrammar;
+                w.annotation = changedWidget.annotation;
                 w.version = changedWidget.version;
                 w.isSelected = changedWidget.isSelected;
                 w.isLiked = changedWidget.isLiked;
@@ -5382,6 +5385,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 w.name = changedWidget.name;
                 w.description = changedWidget.description;
                 w.visualGrammar = changedWidget.visualGrammar;
+                w.annotation = changedWidget.annotation;
                 w.version = changedWidget.version;
                 w.isSelected = changedWidget.isSelected;
                 w.isLiked = changedWidget.isLiked;

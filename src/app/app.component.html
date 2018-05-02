@@ -1429,8 +1429,8 @@
         <span style="display: inline-block" *ngIf="row.description">
             <clr-signpost>
                 <clr-signpost-content *clrIfOpen>
-                    <h3 style="margin-top: 0">Annotation</h3>
-                    <p> {{ row.description }} </p>
+                    <h4 style="margin-top: 0">Annotation</h4>
+                    <p> {{ row.annotation }} </p>
                 </clr-signpost-content>
             </clr-signpost>
         </span>
@@ -2154,21 +2154,14 @@
         >
     </div>
 
-
-
-
     <div style="display: inline-block" *ngIf="(row.nrDataQualityIssues > 0)  &&  (row.nrComments > 0)">
         <clr-signpost>
             <clr-signpost-content *clrIfOpen>
-                <h3 style="margin-top: 0">Annotation</h3>
-                <p> {{ row.description }} </p>
+                <h4 style="margin-top: 0">Annotation</h4>
+                <p> {{ row.annotation }} </p>
             </clr-signpost-content>
         </clr-signpost>
     </div>
-
-
-    
-
 
     <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.currentCheckpoint > 0)"
         class="widgetContainerCheckpointLeft"

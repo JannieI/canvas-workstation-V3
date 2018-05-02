@@ -605,6 +605,7 @@ export class Widget {
     id: number;
     name: string;
     description: string;
+    annotation: string;                 // Optional annotation per W, deeper info about W
     visualGrammar: string;              // Gramar for graphs, default = Vega
     version: number;
 
