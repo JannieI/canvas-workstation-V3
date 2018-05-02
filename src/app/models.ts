@@ -163,6 +163,24 @@ export class CanvasActivity {
     activityComments: string[];
 }
 
+export class CanvasTask {
+    id: number;                             // Unique task ID
+    taskText: string;                       // Description of task
+    taskType: string;                       // Type of Task
+    taskStatus: string;                     // Status, ie Pending, Completed
+    precedingTaskID: number;                // Optional task on which this one depends
+    linkedDashboardIDList: string[];        // Optional list of D-IDs that are linked
+    taskComments: string[];                 // Immutable array of comments / feedback (userID, dt, text)
+    assignedToUserID: string;               // UserID to whom this was assigned
+    startDate: string;                      // Date when task should start
+    endDate: string;                        // Date when task ended
+    durationDays: number;                   // Duration in days
+    editedBy: string;                       // Last user who edited this task
+    editedOn: string;                       // Date this task was last edited
+    createdBy: string;                      // UserID who created this task, can be System
+    createdOn: string;                      // Date task was created
+}
+
 export class CanvasMessage {
     id: number;                 // Unique ID
     threadID: number;           // Optional thread - to keep converstations together (later use)
