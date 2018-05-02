@@ -21,7 +21,6 @@
                     <div class="gridActivityTypeTitle">
                         <b>Select an Activity Type:</b>
                     </div>
-
                     <div class="gridActivityType">
                         <div class="select">
                             <select id="selects_3"
@@ -39,7 +38,6 @@
                     <div class="gridAssignedToUserTitle">
                         <b>Select a UserID:</b>
                     </div>
-
                     <div class="gridAssignedToUser">
                         <div class="select">
                             <select id="selects_3"
@@ -54,7 +52,6 @@
                     <div class="gridStatusTitle">
                         <b>Select an Activity Status:</b>
                     </div>
-
                     <div class="gridStatus">
                         <div class="select">
                             <select id="selects_3"
@@ -70,7 +67,6 @@
                     <div class="gridDescriptionTitle">
                         <b>Description:</b>
                     </div>
-
                     <div class="gridDescription">
                         <input [(ngModel)]="body"
                             type="text"
@@ -79,6 +75,94 @@
                             placeholder="Activity text"
                             >
                     </div>
+                    
+                    <div class="gridTaskCommentsTitle">
+                        <b>Comments:</b>
+                    </div>
+                    <div class="gridTaskComments">
+                        <input [(ngModel)]="taskComments"
+                            type="text"
+                            title="Body"
+                            size="25"
+                            placeholder="Comments / feedback (immutable)"
+                            >
+                    </div>
+
+                    <div class="gridStartDateTitle">
+                        <b>Start Date:</b>
+                    </div>
+                    <div class="gridStartDate">
+                        <input [(ngModel)]="startDate"
+                            type="text"
+                            title="Body"
+                            size="25"
+                            placeholder="Date when Task has to start"
+                            >
+                    </div>
+                    
+                    <div class="gridDeadlineDateTitle">
+                        <b>Deadline Date:</b>
+                    </div>
+                    <div class="gridDeadlineDate">
+                        <input [(ngModel)]="deadlineDate"
+                            type="text"
+                            title="Body"
+                            size="25"
+                            placeholder="Date when task should end"
+                            >
+                    </div>
+    
+                    <div class="gridEndDateTitle">
+                        <b>End Date:</b>
+                    </div>
+                    <div class="gridEndDate">
+                        <input [(ngModel)]="endDate"
+                            type="text"
+                            title="Body"
+                            size="25"
+                            placeholder="Date when task ended / was completed"
+                            >
+                    </div>
+
+                    <div class="gridDuarationDaysTitle">
+                        <b>Duaration Days:</b>
+                    </div>
+                    <div class="gridDuarationDays">
+                        <input [(ngModel)]="durationDays"
+                            type="text"
+                            title="Body"
+                            size="25"
+                            placeholder="Duration of task, measured in days"
+                            >
+                    </div>
+                
+                    <div class="gridPrecedingIDTitle">
+                        <b>Preceding Task:</b>
+                    </div>
+                    <div class="gridPrecedingID">
+                        <div class="select">
+                            <select id="selects_3"
+                                [(ngModel)]="precedingTaskID"
+                                (change)="clickSelectPrecedingTask($event)"
+                                >
+                                <option>QA Dashboard before noon</option>
+                                <option>Ad hoc</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <clr-datagrid>
+                        <clr-dg-column>Dashboard</clr-dg-column>
+                        <clr-dg-column>Description</clr-dg-column>
+                        <clr-dg-column>Open</clr-dg-column>
+                    
+                        <clr-dg-row *ngFor="let user of users">
+                            <clr-dg-cell>{{user.id}}</clr-dg-cell>
+                            <clr-dg-cell>{{user.name}}</clr-dg-cell>
+                        </clr-dg-row>
+                    
+                        <clr-dg-footer>{{users.length}} users</clr-dg-footer>
+                    </clr-datagrid>
 
                     <div class="gridButtonCancel">
                             <button

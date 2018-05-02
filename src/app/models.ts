@@ -174,6 +174,7 @@ export class CanvasTask {
     linkedDashboardIDList: string[];        // Optional list of D-IDs that are linked
     taskComments: string[];                 // Immutable array of comments / feedback (userID, dt, text)
     startDate: string;                      // Date when task should start
+    deadlineDate: string;                   // Date when task should end
     endDate: string;                        // Date when task ended
     durationDays: number;                   // Duration in days
 
