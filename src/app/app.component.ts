@@ -1261,7 +1261,7 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseCollaborateAlerts(action: string) {
-        //
+        // Close Alerts form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateAlerts', '@Start');
 
         this.menuOptionClickPostAction();
@@ -1270,7 +1270,7 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseCollaborateMessages(action: string) {
-        //
+        // Close Messages form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateMessages', '@Start');
 
         this.menuOptionClickPostAction();
@@ -1278,8 +1278,17 @@ export class AppComponent implements OnInit {
         this.showModalCollaborateMessagesNew = false;
     }
 
+    handleCloseCollaborateTaskAdd(action: string) {
+        // Close Add Task form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateTaskAdd', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalCollaborateTasksNew = false;
+    }
+
     handleCloseCollaborateActivities(action: string) {
-        //
+        // Close Activities form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivities', '@Start');
 
         this.menuOptionClickPostAction();

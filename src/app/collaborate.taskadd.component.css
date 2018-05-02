@@ -15,7 +15,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 1rem);
+    grid-template-rows: repeat(17, 1rem);
     margin-top: 2px;
 }
 
@@ -216,6 +216,7 @@
         grid-column-end: 3;
         grid-row-start: 13;
         grid-row-end: 14;
+        margin-left: 20px;
         text-align: left;
     }
 
@@ -224,6 +225,7 @@
         grid-column-end: 10;
         grid-row-start: 13;
         grid-row-end: 14;
+        margin-left: 20px;
         text-align: left;
     }
 

@@ -23,7 +23,7 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class CollaborateTaskAddComponent implements OnInit {
 
-    @Output() formCollaborateActivityAddClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formCollaborateTaskAddClosed: EventEmitter<string> = new EventEmitter();
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
@@ -43,7 +43,15 @@ export class CollaborateTaskAddComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-	  	  this.formCollaborateActivityAddClosed.emit(action);
-        }
+        this.formCollaborateTaskAddClosed.emit(action);
+    }
+
+    clickSave(action: string) {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        this.formCollaborateTaskAddClosed.emit(action);
+    }
+
 
 }
