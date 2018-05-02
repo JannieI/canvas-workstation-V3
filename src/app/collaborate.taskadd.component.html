@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
 
 
@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="gridActivityTypeTitle">
-                        <b>Select an Activity Type:</b>
+                        <b>Activity Type:</b>
                     </div>
                     <div class="gridActivityType">
                         <div class="select">
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="gridAssignedToUserTitle">
-                        <b>Select a UserID:</b>
+                        <b>Assign To:</b>
                     </div>
                     <div class="gridAssignedToUser">
                         <div class="select">
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="gridStatusTitle">
-                        <b>Select an Activity Status:</b>
+                        <b>Status:</b>
                     </div>
                     <div class="gridStatus">
                         <div class="select">
@@ -101,7 +101,7 @@
                     </div>
                     
                     <div class="gridDeadlineDateTitle">
-                        <b>Deadline Date:</b>
+                        <b>Deadline:</b>
                     </div>
                     <div class="gridDeadlineDate">
                         <input [(ngModel)]="deadlineDate"
@@ -125,7 +125,7 @@
                     </div>
 
                     <div class="gridDuarationDaysTitle">
-                        <b>Duaration Days:</b>
+                        <b>Duaration (d):</b>
                     </div>
                     <div class="gridDuarationDays">
                         <input [(ngModel)]="durationDays"
@@ -145,25 +145,27 @@
                                 [(ngModel)]="precedingTaskID"
                                 (change)="clickSelectPrecedingTask($event)"
                                 >
-                                <option>QA Dashboard before noon</option>
-                                <option>Ad hoc</option>
+                                <option>QA Dashboard</option>
+                                <option>User Defined</option>
                             </select>
                         </div>
                     </div>
-                    
-                    <clr-datagrid>
-                        <clr-dg-column>Dashboard</clr-dg-column>
-                        <clr-dg-column>Description</clr-dg-column>
-                        <clr-dg-column>Open</clr-dg-column>
-                    
-                        <clr-dg-row *ngFor="let user of users">
-                            <clr-dg-cell>{{user.id}}</clr-dg-cell>
-                            <clr-dg-cell>{{user.name}}</clr-dg-cell>
-                        </clr-dg-row>
-                    
-                        <clr-dg-footer>{{users.length}} users</clr-dg-footer>
-                    </clr-datagrid>
 
+                    <div class="gridButtonDashboardTitle">
+                        <b>Linked To:</b>
+                    </div> 
+                    <div class="gridButtonDashboard">
+                        <div class="select">
+                            <select id="selects_3"
+                                [(ngModel)]="linkedDashboardID"
+                                (change)="clickSelectPrecedingTask($event)"
+                                >
+                                <option>Economic Overview</option>
+                                <option>EU Indices</option>
+                            </select>
+                        </div>
+                    </div>
+        
                     <div class="gridButtonCancel">
                             <button
                             type="button"

@@ -171,7 +171,7 @@ export class CanvasTask {
     assignedToUserID: string;               // UserID to whom this was assigned
     
     precedingTaskID: number;                // Optional task on which this one depends
-    linkedDashboardIDList: string[];        // Optional list of D-IDs that are linked
+    linkedDashboardID: string;              // Optional D-ID linked to this task
     taskComments: string[];                 // Immutable array of comments / feedback (userID, dt, text)
     startDate: string;                      // Date when task should start
     deadlineDate: string;                   // Date when task should end
