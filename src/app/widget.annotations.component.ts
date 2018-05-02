@@ -55,6 +55,8 @@ export class WidgetAnnotationsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         this.selectedWidget.annotation = this.annotation;
+        this.globalVariableService.saveWidget(this.selectedWidget);
+        
 		this.formWidgetAnnotationsClosed.emit();
 
     }
