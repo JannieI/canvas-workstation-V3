@@ -2489,8 +2489,8 @@
 <!-- Modal: Annotations -->
 <widget-annotations
     class="formPopupDashboard"
-    *ngIf="showModalDashboardAnnotations"
-    [selectedWidgetID]="selectedWidgetID"
+    *ngIf="showModalWidgetAnnotations"
+    [selectedWidget]="selectedWidget"
     (formWidgetAnnotationsClosed)="handleCloseWidgetAnnotations($event)">Load Annotations ...
 </widget-annotations>
 

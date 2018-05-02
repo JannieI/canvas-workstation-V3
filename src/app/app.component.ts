@@ -319,7 +319,6 @@ export class AppComponent implements OnInit {
     showModalDashboardLogin: boolean = false;
     showModalDashboardLogout: boolean = false;
     showModalDashboardComments: boolean = false;
-    showModalDashboardAnnotations: boolean = false;
     showModalDashboardDataQuality: boolean = false;
     showModalDashboardRename: boolean = false;
     showModalDashboardDetails: boolean = false;
@@ -334,6 +333,7 @@ export class AppComponent implements OnInit {
     showModalDashboardTreeview: boolean = false;
     showModalDashboardSubscribe: boolean = false;
     showMainMenu: boolean = true;
+    showModalWidgetAnnotations: boolean = false;
     showModalWidgetContainer: boolean = false;
     showModalWidgetCheckpoints: boolean = false;
     showModalWidgetLinks: boolean = false;
@@ -925,7 +925,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        this.showModalDashboardAnnotations = false;
+        this.showModalWidgetAnnotations = false;
     }
 
     handleCloseDashboardComments(action: string) {
@@ -2576,11 +2576,11 @@ console.log('xx filteredActions', filteredActions)
         this.selectedWidgetID = -1;
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
-                this.selectedWidgetID = w.id;
+                this.selectedWidget = w;
             }
         })
 
-        this.showModalDashboardAnnotations = true;
+        this.showModalWidgetAnnotations = true;
 
     }
 

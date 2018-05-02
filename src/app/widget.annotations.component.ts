@@ -16,10 +16,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { CanvasComment }              from './models';
-import { DatagridInput }              from './models';
-import { DatagridColumn }             from './models';
-import { DashboardNewComponent } from './dashboard.new.component';
+import { Widget }                     from './models';
 
 @Component({
     selector: 'widget-annotations',
@@ -29,21 +26,10 @@ import { DashboardNewComponent } from './dashboard.new.component';
 export class WidgetAnnotationsComponent implements OnInit {
 
     @Output() formWidgetAnnotationsClosed: EventEmitter<string> = new EventEmitter();
-    @Input() selectedWidgetID: number;
+    @Input() selectedWidget: Widget;
 
-    canvasComments: CanvasComment[] = [];
-    datagridColumns: string[] =["id"]
-    commentText: string;
-    datagridPaginationSize: number = 6;
-    editLast: boolean = false;
-    errorMessage: string = '';
-    headerText: string;
-    indexLastRecord: number;
-    selectedRow: number = 0;
-    showError: boolean = false;
-    showTypeDashboard: boolean = false;
 
-	constructor(
+    constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
@@ -52,120 +38,21 @@ export class WidgetAnnotationsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Set header
-        if (this.selectedWidgetID == -1) {
-            this.headerText = 'this Dashboard';
-        } else {
-            this.headerText = 'the selected Widget';
-        };
-
-        // Set the data for the grid
-        this.globalVariableService.getCanvasComments().then (ca => {
-            this.canvasComments = ca.filter( c =>
-                  (c.dashboardID == this.globalVariableService.currentDashboardInfo
-                        .value.currentDashboardID
-                   &&
-                  (c.widgetID == this.selectedWidgetID  ||  this.selectedWidgetID == -1) )
-            );
-            this.indexLastRecord = this.canvasComments.length - 1;
-        });
     }
 
-    clickClose(action: string) {
+    clickClose() {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        console.log('clickClose')
-
-		this.formWidgetAnnotationsClosed.emit(action);
-    }
-
-    clickEditComment(index: number, id: number) {
-        // Last row can be Edited, so start process
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickEditComment', '@Start');
-
-        // Validation
-        if (this.canvasComments[this.canvasComments.length - 1]['creator'] !=
-            this.globalVariableService.currentUser.userID) {
-            this.showError = true;
-            this.errorMessage = '';
-            this.errorMessage = 'Can only edit own comments';
-            return;
-        };
-
-        this.commentText = this.canvasComments[this.canvasComments.length - 1].comment;
-        this.editLast = true;
-
-    }
-
-    clickCancel() {
-        // Cancel Editing, go back
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
-
-        this.showError = false;
-        this.errorMessage = '';
-        this.commentText = '';
-        this.editLast = false;
-
+		this.formWidgetAnnotationsClosed.emit();
     }
 
     clickSave() {
         // Save changes to the last Comment
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Validation
-        if (this.commentText == '') {
-            this.showError = true;
-            this.errorMessage = 'Comment cannot be blank';
-            return;
-        };
-
-        // Replace text and leave editing
-        this.canvasComments[this.canvasComments.length - 1].comment = this.commentText;
-        this.commentText = '';
-        this.editLast = false;
-        this.showError = false;
-        this.errorMessage = '';
+		this.formWidgetAnnotationsClosed.emit();
 
     }
 
-    clickAdd() {
-        // Add a new Comment
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
-
-        // Validation
-        if (this.commentText == '') {
-            this.showError = true;
-            this.errorMessage = 'Comment cannot be blank';
-            return;
-        };
-
-        // Add
-        let dt = new Date();
-
-        let newComment: CanvasComment =
-            {id: null,
-            dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            widgetID: this.selectedWidgetID,
-            comment: this.commentText,
-            creator: this.globalVariableService.currentUser.userID,
-            createdOn: dt.toString()
-        };
-
-        // Globally and locally
-        this.globalVariableService.addCanvasComment(newComment).then( data => {
-                this.canvasComments.push(data)
-                this.showError = false;
-                this.errorMessage = '';
-                this.commentText = '';
-                this.indexLastRecord = this.canvasComments.length - 1;
-        });
-
-    }
-
-    clickRow(index: number) {
-        // Show groups
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-        this.selectedRow = index;
-    }
 }
