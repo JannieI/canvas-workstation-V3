@@ -319,6 +319,7 @@ export class AppComponent implements OnInit {
     showModalDashboardLogin: boolean = false;
     showModalDashboardLogout: boolean = false;
     showModalDashboardComments: boolean = false;
+    showModalDashboardAnnotations: boolean = false;
     showModalDashboardDataQuality: boolean = false;
     showModalDashboardRename: boolean = false;
     showModalDashboardDetails: boolean = false;
@@ -916,6 +917,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalShapeDelete = false;
+    }
+    
+    handleCloseWidgetAnnotations(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardAnnotations', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDashboardAnnotations = false;
     }
 
     handleCloseDashboardComments(action: string) {
@@ -2547,6 +2557,31 @@ console.log('xx filteredActions', filteredActions)
             };
         });
         this.showModalWidgetCheckpoints = true;
+    }
+
+    clickMenuWidgetAnnotations() {
+        // Manage comments for the selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetAnnotations', '@Start');
+
+        if (!this.checkForOnlyOneWidget()) {
+            return
+        };
+        if (!this.checkForOnlyOneWidget('Graph')) {
+            return
+        };
+
+        this.menuOptionClickPreAction();
+
+        // Set the selected W id
+        this.selectedWidgetID = -1;
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidgetID = w.id;
+            }
+        })
+
+        this.showModalDashboardAnnotations = true;
+
     }
 
     clickMenuWidgetComments() {

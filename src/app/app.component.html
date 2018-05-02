@@ -492,6 +492,13 @@
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
+                                    (click)="clickMenuWidgetAnnotations()"
+                                    title="Annotations for selected Widget"
+                                    >
+                                    Annotations
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuWidgetComments()"
                                     title="Comments for selected Widget"
                                     >
@@ -2477,6 +2484,15 @@
     *ngIf="showModalDashboardSubscribe"
     (formDashboardSubscribeClosed)="handleCloseDashboardSubscribe($event)">Load Dashboard Subscribe ...
 </dashboard-subscribe>
+
+
+<!-- Modal: Annotations -->
+<widget-annotations
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardAnnotations"
+    [selectedWidgetID]="selectedWidgetID"
+    (formWidgetAnnotationsClosed)="handleCloseWidgetAnnotations($event)">Load Annotations ...
+</widget-annotations>
 
 
 <!-- Modal: Comments -->

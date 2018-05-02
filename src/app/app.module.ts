@@ -57,7 +57,8 @@ import { WidgetDeleteComponent }      from './widget.delete.component';
 import { WidgetSingleComponent }      from './widget.single.component';
 import { WidgetContainerComponent }   from './widget.container.component';
 import { WidgetTitleComponent }       from './widget.title.component';
-import { WidgetRefreshComponent }       from './widget.refresh.component';
+import { WidgetRefreshComponent }     from './widget.refresh.component';
+import { WidgetAnnotationsComponent } from './widget.annotations.component';
 
 
 import { TableSingleComponent }       from './table.single.component';
@@ -166,6 +167,7 @@ import { StatusbarComponent }         from './statusbar.component';
         WidgetContainerComponent,
         WidgetTitleComponent,
         WidgetRefreshComponent,
+        WidgetAnnotationsComponent,
 
         TableSingleComponent,
         TableEditorComponent,

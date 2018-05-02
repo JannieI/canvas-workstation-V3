@@ -22,13 +22,13 @@ import { DatagridColumn }             from './models';
 import { DashboardNewComponent } from './dashboard.new.component';
 
 @Component({
-    selector: 'dashboard-comments',
-    templateUrl: './dashboard.comments.component.html',
-    styleUrls: ['./dashboard.comments.component.css']
+    selector: 'widget-annotations',
+    templateUrl: './widget.annotations.component.html',
+    styleUrls: ['./widget.annotations.component.css']
 })
 export class WidgetAnnotationsComponent implements OnInit {
 
-    @Output() formDashboardCommentsClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formWidgetAnnotationsClosed: EventEmitter<string> = new EventEmitter();
     @Input() selectedWidgetID: number;
 
     canvasComments: CanvasComment[] = [];
@@ -77,7 +77,7 @@ export class WidgetAnnotationsComponent implements OnInit {
 
         console.log('clickClose')
 
-		this.formDashboardCommentsClosed.emit(action);
+		this.formWidgetAnnotationsClosed.emit(action);
     }
 
     clickEditComment(index: number, id: number) {
