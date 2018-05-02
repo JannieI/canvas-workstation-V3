@@ -26,26 +26,32 @@
 .message {
     border: 1px solid gray;
     border-radius: 6px;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 4px;
+    margin-bottom: 4px;
     padding: 2px 5px 2px 5px;
 }
+    .replyMessage{
+        border-left: 3px blue solid;
+        font-size: 0.6rem;
+        padding-left: 50px;
+        margin-left: 50px;
+    }
 
-.sender {
-    color: darkgray;
-}
+    .sender {
+        color: rgb(61, 61, 61);
+    }
 
-.actions {
-    color: black;
-    float: right;
-}
+    .actions {
+        color: black;
+        float: right;
+    }
 
-.dashboardLink {
-    color: blue;
-    float: right;
-}
+    .dashboardLink {
+        color: blue;
+        float: right;
+    }
 
-.ellipsis {
-    color: black;
-    float: right;
-}
+    .ellipsis {
+        color: black;
+        float: right;
+    }

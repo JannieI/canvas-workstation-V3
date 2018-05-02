@@ -62,7 +62,8 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 replyToMessageID: null,
                 iHaveReadThis: true,
                 dashboardName: 'Logistics Overview',
-                replyMessageStart: ''
+                replySender: 'HeatherS',
+                replyMessageStart: 'Adhearance to the budget time-lines are critical ...'
             }
         );
         this.canvasMessagesNew[0].recipients.push( 
@@ -92,6 +93,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 replyToMessageID: null,
                 iHaveReadThis: true,
                 dashboardName: '',
+                replySender: '',
                 replyMessageStart: ''
             }
         );
@@ -116,6 +118,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 replyToMessageID: null,
                 iHaveReadThis: true,
                 dashboardName: 'Pre Budget Presentation',
+                replySender: '',
                 replyMessageStart: ''
             }
         );
@@ -140,6 +143,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 replyToMessageID: null,
                 iHaveReadThis: false,
                 dashboardName: '',
+                replySender: '',
                 replyMessageStart: ''
             }
         );
@@ -164,6 +168,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 replyToMessageID: null,
                 iHaveReadThis: false,
                 dashboardName: '',
+                replySender: '',
                 replyMessageStart: ''
             }
         );
@@ -188,6 +193,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 replyToMessageID: null,
                 iHaveReadThis: false,
                 dashboardName: '',
+                replySender: '',
                 replyMessageStart: ''
             }
         );
@@ -212,6 +218,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 replyToMessageID: null,
                 iHaveReadThis: false,
                 dashboardName: '',
+                replySender: '',
                 replyMessageStart: ''
             }
         );

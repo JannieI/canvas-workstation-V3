@@ -19,8 +19,11 @@
                             [style.margin-left.px]="i%2==0 ? '0' : '30'"
                             [style.background-color]="i%2==0 ? 'rgb(235, 235, 235)' : 'rgb(187, 221, 187)'"
                             >
-                            <div
-                            >
+                            <div class="replyMessage" *ngIf="row.replySender">
+                                <i>{{ row.replySender }}</i>
+                                <i>{{ row.replyMessageStart }}</i>
+                            </div>
+                            <div>
                                 <clr-icon *ngIf="row.iHaveReadThis"
                                     shape="check"
                                     size="12"

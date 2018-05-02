@@ -198,7 +198,8 @@ export class CanvasMessageNew {
     // At runtime
     iHaveReadThis: boolean;     // 2nd normal form to make easier, if current user read it
     dashboardName: string;      // Optional, name of linked D
-    replyMessageStart: string;  // Option, first 50 chars of message to which this is a reply
+    replySender: string;        // Optional, sender of message to which this is a reply
+    replyMessageStart: string;  // Optional, first 50 chars of message to which this is a reply
 }
 
 export class CanvasMessageSingle {
