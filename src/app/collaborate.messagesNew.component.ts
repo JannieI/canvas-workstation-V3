@@ -59,8 +59,10 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardID: 1,
                 dashboardTabID: 1,
                 url: '',
+                replyToMessageID: null,
                 iHaveReadThis: true,
-                dashboardName: 'Logistics Overview'
+                dashboardName: 'Logistics Overview',
+                replyMessageStart: ''
             }
         );
         this.canvasMessagesNew[0].recipients.push( 
@@ -87,8 +89,10 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardID: null,
                 dashboardTabID: 1,
                 url: '',
+                replyToMessageID: null,
                 iHaveReadThis: true,
-                dashboardName: ''
+                dashboardName: '',
+                replyMessageStart: ''
             }
         );
         this.canvasMessagesNew.push(
@@ -109,8 +113,10 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardID: 1,
                 dashboardTabID: 1,
                 url: '',
+                replyToMessageID: null,
                 iHaveReadThis: true,
-                dashboardName: 'Pre Budget Presentation'
+                dashboardName: 'Pre Budget Presentation',
+                replyMessageStart: ''
             }
         );
         this.canvasMessagesNew.push(
@@ -131,8 +137,10 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardID: 1,
                 dashboardTabID: null,
                 url: '',
+                replyToMessageID: null,
                 iHaveReadThis: false,
-                dashboardName: ''
+                dashboardName: '',
+                replyMessageStart: ''
             }
         );
         this.canvasMessagesNew.push(
@@ -153,8 +161,10 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardID: null,
                 dashboardTabID: 1,
                 url: '',
+                replyToMessageID: null,
                 iHaveReadThis: false,
-                dashboardName: ''
+                dashboardName: '',
+                replyMessageStart: ''
             }
         );
         this.canvasMessagesNew.push(
@@ -175,8 +185,10 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardID: null,
                 dashboardTabID: 1,
                 url: '',
+                replyToMessageID: null,
                 iHaveReadThis: false,
-                dashboardName: ''
+                dashboardName: '',
+                replyMessageStart: ''
             }
         );
         this.canvasMessagesNew.push(
@@ -197,8 +209,10 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardID: 1,
                 dashboardTabID: null,
                 url: '',
+                replyToMessageID: null,
                 iHaveReadThis: false,
-                dashboardName: ''
+                dashboardName: '',
+                replyMessageStart: ''
             }
         );
         

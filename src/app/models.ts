@@ -193,10 +193,12 @@ export class CanvasMessageNew {
     dashboardID: number;        // Optional Dashboard linked to this message
     dashboardTabID: number;     // Optional Tab linked to this message
     url: string;                // Optional url to link to
+    replyToMessageID: number;   // Optional message to which this is a reply
 
     // At runtime
     iHaveReadThis: boolean;     // 2nd normal form to make easier, if current user read it
     dashboardName: string;      // Optional, name of linked D
+    replyMessageStart: string;  // Option, first 50 chars of message to which this is a reply
 }
 
 export class CanvasMessageSingle {
