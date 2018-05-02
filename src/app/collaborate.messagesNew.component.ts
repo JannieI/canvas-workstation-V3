@@ -239,8 +239,15 @@ export class CollaborateMessagesComponentNew implements OnInit {
     }
 
     clickReply() {
-        // Toggle filter on / off
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
+        // Reply to a message
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickReply', '@Start');
+
+        this.newMessage = !this.newMessage;
+    }
+
+    clickForward() {
+        // Forward a message
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickForward', '@Start');
 
         this.newMessage = !this.newMessage;
     }
