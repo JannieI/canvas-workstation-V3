@@ -7,7 +7,55 @@
                         X 
                         <b>Messages</b>
                     </button>
-                    <div>
+
+                    <div class="filterArea">
+                        <b>Sender:</b>
+                        <input [(ngModel)]="sender"
+                            type="text"
+                            title="Filter on this sender"
+                            size="20"
+                            autofocus
+                            >
+                        <b>Subject:</b>
+                        <input [(ngModel)]="subject"
+                            type="text"
+                            title="Show messages that contains this text in the subject"
+                            size="20"
+                            >
+                        <b>Body:</b>
+                        <input [(ngModel)]="body"
+                            type="text"
+                            title="Show messages that contains this text in the body"
+                            size="20"
+                            >
+                    </div>
+                    <div class="filterArea">
+                        <b>Recipient:</b>
+                        <input [(ngModel)]="recipient"
+                            type="text"
+                            title="Show messages addressed to this userID"
+                            size="20"
+                            >
+                        <b>Sent after:</b>
+                        <input [(ngModel)]="sentAfter"
+                            type="text"
+                            title="Show messages sent after this date"
+                            size="15"
+                            >
+                        <b>Sent before:</b>
+                        <input [(ngModel)]="sendBefore"
+                            type="text"
+                            title="Show messages sent before this date"
+                            size="15"
+                            >
+                        <b>Previously unread:</b>
+                        <div class="gridLink">
+                            <input [(ngModel)]="messageHasBeenRead"
+                                type="checkbox"
+                                title="Filter on messages that were read before"
+                                >
+                        </div>
+                        
                         <button
                             type="button"
                             class="btn btn-link"
@@ -16,55 +64,10 @@
                             >
                             Filter
                         </button>
-                        <b>Sender:</b>
-                        <input [(ngModel)]="sender"
-                            type="text"
-                            title="Filter on this sender"
-                            size="25"
-                            autofocus
-                            >
-                        <b>Subject:</b>
-                        <input [(ngModel)]="subject"
-                            type="text"
-                            title="Show messages that contains this text in the subject"
-                            size="25"
-                            >
-                        <b>Body:</b>
-                        <input [(ngModel)]="body"
-                            type="text"
-                            title="Show messages that contains this text in the body"
-                            size="25"
-                            >
-                        <b>Recipient:</b>
-                        <input [(ngModel)]="recipient"
-                            type="text"
-                            title="Show messages addressed to this userID"
-                            size="25"
-                            >
-                        <b>Sent after:</b>
-                        <input [(ngModel)]="sentAfter"
-                            type="text"
-                            title="Show messages sent after this date"
-                            size="25"
-                            >
-                        <b>Sent before:</b>
-                        <input [(ngModel)]="sendBefore"
-                            type="text"
-                            title="Show messages sent before this date"
-                            size="25"
-                            >
-                        <div class="gridLink">
-                            <input [(ngModel)]="messageHasBeenRead"
-                                type="checkbox"
-                                title="Filter on messages that were read before"
-                                >
-                        </div>
-                        
                         
                     </div>
 
                     <div class="messageBlock"
-                        [style.height.rem]="filterOn? 10 : 20"
                         >
                         <div *ngFor="let row of canvasMessagesNew; let i = index" 
                             class="message"
