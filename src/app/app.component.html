@@ -2819,6 +2819,14 @@
 </collaborate-activities>
 
 
+<!-- Modal: Activities -->
+<collaborate-activities
+    class="formPopupDashboard"
+    *ngIf="showModalCollaborateTasks"
+    (formCollaborateActivitiesClosed)="handleCloseCollaborateActivities($event)">Load Activities ...
+</collaborate-activities>
+
+
 <!-- Modal: ActivityAdd -->
 <collaborate-activityadd
     class="formPopupDashboard"
