@@ -361,8 +361,8 @@ export class AppComponent implements OnInit {
     showModalCollaborateSendEmail: boolean = false;
     showModalCollaborateMessages: boolean = false;
     showModalCollaborateMessagesNew: boolean = false;
+    showModalCollaborateTasksNew: boolean = false;
     showModalCollaborateActivities: boolean = false;
-    showModalCollaborateTasks: boolean = false;
     showModalLanding: boolean;
     showModalUserMyProfile: boolean = false;
     showModalUserPreferences: boolean = false;
@@ -1275,8 +1275,8 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        // this.showModalCollaborateMessages = false;
-        this.showModalCollaborateMessagesNew = false;
+        // this.showModalCollaborateMessagesNew = false;
+        this.showModalCollaborateTasksNew = false;
     }
 
     handleCloseCollaborateActivities(action: string) {
@@ -1285,8 +1285,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        // this.showModalCollaborateActivities = false;
-        this.showModalCollaborateTasks = false;
+        this.showModalCollaborateActivities = false;
     }
 
     handleCloseCollaborateActivityAdd(action: string) {
@@ -4204,8 +4203,8 @@ console.log('xx filteredActions', filteredActions)
 
         this.menuOptionClickPreAction();
 
-        // this.showModalCollaborateMessages = true;
-        this.showModalCollaborateMessagesNew = true;
+        // this.showModalCollaborateMessagesNew = true;
+        this.showModalCollaborateTasksNew = true;
 
         this.menuOptionClickPostAction();
     }
@@ -4216,8 +4215,7 @@ console.log('xx filteredActions', filteredActions)
 
         this.menuOptionClickPreAction();
 
-        // this.showModalCollaborateActivities = true;
-        this.showModalCollaborateTasks = true;
+        this.showModalCollaborateActivities = true;
 
         this.menuOptionClickPostAction();
     }
