@@ -28,6 +28,7 @@ export class WidgetAnnotationsComponent implements OnInit {
     @Output() formWidgetAnnotationsClosed: EventEmitter<string> = new EventEmitter();
     @Input() selectedWidget: Widget;
 
+    annotation: string;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -38,6 +39,8 @@ export class WidgetAnnotationsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Set startup info
+        this.annotation = this.selectedWidget.annotation;
     }
 
     clickClose() {
@@ -51,6 +54,7 @@ export class WidgetAnnotationsComponent implements OnInit {
         // Save changes to the last Comment
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        this.selectedWidget.annotation = this.annotation;
 		this.formWidgetAnnotationsClosed.emit();
 
     }
