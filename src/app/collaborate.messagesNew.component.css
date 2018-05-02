@@ -19,14 +19,15 @@
     border: 1px solid gray;
     border-radius: 6px;
     margin: 2px;
-    padding: 0;
+    padding: 5px;
     overflow-y: scroll;
 }
 
 .message {
-    border: 1px solid lightgray;
+    border: 1px solid gray;
     border-radius: 6px;
-    margin: 1px 3px 12px 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     padding: 2px 5px 2px 5px;
 }
 

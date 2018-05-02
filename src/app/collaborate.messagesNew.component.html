@@ -14,11 +14,14 @@
                     <div class="messageBlock"
                         [style.height.rem]="filterOn? 10 : 20"
                         >
-                        <div *ngFor="let row of canvasMessagesNew; let i = index" class="message">
-                            <div
+                        <div *ngFor="let row of canvasMessagesNew; let i = index" 
+                            class="message"
                             [style.margin-left.px]="i%2==0 ? '0' : '30'"
+                            [style.background-color]="i%2==0 ? 'rgb(235, 235, 235)' : 'rgb(187, 221, 187)'"
                             >
-                                <clr-icon
+                            <div
+                            >
+                                <clr-icon *ngIf="row.iHaveReadThis"
                                     shape="check"
                                     size="12"
                                     >
@@ -38,7 +41,7 @@
                             <div>
                                 {{ row.body }}
                                 {{ row.sendOn }}
-                                <span class="dashboardLink">
+                                <span class="dashboardLink" *ngIf="row.dashboardID">
                                     <i>{{ row.dashboardName }}</i>
                                     <clr-icon
                                         shape="arrow right"
@@ -47,11 +50,50 @@
                                     </clr-icon>
                                 </span>
                                 <span class="ellipsis">
-                                    <clr-icon
-                                        shape="ellipsis-horizontal"
-                                        size="12"
-                                        >
-                                    </clr-icon>
+                                    <clr-dropdown>
+                                        <button
+                                            type="button"
+                                            class="btn btn-link btn-sm menuButton"
+                                            clrDropdownTrigger
+                                            >
+                                            <clr-icon
+                                                shape="ellipsis-horizontal"
+                                                size="12"
+                                                >
+                                            </clr-icon>
+                                        </button>
+                                        <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+                                            <button
+                                                type="button"
+                                                clrDropdownItem
+                                                (click)="clickMenuEditMode()"
+                                                title="Enable EditMode to make changes"
+                                                >
+                                                Reply
+                                            </button>
+                                            <button type="button"
+                                                clrDropdownItem
+                                                title="Undo previous action"
+                                                (click)="clickMenuEditUndo()"
+                                                >
+                                                Forward
+                                            </button>
+                                            <button type="button"
+                                                clrDropdownItem
+                                                title="Undo previous action"
+                                                (click)="clickMenuEditUndo()"
+                                                >
+                                                Copy Text
+                                            </button>
+                                            <button type="button"
+                                                clrDropdownItem
+                                                title="Undo previous action"
+                                                (click)="clickMenuEditUndo()"
+                                                >
+                                                Recall
+                                            </button>
+                                        </clr-dropdown-menu>
+                                    </clr-dropdown>
                                 </span>
                             </div>
                         </div>
