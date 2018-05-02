@@ -244,7 +244,22 @@ export class CollaborateMessagesComponentNew implements OnInit {
 
         this.newMessage = !this.newMessage;
     }
-    
+
+    clickNewMessageClose() {
+        // Cancel creating a new message, back to message
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNewMessageClose', '@Start');
+
+        this.newMessage = !this.newMessage;
+    }
+
+    clickNewMessageSave() {
+        // create a new message, back to message
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickNewMessageSave', '@Start');
+
+        this.newMessage = !this.newMessage;
+    }
+
+
     clickClose(action: string) {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
