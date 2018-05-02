@@ -1275,8 +1275,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        // this.showModalCollaborateMessagesNew = false;
-        this.showModalCollaborateTasksNew = false;
+        this.showModalCollaborateMessagesNew = false;
     }
 
     handleCloseCollaborateActivities(action: string) {
@@ -1294,7 +1293,8 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        this.showModalCollaborateActivityAdd = false;
+        // this.showModalCollaborateActivityAdd = false;
+        this.showModalCollaborateTasksNew = false;
     }
 
     handleCloseSendMessageAdd(action: string) {
@@ -4203,8 +4203,7 @@ console.log('xx filteredActions', filteredActions)
 
         this.menuOptionClickPreAction();
 
-        // this.showModalCollaborateMessagesNew = true;
-        this.showModalCollaborateTasksNew = true;
+        this.showModalCollaborateMessagesNew = true;
 
         this.menuOptionClickPostAction();
     }
@@ -4226,7 +4225,8 @@ console.log('xx filteredActions', filteredActions)
 
         this.menuOptionClickPreAction();
 
-        this.showModalCollaborateActivityAdd = true;
+        // this.showModalCollaborateActivityAdd = true;
+        this.showModalCollaborateTasksNew = true;
 
         this.menuOptionClickPostAction();
     }

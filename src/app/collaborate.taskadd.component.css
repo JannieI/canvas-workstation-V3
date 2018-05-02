@@ -35,7 +35,7 @@
         text-align: left;
     }
 
-    .gridToUsersTitle {
+    .gridActivityTypeTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
@@ -44,7 +44,7 @@
         text-align: left;
     }
 
-        .gridToUsers {
+        .gridActivityType {
             grid-column-start: 6;
             grid-column-end: 18;
             grid-row-start: 3;
@@ -53,7 +53,7 @@
             text-align: left;
         }
 
-    .gridToGroupsTitle {
+    .gridAssignedToUserTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
@@ -62,7 +62,7 @@
         text-align: left;
     }
 
-        .gridToGroups {
+        .gridAssignedToUser {
             grid-column-start: 6;
             grid-column-end: 18;
             grid-row-start: 5;
@@ -71,7 +71,7 @@
             text-align: left;
         }
         
-    .gridSubjectTitle {
+    .gridStatusTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
@@ -80,7 +80,7 @@
         text-align: left;
     }
 
-        .gridSubject {
+        .gridStatus {
             grid-column-start: 6;
             grid-column-end: 17;
             grid-row-start: 7;
@@ -89,7 +89,7 @@
             text-align: left;
         }
  
-    .gridBodyTitle {
+    .gridDescriptionTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
@@ -98,7 +98,7 @@
         text-align: left;
     }
 
-        .gridBody {
+        .gridDescription {
             grid-column-start: 6;
             grid-column-end: 17;
             grid-row-start: 9;

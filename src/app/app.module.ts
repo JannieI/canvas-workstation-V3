@@ -84,6 +84,7 @@ import { CollaborateMessagesComponent }     from './collaborate.messages.compone
 import { CollaborateMessagesComponentNew }  from './collaborate.messagesNew.component';
 import { CollaborateActivitiesComponent }   from './collaborate.activities.component';
 import { CollaborateActivityAddComponent }  from './collaborate.activityadd.component';
+import { CollaborateTaskAddComponent }      from './collaborate.taskadd.component';
 import { CollaborateSendMessageComponent }  from './collaborate.sendmessage.component';
 import { CollaborateSendEmailComponent }    from './collaborate.sendemail.component';
 
@@ -182,6 +183,7 @@ import { StatusbarComponent }         from './statusbar.component';
         CollaborateMessagesComponentNew,
         CollaborateActivitiesComponent,
         CollaborateActivityAddComponent,
+        CollaborateTaskAddComponent,
         CollaborateSendMessageComponent,
         CollaborateSendEmailComponent,
 

@@ -10,7 +10,7 @@
                 <div class="gridOverall">
 
                     <div class="gridTitle">
-                        <b>Send Message: </b>
+                        <b>Add Task:</b>
                     </div>
                     <div class="gridSubTitle">
                         <i>
@@ -18,16 +18,17 @@
                         </i>
                     </div>
 
-                    <div class="gridToUsersTitle">
+                    <div class="gridActivityTypeTitle">
                         <b>Select an Activity Type:</b>
                     </div>
 
-                    <div class="gridToUsers">
+                    <div class="gridActivityType">
                         <div class="select">
                             <select id="selects_3"
                                 (change)="clickSelectStep($event)"
                                 autofocus
                                 >
+                                <option>User defined</option>
                                 <option>QA a Dashboard</option>
                                 <option>Investigate Data issue</option>
                                 <option>Edit Dashboard</option>
@@ -35,11 +36,11 @@
                         </div>
                     </div>
 
-                    <div class="gridToGroupsTitle">
+                    <div class="gridAssignedToUserTitle">
                         <b>Select a UserID:</b>
                     </div>
 
-                    <div class="gridToGroups">
+                    <div class="gridAssignedToUser">
                         <div class="select">
                             <select id="selects_3"
                                 (change)="clickSelectStep($event)"
@@ -50,26 +51,27 @@
                         </div>
                     </div>
 
-                    <div class="gridSubjectTitle">
+                    <div class="gridStatusTitle">
                         <b>Select an Activity Status:</b>
                     </div>
 
-                    <div class="gridSubject">
+                    <div class="gridStatus">
                         <div class="select">
                             <select id="selects_3"
                                 (change)="clickSelectStep($event)"
                                 >
+                                <option>Created</option>
                                 <option>Pending</option>
                                 <option>Completed</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="gridBodyTitle">
-                        <b>Activity:</b>
+                    <div class="gridDescriptionTitle">
+                        <b>Description:</b>
                     </div>
 
-                    <div class="gridBody">
+                    <div class="gridDescription">
                         <input [(ngModel)]="body"
                             type="text"
                             title="Body"
