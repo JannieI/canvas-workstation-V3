@@ -29,6 +29,7 @@
                                 <span class="sender">
                                     <b>{{ row.sender }}</b>
                                     {{ row.subject }}
+                                    <i>{{ row.sentOn }}</i>
                                 </span>
                                     <span class="actions">
                                         <clr-icon
@@ -40,15 +41,6 @@
                             </div>
                             <div>
                                 {{ row.body }}
-                                {{ row.sendOn }}
-                                <span class="dashboardLink" *ngIf="row.dashboardID">
-                                    <i>{{ row.dashboardName }}</i>
-                                    <clr-icon
-                                        shape="arrow right"
-                                        size="12"
-                                        >
-                                    </clr-icon>
-                                </span>
                                 <span class="ellipsis">
                                     <clr-dropdown>
                                         <button
@@ -66,7 +58,7 @@
                                             <button
                                                 type="button"
                                                 clrDropdownItem
-                                                (click)="clickMenuEditMode()"
+                                                (click)="clickMenuReply()"
                                                 title="Enable EditMode to make changes"
                                                 >
                                                 Reply
@@ -74,26 +66,34 @@
                                             <button type="button"
                                                 clrDropdownItem
                                                 title="Undo previous action"
-                                                (click)="clickMenuEditUndo()"
+                                                (click)="clickMenuForward()"
                                                 >
                                                 Forward
                                             </button>
                                             <button type="button"
                                                 clrDropdownItem
                                                 title="Undo previous action"
-                                                (click)="clickMenuEditUndo()"
+                                                (click)="clickMenuCopyText()"
                                                 >
                                                 Copy Text
                                             </button>
                                             <button type="button"
                                                 clrDropdownItem
                                                 title="Undo previous action"
-                                                (click)="clickMenuEditUndo()"
+                                                (click)="clickMenuRecall()"
                                                 >
                                                 Recall
                                             </button>
                                         </clr-dropdown-menu>
                                     </clr-dropdown>
+                                </span>
+                                <span class="dashboardLink" *ngIf="row.dashboardID">
+                                    <i>{{ row.dashboardName }}</i>
+                                    <clr-icon
+                                        shape="arrow right"
+                                        size="12"
+                                        >
+                                    </clr-icon>
                                 </span>
                             </div>
                         </div>

@@ -60,13 +60,13 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardTabID: 1,
                 url: '',
                 iHaveReadThis: true,
-                dashboardName: 'Economic Review'
+                dashboardName: 'Logistics Overview'
             }
         );
         this.canvasMessagesNew[0].recipients.push( 
             {
                 userID: 'MeganP',
-                readOn: '2017/01/01'
+                readOn: '2017/01/02'
             }
         );
         this.canvasMessagesNew.push(
@@ -74,7 +74,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 id: 1,
                 threadID: 1,
                 sender: 'VivK',
-                sentOn: '2017/01/01',
+                sentOn: '2017/01/02',
                 recipients: [
                     {
                         userID: 'SamH',
@@ -88,7 +88,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardTabID: 1,
                 url: '',
                 iHaveReadThis: true,
-                dashboardName: 'Economic Review'
+                dashboardName: ''
             }
         );
         this.canvasMessagesNew.push(
@@ -96,7 +96,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 id: 1,
                 threadID: 1,
                 sender: 'JohnatanB',
-                sentOn: '2017/01/01',
+                sentOn: 'Yesterday',
                 recipients: [
                     {
                         userID: 'SamH',
@@ -110,7 +110,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardTabID: 1,
                 url: '',
                 iHaveReadThis: true,
-                dashboardName: 'Economic Review'
+                dashboardName: 'Pre Budget Presentation'
             }
         );
         this.canvasMessagesNew.push(
@@ -118,7 +118,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 id: 1,
                 threadID: 1,
                 sender: 'OxleyA',
-                sentOn: '2017/01/01',
+                sentOn: 'Yesterday',
                 recipients: [
                     {
                         userID: 'SamH',
@@ -132,7 +132,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardTabID: null,
                 url: '',
                 iHaveReadThis: false,
-                dashboardName: 'Economic Review'
+                dashboardName: ''
             }
         );
         this.canvasMessagesNew.push(
@@ -140,7 +140,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 id: 1,
                 threadID: 1,
                 sender: 'PamH',
-                sentOn: '2017/01/01',
+                sentOn: '8:52AM',
                 recipients: [
                     {
                         userID: 'SamH',
@@ -154,7 +154,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardTabID: 1,
                 url: '',
                 iHaveReadThis: false,
-                dashboardName: 'Economic Review'
+                dashboardName: ''
             }
         );
         this.canvasMessagesNew.push(
@@ -162,7 +162,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 id: 1,
                 threadID: 1,
                 sender: 'BiancaC',
-                sentOn: '2017/01/01',
+                sentOn: '11:02AM',
                 recipients: [
                     {
                         userID: 'SamH',
@@ -176,7 +176,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 dashboardTabID: 1,
                 url: '',
                 iHaveReadThis: false,
-                dashboardName: 'Economic Review'
+                dashboardName: ''
             }
         );
         this.canvasMessagesNew.push(
@@ -184,7 +184,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 id: 1,
                 threadID: 1,
                 sender: 'BiancaC',
-                sentOn: '2017/01/01',
+                sentOn: 'Just Now',
                 recipients: [
                     {
                         userID: 'SamH',
@@ -195,10 +195,10 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 subject: 'New model',
                 body: 'Viv, I spotted another issue: the alignment of the top graphs on the last tab is off.  Also, please resize the logo proportionally.  And print a copy for Dough; he will arrive just before the meeting',
                 dashboardID: 1,
-                dashboardTabID: 1,
+                dashboardTabID: null,
                 url: '',
                 iHaveReadThis: false,
-                dashboardName: 'Economic Review'
+                dashboardName: ''
             }
         );
         
