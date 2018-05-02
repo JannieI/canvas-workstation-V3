@@ -13,12 +13,14 @@
     
                     <div *ngFor="let row of canvasMessagesNew; let i = index" class="messageBlock">
                         <div>
-                            <span class="checkbox">
-                                <input type="checkbox" id="checkrads_2" checked>
-                                <label for="checkrads_2"></label>
-                            </span>
+                            <clr-icon
+                                shape="check"
+                                size="12"
+                                [style.margin-left.px]="i%2=0? 0px : 10px"
+                                >
+                            </clr-icon>
                             <span class="sender">
-                                {{ row.sender }}
+                                <b>{{ row.sender }}</b>
                                 {{ row.subject }}
                             </span>
                                 <span class="actions">
@@ -33,7 +35,7 @@
                             {{ row.body }}
                             {{ row.sendOn }}
                             <span class="dashboardLink">
-                                {{ row.dashboardName }}
+                                <i>{{ row.dashboardName }}</i>
                                 <clr-icon
                                     shape="arrow right"
                                     size="12"
