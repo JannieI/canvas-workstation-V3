@@ -5759,12 +5759,18 @@ console.log('xx allS 1', this.currentDatasets.slice())
 
     }
 
-    dashboardPermissionCheck(id: number): boolean {
+    dashboardPermissionCheck(id: number, accessRequired: string = 'CanViewOrCanEdit'): boolean {
         // Checks if the current user has access to the given D.
+        // - accessRequired = type of access requested.  Can be basic (CanView, CanEdit,
+        //   etc), or composite : string = CanViewOrCanEdit, CanViewAndCanEdit,
+        //   CanEditOrCanDelete, CanEditAndCanDelete.  These are Hard-Coded
+        //   It is NOT case sensitive, and only applicable to accessType = 'AccessList'
+
         console.log('Global-Variables dashboardPermissionCheck ...', id);
 
         // Assume no access
         let hasAccess: boolean = false;
+        accessRequired = accessRequired.toLowerCase();
 
         // Format user
         let userID = this.currentUser.userID;
@@ -5797,7 +5803,28 @@ console.log('xx allS 1', this.currentDatasets.slice())
                 if (dp.dashboardID == dashboard.id) {
                     if (dp.userID != null) {
                         if (dp.userID.toLowerCase() == userID.toLowerCase()) {
-                            if (dp.canView  ||  dp.canEdit) {
+                            if (accessRequired == 'canview'  &&  dp.canView) {
+                                hasAccess = true;
+                            };
+                            if (accessRequired == 'canedit'  &&  dp.canEdit) {
+                                hasAccess = true;
+                            };
+                            if (accessRequired == 'candelete'  &&  dp.canDelete) {
+                                hasAccess = true;
+                            };
+                            if (accessRequired == 'canaddds'  &&  dp.canAddDS) {
+                                hasAccess = true;
+                            };
+                            if (accessRequired == 'canvieworcanedit'  &&  (dp.canView  ||  dp.canEdit) ) {
+                                hasAccess = true;
+                            };
+                            if (accessRequired == 'canviewandcanedit'  &&  (dp.canView  &&  dp.canEdit) ) {
+                                hasAccess = true;
+                            };
+                            if (accessRequired == 'caneditorcandelete'  &&  (dp.canEdit  ||  dp.canDelete) ) {
+                                hasAccess = true;
+                            };
+                            if (accessRequired == 'caneditandcandelete'  &&  (dp.canEdit  &&  dp.canDelete) ) {
                                 hasAccess = true;
                             };
                         };

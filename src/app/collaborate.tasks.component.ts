@@ -139,6 +139,8 @@ export class CollaborateTasksComponent implements OnInit {
                 ca[0], this.datagridShowFields, this.datagridVisibleFields);
 
         });
+
+        this.clickGantt()
     }
 
     clickGantt() {
