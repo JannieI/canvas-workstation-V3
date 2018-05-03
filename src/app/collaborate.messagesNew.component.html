@@ -16,6 +16,14 @@
                             size="20"
                             autofocus
                             >
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickFilter()"
+                            title="Populate SENDER with System (~Alerts)"
+                            >
+                            System
+                        </button>
                         <b>Subject:</b>
                         <input [(ngModel)]="subject"
                             type="text"
