@@ -58,6 +58,7 @@ export class CollaborateTasksComponent implements OnInit {
     datagridVisibleFields: string[];
     datagridShowFields: string[];
 
+    displayGantt: boolean = true;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -147,26 +148,8 @@ export class CollaborateTasksComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGantt', '@Start');
 
-
-
-        let definitionX = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-            "description": "A simple bar chart with ranged data (aka Gantt Chart).",
-            "data": {
-              "values": [
-                {"task": "A","start": 1, "end": 3},
-                {"task": "B","start": 3, "end": 8},
-                {"task": "C","start": 8, "end": 10}
-              ]
-            },
-            "mark": "bar",
-            "encoding": {
-              "y": {"field": "task", "type": "ordinal"},
-              "x": {"field": "start", "type": "quantitative"},
-              "x2": {"field": "end", "type": "quantitative"}
-            }
-        };
         let definition = this.globalVariableService.vlTemplate;
+        
         definition['data'] = {
             "values": [
                 {"task": "A","start": 1, "end": 3},
@@ -187,6 +170,8 @@ export class CollaborateTasksComponent implements OnInit {
         view.renderer('svg')
             .initialize(this.widgetDOM.nativeElement)
             .hover()
+            .width(600)
+            .height(400)
             .run()
             .finalize();
 
