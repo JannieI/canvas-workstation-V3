@@ -4,10 +4,12 @@
 
 // Angular
 import { Component }                  from '@angular/core';
+import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
+import { ViewChild }                  from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -21,6 +23,11 @@ import { CanvasTask }                 from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 
+// Vega, Vega-Lite
+import { compile }                    from 'vega-lite';
+import { parse }                      from 'vega';
+import { View }                       from 'vega';
+
 @Component({
     selector: 'collaborate-tasks',
     templateUrl: './collaborate.tasks.component.html',
@@ -29,6 +36,7 @@ import { DatagridColumn }             from './models';
 export class CollaborateTasksComponent implements OnInit {
 
     @Output() formCollaborateTasksClosed: EventEmitter<string> = new EventEmitter();
+    @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
     canvasTasks: CanvasTask[] = [];
     datagridColumns: DatagridColumn[];
@@ -131,6 +139,54 @@ export class CollaborateTasksComponent implements OnInit {
                 ca[0], this.datagridShowFields, this.datagridVisibleFields);
 
         });
+    }
+
+    clickGantt() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGantt', '@Start');
+
+
+
+        let definitionX = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+            "description": "A simple bar chart with ranged data (aka Gantt Chart).",
+            "data": {
+              "values": [
+                {"task": "A","start": 1, "end": 3},
+                {"task": "B","start": 3, "end": 8},
+                {"task": "C","start": 8, "end": 10}
+              ]
+            },
+            "mark": "bar",
+            "encoding": {
+              "y": {"field": "task", "type": "ordinal"},
+              "x": {"field": "start", "type": "quantitative"},
+              "x2": {"field": "end", "type": "quantitative"}
+            }
+        };
+        let definition = this.globalVariableService.vlTemplate;
+        definition['data'] = {
+            "values": [
+                {"task": "A","start": 1, "end": 3},
+                {"task": "B","start": 3, "end": 8},
+                {"task": "C","start": 8, "end": 10}
+            ]
+        };
+        definition['mark']['type'] ='bar';
+        definition['encoding'] = {
+            "y": {"field": "task", "type": "ordinal"},
+            "x": {"field": "start", "type": "quantitative"},
+            "x2": {"field": "end", "type": "quantitative"}
+        };
+
+        console.log('xx this.widgetDOM', this.widgetDOM)
+        let specification = compile(definition).spec;
+        let view = new View(parse(specification));
+        view.renderer('svg')
+            .initialize(this.widgetDOM.nativeElement)
+            .hover()
+            .run()
+            .finalize();
 
     }
 

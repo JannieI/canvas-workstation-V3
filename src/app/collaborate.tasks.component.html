@@ -14,6 +14,8 @@
      
 
 
+                    <div #widgetDOM>
+                    </div>
 
 
 
@@ -74,10 +76,13 @@
                         </clr-tab>
                     
                         <clr-tab>
-                            <button clrTabLink>Gantt</button>
+                            <button clrTabLink (click)="clickGantt()">Gantt</button>
                             <ng-template [(clrIfActive)]="managementActive">
                                 <clr-tab-content>
-                                    M...
+                                    <div class="widget">
+                                        <!-- <div #widgetDOM>
+                                        </div> -->
+                                    </div>
                                 </clr-tab-content>
                             </ng-template>
                         </clr-tab>
