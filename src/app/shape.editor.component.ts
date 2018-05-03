@@ -32,7 +32,6 @@ export class ShapeEditComponent implements OnInit {
     @Output() formShapeEditClosed: EventEmitter<Widget> = new EventEmitter();
     @Input() newWidget: boolean;
     @Input() selectedWidget: Widget;
-    
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
