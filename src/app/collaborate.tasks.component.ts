@@ -170,8 +170,8 @@ export class CollaborateTasksComponent implements OnInit {
         view.renderer('svg')
             .initialize(this.widgetDOM.nativeElement)
             .hover()
-            .width(600)
-            .height(400)
+            .width(400)
+            .height(200)
             .run()
             .finalize();
 
