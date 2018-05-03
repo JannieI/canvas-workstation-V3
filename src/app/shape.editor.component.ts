@@ -449,7 +449,7 @@ export class ShapeEditComponent implements OnInit {
 
         // None selected
         let selectedTabID: number;
-        if (this.bulletSelectedTab == 'None') {
+        if (this.bulletSelectedTab == 'None'  ||  this.bulletSelectedTab == undefined) {
             selectedTabID = null;
         } else {
             // Get sequence nr
