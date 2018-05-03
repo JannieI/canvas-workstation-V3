@@ -21,13 +21,13 @@ import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 
 @Component({
-    selector: 'collaborate-activities',
-    templateUrl: './collaborate.activities.component.html',
-    styleUrls: ['./collaborate.activities.component.css']
+    selector: 'collaborate-tasks',
+    templateUrl: './collaborate.tasks.component.html',
+    styleUrls: ['./collaborate.tasks.component.css']
 })
-export class CollaborateActivitiesComponent implements OnInit {
+export class CollaborateTasksComponent implements OnInit {
 
-    @Output() formCollaborateActivitiesClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formCollaborateTasksClosed: EventEmitter<string> = new EventEmitter();
 
     datagridColumns: DatagridColumn[];
     datagridInput: DatagridInput = null;
@@ -75,6 +75,6 @@ export class CollaborateActivitiesComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formCollaborateActivitiesClosed.emit(action);
+		this.formCollaborateTasksClosed.emit(action);
     }
 }

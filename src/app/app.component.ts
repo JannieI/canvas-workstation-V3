@@ -364,6 +364,7 @@ export class AppComponent implements OnInit {
     showModalCollaborateMessagesNew: boolean = false;
     showModalCollaborateTasksNew: boolean = false;
     showModalCollaborateActivities: boolean = false;
+    showModalCollaborateTasks: boolean = false;
     showModalLanding: boolean;
     showModalUserMyProfile: boolean = false;
     showModalUserPreferences: boolean = false;
@@ -1304,6 +1305,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalCollaborateActivities = false;
+    }
+
+    handleCloseCollaborateTasks(action: string) {
+        // Close Activities form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateTasks', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalCollaborateTasks = false;
     }
 
     handleCloseCollaborateActivityAdd(action: string) {
@@ -4271,7 +4281,8 @@ console.log('xx filteredActions', filteredActions)
 
         this.menuOptionClickPreAction();
 
-        this.showModalCollaborateActivities = true;
+        // this.showModalCollaborateActivities = true;
+        this.showModalCollaborateTasks = true;
 
         this.menuOptionClickPostAction();
     }

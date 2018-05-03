@@ -2833,12 +2833,20 @@
 </collaborate-messagesNew>
 
 
-<!-- Modal: Activities -->
+<!-- Modal: Task Add -->
 <collaborate-taskadd
     class="formPopupDashboard"
     *ngIf="showModalCollaborateTasksNew"
-    (formCollaborateTaskAddClosed)="handleCloseCollaborateTaskAdd($event)">Load Activities ...
+    (formCollaborateTaskAddClosed)="handleCloseCollaborateTaskAdd($event)">Load Task Add ...
 </collaborate-taskadd>
+
+
+<!-- Modal: Tasks -->
+<collaborate-tasks
+    class="formPopupDashboard"
+    *ngIf="showModalCollaborateTasks"
+    (formCollaborateTasksClosed)="handleCloseCollaborateTasks($event)">Load Tasks ...
+</collaborate-tasks>
 
 
 <!-- Modal: Activities -->
