@@ -29,13 +29,15 @@ This document describes items for later versions of Canvas.
     - everything must be accessable IN 3 CLICKS
     - every form must load in LESS THAN 3 SECS
     - consider if we need SAVE AS functionality
-    - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF
+    - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF.
+    Rather: https://stackoverflow.com/questions/38996376/generate-pdf-file-from-html-using-angular2-typescript,  or  https://stackoverflow.com/questions/42900319/how-to-convert-html-to-pdf-in-angular2  or  https://www.npmjs.com/package/jspdf
     - can send as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/
     - can copy whole D as image - can paste somewhere, or print and put on wall
     - verify that we cater for casual to sophisticated user
     - make sure we can have hybrid DS - cloud and local and server in one D
     - go through system and make sure things are done consistently
     - make all drag-n-drop and similar to Microsoft interface.
+    - view pdf docs insides forms: see https://www.npmjs.com/package/ng2-pdf-viewer
 
 
 
@@ -48,7 +50,7 @@ This document describes items for later versions of Canvas.
     
     Presentation: 
     -------------
-    - See if can print, and if so: allow different layouts and formats, for example one
+    - allow different print layouts and formats, for example one
        Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
 
     Admin module and Users
@@ -64,15 +66,12 @@ This document describes items for later versions of Canvas.
 
     Refactoring / tech debt / necessary improvements:
     -------------------------------------------------
-    - Some models like Shape has dashboardTabName - suggest we delete this
     - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI   function for changing things.  And always by the users, with rights if necessary.
     - Change all components to use central (global var) createVegaLiteSpec ...
-    - Consider CAREFULLY skipping all currentXX routines and data ... this can work is all  controlled by App Component.  Not sure what the FULL implications are ...
     - Consider array.spice() instead of current deep copy - is more TS-like ...  Review ALL deep    copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
     - Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make  app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh  gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  
     THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
     - Add RouteGuard on 'Clarity Analytics', before going to web site ...
-    - Improve getBackgroundColors (more propertie like rgb, etc), make more useful and make generic     getCSSColours.  Then use in forms, somewhere
     BUG/ISSUE: multi-tab Slicers and Ws only refresh on the first one - when are the others done?  To do them while hidden makes no sence - should we have a dirty flag, and filterSlicer on tab change??
 
     Groups:
