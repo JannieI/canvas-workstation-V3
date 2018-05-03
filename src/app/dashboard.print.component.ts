@@ -34,15 +34,21 @@ export class DashboardPrintComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
     }
-
-    ngAfterViewInit() {
-
-    }
-
 
   	clickClose(action: string) {
+        // Close the form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
 	  	this.formDashboardPrintClosed.emit(action);
     }
 
+    clickSave() {
+        // Save the settings, then close the form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+    }
 }
