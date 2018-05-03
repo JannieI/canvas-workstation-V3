@@ -48,7 +48,6 @@ This document describes items for later versions of Canvas.
     
     Presentation: 
     -------------
-    - must be able to make a PowerPoint-light: front page(logo and title), agenda with bullets and  optional links, pages with logo and title repeated at the top and bullets and W (graphs, etc)    that are normal Canvas W => interactive and can add Sl, explore, expand, etc.
     - See if can print, and if so: allow different layouts and formats, for example one
        Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
 

@@ -15,17 +15,13 @@ import { Datasource }                 from './models';
 import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
-// Functions
-
-
-
 
 @Component({
     selector: 'dashboard-print',
     templateUrl: './dashboard.print.component.html',
     styleUrls: ['./dashboard.print.component.css']
-  })
-  export class DashboardPrintComponent implements OnInit {
+})
+export class DashboardPrintComponent implements OnInit {
 
     @Output() formDashboardPrintClosed: EventEmitter<string> = new EventEmitter();
 
@@ -47,6 +43,6 @@ import { GlobalVariableService }      from './global-variable.service';
 
   	clickClose(action: string) {
 	  	this.formDashboardPrintClosed.emit(action);
-        }
+    }
 
-  }
+}
