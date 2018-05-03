@@ -17,6 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { CanvasActivity }             from './models';
+import { CanvasTask }                 from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 
@@ -29,6 +30,7 @@ export class CollaborateTasksComponent implements OnInit {
 
     @Output() formCollaborateTasksClosed: EventEmitter<string> = new EventEmitter();
 
+    canvasTasks: CanvasTask[] = [];
     datagridColumns: DatagridColumn[];
     datagridInput: DatagridInput = null;
     datagridData: any;
@@ -57,6 +59,67 @@ export class CollaborateTasksComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        this.canvasTasks.push(
+            {
+                id: 1,
+                taskText: 'Perform QA of Dashboard XYZ',
+                activityType: 'QA Dashboard',
+                taskStatus: 'Pending',
+                assignedToUserID: 'QuentinI',
+                precedingTaskID: null,
+                linkedDashboardID: 1,
+                taskComments: [],
+                startDate: '2017/01/01',
+                deadlineDate: '2017/01/01',
+                endDate: '',
+                durationDays: 1,
+                editedBy: 'ChristianN',
+                editedOn: '2017/01/01',
+                createdBy: 'ChristianN',
+                createdOn: '2017/01/01'
+            }
+        );
+        this.canvasTasks.push(
+            {
+                id: 1,
+                taskText: 'Add outstanding figures',
+                activityType: 'Ad hoc',
+                taskStatus: 'Pending',
+                assignedToUserID: 'QuentinI',
+                precedingTaskID: null,
+                linkedDashboardID: 2,
+                taskComments: [],
+                startDate: '2017/01/01',
+                deadlineDate: '2017/01/01',
+                endDate: '',
+                durationDays: 1,
+                editedBy: 'ChristianN',
+                editedOn: '2017/01/01',
+                createdBy: 'ChristianN',
+                createdOn: '2017/01/01'
+            }
+        );
+        this.canvasTasks.push(
+            {
+                id: 1,
+                taskText: 'Visualise marketing campaign',
+                activityType: 'QA Dashboard',
+                taskStatus: 'Pending',
+                assignedToUserID: 'QuentinI',
+                precedingTaskID: null,
+                linkedDashboardID: null,
+                taskComments: [],
+                startDate: '2017/01/01',
+                deadlineDate: '2017/01/01',
+                endDate: '',
+                durationDays: 1,
+                editedBy: 'ChristianN',
+                editedOn: '2017/01/01',
+                createdBy: 'ChristianN',
+                createdOn: '2017/01/01'
+            }
+        );
 
         this.globalVariableService.getCanvasActivities().then (ca => {
 
