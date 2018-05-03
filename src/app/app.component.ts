@@ -2246,14 +2246,14 @@ console.log('xx filteredActions', filteredActions)
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID
             )) {
-                    this.showMessage(
-                        'No access to this Dashboard',
-                        'StatusBar',
-                        'Warning',
-                        3000,
-                        ''
-                    );
-                    return;
+                this.showMessage(
+                    'No access to this Dashboard',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
         };
 
         this.menuOptionClickPreAction();
@@ -2580,6 +2580,20 @@ console.log('xx filteredActions', filteredActions)
             return
         };
 
+        // Must have access
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            'CanEdit')) {
+                this.showMessage(
+                    'No Edit access to this Dashboard',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+        };
+        
         this.menuOptionClickPreAction();
 
         // Set the selected W id
