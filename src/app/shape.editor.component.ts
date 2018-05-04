@@ -102,6 +102,11 @@ export class ShapeEditComponent implements OnInit {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeTextColour = clp.selectedColor;
                     };
+                    
+                    if (clp.callingRoutine == 'ShapeEditorBracketColor') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.shapeStroke = clp.selectedColor;
+                    };
 
                     if (clp.callingRoutine == 'ShapeEditorCircleLineColor') {
                         this.colourPickerClosed = false;
