@@ -44,7 +44,7 @@ export class MyProfileComponent implements OnInit {
         this.favDashboards = this.globalVariableService.dashboards.filter(d => 
             this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) >= 0
         );
-console.log('xx this.favDashboards', this.favDashboards, this.globalVariableService.currentUser.favouriteDashboards)
+console.warn('xx this.favDashboards', this.favDashboards, this.globalVariableService.currentUser.favouriteDashboards)
 
         if (this.favDashboards.length > 0) {
 
@@ -62,7 +62,7 @@ console.log('xx this.favDashboards', this.favDashboards, this.globalVariableServ
             for (var i = 0; i < nrCols; i++) {
                 this.dataFieldNames.push((i));
             };
-            console.log('xx dataFieldNames', this.dataFieldNames)
+            console.warn('xx dataFieldNames', this.dataFieldNames)
 
             // Create the data
             let c: number = 0;
@@ -84,7 +84,7 @@ console.log('xx this.favDashboards', this.favDashboards, this.globalVariableServ
                 };
 
             })
-            console.log('xx rows', this.currentData.length, row0, row1)
+            console.warn('xx rows', this.currentData.length, row0, row1)
             if (row0.length > 0) {
                 this.currentData.push(row0);
             };
@@ -92,7 +92,7 @@ console.log('xx this.favDashboards', this.favDashboards, this.globalVariableServ
                 this.currentData.push(row1);
             };
             // this.currentData.push( row0, row1)
-            console.log('xx cData', this.currentData.length, this.currentData)
+            console.warn('xx cData', this.currentData.length, this.currentData)
         };
     }
 
@@ -100,7 +100,7 @@ console.log('xx this.favDashboards', this.favDashboards, this.globalVariableServ
         // Close form, no changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
-        console.log('xx', ev, row, 'c', col)
+        console.warn('xx', ev, row, 'c', col)
 }
 
     clickClose(action: string) {

@@ -89,7 +89,7 @@ export class TableSingleComponent {
         // Enter changed amount of rows
         this.globalFunctionService.printToConsole(this.constructor.name,'clickNrRows', '@Start');
 
-        console.log('xx newV', newValue, this.nrRecords)
+        console.warn('xx newV', newValue, this.nrRecords)
         this.allowEdit = !this.allowEdit;
         // "> <input type="text" [(ngModel)]="nrRecords"
     }

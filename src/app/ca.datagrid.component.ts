@@ -82,7 +82,7 @@ export class CaDatagridComponent implements OnInit {
         // Clicked a Header
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHeader', '@Start');
 
-        console.log('xx', index, this.currentPage, this.lastPage, this.selectedData)
+        console.warn('xx', index, this.currentPage, this.lastPage, this.selectedData)
     }
 
     clickRowEdit() {

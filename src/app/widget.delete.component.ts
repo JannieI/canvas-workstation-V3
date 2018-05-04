@@ -64,7 +64,7 @@ export class WidgetDeleteComponent implements OnInit {
         localWidget.containerBackgroundcolor = 'white';
 
         let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
-        console.log('xx def', definition)
+        console.warn('xx def', definition)
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
         view.renderer('svg')

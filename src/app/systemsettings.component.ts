@@ -73,7 +73,7 @@ export class SystemSettingsComponent implements OnInit {
         this.noQueryRunningMessage = this.globalVariableService.canvasSettings.noQueryRunningMessage;
         this.queryRunningMessage = this.globalVariableService.canvasSettings.queryRunningMessage;
 
-        console.log('xx cs', this.globalVariableService.canvasSettings)
+        console.warn('xx cs', this.globalVariableService.canvasSettings)
     }
 
     clickClose(action: string) {

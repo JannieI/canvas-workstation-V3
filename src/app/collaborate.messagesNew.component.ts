@@ -271,7 +271,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCopyText', '@Start');
         let e: ClipboardEvent;
         e.clipboardData.setData('text/plain', 'Hallo World!');
-        console.log('xx e', e)
+        console.warn('xx e', e)
         //       e.preventDefault();
         //       document.removeEventListener('copy');
         //     });

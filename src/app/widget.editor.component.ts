@@ -277,7 +277,7 @@ const graphWidth: number = 420;
             //     newID = Math.max(...wsIDs) + 1;
             // };
             // this.localWidget.id = newID;
-            //  console.log('xx wIDs', wsIDs, newID)
+            //  console.warn('xx wIDs', wsIDs, newID)
 
              // Get Checkpoint info for ALL W, not only current one - AFTER ID collected
             // TODO - fix when using DB
@@ -694,7 +694,7 @@ const graphWidth: number = 420;
             // Make proper error handling
             alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
         };
-console.log('xx this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
+console.warn('xx this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data.slice(0,5);

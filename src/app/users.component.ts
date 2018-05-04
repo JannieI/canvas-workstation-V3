@@ -47,7 +47,7 @@ export class UsersComponent implements OnInit {
             if (u.length > 0) {
                 this.groups = u[0].groups;
             };
-                console.log('xx users', this.users)
+                console.warn('xx users', this.users)
         });
 
     }
@@ -62,7 +62,7 @@ export class UsersComponent implements OnInit {
     clickRow(index: number, userID: string) {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'setClickedRow', '@Start');
-console.log('xx userID', userID)
+console.warn('xx userID', userID)
         this.selectedRow = index;
         this.users.forEach(u => {
             if (u.userID == userID) {

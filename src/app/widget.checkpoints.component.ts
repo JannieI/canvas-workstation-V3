@@ -56,7 +56,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        console.log('xx this.selectedWidget', this.selectedWidget)
+        console.warn('xx this.selectedWidget', this.selectedWidget)
         this.globalVariableService.getWidgetCheckpoints().then (ca => {
             // Set the data for the grid
             this.currentWidgetCheckpoints = ca.filter(wc =>
@@ -141,7 +141,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.selectedWidget.currentCheckpoint = 0;
             this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
 
-            console.log('xx selW', this.selectedWidget.checkpointIDs, this.selectedWidget.currentCheckpoint, this.selectedWidget.lastCheckpoint)
+            console.warn('xx selW', this.selectedWidget.checkpointIDs, this.selectedWidget.currentCheckpoint, this.selectedWidget.lastCheckpoint)
             // Save to DB
             this.globalVariableService.saveWidget(this.selectedWidget);
     
@@ -183,7 +183,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             };
             this.selectedWidget.currentCheckpoint = 0;
             this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
-    console.log('xx selW', this.selectedWidget.checkpointIDs, this.selectedWidget.currentCheckpoint, this.selectedWidget.lastCheckpoint)
+    console.warn('xx selW', this.selectedWidget.checkpointIDs, this.selectedWidget.currentCheckpoint, this.selectedWidget.lastCheckpoint)
             // Save to DB
             this.globalVariableService.saveWidget(this.selectedWidget);
 

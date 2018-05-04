@@ -387,13 +387,13 @@ import { GlobalVariableService }      from './global-variable.service';
         // Must slicer when not All were selected
         // TODO - fix this
         if (this.localWidget.slicerNumberToShow != 'All') {
-            console.log('xx hier', this.localWidget.datasetID, this.localWidget.datasourceID, this.localWidget.datasetID)
+            console.warn('xx hier', this.localWidget.datasetID, this.localWidget.datasourceID, this.localWidget.datasetID)
             this.globalVariableService.currentDatasets.forEach(cd => {
                 if (cd.id == this.localWidget.datasetID) {
-                    console.log('xx len before', cd.data.length)
+                    console.warn('xx len before', cd.data.length)
                     let temp = this.globalVariableService.filterSlicer(cd);
-                    // console.log('xx newDataset', newDataset)
-                    console.log('xx len later', cd.data.length, temp.data.length)
+                    // console.warn('xx newDataset', newDataset)
+                    console.warn('xx len later', cd.data.length, temp.data.length)
                 };
             });
 
@@ -403,7 +403,7 @@ import { GlobalVariableService }      from './global-variable.service';
                     &&  
                     w.datasetID == this.localWidget.datasetID  
                     && w.widgetType != 'Slicer') {
-                    console.log('xx Sl-Edt flt', w.id, w.widgetType, w.containerWidth)
+                    console.warn('xx Sl-Edt flt', w.id, w.widgetType, w.containerWidth)
                     this.globalVariableService.changedWidget.next(w);
                 }
             });

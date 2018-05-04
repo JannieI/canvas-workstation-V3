@@ -1281,7 +1281,7 @@ export class GlobalVariableService {
         // Returns: this.currentDashboardTabs array, unless:
         //   If not cached or if dirty, get from File
         console.log('Global-Variables getCurrentDashboardTabs ...', dashboardID);
-console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
+console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Refresh from source at start, or if dirty
         if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
             return new Promise<DashboardTab[]>((resolve, reject) => {
@@ -1993,7 +1993,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         console.log('Global-Variables filterSlicer ...');
 
         this.currentWidgets.forEach(w => {
-            console.log('xx strt graphData', w.graphUrl, w.graphData);
+            console.warn('xx strt graphData', w.graphUrl, w.graphData);
         });
 
 
@@ -2089,7 +2089,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             };
         });
 
-        console.log('xx filt Sl', this.currentWidgets, dataSet)
+        console.warn('xx filt Sl', this.currentWidgets, dataSet)
         return dataSet;
     }
 
@@ -3134,7 +3134,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Remove a record from the global and current DatasourcePermissions
         console.log('Global-Variables deleteDatasourcePermission ...', id);
 
-        console.log('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
+        console.warn('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
 
         this.datasourcePermissions = this.datasourcePermissions.filter(
             dsp => dsp.id != id
@@ -3143,7 +3143,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             dsp => dsp.id != id
         );
 
-        console.log('xx GV Perms', this.datasourcePermissions, this.currentDatasourcePermissions)
+        console.warn('xx GV Perms', this.datasourcePermissions, this.currentDatasourcePermissions)
     }
 
     getDatasourcePivots(): Promise<DatasourcePivot[]> {
@@ -3614,7 +3614,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     // routine
                     let dID: number = -1;
                     for (var i = 0; i < this.currentPaletteButtonsSelected.value.length; i++) {
-                        console.log('xx i ', i, this.currentPaletteButtonsSelected.value.length)
+                        console.warn('xx i ', i, this.currentPaletteButtonsSelected.value.length)
                         if (this.currentPaletteButtonsSelected.value[i].id == id) {
                             dID = i;
                             break;
@@ -4048,7 +4048,7 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
                         // Remember, AFTER latest was found
                         dsCurrIDs.push(w.datasetID);
-                        console.log('xx allS 0', this.currentDatasets.slice())
+                        console.warn('xx allS 0', this.currentDatasets.slice())
 
                         promiseArray.push(this.getCurrentDataset(w.datasourceID, w.datasetID));
                     };
@@ -4065,13 +4065,13 @@ console.log('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             // Get all the dataset to local vars
             this.allWithAsync(...promiseArray)
                 .then(resolvedData => {
-console.log('xx allS 1', this.currentDatasets.slice())
+console.warn('xx allS 1', this.currentDatasets.slice())
                     // Filter currentDatasets by Sl linked to DS
                     this.currentDatasets.forEach(cd => {
                         // TODO - improve
                         // this.filterSlicer(cd);
                     })
-                    console.log('xx allS 2', this.currentDatasets.slice())
+                    console.warn('xx allS 2', this.currentDatasets.slice())
 
                     // Add data to widget
                     // TODO - url = this.filePath for localDB ...
@@ -4259,7 +4259,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                         this.widgets.forEach(w => {
                             if (w.id == data.widgetID) {
                                 w.nrComments = w.nrComments + 1;
-                                console.log('xx nrC', w.id, w.nrComments)
+                                console.warn('xx nrC', w.id, w.nrComments)
                             };
                         });
                     };
@@ -4301,7 +4301,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
                         this.widgets.forEach(w => {
                             if (w.id == widgetID) {
                                 w.nrComments = w.nrComments - 1;
-                                console.log('xx nrC', w.id, w.nrComments)
+                                console.warn('xx nrC', w.id, w.nrComments)
                             };
                         });
                     };
@@ -5198,7 +5198,7 @@ console.log('xx allS 1', this.currentDatasets.slice())
             y = currentDashboardTabs[x].id;
         } else {
             y = dashboardTabID;
-            console.log('xx hier', dashboardTabID, this.currentDashboardTabs,)
+            console.warn('xx hier', dashboardTabID, this.currentDashboardTabs,)
             if (currentDashboardTabs.length == 0) {
                 x = 0;
             } else {

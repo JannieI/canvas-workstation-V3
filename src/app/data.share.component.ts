@@ -45,7 +45,7 @@ export class DatasourceShareComponent implements OnInit {
                 tdsp.name = this.globalVariableService.datasources.filter(
                     ds => ds.id == tdsp.datasourceID)[0].name;
             })
-            console.log('xx this.datasourcePermissions', this.datasourcePermissions)
+            console.warn('xx this.datasourcePermissions', this.datasourcePermissions)
         });
 
     }

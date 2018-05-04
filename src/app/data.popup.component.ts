@@ -489,8 +489,8 @@ export class DataPopupComponent implements OnInit {
             this.globalVariableService.addDataset(newdSet);
             this.globalVariableService.addData(dataToAdd).then(res => {
                 this.globalVariableService.getData(res.id).then(dat => {
-                    console.log('xx ----------')
-                    console.log('xx added data', dat)
+                    console.warn('xx ----------')
+                    console.warn('xx added data', dat)
                                     });
             });
             this.globalVariableService.saveLocal('Dataset', newdSet);
@@ -504,12 +504,12 @@ export class DataPopupComponent implements OnInit {
 
 
 
-        console.log('xx ----------')
-        console.log('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
+        console.warn('xx ----------')
+        console.warn('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
          this.globalVariableService.currentDatasets)
 
         // Reset data related to this DS
-        console.log('xx currDS, gv.currDS', this.currentDatasources , this.globalVariableService.currentDatasources)
+        console.warn('xx currDS, gv.currDS', this.currentDatasources , this.globalVariableService.currentDatasources)
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.currentTransformations = [];
         this.transformationsFormat = [];

@@ -545,7 +545,7 @@ export class AppComponent implements OnInit {
                     this.currentWidgets.push(newW);
                 };
 
-                console.log('xx app changedWidget replaced', w, this.currentWidgets)
+                console.warn('xx app changedWidget replaced', w, this.currentWidgets)
             };
         });
 
@@ -560,7 +560,7 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID)
                             .then(j => {
-                                console.log('xx this.globalVariableService.currentDashboardInfo.value', this.globalVariableService.currentDashboardInfo.value)
+                                console.warn('xx this.globalVariableService.currentDashboardInfo.value', this.globalVariableService.currentDashboardInfo.value)
                                 this.refreshGraphs = false;
 
                                 // Cater for -1, ie First T
@@ -604,7 +604,7 @@ export class AppComponent implements OnInit {
                                     w.isSelected = false;
                                     this.currentWidgets.push(w)
                                 }
-                                console.log('xx app end', this.currentWidgets);
+                                console.warn('xx app end', this.currentWidgets);
 
                             }
 
@@ -1016,7 +1016,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.changedWidget.next(changedWidget);
 
         this.menuOptionClickPostAction();
-        console.log('xx app W', this.selectedWidget, changedWidget, this.currentWidgets)
+        console.warn('xx app W', this.selectedWidget, changedWidget, this.currentWidgets)
         this.showModalWidgetEditor = false;
     }
 
@@ -1566,7 +1566,7 @@ export class AppComponent implements OnInit {
         // Get last action
         let filteredActions: CanvasAction[] = [];
         filteredActions = ourActions.filter(act => act.id == maxActID);
-console.log('xx filteredActions', filteredActions)
+console.warn('xx filteredActions', filteredActions)
         if (filteredActions[0].undoID == null) {
             // Previous was not an UNDO, so just reverse it
             this.globalVariableService.actionUpsert(
@@ -1660,7 +1660,7 @@ console.log('xx filteredActions', filteredActions)
                 filteredActions[0].newWidget,
                 filteredActions[0].oldWidget
             );
-console.log('xx filteredActions', filteredActions)
+console.warn('xx filteredActions', filteredActions)
             // Diff Object Types
             if (filteredActions[0].objectType == 'Widget') {
                 if (filteredActions[0].oldWidget == null) {
@@ -4890,7 +4890,7 @@ console.log('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletJump', '@Start');
 
         this.menuOptionClickPreAction();
-console.log('xx linkedTabID', linkedTabID)
+console.warn('xx linkedTabID', linkedTabID)
         this.globalVariableService.refreshCurrentDashboard(
             'app-clickBulletJump',
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,

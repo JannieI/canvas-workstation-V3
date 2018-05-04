@@ -151,7 +151,7 @@ export class StatusbarComponent {
 
         // Throws an error on second Slicer selection who wants to pass a message ...
         this.editModeSubscription.unsubscribe();
-        console.log('xx unsubsribed')
+        console.warn('xx unsubsribed')
         // this.globalVariableService.widgetGroup.unsubscribe();
         // this.globalVariableService.loggedIntoServer.unsubscribe();
         // this.globalVariableService.templateInUse.unsubscribe();

@@ -164,7 +164,7 @@ export class CollaborateTasksComponent implements OnInit {
             "x2": {"field": "end", "type": "quantitative"}
         };
 
-        console.log('xx this.widgetDOM', this.widgetDOM)
+        console.warn('xx this.widgetDOM', this.widgetDOM)
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
         view.renderer('svg')
