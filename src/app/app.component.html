@@ -1589,6 +1589,10 @@
     </div>
 
     <!-- Shape Brackets Object -->
+     <!-- Note:        0                   90                  180                 270  -->
+     <!-- x increase   ?                   up + right-top      right               down+right -->
+     <!-- y increase   ?                   down + right        down                left -->
+
     <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Brackets'">
         <svg height="150" width="150" *ngIf="row.shapeSize==1
             &&

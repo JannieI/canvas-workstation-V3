@@ -1045,14 +1045,12 @@
                     </button>
 
                 </div>
-
-
                 
                 <div class="gridShapeProperties" *ngIf="showBrackets">
-                    <div class="gridArrowDirectionTitle">
+                    <div class="gridBracketDirectionTitle">
                         <b>Direction:</b>
                     </div>
-                    <div class="select gridArrowDirection">
+                    <div class="select gridBracketDirection">
                         <select
                             [(ngModel)]="localWidget.shapeRotation"
                             >
@@ -1064,35 +1062,13 @@
                         </select>
                     </div>
 
-                    <div class="gridArrowFillColourTitle">
-                        <b>Fill:</b>
-                    </div>
-                    <div class="select gridArrowFillColour">
-                        <select
-                            [(ngModel)]="localWidget.shapeFill"
-                            (change)="clickSelectArrowFill($event)"
-                            >
-                            <option *ngFor="let row of backgroundcolors"
-                                [style.background-color]="row.name"
-                                >
-                                {{ row.name }}
-                            </option>
-                        </select>
-                    </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridArrowFillColourPicker"
-                        (click)="clickSelectArrowFillColorPicker()"
-                        >
-                        Picker
-                    </button>
-                    <div class="gridArrowLineColourTitle">
+                    <div class="gridBracketLineColourTitle">
                         <b>Line:</b>
                     </div>
-                    <div class="select gridArrowLineColour">
+                    <div class="select gridBracketLineColour">
                         <select
                             [(ngModel)]="localWidget.shapeStroke"
-                            (change)="clickSelectArrowLineColor($event)"
+                            (change)="clickSelectBracketLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.name"
@@ -1103,19 +1079,19 @@
                     </div>
                     <button
                         type="button"
-                        class="btn btn-link btn-sm gridArrowLineColourPicker"
-                        (click)="clickSelectArrowLineColorPicker()"
+                        class="btn btn-link btn-sm gridBracketLineColourPicker"
+                        (click)="clickSelectBracketLineColorPicker()"
                         >
                         Picker
                     </button>
 
-                    <div class="gridArrowSizeTitle">
+                    <div class="gridBracketSizeTitle">
                         <b>Size:</b>
                     </div>
-                    <div class="select gridArrowSize">
+                    <div class="select gridBracketSize">
                         <select
                             [(ngModel)]="localWidget.shapeSize"
-                            (change)="clickSelectArrowSize($event)"
+                            (change)="clickSelectBracketSize($event)"
                             >
                             <option>1</option>
                             <option>3</option>
@@ -1130,9 +1106,6 @@
                     </div>
 
                 </div>
-
-
-
                 
                 <div class="gridShapeProperties" *ngIf="showArrow">
                     <div class="gridArrowDirectionTitle">

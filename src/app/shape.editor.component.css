@@ -466,6 +466,64 @@
         padding-top: 6px;
     }
 
+    /* Bracket */
+    .gridBracketDirectionTitle {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBracketDirection {
+        grid-column-start: 3;
+        grid-column-end: 8;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBracketLineColourTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBracketLineColour {
+        grid-column-start: 3;
+        grid-column-end: 8;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBracketLineColourPicker {
+        grid-column-start: 9;
+        grid-column-end: 11;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBracketSizeTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBracketSize {
+        grid-column-start: 3;
+        grid-column-end: 8;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
     /* ArrowThin */
     .gridArrowThinArea {
         grid-column-start: 1;
