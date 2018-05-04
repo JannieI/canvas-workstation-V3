@@ -27,14 +27,15 @@
                             (change)="clickSelectShape($event)"
                             [(ngModel)]="localWidget.widgetSubType"
                             >
-                            <option>Circle</option>
-                            <option>Ellipse</option>
-                            <option>Rectangle</option>
-                            <option>Text</option>
                             <option>Arrow</option>
                             <option>ArrowThin</option>
-                            <option>Image</option>
+                            <option>Brackets</option>
                             <option>Bullets</option>
+                            <option>Circle</option>
+                            <option>Ellipse</option>
+                            <option>Image</option>
+                            <option>Rectangle</option>
+                            <option>Text</option>
                             <option>Value</option>
                         </select>
                     </span>
@@ -135,9 +136,27 @@
                     </svg> -->
                 </div>
 
+
+                
+                <div class="gridShape" *ngIf="showBrackets"
+                    >
+                    <!-- TODO - Make this DYNAMIC !!!  -->
+                    <svg height="150" width="150" *ngIf="localWidget.shapeSize==1
+                        &&
+                        localWidget.shapeRotation==0"
+                        >
+                        <text x="2" y="14" 
+                            transform="rotate(0, 20, 20) scale(1,2)"
+                            stroke=black
+                            >}
+                        </text>
+                    </svg>
+                </div>
+
+
                 <div class="gridShape" *ngIf="showArrow"
                     >
-                    <!-- TODO - Makey this DYNAMIC !!!  -->
+                    <!-- TODO - Make this DYNAMIC !!!  -->
                     <svg class="gridShapeArrow" *ngIf="localWidget.shapeSize==1
                             &&
                             localWidget.shapeRotation==0"
@@ -917,6 +936,98 @@
 
                 </div>
 
+
+                
+                <div class="gridShapeProperties" *ngIf="showBrackets">
+                    <div class="gridArrowDirectionTitle">
+                        <b>Direction:</b>
+                    </div>
+                    <div class="select gridArrowDirection">
+                        <select
+                            [(ngModel)]="localWidget.shapeRotation"
+                            >
+                            <!-- TODO - DYNAMIC -->
+                            <option>0</option>
+                            <option>45</option>
+                            <option>90</option>
+                            <option>135</option>
+                            <option>180</option>
+                            <option>225</option>
+                            <option>270</option>
+                            <option>315</option>
+                        </select>
+                    </div>
+
+                    <div class="gridArrowFillColourTitle">
+                        <b>Fill:</b>
+                    </div>
+                    <div class="select gridArrowFillColour">
+                        <select
+                            [(ngModel)]="localWidget.shapeFill"
+                            (change)="clickSelectArrowFill($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridArrowFillColourPicker"
+                        (click)="clickSelectArrowFillColorPicker()"
+                        >
+                        Picker
+                    </button>
+                    <div class="gridArrowLineColourTitle">
+                        <b>Line:</b>
+                    </div>
+                    <div class="select gridArrowLineColour">
+                        <select
+                            [(ngModel)]="localWidget.shapeStroke"
+                            (change)="clickSelectArrowLineColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridArrowLineColourPicker"
+                        (click)="clickSelectArrowLineColorPicker()"
+                        >
+                        Picker
+                    </button>
+
+                    <div class="gridArrowSizeTitle">
+                        <b>Size:</b>
+                    </div>
+                    <div class="select gridArrowSize">
+                        <select
+                            [(ngModel)]="localWidget.shapeSize"
+                            (change)="clickSelectArrowSize($event)"
+                            >
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <!-- Later - when DYNAMIC -->
+                            <!-- <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option> -->
+                        </select>
+                    </div>
+
+                </div>
+
+
+
+                
                 <div class="gridShapeProperties" *ngIf="showArrow">
                     <div class="gridArrowDirectionTitle">
                         <b>Direction:</b>

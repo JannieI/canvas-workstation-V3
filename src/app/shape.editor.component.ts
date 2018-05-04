@@ -62,6 +62,7 @@ export class ShapeEditComponent implements OnInit {
     hasAutoFocusImage: boolean = false;
     hasAutoFocusBullets: boolean = false;
     hasAutoFocusValue: boolean = false;
+    hasAutoFocusBrackets: boolean = false;
     editBulletItem: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     selectedColour: string;
@@ -76,6 +77,7 @@ export class ShapeEditComponent implements OnInit {
     showText: boolean = false;
     showTypeDashboard: boolean = false;
     showValue: boolean = false;
+    showBrackets: boolean = false;
 
 
     constructor(
@@ -222,6 +224,7 @@ export class ShapeEditComponent implements OnInit {
             this.hasAutoFocusBullets = false;
             this.selectedColour = this.localWidget.shapeTextColour;
             this.hasAutoFocusValue = false;
+            this.hasAutoFocusBrackets = false;
 
             if (this.localWidget.widgetSubType == 'Circle') {
                 this.hasAutoFocusCircle = true;
@@ -249,6 +252,9 @@ export class ShapeEditComponent implements OnInit {
             };
             if (this.localWidget.widgetSubType == 'Value') {
                 this.hasAutoFocusValue = true;
+            };
+            if (this.localWidget.widgetSubType == 'Brackets') {
+                this.hasAutoFocusBrackets = true;
             };
 
         };
@@ -285,6 +291,7 @@ export class ShapeEditComponent implements OnInit {
         this.hasAutoFocusImage = false;
         this.hasAutoFocusBullets = false;
         this.hasAutoFocusValue = false;
+        this.hasAutoFocusBrackets = false;
 
         if (selectedShape == 'Circle') {
             this.hasAutoFocusCircle = true;
@@ -313,6 +320,9 @@ export class ShapeEditComponent implements OnInit {
         if (selectedShape == 'Value') {
             this.hasAutoFocusValue = true;
         };
+        if (selectedShape == 'Brackets') {
+            this.hasAutoFocusBrackets = true;
+        };
 
         // Enact selected shape
         this.selectShape(selectedShape);
@@ -333,6 +343,7 @@ export class ShapeEditComponent implements OnInit {
         this.showImage = false;
         this.showBullets = false;
         this.showValue = false;
+        this.showBrackets = false;
 
         // Reset defaults, making sure localWidget exists
         // if (this.localWidget) {
@@ -373,6 +384,10 @@ export class ShapeEditComponent implements OnInit {
             // TODO - get this value from the DB ...
             this.localWidget.shapeText = 'R234m';
         };
+        if (shapeType == 'Brackets') {
+            this.showBrackets = true;
+        };
+        
     }
 
     clickBulletDelete(index: number, item: string) {
