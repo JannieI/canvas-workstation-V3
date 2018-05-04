@@ -590,6 +590,15 @@ export class ShapeEditComponent implements OnInit {
 
     }
 
+    clickSelectBracketLineColorPicker() {
+        // Open the Colour Picker for Text Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBracketLineColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
+        this.callingRoutine = 'ShapeEditorBracketColor';
+        this.colourPickerClosed = true;
+    }
+
     clickSelectTextColorPicker() {
         // Open the Colour Picker for Text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextColorPicker', '@Start');
