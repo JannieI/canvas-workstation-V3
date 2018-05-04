@@ -595,8 +595,15 @@ export class ShapeEditComponent implements OnInit {
 
     }
 
+    clickSelectBracketLineColor(ev: any) {
+        // Select Bracket Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBracketLineColor', '@Start');
+
+        this.localWidget.shapeStroke = ev.target.value;
+    }
+
     clickSelectBracketLineColorPicker() {
-        // Open the Colour Picker for Text Colour
+        // Open the Colour Picker for Bracket Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBracketLineColorPicker', '@Start');
 
         this.selectedColour = this.localWidget.shapeStroke;
@@ -614,7 +621,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectTextColor(ev: any) {
-        // Open the Colour Picker for Text Colour
+        // Select Text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextColor', '@Start');
 
         this.localWidget.shapeTextColour = ev.target.value;
@@ -630,7 +637,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectCircleLineColor(ev: any) {
-        // Open the Colour Picker for Circle Line Colour
+        // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectCircleLineColor', '@Start');
 
         this.localWidget.shapeStroke = ev.target.value;
@@ -646,7 +653,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectCircleFillColor(ev: any) {
-        // Open the Colour Picker for Circle Line Colour
+        // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectCircleFillColor', '@Start');
 
         this.localWidget.shapeFill = ev.target.value;
@@ -662,7 +669,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectEllipseLineColor(ev: any) {
-        // Open the Colour Picker for Ellipse Line Colour
+        // Select Ellipse Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectEllipseLineColor', '@Start');
 
         this.localWidget.shapeStroke = ev.target.value;
@@ -678,7 +685,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectEllipseFillColor(ev: any) {
-        // Open the Colour Picker for Ellipse Line Colour
+        // Select Ellipse Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectEllipseFillColor', '@Start');
 
         this.localWidget.shapeFill = ev.target.value;
@@ -694,7 +701,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectRectangleLineColor(ev: any) {
-        // Open the Colour Picker for Rectangle Line Colour
+        // Select Rectangle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleLineColor', '@Start');
 
         this.localWidget.shapeStroke = ev.target.value;
@@ -710,7 +717,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectRectangleFillColor(ev: any) {
-        // Open the Colour Picker for Rectangle Line Colour
+        // Select Rectangle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleFillColor', '@Start');
 
         this.localWidget.shapeFill = ev.target.value;
@@ -726,7 +733,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectValueLineColor(ev: any) {
-        // Open the Colour Picker for Value Line Colour
+        // Select Value Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectValueLineColor', '@Start');
 
         this.localWidget.shapeStroke = ev.target.value;
@@ -742,7 +749,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectBulletsColor(ev: any) {
-        // Open the Colour Picker for Bullets Colour
+        // Select Bullets Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsColor', '@Start');
 
         this.localWidget.shapeTextColour = ev.target.value;
@@ -776,7 +783,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectArrowSize(ev: any) {
-        // Open the Colour Picker for Arrow Line Colour
+        // Select Arrow Size
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowSize', '@Start');
 
         this.localWidget.shapeSize = ev.target.value;
@@ -794,14 +801,14 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectArrowLineColor(ev: any) {
-        // Open the Colour Picker for Arrow Line Colour
+        // Select Arrow Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowLineColor', '@Start');
 
         this.localWidget.shapeStroke = ev.target.value;
     }
 
     clickSelectArrowFill(ev: any) {
-        // Open the Colour Picker for Arrow Fille Colour
+        // Select Arrow Fill Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowFill', '@Start');
 
         this.localWidget.shapeFill = ev.target.value;
@@ -817,7 +824,7 @@ export class ShapeEditComponent implements OnInit {
     }
 
     clickSelectArrowThinColor(ev: any) {
-        // Open the Colour Picker for Circle Line Colour
+        // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowThinColor', '@Start');
 
         this.localWidget.shapeStroke = ev.target.value;
