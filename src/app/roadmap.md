@@ -97,7 +97,6 @@ This document describes items for later versions of Canvas.
     - have UPPERCASE / Sentence Case options
     - add triangle, or make arrow more sophisticated = no line (! triangle), no arrowhead
     - make rotation of arrow with mouse - drag it around!
-    - add Brackets! |---| simple ones that has two handles and a line
     - size with svg markerWidth and -Height
 
 

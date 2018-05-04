@@ -781,6 +781,15 @@ export class ShapeEditComponent implements OnInit {
         this.callingRoutine = 'ShapeEditorArrowLineColor';
         this.colourPickerClosed = true;
     }
+    
+    clickSelectBracketSize(ev: any) {
+        // Select Arrow Size
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBracketSize', '@Start');
+
+        this.localWidget.shapeSize = ev.target.value;
+        this.localWidget.shapeSvgHeight = 60; //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
+        this.localWidget.shapeSvgWidth = 60;  //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
+    }
 
     clickSelectArrowSize(ev: any) {
         // Select Arrow Size
