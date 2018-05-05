@@ -2540,7 +2540,7 @@ console.warn('xx filteredActions', filteredActions)
         this.showModalWidgetContainer = true;
     }
 
-    clickMenuWidgetCheckpoints() {
+    clickMenuWidgetCheckpoints(selectedWidgetID: number = null) {
         // Manage Checkpoints for the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCheckpoints', '@Start');
 
@@ -2556,17 +2556,30 @@ console.warn('xx filteredActions', filteredActions)
             return;
         };
 
-        if (!this.checkForOnlyOneWidget('Graph')) {
-            return
+        // Check exactly one W selected if no specific ID was given
+        if (selectedWidgetID == null) {
+
+            if (!this.checkForOnlyOneWidget()) {
+                return
+            };
+
+            if (!this.checkForOnlyOneWidget('Graph')) {
+                return
+            };
         };
 
         this.menuOptionClickPreAction();
 
+        // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Graph') {
+            if (w.isSelected  &&  (selectedWidgetID == null) 
+                ||
+                (w.id == selectedWidgetID   &&  (selectedWidgetID != null) ) 
+                ) {
                 this.selectedWidget = w;
             };
-        });
+        })
+        
         this.showModalWidgetCheckpoints = true;
     }
 
