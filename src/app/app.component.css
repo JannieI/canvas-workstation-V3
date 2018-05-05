@@ -90,8 +90,8 @@
     margin: 0;
 
     /*                     1   2   3    4    5   6    7   8    9    10  11   12   */
-    grid-template-columns: 3px 4px 0px  0px  1fr 4px  1fr 0px  0px  4px 3px;
-    grid-template-rows:    3px 4px 0px  0px  1fr 4px  1fr 0px  0px  4px 3px;
+    grid-template-columns: 3px 4px 0px  0px  1fr 6px  1fr 0px  0px  4px 3px;
+    grid-template-rows:    3px 4px 0px  0px  1fr 6px  1fr 0px  0px  4px 3px;
     position: absolute;
     padding: 0;
     }
@@ -113,29 +113,18 @@
 
         .widgetXTitle {
             display: inline-block;
-            grid-column-start: 1;
-            grid-column-end: 12;
-            grid-row-start: 2;
-            grid-row-end: 4;
+            height: 24px;
         }
             .widgetContainerXJumpLink {
                 background-color: transparent;
                 font-size: 0.7rem;
-                grid-column-start: 8;
-                grid-column-end: 9;
-                grid-row-start: 10;
-                grid-row-end: 11;
-                margin: -6px 0 0 0;
+                margin: 0;
                 padding: 0;
             }  
             
         .widgetXGraph {
             /* border: 1px dotted gray; */
             display: inline-block;
-            grid-column-start: 3;
-            grid-column-end: 10;
-            grid-row-start: 4;
-            grid-row-end: 10;
         }
 
         .widgetXCheckpoint {
@@ -213,7 +202,25 @@
                 padding: 0;
             }
 
-          
+    .widgetXActionMenu {
+        display: inline-block;
+        grid-column-start: 11;
+        grid-column-end: 12;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+  
+
+
+
+
+
+
+
+
+
+
+
 
         /* Style for Resize Handles */
     .widgetContainerXTopLeftHandle {
@@ -271,7 +278,7 @@
         cursor: nwse-resize;
         grid-column-start: 11;
         grid-column-end: 12;
-        grid-row-start: 10;
+        grid-row-start: 11;
         grid-row-end: 12;
         margin: 0;
         padding: 0;
@@ -279,7 +286,7 @@
     .widgetContainerXBottomRightHandle {
         background-color: #3f4041;
         cursor: nwse-resize;
-        grid-column-start: 10;
+        grid-column-start: 11;
         grid-column-end: 12;
         grid-row-start: 11;
         grid-row-end: 12;
@@ -311,7 +318,7 @@
         cursor: nesw-resize;
         grid-column-start: 1;
         grid-column-end: 2;
-        grid-row-start: 10;
+        grid-row-start: 11;
         grid-row-end: 12;
         margin: 0;
         padding: 0;

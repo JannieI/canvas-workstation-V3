@@ -1526,8 +1526,8 @@
                 <b>{{ row.titleText }}</b>
 
                 <!-- Hyperlink -->
-                <div *ngIf="row.hyperlinkDashboardID  && row.hyperlinkDashboardTabID"
-                    class="widgetContainerXJumpLink"
+                <div class="widgetContainerXJumpLink" *ngIf="row.hyperlinkDashboardID  
+                     && row.hyperlinkDashboardTabID"
                     >
                     <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
                         (click)="contextMenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
@@ -1549,7 +1549,7 @@
             </div>
 
             <!-- Checkpoint -->
-            <div class="widgetXCheckpoint" *ngIf="row.showCheckpoints  
+            <div class="widgetXCheckpoint" *ngIf="!row.showCheckpoints  
                  &&  (row.currentCheckpoint > 0)"
                 >
                 <div class="widgetXCheckpointLeft"
@@ -1610,8 +1610,10 @@
         </div>
 
         <!-- W drop down menu -->
-        <div>
-            <clr-dropdown class="titleMenu">
+        <div class="widgetXActionMenu"
+            [style.z-index]="row.containerZindex"
+            >
+            <clr-dropdown>
                 <clr-icon
                     clrDropdownTrigger
                     shape="caret down"
@@ -1632,8 +1634,7 @@
                 </clr-dropdown-menu>
             </clr-dropdown>
         </div>
-
-    
+   
     </div>
 
 
