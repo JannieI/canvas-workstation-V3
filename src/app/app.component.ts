@@ -2570,8 +2570,8 @@ console.warn('xx filteredActions', filteredActions)
         this.showModalWidgetCheckpoints = true;
     }
 
-    clickMenuWidgetAnnotations() {
-        // Manage comments for the selected W
+    clickMenuWidgetAnnotations(selectedWidgetID: number = null) {
+        // Manage Annotations for the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetAnnotations', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
@@ -4561,9 +4561,68 @@ console.warn('xx filteredActions', filteredActions)
 
 
 
+    // ***********************  CONTEXT MENUS  ************************ //
+
+    contextMenuOpen() {
+        // Open context / dropdown Menu from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuOpen', '@Start');
+
+        // // Must be first, else default behaviour takes over
+        // ev.preventDefault();
+
+        this.showWidgetContextMenu = true;
+        return;
+    }
+
+    contextmenuWidgetAnnotations(ev: any, index: number, id: number) {
+        // Open context / dropdown Menu from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetAnnotations', '@Start');
+
+        // Call the function for THIS W
+        this.clickMenuWidgetAnnotations(id);
+        return;
+    }
+
+    contextMenuJumpToLinked(dashboardID: number, dashboardTabID: number) {
+        // Jumps to the linked Dashboard and Tab
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuJumpToLinked', '@Start');
+
+        // Exit if no Dashboard to jump to
+        if (dashboardID == null) {
+            return;
+        };
+
+        // Tab points to first one, if needed
+        if (dashboardTabID == null) {
+            dashboardTabID = -1;
+        };
+
+        this.globalVariableService.refreshCurrentDashboard(
+            'app-contextMenuJumpToLinked', dashboardID, dashboardTabID, ''
+        );
+    }
+
+    contextmenuWidgetEditTitle(ev: MouseEvent, index: number, id: number) {
+        // Register mouse down event when resize starts
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetEditTitle', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        // Indicate edit W and open Editor, which will work with selected W
+        this.currentWidgets.forEach(w => {
+            if (w.id == id) {
+                this.selectedWidget = w;
+            };
+        });
+
+        this.showTitleForm = true;
+    }
 
 
-    // ***********************  OTHER ************************ //
+
+
+
+    // ***********************  OTHER  ************************ //
 
     clickPaletteDragStart(ev: MouseEvent) {
         // Register start of Palette drag event
@@ -4891,7 +4950,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletJump', '@Start');
 
         this.menuOptionClickPreAction();
-console.warn('xx linkedTabID', linkedTabID)
+        console.warn('xx linkedTabID', linkedTabID)
         this.globalVariableService.refreshCurrentDashboard(
             'app-clickBulletJump',
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
@@ -5118,52 +5177,6 @@ console.warn('xx linkedTabID', linkedTabID)
         });
 
         return result;
-    }
-
-    contextMenuOpen() {
-        // Open context / dropdown Menu from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuOpen', '@Start');
-
-        // // Must be first, else default behaviour takes over
-        // ev.preventDefault();
-
-        this.showWidgetContextMenu = true;
-        return;
-    }
-
-    contextMenuJumpToLinked(dashboardID: number, dashboardTabID: number) {
-        // Jumps to the linked Dashboard and Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuJumpToLinked', '@Start');
-
-        // Exit if no Dashboard to jump to
-        if (dashboardID == null) {
-            return;
-        };
-
-        // Tab points to first one, if needed
-        if (dashboardTabID == null) {
-            dashboardTabID = -1;
-        };
-
-        this.globalVariableService.refreshCurrentDashboard(
-            'app-contextMenuJumpToLinked', dashboardID, dashboardTabID, ''
-        );
-    }
-
-    contextmenuWidgetEditTitle(ev: MouseEvent, index: number, id: number) {
-        // Register mouse down event when resize starts
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetEditTitle', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        // Indicate edit W and open Editor, which will work with selected W
-        this.currentWidgets.forEach(w => {
-            if (w.id == id) {
-                this.selectedWidget = w;
-            };
-        });
-
-        this.showTitleForm = true;
     }
 
     clickToggleShowCheckpoint(
