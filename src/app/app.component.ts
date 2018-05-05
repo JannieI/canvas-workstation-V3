@@ -5150,9 +5150,9 @@ console.warn('xx linkedTabID', linkedTabID)
         );
     }
 
-    contextmenuWidgetTitle(ev: MouseEvent, index: number, id: number) {
+    contextmenuWidgetEditTitle(ev: MouseEvent, index: number, id: number) {
         // Register mouse down event when resize starts
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetTitle', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetEditTitle', '@Start');
 
         this.menuOptionClickPreAction();
 
