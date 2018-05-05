@@ -1386,7 +1386,7 @@
         [style.left.px]="row.containerLeft"
         [style.top.px]="row.containerTop"
         [style.width.px]="row.containerWidth"
-        [style.z-index]="row.containerZindex+10"
+        [style.z-index]="row.containerZindex"
         (click)="clickWidget($event, i, row.id)"
         (dragstart)="clickWidgetContainerDragStart($event, i)"
         (dragend)="clickWidgetContainerDragEnd($event, row.id)"
@@ -1399,6 +1399,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
         <div class="widgetContainerXTopHandle" *ngIf="editMode"
@@ -1406,6 +1407,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, true, false, false, false)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
         <div class="widgetContainerXTopRightHandle" *ngIf="editMode"
@@ -1413,6 +1415,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
         <div class="widgetContainerXRightTopHandle" *ngIf="editMode"
@@ -1420,6 +1423,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
         <div class="widgetContainerXRightHandle" *ngIf="editMode"
@@ -1427,6 +1431,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, true, false, false)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
         <div class="widgetContainerXRightBottomHandle" *ngIf="editMode"
@@ -1434,6 +1439,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
         <div class="widgetContainerXBottomRightHandle" *ngIf="editMode"
@@ -1441,6 +1447,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
         <div class="widgetContainerXBottomLeftHandle" *ngIf="editMode"
@@ -1448,6 +1455,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
         <div class="widgetContainerXBottomHandle" *ngIf="editMode"
@@ -1455,6 +1463,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, false, true, false)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
         <div class="widgetContainerXLeftBottomHandle" *ngIf="editMode"
@@ -1462,6 +1471,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
         <div class="widgetContainerXLeftHandle" *ngIf="editMode"
@@ -1469,6 +1479,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, false, false, true)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
         <div class="widgetContainerXLeftTopHandle" *ngIf="editMode"
@@ -1476,6 +1487,7 @@
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
             draggable="true"
+            [style.z-index]="row.containerZindex+1"
             >
         </div>
 
@@ -1498,6 +1510,8 @@
                 [style.z-index]="row.containerZindex+1"
                 [style.background-color]="row.titleBackgroundColor"
                 [style.border]="row.titleBorder"
+                [style.border-top-left-radius]="row.containerBorderRadius"
+                [style.border-top-right-radius]="row.containerBorderRadius"
                 [style.color]="row.titleColor"
                 [style.left.px]="row.titleLeft"
                 [style.margin]="row.titleMargin"

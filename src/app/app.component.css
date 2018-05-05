@@ -105,10 +105,10 @@
 
     .widgetX {
         display: inline-block;
-        grid-column-start: 2;
-        grid-column-end: 11;
-        grid-row-start: 2;
-        grid-row-end: 11;
+        grid-column-start: 1;
+        grid-column-end: 12;
+        grid-row-start: 1;
+        grid-row-end: 12;
     }
         .widgetXTitle {
             display: inline-block;
@@ -195,6 +195,7 @@
 
     /* Style for Resize Handles */
     .widgetContainerXTopLeftHandle {
+        background-color: #3f4041;
         cursor: nwse-resize;
         grid-column-start: 1;
         grid-column-end: 3;
@@ -202,9 +203,9 @@
         grid-row-end: 2;
         margin: 0;
         padding: 0;
-        background-color: #929699;
     }
     .widgetContainerXTopHandle {
+        background-color: #3f4041;
         cursor: n-resize;
         grid-column-start: 6;
         grid-column-end: 7;
@@ -212,9 +213,9 @@
         grid-row-end: 2;
         margin: 0;
         padding: 0;
-        background-color: #929699;
     }
     .widgetContainerXTopRightHandle {
+        background-color: #3f4041;
         cursor: nesw-resize;
         grid-column-start: 10;
         grid-column-end: 12;
@@ -222,9 +223,9 @@
         grid-row-end: 2;
         margin: 0;
         padding: 0;
-        background-color: #929699;
     }
     .widgetContainerXRightTopHandle {
+        background-color: #3f4041;
         cursor: nesw-resize;
         grid-column-start: 11;
         grid-column-end: 12;
@@ -232,10 +233,9 @@
         grid-row-end: 3;
         margin: 0;
         padding: 0;
-        background-color: #929699;
     }
     .widgetContainerXRightHandle {
-        background-color: #929699;
+        background-color: #3f4041;
         cursor: e-resize;
         grid-column-start: 11;
         grid-column-end: 12;
@@ -245,6 +245,7 @@
         padding: 0;
     }
     .widgetContainerXRightBottomHandle {
+        background-color: #3f4041;
         cursor: nwse-resize;
         grid-column-start: 11;
         grid-column-end: 12;
@@ -252,9 +253,9 @@
         grid-row-end: 12;
         margin: 0;
         padding: 0;
-        background-color: #929699;
     }
     .widgetContainerXBottomRightHandle {
+        background-color: #3f4041;
         cursor: nwse-resize;
         grid-column-start: 10;
         grid-column-end: 12;
@@ -262,9 +263,9 @@
         grid-row-end: 12;
         margin: 0;
         padding: 0;
-        background-color: #929699;
     }
     .widgetContainerXBottomHandle {
+        background-color: #3f4041;
         cursor: s-resize;
         grid-column-start: 6;
         grid-column-end: 7;
@@ -272,9 +273,9 @@
         grid-row-end: 12;
         margin: 0;
         padding: 0;
-        background-color: #929699;
     }
     .widgetContainerXBottomLeftHandle {
+        background-color: #3f4041;
         cursor: nesw-resize;
         grid-column-start: 1;
         grid-column-end: 3;
@@ -282,9 +283,9 @@
         grid-row-end: 12;
         margin: 0;
         padding: 0;
-        background-color: #929699;
     }
     .widgetContainerXLeftBottomHandle {
+        background-color: #3f4041;
         cursor: nesw-resize;
         grid-column-start: 1;
         grid-column-end: 2;
@@ -292,9 +293,9 @@
         grid-row-end: 12;
         margin: 0;
         padding: 0;
-        background-color: #929699;
     }
     .widgetContainerXLeftHandle {
+        background-color: #3f4041;
         cursor: w-resize;
         grid-column-start: 1;
         grid-column-end: 2;
@@ -302,9 +303,9 @@
         grid-row-end: 7;
         margin: 0;
         padding: 0;
-        background-color: #929699;
     }
     .widgetContainerXLeftTopHandle {
+        background-color: #3f4041;
         cursor: nwse-resize;
         grid-column-start: 1;
         grid-column-end: 2;
@@ -312,7 +313,6 @@
         grid-row-end: 3;
         margin: 0;
         padding: 0;
-        background-color: #929699;
     }
 
 
