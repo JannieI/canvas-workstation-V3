@@ -110,6 +110,7 @@
         grid-row-start: 1;
         grid-row-end: 12;
     }
+
         .widgetXTitle {
             display: inline-block;
             grid-column-start: 1;
@@ -117,6 +118,17 @@
             grid-row-start: 2;
             grid-row-end: 4;
         }
+            .widgetContainerXJumpLink {
+                background-color: transparent;
+                font-size: 0.7rem;
+                grid-column-start: 8;
+                grid-column-end: 9;
+                grid-row-start: 10;
+                grid-row-end: 11;
+                margin: -6px 0 0 0;
+                padding: 0;
+            }  
+            
         .widgetXGraph {
             /* border: 1px dotted gray; */
             display: inline-block;
@@ -125,75 +137,85 @@
             grid-row-start: 4;
             grid-row-end: 10;
         }
+
         .widgetXCheckpoint {
-            /* border: 1px dotted gray; */
-            display: inline-block;
-            grid-column-start: 3;
-            grid-column-end: 10;
-            grid-row-start: 4;
-            grid-row-end: 10;
-        }
-
-        .widgetContainerXCheckpointLeft {
-            color: blue;
-            font-size: 0.7rem;
-            grid-column-start: 2;
-            grid-column-end: 3;
-            grid-row-start: 10;
-            grid-row-end: 11;
-            margin: -6px 0 0 0;
+            display: grid;
+            margin: 0;
+        
+            /*                     1   2   3   4   5   6   7   8  */
+            grid-template-columns: 1fr 6px 6px 6px 6px 6px 1fr;
+            grid-template-rows:    6px;
+            position: absolute;
             padding: 0;
         }
+            .widgetXCheckpointLeft {
+                color: blue;
+                font-size: 0.7rem;
+                grid-column-start: 2;
+                grid-column-end: 3;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                margin: 0;
+                padding: 0;
+            }
+            .widgetXCheckpointCenter {
+                background-color: transparent;
+                font-size: 0.7rem;
+                grid-column-start: 3;
+                grid-column-end: 4;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                margin: 0;
+                padding: 0;
+            }
+            .widgetXCheckpointShowCheckpoint {
+                background-color: #bbb;
+                border-radius: 50%;
+                display: inline-block;
+                grid-column-start: 3;
+                grid-column-end: 4;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                height: 12px;
+                width: 12px;
+            }
+            .widgetXCheckpointShowWidget {
+                background-color: blue;
+                border-radius: 50%;
+                display: inline-block;
+                grid-column-start: 3;
+                grid-column-end: 4;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                height: 12px;
+                margin: 0;
+                padding: 0;
+                width: 12px;
+            }
+            .widgetXCheckpointAnimate {
+                color: blue;
+                font-size: 0.7rem;
+                grid-column-start: 5;
+                grid-column-end: 6;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                margin: 0;
+                padding: 0;
+            }
+            .widgetXCheckpointRight {
+                color: blue;
+                font-size: 0.7rem;
+                grid-column-start: 6;
+                grid-column-end: 7;
+                grid-row-start: 1;
+                grid-row-end: 2;
+                margin: 0;
+                padding: 0;
+            }
 
-        .widgetContainerXCheckpointCenter {
-            background-color: transparent;
-            font-size: 0.7rem;
-            grid-column-start: 4;
-            grid-column-end: 5;
-            grid-row-start: 10;
-            grid-row-end: 11;
-            margin: -6px 0 0 0;
-            padding: 0;
-        }
+          
 
-        .widgetContainerXJumpLink {
-            background-color: transparent;
-            font-size: 0.7rem;
-            grid-column-start: 8;
-            grid-column-end: 9;
-            grid-row-start: 10;
-            grid-row-end: 11;
-            margin: -6px 0 0 0;
-            padding: 0;
-        }
-
-        .widgetContainerXCheckpointShowCheckpoint {
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            height: 12px;
-            width: 12px;
-        }
-        .widgetContainerXCheckpointShowWidget {
-            background-color: blue;
-            border-radius: 50%;
-            display: inline-block;
-            height: 12px;
-            width: 12px;
-        }
-
-        .widgetContainerXCheckpointRight {
-            color: blue;
-            font-size: 0.7rem;
-            grid-column-start: 10;
-            grid-column-end: 11;
-            grid-row-start: 10;
-            grid-row-end: 11;
-            margin: -6px 0 0 0;
-            padding: 0;
-        }
-
-    /* Style for Resize Handles */
+        /* Style for Resize Handles */
     .widgetContainerXTopLeftHandle {
         background-color: #3f4041;
         cursor: nwse-resize;

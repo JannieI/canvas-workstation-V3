@@ -1491,20 +1491,10 @@
             >
         </div>
 
-        <!-- Annotation -->
-        <span style="display: inline-block" *ngIf="row.annotation">
-            <clr-signpost>
-                <clr-signpost-content *clrIfOpen>
-                    <h4 style="margin-top: 0">Annotation</h4>
-                    <p> {{ row.annotation }} </p>
-                </clr-signpost-content>
-            </clr-signpost>
-        </span>
-
         <!-- Widget Content -->
         <div class="widgetX">
-
-            <!-- Title Text -->
+                
+            <!-- Title Container -->
             <div class="widgetXTitle" *ngIf="row.containerHasTitle"
                 [style.background-color]="row.containerBackgroundcolor"
                 [style.z-index]="row.containerZindex+1"
@@ -1521,7 +1511,30 @@
                 [style.width.%]="row.titleWidth"
                 (contextmenu)="contextMenuOpen()"
                 >
+
+                <!-- Annotation -->
+                <span style="display: inline-block" *ngIf="row.annotation">
+                    <clr-signpost>
+                        <clr-signpost-content *clrIfOpen>
+                            <h4 style="margin-top: 0">Annotation</h4>
+                            <p> {{ row.annotation }} </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </span>
+                    
+                <!-- Title Text -->
                 <b>{{ row.titleText }}</b>
+
+                <!-- Hyperlink -->
+                <div *ngIf="row.hyperlinkDashboardID  && row.hyperlinkDashboardTabID"
+                    class="widgetContainerXJumpLink"
+                    >
+                    <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
+                        (click)="contextMenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
+                        >
+                    </clr-icon>
+                </div>
+
             </div>
 
             <!-- Graph Object -->
@@ -1536,10 +1549,10 @@
             </div>
 
             <!-- Checkpoint -->
-            <div *ngIf="row.showCheckpoints  &&  (row.currentCheckpoint > 0)"
-                class="widgetCheckpointX"
+            <div class="widgetXCheckpoint" *ngIf="row.showCheckpoints  
+                 &&  (row.currentCheckpoint > 0)"
                 >
-                <div class="widgetContainerXCheckpointLeft"
+                <div class="widgetXCheckpointLeft"
                     (click)="clickNavCheckpoint(
                         i,
                         row.dashboardID,
@@ -1555,38 +1568,31 @@
                 </div>
 
                 <div *ngIf="row.lastCheckpoint >= 0" 
-                    class="widgetContainerXCheckpointCenter"
+                    class="widgetXCheckpointCenter"
                     (click)="clickToggleShowCheckpoint(
                         i,
                         row.dashboardID,
                         row.id,
                         row.showCheckpoints)"
                     >
-                    <span class="widgetContainerXCheckpointShowCheckpoint">
+                    <span class="widgetXCheckpointShowCheckpoint">
                     </span>
                 </div>
 
                 <div *ngIf="row.lastCheckpoint >= 0"
-                    class="widgetContainerXCheckpointCenter"
+                    class="widgetXCheckpointCenter"
                     (click)="clickToggleShowCheckpoint(
                         i,
                         row.dashboardID,
                         row.id,
                         row.showCheckpoints)"
                     >
-                    <span class="widgetContainerXCheckpointShowWidget">
+                    <span class="widgetXCheckpointShowWidget">
                     </span>
-                </div>
-
-                <div *ngIf="row.hyperlinkDashboardID  && row.hyperlinkDashboardTabID"
-                    class="widgetContainerXJumpLink"
-                    (click)="contextMenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
-                    >
-                    <b> >> </b>
                 </div>
                     
                 <div *ngIf="row.currentCheckpoint < row.lastCheckpoint"
-                    class="widgetContainerXCheckpointRight"
+                    class="widgetXCheckpointRight"
                     (click)="clickNavCheckpoint(
                         i,
                         row.dashboardID,
