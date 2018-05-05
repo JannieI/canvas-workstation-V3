@@ -135,7 +135,8 @@ export enum KEY_CODE {
 export class AppComponent implements OnInit {
 
     @ViewChild('circle1', {read: ElementRef}) circle1: ElementRef;  //Vega graph
-    @ViewChild('widgetDOM')  widgetDOM: WidgetSingleComponent;
+    @ViewChild('widgetDOMX')  widgetDOM: WidgetSingleComponent;
+    @ViewChild('widgetDOM')  widgetDOMold: WidgetSingleComponent;
     @ViewChild('statusbarDOM') statusbarDOM: StatusbarComponent;
 
     @HostListener('window:keyup', ['$event'])

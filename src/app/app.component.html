@@ -1377,7 +1377,6 @@
 
 
     <div class="widgetContainerX" *ngFor="let row of currentWidgets; let i = index"
-        #widgetContainerX
         [style.background-color]="row.containerBackgroundColor"
         [style.border]="row.isSelected? '1px solid black' : row.containerBorder"
         [style.border-radius]="row.containerBorderRadius"
@@ -1491,10 +1490,10 @@
         </span>
 
         <!-- Widget Content -->
-        <div>
+        <div class="widgetX">
 
             <!-- Title Text -->
-            <div class="widgetTitleX" *ngIf="row.containerHasTitle"
+            <div class="widgetXTitle" *ngIf="row.containerHasTitle"
                 [style.background-color]="row.containerBackgroundcolor"
                 [style.z-index]="row.containerZindex+1"
                 [style.background-color]="row.titleBackgroundColor"
@@ -1512,7 +1511,7 @@
             </div>
 
             <!-- Graph Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Graph'">
+            <div class="widgetXGraph" *ngIf="row.widgetType=='Graph'">
                 <widget-single
                     #widgetDOMX
                     [widget]="row"
@@ -1523,66 +1522,70 @@
             </div>
 
             <!-- Checkpoint -->
-            <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.currentCheckpoint > 0)"
-                class="widgetContainerCheckpointLeft"
-                (click)="clickNavCheckpoint(
-                    i,
-                    row.dashboardID,
-                    row.id,
-                    'Left',
-                    row.showCheckpoints,
-                    row.checkpointIDs,
-                    row.currentCheckpoint,
-                    row.lastCheckpoint
-                    )"
+            <div *ngIf="row.showCheckpoints  &&  (row.currentCheckpoint > 0)"
+                class="widgetCheckpointX"
                 >
-                <b> < </b>
-            </div>
+                <div class="widgetContainerXCheckpointLeft"
+                    (click)="clickNavCheckpoint(
+                        i,
+                        row.dashboardID,
+                        row.id,
+                        'Left',
+                        row.showCheckpoints,
+                        row.checkpointIDs,
+                        row.currentCheckpoint,
+                        row.lastCheckpoint
+                        )"
+                    >
+                    <b> < </b>
+                </div>
 
-            <div *ngIf="presentationMode  &&  !row.showCheckpoints  &&  (row.lastCheckpoint >= 0)"
-                class="widgetContainerCheckpointCenter"
-                (click)="clickToggleShowCheckpoint(
-                    i,
-                    row.dashboardID,
-                    row.id,
-                    row.showCheckpoints)"
-                >
-                <span class="widgetContainerCheckpointShowCheckpoint">
-                </span>
-            </div>
-            <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.lastCheckpoint >= 0)"
-                class="widgetContainerCheckpointCenter"
-                (click)="clickToggleShowCheckpoint(
-                    i,
-                    row.dashboardID,
-                    row.id,
-                    row.showCheckpoints)"
-                >
-                <span class="widgetContainerCheckpointShowWidget">
-                </span>
-            </div>
+                <div *ngIf="row.lastCheckpoint >= 0" 
+                    class="widgetContainerXCheckpointCenter"
+                    (click)="clickToggleShowCheckpoint(
+                        i,
+                        row.dashboardID,
+                        row.id,
+                        row.showCheckpoints)"
+                    >
+                    <span class="widgetContainerXCheckpointShowCheckpoint">
+                    </span>
+                </div>
 
-            <div *ngIf="row.hyperlinkDashboardID  && row.hyperlinkDashboardTabID"
-                class="widgetContainerJumpLink"
-                (click)="contextMenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
-                >
-                <b> >> </b>
-            </div>
-                
-            <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.currentCheckpoint < row.lastCheckpoint)"
-                class="widgetContainerCheckpointRight"
-                (click)="clickNavCheckpoint(
-                    i,
-                    row.dashboardID,
-                    row.id,
-                    'Right',
-                    row.showCheckpoints,
-                    row.checkpointIDs,
-                    row.currentCheckpoint,
-                    row.lastCheckpoint
-                    )"
-                >
-                <b> > </b>
+                <div *ngIf="row.lastCheckpoint >= 0"
+                    class="widgetContainerXCheckpointCenter"
+                    (click)="clickToggleShowCheckpoint(
+                        i,
+                        row.dashboardID,
+                        row.id,
+                        row.showCheckpoints)"
+                    >
+                    <span class="widgetContainerXCheckpointShowWidget">
+                    </span>
+                </div>
+
+                <div *ngIf="row.hyperlinkDashboardID  && row.hyperlinkDashboardTabID"
+                    class="widgetContainerXJumpLink"
+                    (click)="contextMenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
+                    >
+                    <b> >> </b>
+                </div>
+                    
+                <div *ngIf="row.currentCheckpoint < row.lastCheckpoint"
+                    class="widgetContainerXCheckpointRight"
+                    (click)="clickNavCheckpoint(
+                        i,
+                        row.dashboardID,
+                        row.id,
+                        'Right',
+                        row.showCheckpoints,
+                        row.checkpointIDs,
+                        row.currentCheckpoint,
+                        row.lastCheckpoint
+                        )"
+                    >
+                    <b> > </b>
+                </div>
             </div>
         </div>
 
@@ -1623,7 +1626,7 @@
 
 
     <!-- Widgets -->
-    <div class="widgetContainer" *ngFor="let row of currentWidgets; let i = index"
+    <div class="widgetContainer" *ngFor="let row of currentWidgetsOLD; let i = index"
         #widgetContainer
         [style.background-color]="row.containerBackgroundColor"
         [style.border]="row.isSelected? '1px solid black' : row.containerBorder"
