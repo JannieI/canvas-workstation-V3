@@ -1491,6 +1491,32 @@
             >
         </div>
 
+        <!-- W related info menu -->
+        <div class="widgetXRelatdInfoMenu"
+            [style.z-index]="row.containerZindex"
+            >
+            <clr-dropdown>
+                <clr-icon
+                    clrDropdownTrigger
+                    shape="ellipsis-vertical"
+                    size="24"
+                    >
+                </clr-icon>
+                <clr-dropdown-menu class="titleMenu"
+                    clrPosition="bottom-right" *clrIfOpen
+                    >
+                    <button class="dropdown-item"
+                        type="button"
+                        clrDropdownItem
+                        (click)="contextmenuWidgetTitle($event, i, row.id)"
+                        >
+                        Edit Title
+                    </button>
+
+                </clr-dropdown-menu>
+            </clr-dropdown>
+        </div>
+
         <!-- Widget Content -->
         <div class="widgetX">
                 
@@ -1609,7 +1635,7 @@
             </div>
         </div>
 
-        <!-- W drop down menu -->
+        <!-- W action menu -->
         <div class="widgetXActionMenu"
             [style.z-index]="row.containerZindex"
             >
