@@ -2603,9 +2603,12 @@ console.warn('xx filteredActions', filteredActions)
 
         // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  ||  w.id == selectedWidgetID) {
+            if (w.isSelected  &&  (selectedWidgetID == null) 
+               ||
+               (w.id == selectedWidgetID   &&  (selectedWidgetID != null) ) 
+               ) {
                 this.selectedWidget = w;
-            }
+            };
         })
 
         this.showModalWidgetAnnotations = true;
