@@ -4577,12 +4577,19 @@ console.warn('xx filteredActions', filteredActions)
         // ev.preventDefault();
 
         this.showWidgetContextMenu = true;
-        return;
     }
 
     contextmenuWidgetAnnotations(ev: any, index: number, id: number) {
         // Open context / dropdown Menu from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetAnnotations', '@Start');
+
+        // Call the function
+        this.clickMenuCollaborateMessages();
+    }
+
+    contextmenuWidgetMessages(ev: any, index: number, id: number) {
+        // Open context / dropdown Menu from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetMessages', '@Start');
 
         // Call the function for THIS W
         this.clickMenuWidgetAnnotations(id);
