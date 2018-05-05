@@ -4580,20 +4580,30 @@ console.warn('xx filteredActions', filteredActions)
     }
 
     contextmenuWidgetAnnotations(ev: any, index: number, id: number) {
-        // Open context / dropdown Menu from the Title Bar
+        // Open context / dropdown Menu for Annotations from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetAnnotations', '@Start');
-
-        // Call the function
-        this.clickMenuCollaborateMessages();
-    }
-
-    contextmenuWidgetMessages(ev: any, index: number, id: number) {
-        // Open context / dropdown Menu from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetMessages', '@Start');
 
         // Call the function for THIS W
         this.clickMenuWidgetAnnotations(id);
-        return;
+
+    }
+
+    contextmenuWidgetMessages(ev: any, index: number, id: number) {
+        // Open context / dropdown Menu for Messages from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetMessages', '@Start');
+
+        // Call the function
+        this.clickMenuCollaborateMessages();
+
+    }
+
+    contextmenuWidgetCheckpoints(ev: any, index: number, id: number) {
+        // Open context / dropdown Menu for Checkpoints from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetCheckpoints', '@Start');
+
+        // Call the function for THIS W
+        this.clickMenuWidgetCheckpoints(id);
+
     }
 
     contextMenuJumpToLinked(dashboardID: number, dashboardTabID: number) {
