@@ -2574,14 +2574,18 @@ console.warn('xx filteredActions', filteredActions)
         // Manage Annotations for the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetAnnotations', '@Start');
 
-        if (!this.checkForOnlyOneWidget()) {
-            return
-        };
-        if (!this.checkForOnlyOneWidget('Graph')) {
-            return
-        };
+        // Check exactly one W selected if no specific ID was given
+        if (selectedWidgetID == null) {
 
-        // Must have access
+            if (!this.checkForOnlyOneWidget()) {
+                return
+            };
+            if (!this.checkForOnlyOneWidget('Graph')) {
+                return
+            };
+        }
+
+        // Must have access, in both cases
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
             'CanEdit')) {
@@ -2597,10 +2601,9 @@ console.warn('xx filteredActions', filteredActions)
         
         this.menuOptionClickPreAction();
 
-        // Set the selected W id
-        this.selectedWidgetID = -1;
+        // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected) {
+            if (w.isSelected  ||  w.id == selectedWidgetID) {
                 this.selectedWidget = w;
             }
         })
