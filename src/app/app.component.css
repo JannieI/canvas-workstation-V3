@@ -109,7 +109,7 @@
         grid-column-end: 3;
         grid-row-start: 2;
         grid-row-end: 3;
-        margin: 0;
+        margin: -4px 0px 0px 0px;
         padding: 0;
 }
 
@@ -218,7 +218,7 @@
         grid-column-end: 12;
         grid-row-start: 2;
         grid-row-end: 3;
-        margin: 0px 0px 0px -24px;
+        margin: -4px 0px 0px -14px;
         padding: 0;
 }
   
