@@ -109,7 +109,9 @@
         grid-column-end: 3;
         grid-row-start: 2;
         grid-row-end: 3;
-    }
+        margin: 0;
+        padding: 0;
+}
 
     .widgetX {
         display: inline-block;
@@ -216,7 +218,9 @@
         grid-column-end: 12;
         grid-row-start: 2;
         grid-row-end: 3;
-    }
+        margin: 0px 0px 0px -24px;
+        padding: 0;
+}
   
 
 
