@@ -1373,6 +1373,255 @@
 
     <!-- ****************************  WIDGETS & RELATED FORMS ***************************** -->
 
+
+
+
+    <div class="widgetContainerX" *ngFor="let row of currentWidgets; let i = index"
+        #widgetContainerX
+        [style.background-color]="row.containerBackgroundColor"
+        [style.border]="row.isSelected? '1px solid black' : row.containerBorder"
+        [style.border-radius]="row.containerBorderRadius"
+        [style.box-shadow]="row.containerBoxshadow"
+        [style.font-size.px]="row.containerFontsize"
+        [style.height.px]="row.containerHeight"
+        [style.left.px]="row.containerLeft"
+        [style.top.px]="row.containerTop"
+        [style.width.px]="row.containerWidth"
+        [style.z-index]="row.containerZindex+10"
+        (click)="clickWidget($event, i, row.id)"
+        (dragstart)="clickWidgetContainerDragStart($event, i)"
+        (dragend)="clickWidgetContainerDragEnd($event, row.id)"
+        draggable="true"
+        >
+
+        <!-- Drag Handles -->
+        <div class="widgetContainerXTopLeftHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerXTopHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, true, false, false, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerXTopRightHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerXRightTopHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerXRightHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, true, false, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerXRightBottomHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerXBottomRightHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerXBottomLeftHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerXBottomHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, false, true, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerXLeftBottomHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerXLeftHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, false, false, true)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerXLeftTopHandle" *ngIf="editMode"
+            [style.background-color]="row.isSelected? '#929699' : 'transparent'"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
+            draggable="true"
+            >
+        </div>
+
+        <!-- Annotation -->
+        <span style="display: inline-block" *ngIf="row.annotation">
+            <clr-signpost>
+                <clr-signpost-content *clrIfOpen>
+                    <h4 style="margin-top: 0">Annotation</h4>
+                    <p> {{ row.annotation }} </p>
+                </clr-signpost-content>
+            </clr-signpost>
+        </span>
+
+        <!-- Widget Content -->
+        <div>
+
+            <!-- Title Text -->
+            <div class="widgetTitleX" *ngIf="row.containerHasTitle"
+                [style.background-color]="row.containerBackgroundcolor"
+                [style.z-index]="row.containerZindex+1"
+                [style.background-color]="row.titleBackgroundColor"
+                [style.border]="row.titleBorder"
+                [style.color]="row.titleColor"
+                [style.left.px]="row.titleLeft"
+                [style.margin]="row.titleMargin"
+                [style.padding]="row.titlePadding"
+                [style.position]="row.titlePosition"
+                [style.text-align]="row.titleTextAlign"
+                [style.width.%]="row.titleWidth"
+                (contextmenu)="contextMenuOpen()"
+                >
+                <b>{{ row.titleText }}</b>
+            </div>
+
+            <!-- Graph Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Graph'">
+                <widget-single
+                    #widgetDOMX
+                    [widget]="row"
+                    [showDataQuality]="showDataQuality"
+                    [showComments]="showComments"
+                    >
+                </widget-single>
+            </div>
+
+            <!-- Checkpoint -->
+            <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.currentCheckpoint > 0)"
+                class="widgetContainerCheckpointLeft"
+                (click)="clickNavCheckpoint(
+                    i,
+                    row.dashboardID,
+                    row.id,
+                    'Left',
+                    row.showCheckpoints,
+                    row.checkpointIDs,
+                    row.currentCheckpoint,
+                    row.lastCheckpoint
+                    )"
+                >
+                <b> < </b>
+            </div>
+
+            <div *ngIf="presentationMode  &&  !row.showCheckpoints  &&  (row.lastCheckpoint >= 0)"
+                class="widgetContainerCheckpointCenter"
+                (click)="clickToggleShowCheckpoint(
+                    i,
+                    row.dashboardID,
+                    row.id,
+                    row.showCheckpoints)"
+                >
+                <span class="widgetContainerCheckpointShowCheckpoint">
+                </span>
+            </div>
+            <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.lastCheckpoint >= 0)"
+                class="widgetContainerCheckpointCenter"
+                (click)="clickToggleShowCheckpoint(
+                    i,
+                    row.dashboardID,
+                    row.id,
+                    row.showCheckpoints)"
+                >
+                <span class="widgetContainerCheckpointShowWidget">
+                </span>
+            </div>
+
+            <div *ngIf="row.hyperlinkDashboardID  && row.hyperlinkDashboardTabID"
+                class="widgetContainerJumpLink"
+                (click)="contextMenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
+                >
+                <b> >> </b>
+            </div>
+                
+            <div *ngIf="presentationMode  &&  row.showCheckpoints  &&  (row.currentCheckpoint < row.lastCheckpoint)"
+                class="widgetContainerCheckpointRight"
+                (click)="clickNavCheckpoint(
+                    i,
+                    row.dashboardID,
+                    row.id,
+                    'Right',
+                    row.showCheckpoints,
+                    row.checkpointIDs,
+                    row.currentCheckpoint,
+                    row.lastCheckpoint
+                    )"
+                >
+                <b> > </b>
+            </div>
+        </div>
+
+        <!-- W drop down menu -->
+        <div>
+            <clr-dropdown class="titleMenu">
+                <clr-icon
+                    clrDropdownTrigger
+                    shape="caret down"
+                    size="24"
+                    >
+                </clr-icon>
+                <clr-dropdown-menu class="titleMenu"
+                    clrPosition="bottom-right" *clrIfOpen
+                    >
+                    <button class="dropdown-item"
+                        type="button"
+                        clrDropdownItem
+                        (click)="contextmenuWidgetTitle($event, i, row.id)"
+                        >
+                        Edit Title
+                    </button>
+
+                </clr-dropdown-menu>
+            </clr-dropdown>
+        </div>
+
+    
+    </div>
+
+
+
+
+
+
+
+
+
+
     <!-- Widgets -->
     <div class="widgetContainer" *ngFor="let row of currentWidgets; let i = index"
         #widgetContainer

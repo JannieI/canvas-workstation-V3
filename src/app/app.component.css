@@ -80,6 +80,179 @@
 }
 
 
+
+
+
+
+.widgetContainerX {
+    display: inline-block;
+    display: grid;
+    margin: 0;
+
+    /*                     1   2   3    4    5   6    7   8    9    10  11   12   */
+    grid-template-columns: 2px 4px 0px  0px  1fr 2px  1fr 0px  0px  4px 2px;
+    grid-template-rows:    2px 4px 0px  0px  1fr 2px  1fr 0px  0px  4px 2px;
+    position: absolute;
+    padding: 0;
+    }
+    .widgetContainerX:hover {
+        border: 1px dotted gray !important;
+        box-shadow: 8px 8px gray;
+    }
+
+    .widgetContainerX:focus {
+        border: 1px dotted gray;
+    }
+
+    .widgetTitle {
+        display: inline-block;
+        grid-column-start: 1;
+        grid-column-end: 12;
+        grid-row-start: 2;
+        grid-row-end: 4;
+        }
+    .widget {
+        /* border: 1px dotted gray; */
+        display: inline-block;
+        grid-column-start: 3;
+        grid-column-end: 10;
+        grid-row-start: 4;
+        grid-row-end: 10;
+    }
+
+
+    /* Style for Resize Handles */
+    .widgetContainerXTopLeftHandle {
+        cursor: nwse-resize;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .widgetContainerXTopHandle {
+        cursor: n-resize;
+        grid-column-start: 6;
+        grid-column-end: 7;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .widgetContainerXTopRightHandle {
+        cursor: nesw-resize;
+        grid-column-start: 10;
+        grid-column-end: 12;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .widgetContainerXRightTopHandle {
+        cursor: nesw-resize;
+        grid-column-start: 11;
+        grid-column-end: 12;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .widgetContainerXRightHandle {
+        background-color: #929699;
+        cursor: e-resize;
+        grid-column-start: 11;
+        grid-column-end: 12;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 0;
+        padding: 0;
+    }
+    .widgetContainerXRightBottomHandle {
+        cursor: nwse-resize;
+        grid-column-start: 11;
+        grid-column-end: 12;
+        grid-row-start: 10;
+        grid-row-end: 12;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .widgetContainerXBottomRightHandle {
+        cursor: nwse-resize;
+        grid-column-start: 10;
+        grid-column-end: 12;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .widgetContainerXBottomHandle {
+        cursor: s-resize;
+        grid-column-start: 6;
+        grid-column-end: 7;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .widgetContainerXBottomLeftHandle {
+        cursor: nesw-resize;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .widgetContainerXLeftBottomHandle {
+        cursor: nesw-resize;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 10;
+        grid-row-end: 12;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .widgetContainerXLeftHandle {
+        cursor: w-resize;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    }
+    .widgetContainerXLeftTopHandle {
+        cursor: nwse-resize;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        margin: 0;
+        padding: 0;
+        background-color: #929699;
+    }
+
+
+
+
+
+
+
+
+
+
+
 /* Widgets */
 .widgetContainer {
     display: inline-block;

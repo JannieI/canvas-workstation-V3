@@ -38,6 +38,7 @@ This document describes items for later versions of Canvas.
     - go through system and make sure things are done consistently
     - make all drag-n-drop and similar to Microsoft interface.
     - view pdf docs insides forms: see https://www.npmjs.com/package/ng2-pdf-viewer
+    - little arrow on Palette that makes it easy to rotate horison / vertical
 
 
 
