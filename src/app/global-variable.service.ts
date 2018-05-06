@@ -5877,7 +5877,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                 result.push('Widget deleted')
             };
             if (actOldWidget != null  &&  actNewWidget != null) {
-                for(var key in oldWidget) {
+
+                for(var key in actNewWidget) {
                     if(actOldWidget[key] != actNewWidget[key]) {
                         result.push(key);
                     };

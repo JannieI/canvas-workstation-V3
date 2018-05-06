@@ -4902,7 +4902,6 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
                         w.containerTop = this.globalVariableService.alignToGripPoint(
                             w.containerTop);
                     };
-                    console.warn('xx after align')
 
                     // Add to action log
                     actID = this.globalVariableService.actionUpsert(
@@ -4917,7 +4916,6 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
                         null,
                         w
                     );
-                    console.warn('xx after upsert 2')
 
                     // Save to DB
                     this.globalVariableService.saveWidget(w);
