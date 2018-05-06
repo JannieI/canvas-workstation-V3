@@ -4882,7 +4882,8 @@ console.warn('xx filteredActions', filteredActions)
                         null,
                         null,
                         w,
-                        null
+                        null,
+                        false               // Dont log to DB yet
                     );
 
                     // Move the container

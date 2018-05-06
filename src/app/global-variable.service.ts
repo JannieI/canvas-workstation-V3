@@ -5605,6 +5605,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         redoID: number,
         oldWidget: any,
         newWidget: any,
+        logToDB: boolean = true
      ): number {
         let actID: number = 1;
 
