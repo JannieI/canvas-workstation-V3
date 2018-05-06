@@ -358,6 +358,7 @@ export class AppComponent implements OnInit {
     showFavouriteDashboard: boolean = false;
     showModalWidgetEditor: boolean = false;
     showModalCollaborateAlerts: boolean = false;
+    showModalCollaborateAuditTrail: boolean = false;
     showModalCollaborateActivityAdd: boolean = false;
     showModalCollaborateSendMessage: boolean = false;
     showModalCollaborateSendEmail: boolean = false;
@@ -1288,7 +1289,16 @@ export class AppComponent implements OnInit {
 
         this.showModalCollaborateAlerts = false;
     }
+    
+    handleCloseCollaborateAuditTrail(action: string) {
+        // Close AuditTrail form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateAuditTrail', '@Start');
 
+        this.menuOptionClickPostAction();
+
+        this.showModalCollaborateAuditTrail = false;
+    }
+    
     handleCloseCollaborateMessages(action: string) {
         // Close Messages form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateMessages', '@Start');
@@ -4309,6 +4319,17 @@ console.warn('xx filteredActions', filteredActions)
         this.menuOptionClickPostAction();
     }
 
+    clickMenuCollaborateAuditTrail() {
+        // Show list of Canvas AuditTrail
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateAuditTrail', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalCollaborateAuditTrail = true;
+
+        this.menuOptionClickPostAction();
+    }
+    
     clickMenuCollaborateMessages() {
         // Show list of Canvas Messages
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateMessages', '@Start');
