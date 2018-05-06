@@ -12,14 +12,14 @@
                 </div>
                 <div class="gridSubTitle">
                     <i>
-                        A list of tasks (activities) created by users.
+                        Audit trail of all actions created by users.
                     </i>
                 </div>                        
     
-                <div class="gridAssignedToUserTitle">
-                    <b>Assign To:</b>
+                <div class="gridUserIDTitle">
+                    <b>User ID:</b>
                 </div>
-                <div class="gridAssignedToUser">
+                <div class="gridUserID">
                     <div class="select">
                         <select id="selects_3"
                             (change)="clickSelectStep($event)"
@@ -30,46 +30,42 @@
                     </div>
                 </div>
 
-                <div class="gridStatusTitle">
-                    <b>Status:</b>
-                </div>
-                <div class="gridStatus">
-                    <div class="select">
-                        <select id="selects_3"
-                            (change)="clickSelectStep($event)"
-                            >
-                            <option>Created</option>
-                            <option>Pending</option>
-                            <option>Completed</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="gridDescriptionTitle">
-                    <b>Description:</b>
-                </div>
-                <div class="gridDescription">
-                    <input [(ngModel)]="taskText"
-                        type="text"
-                        title="Description of Task"
-                        size="25"
-                        placeholder="Activity text"
-                        >
-                </div>
-
                 <div class="gridDashboardTitle">
-                    <b>Linked To:</b>
+                    <b>Dashboard:</b>
                 </div>
                 <div class="gridDashboard">
                     <div class="select">
                         <select id="selects_3"
                             [(ngModel)]="linkedDashboardID"
-                            (change)="clickSelectPrecedingTask($event)"
                             >
                             <option>Economic Overview</option>
                             <option>EU Indices</option>
                         </select>
                     </div>
+                </div>
+
+                <div class="gridFromTitle">
+                    <b>From:</b>
+                </div>
+                <div class="gridFrom">
+                    <input [(ngModel)]="taskText"
+                        type="text"
+                        title="From of Task"
+                        size="25"
+                        placeholder="Activity text"
+                        >
+                </div>
+
+                <div class="gridToTitle">
+                    <b>To:</b>
+                </div>
+                <div class="gridTo">
+                    <input [(ngModel)]="taskText"
+                        type="text"
+                        title="To of Task"
+                        size="25"
+                        placeholder="Activity text"
+                        >
                 </div>
 
                 <div class="gridButtonFilter">
@@ -82,7 +78,7 @@
                     </button>
                 </div>
 
-                <div class="gridTabs">
+                <div class="gridTable">
                     <clr-tabs>
                         <clr-tab>
                             <button clrTabLink>High Level</button>

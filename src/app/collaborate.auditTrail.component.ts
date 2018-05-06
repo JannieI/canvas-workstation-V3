@@ -35,7 +35,7 @@ import { View }                       from 'vega';
 })
 export class CollaborateAuditTrailComponent implements OnInit {
 
-    @Output() formCollaborateTasksClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formCollaborateAuditTrailClosed: EventEmitter<string> = new EventEmitter();
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
     canvasTasks: CanvasTask[] = [];
@@ -68,68 +68,7 @@ export class CollaborateAuditTrailComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.canvasTasks.push(
-            {
-                id: 1,
-                taskText: 'Perform QA of Dashboard XYZ',
-                activityType: 'QA Dashboard',
-                taskStatus: 'Pending',
-                assignedToUserID: 'QuentinI',
-                precedingTaskID: null,
-                linkedDashboardID: 1,
-                taskComments: [],
-                startDate: '2017/01/01',
-                deadlineDate: '2017/01/01',
-                endDate: '',
-                durationDays: 1,
-                editedBy: 'ChristianN',
-                editedOn: '2017/01/01',
-                createdBy: 'ChristianN',
-                createdOn: '2017/01/01'
-            }
-        );
-        this.canvasTasks.push(
-            {
-                id: 1,
-                taskText: 'Add outstanding figures',
-                activityType: 'Ad hoc',
-                taskStatus: 'Pending',
-                assignedToUserID: 'QuentinI',
-                precedingTaskID: null,
-                linkedDashboardID: 2,
-                taskComments: [],
-                startDate: '2017/01/01',
-                deadlineDate: '2017/01/01',
-                endDate: '',
-                durationDays: 1,
-                editedBy: 'ChristianN',
-                editedOn: '2017/01/01',
-                createdBy: 'ChristianN',
-                createdOn: '2017/01/01'
-            }
-        );
-        this.canvasTasks.push(
-            {
-                id: 1,
-                taskText: 'Visualise marketing campaign',
-                activityType: 'QA Dashboard',
-                taskStatus: 'Pending',
-                assignedToUserID: 'QuentinI',
-                precedingTaskID: null,
-                linkedDashboardID: null,
-                taskComments: [],
-                startDate: '2017/01/01',
-                deadlineDate: '2017/01/01',
-                endDate: '',
-                durationDays: 1,
-                editedBy: 'ChristianN',
-                editedOn: '2017/01/01',
-                createdBy: 'ChristianN',
-                createdOn: '2017/01/01'
-            }
-        );
-
-        this.globalVariableService.getCanvasActivities().then (ca => {
+        this.globalVariableService.getCanvasAuditTrails().then (ca => {
 
             // Set the data for the grid
             this.datagridData = ca;
@@ -146,6 +85,6 @@ export class CollaborateAuditTrailComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formCollaborateTasksClosed.emit(action);
+		this.formCollaborateAuditTrailClosed.emit(action);
     }
 }
