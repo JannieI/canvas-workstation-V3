@@ -88,6 +88,19 @@ export class CanvasAction {
     newWidget: any;                         // Full W after action
 }
 
+export class CanvasAuditTrail {
+    id: number;                             // Unique id per action
+    dashboardID: number;                    // Where action took place
+    dashboardTabID: number;                 // Where action took place
+    widgetID: number;                       // If linked to a Widget
+    objectType: string;                     // Type, ie Dashboard, Widget
+    userID: string;                         // User who made change
+    keyChanged: string;                     // Field / key that was changed
+    oldValue: any;                          // Value prior to change
+    newValue: any;                          // Value after change
+    changedOn: string;                      // Date Time when changes was made
+}
+
 export class StatusBarMessage {
     message: string;                        // Text to display
     uiArea: string;                         // Specific UI area to affect, ie StatusBar
