@@ -5806,17 +5806,15 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         logToDB: boolean = true
      ): number {
         let actID: number = 1;
-        let actOldWidget: Object = oldWidget;
-        let actNewWidget: Object = newWidget;
+        console.log('%c    Global-Variables actionUpsert ...', 
+            "color: black; background: lightgray; font-size: 12px", logToDB, oldWidget,newWidget
+        );
 
         if (id == null) {
             // Add / Update an action to the ActionLog.  It returns id of new/updated record
             // It returns -1 if it failed.
             // NB: id = null => Add, else Update
             // The update replaces any give non-null values
-            console.log('%c    Global-Variables actionUpsert ...', 
-                "color: black; background: lightgray; font-size: 12px", logToDB, oldWidget,newWidget
-            );
 
             // TODO - decide if lates / -1 is best choice here
             let act: number[] = [];
@@ -5848,11 +5846,9 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                     if (redoID != null) {ac.redoID = redoID};
                     if (oldWidget != null) {
                         ac.oldWidget =  Object.assign({}, oldWidget)
-                        actOldWidget = ac.oldWidget;
                     };
                     if (newWidget != null) {
                         ac.newWidget = Object.assign({}, newWidget)
-                        actNewWidget = ac.newWidget;
                     };
                     actID = id;
                 };
@@ -5862,8 +5858,17 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
         // Log to DB
         if (logToDB) {
-            // Brief description of diff
 
+            // Get Old and New
+            let actOldWidget: Object = null;
+            let actNewWidget: Object = null;
+            let ac: CanvasAction = this.actions.filter(ac => ac.id == actID)[0];
+            if (ac != null  &&  ac != undefined) {
+                actOldWidget = ac.oldWidget;
+                actNewWidget = ac.newWidget;
+            };
+
+            // Brief description of diff
             var result: string[] = [];
             if (actOldWidget == null) {
                 result.push('Whole new Widget added')

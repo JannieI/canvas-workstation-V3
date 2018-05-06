@@ -4856,7 +4856,7 @@ console.warn('xx filteredActions', filteredActions)
 
         // Reset current and globalVar values
         this.currentWidgets.forEach(w => {
-
+console.warn('xx this.draggableWidgets', this.draggableWidgets)
             if (this.draggableWidgets.indexOf(w.id) >= 0) {
 
                 // Check if Locked
@@ -4895,7 +4895,6 @@ console.warn('xx filteredActions', filteredActions)
                     w.containerTop =  Math.min((window.innerHeight - 5), w.containerTop);
                     w.containerLeft = Math.max(-50, w.containerLeft);
                     w.containerTop =  Math.max(-50, w.containerTop);
-
                     // Cater for snapping to Grid
                     if (this.snapToGrid) {
                         w.containerLeft = this.globalVariableService.alignToGripPoint(
@@ -4903,6 +4902,7 @@ console.warn('xx filteredActions', filteredActions)
                         w.containerTop = this.globalVariableService.alignToGripPoint(
                             w.containerTop);
                     };
+                    console.warn('xx after align')
 
                     // Add to action log
                     actID = this.globalVariableService.actionUpsert(
@@ -4917,6 +4917,7 @@ console.warn('xx filteredActions', filteredActions)
                         null,
                         w
                     );
+                    console.warn('xx after upsert 2')
 
                     // Save to DB
                     this.globalVariableService.saveWidget(w);
