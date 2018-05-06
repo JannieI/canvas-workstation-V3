@@ -5613,7 +5613,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
             // It returns -1 if it failed.
             // NB: id = null => Add, else Update
             // The update replaces any give non-null values
-            console.log('Global-Variables actionAdd ...');
+            console.log('Global-Variables actionAdd ...',oldWidget,newWidget);
 
             // TODO - decide if lates / -1 is best choice here
             let act: number[] = [];
@@ -5651,8 +5651,26 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
         };
 
-        console.log('actionUpsert', this.actions)
+        // Brief description of diff
+        var result: string[] = [];
+        if (oldWidget == null) {
+            result.push('Whole new Widget added')
+        };
+        if (newWidget == null) {
+            result.push('Widget deleted')
+        };
+        if (oldWidget != null  &&  newWidget != null) {
+            for(var key in oldWidget) {
+                if(oldWidget[key] != newWidget[key]) {
+                    result.push(key);
+                };
+            };
+        };
 
+        // Log to DB
+        
+        console.log('actionUpsert', result, this.actions)
+        
         // Return
         return actID;
 
