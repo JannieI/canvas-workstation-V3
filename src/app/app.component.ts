@@ -4659,7 +4659,16 @@ console.warn('xx filteredActions', filteredActions)
         this.clickMenuCollaborateAuditTrail();
 
     }
-    
+
+    contextmenuWidgetShare(ev: any, index: number, id: number) {
+        // Open context / dropdown Menu for Share from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetShare', '@Start');
+
+        // Call the function for THIS W
+        this.clickDashboardShare();
+
+    }
+        
     contextMenuJumpToLinked(dashboardID: number, dashboardTabID: number) {
         // Jumps to the linked Dashboard and Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuJumpToLinked', '@Start');
