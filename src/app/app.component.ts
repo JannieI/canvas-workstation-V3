@@ -4651,6 +4651,15 @@ console.warn('xx filteredActions', filteredActions)
 
     }
 
+    contextmenuWidgetChanges(ev: any, index: number, id: number) {
+        // Open context / dropdown Menu for Changes from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetChanges', '@Start');
+
+        // Call the function for THIS W
+        this.clickMenuCollaborateAuditTrail();
+
+    }
+    
     contextMenuJumpToLinked(dashboardID: number, dashboardTabID: number) {
         // Jumps to the linked Dashboard and Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuJumpToLinked', '@Start');
