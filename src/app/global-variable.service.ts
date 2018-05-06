@@ -10,6 +10,7 @@ import { HttpHeaders }                from "@angular/common/http";
 import { CanvasAction }               from './models';
 import { CanvasActivity }             from './models';
 import { CanvasAlert }                from './models';
+import { CanvasAuditTrail }           from './models';
 import { CanvasComment }              from './models';
 import { CanvasGroup }                from './models';
 import { CanvasMessage }              from './models';
@@ -557,6 +558,7 @@ export class GlobalVariableService {
     canvasActivities: CanvasActivity[] = [];
     canvasAlerts: CanvasAlert[] = [];
     canvasComments: CanvasComment[] = [];
+    canvasAuditTrails: CanvasAuditTrail[] = [];
     canvasMessages: CanvasMessage[] = [];
     widgetCheckpoints: WidgetCheckpoint[] = [];
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
@@ -718,6 +720,7 @@ export class GlobalVariableService {
     isDirtyWidgetCheckpoints: boolean = true;
     isDirtyCanvasGroups: boolean = true;
     isDirtyUsers: boolean = true;
+    isDirtyCanvasAuditTrails: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
@@ -4818,6 +4821,43 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         });
     }
 
+    getCanvasAuditTrails(): Promise<CanvasAuditTrail[]> {
+        // Description: Gets all Canvas AuditTrails
+        // Returns: this.canvasAuditTrails array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('%c    Global-Variables getCanvasAuditTrails ...', 
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 12px", this.canvasAuditTrails.length);
+
+        let url: string = 'canvasAuditTrails';
+        this.filePath = './assets/settings.canvasAuditTrails.json';
+
+        return new Promise<CanvasAuditTrail[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.canvasAuditTrails.length == 0)  ||  (this.isDirtyCanvasAuditTrails) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.canvasAuditTrails = data.filter(d => (!d.isTrashed) );
+
+                        this.isDirtyCanvasAuditTrails = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('%c    Global-Variables getCanvasAuditTrails 1', 
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 12px", this.canvasAuditTrails)
+                        resolve(this.canvasAuditTrails);
+                    });
+            } else {
+                console.log('%c    Global-Variables getCanvasAuditTrails 2', 
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 12px", this.canvasAuditTrails)
+                resolve(this.canvasAuditTrails);
+            }
+        });
+
+    }
+
+
+
+    
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         console.log('%c    Global-Variables get (url, filePath) ...', 
