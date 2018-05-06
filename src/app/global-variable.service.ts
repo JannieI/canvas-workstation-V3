@@ -4855,8 +4855,38 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     }
 
+    addCanvasAuditTrail(data: CanvasAuditTrail): Promise<any> {
+        // Description: Adds a new canvasAuditTrail
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables addCanvasAuditTrail ...', 
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 12px", data.id);
 
+        let url: string = 'canvasAuditTrails';
+        this.filePath = './assets/data.CanvasAuditTrails.json';
 
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+ 
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Update Global vars to make sure they remain in sync
+                    this.canvasAuditTrails.push(JSON.parse(JSON.stringify(res)));
+
+                    console.log('addCanvasAuditTrail ADDED', res, this.canvasAuditTrails, this.canvasAuditTrails)
+
+                    resolve(res);
+                },
+                err => {
+                    console.log('Error addCanvasAuditTrail FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
     
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
