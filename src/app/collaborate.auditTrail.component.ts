@@ -43,7 +43,7 @@ export class CollaborateAuditTrailComponent implements OnInit {
     datagridInput: DatagridInput = null;
     datagridData: any;
     datagridPagination: boolean = false;
-    datagridPaginationSize: number = 10;
+    datagridPaginationSize: number = 5;
     datagridShowHeader: boolean = false;
     datagridShowRowActionMenu: boolean = false;
     datagridShowData: boolean = true;

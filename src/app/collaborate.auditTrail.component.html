@@ -79,88 +79,23 @@
                 </div>
 
                 <div class="gridTable">
-                    <clr-tabs>
-                        <clr-tab>
-                            <button clrTabLink>High Level</button>
-                            <ng-template [(clrIfActive)]="dashboardActive">
-                                <clr-tab-content>
-                                    <clr-datagrid>
-
-                                        <!-- Empty Message -->
-                                        <clr-dg-placeholder>
-                                            No Tasks created as yet
-                                        </clr-dg-placeholder>
-            
-                                        <!-- Headers -->
-                                        <clr-dg-column>
-                                            Task
-                                        </clr-dg-column>
-                                        <clr-dg-column>
-                                            Due
-                                        </clr-dg-column>
-                                        <clr-dg-column>
-                                            Responsible
-                                        </clr-dg-column>
-                                        
-                                        <!-- Each Row -->
-                                        <clr-dg-row *clrDgItems="let row of currentWidgetCheckpoints;
-                                            let i = index"
-                                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                                            (click)="clickRow(i, row.id)">
-                                            <clr-dg-cell>
-                                                <clr-icon
-                                                    (click)="clickDeleteCheckpoint(row.id)"
-                                                    shape="trash">
-                                                </clr-icon>
-                                            </clr-dg-cell>
-                                            <!-- Each Cell -->
-                                            <clr-dg-cell *ngFor="let col of datagridColumns; let c = index">
-                                                {{ row[col.fieldName] }}
-                                            </clr-dg-cell>
-                                        </clr-dg-row>
-            
-                                        <!-- Footer -->
-                                        <clr-dg-footer>
-                                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                            of {{pagination.totalItems}} records
-                                            <clr-dg-pagination
-                                                #pagination
-                                                [clrDgPageSize]="5"
-                                                >
-                                            </clr-dg-pagination>
-                                        </clr-dg-footer>
-                                    </clr-datagrid>
-                                </clr-tab-content>
-                            </ng-template>
-                        </clr-tab>
-                    
-                        <clr-tab>
-                            <button clrTabLink>Detail</button>
-                            <ng-template [(clrIfActive)]="cloudActive">
-                                <clr-tab-content>
-                                    <ca-datagrid
-                                        [datagridColumns]="datagridColumns"
-                                        [datagridData]="datagridData"
-                                        [datagridPagination]="datagridPagination"
-                                        [datagridPaginationSize]="datagridPaginationSize"
-                                        [datagridShowHeader]="datagridShowHeader"
-                                        [datagridShowRowActionMenu]="datagridShowRowActionMenu"
-                                        [datagridShowData]="datagridShowData"
-                                        [datagridShowFooter]="datagridShowFooter"
-                                        [datagridRowHeight]="datagridRowHeight"
-                                        [datagriduserCanChangeProperties]="uatagriderCanChangeProperties"
-                                        [datagridShowTotalsRow]="datagridShowTotalsRow"
-                                        [datagridShowTotalsCol]="datagridShowTotalsCol"
-                                        [datagridCanEditInCell]="datagridCanEditInCell"
-                                        [datagridCanExportData]="datagridCanExportData"
-                                        >
-                                    </ca-datagrid>
-                                </clr-tab-content>
-                            </ng-template>
-                        </clr-tab>
-                    
-                    </clr-tabs>
+                    <ca-datagrid
+                        [datagridColumns]="datagridColumns"
+                        [datagridData]="datagridData"
+                        [datagridPagination]="datagridPagination"
+                        [datagridPaginationSize]="datagridPaginationSize"
+                        [datagridShowHeader]="datagridShowHeader"
+                        [datagridShowRowActionMenu]="datagridShowRowActionMenu"
+                        [datagridShowData]="datagridShowData"
+                        [datagridShowFooter]="datagridShowFooter"
+                        [datagridRowHeight]="datagridRowHeight"
+                        [datagriduserCanChangeProperties]="uatagriderCanChangeProperties"
+                        [datagridShowTotalsRow]="datagridShowTotalsRow"
+                        [datagridShowTotalsCol]="datagridShowTotalsCol"
+                        [datagridCanEditInCell]="datagridCanEditInCell"
+                        [datagridCanExportData]="datagridCanExportData"
+                        >
+                    </ca-datagrid>
                 </div>
 
             </div>
