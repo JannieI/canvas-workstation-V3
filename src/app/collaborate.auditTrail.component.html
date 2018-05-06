@@ -15,68 +15,6 @@
                         Audit trail of all actions created by users.
                     </i>
                 </div>                        
-    
-                <div class="gridUserIDTitle">
-                    <b>User ID:</b>
-                </div>
-                <div class="gridUserID">
-                    <div class="select">
-                        <select id="selects_3"
-                            (change)="clickSelectStep($event)"
-                            >
-                            <option>KluneG</option>
-                            <option>XavierdG</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="gridDashboardTitle">
-                    <b>Dashboard:</b>
-                </div>
-                <div class="gridDashboard">
-                    <div class="select">
-                        <select id="selects_3"
-                            [(ngModel)]="linkedDashboardID"
-                            >
-                            <option>Economic Overview</option>
-                            <option>EU Indices</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="gridFromTitle">
-                    <b>From:</b>
-                </div>
-                <div class="gridFrom">
-                    <input [(ngModel)]="taskText"
-                        type="text"
-                        title="From of Task"
-                        size="25"
-                        placeholder="Activity text"
-                        >
-                </div>
-
-                <div class="gridToTitle">
-                    <b>To:</b>
-                </div>
-                <div class="gridTo">
-                    <input [(ngModel)]="taskText"
-                        type="text"
-                        title="To of Task"
-                        size="25"
-                        placeholder="Activity text"
-                        >
-                </div>
-
-                <div class="gridButtonFilter">
-                    <button
-                        type="button"
-                        class="btn btn-link"
-                        (click)="clickFilter()"
-                        >
-                        Filter
-                    </button>
-                </div>
        
                 <div class="gridTable">
                     <clr-datagrid>
@@ -90,11 +28,11 @@
                         <clr-dg-column [clrDgField]="newValue">newValue</clr-dg-column>
                         <clr-dg-column [clrDgField]="changedOn">changedOn</clr-dg-column>
 
-                        <clr-dg-row *clrDgItems="let row of currentDashboardSnapshots;
+                        <clr-dg-row *clrDgItems="let row of canvasAuditTrail;
                             let i = index"
                             [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                            (click)="clickRow(i, row.id)">
+                            (click)="clickRow(i, row.id)"
                             >
                             <clr-dg-cell>{{ row.id }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.dashboardID }}</clr-dg-cell>
@@ -110,7 +48,7 @@
                         <clr-dg-footer>
                             {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                             of {{pagination.totalItems}} rows
-                            <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
+                            <clr-dg-pagination #pagination [clrDgPageSize]="9"></clr-dg-pagination>
                         </clr-dg-footer>
 
                     </clr-datagrid>
