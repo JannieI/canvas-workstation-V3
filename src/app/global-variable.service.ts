@@ -764,7 +764,8 @@ export class GlobalVariableService {
         // Refreshes all info related to current D
         // dashboardTabID = -1 if unknown, so get first T
         // Returns True if all worked, False if something went wrong
-        console.log('Global-Variables refreshCurrentDashboardInfo D,T id = ', dashboardID, dashboardTabID)
+        console.log('%c    Global-Variables refreshCurrentDashboardInfo D,T id = ', 
+        "color: yellow; background: blue; font-size: 12px", dashboardID, dashboardTabID)
 
         // Load the current Dashboard, and Optional template.  The dependants are stakced
         // in a Promise chain, to ensure we have all or nothing ...
@@ -823,7 +824,8 @@ export class GlobalVariableService {
     refreshCurrentDatasourceInfo(datasourceID: number): Promise<boolean> {
         // Refreshes all info related to current DS, but NOT currentDatasources
         // Returns True if all worked, False if something went wrong
-        console.log('Global-Variables refreshCurrentDatasourceInfo D,T id = ', datasourceID)
+        console.log('%c    Global-Variables refreshCurrentDatasourceInfo D,T id = ', 
+        "color: yellow; background: blue; font-size: 12px", datasourceID)
 
         // Get lates dSet for give DSid
         // TODO - decide if lates / -1 is best choice here
@@ -862,7 +864,8 @@ export class GlobalVariableService {
 
     refreshAllInfo(dashboardID: number, dashboardTabID: number) {
         // Refreshes all info related to current D
-        console.log('Global-Variables refreshAllInfo D,T id = ', dashboardID, dashboardTabID)
+        console.log('%c    Global-Variables refreshAllInfo D,T id = ', 
+        "color: yellow; background: blue; font-size: 12px", dashboardID, dashboardTabID)
 
         console.log('refreshAllInfo FIX DS ids that are hardcoded ...')
         // Load Dashboard Themes
@@ -919,7 +922,8 @@ export class GlobalVariableService {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDashboards ...');
+        console.log('%c    Global-Variables getDashboards ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -934,11 +938,13 @@ export class GlobalVariableService {
                         this.dashboards = data;
                         this.isDirtyDashboards = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboards 1', this.dashboards)
+                        console.log('%c    Global-Variables getDashboards 1', 
+                        "color: yellow; background: blue; font-size: 12px", this.dashboards)
                         resolve(this.dashboards);
                     });
             } else {
-                console.log('Global-Variables getDashboards 2')
+                console.log('%c    Global-Variables getDashboards 2', 
+                "color: yellow; background: blue; font-size: 12px")
                 resolve(this.dashboards);
             }
         });
@@ -947,7 +953,8 @@ export class GlobalVariableService {
 
     deleteDashboardInfo(dashboardID: number) {
         // Deletes D with all related Entities
-        console.log('Global-Variables deleteDashboardInfo ...', dashboardID);
+        console.log('%c    Global-Variables deleteDashboardInfo ...', 
+        "color: yellow; background: blue; font-size: 12px", dashboardID);
 
         // TODO - update all from DB ?
         this.dashboards.forEach(d => {
@@ -1044,7 +1051,8 @@ export class GlobalVariableService {
 
     clearDashboardInfo() {
         // Clears all related Entities of a D
-        console.log('Global-Variables clearDashboardInfo ...');
+        console.log('%c    Global-Variables clearDashboardInfo ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         // TODO - find a better way to keep all related items in sync, and list updated
         this.currentDashboards = [];
@@ -1064,7 +1072,8 @@ export class GlobalVariableService {
     deleteDashboard(id: number): Promise<string> {
         // Description: Deletes a Dashboard
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboard ...', id);
+        console.log('%c    Global-Variables deleteDashboard ...', 
+        "color: yellow; background: blue; font-size: 12px", id);
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1099,7 +1108,8 @@ export class GlobalVariableService {
     saveDashboard(data: Dashboard): Promise<string> {
         // Description: Saves Dashboard
         // Returns: 'Saved' or error message
-        console.log('Global-Variables saveDashboard ...');
+        console.log('%c    Global-Variables saveDashboard ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1136,7 +1146,8 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboards array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDashboards ...');
+        console.log('%c    Global-Variables getCurrentDashboards ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
@@ -1170,7 +1181,8 @@ export class GlobalVariableService {
                         }
                         // this.currentDashboards.next(currentDashboards);
 
-                        console.log('Global-Variables getCurrentDashboards 1', dashboardID, this.currentDashboards)
+                        console.log('%c    Global-Variables getCurrentDashboards 1', 
+                        "color: yellow; background: blue; font-size: 12px", dashboardID, this.currentDashboards)
                         resolve(this.currentDashboards);
 
                 })
@@ -1201,7 +1213,8 @@ export class GlobalVariableService {
                     this.templateInUse.next(false);
                 };
                 // this.currentDashboards.next(currentDashboards);
-                console.log('Global-Variables getCurrentDashboards 2', dashboardID, this.currentDashboards)
+                console.log('%c    Global-Variables getCurrentDashboards 2', 
+                "color: yellow; background: blue; font-size: 12px", dashboardID, this.currentDashboards)
                 resolve(this.currentDashboards);
             });
         };
@@ -1211,7 +1224,8 @@ export class GlobalVariableService {
     addDashboard(data: Dashboard): Promise<any> {
         // Description: Adds a new Dashboard
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboard ...', data.id);
+        console.log('%c    Global-Variables addDashboard ...', 
+        "color: yellow; background: blue; font-size: 12px", data.id);
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1248,7 +1262,8 @@ export class GlobalVariableService {
         // Description: Gets all T
         // Returns: this.dashboardTabs array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDashboardTabs ...');
+        console.log('%c    Global-Variables getDashboardTabs ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'dashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
@@ -1263,11 +1278,13 @@ export class GlobalVariableService {
                         this.dashboardTabs = data;
                         this.isDirtyDashboardTabs = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardTabs 1', this.dashboardTabs)
+                        console.log('%c    Global-Variables getDashboardTabs 1', 
+                        "color: yellow; background: blue; font-size: 12px", this.dashboardTabs)
                         resolve(this.dashboardTabs);
                     });
             } else {
-                console.log('Global-Variables getDashboardTabs 2')
+                console.log('%c    Global-Variables getDashboardTabs 2', 
+                "color: yellow; background: blue; font-size: 12px")
                 resolve(this.dashboardTabs);
             }
         });
@@ -1280,7 +1297,9 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardTabs array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDashboardTabs ...', dashboardID);
+        console.log('%c    Global-Variables getCurrentDashboardTabs ...', 
+        "color: yellow; background: blue; font-size: 12px", 
+        "color: yellow; background: blue; font-size: 12px", dashboardID);
 console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Refresh from source at start, or if dirty
         if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
@@ -1291,7 +1310,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardTabs = data;
-                        console.log('Global-Variables getCurrentDashboardTabs 1', dashboardID, data)
+                        console.log('%c    Global-Variables getCurrentDashboardTabs 1', 
+                        "color: yellow; background: blue; font-size: 12px", dashboardID, data)
                         resolve(this.currentDashboardTabs);
 
                 })
@@ -1303,7 +1323,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         i => i.dashboardID == dashboardID
                     )
                 this.currentDashboardTabs = returnData;
-                console.log('Global-Variables getCurrentDashboardTabs 2', dashboardID, returnData)
+                console.log('%c    Global-Variables getCurrentDashboardTabs 2', 
+                "color: yellow; background: blue; font-size: 12px", dashboardID, returnData)
                 resolve(this.currentDashboardTabs);
             });
         };
@@ -1313,7 +1334,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     addDashboardTab(data: DashboardTab): Promise<any> {
         // Description: Adds a new DashboardTab
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardTab ...', data.id);
+        console.log('%c    Global-Variables addDashboardTab ...', 
+        "color: yellow; background: blue; font-size: 12px", data.id);
 
         let url: string = 'dashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
@@ -1346,7 +1368,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     saveDashboardTab(data: DashboardTab): Promise<string> {
         // Description: Saves DashboardTab
         // Returns: 'Saved' or error message
-        console.log('Global-Variables saveDashboardTab ...');
+        console.log('%c    Global-Variables saveDashboardTab ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'dashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
@@ -1380,7 +1403,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     deleteDashboardTab(id: number): Promise<string> {
         // Description: Deletes a DashboardTab
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardTab ...', id);
+        console.log('%c    Global-Variables deleteDashboardTab ...', 
+        "color: yellow; background: blue; font-size: 12px", id);
 
         let url: string = 'dashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
@@ -1416,7 +1440,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all Sample D
         // Returns: an array extracted from [D], unless:
         //   If D not cached or if dirty, get from File
-        console.log('Global-Variables getDashboardSamples ...');
+        console.log('%c    Global-Variables getDashboardSamples ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
@@ -1426,7 +1451,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         data = data.filter(
                             i => (i.isSample)
                         );
-                        console.log('Global-Variables getDashboardSamples 1', data)
+                        console.log('%c    Global-Variables getDashboardSamples 1', 
+                        "color: yellow; background: blue; font-size: 12px", data)
                         resolve(data);
 
                 })
@@ -1436,7 +1462,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 let data: Dashboard[] = this.dashboards.filter(
                     i => (i.isSample)
                 )
-                console.log('Global-Variables getDashboardSamples 2', data)
+                console.log('%c    Global-Variables getDashboardSamples 2', 
+                "color: yellow; background: blue; font-size: 12px", data)
                 resolve(data);
             });
         };
@@ -1450,7 +1477,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // - DB
         // - this.dashboardsRecent (array in Global Vars)
         // - dashboardsRecentBehSubject (.next)
-        console.log('Global-Variables getDashboardsRecent ...');
+        console.log('%c    Global-Variables getDashboardsRecent ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -1495,7 +1523,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                 this.isDirtyDashboardsRecent = false;
-                console.log('Global-Variables dashboardsRecent 1', temp)
+                console.log('%c    Global-Variables dashboardsRecent 1', 
+                "color: yellow; background: blue; font-size: 12px", temp)
                 resolve(temp);
             });
         });
@@ -1503,7 +1532,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
     dashboardIndexInRecentList(dashboardID: number): number {
         // Returns index of first D in the Recent list. Else -1
-        console.log('Global-Variables dashboardIndexInRecentList ...');
+        console.log('%c    Global-Variables dashboardIndexInRecentList ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         // Determine index in Recent list
         let index: number = this.dashboardsRecent.findIndex(dR => 
@@ -1514,7 +1544,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
     dashboardTabIndexInRecentList(dashboardID: number, dashboardTabID: number): number {
         // Returns index of first D, T in the Recent list.  Else -1
-        console.log('Global-Variables dashboardTabIndexInRecentList ...');
+        console.log('%c    Global-Variables dashboardTabIndexInRecentList ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         // Determine index in Recent list
         let index: number = this.dashboardsRecent.findIndex(dR => 
@@ -1585,7 +1616,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Adds a D to the Recent list, and update:
         // - this.dashboardsRecent
         // - this.dashboardsRecentBehSubject.next()
-        console.log('Global-Variables addDashboardRecent ...');
+        console.log('%c    Global-Variables addDashboardRecent ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -1629,7 +1661,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     saveDashboardRecent(data: DashboardRecent): Promise<string> {
         // Description: Saves DashboardRecent
         // Returns: 'Saved' or error message
-        console.log('Global-Variables saveDashboardRecent ...');
+        console.log('%c    Global-Variables saveDashboardRecent ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -1672,7 +1705,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // - this.dashboardsRecent
         // - this.dashboardsRecentBehSubject.next()
         // Returns 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardRecent ...', id);
+        console.log('%c    Global-Variables deleteDashboardRecent ...', 
+        "color: yellow; background: blue; font-size: 12px", id);
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -1708,7 +1742,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     getDataset(): Promise<Dataset[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
-        console.log('Global-Variables getDataset ...');
+        console.log('%c    Global-Variables getDataset ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'datasets';
         this.filePath = './assets/data.datasets.json';
@@ -1723,11 +1758,13 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.datasets = data;
                         this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDataset 1', this.datasets)
+                        console.log('%c    Global-Variables getDataset 1', 
+                        "color: yellow; background: blue; font-size: 12px", this.datasets)
                         resolve(this.datasets);
                     });
             } else {
-                console.log('Global-Variables getDataset 2', this.datasets)
+                console.log('%c    Global-Variables getDataset 2', 
+                "color: yellow; background: blue; font-size: 12px", this.datasets)
                 resolve(this.datasets);
             }
         });
@@ -1737,7 +1774,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     getCurrentDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
         // Description: Gets a Dataset, and inserts it once into this.currentDatasets
         // Returns: dataset
-        console.log('Global-Variables getCurrentDataset ...');
+        console.log('%c    Global-Variables getCurrentDataset ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'dataset';
         this.filePath = './assets/data.datasets.json';
@@ -1814,7 +1852,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.currentDatasets.push(newdSet);
                     };
 
-                    console.log('Global-Variables getCurrentDataset 1 from ', dsSourceLocation, datasourceID,
+                    console.log('%c    Global-Variables getCurrentDataset 1 from ', 
+                    "color: yellow; background: blue; font-size: 12px", dsSourceLocation, datasourceID,
                         datasetID, newdSet, 'currentDatasets', this.currentDatasets)
                     resolve(newdSet);
                 });
@@ -1847,7 +1886,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             this.currentDatasets.push(newdSet);
                         };
 
-                        console.log('Global-Variables getCurrentDataset 1 from ', dsSourceLocation, datasourceID,
+                        console.log('%c    Global-Variables getCurrentDataset 1 from ', 
+                        "color: yellow; background: blue; font-size: 12px", dsSourceLocation, datasourceID,
                             datasetID, newdSet, 'currentDatasets', this.currentDatasets)
                         resolve(newdSet);
                     }
@@ -1880,7 +1920,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             this.currentDatasets.push(newdSet);
                         };
 
-                        console.log('Global-Variables getCurrentDataset 1 from ', dsSourceLocation, datasourceID,
+                        console.log('%c    Global-Variables getCurrentDataset 1 from ', 
+                        "color: yellow; background: blue; font-size: 12px", dsSourceLocation, datasourceID,
                             datasetID, newdSet, 'currentDatasets', this.currentDatasets)
                         resolve(newdSet);
                     }
@@ -1892,7 +1933,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     addDataset(data: Dataset): Promise<any> {
         // Description: Adds a new Dataset
         // Returns: Added Data or error message
-        console.log('Global-Variables addDataset ...', data.id);
+        console.log('%c    Global-Variables addDataset ...', 
+        "color: yellow; background: blue; font-size: 12px", data.id);
 
         // let url: string = data.url;
         // this.filePath = data.folderName + data.fileName;
@@ -1927,7 +1969,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     getData(id: number): Promise<any[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
-        console.log('Global-Variables getData ...', id);
+        console.log('%c    Global-Variables getData ...', 
+        "color: yellow; background: blue; font-size: 12px", id);
 
         let url: string = 'data/' + id.toString();
         this.filePath = './assets/data.datasets.json';
@@ -1943,11 +1986,12 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         // this.datasets[xxx from id].rawData & .data = data;
                         // this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getData', res)
+                        console.log('%c    Global-Variables getData', 
+                        "color: yellow; background: blue; font-size: 12px", res)
                         resolve(res.data);
                     });
             // } else {
-            //     console.log('Global-Variables getData 2', this.datasets)
+            //     console.log('%c    Global-Variables getData 2', this.datasets)
             //     resolve(this.datasets);
             // }
         });
@@ -1957,7 +2001,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     addData(data: any): Promise<any> {
         // Description: Adds DATA used in a new Dataset
         // Returns: Added Data or error message
-        console.log('Global-Variables addData  ...', data.id);
+        console.log('%c    Global-Variables addData  ...', 
+        "color: yellow; background: blue; font-size: 12px", data.id);
 
         // let url: string = data.url;
         // this.filePath = data.folderName + data.fileName;
@@ -1990,7 +2035,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // into .data
         // Note: Objects and arrays are passed by reference. Primitive values like number,
         // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
-        console.log('Global-Variables filterSlicer ...');
+        console.log('%c    Global-Variables filterSlicer ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         this.currentWidgets.forEach(w => {
             console.warn('xx strt graphData', w.graphUrl, w.graphData);
@@ -2097,7 +2143,8 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all Sch
         // Returns: this.dashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDashboardSchedules ...');
+        console.log('%c    Global-Variables getDashboardSchedules ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'dashboardSchedules';
         this.filePath = './assets/data.dashboardSchedules.json';
@@ -2112,11 +2159,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.dashboardSchedules = data;
                         this.isDirtyDashboardSchedules = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardSchedules 1')
+                        console.log('%c    Global-Variables getDashboardSchedules 1')
                         resolve(this.dashboardSchedules);
                     });
             } else {
-                console.log('Global-Variables getDashboardSchedules 2')
+                console.log('%c    Global-Variables getDashboardSchedules 2')
                 resolve(this.dashboardSchedules);
             }
         });
@@ -2126,7 +2173,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     deleteDashboardSchedule(id: number): Promise<string> {
         // Description: Deletes a DashboardSchedules
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardSchedule ...', id);
+        console.log('%c    Global-Variables deleteDashboardSchedule ...', id);
 
         let url: string = 'dashboardSchedules';
         this.filePath = './assets/data.dashboardSchedules.json';
@@ -2164,7 +2211,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         //   dashboardID
         // Returns: this.currentDashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDashboardSchedules ...');
+        console.log('%c    Global-Variables getCurrentDashboardSchedules ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
@@ -2175,7 +2222,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSchedules = data;
-                        console.log('Global-Variables getCurrentDashboardSchedules 1',
+                        console.log('%c    Global-Variables getCurrentDashboardSchedules 1',
                             dashboardID, data)
                         resolve(this.currentDashboardSchedules);
                 })
@@ -2187,7 +2234,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardSchedules = returnData;
-                console.log('Global-Variables getCurrentDashboardSchedules 2',
+                console.log('%c    Global-Variables getCurrentDashboardSchedules 2',
                     dashboardID, returnData)
                 resolve(this.currentDashboardSchedules);
             });
@@ -2198,7 +2245,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all Sch
         // Returns: this.dashboardTagsget array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDashboardTags ...');
+        console.log('%c    Global-Variables getDashboardTags ...');
 
         let url: string = 'dashboardTags';
         this.filePath = './assets/data.dashboardTags.json';
@@ -2213,11 +2260,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.dashboardTags = data;
                         this.isDirtyDashboardTags = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardTags 1')
+                        console.log('%c    Global-Variables getDashboardTags 1')
                         resolve(this.dashboardTags);
                     });
             } else {
-                console.log('Global-Variables getDashboardTags 2')
+                console.log('%c    Global-Variables getDashboardTags 2')
                 resolve(this.dashboardTags);
             }
         });
@@ -2230,7 +2277,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         //   dashboardID
         // Returns: this.currentDashboardTags array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDashboardTags ...');
+        console.log('%c    Global-Variables getCurrentDashboardTags ...');
 
         // Refresh frogetm source at start, or if dirty
         if ( (this.dashboardTags.length == 0)  ||  (this.isDirtyDashboardTags) ) {
@@ -2241,7 +2288,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardTags = data;
-                        console.log('Global-Variables getCurrentDashboardTags 1',
+                        console.log('%c    Global-Variables getCurrentDashboardTags 1',
                             dashboardID, data)
                         resolve(this.currentDashboardTags);
                 })
@@ -2253,7 +2300,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardTags = returnData;
-                console.log('Global-Variables getCurrentDashboardTags 2', dashboardID)
+                console.log('%c    Global-Variables getCurrentDashboardTags 2', dashboardID)
                 resolve(this.currentDashboardTags);
             });
         };
@@ -2262,7 +2309,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     addDashboardTag(data: DashboardTag): Promise<any> {
         // Description: Adds a new DashboardTag
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardTag ...', data.id);
+        console.log('%c    Global-Variables addDashboardTag ...', data.id);
 
         let url: string = 'dashboardTags';
         this.filePath = './assets/data.dashboardTags.json';
@@ -2295,7 +2342,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     deleteDashboardTag(id: number): Promise<string> {
         // Description: Deletes a DashboardTag
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardTag ...', id);
+        console.log('%c    Global-Variables deleteDashboardTag ...', id);
 
         let url: string = 'dashboardTags';
         this.filePath = './assets/data.dashboardTags.json';
@@ -2331,7 +2378,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all P
         // Returns: this.dashboardPermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDashboardPermissions ...');
+        console.log('%c    Global-Variables getDashboardPermissions ...');
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -2346,11 +2393,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.dashboardPermissions = data;
                         this.isDirtyDashboardPermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardPermissions 1')
+                        console.log('%c    Global-Variables getDashboardPermissions 1')
                         resolve(this.dashboardPermissions);
                     });
             } else {
-                console.log('Global-Variables getDashboardPermissions 2')
+                console.log('%c    Global-Variables getDashboardPermissions 2')
                 resolve(this.dashboardPermissions);
             }
         });
@@ -2363,7 +2410,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         //   dashboardID
         // Returns: this.currentDashboardPermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDashboardPermissions ...');
+        console.log('%c    Global-Variables getCurrentDashboardPermissions ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardPermissions.length == 0)  ||  (this.isDirtyDashboardPermissions) ) {
@@ -2374,7 +2421,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardPermissions =data;
-                        console.log('Global-Variables getCurrentDashboardPermissions 1',
+                        console.log('%c    Global-Variables getCurrentDashboardPermissions 1',
                             dashboardID, data)
                         resolve(this.currentDashboardPermissions);
                 })
@@ -2386,7 +2433,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardPermissions =returnData;
-                console.log('Global-Variables getCurrentDashboardPermissions 2', dashboardID)
+                console.log('%c    Global-Variables getCurrentDashboardPermissions 2', dashboardID)
                 resolve(this.currentDashboardPermissions);
             });
         };
@@ -2395,7 +2442,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     addDashboardPermission(data: DashboardPermission): Promise<any> {
         // Description: Adds a new DashboardPermission
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardPermission ...', data.id);
+        console.log('%c    Global-Variables addDashboardPermission ...', data.id);
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -2429,7 +2476,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     saveDashboardPermission(data: DashboardPermission): Promise<string> {
         // Description: Saves DashboardPermission
         // Returns: 'Saved' or error message
-        console.log('Global-Variables saveDashboardPermission ...');
+        console.log('%c    Global-Variables saveDashboardPermission ...');
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -2463,7 +2510,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     deleteDashboardPermission(id: number): Promise<string> {
         // Description: Deletes a DashboardPermissions
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardPermission ...', id);
+        console.log('%c    Global-Variables deleteDashboardPermission ...', id);
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -2499,7 +2546,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all G
         // Returns: this.canvasGroups array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCanvasGroups ...');
+        console.log('%c    Global-Variables getCanvasGroups ...');
 
         let url: string = 'canvasGroups';
         this.filePath = './assets/data.canvasGroups.json';
@@ -2514,11 +2561,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.canvasGroups = data;
                         this.isDirtyCanvasGroups = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getCanvasGroups 1')
+                        console.log('%c    Global-Variables getCanvasGroups 1')
                         resolve(this.canvasGroups);
                     });
             } else {
-                console.log('Global-Variables getCanvasGroups 2')
+                console.log('%c    Global-Variables getCanvasGroups 2')
                 resolve(this.canvasGroups);
             }
         });
@@ -2529,7 +2576,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all Sn
         // Returns: this.dashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDashboardSnapshots ...');
+        console.log('%c    Global-Variables getDashboardSnapshots ...');
 
         let url: string = 'dashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
@@ -2545,11 +2592,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.dashboardSnapshots = data;
                         this.isDirtyDashboardSnapshots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardSnapshots 1', this.dashboardSnapshots)
+                        console.log('%c    Global-Variables getDashboardSnapshots 1', this.dashboardSnapshots)
                         resolve(this.dashboardSnapshots);
                     });
             } else {
-                console.log('Global-Variables getDashboardSnapshots 2')
+                console.log('%c    Global-Variables getDashboardSnapshots 2')
                 resolve(this.dashboardSnapshots);
             }
         });
@@ -2562,7 +2609,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         //   dashboardID
         // Returns: this.getDashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDashboardSnapshots ...');
+        console.log('%c    Global-Variables getCurrentDashboardSnapshots ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
@@ -2573,7 +2620,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSnapshots = data;
-                        console.log('Global-Variables getCurrentDashboardSnapshots 1',
+                        console.log('%c    Global-Variables getCurrentDashboardSnapshots 1',
                             dashboardID, data)
                         resolve(this.currentDashboardSnapshots);
                 })
@@ -2585,7 +2632,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardSnapshots = returnData;
-                console.log('Global-Variables getCurrentDashboardSnapshots 2', dashboardID)
+                console.log('%c    Global-Variables getCurrentDashboardSnapshots 2', dashboardID)
                 resolve(this.currentDashboardSnapshots);
             });
         };
@@ -2594,7 +2641,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     addDashboardSnapshot(data: DashboardSnapshot): Promise<any> {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardSnapshot ...', data.id);
+        console.log('%c    Global-Variables addDashboardSnapshot ...', data.id);
 
         let url: string = 'dashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
@@ -2628,7 +2675,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     deleteDashboardSnapshot(id: number): Promise<string> {
         // Description: Deletes a DashboardSnapshots
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardSnapshot ...', id);
+        console.log('%c    Global-Variables deleteDashboardSnapshot ...', id);
 
         let url: string = 'dashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
@@ -2664,7 +2711,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all Th
         // Returns: this.dashboardThemes array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDashboardThemes ...');
+        console.log('%c    Global-Variables getDashboardThemes ...');
 
         let url: string = 'dashboardThemes';
         this.filePath = './assets/data.dashboardThemes.json';
@@ -2679,11 +2726,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.dashboardThemes = data;
                         this.isDirtyDashboardThemes = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardThemes 1', this.dashboardThemes)
+                        console.log('%c    Global-Variables getDashboardThemes 1', this.dashboardThemes)
                         resolve(this.dashboardThemes);
                     });
             } else {
-                console.log('Global-Variables getDashboardThemes 2')
+                console.log('%c    Global-Variables getDashboardThemes 2')
                 resolve(this.dashboardThemes);
             }
         });
@@ -2695,7 +2742,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Returns: recent [D] array, unless:
         //   If not cached or if dirty, get from File
         // Refresh from source at start, or if dirty
-        console.log('Global-Variables getDashboardTemplates ...');
+        console.log('%c    Global-Variables getDashboardTemplates ...');
 
         if ( this.dashboards == []  ||  (this.isDirtyDashboards) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
@@ -2716,7 +2763,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                                 }
                             }
                         }
-                        console.log('Global-Variables getDashboardTemplates 1', returnData)
+                        console.log('%c    Global-Variables getDashboardTemplates 1', returnData)
                         resolve(returnData);
                     });
             });
@@ -2737,7 +2784,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         }
                     }
                 }
-                console.log('Global-Variables getDashboardTemplates 2', returnData)
+                console.log('%c    Global-Variables getDashboardTemplates 2', returnData)
                 resolve(returnData);
 
             });
@@ -2749,7 +2796,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all DS
         // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDatasources ...');
+        console.log('%c    Global-Variables getDatasources ...');
 
         let url: string = 'datasources';
         this.filePath = './assets/data.datasources.json';
@@ -2782,11 +2829,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         });
 
 
-                        console.log('Global-Variables getDatasources 1', this.datasources)
+                        console.log('%c    Global-Variables getDatasources 1', this.datasources)
                         resolve(this.datasources);
                     });
             } else {
-                console.log('Global-Variables getDatasources 2')
+                console.log('%c    Global-Variables getDatasources 2')
                 resolve(this.datasources);
             }
         });
@@ -2799,7 +2846,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
         // NB: assume this.currentWidgets exists !!
-        console.log('Global-Variables getCurrentDatasources ...');
+        console.log('%c    Global-Variables getCurrentDatasources ...');
 
         let url: string = 'datasources';
         this.filePath = './assets/data.datasources.json';
@@ -2840,7 +2887,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             this.isDirtyDatasources = false;
                             this.currentDatasources = returnData;
                             this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                            console.log('Global-Variables getCurrentDatasources 1',
+                            console.log('%c    Global-Variables getCurrentDatasources 1',
                                 dashboardID, this.currentDatasources);
                             resolve(this.currentDatasources);
                         }
@@ -2871,7 +2918,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 this.isDirtyDatasources = false;
                 this.currentDatasources = returnData;
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                console.log('Global-Variables getCurrentDatasources 2', dashboardID,
+                console.log('%c    Global-Variables getCurrentDatasources 2', dashboardID,
                     this.currentDatasources);
                 resolve(this.currentDatasources);
             }
@@ -2881,7 +2928,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     addDatasource(data: Datasource): Promise<any> {
         // Description: Adds a new Datasource, if it does not exist
         // Returns: Added Data or error message
-        console.log('Global-Variables addDatasource ...', data.id);
+        console.log('%c    Global-Variables addDatasource ...', data.id);
 
         let url: string = 'datasources';
         this.filePath = './assets/data.datasources.json';
@@ -2922,7 +2969,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
     deleteCurrentDatasource(id: number) {
         // Delete current DS
-        console.log('Global-Variables deleteCurrentDatasource', id, this.currentDatasources)
+        console.log('%c    Global-Variables deleteCurrentDatasource', id, this.currentDatasources)
 
         let index: number = -1;
         for (var i = 0; i < this.currentDatasources.length; i++) {
@@ -2934,7 +2981,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             this.currentDatasources.splice(index,1)
         };
 
-        console.log('Global-Variables deleteCurrentDatasource end', this.currentDatasources)
+        console.log('%c    Global-Variables deleteCurrentDatasource end', this.currentDatasources)
 
     }
 
@@ -2942,7 +2989,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all Tr
         // Returns: this.transformations array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getTransformations ...');
+        console.log('%c    Global-Variables getTransformations ...');
 
         let url: string = 'transformations';
         this.filePath = './assets/data.transformations.json';
@@ -2957,11 +3004,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.transformations = data;
                         this.isDirtyTransformations = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getTransformations 1',  data)
+                        console.log('%c    Global-Variables getTransformations 1',  data)
                         resolve(this.transformations);
                     });
             } else {
-                console.log('Global-Variables getTransformations 2')
+                console.log('%c    Global-Variables getTransformations 2')
                 resolve(this.transformations);
             }
         });
@@ -2972,7 +3019,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets Tr for current DS
         // Returns: this.currentTransformations.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentTransformations ...');
+        console.log('%c    Global-Variables getCurrentTransformations ...');
 
         let url: string = 'transformations';
         this.filePath = './assets/data.transformations.json';
@@ -2985,7 +3032,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             i => i.datasourceID == datasourceID
                         );
                         this.currentTransformations = data;
-                        console.log('Global-Variables getTransformations 1', datasourceID, data)
+                        console.log('%c    Global-Variables getTransformations 1', datasourceID, data)
                         resolve(this.currentTransformations);
                 })
              })
@@ -2996,7 +3043,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     i => i.datasourceID == datasourceID
                 );
                 this.currentTransformations = returnData;
-                console.log('Global-Variables getTransformations 2', datasourceID, returnData)
+                console.log('%c    Global-Variables getTransformations 2', datasourceID, returnData)
                 resolve(this.currentTransformations);
             });
         };
@@ -3006,7 +3053,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all dQual
         // Returns: this.dataQualityIssues array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDataQualityIssues ...');
+        console.log('%c    Global-Variables getDataQualityIssues ...');
 
         let url: string = 'dataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
@@ -3021,11 +3068,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.dataQualityIssues = data;
                         this.isDirtyDataQualityIssues = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDataQualityIssues 1', this.dataQualityIssues)
+                        console.log('%c    Global-Variables getDataQualityIssues 1', this.dataQualityIssues)
                         resolve(this.dataQualityIssues);
                     });
             } else {
-                console.log('Global-Variables getDataQualityIssues 2', this.dataQualityIssues)
+                console.log('%c    Global-Variables getDataQualityIssues 2', this.dataQualityIssues)
                 resolve(this.dataQualityIssues);
             }
         });
@@ -3035,7 +3082,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets dQual for current DS
         // Returns: this.dataQualityIssues.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDataQualityIssues ...');
+        console.log('%c    Global-Variables getCurrentDataQualityIssues ...');
 
         let url: string = 'dataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
@@ -3048,7 +3095,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDataQualityIssues = data;
-                        console.log('Global-Variables getDataQualityIssuess 1',
+                        console.log('%c    Global-Variables getDataQualityIssuess 1',
                             datasourceID, data)
                         resolve(this.currentDataQualityIssues);
                 })
@@ -3060,7 +3107,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDataQualityIssues = returnData;
-                console.log('Global-Variables getDataQualityIssuess 2', datasourceID, returnData)
+                console.log('%c    Global-Variables getDataQualityIssuess 2', datasourceID, returnData)
                 resolve(this.currentDataQualityIssues);
             });
         };
@@ -3070,7 +3117,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all DS-P
         // Returns: this.datasourcePermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDatasourcePermissions ...');
+        console.log('%c    Global-Variables getDatasourcePermissions ...');
 
         let url: string = 'datasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
@@ -3085,11 +3132,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.datasourcePermissions = data;
                         this.isDirtyDatasourcePermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDatasourcePermissions 1', this.datasourcePermissions)
+                        console.log('%c    Global-Variables getDatasourcePermissions 1', this.datasourcePermissions)
                         resolve(this.datasourcePermissions);
                     });
             } else {
-                console.log('Global-Variables getDatasourcePermissions 2', this.datasourcePermissions)
+                console.log('%c    Global-Variables getDatasourcePermissions 2', this.datasourcePermissions)
                 resolve(this.datasourcePermissions);
             }
         });
@@ -3099,7 +3146,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePermissions.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDatasourcePermissions ...');
+        console.log('%c    Global-Variables getCurrentDatasourcePermissions ...');
 
         let url: string = 'datasourcePermissions';
         this.filePath = './assets/data..datasourcePermissions.json';
@@ -3112,7 +3159,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePermissions = data;
-                        console.log('Global-Variables getDatasourcePermissions 1', datasourceID, data)
+                        console.log('%c    Global-Variables getDatasourcePermissions 1', datasourceID, data)
                         resolve(this.currentDatasourcePermissions);
                 })
              })
@@ -3123,7 +3170,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDatasourcePermissions = returnData;
-                console.log('Global-Variables getDatasourcePermissions 2', datasourceID)
+                console.log('%c    Global-Variables getDatasourcePermissions 2', datasourceID)
                 resolve(this.currentDatasourcePermissions);
             });
         };
@@ -3132,7 +3179,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
     deleteDatasourcePermission(id: number) {
         // Remove a record from the global and current DatasourcePermissions
-        console.log('Global-Variables deleteDatasourcePermission ...', id);
+        console.log('%c    Global-Variables deleteDatasourcePermission ...', id);
 
         console.warn('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
 
@@ -3150,7 +3197,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets all DS-P
         // Returns: this.datasourcePivots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDatasourcePivots ...');
+        console.log('%c    Global-Variables getDatasourcePivots ...');
 
         let url: string = 'datasourcePivots';
         this.filePath = './assets/data.datasourcePivots.json';
@@ -3165,11 +3212,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.datasourcePivots = data;
                         this.isDirtyDatasourcePivots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDatasourcePivots 1', this.datasourcePivots)
+                        console.log('%c    Global-Variables getDatasourcePivots 1', this.datasourcePivots)
                         resolve(this.datasourcePivots);
                     });
             } else {
-                console.log('Global-Variables getDatasourcePivots 2', this.datasourcePivots)
+                console.log('%c    Global-Variables getDatasourcePivots 2', this.datasourcePivots)
                 resolve(this.datasourcePivots);
             }
         });
@@ -3179,7 +3226,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePivots.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentDatasourcePivots ...');
+        console.log('%c    Global-Variables getCurrentDatasourcePivots ...');
 
         let url: string = 'datasourcePivots';
         this.filePath = './assets/data..datasourcePivots.json';
@@ -3192,7 +3239,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePivots = data;
-                        console.log('Global-Variables getDatasourcePivots 1', datasourceID, data)
+                        console.log('%c    Global-Variables getDatasourcePivots 1', datasourceID, data)
                         resolve(this.currentDatasourcePivots);
                 })
              })
@@ -3203,7 +3250,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDatasourcePivots = returnData;
-                console.log('Global-Variables getDatasourcePivots 2', datasourceID, returnData)
+                console.log('%c    Global-Variables getDatasourcePivots 2', datasourceID, returnData)
                 resolve(this.currentDatasourcePivots);
             });
         };
@@ -3214,7 +3261,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets system settings
         // Returns: this.canvasSettings object, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getSystemSettings ...');
+        console.log('%c    Global-Variables getSystemSettings ...');
 
         let url: string = 'canvasSettings';
         this.filePath = './assets/data.canvasSettings.json';
@@ -3257,11 +3304,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
                         this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getSystemSettings 1', this.canvasSettings)
+                        console.log('%c    Global-Variables getSystemSettings 1', this.canvasSettings)
                         resolve(this.canvasSettings);
                     });
             } else {
-                console.log('Global-Variables getSystemSettings 2', this.canvasSettings)
+                console.log('%c    Global-Variables getSystemSettings 2', this.canvasSettings)
                 resolve(this.canvasSettings);
             }
         });
@@ -3271,7 +3318,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     saveSystemSettings(data: CanvasSettings): Promise<string> {
         // Description: Saves system settings
         // Returns: 'Saved' or error message
-        console.log('Global-Variables saveSystemSettings ...');
+        console.log('%c    Global-Variables saveSystemSettings ...');
 
         let url: string = 'canvasSettings';
         this.filePath = './assets/data.canvasSettings.json';
@@ -3301,7 +3348,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets dashboardSubscriptions
         // Returns: this.dashboardSubscriptions object, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDashboardSubscription ...');
+        console.log('%c    Global-Variables getDashboardSubscription ...');
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -3317,11 +3364,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardSubscription 1', this.dashboardSubscriptions)
+                        console.log('%c    Global-Variables getDashboardSubscription 1', this.dashboardSubscriptions)
                         resolve(this.dashboardSubscriptions);
                     });
             } else {
-                console.log('Global-Variables getDashboardSubscription 2', this.dashboardSubscriptions)
+                console.log('%c    Global-Variables getDashboardSubscription 2', this.dashboardSubscriptions)
                 resolve(this.dashboardSubscriptions);
             }
         });
@@ -3332,7 +3379,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets currentDashboardSubscription
         // Returns: this.currentDashboardSubscription object, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getDashboardSubscription ...');
+        console.log('%c    Global-Variables getDashboardSubscription ...');
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -3352,11 +3399,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getDashboardSubscription 1', this.currentDashboardSubscriptions)
+                        console.log('%c    Global-Variables getDashboardSubscription 1', this.currentDashboardSubscriptions)
                         resolve(this.currentDashboardSubscriptions);
                     });
             } else {
-                console.log('Global-Variables getDashboardSubscription 2', this.currentDashboardSubscriptions)
+                console.log('%c    Global-Variables getDashboardSubscription 2', this.currentDashboardSubscriptions)
                 resolve(this.currentDashboardSubscriptions);
             }
         });
@@ -3366,7 +3413,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     saveDashboardSubscription(data: DashboardSubscription): Promise<string> {
         // Description: Saves DashboardSubscription
         // Returns: 'Saved' or error message
-        console.log('Global-Variables saveDashboardSubscription ...');
+        console.log('%c    Global-Variables saveDashboardSubscription ...');
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -3400,7 +3447,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     addDashboardSubscription(data: DashboardSubscription): Promise<any> {
         // Description: Adds a new DashboardSubscription
         // Returns: Added Data or error message
-        console.log('Global-Variables addDashboardSubscription ...', data.id);
+        console.log('%c    Global-Variables addDashboardSubscription ...', data.id);
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -3429,7 +3476,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     deleteDashboardSubscription(id: number): Promise<string> {
         // Description: Deletes a DashboardSubscription
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteDashboardSubscription ...', id);
+        console.log('%c    Global-Variables deleteDashboardSubscription ...', id);
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -3462,7 +3509,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets currentgetPaletteButtonBar
         // Returns: this.currentgetPaletteButtonBar object, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getPaletteButtonBar ...');
+        console.log('%c    Global-Variables getPaletteButtonBar ...');
 
         let url: string = 'paletteButtonBars';
         this.filePath = './assets/data.paletteButtonBars.json';
@@ -3478,11 +3525,11 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
                         this.isDirtyPaletteButtonBar = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getPaletteButtonBar 1', this.currentPaletteButtonBar)
+                        console.log('%c    Global-Variables getPaletteButtonBar 1', this.currentPaletteButtonBar)
                         resolve(this.currentPaletteButtonBar);
                     });
             } else {
-                console.log('Global-Variables getPaletteButtonBar 2', this.currentPaletteButtonBar)
+                console.log('%c    Global-Variables getPaletteButtonBar 2', this.currentPaletteButtonBar)
                 resolve(this.currentPaletteButtonBar);
             }
         });
@@ -3492,7 +3539,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     savePaletteButtonBar(data: PaletteButtonBar): Promise<string> {
         // Description: Saves PaletteButtonBar
         // Returns: 'Saved' or error message
-        console.log('Global-Variables savePaletteButtonBar ...');
+        console.log('%c    Global-Variables savePaletteButtonBar ...');
 
         let url: string = 'paletteButtonBars';
         this.filePath = './assets/data.paletteButtonBars.json';
@@ -3527,7 +3574,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets currentgetPaletteButtonsSelected
         // Returns: this.currentgetPaletteButtonsSelected object, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getPaletteButtonsSelected ...');
+        console.log('%c    Global-Variables getPaletteButtonsSelected ...');
 
         let url: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
@@ -3544,12 +3591,12 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         this.isDirtyPaletteButtonsSelected = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                        console.log('Global-Variables getPaletteButtonsSelected 1',
+                        console.log('%c    Global-Variables getPaletteButtonsSelected 1',
                             this.currentPaletteButtonsSelected.value);
                         resolve(this.currentPaletteButtonsSelected.value);
                     });
             } else {
-                console.log('Global-Variables getPaletteButtonsSelected 2',
+                console.log('%c    Global-Variables getPaletteButtonsSelected 2',
                     this.currentPaletteButtonsSelected.value);
 
                 resolve(this.currentPaletteButtonsSelected.value);
@@ -3561,7 +3608,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     savePaletteButtonsSelected(data: PaletteButtonsSelected): Promise<string> {
         // Description: Saves PaletteButtonsSelected
         // Returns: 'Saved' or error message
-        console.log('Global-Variables savePaletteButtonsSelected ...');
+        console.log('%c    Global-Variables savePaletteButtonsSelected ...');
 
         let url: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
@@ -3595,7 +3642,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     deletePaletteButtonsSelected(id: number): Promise<string> {
         // Description: Deletes a PaletteButtonsSelected
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deletePaletteButtonsSelected ...', id);
+        console.log('%c    Global-Variables deletePaletteButtonsSelected ...', id);
 
         let url: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
@@ -3643,7 +3690,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     addPaletteButtonsSelected(data: PaletteButtonsSelected): Promise<any> {
         // Description: Adds a new PaletteButtonsSelected
         // Returns: Added Data or error message
-        console.log('Global-Variables addPaletteButtonsSelected ...', data.id);
+        console.log('%c    Global-Variables addPaletteButtonsSelected ...', data.id);
 
         let url: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
@@ -3685,7 +3732,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // NOTE: this gets ALL W from DB (irrespective of isTrashed), so it includes soft deletes
         // and must be treated as such arrays
 
-        console.log('Global-Variables getWidgets ...', this.widgets.length);
+        console.log('%c    Global-Variables getWidgets ...', this.widgets.length);
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -3816,12 +3863,12 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getWidgets 1', this.widgets)
+                        console.log('%c    Global-Variables getWidgets 1', this.widgets)
                         resolve(this.widgets);
                     });
             } else {
                 // NOTE: includes soft deletes, isTrashed = true
-                console.log('Global-Variables getWidgets 2', this.widgets)
+                console.log('%c    Global-Variables getWidgets 2', this.widgets)
                 resolve(this.widgets);
             }
         });
@@ -3837,7 +3884,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         //   If not cached or if dirty, get from File
         // Usage: getWidgets(1, -1)  =>  Returns W for DashboardID = 1
         // NOTE: only get isTrashed = false, as those guys are soft deleted
-        console.log('Global-Variables getCurrentWidgets ...');
+        console.log('%c    Global-Variables getCurrentWidgets ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
@@ -3857,7 +3904,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                         );
                         this.currentWidgets = data;
 
-                        console.log('Global-Variables getCurrentWidgets 1', this.currentWidgets)
+                        console.log('%c    Global-Variables getCurrentWidgets 1', this.currentWidgets)
                         resolve(this.currentWidgets);
                 })
              })
@@ -3875,7 +3922,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                 )
 
                 this.currentWidgets = data;
-                console.log('Global-Variables getCurrentWidgets 2', dashboardID,
+                console.log('%c    Global-Variables getCurrentWidgets 2', dashboardID,
                     dashboardTabID,  this.currentWidgets, this.widgets)
                 resolve(this.currentWidgets);
 
@@ -3887,7 +3934,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     addWidget(data: Widget): Promise<any> {
         // Description: Adds a new Widget
         // Returns: Added Data or error message
-        console.log('Global-Variables addWidget ...', data.id);
+        console.log('%c    Global-Variables addWidget ...', data.id);
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -3923,7 +3970,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // NOTE: this permananently deletes a W, from arrays and DB.  This must NOT be used for
         // a simplete W delete, in which case it stays in DB (with isTrashed = true), and is
         // only removed from the arrays
-        console.log('Global-Variables deleteWidget ...', id);
+        console.log('%c    Global-Variables deleteWidget ...', id);
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -3958,7 +4005,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
     saveWidget(data: Widget): Promise<string> {
         // Description: Saves Widget
         // Returns: 'Saved' or error message
-        console.log('Global-Variables saveWidget ...');
+        console.log('%c    Global-Variables saveWidget ...');
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -4010,7 +4057,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         // Description: Gets data and other info for [W]
         // Returns: this.datasets, currentDataset array
         // NB: this assumes [W] and [datasets] are available !!
-        console.log('Global-Variables getWidgetsInfo ...');
+        console.log('%c    Global-Variables getWidgetsInfo ...');
 
         // Empty the necessary
         let dsCurrIDs: number[] = [];       // Current Dataset IDs
@@ -4088,7 +4135,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                     // });
 
-                    console.log('Global-Variables getWidgetsInfo 1 True');
+                    console.log('%c    Global-Variables getWidgetsInfo 1 True');
                     resolve(true);
                 },
                 rejectionReason => console.log('reason:', rejectionReason) // reason: rejected!
@@ -4098,7 +4145,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     allWithAsync = (...listOfPromises) => {
         // Resolve all promises in array
-        console.log('Global-Variables allWithAsync ...');
+        console.log('%c    Global-Variables allWithAsync ...');
 
         return new Promise(async (resolve, reject) => {
             let results = []
@@ -4117,7 +4164,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Background colors
         // Returns: this.backgroundcolors array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getBackgroundColors ...');
+        console.log('%c    Global-Variables getBackgroundColors ...');
 
         let url: string = 'canvasBackgroundcolors';
         this.filePath = './assets/settings.backgroundcolors.json';
@@ -4133,11 +4180,11 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                         this.isDirtyBackgroundColors = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getBackgroundColors 1', this.backgroundcolors)
+                        console.log('%c    Global-Variables getBackgroundColors 1', this.backgroundcolors)
                         resolve(this.backgroundcolors);
                     });
             } else {
-                console.log('Global-Variables getBackgroundColors 2', this.backgroundcolors)
+                console.log('%c    Global-Variables getBackgroundColors 2', this.backgroundcolors)
                 resolve(this.backgroundcolors);
             }
         });
@@ -4148,7 +4195,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Activities
         // Returns: this.canvasactivities array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCanvasActivities ...', this.canvasActivities.length);
+        console.log('%c    Global-Variables getCanvasActivities ...', this.canvasActivities.length);
 
         let url: string = 'canvasActivities';
         this.filePath = './assets/settings.canvasActivities.json';
@@ -4164,11 +4211,11 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                         this.isDirtyCanvasActivities = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getCanvasActivities 1', this.canvasActivities)
+                        console.log('%c    Global-Variables getCanvasActivities 1', this.canvasActivities)
                         resolve(this.canvasActivities);
                     });
             } else {
-                console.log('Global-Variables getCanvasActivities 2', this.canvasActivities)
+                console.log('%c    Global-Variables getCanvasActivities 2', this.canvasActivities)
                 resolve(this.canvasActivities);
             }
         });
@@ -4179,7 +4226,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Alerts
         // Returns: this.canvasalerts array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCanvasAlerts ...', this.canvasAlerts.length);
+        console.log('%c    Global-Variables getCanvasAlerts ...', this.canvasAlerts.length);
 
         let url: string = 'canvasAlerts';
         this.filePath = './assets/settings.canvasAlerts.json';
@@ -4195,11 +4242,11 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                         this.isDirtyCanvasAlerts = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getCanvasAlerts 1', this.canvasAlerts)
+                        console.log('%c    Global-Variables getCanvasAlerts 1', this.canvasAlerts)
                         resolve(this.canvasAlerts);
                     });
             } else {
-                console.log('Global-Variables getCanvasAlerts 2', this.canvasAlerts)
+                console.log('%c    Global-Variables getCanvasAlerts 2', this.canvasAlerts)
                 resolve(this.canvasAlerts);
             }
         });
@@ -4210,7 +4257,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Comments
         // Returns: this.canvasComments array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCanvasComments ...', this.canvasComments.length);
+        console.log('%c    Global-Variables getCanvasComments ...', this.canvasComments.length);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/settings.canvasComments.json';
@@ -4226,11 +4273,11 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                         this.isDirtyCanvasComments = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getCanvasComments 1', this.canvasComments)
+                        console.log('%c    Global-Variables getCanvasComments 1', this.canvasComments)
                         resolve(this.canvasComments);
                     });
             } else {
-                console.log('Global-Variables getCanvasComments 2', this.canvasComments)
+                console.log('%c    Global-Variables getCanvasComments 2', this.canvasComments)
                 resolve(this.canvasComments);
             }
         });
@@ -4240,7 +4287,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     addCanvasComment(data: CanvasComment): Promise<any> {
         // Description: Adds a new canvasComment
         // Returns: Added Data or error message
-        console.log('Global-Variables addCanvasComment ...', data.id);
+        console.log('%c    Global-Variables addCanvasComment ...', data.id);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -4282,7 +4329,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     deleteCanvasComment(id: number, widgetID: number = null): Promise<string> {
         // Description: Deletes a canvasComments
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteCanvasComment ...', id);
+        console.log('%c    Global-Variables deleteCanvasComment ...', id);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -4325,7 +4372,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Messages
         // Returns: this.canvasMessages array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCanvasMessages ...', this.canvasMessages.length);
+        console.log('%c    Global-Variables getCanvasMessages ...', this.canvasMessages.length);
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/settings.canvasMessages.json';
@@ -4341,11 +4388,11 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                         this.isDirtyCanvasMessages = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getCanvasMessages 1', this.canvasMessages)
+                        console.log('%c    Global-Variables getCanvasMessages 1', this.canvasMessages)
                         resolve(this.canvasMessages);
                     });
             } else {
-                console.log('Global-Variables getCanvasMessages 2', this.canvasMessages)
+                console.log('%c    Global-Variables getCanvasMessages 2', this.canvasMessages)
                 resolve(this.canvasMessages);
             }
         });
@@ -4355,7 +4402,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     deleteCanvasMessage(id: number): Promise<string> {
         // Description: Deletes a canvasMessages
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteCanvasMessage ...', id);
+        console.log('%c    Global-Variables deleteCanvasMessage ...', id);
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/data.CanvasMessages.json';
@@ -4388,7 +4435,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Messages
         // Returns: this.widgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getWidgetCheckpoints ...', this.widgetCheckpoints.length);
+        console.log('%c    Global-Variables getWidgetCheckpoints ...', this.widgetCheckpoints.length);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/settings.widgetCheckpoints.json';
@@ -4404,11 +4451,11 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                         this.isDirtyWidgetCheckpoints = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getWidgetCheckpoints 1', this.widgetCheckpoints)
+                        console.log('%c    Global-Variables getWidgetCheckpoints 1', this.widgetCheckpoints)
                         resolve(this.widgetCheckpoints);
                     });
             } else {
-                console.log('Global-Variables getWidgetCheckpoints 2', this.widgetCheckpoints)
+                console.log('%c    Global-Variables getWidgetCheckpoints 2', this.widgetCheckpoints)
                 resolve(this.widgetCheckpoints);
             }
         });
@@ -4419,7 +4466,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Checkpoints for current D
         // Returns: this.currentWidgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCurrentWidgetCheckpoints ...');
+        console.log('%c    Global-Variables getCurrentWidgetCheckpoints ...');
 
         // Refresh from source at start, or if dirty
         if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
@@ -4430,7 +4477,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                             i => i.dashboardID == dashboardID
                         );
                         this.currentWidgetCheckpoints = data;
-                        console.log('Global-Variables getCurrentWidgetCheckpoints 1', dashboardID, data)
+                        console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1', dashboardID, data)
                         resolve(this.currentWidgetCheckpoints);
 
                 })
@@ -4442,7 +4489,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                     i => i.dashboardID == dashboardID
                 );
                 this.currentWidgetCheckpoints = returnData;
-                console.log('Global-Variables getCurrentWidgetCheckpoints 2', dashboardID, returnData)
+                console.log('%c    Global-Variables getCurrentWidgetCheckpoints 2', dashboardID, returnData)
                 resolve(this.currentWidgetCheckpoints);
             });
         };
@@ -4452,7 +4499,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     addWidgetCheckpoint(data: WidgetCheckpoint): Promise<any> {
         // Description: Adds a new WidgetCheckpoint
         // Returns: Added Data or error message
-        console.log('Global-Variables addWidgetCheckpoint ...', data.id);
+        console.log('%c    Global-Variables addWidgetCheckpoint ...', data.id);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -4485,7 +4532,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     deleteWidgetCheckpoint(id: number): Promise<string> {
         // Description: Deletes a WidgetCheckpoints
         // Returns: 'Deleted' or error message
-        console.log('Global-Variables deleteWidgetCheckpoint ...', id);
+        console.log('%c    Global-Variables deleteWidgetCheckpoint ...', id);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -4521,7 +4568,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     saveWidgetCheckpoint(data: WidgetCheckpoint): Promise<string> {
         // Description: Saves Widget Checkpoint
         // Returns: 'Saved' or error message
-        console.log('Global-Variables saveWidgetCheckpoint ...', data);
+        console.log('%c    Global-Variables saveWidgetCheckpoint ...', data);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -4554,7 +4601,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
-        console.log('Global-Variables get ...');
+        console.log('%c    Global-Variables get ...');
 
         return new Promise((resolve, reject) => {
             // Get from source - files for now ...
@@ -4570,7 +4617,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Users
         // Returns: this.users array, unless:
         //   If not cached or if dirty, get from File
-        console.log('Global-Variables getCanvasUsers ...');
+        console.log('%c    Global-Variables getCanvasUsers ...');
 
         let url: string = 'canvasUsers';
         this.filePath = './assets/data.canvasUsers.json';
@@ -4585,11 +4632,11 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                         this.canvasUsers = data;
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('Global-Variables getCanvasUsers 1', this.canvasUsers)
+                        console.log('%c    Global-Variables getCanvasUsers 1', this.canvasUsers)
                         resolve(this.canvasUsers);
                     });
             } else {
-                console.log('Global-Variables getCanvasUsers 2', this.canvasUsers)
+                console.log('%c    Global-Variables getCanvasUsers 2', this.canvasUsers)
                 resolve(this.canvasUsers);
             }
         });
@@ -4599,7 +4646,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     saveCanvasUser(data: CanvasUser): Promise<string> {
         // Description: Saves CanvasUser
         // Returns: 'Saved' or error message
-        console.log('Global-Variables saveCanvasUser ...');
+        console.log('%c    Global-Variables saveCanvasUser ...');
 
         let url: string = 'canvasUsers';
         this.filePath = './assets/data.canvasUsers.json';
@@ -4632,7 +4679,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
-        console.log('Global-Variables get (url, filePath) ...', url, this.filePath);
+        console.log('%c    Global-Variables get (url, filePath) ...', url, this.filePath);
 
         // TODO - cleaner switch to http?
         // if (this.filePath == './assets/data.widgets.json') {
@@ -4757,7 +4804,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     connectLocalDB<T>(): Promise<string | Object> {
         // Connect to the local DB, ie nanaSQL
-        console.log('Global-Variables connectLocalDB');
+        console.log('%c    Global-Variables connectLocalDB');
 
         return new Promise((resolve, reject) => {
 
@@ -5008,7 +5055,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
             ])
             .connect()
             .then(db => {
-                console.log('Global-Variables connectLocalDB', db)
+                console.log('%c    Global-Variables connectLocalDB', db)
                 resolve(db)
 
             })
@@ -5017,13 +5064,13 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     getLocal<T>(table: string, params?: any): Promise<any> {
         // Generic retrieval of data from localDB
-        console.log('Global-Variables getLocal for table, params...', table, params);
+        console.log('%c    Global-Variables getLocal for table, params...', table, params);
 
         return new Promise((resolve, reject) => {
 
             nSQL(table).query('select').exec()
             .then( result => {
-                console.log('Global-Variables getLocal result', result) // <= arrayid:1, name:"bill", age: 20}]
+                console.log('%c    Global-Variables getLocal result', result) // <= arrayid:1, name:"bill", age: 20}]
                 resolve(result)
             })
 
@@ -5033,7 +5080,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
             //     return nSQL().query('select').exec(); // select all rows from the current active table
             // })
             // .then(function(result) {
-            //     console.log('Global-Variables getLocal result', result) // <= arrayid:1, name:"bill", age: 20}]
+            //     console.log('%c    Global-Variables getLocal result', result) // <= arrayid:1, name:"bill", age: 20}]
             //     resolve(result)
             // })
 
@@ -5042,7 +5089,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     saveLocal<T>(table: string, row: any): Promise<any> {
         // Generic saving of row to a table in the localDB
-        console.log('Global-Variables saveLocal for table...', table);
+        console.log('%c    Global-Variables saveLocal for table...', table);
         return new Promise((resolve, reject) => {
 
             nSQL(table).query('upsert', row).exec().then(res => {
@@ -5153,7 +5200,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Info has already been collected - to allow for the first time this is called.
         // It does assume that we have a currentDashboardInfo object if Previous/Next are
         // parameters.
-        console.log('Global-Variables refreshCurrentDashboard ...');
+        console.log('%c    Global-Variables refreshCurrentDashboard ...');
 
         // TODO - add Permissions, either here or automatically in DB !!!
 
@@ -5227,7 +5274,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     widgetReplace(changedWidget: Widget) {
         // Replaces (ByVal) the global W and currentW
-        console.log('Global-Variables ... widgetReplace', changedWidget.id);
+        console.log('%c    Global-Variables ... widgetReplace', changedWidget.id);
 
         // TODO - this is not DRY - there must be a better way!!
         this.widgets.forEach(w => {
@@ -5516,7 +5563,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     sleep(milliseconds: number) {
         // Sleep for a while
-        console.log('Global-Variables sleep ...', milliseconds);
+        console.log('%c    Global-Variables sleep ...', milliseconds);
         var start: number = new Date().getTime();
         console.log('  start', start, new Date().getTime())
         for (var counter = 0; counter < 3600001; counter++) {
@@ -5543,7 +5590,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         //   required detail
         // - height, width are optional dimensions.  If provided, it will overrule
         //   those values in spec
-        console.log('Global-Variables createVegaLiteSpec ...');
+        console.log('%c    Global-Variables createVegaLiteSpec ...');
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
         if (widget.graphUrl != "") {
@@ -5608,13 +5655,17 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         logToDB: boolean = true
      ): number {
         let actID: number = 1;
+        let actOldWidget: Object = oldWidget;
+        let actNewWidget: Object = newWidget;
 
         if (id == null) {
             // Add / Update an action to the ActionLog.  It returns id of new/updated record
             // It returns -1 if it failed.
             // NB: id = null => Add, else Update
             // The update replaces any give non-null values
-            console.log('Global-Variables actionAdd ...',oldWidget,newWidget);
+            console.log('%c    Global-Variables actionUpsert ...', 
+                "color: yellow; background: blue; font-size: 12px", logToDB, oldWidget,newWidget
+            );
 
             // TODO - decide if lates / -1 is best choice here
             let act: number[] = [];
@@ -5635,7 +5686,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                 undoID: undoID,
                 redoID: redoID,
                 oldWidget: oldWidget == null? null : Object.assign({}, oldWidget),
-                newWidget: newWidget == null? null : Object.assign({}, newWidget),
+                newWidget: newWidget == null? null : Object.assign({}, newWidget)
             });
         } else {
             this.actions.forEach(ac => {
@@ -5644,33 +5695,43 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                     if (description != null) {ac.description = description};
                     if (undoID != null) {ac.undoID = undoID};
                     if (redoID != null) {ac.redoID = redoID};
-                    if (oldWidget != null) {ac.oldWidget =  Object.assign({}, oldWidget)};
-                    if (newWidget != null) {ac.newWidget = Object.assign({}, newWidget)};
+                    if (oldWidget != null) {
+                        ac.oldWidget =  Object.assign({}, oldWidget)
+                        actOldWidget = ac.oldWidget;
+                    };
+                    if (newWidget != null) {
+                        ac.newWidget = Object.assign({}, newWidget)
+                        actNewWidget = ac.newWidget;
+                    };
                     actID = id;
                 };
             });
 
         };
 
-        // Brief description of diff
-        var result: string[] = [];
-        if (oldWidget == null) {
-            result.push('Whole new Widget added')
-        };
-        if (newWidget == null) {
-            result.push('Widget deleted')
-        };
-        if (oldWidget != null  &&  newWidget != null) {
-            for(var key in oldWidget) {
-                if(oldWidget[key] != newWidget[key]) {
-                    result.push(key);
+        // Log to DB
+        if (logToDB) {
+            // Brief description of diff
+
+            var result: string[] = [];
+            if (actOldWidget == null) {
+                result.push('Whole new Widget added')
+            };
+            if (actNewWidget == null) {
+                result.push('Widget deleted')
+            };
+            if (actOldWidget != null  &&  actNewWidget != null) {
+                for(var key in oldWidget) {
+                    if(actOldWidget[key] != actNewWidget[key]) {
+                        result.push(key);
+                    };
                 };
             };
-        };
 
-        // Log to DB
+            // Log to DB
+        };
         
-        console.log('actionUpsert', result, this.actions)
+        console.warn('xx actionUpsert', result, this.actions)
         
         // Return
         return actID;
@@ -5679,7 +5740,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     alignToGripPoint(inputValue: number) {
         // This routine recalcs a value to a gridpoint IF snapping is enabled
-        console.log('Global-Variables snapToGrid ...', inputValue);
+        console.log('%c    Global-Variables alignToGripPoint ...', inputValue);
 
         if (this.canvasSettings.snapToGrid) {
             if ( (inputValue % this.canvasSettings.gridSize) >= (this.canvasSettings.gridSize / 2)) {
@@ -5696,7 +5757,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     showStatusBarMessage(statusBarMessage: StatusBarMessage
         ): void {
         // Shows a message in the right area, ie StatusBar
-        console.log('Global-Variables showStatusBarMessage ...');
+        console.log('%c    Global-Variables showStatusBarMessage ...');
 
         // Pop message in right area
         if (statusBarMessage.uiArea == 'StatusBar') {
@@ -5711,7 +5772,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         ): DatagridColumn[] {
         // It will return an array of datagridColumns to use in the ca-datagrid
         // for a given array of data and a set of columns to show,
-        console.log('Global-Variables createDatagridColumns ...');
+        console.log('%c    Global-Variables createDatagridColumns ...');
 
         // No data provided
         if (dataRow == null  ||  dataRow == undefined) {
@@ -5785,7 +5846,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         //   CanEditOrCanDelete, CanEditAndCanDelete.  These are Hard-Coded
         //   It is NOT case sensitive, and only applicable to accessType = 'AccessList'
 
-        console.log('Global-Variables dashboardPermissionCheck ...', id);
+        console.log('%c    Global-Variables dashboardPermissionCheck ...', id);
 
         // Assume no access
         let hasAccess: boolean = false;
@@ -5866,7 +5927,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     dashboardPermissionList(id: number): string[] {
         // Returns Array of Permissions for the current user to the given D.
-        console.log('Global-Variables dashboardPermissionCheck ...', id);
+        console.log('%c    Global-Variables dashboardPermissionCheck ...', id);
 
         // Assume no access
         let accessList: string[] = [];
@@ -5943,7 +6004,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     formatDate(date) {
          // Formats a given date into YYYY/MM/DD HH:MM:SS
-         console.log('Global-Variables formatDate ...', date);
+         console.log('%c    Global-Variables formatDate ...', date);
 
          let d = new Date(date);
          let month = '' + (d.getMonth() + 1);
