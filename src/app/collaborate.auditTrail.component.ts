@@ -29,11 +29,11 @@ import { parse }                      from 'vega';
 import { View }                       from 'vega';
 
 @Component({
-    selector: 'collaborate-tasks',
-    templateUrl: './collaborate.tasks.component.html',
-    styleUrls: ['./collaborate.tasks.component.css']
+    selector: 'collaborate-audittrail',
+    templateUrl: './collaborate.auditTrail.component.html',
+    styleUrls: ['./collaborate.auditTrail.component.css']
 })
-export class CollaborateTasksComponent implements OnInit {
+export class CollaborateAuditTrailComponent implements OnInit {
 
     @Output() formCollaborateTasksClosed: EventEmitter<string> = new EventEmitter();
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
@@ -58,7 +58,6 @@ export class CollaborateTasksComponent implements OnInit {
     datagridVisibleFields: string[];
     datagridShowFields: string[];
 
-    displayGantt: boolean = true;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -140,40 +139,6 @@ export class CollaborateTasksComponent implements OnInit {
                 ca[0], this.datagridShowFields, this.datagridVisibleFields);
 
         });
-
-        this.clickGantt()
-    }
-
-    clickGantt() {
-        // Initial
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickGantt', '@Start');
-
-        let definition = this.globalVariableService.vlTemplate;
-
-        definition['data'] = {
-            "values": [
-                {"task": "A","start": 1, "end": 3},
-                {"task": "B","start": 3, "end": 8},
-                {"task": "C","start": 8, "end": 10}
-            ]
-        };
-        definition['mark']['type'] ='bar';
-        definition['encoding'] = {
-            "y": {"field": "task", "type": "ordinal"},
-            "x": {"field": "start", "type": "quantitative"},
-            "x2": {"field": "end", "type": "quantitative"}
-        };
-
-        console.warn('xx this.widgetDOM', this.widgetDOM)
-        let specification = compile(definition).spec;
-        let view = new View(parse(specification));
-        view.renderer('svg')
-            .initialize(this.widgetDOM.nativeElement)
-            .hover()
-            .width(400)
-            .height(200)
-            .run()
-            .finalize();
 
     }
 
