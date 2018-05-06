@@ -4307,7 +4307,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Activities
         // Returns: this.canvasactivities array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasActivities ...', this.canvasActivities.length);
+        console.log('%c    Global-Variables getCanvasActivities ...', 
+        "color: yellow; background: blue; font-size: 12px", this.canvasActivities.length);
 
         let url: string = 'canvasActivities';
         this.filePath = './assets/settings.canvasActivities.json';
@@ -4323,11 +4324,13 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                         this.isDirtyCanvasActivities = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasActivities 1', this.canvasActivities)
+                        console.log('%c    Global-Variables getCanvasActivities 1', 
+                        "color: yellow; background: blue; font-size: 12px", this.canvasActivities)
                         resolve(this.canvasActivities);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasActivities 2', this.canvasActivities)
+                console.log('%c    Global-Variables getCanvasActivities 2', 
+                "color: yellow; background: blue; font-size: 12px", this.canvasActivities)
                 resolve(this.canvasActivities);
             }
         });
@@ -4338,7 +4341,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Alerts
         // Returns: this.canvasalerts array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasAlerts ...', this.canvasAlerts.length);
+        console.log('%c    Global-Variables getCanvasAlerts ...', 
+        "color: yellow; background: blue; font-size: 12px", this.canvasAlerts.length);
 
         let url: string = 'canvasAlerts';
         this.filePath = './assets/settings.canvasAlerts.json';
@@ -4354,11 +4358,13 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                         this.isDirtyCanvasAlerts = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasAlerts 1', this.canvasAlerts)
+                        console.log('%c    Global-Variables getCanvasAlerts 1', 
+                        "color: yellow; background: blue; font-size: 12px", this.canvasAlerts)
                         resolve(this.canvasAlerts);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasAlerts 2', this.canvasAlerts)
+                console.log('%c    Global-Variables getCanvasAlerts 2', 
+                "color: yellow; background: blue; font-size: 12px", this.canvasAlerts)
                 resolve(this.canvasAlerts);
             }
         });
@@ -4369,7 +4375,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Comments
         // Returns: this.canvasComments array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasComments ...', this.canvasComments.length);
+        console.log('%c    Global-Variables getCanvasComments ...', 
+        "color: yellow; background: blue; font-size: 12px", this.canvasComments.length);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/settings.canvasComments.json';
@@ -4385,11 +4392,13 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                         this.isDirtyCanvasComments = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasComments 1', this.canvasComments)
+                        console.log('%c    Global-Variables getCanvasComments 1', 
+                        "color: yellow; background: blue; font-size: 12px", this.canvasComments)
                         resolve(this.canvasComments);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasComments 2', this.canvasComments)
+                console.log('%c    Global-Variables getCanvasComments 2', 
+                "color: yellow; background: blue; font-size: 12px", this.canvasComments)
                 resolve(this.canvasComments);
             }
         });
@@ -4399,7 +4408,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     addCanvasComment(data: CanvasComment): Promise<any> {
         // Description: Adds a new canvasComment
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addCanvasComment ...', data.id);
+        console.log('%c    Global-Variables addCanvasComment ...', 
+        "color: yellow; background: blue; font-size: 12px", data.id);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -4441,7 +4451,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     deleteCanvasComment(id: number, widgetID: number = null): Promise<string> {
         // Description: Deletes a canvasComments
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteCanvasComment ...', id);
+        console.log('%c    Global-Variables deleteCanvasComment ...', 
+        "color: yellow; background: blue; font-size: 12px", id);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -4484,7 +4495,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Messages
         // Returns: this.canvasMessages array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasMessages ...', this.canvasMessages.length);
+        console.log('%c    Global-Variables getCanvasMessages ...', 
+        "color: yellow; background: blue; font-size: 12px", this.canvasMessages.length);
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/settings.canvasMessages.json';
@@ -4500,11 +4512,13 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                         this.isDirtyCanvasMessages = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasMessages 1', this.canvasMessages)
+                        console.log('%c    Global-Variables getCanvasMessages 1', 
+                        "color: yellow; background: blue; font-size: 12px", this.canvasMessages)
                         resolve(this.canvasMessages);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasMessages 2', this.canvasMessages)
+                console.log('%c    Global-Variables getCanvasMessages 2', 
+                "color: yellow; background: blue; font-size: 12px", this.canvasMessages)
                 resolve(this.canvasMessages);
             }
         });
@@ -4514,7 +4528,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     deleteCanvasMessage(id: number): Promise<string> {
         // Description: Deletes a canvasMessages
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteCanvasMessage ...', id);
+        console.log('%c    Global-Variables deleteCanvasMessage ...', 
+        "color: yellow; background: blue; font-size: 12px", id);
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/data.CanvasMessages.json';
@@ -4547,7 +4562,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Messages
         // Returns: this.widgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getWidgetCheckpoints ...', this.widgetCheckpoints.length);
+        console.log('%c    Global-Variables getWidgetCheckpoints ...', 
+        "color: yellow; background: blue; font-size: 12px", this.widgetCheckpoints.length);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/settings.widgetCheckpoints.json';
@@ -4563,11 +4579,13 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
                         this.isDirtyWidgetCheckpoints = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getWidgetCheckpoints 1', this.widgetCheckpoints)
+                        console.log('%c    Global-Variables getWidgetCheckpoints 1', 
+                        "color: yellow; background: blue; font-size: 12px", this.widgetCheckpoints)
                         resolve(this.widgetCheckpoints);
                     });
             } else {
-                console.log('%c    Global-Variables getWidgetCheckpoints 2', this.widgetCheckpoints)
+                console.log('%c    Global-Variables getWidgetCheckpoints 2', 
+                "color: yellow; background: blue; font-size: 12px", this.widgetCheckpoints)
                 resolve(this.widgetCheckpoints);
             }
         });
@@ -4578,7 +4596,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Checkpoints for current D
         // Returns: this.currentWidgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentWidgetCheckpoints ...');
+        console.log('%c    Global-Variables getCurrentWidgetCheckpoints ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         // Refresh from source at start, or if dirty
         if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
@@ -4589,7 +4608,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                             i => i.dashboardID == dashboardID
                         );
                         this.currentWidgetCheckpoints = data;
-                        console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1', dashboardID, data)
+                        console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1', 
+                        "color: yellow; background: blue; font-size: 12px", dashboardID, data)
                         resolve(this.currentWidgetCheckpoints);
 
                 })
@@ -4601,7 +4621,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                     i => i.dashboardID == dashboardID
                 );
                 this.currentWidgetCheckpoints = returnData;
-                console.log('%c    Global-Variables getCurrentWidgetCheckpoints 2', dashboardID, returnData)
+                console.log('%c    Global-Variables getCurrentWidgetCheckpoints 2', 
+                "color: yellow; background: blue; font-size: 12px", dashboardID, returnData)
                 resolve(this.currentWidgetCheckpoints);
             });
         };
@@ -4611,7 +4632,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     addWidgetCheckpoint(data: WidgetCheckpoint): Promise<any> {
         // Description: Adds a new WidgetCheckpoint
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addWidgetCheckpoint ...', data.id);
+        console.log('%c    Global-Variables addWidgetCheckpoint ...', 
+        "color: yellow; background: blue; font-size: 12px", data.id);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -4644,7 +4666,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     deleteWidgetCheckpoint(id: number): Promise<string> {
         // Description: Deletes a WidgetCheckpoints
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteWidgetCheckpoint ...', id);
+        console.log('%c    Global-Variables deleteWidgetCheckpoint ...', 
+        "color: yellow; background: blue; font-size: 12px", id);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -4680,7 +4703,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     saveWidgetCheckpoint(data: WidgetCheckpoint): Promise<string> {
         // Description: Saves Widget Checkpoint
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveWidgetCheckpoint ...', data);
+        console.log('%c    Global-Variables saveWidgetCheckpoint ...', 
+        "color: yellow; background: blue; font-size: 12px", data);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -4713,7 +4737,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
-        console.log('%c    Global-Variables get ...');
+        console.log('%c    Global-Variables get ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         return new Promise((resolve, reject) => {
             // Get from source - files for now ...
@@ -4729,7 +4754,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Gets all Canvas Users
         // Returns: this.users array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasUsers ...');
+        console.log('%c    Global-Variables getCanvasUsers ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'canvasUsers';
         this.filePath = './assets/data.canvasUsers.json';
@@ -4744,11 +4770,13 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                         this.canvasUsers = data;
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasUsers 1', this.canvasUsers)
+                        console.log('%c    Global-Variables getCanvasUsers 1', 
+                        "color: yellow; background: blue; font-size: 12px", this.canvasUsers)
                         resolve(this.canvasUsers);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasUsers 2', this.canvasUsers)
+                console.log('%c    Global-Variables getCanvasUsers 2', 
+                "color: yellow; background: blue; font-size: 12px", this.canvasUsers)
                 resolve(this.canvasUsers);
             }
         });
@@ -4758,7 +4786,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     saveCanvasUser(data: CanvasUser): Promise<string> {
         // Description: Saves CanvasUser
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveCanvasUser ...');
+        console.log('%c    Global-Variables saveCanvasUser ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let url: string = 'canvasUsers';
         this.filePath = './assets/data.canvasUsers.json';
@@ -4791,7 +4820,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
-        console.log('%c    Global-Variables get (url, filePath) ...', url, this.filePath);
+        console.log('%c    Global-Variables get (url, filePath) ...', 
+        "color: yellow; background: blue; font-size: 12px", url, this.filePath);
 
         // TODO - cleaner switch to http?
         // if (this.filePath == './assets/data.widgets.json') {
@@ -4916,7 +4946,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     connectLocalDB<T>(): Promise<string | Object> {
         // Connect to the local DB, ie nanaSQL
-        console.log('%c    Global-Variables connectLocalDB');
+        console.log('%c    Global-Variables connectLocalDB', 
+        "color: yellow; background: blue; font-size: 12px");
 
         return new Promise((resolve, reject) => {
 
@@ -5167,7 +5198,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
             ])
             .connect()
             .then(db => {
-                console.log('%c    Global-Variables connectLocalDB', db)
+                console.log('%c    Global-Variables connectLocalDB', 
+                "color: yellow; background: blue; font-size: 12px", db)
                 resolve(db)
 
             })
@@ -5176,13 +5208,15 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     getLocal<T>(table: string, params?: any): Promise<any> {
         // Generic retrieval of data from localDB
-        console.log('%c    Global-Variables getLocal for table, params...', table, params);
+        console.log('%c    Global-Variables getLocal for table, params...', 
+        "color: yellow; background: blue; font-size: 12px", table, params);
 
         return new Promise((resolve, reject) => {
 
             nSQL(table).query('select').exec()
             .then( result => {
-                console.log('%c    Global-Variables getLocal result', result) // <= arrayid:1, name:"bill", age: 20}]
+                console.log('%c    Global-Variables getLocal result', 
+                "color: yellow; background: blue; font-size: 12px", result) // <= arrayid:1, name:"bill", age: 20}]
                 resolve(result)
             })
 
@@ -5201,7 +5235,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     saveLocal<T>(table: string, row: any): Promise<any> {
         // Generic saving of row to a table in the localDB
-        console.log('%c    Global-Variables saveLocal for table...', table);
+        console.log('%c    Global-Variables saveLocal for table...', 
+        "color: yellow; background: blue; font-size: 12px", table);
         return new Promise((resolve, reject) => {
 
             nSQL(table).query('upsert', row).exec().then(res => {
@@ -5312,7 +5347,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Info has already been collected - to allow for the first time this is called.
         // It does assume that we have a currentDashboardInfo object if Previous/Next are
         // parameters.
-        console.log('%c    Global-Variables refreshCurrentDashboard ...');
+        console.log('%c    Global-Variables refreshCurrentDashboard ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         // TODO - add Permissions, either here or automatically in DB !!!
 
@@ -5386,7 +5422,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     widgetReplace(changedWidget: Widget) {
         // Replaces (ByVal) the global W and currentW
-        console.log('%c    Global-Variables ... widgetReplace', changedWidget.id);
+        console.log('%c    Global-Variables ... widgetReplace', 
+        "color: yellow; background: blue; font-size: 12px", changedWidget.id);
 
         // TODO - this is not DRY - there must be a better way!!
         this.widgets.forEach(w => {
@@ -5675,7 +5712,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     sleep(milliseconds: number) {
         // Sleep for a while
-        console.log('%c    Global-Variables sleep ...', milliseconds);
+        console.log('%c    Global-Variables sleep ...', 
+        "color: yellow; background: blue; font-size: 12px", milliseconds);
         var start: number = new Date().getTime();
         console.log('  start', start, new Date().getTime())
         for (var counter = 0; counter < 3600001; counter++) {
@@ -5702,7 +5740,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         //   required detail
         // - height, width are optional dimensions.  If provided, it will overrule
         //   those values in spec
-        console.log('%c    Global-Variables createVegaLiteSpec ...');
+        console.log('%c    Global-Variables createVegaLiteSpec ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
         if (widget.graphUrl != "") {
@@ -5852,7 +5891,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     alignToGripPoint(inputValue: number) {
         // This routine recalcs a value to a gridpoint IF snapping is enabled
-        console.log('%c    Global-Variables alignToGripPoint ...', inputValue);
+        console.log('%c    Global-Variables alignToGripPoint ...', 
+        "color: yellow; background: blue; font-size: 12px", inputValue);
 
         if (this.canvasSettings.snapToGrid) {
             if ( (inputValue % this.canvasSettings.gridSize) >= (this.canvasSettings.gridSize / 2)) {
@@ -5869,7 +5909,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
     showStatusBarMessage(statusBarMessage: StatusBarMessage
         ): void {
         // Shows a message in the right area, ie StatusBar
-        console.log('%c    Global-Variables showStatusBarMessage ...');
+        console.log('%c    Global-Variables showStatusBarMessage ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         // Pop message in right area
         if (statusBarMessage.uiArea == 'StatusBar') {
@@ -5884,7 +5925,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         ): DatagridColumn[] {
         // It will return an array of datagridColumns to use in the ca-datagrid
         // for a given array of data and a set of columns to show,
-        console.log('%c    Global-Variables createDatagridColumns ...');
+        console.log('%c    Global-Variables createDatagridColumns ...', 
+        "color: yellow; background: blue; font-size: 12px");
 
         // No data provided
         if (dataRow == null  ||  dataRow == undefined) {
@@ -5958,7 +6000,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         //   CanEditOrCanDelete, CanEditAndCanDelete.  These are Hard-Coded
         //   It is NOT case sensitive, and only applicable to accessType = 'AccessList'
 
-        console.log('%c    Global-Variables dashboardPermissionCheck ...', id);
+        console.log('%c    Global-Variables dashboardPermissionCheck ...', 
+        "color: yellow; background: blue; font-size: 12px", id);
 
         // Assume no access
         let hasAccess: boolean = false;
@@ -6039,7 +6082,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     dashboardPermissionList(id: number): string[] {
         // Returns Array of Permissions for the current user to the given D.
-        console.log('%c    Global-Variables dashboardPermissionCheck ...', id);
+        console.log('%c    Global-Variables dashboardPermissionCheck ...', 
+        "color: yellow; background: blue; font-size: 12px", id);
 
         // Assume no access
         let accessList: string[] = [];
@@ -6116,7 +6160,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     formatDate(date) {
          // Formats a given date into YYYY/MM/DD HH:MM:SS
-         console.log('%c    Global-Variables formatDate ...', date);
+         console.log('%c    Global-Variables formatDate ...', 
+         "color: yellow; background: blue; font-size: 12px", date);
 
          let d = new Date(date);
          let month = '' + (d.getMonth() + 1);
