@@ -4869,7 +4869,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
  
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3002/' + url, data, {headers})
             .subscribe(
                 res => {
 
@@ -4972,6 +4972,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                     finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'datasets') {
                     finalUrl = 'http://localhost:3000/' + url;
+                } else if (url == 'canvasAuditTrails') {
+                    finalUrl = 'http://localhost:3002/' + url;
                 } else {
                     finalUrl = 'http://localhost:3000/' + url;
                 };
