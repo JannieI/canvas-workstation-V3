@@ -60,7 +60,6 @@ import { WidgetTitleComponent }       from './widget.title.component';
 import { WidgetRefreshComponent }     from './widget.refresh.component';
 import { WidgetAnnotationsComponent } from './widget.annotations.component';
 
-
 import { TableSingleComponent }       from './table.single.component';
 import { TableEditorComponent }       from './table.editor.component';
 import { TableDeleteComponent }       from './table.delete.component';
@@ -77,6 +76,7 @@ import { DataAddExistingComponent }   from './data.add.existing.component';
 import { DataCombinationComponent }   from './data.combination.component';
 import { DataRefreshComponent }       from './data.refresh.component';
 import { DatasourceShareComponent }   from './data.share.component';
+import { DataDictionaryComponent }    from './data.dictionary.component';
 
 import { HelpComponent }              from './help.component';
 
@@ -158,6 +158,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataCombinationComponent,
         DataRefreshComponent,
         DatasourceShareComponent,
+        DataDictionaryComponent,
 
         WidgetEditorComponent,
         WidgetCheckpointsComponent,

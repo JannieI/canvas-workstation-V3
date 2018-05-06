@@ -26,13 +26,13 @@ import { GlobalVariableService}       from './global-variable.service';
 import { CanvasAuditTrail }           from './models';
 
 @Component({
-    selector: 'collaborate-audittrail',
-    templateUrl: './collaborate.auditTrail.component.html',
-    styleUrls: ['./collaborate.auditTrail.component.css']
+    selector: 'data-dictionary',
+    templateUrl: './data.dictionary.component.html',
+    styleUrls: ['./data.dictionary.component.css']
 })
-export class DataSummaryComponent implements OnInit {
+export class DataDictionaryComponent implements OnInit {
 
-    @Output() formCollaborateAuditTrailClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDictionaryClosed: EventEmitter<string> = new EventEmitter();
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
     finalFields: any = [];
@@ -63,6 +63,6 @@ export class DataSummaryComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formCollaborateAuditTrailClosed.emit(action);
+		this.formDataDictionaryClosed.emit(action);
     }
 }
