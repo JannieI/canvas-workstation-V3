@@ -4677,7 +4677,18 @@ console.warn('xx filteredActions', filteredActions)
         this.clickDashboardShare();
 
     }
-   
+    
+    contextmenuWidgetDataQuality(ev: any, index: number, id: number) {
+        // Open context / dropdown Menu for Data Quality from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataQuality', '@Start');
+
+        // Call the function for THIS W
+        this.clickMenuDashboardDetailDataQuality();
+
+    }
+
+
+    
     
 
 
