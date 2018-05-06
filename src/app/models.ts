@@ -93,7 +93,6 @@ export class CanvasAuditTrail {
     dashboardID: number;                    // Where action took place
     dashboardTabID: number;                 // Where action took place
     widgetID: number;                       // If linked to a Widget
-    objectType: string;                     // Type, ie Dashboard, Widget
     userID: string;                         // User who made change
     keyChanged: string;                     // Field / key that was changed
     oldValue: any;                          // Value prior to change

@@ -5962,7 +5962,6 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                                 dashboardID: this.currentDashboardInfo.value.currentDashboardID,
                                 dashboardTabID: this.currentDashboardInfo.value.currentDashboardTabID,
                                 widgetID: 1,
-                                objectType: 'Widget',
                                 userID: this.currentUser.userID,
                                 keyChanged: key,
                                 oldValue: actOldWidget[key],
