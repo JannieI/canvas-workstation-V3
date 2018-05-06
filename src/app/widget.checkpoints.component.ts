@@ -94,7 +94,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         // Refresh graph
         let idx: number = -1;
         for (var i = 0; i < this.currentWidgetCheckpoints.length; i++) {
-            if (this.currentWidgetCheckpoints[i].id == id) { 
+            if (this.currentWidgetCheckpoints[i].id == id) {
                 idx = i;
             };
         };
@@ -144,11 +144,11 @@ export class WidgetCheckpointsComponent implements OnInit {
             console.warn('xx selW', this.selectedWidget.checkpointIDs, this.selectedWidget.currentCheckpoint, this.selectedWidget.lastCheckpoint)
             // Save to DB
             this.globalVariableService.saveWidget(this.selectedWidget);
-    
+
             // Show the Graph
             this.clickRow(0, res.id);
         });
-        
+
     }
 
     clickDeleteCheckpoint(id: number) {
@@ -157,7 +157,7 @@ export class WidgetCheckpointsComponent implements OnInit {
 
         let index: number = -1;
         for (var i = 0; i < this.currentWidgetCheckpoints.length; i++) {
-            if (this.currentWidgetCheckpoints[i].id == id) { 
+            if (this.currentWidgetCheckpoints[i].id == id) {
                 index = i;
             };
         };
@@ -167,7 +167,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.currentWidgetCheckpoints.splice(index, 1);
         };
         this.globalVariableService.deleteWidgetCheckpoint(id).then(res => {
-        
+
             this.nrCheckpoints = this.currentWidgetCheckpoints.length;
 
             // Update W

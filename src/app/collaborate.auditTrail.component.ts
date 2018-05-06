@@ -18,15 +18,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { CanvasActivity }             from './models';
-import { CanvasTask }                 from './models';
-import { DatagridInput }              from './models';
-import { DatagridColumn }             from './models';
-
-// Vega, Vega-Lite
-import { compile }                    from 'vega-lite';
-import { parse }                      from 'vega';
-import { View }                       from 'vega';
+import { CanvasAuditTrail }           from './models';
 
 @Component({
     selector: 'collaborate-audittrail',
@@ -38,26 +30,8 @@ export class CollaborateAuditTrailComponent implements OnInit {
     @Output() formCollaborateAuditTrailClosed: EventEmitter<string> = new EventEmitter();
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
-    canvasTasks: CanvasTask[] = [];
-    datagridColumns: DatagridColumn[];
-    datagridInput: DatagridInput = null;
-    datagridData: any;
-    datagridPagination: boolean = false;
-    datagridPaginationSize: number = 5;
-    datagridShowHeader: boolean = false;
-    datagridShowRowActionMenu: boolean = false;
-    datagridShowData: boolean = true;
-    datagridShowFooter: boolean = false;
-    datagridRowHeight: number = 12;
-    datagriduserCanChangeProperties: boolean = false;
-    datagridShowTotalsRow: boolean = false;
-    datagridShowTotalsCol: boolean = false;
-    datagridCanEditInCell: boolean = false;
-    datagridCanExportData: boolean = false;
-    datagridEmptyMessage: string = 'No Activities created so far';
-    datagridVisibleFields: string[];
-    datagridShowFields: string[];
-
+    canvasAuditTrail: CanvasAuditTrail[];
+    selectedRow: number = 0;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -68,17 +42,20 @@ export class CollaborateAuditTrailComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasAuditTrails().then (ca => {
+        this.globalVariableService.getCanvasAuditTrails().then (cau => {
 
             // Set the data for the grid
-            this.datagridData = ca;
-
-            // Set the column object
-            this.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], this.datagridShowFields, this.datagridVisibleFields);
+            this.canvasAuditTrail = cau;
 
         });
 
+    }
+
+    clickRow(index: number, id: number) {
+        // User clicked a row, now refresh the graph
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+        this.selectedRow = index;
     }
 
     clickClose(action: string) {
