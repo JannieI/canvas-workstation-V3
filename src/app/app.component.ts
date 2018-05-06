@@ -4668,7 +4668,19 @@ console.warn('xx filteredActions', filteredActions)
         this.clickDashboardShare();
 
     }
-        
+    
+    contextmenuWidgetDataSummary(ev: any, index: number, id: number) {
+        // Open context / dropdown Menu for Data Summary from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataSummary', '@Start');
+
+        // Call the function for THIS W
+        this.clickDashboardShare();
+
+    }
+   
+    
+
+
     contextMenuJumpToLinked(dashboardID: number, dashboardTabID: number) {
         // Jumps to the linked Dashboard and Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuJumpToLinked', '@Start');
