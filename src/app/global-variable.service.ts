@@ -5952,6 +5952,24 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                     if (key != 'data'  &&  key != 'graphData') {
 
                         if(actOldWidget[key] != actNewWidget[key]) {
+
+                            // Add to DB
+                            let today = new Date();
+                            let newAuditTrail: CanvasAuditTrail ={
+                                id: null,
+                                dashboardID: this.currentDashboardInfo.value.currentDashboardID,
+                                dashboardTabID: this.currentDashboardInfo.value.currentDashboardTabID,
+                                widgetID: 1,
+                                objectType: 'Widget',
+                                userID: this.currentUser.userID,
+                                keyChanged: key,
+                                oldValue: actOldWidget[key],
+                                newValue: actNewWidget[key],
+                                changedOn: this.formatDate(today)
+                            }
+                            this.addCanvasAuditTrail(newAuditTrail);
+
+                            // Show to Dev
                             result.push(key + ' changed from ' + actOldWidget[key] 
                                 + ' to ' + actNewWidget[key]);
                         };
@@ -5959,10 +5977,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                 };
             };
 
-            // Log to DB
         };
-        
-        console.warn('xx actionUpsert', result, this.actions)
         
         // Return
         return actID;
