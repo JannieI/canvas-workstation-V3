@@ -5869,7 +5869,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
             };
 
             // Brief description of diff
-            var result: string[] = [];
+            var result: any[] = [];
             if (actOldWidget == null) {
                 result.push('Whole new Widget added')
             };
@@ -5879,8 +5879,12 @@ console.warn('xx allS 1', this.currentDatasets.slice())
             if (actOldWidget != null  &&  actNewWidget != null) {
 
                 for(var key in actNewWidget) {
-                    if(actOldWidget[key] != actNewWidget[key]) {
-                        result.push(key);
+                    if (key != 'data'  &&  key != 'graphData') {
+
+                        if(actOldWidget[key] != actNewWidget[key]) {
+                            result.push(key + ' changed from ' + actOldWidget[key] 
+                                + ' to ' + actNewWidget[key]);
+                        };
                     };
                 };
             };
