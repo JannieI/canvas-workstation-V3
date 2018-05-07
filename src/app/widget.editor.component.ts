@@ -190,7 +190,7 @@ const graphWidth: number = 420;
         if (!this.newWidget) {
             this.renderGraph(definition);
         }
-console.warn('xx canSave', canSave)
+console.warn('xx canSave', this.canSave)
     }
 
     ngOnDestroy() {

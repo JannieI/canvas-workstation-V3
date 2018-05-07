@@ -30,7 +30,7 @@ export class GlobalFunctionService {
         // Note: has to use Console log here !
         if (this.sessionDebugging === true) {
           console.log('%c @' + componentName + ' - ' + functionName + ': ' + message,
-            "color: yellow; background: black; font-size: 12px");
+            "color: yellow; background: black; font-size: 10px");
         }
 
         // Log to DB if loggin switched on GLOBALLY

@@ -892,7 +892,7 @@ export class AppComponent implements OnInit {
             changedWidget.id,
             'Widget',
             this.newWidget? 'Add' : 'Edit',
-            'App handleCloseWidgetEditor',
+            'App handleCloseShapeEdit',
             null,
             null,
             this.newWidget? null : this.selectedWidget,
@@ -984,7 +984,7 @@ export class AppComponent implements OnInit {
             changedWidget.id,
             'Widget',
             this.newWidget? 'Add' : 'Edit',
-            'App handleCloseWidgetEditor',
+            'App handleCloseDataSlicers',
             null,
             null,
             this.newWidget? null : this.selectedWidget,
@@ -1013,25 +1013,29 @@ export class AppComponent implements OnInit {
 
 
     handleCloseWidgetEditor(changedWidget: Widget) {    //widgetsToRefresh: number) {
-        //
+        // Handle closing routine for Widget Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
 
-        // Add to Action log
-        this.globalVariableService.actionUpsert(
-            null,
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-            changedWidget.id,
-            'Widget',
-            this.newWidget? 'Add' : 'Edit',
-            'App handleCloseWidgetEditor',
-            null,
-            null,
-            this.newWidget? null : this.selectedWidget,
-            changedWidget
-        );
+        // Cancel => changedWidget = null
+        if (changedWidget != null) {
 
-        this.globalVariableService.changedWidget.next(changedWidget);
+            // Add to Action log
+            this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                changedWidget.id,
+                'Widget',
+                this.newWidget? 'Add' : 'Edit',
+                'App handleCloseWidgetEditor',
+                null,
+                null,
+                this.newWidget? null : this.selectedWidget,
+                changedWidget
+            );
+
+            this.globalVariableService.changedWidget.next(changedWidget);
+        }
 
         this.menuOptionClickPostAction();
         console.warn('xx app W', this.selectedWidget, changedWidget, this.currentWidgets)
@@ -1227,7 +1231,7 @@ export class AppComponent implements OnInit {
             changedWidget.id,
             'Widget',
             this.newWidget? 'Add' : 'Edit',
-            'App handleCloseWidgetEditor',
+            'App handleCloseTableEditor',
             null,
             null,
             this.newWidget? null : this.selectedWidget,
