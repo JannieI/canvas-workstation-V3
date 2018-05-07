@@ -32,7 +32,7 @@ import { CanvasAuditTrail }           from './models';
 })
 export class DashboardUsagestatsComponent implements OnInit {
 
-    @Output() formDataDictionaryClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardUsageStatsClosed: EventEmitter<string> = new EventEmitter();
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
     finalFields: any = [];
@@ -63,6 +63,6 @@ export class DashboardUsagestatsComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formDataDictionaryClosed.emit(action);
+		this.formDashboardUsageStatsClosed.emit(action);
     }
 }

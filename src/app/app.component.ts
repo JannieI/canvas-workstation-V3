@@ -4727,14 +4727,6 @@ console.warn('xx filteredActions', filteredActions)
         this.clickDashboardShare();
 
     }
-    
-    contextmenuWidgetUsageStats(ev: any, index: number, id: number) {
-        // Open context / dropdown Menu for Data Summary from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetUsageStats', '@Start');
-
-        this.showModalDashboardUsageStats = true;
-
-    }
 
     contextmenuWidgetDataSummary(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Data Summary from the Title Bar
@@ -4760,6 +4752,14 @@ console.warn('xx filteredActions', filteredActions)
 
         // Call the function for THIS W
         this.showModalDataDictionary = true;
+
+    }
+    
+    contextmenuWidgetUsageStats(ev: any, index: number, id: number) {
+        // Open context / dropdown Menu for Data Summary from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetUsageStats', '@Start');
+
+        this.clickMenuDashboardUsageStats();
 
     }
 
