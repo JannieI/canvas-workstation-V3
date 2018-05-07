@@ -17,7 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { CanvasMessageNew }           from './models';
+import { CanvasMessag }           from './models';
 import { DatagridInput }              from './models';
 
 @Component({
@@ -43,7 +43,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
     }
     
     body: string = '';
-    canvasMessagesNew: CanvasMessageNew[] = [];
+    canvasMessagesNew: CanvasMessag[] = [];
     messageHasBeenRead: boolean = false;
     newMessage: boolean = false;
     recipient: string = '';

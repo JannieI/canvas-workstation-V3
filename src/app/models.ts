@@ -210,7 +210,7 @@ export class CanvasTask {
 //     dashboardTabID: number;     // Optional Tab linked to this message
 // }
 
-export class CanvasMessageNew {
+export class CanvasMessag {
     id: number;                 // Unique ID
     threadID: number;           // Optional thread - to keep converstations together (later use)
     sender: string;             // UserID who sent message, could also be System (for Alerts)
