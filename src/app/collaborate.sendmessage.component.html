@@ -34,7 +34,7 @@
                     <select
                         [(ngModel)]="selectedUser"
                         >
-                        <option *ngFor="let row of users"
+                        <option *ngFor="let row of userNames"
                             >
                             {{ row.userID }}
                         </option>
@@ -56,7 +56,7 @@
                     <select
                         [(ngModel)]="selectedGroup"
                         >
-                        <option *ngFor="let row of groups"
+                        <option *ngFor="let row of groupNames"
                             >
                             {{ row.name }}
                         </option>

@@ -51,8 +51,8 @@ export class CollaborateSendMessageComponent implements OnInit {
     canvasMessages: CanvasMessage[] = [];
     groups: CanvasGroup[] = [];
     users: CanvasUser[] = [];
-    selectedUser: string = '';
-    selectedGroup: string = '';
+    selectedUser: CanvasUser;
+    selectedGroup: CanvasGroup;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -68,6 +68,9 @@ export class CollaborateSendMessageComponent implements OnInit {
 
             this.globalVariableService.getCanvasUsers().then(usr => {
                 this.users = usr;
+                if (this.users.length >= 0) {
+                    this.selectedUser = this.users[0];
+                }
 
                 this.globalVariableService.getCanvasGroups().then(grp => {
                     this.groups = grp;
@@ -118,14 +121,14 @@ export class CollaborateSendMessageComponent implements OnInit {
                 ];
         console.warn('xx 1 rec', recipients)
         if (this.selectedUser != null  &&  this.selectedUser != undefined) {
-            recipients[0].userID = this.selectedUser;
+            recipients[0].userID = this.selectedUser.userID;
         };
         console.warn('xx 2 rec', recipients)
         if (this.selectedGroup != null  &&  this.selectedGroup != undefined) {
 
             // Loop on users to find members
             for (var i = 0; i < this.users.length; i++) {
-                if (this.users[i].groups.indexOf(this.selectedGroup) >= 0) {
+                if (this.users[i].groups.indexOf(this.selectedGroup.name) >= 0) {
                     if (i == 0) {
                         recipients[0].userID = this.users[i].userID;
                     } else {
@@ -139,6 +142,9 @@ export class CollaborateSendMessageComponent implements OnInit {
             };
         };
 
+
+        // this.selectedGroup
+        
         // Construct new message
         let today = new Date();
         let newMessage: CanvasMessage = {
@@ -147,7 +153,7 @@ export class CollaborateSendMessageComponent implements OnInit {
             sender: this.globalVariableService.currentUser.userID,
             sentOn: this.globalVariableService.formatDate(today),
             recipients: recipients,
-            toGroups: [this.selectedGroup],
+            toGroups: [],
             subject: this.subject,
             body: this.body,
             dashboardID: dashboardID,
