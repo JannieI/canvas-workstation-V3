@@ -2621,7 +2621,6 @@ console.warn('xx filteredActions', filteredActions)
         this.showModalWidgetEditor = true;
     }
 
-
     clickMenuWidgetContainer(widgetType: string) {
         // Show popup to edit Widget Container properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainer', '@Start');
@@ -3347,10 +3346,36 @@ console.warn('xx filteredActions', filteredActions)
 
     }
 
-    clickMenuWidgetDescription() {
+    clickMenuWidgetDescription(
+        widgetID: number = null, 
+        widgetIndex: number = null, 
+        canSave: boolean = true) {
         // Open the W Description form
+        //  widgetID - optional W-ID to open, does not depend on what was selected
+        //  widgetIndex - optional [W] index to open, does not depend on what was selected 
+        //  canSave - if Saving is allowed in W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDescription', '@Start');
 
+        // Indicate edit W and open Editor, which will work with selected W
+        if (widgetIndex == null) {
+
+            // Can only edit one W at a time, so ignore if multiple selected
+            if (!this.checkForOnlyOneWidget()) {
+                return
+            };
+            if (!this.checkForOnlyOneWidget('Graph')) {
+                return
+            };
+
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                    this.selectedWidget = w;
+                };
+            });
+        } else {
+            this.selectedWidget = this.currentWidgets[widgetIndex];
+        };
+        
         this.showModalWidgetDescription = true;
     }
 

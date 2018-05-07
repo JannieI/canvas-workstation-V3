@@ -25,7 +25,7 @@ import { Dashboard }                  from './models';
 })
 export class WidgetDescriptionComponent implements OnInit {
 
-    @Input() selectedDashboard: Dashboard;
+    @Input() selectedWidget: Dashboard;
     @Output() formDashboardDescriptionClosed: EventEmitter<string> = new EventEmitter();
 
 

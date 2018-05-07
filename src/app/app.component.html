@@ -3223,7 +3223,7 @@
 <!-- Modal: Widget Description -->
 <widget-description
     *ngIf="showModalWidgetDescription"
-    [currentWidgetDashboardTabIDs]="currentWidgetDashboardTabIDs"
+    [selectedWidget]="selectedWidget"
     (formWidgetDescriptionClosed)="handleCloseWidgetDescription($event)">Load Widget Description ...
 </widget-description>
 
