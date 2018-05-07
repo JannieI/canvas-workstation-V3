@@ -1011,7 +1011,6 @@ export class AppComponent implements OnInit {
         this.showTitleForm = false;
     }
 
-
     handleCloseWidgetEditor(changedWidget: Widget) {    //widgetsToRefresh: number) {
         // Handle closing routine for Widget Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetEditor', '@Start');
@@ -2540,7 +2539,7 @@ console.warn('xx filteredActions', filteredActions)
         this.showModalWidgetEditor = true;
     }
 
-    clickMenuWidgetEdit(canSave: boolean = true) {
+    clickMenuWidgetEdit(widgetID: number = null, canSave: boolean = true) {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
@@ -3056,7 +3055,7 @@ console.warn('xx filteredActions', filteredActions)
 
     }
 
-    clickMenuTableEdit() {
+    clickMenuTableEdit(widgetID: number = null, canSave: boolean = true) {
         // Edits the selected Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableEdit', '@Start');
 
@@ -3252,7 +3251,7 @@ console.warn('xx filteredActions', filteredActions)
 
     }
 
-    clickMenuSlicerEdit() {
+    clickMenuSlicerEdit(widgetID: number = null, canSave: boolean = true) {
         // Edits the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
 
@@ -3467,7 +3466,7 @@ console.warn('xx filteredActions', filteredActions)
         this.showModalShapeEdit = true;
     }
 
-    clickMenuShapeEdit() {
+    clickMenuShapeEdit(widgetID: number = null, canSave: boolean = true) {
         // Edit selected Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEdit', '@Start');
 
@@ -4553,7 +4552,7 @@ console.warn('xx filteredActions', filteredActions)
 
 
     // ***********************  CLICK PALETTE (specific) MENU OPTIONS ************************ //
-    clickMenuPaletteEdit() {
+    clickMenuPaletteEdit(widgetID: number = null, canSave: boolean = true) {
         // Clicked the Edit option on palette - decide what to do
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteEdit', '@Start');
 
@@ -4777,7 +4776,7 @@ console.warn('xx filteredActions', filteredActions)
 
     actionmenuWidgetEditor(dashboardID: number, dashboardTabID: number) {
         // Jumps to the linked Dashboard and Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuJumpToLinked', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetEditor', '@Start');
 
         this.clickMenuWidgetEdit(false);
     }
