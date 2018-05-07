@@ -3158,15 +3158,16 @@
     [style.width.%]="showWidgetFullScreenWidth"
     >
     <div class="widgetFullScreenClose"
-        (click)="actionmenuWidgetCopyImage()"
-        >
-        {{ showWidgetFullScreenX }}
-    </div>
-    <div class="widgetFullScreenClose"
         (click)="clickCloseFullScreen()"
         >
         {{ showWidgetFullScreenX }}
     </div>
+    <button class="btn btn-link widgetFullScreenClose"
+        type="button"
+        (click)="actionmenuWidgetCopyImage()"
+        >
+        {{ showWidgetFullScreenCopy }}
+    </button>
     <div #widgetFullDOM></div>
 </div>
 

@@ -389,6 +389,7 @@ export class AppComponent implements OnInit {
     showWidgetFullScreenHeight: number = 0;
     showWidgetFullScreenBorder: string = '';
     showWidgetFullScreenX: string = '';             // Will be set when menu option called
+    showWidgetFullScreenCopy: string = '';          // Will be set when menu option called
     snapToGrid: boolean = true;
     startX: number;
     startY: number;
@@ -4816,6 +4817,7 @@ console.warn('xx filteredActions', filteredActions)
         this.showWidgetFullScreenHeight = 98;
         this.showWidgetFullScreenBorder = '1px solid black';
         this.showWidgetFullScreenX = 'X';
+        this.showWidgetFullScreenCopy = 'Copy Image';
 
         let localWidget = Object.assign({}, this.currentWidgets[index]);
 
@@ -4867,6 +4869,7 @@ console.warn('xx filteredActions', filteredActions)
         this.showWidgetFullScreenHeight = 0;
         this.showWidgetFullScreenBorder = '';
         this.showWidgetFullScreenX = '';
+        this.showWidgetFullScreenCopy = '';
 
         this.view.renderer('svg')
             .initialize(this.widgetFullDOM.nativeElement)
