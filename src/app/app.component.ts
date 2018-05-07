@@ -4693,7 +4693,7 @@ console.warn('xx filteredActions', filteredActions)
         // Open context / dropdown Menu for Changes from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetChanges', '@Start');
 
-        // Call the function for THIS W
+        // Call the function
         this.clickMenuCollaborateAuditTrail();
 
     }
@@ -4702,7 +4702,7 @@ console.warn('xx filteredActions', filteredActions)
         // Open context / dropdown Menu for Share from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetShare', '@Start');
 
-        // Call the function for THIS W
+        // Call the function
         this.clickDashboardShare();
 
     }
@@ -4711,8 +4711,7 @@ console.warn('xx filteredActions', filteredActions)
         // Open context / dropdown Menu for Data Summary from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataSummary', '@Start');
 
-        // Call the function for THIS W
-        this.clickDashboardShare();
+        this.showModalDataSummary = true;
 
     }
     
@@ -4720,7 +4719,7 @@ console.warn('xx filteredActions', filteredActions)
         // Open context / dropdown Menu for Data Quality from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataQuality', '@Start');
 
-        // Call the function for THIS W
+        // Call the function
         this.clickMenuDashboardDetailDataQuality();
 
     }

@@ -47,6 +47,7 @@ import { DashboardImportComponent }   from './dashboard.import.component';
 import { DashboardHelpPresentationComponent }  from './dashboard.helpPresentation.component';
 import { DashboardSubscribeComponent }         from './dashboard.subscribe.component';
 import { DashboardDataQualityComponent }       from './dashboard.dataquality.component';
+import { DashboardUsagestatsComponent }        from './dashboard.usagestats.component';
 
 import { WidgetEditorComponent }      from './widget.editor.component';
 import { WidgetCheckpointsComponent } from './widget.checkpoints.component';
@@ -77,6 +78,7 @@ import { DataCombinationComponent }   from './data.combination.component';
 import { DataRefreshComponent }       from './data.refresh.component';
 import { DatasourceShareComponent }   from './data.share.component';
 import { DataDictionaryComponent }    from './data.dictionary.component';
+import { DataSummaryComponent }       from './data.summary.component';
 
 import { HelpComponent }              from './help.component';
 
@@ -152,6 +154,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardSubscribeComponent,
         DashboardImportComponent,
         DashboardDataQualityComponent,
+        DashboardUsagestatsComponent,
 
         DataPopupComponent,
         DataAddExistingComponent,
@@ -159,6 +162,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataRefreshComponent,
         DatasourceShareComponent,
         DataDictionaryComponent,
+        DataSummaryComponent,
 
         WidgetEditorComponent,
         WidgetCheckpointsComponent,
