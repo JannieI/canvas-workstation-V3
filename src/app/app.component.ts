@@ -250,7 +250,7 @@ export class AppComponent implements OnInit {
 
     }
 
-
+    canSave: boolean = true;
     clickedSlicerItem: boolean = false;
     clipboardWidget: Widget;
     companyName: string = '';
@@ -2532,10 +2532,11 @@ console.warn('xx filteredActions', filteredActions)
         // Indicate new W and open Editor
         this.newWidget = true;
         this.showDatasourcePopup = true;
+        this.canSave = true;
         this.showModalWidgetEditor = true;
     }
 
-    clickMenuWidgetEdit() {
+    clickMenuWidgetEdit(canSave: boolean = true) {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
@@ -2584,6 +2585,7 @@ console.warn('xx filteredActions', filteredActions)
         this.newWidgetContainerLeft = 0;
         this.newWidgetContainerTop = 0;
         this.showDatasourcePopup = false;
+        this.canSave = canSave;
 
         this.showModalWidgetEditor = true;
     }
@@ -4773,7 +4775,7 @@ console.warn('xx filteredActions', filteredActions)
         // Jumps to the linked Dashboard and Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuJumpToLinked', '@Start');
 
-        this.clickMenuWidgetEdit();
+        this.clickMenuWidgetEdit(false);
     }
 
     // actionmenuWidgetEditor

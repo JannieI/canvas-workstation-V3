@@ -40,6 +40,7 @@ const graphWidth: number = 420;
     @Input() selectedWidget: Widget;
     @Input() newWidgetContainerLeft: number;
     @Input() newWidgetContainerTop: number;
+    @Input() canSave: boolean;
 
     @Output() formWidgetEditorClosed: EventEmitter<Widget> = new EventEmitter();
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
@@ -189,7 +190,7 @@ const graphWidth: number = 420;
         if (!this.newWidget) {
             this.renderGraph(definition);
         }
-
+console.warn('xx canSave', canSave)
     }
 
     ngOnDestroy() {
