@@ -383,6 +383,7 @@ export class AppComponent implements OnInit {
     showPopupMessage: boolean = false;
     showTitleForm: boolean = false;
     showWidgetContextMenu: boolean = false;
+    showWidgetFullScreen: boolean = false;
     snapToGrid: boolean = true;
     startX: number;
     startY: number;
@@ -4799,7 +4800,20 @@ console.warn('xx filteredActions', filteredActions)
         this.clickMenuWidgetEdit(id, index, false);
     }
 
-    // actionmenuWidgetFullScreen
+    actionmenuWidgetFullScreen(ev: MouseEvent, index: number, id: number) {
+        // Opens W full screen)
+        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFullScreen', '@Start');
+
+        this.showWidgetFullScreen = true;
+    }
+    
+    clickCloseFullScreen() {
+        // Opens W full screen)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCloseFullScreen', '@Start');
+
+        this.showWidgetFullScreen = !this.showWidgetFullScreen;
+    }
+    
     // actionmenuWidgetDescription
 
     actionmenuWidgetEditTitle(ev: MouseEvent, index: number, id: number) {
