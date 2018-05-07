@@ -44,7 +44,7 @@ export class WidgetDeleteComponent implements OnInit {
         // Init routine
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        let localWidget= Object.assign({}, this.selectedWidget);
+        let localWidget = Object.assign({}, this.selectedWidget);
 
         // Rescale and limit amount of detail on the graph
         localWidget.containerLeft = 100;
@@ -68,7 +68,7 @@ export class WidgetDeleteComponent implements OnInit {
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
         view.renderer('svg')
-            .initialize( this.widgetDOM.nativeElement)
+            .initialize(this.widgetDOM.nativeElement)
             .hover()
             .run()
             .finalize();

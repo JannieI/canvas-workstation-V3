@@ -138,6 +138,7 @@ export class AppComponent implements OnInit {
     @ViewChild('widgetDOMX')  widgetDOM: WidgetSingleComponent;
     @ViewChild('widgetDOM')  widgetDOMold: WidgetSingleComponent;
     @ViewChild('statusbarDOM') statusbarDOM: StatusbarComponent;
+    @ViewChild('widgetFullDOM') widgetFullDOM: ElementRef;
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -383,7 +384,11 @@ export class AppComponent implements OnInit {
     showPopupMessage: boolean = false;
     showTitleForm: boolean = false;
     showWidgetContextMenu: boolean = false;
-    showWidgetFullScreen: boolean = false;
+    showWidgetFullScreen: boolean = true;
+    showWidgetFullScreenWidth: number = 0;
+    showWidgetFullScreenHeight: number = 0;
+    showWidgetFullScreenBorder: string = '';
+    showWidgetFullScreenX: string = '';             // Will be set when menu option called
     snapToGrid: boolean = true;
     startX: number;
     startY: number;
@@ -404,6 +409,8 @@ export class AppComponent implements OnInit {
     widgetGroup: number[] = [];
     zoomFactor: string = 'scale(1)';
 
+
+    view: any;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -4805,15 +4812,95 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFullScreen', '@Start');
 
         this.showWidgetFullScreen = true;
+        this.showWidgetFullScreenWidth = 98;
+        this.showWidgetFullScreenHeight = 98;
+        this.showWidgetFullScreenBorder = '1px solid black';
+        this.showWidgetFullScreenX = 'X';
+
+        let localWidget = Object.assign({}, this.currentWidgets[index]);
+
+        // Rescale and limit amount of detail on the graph
+        localWidget.containerLeft = 50;
+        localWidget.containerTop = 50;
+        localWidget.containerHeight = 650;
+        localWidget.graphHeight = 600;
+        localWidget.containerWidth = 850;
+        localWidget.graphWidth = 800;
+        localWidget.containerBoxshadow = 'none';
+        localWidget.containerBorder = 'none';
+        localWidget.isSelected = false;
+        localWidget.graphTitle = '';
+        localWidget.graphXaxisTitle = '';
+        localWidget.graphYaxisTitle = '';
+        localWidget.containerBorder = '';
+        localWidget.containerBackgroundcolor = 'white';
+
+        let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
+        console.warn('xx def', definition)
+        let specification = compile(definition).spec;
+        this.view = new View(parse(specification));
+
+        // KEEP - code to Download a Vega Graph !!!
+        // this.view.toImageURL('png').then(function(url) {
+        //     console.warn('xx Wow!!')
+        //     var link = document.createElement('a');
+        //     link.setAttribute('href', url);
+        //     link.setAttribute('target', '_blank');
+        //     link.setAttribute('download', 'vega-export.png');
+        //     link.dispatchEvent(new MouseEvent('click'));
+        //   }).catch(function(error) { /* error handling */ });
+        //   console.warn('xx after toIm !!')
+
+        this.view.renderer('svg')
+            .initialize(this.widgetFullDOM.nativeElement)
+            .hover()
+            .run()
+            .finalize();
+
     }
     
     clickCloseFullScreen() {
         // Opens W full screen)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCloseFullScreen', '@Start');
 
-        this.showWidgetFullScreen = !this.showWidgetFullScreen;
+
+
+        
+        this.showWidgetFullScreenWidth = 0;
+        this.showWidgetFullScreenHeight = 0;
+        this.showWidgetFullScreenBorder = '';
+        this.showWidgetFullScreenX = '';
+
+        // let localWidget = Object.assign({}, this.currentWidgets[0]);
+        
+        // let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
+        // console.warn('xx def', definition)
+        // let specification = compile(definition).spec;
+        // let view = new View(parse(specification));
+
+// generate a PNG snapshot and then download the image
+// view.toImageURL('png').then(function(url) {
+//     var link = document.createElement('a');
+//     link.setAttribute('href', url);
+//     link.setAttribute('target', '_blank');
+//     link.setAttribute('download', 'vega-export.png');
+//     link.dispatchEvent(new MouseEvent('click'));
+//   }).catch(function(error) { /* error handling */ });
+
+// console.warn('xx after toIm')
+
+        this.view.renderer('svg')
+            .initialize(this.widgetFullDOM.nativeElement)
+            .hover()
+            .run()
+            .width(0)
+            .height(0)
+            .finalize();
+
+
+        // this.showWidgetFullScreen = true;
     }
-    
+
     // actionmenuWidgetDescription
 
     actionmenuWidgetEditTitle(ev: MouseEvent, index: number, id: number) {

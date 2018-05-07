@@ -3167,13 +3167,17 @@
     (formWidgetEditorClosed)="handleCloseWidgetEditor($event)">Load Widget Editor ...
 </widget-editor>
 
-<div class="widgetFullScreen" *ngIf="showWidgetFullScreen">
+<div class="widgetFullScreen" *ngIf="showWidgetFullScreen"
+    [style.border]="showWidgetFullScreenBorder"
+    [style.height.%]="showWidgetFullScreenHeight"
+    [style.width.%]="showWidgetFullScreenWidth"
+    >
     <div class="widgetFullScreenClose"
         (click)="clickCloseFullScreen()"
         >
-        X
+        {{ showWidgetFullScreenX }}
     </div>
-    bla-bla
+    <div #widgetFullDOM></div>
 </div>
 
 <!-- Modal: Widget Container -->
