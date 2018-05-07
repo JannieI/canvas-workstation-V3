@@ -4878,16 +4878,16 @@ console.warn('xx filteredActions', filteredActions)
         // let specification = compile(definition).spec;
         // let view = new View(parse(specification));
 
-// generate a PNG snapshot and then download the image
-// view.toImageURL('png').then(function(url) {
-//     var link = document.createElement('a');
-//     link.setAttribute('href', url);
-//     link.setAttribute('target', '_blank');
-//     link.setAttribute('download', 'vega-export.png');
-//     link.dispatchEvent(new MouseEvent('click'));
-//   }).catch(function(error) { /* error handling */ });
+        // generate a PNG snapshot and then download the image
+        // this.view.toImageURL('png').then(function(url) {
+        //     var link = document.createElement('a');
+        //     link.setAttribute('href', url);
+        //     link.setAttribute('target', '_blank');
+        //     link.setAttribute('download', 'vega-export.png');
+        //     link.dispatchEvent(new MouseEvent('click'));
+        // }).catch(function(error) { /* error handling */ });
 
-// console.warn('xx after toIm')
+        console.warn('xx after toIm')
 
         this.view.renderer('svg')
             .initialize(this.widgetFullDOM.nativeElement)
@@ -4919,7 +4919,19 @@ console.warn('xx filteredActions', filteredActions)
         this.showTitleForm = true;
     }
 
-    // actionmenuWidgetCopyImage
+    actionmenuWidgetCopyImage() {
+        // Opens W full screen)
+        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetCopyImage', '@Start');
+
+        // generate a PNG snapshot and then download the image
+        this.view.toImageURL('png').then(function(url) {
+            var link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('target', '_blank');
+            link.setAttribute('download', 'vega-export.png');
+            link.dispatchEvent(new MouseEvent('click'));
+        }).catch(function(error) { /* error handling */ });
+    }
 
     actionmenuJumpToLinked(dashboardID: number, dashboardTabID: number) {
         // Jumps to the linked Dashboard and Tab
