@@ -333,6 +333,7 @@ export class AppComponent implements OnInit {
     showModalDashboardDeleteBulk: boolean = false;
     showModalDashboardTreeview: boolean = false;
     showModalDashboardSubscribe: boolean = false;
+    showModalDashboardUsageStats: boolean = false;
     showMainMenu: boolean = true;
     showModalWidgetAnnotations: boolean = false;
     showModalWidgetContainer: boolean = false;
@@ -870,6 +871,15 @@ export class AppComponent implements OnInit {
         this.showModalDashboardSubscribe = false;
     }
 
+    handleCloseDashboardUsageStats(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardUsageStats', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDashboardUsageStats = false;
+    }
+    
     handleCloseShapeEdit(changedWidget: Widget) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeEdit', '@Start');
@@ -2354,6 +2364,17 @@ console.warn('xx filteredActions', filteredActions)
 
         this.showModalDashboardSubscribe = true;
     }
+
+    clickMenuDashboardUsageStats() {
+        // Manage Subscription to the current D, ie get notified when it changes
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardUsageStats', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDashboardUsageStats = true;
+    }    
+
+
 
 
 
@@ -4707,6 +4728,14 @@ console.warn('xx filteredActions', filteredActions)
 
     }
     
+    contextmenuWidgetUsageStats(ev: any, index: number, id: number) {
+        // Open context / dropdown Menu for Data Summary from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetUsageStats', '@Start');
+
+        this.showModalDashboardUsageStats = true;
+
+    }
+
     contextmenuWidgetDataSummary(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Data Summary from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataSummary', '@Start');

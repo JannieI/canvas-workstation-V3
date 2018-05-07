@@ -3035,6 +3035,14 @@
 </dashboard-subscribe>
 
 
+<!-- Modal: Dashboard Usage Stats -->
+<dashboard-usagestats
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardUsageStats"
+    (formDashboardUsageStatsClosed)="handleCloseDashboardUsageStats($event)">Load Dashboard Usage Stats ...
+</dashboard-usagestats>
+
+
 <!-- Modal: Annotations -->
 <widget-annotations
     class="formPopupDashboard"
