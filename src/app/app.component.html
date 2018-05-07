@@ -3220,6 +3220,14 @@
 </widget-tablist>
 
 
+<!-- Modal: Widget Description -->
+<widget-description
+    *ngIf="showModalWidgetDescription"
+    [currentWidgetDashboardTabIDs]="currentWidgetDashboardTabIDs"
+    (formWidgetDescriptionClosed)="handleCloseWidgetDescription($event)">Load Widget Description ...
+</widget-description>
+
+
 <!-- Modal: Slicer Delete -->
 <slicer-delete
     class="formPopupDashboard"

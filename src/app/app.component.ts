@@ -349,6 +349,7 @@ export class AppComponent implements OnInit {
     showModalData: boolean = false;
     showModalSlicerEditor: boolean = false;
     showModalWidgetTablist: boolean = false;
+    showModalWidgetDescription: boolean = false;
     showModalTableEditor: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
@@ -1075,6 +1076,13 @@ export class AppComponent implements OnInit {
         this.showModalWidgetTablist = false;
     }
     
+    handleCloseWidgetDescription(tabIDs: number[]) {
+        // Handle close of Description form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDescription', '@Start');
+
+            this.showModalWidgetDescription = false;
+    }
+
     handleCloseDataAddExisting(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
@@ -3339,6 +3347,13 @@ console.warn('xx filteredActions', filteredActions)
 
     }
 
+    clickMenuWidgetDescription() {
+        // Open the W Description form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDescription', '@Start');
+
+        this.showModalWidgetDescription = true;
+    }
+
     clickMenuSlicerComments() {
         // Manage comments for the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerComments', '@Start');
@@ -4880,7 +4895,11 @@ console.warn('xx filteredActions', filteredActions)
             .finalize();
     }
 
-    // actionmenuWidgetDescription
+    actionmenuWidgetDescription(ev: MouseEvent, index: number, id: number) {
+        // Opens W full screen)
+        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetDescription', '@Start');
+
+    }
 
     actionmenuWidgetEditTitle(ev: MouseEvent, index: number, id: number) {
         // Register mouse down event when resize starts
