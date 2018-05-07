@@ -4510,8 +4510,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
             if ( (this.canvasMessages.length == 0)  ||  (this.isDirtyCanvasMessages) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.canvasMessages = data.filter(d => (!d.isTrashed) );
+                    .then(res => {
+                        this.canvasMessages = res.filter(d => (!d.isTrashed) );
 
                         this.isDirtyCanvasMessages = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -4526,6 +4526,39 @@ console.warn('xx allS 1', this.currentDatasets.slice())
             }
         });
 
+    }
+
+    addCanvasMessage(data: CanvasMessage): Promise<any> {
+        // Description: Adds a new CanvasMessage
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables addCanvasMessage ...', 
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+
+        let url: string = 'canvasMessages';
+        this.filePath = './assets/data.canvasMessages.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Update Global vars to make sure they remain in sync
+                    this.canvasMessages.push(JSON.parse(JSON.stringify(res)));
+
+                    console.log('addCanvasMessage ADDED', this.canvasMessages)
+
+                    resolve(res);
+                },
+                err => {
+                    console.log('Error addCanvasMessage FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
     deleteCanvasMessage(id: number): Promise<string> {
@@ -4547,7 +4580,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                 data => {
 
                     this.canvasMessages = this.canvasMessages.filter(
-                        com => com.id != id
+                        msg => msg.id != id
                     );
 
                     console.log('deleteCanvasMessage DELETED id: ', id)
