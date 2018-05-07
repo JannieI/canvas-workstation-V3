@@ -1749,27 +1749,12 @@
                         >
                         Edit Title
                     </button>
-                    <button class="dropdown-item"
-                        type="button"
-                        clrDropdownItem
-                        (click)="actionmenuWidgetCopyImage($event, i, row.id)"
-                        >
-                        Copy image
-                    </button>
 
                 </clr-dropdown-menu>
             </clr-dropdown>
         </div>
    
     </div>
-
-
-
-
-
-
-
-
 
 
     <!-- Widgets -->
@@ -3172,6 +3157,11 @@
     [style.height.%]="showWidgetFullScreenHeight"
     [style.width.%]="showWidgetFullScreenWidth"
     >
+    <div class="widgetFullScreenClose"
+        (click)="actionmenuWidgetCopyImage()"
+        >
+        {{ showWidgetFullScreenX }}
+    </div>
     <div class="widgetFullScreenClose"
         (click)="clickCloseFullScreen()"
         >

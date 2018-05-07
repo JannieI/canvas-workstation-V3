@@ -4863,31 +4863,10 @@ console.warn('xx filteredActions', filteredActions)
         // Opens W full screen)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCloseFullScreen', '@Start');
 
-
-
-        
         this.showWidgetFullScreenWidth = 0;
         this.showWidgetFullScreenHeight = 0;
         this.showWidgetFullScreenBorder = '';
         this.showWidgetFullScreenX = '';
-
-        // let localWidget = Object.assign({}, this.currentWidgets[0]);
-        
-        // let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
-        // console.warn('xx def', definition)
-        // let specification = compile(definition).spec;
-        // let view = new View(parse(specification));
-
-        // generate a PNG snapshot and then download the image
-        // this.view.toImageURL('png').then(function(url) {
-        //     var link = document.createElement('a');
-        //     link.setAttribute('href', url);
-        //     link.setAttribute('target', '_blank');
-        //     link.setAttribute('download', 'vega-export.png');
-        //     link.dispatchEvent(new MouseEvent('click'));
-        // }).catch(function(error) { /* error handling */ });
-
-        console.warn('xx after toIm')
 
         this.view.renderer('svg')
             .initialize(this.widgetFullDOM.nativeElement)
@@ -4896,9 +4875,6 @@ console.warn('xx filteredActions', filteredActions)
             .width(0)
             .height(0)
             .finalize();
-
-
-        // this.showWidgetFullScreen = true;
     }
 
     // actionmenuWidgetDescription
@@ -4919,7 +4895,7 @@ console.warn('xx filteredActions', filteredActions)
         this.showTitleForm = true;
     }
 
-    actionmenuWidgetCopyImage() {
+    actionmenuWidgetCopyImage(ev: MouseEvent, index: number, id: number) {
         // Opens W full screen)
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetCopyImage', '@Start');
 
