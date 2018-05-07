@@ -352,6 +352,7 @@ export class AppComponent implements OnInit {
     showModalDataRefresh: boolean = false;
     showModalDataShare: boolean = false;
     showModalDataDictionary: boolean = false;
+    showModalDataSummary: boolean = false;
     showModalShapeEdit: boolean = false;
     showModalShapeDelete: boolean = false;
     showModalTableDelete: boolean = false;
@@ -1105,7 +1106,16 @@ export class AppComponent implements OnInit {
 
         this.showModalDataDictionary = false;
     }
+    
+    handleCloseDataSummary(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSummary', '@Start');
 
+        this.menuOptionClickPostAction();
+
+        this.showModalDataSummary = false;
+    }
+    
     handleCloseWidgetContainer(changedWidget: Widget) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainer', '@Start');
@@ -2455,6 +2465,17 @@ console.warn('xx filteredActions', filteredActions)
 
         this.showModalDataDictionary = true;
     }
+    
+    clickMenuDataSummary() {
+        // Shows Data Summary
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSummary', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataSummary = true;
+    }
+    
+    
 
 
 
@@ -4714,7 +4735,7 @@ console.warn('xx filteredActions', filteredActions)
 
     }
 
-
+    
 
     
 

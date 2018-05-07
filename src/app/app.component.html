@@ -3101,15 +3101,23 @@
 <!-- Modal: data Share -->
 <data-share
     *ngIf="showModalDataShare"
-    (formDataShareClosed)="handleCloseDataShare($event)">Share All Data ...
+    (formDataShareClosed)="handleCloseDataShare($event)">Share / Permission of a Data Source ...
 </data-share>
 
 
 <!-- Modal: data Dictionary -->
 <data-dictionary
     *ngIf="showModalDataDictionary"
-    (formDataDictionaryClosed)="handleCloseDataDictionary($event)">Dictionary All Data ...
+    (formDataDictionaryClosed)="handleCloseDataDictionary($event)">Dictionary of a Data Source ...
 </data-dictionary>
+data-summary
+
+
+<!-- Modal: data Summary -->
+<data-summary
+    *ngIf="showModalDataSummary"
+    (formDataSummaryClosed)="handleCloseDataSummary($event)">Summary of a Data Source ...
+</data-summary>
 
 
 <!-- Modal: Widget Expand -->
