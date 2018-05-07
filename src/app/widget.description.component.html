@@ -21,6 +21,7 @@
                         <b>Description:</b>
                         <textarea [(ngModel)]="selectedWidget.description" 
                         rows="2"
+                        disabled
                         >
                     </textarea>
 
@@ -28,7 +29,8 @@
                         <div class="gridAnnotation">
                             <b>Annotation:</b>
                             <textarea [(ngModel)]="selectedWidget.annotation" 
-                            rows="5"
+                            rows="2"
+                            disabled
                             >
                         </textarea>
                     </div>
@@ -55,16 +57,17 @@
                             disabled
                             >
                     </div>
-                    <div class="gridLinkedTo">
-                        <b>Linked To:</b>
-                        <div class="select">
-                            <select id="selects_3"
-                                [(ngModel)]="linkedDashboardID"
-                                >
-                                <option>Economic Overview</option>
-                                <option>EU Indices</option>
-                            </select>
-                        </div>
+
+                    <div class="gridLinkedToTitle">
+                        <b>Linked:</b>
+                    </div>
+                    <div class="select gridLinkedTo">
+                        <select id="selects_3"
+                            [(ngModel)]="linkedDashboardID"
+                            >
+                            <option>Economic Overview</option>
+                            <option>EU Indices</option>
+                        </select>
                     </div>
         
                     <div class="gridCreator">

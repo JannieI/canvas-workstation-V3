@@ -26,7 +26,7 @@ import { Dashboard }                  from './models';
 export class WidgetDescriptionComponent implements OnInit {
 
     @Input() selectedWidget: Dashboard;
-    @Output() formDashboardDescriptionClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formWidgetDescriptionClosed: EventEmitter<string> = new EventEmitter();
 
 
 	constructor(
@@ -44,7 +44,7 @@ export class WidgetDescriptionComponent implements OnInit {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formDashboardDescriptionClosed.emit(action);
+		this.formWidgetDescriptionClosed.emit(action);
     }
 
 }

@@ -45,10 +45,10 @@
         text-align: left;
     }
     .gridAnnotation {
-        grid-column-start: 8;
+        grid-column-start: 1;
         grid-column-end: 14;
-        grid-row-start: 6;
-        grid-row-end: 8;
+        grid-row-start: 7;
+        grid-row-end: 9;
         margin-left: 20px;
         text-align: left;
     }
@@ -56,16 +56,16 @@
     .gridIsLocked {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 9;
-        grid-row-end: 10;
+        grid-row-start: 11;
+        grid-row-end: 12;
         margin-left: 20px;
         text-align: left;
     }
     .gridIsLiked {
         grid-column-start: 8;
         grid-column-end: 14;
-        grid-row-start: 9;
-        grid-row-end: 10;
+        grid-row-start: 11;
+        grid-row-end: 12;
         margin-left: 20px;
         text-align: left;
     }
@@ -73,16 +73,24 @@
     .gridHasCheckpoint {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 11;
-        grid-row-end: 12;
+        grid-row-start: 13;
+        grid-row-end: 14;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridLinkedToTitle {
+        grid-column-start: 8;
+        grid-column-end: 9;
+        grid-row-start: 13;
+        grid-row-end: 14;
         margin-left: 20px;
         text-align: left;
     }
     .gridLinkedTo {
-        grid-column-start: 8;
+        grid-column-start: 10;
         grid-column-end: 14;
-        grid-row-start: 11;
-        grid-row-end: 12;
+        grid-row-start: 13;
+        grid-row-end: 14;
         margin-left: 20px;
         text-align: left;
     }
@@ -90,16 +98,16 @@
     .gridCreator {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 13;
-        grid-row-end: 14;
+        grid-row-start: 15;
+        grid-row-end: 16;
         margin-left: 20px;
         text-align: left;
     }
     .gridCreated {
         grid-column-start: 8;
         grid-column-end: 14;
-        grid-row-start: 13;
-        grid-row-end: 14;
+        grid-row-start: 15;
+        grid-row-end: 16;
         margin-left: 20px;
         text-align: left;
     }
@@ -107,49 +115,24 @@
     .gridEditor {
         grid-column-start: 1;
         grid-column-end: 7;
-        grid-row-start: 14;
-        grid-row-end: 15;
+        grid-row-start: 16;
+        grid-row-end: 17;
         margin-left: 20px;
         text-align: left;
     }
     .gridEdited {
         grid-column-start: 8;
         grid-column-end: 14;
-        grid-row-start: 14;
-        grid-row-end: 15;
-        margin-left: 20px;
-        text-align: left;
-    }
-
-    .gridRefresher {
-        grid-column-start: 1;
-        grid-column-end: 7;
-        grid-row-start: 15;
-        grid-row-end: 16;
-        margin-left: 20px;
-        text-align: left;
-    }
-    .gridRefreshed {
-        grid-column-start: 8;
-        grid-column-end: 14;
-        grid-row-start: 15;
-        grid-row-end: 16;
+        grid-row-start: 16;
+        grid-row-end: 17;
         margin-left: 20px;
         text-align: left;
     }
  
-.gridButtonCancel {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 18;
-    grid-row-end: 19;
-    text-align: left;
-}
-
-.gridButtonSave {
-    grid-column-start: 3;
-    grid-column-end: 5;
-    grid-row-start: 18;
-    grid-row-end: 19;
-    text-align: left;
-}
+    .gridButtonCancel {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 18;
+        grid-row-end: 19;
+        text-align: left;
+    }
