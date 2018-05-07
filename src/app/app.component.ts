@@ -2539,8 +2539,14 @@ console.warn('xx filteredActions', filteredActions)
         this.showModalWidgetEditor = true;
     }
 
-    clickMenuWidgetEdit(widgetID: number = null, canSave: boolean = true) {
+    clickMenuWidgetEdit(
+        widgetID: number = null, 
+        widgetIndex: number = null, 
+        canSave: boolean = true) {
         // Open W Editor
+        //  widgetID - optional W-ID to open, does not depend on what was selected
+        //  widgetIndex - optional [W] index to open, does not depend on what was selected 
+        //  canSave - if Saving is allowed in W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
         // Has to be in editMode
@@ -2555,20 +2561,25 @@ console.warn('xx filteredActions', filteredActions)
             return;
         };
 
-        // Can only edit one W at a time, so ignore if multiple selected
-        if (!this.checkForOnlyOneWidget()) {
-            return
-        };
-        if (!this.checkForOnlyOneWidget('Graph')) {
-            return
-        };
-
         // Indicate edit W and open Editor, which will work with selected W
-        this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Graph') {
-                this.selectedWidget = w;
+        if (widgetIndex == null) {
+
+            // Can only edit one W at a time, so ignore if multiple selected
+            if (!this.checkForOnlyOneWidget()) {
+                return
             };
-        });
+            if (!this.checkForOnlyOneWidget('Graph')) {
+                return
+            };
+
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                    this.selectedWidget = w;
+                };
+            });
+        } else {
+            this.selectedWidget = this.currentWidgets[widgetIndex];
+        };
 
         // Check if Locked
         if (this.selectedWidget.isLocked) {
@@ -3055,7 +3066,7 @@ console.warn('xx filteredActions', filteredActions)
 
     }
 
-    clickMenuTableEdit(widgetID: number = null, canSave: boolean = true) {
+    clickMenuTableEdit(widgetID: number = null, widgetIndex: number = null, canSave: boolean = true) {
         // Edits the selected Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableEdit', '@Start');
 
@@ -3251,7 +3262,7 @@ console.warn('xx filteredActions', filteredActions)
 
     }
 
-    clickMenuSlicerEdit(widgetID: number = null, canSave: boolean = true) {
+    clickMenuSlicerEdit(widgetID: number = null, widgetIndex: number = null, canSave: boolean = true) {
         // Edits the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
 
@@ -3466,7 +3477,7 @@ console.warn('xx filteredActions', filteredActions)
         this.showModalShapeEdit = true;
     }
 
-    clickMenuShapeEdit(widgetID: number = null, canSave: boolean = true) {
+    clickMenuShapeEdit(widgetID: number = null, widgetIndex: number = null, canSave: boolean = true) {
         // Edit selected Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEdit', '@Start');
 
@@ -4552,7 +4563,7 @@ console.warn('xx filteredActions', filteredActions)
 
 
     // ***********************  CLICK PALETTE (specific) MENU OPTIONS ************************ //
-    clickMenuPaletteEdit(widgetID: number = null, canSave: boolean = true) {
+    clickMenuPaletteEdit(widgetID: number = null, widgetIndex: number = null, canSave: boolean = true) {
         // Clicked the Edit option on palette - decide what to do
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteEdit', '@Start');
 
@@ -4774,11 +4785,11 @@ console.warn('xx filteredActions', filteredActions)
     
     // ***********************  WIDGET ACTION MENU  ************************ //
 
-    actionmenuWidgetEditor(dashboardID: number, dashboardTabID: number) {
+    actionmenuWidgetEditor(ev: MouseEvent, index: number, id: number) {
         // Jumps to the linked Dashboard and Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetEditor', '@Start');
 
-        this.clickMenuWidgetEdit(false);
+        this.clickMenuWidgetEdit(id, index, false);
     }
 
     // actionmenuWidgetEditor
