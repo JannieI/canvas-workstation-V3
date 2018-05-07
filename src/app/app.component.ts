@@ -4704,6 +4704,16 @@ console.warn('xx filteredActions', filteredActions)
 
     }
 
+    contextmenuWidgetDataDictionary(ev: any, index: number, id: number) {
+        // Open context / dropdown Menu for Data Dictionary, of the DS linked to current
+        // W, from the Title Bar
+        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataDictionary', '@Start');
+
+        // Call the function for THIS W
+        this.showModalDataDictionary = true;
+
+    }
+
 
 
     
