@@ -1620,7 +1620,7 @@
                      && row.hyperlinkDashboardTabID"
                     >
                     <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
-                        (click)="contextMenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
+                        (click)="actionmenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
                         >
                     </clr-icon>
                 </div>
@@ -1717,42 +1717,42 @@
                     <button class="dropdown-item"
                         type="button"
                         clrDropdownItem
-                        (click)="contextmenuWidgetEditor($event, i, row.id)"
+                        (click)="actionmenuWidgetEditor($event, i, row.id)"
                         >
                         Graph Editor
                     </button>
                     <button class="dropdown-item"
                         type="button"
                         clrDropdownItem
-                        (click)="contextmenuWidgetExplore($event, i, row.id)"
+                        (click)="actionmenuWidgetExplore($event, i, row.id)"
                         >
                         Explore 
                     </button>
                     <button class="dropdown-item"
                         type="button"
                         clrDropdownItem
-                        (click)="contextmenuWidgetFullScreen($event, i, row.id)"
+                        (click)="actionmenuWidgetFullScreen($event, i, row.id)"
                         >
                         Full screen
                     </button>
                     <button class="dropdown-item"
                         type="button"
                         clrDropdownItem
-                        (click)="contextmenuWidgetDescription($event, i, row.id)"
+                        (click)="actionmenuWidgetDescription($event, i, row.id)"
                         >
                         Description
                     </button>
                     <button class="dropdown-item"
                         type="button"
                         clrDropdownItem
-                        (click)="contextmenuWidgetEditTitle($event, i, row.id)"
+                        (click)="actionmenuWidgetEditTitle($event, i, row.id)"
                         >
                         Edit Title
                     </button>
                     <button class="dropdown-item"
                         type="button"
                         clrDropdownItem
-                        (click)="contextmenuWidgetCopyImage($event, i, row.id)"
+                        (click)="actionmenuWidgetCopyImage($event, i, row.id)"
                         >
                         Copy image
                     </button>
@@ -2760,7 +2760,7 @@
 
         <div *ngIf="row.hyperlinkDashboardID  && row.hyperlinkDashboardTabID"
             class="widgetContainerJumpLink"
-            (click)="contextMenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
+            (click)="actionmenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
             >
             <b> >> </b>
         </div>

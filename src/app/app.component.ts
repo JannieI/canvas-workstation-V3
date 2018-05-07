@@ -4763,31 +4763,25 @@ console.warn('xx filteredActions', filteredActions)
 
     }
 
-    
 
     
 
+    
+    // ***********************  WIDGET ACTION MENU  ************************ //
 
-    contextMenuJumpToLinked(dashboardID: number, dashboardTabID: number) {
+    actionmenuWidgetEditor(dashboardID: number, dashboardTabID: number) {
         // Jumps to the linked Dashboard and Tab
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuJumpToLinked', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuJumpToLinked', '@Start');
 
-        // Exit if no Dashboard to jump to
-        if (dashboardID == null) {
-            return;
-        };
-
-        // Tab points to first one, if needed
-        if (dashboardTabID == null) {
-            dashboardTabID = -1;
-        };
-
-        this.globalVariableService.refreshCurrentDashboard(
-            'app-contextMenuJumpToLinked', dashboardID, dashboardTabID, ''
-        );
+        this.clickMenuWidgetEdit();
     }
 
-    contextmenuWidgetEditTitle(ev: MouseEvent, index: number, id: number) {
+    // actionmenuWidgetEditor
+    // actionmenuWidgetExplore
+    // actionmenuWidgetFullScreen
+    // actionmenuWidgetDescription
+
+    actionmenuWidgetEditTitle(ev: MouseEvent, index: number, id: number) {
         // Register mouse down event when resize starts
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetEditTitle', '@Start');
 
@@ -4803,6 +4797,26 @@ console.warn('xx filteredActions', filteredActions)
         this.showTitleForm = true;
     }
 
+    // actionmenuWidgetCopyImage
+
+    actionmenuJumpToLinked(dashboardID: number, dashboardTabID: number) {
+        // Jumps to the linked Dashboard and Tab
+        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuJumpToLinked', '@Start');
+
+        // Exit if no Dashboard to jump to
+        if (dashboardID == null) {
+            return;
+        };
+
+        // Tab points to first one, if needed
+        if (dashboardTabID == null) {
+            dashboardTabID = -1;
+        };
+
+        this.globalVariableService.refreshCurrentDashboard(
+            'app-actionmenuJumpToLinked', dashboardID, dashboardTabID, ''
+        );
+    }
 
 
 
