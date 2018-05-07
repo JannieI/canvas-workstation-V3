@@ -4582,7 +4582,7 @@ console.warn('xx filteredActions', filteredActions)
                     } else {
                         // Lost
                         this.showMessage(
-                            'Select a graph, slicer, table or shape',
+                            'Select a single graph, slicer, table or shape',
                             'StatusBar',
                             'Warning',
                             3000,
@@ -4786,14 +4786,19 @@ console.warn('xx filteredActions', filteredActions)
     // ***********************  WIDGET ACTION MENU  ************************ //
 
     actionmenuWidgetEditor(ev: MouseEvent, index: number, id: number) {
-        // Jumps to the linked Dashboard and Tab
+        // Opens W Editor, for editing
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetEditor', '@Start');
+
+        this.clickMenuWidgetEdit(id, index, true);
+    }
+
+    actionmenuWidgetExplore(ev: MouseEvent, index: number, id: number) {
+        // Opens W Editor, for exploring only (cannot save)
+        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetExplore', '@Start');
 
         this.clickMenuWidgetEdit(id, index, false);
     }
 
-    // actionmenuWidgetEditor
-    // actionmenuWidgetExplore
     // actionmenuWidgetFullScreen
     // actionmenuWidgetDescription
 
