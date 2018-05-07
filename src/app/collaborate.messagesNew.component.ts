@@ -299,7 +299,6 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.newMessage = !this.newMessage;
     }
 
-
     clickClose(action: string) {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');

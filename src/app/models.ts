@@ -197,18 +197,18 @@ export class CanvasTask {
     createdOn: string;                      // Date task was created
 }
 
-export class CanvasMessage {
-    id: number;                 // Unique ID
-    threadID: number;           // Optional thread - to keep converstations together (later use)
-    sentBy: string;             // UserID who sent message
-    sentOn: string;             // DateTime message was sent
-    toUsers: string[];          // Original list of Users
-    toGroups: string[];         // Original list of Groups
-    subject: string;            // Message Subject
-    body: string;               // Message body
-    dashboardID: number;        // Optional Dashboard linked to this message
-    dashboardTabID: number;     // Optional Tab linked to this message
-}
+// export class CanvasMessage {
+//     id: number;                 // Unique ID
+//     threadID: number;           // Optional thread - to keep converstations together (later use)
+//     sentBy: string;             // UserID who sent message
+//     sentOn: string;             // DateTime message was sent
+//     toUsers: string[];          // Original list of Users
+//     toGroups: string[];         // Original list of Groups
+//     subject: string;            // Message Subject
+//     body: string;               // Message body
+//     dashboardID: number;        // Optional Dashboard linked to this message
+//     dashboardTabID: number;     // Optional Tab linked to this message
+// }
 
 export class CanvasMessageNew {
     id: number;                 // Unique ID

@@ -4,7 +4,7 @@
 
                 <div>
                     <button type="button" class="closeButton" (click)="clickClose()">
-                        X 
+                        X
                         <b>Messages</b>
                     </button>
 
@@ -71,7 +71,7 @@
                                 title="Filter on messages that were read before"
                                 >
                         </div>
-                        
+
                         <button
                             type="button"
                             class="btn btn-link"
@@ -80,13 +80,13 @@
                             >
                             Filter
                         </button>
-                        
+
                     </div>
 
                     <div class="messageBlock" *ngIf="!newMessage"
                         [style.height.rem]="newMessage? 15 : 15"
                         >
-                        <div *ngFor="let row of canvasMessagesNew; let i = index" 
+                        <div *ngFor="let row of canvasMessagesNew; let i = index"
                             class="message"
                             [style.margin-left.px]="i%2==0 ? '0' : '30'"
                             [style.background-color]="i%2==0 ? 'rgb(235, 235, 235)' : 'rgb(187, 221, 187)'"
@@ -166,23 +166,23 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="messageBlock" *ngIf="newMessage">
                         <div class="gridOverall">
 
                             <div class="gridTitle">
-                                <b>Send Message: </b> 
-                            </div>                
+                                <b>Send Message: </b>
+                            </div>
                             <div class="gridSubTitle">
-                                <i>  
+                                <i>
                                     Send a message to another Canvas User.
                                 </i>
-                            </div>                
-                
+                            </div>
+
                             <div class="gridToUsersTitle">
                                 <b>To Users:</b>
                             </div>
-            
+
                             <div class="gridToUsers">
                                 <input [(ngModel)]="toUsers"
                                     type="text"
@@ -191,11 +191,11 @@
                                     autofocus
                                     >
                             </div>
-            
+
                             <div class="gridToGroupsTitle">
                                 <b>To Groups:</b>
                             </div>
-                
+
                             <div class="gridToGroups">
                                 <input [(ngModel)]="toGroups"
                                     type="text"
@@ -203,11 +203,11 @@
                                     size="25"
                                     >
                             </div>
-            
+
                             <div class="gridSubjectTitle">
                                 <b>Subject:</b>
                             </div>
-                
+
                             <div class="gridSubject">
                                 <input [(ngModel)]="subject"
                                     type="text"
@@ -215,11 +215,11 @@
                                     size="25"
                                     >
                             </div>
-            
+
                             <div class="gridBodyTitle">
                                 <b>Body:</b>
                             </div>
-            
+
                             <div class="gridBody">
                                 <input [(ngModel)]="body"
                                     type="text"
@@ -227,18 +227,18 @@
                                     size="25"
                                     >
                             </div>
-            
+
                             <div class="gridLinkTitle">
                                 <b>Link this Dashboard and Tab:</b>
                             </div>
-            
+
                             <div class="gridLink">
                                 <input [(ngModel)]="linked"
                                     type="checkbox"
                                     title="Link the current Dashboard (T/F)"
                                     >
                             </div>
-            
+
                             <div class="gridButtonCancel">
                                     <button
                                     type="button"
@@ -248,7 +248,7 @@
                                     Cancel
                                 </button>
                             </div>
-                            
+
                             <div class="gridButtonSave">
                                 <button
                                     type="button"
@@ -257,7 +257,7 @@
                                     >
                                     Save
                                 </button>
-                            </div>                
+                            </div>
                         </div>
                     </div>
                 </div>

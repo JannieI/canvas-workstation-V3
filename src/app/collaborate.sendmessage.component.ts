@@ -47,7 +47,7 @@ export class CollaborateSendMessageComponent implements OnInit {
     body: string;
     linked: boolean;
 
-    
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -80,7 +80,5 @@ export class CollaborateSendMessageComponent implements OnInit {
 		this.formDashboardMessageEmailClosed.emit(action);
     }
 
-    //TODO
-    //1. Set global var isFirstTimeDashboard = T/F depending on user input
 
 }
