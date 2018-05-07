@@ -17,7 +17,9 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
+import { CanvasUser }                 from './models';
+import { CanvasGroup }                from './models';
+import { CanvasMessage }              from './models';
 
 @Component({
     selector: 'collaborate-sendmessage',
@@ -46,7 +48,11 @@ export class CollaborateSendMessageComponent implements OnInit {
     subject: string;
     body: string;
     linked: boolean;
-
+    canvasMessages: CanvasMessage[] = [];
+    groups: CanvasGroup[] = [];
+    users: CanvasUser[] = [];
+    selectedUser: string = '';
+    selectedGroup: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -56,6 +62,19 @@ export class CollaborateSendMessageComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        this.globalVariableService.getCanvasMessages().then(msg => {
+            this.canvasMessages = msg;
+
+            this.globalVariableService.getCanvasUsers().then(usr => {
+                this.users = usr;
+
+                this.globalVariableService.getCanvasGroups().then(grp => {
+                    this.groups = grp;
+                });
+            });
+
+        });
     }
 
     clickClose(action: string) {
@@ -76,6 +95,72 @@ export class CollaborateSendMessageComponent implements OnInit {
     clickSave(action: string) {
         // Save data and Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        let dashboardID: number = null;
+        if (this.linked) {
+            dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+        };
+        let dashboardTabID: number = null;
+        if (this.linked) {
+            dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+        };
+        let recipients: [               // Original list of Users, groups are split into users @time
+            {
+                userID: string;
+                readOn: string;     // dateTime read, null if not read
+            }
+        ];
+        if (this.selectedUser != null  &&  this.selectedUser != undefined) {
+            recipients.push({
+                userID: this.selectedUser,
+                readOn: ''
+            });
+        };
+        if (this.selectedGroup != null  &&  this.selectedGroup != undefined) {
+
+            // Loop on users to find members
+            this.users.forEach(usr => {
+                if (usr.groups.indexOf(this.selectedGroup) >= 0) {
+                    recipients.push({
+                        userID: usr.userID,
+                        readOn: ''
+                    });
+                };
+            });
+        };
+
+
+        // Construct new message
+        let today = new Date();
+        let newMessage: CanvasMessage = {
+            id: null,
+            threadID: null,
+            sender: this.globalVariableService.currentUser.userID,
+            sentOn: this.globalVariableService.formatDate(today),
+            recipients: recipients,
+            toGroups: [this.selectedGroup],
+            subject: this.subject,
+            body: this.body,
+            dashboardID: dashboardID,
+            dashboardTabID: dashboardTabID,
+            url: null,
+            replyToMessageID: null,
+        
+            // At runtime
+            iHaveReadThis: false,
+            dashboardName: null,
+            replySender: null,
+            replyMessageStart: ''
+        }
+        this.globalVariableService.showStatusBarMessage(
+            {
+                message: 'Message has been sent',
+                uiArea: 'StatusBar',
+                classfication: 'Info',
+                timeout: 3000,
+                defaultMessage: ''
+            }
+        );
 
 		this.formDashboardMessageEmailClosed.emit(action);
     }

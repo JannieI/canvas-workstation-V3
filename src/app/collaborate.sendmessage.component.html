@@ -21,27 +21,48 @@
                     <b>To Users:</b>
                 </div>
 
-                <div class="gridToUsers">
+                <!-- <div class="gridToUsers">
                     <input [(ngModel)]="toUsers"
                         type="text"
                         title="List of user recipients"
                         size="25"
                         autofocus
                         >
+                </div> -->
+
+                <div class="select gridToUsers">
+                    <select
+                        [(ngModel)]="selectedUser"
+                        >
+                        <option *ngFor="let row of users"
+                            >
+                            {{ row.userID }}
+                        </option>
+                    </select>
                 </div>
 
                 <div class="gridToGroupsTitle">
                     <b>To Groups:</b>
                 </div>
 
-                <div class="gridToGroups">
+                <!-- <div class="gridToGroups">
                     <input [(ngModel)]="toGroups"
                         type="text"
                         title="List of group recipients"
                         size="25"
                         >
+                </div> -->
+                <div class="select gridToGroups">
+                    <select
+                        [(ngModel)]="selectedGroup"
+                        >
+                        <option *ngFor="let row of groups"
+                            >
+                            {{ row.name }}
+                        </option>
+                    </select>
                 </div>
-
+    
                 <div class="gridSubjectTitle">
                     <b>Subject:</b>
                 </div>
