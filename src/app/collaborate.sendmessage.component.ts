@@ -104,31 +104,40 @@ export class CollaborateSendMessageComponent implements OnInit {
         if (this.linked) {
             dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
         };
-        let recipients: [               // Original list of Users, groups are split into users @time
-            {
-                userID: string;
-                readOn: string;     // dateTime read, null if not read
-            }
-        ];
+        let recipients: 
+            [
+                {
+                    userID: string;
+                    readOn: string;     // dateTime read, null if not read
+                }
+            ] = [
+                    {
+                        userID: '',
+                        readOn: ''
+                    }
+                ];
+        console.warn('xx 1 rec', recipients)
         if (this.selectedUser != null  &&  this.selectedUser != undefined) {
-            recipients.push({
-                userID: this.selectedUser,
-                readOn: ''
-            });
+            recipients[0].userID = this.selectedUser;
         };
+        console.warn('xx 2 rec', recipients)
         if (this.selectedGroup != null  &&  this.selectedGroup != undefined) {
 
             // Loop on users to find members
-            this.users.forEach(usr => {
-                if (usr.groups.indexOf(this.selectedGroup) >= 0) {
-                    recipients.push({
-                        userID: usr.userID,
-                        readOn: ''
-                    });
+            for (var i = 0; i < this.users.length; i++) {
+                if (this.users[i].groups.indexOf(this.selectedGroup) >= 0) {
+                    if (i == 0) {
+                        recipients[0].userID = this.users[i].userID;
+                    } else {
+                        recipients.push({
+                            userID: this.users[i].userID,
+                            readOn: ''
+                        });
+                    };
+                    console.warn('xx 3 rec', recipients)
                 };
-            });
+            };
         };
-
 
         // Construct new message
         let today = new Date();
@@ -152,15 +161,20 @@ export class CollaborateSendMessageComponent implements OnInit {
             replySender: null,
             replyMessageStart: ''
         }
-        this.globalVariableService.showStatusBarMessage(
-            {
-                message: 'Message has been sent',
-                uiArea: 'StatusBar',
-                classfication: 'Info',
-                timeout: 3000,
-                defaultMessage: ''
-            }
-        );
+
+        // Send
+        this.globalVariableService.addCanvasMessage(newMessage).then(res => {
+
+            this.globalVariableService.showStatusBarMessage(
+                {
+                    message: 'Message has been sent',
+                    uiArea: 'StatusBar',
+                    classfication: 'Info',
+                    timeout: 3000,
+                    defaultMessage: ''
+                }
+            );
+        });
 
 		this.formDashboardMessageEmailClosed.emit(action);
     }
