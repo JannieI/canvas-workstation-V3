@@ -1080,7 +1080,7 @@ export class AppComponent implements OnInit {
         // Handle close of Description form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDescription', '@Start');
 
-            this.showModalWidgetDescription = false;
+        this.showModalWidgetDescription = false;
     }
 
     handleCloseDataAddExisting(action: string) {
@@ -3348,12 +3348,11 @@ console.warn('xx filteredActions', filteredActions)
 
     clickMenuWidgetDescription(
         widgetID: number = null, 
-        widgetIndex: number = null, 
-        canSave: boolean = true) {
+        widgetIndex: number = null
+        ) {
         // Open the W Description form
         //  widgetID - optional W-ID to open, does not depend on what was selected
         //  widgetIndex - optional [W] index to open, does not depend on what was selected 
-        //  canSave - if Saving is allowed in W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDescription', '@Start');
 
         // Indicate edit W and open Editor, which will work with selected W
@@ -4924,6 +4923,7 @@ console.warn('xx filteredActions', filteredActions)
         // Opens W full screen)
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetDescription', '@Start');
 
+        this.clickMenuWidgetDescription(id, index)
     }
 
     actionmenuWidgetEditTitle(ev: MouseEvent, index: number, id: number) {
