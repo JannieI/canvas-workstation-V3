@@ -28,7 +28,7 @@ import { CanvasMessage }              from './models';
 })
 export class CollaborateMessageContentComponent implements OnInit {
 
-    @Output() formDashboardMessageEmailClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formMessageContentClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -98,7 +98,7 @@ export class CollaborateMessageContentComponent implements OnInit {
                 defaultMessage: ''
             }
         );
-		this.formDashboardMessageEmailClosed.emit(action);
+		this.formMessageContentClosed.emit(action);
     }
 
     clickSave(action: string) {
@@ -217,7 +217,7 @@ export class CollaborateMessageContentComponent implements OnInit {
             );
         });
 
-		this.formDashboardMessageEmailClosed.emit(action);
+		this.formMessageContentClosed.emit(action);
     }
 
 

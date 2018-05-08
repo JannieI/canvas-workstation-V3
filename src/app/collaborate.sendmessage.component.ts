@@ -28,7 +28,7 @@ import { CanvasMessage }              from './models';
 })
 export class CollaborateSendMessageComponent implements OnInit {
 
-    @Output() formDashboardMessageEmailClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardSendMessage: EventEmitter<string> = new EventEmitter();
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -44,16 +44,8 @@ export class CollaborateSendMessageComponent implements OnInit {
     clickClose(action: string) {
         // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-        this.globalVariableService.showStatusBarMessage(
-            {
-                message: 'No changes',
-                uiArea: 'StatusBar',
-                classfication: 'Info',
-                timeout: 3000,
-                defaultMessage: ''
-            }
-        );
-		this.formDashboardMessageEmailClosed.emit(action);
+
+        this.formDashboardSendMessage.emit(action);
     }
 
 }

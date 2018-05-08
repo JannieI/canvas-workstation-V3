@@ -3436,11 +3436,11 @@
 </collaborate-activityadd>
 
 
-<!-- Modal: Add Message -->
+<!-- Modal: Send Message -->
 <collaborate-sendmessage
     class="formPopupDashboard"
     *ngIf="showModalCollaborateSendMessage"
-    (formDashboardMessageEmailClosed)="handleCloseSendMessageAdd($event)"
+    (formDashboardSendMessage)="handleCloseSendMessageAdd($event)"
     >
     Add Message ...
 </collaborate-sendmessage>
