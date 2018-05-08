@@ -44,6 +44,14 @@
                             title="Show messages addressed to this userID"
                             size="20"
                             >
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickRecipientMe()"
+                            title="Populate recipient with current UserID"
+                            >
+                            Me
+                        </button>
                         <b>Sent after:</b>
                         <input [(ngModel)]="sentAfter"
                             type="text"

@@ -257,6 +257,18 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.sender = 'SYSTEM';
     }
 
+    clickRecipientMe() {
+        // Toggle Recipient = current UserID
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRecipientMe', '@Start');
+
+        if (this.recipient == '') {
+            this.recipient = this.globalVariableService.currentUser.userID;
+        } else {
+            this.recipient = '';
+        };
+
+    }
+
     clickLastLogin() {
         // Toggle Last Login value on form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLastLogin', '@Start');
