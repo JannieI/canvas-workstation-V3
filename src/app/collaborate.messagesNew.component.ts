@@ -62,13 +62,9 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.sentAfter = this.globalVariableService.currentUser.lastLogin;
-        let lastLoginDate = new Date(this.globalVariableService.currentUser.lastLogin)
-        console.warn('xx date', this.globalVariableService.currentUser.lastLogin,
-        lastLoginDate, lastLoginDate.getDate(), lastLoginDate.getTime)
-        this.globalVariableService.getCanvasMessages().then(msg => {
-            this.canvasMessagesNew = msg;
-            this.clickFilter();
-        });
+
+        this.clickFilter();
+
         // TODO - keep for a while to copy back, then delete
             // this.canvasMessagesNew.push(
             //     {
@@ -253,7 +249,14 @@ export class CollaborateMessagesComponentNew implements OnInit {
             // );
         // End
     }
-    
+
+    clickSystem() {
+        // Fill SYSTEM value into form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSystem', '@Start');
+        
+        this.sender = 'SYSTEM';
+    }
+
     clickLastLogin() {
         // Fill Last Login value into form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLastLogin', '@Start');
@@ -265,11 +268,37 @@ export class CollaborateMessagesComponentNew implements OnInit {
         // Toggle filter on / off
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
 
-        if (this.sentAfter != '') {
-            this.canvasMessagesNew = this.canvasMessagesNew.filter(
-                msg => msg.sentOn >= this.sentAfter
-            );
-        };
+        // body: string = '';
+        // messageHasBeenRead: boolean = false;
+        // recipient: string = '';
+        // sender: string = '';
+        // subject: string = '';
+        console.warn('xx filters', this.sentAfter, this.sendBefore)
+
+        // TODO - the filtering must be done in DB
+        this.globalVariableService.getCanvasMessages().then(msg => {
+            this.canvasMessagesNew = msg;
+
+            if (this.sender != '') {
+                this.canvasMessagesNew = this.canvasMessagesNew.filter(
+                    m => m.sentOn == this.sender
+                );
+            };
+
+            if (this.sentAfter != '') {
+                this.canvasMessagesNew = this.canvasMessagesNew.filter(
+                    m => m.sentOn >= this.sentAfter
+                );
+            };
+            if (this.sendBefore != '') {
+                this.canvasMessagesNew = this.canvasMessagesNew.filter(
+                    m => m.sentOn <= this.sendBefore
+                );
+            };
+            });
+
+
+
     }
 
     clickReply() {
