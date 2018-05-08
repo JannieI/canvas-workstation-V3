@@ -142,7 +142,7 @@
                                             <button type="button"
                                                 clrDropdownItem
                                                 title="Undo previous action"
-                                                (click)="clickForward()"
+                                                (click)="clickForward(row.id)"
                                                 >
                                                 Forward
                                             </button>
@@ -178,7 +178,7 @@
 
                     <div class="messageBlock" *ngIf="newMessage">
                             <collaborate-messageContent
-                            (formMessageContentClosed)="handleReply($event)"
+                            (formMessageContentClosed)="handleReplyForward($event)"
                             [messageAction]="messageAction"
                             [existingMessaqge]="existingMessaqge"
                             >

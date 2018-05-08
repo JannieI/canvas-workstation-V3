@@ -386,19 +386,28 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.newMessage = true;
     }
 
-    handleReply(ev: any) {
+    clickForward(id: number) {
         // Forward a message
         this.globalFunctionService.printToConsole(this.constructor.name,'clickForward', '@Start');
+
+        this.messageAction = 'forward'
+        let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
+        if (messageIndex >= 0) {
+            this.existingMessaqge = this.canvasMessagesNew[messageIndex];
+        } else {
+            this.existingMessaqge = null;
+        };
+
+        this.newMessage = true;
+
+    }
+
+    handleReplyForward(ev: any) {
+        // Forward a message
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleReplyForward', '@Start');
         
         this.newMessage = false;
         
-    }
-
-    clickForward() {
-        // Forward a message
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickForward', '@Start');
-
-        this.newMessage = !this.newMessage;
     }
 
     clickCopyText() {
