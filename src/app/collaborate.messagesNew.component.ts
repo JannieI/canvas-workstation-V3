@@ -261,7 +261,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
         // Toggle Last Login value on form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLastLogin', '@Start');
 
-        if (this.sentAfter != '') {
+        if (this.sentAfter == '') {
             this.sentAfter = this.globalVariableService.currentUser.lastLogin;
         } else {
             this.sentAfter = '';
@@ -275,7 +275,6 @@ export class CollaborateMessagesComponentNew implements OnInit {
 
         // messageHasBeenRead: boolean = false;
         // recipient: string = '';
-        // subject: string = '';
         console.warn('xx filters', this.sentAfter, this.sendBefore)
 
         // TODO - the filtering must be done in DB
@@ -287,6 +286,17 @@ export class CollaborateMessagesComponentNew implements OnInit {
                     m => m.sender == this.sender
                 );
             };
+            if (this.recipient != '') {
+                this.canvasMessagesNew = this.canvasMessagesNew.filter(m => {
+                    let isFound: boolean = false;
+                    m.recipients.forEach(r => {
+                        if (r.userID == this.recipient) {
+                            isFound = true;
+                        };
+                    });
+                    return isFound;
+                });
+            };
             if (this.body != '') {
                 this.canvasMessagesNew = this.canvasMessagesNew.filter(
                     m => m.body.toLowerCase().includes(this.body.toLowerCase())
@@ -297,7 +307,6 @@ export class CollaborateMessagesComponentNew implements OnInit {
                     m => m.subject.toLowerCase().includes(this.subject.toLowerCase())
                 );
             };
-
             if (this.sentAfter != '') {
                 this.canvasMessagesNew = this.canvasMessagesNew.filter(
                     m => m.sentOn >= this.sentAfter
