@@ -374,6 +374,14 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.newMessage = !this.newMessage;
     }
 
+    handleReply(ev: any) {
+        // Forward a message
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickForward', '@Start');
+        
+        this.newMessage = false;
+        
+    }
+    
     clickForward() {
         // Forward a message
         this.globalFunctionService.printToConsole(this.constructor.name,'clickForward', '@Start');
