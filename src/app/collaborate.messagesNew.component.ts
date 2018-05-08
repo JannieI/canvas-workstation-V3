@@ -258,20 +258,23 @@ export class CollaborateMessagesComponentNew implements OnInit {
     }
 
     clickLastLogin() {
-        // Fill Last Login value into form
+        // Toggle Last Login value on form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLastLogin', '@Start');
 
-        this.sentAfter = this.globalVariableService.currentUser.lastLogin;
+        if (this.sentAfter != '') {
+            this.sentAfter = this.globalVariableService.currentUser.lastLogin;
+        } else {
+            this.sentAfter = '';
+        };
+
     }
     
     clickFilter() {
         // Toggle filter on / off
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
 
-        // body: string = '';
         // messageHasBeenRead: boolean = false;
         // recipient: string = '';
-        // sender: string = '';
         // subject: string = '';
         console.warn('xx filters', this.sentAfter, this.sendBefore)
 
@@ -281,7 +284,17 @@ export class CollaborateMessagesComponentNew implements OnInit {
 
             if (this.sender != '') {
                 this.canvasMessagesNew = this.canvasMessagesNew.filter(
-                    m => m.sentOn == this.sender
+                    m => m.sender == this.sender
+                );
+            };
+            if (this.body != '') {
+                this.canvasMessagesNew = this.canvasMessagesNew.filter(
+                    m => m.body.toLowerCase().includes(this.body.toLowerCase())
+                );
+            };
+            if (this.subject != '') {
+                this.canvasMessagesNew = this.canvasMessagesNew.filter(
+                    m => m.subject.toLowerCase().includes(this.subject.toLowerCase())
                 );
             };
 
