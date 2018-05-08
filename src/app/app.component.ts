@@ -4464,9 +4464,9 @@ console.warn('xx filteredActions', filteredActions)
         this.menuOptionClickPostAction();
     }
 
-    clickMenuCollaborateActivities() {
-        // Show list of Canvas Activities
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateActivities', '@Start');
+    clickMenuCollaborateTasks() {
+        // Show list of Canvas Tasks
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateTasks', '@Start');
 
         this.menuOptionClickPreAction();
 
