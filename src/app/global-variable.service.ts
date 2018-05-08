@@ -8,13 +8,13 @@ import { HttpHeaders }                from "@angular/common/http";
 
 // Our Models
 import { CanvasAction }               from './models';
-import { CanvasActivity }             from './models';
 import { CanvasAlert }                from './models';
 import { CanvasAuditTrail }           from './models';
 import { CanvasComment }              from './models';
 import { CanvasGroup }                from './models';
 import { CanvasMessage }              from './models';
 import { CanvasSettings }             from './models';
+import { CanvasTask }                 from './models';
 import { CanvasUser}                  from './models';
 import { Combination }                from './models';
 import { CombinationDetail }          from './models';
@@ -555,7 +555,7 @@ export class GlobalVariableService {
 
     // Permanent data - later to come from http
     backgroundcolors: CSScolor[] = [];
-    canvasActivities: CanvasActivity[] = [];
+    canvasTasks: CanvasTask[] = [];
     canvasAlerts: CanvasAlert[] = [];
     canvasComments: CanvasComment[] = [];
     canvasAuditTrails: CanvasAuditTrail[] = [];
@@ -709,7 +709,7 @@ export class GlobalVariableService {
     isDirtyDatasourcePivots: boolean = true;
     isDirtyDatasets: boolean = true;
     isDirtyBackgroundColors: boolean = true;
-    isDirtyCanvasActivities: boolean = true;
+    isDirtyCanvasTasks: boolean = true;
     isDirtyCanvasAlerts: boolean = true;
     isDirtyCanvasComments: boolean = true;
     isDirtyCanvasMessages: boolean = true;
@@ -4306,35 +4306,35 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     }
 
-    getCanvasActivities(): Promise<CanvasActivity[]> {
+    getCanvasTasks(): Promise<CanvasTask[]> {
         // Description: Gets all Canvas Activities
-        // Returns: this.canvasactivities array, unless:
+        // Returns: this.canvasTasks array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasActivities ...', 
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasActivities.length);
+        console.log('%c    Global-Variables getCanvasTasks ...', 
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasTasks.length);
 
-        let url: string = 'canvasActivities';
-        this.filePath = './assets/settings.canvasActivities.json';
+        let url: string = 'canvasTasks';
+        this.filePath = './assets/settings.canvasTasks.json';
 
-        return new Promise<CanvasActivity[]>((resolve, reject) => {
+        return new Promise<CanvasTask[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if ( (this.canvasActivities.length == 0)  ||  (this.isDirtyCanvasActivities) ) {
+            if ( (this.canvasTasks.length == 0)  ||  (this.isDirtyCanvasTasks) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.canvasActivities = data.filter(d => (!d.isTrashed) );
+                        this.canvasTasks = data.filter(d => (!d.isTrashed) );
 
-                        this.isDirtyCanvasActivities = false;
+                        this.isDirtyCanvasTasks = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasActivities 1', 
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasActivities)
-                        resolve(this.canvasActivities);
+                        console.log('%c    Global-Variables getCanvasTasks 1', 
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasTasks)
+                        resolve(this.canvasTasks);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasActivities 2', 
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasActivities)
-                resolve(this.canvasActivities);
+                console.log('%c    Global-Variables getCanvasTasks 2', 
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasTasks)
+                resolve(this.canvasTasks);
             }
         });
 
