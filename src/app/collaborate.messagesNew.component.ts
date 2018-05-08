@@ -416,20 +416,18 @@ export class CollaborateMessagesComponentNew implements OnInit {
         
     }
 
-    clickCopyText() {
+    clickCopyText(id: number) {
         // Copy Text to clipboard
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCopyText', '@Start');
 
         this.errorMessage = '';
 
-        let e: ClipboardEvent;
-        e.clipboardData.setData('text/plain', 'Hallo World!');
-        console.warn('xx e', e)
-        //       e.preventDefault();
-        //       document.removeEventListener('copy');
-        //     });
-        //     document.execCommand('copy');
-        //   };
+        let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
+        if (messageIndex >= 0) {
+            document.execCommand('copy',false,"Subject: " + this.canvasMessagesNew[messageIndex].subject
+                + "; Body: " + this.canvasMessagesNew[messageIndex].body);
+        };
+
     }
 
     clickRecall(id: number) {
@@ -442,12 +440,14 @@ export class CollaborateMessagesComponentNew implements OnInit {
         let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
             this.canvasMessagesNew[messageIndex].recipients.forEach(rec => {
-                if (rec.userID != '') {
+                if (rec.readOn != '') {
                     readCount = readCount + 1;
                 };
             });
             if (readCount == 0) {
-                this.globalVariableService.deleteCanvasMessage(id);
+                this.globalVariableService.deleteCanvasMessage(id).then(res => {
+                    this.clickFilter(false);
+                });
             } else {
                 this.errorMessage = 'Message was read - cannot Recall';
             };
