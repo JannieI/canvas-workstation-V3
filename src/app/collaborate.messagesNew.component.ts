@@ -67,7 +67,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
 
         this.sentAfter = this.globalVariableService.currentUser.lastLogin;
 
-        this.clickFilter();
+        this.clickFilter(false);
 
         // TODO - keep for a while to copy back, then delete
             // this.canvasMessagesNew.push(
@@ -285,7 +285,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
 
     }
     
-    clickFilter() {
+    clickFilter(showNewMessage: boolean) {
         // Toggle filter on / off
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
 
@@ -340,11 +340,10 @@ export class CollaborateMessagesComponentNew implements OnInit {
                     m => m.sentOn <= this.sendBefore
                 );
             };
-            });
+        });
 
-            // Show messages, incase previously hidden
-            this.newMessage = true;
-
+        // Show/hide new messag form
+        this.newMessage = showNewMessage;
     }
 
     clickJumpToLinked(id: number) {
@@ -384,7 +383,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
             this.existingMessagge = null;
         };
 
-        this.clickFilter();
+        this.newMessage = true;
     }
 
     clickForward(id: number) {
@@ -399,15 +398,14 @@ export class CollaborateMessagesComponentNew implements OnInit {
             this.existingMessagge = null;
         };
 
-        this.clickFilter();
-
+        this.newMessage = true;
     }
 
     handleReplyForward(ev: any) {
         // Forward a message
         this.globalFunctionService.printToConsole(this.constructor.name,'handleReplyForward', '@Start');
         
-        this.newMessage = false;
+        this.clickFilter(false);
         
     }
 

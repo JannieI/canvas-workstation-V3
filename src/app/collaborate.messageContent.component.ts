@@ -215,9 +215,11 @@ export class CollaborateMessageContentComponent implements OnInit {
                     defaultMessage: ''
                 }
             );
+
+            // TODO - this may cause delays: test and put outside Promise if needed
+            this.formMessageContentClosed.emit(action);
         });
 
-		this.formMessageContentClosed.emit(action);
     }
 
 
