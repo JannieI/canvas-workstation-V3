@@ -376,9 +376,14 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickReply', '@Start');
 
         this.messageAction = 'reply'
-        this.existingMessaqge = this.canvasMessagesNew[0];
+        let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
+        if (messageIndex >= 0) {
+            this.existingMessaqge = this.canvasMessagesNew[messageIndex];
+        } else {
+            this.existingMessaqge = null;
+        };
 
-        this.newMessage = !this.newMessage;
+        this.newMessage = true;
     }
 
     handleReply(ev: any) {
