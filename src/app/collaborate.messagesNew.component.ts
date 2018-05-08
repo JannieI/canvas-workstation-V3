@@ -342,7 +342,8 @@ export class CollaborateMessagesComponentNew implements OnInit {
             };
             });
 
-
+            // Show messages, incase previously hidden
+            this.newMessage = true;
 
     }
 
@@ -383,7 +384,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
             this.existingMessagge = null;
         };
 
-        this.newMessage = true;
+        this.clickFilter();
     }
 
     clickForward(id: number) {
@@ -398,7 +399,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
             this.existingMessagge = null;
         };
 
-        this.newMessage = true;
+        this.clickFilter();
 
     }
 
