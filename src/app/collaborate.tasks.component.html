@@ -14,8 +14,8 @@
                     <i>
                         A list of tasks (activities) created by users.
                     </i>
-                </div>                        
-    
+                </div>
+
                 <div class="gridAssignedToUserTitle">
                     <b>Assign To:</b>
                 </div>
@@ -110,7 +110,7 @@
                                         <clr-dg-placeholder>
                                             No Tasks created as yet
                                         </clr-dg-placeholder>
-            
+
                                         <!-- Headers -->
                                         <clr-dg-column>
                                             Task
@@ -121,7 +121,7 @@
                                         <clr-dg-column>
                                             Responsible
                                         </clr-dg-column>
-                                        
+
                                         <!-- Each Row -->
                                         <clr-dg-row *clrDgItems="let row of currentWidgetCheckpoints;
                                             let i = index"
@@ -139,7 +139,7 @@
                                                 {{ row[col.fieldName] }}
                                             </clr-dg-cell>
                                         </clr-dg-row>
-            
+
                                         <!-- Footer -->
                                         <clr-dg-footer>
                                             {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
@@ -154,7 +154,7 @@
                                 </clr-tab-content>
                             </ng-template>
                         </clr-tab>
-                    
+
                         <clr-tab>
                             <button clrTabLink>Detail</button>
                             <ng-template [(clrIfActive)]="cloudActive">
@@ -179,7 +179,7 @@
                                 </clr-tab-content>
                             </ng-template>
                         </clr-tab>
-                    
+
                     </clr-tabs>
                 </div>
 
@@ -189,4 +189,3 @@
     </div>
 </div>
 
-    
