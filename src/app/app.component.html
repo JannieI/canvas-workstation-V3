@@ -3441,6 +3441,8 @@
     class="formPopupDashboard"
     *ngIf="showModalCollaborateSendMessage"
     (formDashboardSendMessage)="handleCloseSendMessageAdd($event)"
+    [messageAction]="'send'"
+    [existingMessaqge]=null
     >
     Send Message ...
 </collaborate-sendmessage>

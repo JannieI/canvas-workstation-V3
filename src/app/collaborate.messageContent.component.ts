@@ -29,6 +29,8 @@ import { CanvasMessage }              from './models';
 export class CollaborateMessageContentComponent implements OnInit {
 
     @Output() formMessageContentClosed: EventEmitter<string> = new EventEmitter();
+    @Input() messageAction: string;
+    @Input() existingMessaqge: CanvasMessage;
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -64,7 +66,7 @@ export class CollaborateMessageContentComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
+console.warn('xx init cM', this.messageAction, this.existingMessaqge)
         this.globalVariableService.getCanvasMessages().then(msg => {
             this.canvasMessages = msg;
 

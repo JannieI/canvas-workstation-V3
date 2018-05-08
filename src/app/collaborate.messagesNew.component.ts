@@ -52,6 +52,10 @@ export class CollaborateMessagesComponentNew implements OnInit {
     sentAfter: string = '';
     subject: string = '';
 
+    messageAction: string;
+    existingMessaqge: CanvasMessage;
+
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -367,9 +371,12 @@ export class CollaborateMessagesComponentNew implements OnInit {
         
     }
 
-    clickReply() {
+    clickReply(id: number) {
         // Reply to a message
         this.globalFunctionService.printToConsole(this.constructor.name,'clickReply', '@Start');
+
+        this.messageAction = 'reply'
+        this.existingMessaqge = this.canvasMessagesNew[0];
 
         this.newMessage = !this.newMessage;
     }
@@ -381,7 +388,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.newMessage = false;
         
     }
-    
+
     clickForward() {
         // Forward a message
         this.globalFunctionService.printToConsole(this.constructor.name,'clickForward', '@Start');

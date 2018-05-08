@@ -8,6 +8,8 @@
 
             <collaborate-messageContent
                 (formMessageContentClosed)="clickClose($event)"
+                [messageAction]="messageAction"
+                [existingMessaqge]="existingMessaqge"
                 >
                 Send Message ...
             </collaborate-messageContent>

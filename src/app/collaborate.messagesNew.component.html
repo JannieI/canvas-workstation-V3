@@ -179,6 +179,8 @@
                     <div class="messageBlock" *ngIf="newMessage">
                             <collaborate-messageContent
                             (formMessageContentClosed)="handleReply($event)"
+                            [messageAction]="messageAction"
+                            [existingMessaqge]="existingMessaqge"
                             >
                             Send Message ...
                         </collaborate-messageContent>
