@@ -4532,7 +4532,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         // Description: Adds a new CanvasMessage
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addCanvasMessage ...', 
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/data.canvasMessages.json';

@@ -49,11 +49,12 @@ export class CollaborateSendMessageComponent implements OnInit {
     body: string;
     linked: boolean;
     canvasMessages: CanvasMessage[] = [];
-    groups: CanvasGroup[] = [];
+    groupNames: string[] = [];
+    selectedUser: string;
+    selectedGroup: string;
+    userNames: string[] = [];
     users: CanvasUser[] = [];
-    selectedUser: CanvasUser;
-    selectedGroup: CanvasGroup;
-
+    
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -68,13 +69,17 @@ export class CollaborateSendMessageComponent implements OnInit {
 
             this.globalVariableService.getCanvasUsers().then(usr => {
                 this.users = usr;
-                if (this.users.length >= 0) {
-                    this.selectedUser = this.users[0];
-                }
+                usr.forEach(u => {
+                    this.userNames.push(u.userID);
+                });
+                this.userNames = ['', ...this.userNames];
 
                 this.globalVariableService.getCanvasGroups().then(grp => {
-                    this.groups = grp;
+                    grp.forEach(g => {
+                        this.groupNames.push(g.name);
+                    });
                 });
+                this.groupNames = ['', ...this.groupNames];
             });
 
         });
@@ -99,14 +104,15 @@ export class CollaborateSendMessageComponent implements OnInit {
         // Save data and Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Set linked D & T
         let dashboardID: number = null;
-        if (this.linked) {
-            dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-        };
         let dashboardTabID: number = null;
         if (this.linked) {
+            dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
             dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
         };
+
+        // Create empty array
         let recipients: 
             [
                 {
@@ -119,16 +125,21 @@ export class CollaborateSendMessageComponent implements OnInit {
                         readOn: ''
                     }
                 ];
-        console.warn('xx 1 rec', recipients)
-        if (this.selectedUser != null  &&  this.selectedUser != undefined) {
-            recipients[0].userID = this.selectedUser.userID;
+        console.warn('xx 1 rec', this.selectedUser, recipients)
+        if (this.selectedUser != null  
+            &&  
+            this.selectedUser != undefined  
+            &&  
+            this.selectedUser != '') {
+            recipients[0].userID = this.selectedUser;
         };
         console.warn('xx 2 rec', recipients)
         if (this.selectedGroup != null  &&  this.selectedGroup != undefined) {
 
             // Loop on users to find members
             for (var i = 0; i < this.users.length; i++) {
-                if (this.users[i].groups.indexOf(this.selectedGroup.name) >= 0) {
+                if (this.users[i].groups.map(x => x.toLowerCase()).indexOf(
+                    this.selectedGroup.toLowerCase()) >= 0) {
                     if (i == 0) {
                         recipients[0].userID = this.users[i].userID;
                     } else {
