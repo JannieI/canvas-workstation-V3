@@ -330,6 +330,28 @@ export class CollaborateMessagesComponentNew implements OnInit {
 
     }
 
+    clickJumpToLinked(id: number) {
+        // Jumps to the linked Dashboard and Tab
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickJumpToLinked', '@Start');
+
+        let messagesFound: CanvasMessage[] = this.canvasMessagesNew.filter(msg => msg.id == id);
+
+        if (messagesFound.length == 0) {
+            return;
+        }
+
+        let dashboardID: number = messagesFound[0].dashboardID;
+        let dashboardTabID: number = messagesFound[0].dashboardTabID;
+
+        if (dashboardID == null  ||  dashboardTabID == null) {
+            return;
+        };
+
+        this.globalVariableService.refreshCurrentDashboard(
+            'messages-clickJumpToLinked', dashboardID, dashboardTabID, ''
+        );
+    }
+
     clickReply() {
         // Reply to a message
         this.globalFunctionService.printToConsole(this.constructor.name,'clickReply', '@Start');

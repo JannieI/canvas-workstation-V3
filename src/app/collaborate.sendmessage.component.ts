@@ -106,6 +106,14 @@ export class CollaborateSendMessageComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validation
+        // if (this.subject.toLowerCase().includes() == '') {
+        //     this.errorMessage = 'Subject must be completed';
+        //     return;
+        // };
+
+        // console.warn('xx oops')
+        // return;
+
         if (this.selectedUser == ''  &&  this.selectedGroup == '') {
             this.errorMessage = 'User and Group cannot both be empty';
             return;
