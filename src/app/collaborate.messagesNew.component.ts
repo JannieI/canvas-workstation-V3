@@ -44,7 +44,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
     
     body: string = '';
     canvasMessagesNew: CanvasMessage[] = [];
-    messageHasBeenRead: boolean = false;
+    messageUnRead: boolean = false;
     newMessage: boolean = false;
     recipient: string = '';
     sendBefore: string = '';
@@ -273,10 +273,6 @@ export class CollaborateMessagesComponentNew implements OnInit {
         // Toggle filter on / off
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
 
-        // messageHasBeenRead: boolean = false;
-        // recipient: string = '';
-        console.warn('xx filters', this.sentAfter, this.sendBefore)
-
         // TODO - the filtering must be done in DB
         this.globalVariableService.getCanvasMessages().then(msg => {
             this.canvasMessagesNew = msg;
@@ -291,6 +287,17 @@ export class CollaborateMessagesComponentNew implements OnInit {
                     let isFound: boolean = false;
                     m.recipients.forEach(r => {
                         if (r.userID == this.recipient) {
+                            isFound = true;
+                        };
+                    });
+                    return isFound;
+                });
+            };
+            if (this.messageUnRead) {
+                this.canvasMessagesNew = this.canvasMessagesNew.filter(m => {
+                    let isFound: boolean = false;
+                    m.recipients.forEach(r => {
+                        if (r.readOn == '') {
                             isFound = true;
                         };
                     });
