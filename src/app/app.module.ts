@@ -93,12 +93,13 @@ import { CollaborateTasksComponent }        from './collaborate.tasks.component'
 import { CollaborateAuditTrailComponent }   from './collaborate.auditTrail.component';
 import { CollaborateSendMessageComponent }  from './collaborate.sendmessage.component';
 import { CollaborateSendEmailComponent }    from './collaborate.sendemail.component';
+import { CollaborateMessageContentComponent }   from './collaborate.messageContent.component';
 
-import { UserPaletteButtonBarComponent}     from './user.palette.buttonbar.component';
+import { UserPaletteButtonBarComponent}         from './user.palette.buttonbar.component';
 import { LoginComponent}              from './login.component';
 import { MyProfileComponent }         from './myprofile.component';
 import { PreferencesComponent }       from './preferences.component';
-import { MyPermissionsComponent }       from './mypermissions.component';
+import { MyPermissionsComponent }     from './mypermissions.component';
 import { UsersComponent }             from './users.component';
 import { GroupsComponent }            from './groups.component';
 import { SystemSettingsComponent }    from './systemsettings.component';
@@ -199,6 +200,7 @@ import { StatusbarComponent }         from './statusbar.component';
         CollaborateAuditTrailComponent,
         CollaborateSendMessageComponent,
         CollaborateSendEmailComponent,
+        CollaborateMessageContentComponent,
 
         MyProfileComponent,
         PreferencesComponent,

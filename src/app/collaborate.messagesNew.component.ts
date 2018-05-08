@@ -350,6 +350,9 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.globalVariableService.refreshCurrentDashboard(
             'messages-clickJumpToLinked', dashboardID, dashboardTabID, ''
         );
+
+		this.formCollaborateMessagesClosed.emit('Closed');
+        
     }
 
     clickReply() {
