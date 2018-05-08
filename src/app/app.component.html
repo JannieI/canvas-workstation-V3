@@ -1766,10 +1766,10 @@
 
             <!-- Shape Rectangle Object -->
             <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Rectangle'">
-                <svg [style.height.px]="row.containerHeight-8"
-                    [style.width.px]="row.containerWidth-8"
-                    [style.marginTop.px]="-26"
-                    [style.marginLeft.px]="-10"
+                <svg 
+                [style.height.px]="row.containerHeight-2"
+                    [style.width.px]="row.containerWidth-2"
+                    [style.margin.px]="4"
                     >
                     <rect
                         [style.height.px]="row.containerHeight-10"
