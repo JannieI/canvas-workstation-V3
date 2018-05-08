@@ -253,7 +253,14 @@ export class CollaborateMessagesComponentNew implements OnInit {
             // );
         // End
     }
+    
+    clickLastLogin() {
+        // Fill Last Login value into form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickLastLogin', '@Start');
 
+        this.sentAfter = this.globalVariableService.currentUser.lastLogin;
+    }
+    
     clickFilter() {
         // Toggle filter on / off
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
