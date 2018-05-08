@@ -43,16 +43,16 @@ export class CollaborateSendMessageComponent implements OnInit {
 
     }
 
-    toUsers: string;
-    toGroups: string;
-    subject: string = '';
-    errorMessage: string = '';
     body: string = '';
-    linked: boolean;
     canvasMessages: CanvasMessage[] = [];
+    errorMessage: string = '';
     groupNames: string[] = [];
+    linked: boolean;
     selectedUser: string = '';
     selectedGroup: string = '';
+    subject: string = '';
+    toGroups: string;
+    toUsers: string;
     userNames: string[] = [];
     users: CanvasUser[] = [];
     
@@ -80,7 +80,7 @@ export class CollaborateSendMessageComponent implements OnInit {
                         this.groupNames.push(g.name);
                     });
                 });
-                this.groupNames = ['', ...this.groupNames];
+                // this.groupNames = ['', ...this.groupNames];
             });
 
         });
