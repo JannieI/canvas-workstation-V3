@@ -45,13 +45,14 @@ export class CollaborateSendMessageComponent implements OnInit {
 
     toUsers: string;
     toGroups: string;
-    subject: string;
-    body: string;
+    subject: string = '';
+    errorMessage: string = '';
+    body: string = '';
     linked: boolean;
     canvasMessages: CanvasMessage[] = [];
     groupNames: string[] = [];
-    selectedUser: string;
-    selectedGroup: string;
+    selectedUser: string = '';
+    selectedGroup: string = '';
     userNames: string[] = [];
     users: CanvasUser[] = [];
     
@@ -103,6 +104,21 @@ export class CollaborateSendMessageComponent implements OnInit {
     clickSave(action: string) {
         // Save data and Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Validation
+        if (this.selectedUser == ''  &&  this.selectedGroup == '') {
+            this.errorMessage = 'User and Group cannot both be empty';
+            return;
+        };
+
+        if (this.subject == '') {
+            this.errorMessage = 'Subject must be completed';
+            return;
+        };
+        if (this.body == '') {
+            this.errorMessage = 'Body must be completed';
+            return;
+        };
 
         // Set linked D & T
         let dashboardID: number = null;
