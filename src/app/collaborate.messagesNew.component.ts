@@ -44,6 +44,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
     
     body: string = '';
     canvasMessagesNew: CanvasMessage[] = [];
+    errorMessage: string = '';
     messageUnRead: boolean = false;
     newMessage: boolean = false;
     recipient: string = '';
@@ -350,6 +351,8 @@ export class CollaborateMessagesComponentNew implements OnInit {
         // Jumps to the linked Dashboard and Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'clickJumpToLinked', '@Start');
 
+        this.errorMessage = '';
+        
         let messagesFound: CanvasMessage[] = this.canvasMessagesNew.filter(msg => msg.id == id);
 
         if (messagesFound.length == 0) {
@@ -375,6 +378,8 @@ export class CollaborateMessagesComponentNew implements OnInit {
         // Reply to a message
         this.globalFunctionService.printToConsole(this.constructor.name,'clickReply', '@Start');
 
+        this.errorMessage = '';
+        
         this.messageAction = 'reply'
         let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
@@ -390,6 +395,8 @@ export class CollaborateMessagesComponentNew implements OnInit {
         // Forward a message
         this.globalFunctionService.printToConsole(this.constructor.name,'clickForward', '@Start');
 
+        this.errorMessage = '';
+        
         this.messageAction = 'forward'
         let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
@@ -412,6 +419,9 @@ export class CollaborateMessagesComponentNew implements OnInit {
     clickCopyText() {
         // Copy Text to clipboard
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCopyText', '@Start');
+
+        this.errorMessage = '';
+
         let e: ClipboardEvent;
         e.clipboardData.setData('text/plain', 'Hallo World!');
         console.warn('xx e', e)
@@ -422,9 +432,26 @@ export class CollaborateMessagesComponentNew implements OnInit {
         //   };
     }
 
-    clickRecall() {
+    clickRecall(id: number) {
         // Recall a message, if not read by anyone
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRecall', '@Start');
+
+        this.errorMessage = '';
+        
+        let readCount: number = 0;
+        let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
+        if (messageIndex >= 0) {
+            this.canvasMessagesNew[messageIndex].recipients.forEach(rec => {
+                if (rec.userID != '') {
+                    readCount = readCount + 1;
+                };
+            });
+            if (readCount == 0) {
+                this.globalVariableService.deleteCanvasMessage(id);
+            } else {
+                this.errorMessage = 'Message was read - cannot Recall';
+            };
+        };
 
     }
 

@@ -36,6 +36,11 @@
                             title="Show messages that contains this text in the body"
                             size="20"
                             >
+                        <span
+                            [style.color]="'red'"
+                            >
+                            {{ errorMessage }}
+                        </span>    
                     </div>
                     <div class="filterArea">
                         <b>Recipient:</b>
@@ -156,7 +161,7 @@
                                             <button type="button"
                                                 clrDropdownItem
                                                 title="Undo previous action"
-                                                (click)="clickRecall()"
+                                                (click)="clickRecall(row.id)"
                                                 >
                                                 Recall
                                             </button>
