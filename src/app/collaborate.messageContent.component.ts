@@ -30,7 +30,7 @@ export class CollaborateMessageContentComponent implements OnInit {
 
     @Output() formMessageContentClosed: EventEmitter<string> = new EventEmitter();
     @Input() messageAction: string;
-    @Input() existingMessaqge: CanvasMessage;
+    @Input() existingMessagge: CanvasMessage;
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -66,7 +66,7 @@ export class CollaborateMessageContentComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-console.warn('xx init cM', this.messageAction, this.existingMessaqge)
+
         this.globalVariableService.getCanvasMessages().then(msg => {
             this.canvasMessages = msg;
 
@@ -103,19 +103,11 @@ console.warn('xx init cM', this.messageAction, this.existingMessaqge)
 		this.formMessageContentClosed.emit(action);
     }
 
-    clickSave(action: string) {
-        // Save data and Close form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+    clickSend(action: string) {
+        // Send message and Close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSend', '@Start');
 
         // Validation
-        // if (this.subject.toLowerCase().includes() == '') {
-        //     this.errorMessage = 'Subject must be completed';
-        //     return;
-        // };
-
-        // console.warn('xx oops')
-        // return;
-
         if (this.selectedUser == ''  &&  this.selectedGroup == '') {
             this.errorMessage = 'User and Group cannot both be empty';
             return;
@@ -203,6 +195,12 @@ console.warn('xx init cM', this.messageAction, this.existingMessaqge)
             dashboardName: null,
             replySender: null,
             replyMessageStart: ''
+        }
+
+        // Fill in old info if reply/forward 
+        if (this.messageAction == 'reply'  ||  this.messageAction == 'forward') {
+            newMessage.threadID = this.existingMessagge.threadID;
+            newMessage.replyToMessageID = this.existingMessagge.id;
         }
 
         // Send

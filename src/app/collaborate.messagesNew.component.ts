@@ -53,7 +53,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
     subject: string = '';
 
     messageAction: string;
-    existingMessaqge: CanvasMessage;
+    existingMessagge: CanvasMessage;
 
 
 	constructor(
@@ -378,9 +378,9 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.messageAction = 'reply'
         let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
-            this.existingMessaqge = this.canvasMessagesNew[messageIndex];
+            this.existingMessagge = this.canvasMessagesNew[messageIndex];
         } else {
-            this.existingMessaqge = null;
+            this.existingMessagge = null;
         };
 
         this.newMessage = true;
@@ -393,9 +393,9 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.messageAction = 'forward'
         let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
-            this.existingMessaqge = this.canvasMessagesNew[messageIndex];
+            this.existingMessagge = this.canvasMessagesNew[messageIndex];
         } else {
-            this.existingMessaqge = null;
+            this.existingMessagge = null;
         };
 
         this.newMessage = true;

@@ -30,7 +30,7 @@ export class CollaborateSendMessageComponent implements OnInit {
 
     @Output() formDashboardSendMessage: EventEmitter<string> = new EventEmitter();
     @Input() messageAction: string;
-    @Input() existingMessaqge: CanvasMessage;
+    @Input() existingMessagge: CanvasMessage;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -40,7 +40,7 @@ export class CollaborateSendMessageComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        console.warn('xx init sM', this.messageAction, this.existingMessaqge)
+        console.warn('xx init sM', this.messageAction, this.existingMessagge)
 
     }
 
