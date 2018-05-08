@@ -1746,10 +1746,9 @@
 
             <!-- Shape Ellipse Object -->
             <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Ellipse'">
-                <svg [style.height]="row.containerHeight-8"
-                    [style.width]="row.containerWidth-8"
-                    [style.marginTop.px]="-26"
-                    [style.marginLeft.px]="-10"
+                <svg [style.height]="row.containerHeight-2"
+                    [style.width]="row.containerWidth-2"
+                    [style.margin.px]="0"
                     >
                     <ellipse
                         [style.cx]="row.containerWidth/2"
