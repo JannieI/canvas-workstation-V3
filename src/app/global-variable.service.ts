@@ -4561,6 +4561,23 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         });
     }
 
+    updateCanvasMessagesAsRead(userID: string) {
+        // Marks all messages for this userID as read - typically done when Messages form
+        // is closed, or at logout.
+        console.log('%c    Global-Variables addCanvasMessage ...', 
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        // TODO - this must be done via the DB: for now, only glob-var array
+        let today = new Date();
+        this.canvasMessages.forEach(msg => {
+            msg.recipients.forEach(rec => {
+                if (rec.userID == userID) {
+                    rec.readOn = this.formatDate(today);
+                };
+            });
+        });
+    }
+    
     deleteCanvasMessage(id: number): Promise<string> {
         // Description: Deletes a canvasMessages
         // Returns: 'Deleted' or error message
