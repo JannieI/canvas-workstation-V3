@@ -462,17 +462,14 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.newMessage = !this.newMessage;
     }
 
-    clickNewMessageSave() {
-        // create a new message, back to message
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickNewMessageSave', '@Start');
-
-        this.newMessage = !this.newMessage;
-    }
-
     clickClose(action: string) {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
+        // Mark all the messages as read
+        this.globalVariableService.updateCanvasMessagesAsRead(
+            this.globalVariableService.currentUser.userID
+        );
 		this.formCollaborateMessagesClosed.emit(action);
     }
 }
