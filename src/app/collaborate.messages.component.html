@@ -99,7 +99,7 @@
                     <div class="messageBlock" *ngIf="!newMessage"
                         [style.height.rem]="newMessage? 15 : 15"
                         >
-                        <div *ngFor="let row of canvasMessagesNew; let i = index"
+                        <div *ngFor="let row of canvasMessages; let i = index"
                             class="message"
                             [style.margin-left.px]="i%2==0 ? '0' : '30'"
                             [style.background-color]="i%2==0 ? 'rgb(235, 235, 235)' : 'rgb(187, 221, 187)'"
