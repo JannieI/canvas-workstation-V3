@@ -38,7 +38,7 @@
                     </div>
                     <div class="select gridAssignedToUser">
                         <select
-                            [(ngModel)]="selectedUser"
+                            [(ngModel)]="selectedAssignedToUserID"
                             >
                             <option *ngFor="let row of userNames"
                                 >
@@ -137,7 +137,7 @@
                     </div>
                     <div class="select gridPrecedingID">
                         <select
-                            [(ngModel)]="selectedUser"
+                            [(ngModel)]="selectedPrecedingTaskID"
                             >
                             <option *ngFor="let row of taskIDs"
                                 >
@@ -151,7 +151,7 @@
                     </div>
                     <div class="select gridDashboard">
                         <select
-                            [(ngModel)]="selectedDashboard"
+                            [(ngModel)]="selectedLinkedDashboard"
                             >
                             <option *ngFor="let row of dashboardNames"
                                 >

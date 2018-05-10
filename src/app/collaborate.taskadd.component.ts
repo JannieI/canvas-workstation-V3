@@ -33,9 +33,9 @@ export class CollaborateTaskAddComponent implements OnInit {
     selectedTaskText: string = '';
     selectedActivityType: string = '';
     selectedTaskStatus: string = '';
-    selectedAssignedToUserID: number;
+    selectedAssignedToUserID: string;
     selectedPrecedingTaskID: number;
-    selectedLinkedDashboardID: number;
+    selectedLinkedDashboard: string;
     selectedTaskComments: string = '';
     selectedStartDate: string = '';
     selectedDeadlineDate: string = '';
@@ -75,7 +75,7 @@ export class CollaborateTaskAddComponent implements OnInit {
                     // Add Task text while we here
                     // TODO - make proper with Text, etc - maybe add a short Task Subject
                     this.taskIDs.push(tsk.id);
-                    
+
                     isFound = false;
                     if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
                         this.userNames.forEach(usn => {
@@ -110,40 +110,42 @@ export class CollaborateTaskAddComponent implements OnInit {
     clickSave(action: string) {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+   
+        let today = new Date();
+        let dashboardID: number = null;
+        if (this.selectedLinkedDashboard != '') {
+            let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+                d => d.name == this.selectedLinkedDashboard
+            );
+            if (dashboardIndex >= 0) {
+                dashboardID = this.globalVariableService.dashboards[
+                    dashboardIndex].id;
+            };
+        };
+
+        // TODO - ad place to add Comments - as this is an array, maybe with initials and date
+        let newTask: CanvasTask = {
+
+            id: null,
+            taskText: this.selectedTaskText,
+            activityType: this.selectedActivityType,
+            taskStatus: this.selectedTaskStatus,
+            assignedToUserID: this.selectedAssignedToUserID,
+            precedingTaskID: this.selectedPrecedingTaskID,
+            linkedDashboardID: dashboardID,
+            taskComments: [this.selectedTaskComments],
+            startDate: this.selectedStartDate,
+            deadlineDate: this.selectedDeadlineDate,
+            endDate: this.selectedEndDate,
+            durationDays: +this.selectedDurationDays,
+            editedBy: '',
+            editedOn: '',
+            createdBy: this.globalVariableService.currentUser.userID,
+            createdOn: this.globalVariableService.formatDate(today),
+        };
         
-       console.warn('xx sel', 
-        this.selectedTaskText,
-        this.selectedActivityType,
-        this.selectedTaskStatus,
-        this.selectedAssignedToUserID,
-        this.selectedPrecedingTaskID,
-        this.selectedLinkedDashboardID,
-        this.selectedTaskComments,
-        this.selectedStartDate,
-        this.selectedDeadlineDate,
-        this.selectedEndDate,
-        this.selectedDurationDays)
+        this.globalVariableService.addCanvasTask();
 
-       
-
-        // id: null,
-        // taskText
-        // activityType
-        // taskStatus
-        // assignedToUserID
-        // precedingTaskID
-        // linkedDashboardID
-        // taskComments
-        // startDate
-        // deadlineDate
-        // endDate
-        // durationDays
-
-        // editedBy
-        // editedOn
-        // createdBy
-        // createdOn
-        
         this.formCollaborateTaskAddClosed.emit(action);
     }
 
