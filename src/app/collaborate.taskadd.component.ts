@@ -144,7 +144,7 @@ export class CollaborateTaskAddComponent implements OnInit {
             createdOn: this.globalVariableService.formatDate(today),
         };
         
-        this.globalVariableService.addCanvasTask();
+        this.globalVariableService.addCanvasTask(newTask);
 
         this.formCollaborateTaskAddClosed.emit(action);
     }

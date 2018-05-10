@@ -1605,7 +1605,10 @@
                 <!-- Annotation -->
                 <span style="display: inline-block" *ngIf="row.annotation">
                     <clr-signpost>
-                        <clr-signpost-content *clrIfOpen>
+                        <clr-icon shape="info-circle" 
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen>
                             <h4 style="margin-top: 0">Annotation</h4>
                             <p> {{ row.annotation }} </p>
                         </clr-signpost-content>
