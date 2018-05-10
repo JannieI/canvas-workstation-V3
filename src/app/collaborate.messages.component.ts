@@ -21,11 +21,11 @@ import { CanvasMessage }           from './models';
 import { DatagridInput }              from './models';
 
 @Component({
-    selector: 'collaborate-messagesNew',
-    templateUrl: './collaborate.messagesNew.component.html',
-    styleUrls: ['./collaborate.messagesNew.component.css']
+    selector: 'collaborate-messages',
+    templateUrl: './collaborate.messages.component.html',
+    styleUrls: ['./collaborate.messages.component.css']
 })
-export class CollaborateMessagesComponentNew implements OnInit {
+export class CollaborateMessagesComponent implements OnInit {
 
     @Output() formCollaborateMessagesClosed: EventEmitter<string> = new EventEmitter();
 
@@ -43,7 +43,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
     }
     
     body: string = '';
-    canvasMessagesNew: CanvasMessage[] = [];
+    canvasMessages: CanvasMessage[] = [];
     errorMessage: string = '';
     messageUnRead: boolean = false;
     newMessage: boolean = false;
@@ -292,15 +292,15 @@ export class CollaborateMessagesComponentNew implements OnInit {
 
         // TODO - the filtering must be done in DB
         this.globalVariableService.getCanvasMessages().then(msg => {
-            this.canvasMessagesNew = msg;
+            this.canvasMessages = msg;
 
             if (this.sender != '') {
-                this.canvasMessagesNew = this.canvasMessagesNew.filter(
+                this.canvasMessages = this.canvasMessages.filter(
                     m => m.sender == this.sender
                 );
             };
             if (this.recipient != '') {
-                this.canvasMessagesNew = this.canvasMessagesNew.filter(m => {
+                this.canvasMessages = this.canvasMessages.filter(m => {
                     let isFound: boolean = false;
                     m.recipients.forEach(r => {
                         if (r.userID == this.recipient) {
@@ -311,7 +311,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 });
             };
             if (this.messageUnRead) {
-                this.canvasMessagesNew = this.canvasMessagesNew.filter(m => {
+                this.canvasMessages = this.canvasMessages.filter(m => {
                     let isFound: boolean = false;
                     m.recipients.forEach(r => {
                         if (r.readOn == '') {
@@ -322,22 +322,22 @@ export class CollaborateMessagesComponentNew implements OnInit {
                 });
             };
             if (this.body != '') {
-                this.canvasMessagesNew = this.canvasMessagesNew.filter(
+                this.canvasMessages = this.canvasMessages.filter(
                     m => m.body.toLowerCase().includes(this.body.toLowerCase())
                 );
             };
             if (this.subject != '') {
-                this.canvasMessagesNew = this.canvasMessagesNew.filter(
+                this.canvasMessages = this.canvasMessages.filter(
                     m => m.subject.toLowerCase().includes(this.subject.toLowerCase())
                 );
             };
             if (this.sentAfter != '') {
-                this.canvasMessagesNew = this.canvasMessagesNew.filter(
+                this.canvasMessages = this.canvasMessages.filter(
                     m => m.sentOn >= this.sentAfter
                 );
             };
             if (this.sendBefore != '') {
-                this.canvasMessagesNew = this.canvasMessagesNew.filter(
+                this.canvasMessages = this.canvasMessages.filter(
                     m => m.sentOn <= this.sendBefore
                 );
             };
@@ -353,7 +353,7 @@ export class CollaborateMessagesComponentNew implements OnInit {
 
         this.errorMessage = '';
         
-        let messagesFound: CanvasMessage[] = this.canvasMessagesNew.filter(msg => msg.id == id);
+        let messagesFound: CanvasMessage[] = this.canvasMessages.filter(msg => msg.id == id);
 
         if (messagesFound.length == 0) {
             return;
@@ -381,9 +381,9 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.errorMessage = '';
         
         this.messageAction = 'reply'
-        let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
+        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
-            this.existingMessagge = this.canvasMessagesNew[messageIndex];
+            this.existingMessagge = this.canvasMessages[messageIndex];
         } else {
             this.existingMessagge = null;
         };
@@ -398,9 +398,9 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.errorMessage = '';
         
         this.messageAction = 'forward'
-        let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
+        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
-            this.existingMessagge = this.canvasMessagesNew[messageIndex];
+            this.existingMessagge = this.canvasMessages[messageIndex];
         } else {
             this.existingMessagge = null;
         };
@@ -422,10 +422,10 @@ export class CollaborateMessagesComponentNew implements OnInit {
 
         this.errorMessage = '';
 
-        let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
+        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
-            document.execCommand('copy',false,"Subject: " + this.canvasMessagesNew[messageIndex].subject
-                + "; Body: " + this.canvasMessagesNew[messageIndex].body);
+            document.execCommand('copy',false,"Subject: " + this.canvasMessages[messageIndex].subject
+                + "; Body: " + this.canvasMessages[messageIndex].body);
         };
 
     }
@@ -437,9 +437,9 @@ export class CollaborateMessagesComponentNew implements OnInit {
         this.errorMessage = '';
         
         let readCount: number = 0;
-        let messageIndex: number = this.canvasMessagesNew.findIndex(msg => msg.id == id);
+        let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
-            this.canvasMessagesNew[messageIndex].recipients.forEach(rec => {
+            this.canvasMessages[messageIndex].recipients.forEach(rec => {
                 if (rec.readOn != '') {
                     readCount = readCount + 1;
                 };
