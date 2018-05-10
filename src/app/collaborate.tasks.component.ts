@@ -21,7 +21,6 @@ import { GlobalVariableService}       from './global-variable.service';
 import { CanvasActivity }             from './models';
 import { CanvasTask }                 from './models';
 import { CanvasUser }                 from './models';
-import { Dashboard }                  from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 

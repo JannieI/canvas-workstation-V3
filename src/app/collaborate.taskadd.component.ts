@@ -9,7 +9,8 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { Datasource }                from './models';
+import { CanvasTask }                 from './models';
+import { CanvasUser }                 from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -27,6 +28,8 @@ export class CollaborateTaskAddComponent implements OnInit {
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
+    canvasTasks: CanvasTask[] = [];
+    dashboardNames: string[] = [];
     selectedTaskText: string = '';
     selectedActivityType: string = '';
     selectedTaskStatus: string = '';
@@ -38,6 +41,9 @@ export class CollaborateTaskAddComponent implements OnInit {
     selectedDeadlineDate: string = '';
     selectedEndDate: string = '';
     selectedDurationDays: string = '';
+    taskIDs: number[] = [];
+    userNames: string[] = [];
+    users: CanvasUser[] = [];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -48,6 +54,48 @@ export class CollaborateTaskAddComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        this.globalVariableService.getCanvasTasks().then (ca => {
+
+            // Set the data for the grid
+            this.canvasTasks = ca;
+
+            // Get User list
+            this.globalVariableService.getCanvasUsers().then(usr => {
+                this.users = usr;
+                usr.forEach(u => {
+                    this.userNames.push(u.userID);
+                });
+                this.userNames = ['', ...this.userNames];
+
+                // Add 'dead' users from Tasks - in case not in Users any longer
+                let isFound: boolean = false;
+                this.canvasTasks.forEach(tsk => {
+
+                    // Add Task text while we here
+                    // TODO - make proper with Text, etc - maybe add a short Task Subject
+                    this.taskIDs.push(tsk.id)
+                    isFound = false;
+                    if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
+                        this.userNames.forEach(usn => {
+                            if (usn.toLowerCase() == tsk.assignedToUserID.toLowerCase()) {
+                                isFound = true;
+                            };
+                        });
+                        if (!isFound) {
+                            this.userNames.push(tsk.assignedToUserID);
+                        };
+                    };
+                });
+
+                // Get Dashboard list
+                this.globalVariableService.dashboards.forEach(d => {
+                    this.dashboardNames.push(d.name);
+                });
+                this.dashboardNames = ['', ...this.dashboardNames];
+            });
+    
+        });
 
     }
 
